@@ -1,0 +1,18 @@
+{
+  "name": "@repo/tokens",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "check-types": "tsc --noEmit",
+    "generate:colors": "tsx scripts/generate-colors.ts && prettier --write src/colors.ts"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.1",
+    "tsx": "^4.22.3",
+    "typescript": "5.9.2"
+  }
+}
