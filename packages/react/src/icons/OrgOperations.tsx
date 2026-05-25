@@ -1,0 +1,14 @@
+import type { ComponentProps } from "react";
+
+export const OrgOperations = (props: ComponentProps<"svg">) => {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M7.70595 5.87521C5.93591 5.87521 3.91558 5.70864 4.00272 8.42945H6.79427L6.23545 20.8824L10.706 16.4118L12.9413 22L15.1766 16.4118L19.6472 20.8824L18.5295 4.67647L16.8531 3C16.8531 3 10.4266 3 9.02956 3C7.63252 3 7.35309 4.67647 7.35309 4.67647L7.18833 5.8733L7.70595 5.87521ZM13.5001 5.23529H9.02956C9.02956 7.47058 13.5001 7.47058 13.5001 5.23529Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  );
+};

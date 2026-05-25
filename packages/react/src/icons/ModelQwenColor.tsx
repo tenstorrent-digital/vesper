@@ -1,0 +1,44 @@
+import type { ComponentProps } from "react";
+
+export const ModelQwenColor = (props: ComponentProps<"svg">) => {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        d="M18.9368 10.102L20.2105 7.9898C20.3123 7.81347 20.3123 7.59551 20.2105 7.41918L18.9368 5.30694C18.8723 5.19306 18.7494 5.12204 18.6141 5.12204H13.9092L12.8069 3.18459C12.7423 3.07072 12.6194 2.99969 12.4841 2.99969H9.97159C9.83628 2.99969 9.71338 3.07072 9.64883 3.18459L7.25297 7.38H4.74042C4.60511 7.38 4.48221 7.45102 4.41766 7.5649L3.144 9.67714C3.04221 9.85347 3.04221 10.0714 3.144 10.2478L5.29904 14.0816L4.21407 15.9551C4.11228 16.1314 4.11228 16.3494 4.21407 16.5257L5.48773 18.638C5.55228 18.7518 5.67517 18.8229 5.81049 18.8229H10.4483L11.6329 20.8163C11.6974 20.9302 11.8203 21.0012 11.9556 21.0012H14.4682C14.6035 21.0012 14.7264 20.9302 14.7909 20.8163L17.1716 16.5649H19.3266C19.4619 16.5649 19.5848 16.4939 19.6494 16.38L20.923 14.2678C21.0248 14.0914 21.0248 13.8735 20.923 13.6971L18.9368 10.102Z"
+        fill="url(#ModelQwenColor__paint0_radial_1_566)"
+      ></path>
+      <path
+        d="M14.4356 20.8812H11.923L10.5153 18.638H5.81049L7.25297 16.3947H9.66621L4.41766 7.68858H7.34483L9.98897 3.24858L11.2626 5.49184L9.98897 7.68858H19.7065L18.4328 9.80082L20.8461 13.9323H18.4328L17.1716 11.7355L12.2086 20.8812H14.4356Z"
+        fill="currentColor"
+      ></path>
+      <path
+        d="M15.5206 10.6935H9.10014L12.2086 15.8706L15.5206 10.6935Z"
+        fill="url(#ModelQwenColor__paint1_radial_1_566)"
+      ></path>
+      <defs>
+        <radialGradient
+          id="ModelQwenColor__paint0_radial_1_566"
+          cx="0"
+          cy="0"
+          r="1"
+          gradientUnits="userSpaceOnUse"
+          gradientTransform="translate(12.0621 13.1633) rotate(90) scale(12.2449 12.4138)"
+        >
+          <stop stopColor="#665CEE"></stop>
+          <stop offset="1" stopColor="#332E91"></stop>
+        </radialGradient>
+        <radialGradient
+          id="ModelQwenColor__paint1_radial_1_566"
+          cx="0"
+          cy="0"
+          r="1"
+          gradientUnits="userSpaceOnUse"
+          gradientTransform="translate(12.0621 13.1633) rotate(90) scale(12.2449 12.4138)"
+        >
+          <stop stopColor="#665CEE"></stop>
+          <stop offset="1" stopColor="#332E91"></stop>
+        </radialGradient>
+      </defs>
+    </svg>
+  );
+};

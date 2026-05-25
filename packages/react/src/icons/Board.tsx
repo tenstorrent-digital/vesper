@@ -1,0 +1,16 @@
+import type { ComponentProps } from "react";
+
+export const Board = (props: ComponentProps<"svg">) => {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M22 15.0952H13V16.0476H4V17H3V14.619H6.5V11.7619H3V10.8095H6.5V7.95238H3V7H22V15.0952ZM11.5 12.7143H15.5V8.90476H11.5V12.7143Z"
+        fill="currentColor"
+      ></path>
+      <path d="M5.5 13.6667H2V12.7143H5.5V13.6667Z" fill="currentColor"></path>
+      <path d="M5.5 8.90476V9.85714H2V8.90476H5.5Z" fill="currentColor"></path>
+    </svg>
+  );
+};

@@ -1,0 +1,32 @@
+import type { ComponentProps } from "react";
+
+export const Tensix = (props: ComponentProps<"svg">) => {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M9.75 3L11.4375 4.6875V9.75L9.75 11.4375H4.6875L3 9.75V4.6875L4.6875 3H9.75ZM4.6875 4.6875V5.8125H6.65625V9.75H7.78125V5.8125H9.75V4.6875H4.6875Z"
+        fill="currentColor"
+      ></path>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M9.75 12.5625L11.4375 14.25V19.3125L9.75 21H4.6875L3 19.3125V14.25L4.6875 12.5625H9.75ZM4.6875 14.25V15.375H6.65625V19.3125H7.78125V15.375H9.75V14.25H4.6875Z"
+        fill="currentColor"
+      ></path>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M19.3125 3L21 4.6875V9.75L19.3125 11.4375H14.25L12.5625 9.75V4.6875L14.25 3H19.3125ZM14.25 4.6875V5.8125H16.2188V9.75H17.3438V5.8125H19.3125V4.6875H14.25Z"
+        fill="currentColor"
+      ></path>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M19.3125 12.5625L21 14.25V19.3125L19.3125 21H14.25L12.5625 19.3125V14.25L14.25 12.5625H19.3125ZM14.25 14.25V15.375H16.2188V19.3125H17.3438V15.375H19.3125V14.25H14.25Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  );
+};

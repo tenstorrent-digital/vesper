@@ -7,7 +7,8 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "generate:colors": "turbo run generate:colors --filter=@repo/tokens"
+    "generate:colors": "turbo run generate:colors --filter=@repo/tokens",
+    "generate:icons": "turbo run generate:icons --filter=@repo/react"
   },
   "devDependencies": {
     "@turbo/gen": "^2.9.14",

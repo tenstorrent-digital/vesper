@@ -1,0 +1,12 @@
+import type { ComponentProps } from "react";
+
+export const TTTorch = (props: ComponentProps<"svg">) => {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        d="M19 14.25L14.3333 18.75H9.66667L5 14.25V9.75L11.9997 3L14.3333 5.25V8.0625L9.95833 12.2812L10.8333 13.125L16.6667 7.5L19 9.75V14.25ZM14.9167 19.875H9.08333V21H14.9167V19.875Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  );
+};

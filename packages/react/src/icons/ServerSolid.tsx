@@ -1,0 +1,26 @@
+import type { ComponentProps } from "react";
+
+export const ServerSolid = (props: ComponentProps<"svg">) => {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M20 17V19.5L18.7012 21H5.26465L4 19.5V17L5.26465 15.5H18.7012L20 17ZM6 18.75H7.25V17.5H6V18.75ZM8.5 18.75H9.75V17.5H8.5V18.75Z"
+        fill="currentColor"
+      ></path>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M20 10.75V13.25L18.7012 14.75H5.26465L4 13.25V10.75L5.26465 9.25H18.7012L20 10.75ZM6 12.5H7.25V11.25H6V12.5ZM8.5 12.5H9.75V11.25H8.5V12.5Z"
+        fill="currentColor"
+      ></path>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M20 4.5V7L18.7012 8.5H5.26465L4 7V4.5L5.26465 3H18.7012L20 4.5ZM6 6.25H7.25V5H6V6.25ZM8.5 6.25H9.75V5H8.5V6.25Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  );
+};

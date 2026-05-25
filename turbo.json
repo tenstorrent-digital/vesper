@@ -23,6 +23,13 @@
         "$TURBO_ROOT$/packages/tokens/scripts/generate-colors.ts"
       ],
       "outputs": ["$TURBO_ROOT$/packages/tokens/src/colors.ts"]
+    },
+    "generate:icons": {
+      "inputs": [
+        "$TURBO_ROOT$/packages/react/assets/icons/**",
+        "$TURBO_ROOT$/packages/react/scripts/generate-icons.ts"
+      ],
+      "outputs": ["$TURBO_ROOT$/packages/react/src/icons/**"]
     }
   }
 }

@@ -1,0 +1,14 @@
+import type { ComponentProps } from "react";
+
+export const ModeLight = (props: ComponentProps<"svg">) => {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12.5 6H14.667L15.9795 7.3125L18.7178 4.5752L19.4248 5.28223L16.6865 8.01953L18 9.33301V11.5H22V12.5H18V14.667L16.6865 15.9795L19.4248 18.7178L18.7178 19.4248L15.9795 16.6865L14.667 18H12.5V22H11.5V18H9.33301L8.01953 16.6865L5.28223 19.4248L4.5752 18.7178L7.3125 15.9795L6 14.667V12.5H2V11.5H6V9.33301L7.3125 8.01953L4.5752 5.28223L5.28223 4.5752L8.01953 7.3125L9.33301 6H11.5V2H12.5V6ZM9.77734 7L7 9.77734V14.2227L9.77734 17H14.2227L17 14.2227V9.77734L14.2227 7H9.77734Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  );
+};
