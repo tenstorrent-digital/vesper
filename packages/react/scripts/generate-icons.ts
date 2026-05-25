@@ -100,9 +100,7 @@ fs.mkdirSync(path.resolve(__dirname, "../src/icons"), { recursive: true });
 
 icons.forEach((icon) => {
   // spread {...props} into the opening svg tag
-  const markdown = icon.markdown.replace(/<svg([^>]*)>/, (_, attrs) => {
-    return `<svg${attrs} {...props}>`;
-  });
+  const markdown = icon.markdown.replace(/<svg([^>]*)>/, "<svg$1 {...props}>");
 
   const fileContents = `
 import type { ComponentProps } from 'react';
