@@ -95,7 +95,7 @@ fs.mkdirSync(path.resolve(__dirname, "../src/Icon"), { recursive: true });
 // create an individual component file for each icon
 icons.forEach((icon) => {
   // spread {...props} into the opening svg tag
-  const markdown = icon.markdown.replace(/<svg([^>]*)>/, "<svg$1 {...props}>");
+  const markdown = icon.markdown.replace(/<svg([^>]*)>/s, "<svg$1 {...props}>");
 
   const fileContents = `
 ${AUTO_GENERATED_WARNING}
