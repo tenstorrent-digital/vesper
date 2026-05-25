@@ -74,5 +74,5 @@ const tokensObj = {
 
 fs.writeFileSync(
   path.resolve(__dirname, "../src/colors.ts"),
-  `export const Colors = ${JSON.stringify(tokensObj)}`,
+  `export const colors = ${JSON.stringify(tokensObj)}`,
 );

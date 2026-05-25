@@ -1,4 +1,4 @@
-export const Colors = {
+export const colors = {
   dark: {
     "static-black": "#071614",
     "static-white": "#f1f8f8",
