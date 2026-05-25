@@ -29,6 +29,10 @@ const iconFiles = fs
   .readdirSync(path.resolve(__dirname, "../assets/icons"))
   .filter((file) => file.endsWith(".svg"));
 
+if (iconFiles.length === 0) {
+  throw new Error("No SVG files found in assets/icons directory");
+}
+
 const icons = iconFiles.map((fileName) => {
   // get the icon svg as utf-8
   const raw = fs.readFileSync(
