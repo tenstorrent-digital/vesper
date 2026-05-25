@@ -10,30 +10,30 @@ import { visit } from "unist-util-visit";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// transform an svg file name into its component name, ie. user-multiple.svg -> UserMultiple
-const getComponentName = (fileName: string) => {
-  const componentName =
-    // get the icon name by trimming the .svg extension ("icon.svg" -> "icon")
-    fileName
-      .slice(0, -4)
-      .split("-")
-      .map((part) => {
-        // special string mappings for abbreviations and PascalCase brand names
-        if (part === "ai") return "AI";
-        if (part === "fe") return "FE";
-        if (part === "llk") return "LLK";
-        if (part === "nn") return "NN";
-        if (part === "tt") return "TT";
-        if (part === "xla") return "XLA";
-        if (part === "deepseek") return "DeepSeek";
-        if (part === "youtube") return "YouTube";
-        if (part === "github") return "GitHub";
-        if (part === "linkedin") return "LinkedIn";
-        if (part === "linkedin") return "LinkedIn";
+// transform an svg file name into its id, ie. user-multiple.svg -> user-multiple
+const getIconId = (fileName: string) => fileName.slice(0, -4);
 
-        return part.charAt(0).toUpperCase().concat(part.slice(1));
-      })
-      .join("");
+// transform an icon id into its component name, ie. user-multiple -> UserMultiple
+const getComponentName = (iconId: string) => {
+  const componentName = iconId
+    .split("-")
+    .map((part) => {
+      // special string mappings for abbreviations and PascalCase brand names
+      if (part === "ai") return "AI";
+      if (part === "fe") return "FE";
+      if (part === "llk") return "LLK";
+      if (part === "nn") return "NN";
+      if (part === "tt") return "TT";
+      if (part === "xla") return "XLA";
+      if (part === "deepseek") return "DeepSeek";
+      if (part === "youtube") return "YouTube";
+      if (part === "github") return "GitHub";
+      if (part === "linkedin") return "LinkedIn";
+      if (part === "linkedin") return "LinkedIn";
+
+      return part.charAt(0).toUpperCase().concat(part.slice(1));
+    })
+    .join("");
 
   return componentName;
 };
@@ -49,7 +49,8 @@ const icons = iconFiles.map((fileName) => {
     "utf-8",
   );
 
-  const name = getComponentName(fileName);
+  const id = getIconId(fileName);
+  const name = getComponentName(id);
 
   // prefix ids using the icon id to prevent collisions between elements inside other svgs
   const { data } = optimize(raw, {
@@ -92,11 +93,14 @@ const icons = iconFiles.map((fileName) => {
   // serialize tree into a string again now that it's been optimized and patched
   const markdown = unified().use(rehypeStringify).stringify(tree);
 
-  return { name, markdown };
+  return { id, name, markdown };
 });
 
-fs.rmSync(path.resolve(__dirname, "../src/icons"), { recursive: true });
-fs.mkdirSync(path.resolve(__dirname, "../src/icons"), { recursive: true });
+fs.rmSync(path.resolve(__dirname, "../src/Icon"), {
+  recursive: true,
+  force: true,
+});
+fs.mkdirSync(path.resolve(__dirname, "../src/Icon"), { recursive: true });
 
 icons.forEach((icon) => {
   // spread {...props} into the opening svg tag
@@ -111,12 +115,47 @@ export const ${icon.name} = (props: ComponentProps<'svg'>) => {
 `;
 
   fs.writeFileSync(
-    path.resolve(__dirname, `../src/icons/${icon.name}.tsx`),
+    path.resolve(__dirname, `../src/Icon/${icon.name}.tsx`),
     fileContents,
   );
 });
 
 fs.writeFileSync(
-  path.resolve(__dirname, `../src/icons/index.tsx`),
-  icons.map((icon) => `export * from './${icon.name}'`).join("\n"),
+  path.resolve(__dirname, `../src/Icon/registry.ts`),
+  `
+${icons.map((icon) => `import { ${icon.name} } from './${icon.name}'`).join("\n")}
+
+export const registry = {
+  ${icons.map((icon) => `"${icon.id}": ${icon.name},`).join("\n")}
+}
+`,
+);
+
+const iconComponent = `
+import type { ComponentProps } from "react";
+import { registry } from "./registry";
+
+export type IconKind = keyof typeof registry
+
+export interface IconProps extends ComponentProps<"svg"> {
+  kind: IconKind;
+}
+
+export function Icon({ kind, ...props }: IconProps) {
+  const Component = registry[kind]
+  if (!Component) return null
+
+  return (
+    <Component {...props} />
+  );
+}`;
+
+fs.writeFileSync(
+  path.resolve(__dirname, `../src/Icon/Icon.tsx`),
+  iconComponent,
+);
+
+fs.writeFileSync(
+  path.resolve(__dirname, `../src/Icon/index.ts`),
+  "export * from './Icon'",
 );

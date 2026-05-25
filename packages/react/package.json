@@ -2,14 +2,11 @@
   "name": "@repo/react",
   "version": "0.0.0",
   "private": true,
-  "exports": {
-    "./*": "./src/*.tsx",
-    "./icons": "./src/icons/index.tsx"
-  },
+  "main": "./src/index.ts",
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
-    "generate:icons": "tsx scripts/generate-icons.ts && eslint src/icons/**.tsx --fix && prettier --write src/icons/**.tsx",
+    "generate:icons": "tsx scripts/generate-icons.ts && eslint src/Icon/**.{ts,tsx} --fix && prettier --write src/Icon/**.{ts,tsx}",
     "check-types": "tsc --noEmit"
   },
   "devDependencies": {
