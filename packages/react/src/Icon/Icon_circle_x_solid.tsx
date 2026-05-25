@@ -1,0 +1,12 @@
+import type { ComponentProps } from "react";
+
+export const Icon_circle_x_solid = (props: ComponentProps<"svg">) => {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 11.1113L8.88867 8L8 8.88867L11.1113 12L8 15.1113L8.88867 16L12 12.8887L15.1113 16L16 15.1113L12.8887 12L16 8.88867L15.1113 8L12 11.1113Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  );
+};

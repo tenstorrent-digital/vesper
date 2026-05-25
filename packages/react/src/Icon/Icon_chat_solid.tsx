@@ -1,0 +1,12 @@
+import type { ComponentProps } from "react";
+
+export const Icon_chat_solid = (props: ComponentProps<"svg">) => {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        d="M19 3L22 6V15L19 18H8L5 21H3V6L6 3H19ZM7.5 9.5V11.5H9.5V9.5H7.5ZM11.5 9.5V11.5H13.5V9.5H11.5ZM15.5 9.5V11.5H17.5V9.5H15.5Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  );
+};

@@ -1,0 +1,17 @@
+import type { ComponentProps } from "react";
+
+export const Icon_menu = (props: ComponentProps<"svg">) => {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path d="M22 5.50243H2L3 4H21L22 5.50243Z" fill="currentColor"></path>
+      <path
+        d="M2 18.5L22 18.5L21 20.0024L3 20.0024L2 18.5Z"
+        fill="currentColor"
+      ></path>
+      <path
+        d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  );
+};

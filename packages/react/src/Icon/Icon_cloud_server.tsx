@@ -1,0 +1,18 @@
+import type { ComponentProps } from "react";
+
+export const Icon_cloud_server = (props: ComponentProps<"svg">) => {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        d="M15 5.41406L13.5859 4H10.4141L9 5.41406V8H5.41406L4 9.41406V11.5859L5.41406 13H18.5859L20 11.5859V9.41406L18.5859 8H15V5.41406ZM19 7L21 9V12L19 14H5L3 12V9L5 7H8V5L10 3H14L16 5V7H19Z"
+        fill="currentColor"
+      ></path>
+      <path
+        d="M18.7012 15.5L20 17V19.5L18.7012 21H5.26465L4 19.5V17L5.26465 15.5H18.7012ZM5 17.3652V19.1338L5.72949 20H18.2451L19 19.127V17.3721L18.2451 16.5H5.72949L5 17.3652Z"
+        fill="currentColor"
+      ></path>
+      <path d="M6 17.5H7.25V18.75H6V17.5Z" fill="currentColor"></path>
+      <path d="M8.5 17.5H9.75V18.75H8.5V17.5Z" fill="currentColor"></path>
+    </svg>
+  );
+};

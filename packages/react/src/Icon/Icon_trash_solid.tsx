@@ -1,0 +1,20 @@
+import type { ComponentProps } from "react";
+
+export const Icon_trash_solid = (props: ComponentProps<"svg">) => {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M19 19L17 21H7L5 19V7H19V19ZM9 18H10V10H9V18ZM14 18H15V10H14V18Z"
+        fill="currentColor"
+      ></path>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M16 5.5H20V6.5H4V5.5H8V3H16V5.5ZM9 5.5H15V4H9V5.5Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  );
+};

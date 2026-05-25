@@ -1,0 +1,12 @@
+import type { ComponentProps } from "react";
+
+export const Icon_arrow_right = (props: ComponentProps<"svg">) => {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        d="M12.6758 19.9414L19.5049 13.1016L19.5049 12.7637L3 12.7637L3 11.2363L19.5049 11.2363L19.5049 10.8984L12.6758 4.05859L13.7324 3L21 10.2783L21 13.7217L13.7324 21L12.6758 19.9414Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  );
+};

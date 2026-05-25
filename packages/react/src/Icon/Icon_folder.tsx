@@ -1,0 +1,13 @@
+import type { ComponentProps } from "react";
+
+export const Icon_folder = (props: ComponentProps<"svg">) => {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path d="M20 18L19 19H5L4 18V10.5H20V18Z" fill="currentColor"></path>
+      <path
+        d="M9.99316 5L11.9912 7H18.9814L20 8V9.5H4V6L4.99023 5H9.99316Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  );
+};

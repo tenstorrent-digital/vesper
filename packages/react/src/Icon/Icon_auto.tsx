@@ -1,0 +1,14 @@
+import type { ComponentProps } from "react";
+
+export const Icon_auto = (props: ComponentProps<"svg">) => {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M19.8848 9H22V10H20.4229L21.5 12V17.5L20.5 18.5H18.5L17.5 17.5V16.25H6.5V17.5L5.5 18.5H3.5L2.5 17.5V12L3.5 10.1426V10H2V9H4.11523L6 5.5H18L19.8848 9ZM3.5 13H8.5V12H3.5V13ZM15.5 13H20.5V12H15.5V13ZM4.84717 9.75H19.1528L17.4028 6.5H6.59717L4.84717 9.75Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  );
+};

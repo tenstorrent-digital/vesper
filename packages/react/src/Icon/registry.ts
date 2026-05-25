@@ -1,219 +1,219 @@
-import { Add } from "./Add";
-import { AIAgentSolid } from "./AIAgentSolid";
-import { AIAgent } from "./AIAgent";
-import { AIData } from "./AIData";
-import { AIModel } from "./AIModel";
-import { AITask } from "./AITask";
-import { AIVideoGen } from "./AIVideoGen";
-import { AI } from "./AI";
-import { ArrowDown } from "./ArrowDown";
-import { ArrowLeft } from "./ArrowLeft";
-import { ArrowRight } from "./ArrowRight";
-import { ArrowUpLeft } from "./ArrowUpLeft";
-import { ArrowUpRight } from "./ArrowUpRight";
-import { ArrowUp } from "./ArrowUp";
-import { Auto } from "./Auto";
-import { Blackhole } from "./Blackhole";
-import { Board } from "./Board";
-import { CaretDown } from "./CaretDown";
-import { CaretLeft } from "./CaretLeft";
-import { CaretRight } from "./CaretRight";
-import { CaretUp } from "./CaretUp";
-import { Cart } from "./Cart";
-import { ChatSolid } from "./ChatSolid";
-import { Chat } from "./Chat";
-import { Checkmark } from "./Checkmark";
-import { Chip } from "./Chip";
-import { CircleXSolid } from "./CircleXSolid";
-import { CircleX } from "./CircleX";
-import { Close } from "./Close";
-import { CloudServerSolid } from "./CloudServerSolid";
-import { CloudServer } from "./CloudServer";
-import { Copy } from "./Copy";
-import { DocumentSolid } from "./DocumentSolid";
-import { Document } from "./Document";
-import { Download } from "./Download";
-import { ErrorSolid } from "./ErrorSolid";
-import { Error } from "./Error";
-import { Folder } from "./Folder";
-import { GalaxyRack } from "./GalaxyRack";
-import { Galaxy } from "./Galaxy";
-import { Globe } from "./Globe";
-import { InfoSolid } from "./InfoSolid";
-import { Info } from "./Info";
-import { Link } from "./Link";
-import { Location } from "./Location";
-import { Loudbox } from "./Loudbox";
-import { Menu } from "./Menu";
-import { Minus } from "./Minus";
-import { ModeDark } from "./ModeDark";
-import { ModeLight } from "./ModeLight";
-import { ModeSystem } from "./ModeSystem";
-import { ModelDeepSeekColor } from "./ModelDeepSeekColor";
-import { ModelDeepSeek } from "./ModelDeepSeek";
-import { ModelFalconColor } from "./ModelFalconColor";
-import { ModelFalcon } from "./ModelFalcon";
-import { ModelGoogleColor } from "./ModelGoogleColor";
-import { ModelGoogle } from "./ModelGoogle";
-import { ModelLlamaColor } from "./ModelLlamaColor";
-import { ModelLlama } from "./ModelLlama";
-import { ModelOpenai } from "./ModelOpenai";
-import { ModelQwenColor } from "./ModelQwenColor";
-import { ModelQwen } from "./ModelQwen";
-import { Monitor } from "./Monitor";
-import { OrgDeveloper } from "./OrgDeveloper";
-import { OrgExperience } from "./OrgExperience";
-import { OrgOperations } from "./OrgOperations";
-import { OrgSystems } from "./OrgSystems";
-import { OrgUniversity } from "./OrgUniversity";
-import { Phone } from "./Phone";
-import { Quasar } from "./Quasar";
-import { Quietbox } from "./Quietbox";
-import { Reset } from "./Reset";
-import { Search } from "./Search";
-import { ServerSolid } from "./ServerSolid";
-import { Server } from "./Server";
-import { ShieldSolid } from "./ShieldSolid";
-import { Shield } from "./Shield";
-import { Size } from "./Size";
-import { SocialApple } from "./SocialApple";
-import { SocialDiscord } from "./SocialDiscord";
-import { SocialFacebook } from "./SocialFacebook";
-import { SocialGitHub } from "./SocialGitHub";
-import { SocialGoogle } from "./SocialGoogle";
-import { SocialLinkedIn } from "./SocialLinkedIn";
-import { SocialMicrosoft } from "./SocialMicrosoft";
-import { SocialX } from "./SocialX";
-import { SocialYouTube } from "./SocialYouTube";
-import { SuccessSolid } from "./SuccessSolid";
-import { Success } from "./Success";
-import { Tensix } from "./Tensix";
-import { Tenstorrent } from "./Tenstorrent";
-import { TrashSolid } from "./TrashSolid";
-import { Trash } from "./Trash";
-import { TTForgeFE } from "./TTForgeFE";
-import { TTForge } from "./TTForge";
-import { TTLLK } from "./TTLLK";
-import { TTMetalium } from "./TTMetalium";
-import { TTNN } from "./TTNN";
-import { TTTorch } from "./TTTorch";
-import { TTXLA } from "./TTXLA";
-import { Upload } from "./Upload";
-import { UserMultipleSolid } from "./UserMultipleSolid";
-import { UserMultiple } from "./UserMultiple";
-import { UserSolid } from "./UserSolid";
-import { User } from "./User";
-import { WarningSolid } from "./WarningSolid";
-import { Warning } from "./Warning";
-import { Wormhole } from "./Wormhole";
+import { Icon_add } from "./Icon_add";
+import { Icon_ai_agent_solid } from "./Icon_ai_agent_solid";
+import { Icon_ai_agent } from "./Icon_ai_agent";
+import { Icon_ai_data } from "./Icon_ai_data";
+import { Icon_ai_model } from "./Icon_ai_model";
+import { Icon_ai_task } from "./Icon_ai_task";
+import { Icon_ai_video_gen } from "./Icon_ai_video_gen";
+import { Icon_ai } from "./Icon_ai";
+import { Icon_arrow_down } from "./Icon_arrow_down";
+import { Icon_arrow_left } from "./Icon_arrow_left";
+import { Icon_arrow_right } from "./Icon_arrow_right";
+import { Icon_arrow_up_left } from "./Icon_arrow_up_left";
+import { Icon_arrow_up_right } from "./Icon_arrow_up_right";
+import { Icon_arrow_up } from "./Icon_arrow_up";
+import { Icon_auto } from "./Icon_auto";
+import { Icon_blackhole } from "./Icon_blackhole";
+import { Icon_board } from "./Icon_board";
+import { Icon_caret_down } from "./Icon_caret_down";
+import { Icon_caret_left } from "./Icon_caret_left";
+import { Icon_caret_right } from "./Icon_caret_right";
+import { Icon_caret_up } from "./Icon_caret_up";
+import { Icon_cart } from "./Icon_cart";
+import { Icon_chat_solid } from "./Icon_chat_solid";
+import { Icon_chat } from "./Icon_chat";
+import { Icon_checkmark } from "./Icon_checkmark";
+import { Icon_chip } from "./Icon_chip";
+import { Icon_circle_x_solid } from "./Icon_circle_x_solid";
+import { Icon_circle_x } from "./Icon_circle_x";
+import { Icon_close } from "./Icon_close";
+import { Icon_cloud_server_solid } from "./Icon_cloud_server_solid";
+import { Icon_cloud_server } from "./Icon_cloud_server";
+import { Icon_copy } from "./Icon_copy";
+import { Icon_document_solid } from "./Icon_document_solid";
+import { Icon_document } from "./Icon_document";
+import { Icon_download } from "./Icon_download";
+import { Icon_error_solid } from "./Icon_error_solid";
+import { Icon_error } from "./Icon_error";
+import { Icon_folder } from "./Icon_folder";
+import { Icon_galaxy_rack } from "./Icon_galaxy_rack";
+import { Icon_galaxy } from "./Icon_galaxy";
+import { Icon_globe } from "./Icon_globe";
+import { Icon_info_solid } from "./Icon_info_solid";
+import { Icon_info } from "./Icon_info";
+import { Icon_link } from "./Icon_link";
+import { Icon_location } from "./Icon_location";
+import { Icon_loudbox } from "./Icon_loudbox";
+import { Icon_menu } from "./Icon_menu";
+import { Icon_minus } from "./Icon_minus";
+import { Icon_mode_dark } from "./Icon_mode_dark";
+import { Icon_mode_light } from "./Icon_mode_light";
+import { Icon_mode_system } from "./Icon_mode_system";
+import { Icon_model_deepseek_color } from "./Icon_model_deepseek_color";
+import { Icon_model_deepseek } from "./Icon_model_deepseek";
+import { Icon_model_falcon_color } from "./Icon_model_falcon_color";
+import { Icon_model_falcon } from "./Icon_model_falcon";
+import { Icon_model_google_color } from "./Icon_model_google_color";
+import { Icon_model_google } from "./Icon_model_google";
+import { Icon_model_llama_color } from "./Icon_model_llama_color";
+import { Icon_model_llama } from "./Icon_model_llama";
+import { Icon_model_openai } from "./Icon_model_openai";
+import { Icon_model_qwen_color } from "./Icon_model_qwen_color";
+import { Icon_model_qwen } from "./Icon_model_qwen";
+import { Icon_monitor } from "./Icon_monitor";
+import { Icon_org_developer } from "./Icon_org_developer";
+import { Icon_org_experience } from "./Icon_org_experience";
+import { Icon_org_operations } from "./Icon_org_operations";
+import { Icon_org_systems } from "./Icon_org_systems";
+import { Icon_org_university } from "./Icon_org_university";
+import { Icon_phone } from "./Icon_phone";
+import { Icon_quasar } from "./Icon_quasar";
+import { Icon_quietbox } from "./Icon_quietbox";
+import { Icon_reset } from "./Icon_reset";
+import { Icon_search } from "./Icon_search";
+import { Icon_server_solid } from "./Icon_server_solid";
+import { Icon_server } from "./Icon_server";
+import { Icon_shield_solid } from "./Icon_shield_solid";
+import { Icon_shield } from "./Icon_shield";
+import { Icon_size } from "./Icon_size";
+import { Icon_social_apple } from "./Icon_social_apple";
+import { Icon_social_discord } from "./Icon_social_discord";
+import { Icon_social_facebook } from "./Icon_social_facebook";
+import { Icon_social_github } from "./Icon_social_github";
+import { Icon_social_google } from "./Icon_social_google";
+import { Icon_social_linkedin } from "./Icon_social_linkedin";
+import { Icon_social_microsoft } from "./Icon_social_microsoft";
+import { Icon_social_x } from "./Icon_social_x";
+import { Icon_social_youtube } from "./Icon_social_youtube";
+import { Icon_success_solid } from "./Icon_success_solid";
+import { Icon_success } from "./Icon_success";
+import { Icon_tensix } from "./Icon_tensix";
+import { Icon_tenstorrent } from "./Icon_tenstorrent";
+import { Icon_trash_solid } from "./Icon_trash_solid";
+import { Icon_trash } from "./Icon_trash";
+import { Icon_tt_forge_fe } from "./Icon_tt_forge_fe";
+import { Icon_tt_forge } from "./Icon_tt_forge";
+import { Icon_tt_llk } from "./Icon_tt_llk";
+import { Icon_tt_metalium } from "./Icon_tt_metalium";
+import { Icon_tt_nn } from "./Icon_tt_nn";
+import { Icon_tt_torch } from "./Icon_tt_torch";
+import { Icon_tt_xla } from "./Icon_tt_xla";
+import { Icon_upload } from "./Icon_upload";
+import { Icon_user_multiple_solid } from "./Icon_user_multiple_solid";
+import { Icon_user_multiple } from "./Icon_user_multiple";
+import { Icon_user_solid } from "./Icon_user_solid";
+import { Icon_user } from "./Icon_user";
+import { Icon_warning_solid } from "./Icon_warning_solid";
+import { Icon_warning } from "./Icon_warning";
+import { Icon_wormhole } from "./Icon_wormhole";
 
 export const registry = {
-  add: Add,
-  "ai-agent-solid": AIAgentSolid,
-  "ai-agent": AIAgent,
-  "ai-data": AIData,
-  "ai-model": AIModel,
-  "ai-task": AITask,
-  "ai-video-gen": AIVideoGen,
-  ai: AI,
-  "arrow-down": ArrowDown,
-  "arrow-left": ArrowLeft,
-  "arrow-right": ArrowRight,
-  "arrow-up-left": ArrowUpLeft,
-  "arrow-up-right": ArrowUpRight,
-  "arrow-up": ArrowUp,
-  auto: Auto,
-  blackhole: Blackhole,
-  board: Board,
-  "caret-down": CaretDown,
-  "caret-left": CaretLeft,
-  "caret-right": CaretRight,
-  "caret-up": CaretUp,
-  cart: Cart,
-  "chat-solid": ChatSolid,
-  chat: Chat,
-  checkmark: Checkmark,
-  chip: Chip,
-  "circle-x-solid": CircleXSolid,
-  "circle-x": CircleX,
-  close: Close,
-  "cloud-server-solid": CloudServerSolid,
-  "cloud-server": CloudServer,
-  copy: Copy,
-  "document-solid": DocumentSolid,
-  document: Document,
-  download: Download,
-  "error-solid": ErrorSolid,
-  error: Error,
-  folder: Folder,
-  "galaxy-rack": GalaxyRack,
-  galaxy: Galaxy,
-  globe: Globe,
-  "info-solid": InfoSolid,
-  info: Info,
-  link: Link,
-  location: Location,
-  loudbox: Loudbox,
-  menu: Menu,
-  minus: Minus,
-  "mode-dark": ModeDark,
-  "mode-light": ModeLight,
-  "mode-system": ModeSystem,
-  "model-deepseek-color": ModelDeepSeekColor,
-  "model-deepseek": ModelDeepSeek,
-  "model-falcon-color": ModelFalconColor,
-  "model-falcon": ModelFalcon,
-  "model-google-color": ModelGoogleColor,
-  "model-google": ModelGoogle,
-  "model-llama-color": ModelLlamaColor,
-  "model-llama": ModelLlama,
-  "model-openai": ModelOpenai,
-  "model-qwen-color": ModelQwenColor,
-  "model-qwen": ModelQwen,
-  monitor: Monitor,
-  "org-developer": OrgDeveloper,
-  "org-experience": OrgExperience,
-  "org-operations": OrgOperations,
-  "org-systems": OrgSystems,
-  "org-university": OrgUniversity,
-  phone: Phone,
-  quasar: Quasar,
-  quietbox: Quietbox,
-  reset: Reset,
-  search: Search,
-  "server-solid": ServerSolid,
-  server: Server,
-  "shield-solid": ShieldSolid,
-  shield: Shield,
-  size: Size,
-  "social-apple": SocialApple,
-  "social-discord": SocialDiscord,
-  "social-facebook": SocialFacebook,
-  "social-github": SocialGitHub,
-  "social-google": SocialGoogle,
-  "social-linkedin": SocialLinkedIn,
-  "social-microsoft": SocialMicrosoft,
-  "social-x": SocialX,
-  "social-youtube": SocialYouTube,
-  "success-solid": SuccessSolid,
-  success: Success,
-  tensix: Tensix,
-  tenstorrent: Tenstorrent,
-  "trash-solid": TrashSolid,
-  trash: Trash,
-  "tt-forge-fe": TTForgeFE,
-  "tt-forge": TTForge,
-  "tt-llk": TTLLK,
-  "tt-metalium": TTMetalium,
-  "tt-nn": TTNN,
-  "tt-torch": TTTorch,
-  "tt-xla": TTXLA,
-  upload: Upload,
-  "user-multiple-solid": UserMultipleSolid,
-  "user-multiple": UserMultiple,
-  "user-solid": UserSolid,
-  user: User,
-  "warning-solid": WarningSolid,
-  warning: Warning,
-  wormhole: Wormhole,
+  add: Icon_add,
+  "ai-agent-solid": Icon_ai_agent_solid,
+  "ai-agent": Icon_ai_agent,
+  "ai-data": Icon_ai_data,
+  "ai-model": Icon_ai_model,
+  "ai-task": Icon_ai_task,
+  "ai-video-gen": Icon_ai_video_gen,
+  ai: Icon_ai,
+  "arrow-down": Icon_arrow_down,
+  "arrow-left": Icon_arrow_left,
+  "arrow-right": Icon_arrow_right,
+  "arrow-up-left": Icon_arrow_up_left,
+  "arrow-up-right": Icon_arrow_up_right,
+  "arrow-up": Icon_arrow_up,
+  auto: Icon_auto,
+  blackhole: Icon_blackhole,
+  board: Icon_board,
+  "caret-down": Icon_caret_down,
+  "caret-left": Icon_caret_left,
+  "caret-right": Icon_caret_right,
+  "caret-up": Icon_caret_up,
+  cart: Icon_cart,
+  "chat-solid": Icon_chat_solid,
+  chat: Icon_chat,
+  checkmark: Icon_checkmark,
+  chip: Icon_chip,
+  "circle-x-solid": Icon_circle_x_solid,
+  "circle-x": Icon_circle_x,
+  close: Icon_close,
+  "cloud-server-solid": Icon_cloud_server_solid,
+  "cloud-server": Icon_cloud_server,
+  copy: Icon_copy,
+  "document-solid": Icon_document_solid,
+  document: Icon_document,
+  download: Icon_download,
+  "error-solid": Icon_error_solid,
+  error: Icon_error,
+  folder: Icon_folder,
+  "galaxy-rack": Icon_galaxy_rack,
+  galaxy: Icon_galaxy,
+  globe: Icon_globe,
+  "info-solid": Icon_info_solid,
+  info: Icon_info,
+  link: Icon_link,
+  location: Icon_location,
+  loudbox: Icon_loudbox,
+  menu: Icon_menu,
+  minus: Icon_minus,
+  "mode-dark": Icon_mode_dark,
+  "mode-light": Icon_mode_light,
+  "mode-system": Icon_mode_system,
+  "model-deepseek-color": Icon_model_deepseek_color,
+  "model-deepseek": Icon_model_deepseek,
+  "model-falcon-color": Icon_model_falcon_color,
+  "model-falcon": Icon_model_falcon,
+  "model-google-color": Icon_model_google_color,
+  "model-google": Icon_model_google,
+  "model-llama-color": Icon_model_llama_color,
+  "model-llama": Icon_model_llama,
+  "model-openai": Icon_model_openai,
+  "model-qwen-color": Icon_model_qwen_color,
+  "model-qwen": Icon_model_qwen,
+  monitor: Icon_monitor,
+  "org-developer": Icon_org_developer,
+  "org-experience": Icon_org_experience,
+  "org-operations": Icon_org_operations,
+  "org-systems": Icon_org_systems,
+  "org-university": Icon_org_university,
+  phone: Icon_phone,
+  quasar: Icon_quasar,
+  quietbox: Icon_quietbox,
+  reset: Icon_reset,
+  search: Icon_search,
+  "server-solid": Icon_server_solid,
+  server: Icon_server,
+  "shield-solid": Icon_shield_solid,
+  shield: Icon_shield,
+  size: Icon_size,
+  "social-apple": Icon_social_apple,
+  "social-discord": Icon_social_discord,
+  "social-facebook": Icon_social_facebook,
+  "social-github": Icon_social_github,
+  "social-google": Icon_social_google,
+  "social-linkedin": Icon_social_linkedin,
+  "social-microsoft": Icon_social_microsoft,
+  "social-x": Icon_social_x,
+  "social-youtube": Icon_social_youtube,
+  "success-solid": Icon_success_solid,
+  success: Icon_success,
+  tensix: Icon_tensix,
+  tenstorrent: Icon_tenstorrent,
+  "trash-solid": Icon_trash_solid,
+  trash: Icon_trash,
+  "tt-forge-fe": Icon_tt_forge_fe,
+  "tt-forge": Icon_tt_forge,
+  "tt-llk": Icon_tt_llk,
+  "tt-metalium": Icon_tt_metalium,
+  "tt-nn": Icon_tt_nn,
+  "tt-torch": Icon_tt_torch,
+  "tt-xla": Icon_tt_xla,
+  upload: Icon_upload,
+  "user-multiple-solid": Icon_user_multiple_solid,
+  "user-multiple": Icon_user_multiple,
+  "user-solid": Icon_user_solid,
+  user: Icon_user,
+  "warning-solid": Icon_warning_solid,
+  warning: Icon_warning,
+  wormhole: Icon_wormhole,
 };

@@ -13,30 +13,9 @@ const __dirname = path.dirname(__filename);
 // transform an svg file name into its id, ie. user-multiple.svg -> user-multiple
 const getIconId = (fileName: string) => fileName.slice(0, -4);
 
-// transform an icon id into its component name, ie. user-multiple -> UserMultiple
-const getComponentName = (iconId: string) => {
-  const componentName = iconId
-    .split("-")
-    .map((part) => {
-      // special string mappings for abbreviations and PascalCase brand names
-      if (part === "ai") return "AI";
-      if (part === "fe") return "FE";
-      if (part === "llk") return "LLK";
-      if (part === "nn") return "NN";
-      if (part === "tt") return "TT";
-      if (part === "xla") return "XLA";
-      if (part === "deepseek") return "DeepSeek";
-      if (part === "youtube") return "YouTube";
-      if (part === "github") return "GitHub";
-      if (part === "linkedin") return "LinkedIn";
-      if (part === "linkedin") return "LinkedIn";
-
-      return part.charAt(0).toUpperCase().concat(part.slice(1));
-    })
-    .join("");
-
-  return componentName;
-};
+// transform an icon id into its component name, ie. user-multiple -> Icon_user_multiple
+const getComponentName = (iconId: string) =>
+  "Icon_" + iconId.split("-").join("_");
 
 const iconFiles = fs
   .readdirSync(path.resolve(__dirname, "../assets/icons"))
@@ -96,12 +75,16 @@ const icons = iconFiles.map((fileName) => {
   return { id, name, markdown };
 });
 
+// remove existing files in Icon component folder
 fs.rmSync(path.resolve(__dirname, "../src/Icon"), {
   recursive: true,
   force: true,
 });
+
+// recreate Icon component folder
 fs.mkdirSync(path.resolve(__dirname, "../src/Icon"), { recursive: true });
 
+// create an individual component file for each icon
 icons.forEach((icon) => {
   // spread {...props} into the opening svg tag
   const markdown = icon.markdown.replace(/<svg([^>]*)>/, "<svg$1 {...props}>");
@@ -120,6 +103,7 @@ export const ${icon.name} = (props: ComponentProps<'svg'>) => {
   );
 });
 
+// import individual component files into icon registry
 fs.writeFileSync(
   path.resolve(__dirname, `../src/Icon/registry.ts`),
   `
@@ -131,30 +115,30 @@ export const registry = {
 `,
 );
 
-const iconComponent = `
-import type { ComponentProps } from "react";
-import { registry } from "./registry";
-
-export type IconKind = keyof typeof registry
-
-export interface IconProps extends ComponentProps<"svg"> {
-  kind: IconKind;
-}
-
-export function Icon({ kind, ...props }: IconProps) {
-  const Component = registry[kind]
-  if (!Component) return null
-
-  return (
-    <Component {...props} />
-  );
-}`;
-
+// create master component that imports icons from registry (this is tree-shakeable)
 fs.writeFileSync(
   path.resolve(__dirname, `../src/Icon/Icon.tsx`),
-  iconComponent,
+  `
+  import type { ComponentProps } from "react";
+  import { registry } from "./registry";
+
+  export type IconKind = keyof typeof registry
+
+  export interface IconProps extends ComponentProps<"svg"> {
+    kind: IconKind;
+  }
+
+  export function Icon({ kind, ...props }: IconProps) {
+    const Component = registry[kind]
+    if (!Component) return null
+
+    return (
+      <Component {...props} />
+    );
+  }`,
 );
 
+// export master icon component from barrel file
 fs.writeFileSync(
   path.resolve(__dirname, `../src/Icon/index.ts`),
   "export * from './Icon'",

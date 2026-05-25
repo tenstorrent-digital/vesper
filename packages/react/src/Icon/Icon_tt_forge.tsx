@@ -1,0 +1,32 @@
+import type { ComponentProps } from "react";
+
+export const Icon_tt_forge = (props: ComponentProps<"svg">) => {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        d="M15 13.5V14.5H11.793L6.79297 19.5H6V17.5L8 15.5V13.5H15Z"
+        fill="currentColor"
+      ></path>
+      <path
+        d="M18.5 13.5V15.5L20.5 17.5V19.5H17L15 17.5H13L11 19.5H8.20703L12.207 15.5H16V13.5H18.5Z"
+        fill="currentColor"
+      ></path>
+      <path
+        d="M4.5 6V8.20703L5.79297 9.5H7V12H5L2 9V6H4.5Z"
+        fill="currentColor"
+      ></path>
+      <path d="M11 9.5V11H12.5V12.5H8V9.5H11Z" fill="currentColor"></path>
+      <path d="M17.5 9.5V12.5H13.5V11H15V9.5H17.5Z" fill="currentColor"></path>
+      <path d="M7 6V8.5H6.20703L5.5 7.79297V6H7Z" fill="currentColor"></path>
+      <path d="M8 4.5H12.5V7H11V8.5H8V4.5Z" fill="currentColor"></path>
+      <path
+        d="M18.5 4.5V7.29297L17.293 8.5H15V7H13.5V4.5H18.5Z"
+        fill="currentColor"
+      ></path>
+      <path
+        d="M22 8L20.5 9.5V11.5L19.5 12.5H18.5V8.70703L19.5 7.70703V4.5H22V8Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  );
+};

@@ -1,0 +1,24 @@
+import type { ComponentProps } from "react";
+
+export const Icon_user_multiple_solid = (props: ComponentProps<"svg">) => {
+  return (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        d="M20 18V20H10.5V18L12 16.5H18.5L20 18Z"
+        fill="currentColor"
+      ></path>
+      <path
+        d="M11 14.4141L12.0859 15.5H4V13.5L5.5 12H11V14.4141Z"
+        fill="currentColor"
+      ></path>
+      <path
+        d="M18.5 10V14L17 15.5H13.5L12 14V10L13.5 8.5H17L18.5 10Z"
+        fill="currentColor"
+      ></path>
+      <path
+        d="M12 5.5V8.58594L11 9.58594V10.5L10.5 11H7L5.5 9.5V5.5L7 4H10.5L12 5.5Z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  );
+};
