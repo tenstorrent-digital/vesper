@@ -1,4 +1,4 @@
-import { Icon } from "@repo/react";
+import { Icon } from "@repo/react/Icon";
 
 import "@repo/tokens/style.css";
 

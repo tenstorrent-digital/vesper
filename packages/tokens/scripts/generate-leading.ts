@@ -29,10 +29,10 @@ const spacingJSON: DesignTokenTree<number> = JSON.parse(
   ),
 );
 
-const leadingTokens = parseDesignTokenTree(spacingJSON, (name, token) => [
-  name.toLowerCase(),
-  `${token.$value}%`,
-]);
+const leadingTokens = parseDesignTokenTree({
+  tree: spacingJSON,
+  processToken: (name, token) => [name.toLowerCase(), `${token.$value}%`],
+});
 
 fs.writeFileSync(
   path.resolve(__dirname, "../src/leading.ts"),

@@ -9,18 +9,21 @@ export type DesignTokenTree<T> =
 const isDesignToken = <T>(value: DesignTokenTree<T>): value is DesignToken<T> =>
   "$value" in value;
 
-export const parseDesignTokenTree = <T, R>(
-  tree: DesignTokenTree<T>,
+export const parseDesignTokenTree = <T>({
+  tree,
+  processToken,
+  acceptToken = () => true,
+}: {
+  tree: DesignTokenTree<T>;
   processToken: (
     name: string,
     token: DesignToken<T>,
-  ) => [name: string, value: R],
-  filterToken = (() => true) as (tokenName: string) => boolean,
-  tokenPrefix = "",
-) => {
-  const tokens: [name: string, value: R][] = [];
+  ) => [name: string, value: string];
+  acceptToken?: (tokenName: string) => boolean;
+}) => {
+  const tokens: [name: string, value: string][] = [];
 
-  const createTokens = (tree: DesignTokenTree<T>, tokenName = tokenPrefix) => {
+  const createTokens = (tree: DesignTokenTree<T>, tokenName = "") => {
     if (isDesignToken(tree)) {
       tokens.push(processToken(tokenName, tree));
       return;
@@ -33,5 +36,5 @@ export const parseDesignTokenTree = <T, R>(
   };
   createTokens(tree);
 
-  return Object.fromEntries(tokens.filter((entry) => filterToken(entry[0])));
+  return Object.fromEntries(tokens.filter((entry) => acceptToken(entry[0])));
 };

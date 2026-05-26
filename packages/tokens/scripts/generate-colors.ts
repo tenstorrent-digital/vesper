@@ -32,9 +32,9 @@ type ColorTokenValue = {
 };
 
 const parseColorTokenTree = (tree: DesignTokenTree<ColorTokenValue>) =>
-  parseDesignTokenTree(
+  parseDesignTokenTree({
     tree,
-    (name, token) => {
+    processToken: (name, token) => {
       if (token.$value.alpha === 0) {
         return [name, "transparent"];
       }
@@ -49,8 +49,9 @@ const parseColorTokenTree = (tree: DesignTokenTree<ColorTokenValue>) =>
 
       return [name, token.$value.hex.toLowerCase()];
     },
-    (tokenName) => !LEGACY_TOKENS.some((legacy) => tokenName.includes(legacy)),
-  );
+    acceptToken: (tokenName) =>
+      !LEGACY_TOKENS.some((legacy) => tokenName.includes(legacy)),
+  });
 
 const darkJSON: DesignTokenTree<ColorTokenValue> = JSON.parse(
   fs.readFileSync(

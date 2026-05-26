@@ -29,10 +29,10 @@ const spacingJSON: DesignTokenTree<number> = JSON.parse(
   ),
 );
 
-const trackingTokens = parseDesignTokenTree(spacingJSON, (name, token) => [
-  name.toLowerCase(),
-  `${token.$value}px`,
-]);
+const trackingTokens = parseDesignTokenTree({
+  tree: spacingJSON,
+  processToken: (name, token) => [name.toLowerCase(), `${token.$value}px`],
+});
 
 fs.writeFileSync(
   path.resolve(__dirname, "../src/tracking.ts"),

@@ -29,10 +29,13 @@ const spacingJSON: DesignTokenTree<number> = JSON.parse(
   ),
 );
 
-const spacingTokens = parseDesignTokenTree(spacingJSON, (name, token) => [
-  name.toLowerCase().replace("space-", ""),
-  `${token.$value}px`,
-]);
+const spacingTokens = parseDesignTokenTree({
+  tree: spacingJSON,
+  processToken: (name, token) => [
+    name.toLowerCase().replace("space-", ""),
+    `${token.$value}px`,
+  ],
+});
 
 fs.writeFileSync(
   path.resolve(__dirname, "../src/spacing.ts"),

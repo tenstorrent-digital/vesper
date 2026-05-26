@@ -2,7 +2,9 @@
   "name": "@repo/react",
   "version": "0.0.0",
   "private": true,
-  "main": "./src/index.ts",
+  "exports": {
+    "./Icon": "./src/Icon/index.ts"
+  },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
