@@ -84,7 +84,7 @@
     },
     "generate:icons": {
       "inputs": [
-        "$TURBO_ROOT$/packages/react/assets/Icon/**",
+        "$TURBO_ROOT$/packages/react/assets/icons/**",
         "$TURBO_ROOT$/packages/react/scripts/generate-icons.ts"
       ],
       "outputs": ["$TURBO_ROOT$/packages/react/src/Icon/**"]
