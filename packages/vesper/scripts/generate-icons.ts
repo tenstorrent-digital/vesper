@@ -21,9 +21,29 @@ const AUTO_GENERATED_WARNING = `/**
 // transform an svg file name into its id, ie. user-multiple.svg -> user-multiple
 const getIconId = (fileName: string) => fileName.slice(0, -4);
 
-// transform an icon id into its component name, ie. user-multiple -> Icon_user_multiple
-const getComponentName = (iconId: string) =>
-  "Icon_" + iconId.split("-").join("_");
+// transform an svg id into its component name, ie. model-openai -> ModelOpenAI
+const getIconComponentName = (iconId: string) => {
+  return iconId
+    .split("-")
+    .map((part) => {
+      if (part === "ai") return "AI";
+      if (part === "fe") return "FE";
+      if (part === "tt") return "TT";
+      if (part === "llk") return "LLK";
+      if (part === "xla") return "XLA";
+      if (part === "nn") return "NN";
+      if (part === "quietbox") return "QuietBox";
+      if (part === "loudbox") return "LoudBox";
+      if (part === "youtube") return "YouTube";
+      if (part === "github") return "GitHub";
+      if (part === "deepseek") return "DeepSeek";
+      if (part === "openai") return "OpenAI";
+      if (part === "linkedin") return "LinkedIn";
+
+      return part.charAt(0).toUpperCase().concat(part.slice(1));
+    })
+    .join("");
+};
 
 const iconFiles = fs
   .readdirSync(path.resolve(__dirname, "../assets/icons"))
@@ -41,11 +61,11 @@ const icons = iconFiles.map((fileName) => {
   );
 
   const id = getIconId(fileName);
-  const name = getComponentName(id);
+  const name = getIconComponentName(id);
 
   // prefix ids using the icon id to prevent collisions between elements inside other svgs
   const { data } = optimize(raw, {
-    plugins: [{ name: "prefixIds", params: { prefix: name } }],
+    plugins: [{ name: "prefixIds", params: { prefix: id } }],
   });
 
   // convert the optimized icon svg to a tree
@@ -133,7 +153,7 @@ export const registry = {
 `,
 );
 
-// create master component that imports icons from registry (this is tree-shakeable)
+// create master component that imports icons from registry (not tree-shakeable)
 fs.writeFileSync(
   path.resolve(__dirname, `../src/components/Icon/Icon.tsx`),
   `
@@ -158,10 +178,10 @@ fs.writeFileSync(
   }`,
 );
 
-// export master icon component from barrel file
+// create barrel file with exports for each individual icon (tree-shakeable)
 fs.writeFileSync(
-  path.resolve(__dirname, `../src/components/Icon/index.ts`),
+  path.resolve(__dirname, `../src/components/Icon/icons.ts`),
   `${AUTO_GENERATED_WARNING}
 
-  export * from './Icon'`,
+  ${icons.map((icon) => `export { ${icon.name} } from './${icon.name}'`).join("\n")}`,
 );

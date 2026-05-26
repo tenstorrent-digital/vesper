@@ -5,7 +5,8 @@
   "exports": {
     "./styles.css": "./src/styles/index.css",
     "./tokens": "./src/tokens/index.ts",
-    "./Icon": "./src/components/Icon/index.ts"
+    "./Icon": "./src/components/Icon/Icon.tsx",
+    "./icons": "./src/components/Icon/icons.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -28,6 +29,7 @@
     "rehype-parse": "^9.0.1",
     "rehype-stringify": "^10.0.1",
     "svgo": "^4.0.1",
+    "tsup": "^8.5.1",
     "tsx": "^4.22.3",
     "typescript": "5.9.2",
     "unified": "^11.0.5",
