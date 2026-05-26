@@ -1,3 +1,5 @@
+import "@repo/vesper/styles.css";
+
 export default function RootLayout({
   children,
 }: Readonly<{

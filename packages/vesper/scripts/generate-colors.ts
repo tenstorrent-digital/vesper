@@ -55,14 +55,14 @@ const parseColorTokenTree = (tree: DesignTokenTree<ColorTokenValue>) =>
 
 const darkJSON: DesignTokenTree<ColorTokenValue> = JSON.parse(
   fs.readFileSync(
-    path.resolve(__dirname, "../assets/Dark.tokens.json"),
+    path.resolve(__dirname, "../assets/tokens/Dark.tokens.json"),
     "utf-8",
   ),
 );
 
 const lightJSON: DesignTokenTree<ColorTokenValue> = JSON.parse(
   fs.readFileSync(
-    path.resolve(__dirname, "../assets/Light.tokens.json"),
+    path.resolve(__dirname, "../assets/tokens/Light.tokens.json"),
     "utf-8",
   ),
 );
@@ -70,8 +70,13 @@ const lightJSON: DesignTokenTree<ColorTokenValue> = JSON.parse(
 const darkTokens = parseColorTokenTree(darkJSON);
 const lightTokens = parseColorTokenTree(lightJSON);
 
+// make sure tokens and styles folders exist
+fs.mkdirSync(path.resolve(__dirname, "../src/tokens"), { recursive: true });
+fs.mkdirSync(path.resolve(__dirname, "../src/styles"), { recursive: true });
+
+// create colors tokens file
 fs.writeFileSync(
-  path.resolve(__dirname, "../src/colors.ts"),
+  path.resolve(__dirname, "../src/tokens/colors.ts"),
   `${AUTO_GENERATED_WARNING_JS}
 
   export const colors = ${JSON.stringify({
@@ -101,8 +106,9 @@ const cssFileContents = [
   `.dark-mode { ${darkModeCSSVars} }`,
 ].join("\n\n");
 
+// create colors css file
 fs.writeFileSync(
-  path.resolve(__dirname, "../src/colors.css"),
+  path.resolve(__dirname, "../src/styles/colors.css"),
   `${AUTO_GENERATED_WARNING_CSS}
 
   ${cssFileContents}`,

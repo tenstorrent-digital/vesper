@@ -19,58 +19,58 @@
     },
     "generate:colors": {
       "inputs": [
-        "$TURBO_ROOT$/packages/tokens/assets/Dark.tokens.json",
-        "$TURBO_ROOT$/packages/tokens/assets/Light.tokens.json",
-        "$TURBO_ROOT$/packages/tokens/scripts/generate-colors.ts",
-        "$TURBO_ROOT$/packages/tokens/scripts/utils.ts"
+        "$TURBO_ROOT$/packages/vesper/assets/tokens/Dark.tokens.json",
+        "$TURBO_ROOT$/packages/vesper/assets/tokens/Light.tokens.json",
+        "$TURBO_ROOT$/packages/vesper/scripts/generate-colors.ts",
+        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts"
       ],
       "outputs": [
-        "$TURBO_ROOT$/packages/tokens/src/colors.ts",
-        "$TURBO_ROOT$/packages/tokens/src/colors.css"
+        "$TURBO_ROOT$/packages/vesper/src/tokens/colors.ts",
+        "$TURBO_ROOT$/packages/vesper/src/styles/colors.css"
       ]
     },
     "generate:spacing": {
       "inputs": [
-        "$TURBO_ROOT$/packages/tokens/assets/Spacing.tokens.json",
-        "$TURBO_ROOT$/packages/tokens/scripts/generate-spacing.ts",
-        "$TURBO_ROOT$/packages/tokens/scripts/utils.ts"
+        "$TURBO_ROOT$/packages/vesper/assets/tokens/Spacing.tokens.json",
+        "$TURBO_ROOT$/packages/vesper/scripts/generate-spacing.ts",
+        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts"
       ],
       "outputs": [
-        "$TURBO_ROOT$/packages/tokens/src/spacing.ts",
-        "$TURBO_ROOT$/packages/tokens/src/spacing.css"
+        "$TURBO_ROOT$/packages/vesper/src/tokens/spacing.ts",
+        "$TURBO_ROOT$/packages/vesper/src/styles/spacing.css"
       ]
     },
     "generate:radius": {
       "inputs": [
-        "$TURBO_ROOT$/packages/tokens/assets/Radius.tokens.json",
-        "$TURBO_ROOT$/packages/tokens/scripts/generate-radius.ts",
-        "$TURBO_ROOT$/packages/tokens/scripts/utils.ts"
+        "$TURBO_ROOT$/packages/vesper/assets/tokens/Radius.tokens.json",
+        "$TURBO_ROOT$/packages/vesper/scripts/generate-radius.ts",
+        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts"
       ],
       "outputs": [
-        "$TURBO_ROOT$/packages/tokens/src/radius.ts",
-        "$TURBO_ROOT$/packages/tokens/src/radius.css"
+        "$TURBO_ROOT$/packages/vesper/src/tokens/radius.ts",
+        "$TURBO_ROOT$/packages/vesper/src/styles/radius.css"
       ]
     },
     "generate:tracking": {
       "inputs": [
-        "$TURBO_ROOT$/packages/tokens/assets/Tracking.tokens.json",
-        "$TURBO_ROOT$/packages/tokens/scripts/generate-tracking.ts",
-        "$TURBO_ROOT$/packages/tokens/scripts/utils.ts"
+        "$TURBO_ROOT$/packages/vesper/assets/tokens/Tracking.tokens.json",
+        "$TURBO_ROOT$/packages/vesper/scripts/generate-tracking.ts",
+        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts"
       ],
       "outputs": [
-        "$TURBO_ROOT$/packages/tokens/src/tracking.ts",
-        "$TURBO_ROOT$/packages/tokens/src/tracking.css"
+        "$TURBO_ROOT$/packages/vesper/src/tokens/tracking.ts",
+        "$TURBO_ROOT$/packages/vesper/src/styles/tracking.css"
       ]
     },
     "generate:leading": {
       "inputs": [
-        "$TURBO_ROOT$/packages/tokens/assets/Leading.tokens.json",
-        "$TURBO_ROOT$/packages/tokens/scripts/generate-leading.ts",
-        "$TURBO_ROOT$/packages/tokens/scripts/utils.ts"
+        "$TURBO_ROOT$/packages/vesper/assets/tokens/Leading.tokens.json",
+        "$TURBO_ROOT$/packages/vesper/scripts/generate-leading.ts",
+        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts"
       ],
       "outputs": [
-        "$TURBO_ROOT$/packages/tokens/src/leading.ts",
-        "$TURBO_ROOT$/packages/tokens/src/leading.css"
+        "$TURBO_ROOT$/packages/vesper/src/tokens/leading.ts",
+        "$TURBO_ROOT$/packages/vesper/src/styles/leading.css"
       ]
     },
     "generate:tokens": {
@@ -84,10 +84,10 @@
     },
     "generate:icons": {
       "inputs": [
-        "$TURBO_ROOT$/packages/react/assets/icons/**",
-        "$TURBO_ROOT$/packages/react/scripts/generate-icons.ts"
+        "$TURBO_ROOT$/packages/vesper/assets/icons/**",
+        "$TURBO_ROOT$/packages/vesper/scripts/generate-icons.ts"
       ],
-      "outputs": ["$TURBO_ROOT$/packages/react/src/Icon/**"]
+      "outputs": ["$TURBO_ROOT$/packages/vesper/src/components/Icon/**"]
     }
   }
 }

@@ -88,13 +88,15 @@ const icons = iconFiles.map((fileName) => {
 });
 
 // remove existing files in Icon component folder
-fs.rmSync(path.resolve(__dirname, "../src/Icon"), {
+fs.rmSync(path.resolve(__dirname, "../src/components/Icon"), {
   recursive: true,
   force: true,
 });
 
 // recreate Icon component folder
-fs.mkdirSync(path.resolve(__dirname, "../src/Icon"), { recursive: true });
+fs.mkdirSync(path.resolve(__dirname, "../src/components/Icon"), {
+  recursive: true,
+});
 
 // create an individual component file for each icon
 icons.forEach((icon) => {
@@ -112,14 +114,14 @@ export const ${icon.name} = (props: ComponentProps<'svg'>) => {
 `;
 
   fs.writeFileSync(
-    path.resolve(__dirname, `../src/Icon/${icon.name}.tsx`),
+    path.resolve(__dirname, `../src/components/Icon/${icon.name}.tsx`),
     fileContents,
   );
 });
 
 // import individual component files into icon registry
 fs.writeFileSync(
-  path.resolve(__dirname, `../src/Icon/registry.ts`),
+  path.resolve(__dirname, `../src/components/Icon/registry.ts`),
   `
 ${AUTO_GENERATED_WARNING}
 
@@ -133,7 +135,7 @@ export const registry = {
 
 // create master component that imports icons from registry (this is tree-shakeable)
 fs.writeFileSync(
-  path.resolve(__dirname, `../src/Icon/Icon.tsx`),
+  path.resolve(__dirname, `../src/components/Icon/Icon.tsx`),
   `
   ${AUTO_GENERATED_WARNING}
 
@@ -158,7 +160,7 @@ fs.writeFileSync(
 
 // export master icon component from barrel file
 fs.writeFileSync(
-  path.resolve(__dirname, `../src/Icon/index.ts`),
+  path.resolve(__dirname, `../src/components/Icon/index.ts`),
   `${AUTO_GENERATED_WARNING}
 
   export * from './Icon'`,

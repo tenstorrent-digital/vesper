@@ -1,6 +1,4 @@
-import { Icon } from "@repo/react/Icon";
-
-import "@repo/tokens/styles.css";
+import { Icon } from "@repo/vesper/Icon";
 
 export default function Page() {
   return (

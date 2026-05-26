@@ -7,12 +7,12 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "generate:colors": "turbo run generate:colors --filter=@repo/tokens",
-    "generate:spacing": "turbo run generate:spacing --filter=@repo/tokens",
-    "generate:radius": "turbo run generate:radius --filter=@repo/tokens",
-    "generate:tracking": "turbo run generate:tracking --filter=@repo/tokens",
-    "generate:leading": "turbo run generate:leading --filter=@repo/tokens",
-    "generate:icons": "turbo run generate:icons --filter=@repo/react",
+    "generate:colors": "turbo run generate:colors --filter=@repo/vesper",
+    "generate:spacing": "turbo run generate:spacing --filter=@repo/vesper",
+    "generate:radius": "turbo run generate:radius --filter=@repo/vesper",
+    "generate:tracking": "turbo run generate:tracking --filter=@repo/vesper",
+    "generate:leading": "turbo run generate:leading --filter=@repo/vesper",
+    "generate:icons": "turbo run generate:icons --filter=@repo/vesper",
     "generate:tokens": "turbo run generate:tokens"
   },
   "devDependencies": {
