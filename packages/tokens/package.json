@@ -2,11 +2,18 @@
   "name": "@repo/tokens",
   "version": "0.0.0",
   "private": true,
-  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./style.css": "./src/style.css"
+  },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "check-types": "tsc --noEmit",
-    "generate:colors": "tsx scripts/generate-colors.ts && prettier --write src/colors.ts"
+    "generate:colors": "tsx scripts/generate-colors.ts && prettier --write src/colors.{ts,css}",
+    "generate:spacing": "tsx scripts/generate-spacing.ts && prettier --write src/spacing.{ts,css}",
+    "generate:tracking": "tsx scripts/generate-tracking.ts && prettier --write src/tracking.{ts,css}",
+    "generate:leading": "tsx scripts/generate-leading.ts && prettier --write src/leading.{ts,css}",
+    "generate:radius": "tsx scripts/generate-radius.ts && prettier --write src/radius.{ts,css}"
   },
   "devDependencies": {
     "eslint": "^9.39.1",
