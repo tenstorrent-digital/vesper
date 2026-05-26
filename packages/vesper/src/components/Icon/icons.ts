@@ -103,7 +103,7 @@ export { TTForgeFE } from "./TTForgeFE";
 export { TTForge } from "./TTForge";
 export { TTLLK } from "./TTLLK";
 export { TTMetalium } from "./TTMetalium";
-export { TTNn } from "./TTNn";
+export { TTNN } from "./TTNN";
 export { TTTorch } from "./TTTorch";
 export { TTXLA } from "./TTXLA";
 export { Upload } from "./Upload";

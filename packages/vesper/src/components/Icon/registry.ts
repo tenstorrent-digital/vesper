@@ -103,7 +103,7 @@ import { TTForgeFE } from "./TTForgeFE";
 import { TTForge } from "./TTForge";
 import { TTLLK } from "./TTLLK";
 import { TTMetalium } from "./TTMetalium";
-import { TTNn } from "./TTNn";
+import { TTNN } from "./TTNN";
 import { TTTorch } from "./TTTorch";
 import { TTXLA } from "./TTXLA";
 import { Upload } from "./Upload";
@@ -213,7 +213,7 @@ export const registry = {
   "tt-forge": TTForge,
   "tt-llk": TTLLK,
   "tt-metalium": TTMetalium,
-  "tt-nn": TTNn,
+  "tt-nn": TTNN,
   "tt-torch": TTTorch,
   "tt-xla": TTXLA,
   upload: Upload,

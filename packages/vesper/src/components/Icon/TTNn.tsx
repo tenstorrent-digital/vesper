@@ -8,7 +8,7 @@
 
 import type { ComponentProps } from "react";
 
-export const TTNn = (props: ComponentProps<"svg">) => {
+export const TTNN = (props: ComponentProps<"svg">) => {
   return (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path

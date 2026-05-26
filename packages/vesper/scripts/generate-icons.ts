@@ -88,7 +88,7 @@ const icons = iconFiles.map((fileName) => {
       !value.startsWith("url(");
 
     // patch non-colored icons so their fills and strokes use currentColor
-    if (!name.includes("color")) {
+    if (!id.endsWith("-color")) {
       if ("fill" in node.properties && shouldPatchValue(node.properties.fill)) {
         node.properties.fill = "currentColor";
       }
