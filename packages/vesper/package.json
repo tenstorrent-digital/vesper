@@ -2,13 +2,27 @@
   "name": "@repo/vesper",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
+  "files": ["dist"],
   "exports": {
-    "./styles.css": "./src/styles/index.css",
-    "./tokens": "./src/tokens/index.ts",
-    "./Icon": "./src/components/Icon/Icon.tsx",
-    "./icons": "./src/components/Icon/icons.ts"
+    "./styles.css": "./dist/styles/index.css",
+    "./tokens": {
+      "types": "./dist/tokens/index.d.ts",
+      "import": "./dist/tokens/index.js"
+    },
+    "./Icon": {
+      "types": "./dist/components/Icon/Icon.d.ts",
+      "import": "./dist/components/Icon/Icon.js"
+    },
+    "./icons": {
+      "types": "./dist/components/Icon/icons.d.ts",
+      "import": "./dist/components/Icon/icons.js"
+    }
   },
+  "sideEffects": ["**/*.css"],
   "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
     "generate:icons": "tsx scripts/generate-icons.ts && eslint src/components/Icon/*.{ts,tsx} --fix && prettier --write src/components/Icon/*.{ts,tsx}",
@@ -19,6 +33,10 @@
     "generate:radius": "tsx scripts/generate-radius.ts && prettier --write src/styles/radius.css src/tokens/radius.ts",
     "check-types": "tsc --noEmit"
   },
+  "peerDependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
@@ -26,6 +44,8 @@
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "eslint": "^9.39.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "rehype-parse": "^9.0.1",
     "rehype-stringify": "^10.0.1",
     "svgo": "^4.0.1",
@@ -34,9 +54,5 @@
     "typescript": "5.9.2",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.1.0"
-  },
-  "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
   }
 }
