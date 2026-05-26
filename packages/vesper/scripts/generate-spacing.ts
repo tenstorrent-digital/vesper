@@ -53,7 +53,7 @@ const cssFileContents = `:root {
   ${Object.entries(spacingTokens)
     .map((entry) => {
       const [name, value] = entry;
-      return `--spacing-${name}: ${value};`;
+      return `--vesper-spacing-${name}: ${value};`;
     })
     .join("\n")}
 }`;

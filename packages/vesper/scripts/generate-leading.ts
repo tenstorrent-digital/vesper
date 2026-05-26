@@ -50,7 +50,7 @@ const cssFileContents = `:root {
   ${Object.entries(leadingTokens)
     .map((entry) => {
       const [name, value] = entry;
-      return `--leading-${name}: ${value};`;
+      return `--vesper-leading-${name}: ${value};`;
     })
     .join("\n")}
 }`;

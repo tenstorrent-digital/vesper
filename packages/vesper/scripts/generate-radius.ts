@@ -50,7 +50,7 @@ const cssFileContents = `:root {
   ${Object.entries(radiusTokens)
     .map((entry) => {
       const [name, value] = entry;
-      return `--radius-${name}: ${value};`;
+      return `--vesper-radius-${name}: ${value};`;
     })
     .join("\n")}
 }`;

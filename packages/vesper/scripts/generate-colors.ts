@@ -88,14 +88,14 @@ fs.writeFileSync(
 const lightModeCSSVars = Object.entries(lightTokens)
   .map((token) => {
     const [name, value] = token;
-    return `--${name}: ${value};`;
+    return `--vesper-${name}: ${value};`;
   })
   .join("\n");
 
 const darkModeCSSVars = Object.entries(darkTokens)
   .map((token) => {
     const [name, value] = token;
-    return `--${name}: ${value};`;
+    return `--vesper-${name}: ${value};`;
   })
   .join("\n");
 

@@ -50,7 +50,7 @@ const cssFileContents = `:root {
   ${Object.entries(trackingTokens)
     .map((entry) => {
       const [name, value] = entry;
-      return `--tracking-${name}: ${value};`;
+      return `--vesper-tracking-${name}: ${value};`;
     })
     .join("\n")}
 }`;
