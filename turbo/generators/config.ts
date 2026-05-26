@@ -27,8 +27,12 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
     actions: [
       {
         type: "add",
-        path: "{{ turbo.paths.root }}/packages/react/src/{{ name }}.tsx",
+        path: "{{ turbo.paths.root }}/packages/vesper/src/components/{{ name }}/{{ name }}.tsx",
         templateFile: "templates/react-component.hbs",
+      },
+      {
+        type: "add",
+        path: "{{ turbo.paths.root }}/packages/vesper/src/components/{{ name }}/{{ name }}.css",
       },
     ],
   });
