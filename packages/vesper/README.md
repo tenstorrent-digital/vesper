@@ -65,6 +65,17 @@ Those steps perform the following work in order:
 
 The result is a `dist/` directory that matches the package's export map and is ready for local consumption or publishing.
 
+## Creating new components
+
+Creating a new component can be done by running the command `yarn generate:component` from within the `packages/vesper` directory. Note that because this is an interactive commmand it cannot be orchestrated by turbo from the root directory of this project.
+
+The `generate:component` script will prompt you for two things:
+
+1. The name of the component (required). The name should be written in PascalCase.
+2. The root element of the component (optional). If you decide to specify the root element, it should be an intrinsic html element like div, input, h1, etc.
+
+When all prompts have been answered, turbo will generate a new folder for the component containing the tsx and css files for the component. It will also modify `src/styles/index.css` to import the new css file, as well as modify the exports map in `package.json`. Note that the exports map points to built files in the `dist` folder so the package will need to be rebuilt via `yarn build` before the new exports can be used.
+
 ## Regenerating icons
 
 Icon assets can be exported as SVGs from [the UI Icon Library Figma File](https://www.figma.com/design/U8rXyED2u4SLkvUggDJ4VU/UI-Icon-Library?node-id=0-1&p=f&t=A4w3uadySYXLNGuU-11).
