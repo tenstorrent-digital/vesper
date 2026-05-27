@@ -37,7 +37,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
       {
         type: "append",
         path: "{{ turbo.paths.root }}/packages/vesper/src/styles/index.css",
-        pattern: /[\s\S]*(?=\n)/,
+        pattern: /\/\* components \*\//,
         template: '@import "../components/{{ name }}/{{ name }}.css";',
       },
       {
