@@ -38,7 +38,7 @@ const getCssFiles = (root: string, currentDir = root): string[] => {
 };
 
 const removeEmptyDirectories = (currentDir: string) => {
-  if (!existsSync(currentDir) || currentDir === distRoot) {
+  if (!existsSync(currentDir)) {
     return;
   }
 
@@ -50,7 +50,7 @@ const removeEmptyDirectories = (currentDir: string) => {
     }
   }
 
-  if (readdirSync(currentDir).length === 0) {
+  if (currentDir !== distRoot && readdirSync(currentDir).length === 0) {
     rmSync(currentDir, { recursive: true, force: true });
   }
 };
