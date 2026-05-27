@@ -1,0 +1,15 @@
+{{#if element}}
+import type { ComponentProps } from 'react';
+
+export interface {{ name }}Props extends ComponentProps<'{{ element }}'> {}
+
+export function {{ name }}(props: {{ name }}Props) {
+  return <{{ element }} {...props} />;
+}
+{{else}}
+export interface {{ name }}Props {}
+
+export function {{ name }}(props: {{ name }}Props) {
+  return null;
+}
+{{/if}}
