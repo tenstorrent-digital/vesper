@@ -138,11 +138,11 @@ Some convenience entrypoints may trade bundle efficiency for usability, while ba
 
 ### 3. Treat CSS as a side effect, but JS as side-effect free
 
-`styles.css` is intentionally imported for side effects, so CSS files are preserved and copied into `dist/styles`. JS modules are otherwise structured so bundlers can eliminate unused exports.
+`styles.css` is intentionally imported for side effects, so CSS files are preserved and copied into `dist`. JS modules are otherwise structured so bundlers can eliminate unused exports.
 
 ### 4. Keep build-specific TS behavior isolated
 
-The package uses a single `tsconfig.json` for both type-checking and build output. Build orchestration stays minimal: clean `dist/`, run `tsc`, rewrite emitted import specifiers with `tsc-alias`, then copy styles into `dist/styles`.
+The package uses a single `tsconfig.json` for both type-checking and build output. Build orchestration stays minimal: clean `dist/`, run `tsc`, rewrite emitted import specifiers with `tsc-alias`, then mirror `src/**/*.css` into matching paths under `dist/`.
 
 ### 5. Keep the published shape explicit
 
