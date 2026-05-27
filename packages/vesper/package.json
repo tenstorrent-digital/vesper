@@ -7,11 +7,6 @@
     "dist"
   ],
   "exports": {
-    "./styles.css": "./dist/styles/index.css",
-    "./tokens": {
-      "types": "./dist/tokens/index.d.ts",
-      "import": "./dist/tokens/index.js"
-    },
     "./Icon": {
       "types": "./dist/components/Icon/Icon.d.ts",
       "import": "./dist/components/Icon/Icon.js"
@@ -19,7 +14,12 @@
     "./icons": {
       "types": "./dist/components/Icon/icons.d.ts",
       "import": "./dist/components/Icon/icons.js"
-    }
+    },
+    "./tokens": {
+      "types": "./dist/tokens/index.d.ts",
+      "import": "./dist/tokens/index.js"
+    },
+    "./styles.css": "./dist/styles/index.css"
   },
   "sideEffects": [
     "**/*.css"
