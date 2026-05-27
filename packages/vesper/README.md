@@ -28,7 +28,13 @@ Generated source lives in `src/`, while publishable artifacts live in `dist/`.
 
 ### What `yarn dev` does
 
-`yarn dev` runs the TypeScript compiler in watch mode against `tsconfig.json` and writes compiled files into `dist/` as source files change.
+`yarn dev` orchestrates three smaller watch scripts:
+
+- `yarn dev:tsc`
+- `yarn dev:alias`
+- `yarn dev:styles`
+
+Together they keep `dist/` up to date as source files change.
 
 This is intended for local package development where another workspace, such as `apps/docs`, consumes `@repo/vesper` from its built output.
 
@@ -37,18 +43,25 @@ A few details are worth knowing:
 - authored source uses extensionless and aliased imports
 - `tsc` writes JS, `.d.ts`, sourcemaps, and declaration maps into `dist/`
 - `tsc-alias` runs in watch mode alongside `tsc` and rewrites emitted import specifiers so the output stays valid ESM with explicit `.js` extensions and relative paths
-- CSS files are not watched by `yarn dev`; if you change files in `src/styles/`, run `yarn build` or `tsx scripts/copy-styles.ts` to refresh `dist/styles`
+- a `chokidar`-based CSS watcher runs alongside both processes and mirrors all `*.css` files anywhere under `src/` into matching locations under `dist/`, including new, changed, and deleted files
 
 ### What `yarn build` does
 
 `yarn build` produces a clean publishable package in `dist/`.
 
-It performs these steps in order:
+It orchestrates a few smaller scripts:
+
+- `yarn clean`
+- `yarn build:tsc`
+- `yarn build:alias`
+- `yarn build:styles`
+
+Those steps perform the following work in order:
 
 1. `yarn clean` removes the existing `dist/` directory
-2. `tsc -p tsconfig.json` compiles source files to ESM plus declarations
-3. `tsc-alias` rewrites emitted import specifiers to relative ESM-compatible paths with `.js` extensions
-4. `tsx scripts/copy-styles.ts` copies `src/styles/` into `dist/styles/`
+2. `yarn build:tsc` compiles source files to ESM plus declarations
+3. `yarn build:alias` rewrites emitted import specifiers to relative ESM-compatible paths with `.js` extensions
+4. `yarn build:styles` copies every `*.css` file under `src/` into the matching location under `dist/`
 
 The result is a `dist/` directory that matches the package's export map and is ready for local consumption or publishing.
 
