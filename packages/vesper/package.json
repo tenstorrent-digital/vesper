@@ -25,8 +25,9 @@
     "**/*.css"
   ],
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "build": "yarn clean && tsc -p tsconfig.json && tsc-alias -p tsconfig.json --resolve-full-paths --resolve-full-extension .js && tsx scripts/copy-styles.ts",
+    "dev": "concurrently --kill-others-on-fail --names tsc,alias --prefix-colors auto \"tsc -p tsconfig.json --watch --preserveWatchOutput\" \"tsc-alias -p tsconfig.json -w --resolve-full-paths --resolve-full-extension .js\"",
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
     "generate:icons": "tsx scripts/generate-icons.ts && eslint src/components/Icon/*.{ts,tsx} --fix && prettier --write src/components/Icon/*.{ts,tsx}",
@@ -35,7 +36,7 @@
     "generate:tracking": "tsx scripts/generate-tracking.ts && prettier --write src/styles/tracking.css src/tokens/tracking.ts",
     "generate:leading": "tsx scripts/generate-leading.ts && prettier --write src/styles/leading.css src/tokens/leading.ts",
     "generate:radius": "tsx scripts/generate-radius.ts && prettier --write src/styles/radius.css src/tokens/radius.ts",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit -p tsconfig.json"
   },
   "peerDependencies": {
     "react": "^19.2.0",
@@ -47,13 +48,14 @@
     "@types/node": "^22.15.3",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
+    "concurrently": "^9.2.1",
     "eslint": "^9.39.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "rehype-parse": "^9.0.1",
     "rehype-stringify": "^10.0.1",
     "svgo": "^4.0.1",
-    "tsup": "^8.5.1",
+    "tsc-alias": "^1.8.16",
     "tsx": "^4.22.3",
     "typescript": "5.9.2",
     "unified": "^11.0.5",

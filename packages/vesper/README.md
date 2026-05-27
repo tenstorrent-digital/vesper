@@ -22,9 +22,35 @@ Typical flow:
 2. Run the appropriate generation command(s) when asset-derived source needs to be refreshed
 3. Review the generated files in `src/`
 4. Run type checks / lint if needed
-5. Build the package to `dist/`
+5. Run `yarn dev` while iterating locally, or `yarn build` when you want a clean publishable output in `dist/`
 
 Generated source lives in `src/`, while publishable artifacts live in `dist/`.
+
+### What `yarn dev` does
+
+`yarn dev` runs the TypeScript compiler in watch mode against `tsconfig.json` and writes compiled files into `dist/` as source files change.
+
+This is intended for local package development where another workspace, such as `apps/docs`, consumes `@repo/vesper` from its built output.
+
+A few details are worth knowing:
+
+- authored source uses extensionless and aliased imports
+- `tsc` writes JS, `.d.ts`, sourcemaps, and declaration maps into `dist/`
+- `tsc-alias` runs in watch mode alongside `tsc` and rewrites emitted import specifiers so the output stays valid ESM with explicit `.js` extensions and relative paths
+- CSS files are not watched by `yarn dev`; if you change files in `src/styles/`, run `yarn build` or `tsx scripts/copy-styles.ts` to refresh `dist/styles`
+
+### What `yarn build` does
+
+`yarn build` produces a clean publishable package in `dist/`.
+
+It performs these steps in order:
+
+1. `yarn clean` removes the existing `dist/` directory
+2. `tsc -p tsconfig.json` compiles source files to ESM plus declarations
+3. `tsc-alias` rewrites emitted import specifiers to relative ESM-compatible paths with `.js` extensions
+4. `tsx scripts/copy-styles.ts` copies `src/styles/` into `dist/styles/`
+
+The result is a `dist/` directory that matches the package's export map and is ready for local consumption or publishing.
 
 ## Regenerating icons
 
@@ -81,7 +107,7 @@ For watch mode during local development:
 yarn dev
 ```
 
-The build uses `tsup` and writes ESM output plus type declarations to `dist/`.
+The build uses the TypeScript compiler directly and writes ESM output plus type declarations to `dist/`. Source files are authored with bundler-style resolution so imports can stay extensionless and may use the package's `tsconfig` path aliases; emitted files are rewritten back to explicit ESM-compatible paths during the build.
 
 ## Why the build is structured this way
 
@@ -95,7 +121,7 @@ Some convenience entrypoints may trade bundle efficiency for usability, while ba
 
 ### 2. Preserve module boundaries
 
-`tsup` is configured with `bundle: false` so files remain separate modules in `dist/` instead of being collapsed into one library bundle. That keeps the published output simple and gives downstream bundlers a better chance to eliminate unused component modules.
+`tsc` preserves module boundaries by compiling source files into matching files in `dist/` instead of collapsing the package into a single bundle. That keeps the published output simple and gives downstream bundlers a better chance to eliminate unused component modules.
 
 ### 3. Treat CSS as a side effect, but JS as side-effect free
 
@@ -103,7 +129,7 @@ Some convenience entrypoints may trade bundle efficiency for usability, while ba
 
 ### 4. Keep build-specific TS behavior isolated
 
-The package uses a separate `tsconfig.build.json` for `tsup`. This avoids `NodeNext` declaration-generation issues during the build while leaving the package's normal type-checking setup in place.
+The package uses a single `tsconfig.json` for both type-checking and build output. Build orchestration stays minimal: clean `dist/`, run `tsc`, rewrite emitted import specifiers with `tsc-alias`, then copy styles into `dist/styles`.
 
 ### 5. Keep the published shape explicit
 
