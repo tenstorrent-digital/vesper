@@ -1,8 +1,8 @@
 import { PlopTypes } from "@turbo/gen";
 
 export default function generator(plop: PlopTypes.NodePlopAPI): void {
-  plop.setGenerator("react-component", {
-    description: "Creates a new component in the react package",
+  plop.setGenerator("vesper-component", {
+    description: "Creates a new component in the vesper package",
     prompts: [
       {
         type: "input",
