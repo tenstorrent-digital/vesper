@@ -88,6 +88,9 @@
         "$TURBO_ROOT$/packages/vesper/scripts/generate-icons.ts"
       ],
       "outputs": ["$TURBO_ROOT$/packages/vesper/src/components/Icon/**"]
+    },
+    "generate:all": {
+      "dependsOn": ["generate:tokens", "generate:icons"]
     }
   }
 }
