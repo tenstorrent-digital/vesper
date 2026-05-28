@@ -25,11 +25,10 @@
     "**/*.css"
   ],
   "scripts": {
-    "clean": "rm -rf dist",
     "build:tsc": "tsc -p tsconfig.json",
     "build:alias": "tsc-alias -p tsconfig.json --resolve-full-paths --resolve-full-extension .js",
     "build:styles": "tsx scripts/copy-styles.ts",
-    "build": "yarn clean && yarn build:tsc && yarn build:alias && yarn build:styles",
+    "build": "rm -rf dist && yarn build:tsc && yarn build:alias && yarn build:styles",
     "dev:tsc": "tsc -p tsconfig.json --watch --preserveWatchOutput",
     "dev:alias": "tsc-alias -p tsconfig.json -w --resolve-full-paths --resolve-full-extension .js",
     "dev:styles": "tsx scripts/watch-styles.ts",
@@ -42,6 +41,8 @@
     "generate:tracking": "tsx scripts/generate-tracking.ts && prettier --write src/styles/tracking.css src/tokens/tracking.ts",
     "generate:leading": "tsx scripts/generate-leading.ts && prettier --write src/styles/leading.css src/tokens/leading.ts",
     "generate:radius": "tsx scripts/generate-radius.ts && prettier --write src/styles/radius.css src/tokens/radius.ts",
+    "generate:tokens": "concurrently --kill-others-on-fail --names colors,spacing,tracking,leading,radius --prefix-colors auto \"yarn generate:colors\" \"yarn generate:spacing\" \"yarn generate:tracking\" \"yarn generate:leading\" \"yarn generate:radius\"",
+    "generate:all": "concurrently --kill-others-on-fail --names tokens,icons --prefix-colors auto \"yarn generate:tokens\" \"yarn generate:icons\"",
     "check-types": "tsc --noEmit -p tsconfig.json"
   },
   "peerDependencies": {
