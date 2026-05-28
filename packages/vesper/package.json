@@ -7,11 +7,6 @@
     "dist"
   ],
   "exports": {
-    "./styles.css": "./dist/styles/index.css",
-    "./tokens": {
-      "types": "./dist/tokens/index.d.ts",
-      "import": "./dist/tokens/index.js"
-    },
     "./Icon": {
       "types": "./dist/components/Icon/Icon.d.ts",
       "import": "./dist/components/Icon/Icon.js"
@@ -19,23 +14,36 @@
     "./icons": {
       "types": "./dist/components/Icon/icons.d.ts",
       "import": "./dist/components/Icon/icons.js"
-    }
+    },
+    "./tokens": {
+      "types": "./dist/tokens/index.d.ts",
+      "import": "./dist/tokens/index.js"
+    },
+    "./styles.css": "./dist/styles/styles.css"
   },
   "sideEffects": [
     "**/*.css"
   ],
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
+    "build:tsc": "tsc -p tsconfig.json",
+    "build:alias": "tsc-alias -p tsconfig.json --resolve-full-paths --resolve-full-extension .js",
+    "build:styles": "tsx scripts/copy-styles.ts",
+    "build": "rm -rf dist && yarn build:tsc && yarn build:alias && yarn build:styles",
+    "dev:tsc": "tsc -p tsconfig.json --watch --preserveWatchOutput",
+    "dev:alias": "tsc-alias -p tsconfig.json -w --resolve-full-paths --resolve-full-extension .js",
+    "dev:styles": "tsx scripts/watch-styles.ts",
+    "dev": "concurrently --kill-others-on-fail --names tsc,alias,styles --prefix-colors auto \"yarn dev:tsc\" \"yarn dev:alias\" \"yarn dev:styles\"",
     "lint": "eslint . --max-warnings 0",
-    "generate:component": "turbo gen react-component",
+    "scaffold:component": "turbo gen vesper-component",
     "generate:icons": "tsx scripts/generate-icons.ts && eslint src/components/Icon/*.{ts,tsx} --fix && prettier --write src/components/Icon/*.{ts,tsx}",
     "generate:colors": "tsx scripts/generate-colors.ts && prettier --write src/styles/colors.css src/tokens/colors.ts",
     "generate:spacing": "tsx scripts/generate-spacing.ts && prettier --write src/styles/spacing.css src/tokens/spacing.ts",
     "generate:tracking": "tsx scripts/generate-tracking.ts && prettier --write src/styles/tracking.css src/tokens/tracking.ts",
     "generate:leading": "tsx scripts/generate-leading.ts && prettier --write src/styles/leading.css src/tokens/leading.ts",
     "generate:radius": "tsx scripts/generate-radius.ts && prettier --write src/styles/radius.css src/tokens/radius.ts",
-    "check-types": "tsc --noEmit"
+    "generate:tokens": "concurrently --kill-others-on-fail --names colors,spacing,tracking,leading,radius --prefix-colors auto \"yarn generate:colors\" \"yarn generate:spacing\" \"yarn generate:tracking\" \"yarn generate:leading\" \"yarn generate:radius\"",
+    "generate:all": "concurrently --kill-others-on-fail --names tokens,icons --prefix-colors auto \"yarn generate:tokens\" \"yarn generate:icons\"",
+    "check-types": "tsc --noEmit -p tsconfig.json"
   },
   "peerDependencies": {
     "react": "^19.2.0",
@@ -47,13 +55,15 @@
     "@types/node": "^22.15.3",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
+    "chokidar": "^4.0.3",
+    "concurrently": "^9.2.1",
     "eslint": "^9.39.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "rehype-parse": "^9.0.1",
     "rehype-stringify": "^10.0.1",
     "svgo": "^4.0.1",
-    "tsup": "^8.5.1",
+    "tsc-alias": "^1.8.16",
     "tsx": "^4.22.3",
     "typescript": "5.9.2",
     "unified": "^11.0.5",

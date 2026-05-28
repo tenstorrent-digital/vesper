@@ -140,7 +140,7 @@ fs.writeFileSync(
   `
 ${AUTO_GENERATED_WARNING}
 
-${icons.map((icon) => `import { ${icon.name} } from './${icon.name}.js'`).join("\n")}
+${icons.map((icon) => `import { ${icon.name} } from './${icon.name}'`).join("\n")}
 
 export const registry = {
   ${icons.map((icon) => `"${icon.id}": ${icon.name},`).join("\n")}
@@ -155,7 +155,7 @@ fs.writeFileSync(
   ${AUTO_GENERATED_WARNING}
 
   import type { ComponentProps } from "react";
-  import { registry } from "./registry.js";
+  import { registry } from "./registry";
 
   export type IconKind = keyof typeof registry
 
@@ -178,5 +178,5 @@ fs.writeFileSync(
   path.resolve(__dirname, `../src/components/Icon/icons.ts`),
   `${AUTO_GENERATED_WARNING}
 
-  ${icons.map((icon) => `export { ${icon.name} } from './${icon.name}.js'`).join("\n")}`,
+  ${icons.map((icon) => `export { ${icon.name} } from './${icon.name}'`).join("\n")}`,
 );

@@ -1,8 +1,8 @@
 import { PlopTypes } from "@turbo/gen";
 
 export default function generator(plop: PlopTypes.NodePlopAPI): void {
-  plop.setGenerator("react-component", {
-    description: "Creates a new component in the react package",
+  plop.setGenerator("vesper-component", {
+    description: "Creates a new component in the vesper package",
     prompts: [
       {
         type: "input",
@@ -33,6 +33,24 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
       {
         type: "add",
         path: "{{ turbo.paths.root }}/packages/vesper/src/components/{{ name }}/{{ name }}.css",
+      },
+      {
+        type: "append",
+        path: "{{ turbo.paths.root }}/packages/vesper/src/styles/styles.css",
+        pattern: /\/\* components \*\//,
+        template: '@import "../components/{{ name }}/{{ name }}.css";',
+      },
+      {
+        type: "modify",
+        path: "{{ turbo.paths.root }}/packages/vesper/package.json",
+        pattern: /"exports"\s*:\s*\{/,
+        template: [
+          `"exports": {`,
+          `    "./{{ name }}": {`,
+          `      "types": "./dist/components/{{ name }}/{{ name }}.d.ts",`,
+          `      "import": "./dist/components/{{ name }}/{{ name }}.js"`,
+          `    },`,
+        ].join("\n"),
       },
     ],
   });

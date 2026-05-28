@@ -22,9 +22,59 @@ Typical flow:
 2. Run the appropriate generation command(s) when asset-derived source needs to be refreshed
 3. Review the generated files in `src/`
 4. Run type checks / lint if needed
-5. Build the package to `dist/`
+5. Run `yarn dev` while iterating locally, or `yarn build` when you want a clean publishable output in `dist/`
 
 Generated source lives in `src/`, while publishable artifacts live in `dist/`.
+
+### What `yarn dev` does
+
+`yarn dev` orchestrates three smaller watch scripts:
+
+- `yarn dev:tsc`
+- `yarn dev:alias`
+- `yarn dev:styles`
+
+Together they keep `dist/` up to date as source files change.
+
+This is intended for local package development where another workspace, such as `apps/docs`, consumes `@repo/vesper` from its built output.
+
+A few details are worth knowing:
+
+- authored source uses extensionless and aliased imports
+- `tsc` writes JS, `.d.ts`, sourcemaps, and declaration maps into `dist/`
+- `tsc-alias` runs in watch mode alongside `tsc` and rewrites emitted import specifiers so the output stays valid ESM with explicit `.js` extensions and relative paths
+- a `chokidar`-based CSS watcher runs alongside both processes and mirrors all `*.css` files anywhere under `src/` into matching locations under `dist/`, including new, changed, and deleted files
+
+### What `yarn build` does
+
+`yarn build` produces a clean publishable package in `dist/`.
+
+It orchestrates a few smaller scripts:
+
+- `yarn clean`
+- `yarn build:tsc`
+- `yarn build:alias`
+- `yarn build:styles`
+
+Those steps perform the following work in order:
+
+1. `yarn clean` removes the existing `dist/` directory
+2. `yarn build:tsc` compiles source files to ESM plus declarations
+3. `yarn build:alias` rewrites emitted import specifiers to relative ESM-compatible paths with `.js` extensions
+4. `yarn build:styles` copies every `*.css` file under `src/` into the matching location under `dist/`
+
+The result is a `dist/` directory that matches the package's export map and is ready for local consumption or publishing.
+
+## Creating new components
+
+Creating a new component can be done by running the command `yarn generate:component` from within the `packages/vesper` directory. Note that because this is an interactive commmand it cannot be orchestrated by turbo from the root directory of this project.
+
+The `generate:component` script will prompt you for two things:
+
+1. The name of the component (required). The name should be written in PascalCase.
+2. The root element of the component (optional). If you decide to specify the root element, it should be an intrinsic html element like div, input, h1, etc.
+
+When all prompts have been answered, turbo will generate a new folder for the component containing the tsx and css files for the component. It will also modify `src/styles/index.css` to import the new css file, as well as modify the exports map in `package.json`. Note that the exports map points to built files in the `dist` folder so the package will need to be rebuilt via `yarn build` before the new exports can be used.
 
 ## Regenerating icons
 
@@ -81,7 +131,7 @@ For watch mode during local development:
 yarn dev
 ```
 
-The build uses `tsup` and writes ESM output plus type declarations to `dist/`.
+The build uses the TypeScript compiler directly and writes ESM output plus type declarations to `dist/`. Source files are authored with bundler-style resolution so imports can stay extensionless and may use the package's `tsconfig` path aliases; emitted files are rewritten back to explicit ESM-compatible paths during the build.
 
 ## Why the build is structured this way
 
@@ -95,15 +145,15 @@ Some convenience entrypoints may trade bundle efficiency for usability, while ba
 
 ### 2. Preserve module boundaries
 
-`tsup` is configured with `bundle: false` so files remain separate modules in `dist/` instead of being collapsed into one library bundle. That keeps the published output simple and gives downstream bundlers a better chance to eliminate unused component modules.
+`tsc` preserves module boundaries by compiling source files into matching files in `dist/` instead of collapsing the package into a single bundle. That keeps the published output simple and gives downstream bundlers a better chance to eliminate unused component modules.
 
 ### 3. Treat CSS as a side effect, but JS as side-effect free
 
-`styles.css` is intentionally imported for side effects, so CSS files are preserved and copied into `dist/styles`. JS modules are otherwise structured so bundlers can eliminate unused exports.
+`styles.css` is intentionally imported for side effects, so CSS files are preserved and copied into `dist`. JS modules are otherwise structured so bundlers can eliminate unused exports.
 
 ### 4. Keep build-specific TS behavior isolated
 
-The package uses a separate `tsconfig.build.json` for `tsup`. This avoids `NodeNext` declaration-generation issues during the build while leaving the package's normal type-checking setup in place.
+The package uses a single `tsconfig.json` for both type-checking and build output. Build orchestration stays minimal: clean `dist/`, run `tsc`, rewrite emitted import specifiers with `tsc-alias`, then mirror `src/**/*.css` into matching paths under `dist/`.
 
 ### 5. Keep the published shape explicit
 

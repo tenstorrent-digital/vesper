@@ -13,7 +13,9 @@
     "generate:tracking": "turbo run generate:tracking --filter=@repo/vesper",
     "generate:leading": "turbo run generate:leading --filter=@repo/vesper",
     "generate:icons": "turbo run generate:icons --filter=@repo/vesper",
-    "generate:tokens": "turbo run generate:tokens"
+    "generate:tokens": "turbo run generate:tokens --filter=!@repo/vesper",
+    "generate:all": "turbo run generate:all --filter=!@repo/vesper",
+    "scaffold:component": "yarn workspace @repo/vesper scaffold:component"
   },
   "devDependencies": {
     "@turbo/gen": "^2.9.14",

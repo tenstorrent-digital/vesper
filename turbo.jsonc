@@ -5,89 +5,94 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
     },
     "lint": {
-      "dependsOn": ["^lint"]
+      "dependsOn": ["^lint"],
     },
     "check-types": {
-      "dependsOn": ["^check-types"]
+      "dependsOn": ["^check-types"],
     },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
     },
     "generate:colors": {
       "inputs": [
         "$TURBO_ROOT$/packages/vesper/assets/tokens/Dark.tokens.json",
         "$TURBO_ROOT$/packages/vesper/assets/tokens/Light.tokens.json",
         "$TURBO_ROOT$/packages/vesper/scripts/generate-colors.ts",
-        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts"
+        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts",
       ],
       "outputs": [
         "$TURBO_ROOT$/packages/vesper/src/tokens/colors.ts",
-        "$TURBO_ROOT$/packages/vesper/src/styles/colors.css"
-      ]
+        "$TURBO_ROOT$/packages/vesper/src/styles/colors.css",
+      ],
     },
     "generate:spacing": {
       "inputs": [
         "$TURBO_ROOT$/packages/vesper/assets/tokens/Spacing.tokens.json",
         "$TURBO_ROOT$/packages/vesper/scripts/generate-spacing.ts",
-        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts"
+        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts",
       ],
       "outputs": [
         "$TURBO_ROOT$/packages/vesper/src/tokens/spacing.ts",
-        "$TURBO_ROOT$/packages/vesper/src/styles/spacing.css"
-      ]
+        "$TURBO_ROOT$/packages/vesper/src/styles/spacing.css",
+      ],
     },
     "generate:radius": {
       "inputs": [
         "$TURBO_ROOT$/packages/vesper/assets/tokens/Radius.tokens.json",
         "$TURBO_ROOT$/packages/vesper/scripts/generate-radius.ts",
-        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts"
+        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts",
       ],
       "outputs": [
         "$TURBO_ROOT$/packages/vesper/src/tokens/radius.ts",
-        "$TURBO_ROOT$/packages/vesper/src/styles/radius.css"
-      ]
+        "$TURBO_ROOT$/packages/vesper/src/styles/radius.css",
+      ],
     },
     "generate:tracking": {
       "inputs": [
         "$TURBO_ROOT$/packages/vesper/assets/tokens/Tracking.tokens.json",
         "$TURBO_ROOT$/packages/vesper/scripts/generate-tracking.ts",
-        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts"
+        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts",
       ],
       "outputs": [
         "$TURBO_ROOT$/packages/vesper/src/tokens/tracking.ts",
-        "$TURBO_ROOT$/packages/vesper/src/styles/tracking.css"
-      ]
+        "$TURBO_ROOT$/packages/vesper/src/styles/tracking.css",
+      ],
     },
     "generate:leading": {
       "inputs": [
         "$TURBO_ROOT$/packages/vesper/assets/tokens/Leading.tokens.json",
         "$TURBO_ROOT$/packages/vesper/scripts/generate-leading.ts",
-        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts"
+        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts",
       ],
       "outputs": [
         "$TURBO_ROOT$/packages/vesper/src/tokens/leading.ts",
-        "$TURBO_ROOT$/packages/vesper/src/styles/leading.css"
-      ]
+        "$TURBO_ROOT$/packages/vesper/src/styles/leading.css",
+      ],
     },
+    // in the root package.json, we do --filter=!@repo/vesper so we don't accidentally also run the same script in /packages/vesper/package.json
     "generate:tokens": {
       "dependsOn": [
         "generate:colors",
         "generate:leading",
         "generate:tracking",
         "generate:radius",
-        "generate:spacing"
-      ]
+        "generate:spacing",
+      ],
     },
     "generate:icons": {
       "inputs": [
         "$TURBO_ROOT$/packages/vesper/assets/icons/**",
-        "$TURBO_ROOT$/packages/vesper/scripts/generate-icons.ts"
+        "$TURBO_ROOT$/packages/vesper/scripts/generate-icons.ts",
       ],
-      "outputs": ["$TURBO_ROOT$/packages/vesper/src/components/Icon/**"]
-    }
-  }
+      "outputs": ["$TURBO_ROOT$/packages/vesper/src/components/Icon/**"],
+    },
+    // in the root package.json, we do --filter=!@repo/vesper so we don't accidentally also run the same script in /packages/vesper/package.json
+    "generate:all": {
+      "dependsOn": ["generate:tokens", "generate:icons"],
+    },
+  },
 }
