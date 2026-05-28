@@ -35,7 +35,7 @@
     "dev:styles": "tsx scripts/watch-styles.ts",
     "dev": "concurrently --kill-others-on-fail --names tsc,alias,styles --prefix-colors auto \"yarn dev:tsc\" \"yarn dev:alias\" \"yarn dev:styles\"",
     "lint": "eslint . --max-warnings 0",
-    "generate:component": "turbo gen vesper-component",
+    "scaffold:component": "turbo gen vesper-component",
     "generate:icons": "tsx scripts/generate-icons.ts && eslint src/components/Icon/*.{ts,tsx} --fix && prettier --write src/components/Icon/*.{ts,tsx}",
     "generate:colors": "tsx scripts/generate-colors.ts && prettier --write src/styles/colors.css src/tokens/colors.ts",
     "generate:spacing": "tsx scripts/generate-spacing.ts && prettier --write src/styles/spacing.css src/tokens/spacing.ts",
