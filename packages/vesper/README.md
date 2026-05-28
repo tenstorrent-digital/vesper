@@ -51,17 +51,15 @@ A few details are worth knowing:
 
 It orchestrates a few smaller scripts:
 
-- `yarn clean`
 - `yarn build:tsc`
 - `yarn build:alias`
 - `yarn build:styles`
 
 Those steps perform the following work in order:
 
-1. `yarn clean` removes the existing `dist/` directory
-2. `yarn build:tsc` compiles source files to ESM plus declarations
-3. `yarn build:alias` rewrites emitted import specifiers to relative ESM-compatible paths with `.js` extensions
-4. `yarn build:styles` copies every `*.css` file under `src/` into the matching location under `dist/`
+1. `yarn build:tsc` compiles source files to ESM plus declarations
+2. `yarn build:alias` rewrites emitted import specifiers to relative ESM-compatible paths with `.js` extensions
+3. `yarn build:styles` copies every `*.css` file under `src/` into the matching location under `dist/`
 
 The result is a `dist/` directory that matches the package's export map and is ready for local consumption or publishing.
 
