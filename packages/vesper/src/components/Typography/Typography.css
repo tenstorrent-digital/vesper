@@ -18,12 +18,13 @@
   font-weight: 500;
 }
 
-/* Global vesper typography styles */
+/* Base vesper typography styles */
 
 [class^="vesper-typography"] {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: currentColor;
+  font-weight: 400;
 }
 
 /* Display styles */
@@ -33,7 +34,6 @@
   font-size: 4rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-tighter);
-  font-weight: 400;
 }
 
 .vesper-typography-display-md {
@@ -41,7 +41,6 @@
   font-size: 3rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-tighter);
-  font-weight: 400;
 }
 
 .vesper-typography-display-sm {
@@ -49,7 +48,6 @@
   font-size: 2.5rem;
   line-height: var(--vesper-leading-tight);
   letter-spacing: var(--vesper-tracking-tighter);
-  font-weight: 400;
 }
 
 /* Heading styles */
@@ -109,7 +107,6 @@
   font-size: 1.25rem;
   line-height: var(--vesper-leading-snug);
   letter-spacing: var(--vesper-tracking-normal);
-  font-weight: 400;
 }
 
 .vesper-typography-copy-xl-bold {
@@ -125,7 +122,6 @@
   font-size: 1.125rem;
   line-height: var(--vesper-leading-snug);
   letter-spacing: var(--vesper-tracking-normal);
-  font-weight: 400;
 }
 
 .vesper-typography-copy-lg-bold {
@@ -141,7 +137,6 @@
   font-size: 1rem;
   line-height: var(--vesper-leading-snug);
   letter-spacing: var(--vesper-tracking-normal);
-  font-weight: 400;
 }
 
 .vesper-typography-copy-md-bold {
@@ -157,7 +152,6 @@
   font-size: 0.875rem;
   line-height: var(--vesper-leading-normal);
   letter-spacing: var(--vesper-tracking-normal);
-  font-weight: 400;
 }
 
 .vesper-typography-copy-sm-bold {
@@ -173,7 +167,6 @@
   font-size: 0.8125rem;
   line-height: var(--vesper-leading-normal);
   letter-spacing: var(--vesper-tracking-normal);
-  font-weight: 400;
 }
 
 .vesper-typography-copy-xs-bold {
@@ -189,7 +182,6 @@
   font-size: 0.8125rem;
   line-height: var(--vesper-leading-normal);
   letter-spacing: var(--vesper-tracking-normal);
-  font-weight: 400;
 }
 
 /* Label styles */
@@ -199,7 +191,6 @@
   font-size: 1rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
-  font-weight: 400;
 }
 
 .vesper-typography-label-lg-bold {
@@ -215,7 +206,6 @@
   font-size: 0.875rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
-  font-weight: 400;
 }
 
 .vesper-typography-label-md-bold {
@@ -231,7 +221,6 @@
   font-size: 0.875rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
-  font-weight: 400;
 }
 
 .vesper-typography-label-sm {
@@ -239,7 +228,6 @@
   font-size: 0.8125rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
-  font-weight: 400;
 }
 
 .vesper-typography-label-sm-bold {
@@ -255,7 +243,6 @@
   font-size: 0.8125rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
-  font-weight: 400;
 }
 
 .vesper-typography-label-xs {
@@ -263,7 +250,6 @@
   font-size: 0.75rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-wide);
-  font-weight: 400;
 }
 
 .vesper-typography-label-xs-bold {
@@ -279,5 +265,4 @@
   font-size: 0.75rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-wide);
-  font-weight: 400;
 }
