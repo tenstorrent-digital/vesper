@@ -16,28 +16,30 @@ const AUTO_GENERATED_WARNING = getGeneratedCodeWarning(
 );
 
 const colors = getColorTokens();
-const colorThemeVariables = Object.entries(colors.light)
-  .map(([token, value]) => `--color-vesper-${token}: ${value};`)
+const colorThemeVariables = Object.keys(colors.light)
+  .map((token) => `--color-vesper-${token}: var(--vesper-${token});`)
   .join("\n");
 
 const spacing = getSpacingTokens();
-const spacingThemeVariables = Object.entries(spacing)
-  .map(([token, value]) => `--spacing-vesper-${token}: ${value};`)
+const spacingThemeVariables = Object.keys(spacing)
+  .map((token) => `--spacing-vesper-${token}: var(--vesper-spacing-${token});`)
   .join("\n");
 
 const radius = getRadiusTokens();
-const radiusThemeVariables = Object.entries(radius)
-  .map(([token, value]) => `--radius-vesper-${token}: ${value};`)
+const radiusThemeVariables = Object.keys(radius)
+  .map((token) => `--radius-vesper-${token}: var(--vesper-radius-${token});`)
   .join("\n");
 
 const tracking = getTrackingTokens();
-const trackingThemeVariables = Object.entries(tracking)
-  .map(([token, value]) => `--tracking-vesper-${token}: ${value};`)
+const trackingThemeVariables = Object.keys(tracking)
+  .map(
+    (token) => `--tracking-vesper-${token}: var(--vesper-tracking-${token});`,
+  )
   .join("\n");
 
 const leading = getLeadingTokens();
-const leadingThemeVariables = Object.entries(leading)
-  .map(([token, value]) => `--leading-vesper-${token}: ${value};`)
+const leadingThemeVariables = Object.keys(leading)
+  .map((token) => `--leading-vesper-${token}: var(--vesper-leading-${token});`)
   .join("\n");
 
 const tailwindThemeContent = [
