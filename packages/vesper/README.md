@@ -4,9 +4,10 @@ Vesper is a design-system package that publishes a small set of foundational ent
 
 Current published entrypoints include:
 
-- `@repo/vesper/styles.css` — global CSS token imports
+- `@repo/vesper/styles.css` — global CSS token and component style imports
 - `@repo/vesper/tokens` — token values as ESM exports
-- component entrypoints such as `@repo/vesper/Icon`
+- `@repo/vesper/tailwind.css` — theme variables for first-class tailwind v4 integration support
+- component entrypoints such as `@repo/vesper/Icon`, `@repo/vesper/Typography`, etc.
 - tree-shakeable component barrels such as `@repo/vesper/icons`
 
 ## Development workflow
@@ -14,7 +15,8 @@ Current published entrypoints include:
 Most day-to-day work in this package falls into one of two categories:
 
 1. Updating source assets
-2. Building the package for local consumption or publishing
+2. Creating new components
+3. Building the package for local consumption or publishing
 
 Typical flow:
 
@@ -32,7 +34,7 @@ Generated source lives in `src/`, while publishable artifacts live in `dist/`.
 
 - `yarn dev:tsc`
 - `yarn dev:alias`
-- `yarn dev:styles`
+- `yarn dev:side-effects`
 
 Together they keep `dist/` up to date as source files change.
 
@@ -43,7 +45,7 @@ A few details are worth knowing:
 - authored source uses extensionless and aliased imports
 - `tsc` writes JS, `.d.ts`, sourcemaps, and declaration maps into `dist/`
 - `tsc-alias` runs in watch mode alongside `tsc` and rewrites emitted import specifiers so the output stays valid ESM with explicit `.js` extensions and relative paths
-- a `chokidar`-based CSS watcher runs alongside both processes and mirrors all `*.css` files anywhere under `src/` into matching locations under `dist/`, including new, changed, and deleted files
+- a `chokidar`-based file watcher runs alongside both processes and mirrors all side-effectful (`*.css`, `*.woff2`) files anywhere under `src/` into matching locations under `dist/`, including new, changed, and deleted files
 
 ### What `yarn build` does
 
@@ -53,13 +55,13 @@ It orchestrates a few smaller scripts:
 
 - `yarn build:tsc`
 - `yarn build:alias`
-- `yarn build:styles`
+- `yarn build:side-effects`
 
 Those steps perform the following work in order:
 
 1. `yarn build:tsc` compiles source files to ESM plus declarations
 2. `yarn build:alias` rewrites emitted import specifiers to relative ESM-compatible paths with `.js` extensions
-3. `yarn build:styles` copies every `*.css` file under `src/` into the matching location under `dist/`
+3. `yarn build:side-effects` copies every side-effectful file (`*.css`, `*.woff2`) file under `src/` into the matching location under `dist/`
 
 The result is a `dist/` directory that matches the package's export map and is ready for local consumption or publishing.
 
@@ -145,13 +147,13 @@ Some convenience entrypoints may trade bundle efficiency for usability, while ba
 
 `tsc` preserves module boundaries by compiling source files into matching files in `dist/` instead of collapsing the package into a single bundle. That keeps the published output simple and gives downstream bundlers a better chance to eliminate unused component modules.
 
-### 3. Treat CSS as a side effect, but JS as side-effect free
+### 3. Treat CSS/fonts as side effects, but JS as side-effect free
 
-`styles.css` is intentionally imported for side effects, so CSS files are preserved and copied into `dist`. JS modules are otherwise structured so bundlers can eliminate unused exports.
+`styles.css` is intentionally imported for side effects, so CSS files are preserved and copied into `dist`. Font files are also required for typography to work as expected, so are treated as side-effects as well. JS modules are otherwise structured so bundlers can eliminate unused exports.
 
 ### 4. Keep build-specific TS behavior isolated
 
-The package uses a single `tsconfig.json` for both type-checking and build output. Build orchestration stays minimal: clean `dist/`, run `tsc`, rewrite emitted import specifiers with `tsc-alias`, then mirror `src/**/*.css` into matching paths under `dist/`.
+The package uses a single `tsconfig.json` for both type-checking and build output. Build orchestration stays minimal: clean `dist/`, run `tsc`, rewrite emitted import specifiers with `tsc-alias`, then mirror `src/**/*.{css,woff2}` into matching paths under `dist/`.
 
 ### 5. Keep the published shape explicit
 
