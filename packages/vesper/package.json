@@ -26,17 +26,18 @@
     "./styles.css": "./dist/styles/styles.css"
   },
   "sideEffects": [
-    "**/*.css"
+    "**/*.css",
+    "**/*.woff2"
   ],
   "scripts": {
     "build:tsc": "tsc -p tsconfig.json",
     "build:alias": "tsc-alias -p tsconfig.json --resolve-full-paths --resolve-full-extension .js",
-    "build:styles": "tsx scripts/copy-styles.ts",
-    "build": "rm -rf dist && yarn build:tsc && yarn build:alias && yarn build:styles",
+    "build:side-effects": "tsx scripts/copy-side-effects.ts",
+    "build": "rm -rf dist && yarn build:tsc && yarn build:alias && yarn build:side-effects",
     "dev:tsc": "tsc -p tsconfig.json --watch --preserveWatchOutput",
     "dev:alias": "tsc-alias -p tsconfig.json -w --resolve-full-paths --resolve-full-extension .js",
-    "dev:styles": "tsx scripts/watch-styles.ts",
-    "dev": "concurrently --kill-others-on-fail --names tsc,alias,styles --prefix-colors auto \"yarn dev:tsc\" \"yarn dev:alias\" \"yarn dev:styles\"",
+    "dev:side-effects": "tsx scripts/watch-side-effects.ts",
+    "dev": "concurrently --kill-others-on-fail --names tsc,alias,side-effects --prefix-colors auto \"yarn dev:tsc\" \"yarn dev:alias\" \"yarn dev:side-effects\"",
     "lint": "eslint . --max-warnings 0",
     "scaffold:component": "turbo gen vesper-component",
     "generate:icons": "tsx scripts/generate-icons.ts && eslint src/components/Icon/*.{ts,tsx} --fix && prettier --write src/components/Icon/*.{ts,tsx}",
