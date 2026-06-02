@@ -40,8 +40,6 @@ const darkModeCSSVars = Object.entries(colors.dark)
 const cssFileContents = [
   `:root { ${lightModeCSSVars} }`,
   `@media (prefers-color-scheme: dark) { :root { ${darkModeCSSVars} }  }`,
-  `.vesper-light-mode { ${lightModeCSSVars} }`,
-  `.vesper-dark-mode { ${darkModeCSSVars} }`,
 ].join("\n\n");
 
 // create colors css file
