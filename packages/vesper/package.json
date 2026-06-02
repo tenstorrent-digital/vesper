@@ -23,7 +23,8 @@
       "types": "./dist/tokens/index.d.ts",
       "import": "./dist/tokens/index.js"
     },
-    "./styles.css": "./dist/styles/styles.css"
+    "./styles.css": "./dist/styles/styles.css",
+    "./tailwind.css": "./dist/styles/tailwind.css"
   },
   "sideEffects": [
     "**/*.css",
@@ -47,7 +48,8 @@
     "generate:leading": "tsx scripts/generate-leading.ts && prettier --write src/styles/leading.css src/tokens/leading.ts",
     "generate:radius": "tsx scripts/generate-radius.ts && prettier --write src/styles/radius.css src/tokens/radius.ts",
     "generate:tokens": "concurrently --kill-others-on-fail --names colors,spacing,tracking,leading,radius --prefix-colors auto \"yarn generate:colors\" \"yarn generate:spacing\" \"yarn generate:tracking\" \"yarn generate:leading\" \"yarn generate:radius\"",
-    "generate:all": "concurrently --kill-others-on-fail --names tokens,icons --prefix-colors auto \"yarn generate:tokens\" \"yarn generate:icons\"",
+    "generate:tailwind": "tsx scripts/generate-tailwind.ts && prettier --write src/styles/tailwind.css",
+    "generate:all": "concurrently --kill-others-on-fail --names tokens,icons,tailwind --prefix-colors auto \"yarn generate:tokens\" \"yarn generate:icons\" \"yarn generate:tailwind\"",
     "check-types": "tsc --noEmit -p tsconfig.json"
   },
   "peerDependencies": {

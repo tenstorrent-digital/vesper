@@ -1,31 +1,15 @@
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
-import {
-  DesignTokenTree,
-  getGeneratedCodeWarning,
-  parseDesignTokenTree,
-} from "./utils";
+import { getGeneratedCodeWarning } from "./utils";
+import { getSpacingTokens } from "./get-spacing-tokens";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning("yarn generate:spacing");
 
-const spacingJSON: DesignTokenTree<number> = JSON.parse(
-  fs.readFileSync(
-    path.resolve(__dirname, "../assets/tokens/Spacing.tokens.json"),
-    "utf-8",
-  ),
-);
-
-const spacingTokens = parseDesignTokenTree({
-  tree: spacingJSON,
-  processToken: (name, token) => [
-    name.toLowerCase().replace("space-", ""),
-    `${token.$value}px`,
-  ],
-});
+const spacingTokens = getSpacingTokens();
 
 // make sure tokens and styles folders exist
 fs.mkdirSync(path.resolve(__dirname, "../src/tokens"), { recursive: true });

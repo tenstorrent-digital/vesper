@@ -1,64 +1,15 @@
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
-import {
-  DesignTokenTree,
-  getGeneratedCodeWarning,
-  parseDesignTokenTree,
-} from "./utils";
+import { getGeneratedCodeWarning } from "./utils";
+import { getColorTokens } from "./get-color-tokens";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning("yarn generate:colors");
 
-const LEGACY_TOKENS = ["old--stoneA"];
-
-type ColorTokenValue = {
-  colorSpace: string;
-  components: number[];
-  alpha: number;
-  hex: string;
-};
-
-const parseColorTokenTree = (tree: DesignTokenTree<ColorTokenValue>) =>
-  parseDesignTokenTree({
-    tree,
-    processToken: (name, token) => {
-      if (token.$value.alpha === 0) {
-        return [name, "transparent"];
-      }
-
-      if (token.$value.alpha < 1) {
-        const rgba = token.$value.components
-          .map((c) => Math.round(c * 255))
-          .concat(Number(token.$value.alpha.toFixed(3)));
-
-        return [name, `rgba(${rgba.join(", ")})`];
-      }
-
-      return [name, token.$value.hex.toLowerCase()];
-    },
-    acceptToken: (tokenName) =>
-      !LEGACY_TOKENS.some((legacy) => tokenName.includes(legacy)),
-  });
-
-const darkJSON: DesignTokenTree<ColorTokenValue> = JSON.parse(
-  fs.readFileSync(
-    path.resolve(__dirname, "../assets/tokens/Dark.tokens.json"),
-    "utf-8",
-  ),
-);
-
-const lightJSON: DesignTokenTree<ColorTokenValue> = JSON.parse(
-  fs.readFileSync(
-    path.resolve(__dirname, "../assets/tokens/Light.tokens.json"),
-    "utf-8",
-  ),
-);
-
-const darkTokens = parseColorTokenTree(darkJSON);
-const lightTokens = parseColorTokenTree(lightJSON);
+const colors = getColorTokens();
 
 // make sure tokens and styles folders exist
 fs.mkdirSync(path.resolve(__dirname, "../src/tokens"), { recursive: true });
@@ -69,20 +20,17 @@ fs.writeFileSync(
   path.resolve(__dirname, "../src/tokens/colors.ts"),
   `${AUTO_GENERATED_WARNING}
 
-  export const colors = ${JSON.stringify({
-    dark: darkTokens,
-    light: lightTokens,
-  })}`,
+  export const colors = ${JSON.stringify(colors)}`,
 );
 
-const lightModeCSSVars = Object.entries(lightTokens)
+const lightModeCSSVars = Object.entries(colors.light)
   .map((token) => {
     const [name, value] = token;
     return `--vesper-${name}: ${value};`;
   })
   .join("\n");
 
-const darkModeCSSVars = Object.entries(darkTokens)
+const darkModeCSSVars = Object.entries(colors.dark)
   .map((token) => {
     const [name, value] = token;
     return `--vesper-${name}: ${value};`;

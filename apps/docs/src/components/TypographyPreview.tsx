@@ -2,7 +2,7 @@ import { Typography } from "@repo/vesper/Typography";
 
 export function TypographyPreview() {
   return (
-    <div className="bg-(--vesper-stone-100) text-(--vesper-stone-900) flex flex-col gap-3 p-6">
+    <div className="bg-vesper-stone-100 text-vesper-stone-900 flex flex-col gap-vesper-4 p-vesper-4">
       <Typography variant="display" size="lg">
         Display lg
       </Typography>
