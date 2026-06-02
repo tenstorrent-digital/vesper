@@ -21,6 +21,7 @@
       "inputs": [
         "$TURBO_ROOT$/packages/vesper/assets/tokens/Dark.tokens.json",
         "$TURBO_ROOT$/packages/vesper/assets/tokens/Light.tokens.json",
+        "$TURBO_ROOT$/packages/vesper/scripts/get-color-tokens.ts",
         "$TURBO_ROOT$/packages/vesper/scripts/generate-colors.ts",
         "$TURBO_ROOT$/packages/vesper/scripts/utils.ts",
       ],
@@ -32,6 +33,7 @@
     "generate:spacing": {
       "inputs": [
         "$TURBO_ROOT$/packages/vesper/assets/tokens/Spacing.tokens.json",
+        "$TURBO_ROOT$/packages/vesper/scripts/get-spacing-tokens.ts",
         "$TURBO_ROOT$/packages/vesper/scripts/generate-spacing.ts",
         "$TURBO_ROOT$/packages/vesper/scripts/utils.ts",
       ],
@@ -43,6 +45,7 @@
     "generate:radius": {
       "inputs": [
         "$TURBO_ROOT$/packages/vesper/assets/tokens/Radius.tokens.json",
+        "$TURBO_ROOT$/packages/vesper/scripts/get-radius-tokens.ts",
         "$TURBO_ROOT$/packages/vesper/scripts/generate-radius.ts",
         "$TURBO_ROOT$/packages/vesper/scripts/utils.ts",
       ],
@@ -54,6 +57,7 @@
     "generate:tracking": {
       "inputs": [
         "$TURBO_ROOT$/packages/vesper/assets/tokens/Tracking.tokens.json",
+        "$TURBO_ROOT$/packages/vesper/scripts/get-tracking-tokens.ts",
         "$TURBO_ROOT$/packages/vesper/scripts/generate-tracking.ts",
         "$TURBO_ROOT$/packages/vesper/scripts/utils.ts",
       ],
@@ -65,6 +69,7 @@
     "generate:leading": {
       "inputs": [
         "$TURBO_ROOT$/packages/vesper/assets/tokens/Leading.tokens.json",
+        "$TURBO_ROOT$/packages/vesper/scripts/get-leading-tokens.ts",
         "$TURBO_ROOT$/packages/vesper/scripts/generate-leading.ts",
         "$TURBO_ROOT$/packages/vesper/scripts/utils.ts",
       ],
@@ -83,6 +88,19 @@
         "generate:spacing",
       ],
     },
+    "generate:tailwind": {
+      "inputs": [
+        "$TURBO_ROOT$/packages/vesper/assets/tokens/*.json",
+        "$TURBO_ROOT$/packages/vesper/scripts/get-color-tokens.ts",
+        "$TURBO_ROOT$/packages/vesper/scripts/get-leading-tokens.ts",
+        "$TURBO_ROOT$/packages/vesper/scripts/get-radius-tokens.ts",
+        "$TURBO_ROOT$/packages/vesper/scripts/get-spacing-tokens.ts",
+        "$TURBO_ROOT$/packages/vesper/scripts/get-tracking-tokens.ts",
+        "$TURBO_ROOT$/packages/vesper/scripts/generate-tailwind.ts",
+        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts",
+      ],
+      "outputs": ["$TURBO_ROOT$/packages/vesper/src/styles/tailwind.css"],
+    },
     "generate:icons": {
       "inputs": [
         "$TURBO_ROOT$/packages/vesper/assets/icons/**",
@@ -92,7 +110,7 @@
     },
     // in the root package.json, we do --filter=!@repo/vesper so we don't accidentally also run the same script in /packages/vesper/package.json
     "generate:all": {
-      "dependsOn": ["generate:tokens", "generate:icons"],
+      "dependsOn": ["generate:tokens", "generate:icons", "generate:tailwind"],
     },
   },
 }
