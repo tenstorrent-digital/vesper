@@ -117,6 +117,24 @@ These commands update generated files in:
 - `src/tokens/`
 - `src/styles/`
 
+## Regenerating tailwind theme file
+
+First-class tailwind support is a must for Vesper, as the first project we are building with it is TT-Studio, which already uses tailwind for styling. Whenever tokens change, we should regenerate the tailwind.css theme file. You can regenerate this file by running the following command in the workspace root or the `vesper` package directory:
+
+```sh
+yarn generate:tailwind
+```
+
+This command updates the generated tailwind theme file at `src/styles/tailwind.css`
+
+## Regenerating everything
+
+If for some reason you need to regenerate everything (tokens + icons + tailwind theme), you can run the following command in the workspace root or in the `vesper` package directory:
+
+```sh
+yarn generate:all
+```
+
 ## Building
 
 Build the package with:
