@@ -15,30 +15,30 @@ const AUTO_GENERATED_WARNING = getGeneratedCodeWarning(
   "yarn generate:tailwind",
 );
 
-const colors = getColorTokens();
-const colorThemeVariables = Object.keys(colors.light)
+const colorTokens = getColorTokens();
+const colorThemeVariables = Object.keys(colorTokens.light)
   .map((token) => `--color-vesper-${token}: var(--vesper-${token});`)
   .join("\n");
 
-const spacing = getSpacingTokens();
-const spacingThemeVariables = Object.keys(spacing)
+const spacingTokens = getSpacingTokens();
+const spacingThemeVariables = Object.keys(spacingTokens)
   .map((token) => `--spacing-vesper-${token}: var(--vesper-spacing-${token});`)
   .join("\n");
 
-const radius = getRadiusTokens();
-const radiusThemeVariables = Object.keys(radius)
+const radiusTokens = getRadiusTokens();
+const radiusThemeVariables = Object.keys(radiusTokens)
   .map((token) => `--radius-vesper-${token}: var(--vesper-radius-${token});`)
   .join("\n");
 
-const tracking = getTrackingTokens();
-const trackingThemeVariables = Object.keys(tracking)
+const trackingTokens = getTrackingTokens();
+const trackingThemeVariables = Object.keys(trackingTokens)
   .map(
     (token) => `--tracking-vesper-${token}: var(--vesper-tracking-${token});`,
   )
   .join("\n");
 
-const leading = getLeadingTokens();
-const leadingThemeVariables = Object.keys(leading)
+const leadingTokens = getLeadingTokens();
+const leadingThemeVariables = Object.keys(leadingTokens)
   .map((token) => `--leading-vesper-${token}: var(--vesper-leading-${token});`)
   .join("\n");
 
