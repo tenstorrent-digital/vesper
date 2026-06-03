@@ -38,6 +38,7 @@ export function TextButton<E extends ElementType>(props: TextButtonProps<E>) {
   return (
     <Component
       className={cn(
+        "vesper-text-button",
         `vesper-text-button-${size}`,
         `vesper-text-button-${variant}`,
       )}
