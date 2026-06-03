@@ -7,7 +7,7 @@ import {
 } from "./sync-side-effects";
 
 syncSideEffects();
-console.log(`[watch-wide-effects] synced side-effects from ${srcRoot}`);
+console.log(`[watch-side-effects] synced side-effects from ${srcRoot}`);
 
 let timeout: NodeJS.Timeout | undefined;
 const scheduleSync = (event: string, filePath: string) => {
@@ -18,7 +18,7 @@ const scheduleSync = (event: string, filePath: string) => {
   timeout = setTimeout(() => {
     syncSideEffects();
     console.log(
-      `[watch-wide-effects] synced side-effect files after ${event}: ${path.relative(srcRoot, filePath)}`,
+      `[watch-side-effects] synced side-effect files after ${event}: ${path.relative(srcRoot, filePath)}`,
     );
   }, 50);
 };
