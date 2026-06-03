@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./menu": {
+      "types": "./dist/components/menu/menu.d.ts",
+      "import": "./dist/components/menu/menu.js"
+    },
     "./typography": {
       "types": "./dist/components/typography/typography.d.ts",
       "import": "./dist/components/typography/typography.js"
