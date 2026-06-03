@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./text-button": {
+      "types": "./dist/components/text-button/text-button.d.ts",
+      "import": "./dist/components/text-button/text-button.js"
+    },
     "./icon-button": {
       "types": "./dist/components/icon-button/icon-button.d.ts",
       "import": "./dist/components/icon-button/icon-button.js"
