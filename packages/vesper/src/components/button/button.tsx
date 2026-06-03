@@ -39,6 +39,7 @@ export function Button<E extends ElementType = "button">(
   return (
     <Component
       className={cn(
+        "vesper-button",
         `vesper-button-${size}`,
         `vesper-button-${variant}`,
         className,
