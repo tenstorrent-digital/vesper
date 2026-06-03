@@ -7,9 +7,9 @@
     "dist"
   ],
   "exports": {
-    "./Typography": {
-      "types": "./dist/components/Typography/Typography.d.ts",
-      "import": "./dist/components/Typography/Typography.js"
+    "./typography": {
+      "types": "./dist/components/typography/typography.d.ts",
+      "import": "./dist/components/typography/typography.js"
     },
     "./icon": {
       "types": "./dist/components/icon/icon.d.ts",

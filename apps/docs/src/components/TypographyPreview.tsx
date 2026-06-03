@@ -1,4 +1,4 @@
-import { Typography } from "@repo/vesper/Typography";
+import { Typography } from "@repo/vesper/typography";
 
 export function TypographyPreview() {
   return (
