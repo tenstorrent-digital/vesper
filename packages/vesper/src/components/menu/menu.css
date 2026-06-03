@@ -7,7 +7,6 @@
   border: 1px solid var(--vesper-stone-200);
   background: var(--vesper-stone-0);
   box-shadow: var(--vesper-shadow-200);
-  will-change: transform, opacity;
   * {
     outline: none;
   }
