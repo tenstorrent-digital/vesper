@@ -4,7 +4,9 @@ import { ArrowUp, Tenstorrent } from "@repo/vesper/icons";
 import { Button, type ButtonProps } from "@repo/vesper/button";
 import { TextButton, type TextButtonProps } from "@repo/vesper/text-button";
 import { IconButton } from "@repo/vesper/icon-button";
+import { SplitButton, type SplitButtonProps } from "@repo/vesper/split-button";
 
+const BUTTON_SIZES: ButtonProps["size"][] = ["lg", "md", "sm", "xs"];
 const BUTTON_VARIANTS: ButtonProps["variant"][] = [
   "contrast",
   "danger",
@@ -16,8 +18,7 @@ const BUTTON_VARIANTS: ButtonProps["variant"][] = [
   "warning",
 ];
 
-const BUTTON_SIZES: ButtonProps["size"][] = ["lg", "md", "sm", "xs"];
-
+const TEXT_BUTTON_SIZES: TextButtonProps["size"][] = ["lg", "md", "sm"];
 const TEXT_BUTTON_VARIANTS: TextButtonProps["variant"][] = [
   "accent",
   "contrast",
@@ -31,11 +32,44 @@ const TEXT_BUTTON_VARIANTS: TextButtonProps["variant"][] = [
   "warning",
 ];
 
-const TEXT_BUTTON_SIZES: TextButtonProps["size"][] = ["lg", "md", "sm"];
+const SPLIT_BUTTON_SIZES: SplitButtonProps["size"][] = ["lg", "md", "sm"];
+const SPLIT_BUTTON_VARIANTS: SplitButtonProps["variant"][] = [
+  "contrast",
+  "subtle",
+];
 
 export function ButtonsPreview() {
   return (
     <div className="bg-vesper-stone-50 text-vesper-stone-900 flex flex-col gap-vesper-4 p-vesper-4">
+      <div className="flex flex-wrap gap-vesper-4">
+        {SPLIT_BUTTON_VARIANTS.map((variant) => (
+          <div key={variant} className="flex flex-col gap-vesper-4 items-start">
+            {SPLIT_BUTTON_SIZES.map((size) => (
+              <div key={size} className="flex gap-vesper-4">
+                <SplitButton
+                  size={size}
+                  variant={variant}
+                  menuItems={[
+                    {
+                      text: "Save",
+                      description: "Save changes",
+                      onSelect() {},
+                    },
+                    {
+                      text: "Save + Redeploy",
+                      description:
+                        "Save changes and create a new instance deployment",
+                      onSelect() {},
+                    },
+                  ]}
+                >
+                  {variant}
+                </SplitButton>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
       <div className="flex flex-wrap gap-vesper-4">
         {BUTTON_VARIANTS.map((variant) => (
           <div key={variant} className="flex flex-col gap-vesper-4 items-start">
