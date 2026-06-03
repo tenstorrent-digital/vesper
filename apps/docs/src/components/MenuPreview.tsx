@@ -13,43 +13,33 @@ export function MenuPreview() {
             description: "The description",
             icon: <Tenstorrent />,
             style: "default",
-            onSelect() {
-              console.log("selected item");
-            },
+            onSelect() {},
           },
           {
             text: "Label",
             description: "The description",
             icon: <Globe />,
             style: "selected",
-            onSelect() {
-              console.log("selected item");
-            },
+            onSelect() {},
           },
           {
             text: "Label",
             description: "The description",
             icon: <Blackhole />,
             style: "danger",
-            onSelect() {
-              console.log("selected item");
-            },
+            onSelect() {},
           },
           {
             text: "Label",
             description: "The description",
             style: "locked",
-            onSelect() {
-              console.log("selected item");
-            },
+            onSelect() {},
           },
           {
             text: "Label",
             description: "The description",
             style: "disabled",
-            onSelect() {
-              console.log("selected item");
-            },
+            onSelect() {},
           },
         ]}
       >
