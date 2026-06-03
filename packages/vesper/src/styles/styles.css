@@ -4,6 +4,8 @@
 @import "./radius.css";
 @import "./spacing.css";
 @import "./tracking.css";
+@import "./shadows.css";
 
 /* components */
+@import "../components/Menu/Menu.css";
 @import "../components/Typography/Typography.css";

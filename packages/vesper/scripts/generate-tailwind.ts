@@ -42,6 +42,15 @@ const leadingThemeVariables = Object.keys(leadingTokens)
   .map((token) => `--leading-vesper-${token}: var(--vesper-leading-${token});`)
   .join("\n");
 
+const shadowThemeVariables = [
+  "--shadow-vesper-100: var(--vesper-shadow-100);",
+  "--shadow-vesper-200: var(--vesper-shadow-200);",
+  "--shadow-vesper-300: var(--vesper-shadow-300);",
+  "--shadow-vesper-400: var(--vesper-shadow-400);",
+  "--shadow-vesper-inset-100: var(--vesper-shadow-inset-100);",
+  "--shadow-vesper-inset-200: var(--vesper-shadow-inset-200);",
+].join("\n");
+
 const tailwindThemeContent = [
   `${AUTO_GENERATED_WARNING}\n`,
   "@theme {",
@@ -50,6 +59,7 @@ const tailwindThemeContent = [
   radiusThemeVariables,
   trackingThemeVariables,
   leadingThemeVariables,
+  shadowThemeVariables,
   "}",
 ].join("\n");
 

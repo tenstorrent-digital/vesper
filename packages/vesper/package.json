@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./Menu": {
+      "types": "./dist/components/Menu/Menu.d.ts",
+      "import": "./dist/components/Menu/Menu.js"
+    },
     "./Typography": {
       "types": "./dist/components/Typography/Typography.d.ts",
       "import": "./dist/components/Typography/Typography.js"
@@ -75,5 +79,8 @@
     "typescript": "5.9.2",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.1.0"
+  },
+  "dependencies": {
+    "@radix-ui/react-dropdown-menu": "^2.1.16"
   }
 }

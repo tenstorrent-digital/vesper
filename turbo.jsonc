@@ -91,6 +91,7 @@
     "generate:tailwind": {
       "inputs": [
         "$TURBO_ROOT$/packages/vesper/assets/tokens/*.json",
+        "$TURBO_ROOT$/packages/vesper/styles/shadows.css",
         "$TURBO_ROOT$/packages/vesper/scripts/get-color-tokens.ts",
         "$TURBO_ROOT$/packages/vesper/scripts/get-leading-tokens.ts",
         "$TURBO_ROOT$/packages/vesper/scripts/get-radius-tokens.ts",
