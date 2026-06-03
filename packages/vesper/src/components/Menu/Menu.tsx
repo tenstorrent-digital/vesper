@@ -9,6 +9,7 @@ import {
   DropdownMenuContentProps,
 } from "@radix-ui/react-dropdown-menu";
 import { Checkmark } from "@/components/Icon/Checkmark";
+import { Lock } from "@/components/Icon/Lock";
 import { Typography } from "@/components/Typography/Typography";
 
 export type MenuItemProps = {
@@ -95,6 +96,7 @@ function MenuItem({
       {style === "selected" && (
         <Checkmark className="vesper-menu-item-right-icon" />
       )}
+      {style === "locked" && <Lock className="vesper-menu-item-right-icon" />}
     </DropdownMenuItem>
   );
 }
