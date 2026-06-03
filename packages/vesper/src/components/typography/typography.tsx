@@ -1,6 +1,6 @@
-import { type ComponentProps, type ElementType } from "react";
+import type { ElementType } from "react";
+import type { Polymorphic } from "@/utils/polymorphic";
 import { cn } from "@/utils/cn";
-import { Polymorphic } from "@/utils/polymorphic";
 
 type DisplayVariantPermutations = {
   variant: "display";
