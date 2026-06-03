@@ -1,7 +1,8 @@
+import type { ElementType, ReactNode } from "react";
+import type { Polymorphic } from "@/utils/polymorphic";
 import { cn } from "@/utils/cn";
-import type { ComponentProps, ReactNode } from "react";
 
-export interface ButtonProps extends ComponentProps<"button"> {
+type BaseButtonProps = {
   size: "lg" | "md" | "sm" | "xs";
   variant:
     | "primary"
@@ -14,29 +15,39 @@ export interface ButtonProps extends ComponentProps<"button"> {
     | "disabled";
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
-}
+};
 
-export function Button({
-  size,
-  variant,
-  iconLeft,
-  iconRight,
-  children,
-  className,
-  ...props
-}: ButtonProps) {
+export type ButtonProps<E extends ElementType = "button"> = Polymorphic<
+  BaseButtonProps & { className?: string },
+  E
+>;
+
+export function Button<E extends ElementType = "button">(
+  props: ButtonProps<E>,
+) {
+  const {
+    as: Component = "button",
+    size,
+    variant,
+    iconLeft,
+    iconRight,
+    children,
+    className,
+    ...rest
+  } = props;
+
   return (
-    <button
+    <Component
       className={cn(
         `vesper-button-${size}`,
         `vesper-button-${variant}`,
         className,
       )}
-      {...props}
+      {...rest}
     >
       {iconLeft && <span className="vesper-button-icon">{iconLeft}</span>}
       {children}
       {iconRight && <span className="vesper-button-icon">{iconRight}</span>}
-    </button>
+    </Component>
   );
 }
