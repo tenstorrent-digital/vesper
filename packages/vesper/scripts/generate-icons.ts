@@ -178,5 +178,5 @@ fs.writeFileSync(
   path.resolve(__dirname, `../src/components/icon/icons.ts`),
   `${AUTO_GENERATED_WARNING}
 
-  ${icons.map((icon) => `export { ${icon.name} } from './${icon.name}'`).join("\n")}`,
+  ${icons.map((icon) => `export { ${icon.name} } from './${icon.id}'`).join("\n")}`,
 );
