@@ -1,4 +1,4 @@
-import { TypographyPreview } from "@/components/TypographyPreview";
+import { TypographyPreview } from "@/components/typography-preview";
 
 export default function Page() {
   return (
