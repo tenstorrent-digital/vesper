@@ -5,7 +5,7 @@ import { Menu } from "@repo/vesper/Menu";
 
 export function MenuPreview() {
   return (
-    <div className="bg-vesper-stone-100 text-vesper-stone-900 flex flex-col gap-vesper-4 p-vesper-4 pb-200">
+    <div className="bg-vesper-stone-100 text-vesper-stone-900 flex flex-col items-start gap-vesper-4 p-vesper-4 pb-200">
       <Menu
         items={[
           {
