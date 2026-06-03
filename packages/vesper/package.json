@@ -11,13 +11,13 @@
       "types": "./dist/components/Typography/Typography.d.ts",
       "import": "./dist/components/Typography/Typography.js"
     },
-    "./Icon": {
-      "types": "./dist/components/Icon/Icon.d.ts",
-      "import": "./dist/components/Icon/Icon.js"
+    "./icon": {
+      "types": "./dist/components/icon/icon.d.ts",
+      "import": "./dist/components/icon/icon.js"
     },
     "./icons": {
-      "types": "./dist/components/Icon/icons.d.ts",
-      "import": "./dist/components/Icon/icons.js"
+      "types": "./dist/components/icon/icons.d.ts",
+      "import": "./dist/components/icon/icons.js"
     },
     "./tokens": {
       "types": "./dist/tokens/index.d.ts",

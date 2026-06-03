@@ -102,14 +102,14 @@ const icons = iconFiles.map((fileName) => {
   return { id, name, markdown };
 });
 
-// remove existing files in Icon component folder
-fs.rmSync(path.resolve(__dirname, "../src/components/Icon"), {
+// remove existing files in icon component folder
+fs.rmSync(path.resolve(__dirname, "../src/components/icon"), {
   recursive: true,
   force: true,
 });
 
-// recreate Icon component folder
-fs.mkdirSync(path.resolve(__dirname, "../src/components/Icon"), {
+// recreate icon component folder
+fs.mkdirSync(path.resolve(__dirname, "../src/components/icon"), {
   recursive: true,
 });
 
@@ -129,18 +129,18 @@ export const ${icon.name} = (props: ComponentProps<'svg'>) => {
 `;
 
   fs.writeFileSync(
-    path.resolve(__dirname, `../src/components/Icon/${icon.name}.tsx`),
+    path.resolve(__dirname, `../src/components/icon/${icon.id}.tsx`),
     fileContents,
   );
 });
 
 // import individual component files into icon registry
 fs.writeFileSync(
-  path.resolve(__dirname, `../src/components/Icon/registry.ts`),
+  path.resolve(__dirname, `../src/components/icon/registry.ts`),
   `
 ${AUTO_GENERATED_WARNING}
 
-${icons.map((icon) => `import { ${icon.name} } from './${icon.name}'`).join("\n")}
+${icons.map((icon) => `import { ${icon.name} } from './${icon.id}'`).join("\n")}
 
 export const registry = {
   ${icons.map((icon) => `"${icon.id}": ${icon.name},`).join("\n")}
@@ -150,7 +150,7 @@ export const registry = {
 
 // create master component that imports icons from registry (not tree-shakeable)
 fs.writeFileSync(
-  path.resolve(__dirname, `../src/components/Icon/Icon.tsx`),
+  path.resolve(__dirname, `../src/components/icon/icon.tsx`),
   `
   ${AUTO_GENERATED_WARNING}
 
@@ -175,7 +175,7 @@ fs.writeFileSync(
 
 // create barrel file with exports for each individual icon (tree-shakeable)
 fs.writeFileSync(
-  path.resolve(__dirname, `../src/components/Icon/icons.ts`),
+  path.resolve(__dirname, `../src/components/icon/icons.ts`),
   `${AUTO_GENERATED_WARNING}
 
   ${icons.map((icon) => `export { ${icon.name} } from './${icon.name}'`).join("\n")}`,
