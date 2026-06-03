@@ -3,8 +3,10 @@
 @import "./fonts.css";
 @import "./leading.css";
 @import "./radius.css";
+@import "./shadows.css";
 @import "./spacing.css";
 @import "./tracking.css";
+@import "./shadows.css";
 
 /* components */
 @import "../components/typography/typography.css";
