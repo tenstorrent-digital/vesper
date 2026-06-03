@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./split-button": {
+      "types": "./dist/components/split-button/split-button.d.ts",
+      "import": "./dist/components/split-button/split-button.js"
+    },
     "./text-button": {
       "types": "./dist/components/text-button/text-button.d.ts",
       "import": "./dist/components/text-button/text-button.js"
