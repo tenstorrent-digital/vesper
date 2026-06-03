@@ -1,0 +1,35 @@
+.vesper-split-button {
+  display: inline-flex;
+  .vesper-button:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .vesper-button:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .vesper-button-contrast:first-child {
+    border: 1px solid var(--vesper-stone-600);
+  }
+  .vesper-button-contrast:last-child {
+    border: 1px solid var(--vesper-stone-600);
+    border-left: none;
+  }
+  .vesper-button-subtle:first-child {
+    border: 1px solid var(--vesper-stone-300);
+  }
+  .vesper-button-subtle:last-child {
+    border: 1px solid var(--vesper-stone-300);
+    border-left: none;
+  }
+  &[data-state="open"] {
+    .vesper-split-button-caret-down {
+      display: none;
+    }
+  }
+  &[data-state="closed"] {
+    .vesper-split-button-caret-up {
+      display: none;
+    }
+  }
+}
