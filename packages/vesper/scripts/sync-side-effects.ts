@@ -14,7 +14,7 @@ const __dirname = path.dirname(__filename);
 export const srcRoot = path.resolve(__dirname, "../src");
 export const distRoot = path.resolve(__dirname, "../dist");
 
-export const sideEffectExtensions = [".css", ".woff2"];
+export const sideEffectExtensions = [".css"];
 
 const getSideEffectFiles = (root: string, currentDir = root): string[] => {
   if (!existsSync(currentDir)) {

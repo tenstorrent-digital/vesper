@@ -27,8 +27,7 @@
     "./tailwind.css": "./dist/styles/tailwind.css"
   },
   "sideEffects": [
-    "**/*.css",
-    "**/*.woff2"
+    "**/*.css"
   ],
   "scripts": {
     "build:tsc": "tsc -p tsconfig.json",
