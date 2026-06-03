@@ -1,28 +1,7 @@
-/* Font faces */
-
-@font-face {
-  font-family: "Berkeley Mono";
-  src: url("../../fonts/BerkeleyMono-Regular.woff2") format("woff2");
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: "Neue Haas Unica Pro";
-  src: url("../../fonts/NeueHaasUnicaProRegular.woff2") format("woff2");
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: "Neue Haas Unica Pro";
-  src: url("../../fonts/NeueHaasUnicaProMedium.woff2") format("woff2");
-  font-weight: 500;
-}
-
 /* Base vesper typography styles */
 
 [class^="vesper-typography"] {
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   color: currentColor;
   font-weight: 400;
 }
@@ -30,21 +9,21 @@
 /* Display styles */
 
 .vesper-typography-display-lg {
-  font-family: "Berkeley Mono";
+  font-family: var(--vesper-font-mono);
   font-size: 4rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-tighter);
 }
 
 .vesper-typography-display-md {
-  font-family: "Berkeley Mono";
+  font-family: var(--vesper-font-mono);
   font-size: 3rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-tighter);
 }
 
 .vesper-typography-display-sm {
-  font-family: "Berkeley Mono";
+  font-family: var(--vesper-font-mono);
   font-size: 2.5rem;
   line-height: var(--vesper-leading-tight);
   letter-spacing: var(--vesper-tracking-tighter);
@@ -53,7 +32,7 @@
 /* Heading styles */
 
 .vesper-typography-heading-2xl {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 3rem;
   line-height: var(--vesper-leading-tight);
   letter-spacing: var(--vesper-tracking-tighter);
@@ -61,7 +40,7 @@
 }
 
 .vesper-typography-heading-xl {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 2.5rem;
   line-height: var(--vesper-leading-tight);
   letter-spacing: var(--vesper-tracking-tighter);
@@ -69,7 +48,7 @@
 }
 
 .vesper-typography-heading-lg {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 2rem;
   line-height: var(--vesper-leading-tight);
   letter-spacing: var(--vesper-tracking-tighter);
@@ -77,7 +56,7 @@
 }
 
 .vesper-typography-heading-md {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 1.5rem;
   line-height: var(--vesper-leading-snug);
   letter-spacing: var(--vesper-tracking-tight);
@@ -85,7 +64,7 @@
 }
 
 .vesper-typography-heading-sm {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 1.25rem;
   line-height: var(--vesper-leading-snug);
   letter-spacing: var(--vesper-tracking-tight);
@@ -93,7 +72,7 @@
 }
 
 .vesper-typography-heading-xs {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 1rem;
   line-height: var(--vesper-leading-snug);
   letter-spacing: var(--vesper-tracking-tight);
@@ -103,14 +82,14 @@
 /* Copy styles */
 
 .vesper-typography-copy-xl {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 1.25rem;
   line-height: var(--vesper-leading-snug);
   letter-spacing: var(--vesper-tracking-normal);
 }
 
 .vesper-typography-copy-xl-bold {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 1.25rem;
   line-height: var(--vesper-leading-snug);
   letter-spacing: var(--vesper-tracking-normal);
@@ -118,14 +97,14 @@
 }
 
 .vesper-typography-copy-lg {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 1.125rem;
   line-height: var(--vesper-leading-snug);
   letter-spacing: var(--vesper-tracking-normal);
 }
 
 .vesper-typography-copy-lg-bold {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 1.125rem;
   line-height: var(--vesper-leading-snug);
   letter-spacing: var(--vesper-tracking-normal);
@@ -133,14 +112,14 @@
 }
 
 .vesper-typography-copy-md {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 1rem;
   line-height: var(--vesper-leading-snug);
   letter-spacing: var(--vesper-tracking-normal);
 }
 
 .vesper-typography-copy-md-bold {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 1rem;
   line-height: var(--vesper-leading-snug);
   letter-spacing: var(--vesper-tracking-normal);
@@ -148,14 +127,14 @@
 }
 
 .vesper-typography-copy-sm {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 0.875rem;
   line-height: var(--vesper-leading-normal);
   letter-spacing: var(--vesper-tracking-normal);
 }
 
 .vesper-typography-copy-sm-bold {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 0.875rem;
   line-height: var(--vesper-leading-normal);
   letter-spacing: var(--vesper-tracking-normal);
@@ -163,14 +142,14 @@
 }
 
 .vesper-typography-copy-xs {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 0.8125rem;
   line-height: var(--vesper-leading-normal);
   letter-spacing: var(--vesper-tracking-normal);
 }
 
 .vesper-typography-copy-xs-bold {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 0.8125rem;
   line-height: var(--vesper-leading-normal);
   letter-spacing: var(--vesper-tracking-normal);
@@ -178,7 +157,7 @@
 }
 
 .vesper-typography-copy-xs-mono {
-  font-family: "Berkeley Mono";
+  font-family: var(--vesper-font-mono);
   font-size: 0.8125rem;
   line-height: var(--vesper-leading-normal);
   letter-spacing: var(--vesper-tracking-normal);
@@ -187,14 +166,14 @@
 /* Label styles */
 
 .vesper-typography-label-lg {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 1rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
 }
 
 .vesper-typography-label-lg-bold {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 1rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
@@ -202,14 +181,14 @@
 }
 
 .vesper-typography-label-md {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 0.875rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
 }
 
 .vesper-typography-label-md-bold {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 0.875rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
@@ -217,21 +196,21 @@
 }
 
 .vesper-typography-label-md-mono {
-  font-family: "Berkeley Mono";
+  font-family: var(--vesper-font-mono);
   font-size: 0.875rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
 }
 
 .vesper-typography-label-sm {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 0.8125rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
 }
 
 .vesper-typography-label-sm-bold {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 0.8125rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
@@ -239,21 +218,21 @@
 }
 
 .vesper-typography-label-sm-mono {
-  font-family: "Berkeley Mono";
+  font-family: var(--vesper-font-mono);
   font-size: 0.8125rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
 }
 
 .vesper-typography-label-xs {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 0.75rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-wide);
 }
 
 .vesper-typography-label-xs-bold {
-  font-family: "Neue Haas Unica Pro";
+  font-family: var(--vesper-font-sans);
   font-size: 0.75rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-wide);
@@ -261,7 +240,7 @@
 }
 
 .vesper-typography-label-xs-mono {
-  font-family: "Berkeley Mono";
+  font-family: var(--vesper-font-mono);
   font-size: 0.75rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-wide);
