@@ -1,0 +1,138 @@
+[class^="vesper-text-button"] {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--vesper-spacing-1);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-family: var(--vesper-font-mono);
+  line-height: var(--vesper-leading-none);
+  letter-spacing: var(--vesper-tracking-normal);
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+}
+
+.vesper-text-button-lg {
+  height: 16px;
+  font-size: 1rem;
+  .vesper-text-button-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.vesper-text-button-md {
+  height: 14px;
+  font-size: 0.875rem;
+  .vesper-text-button-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.vesper-text-button-sm {
+  height: 12px;
+  font-size: 0.75rem;
+  .vesper-text-button-icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.vesper-text-button-subtle {
+  color: var(--vesper-stone-500);
+  .vesper-text-button-icon {
+    color: var(--vesper-stone-600);
+  }
+  &:hover {
+    border-bottom: 1px solid var(--vesper-stone-400);
+  }
+}
+
+.vesper-text-button-contrast {
+  color: var(--vesper-stone-900);
+  .vesper-text-button-icon {
+    color: var(--vesper-stone-900);
+  }
+  &:hover {
+    border-bottom: 1px solid var(--vesper-stone-900);
+  }
+}
+
+.vesper-text-button-accent {
+  color: var(--vesper-teal-700);
+  .vesper-text-button-icon {
+    color: var(--vesper-teal-700);
+  }
+  &:hover {
+    border-bottom: 1px solid var(--vesper-teal-600);
+  }
+}
+
+.vesper-text-button-danger {
+  color: var(--vesper-red-600);
+  .vesper-text-button-icon {
+    color: var(--vesper-red-600);
+  }
+  &:hover {
+    border-bottom: 1px solid var(--vesper-red-500);
+  }
+}
+
+.vesper-text-button-warning {
+  color: var(--vesper-amber-600);
+  .vesper-text-button-icon {
+    color: var(--vesper-amber-600);
+  }
+  &:hover {
+    border-bottom: 1px solid var(--vesper-amber-500);
+  }
+}
+
+.vesper-text-button-success {
+  color: var(--vesper-mint-600);
+  .vesper-text-button-icon {
+    color: var(--vesper-mint-600);
+  }
+  &:hover {
+    border-bottom: 1px solid var(--vesper-green-500);
+  }
+}
+
+.vesper-text-button-info {
+  color: var(--vesper-sky-600);
+  .vesper-text-button-icon {
+    color: var(--vesper-sky-600);
+  }
+  &:hover {
+    border-bottom: 1px solid var(--vesper-sky-500);
+  }
+}
+
+.vesper-text-button-purple {
+  color: var(--vesper-purple-600);
+  .vesper-text-button-icon {
+    color: var(--vesper-purple-600);
+  }
+  &:hover {
+    border-bottom: 1px solid var(--vesper-purple-500);
+  }
+}
+
+.vesper-text-button-pink {
+  color: var(--vesper-pink-600);
+  .vesper-text-button-icon {
+    color: var(--vesper-pink-600);
+  }
+  &:hover {
+    border-bottom: 1px solid var(--vesper-pink-500);
+  }
+}
+
+.vesper-text-button-disabled {
+  color: var(--vesper-stone-400);
+  .vesper-text-button-icon {
+    color: var(--vesper-stone-500);
+  }
+  pointer-events: none;
+}
