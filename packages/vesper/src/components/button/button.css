@@ -1,0 +1,142 @@
+[class^="vesper-button"] {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--vesper-spacing-2);
+  font-family: var(--vesper-font-mono);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: var(--vesper-leading-none);
+  letter-spacing: var(--vesper-tracking-normal);
+  cursor: pointer;
+}
+
+.vesper-button-lg {
+  height: 48px;
+  padding: 0 var(--vesper-spacing-5);
+  border-radius: var(--vesper-radius-2);
+  font-size: 1rem;
+  .vesper-button-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.vesper-button-md {
+  height: 40px;
+  padding: 0 var(--vesper-spacing-4);
+  border-radius: var(--vesper-radius-2);
+  font-size: 1rem;
+  .vesper-button-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.vesper-button-sm {
+  height: 32px;
+  padding: 0 var(--vesper-spacing-3);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  .vesper-button-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.vesper-button-xs {
+  height: 24px;
+  padding: 0 var(--vesper-spacing-2);
+  border-radius: var(--vesper-radius-1);
+  font-size: 0.875rem;
+  .vesper-button-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.vesper-button-primary {
+  color: var(--vesper-stone-900);
+  background: var(--vesper-teal-400);
+  &:hover {
+    background:
+      linear-gradient(
+        0deg,
+        var(--vesper-alpha-inverse-100) 0%,
+        var(--vesper-alpha-inverse-100) 100%
+      ),
+      var(--vesper-teal-400);
+  }
+}
+
+.vesper-button-contrast {
+  color: var(--vesper-stone-0);
+  background: var(--vesper-stone-900);
+  &:hover {
+    background:
+      linear-gradient(
+        0deg,
+        var(--vesper-alpha-inverse-100) 0%,
+        var(--vesper-alpha-inverse-100) 100%
+      ),
+      var(--vesper-stone-900);
+  }
+}
+
+.vesper-button-danger {
+  color: var(--vesper-stone-0);
+  background: var(--vesper-red-500);
+  &:hover {
+    background:
+      linear-gradient(
+        0deg,
+        var(--vesper-alpha-inverse-100) 0%,
+        var(--vesper-alpha-inverse-100) 100%
+      ),
+      var(--vesper-red-500);
+  }
+}
+
+.vesper-button-warning {
+  color: var(--vesper-stone-900);
+  background: var(--vesper-amber-500);
+  &:hover {
+    background:
+      linear-gradient(
+        0deg,
+        var(--vesper-alpha-inverse-100) 0%,
+        var(--vesper-alpha-inverse-100) 100%
+      ),
+      var(--vesper-amber-500);
+  }
+}
+
+.vesper-button-subtle {
+  color: var(--vesper-stone-900);
+  background: var(--vesper-alpha-stone-100);
+  &:hover {
+    background: var(--vesper-alpha-stone-200);
+  }
+}
+
+.vesper-button-tertiary {
+  color: var(--vesper-stone-900);
+  border: 1px solid var(--vesper-stone-300);
+  background: var(--vesper-alpha-inverse-300);
+  &:hover {
+    background: var(--vesper-alpha-stone-50);
+  }
+}
+
+.vesper-button-ghost {
+  color: var(--vesper-stone-900);
+  &:hover {
+    background: var(--vesper-alpha-stone-50);
+  }
+}
+
+.vesper-button-disabled {
+  color: var(--vesper-alpha-stone-400);
+  background: var(--vesper-stone-100);
+  pointer-events: none;
+}

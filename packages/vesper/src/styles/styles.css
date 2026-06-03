@@ -9,5 +9,6 @@
 @import "./shadows.css";
 
 /* components */
+@import "../components/button/button.css";
 @import "../components/menu/menu.css";
 @import "../components/typography/typography.css";

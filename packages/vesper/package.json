@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./button": {
+      "types": "./dist/components/button/button.d.ts",
+      "import": "./dist/components/button/button.js"
+    },
     "./menu": {
       "types": "./dist/components/menu/menu.d.ts",
       "import": "./dist/components/menu/menu.js"
