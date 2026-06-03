@@ -1,13 +1,16 @@
-import type { ReactNode } from "react";
+import type { ElementType, ReactNode } from "react";
 import { Button, type ButtonProps } from "@/components/button/button";
 
-export interface IconButtonProps extends Omit<
-  ButtonProps,
+export type IconButtonProps<E extends ElementType = "button"> = Omit<
+  ButtonProps<E>,
   "children" | "iconLeft" | "iconRight"
-> {
+> & {
   icon: ReactNode;
-}
+};
 
-export function IconButton({ icon, ...props }: IconButtonProps) {
-  return <Button iconLeft={icon} {...props} />;
+export function IconButton<E extends ElementType = "button">({
+  icon,
+  ...props
+}: IconButtonProps<E>) {
+  return <Button iconLeft={icon} {...(props as ButtonProps<E>)} />;
 }
