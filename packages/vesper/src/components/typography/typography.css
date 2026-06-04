@@ -1,0 +1,247 @@
+/* Base vesper typography styles */
+
+.vesper-typography {
+  -webkit-font-smoothing: antialiased;
+  color: currentColor;
+  font-weight: 400;
+}
+
+/* Display styles */
+
+.vesper-typography-display-lg {
+  font-family: var(--vesper-font-mono);
+  font-size: 4rem;
+  line-height: var(--vesper-leading-none);
+  letter-spacing: var(--vesper-tracking-tighter);
+}
+
+.vesper-typography-display-md {
+  font-family: var(--vesper-font-mono);
+  font-size: 3rem;
+  line-height: var(--vesper-leading-none);
+  letter-spacing: var(--vesper-tracking-tighter);
+}
+
+.vesper-typography-display-sm {
+  font-family: var(--vesper-font-mono);
+  font-size: 2.5rem;
+  line-height: var(--vesper-leading-tight);
+  letter-spacing: var(--vesper-tracking-tighter);
+}
+
+/* Heading styles */
+
+.vesper-typography-heading-2xl {
+  font-family: var(--vesper-font-sans);
+  font-size: 3rem;
+  line-height: var(--vesper-leading-tight);
+  letter-spacing: var(--vesper-tracking-tighter);
+  font-weight: 500;
+}
+
+.vesper-typography-heading-xl {
+  font-family: var(--vesper-font-sans);
+  font-size: 2.5rem;
+  line-height: var(--vesper-leading-tight);
+  letter-spacing: var(--vesper-tracking-tighter);
+  font-weight: 500;
+}
+
+.vesper-typography-heading-lg {
+  font-family: var(--vesper-font-sans);
+  font-size: 2rem;
+  line-height: var(--vesper-leading-tight);
+  letter-spacing: var(--vesper-tracking-tighter);
+  font-weight: 500;
+}
+
+.vesper-typography-heading-md {
+  font-family: var(--vesper-font-sans);
+  font-size: 1.5rem;
+  line-height: var(--vesper-leading-snug);
+  letter-spacing: var(--vesper-tracking-tight);
+  font-weight: 500;
+}
+
+.vesper-typography-heading-sm {
+  font-family: var(--vesper-font-sans);
+  font-size: 1.25rem;
+  line-height: var(--vesper-leading-snug);
+  letter-spacing: var(--vesper-tracking-tight);
+  font-weight: 500;
+}
+
+.vesper-typography-heading-xs {
+  font-family: var(--vesper-font-sans);
+  font-size: 1rem;
+  line-height: var(--vesper-leading-snug);
+  letter-spacing: var(--vesper-tracking-tight);
+  font-weight: 500;
+}
+
+/* Copy styles */
+
+.vesper-typography-copy-xl {
+  font-family: var(--vesper-font-sans);
+  font-size: 1.25rem;
+  line-height: var(--vesper-leading-snug);
+  letter-spacing: var(--vesper-tracking-normal);
+}
+
+.vesper-typography-copy-xl-bold {
+  font-family: var(--vesper-font-sans);
+  font-size: 1.25rem;
+  line-height: var(--vesper-leading-snug);
+  letter-spacing: var(--vesper-tracking-normal);
+  font-weight: 500;
+}
+
+.vesper-typography-copy-lg {
+  font-family: var(--vesper-font-sans);
+  font-size: 1.125rem;
+  line-height: var(--vesper-leading-snug);
+  letter-spacing: var(--vesper-tracking-normal);
+}
+
+.vesper-typography-copy-lg-bold {
+  font-family: var(--vesper-font-sans);
+  font-size: 1.125rem;
+  line-height: var(--vesper-leading-snug);
+  letter-spacing: var(--vesper-tracking-normal);
+  font-weight: 500;
+}
+
+.vesper-typography-copy-md {
+  font-family: var(--vesper-font-sans);
+  font-size: 1rem;
+  line-height: var(--vesper-leading-snug);
+  letter-spacing: var(--vesper-tracking-normal);
+}
+
+.vesper-typography-copy-md-bold {
+  font-family: var(--vesper-font-sans);
+  font-size: 1rem;
+  line-height: var(--vesper-leading-snug);
+  letter-spacing: var(--vesper-tracking-normal);
+  font-weight: 500;
+}
+
+.vesper-typography-copy-sm {
+  font-family: var(--vesper-font-sans);
+  font-size: 0.875rem;
+  line-height: var(--vesper-leading-normal);
+  letter-spacing: var(--vesper-tracking-normal);
+}
+
+.vesper-typography-copy-sm-bold {
+  font-family: var(--vesper-font-sans);
+  font-size: 0.875rem;
+  line-height: var(--vesper-leading-normal);
+  letter-spacing: var(--vesper-tracking-normal);
+  font-weight: 500;
+}
+
+.vesper-typography-copy-xs {
+  font-family: var(--vesper-font-sans);
+  font-size: 0.8125rem;
+  line-height: var(--vesper-leading-normal);
+  letter-spacing: var(--vesper-tracking-normal);
+}
+
+.vesper-typography-copy-xs-bold {
+  font-family: var(--vesper-font-sans);
+  font-size: 0.8125rem;
+  line-height: var(--vesper-leading-normal);
+  letter-spacing: var(--vesper-tracking-normal);
+  font-weight: 500;
+}
+
+.vesper-typography-copy-xs-mono {
+  font-family: var(--vesper-font-mono);
+  font-size: 0.8125rem;
+  line-height: var(--vesper-leading-normal);
+  letter-spacing: var(--vesper-tracking-normal);
+}
+
+/* Label styles */
+
+.vesper-typography-label-lg {
+  font-family: var(--vesper-font-sans);
+  font-size: 1rem;
+  line-height: var(--vesper-leading-none);
+  letter-spacing: var(--vesper-tracking-normal);
+}
+
+.vesper-typography-label-lg-bold {
+  font-family: var(--vesper-font-sans);
+  font-size: 1rem;
+  line-height: var(--vesper-leading-none);
+  letter-spacing: var(--vesper-tracking-normal);
+  font-weight: 500;
+}
+
+.vesper-typography-label-md {
+  font-family: var(--vesper-font-sans);
+  font-size: 0.875rem;
+  line-height: var(--vesper-leading-none);
+  letter-spacing: var(--vesper-tracking-normal);
+}
+
+.vesper-typography-label-md-bold {
+  font-family: var(--vesper-font-sans);
+  font-size: 0.875rem;
+  line-height: var(--vesper-leading-none);
+  letter-spacing: var(--vesper-tracking-normal);
+  font-weight: 500;
+}
+
+.vesper-typography-label-md-mono {
+  font-family: var(--vesper-font-mono);
+  font-size: 0.875rem;
+  line-height: var(--vesper-leading-none);
+  letter-spacing: var(--vesper-tracking-normal);
+}
+
+.vesper-typography-label-sm {
+  font-family: var(--vesper-font-sans);
+  font-size: 0.8125rem;
+  line-height: var(--vesper-leading-none);
+  letter-spacing: var(--vesper-tracking-normal);
+}
+
+.vesper-typography-label-sm-bold {
+  font-family: var(--vesper-font-sans);
+  font-size: 0.8125rem;
+  line-height: var(--vesper-leading-none);
+  letter-spacing: var(--vesper-tracking-normal);
+  font-weight: 500;
+}
+
+.vesper-typography-label-sm-mono {
+  font-family: var(--vesper-font-mono);
+  font-size: 0.8125rem;
+  line-height: var(--vesper-leading-none);
+  letter-spacing: var(--vesper-tracking-normal);
+}
+
+.vesper-typography-label-xs {
+  font-family: var(--vesper-font-sans);
+  font-size: 0.75rem;
+  line-height: var(--vesper-leading-none);
+  letter-spacing: var(--vesper-tracking-wide);
+}
+
+.vesper-typography-label-xs-bold {
+  font-family: var(--vesper-font-sans);
+  font-size: 0.75rem;
+  line-height: var(--vesper-leading-none);
+  letter-spacing: var(--vesper-tracking-wide);
+  font-weight: 500;
+}
+
+.vesper-typography-label-xs-mono {
+  font-family: var(--vesper-font-mono);
+  font-size: 0.75rem;
+  line-height: var(--vesper-leading-none);
+  letter-spacing: var(--vesper-tracking-wide);
+}

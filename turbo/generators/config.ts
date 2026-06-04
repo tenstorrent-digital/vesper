@@ -21,24 +21,25 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
       {
         type: "input",
         name: "element",
-        message: "What is the root element for this component?",
+        message: "What is the root element for this component? (optional)",
       },
     ],
     actions: [
       {
         type: "add",
-        path: "{{ turbo.paths.root }}/packages/vesper/src/components/{{ name }}/{{ name }}.tsx",
+        path: "{{ turbo.paths.root }}/packages/vesper/src/components/{{ kebabCase name }}/{{ kebabCase name }}.tsx",
         templateFile: "templates/react-component.hbs",
       },
       {
         type: "add",
-        path: "{{ turbo.paths.root }}/packages/vesper/src/components/{{ name }}/{{ name }}.css",
+        path: "{{ turbo.paths.root }}/packages/vesper/src/components/{{ kebabCase name }}/{{ kebabCase name }}.css",
       },
       {
         type: "append",
         path: "{{ turbo.paths.root }}/packages/vesper/src/styles/styles.css",
         pattern: /\/\* components \*\//,
-        template: '@import "../components/{{ name }}/{{ name }}.css";',
+        template:
+          '@import "../components/{{ kebabCase name }}/{{ kebabCase name }}.css";',
       },
       {
         type: "modify",
@@ -46,9 +47,9 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         pattern: /"exports"\s*:\s*\{/,
         template: [
           `"exports": {`,
-          `    "./{{ name }}": {`,
-          `      "types": "./dist/components/{{ name }}/{{ name }}.d.ts",`,
-          `      "import": "./dist/components/{{ name }}/{{ name }}.js"`,
+          `    "./{{ kebabCase name }}": {`,
+          `      "types": "./dist/components/{{ kebabCase name }}/{{ kebabCase name }}.d.ts",`,
+          `      "import": "./dist/components/{{ kebabCase name }}/{{ kebabCase name }}.js"`,
           `    },`,
         ].join("\n"),
       },
