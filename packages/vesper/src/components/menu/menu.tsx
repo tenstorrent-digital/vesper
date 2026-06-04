@@ -56,7 +56,6 @@ export function Menu({
           {items.map((item, index) => (
             <MenuItem key={index} {...item} />
           ))}
-          <DropdownMenuItem />
         </DropdownMenuContent>
       </DropdownMenuPortal>
     </DropdownMenu>
