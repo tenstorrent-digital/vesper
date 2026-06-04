@@ -1,0 +1,65 @@
+.vesper-progress-bar {
+  position: relative;
+  width: 100%;
+  background: var(--vesper-alpha-stone-50);
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-evenly;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--vesper-stone-400);
+  }
+}
+
+.vesper-progress-bar-sm {
+  height: 8px;
+  border-radius: var(--vesper-spacing-2);
+  &::before {
+    border-radius: var(--vesper-spacing-2);
+  }
+}
+
+.vesper-progress-bar-md {
+  height: 12px;
+  border-radius: var(--vesper-spacing-3);
+  &::before {
+    border-radius: var(--vesper-spacing-3);
+  }
+}
+
+.vesper-progress-bar-lg {
+  height: 16px;
+  border-radius: var(--vesper-spacing-4);
+  &::before {
+    border-radius: var(--vesper-spacing-4);
+  }
+}
+
+.vesper-progress-bar-indicator-default,
+.vesper-progress-bar-indicator-steps {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: var(--vesper-teal-400);
+}
+
+.vesper-progress-bar-indicator-default {
+  transition: width 0.4s cubic-bezier(0.45, 0.15, 0.25, 0.95);
+}
+
+.vesper-progress-bar-tick {
+  position: relative;
+  width: 1px;
+}
+
+.vesper-progress-bar-tick-light {
+  background: var(--vesper-stone-0);
+}
+
+.vesper-progress-bar-tick-dark {
+  background: var(--vesper-stone-400);
+}

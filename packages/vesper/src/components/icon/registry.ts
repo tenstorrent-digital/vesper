@@ -23,6 +23,7 @@ import { ArrowUp } from "./arrow-up";
 import { Auto } from "./auto";
 import { Blackhole } from "./blackhole";
 import { Board } from "./board";
+import { Bolt } from "./bolt";
 import { CaretDown } from "./caret-down";
 import { CaretLeft } from "./caret-left";
 import { CaretRight } from "./caret-right";
@@ -34,6 +35,7 @@ import { Checkmark } from "./checkmark";
 import { Chip } from "./chip";
 import { CircleXSolid } from "./circle-x-solid";
 import { CircleX } from "./circle-x";
+import { ClosePanel } from "./close-panel";
 import { Close } from "./close";
 import { CloudServerSolid } from "./cloud-server-solid";
 import { CloudServer } from "./cloud-server";
@@ -41,16 +43,22 @@ import { Copy } from "./copy";
 import { DocumentSolid } from "./document-solid";
 import { Document } from "./document";
 import { Download } from "./download";
+import { Ellipses } from "./ellipses";
 import { ErrorSolid } from "./error-solid";
 import { Error } from "./error";
 import { Folder } from "./folder";
 import { GalaxyRack } from "./galaxy-rack";
 import { Galaxy } from "./galaxy";
+import { Gear } from "./gear";
 import { Globe } from "./globe";
+import { Grid } from "./grid";
 import { InfoSolid } from "./info-solid";
 import { Info } from "./info";
 import { Link } from "./link";
+import { List } from "./list";
 import { Location } from "./location";
+import { LockFill } from "./lock-fill";
+import { Lock } from "./lock";
 import { LoudBox } from "./loudbox";
 import { Menu } from "./menu";
 import { Minus } from "./minus";
@@ -69,6 +77,7 @@ import { ModelOpenAI } from "./model-openai";
 import { ModelQwenColor } from "./model-qwen-color";
 import { ModelQwen } from "./model-qwen";
 import { Monitor } from "./monitor";
+import { OpenPanel } from "./open-panel";
 import { OrgDeveloper } from "./org-developer";
 import { OrgExperience } from "./org-experience";
 import { OrgOperations } from "./org-operations";
@@ -84,15 +93,13 @@ import { Server } from "./server";
 import { ShieldSolid } from "./shield-solid";
 import { Shield } from "./shield";
 import { Size } from "./size";
-import { SocialApple } from "./social-apple";
 import { SocialDiscord } from "./social-discord";
 import { SocialFacebook } from "./social-facebook";
 import { SocialGitHub } from "./social-github";
-import { SocialGoogle } from "./social-google";
 import { SocialLinkedIn } from "./social-linkedin";
-import { SocialMicrosoft } from "./social-microsoft";
 import { SocialX } from "./social-x";
 import { SocialYouTube } from "./social-youtube";
+import { Spinner } from "./spinner";
 import { SuccessSolid } from "./success-solid";
 import { Success } from "./success";
 import { Tensix } from "./tensix";
@@ -101,6 +108,7 @@ import { TrashSolid } from "./trash-solid";
 import { Trash } from "./trash";
 import { TTForgeFE } from "./tt-forge-fe";
 import { TTForge } from "./tt-forge";
+import { TTLang } from "./tt-lang";
 import { TTLLK } from "./tt-llk";
 import { TTMetalium } from "./tt-metalium";
 import { TTNN } from "./tt-nn";
@@ -133,6 +141,7 @@ export const registry = {
   auto: Auto,
   blackhole: Blackhole,
   board: Board,
+  bolt: Bolt,
   "caret-down": CaretDown,
   "caret-left": CaretLeft,
   "caret-right": CaretRight,
@@ -144,6 +153,7 @@ export const registry = {
   chip: Chip,
   "circle-x-solid": CircleXSolid,
   "circle-x": CircleX,
+  "close-panel": ClosePanel,
   close: Close,
   "cloud-server-solid": CloudServerSolid,
   "cloud-server": CloudServer,
@@ -151,16 +161,22 @@ export const registry = {
   "document-solid": DocumentSolid,
   document: Document,
   download: Download,
+  ellipses: Ellipses,
   "error-solid": ErrorSolid,
   error: Error,
   folder: Folder,
   "galaxy-rack": GalaxyRack,
   galaxy: Galaxy,
+  gear: Gear,
   globe: Globe,
+  grid: Grid,
   "info-solid": InfoSolid,
   info: Info,
   link: Link,
+  list: List,
   location: Location,
+  "lock-fill": LockFill,
+  lock: Lock,
   loudbox: LoudBox,
   menu: Menu,
   minus: Minus,
@@ -179,6 +195,7 @@ export const registry = {
   "model-qwen-color": ModelQwenColor,
   "model-qwen": ModelQwen,
   monitor: Monitor,
+  "open-panel": OpenPanel,
   "org-developer": OrgDeveloper,
   "org-experience": OrgExperience,
   "org-operations": OrgOperations,
@@ -194,15 +211,13 @@ export const registry = {
   "shield-solid": ShieldSolid,
   shield: Shield,
   size: Size,
-  "social-apple": SocialApple,
   "social-discord": SocialDiscord,
   "social-facebook": SocialFacebook,
   "social-github": SocialGitHub,
-  "social-google": SocialGoogle,
   "social-linkedin": SocialLinkedIn,
-  "social-microsoft": SocialMicrosoft,
   "social-x": SocialX,
   "social-youtube": SocialYouTube,
+  spinner: Spinner,
   "success-solid": SuccessSolid,
   success: Success,
   tensix: Tensix,
@@ -211,6 +226,7 @@ export const registry = {
   trash: Trash,
   "tt-forge-fe": TTForgeFE,
   "tt-forge": TTForge,
+  "tt-lang": TTLang,
   "tt-llk": TTLLK,
   "tt-metalium": TTMetalium,
   "tt-nn": TTNN,

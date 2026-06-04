@@ -3,10 +3,18 @@
 @import "./fonts.css";
 @import "./leading.css";
 @import "./radius.css";
+@import "./shadows.css";
 @import "./spacing.css";
 @import "./tracking.css";
+
+/* typography */
+@import "../components/typography/typography.css";
 
 /* components */
 @import "../components/avatar-group/avatar-group.css";
 @import "../components/avatar/avatar.css";
-@import "../components/typography/typography.css";
+@import "../components/progress-bar/progress-bar.css";
+@import "../components/split-button/split-button.css";
+@import "../components/text-button/text-button.css";
+@import "../components/button/button.css";
+@import "../components/menu/menu.css";

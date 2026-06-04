@@ -185,4 +185,11 @@
   --leading-vesper-loose: var(--vesper-leading-loose);
   --font-vesper-sans: var(--vesper-font-sans);
   --font-vesper-mono: var(--vesper-font-mono);
+  --shadow-vesper-100: var(--vesper-shadow-100);
+  --shadow-vesper-200: var(--vesper-shadow-200);
+  --shadow-vesper-300: var(--vesper-shadow-300);
+  --shadow-vesper-400: var(--vesper-shadow-400);
+  --shadow-vesper-inset-100: var(--vesper-shadow-inset-100);
+  --shadow-vesper-inset-200: var(--vesper-shadow-inset-200);
+  --shadow-vesper-focus-ring: var(--vesper-shadow-focus-ring);
 }
