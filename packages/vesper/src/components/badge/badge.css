@@ -1,0 +1,117 @@
+.vesper-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--vesper-radius-4);
+}
+
+.vesper-badge-sm {
+  height: 20px;
+  padding: 0 var(--vesper-spacing-1);
+  .vesper-badge-icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.vesper-badge-md {
+  height: 24px;
+  padding: 0 var(--vesper-spacing-2);
+  .vesper-badge-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.vesper-badge-lg {
+  height: 28px;
+  padding: 0 var(--vesper-spacing-2);
+  .vesper-badge-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.vesper-badge-text {
+  padding: 0 var(--vesper-spacing-1);
+}
+
+.vesper-badge-contrast {
+  background: var(--vesper-stone-900);
+  color: var(--vesper-stone-0);
+}
+.vesper-badge-contrast-subtle {
+  background: var(--vesper-alpha-stone-100);
+  color: var(--vesper-stone-900);
+}
+
+.vesper-badge-accent {
+  background: var(--vesper-teal-400);
+  color: var(--vesper-stone-900);
+}
+.vesper-badge-accent-subtle {
+  background: var(--vesper-teal-50);
+  color: var(--vesper-teal-700);
+}
+
+.vesper-badge-success {
+  background: var(--vesper-green-600);
+  color: var(--vesper-stone-0);
+}
+.vesper-badge-success-subtle {
+  background: var(--vesper-green-50);
+  color: var(--vesper-mint-600);
+}
+
+.vesper-badge-warning {
+  background: var(--vesper-amber-500);
+  color: var(--vesper-stone-900);
+}
+.vesper-badge-warning-subtle {
+  background: var(--vesper-amber-50);
+  color: var(--vesper-amber-600);
+}
+
+.vesper-badge-danger {
+  background: var(--vesper-red-500);
+  color: var(--vesper-stone-0);
+}
+.vesper-badge-danger-subtle {
+  background: var(--vesper-red-50);
+  color: var(--vesper-red-600);
+}
+
+.vesper-badge-info {
+  background: var(--vesper-sky-600);
+  color: var(--vesper-stone-0);
+}
+.vesper-badge-info-subtle {
+  background: var(--vesper-sky-50);
+  color: var(--vesper-sky-600);
+}
+
+.vesper-badge-purple {
+  background: var(--vesper-purple-600);
+  color: var(--vesper-stone-0);
+}
+.vesper-badge-purple-subtle {
+  background: var(--vesper-purple-50);
+  color: var(--vesper-purple-600);
+}
+
+.vesper-badge-mint {
+  background: var(--vesper-mint-600);
+  color: var(--vesper-stone-0);
+}
+.vesper-badge-mint-subtle {
+  background: var(--vesper-mint-50);
+  color: var(--vesper-mint-600);
+}
+
+.vesper-badge-pink {
+  background: var(--vesper-pink-600);
+  color: var(--vesper-stone-0);
+}
+.vesper-badge-pink-subtle {
+  background: var(--vesper-pink-50);
+  color: var(--vesper-pink-600);
+}
