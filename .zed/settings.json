@@ -1,0 +1,70 @@
+{
+  "languages": {
+    "CSS": {
+      // use both tailwind LSP and css LSP
+      "language_servers": [
+        "tailwindcss-language-server",
+        "vscode-css-language-server",
+      ],
+    },
+    "TSX": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+      },
+    },
+    "TypeScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+      },
+    },
+  },
+  "lsp": {
+    "tailwindcss-language-server": {
+      "settings": {
+        "classFunctions": ["cn", "clsx", "tw"],
+        "lint": {
+          // don't suggest canonical classes since
+          // it flags our custom spacing utilities
+          // eg. w-* (in px)
+          "suggestCanonicalClasses": "ignore",
+        },
+      },
+    },
+    "vscode-css-language-server": {
+      "settings": {
+        "css": {
+          "lint": {
+            // ignore @_ rules from tailwind that conflict with css spec
+            "unknownAtRules": "ignore",
+          },
+        },
+      },
+    },
+  },
+  "file_scan_exclusions": [
+    // defaults
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/.jj",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+
+    // also exclude:
+
+    // node_modules
+    "**/node_modules/**",
+
+    // exclude contents of agent skills
+    ".agents/skills/**/scripts/**",
+    ".agents/skills/**/references/**",
+    ".agents/skills/**/rules/**",
+
+    // all files in `.claude` (symlinks to .agents)
+    ".claude/**",
+  ],
+  "read_only_files": ["yarn.lock", "skills-lock.json"],
+}

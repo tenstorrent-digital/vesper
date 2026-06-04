@@ -1,0 +1,5 @@
+# helix editor file picker ignore file
+
+# exclude contents of agent skills
+.agents/skills/**
+!.agents/skills/**/SKILL.md
