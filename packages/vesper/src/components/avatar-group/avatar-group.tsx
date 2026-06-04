@@ -24,7 +24,9 @@ export function AvatarGroup<E extends ElementType = "div">(
         <Avatar key={index} size={size} src={src} />
       ))}
       {avatars.length > 3 && (
-        <div className={`vesper-avatar vesper-avatar-${size}`}>
+        <div
+          className={`vesper-avatar-group-overflow vesper-avatar vesper-avatar-${size}`}
+        >
           {`+${avatars.length - 3}`}
         </div>
       )}
