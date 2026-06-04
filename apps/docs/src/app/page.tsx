@@ -1,3 +1,4 @@
+import { AvatarPreview } from "@/components/avatar-preview";
 import { ProgressBarPreview } from "@/components/progress-bar-preview";
 import { ButtonsPreview } from "@/components/buttons-preview";
 import { MenuPreview } from "@/components/menu-preview";
@@ -7,6 +8,7 @@ export default function Page() {
   return (
     <div>
       <TypographyPreview />
+      <AvatarPreview />
       <ProgressBarPreview />
       <MenuPreview />
       <ButtonsPreview />
