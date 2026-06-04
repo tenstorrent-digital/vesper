@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./avatar": {
+      "types": "./dist/components/avatar/avatar.d.ts",
+      "import": "./dist/components/avatar/avatar.js"
+    },
     "./typography": {
       "types": "./dist/components/typography/typography.d.ts",
       "import": "./dist/components/typography/typography.js"
