@@ -21,6 +21,7 @@ export interface SplitButtonProps {
   variant: "subtle" | "contrast";
   menuItems: MenuItemProps[];
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  menuButtonAriaLabel?: string;
   children?: ReactNode;
   className?: string;
   menuWidth?: MenuProps["width"];
@@ -48,6 +49,7 @@ export function SplitButton({
   menuSideOffset,
   menuWidth,
   disabled,
+  menuButtonAriaLabel,
 }: SplitButtonProps) {
   const actionButtonRef = useRef<HTMLButtonElement>(null);
   const handlePointerDown = useCallback(
@@ -87,7 +89,7 @@ export function SplitButton({
           size={size}
           variant={variant}
           disabled={disabled}
-          aria-label="Toggle menu"
+          aria-label={menuButtonAriaLabel || "Toggle menu"}
           icon={
             <>
               <CaretDown className="vesper-split-button-caret-down" />
