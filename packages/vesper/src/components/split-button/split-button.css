@@ -22,6 +22,13 @@
     border: 1px solid var(--vesper-stone-300);
     border-left: none;
   }
+  .vesper-button-disabled:first-child {
+    border: 1px solid var(--vesper-stone-300);
+  }
+  .vesper-button-disabled:last-child {
+    border: 1px solid var(--vesper-stone-300);
+    border-left: none;
+  }
   &[data-state="open"] {
     .vesper-split-button-caret-down {
       display: none;

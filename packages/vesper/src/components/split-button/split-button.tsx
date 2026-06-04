@@ -30,6 +30,7 @@ export interface SplitButtonProps {
   menuAlignOffset?: MenuProps["alignOffset"];
   menuOpen?: MenuProps["open"];
   onMenuOpenChange?: MenuProps["onOpenChange"];
+  disabled?: boolean;
 }
 
 export function SplitButton({
@@ -46,11 +47,17 @@ export function SplitButton({
   menuSide = "bottom",
   menuSideOffset,
   menuWidth,
+  disabled,
 }: SplitButtonProps) {
   const actionButtonRef = useRef<HTMLButtonElement>(null);
-  const handlePointerDown = useCallback((e: PointerEvent<HTMLDivElement>) => {
-    if (e.target === actionButtonRef.current) e.preventDefault();
-  }, []);
+  const handlePointerDown = useCallback(
+    (e: PointerEvent<HTMLDivElement>) => {
+      if (disabled || e.target === actionButtonRef.current) {
+        e.preventDefault();
+      }
+    },
+    [disabled],
+  );
 
   return (
     <Menu
@@ -72,12 +79,14 @@ export function SplitButton({
           onClick={onClick}
           size={size}
           variant={variant}
+          disabled={disabled}
         >
           {children}
         </Button>
         <IconButton
           size={size}
           variant={variant}
+          disabled={disabled}
           icon={
             <>
               <CaretDown className="vesper-split-button-caret-down" />
