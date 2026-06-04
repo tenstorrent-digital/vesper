@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./accordion": {
+      "types": "./dist/components/accordion/accordion.d.ts",
+      "import": "./dist/components/accordion/accordion.js"
+    },
     "./typography": {
       "types": "./dist/components/typography/typography.d.ts",
       "import": "./dist/components/typography/typography.js"
@@ -66,5 +70,8 @@
     "typescript": "5.9.2",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.1.0"
+  },
+  "dependencies": {
+    "@radix-ui/react-collapsible": "^1.1.12"
   }
 }

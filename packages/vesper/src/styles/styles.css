@@ -7,4 +7,5 @@
 @import "./tracking.css";
 
 /* components */
+@import "../components/accordion/accordion.css";
 @import "../components/typography/typography.css";
