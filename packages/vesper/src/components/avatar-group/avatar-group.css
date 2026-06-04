@@ -1,0 +1,30 @@
+.vesper-avatar-group {
+  display: flex;
+  .vesper-avatar:not(:first-child) {
+    margin-left: -6px;
+  }
+  .vesper-avatar-md:not(:first-child) {
+    margin-left: -10px;
+  }
+  .vesper-avatar-lg:not(:first-child) {
+    margin-left: -14px;
+  }
+  .vesper-avatar:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--vesper-stone-0);
+    background: var(--vesper-stone-900);
+    font-family: var(--vesper-font-sans);
+    font-weight: 400;
+    line-height: var(--vesper-leading-none);
+    letter-spacing: var(--vesper-tracking-normal);
+  }
+  .vesper-avatar-sm:last-child,
+  .vesper-avatar-md:last-child {
+    font-size: 0.5rem;
+  }
+  .vesper-avatar-lg:last-child {
+    font-size: 0.75rem;
+  }
+}

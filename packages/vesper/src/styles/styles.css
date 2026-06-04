@@ -7,5 +7,6 @@
 @import "./tracking.css";
 
 /* components */
+@import "../components/avatar-group/avatar-group.css";
 @import "../components/avatar/avatar.css";
 @import "../components/typography/typography.css";

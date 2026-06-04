@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./avatar-group": {
+      "types": "./dist/components/avatar-group/avatar-group.d.ts",
+      "import": "./dist/components/avatar-group/avatar-group.js"
+    },
     "./avatar": {
       "types": "./dist/components/avatar/avatar.d.ts",
       "import": "./dist/components/avatar/avatar.js"
