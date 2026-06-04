@@ -2,25 +2,24 @@ import type { ElementType, ReactNode } from "react";
 import type { Polymorphic } from "@/utils/polymorphic";
 import { cn } from "@/utils/cn";
 
-type BaseTextButtonProps = {
-  size: "lg" | "md" | "sm";
-  variant:
-    | "subtle"
-    | "contrast"
-    | "accent"
-    | "success"
-    | "warning"
-    | "danger"
-    | "info"
-    | "purple"
-    | "pink";
-  disabled?: boolean;
-  iconLeft?: ReactNode;
-  iconRight?: ReactNode;
-};
-
 export type TextButtonProps<E extends ElementType = "button"> = Polymorphic<
-  BaseTextButtonProps & { className?: string },
+  {
+    size: "lg" | "md" | "sm";
+    variant:
+      | "subtle"
+      | "contrast"
+      | "accent"
+      | "success"
+      | "warning"
+      | "danger"
+      | "info"
+      | "purple"
+      | "pink";
+    disabled?: boolean;
+    iconLeft?: ReactNode;
+    iconRight?: ReactNode;
+    className?: string;
+  },
   E
 >;
 
