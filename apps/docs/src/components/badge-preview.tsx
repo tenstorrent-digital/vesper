@@ -17,7 +17,7 @@ const SIZES: BadgeProps["size"][] = ["sm", "md", "lg"];
 
 export function BadgePreview() {
   return (
-    <div className="bg-vesper-stone-100 text-vesper-stone-900 flex flex-wrap gap-vesper-4 p-vesper-4">
+    <div className="bg-vesper-stone-50 text-vesper-stone-900 flex flex-wrap gap-vesper-4 p-vesper-4">
       {VARIANTS.map((variant) => (
         <div className="flex flex-col gap-vesper-4" key={variant}>
           {SIZES.map((size) => (

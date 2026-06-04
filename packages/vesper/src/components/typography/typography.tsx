@@ -1,4 +1,5 @@
-import { type ComponentProps, type ElementType } from "react";
+import type { ElementType } from "react";
+import type { Polymorphic } from "@/utils/polymorphic";
 import { cn } from "@/utils/cn";
 
 type DisplayVariantPermutations = {
@@ -49,11 +50,10 @@ type TypographyVariantPermutations =
   | CopyVariantPermutations
   | LabelVariantPermutations;
 
-export type TypographyProps<E extends ElementType = "p"> =
-  TypographyVariantPermutations & {
-    as?: E;
-    className?: string;
-  } & Omit<ComponentProps<E>, "as" | "className">;
+export type TypographyProps<E extends ElementType = "p"> = Polymorphic<
+  TypographyVariantPermutations & { className?: string },
+  E
+>;
 
 export function Typography<E extends ElementType = "p">(
   props: TypographyProps<E>,
