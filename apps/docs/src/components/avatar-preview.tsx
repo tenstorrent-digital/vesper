@@ -12,19 +12,19 @@ export function AvatarPreview() {
           <AvatarGroup
             size={size}
             avatars={[
-              "https://unsplash.it/300/300",
-              "https://unsplash.it/200/300",
-              "https://unsplash.it/300/200",
+              { src: "https://unsplash.it/300/300" },
+              { src: "https://unsplash.it/200/300" },
+              { src: "https://unsplash.it/300/200" },
             ]}
           />
           <AvatarGroup
             size={size}
             avatars={[
-              "https://unsplash.it/300/300",
-              "https://unsplash.it/200/300",
-              "https://unsplash.it/300/200",
-              "https://unsplash.it/200/200",
-              "https://unsplash.it/400/300",
+              { src: "https://unsplash.it/300/300" },
+              { src: "https://unsplash.it/200/300" },
+              { src: "https://unsplash.it/300/200" },
+              { src: "https://unsplash.it/200/200" },
+              { src: "https://unsplash.it/400/300" },
             ]}
           />
         </div>

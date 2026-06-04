@@ -6,7 +6,7 @@ import { Avatar } from "@/components/avatar/avatar";
 export type AvatarGroupProps<E extends ElementType = "div"> = Polymorphic<
   {
     size: "lg" | "md" | "sm";
-    avatars: (string | undefined)[];
+    avatars: { src: string | undefined; alt?: string }[];
     as?: E;
     className?: string;
   },
@@ -20,8 +20,8 @@ export function AvatarGroup<E extends ElementType = "div">(
 
   return (
     <Component className={cn("vesper-avatar-group", className)} {...rest}>
-      {avatars.slice(0, 3).map((src, index) => (
-        <Avatar key={index} size={size} src={src} />
+      {avatars.slice(0, 3).map(({ src, alt }, index) => (
+        <Avatar key={index} size={size} src={src} alt={alt} />
       ))}
       {avatars.length > 3 && (
         <div

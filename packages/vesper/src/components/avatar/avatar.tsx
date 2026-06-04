@@ -6,6 +6,7 @@ export type AvatarProps<E extends ElementType = "div"> = Polymorphic<
   {
     size: "lg" | "md" | "sm";
     src?: string;
+    alt?: string;
     as?: E;
     className?: string;
   },
@@ -13,13 +14,13 @@ export type AvatarProps<E extends ElementType = "div"> = Polymorphic<
 >;
 
 export function Avatar<E extends ElementType = "div">(props: AvatarProps<E>) {
-  const { as: Component = "div", size, className, src, ...rest } = props;
+  const { as: Component = "div", size, className, src, alt, ...rest } = props;
   return (
     <Component
       className={cn("vesper-avatar", `vesper-avatar-${size}`, className)}
       {...rest}
     >
-      {src && <img className="vesper-avatar-image" src={src} />}
+      {src && <img className="vesper-avatar-image" src={src} alt={alt} />}
     </Component>
   );
 }
