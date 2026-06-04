@@ -80,6 +80,9 @@ export function Typography<E extends ElementType = "p">(
   if (permutation.mono) permutationClassName += "-mono";
 
   return (
-    <Component className={cn(permutationClassName, className)} {...rest} />
+    <Component
+      className={cn("vesper-typography", permutationClassName, className)}
+      {...rest}
+    />
   );
 }
