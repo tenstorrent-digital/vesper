@@ -11,7 +11,7 @@
   cursor: pointer;
   &:focus {
     outline: none;
-    box-shadow: var(--vesper-focus-ring);
+    box-shadow: var(--vesper-shadow-focus-ring);
   }
 }
 
