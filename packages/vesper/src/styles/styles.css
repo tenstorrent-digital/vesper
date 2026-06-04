@@ -11,6 +11,7 @@
 @import "../components/typography/typography.css";
 
 /* components */
+@import "../components/accordion/accordion.css";
 @import "../components/avatar-group/avatar-group.css";
 @import "../components/avatar/avatar.css";
 @import "../components/progress-bar/progress-bar.css";
