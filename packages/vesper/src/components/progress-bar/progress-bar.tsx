@@ -65,12 +65,14 @@ function ProgressBarIndicatorSteps({
   value: number;
   steps: number;
 }) {
-  const totalSteps = Math.max(steps, 1);
+  const totalSteps = Math.max(Math.floor(steps), 1);
   const stepWidth = 100 / totalSteps;
   const numSteps = Math.round(value / stepWidth);
 
   let width = `${numSteps * stepWidth}%`;
-  if (numSteps !== totalSteps) width = `calc(${width} - 1px)`;
+  if (numSteps > 0 && numSteps !== totalSteps) {
+    width = `calc(${width} - 1px)`;
+  }
 
   return (
     <>
