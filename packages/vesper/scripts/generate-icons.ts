@@ -13,12 +13,12 @@ const __dirname = path.dirname(__filename);
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning("yarn generate:icons");
 
-// transform an svg file name into its id, ie. user-multiple.svg -> user-multiple
-const getIconId = (fileName: string) => fileName.slice(0, -4);
+// transform an svg file name into its kind, ie. user-multiple.svg -> user-multiple
+const getIconKind = (fileName: string) => fileName.slice(0, -4);
 
-// transform an svg id into its component name, ie. model-openai -> ModelOpenAI
-const getIconComponentName = (iconId: string) => {
-  return iconId
+// transform an svg kind into its component name, ie. model-openai -> ModelOpenAI
+const getIconComponentName = (iconKind: string) => {
+  return iconKind
     .split("-")
     .map((part) => {
       if (part === "ai") return "AI";
@@ -55,12 +55,12 @@ const icons = iconFiles.map((fileName) => {
     "utf-8",
   );
 
-  const id = getIconId(fileName);
-  const name = getIconComponentName(id);
+  const kind = getIconKind(fileName);
+  const componentName = getIconComponentName(kind);
 
   // prefix ids using the icon id to prevent collisions between elements inside other svgs
   const { data } = optimize(raw, {
-    plugins: [{ name: "prefixIds", params: { prefix: id } }],
+    plugins: [{ name: "prefixIds", params: { prefix: kind } }],
   });
 
   // convert the optimized icon svg to a tree
@@ -83,7 +83,7 @@ const icons = iconFiles.map((fileName) => {
       !value.startsWith("url(");
 
     // patch non-colored icons so their fills and strokes use currentColor
-    if (!id.endsWith("-color")) {
+    if (!kind.endsWith("-color")) {
       if ("fill" in node.properties && shouldPatchValue(node.properties.fill)) {
         node.properties.fill = "currentColor";
       }
@@ -99,7 +99,7 @@ const icons = iconFiles.map((fileName) => {
   // serialize tree into a string again now that it's been optimized and patched
   const markdown = unified().use(rehypeStringify).stringify(tree);
 
-  return { id, name, markdown };
+  return { kind, componentName, markdown };
 });
 
 // remove existing files in icon component folder
@@ -123,13 +123,13 @@ ${AUTO_GENERATED_WARNING}
 
 import type { ComponentProps } from 'react';
 
-export const ${icon.name} = (props: ComponentProps<'svg'>) => {
+export const ${icon.componentName} = (props: ComponentProps<'svg'>) => {
   return ${markdown}
 }
 `;
 
   fs.writeFileSync(
-    path.resolve(__dirname, `../src/components/icon/${icon.id}.tsx`),
+    path.resolve(__dirname, `../src/components/icon/${icon.kind}.tsx`),
     fileContents,
   );
 });
@@ -140,10 +140,10 @@ fs.writeFileSync(
   `
 ${AUTO_GENERATED_WARNING}
 
-${icons.map((icon) => `import { ${icon.name} } from './${icon.id}'`).join("\n")}
+${icons.map((icon) => `import { ${icon.componentName} } from './${icon.kind}'`).join("\n")}
 
 export const registry = {
-  ${icons.map((icon) => `"${icon.id}": ${icon.name},`).join("\n")}
+  ${icons.map((icon) => `"${icon.kind}": ${icon.componentName},`).join("\n")}
 }
 `,
 );
@@ -178,5 +178,5 @@ fs.writeFileSync(
   path.resolve(__dirname, `../src/components/icon/icons.ts`),
   `${AUTO_GENERATED_WARNING}
 
-  ${icons.map((icon) => `export { ${icon.name} } from './${icon.id}'`).join("\n")}`,
+  ${icons.map((icon) => `export { ${icon.componentName} } from './${icon.kind}'`).join("\n")}`,
 );
