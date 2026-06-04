@@ -8,7 +8,7 @@ export interface ProgressBarProps extends ComponentProps<"div"> {
   size: "sm" | "md" | "lg";
   /** The `default` variant will render the progress bar indicator width as a true percentage representation of `value / 100`. The `steps` variant will clamp the width of the progress bar indicator to the nearest rounded tick value. */
   variant?: "steps" | "default";
-  /** The number of steps to */
+  /** The number of segments to split up the progress bar into when variant is `steps`. Must be an integer greater than `0`. */
   steps?: number;
   /** Determines how to clamp the width of the progress bar to the nearest tick value. Defaults to `Math.round` */
   stepRoundingStrategy?: (n: number) => number;
