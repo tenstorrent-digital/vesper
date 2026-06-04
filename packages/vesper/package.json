@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./banner-alert": {
+      "types": "./dist/components/banner-alert/banner-alert.d.ts",
+      "import": "./dist/components/banner-alert/banner-alert.js"
+    },
     "./badge": {
       "types": "./dist/components/badge/badge.d.ts",
       "import": "./dist/components/badge/badge.js"
