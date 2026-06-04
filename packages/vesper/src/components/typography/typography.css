@@ -3,6 +3,7 @@
 .vesper-typography {
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
+  color: currentColor;
 }
 
 /* Display styles */
