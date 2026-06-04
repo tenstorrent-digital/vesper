@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@repo/vesper/button";
 import { Blackhole, Globe, Tenstorrent } from "@repo/vesper/icons";
 import { Menu } from "@repo/vesper/menu";
 
@@ -43,7 +44,9 @@ export function MenuPreview() {
           },
         ]}
       >
-        <button>click to open menu</button>
+        <Button variant="danger" size="lg">
+          click to open a menu
+        </Button>
       </Menu>
     </div>
   );
