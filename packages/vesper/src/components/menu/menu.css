@@ -1,0 +1,98 @@
+.vesper-menu {
+  display: flex;
+  flex-direction: column;
+  padding: var(--vesper-spacing-2);
+  gap: var(--vesper-spacing-half);
+  border-radius: var(--vesper-radius-3);
+  border: 1px solid var(--vesper-stone-200);
+  background: var(--vesper-stone-0);
+  box-shadow: var(--vesper-shadow-200);
+  * {
+    outline: none;
+  }
+}
+
+.vesper-menu-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--vesper-spacing-2);
+  gap: var(--vesper-spacing-2);
+  border-radius: var(--vesper-radius-1);
+  cursor: pointer;
+  &:focus {
+    box-shadow: var(--vesper-shadow-focus-ring);
+  }
+}
+
+.vesper-menu-item-default {
+  color: var(--vesper-stone-900);
+  .vesper-menu-item-label {
+    color: var(--vesper-stone-700);
+  }
+  &:hover,
+  &[data-highlighted] {
+    background: var(--vesper-alpha-stone-0);
+  }
+}
+
+.vesper-menu-item-selected {
+  color: var(--vesper-stone-900);
+  background: var(--vesper-alpha-stone-50);
+  .vesper-menu-item-label {
+    color: var(--vesper-stone-700);
+  }
+  &:hover,
+  &[data-highlighted] {
+    background:
+      linear-gradient(
+        0deg,
+        var(--vesper-alpha-stone-0) 0%,
+        var(--vesper-alpha-stone-0) 100%
+      ),
+      var(--vesper-alpha-stone-50);
+  }
+}
+
+.vesper-menu-item-danger {
+  color: var(--vesper-red-600);
+  &:hover,
+  &[data-highlighted] {
+    background: var(--vesper-red-50);
+  }
+}
+
+.vesper-menu-item-locked {
+  pointer-events: none;
+  color: var(--vesper-stone-500);
+  .vesper-menu-item-left-icon,
+  .vesper-menu-item-right-icon {
+    color: var(--vesper-stone-600);
+  }
+}
+
+.vesper-menu-item-disabled {
+  pointer-events: none;
+  color: var(--vesper-stone-500);
+  .vesper-menu-item-left-icon,
+  .vesper-menu-item-right-icon {
+    color: var(--vesper-stone-600);
+  }
+}
+
+.vesper-menu-item-left-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.vesper-menu-item-right-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.vesper-menu-item-text-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--vesper-spacing-half);
+}

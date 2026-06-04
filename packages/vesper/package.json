@@ -11,6 +11,30 @@
       "types": "./dist/components/accordion/accordion.d.ts",
       "import": "./dist/components/accordion/accordion.js"
     },
+    "./progress-bar": {
+      "types": "./dist/components/progress-bar/progress-bar.d.ts",
+      "import": "./dist/components/progress-bar/progress-bar.js"
+    },
+    "./split-button": {
+      "types": "./dist/components/split-button/split-button.d.ts",
+      "import": "./dist/components/split-button/split-button.js"
+    },
+    "./text-button": {
+      "types": "./dist/components/text-button/text-button.d.ts",
+      "import": "./dist/components/text-button/text-button.js"
+    },
+    "./icon-button": {
+      "types": "./dist/components/icon-button/icon-button.d.ts",
+      "import": "./dist/components/icon-button/icon-button.js"
+    },
+    "./button": {
+      "types": "./dist/components/button/button.d.ts",
+      "import": "./dist/components/button/button.js"
+    },
+    "./menu": {
+      "types": "./dist/components/menu/menu.d.ts",
+      "import": "./dist/components/menu/menu.js"
+    },
     "./typography": {
       "types": "./dist/components/typography/typography.d.ts",
       "import": "./dist/components/typography/typography.js"
@@ -72,6 +96,8 @@
     "unist-util-visit": "^5.1.0"
   },
   "dependencies": {
-    "@radix-ui/react-collapsible": "^1.1.12"
+    "@radix-ui/react-collapsible": "^1.1.12",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-progress": "^1.1.8"
   }
 }
