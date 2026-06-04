@@ -2,22 +2,17 @@ import type { ComponentProps } from "react";
 import { Progress, ProgressIndicator } from "@radix-ui/react-progress";
 import { cn } from "@/utils/cn";
 
-export type ProgressBarProps = ComponentProps<"div"> & {
+export interface ProgressBarProps extends ComponentProps<"div"> {
   /** value from `0` to `100` */
   value: number;
   size: "sm" | "md" | "lg";
-} & (
-    | {
-        /** The `default` variant will render the progress bar indicator width as a true percentage representation of `value / 100`. The `steps` variant will clamp the width of the progress bar indicator to the nearest rounded tick value. */
-        variant?: "default";
-        steps?: never;
-      }
-    | {
-        /** The `default` variant will render the progress bar indicator width as a true percentage representation of `value / 100`. The `steps` variant will clamp the width of the progress bar indicator to the nearest rounded tick value. */
-        variant: "steps";
-        steps?: number;
-      }
-  );
+  /** The `default` variant will render the progress bar indicator width as a true percentage representation of `value / 100`. The `steps` variant will clamp the width of the progress bar indicator to the nearest rounded tick value. */
+  variant?: "steps" | "default";
+  /** The number of steps to */
+  steps?: number;
+  /** Determines how to clamp the width of the progress bar to the nearest tick value. Defaults to `Math.round` */
+  stepRoundingStrategy?: (n: number) => number;
+}
 
 export function ProgressBar({
   value,
@@ -25,6 +20,7 @@ export function ProgressBar({
   steps = 10,
   className,
   size,
+  stepRoundingStrategy,
   ...props
 }: ProgressBarProps) {
   const progress = Math.min(Math.max(value, 0), 100);
@@ -43,7 +39,11 @@ export function ProgressBar({
         <ProgressBarIndicatorDefault value={progress} />
       )}
       {variant === "steps" && (
-        <ProgressBarIndicatorSteps value={progress} steps={steps} />
+        <ProgressBarIndicatorSteps
+          value={progress}
+          steps={steps}
+          stepRoundingStrategy={stepRoundingStrategy}
+        />
       )}
     </Progress>
   );
@@ -61,13 +61,15 @@ function ProgressBarIndicatorDefault({ value }: { value: number }) {
 function ProgressBarIndicatorSteps({
   value,
   steps,
+  stepRoundingStrategy = Math.round,
 }: {
   value: number;
   steps: number;
+  stepRoundingStrategy?: (n: number) => number;
 }) {
   const totalSteps = Math.max(Math.floor(steps), 1);
   const stepWidth = 100 / totalSteps;
-  const numSteps = Math.round(value / stepWidth);
+  const numSteps = stepRoundingStrategy(value / stepWidth);
 
   let width = `${numSteps * stepWidth}%`;
   if (numSteps > 0 && numSteps !== totalSteps) {
