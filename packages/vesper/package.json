@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./badge": {
+      "types": "./dist/components/badge/badge.d.ts",
+      "import": "./dist/components/badge/badge.js"
+    },
     "./typography": {
       "types": "./dist/components/typography/typography.d.ts",
       "import": "./dist/components/typography/typography.js"
