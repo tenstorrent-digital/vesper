@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "linear-cli": {
+      "source": "schpet/linear-cli",
+      "sourceType": "github",
+      "skillPath": "skills/linear-cli/SKILL.md",
+      "computedHash": "5f8516b9aa8157e7710ec5d029e1c44a0e55be1c3f834f844d0c7f27dae62580"
+    },
+    "playwright-cli": {
+      "source": "microsoft/playwright-cli",
+      "sourceType": "github",
+      "skillPath": "skills/playwright-cli/SKILL.md",
+      "computedHash": "84495cfda62b6c012afc4cc34a0c35bfc7923ba35983b8c04ce4cace0f35a5d8"
+    },
+    "turborepo": {
+      "source": "vercel/turborepo",
+      "sourceType": "github",
+      "skillPath": "skills/turborepo/SKILL.md",
+      "computedHash": "b7c3165ae67a2892d6195a5b2cba15c8d96341f5c64ddd0d3ce4225c94a2ae83"
+    }
+  }
+}
