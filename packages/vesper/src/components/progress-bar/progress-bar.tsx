@@ -73,7 +73,7 @@ function ProgressBarIndicatorSteps({
 
   let width = `${numSteps * stepWidth}%`;
   if (numSteps > 0 && numSteps !== totalSteps) {
-    width = `calc(${width} - 1px)`;
+    // width = `calc(${width} - 1px)`;
   }
 
   return (

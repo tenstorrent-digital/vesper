@@ -3,11 +3,11 @@ import { Typography } from "@repo/vesper/typography";
 
 const SIZES: ProgressBarProps["size"][] = ["sm", "md", "lg"];
 
-const VALUES = [17, 43, 79];
+const VALUES = [17, 43, 79, 100];
 
 export function ProgressBarPreview() {
   return (
-    <div className="bg-vesper-stone-100 text-vesper-stone-900 flex flex-col gap-vesper-4 p-vesper-4">
+    <div className="bg-vesper-stone-50 text-vesper-stone-900 flex flex-col gap-vesper-4 p-vesper-4">
       {SIZES.map((size) => (
         <div key={size} className="flex flex-col gap-vesper-2">
           <Typography variant="copy" size="md" bold>
