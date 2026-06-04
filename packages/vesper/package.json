@@ -7,6 +7,14 @@
     "dist"
   ],
   "exports": {
+    "./badge": {
+      "types": "./dist/components/badge/badge.d.ts",
+      "import": "./dist/components/badge/badge.js"
+    },
+    "./accordion": {
+      "types": "./dist/components/accordion/accordion.d.ts",
+      "import": "./dist/components/accordion/accordion.js"
+    },
     "./avatar-group": {
       "types": "./dist/components/avatar-group/avatar-group.d.ts",
       "import": "./dist/components/avatar-group/avatar-group.js"
@@ -100,7 +108,8 @@
     "unist-util-visit": "^5.1.0"
   },
   "dependencies": {
-    "@radix-ui/react-progress": "^1.1.8",
-    "@radix-ui/react-dropdown-menu": "^2.1.16"
+    "@radix-ui/react-collapsible": "^1.1.12",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-progress": "^1.1.8"
   }
 }
