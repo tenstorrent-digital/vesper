@@ -58,8 +58,6 @@
     // node_modules
     "**/node_modules/**",
 
-    "**/.env.example",
-
     // exclude contents of agent skills
     ".agents/skills/**/scripts/**",
     ".agents/skills/**/references/**",
