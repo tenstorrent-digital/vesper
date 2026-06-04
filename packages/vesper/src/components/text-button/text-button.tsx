@@ -13,8 +13,8 @@ type BaseTextButtonProps = {
     | "danger"
     | "info"
     | "purple"
-    | "pink"
-    | "disabled";
+    | "pink";
+  disabled?: boolean;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
 };
@@ -32,6 +32,8 @@ export function TextButton<E extends ElementType>(props: TextButtonProps<E>) {
     iconLeft,
     iconRight,
     children,
+    className,
+    disabled,
     ...rest
   } = props;
 
@@ -40,8 +42,10 @@ export function TextButton<E extends ElementType>(props: TextButtonProps<E>) {
       className={cn(
         "vesper-text-button",
         `vesper-text-button-${size}`,
-        `vesper-text-button-${variant}`,
+        `vesper-text-button-${disabled ? "disabled" : variant}`,
+        className,
       )}
+      disabled={disabled}
       {...rest}
     >
       {iconLeft && <span className="vesper-text-button-icon">{iconLeft}</span>}
