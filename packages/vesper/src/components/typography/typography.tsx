@@ -40,7 +40,7 @@ type LabelVariantPermutations =
       variant: "label";
       size: "md" | "sm" | "xs";
       bold?: never;
-      mono: true;
+      mono?: true;
     };
 
 type TypographyVariantPermutations =
