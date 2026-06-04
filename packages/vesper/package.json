@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./progress-bar": {
+      "types": "./dist/components/progress-bar/progress-bar.d.ts",
+      "import": "./dist/components/progress-bar/progress-bar.js"
+    },
     "./split-button": {
       "types": "./dist/components/split-button/split-button.d.ts",
       "import": "./dist/components/split-button/split-button.js"
@@ -88,6 +92,7 @@
     "unist-util-visit": "^5.1.0"
   },
   "dependencies": {
+    "@radix-ui/react-progress": "^1.1.8",
     "@radix-ui/react-dropdown-menu": "^2.1.16"
   }
 }

@@ -8,6 +8,7 @@
 @import "./tracking.css";
 
 /* components */
+@import "../components/progress-bar/progress-bar.css";
 @import "../components/split-button/split-button.css";
 @import "../components/text-button/text-button.css";
 @import "../components/button/button.css";
