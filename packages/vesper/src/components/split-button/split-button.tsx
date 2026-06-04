@@ -52,7 +52,7 @@ export function SplitButton({
   const actionButtonRef = useRef<HTMLButtonElement>(null);
   const handlePointerDown = useCallback(
     (e: PointerEvent<HTMLDivElement>) => {
-      if (disabled || e.target === actionButtonRef.current) {
+      if (disabled || actionButtonRef.current?.contains(e.target as Node)) {
         e.preventDefault();
       }
     },
@@ -87,6 +87,7 @@ export function SplitButton({
           size={size}
           variant={variant}
           disabled={disabled}
+          aria-label="Toggle menu"
           icon={
             <>
               <CaretDown className="vesper-split-button-caret-down" />
