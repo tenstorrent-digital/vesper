@@ -11,6 +11,14 @@
       "types": "./dist/components/accordion/accordion.d.ts",
       "import": "./dist/components/accordion/accordion.js"
     },
+    "./avatar-group": {
+      "types": "./dist/components/avatar-group/avatar-group.d.ts",
+      "import": "./dist/components/avatar-group/avatar-group.js"
+    },
+    "./avatar": {
+      "types": "./dist/components/avatar/avatar.d.ts",
+      "import": "./dist/components/avatar/avatar.js"
+    },
     "./progress-bar": {
       "types": "./dist/components/progress-bar/progress-bar.d.ts",
       "import": "./dist/components/progress-bar/progress-bar.js"

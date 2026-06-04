@@ -7,9 +7,13 @@
 @import "./spacing.css";
 @import "./tracking.css";
 
-/* components */
+/* typography */
 @import "../components/typography/typography.css";
+
+/* components */
 @import "../components/accordion/accordion.css";
+@import "../components/avatar-group/avatar-group.css";
+@import "../components/avatar/avatar.css";
 @import "../components/progress-bar/progress-bar.css";
 @import "../components/split-button/split-button.css";
 @import "../components/text-button/text-button.css";

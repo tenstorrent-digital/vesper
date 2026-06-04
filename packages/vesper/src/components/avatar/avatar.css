@@ -1,0 +1,27 @@
+.vesper-avatar {
+  border-radius: 50%;
+  border: 1px solid var(--vesper-stone-0);
+  background: var(--vesper-stone-400);
+  overflow: hidden;
+}
+
+.vesper-avatar-sm {
+  width: 24px;
+  height: 24px;
+}
+
+.vesper-avatar-md {
+  width: 32px;
+  height: 32px;
+}
+
+.vesper-avatar-lg {
+  width: 48px;
+  height: 48px;
+}
+
+.vesper-avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
