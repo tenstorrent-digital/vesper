@@ -9,6 +9,10 @@
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
   cursor: pointer;
+  &:focus {
+    outline: none;
+    box-shadow: var(--vesper-focus-ring);
+  }
 }
 
 .vesper-button-lg {

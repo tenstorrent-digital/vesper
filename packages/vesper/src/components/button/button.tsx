@@ -11,8 +11,8 @@ type BaseButtonProps = {
     | "tertiary"
     | "ghost"
     | "danger"
-    | "warning"
-    | "disabled";
+    | "warning";
+  disabled?: boolean;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
 };
@@ -33,6 +33,7 @@ export function Button<E extends ElementType = "button">(
     iconRight,
     children,
     className,
+    disabled,
     ...rest
   } = props;
 
@@ -41,9 +42,10 @@ export function Button<E extends ElementType = "button">(
       className={cn(
         "vesper-button",
         `vesper-button-${size}`,
-        `vesper-button-${variant}`,
+        `vesper-button-${disabled ? "disabled" : variant}`,
         className,
       )}
+      disabled={disabled}
       {...rest}
     >
       {iconLeft && <span className="vesper-button-icon">{iconLeft}</span>}
