@@ -21,7 +21,7 @@ Most day-to-day work in this package falls into one of two categories:
 Typical flow:
 
 1. Update source assets or component source files
-2. Run the appropriate generation command when asset-derived source needs to be refreshed
+2. Run the appropriate generate:* command when asset-derived source needs to be refreshed
 3. Review the generated files in `src/`
 4. Run type checks / lint if needed
 5. Run `yarn dev` while iterating locally, or `yarn build` when you want a clean publishable output in `dist/`
