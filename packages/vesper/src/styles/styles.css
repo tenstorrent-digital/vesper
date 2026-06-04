@@ -6,7 +6,6 @@
 @import "./shadows.css";
 @import "./spacing.css";
 @import "./tracking.css";
-@import "./shadows.css";
 
 /* components */
 @import "../components/split-button/split-button.css";
