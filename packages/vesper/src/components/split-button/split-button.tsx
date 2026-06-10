@@ -52,6 +52,8 @@ export function SplitButton({
   menuButtonAriaLabel,
 }: SplitButtonProps) {
   const actionButtonRef = useRef<HTMLButtonElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+
   const handlePointerDown = useCallback(
     (e: PointerEvent<HTMLDivElement>) => {
       if (disabled || actionButtonRef.current?.contains(e.target as Node)) {
@@ -61,6 +63,14 @@ export function SplitButton({
     [disabled],
   );
 
+  const handleOpenMenuChange = useCallback(
+    (open: boolean) => {
+      if (!open) menuButtonRef.current?.focus();
+      onMenuOpenChange?.(open);
+    },
+    [onMenuOpenChange],
+  );
+
   return (
     <Menu
       items={menuItems}
@@ -68,7 +78,7 @@ export function SplitButton({
       side={menuSide}
       alignOffset={menuAlignOffset}
       open={menuOpen}
-      onOpenChange={onMenuOpenChange}
+      onOpenChange={handleOpenMenuChange}
       sideOffset={menuSideOffset}
       width={menuWidth}
     >
@@ -79,6 +89,7 @@ export function SplitButton({
         <Button
           ref={actionButtonRef}
           onClick={onClick}
+          onKeyDown={(e) => e.stopPropagation()}
           size={size}
           variant={variant}
           disabled={disabled}
@@ -90,6 +101,7 @@ export function SplitButton({
           variant={variant}
           disabled={disabled}
           aria-label={menuButtonAriaLabel || "Toggle menu"}
+          ref={menuButtonRef}
           icon={
             <>
               <CaretDown className="vesper-split-button-caret-down" />
