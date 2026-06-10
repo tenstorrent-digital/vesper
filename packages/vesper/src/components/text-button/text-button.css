@@ -10,9 +10,14 @@
   letter-spacing: var(--vesper-tracking-normal);
   cursor: pointer;
   border-bottom: 1px solid transparent;
-  &:focus {
+  &:focus-visible {
     outline: none;
     box-shadow: var(--vesper-shadow-focus-ring);
+  }
+  @media (forced-colors: active) {
+    &:focus-visible {
+      outline: 2px solid CanvasText;
+    }
   }
 }
 

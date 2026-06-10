@@ -45,6 +45,9 @@
   left: 0;
   bottom: 0;
   background: var(--vesper-teal-400);
+  @media (forced-colors: active) {
+    background: CanvasText;
+  }
 }
 
 .vesper-progress-bar-indicator-default {
@@ -58,8 +61,14 @@
 
 .vesper-progress-bar-tick-light {
   background: var(--vesper-stone-0);
+  @media (forced-colors: active) {
+    background: Canvas;
+  }
 }
 
 .vesper-progress-bar-tick-dark {
   background: var(--vesper-stone-400);
+  @media (forced-colors: active) {
+    background: CanvasText;
+  }
 }

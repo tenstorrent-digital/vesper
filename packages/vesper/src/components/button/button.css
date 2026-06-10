@@ -9,9 +9,15 @@
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
   cursor: pointer;
-  &:focus {
+  &:focus-visible {
     outline: none;
     box-shadow: var(--vesper-shadow-focus-ring);
+  }
+  @media (forced-colors: active) {
+    border: 1px solid CanvasText;
+    &:focus-visible {
+      outline: 2px solid CanvasText;
+    }
   }
 }
 
@@ -125,7 +131,9 @@
 
 .vesper-button-tertiary {
   color: var(--vesper-stone-900);
-  border: 1px solid var(--vesper-stone-300);
+  @media (forced-colors: none) {
+    border: 1px solid var(--vesper-stone-300);
+  }
   background: var(--vesper-alpha-inverse-300);
   &:hover {
     background: var(--vesper-alpha-stone-50);
