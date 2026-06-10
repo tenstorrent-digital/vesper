@@ -14,10 +14,9 @@
     box-shadow: var(--vesper-shadow-focus-ring);
   }
   @media (forced-colors: active) {
-    border: 1px solid var(--vesper-stone-300);
+    border: 1px solid CanvasText;
     &:focus-visible {
       outline: 2px solid CanvasText;
-      outline-offset: 2px;
     }
   }
 }
@@ -132,7 +131,9 @@
 
 .vesper-button-tertiary {
   color: var(--vesper-stone-900);
-  border: 1px solid var(--vesper-stone-300);
+  @media (forced-colors: none) {
+    border: 1px solid var(--vesper-stone-300);
+  }
   background: var(--vesper-alpha-inverse-300);
   &:hover {
     background: var(--vesper-alpha-stone-50);
