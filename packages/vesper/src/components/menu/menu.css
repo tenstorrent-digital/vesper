@@ -27,7 +27,6 @@
     &:focus-visible {
       outline: 2px solid CanvasText;
       outline-offset: 2px;
-      box-shadow: none;
     }
   }
 }
