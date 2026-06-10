@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./admonition": {
+      "types": "./dist/components/admonition/admonition.d.ts",
+      "import": "./dist/components/admonition/admonition.js"
+    },
     "./badge": {
       "types": "./dist/components/badge/badge.d.ts",
       "import": "./dist/components/badge/badge.js"

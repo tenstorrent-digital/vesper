@@ -11,6 +11,7 @@
 @import "../components/typography/typography.css";
 
 /* components */
+@import "../components/admonition/admonition.css";
 @import "../components/badge/badge.css";
 @import "../components/accordion/accordion.css";
 @import "../components/avatar-group/avatar-group.css";
