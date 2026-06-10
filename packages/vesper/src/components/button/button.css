@@ -9,7 +9,7 @@
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
   cursor: pointer;
-  &:focus {
+  &:focus-visible {
     outline: none;
     box-shadow: var(--vesper-shadow-focus-ring);
   }

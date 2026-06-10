@@ -20,7 +20,7 @@
   gap: var(--vesper-spacing-2);
   border-radius: var(--vesper-radius-1);
   cursor: pointer;
-  &:focus {
+  &:focus-visible {
     box-shadow: var(--vesper-shadow-focus-ring);
   }
 }
