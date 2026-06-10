@@ -62,7 +62,7 @@
 .vesper-progress-bar-tick-light {
   background: var(--vesper-stone-0);
   @media (forced-colors: active) {
-    background: CanvasText;
+    background: Canvas;
   }
 }
 
