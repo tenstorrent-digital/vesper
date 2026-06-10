@@ -1,4 +1,4 @@
-import type { ComponentProps } from "react";
+import type { ComponentProps, ElementType } from "react";
 import { cn } from "@/utils/cn";
 import { ErrorSolid } from "@/components/icon/error-solid";
 import { InfoSolid } from "@/components/icon/info-solid";
@@ -8,11 +8,14 @@ import { WarningSolid } from "@/components/icon/warning-solid";
 import { Button, ButtonProps } from "@/components/button/button";
 import { Typography } from "@/components/typography/typography";
 
-export interface BannerAlertProps extends ComponentProps<"div"> {
+export interface BannerAlertProps<
+  E extends ElementType = "button",
+> extends ComponentProps<"div"> {
   size: "sm" | "md";
   variant: "info" | "success" | "warning" | "danger" | "secondary";
   subtle?: boolean;
-  cta?: Omit<ButtonProps, "as" | "variant" | "size" | "disabled">;
+  ctaAs?: E;
+  cta?: Omit<ButtonProps<E>, "size" | "variant" | "as">;
 }
 
 const BANNER_ALERT_TYPOGRAPHY_SIZES = {
@@ -20,15 +23,16 @@ const BANNER_ALERT_TYPOGRAPHY_SIZES = {
   sm: "xs",
 } as const;
 
-export function BannerAlert({
+export function BannerAlert<E extends ElementType = "button">({
   className,
   size,
   variant,
+  ctaAs,
   cta,
   children,
   subtle,
   ...props
-}: BannerAlertProps) {
+}: BannerAlertProps<E>) {
   return (
     <div
       className={cn(
@@ -56,7 +60,14 @@ export function BannerAlert({
           {children}
         </Typography>
       </div>
-      {cta && <Button {...cta} variant="contrast" size="sm" />}
+      {cta && (
+        <Button
+          {...(cta as ButtonProps<E>)}
+          as={ctaAs}
+          variant="contrast"
+          size="sm"
+        />
+      )}
     </div>
   );
 }
