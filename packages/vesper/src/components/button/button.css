@@ -13,6 +13,14 @@
     outline: none;
     box-shadow: var(--vesper-shadow-focus-ring);
   }
+  @media (forced-colors: active) {
+    border: 1px solid var(--vesper-stone-300);
+    &:focus-visible {
+      outline: 2px solid CanvasText;
+      outline-offset: 2px;
+      box-shadow: none;
+    }
+  }
 }
 
 .vesper-button-lg {
