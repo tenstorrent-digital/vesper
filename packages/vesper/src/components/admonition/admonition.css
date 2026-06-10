@@ -1,9 +1,9 @@
-.vesper-banner-alert {
+.vesper-admonition {
   display: flex;
   align-items: center;
   gap: var(--vesper-spacing-4);
   border-radius: var(--vesper-radius-2);
-  &.vesper-banner-alert-subtle {
+  &.vesper-admonition-subtle {
     background: var(--vesper-stone-0);
   }
   .vesper-button {
@@ -11,28 +11,28 @@
   }
 }
 
-.vesper-banner-alert-content {
+.vesper-admonition-content {
   display: flex;
   align-items: flex-start;
   flex: 1;
   gap: var(--vesper-spacing-2);
 }
 
-.vesper-banner-alert-sm {
+.vesper-admonition-sm {
   padding: var(--vesper-spacing-2) var(--vesper-spacing-3);
   &:has(.vesper-button) {
     padding-right: var(--vesper-spacing-2);
   }
 }
 
-.vesper-banner-alert-md {
+.vesper-admonition-md {
   padding: var(--vesper-spacing-3) var(--vesper-spacing-4);
   &:has(.vesper-button) {
     padding-right: var(--vesper-spacing-3);
   }
 }
 
-.vesper-banner-alert-icon {
+.vesper-admonition-icon {
   width: 16px;
   height: 20px;
   display: flex;
@@ -40,31 +40,31 @@
   flex-shrink: 0;
 }
 
-.vesper-banner-alert-info {
+.vesper-admonition-info {
   background: var(--vesper-sky-50);
   color: var(--vesper-sky-600);
   border: 1px solid var(--vesper-sky-200);
 }
 
-.vesper-banner-alert-success {
+.vesper-admonition-success {
   background: var(--vesper-green-50);
   color: var(--vesper-mint-600);
   border: 1px solid var(--vesper-green-200);
 }
 
-.vesper-banner-alert-warning {
+.vesper-admonition-warning {
   background: var(--vesper-amber-50);
   color: var(--vesper-amber-600);
   border: 1px solid var(--vesper-amber-200);
 }
 
-.vesper-banner-alert-danger {
+.vesper-admonition-danger {
   background: var(--vesper-red-50);
   color: var(--vesper-red-600);
   border: 1px solid var(--vesper-red-200);
 }
 
-.vesper-banner-alert-secondary {
+.vesper-admonition-secondary {
   background: var(--vesper-alpha-contrast-100);
   color: var(--vesper-stone-900);
   border: 1px solid var(--vesper-stone-300);

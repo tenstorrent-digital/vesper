@@ -1,8 +1,8 @@
 "use client";
 
-import { BannerAlert, type BannerAlertProps } from "@repo/vesper/banner-alert";
+import { Admonition, type AdmonitionProps } from "@repo/vesper/admonition";
 
-const VARIANTS: BannerAlertProps["variant"][] = [
+const VARIANTS: AdmonitionProps["variant"][] = [
   "danger",
   "info",
   "secondary",
@@ -10,9 +10,9 @@ const VARIANTS: BannerAlertProps["variant"][] = [
   "warning",
 ];
 
-const SIZES: BannerAlertProps["size"][] = ["sm", "md"];
+const SIZES: AdmonitionProps["size"][] = ["sm", "md"];
 
-export function BannerAlertPreview() {
+export function AdmonitionPreview() {
   return (
     <div className="bg-vesper-stone-50 text-vesper-stone-900 flex flex-col gap-vesper-4 p-vesper-4">
       <div className="flex flex-wrap gap-vesper-4">
@@ -23,27 +23,27 @@ export function BannerAlertPreview() {
           >
             {SIZES.map((size) => (
               <div key={size} className="flex flex-col gap-vesper-4 w-full">
-                <BannerAlert size={size} variant={variant}>
+                <Admonition size={size} variant={variant}>
                   {variant}
-                </BannerAlert>
-                <BannerAlert
+                </Admonition>
+                <Admonition
                   size={size}
                   variant={variant}
                   cta={{ children: "explore" }}
                 >
                   {variant}
-                </BannerAlert>
-                <BannerAlert subtle size={size} variant={variant}>
+                </Admonition>
+                <Admonition subtle size={size} variant={variant}>
                   {variant}
-                </BannerAlert>
-                <BannerAlert
+                </Admonition>
+                <Admonition
                   subtle
                   size={size}
                   variant={variant}
                   cta={{ children: "explore" }}
                 >
                   {variant}
-                </BannerAlert>
+                </Admonition>
               </div>
             ))}
           </div>

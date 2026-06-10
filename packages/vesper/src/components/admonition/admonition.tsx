@@ -1,4 +1,4 @@
-import type { ComponentProps, ElementType } from "react";
+import type { ElementType } from "react";
 import { cn } from "@/utils/cn";
 import { Polymorphic } from "@/utils/polymorphic";
 import { ErrorSolid } from "@/components/icon/error-solid";
@@ -9,7 +9,7 @@ import { WarningSolid } from "@/components/icon/warning-solid";
 import { Button, ButtonProps } from "@/components/button/button";
 import { Typography } from "@/components/typography/typography";
 
-export type BannerAlertProps<
+export type AdmonitionProps<
   E extends ElementType = "div",
   C extends ElementType = "button",
 > = Polymorphic<
@@ -23,15 +23,15 @@ export type BannerAlertProps<
   E
 >;
 
-const BANNER_ALERT_TYPOGRAPHY_SIZES = {
+const ADMONITION_TYPOGRAPHY_SIZES = {
   md: "sm",
   sm: "xs",
 } as const;
 
-export function BannerAlert<
+export function Admonition<
   E extends ElementType = "div",
   C extends ElementType = "button",
->(props: BannerAlertProps<E, C>) {
+>(props: AdmonitionProps<E, C>) {
   const {
     as: Component = "div",
     className,
@@ -46,16 +46,16 @@ export function BannerAlert<
   return (
     <Component
       className={cn(
-        "vesper-banner-alert",
-        `vesper-banner-alert-${size}`,
-        `vesper-banner-alert-${variant}`,
-        subtle && "vesper-banner-alert-subtle",
+        "vesper-admonition",
+        `vesper-admonition-${size}`,
+        `vesper-admonition-${variant}`,
+        subtle && "vesper-admonition-subtle",
         className,
       )}
       {...rest}
     >
-      <div className="vesper-banner-alert-content">
-        <span className="vesper-banner-alert-icon">
+      <div className="vesper-admonition-content">
+        <span className="vesper-admonition-icon">
           {variant === "danger" && <ErrorSolid />}
           {variant === "info" && <InfoSolid />}
           {variant === "secondary" && <Info />}
@@ -65,7 +65,7 @@ export function BannerAlert<
         <Typography
           as="span"
           variant="copy"
-          size={BANNER_ALERT_TYPOGRAPHY_SIZES[size]}
+          size={ADMONITION_TYPOGRAPHY_SIZES[size]}
         >
           {children}
         </Typography>
