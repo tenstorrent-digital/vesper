@@ -41,3 +41,6 @@ yarn-error.log*
 
 # Agents (other)
 .pi/todos
+
+*storybook.log
+storybook-static
