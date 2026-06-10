@@ -26,11 +26,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  outline: none;
+  z-index: 2;
   &::before {
     position: absolute;
     inset: calc(var(--vesper-spacing-3) * -1);
     border-radius: var(--vesper-radius-1);
     content: "";
+  }
+  &:focus-visible {
+    &::before {
+      box-shadow: var(--vesper-shadow-focus-ring);
+    }
   }
 }
 
@@ -41,6 +48,8 @@
 }
 
 .vesper-accordion-content {
+  position: relative;
+  z-index: 1;
   overflow: visible;
   will-change: opacity;
   &[data-state="open"] {
