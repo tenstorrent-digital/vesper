@@ -75,6 +75,7 @@ function MenuItem({
       className={`vesper-menu-item vesper-menu-item-${style}`}
       onSelect={onSelect}
       textValue={text}
+      onPointerMove={(e) => e.preventDefault()}
     >
       {icon && <div className="vesper-menu-item-left-icon">{icon}</div>}
       <div className="vesper-menu-item-text-container">
