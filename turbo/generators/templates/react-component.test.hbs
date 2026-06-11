@@ -8,9 +8,17 @@ import "@repo/vesper/styles.css";
 afterEach(cleanup);
 
 describe("{{ kebabCase name }} [unit]", () => {
-  it("passes unit tests", () => {
-    expect(true).toBe(true);
+  {{#if element}}
+  it("renders a {{ element }}", () => {
+    const { container } = render(<{{ name }} />);
+    expect(container.firstElementChild?.tagName).toBe("{{ upperCase element }}");
   });
+  {{else}}
+  it("renders null", () => {
+    const { container } = render(<{{ name }} />);
+    expect(container.firstChild).toBeNull();
+  });
+  {{/if}}
 });
 
 describe("{{ kebabCase name }} [snapshot]", () => {
