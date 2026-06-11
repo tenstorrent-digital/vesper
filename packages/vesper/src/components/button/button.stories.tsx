@@ -18,7 +18,7 @@ const meta = {
         "danger",
         "warning",
       ],
-      name: "Button size",
+      name: "Button variant",
     },
     size: {
       control: "radio",
