@@ -27,7 +27,7 @@ const meta = {
     },
     showLeftIcon: {
       control: "boolean",
-      name: "Show right icon?",
+      name: "Show left icon?",
     },
     showRightIcon: {
       control: "boolean",
