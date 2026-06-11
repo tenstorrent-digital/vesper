@@ -1,0 +1,32 @@
+import { render, cleanup } from "@testing-library/react";
+import { afterEach, describe, expect, it } from "vitest";
+import axe from "axe-core";
+import { {{ name }} } from "@repo/vesper/{{ kebabCase name }}";
+
+import "@repo/vesper/styles.css";
+
+afterEach(cleanup);
+
+describe("{{ kebabCase name }} [unit]", () => {
+  it("passes unit tests", () => {
+    expect(true).toBe(true);
+  });
+});
+
+describe("{{ kebabCase name }} [snapshot]", () => {
+  it("renders correctly", async () => {
+    const result = render(<{{ name }} />);
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+});
+
+describe("{{ kebabCase name }} [a11y]", () => {
+  it("renders without wcag2aaa violations", async () => {
+    const result = render(<{{ name }} />);
+
+    expect(
+      await axe.run(result.container, { runOnly: "wcag2aaa" }),
+    ).toHaveNoViolations();
+  });
+});
