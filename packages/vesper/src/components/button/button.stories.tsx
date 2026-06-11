@@ -46,8 +46,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const ButtonStory: Story = {
-  storyName: "Button",
+export const Playground: Story = {
   args: {
     variant: "primary",
     size: "lg",
