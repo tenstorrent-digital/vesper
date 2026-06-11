@@ -155,4 +155,15 @@ describe("Button", () => {
     expect(btn).toHaveClass("vesper-button-md");
     expect(btn).toHaveClass("custom-class");
   });
+
+  BUTTON_PERMUTATIONS.forEach((permutation) => {
+    const { size, variant, disabled } = permutation;
+
+    it(`renders correctly when variant is "${variant}", size is "${size}", disabled is "${disabled}"`, () => {
+      const result = render(<Button {...permutation}>Button Text</Button>);
+
+      const button = within(result.container).getByRole("button");
+      expect(button).toMatchSnapshot();
+    });
+  });
 });
