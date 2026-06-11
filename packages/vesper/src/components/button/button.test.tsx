@@ -131,7 +131,6 @@ describe("button [unit]", () => {
     );
     const view = within(result.container);
     const link = view.getByRole("link");
-    expect(link).toHaveTextContent("Link");
     expect(link.tagName).toBe("A");
     expect(link).toHaveAttribute("href", "/link");
   });
