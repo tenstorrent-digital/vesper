@@ -1,16 +1,24 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button, type ButtonProps } from "./button";
-import { Tenstorrent } from "../icon/tenstorrent";
-import { Globe } from "../icon/globe";
+import { Button } from "@repo/vesper/button";
+import { Tenstorrent, Globe } from "@repo/vesper/icons";
 
 const meta = {
-  title: "Button",
   component: Button,
   parameters: { layout: "centered" },
   argTypes: {
     variant: {
-      table: { disable: true },
+      control: "radio",
+      options: [
+        "primary",
+        "contrast",
+        "tertiary",
+        "subtle",
+        "ghost",
+        "danger",
+        "warning",
+      ],
+      name: "Button size",
     },
     size: {
       control: "radio",
@@ -38,9 +46,10 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const createStory = (variant: ButtonProps["variant"]): Story => ({
+export const ButtonStory: Story = {
+  storyName: "Button",
   args: {
-    variant,
+    variant: "primary",
     size: "lg",
     children: "Explore",
     disabled: false,
@@ -65,12 +74,4 @@ const createStory = (variant: ButtonProps["variant"]): Story => ({
       {children}
     </Button>
   ),
-});
-
-export const Primary: Story = createStory("primary");
-export const Contrast: Story = createStory("contrast");
-export const Tertiary: Story = createStory("tertiary");
-export const Ghost: Story = createStory("ghost");
-export const Subtle: Story = createStory("subtle");
-export const Warning: Story = createStory("warning");
-export const Danger: Story = createStory("danger");
+};
