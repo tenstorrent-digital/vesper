@@ -19,6 +19,15 @@ const config: StorybookConfig = {
   framework: getAbsolutePath("@storybook/react-vite"),
   viteFinal(config) {
     config.resolve = config.resolve || {};
+
+    if (Array.isArray(config.resolve.alias)) {
+      config.resolve.alias = [
+        ...config.resolve.alias,
+        { find: "@", replacement: resolve(__dirname, "../src") },
+      ];
+      return config;
+    }
+
     config.resolve.alias = {
       ...config.resolve.alias,
       "@": resolve(__dirname, "../src"),
