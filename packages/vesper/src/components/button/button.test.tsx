@@ -27,7 +27,7 @@ const BUTTON_PERMUTATIONS: ButtonProps[] = VARIANTS.flatMap((variant) =>
 
 afterEach(cleanup);
 
-describe("Button [unit]", () => {
+describe("button [unit]", () => {
   VARIANTS.forEach((variant) => {
     it(`applies the correct variant class when variant is set to "${variant}"`, () => {
       const result = render(
@@ -160,7 +160,7 @@ describe("Button [unit]", () => {
   });
 });
 
-describe("Button [snapshot]", () => {
+describe("button [snapshot]", () => {
   BUTTON_PERMUTATIONS.forEach((permutation) => {
     const { size, variant, disabled } = permutation;
 
@@ -173,7 +173,7 @@ describe("Button [snapshot]", () => {
   });
 });
 
-describe("Button [a11y]", () => {
+describe("button [a11y]", () => {
   BUTTON_PERMUTATIONS.forEach((permutation) => {
     const { size, variant, disabled } = permutation;
 
