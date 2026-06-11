@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/react-vite";
-import "../src/styles/styles.css";
+import "@repo/vesper/styles.css";
 
 const preview: Preview = {
   globalTypes: {
