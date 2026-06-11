@@ -1,6 +1,6 @@
 import { render, within, cleanup } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
-import { Button } from "./button";
+import { Button } from "@repo/vesper/button";
 
 afterEach(cleanup);
 
