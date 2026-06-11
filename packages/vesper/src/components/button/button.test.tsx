@@ -35,9 +35,10 @@ describe("button [unit]", () => {
           {variant}
         </Button>,
       );
-      const view = within(result.container);
 
-      expect(view.getByRole("button")).toHaveClass(`vesper-button-${variant}`);
+      expect(result.container.firstChild).toHaveClass(
+        `vesper-button-${variant}`,
+      );
     });
   });
 
@@ -48,9 +49,7 @@ describe("button [unit]", () => {
           {size}
         </Button>,
       );
-      const view = within(result.container);
-
-      expect(view.getByRole("button")).toHaveClass(`vesper-button-${size}`);
+      expect(result.container.firstChild).toHaveClass(`vesper-button-${size}`);
     });
   });
 
@@ -60,8 +59,8 @@ describe("button [unit]", () => {
         Disabled
       </Button>,
     );
-    const view = within(result.container);
-    expect(view.getByRole("button")).toBeDisabled();
+
+    expect(result.container.firstChild).toBeDisabled();
   });
 
   it("applies disabled variant class when disabled", () => {
@@ -70,9 +69,11 @@ describe("button [unit]", () => {
         Disabled
       </Button>,
     );
-    const view = within(result.container);
-    expect(view.getByRole("button")).toHaveClass("vesper-button-disabled");
-    expect(view.getByRole("button")).not.toHaveClass("vesper-button-primary");
+
+    expect(result.container.firstChild).toHaveClass("vesper-button-disabled");
+    expect(result.container.firstChild).not.toHaveClass(
+      "vesper-button-primary",
+    );
   });
 
   it("renders iconLeft when provided", () => {
@@ -85,6 +86,7 @@ describe("button [unit]", () => {
         With Icon Left
       </Button>,
     );
+
     const view = within(result.container);
     expect(view.getByTestId("icon-left")).toBeDefined();
   });
@@ -99,6 +101,7 @@ describe("button [unit]", () => {
         With Icon Right
       </Button>,
     );
+
     const view = within(result.container);
     expect(view.getByTestId("icon-right")).toBeDefined();
   });
@@ -115,6 +118,7 @@ describe("button [unit]", () => {
       </Button>,
     );
     const view = within(result.container);
+
     expect(view.getByTestId("icon-left")).toBeDefined();
     expect(view.getByTestId("icon-right")).toBeDefined();
   });
@@ -138,8 +142,8 @@ describe("button [unit]", () => {
         With Aria Label
       </Button>,
     );
-    const view = within(result.container);
-    expect(view.getByRole("button")).toHaveAttribute(
+
+    expect(result.container.firstChild).toHaveAttribute(
       "aria-label",
       "custom label",
     );
@@ -151,8 +155,8 @@ describe("button [unit]", () => {
         Styled
       </Button>,
     );
-    const view = within(result.container);
-    const btn = view.getByRole("button");
+
+    const btn = result.container.firstChild;
     expect(btn).toHaveClass("vesper-button");
     expect(btn).toHaveClass("vesper-button-primary");
     expect(btn).toHaveClass("vesper-button-md");
@@ -167,8 +171,7 @@ describe("button [snapshot]", () => {
     it(`renders correctly when variant="${variant}", size="${size}", disabled={${disabled}}`, () => {
       const result = render(<Button {...permutation}>Button Text</Button>);
 
-      const button = within(result.container).getByRole("button");
-      expect(button).toMatchSnapshot();
+      expect(result.container.firstChild).toMatchSnapshot();
     });
   });
 });
@@ -180,9 +183,8 @@ describe("button [a11y]", () => {
     it(`renders without wcag2aaa violations when variant="${variant}", size="${size}", disabled={${disabled}}`, async () => {
       const result = render(<Button {...permutation}>Button Text</Button>);
 
-      const button = within(result.container).getByRole("button");
       expect(
-        await axe.run(button, { runOnly: "wcag2aaa" }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
   });
