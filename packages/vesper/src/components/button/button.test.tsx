@@ -1,7 +1,10 @@
 import { render, within, cleanup } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
+import axe from "axe-core";
 import { Button, type ButtonProps } from "@repo/vesper/button";
 import { Tenstorrent } from "@repo/vesper/icons";
+
+import "@repo/vesper/styles.css";
 
 const VARIANTS: ButtonProps["variant"][] = [
   "contrast",
@@ -24,7 +27,7 @@ const BUTTON_PERMUTATIONS: ButtonProps[] = VARIANTS.flatMap((variant) =>
 
 afterEach(cleanup);
 
-describe("Button", () => {
+describe("Button [unit]", () => {
   VARIANTS.forEach((variant) => {
     it(`applies the correct variant class when variant is set to "${variant}"`, () => {
       const result = render(
@@ -155,15 +158,32 @@ describe("Button", () => {
     expect(btn).toHaveClass("vesper-button-md");
     expect(btn).toHaveClass("custom-class");
   });
+});
 
+describe("Button [snapshot]", () => {
   BUTTON_PERMUTATIONS.forEach((permutation) => {
     const { size, variant, disabled } = permutation;
 
-    it(`renders correctly when variant is "${variant}", size is "${size}", disabled is "${disabled}"`, () => {
+    it(`renders correctly when variant="${variant}", size="${size}", disabled={${disabled}}`, () => {
       const result = render(<Button {...permutation}>Button Text</Button>);
 
       const button = within(result.container).getByRole("button");
       expect(button).toMatchSnapshot();
+    });
+  });
+});
+
+describe("Button [a11y]", () => {
+  BUTTON_PERMUTATIONS.forEach((permutation) => {
+    const { size, variant, disabled } = permutation;
+
+    it(`renders without wcag2aaa violations when variant="${variant}", size="${size}", disabled={${disabled}}`, async () => {
+      const result = render(<Button {...permutation}>Button Text</Button>);
+
+      const button = within(result.container).getByRole("button");
+      expect(
+        await axe.run(button, { runOnly: "wcag2aaa" }),
+      ).toHaveNoViolations();
     });
   });
 });

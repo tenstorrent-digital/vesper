@@ -12,7 +12,7 @@ export default defineConfig({
     browser: {
       enabled: true,
       provider: playwright(),
-      instances: [{ browser: "chromium", name: "unit" }],
+      instances: [{ browser: "chromium" }],
     },
     include: ["src/**/*.test.{ts,tsx}"],
     exclude: ["dist/**", "node_modules/**"],
