@@ -1,7 +1,16 @@
 import type { Preview } from "@storybook/react-vite";
 import "../src/styles/styles.css";
 
+const isVitest =
+  typeof (globalThis as Record<string, unknown>).__vitest_browser__ !==
+  "undefined";
+
 const preview: Preview = {
+  async afterEach({ canvasElement }) {
+    if (!isVitest) return;
+    const { expect } = await import("vitest");
+    expect(canvasElement.innerHTML).toMatchSnapshot();
+  },
   parameters: {
     controls: {
       matchers: {
