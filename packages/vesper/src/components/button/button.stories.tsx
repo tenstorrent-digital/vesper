@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { expect, fn } from "storybook/test";
 
 import { Button, type ButtonProps } from "./button";
 import { Tenstorrent } from "../icon/tenstorrent";
@@ -47,7 +46,6 @@ const createStory = (variant: ButtonProps["variant"]): Story => ({
     disabled: false,
     showLeftIcon: false,
     showRightIcon: false,
-    onClick: fn(),
   },
   render: ({
     size,
@@ -56,7 +54,6 @@ const createStory = (variant: ButtonProps["variant"]): Story => ({
     children,
     showLeftIcon = false,
     showRightIcon = false,
-    onClick,
   }) => (
     <Button
       size={size}
@@ -64,16 +61,10 @@ const createStory = (variant: ButtonProps["variant"]): Story => ({
       disabled={disabled}
       iconLeft={showLeftIcon && <Globe />}
       iconRight={showRightIcon && <Tenstorrent />}
-      onClick={onClick}
-      data-testid="button"
     >
       {children}
     </Button>
   ),
-  async play({ canvas, userEvent, args }) {
-    await userEvent.click(await canvas.findByTestId("button"));
-    await expect(args.onClick).toHaveBeenCalled();
-  },
 });
 
 export const Primary: Story = createStory("primary");

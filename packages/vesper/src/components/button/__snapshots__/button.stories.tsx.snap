@@ -1,15 +1,15 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Contrast 1`] = `"<button class="vesper-button vesper-button-lg vesper-button-contrast" data-testid="button">Explore</button>"`;
+exports[`Contrast 1`] = `"<button class="vesper-button vesper-button-lg vesper-button-contrast">Explore</button>"`;
 
-exports[`Danger 1`] = `"<button class="vesper-button vesper-button-lg vesper-button-danger" data-testid="button">Explore</button>"`;
+exports[`Danger 1`] = `"<button class="vesper-button vesper-button-lg vesper-button-danger">Explore</button>"`;
 
-exports[`Ghost 1`] = `"<button class="vesper-button vesper-button-lg vesper-button-ghost" data-testid="button">Explore</button>"`;
+exports[`Ghost 1`] = `"<button class="vesper-button vesper-button-lg vesper-button-ghost">Explore</button>"`;
 
-exports[`Primary 1`] = `"<button class="vesper-button vesper-button-lg vesper-button-primary" data-testid="button">Explore</button>"`;
+exports[`Primary 1`] = `"<button class="vesper-button vesper-button-lg vesper-button-primary">Explore</button>"`;
 
-exports[`Subtle 1`] = `"<button class="vesper-button vesper-button-lg vesper-button-subtle" data-testid="button">Explore</button>"`;
+exports[`Subtle 1`] = `"<button class="vesper-button vesper-button-lg vesper-button-subtle">Explore</button>"`;
 
-exports[`Tertiary 1`] = `"<button class="vesper-button vesper-button-lg vesper-button-tertiary" data-testid="button">Explore</button>"`;
+exports[`Tertiary 1`] = `"<button class="vesper-button vesper-button-lg vesper-button-tertiary">Explore</button>"`;
 
-exports[`Warning 1`] = `"<button class="vesper-button vesper-button-lg vesper-button-warning" data-testid="button">Explore</button>"`;
+exports[`Warning 1`] = `"<button class="vesper-button vesper-button-lg vesper-button-warning">Explore</button>"`;
