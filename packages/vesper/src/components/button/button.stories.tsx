@@ -74,3 +74,4 @@ export const Playground: Story = {
     </Button>
   ),
 };
+Playground.storyName = "button";
