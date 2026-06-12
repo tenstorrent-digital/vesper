@@ -2,17 +2,26 @@ import type { ElementType, ReactNode } from "react";
 import type { Polymorphic } from "@/utils/polymorphic";
 import { cn } from "@/utils/cn";
 
+export const BUTTON_SIZES = ["xs", "sm", "md", "lg"] as const;
+
+export const BUTTON_VARIANTS = [
+  "contrast",
+  "danger",
+  "ghost",
+  "primary",
+  "subtle",
+  "tertiary",
+  "warning",
+] as const;
+
+export type ButtonVariant = (typeof BUTTON_VARIANTS)[number];
+
+export type ButtonSize = (typeof BUTTON_SIZES)[number];
+
 export type ButtonProps<E extends ElementType = "button"> = Polymorphic<
   {
-    size: "lg" | "md" | "sm" | "xs";
-    variant:
-      | "primary"
-      | "contrast"
-      | "subtle"
-      | "tertiary"
-      | "ghost"
-      | "danger"
-      | "warning";
+    size: ButtonSize;
+    variant: ButtonVariant;
     disabled?: boolean;
     iconLeft?: ReactNode;
     iconRight?: ReactNode;

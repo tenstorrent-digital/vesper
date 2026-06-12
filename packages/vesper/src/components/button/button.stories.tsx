@@ -1,8 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button } from "@/components/button/button";
 import { Tenstorrent } from "@/components/icon/tenstorrent";
-import { Globe } from "@/components/icon/globe";
+import {
+  Button,
+  BUTTON_SIZES,
+  BUTTON_VARIANTS,
+} from "@/components/button/button";
 
 const meta = {
   component: Button,
@@ -10,20 +13,12 @@ const meta = {
   argTypes: {
     variant: {
       control: "radio",
-      options: [
-        "primary",
-        "contrast",
-        "tertiary",
-        "subtle",
-        "ghost",
-        "danger",
-        "warning",
-      ],
+      options: BUTTON_VARIANTS,
       name: "Button variant",
     },
     size: {
       control: "radio",
-      options: ["lg", "md", "sm", "xs"],
+      options: BUTTON_SIZES,
       name: "Button size",
     },
     showLeftIcon: {
@@ -68,7 +63,7 @@ export const Playground: Story = {
       size={size}
       variant={variant}
       disabled={disabled}
-      iconLeft={showLeftIcon && <Globe />}
+      iconLeft={showLeftIcon && <Tenstorrent />}
       iconRight={showRightIcon && <Tenstorrent />}
     >
       {children}

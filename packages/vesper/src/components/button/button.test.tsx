@@ -2,25 +2,18 @@ import { render, within, cleanup } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import axe from "axe-core";
 
-import { Button, type ButtonProps } from "@/components/button/button";
+import {
+  Button,
+  type ButtonProps,
+  BUTTON_SIZES,
+  BUTTON_VARIANTS,
+} from "@/components/button/button";
 import { Tenstorrent } from "@/components/icon/tenstorrent";
 
 import "@/styles/styles.css";
 
-const VARIANTS: ButtonProps["variant"][] = [
-  "contrast",
-  "danger",
-  "ghost",
-  "primary",
-  "subtle",
-  "tertiary",
-  "warning",
-];
-
-const SIZES: ButtonProps["size"][] = ["lg", "md", "sm", "xs"];
-
-const BUTTON_PERMUTATIONS: ButtonProps[] = VARIANTS.flatMap((variant) =>
-  SIZES.flatMap((size) => [
+const BUTTON_PERMUTATIONS: ButtonProps[] = BUTTON_VARIANTS.flatMap((variant) =>
+  BUTTON_SIZES.flatMap((size) => [
     { size, variant, disabled: false },
     { size, variant, disabled: true },
   ]),
@@ -29,7 +22,7 @@ const BUTTON_PERMUTATIONS: ButtonProps[] = VARIANTS.flatMap((variant) =>
 afterEach(cleanup);
 
 describe("button [unit]", () => {
-  VARIANTS.forEach((variant) => {
+  BUTTON_VARIANTS.forEach((variant) => {
     it(`applies the correct variant class when variant is set to "${variant}"`, () => {
       const result = render(
         <Button size="lg" variant={variant}>
@@ -43,7 +36,7 @@ describe("button [unit]", () => {
     });
   });
 
-  SIZES.forEach((size) => {
+  BUTTON_SIZES.forEach((size) => {
     it(`applies the correct size class when size is set to "${size}"`, () => {
       const result = render(
         <Button size={size} variant="primary">

@@ -1,21 +1,10 @@
 "use client";
 
 import { ArrowUp, Tenstorrent } from "@repo/vesper/icons";
-import { Button, type ButtonProps } from "@repo/vesper/button";
+import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "@repo/vesper/button";
 import { TextButton, type TextButtonProps } from "@repo/vesper/text-button";
 import { IconButton } from "@repo/vesper/icon-button";
 import { SplitButton, type SplitButtonProps } from "@repo/vesper/split-button";
-
-const BUTTON_SIZES: ButtonProps["size"][] = ["lg", "md", "sm", "xs"];
-const BUTTON_VARIANTS: ButtonProps["variant"][] = [
-  "contrast",
-  "danger",
-  "ghost",
-  "primary",
-  "subtle",
-  "tertiary",
-  "warning",
-];
 
 const TEXT_BUTTON_SIZES: TextButtonProps["size"][] = ["lg", "md", "sm"];
 const TEXT_BUTTON_VARIANTS: TextButtonProps["variant"][] = [
