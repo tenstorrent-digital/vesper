@@ -1,0 +1,40 @@
+name: Vesper Tests
+
+on:
+  push:
+    paths:
+      - "packages/vesper/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          cache: "yarn"
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Install Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Build Vesper
+        run: yarn build:vesper
+
+      - name: Run Tests
+        run: yarn test:vesper
+
+      - name: Upload test artifacts
+        if: ${{ !cancelled() && failure() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: test-results
+          path: packages/vesper/test-results/
+          retention-days: 7

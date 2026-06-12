@@ -9,6 +9,8 @@
     "check-types": "turbo run check-types",
     "generate:icons": "turbo run generate:icons --filter=@repo/vesper",
     "scaffold:component": "yarn workspace @repo/vesper scaffold:component",
+    "build:vesper": "yarn workspace @repo/vesper build",
+    "test:vesper": "yarn workspace @repo/vesper test",
     "agent:skills:add": "DISABLE_TELEMETRY=true npx skills add --yes --agent pi claude-code codex --",
     "agent:skills:remove": "DISABLE_TELEMETRY=true npx skills remove --yes --agent '*'",
     "agent:skills:update": "DISABLE_TELEMETRY=true npx skills update --yes --project"
