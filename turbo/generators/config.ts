@@ -35,6 +35,16 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         path: "{{ turbo.paths.root }}/packages/vesper/src/components/{{ kebabCase name }}/{{ kebabCase name }}.css",
       },
       {
+        type: "add",
+        path: "{{ turbo.paths.root }}/packages/vesper/src/components/{{ kebabCase name }}/{{ kebabCase name }}.test.tsx",
+        templateFile: "templates/react-component.test.hbs",
+      },
+      {
+        type: "add",
+        path: "{{ turbo.paths.root }}/packages/vesper/src/components/{{ kebabCase name }}/{{ kebabCase name }}.stories.tsx",
+        templateFile: "templates/react-component.stories.hbs",
+      },
+      {
         type: "append",
         path: "{{ turbo.paths.root }}/packages/vesper/src/styles/styles.css",
         pattern: /\/\* components \*\//,

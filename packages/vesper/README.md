@@ -65,7 +65,7 @@ Those steps perform the following work in order:
 
 The result is a `dist/` directory that matches the package's export map and is ready for local consumption or publishing.
 
-## Creating new components
+## Component development
 
 Creating a new component can be done by running the command `yarn scaffold:component` from within the `packages/vesper` directory, or from the project root.
 
@@ -75,6 +75,17 @@ The `scaffold:component` script will prompt you for two things:
 2. The root element of the component (optional). If you decide to specify the root element, it should be an intrinsic html element like div, input, h1, etc.
 
 When all prompts have been answered, turbo will generate a new folder for the component containing the tsx and css files for the component. It will also modify `src/styles/index.css` to import the new css file, as well as modify the exports map in `package.json`. Note that the exports map points to built files in the `dist` folder so the package will need to be rebuilt via `yarn build` before the new exports can be used.
+
+### Stories
+
+Scaffolding a component from the command line will create a `.stories.tsx` file in the component folder. We use Storybook as a development environment and component playground, so when you are developing components you should be using storybook to preview what the rendered components look like. The reason we do not want to do this by using something like the docs app is because in the docs app we use tailwind, which applies all kinds of css normalization. By using Storybook we get to see how components behave in the browser without any normalization applied. See [storybook.js](https://storybook.js.org) for Storybook documentation.
+
+### Testing
+
+Scaffolding a component from the command line will create a `.test.tsx` file in the component folder. We use [vitest](https://vitest.dev/) with `playwright` and `axe` for in-browser unit, snapshot, and a11y testing. The scaffolded test file contains three describe blocks:
+1. `component-name [unit]` - this describe block should be used for writing unit tests related to prop behavior. Use this block to assert that CSS classes are being applied correctly, event handlers are firing as expected, and polymorphism is working as intended.
+2. `component-name [snapshot]` - this describe block should be used for writing snapshot tests. Many of our components have dozens of permutations, so we can use this describe block to create snapshots of them all so if something changes unexpectedly we get warned about it.
+3. `component-name [a11y]` - this describe block should be used for asserting that all component permutations comply with WCAG 2 AAA standards. We should use `axe` to confirm that all permutations for the component have no violations.
 
 ## Regenerating icons
 

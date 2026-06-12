@@ -1,0 +1,15 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import { {{ name }} } from "@/components/{{ kebabCase name }}/{{ kebabCase name }}";
+
+const meta = {
+  component: {{ name }},
+  parameters: { layout: "centered" },
+} satisfies Meta<typeof {{ name }}>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Playground: Story = {};
+Playground.storyName = "{{ kebabCase name }}";

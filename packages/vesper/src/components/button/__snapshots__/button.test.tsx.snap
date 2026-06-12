@@ -1,0 +1,477 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`button [snapshot] > renders correctly when variant="contrast", size="lg", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-lg vesper-button-contrast"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="contrast", size="lg", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-lg vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="contrast", size="md", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-md vesper-button-contrast"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="contrast", size="md", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-md vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="contrast", size="sm", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-sm vesper-button-contrast"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="contrast", size="sm", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-sm vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="contrast", size="xs", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-xs vesper-button-contrast"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="contrast", size="xs", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-xs vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="danger", size="lg", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-lg vesper-button-danger"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="danger", size="lg", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-lg vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="danger", size="md", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-md vesper-button-danger"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="danger", size="md", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-md vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="danger", size="sm", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-sm vesper-button-danger"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="danger", size="sm", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-sm vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="danger", size="xs", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-xs vesper-button-danger"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="danger", size="xs", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-xs vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="ghost", size="lg", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-lg vesper-button-ghost"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="ghost", size="lg", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-lg vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="ghost", size="md", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-md vesper-button-ghost"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="ghost", size="md", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-md vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="ghost", size="sm", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-sm vesper-button-ghost"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="ghost", size="sm", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-sm vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="ghost", size="xs", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-xs vesper-button-ghost"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="ghost", size="xs", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-xs vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="primary", size="lg", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-lg vesper-button-primary"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="primary", size="lg", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-lg vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="primary", size="md", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-md vesper-button-primary"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="primary", size="md", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-md vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="primary", size="sm", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-sm vesper-button-primary"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="primary", size="sm", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-sm vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="primary", size="xs", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-xs vesper-button-primary"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="primary", size="xs", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-xs vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="subtle", size="lg", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-lg vesper-button-subtle"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="subtle", size="lg", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-lg vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="subtle", size="md", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-md vesper-button-subtle"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="subtle", size="md", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-md vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="subtle", size="sm", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-sm vesper-button-subtle"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="subtle", size="sm", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-sm vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="subtle", size="xs", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-xs vesper-button-subtle"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="subtle", size="xs", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-xs vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="tertiary", size="lg", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-lg vesper-button-tertiary"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="tertiary", size="lg", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-lg vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="tertiary", size="md", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-md vesper-button-tertiary"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="tertiary", size="md", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-md vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="tertiary", size="sm", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-sm vesper-button-tertiary"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="tertiary", size="sm", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-sm vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="tertiary", size="xs", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-xs vesper-button-tertiary"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="tertiary", size="xs", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-xs vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="warning", size="lg", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-lg vesper-button-warning"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="warning", size="lg", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-lg vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="warning", size="md", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-md vesper-button-warning"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="warning", size="md", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-md vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="warning", size="sm", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-sm vesper-button-warning"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="warning", size="sm", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-sm vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="warning", size="xs", disabled={false} 1`] = `
+<button
+  class="vesper-button vesper-button-xs vesper-button-warning"
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > renders correctly when variant="warning", size="xs", disabled={true} 1`] = `
+<button
+  class="vesper-button vesper-button-xs vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
