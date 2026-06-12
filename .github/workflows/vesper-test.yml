@@ -11,15 +11,12 @@ on:
   # Empty `workflow_dispatch` allows this workflow to be run manually from the Actions tab:
   workflow_dispatch:
 
-# For pull_request events, github.ref is refs/pull/N/merge, but github.head_ref is the branch name
-# For push events, github.head_ref is empty, so it falls back to github.ref
-# push and pull_request events resolve to the same concurrency group this way
 concurrency:
-  group: vesper-test-${{ github.head_ref || github.ref }}
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
 jobs:
-  test:
+  run:
     runs-on: ubuntu-latest
 
     steps:
