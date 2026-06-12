@@ -25,6 +25,8 @@ out/
 build
 dist
 
+# Test Results
+test-results/
 
 # Debug
 npm-debug.log*
