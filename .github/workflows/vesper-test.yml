@@ -2,9 +2,11 @@ name: Vesper Tests
 
 on:
   pull_request:
+    branches: [main]
     paths:
       - "packages/vesper/**"
   push:
+    branches: [main]
     paths:
       - "packages/vesper/**"
 
