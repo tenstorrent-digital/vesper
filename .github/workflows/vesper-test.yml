@@ -8,8 +8,16 @@ on:
     paths:
       - "packages/vesper/**"
 
+  # Empty `workflow_dispatch` allows this workflow to be run manually from the Actions tab:
+  workflow_dispatch:
+
+concurrency:
+  group: vesper-test-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
+    name: unit/snapshot/a11y
     runs-on: ubuntu-latest
 
     steps:
