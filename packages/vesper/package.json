@@ -74,12 +74,12 @@
     "**/*.css"
   ],
   "scripts": {
-    "build:tsc": "tsc -p tsconfig.json",
-    "build:alias": "tsc-alias -p tsconfig.json --resolve-full-paths --resolve-full-extension .js",
+    "build:tsc": "tsc -p tsconfig.build.json",
+    "build:alias": "tsc-alias -p tsconfig.build.json --resolve-full-paths --resolve-full-extension .js",
     "build:side-effects": "tsx scripts/copy-side-effects.ts",
     "build": "rm -rf dist && yarn build:tsc && yarn build:alias && yarn build:side-effects",
-    "dev:tsc": "tsc -p tsconfig.json --watch --preserveWatchOutput",
-    "dev:alias": "tsc-alias -p tsconfig.json -w --resolve-full-paths --resolve-full-extension .js",
+    "dev:tsc": "tsc -p tsconfig.build.json --watch --preserveWatchOutput",
+    "dev:alias": "tsc-alias -p tsconfig.build.json -w --resolve-full-paths --resolve-full-extension .js",
     "dev:side-effects": "tsx scripts/watch-side-effects.ts",
     "dev": "concurrently --kill-others-on-fail --names tsc,alias,side-effects --prefix-colors auto \"yarn dev:tsc\" \"yarn dev:alias\" \"yarn dev:side-effects\"",
     "lint": "eslint . --max-warnings 0",
@@ -87,7 +87,7 @@
     "generate:icons": "tsx scripts/generate-icons.ts && eslint src/components/Icon/*.{ts,tsx} --fix && prettier --write src/components/Icon/*.{ts,tsx}",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check-types": "tsc --noEmit -p tsconfig.json",
+    "check-types": "tsc --noEmit -p tsconfig.build.json",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

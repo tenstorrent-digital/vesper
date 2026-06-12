@@ -1,5 +1,5 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "./tsconfig.build.json",
   "include": ["src", "vitest.setup.ts", "vitest.shims.d.ts"],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
