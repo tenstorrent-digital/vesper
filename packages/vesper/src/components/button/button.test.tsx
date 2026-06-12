@@ -1,5 +1,5 @@
 import { render, within, cleanup } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import axe from "axe-core";
 
 import { Button, type ButtonProps } from "@/components/button/button";
@@ -177,15 +177,29 @@ describe("button [snapshot]", () => {
 });
 
 describe("button [a11y]", () => {
-  BUTTON_PERMUTATIONS.forEach((permutation) => {
-    const { size, variant, disabled } = permutation;
+  ["light", "dark"].forEach((theme) => {
+    describe(`${theme} mode`, () => {
+      beforeEach(() => {
+        document.documentElement.setAttribute("data-vesper-theme", theme);
+      });
 
-    it(`renders without wcag2aaa violations when variant="${variant}", size="${size}", disabled={${disabled}}`, async () => {
-      const result = render(<Button {...permutation}>Button Text</Button>);
+      afterEach(() => {
+        document.documentElement.removeAttribute("data-vesper-theme");
+      });
 
-      expect(
-        await axe.run(result.container, { runOnly: "wcag2aaa" }),
-      ).toHaveNoViolations();
+      BUTTON_PERMUTATIONS.forEach((permutation) => {
+        const { size, variant, disabled } = permutation;
+
+        it(`renders without wcag2aaa violations when variant="${variant}", size="${size}", disabled={${disabled}}`, async () => {
+          const result = render(<Button {...permutation}>Button Text</Button>);
+
+          expect(
+            await axe.run(result.container, {
+              runOnly: "wcag2aaa",
+            }),
+          ).toHaveNoViolations();
+        });
+      });
     });
   });
 });

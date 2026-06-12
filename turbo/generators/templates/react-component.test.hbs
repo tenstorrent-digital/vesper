@@ -30,11 +30,23 @@ describe("{{ kebabCase name }} [snapshot]", () => {
 });
 
 describe("{{ kebabCase name }} [a11y]", () => {
-  it("renders without wcag2aaa violations", async () => {
-    const result = render(<{{ name }} />);
+  ["light", "dark"].forEach((theme) => {
+    describe(`${theme} mode`, () => {
+      beforeEach(() => {
+        document.documentElement.setAttribute("data-vesper-theme", theme);
+      });
 
-    expect(
-      await axe.run(result.container, { runOnly: "wcag2aaa" }),
-    ).toHaveNoViolations();
+      afterEach(() => {
+        document.documentElement.removeAttribute("data-vesper-theme");
+      });
+
+      it("renders without wcag2aaa violations", async () => {
+        const result = render(<{{ name }} />);
+
+        expect(
+          await axe.run(result.container, { runOnly: "wcag2aaa" }),
+        ).toHaveNoViolations();
+      });
+    });
   });
 });
