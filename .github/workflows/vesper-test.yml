@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: vesper-test-${{ github.ref }}
+  group: vesper-test-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 
 jobs:
