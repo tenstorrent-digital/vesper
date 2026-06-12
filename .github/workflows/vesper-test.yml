@@ -1,6 +1,9 @@
 name: Vesper Tests
 
 on:
+  pull_request:
+    paths:
+      - "packages/vesper/**"
   push:
     paths:
       - "packages/vesper/**"
