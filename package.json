@@ -3,11 +3,11 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "build:vesper": "yarn workspace @repo/vesper build",
+    "build:vesper": "turbo run build --filter=@repo/vesper",
     "dev": "turbo run dev",
     "dev:vesper": "turbo run dev --filter=@repo/vesper",
     "dev:docs": "turbo run dev --filter=docs",
-    "test:vesper": "yarn workspace @repo/vesper test",
+    "test:vesper": "turbo run test --filter=@repo/vesper",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
