@@ -47,7 +47,7 @@ When all prompts have been answered, turbo will generate a new folder for the co
 1. `{component-name}.tsx` - the component file
 2. `{component-name}.css` - the component css
 3. `{component-name}.test.tsx` - test file for the component
-3. `{component-name}.stories.tsx` - storybook file for the component
+4. `{component-name}.stories.tsx` - storybook file for the component
 
 The scaffold command will also update `src/styles/index.css` to import the new css file, as well as modify the exports map in `package.json`. Note that the exports map points to built files in the `dist` folder so the package will need to be rebuilt via `yarn build` before the new exports can be used externally.
 
