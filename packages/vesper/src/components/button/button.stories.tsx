@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Button } from "@repo/vesper/button";
-import { Tenstorrent, Globe } from "@repo/vesper/icons";
+import { Button } from "@/components/button/button";
+import { Tenstorrent } from "@/components/icon/tenstorrent";
+import { Globe } from "@/components/icon/globe";
 
 const meta = {
   component: Button,

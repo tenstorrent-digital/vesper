@@ -1,10 +1,11 @@
 import { render, within, cleanup } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 import axe from "axe-core";
-import { Button, type ButtonProps } from "@repo/vesper/button";
-import { Tenstorrent } from "@repo/vesper/icons";
 
-import "@repo/vesper/styles.css";
+import { Button, type ButtonProps } from "@/components/button/button";
+import { Tenstorrent } from "@/components/icon/tenstorrent";
+
+import "@/styles/styles.css";
 
 const VARIANTS: ButtonProps["variant"][] = [
   "contrast",
