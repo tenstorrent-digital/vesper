@@ -88,7 +88,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "check-types": "tsc --noEmit -p tsconfig.build.json",
-    "storybook": "storybook dev -p 6006 -c storybook",
+    "storybook": "storybook dev -p 3000 -c storybook",
     "build-storybook": "storybook build"
   },
   "peerDependencies": {
