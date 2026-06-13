@@ -93,11 +93,11 @@ describe("button [unit]", () => {
       </Badge>,
     );
 
-    const btn = result.container.firstChild;
-    expect(btn).toHaveClass("vesper-badge");
-    expect(btn).toHaveClass("vesper-badge-primary");
-    expect(btn).toHaveClass("vesper-badge-md");
-    expect(btn).toHaveClass("custom-class");
+    const el = result.container.firstChild;
+    expect(el).toHaveClass("vesper-badge");
+    expect(el).toHaveClass("vesper-badge-primary");
+    expect(el).toHaveClass("vesper-badge-md");
+    expect(el).toHaveClass("custom-class");
   });
 });
 
