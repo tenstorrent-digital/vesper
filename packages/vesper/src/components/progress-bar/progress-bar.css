@@ -38,8 +38,7 @@
   }
 }
 
-.vesper-progress-bar-indicator-default,
-.vesper-progress-bar-indicator-steps {
+.vesper-progress-bar-indicator {
   position: absolute;
   top: 0;
   left: 0;
@@ -50,8 +49,13 @@
   }
 }
 
-.vesper-progress-bar-indicator-default {
-  transition: width 0.4s cubic-bezier(0.45, 0.15, 0.25, 0.95);
+.vesper-progress-bar-animated {
+  .vesper-progress-bar-indicator {
+    transition: width 0.3s cubic-bezier(0.45, 0.15, 0.25, 0.95);
+  }
+  .vesper-progress-bar-tick {
+    transition: background 0.3s cubic-bezier(0.45, 0.15, 0.25, 0.95);
+  }
 }
 
 .vesper-progress-bar-tick {
