@@ -4,9 +4,9 @@
   "scripts": {
     "build": "turbo run build",
     "build:vesper": "turbo run build --filter=@repo/vesper",
-    "dev": "turbo run dev",
-    "dev:vesper": "turbo run dev --filter=@repo/vesper",
-    "dev:docs": "turbo run dev --filter=docs",
+    "dev": "turbo run dev watch",
+    "dev:vesper": "turbo run dev:vesper",
+    "dev:docs": "turbo run dev:docs",
     "test:vesper": "turbo run test --filter=@repo/vesper",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
