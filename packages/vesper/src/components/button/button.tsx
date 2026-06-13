@@ -25,7 +25,6 @@ export type ButtonProps<E extends ElementType = "button"> = Polymorphic<
     disabled?: boolean;
     iconLeft?: ReactNode;
     iconRight?: ReactNode;
-    className?: string;
   },
   E
 >;

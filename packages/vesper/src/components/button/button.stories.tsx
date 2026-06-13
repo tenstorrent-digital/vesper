@@ -9,7 +9,6 @@ const meta = {
   argTypes: {
     iconLeft: { control: "boolean" },
     iconRight: { control: "boolean" },
-    className: { table: { disable: true } },
     as: { table: { disable: true } },
   },
 } satisfies Meta<typeof Button>;
