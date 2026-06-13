@@ -6,7 +6,7 @@ import {
 } from "@radix-ui/react-collapsible";
 import { cn } from "@/utils/cn";
 import { Typography } from "@/components/typography/typography";
-import { CaretRight } from "@/components/icon/caret-right";
+import { CaretRight } from "@/components/icons/icons";
 
 export interface AccordionProps extends Omit<
   CollapsibleProps,

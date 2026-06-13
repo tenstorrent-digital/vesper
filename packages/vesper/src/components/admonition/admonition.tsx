@@ -1,11 +1,13 @@
 import type { ElementType } from "react";
 import { cn } from "@/utils/cn";
 import { Polymorphic } from "@/utils/polymorphic";
-import { ErrorSolid } from "@/components/icon/error-solid";
-import { InfoSolid } from "@/components/icon/info-solid";
-import { Info } from "@/components/icon/info";
-import { SuccessSolid } from "@/components/icon/success-solid";
-import { WarningSolid } from "@/components/icon/warning-solid";
+import {
+  ErrorSolid,
+  InfoSolid,
+  Info,
+  SuccessSolid,
+  WarningSolid,
+} from "@/components/icons/icons";
 import { Button, ButtonProps } from "@/components/button/button";
 import { Typography } from "@/components/typography/typography";
 

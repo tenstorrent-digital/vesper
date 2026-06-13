@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Icon } from "@/components/icon/icon";
+import { Icon } from "@/components/icons/icons";
 
 const meta = {
   component: Icon,
@@ -17,4 +17,4 @@ export const Playground: Story = {
     <Icon width={32} height={32} color="var(--vesper-stone-900)" {...props} />
   ),
 };
-Playground.storyName = "icon";
+Playground.storyName = "icons";

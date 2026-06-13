@@ -55,13 +55,9 @@
       "types": "./dist/components/typography/typography.d.ts",
       "import": "./dist/components/typography/typography.js"
     },
-    "./icon": {
-      "types": "./dist/components/icon/icon.d.ts",
-      "import": "./dist/components/icon/icon.js"
-    },
     "./icons": {
-      "types": "./dist/components/icon/icons.d.ts",
-      "import": "./dist/components/icon/icons.js"
+      "types": "./dist/components/icons/icons.d.ts",
+      "import": "./dist/components/icons/icons.js"
     },
     "./tokens": {
       "types": "./dist/tokens/index.d.ts",
@@ -86,7 +82,7 @@
     "dev": "storybook dev -p 3000 -c storybook",
     "lint": "eslint . --max-warnings 0",
     "scaffold:component": "turbo gen vesper-component",
-    "generate:icons": "tsx scripts/generate-icons.ts && eslint src/components/Icon/*.{ts,tsx} --fix && prettier --write src/components/Icon/*.{ts,tsx}",
+    "generate:icons": "tsx scripts/generate-icons.ts && eslint src/components/icons/*.{ts,tsx} --fix && prettier --write src/components/icons/*.{ts,tsx}",
     "test": "vitest run",
     "test:watch": "vitest",
     "check-types": "tsc --noEmit -p tsconfig.build.json"

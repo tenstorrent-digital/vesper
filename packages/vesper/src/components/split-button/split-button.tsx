@@ -11,8 +11,7 @@ import {
   type MenuProps,
   type MenuItemProps,
 } from "@/components/menu/menu";
-import { CaretUp } from "@/components/icon/caret-up";
-import { CaretDown } from "@/components/icon/caret-down";
+import { CaretDown, CaretUp } from "@/components/icons/icons";
 import { Button } from "@/components/button/button";
 import { IconButton } from "@/components/icon-button/icon-button";
 

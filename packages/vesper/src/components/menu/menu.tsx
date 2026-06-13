@@ -8,8 +8,7 @@ import {
   type DropdownMenuProps,
   DropdownMenuContentProps,
 } from "@radix-ui/react-dropdown-menu";
-import { Checkmark } from "@/components/icon/checkmark";
-import { Lock } from "@/components/icon/lock";
+import { Checkmark, Lock } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 
 export type MenuItemProps = {
