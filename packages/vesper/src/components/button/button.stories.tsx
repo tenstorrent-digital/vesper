@@ -7,14 +7,8 @@ const meta = {
   component: Button,
   parameters: { layout: "centered" },
   argTypes: {
-    showLeftIcon: { control: "boolean", name: "Show left icon?" },
-    showRightIcon: { control: "boolean", name: "Show right icon?" },
-    variant: { name: "Variant" },
-    size: { name: "Size" },
-    disabled: { name: "Disabled?" },
-    children: { name: "Label" },
-    iconLeft: { table: { disable: true } },
-    iconRight: { table: { disable: true } },
+    iconLeft: { control: "boolean" },
+    iconRight: { control: "boolean" },
     className: { table: { disable: true } },
     as: { table: { disable: true } },
   },
@@ -30,14 +24,14 @@ export const Playground: Story = {
     size: "lg",
     children: "Explore",
     disabled: false,
-    showLeftIcon: false,
-    showRightIcon: false,
+    iconLeft: false,
+    iconRight: false,
   },
-  render: ({ showLeftIcon = false, showRightIcon = false, ...props }) => (
+  render: ({ iconLeft = false, iconRight = false, ...props }) => (
     <Button
       {...props}
-      iconLeft={showLeftIcon && <Tenstorrent />}
-      iconRight={showRightIcon && <Tenstorrent />}
+      iconLeft={iconLeft && <Tenstorrent />}
+      iconRight={iconRight && <Tenstorrent />}
     />
   ),
 };
