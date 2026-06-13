@@ -12,7 +12,8 @@ export type AvatarProps<E extends ElementType = "div"> = Polymorphic<
     src?: string;
     alt?: string;
   },
-  E
+  E,
+  "children"
 >;
 
 export function Avatar<E extends ElementType = "div">(props: AvatarProps<E>) {

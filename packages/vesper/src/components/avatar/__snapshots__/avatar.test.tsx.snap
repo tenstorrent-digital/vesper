@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`avatar [snapshot] > renders correctly when size="lg" 1`] = `
+<div
+  class="vesper-avatar vesper-avatar-lg"
+/>
+`;
+
+exports[`avatar [snapshot] > renders correctly when size="md" 1`] = `
+<div
+  class="vesper-avatar vesper-avatar-md"
+/>
+`;
+
+exports[`avatar [snapshot] > renders correctly when size="sm" 1`] = `
+<div
+  class="vesper-avatar vesper-avatar-sm"
+/>
+`;
