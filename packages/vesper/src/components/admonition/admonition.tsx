@@ -9,13 +9,27 @@ import { WarningSolid } from "@/components/icon/warning-solid";
 import { Button, ButtonProps } from "@/components/button/button";
 import { Typography } from "@/components/typography/typography";
 
+export const ADMONITION_SIZES = ["sm", "md"] as const;
+
+export const ADMONITION_VARIANTS = [
+  "info",
+  "success",
+  "warning",
+  "danger",
+  "secondary",
+] as const;
+
+export type AdmonitionSize = (typeof ADMONITION_SIZES)[number];
+
+export type AdmonitionVariant = (typeof ADMONITION_VARIANTS)[number];
+
 export type AdmonitionProps<
   E extends ElementType = "div",
   C extends ElementType = "button",
 > = Polymorphic<
   {
-    size: "sm" | "md";
-    variant: "info" | "success" | "warning" | "danger" | "secondary";
+    size?: AdmonitionSize;
+    variant?: AdmonitionVariant;
     subtle?: boolean;
     ctaAs?: C;
     cta?: Omit<ButtonProps<C>, "size" | "variant" | "as">;
@@ -35,8 +49,8 @@ export function Admonition<
   const {
     as: Component = "div",
     className,
-    size,
-    variant,
+    size = "sm",
+    variant = "info",
     ctaAs,
     cta,
     children,
