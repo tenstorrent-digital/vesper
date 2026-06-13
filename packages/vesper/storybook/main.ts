@@ -17,6 +17,17 @@ const config: StorybookConfig = {
   stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [getAbsolutePath("@storybook/addon-a11y")],
   framework: getAbsolutePath("@storybook/react-vite"),
+  typescript: {
+    reactDocgen: "react-docgen-typescript",
+    reactDocgenTypescriptOptions: {
+      tsconfigPath: resolve(__dirname, "../tsconfig.storybook.json"),
+      shouldExtractLiteralValuesFromEnum: true,
+      shouldRemoveUndefinedFromOptional: true,
+      savePropValueAsString: false,
+      propFilter: (prop) =>
+        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
+    },
+  },
   viteFinal(config) {
     config.resolve = config.resolve || {};
 
