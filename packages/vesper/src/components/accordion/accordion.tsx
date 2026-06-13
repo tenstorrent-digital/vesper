@@ -8,7 +8,10 @@ import { cn } from "@/utils/cn";
 import { Typography } from "@/components/typography/typography";
 import { CaretRight } from "@/components/icon/caret-right";
 
-export interface AccordionProps extends Omit<CollapsibleProps, "disabled"> {
+export interface AccordionProps extends Omit<
+  CollapsibleProps,
+  "disabled" | "asChild"
+> {
   title: string;
 }
 
