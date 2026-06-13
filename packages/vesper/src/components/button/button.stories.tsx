@@ -12,11 +12,11 @@ const meta = {
     variant: { name: "Variant" },
     size: { name: "Size" },
     disabled: { name: "Disabled?" },
-    children: { name: "Button text" },
-    iconLeft: { control: false, table: { disable: true } },
-    iconRight: { control: false, table: { disable: true } },
-    className: { control: false, table: { disable: true } },
-    as: { control: false, table: { disable: true } },
+    children: { name: "Label" },
+    iconLeft: { table: { disable: true } },
+    iconRight: { table: { disable: true } },
+    className: { table: { disable: true } },
+    as: { table: { disable: true } },
   },
 } satisfies Meta<typeof Button>;
 
