@@ -9,7 +9,10 @@ import {
   WarningSolid,
 } from "@/components/icons/icons";
 import { Button, ButtonProps } from "@/components/button/button";
-import { Typography } from "@/components/typography/typography";
+import {
+  Typography,
+  TypographyVariant,
+} from "@/components/typography/typography";
 
 export const ADMONITION_SIZES = ["sm", "md"] as const;
 
@@ -39,10 +42,12 @@ export type AdmonitionProps<
   E
 >;
 
-const ADMONITION_TYPOGRAPHY_SIZES = {
-  md: "sm",
-  sm: "xs",
-} as const;
+const ADMONITION_TYPOGRAPHY_VARIANTS: {
+  [S in AdmonitionSize]: TypographyVariant;
+} = {
+  md: "copy-sm",
+  sm: "copy-xs",
+};
 
 export function Admonition<
   E extends ElementType = "div",
@@ -78,11 +83,7 @@ export function Admonition<
           {variant === "success" && <SuccessSolid />}
           {variant === "warning" && <WarningSolid />}
         </span>
-        <Typography
-          as="span"
-          variant="copy"
-          size={ADMONITION_TYPOGRAPHY_SIZES[size]}
-        >
+        <Typography as="span" variant={ADMONITION_TYPOGRAPHY_VARIANTS[size]}>
           {children}
         </Typography>
       </div>

@@ -77,14 +77,13 @@ function MenuItem({
     >
       {icon && <div className="vesper-menu-item-left-icon">{icon}</div>}
       <div className="vesper-menu-item-text-container">
-        <Typography as="span" variant="label" size="md" bold>
+        <Typography as="span" variant="label-md-bold">
           {text}
         </Typography>
         {description && (
           <Typography
             as="span"
-            variant="copy"
-            size="xs"
+            variant="copy-xs"
             className="vesper-menu-item-label"
           >
             {description}
