@@ -3,20 +3,28 @@ import type { Polymorphic } from "@/utils/polymorphic";
 import { cn } from "@/utils/cn";
 import { Typography } from "@/components/typography/typography";
 
+export const BADGE_SIZES = ["lg", "md", "sm"] as const;
+
+export const BADGE_VARIANTS = [
+  "accent",
+  "success",
+  "warning",
+  "danger",
+  "info",
+  "purple",
+  "pink",
+  "mint",
+  "contrast",
+] as const;
+
+export type BadgeType = (typeof BADGE_SIZES)[number];
+
+export type BadgeVariant = (typeof BADGE_VARIANTS)[number];
+
 export type BadgeProps<E extends ElementType = "div"> = Polymorphic<
   {
-    size: "lg" | "md" | "sm";
-    className?: string;
-    variant:
-      | "accent"
-      | "success"
-      | "warning"
-      | "danger"
-      | "info"
-      | "purple"
-      | "pink"
-      | "mint"
-      | "contrast";
+    size?: BadgeType;
+    variant?: BadgeVariant;
     subtle?: boolean;
     icon?: ReactNode;
   },
@@ -33,8 +41,8 @@ export function Badge<E extends ElementType = "div">(props: BadgeProps<E>) {
   const {
     as: Component = "div",
     className,
-    size,
-    variant,
+    size = "lg",
+    variant = "accent",
     subtle,
     icon,
     children,
