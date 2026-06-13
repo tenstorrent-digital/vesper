@@ -8,7 +8,7 @@ import {
   BUTTON_SIZES,
   BUTTON_VARIANTS,
 } from "@/components/button/button";
-import { Tenstorrent } from "@/components/icon/tenstorrent";
+import { Tenstorrent } from "@/components/icons/icons";
 
 import "@/styles/styles.css";
 
