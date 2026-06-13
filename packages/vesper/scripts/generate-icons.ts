@@ -180,3 +180,29 @@ fs.writeFileSync(
 
   ${icons.map((icon) => `export { ${icon.componentName} } from './${icon.kind}'`).join("\n")}`,
 );
+
+// create story file for icon component
+fs.writeFileSync(
+  path.resolve(__dirname, `../src/components/icon/icon.stories.tsx`),
+  `import type { Meta, StoryObj } from "@storybook/react-vite";
+
+  import { Icon } from "@/components/icon/icon";
+
+  const meta = {
+    component: Icon,
+    parameters: { layout: "centered" },
+  } satisfies Meta<typeof Icon>;
+
+  export default meta;
+
+  type Story = StoryObj<typeof meta>;
+
+  export const Playground: Story = {
+    args: { kind: "tenstorrent" },
+    render: (props) => (
+      <Icon width={32} height={32} color="var(--vesper-stone-900)" {...props} />
+    ),
+  };
+  Playground.storyName = "icon";
+`,
+);
