@@ -1,13 +1,12 @@
 import type { ElementType } from "react";
 import type { Polymorphic } from "@/utils/polymorphic";
 import { cn } from "@/utils/cn";
-import { Avatar } from "@/components/avatar/avatar";
+import { Avatar, type AvatarSize } from "@/components/avatar/avatar";
 
 export type AvatarGroupProps<E extends ElementType = "div"> = Polymorphic<
   {
-    size: "lg" | "md" | "sm";
+    size?: AvatarSize;
     avatars: { src: string | undefined; alt?: string }[];
-    className?: string;
   },
   E
 >;
