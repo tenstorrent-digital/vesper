@@ -37,7 +37,7 @@ flowchart LR
         subgraph Packages["packages"]
             Vesper["vesper<br/><i>bundles tokens, css, components, skills</i>"]
         end
-        
+
         Vesper --> ExampleReact
         Vesper --> Docs
     end
@@ -67,7 +67,7 @@ flowchart LR
 
 ### Figma
 
-Figma contains all of the tokens/primitives used to compose the components in the Vesper design system. Tokens are exported as JSON (colors, tracking, leading, spacing, radius) or SVG (icons) to be used as inputs in the tokens package in the monorepo. Tokens and components are consumed by the [__Vesper Monorepo__](#vesper-monorepo).
+Figma contains all of the tokens/primitives used to compose the components in the Vesper design system. Tokens are exported as JSON (colors, tracking, leading, spacing, radius) or SVG (icons) to be used as inputs in the tokens package in the monorepo. Tokens and components are consumed by the [**Vesper Monorepo**](#vesper-monorepo).
 
 ```
 tokens/
@@ -86,7 +86,7 @@ components/
 
 ### Vesper Monorepo
 
-The monorepo consumes tokens and component designs from Figma, then assembles them into the vesper package. Vesper bundles tokens, styles, skills, and components into a single package to be published to the [__Package Registry__](#package-registry)
+The monorepo consumes tokens and component designs from Figma, then assembles them into the vesper package. Vesper bundles tokens, styles, skills, and components into a single package to be published to the [**Package Registry**](#package-registry)
 
 The vesper package get used as input internally for things like the documentation website, and externally by consumer apps to build user interfaces.
 
@@ -99,9 +99,10 @@ packages/
 ```
 
 ### Package Registry
+
 The vesper package in the monorepo is what ultimately gets published to the package registry. It contains tokens, styles, agent skills, and components in the design system.
 
-Initially vesper will start as a private package which will be scoped to the Tenstorrent GitHub organization. Once the package has stabilized and we have established a practise for authoring changelogs and publishing tags/releases then there is potential to release vesper publicly. [__End Users__](#end-user) install the vesper package from the registry.
+Initially vesper will start as a private package which will be scoped to the Tenstorrent GitHub organization. Once the package has stabilized and we have established a practise for authoring changelogs and publishing tags/releases then there is potential to release vesper publicly. [**End Users**](#end-user) install the vesper package from the registry.
 
 #### Regarding organization-scoped packages
 
@@ -127,8 +128,8 @@ npm install @tenstorrent/vesper
 Once the vesper package has been installed, users can import skills, tokens, core functionality, and framework-specific components freely:
 
 ```js
-import { TextInput, Accordion } from '@tenstorrent/vesper/react'
-import { COLORS } from '@tenstorrent/vesper/tokens'
+import { TextInput, Accordion } from "@tenstorrent/vesper/react";
+import { COLORS } from "@tenstorrent/vesper/tokens";
 ```
 
 #### Usage in CI Environments
@@ -140,6 +141,7 @@ For projects that require installing the package in CI environments, an auth tok
   env:
     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 ```
+
 or
 
 ```

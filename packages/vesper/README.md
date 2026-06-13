@@ -44,6 +44,7 @@ The `scaffold:component` script will prompt you for two things:
 2. The root element of the component (optional). If you decide to specify the root element, it should be an intrinsic html element like div, input, h1, etc.
 
 When all prompts have been answered, turbo will generate a new folder for the component containing:
+
 1. `{component-name}.tsx` - the component file
 2. `{component-name}.css` - the component css
 3. `{component-name}.test.tsx` - test file for the component
@@ -54,6 +55,7 @@ The scaffold command will also update `src/styles/index.css` to import the new c
 ### Testing components
 
 Scaffolding a component from the command line will create a `.test.tsx` file in the component folder. We use [vitest](https://vitest.dev/) with `playwright` and `axe` for in-browser unit, snapshot, and a11y testing. The scaffolded test file contains three describe blocks:
+
 1. `component-name [unit]` - this describe block should be used for writing unit tests related to prop behavior. Use this block to assert that CSS classes are being applied correctly, event handlers are firing as expected, and polymorphism is working as intended.
 2. `component-name [snapshot]` - this describe block should be used for writing snapshot tests. Many of our components have dozens of permutations, so we can use this describe block to create snapshots of them all so if something changes unexpectedly we get warned about it.
 3. `component-name [a11y]` - this describe block should be used for asserting that all component permutations comply with WCAG 2 AAA standards. We use `axe` to confirm that all permutations for the component have no violations in both light and dark mode.

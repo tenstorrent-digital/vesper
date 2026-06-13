@@ -8,9 +8,9 @@
     "sourceMap": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-    },
+      "@/*": ["src/*"]
+    }
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "src/**/*.test.*", "src/**/*.stories.*"],
+  "exclude": ["node_modules", "dist", "src/**/*.test.*", "src/**/*.stories.*"]
 }

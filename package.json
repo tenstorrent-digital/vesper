@@ -9,7 +9,7 @@
     "dev:docs": "turbo run dev:docs",
     "test:vesper": "turbo run test --filter=@repo/vesper",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "prettier --write .",
     "check-types": "turbo run check-types",
     "generate:icons": "turbo run generate:icons --filter=@repo/vesper",
     "scaffold:component": "yarn workspace @repo/vesper scaffold:component",
