@@ -1,40 +1,22 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { Button } from "@/components/button/button";
 import { Tenstorrent } from "@/components/icon/tenstorrent";
-import {
-  Button,
-  BUTTON_SIZES,
-  BUTTON_VARIANTS,
-} from "@/components/button/button";
 
 const meta = {
   component: Button,
   parameters: { layout: "centered" },
   argTypes: {
-    variant: {
-      control: "radio",
-      options: BUTTON_VARIANTS,
-      name: "Button variant",
-    },
-    size: {
-      control: "radio",
-      options: BUTTON_SIZES,
-      name: "Button size",
-    },
-    showLeftIcon: {
-      control: "boolean",
-      name: "Show left icon?",
-    },
-    showRightIcon: {
-      control: "boolean",
-      name: "Show right icon?",
-    },
-    disabled: {
-      name: "Disabled?",
-    },
-    children: {
-      name: "Button text",
-    },
+    showLeftIcon: { control: "boolean", name: "Show left icon?" },
+    showRightIcon: { control: "boolean", name: "Show right icon?" },
+    variant: { name: "Variant" },
+    size: { name: "Size" },
+    disabled: { name: "Disabled?" },
+    children: { name: "Button text" },
+    iconLeft: { control: false, table: { disable: true } },
+    iconRight: { control: false, table: { disable: true } },
+    className: { control: false, table: { disable: true } },
+    as: { control: false, table: { disable: true } },
   },
 } satisfies Meta<typeof Button>;
 
@@ -51,23 +33,12 @@ export const Playground: Story = {
     showLeftIcon: false,
     showRightIcon: false,
   },
-  render: ({
-    size,
-    variant,
-    disabled,
-    children,
-    showLeftIcon = false,
-    showRightIcon = false,
-  }) => (
+  render: ({ showLeftIcon = false, showRightIcon = false, ...props }) => (
     <Button
-      size={size}
-      variant={variant}
-      disabled={disabled}
+      {...props}
       iconLeft={showLeftIcon && <Tenstorrent />}
       iconRight={showRightIcon && <Tenstorrent />}
-    >
-      {children}
-    </Button>
+    />
   ),
 };
 Playground.storyName = "button";
