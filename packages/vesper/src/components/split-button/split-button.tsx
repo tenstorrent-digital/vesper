@@ -15,9 +15,17 @@ import { CaretDown, CaretUp } from "@/components/icons/icons";
 import { Button } from "@/components/button/button";
 import { IconButton } from "@/components/icon-button/icon-button";
 
+export const SPLIT_BUTTON_SIZES = ["lg", "md", "sm"] as const;
+
+export const SPLIT_BUTTON_VARIANTS = ["subtle", "contrast"] as const;
+
+export type SplitButtonSize = (typeof SPLIT_BUTTON_SIZES)[number];
+
+export type SplitButtonVariant = (typeof SPLIT_BUTTON_VARIANTS)[number];
+
 export interface SplitButtonProps {
-  size: "lg" | "md" | "sm";
-  variant: "subtle" | "contrast";
+  size: SplitButtonSize;
+  variant: SplitButtonVariant;
   menuItems: MenuItemProps[];
   onClick?: MouseEventHandler<HTMLButtonElement>;
   menuButtonAriaLabel?: string;

@@ -9,6 +9,7 @@
   box-shadow: var(--vesper-shadow-200);
   * {
     outline: none;
+    box-sizing: border-box;
   }
 }
 
