@@ -70,7 +70,7 @@ describe("typography [snapshot]", () => {
   });
 });
 
-describe("button [a11y]", () => {
+describe("typography [a11y]", () => {
   ["light", "dark"].forEach((theme) => {
     describe(`${theme} mode`, () => {
       beforeEach(() => {

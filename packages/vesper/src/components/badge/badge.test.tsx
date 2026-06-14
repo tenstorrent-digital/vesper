@@ -21,7 +21,7 @@ const BADGE_PERMUTATIONS = BADGE_VARIANTS.flatMap((variant) =>
 
 afterEach(cleanup);
 
-describe("button [unit]", () => {
+describe("badge [unit]", () => {
   BADGE_VARIANTS.forEach((variant) => {
     it(`applies the correct variant class when variant is set to "${variant}"`, () => {
       const result = render(<Badge variant={variant}>{variant}</Badge>);
@@ -95,7 +95,7 @@ describe("button [unit]", () => {
 
     const el = result.container.firstChild;
     expect(el).toHaveClass("vesper-badge");
-    expect(el).toHaveClass("vesper-badge-primary");
+    expect(el).toHaveClass("vesper-badge-accent");
     expect(el).toHaveClass("vesper-badge-md");
     expect(el).toHaveClass("custom-class");
   });
@@ -113,7 +113,7 @@ describe("badge [snapshot]", () => {
   });
 });
 
-describe("button [a11y]", () => {
+describe("badge [a11y]", () => {
   ["light", "dark"].forEach((theme) => {
     describe(`${theme} mode`, () => {
       beforeEach(() => {
