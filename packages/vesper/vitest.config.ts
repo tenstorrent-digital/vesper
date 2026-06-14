@@ -7,7 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   resolve: {
-    dedupe: ["react"],
+    dedupe: ["react", "react-dom", "react/jsx-runtime"],
     alias: {
       "@": resolve(__dirname, "src"),
     },
