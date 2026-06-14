@@ -1,0 +1,249 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`typography [snapshot] > renders correctly when variant="copy-lg" 1`] = `
+<p
+  class="vesper-typography vesper-typography-copy-lg"
+>
+  copy-lg
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="copy-lg-bold" 1`] = `
+<p
+  class="vesper-typography vesper-typography-copy-lg-bold"
+>
+  copy-lg-bold
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="copy-md" 1`] = `
+<p
+  class="vesper-typography vesper-typography-copy-md"
+>
+  copy-md
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="copy-md-bold" 1`] = `
+<p
+  class="vesper-typography vesper-typography-copy-md-bold"
+>
+  copy-md-bold
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="copy-sm" 1`] = `
+<p
+  class="vesper-typography vesper-typography-copy-sm"
+>
+  copy-sm
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="copy-sm-bold" 1`] = `
+<p
+  class="vesper-typography vesper-typography-copy-sm-bold"
+>
+  copy-sm-bold
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="copy-xl" 1`] = `
+<p
+  class="vesper-typography vesper-typography-copy-xl"
+>
+  copy-xl
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="copy-xl-bold" 1`] = `
+<p
+  class="vesper-typography vesper-typography-copy-xl-bold"
+>
+  copy-xl-bold
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="copy-xs" 1`] = `
+<p
+  class="vesper-typography vesper-typography-copy-xs"
+>
+  copy-xs
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="copy-xs-bold" 1`] = `
+<p
+  class="vesper-typography vesper-typography-copy-xs-bold"
+>
+  copy-xs-bold
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="copy-xs-mono" 1`] = `
+<p
+  class="vesper-typography vesper-typography-copy-xs-mono"
+>
+  copy-xs-mono
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="display-lg" 1`] = `
+<p
+  class="vesper-typography vesper-typography-display-lg"
+>
+  display-lg
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="display-md" 1`] = `
+<p
+  class="vesper-typography vesper-typography-display-md"
+>
+  display-md
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="display-sm" 1`] = `
+<p
+  class="vesper-typography vesper-typography-display-sm"
+>
+  display-sm
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="heading-2xl" 1`] = `
+<p
+  class="vesper-typography vesper-typography-heading-2xl"
+>
+  heading-2xl
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="heading-lg" 1`] = `
+<p
+  class="vesper-typography vesper-typography-heading-lg"
+>
+  heading-lg
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="heading-md" 1`] = `
+<p
+  class="vesper-typography vesper-typography-heading-md"
+>
+  heading-md
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="heading-sm" 1`] = `
+<p
+  class="vesper-typography vesper-typography-heading-sm"
+>
+  heading-sm
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="heading-xl" 1`] = `
+<p
+  class="vesper-typography vesper-typography-heading-xl"
+>
+  heading-xl
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="heading-xs" 1`] = `
+<p
+  class="vesper-typography vesper-typography-heading-xs"
+>
+  heading-xs
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="label-lg" 1`] = `
+<p
+  class="vesper-typography vesper-typography-label-lg"
+>
+  label-lg
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="label-lg-bold" 1`] = `
+<p
+  class="vesper-typography vesper-typography-label-lg-bold"
+>
+  label-lg-bold
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="label-md" 1`] = `
+<p
+  class="vesper-typography vesper-typography-label-md"
+>
+  label-md
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="label-md-bold" 1`] = `
+<p
+  class="vesper-typography vesper-typography-label-md-bold"
+>
+  label-md-bold
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="label-md-mono" 1`] = `
+<p
+  class="vesper-typography vesper-typography-label-md-mono"
+>
+  label-md-mono
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="label-sm" 1`] = `
+<p
+  class="vesper-typography vesper-typography-label-sm"
+>
+  label-sm
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="label-sm-bold" 1`] = `
+<p
+  class="vesper-typography vesper-typography-label-sm-bold"
+>
+  label-sm-bold
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="label-sm-mono" 1`] = `
+<p
+  class="vesper-typography vesper-typography-label-sm-mono"
+>
+  label-sm-mono
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="label-xs" 1`] = `
+<p
+  class="vesper-typography vesper-typography-label-xs"
+>
+  label-xs
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="label-xs-bold" 1`] = `
+<p
+  class="vesper-typography vesper-typography-label-xs-bold"
+>
+  label-xs-bold
+</p>
+`;
+
+exports[`typography [snapshot] > renders correctly when variant="label-xs-mono" 1`] = `
+<p
+  class="vesper-typography vesper-typography-label-xs-mono"
+>
+  label-xs-mono
+</p>
+`;
