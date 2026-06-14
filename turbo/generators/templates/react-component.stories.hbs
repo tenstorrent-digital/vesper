@@ -5,7 +5,13 @@ import { {{ name }} } from "@/components/{{ kebabCase name }}/{{ kebabCase name 
 const meta = {
   component: {{ name }},
   parameters: { layout: "centered" },
+  {{#if element}}
+  argTypes: {
+    as: { table: { disable: true } },
+  },
+  {{else}}
   argTypes: {},
+  {{/if}}
 } satisfies Meta<typeof {{ name }}>;
 
 export default meta;
