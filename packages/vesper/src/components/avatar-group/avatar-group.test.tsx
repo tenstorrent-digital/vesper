@@ -43,7 +43,7 @@ describe("avatar-group [unit]", () => {
       />,
     );
     const el = result.container.querySelector(".vesper-avatar-group-overflow");
-    expect(el).toBeDefined();
+    expect(el).not.toBeNull();
     expect(el).toHaveTextContent("+2");
   });
 
