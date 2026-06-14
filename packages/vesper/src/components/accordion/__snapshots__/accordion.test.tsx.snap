@@ -1,0 +1,78 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`accordion [snapshot] > renders correctly when closed 1`] = `
+<div
+  class="vesper-accordion"
+  data-state="closed"
+>
+  <button
+    aria-controls="radix-_r_3_"
+    aria-expanded="false"
+    class="vesper-typography vesper-typography-label-md-bold vesper-accordion-trigger"
+    data-state="closed"
+    type="button"
+  >
+    <span>
+      This is a title
+    </span>
+    <svg
+      class="vesper-accordion-trigger-icon"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M8 19.9414L14.8291 13.1016L14.8291 10.8984L8 4.05859L9.05664 3L16.3242 10.2783L16.3242 13.7217L9.05664 21L8 19.9414Z"
+        fill="currentColor"
+      />
+    </svg>
+  </button>
+  <div
+    class="vesper-accordion-content"
+    data-state="closed"
+    hidden=""
+    id="radix-_r_3_"
+    style=""
+  />
+</div>
+`;
+
+exports[`accordion [snapshot] > renders correctly when open 1`] = `
+<div
+  class="vesper-accordion"
+  data-state="open"
+>
+  <button
+    aria-controls="radix-_r_4_"
+    aria-expanded="true"
+    class="vesper-typography vesper-typography-label-md-bold vesper-accordion-trigger"
+    data-state="open"
+    type="button"
+  >
+    <span>
+      This is a title
+    </span>
+    <svg
+      class="vesper-accordion-trigger-icon"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M8 19.9414L14.8291 13.1016L14.8291 10.8984L8 4.05859L9.05664 3L16.3242 10.2783L16.3242 13.7217L9.05664 21L8 19.9414Z"
+        fill="currentColor"
+      />
+    </svg>
+  </button>
+  <div
+    class="vesper-accordion-content"
+    data-state="open"
+    id="radix-_r_4_"
+    style="transition-duration: 0s; animation-name: none; --radix-collapsible-content-height: 66.8046875px; --radix-collapsible-content-width: 390px;"
+  >
+    <div
+      class="vesper-typography vesper-typography-copy-sm vesper-accordion-content-children"
+    >
+      If you do too much it's going to lose its effectiveness. Look around. Look at what we have. Beauty is everywhere you only have to look to see it.
+    </div>
+  </div>
+</div>
+`;
