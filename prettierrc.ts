@@ -4,13 +4,15 @@
 import type { Config } from "prettier";
 
 const config: Config = {
-  trailingComma: "all",
-  tabWidth: 2,
-  semi: true,
-  bracketSpacing: true,
   overrides: [
+    /**
+     * Prettier has an outstanding issue where it adds trailing commas to jsonc files, so we need to add this override as a workaround to this behavior.
+     *
+     * https://zed.dev/docs/languages/json
+     * https://github.com/prettier/prettier/issues/15956
+     */
     {
-      files: ["*.jsonc", "*.json"],
+      files: ["*.jsonc"],
       options: {
         parser: "json",
         trailingComma: "none",
