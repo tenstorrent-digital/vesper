@@ -26,6 +26,18 @@ describe("avatar [unit]", () => {
     expect(image).toHaveAttribute("alt", "avatar alt text");
   });
 
+  it("does not render an image when src is undefined", () => {
+    const result = render(<Avatar />);
+    const image = result.container.querySelector("img");
+    expect(image).toBeNull();
+  });
+
+  it("defaults alt to an empty string when no alt is provided", () => {
+    const result = render(<Avatar src="https://unsplash.it/300/300" />);
+    const image = result.container.querySelector("img");
+    expect(image).toHaveAttribute("alt", "");
+  });
+
   it('renders as a custom element via the "as" prop', () => {
     const result = render(<Avatar as="a" href="/link" />);
     const view = within(result.container);
