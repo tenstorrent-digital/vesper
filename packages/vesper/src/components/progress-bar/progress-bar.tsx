@@ -2,12 +2,20 @@ import type { ComponentProps } from "react";
 import { Progress, ProgressIndicator } from "@radix-ui/react-progress";
 import { cn } from "@/utils/cn";
 
+export const PROGRESS_BAR_SIZES = ["sm", "md", "lg"] as const;
+
+export const PROGRESS_BAR_VARIANTS = ["default", "steps"] as const;
+
+export type ProgressBarSize = (typeof PROGRESS_BAR_SIZES)[number];
+
+export type ProgressBarVariant = (typeof PROGRESS_BAR_VARIANTS)[number];
+
 export interface ProgressBarProps extends ComponentProps<"div"> {
   /** value from `0` to `100` */
   value: number;
-  size?: "sm" | "md" | "lg";
+  size?: ProgressBarSize;
   /** The `default` variant will render the progress bar indicator width as a true percentage representation of `value / 100`. The `steps` variant will clamp the width of the progress bar indicator to the nearest rounded tick value. */
-  variant?: "steps" | "default";
+  variant?: ProgressBarVariant;
   /** The number of segments to split up the progress bar into when variant is `steps`. Must be an integer greater than `0`. */
   steps?: number;
   /** Determines how to clamp the width of the progress bar to the nearest tick value. Defaults to `Math.round` */
