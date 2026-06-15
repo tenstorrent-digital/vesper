@@ -7,7 +7,7 @@ exports[`split-button [snapshot] > renders correctly when size="lg", variant="co
     aria-haspopup="menu"
     class="vesper-split-button"
     data-state="closed"
-    id="radix-_r_1n_"
+    id="radix-_r_1p_"
     type="button"
   >
     <button
@@ -55,7 +55,7 @@ exports[`split-button [snapshot] > renders correctly when size="lg", variant="co
     aria-haspopup="menu"
     class="vesper-split-button"
     data-state="closed"
-    id="radix-_r_1p_"
+    id="radix-_r_1r_"
     type="button"
   >
     <button
@@ -105,7 +105,7 @@ exports[`split-button [snapshot] > renders correctly when size="lg", variant="su
     aria-haspopup="menu"
     class="vesper-split-button"
     data-state="closed"
-    id="radix-_r_1b_"
+    id="radix-_r_1d_"
     type="button"
   >
     <button
@@ -153,7 +153,7 @@ exports[`split-button [snapshot] > renders correctly when size="lg", variant="su
     aria-haspopup="menu"
     class="vesper-split-button"
     data-state="closed"
-    id="radix-_r_1d_"
+    id="radix-_r_1f_"
     type="button"
   >
     <button
@@ -203,7 +203,7 @@ exports[`split-button [snapshot] > renders correctly when size="md", variant="co
     aria-haspopup="menu"
     class="vesper-split-button"
     data-state="closed"
-    id="radix-_r_1r_"
+    id="radix-_r_1t_"
     type="button"
   >
     <button
@@ -251,7 +251,7 @@ exports[`split-button [snapshot] > renders correctly when size="md", variant="co
     aria-haspopup="menu"
     class="vesper-split-button"
     data-state="closed"
-    id="radix-_r_1t_"
+    id="radix-_r_1v_"
     type="button"
   >
     <button
@@ -301,7 +301,7 @@ exports[`split-button [snapshot] > renders correctly when size="md", variant="su
     aria-haspopup="menu"
     class="vesper-split-button"
     data-state="closed"
-    id="radix-_r_1f_"
+    id="radix-_r_1h_"
     type="button"
   >
     <button
@@ -349,7 +349,7 @@ exports[`split-button [snapshot] > renders correctly when size="md", variant="su
     aria-haspopup="menu"
     class="vesper-split-button"
     data-state="closed"
-    id="radix-_r_1h_"
+    id="radix-_r_1j_"
     type="button"
   >
     <button
@@ -399,7 +399,7 @@ exports[`split-button [snapshot] > renders correctly when size="sm", variant="co
     aria-haspopup="menu"
     class="vesper-split-button"
     data-state="closed"
-    id="radix-_r_1v_"
+    id="radix-_r_21_"
     type="button"
   >
     <button
@@ -447,7 +447,7 @@ exports[`split-button [snapshot] > renders correctly when size="sm", variant="co
     aria-haspopup="menu"
     class="vesper-split-button"
     data-state="closed"
-    id="radix-_r_21_"
+    id="radix-_r_23_"
     type="button"
   >
     <button
@@ -497,7 +497,7 @@ exports[`split-button [snapshot] > renders correctly when size="sm", variant="su
     aria-haspopup="menu"
     class="vesper-split-button"
     data-state="closed"
-    id="radix-_r_1j_"
+    id="radix-_r_1l_"
     type="button"
   >
     <button
@@ -545,7 +545,7 @@ exports[`split-button [snapshot] > renders correctly when size="sm", variant="su
     aria-haspopup="menu"
     class="vesper-split-button"
     data-state="closed"
-    id="radix-_r_1l_"
+    id="radix-_r_1n_"
     type="button"
   >
     <button

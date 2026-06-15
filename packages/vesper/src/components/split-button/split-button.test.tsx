@@ -174,6 +174,17 @@ describe("split-button [unit]", () => {
     );
   });
 
+  it("applies menuButtonAriaLabel to the menu trigger button", () => {
+    const result = render(
+      <SplitButton menuItems={MENU_ITEMS} menuButtonAriaLabel="Open options">
+        button text
+      </SplitButton>,
+    );
+
+    const [, menuButton] = within(result.container).getAllByRole("button");
+    expect(menuButton).toHaveAttribute("aria-label", "Open options");
+  });
+
   it("sets a custom menu width when provided", async () => {
     render(
       <SplitButton menuItems={MENU_ITEMS} menuWidth={300} defaultMenuOpen>
