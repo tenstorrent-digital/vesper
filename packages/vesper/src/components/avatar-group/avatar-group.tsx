@@ -8,7 +8,8 @@ export type AvatarGroupProps<E extends ElementType = "div"> = Polymorphic<
     size?: AvatarSize;
     avatars: { src: string | undefined; alt?: string }[];
   },
-  E
+  E,
+  "children"
 >;
 
 export function AvatarGroup<E extends ElementType = "div">(
