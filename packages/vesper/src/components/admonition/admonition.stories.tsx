@@ -21,6 +21,7 @@ export const Playground: Story = {
     size: "sm",
     variant: "info",
     subtle: false,
+    // eslint-disable-next-line
     cta: false as any,
     children: "This is a line of copy that explains something",
   },

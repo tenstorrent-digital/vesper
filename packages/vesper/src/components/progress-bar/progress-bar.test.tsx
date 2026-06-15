@@ -1,4 +1,4 @@
-import { render, within, cleanup } from "@testing-library/react";
+import { render, cleanup } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import axe from "axe-core";
 
@@ -8,7 +8,6 @@ import {
   PROGRESS_BAR_VARIANTS,
   type ProgressBarProps,
 } from "@/components/progress-bar/progress-bar";
-import { AvatarGroup } from "@/components/avatar-group/avatar-group";
 
 import "@/styles/styles.css";
 
