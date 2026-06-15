@@ -30,6 +30,14 @@ describe("progress-bar [unit]", () => {
     });
   });
 
+  it("applies the animated class when animated prop is set to true", () => {
+    const result = render(<ProgressBar value={23} animated />);
+
+    expect(result.container.firstChild).toHaveClass(
+      "vesper-progress-bar-animated",
+    );
+  });
+
   it("passes additional props through to the element", () => {
     const result = render(<ProgressBar value={23} aria-label="custom label" />);
 
