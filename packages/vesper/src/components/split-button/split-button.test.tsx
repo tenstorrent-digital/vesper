@@ -116,17 +116,17 @@ describe("split-button [unit]", () => {
     );
 
     const [, menuButton] = within(result.container).getAllByRole("button");
-    menuButton?.click();
+    fireEvent.pointerDown(menuButton!);
     expect(document.querySelector(".vesper-menu")).toBeNull();
   });
 
-  it("opens the menu when the menu button is clicked in a closed state", async () => {
+  it("opens the menu when the menu button is clicked in a closed state", () => {
     const result = render(
       <SplitButton menuItems={MENU_ITEMS}>button text</SplitButton>,
     );
 
     const [, menuButton] = within(result.container).getAllByRole("button");
-    await userEvent.click(menuButton!);
+    fireEvent.pointerDown(menuButton!);
     expect(document.querySelector(".vesper-menu")).not.toBeNull();
   });
 
