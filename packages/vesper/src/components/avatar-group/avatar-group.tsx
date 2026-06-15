@@ -26,7 +26,7 @@ export function AvatarGroup<E extends ElementType = "div">(
         <div
           className={`vesper-avatar-group-overflow vesper-avatar vesper-avatar-${size}`}
         >
-          {`+${avatars.length - 3}`}
+          {avatars.length <= 100 ? `+${avatars.length - 3}` : "99+"}
         </div>
       )}
     </Component>

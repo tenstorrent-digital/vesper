@@ -30,6 +30,19 @@ describe("avatar-group [unit]", () => {
     });
   });
 
+  it("does not render an overflow placeholder when there are 3 or fewer avatars", () => {
+    const result = render(
+      <AvatarGroup
+        avatars={[
+          { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
+          { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
+        ]}
+      />,
+    );
+    const el = result.container.querySelector(".vesper-avatar-group-overflow");
+    expect(el).toBeNull();
+  });
+
   it("renders an overflow placeholder when there are more than 3 avatars", () => {
     const result = render(
       <AvatarGroup
@@ -45,6 +58,19 @@ describe("avatar-group [unit]", () => {
     const el = result.container.querySelector(".vesper-avatar-group-overflow");
     expect(el).not.toBeNull();
     expect(el).toHaveTextContent("+2");
+  });
+
+  it('shows "99+" in the overflow placeholder when there are more than 100 avatars', () => {
+    const result = render(
+      <AvatarGroup
+        avatars={Array.from<{ src: string }>({ length: 101 }).fill({
+          src: "https://unsplash.it/200/200",
+        })}
+      />,
+    );
+    const el = result.container.querySelector(".vesper-avatar-group-overflow");
+    expect(el).not.toBeNull();
+    expect(el).toHaveTextContent("99+");
   });
 
   it('renders as a custom element via the "as" prop', () => {
