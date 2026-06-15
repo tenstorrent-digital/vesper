@@ -43,5 +43,5 @@ export type Polymorphic<
   as?: E;
 } & Omit<
     ComponentProps<E>,
-    O extends never ? keyof P | "as" : keyof P | "as" | O
+    [O] extends [never] ? keyof P | "as" : keyof P | "as" | O
   >;
