@@ -39,6 +39,7 @@ export interface SplitButtonProps extends ComponentProps<"div"> {
   menuAlignOffset?: MenuProps["alignOffset"];
   menuOpen?: MenuProps["open"];
   onMenuOpenChange?: MenuProps["onOpenChange"];
+  menuDefaultOpen?: MenuProps["defaultOpen"];
   disabled?: boolean;
 }
 
@@ -59,6 +60,7 @@ export function SplitButton({
   disabled,
   menuButtonAriaLabel,
   onPointerDown,
+  menuDefaultOpen,
   ...props
 }: SplitButtonProps) {
   const actionButtonRef = useRef<HTMLButtonElement>(null);
@@ -92,6 +94,7 @@ export function SplitButton({
       onOpenChange={handleOpenMenuChange}
       sideOffset={menuSideOffset}
       width={menuWidth}
+      defaultOpen={menuDefaultOpen}
     >
       <div
         className={cn("vesper-split-button", className)}
