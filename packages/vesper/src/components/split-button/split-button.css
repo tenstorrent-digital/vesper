@@ -1,6 +1,7 @@
 .vesper-split-button {
   display: inline-flex;
   .vesper-button:first-child {
+    width: 100%;
     position: relative;
     border-width: 1px;
     border-style: solid;
