@@ -1,0 +1,7 @@
+@import "./styles.css";
+
+*,
+*::before,
+*::after {
+  animation-duration: 0 !important;
+}

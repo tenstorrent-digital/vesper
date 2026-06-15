@@ -7,13 +7,13 @@ import {
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import axe from "axe-core";
+import { userEvent } from "vitest/browser";
 
 import { Menu, type MenuItemProps } from "@/components/menu/menu";
 import { Blackhole, Globe, Tenstorrent } from "@/components/icons/icons";
 import { TextButton } from "@/components/text-button/text-button";
 
-import "@/styles/styles.css";
-import { userEvent } from "vitest/browser";
+import "@/styles/test.css";
 
 const MENU_ITEMS: MenuItemProps[] = [
   {

@@ -9,7 +9,7 @@ import {
   type AdmonitionProps,
 } from "@/components/admonition/admonition";
 
-import "@/styles/styles.css";
+import "@/styles/test.css";
 
 const ADMONITION_PERMUTATIONS = ADMONITION_VARIANTS.flatMap((variant) =>
   ADMONITION_SIZES.flatMap((size): AdmonitionProps[] => [

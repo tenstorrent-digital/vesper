@@ -10,7 +10,7 @@ import {
 } from "@/components/text-button/text-button";
 import { Tenstorrent } from "@/components/icons/icons";
 
-import "@/styles/styles.css";
+import "@/styles/test.css";
 
 const TEXT_BUTTON_PERMUTATIONS: TextButtonProps[] =
   TEXT_BUTTON_VARIANTS.flatMap((variant) =>

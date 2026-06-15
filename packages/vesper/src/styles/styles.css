@@ -21,3 +21,12 @@
 @import "../components/text-button/text-button.css";
 @import "../components/button/button.css";
 @import "../components/menu/menu.css";
+
+/* reduced-motion */
+@media (prefers-reduced-motion) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0 !important;
+  }
+}

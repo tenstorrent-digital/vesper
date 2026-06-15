@@ -4,7 +4,7 @@ import axe from "axe-core";
 
 import { Accordion } from "@/components/accordion/accordion";
 
-import "@/styles/styles.css";
+import "@/styles/test.css";
 
 const TITLE = "This is a title";
 const CHILDREN =

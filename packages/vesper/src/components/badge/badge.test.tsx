@@ -10,7 +10,7 @@ import {
 } from "@/components/badge/badge";
 import { Tenstorrent } from "@/components/icons/icons";
 
-import "@/styles/styles.css";
+import "@/styles/test.css";
 
 const BADGE_PERMUTATIONS = BADGE_VARIANTS.flatMap((variant) =>
   BADGE_SIZES.flatMap((size): BadgeProps[] => [

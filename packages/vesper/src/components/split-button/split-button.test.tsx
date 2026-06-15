@@ -18,7 +18,7 @@ import {
 import { MenuItemProps } from "@/components/menu/menu";
 import { Blackhole, Globe, Tenstorrent } from "@/components/icons/icons";
 
-import "@/styles/styles.css";
+import "@/styles/test.css";
 
 const MENU_ITEMS: MenuItemProps[] = [
   {

@@ -90,13 +90,13 @@ It orchestrates a few smaller scripts:
 
 - `yarn build:tsc`
 - `yarn build:alias`
-- `yarn build:side-effects`
+- `yarn build:css`
 
 Those steps perform the following work in order:
 
 1. `yarn build:tsc` compiles source files to ESM plus declarations
 2. `yarn build:alias` rewrites emitted import specifiers to relative ESM-compatible paths with `.js` extensions
-3. `yarn build:side-effects` copies every side-effectful file file under `src/` into the matching location under `dist/`
+3. `yarn build:css` copies every side-effectful file file under `src/` into the matching location under `dist/`
 
 The result is a `dist/` directory that matches the package's export map and is ready for local consumption or publishing.
 

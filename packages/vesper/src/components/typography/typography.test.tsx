@@ -7,7 +7,7 @@ import {
   TYPOGRAPHY_VARIANTS,
 } from "@/components/typography/typography";
 
-import "@/styles/styles.css";
+import "@/styles/test.css";
 
 afterEach(cleanup);
 

@@ -5,7 +5,7 @@ import axe from "axe-core";
 import { AVATAR_SIZES } from "@/components/avatar/avatar";
 import { AvatarGroup } from "@/components/avatar-group/avatar-group";
 
-import "@/styles/styles.css";
+import "@/styles/test.css";
 
 afterEach(cleanup);
 
