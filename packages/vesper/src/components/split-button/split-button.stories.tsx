@@ -7,10 +7,11 @@ const meta = {
   component: SplitButton,
   parameters: { layout: "centered" },
   argTypes: {
-    onClick: { table: { disable: true } },
+    onClickActionButton: { table: { disable: true } },
     menuButtonAriaLabel: { table: { disable: true } },
     className: { table: { disable: true } },
     menuOpen: { table: { disable: true } },
+    defaultMenuOpen: { table: { disable: true } },
     onMenuOpenChange: { table: { disable: true } },
   },
 } satisfies Meta<typeof SplitButton>;
