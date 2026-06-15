@@ -5,11 +5,14 @@ on:
     branches: [main]
     paths:
       - "packages/vesper/**"
+      - "packages/typescript-config/**"
+      - "packages/eslint-config/**"
   push:
     branches: [main]
     paths:
       - "packages/vesper/**"
       - "packages/typescript-config/**"
+      - "packages/eslint-config/**"
 
   # Empty `workflow_dispatch` allows this workflow to be run manually from the Actions tab:
   workflow_dispatch:
