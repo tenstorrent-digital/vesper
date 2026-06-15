@@ -38,6 +38,43 @@ describe("progress-bar [unit]", () => {
     );
   });
 
+  it('renders indicator element with percentage width that matches the given value prop when variant is "default"', () => {
+    const result = render(<ProgressBar value={23} variant="default" />);
+
+    const indicator = result.container.querySelector(
+      ".vesper-progress-bar-indicator",
+    ) as HTMLElement;
+
+    expect(indicator.style.width).toBe("23%");
+  });
+
+  it('renders indicator element with percentage width that matches the nearest tick value when variant is "steps"', () => {
+    const result = render(
+      <ProgressBar
+        value={23}
+        steps={10}
+        variant="steps"
+        stepRoundingStrategy={Math.round}
+      />,
+    );
+
+    const indicator = result.container.querySelector(
+      ".vesper-progress-bar-indicator",
+    ) as HTMLElement;
+
+    expect(indicator.style.width).toBe("20%");
+  });
+
+  it('renders indicator ticks when variant is "steps" and there is at least 2 steps', () => {
+    const result = render(
+      <ProgressBar value={23} steps={10} variant="steps" />,
+    );
+
+    expect(
+      result.container.querySelectorAll(".vesper-progress-bar-tick"),
+    ).toHaveLength(9);
+  });
+
   it("passes additional props through to the element", () => {
     const result = render(<ProgressBar value={23} aria-label="custom label" />);
 
