@@ -140,6 +140,31 @@ describe("avatar-group [snapshot]", () => {
       expect(result.container.firstChild).toMatchSnapshot();
     });
   });
+
+  it(`renders correctly when there are 3 or fewer avatars`, () => {
+    const result = render(
+      <AvatarGroup
+        avatars={[
+          { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
+          { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
+        ]}
+      />,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  it(`renders correctly when there are more than 100 avatars`, () => {
+    const result = render(
+      <AvatarGroup
+        avatars={Array.from<{ src: string }>({ length: 101 }).fill({
+          src: "https://unsplash.it/200/200",
+        })}
+      />,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
 });
 
 describe("avatar-group [a11y]", () => {

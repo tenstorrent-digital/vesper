@@ -116,3 +116,67 @@ exports[`avatar-group [snapshot] > renders correctly when size="sm" 1`] = `
   </div>
 </div>
 `;
+
+exports[`avatar-group [snapshot] > renders correctly when there are 3 or fewer avatars 1`] = `
+<div
+  class="vesper-avatar-group"
+>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt="avatar alt text"
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt="avatar alt text"
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+</div>
+`;
+
+exports[`avatar-group [snapshot] > renders correctly when there are more than 100 avatars 1`] = `
+<div
+  class="vesper-avatar-group"
+>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt=""
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt=""
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt=""
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar-group-overflow vesper-avatar vesper-avatar-undefined"
+  >
+    99+
+  </div>
+</div>
+`;
