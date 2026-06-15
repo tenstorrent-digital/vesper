@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`badge [snapshot] > renders correctly when variant="danger", size="md", subtle={false} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="danger", size="md", subtle={false} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-md vesper-admonition-danger"
 >
@@ -31,7 +31,7 @@ exports[`badge [snapshot] > renders correctly when variant="danger", size="md", 
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="danger", size="md", subtle={true} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="danger", size="md", subtle={true} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-md vesper-admonition-danger vesper-admonition-subtle"
 >
@@ -62,7 +62,7 @@ exports[`badge [snapshot] > renders correctly when variant="danger", size="md", 
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="danger", size="sm", subtle={false} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="danger", size="sm", subtle={false} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-sm vesper-admonition-danger"
 >
@@ -93,7 +93,7 @@ exports[`badge [snapshot] > renders correctly when variant="danger", size="sm", 
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="danger", size="sm", subtle={true} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="danger", size="sm", subtle={true} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-sm vesper-admonition-danger vesper-admonition-subtle"
 >
@@ -124,7 +124,7 @@ exports[`badge [snapshot] > renders correctly when variant="danger", size="sm", 
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="info", size="md", subtle={false} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="info", size="md", subtle={false} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-md vesper-admonition-info"
 >
@@ -155,7 +155,7 @@ exports[`badge [snapshot] > renders correctly when variant="info", size="md", su
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="info", size="md", subtle={true} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="info", size="md", subtle={true} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-md vesper-admonition-info vesper-admonition-subtle"
 >
@@ -186,7 +186,7 @@ exports[`badge [snapshot] > renders correctly when variant="info", size="md", su
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="info", size="sm", subtle={false} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="info", size="sm", subtle={false} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-sm vesper-admonition-info"
 >
@@ -217,7 +217,7 @@ exports[`badge [snapshot] > renders correctly when variant="info", size="sm", su
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="info", size="sm", subtle={true} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="info", size="sm", subtle={true} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-sm vesper-admonition-info vesper-admonition-subtle"
 >
@@ -248,7 +248,7 @@ exports[`badge [snapshot] > renders correctly when variant="info", size="sm", su
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="secondary", size="md", subtle={false} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="secondary", size="md", subtle={false} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-md vesper-admonition-secondary"
 >
@@ -285,7 +285,7 @@ exports[`badge [snapshot] > renders correctly when variant="secondary", size="md
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="secondary", size="md", subtle={true} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="secondary", size="md", subtle={true} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-md vesper-admonition-secondary vesper-admonition-subtle"
 >
@@ -322,7 +322,7 @@ exports[`badge [snapshot] > renders correctly when variant="secondary", size="md
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="secondary", size="sm", subtle={false} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="secondary", size="sm", subtle={false} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-sm vesper-admonition-secondary"
 >
@@ -359,7 +359,7 @@ exports[`badge [snapshot] > renders correctly when variant="secondary", size="sm
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="secondary", size="sm", subtle={true} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="secondary", size="sm", subtle={true} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-sm vesper-admonition-secondary vesper-admonition-subtle"
 >
@@ -396,7 +396,7 @@ exports[`badge [snapshot] > renders correctly when variant="secondary", size="sm
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="success", size="md", subtle={false} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="success", size="md", subtle={false} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-md vesper-admonition-success"
 >
@@ -425,7 +425,7 @@ exports[`badge [snapshot] > renders correctly when variant="success", size="md",
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="success", size="md", subtle={true} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="success", size="md", subtle={true} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-md vesper-admonition-success vesper-admonition-subtle"
 >
@@ -454,7 +454,7 @@ exports[`badge [snapshot] > renders correctly when variant="success", size="md",
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="success", size="sm", subtle={false} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="success", size="sm", subtle={false} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-sm vesper-admonition-success"
 >
@@ -483,7 +483,7 @@ exports[`badge [snapshot] > renders correctly when variant="success", size="sm",
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="success", size="sm", subtle={true} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="success", size="sm", subtle={true} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-sm vesper-admonition-success vesper-admonition-subtle"
 >
@@ -512,7 +512,7 @@ exports[`badge [snapshot] > renders correctly when variant="success", size="sm",
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="warning", size="md", subtle={false} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="warning", size="md", subtle={false} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-md vesper-admonition-warning"
 >
@@ -543,7 +543,7 @@ exports[`badge [snapshot] > renders correctly when variant="warning", size="md",
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="warning", size="md", subtle={true} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="warning", size="md", subtle={true} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-md vesper-admonition-warning vesper-admonition-subtle"
 >
@@ -574,7 +574,7 @@ exports[`badge [snapshot] > renders correctly when variant="warning", size="md",
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="warning", size="sm", subtle={false} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="warning", size="sm", subtle={false} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-sm vesper-admonition-warning"
 >
@@ -605,7 +605,7 @@ exports[`badge [snapshot] > renders correctly when variant="warning", size="sm",
 </div>
 `;
 
-exports[`badge [snapshot] > renders correctly when variant="warning", size="sm", subtle={true} 1`] = `
+exports[`admonition [snapshot] > renders correctly when variant="warning", size="sm", subtle={true} 1`] = `
 <div
   class="vesper-admonition vesper-admonition-sm vesper-admonition-warning vesper-admonition-subtle"
 >

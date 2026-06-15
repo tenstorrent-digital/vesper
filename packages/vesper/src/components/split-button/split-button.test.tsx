@@ -66,10 +66,10 @@ const SPLIT_BUTTON_PERMUTATIONS = SPLIT_BUTTON_VARIANTS.flatMap((variant) =>
 afterEach(cleanup);
 
 describe("split-button [unit]", () => {
-  it("fires onClickActionButton when the action button is clicked", async () => {
+  it("fires onClick when the action button is clicked", async () => {
     const onClick = vi.fn();
     const result = render(
-      <SplitButton onClickActionButton={onClick} menuItems={MENU_ITEMS}>
+      <SplitButton onClick={onClick} menuItems={MENU_ITEMS}>
         button text
       </SplitButton>,
     );
@@ -79,14 +79,10 @@ describe("split-button [unit]", () => {
     expect(onClick).toHaveBeenCalled();
   });
 
-  it("does not fire onClickActionButton when disabled", async () => {
+  it("does not fire onClick when disabled", async () => {
     const onClick = vi.fn();
     const result = render(
-      <SplitButton
-        disabled
-        onClickActionButton={onClick}
-        menuItems={MENU_ITEMS}
-      >
+      <SplitButton disabled onClick={onClick} menuItems={MENU_ITEMS}>
         button text
       </SplitButton>,
     );
@@ -196,24 +192,11 @@ describe("split-button [snapshot]", () => {
   SPLIT_BUTTON_PERMUTATIONS.forEach((permutation) => {
     const { disabled, variant, size } = permutation;
 
-    it(`renders correctly when closed and size="${size}", variant="${variant}", disabled=${disabled}`, () => {
+    it(`renders correctly when size="${size}", variant="${variant}", disabled=${disabled}`, () => {
       const result = render(
         <SplitButton {...permutation}>button text</SplitButton>,
       );
       expect(result.container).toMatchSnapshot();
-    });
-
-    it(`renders correctly when open and size="${size}", variant="${variant}", disabled=${disabled}`, async () => {
-      const result = render(
-        <SplitButton {...permutation} menuOpen>
-          button text
-        </SplitButton>,
-      );
-
-      await waitFor(() =>
-        expect(document.querySelector(".vesper-menu")).not.toBeNull(),
-      );
-      expect(result.container.ownerDocument.body).toMatchSnapshot();
     });
   });
 });

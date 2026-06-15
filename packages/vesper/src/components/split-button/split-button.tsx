@@ -24,11 +24,14 @@ export type SplitButtonSize = (typeof SPLIT_BUTTON_SIZES)[number];
 
 export type SplitButtonVariant = (typeof SPLIT_BUTTON_VARIANTS)[number];
 
-export interface SplitButtonProps extends ComponentProps<"div"> {
+export interface SplitButtonProps extends Omit<
+  ComponentProps<"div">,
+  "onClick"
+> {
   size?: SplitButtonSize;
   variant?: SplitButtonVariant;
   menuItems: MenuItemProps[];
-  onClickActionButton?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   menuButtonAriaLabel?: string;
   children?: ReactNode;
   className?: string;
@@ -48,7 +51,7 @@ export function SplitButton({
   variant = "contrast",
   children,
   className,
-  onClickActionButton,
+  onClick,
   menuItems = [],
   menuAlign = "start",
   menuAlignOffset,
@@ -103,7 +106,7 @@ export function SplitButton({
       >
         <Button
           ref={actionButtonRef}
-          onClick={onClickActionButton}
+          onClick={onClick}
           onKeyDown={(e) => e.stopPropagation()}
           size={size}
           variant={variant}
