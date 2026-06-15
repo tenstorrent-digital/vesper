@@ -20,7 +20,7 @@ const ADMONITION_PERMUTATIONS = ADMONITION_VARIANTS.flatMap((variant) =>
 
 afterEach(cleanup);
 
-describe("button [unit]", () => {
+describe("admonition [unit]", () => {
   ADMONITION_VARIANTS.forEach((variant) => {
     it(`applies the correct variant class when variant is set to "${variant}"`, () => {
       const result = render(
@@ -91,7 +91,7 @@ describe("button [unit]", () => {
   });
 });
 
-describe("badge [snapshot]", () => {
+describe("admonition [snapshot]", () => {
   ADMONITION_PERMUTATIONS.forEach((permutation) => {
     const { size, variant, subtle } = permutation;
 
@@ -103,7 +103,7 @@ describe("badge [snapshot]", () => {
   });
 });
 
-describe("button [a11y]", () => {
+describe("admonition [a11y]", () => {
   ["light", "dark"].forEach((theme) => {
     describe(`${theme} mode`, () => {
       beforeEach(() => {
