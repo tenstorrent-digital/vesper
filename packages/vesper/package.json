@@ -78,6 +78,7 @@
     "build:alias": "tsc-alias -p tsconfig.build.json --resolve-full-paths --resolve-full-extension .js",
     "build:side-effects": "tsx scripts/copy-side-effects.ts",
     "build": "rm -rf dist && yarn build:tsc && yarn build:alias && yarn build:side-effects",
+    "prebuild": "yarn lint",
     "watch:tsc": "tsc -p tsconfig.build.json --watch --preserveWatchOutput",
     "watch:alias": "tsc-alias -p tsconfig.build.json -w --resolve-full-paths --resolve-full-extension .js",
     "watch:side-effects": "tsx scripts/watch-side-effects.ts",
