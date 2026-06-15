@@ -25,8 +25,8 @@ export type SplitButtonSize = (typeof SPLIT_BUTTON_SIZES)[number];
 export type SplitButtonVariant = (typeof SPLIT_BUTTON_VARIANTS)[number];
 
 export interface SplitButtonProps extends ComponentProps<"div"> {
-  size: SplitButtonSize;
-  variant: SplitButtonVariant;
+  size?: SplitButtonSize;
+  variant?: SplitButtonVariant;
   menuItems: MenuItemProps[];
   onClickActionButton?: MouseEventHandler<HTMLButtonElement>;
   menuButtonAriaLabel?: string;
@@ -43,8 +43,8 @@ export interface SplitButtonProps extends ComponentProps<"div"> {
 }
 
 export function SplitButton({
-  size,
-  variant,
+  size = "lg",
+  variant = "contrast",
   children,
   className,
   onClickActionButton,
