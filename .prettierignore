@@ -1,0 +1,8 @@
+# note: .prettierignore also ignores everything in .gitignore by default
+
+# ignore agentic tools
+.agents/**
+.pi/**
+
+# ignore turbo generator templates
+turbo/generators/**/*.hbs

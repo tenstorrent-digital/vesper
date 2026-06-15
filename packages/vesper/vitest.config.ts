@@ -20,5 +20,7 @@ export default defineConfig({
     include: ["src/**/*.test.{ts,tsx}"],
     exclude: ["dist/**", "node_modules/**"],
     setupFiles: ["./vitest.setup.ts"],
+    reporters: ["default", "html"],
+    outputFile: "test-results/index.html",
   },
 });

@@ -1,0 +1,53 @@
+name: Vesper Tests
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "packages/vesper/**"
+      - "packages/typescript-config/**"
+      - "packages/eslint-config/**"
+  push:
+    branches: [main]
+    paths:
+      - "packages/vesper/**"
+      - "packages/typescript-config/**"
+      - "packages/eslint-config/**"
+
+  # Empty `workflow_dispatch` allows this workflow to be run manually from the Actions tab:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          cache: "yarn"
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Install Playwright Browsers
+        run: yarn playwright install --with-deps chromium
+
+      - name: Run Tests
+        run: yarn test:vesper
+
+      - name: Upload Artifacts
+        if: ${{ !cancelled() && failure() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: test-results
+          path: packages/vesper/test-results/
+          retention-days: 7
