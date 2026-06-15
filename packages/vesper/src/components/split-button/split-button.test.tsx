@@ -98,9 +98,7 @@ describe("split-button [unit]", () => {
 
   it("does not open the menu when action button is clicked", async () => {
     const result = render(
-      <SplitButton disabled menuItems={MENU_ITEMS}>
-        button text
-      </SplitButton>,
+      <SplitButton menuItems={MENU_ITEMS}>button text</SplitButton>,
     );
 
     const [actionButton] = within(result.container).getAllByRole("button");
