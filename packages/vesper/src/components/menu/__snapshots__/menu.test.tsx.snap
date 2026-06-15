@@ -4,7 +4,7 @@ exports[`menu [snapshot] > renders correctly when closed 1`] = `null`;
 
 exports[`menu [snapshot] > renders correctly when open 1`] = `
 <div
-  aria-labelledby="radix-_r_15_"
+  aria-labelledby="radix-_r_1t_"
   aria-orientation="vertical"
   class="vesper-menu"
   data-align="start"
@@ -13,7 +13,7 @@ exports[`menu [snapshot] > renders correctly when open 1`] = `
   data-side="bottom"
   data-state="open"
   dir="ltr"
-  id="radix-_r_16_"
+  id="radix-_r_1u_"
   role="menu"
   style="outline: none; width: 200px; --radix-dropdown-menu-content-transform-origin: var(--radix-popper-transform-origin); --radix-dropdown-menu-content-available-width: var(--radix-popper-available-width); --radix-dropdown-menu-content-available-height: var(--radix-popper-available-height); --radix-dropdown-menu-trigger-width: var(--radix-popper-anchor-width); --radix-dropdown-menu-trigger-height: var(--radix-popper-anchor-height); pointer-events: auto;"
   tabindex="-1"

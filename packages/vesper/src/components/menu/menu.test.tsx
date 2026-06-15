@@ -5,7 +5,7 @@ import {
   waitFor,
   fireEvent,
 } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import axe from "axe-core";
 
 import { Menu, type MenuItemProps } from "@/components/menu/menu";
@@ -127,6 +127,86 @@ describe("menu [unit]", () => {
     );
     expect(document.querySelector(".vesper-menu")).toHaveStyle("width: 300px;");
   });
+
+  it("fires onSelect when a menu item is clicked", async () => {
+    const onSelect = vi.fn();
+    const items: MenuItemProps[] = [
+      { text: "Item", style: "default", onSelect },
+    ];
+
+    render(
+      <Menu items={items} defaultOpen>
+        <TextButton>trigger</TextButton>
+      </Menu>,
+    );
+
+    await waitFor(() =>
+      expect(document.querySelector(".vesper-menu-item")).not.toBeNull(),
+    );
+    await userEvent.click(document.querySelector(".vesper-menu-item")!);
+    expect(onSelect).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not fire onSelect when a disabled item is clicked", async () => {
+    const onSelect = vi.fn();
+    const items: MenuItemProps[] = [
+      { text: "Disabled Item", style: "disabled", onSelect },
+    ];
+
+    render(
+      <Menu items={items} defaultOpen>
+        <TextButton>trigger</TextButton>
+      </Menu>,
+    );
+
+    await waitFor(() =>
+      expect(document.querySelector(".vesper-menu-item")).not.toBeNull(),
+    );
+    (document.querySelector(".vesper-menu-item") as HTMLElement).click();
+    expect(onSelect).not.toHaveBeenCalled();
+    expect(document.querySelector(".vesper-menu")).not.toBeNull();
+  });
+
+  it("does not fire onSelect when a locked item is clicked", async () => {
+    const onSelect = vi.fn();
+    const items: MenuItemProps[] = [
+      { text: "Locked Item", style: "locked", onSelect },
+    ];
+
+    render(
+      <Menu items={items} defaultOpen>
+        <TextButton>trigger</TextButton>
+      </Menu>,
+    );
+
+    await waitFor(() =>
+      expect(document.querySelector(".vesper-menu-item")).not.toBeNull(),
+    );
+    (document.querySelector(".vesper-menu-item") as HTMLElement).click();
+    expect(onSelect).not.toHaveBeenCalled();
+    expect(document.querySelector(".vesper-menu")).not.toBeNull();
+  });
+
+  (["default", "danger", "locked", "selected", "disabled"] as const).forEach(
+    (style) => {
+      it(`applies the correct class for item style "${style}"`, async () => {
+        const items: MenuItemProps[] = [{ text: "Item", style, onSelect() {} }];
+
+        render(
+          <Menu items={items} defaultOpen>
+            <TextButton>trigger</TextButton>
+          </Menu>,
+        );
+
+        await waitFor(() =>
+          expect(document.querySelector(".vesper-menu-item")).not.toBeNull(),
+        );
+        expect(document.querySelector(".vesper-menu-item")).toHaveClass(
+          `vesper-menu-item-${style}`,
+        );
+      });
+    },
+  );
 });
 
 describe("menu [snapshot]", () => {
