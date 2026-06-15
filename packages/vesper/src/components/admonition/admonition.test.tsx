@@ -89,6 +89,25 @@ describe("admonition [unit]", () => {
     expect(el).toHaveClass("vesper-admonition");
     expect(el).toHaveClass("custom-class");
   });
+
+  it("renders children text content in the DOM", () => {
+    const result = render(<Admonition>Hello world</Admonition>);
+
+    expect(result.container).toHaveTextContent("Hello world");
+  });
+
+  it("renders cta as a custom element via the ctaAs prop", () => {
+    const result = render(
+      <Admonition ctaAs="a" cta={{ children: "Go", href: "/link" }}>
+        With CTA Link
+      </Admonition>,
+    );
+
+    const link = within(result.container).getByRole("link");
+    expect(link.tagName).toBe("A");
+    expect(link).toHaveAttribute("href", "/link");
+    expect(link).toHaveTextContent("Go");
+  });
 });
 
 describe("admonition [snapshot]", () => {
