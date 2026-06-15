@@ -66,12 +66,14 @@ exports[`accordion [snapshot] > renders correctly when open 1`] = `
     class="vesper-accordion-content"
     data-state="open"
     id="radix-_r_4_"
-    style="transition-duration: 0s; animation-name: none; --radix-collapsible-content-height: 66.8046875px; --radix-collapsible-content-width: 390px;"
+    style="transition-duration: 0s; animation-name: none; --radix-collapsible-content-height: 208px; --radix-collapsible-content-width: 390px;"
   >
     <div
       class="vesper-typography vesper-typography-copy-sm vesper-accordion-content-children"
     >
-      If you do too much it's going to lose its effectiveness. Look around. Look at what we have. Beauty is everywhere you only have to look to see it.
+      <div
+        style="height: 200px;"
+      />
     </div>
   </div>
 </div>

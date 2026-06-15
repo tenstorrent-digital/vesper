@@ -58,9 +58,10 @@ describe("accordion [unit]", () => {
 
 describe("accordion [snapshot]", () => {
   it("renders correctly when closed", () => {
+    // instead of rendering text content for snapshot tests, we render a div with a fixed height, because subpixel rendering differences between local machines and CI machines affects the output of radix's computed css values such as --radix-collapsible-content-height
     const result = render(
       <Accordion title={TITLE} open={false}>
-        {CHILDREN}
+        <div style={{ height: 200 }} />
       </Accordion>,
     );
 
@@ -68,9 +69,10 @@ describe("accordion [snapshot]", () => {
   });
 
   it("renders correctly when open", () => {
+    // instead of rendering text content for snapshot tests, we render a div with a fixed height, because subpixel rendering differences between local machines and CI machines affects the output of radix's computed css values such as --radix-collapsible-content-height
     const result = render(
       <Accordion title={TITLE} open>
-        {CHILDREN}
+        <div style={{ height: 200 }} />
       </Accordion>,
     );
 
