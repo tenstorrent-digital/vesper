@@ -6,7 +6,11 @@ import { Typography } from "@/components/typography/typography";
 const meta = {
   component: Tooltip,
   parameters: { layout: "centered" },
-  argTypes: {},
+  argTypes: {
+    open: { table: { disable: true } },
+    defaultOpen: { table: { disable: true } },
+    onOpenChange: { table: { disable: true } },
+  },
 } satisfies Meta<typeof Tooltip>;
 
 export default meta;
@@ -19,6 +23,8 @@ export const Playground: Story = {
     side: "top",
     sideOffset: 4,
     alignOffset: 0,
+    delayDuration: 500,
+    maxWidth: 240,
   },
   render: (props) => (
     <Tooltip {...props}>

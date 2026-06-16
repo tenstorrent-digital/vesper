@@ -3,26 +3,30 @@ import {
   TooltipContent,
   TooltipTrigger,
   TooltipProvider,
-  type TooltipProps as RadixTooltipProps,
 } from "@radix-ui/react-tooltip";
 import { Typography } from "@/components/typography/typography";
+import { ReactNode } from "react";
 
-export interface TooltipProps extends Omit<
-  RadixTooltipProps,
-  "disableHoverableContent"
-> {
+export interface TooltipProps {
   text: string;
   side?: "top" | "right" | "bottom" | "left";
   sideOffset?: number;
   align?: "center" | "start" | "end";
   alignOffset?: number;
+  open?: boolean;
+  onOpenChange?(value: boolean): void;
+  delayDuration?: number;
+  defaultOpen?: boolean;
+  children?: ReactNode;
+  maxWidth?: number;
 }
 
 export function Tooltip({
   children,
   text,
   defaultOpen,
-  delayDuration,
+  delayDuration = 500,
+  maxWidth = 240,
   open,
   onOpenChange,
   align = "center",
@@ -44,6 +48,7 @@ export function Tooltip({
         <Typography
           variant="label-xs"
           className="vesper-tooltip"
+          style={{ maxWidth }}
           as={TooltipContent}
           align={align}
           alignOffset={alignOffset}
