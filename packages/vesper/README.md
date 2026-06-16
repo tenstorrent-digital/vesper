@@ -60,6 +60,16 @@ Scaffolding a component from the command line will create a `.test.tsx` file in 
 2. `component-name [snapshot]` - this describe block should be used for writing snapshot tests. Many of our components have dozens of permutations, so we can use this describe block to create snapshots of them all so if something changes unexpectedly we get warned about it.
 3. `component-name [a11y]` - this describe block should be used for asserting that all component permutations comply with WCAG 2 AAA standards. We use `axe` to confirm that all permutations for the component have no violations in both light and dark mode.
 
+#### Updating snapshots
+
+If a component's structure changes, we will need to update its snapshot tests. You can update snapshot tests across all test suites by running `yarn test:vesper -- -u` from the monorepo root, or `yarn test -- -u` from within the `vesper` package.
+
+To update a specific test suite you can also supply a glob pattern to match whatever tests you would like to update the snapshots for:
+
+```sh
+yarn test -- -u src/components/menu/menu.test.tsx
+```
+
 ### Regenerating icon components
 
 Icon assets can be exported as SVGs from [the UI Icon Library Figma File](https://www.figma.com/design/U8rXyED2u4SLkvUggDJ4VU/UI-Icon-Library?node-id=0-1&p=f&t=A4w3uadySYXLNGuU-11).
@@ -90,13 +100,13 @@ It orchestrates a few smaller scripts:
 
 - `yarn build:tsc`
 - `yarn build:alias`
-- `yarn build:side-effects`
+- `yarn build:css`
 
 Those steps perform the following work in order:
 
 1. `yarn build:tsc` compiles source files to ESM plus declarations
 2. `yarn build:alias` rewrites emitted import specifiers to relative ESM-compatible paths with `.js` extensions
-3. `yarn build:side-effects` copies every side-effectful file file under `src/` into the matching location under `dist/`
+3. `yarn build:css` copies every side-effectful file file under `src/` into the matching location under `dist/`
 
 The result is a `dist/` directory that matches the package's export map and is ready for local consumption or publishing.
 

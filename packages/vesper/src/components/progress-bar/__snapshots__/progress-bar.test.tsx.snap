@@ -1,0 +1,214 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`progress-bar [snapshot] > lg, default 1`] = `
+<div
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="23"
+  aria-valuetext="23%"
+  class="vesper-progress-bar vesper-progress-bar-lg"
+  data-max="100"
+  data-state="loading"
+  data-value="23"
+  role="progressbar"
+>
+  <div
+    class="vesper-progress-bar-indicator"
+    data-max="100"
+    data-state="loading"
+    data-value="23"
+    style="width: 23%;"
+  />
+</div>
+`;
+
+exports[`progress-bar [snapshot] > lg, steps 1`] = `
+<div
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="23"
+  aria-valuetext="23%"
+  class="vesper-progress-bar vesper-progress-bar-lg"
+  data-max="100"
+  data-state="loading"
+  data-value="23"
+  role="progressbar"
+>
+  <div
+    class="vesper-progress-bar-indicator"
+    data-max="100"
+    data-state="loading"
+    data-value="23"
+    style="width: 20%;"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-light"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+</div>
+`;
+
+exports[`progress-bar [snapshot] > md, default 1`] = `
+<div
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="23"
+  aria-valuetext="23%"
+  class="vesper-progress-bar vesper-progress-bar-md"
+  data-max="100"
+  data-state="loading"
+  data-value="23"
+  role="progressbar"
+>
+  <div
+    class="vesper-progress-bar-indicator"
+    data-max="100"
+    data-state="loading"
+    data-value="23"
+    style="width: 23%;"
+  />
+</div>
+`;
+
+exports[`progress-bar [snapshot] > md, steps 1`] = `
+<div
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="23"
+  aria-valuetext="23%"
+  class="vesper-progress-bar vesper-progress-bar-md"
+  data-max="100"
+  data-state="loading"
+  data-value="23"
+  role="progressbar"
+>
+  <div
+    class="vesper-progress-bar-indicator"
+    data-max="100"
+    data-state="loading"
+    data-value="23"
+    style="width: 20%;"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-light"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+</div>
+`;
+
+exports[`progress-bar [snapshot] > sm, default 1`] = `
+<div
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="23"
+  aria-valuetext="23%"
+  class="vesper-progress-bar vesper-progress-bar-sm"
+  data-max="100"
+  data-state="loading"
+  data-value="23"
+  role="progressbar"
+>
+  <div
+    class="vesper-progress-bar-indicator"
+    data-max="100"
+    data-state="loading"
+    data-value="23"
+    style="width: 23%;"
+  />
+</div>
+`;
+
+exports[`progress-bar [snapshot] > sm, steps 1`] = `
+<div
+  aria-valuemax="100"
+  aria-valuemin="0"
+  aria-valuenow="23"
+  aria-valuetext="23%"
+  class="vesper-progress-bar vesper-progress-bar-sm"
+  data-max="100"
+  data-state="loading"
+  data-value="23"
+  role="progressbar"
+>
+  <div
+    class="vesper-progress-bar-indicator"
+    data-max="100"
+    data-state="loading"
+    data-value="23"
+    style="width: 20%;"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-light"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+  <span
+    class="vesper-progress-bar-tick vesper-progress-bar-tick-dark"
+  />
+</div>
+`;

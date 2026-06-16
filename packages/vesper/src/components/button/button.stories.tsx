@@ -1,40 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Tenstorrent } from "@/components/icon/tenstorrent";
-import {
-  Button,
-  BUTTON_SIZES,
-  BUTTON_VARIANTS,
-} from "@/components/button/button";
+import { Button } from "@/components/button/button";
+import { Tenstorrent } from "@/components/icons/icons";
 
 const meta = {
   component: Button,
   parameters: { layout: "centered" },
   argTypes: {
-    variant: {
-      control: "radio",
-      options: BUTTON_VARIANTS,
-      name: "Button variant",
-    },
-    size: {
-      control: "radio",
-      options: BUTTON_SIZES,
-      name: "Button size",
-    },
-    showLeftIcon: {
-      control: "boolean",
-      name: "Show left icon?",
-    },
-    showRightIcon: {
-      control: "boolean",
-      name: "Show right icon?",
-    },
-    disabled: {
-      name: "Disabled?",
-    },
-    children: {
-      name: "Button text",
-    },
+    iconLeft: { control: "boolean" },
+    iconRight: { control: "boolean" },
+    as: { table: { disable: true } },
   },
 } satisfies Meta<typeof Button>;
 
@@ -48,26 +23,15 @@ export const Playground: Story = {
     size: "lg",
     children: "Explore",
     disabled: false,
-    showLeftIcon: false,
-    showRightIcon: false,
+    iconLeft: false,
+    iconRight: false,
   },
-  render: ({
-    size,
-    variant,
-    disabled,
-    children,
-    showLeftIcon = false,
-    showRightIcon = false,
-  }) => (
+  render: ({ iconLeft = false, iconRight = false, ...props }) => (
     <Button
-      size={size}
-      variant={variant}
-      disabled={disabled}
-      iconLeft={showLeftIcon && <Tenstorrent />}
-      iconRight={showRightIcon && <Tenstorrent />}
-    >
-      {children}
-    </Button>
+      {...props}
+      iconLeft={iconLeft && <Tenstorrent />}
+      iconRight={iconRight && <Tenstorrent />}
+    />
   ),
 };
 Playground.storyName = "button";

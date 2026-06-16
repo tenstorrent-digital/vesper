@@ -1,12 +1,10 @@
-import { Avatar, type AvatarProps } from "@repo/vesper/avatar";
+import { Avatar, AVATAR_SIZES } from "@repo/vesper/avatar";
 import { AvatarGroup } from "@repo/vesper/avatar-group";
-
-const SIZES: AvatarProps["size"][] = ["sm", "md", "lg"];
 
 export function AvatarPreview() {
   return (
     <div className="bg-vesper-stone-50 text-vesper-stone-900 flex flex-col gap-vesper-4 p-vesper-4">
-      {SIZES.map((size) => (
+      {AVATAR_SIZES.map((size) => (
         <div key={size} className="flex gap-vesper-4">
           <Avatar size={size} src="https://unsplash.it/300/400" />
           <AvatarGroup

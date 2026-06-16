@@ -1,0 +1,460 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`text-button [snapshot] > accent, lg 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-accent"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > accent, lg, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > accent, md 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-accent"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > accent, md, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > accent, sm 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-accent"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > accent, sm, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > contrast, lg 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-contrast"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > contrast, lg, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > contrast, md 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-contrast"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > contrast, md, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > contrast, sm 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-contrast"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > contrast, sm, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > danger, lg 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-danger"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > danger, lg, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > danger, md 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-danger"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > danger, md, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > danger, sm 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-danger"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > danger, sm, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > info, lg 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-info"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > info, lg, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > info, md 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-info"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > info, md, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > info, sm 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-info"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > info, sm, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > pink, lg 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-pink"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > pink, lg, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > pink, md 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-pink"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > pink, md, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > pink, sm 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-pink"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > pink, sm, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > purple, lg 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-purple"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > purple, lg, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > purple, md 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-purple"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > purple, md, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > purple, sm 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-purple"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > purple, sm, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > subtle, lg 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-subtle"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > subtle, lg, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > subtle, md 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-subtle"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > subtle, md, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > subtle, sm 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-subtle"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > subtle, sm, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > success, lg 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-success"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > success, lg, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > success, md 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-success"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > success, md, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > success, sm 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-success"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > success, sm, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > warning, lg 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-warning"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > warning, lg, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > warning, md 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-warning"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > warning, md, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > warning, sm 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-warning"
+>
+  Button Text
+</button>
+`;
+
+exports[`text-button [snapshot] > warning, sm, disabled 1`] = `
+<button
+  class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;

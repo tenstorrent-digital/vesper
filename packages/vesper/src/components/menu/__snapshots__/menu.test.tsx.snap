@@ -1,0 +1,213 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`menu [snapshot] > closed 1`] = `null`;
+
+exports[`menu [snapshot] > open 1`] = `
+<div
+  aria-labelledby="radix-_r_1t_"
+  aria-orientation="vertical"
+  class="vesper-menu"
+  data-align="start"
+  data-orientation="vertical"
+  data-radix-menu-content=""
+  data-side="bottom"
+  data-state="open"
+  dir="ltr"
+  id="radix-_r_1u_"
+  role="menu"
+  style="outline: none; width: 200px; --radix-dropdown-menu-content-transform-origin: var(--radix-popper-transform-origin); --radix-dropdown-menu-content-available-width: var(--radix-popper-available-width); --radix-dropdown-menu-content-available-height: var(--radix-popper-available-height); --radix-dropdown-menu-trigger-width: var(--radix-popper-anchor-width); --radix-dropdown-menu-trigger-height: var(--radix-popper-anchor-height); pointer-events: auto;"
+  tabindex="-1"
+>
+  <div
+    class="vesper-menu-item vesper-menu-item-default"
+    data-orientation="vertical"
+    data-radix-collection-item=""
+    role="menuitem"
+    tabindex="-1"
+  >
+    <div
+      class="vesper-menu-item-left-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M16.8 13.3698L12 16.1151L7.20002 13.3698V18.8603L12 21.6L16.8 18.8603V13.3698Z"
+          fill="currentColor"
+        />
+        <path
+          d="M16.8 7.88492L12 10.6301L7.20002 7.88492L7.20002 13.3698L2.40002 10.6301V5.14522L7.20002 2.39999L16.8 7.88492Z"
+          fill="currentColor"
+        />
+        <path
+          d="M16.8 13.3698L21.6 10.6301V5.14522L16.8 2.39999L16.8 13.3698Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      class="vesper-menu-item-text-container"
+    >
+      <span
+        class="vesper-typography vesper-typography-label-md-bold"
+      >
+        Label
+      </span>
+      <span
+        class="vesper-typography vesper-typography-copy-xs vesper-menu-item-label"
+      >
+        The description
+      </span>
+    </div>
+  </div>
+  <div
+    class="vesper-menu-item vesper-menu-item-selected"
+    data-orientation="vertical"
+    data-radix-collection-item=""
+    role="menuitem"
+    tabindex="-1"
+  >
+    <div
+      class="vesper-menu-item-left-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M21 9V15L16 21H8L3 15V9L8 3H16L21 9ZM8.43652 20H9.25684L7.53711 15.7676L7.5 15.6768V15.5H4.8291L8.43652 20ZM16.5 15.6768L16.4629 15.7676L14.7432 20H15.5635L19.1709 15.5H16.5V15.6768ZM10.3359 20H13.6641L15.4932 15.5H8.50781L10.3359 20ZM4 14.5H7.5V9.5H4V14.5ZM16.5 14.5H20V9.5H16.5V14.5ZM8.5 14.5H15.5V9.5H8.5V14.5ZM4.71875 8.5H7.5V8.32324L7.53711 8.23242L9.25684 4H8.46875L4.71875 8.5ZM16.4629 8.23242L16.5 8.32324V8.5H19.2812L15.5312 4H14.7432L16.4629 8.23242ZM8.50684 8.5H15.4922L13.6641 4H10.3359L8.50684 8.5Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <div
+      class="vesper-menu-item-text-container"
+    >
+      <span
+        class="vesper-typography vesper-typography-label-md-bold"
+      >
+        Label
+      </span>
+      <span
+        class="vesper-typography vesper-typography-copy-xs vesper-menu-item-label"
+      >
+        The description
+      </span>
+    </div>
+    <svg
+      class="vesper-menu-item-right-icon"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    class="vesper-menu-item vesper-menu-item-danger"
+    data-orientation="vertical"
+    data-radix-collection-item=""
+    role="menuitem"
+    tabindex="-1"
+  >
+    <div
+      class="vesper-menu-item-left-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M18.4913 9.76923L16.9333 12.2873L15.1865 15.375H16.4297L19.7329 9.71594L18.7431 7.75543L19.735 7.24457L21.0027 9.75494L20.8472 10.0208L17.0659 16.5H10.6728L11.2296 17.6255H17.8278L18.7757 16.188L19.7024 16.812L18.4233 18.75H10.5417L9.28004 16.2012L7.52294 13.0953L6.7964 14.2692L9.82331 19.875H12.2781V21H9.16311L9.0054 20.7067L5.50808 14.2308L7.06613 11.7116L8.81289 8.625H7.58439L4.29046 14.2549L5.24378 15.9397L4.27686 16.4978L3.00269 14.2451L6.78661 7.77631L6.94867 7.5H13.3266L12.7697 6.37445H6.45052L5.5021 7.81201L4.57488 7.18799L5.85449 5.25H13.4577L14.7194 7.79883L16.4759 10.9041L17.203 9.73077L14.1761 4.125H11.9997L12.0002 3H14.8363L18.4913 9.76923ZM11.9997 9.1875C10.4619 9.1875 9.21532 10.4467 9.21532 12C9.21532 13.5533 10.4619 14.8125 11.9997 14.8125C13.5375 14.8125 14.7841 13.5533 14.7841 12C14.7841 10.4467 13.5375 9.1875 11.9997 9.1875Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <div
+      class="vesper-menu-item-text-container"
+    >
+      <span
+        class="vesper-typography vesper-typography-label-md-bold"
+      >
+        Label
+      </span>
+      <span
+        class="vesper-typography vesper-typography-copy-xs vesper-menu-item-label"
+      >
+        The description
+      </span>
+    </div>
+  </div>
+  <div
+    aria-disabled="true"
+    class="vesper-menu-item vesper-menu-item-locked"
+    data-disabled=""
+    data-orientation="vertical"
+    data-radix-collection-item=""
+    role="menuitem"
+    tabindex="-1"
+  >
+    <div
+      class="vesper-menu-item-text-container"
+    >
+      <span
+        class="vesper-typography vesper-typography-label-md-bold"
+      >
+        Label
+      </span>
+      <span
+        class="vesper-typography vesper-typography-copy-xs vesper-menu-item-label"
+      >
+        The description
+      </span>
+    </div>
+    <svg
+      class="vesper-menu-item-right-icon"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        clip-rule="evenodd"
+        d="M20 11.5V19L18 21H6L4 19V11.5L6 9.5H6.5V5.29297L8.79297 3H15.207L17.5 5.29297V9.5H18L20 11.5ZM16.5 9.5V5.70703L14.793 4H9.20703L7.5 5.70703V9.5H16.5ZM5 11.9141V18.5859L6.41406 20H17.5859L19 18.5859V11.9141L17.5859 10.5H6.41406L5 11.9141Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+      <path
+        d="M11.5 12.5H12.5V17.5H11.5V12.5Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+  <div
+    aria-disabled="true"
+    class="vesper-menu-item vesper-menu-item-disabled"
+    data-disabled=""
+    data-orientation="vertical"
+    data-radix-collection-item=""
+    role="menuitem"
+    tabindex="-1"
+  >
+    <div
+      class="vesper-menu-item-text-container"
+    >
+      <span
+        class="vesper-typography vesper-typography-label-md-bold"
+      >
+        Label
+      </span>
+      <span
+        class="vesper-typography vesper-typography-copy-xs vesper-menu-item-label"
+      >
+        The description
+      </span>
+    </div>
+  </div>
+</div>
+`;

@@ -1,21 +1,40 @@
 import type { ElementType } from "react";
 import { cn } from "@/utils/cn";
 import { Polymorphic } from "@/utils/polymorphic";
-import { ErrorSolid } from "@/components/icon/error-solid";
-import { InfoSolid } from "@/components/icon/info-solid";
-import { Info } from "@/components/icon/info";
-import { SuccessSolid } from "@/components/icon/success-solid";
-import { WarningSolid } from "@/components/icon/warning-solid";
+import {
+  ErrorSolid,
+  InfoSolid,
+  Info,
+  SuccessSolid,
+  WarningSolid,
+} from "@/components/icons/icons";
 import { Button, ButtonProps } from "@/components/button/button";
-import { Typography } from "@/components/typography/typography";
+import {
+  Typography,
+  TypographyVariant,
+} from "@/components/typography/typography";
+
+export const ADMONITION_SIZES = ["sm", "md"] as const;
+
+export const ADMONITION_VARIANTS = [
+  "info",
+  "success",
+  "warning",
+  "danger",
+  "secondary",
+] as const;
+
+export type AdmonitionSize = (typeof ADMONITION_SIZES)[number];
+
+export type AdmonitionVariant = (typeof ADMONITION_VARIANTS)[number];
 
 export type AdmonitionProps<
   E extends ElementType = "div",
   C extends ElementType = "button",
 > = Polymorphic<
   {
-    size: "sm" | "md";
-    variant: "info" | "success" | "warning" | "danger" | "secondary";
+    size?: AdmonitionSize;
+    variant?: AdmonitionVariant;
     subtle?: boolean;
     ctaAs?: C;
     cta?: Omit<ButtonProps<C>, "size" | "variant" | "as">;
@@ -23,10 +42,12 @@ export type AdmonitionProps<
   E
 >;
 
-const ADMONITION_TYPOGRAPHY_SIZES = {
-  md: "sm",
-  sm: "xs",
-} as const;
+const ADMONITION_TYPOGRAPHY_VARIANTS: {
+  [S in AdmonitionSize]: TypographyVariant;
+} = {
+  md: "copy-sm",
+  sm: "copy-xs",
+};
 
 export function Admonition<
   E extends ElementType = "div",
@@ -35,8 +56,8 @@ export function Admonition<
   const {
     as: Component = "div",
     className,
-    size,
-    variant,
+    size = "sm",
+    variant = "info",
     ctaAs,
     cta,
     children,
@@ -62,11 +83,7 @@ export function Admonition<
           {variant === "success" && <SuccessSolid />}
           {variant === "warning" && <WarningSolid />}
         </span>
-        <Typography
-          as="span"
-          variant="copy"
-          size={ADMONITION_TYPOGRAPHY_SIZES[size]}
-        >
+        <Typography as="span" variant={ADMONITION_TYPOGRAPHY_VARIANTS[size]}>
           {children}
         </Typography>
       </div>

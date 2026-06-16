@@ -55,13 +55,9 @@
       "types": "./dist/components/typography/typography.d.ts",
       "import": "./dist/components/typography/typography.js"
     },
-    "./icon": {
-      "types": "./dist/components/icon/icon.d.ts",
-      "import": "./dist/components/icon/icon.js"
-    },
     "./icons": {
-      "types": "./dist/components/icon/icons.d.ts",
-      "import": "./dist/components/icon/icons.js"
+      "types": "./dist/components/icons/icons.d.ts",
+      "import": "./dist/components/icons/icons.js"
     },
     "./tokens": {
       "types": "./dist/tokens/index.d.ts",
@@ -76,18 +72,18 @@
   "scripts": {
     "build:tsc": "tsc -p tsconfig.build.json",
     "build:alias": "tsc-alias -p tsconfig.build.json --resolve-full-paths --resolve-full-extension .js",
-    "build:side-effects": "tsx scripts/copy-side-effects.ts",
-    "build": "rm -rf dist && yarn build:tsc && yarn build:alias && yarn build:side-effects",
+    "build:css": "tsx scripts/copy-css.ts",
+    "build": "rm -rf dist && yarn build:tsc && yarn build:alias && yarn build:css",
     "prebuild": "yarn lint",
     "watch:tsc": "tsc -p tsconfig.build.json --watch --preserveWatchOutput",
     "watch:alias": "tsc-alias -p tsconfig.build.json -w --resolve-full-paths --resolve-full-extension .js",
-    "watch:side-effects": "tsx scripts/watch-side-effects.ts",
-    "watch": "concurrently --kill-others-on-fail --names tsc,alias,side-effects --prefix-colors auto \"yarn watch:tsc\" \"yarn watch:alias\" \"yarn watch:side-effects\"",
+    "watch:css": "tsx scripts/watch-css.ts",
+    "watch": "concurrently --kill-others-on-fail --names tsc,alias,css --prefix-colors auto \"yarn watch:tsc\" \"yarn watch:alias\" \"yarn watch:css\"",
     "dev": "storybook dev -p 3000 -c storybook",
     "lint": "eslint . --max-warnings 0",
     "scaffold:component": "turbo gen vesper-component",
-    "generate:icons": "tsx scripts/generate-icons.ts && eslint src/components/Icon/*.{ts,tsx} --fix && prettier --write src/components/Icon/*.{ts,tsx}",
-    "test": "vitest run",
+    "generate:icons": "tsx scripts/generate-icons.ts && eslint src/components/icons/*.{ts,tsx} --fix && prettier --write src/components/icons/*.{ts,tsx}",
+    "test": "vitest run --coverage",
     "test:watch": "vitest",
     "check-types": "tsc --noEmit -p tsconfig.build.json"
   },
@@ -108,6 +104,7 @@
     "@types/react-dom": "19.2.2",
     "@vitest/browser": "^4.1.8",
     "@vitest/browser-playwright": "^4.1.8",
+    "@vitest/coverage-v8": "^4.1.9",
     "@vitest/ui": "^4.1.8",
     "chokidar": "^4.0.3",
     "concurrently": "^9.2.1",

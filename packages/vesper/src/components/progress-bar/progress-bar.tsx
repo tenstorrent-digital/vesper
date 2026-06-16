@@ -2,16 +2,26 @@ import type { ComponentProps } from "react";
 import { Progress, ProgressIndicator } from "@radix-ui/react-progress";
 import { cn } from "@/utils/cn";
 
+export const PROGRESS_BAR_SIZES = ["sm", "md", "lg"] as const;
+
+export const PROGRESS_BAR_VARIANTS = ["default", "steps"] as const;
+
+export type ProgressBarSize = (typeof PROGRESS_BAR_SIZES)[number];
+
+export type ProgressBarVariant = (typeof PROGRESS_BAR_VARIANTS)[number];
+
 export interface ProgressBarProps extends ComponentProps<"div"> {
   /** value from `0` to `100` */
   value: number;
-  size: "sm" | "md" | "lg";
+  size?: ProgressBarSize;
   /** The `default` variant will render the progress bar indicator width as a true percentage representation of `value / 100`. The `steps` variant will clamp the width of the progress bar indicator to the nearest rounded tick value. */
-  variant?: "steps" | "default";
+  variant?: ProgressBarVariant;
   /** The number of segments to split up the progress bar into when variant is `steps`. Must be an integer greater than `0`. */
   steps?: number;
   /** Determines how to clamp the width of the progress bar to the nearest tick value. Defaults to `Math.round` */
   stepRoundingStrategy?: (n: number) => number;
+  /** Whether to animate progress bar value changes */
+  animated?: boolean;
 }
 
 export function ProgressBar({
@@ -19,8 +29,9 @@ export function ProgressBar({
   variant = "default",
   steps = 10,
   className,
-  size,
+  size = "md",
   stepRoundingStrategy,
+  animated = false,
   ...props
 }: ProgressBarProps) {
   const progress = Math.min(Math.max(value, 0), 100);
@@ -30,6 +41,7 @@ export function ProgressBar({
       className={cn(
         "vesper-progress-bar",
         `vesper-progress-bar-${size}`,
+        animated && "vesper-progress-bar-animated",
         className,
       )}
       value={progress}
@@ -52,7 +64,7 @@ export function ProgressBar({
 function ProgressBarIndicatorDefault({ value }: { value: number }) {
   return (
     <ProgressIndicator
-      className="vesper-progress-bar-indicator-default"
+      className="vesper-progress-bar-indicator"
       style={{ width: `${value}%` }}
     />
   );
@@ -75,7 +87,7 @@ function ProgressBarIndicatorSteps({
   return (
     <>
       <ProgressIndicator
-        className="vesper-progress-bar-indicator-steps"
+        className="vesper-progress-bar-indicator"
         style={{ width }}
       />
       {Array.from({ length: totalSteps - 1 }).map((_, index) => (

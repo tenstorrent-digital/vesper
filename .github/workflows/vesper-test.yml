@@ -48,6 +48,8 @@ jobs:
         if: ${{ !cancelled() && failure() }}
         uses: actions/upload-artifact@v6
         with:
-          name: test-results
-          path: packages/vesper/test-results/
+          name: test-output
+          path: |
+            packages/vesper/test-results/
+            packages/vesper/coverage/
           retention-days: 7

@@ -2,20 +2,24 @@ import type { ElementType } from "react";
 import type { Polymorphic } from "@/utils/polymorphic";
 import { cn } from "@/utils/cn";
 
+export const AVATAR_SIZES = ["lg", "md", "sm"] as const;
+
+export type AvatarSize = (typeof AVATAR_SIZES)[number];
+
 export type AvatarProps<E extends ElementType = "div"> = Polymorphic<
   {
-    size: "lg" | "md" | "sm";
+    size?: AvatarSize;
     src?: string;
     alt?: string;
-    className?: string;
   },
-  E
+  E,
+  "children"
 >;
 
 export function Avatar<E extends ElementType = "div">(props: AvatarProps<E>) {
   const {
     as: Component = "div",
-    size,
+    size = "md",
     className,
     src,
     alt = "",

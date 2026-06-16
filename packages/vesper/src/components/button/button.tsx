@@ -20,12 +20,11 @@ export type ButtonSize = (typeof BUTTON_SIZES)[number];
 
 export type ButtonProps<E extends ElementType = "button"> = Polymorphic<
   {
-    size: ButtonSize;
-    variant: ButtonVariant;
+    size?: ButtonSize;
+    variant?: ButtonVariant;
     disabled?: boolean;
     iconLeft?: ReactNode;
     iconRight?: ReactNode;
-    className?: string;
   },
   E
 >;
@@ -35,8 +34,8 @@ export function Button<E extends ElementType = "button">(
 ) {
   const {
     as: Component = "button",
-    size,
-    variant,
+    size = "lg",
+    variant = "primary",
     iconLeft,
     iconRight,
     children,

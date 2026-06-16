@@ -6,9 +6,12 @@ import {
 } from "@radix-ui/react-collapsible";
 import { cn } from "@/utils/cn";
 import { Typography } from "@/components/typography/typography";
-import { CaretRight } from "@/components/icon/caret-right";
+import { CaretRight } from "@/components/icons/icons";
 
-export interface AccordionProps extends Omit<CollapsibleProps, "disabled"> {
+export interface AccordionProps extends Omit<
+  CollapsibleProps,
+  "disabled" | "asChild"
+> {
   title: string;
 }
 
@@ -31,18 +34,15 @@ export function Accordion({
     >
       <Typography
         as={CollapsibleTrigger}
-        variant="label"
-        size="md"
+        variant="label-md-bold"
         className="vesper-accordion-trigger"
-        bold
       >
         <span>{title}</span>
         <CaretRight className="vesper-accordion-trigger-icon" />
       </Typography>
       <CollapsibleContent className="vesper-accordion-content">
         <Typography
-          variant="copy"
-          size="sm"
+          variant="copy-sm"
           as="div"
           className="vesper-accordion-content-children"
         >

@@ -1,0 +1,138 @@
+import { render, cleanup } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
+import axe from "axe-core";
+
+import {
+  ProgressBar,
+  PROGRESS_BAR_SIZES,
+  PROGRESS_BAR_VARIANTS,
+  type ProgressBarProps,
+} from "@/components/progress-bar/progress-bar";
+
+import "@/styles/test.css";
+
+const PROGRESS_BAR_PERMUTATIONS = PROGRESS_BAR_VARIANTS.flatMap((variant) =>
+  PROGRESS_BAR_SIZES.flatMap(
+    (size): ProgressBarProps => ({ size, variant, value: 23 }),
+  ),
+);
+
+afterEach(cleanup);
+
+describe("progress-bar [unit]", () => {
+  PROGRESS_BAR_SIZES.forEach((size) => {
+    test(`${size} size class`, () => {
+      const result = render(<ProgressBar size={size} value={23} />);
+
+      expect(result.container.firstChild).toHaveClass(
+        `vesper-progress-bar-${size}`,
+      );
+    });
+  });
+
+  test("animated class", () => {
+    const result = render(<ProgressBar value={23} animated />);
+
+    expect(result.container.firstChild).toHaveClass(
+      "vesper-progress-bar-animated",
+    );
+  });
+
+  test("default variant indicator element", () => {
+    const result = render(<ProgressBar value={23} variant="default" />);
+
+    const indicator = result.container.querySelector(
+      ".vesper-progress-bar-indicator",
+    ) as HTMLElement;
+
+    expect(indicator.style.width).toBe("23%");
+  });
+
+  test("steps variant indicator element", () => {
+    const result = render(
+      <ProgressBar
+        value={23}
+        steps={10}
+        variant="steps"
+        stepRoundingStrategy={Math.round}
+      />,
+    );
+
+    const indicator = result.container.querySelector(
+      ".vesper-progress-bar-indicator",
+    ) as HTMLElement;
+
+    expect(indicator.style.width).toBe("20%");
+  });
+
+  test("steps variant indicator ticks", () => {
+    const result = render(
+      <ProgressBar value={23} steps={10} variant="steps" />,
+    );
+
+    expect(
+      result.container.querySelectorAll(".vesper-progress-bar-tick"),
+    ).toHaveLength(9);
+  });
+
+  test("additional prop passthrough", () => {
+    const result = render(<ProgressBar value={23} aria-label="custom label" />);
+
+    expect(result.container.firstChild).toHaveAttribute(
+      "aria-label",
+      "custom label",
+    );
+  });
+
+  test("custom className", () => {
+    const result = render(<ProgressBar value={23} className="custom-class" />);
+
+    const el = result.container.firstChild;
+    expect(el).toHaveClass("vesper-progress-bar");
+    expect(el).toHaveClass("custom-class");
+  });
+});
+
+describe("progress-bar [snapshot]", () => {
+  PROGRESS_BAR_PERMUTATIONS.forEach((permutation) => {
+    const { size, variant } = permutation;
+
+    test(`${size}, ${variant}`, () => {
+      const result = render(
+        <ProgressBar size={size} variant={variant} value={23} />,
+      );
+
+      expect(result.container.firstChild).toMatchSnapshot();
+    });
+  });
+});
+
+describe("progress-bar [a11y]", () => {
+  ["light", "dark"].forEach((theme) => {
+    describe(`${theme} mode`, () => {
+      beforeEach(() => {
+        document.documentElement.setAttribute("data-vesper-theme", theme);
+      });
+
+      afterEach(() => {
+        document.documentElement.removeAttribute("data-vesper-theme");
+      });
+
+      PROGRESS_BAR_PERMUTATIONS.forEach((permutation) => {
+        const { size, variant } = permutation;
+
+        test(`wcag2aaa (${size}, ${variant})`, async () => {
+          const result = render(
+            <ProgressBar size={size} variant={variant} value={23} />,
+          );
+
+          expect(
+            await axe.run(result.container, {
+              runOnly: "wcag2aaa",
+            }),
+          ).toHaveNoViolations();
+        });
+      });
+    });
+  });
+});

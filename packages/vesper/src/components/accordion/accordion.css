@@ -19,6 +19,7 @@
 }
 
 .vesper-accordion-trigger {
+  padding: 0;
   position: relative;
   color: var(--vesper-stone-700);
   cursor: pointer;
@@ -27,6 +28,8 @@
   justify-content: space-between;
   align-items: center;
   outline: none;
+  border: none;
+  background: transparent;
   z-index: 2;
   &::before {
     position: absolute;

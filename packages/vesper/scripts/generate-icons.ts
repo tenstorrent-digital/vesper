@@ -102,14 +102,14 @@ const icons = iconFiles.map((fileName) => {
   return { kind, componentName, markdown };
 });
 
-// remove existing files in icon component folder
-fs.rmSync(path.resolve(__dirname, "../src/components/icon"), {
+// remove existing files in icons component folder
+fs.rmSync(path.resolve(__dirname, "../src/components/icons"), {
   recursive: true,
   force: true,
 });
 
-// recreate icon component folder
-fs.mkdirSync(path.resolve(__dirname, "../src/components/icon"), {
+// recreate icons component folder
+fs.mkdirSync(path.resolve(__dirname, "../src/components/icons"), {
   recursive: true,
 });
 
@@ -129,35 +129,35 @@ export const ${icon.componentName} = (props: ComponentProps<'svg'>) => {
 `;
 
   fs.writeFileSync(
-    path.resolve(__dirname, `../src/components/icon/${icon.kind}.tsx`),
+    path.resolve(__dirname, `../src/components/icons/${icon.kind}.tsx`),
     fileContents,
   );
 });
 
-// import individual component files into icon registry
+// create icons components registry file
 fs.writeFileSync(
-  path.resolve(__dirname, `../src/components/icon/registry.ts`),
+  path.resolve(__dirname, `../src/components/icons/registry.tsx`),
   `
-${AUTO_GENERATED_WARNING}
+  ${AUTO_GENERATED_WARNING}
 
-${icons.map((icon) => `import { ${icon.componentName} } from './${icon.kind}'`).join("\n")}
+  import type { ComponentProps, ComponentType } from "react"
+  import type { IconKind } from "./types"
+  ${icons.map((icon) => `import { ${icon.componentName} } from './${icon.kind}'`).join("\n")}
 
-export const registry = {
-  ${icons.map((icon) => `"${icon.kind}": ${icon.componentName},`).join("\n")}
-}
-`,
+  export const registry: { [K in IconKind]: ComponentType<ComponentProps<"svg">> } = {
+    ${icons.map((icon) => `"${icon.kind}": ${icon.componentName},`).join("\n")}
+  }`,
 );
 
-// create master component that imports icons from registry (not tree-shakeable)
+// create master component that imports and renders via registry (not tree-shakeable)
 fs.writeFileSync(
-  path.resolve(__dirname, `../src/components/icon/icon.tsx`),
+  path.resolve(__dirname, `../src/components/icons/icon.tsx`),
   `
   ${AUTO_GENERATED_WARNING}
 
   import type { ComponentProps } from "react";
+  import type { IconKind } from "./types";
   import { registry } from "./registry";
-
-  export type IconKind = keyof typeof registry
 
   export interface IconProps extends ComponentProps<"svg"> {
     kind: IconKind;
@@ -173,10 +173,57 @@ fs.writeFileSync(
   }`,
 );
 
-// create barrel file with exports for each individual icon (tree-shakeable)
+// create types file with exported IconType
 fs.writeFileSync(
-  path.resolve(__dirname, `../src/components/icon/icons.ts`),
+  path.resolve(__dirname, `../src/components/icons/types.ts`),
   `${AUTO_GENERATED_WARNING}
 
+  export type IconKind = ${icons.map((icon) => `"${icon.kind}"`).join("|")}`,
+);
+
+// create constants file with exported ICON_KINDS
+fs.writeFileSync(
+  path.resolve(__dirname, `../src/components/icons/constants.ts`),
+  `${AUTO_GENERATED_WARNING}
+
+  import type { IconKind } from "./types";
+
+  export const ICON_KINDS: IconKind[] = [${icons.map((icon) => `"${icon.kind}"`).join(",")}]`,
+);
+
+// create barrel file with exports for each icon component, constants, and types (tree-shakeable)
+fs.writeFileSync(
+  path.resolve(__dirname, `../src/components/icons/icons.ts`),
+  `${AUTO_GENERATED_WARNING}
+
+  export { Icon } from './icon'
+  export { ICON_KINDS } from './constants'
+  export type { IconKind } from './types'
   ${icons.map((icon) => `export { ${icon.componentName} } from './${icon.kind}'`).join("\n")}`,
+);
+
+// create story file for icon component
+fs.writeFileSync(
+  path.resolve(__dirname, `../src/components/icons/icons.stories.tsx`),
+  `import type { Meta, StoryObj } from "@storybook/react-vite";
+
+  import { Icon } from "@/components/icons/icons";
+
+  const meta = {
+    component: Icon,
+    parameters: { layout: "centered" },
+  } satisfies Meta<typeof Icon>;
+
+  export default meta;
+
+  type Story = StoryObj<typeof meta>;
+
+  export const Playground: Story = {
+    args: { kind: "tenstorrent" },
+    render: (props) => (
+      <Icon width={32} height={32} color="var(--vesper-stone-900)" {...props} />
+    ),
+  };
+  Playground.storyName = "icons";
+`,
 );

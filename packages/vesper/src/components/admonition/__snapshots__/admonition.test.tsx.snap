@@ -1,0 +1,637 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`admonition [snapshot] > danger, md 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-md vesper-admonition-danger"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M21 8V16L16 21H8L3 16V8L8 3H16L21 8ZM11.4932 15.2422L10.9766 15.7578V16.7881L11.4932 17.3027H12.5264L13.042 16.7881V15.7578L12.5264 15.2422H11.4932ZM11.2354 7L10.7188 7.51562L11.2354 13.6973L11.751 14.2119H12.2676L12.7842 13.6973L13.3008 7.51562L12.7842 7H11.2354Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-sm"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > danger, md, subtle 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-md vesper-admonition-danger vesper-admonition-subtle"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M21 8V16L16 21H8L3 16V8L8 3H16L21 8ZM11.4932 15.2422L10.9766 15.7578V16.7881L11.4932 17.3027H12.5264L13.042 16.7881V15.7578L12.5264 15.2422H11.4932ZM11.2354 7L10.7188 7.51562L11.2354 13.6973L11.751 14.2119H12.2676L12.7842 13.6973L13.3008 7.51562L12.7842 7H11.2354Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-sm"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > danger, sm 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-sm vesper-admonition-danger"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M21 8V16L16 21H8L3 16V8L8 3H16L21 8ZM11.4932 15.2422L10.9766 15.7578V16.7881L11.4932 17.3027H12.5264L13.042 16.7881V15.7578L12.5264 15.2422H11.4932ZM11.2354 7L10.7188 7.51562L11.2354 13.6973L11.751 14.2119H12.2676L12.7842 13.6973L13.3008 7.51562L12.7842 7H11.2354Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-xs"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > danger, sm, subtle 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-sm vesper-admonition-danger vesper-admonition-subtle"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M21 8V16L16 21H8L3 16V8L8 3H16L21 8ZM11.4932 15.2422L10.9766 15.7578V16.7881L11.4932 17.3027H12.5264L13.042 16.7881V15.7578L12.5264 15.2422H11.4932ZM11.2354 7L10.7188 7.51562L11.2354 13.6973L11.751 14.2119H12.2676L12.7842 13.6973L13.3008 7.51562L12.7842 7H11.2354Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-xs"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > info, md 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-md vesper-admonition-info"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M18.1582 3L21 5.8418V18.1582L18.1582 21H5.8418L3 18.1582V5.8418L5.8418 3H18.1582ZM11.4941 9.97461L10.9873 10.4814V16.5566L11.4941 17.0625H12.5059L13.0127 16.5566V10.4814L12.5059 9.97461H11.4941ZM11.4941 6.9375L10.9873 7.44336V8.45605L11.4941 8.96289H12.5059L13.0127 8.45605V7.44336L12.5059 6.9375H11.4941Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-sm"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > info, md, subtle 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-md vesper-admonition-info vesper-admonition-subtle"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M18.1582 3L21 5.8418V18.1582L18.1582 21H5.8418L3 18.1582V5.8418L5.8418 3H18.1582ZM11.4941 9.97461L10.9873 10.4814V16.5566L11.4941 17.0625H12.5059L13.0127 16.5566V10.4814L12.5059 9.97461H11.4941ZM11.4941 6.9375L10.9873 7.44336V8.45605L11.4941 8.96289H12.5059L13.0127 8.45605V7.44336L12.5059 6.9375H11.4941Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-sm"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > info, sm 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-sm vesper-admonition-info"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M18.1582 3L21 5.8418V18.1582L18.1582 21H5.8418L3 18.1582V5.8418L5.8418 3H18.1582ZM11.4941 9.97461L10.9873 10.4814V16.5566L11.4941 17.0625H12.5059L13.0127 16.5566V10.4814L12.5059 9.97461H11.4941ZM11.4941 6.9375L10.9873 7.44336V8.45605L11.4941 8.96289H12.5059L13.0127 8.45605V7.44336L12.5059 6.9375H11.4941Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-xs"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > info, sm, subtle 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-sm vesper-admonition-info vesper-admonition-subtle"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M18.1582 3L21 5.8418V18.1582L18.1582 21H5.8418L3 18.1582V5.8418L5.8418 3H18.1582ZM11.4941 9.97461L10.9873 10.4814V16.5566L11.4941 17.0625H12.5059L13.0127 16.5566V10.4814L12.5059 9.97461H11.4941ZM11.4941 6.9375L10.9873 7.44336V8.45605L11.4941 8.96289H12.5059L13.0127 8.45605V7.44336L12.5059 6.9375H11.4941Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-xs"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > secondary, md 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-md vesper-admonition-secondary"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M18.1582 3L21 5.8418V18.1582L18.1582 21H5.8418L3 18.1582V5.8418L5.8418 3H18.1582ZM4 6.25586V17.7441L6.25586 20H17.7441L20 17.7441V6.25586L17.7441 4H6.25586L4 6.25586Z"
+          fill="currentColor"
+        />
+        <path
+          d="M10.9875 16.5562V10.4812L11.4937 9.975H12.5062L13.0125 10.4812V16.5562L12.5062 17.0625H11.4937L10.9875 16.5562Z"
+          fill="currentColor"
+        />
+        <path
+          d="M10.9875 8.45625V7.44375L11.4937 6.9375H12.5062L13.0125 7.44375V8.45625L12.5062 8.9625H11.4937L10.9875 8.45625Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-sm"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > secondary, md, subtle 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-md vesper-admonition-secondary vesper-admonition-subtle"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M18.1582 3L21 5.8418V18.1582L18.1582 21H5.8418L3 18.1582V5.8418L5.8418 3H18.1582ZM4 6.25586V17.7441L6.25586 20H17.7441L20 17.7441V6.25586L17.7441 4H6.25586L4 6.25586Z"
+          fill="currentColor"
+        />
+        <path
+          d="M10.9875 16.5562V10.4812L11.4937 9.975H12.5062L13.0125 10.4812V16.5562L12.5062 17.0625H11.4937L10.9875 16.5562Z"
+          fill="currentColor"
+        />
+        <path
+          d="M10.9875 8.45625V7.44375L11.4937 6.9375H12.5062L13.0125 7.44375V8.45625L12.5062 8.9625H11.4937L10.9875 8.45625Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-sm"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > secondary, sm 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-sm vesper-admonition-secondary"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M18.1582 3L21 5.8418V18.1582L18.1582 21H5.8418L3 18.1582V5.8418L5.8418 3H18.1582ZM4 6.25586V17.7441L6.25586 20H17.7441L20 17.7441V6.25586L17.7441 4H6.25586L4 6.25586Z"
+          fill="currentColor"
+        />
+        <path
+          d="M10.9875 16.5562V10.4812L11.4937 9.975H12.5062L13.0125 10.4812V16.5562L12.5062 17.0625H11.4937L10.9875 16.5562Z"
+          fill="currentColor"
+        />
+        <path
+          d="M10.9875 8.45625V7.44375L11.4937 6.9375H12.5062L13.0125 7.44375V8.45625L12.5062 8.9625H11.4937L10.9875 8.45625Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-xs"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > secondary, sm, subtle 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-sm vesper-admonition-secondary vesper-admonition-subtle"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M18.1582 3L21 5.8418V18.1582L18.1582 21H5.8418L3 18.1582V5.8418L5.8418 3H18.1582ZM4 6.25586V17.7441L6.25586 20H17.7441L20 17.7441V6.25586L17.7441 4H6.25586L4 6.25586Z"
+          fill="currentColor"
+        />
+        <path
+          d="M10.9875 16.5562V10.4812L11.4937 9.975H12.5062L13.0125 10.4812V16.5562L12.5062 17.0625H11.4937L10.9875 16.5562Z"
+          fill="currentColor"
+        />
+        <path
+          d="M10.9875 8.45625V7.44375L11.4937 6.9375H12.5062L13.0125 7.44375V8.45625L12.5062 8.9625H11.4937L10.9875 8.45625Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-xs"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > success, md 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-md vesper-admonition-success"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM16.2402 8.2959L9.79102 14.4355H9.7793L7.75977 12.5127L7.58691 12.3486L7.41504 12.5127L6.82715 13.0713L6.6377 13.252L6.82715 13.4336L9.16406 15.6572L9.23633 15.7266H10.334L10.4062 15.6572L17.1729 9.2168L17.3623 9.03516L17.1729 8.85449L16.585 8.2959L16.4131 8.13184L16.2402 8.2959Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-sm"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > success, md, subtle 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-md vesper-admonition-success vesper-admonition-subtle"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM16.2402 8.2959L9.79102 14.4355H9.7793L7.75977 12.5127L7.58691 12.3486L7.41504 12.5127L6.82715 13.0713L6.6377 13.252L6.82715 13.4336L9.16406 15.6572L9.23633 15.7266H10.334L10.4062 15.6572L17.1729 9.2168L17.3623 9.03516L17.1729 8.85449L16.585 8.2959L16.4131 8.13184L16.2402 8.2959Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-sm"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > success, sm 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-sm vesper-admonition-success"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM16.2402 8.2959L9.79102 14.4355H9.7793L7.75977 12.5127L7.58691 12.3486L7.41504 12.5127L6.82715 13.0713L6.6377 13.252L6.82715 13.4336L9.16406 15.6572L9.23633 15.7266H10.334L10.4062 15.6572L17.1729 9.2168L17.3623 9.03516L17.1729 8.85449L16.585 8.2959L16.4131 8.13184L16.2402 8.2959Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-xs"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > success, sm, subtle 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-sm vesper-admonition-success vesper-admonition-subtle"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM16.2402 8.2959L9.79102 14.4355H9.7793L7.75977 12.5127L7.58691 12.3486L7.41504 12.5127L6.82715 13.0713L6.6377 13.252L6.82715 13.4336L9.16406 15.6572L9.23633 15.7266H10.334L10.4062 15.6572L17.1729 9.2168L17.3623 9.03516L17.1729 8.85449L16.585 8.2959L16.4131 8.13184L16.2402 8.2959Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-xs"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > warning, md 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-md vesper-admonition-warning"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M22 18.5537L20.876 20.5H3.10352L2 18.5898L10.9658 3.5H13.0557L22 18.5537ZM11.4932 16.2422L10.9766 16.7578V17.7881L11.4932 18.3027H12.5264L13.042 17.7881V16.7578L12.5264 16.2422H11.4932ZM11.2354 8L10.7188 8.51562L11.2354 14.6973L11.751 15.2119H12.2676L12.7842 14.6973L13.3008 8.51562L12.7842 8H11.2354Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-sm"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > warning, md, subtle 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-md vesper-admonition-warning vesper-admonition-subtle"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M22 18.5537L20.876 20.5H3.10352L2 18.5898L10.9658 3.5H13.0557L22 18.5537ZM11.4932 16.2422L10.9766 16.7578V17.7881L11.4932 18.3027H12.5264L13.042 17.7881V16.7578L12.5264 16.2422H11.4932ZM11.2354 8L10.7188 8.51562L11.2354 14.6973L11.751 15.2119H12.2676L12.7842 14.6973L13.3008 8.51562L12.7842 8H11.2354Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-sm"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > warning, sm 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-sm vesper-admonition-warning"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M22 18.5537L20.876 20.5H3.10352L2 18.5898L10.9658 3.5H13.0557L22 18.5537ZM11.4932 16.2422L10.9766 16.7578V17.7881L11.4932 18.3027H12.5264L13.042 17.7881V16.7578L12.5264 16.2422H11.4932ZM11.2354 8L10.7188 8.51562L11.2354 14.6973L11.751 15.2119H12.2676L12.7842 14.6973L13.3008 8.51562L12.7842 8H11.2354Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-xs"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;
+
+exports[`admonition [snapshot] > warning, sm, subtle 1`] = `
+<div
+  class="vesper-admonition vesper-admonition-sm vesper-admonition-warning vesper-admonition-subtle"
+>
+  <div
+    class="vesper-admonition-content"
+  >
+    <span
+      class="vesper-admonition-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M22 18.5537L20.876 20.5H3.10352L2 18.5898L10.9658 3.5H13.0557L22 18.5537ZM11.4932 16.2422L10.9766 16.7578V17.7881L11.4932 18.3027H12.5264L13.042 17.7881V16.7578L12.5264 16.2422H11.4932ZM11.2354 8L10.7188 8.51562L11.2354 14.6973L11.751 15.2119H12.2676L12.7842 14.6973L13.3008 8.51562L12.7842 8H11.2354Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-copy-xs"
+    >
+      content
+    </span>
+  </div>
+</div>
+`;

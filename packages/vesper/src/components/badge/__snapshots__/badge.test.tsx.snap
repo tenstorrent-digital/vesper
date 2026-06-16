@@ -1,0 +1,649 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`badge [snapshot] > accent, lg 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-accent"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > accent, lg, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-accent-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > accent, md 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-accent"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > accent, md, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-accent-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > accent, sm 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-accent"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > accent, sm, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-accent-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > contrast, lg 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-contrast"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > contrast, lg, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-contrast-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > contrast, md 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-contrast"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > contrast, md, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-contrast-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > contrast, sm 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-contrast"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > contrast, sm, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-contrast-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > danger, lg 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-danger"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > danger, lg, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-danger-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > danger, md 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-danger"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > danger, md, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-danger-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > danger, sm 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-danger"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > danger, sm, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-danger-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > info, lg 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-info"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > info, lg, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-info-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > info, md 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-info"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > info, md, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-info-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > info, sm 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-info"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > info, sm, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-info-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > mint, lg 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-mint"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > mint, lg, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-mint-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > mint, md 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-mint"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > mint, md, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-mint-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > mint, sm 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-mint"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > mint, sm, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-mint-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > pink, lg 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-pink"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > pink, lg, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-pink-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > pink, md 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-pink"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > pink, md, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-pink-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > pink, sm 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-pink"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > pink, sm, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-pink-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > purple, lg 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-purple"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > purple, lg, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-purple-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > purple, md 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-purple"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > purple, md, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-purple-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > purple, sm 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-purple"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > purple, sm, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-purple-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > success, lg 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-success"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > success, lg, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-success-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > success, md 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-success"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > success, md, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-success-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > success, sm 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-success"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > success, sm, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-success-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > warning, lg 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-warning"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > warning, lg, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-lg vesper-badge-warning-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > warning, md 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-warning"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > warning, md, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-md vesper-badge-warning-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-sm vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > warning, sm 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-warning"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;
+
+exports[`badge [snapshot] > warning, sm, subtle 1`] = `
+<div
+  class="vesper-badge vesper-badge-sm vesper-badge-warning-subtle"
+>
+  <span
+    class="vesper-typography vesper-typography-label-xs vesper-badge-text"
+  >
+    Badge Text
+  </span>
+</div>
+`;

@@ -1,7 +1,7 @@
 import {
+  ComponentProps,
   type MouseEventHandler,
   type PointerEvent,
-  type ReactNode,
   useCallback,
   useRef,
 } from "react";
@@ -11,19 +11,27 @@ import {
   type MenuProps,
   type MenuItemProps,
 } from "@/components/menu/menu";
-import { CaretUp } from "@/components/icon/caret-up";
-import { CaretDown } from "@/components/icon/caret-down";
+import { CaretDown, CaretUp } from "@/components/icons/icons";
 import { Button } from "@/components/button/button";
 import { IconButton } from "@/components/icon-button/icon-button";
 
-export interface SplitButtonProps {
-  size: "lg" | "md" | "sm";
-  variant: "subtle" | "contrast";
+export const SPLIT_BUTTON_SIZES = ["lg", "md", "sm"] as const;
+
+export const SPLIT_BUTTON_VARIANTS = ["subtle", "contrast"] as const;
+
+export type SplitButtonSize = (typeof SPLIT_BUTTON_SIZES)[number];
+
+export type SplitButtonVariant = (typeof SPLIT_BUTTON_VARIANTS)[number];
+
+export interface SplitButtonProps extends Omit<
+  ComponentProps<"div">,
+  "onClick"
+> {
+  size?: SplitButtonSize;
+  variant?: SplitButtonVariant;
   menuItems: MenuItemProps[];
   onClick?: MouseEventHandler<HTMLButtonElement>;
   menuButtonAriaLabel?: string;
-  children?: ReactNode;
-  className?: string;
   menuWidth?: MenuProps["width"];
   menuSide?: MenuProps["side"];
   menuSideOffset?: MenuProps["sideOffset"];
@@ -31,12 +39,13 @@ export interface SplitButtonProps {
   menuAlignOffset?: MenuProps["alignOffset"];
   menuOpen?: MenuProps["open"];
   onMenuOpenChange?: MenuProps["onOpenChange"];
+  defaultMenuOpen?: MenuProps["defaultOpen"];
   disabled?: boolean;
 }
 
 export function SplitButton({
-  size,
-  variant,
+  size = "lg",
+  variant = "contrast",
   children,
   className,
   onClick,
@@ -50,6 +59,9 @@ export function SplitButton({
   menuWidth,
   disabled,
   menuButtonAriaLabel,
+  onPointerDown,
+  defaultMenuOpen,
+  ...props
 }: SplitButtonProps) {
   const actionButtonRef = useRef<HTMLButtonElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -59,8 +71,9 @@ export function SplitButton({
       if (disabled || actionButtonRef.current?.contains(e.target as Node)) {
         e.preventDefault();
       }
+      onPointerDown?.(e);
     },
-    [disabled],
+    [disabled, onPointerDown],
   );
 
   const handleOpenMenuChange = useCallback(
@@ -81,10 +94,12 @@ export function SplitButton({
       onOpenChange={handleOpenMenuChange}
       sideOffset={menuSideOffset}
       width={menuWidth}
+      defaultOpen={defaultMenuOpen}
     >
       <div
         className={cn("vesper-split-button", className)}
         onPointerDown={handlePointerDown}
+        {...props}
       >
         <Button
           ref={actionButtonRef}

@@ -1,0 +1,37 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import { TextButton } from "@/components/text-button/text-button";
+import { Tenstorrent } from "@/components/icons/icons";
+
+const meta = {
+  component: TextButton,
+  parameters: { layout: "centered" },
+  argTypes: {
+    as: { table: { disable: true } },
+    iconLeft: { control: "boolean" },
+    iconRight: { control: "boolean" },
+  },
+} satisfies Meta<typeof TextButton>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Playground: Story = {
+  args: {
+    variant: "accent",
+    size: "lg",
+    children: "Explore",
+    disabled: false,
+    iconLeft: false,
+    iconRight: false,
+  },
+  render: ({ iconLeft = false, iconRight = false, ...props }) => (
+    <TextButton
+      {...props}
+      iconLeft={iconLeft && <Tenstorrent />}
+      iconRight={iconRight && <Tenstorrent />}
+    />
+  ),
+};
+Playground.storyName = "text-button";

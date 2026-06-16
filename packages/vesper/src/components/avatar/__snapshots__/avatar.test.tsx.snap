@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`avatar [snapshot] > lg 1`] = `
+<div
+  class="vesper-avatar vesper-avatar-lg"
+/>
+`;
+
+exports[`avatar [snapshot] > md 1`] = `
+<div
+  class="vesper-avatar vesper-avatar-md"
+/>
+`;
+
+exports[`avatar [snapshot] > sm 1`] = `
+<div
+  class="vesper-avatar vesper-avatar-sm"
+/>
+`;

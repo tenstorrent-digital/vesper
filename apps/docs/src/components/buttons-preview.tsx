@@ -2,28 +2,17 @@
 
 import { ArrowUp, Tenstorrent } from "@repo/vesper/icons";
 import { Button, BUTTON_SIZES, BUTTON_VARIANTS } from "@repo/vesper/button";
-import { TextButton, type TextButtonProps } from "@repo/vesper/text-button";
 import { IconButton } from "@repo/vesper/icon-button";
-import { SplitButton, type SplitButtonProps } from "@repo/vesper/split-button";
-
-const TEXT_BUTTON_SIZES: TextButtonProps["size"][] = ["lg", "md", "sm"];
-const TEXT_BUTTON_VARIANTS: TextButtonProps["variant"][] = [
-  "accent",
-  "contrast",
-  "danger",
-  "info",
-  "pink",
-  "purple",
-  "subtle",
-  "success",
-  "warning",
-];
-
-const SPLIT_BUTTON_SIZES: SplitButtonProps["size"][] = ["lg", "md", "sm"];
-const SPLIT_BUTTON_VARIANTS: SplitButtonProps["variant"][] = [
-  "contrast",
-  "subtle",
-];
+import {
+  TextButton,
+  TEXT_BUTTON_SIZES,
+  TEXT_BUTTON_VARIANTS,
+} from "@repo/vesper/text-button";
+import {
+  SplitButton,
+  SPLIT_BUTTON_SIZES,
+  SPLIT_BUTTON_VARIANTS,
+} from "@repo/vesper/split-button";
 
 export function ButtonsPreview() {
   return (

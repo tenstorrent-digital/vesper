@@ -1,40 +1,51 @@
 import type { ElementType, ReactNode } from "react";
 import type { Polymorphic } from "@/utils/polymorphic";
 import { cn } from "@/utils/cn";
-import { Typography } from "@/components/typography/typography";
+import {
+  Typography,
+  type TypographyVariant,
+} from "@/components/typography/typography";
+
+export const BADGE_SIZES = ["lg", "md", "sm"] as const;
+
+export const BADGE_VARIANTS = [
+  "accent",
+  "success",
+  "warning",
+  "danger",
+  "info",
+  "purple",
+  "pink",
+  "mint",
+  "contrast",
+] as const;
+
+export type BadgeSize = (typeof BADGE_SIZES)[number];
+
+export type BadgeVariant = (typeof BADGE_VARIANTS)[number];
 
 export type BadgeProps<E extends ElementType = "div"> = Polymorphic<
   {
-    size: "lg" | "md" | "sm";
-    className?: string;
-    variant:
-      | "accent"
-      | "success"
-      | "warning"
-      | "danger"
-      | "info"
-      | "purple"
-      | "pink"
-      | "mint"
-      | "contrast";
+    size?: BadgeSize;
+    variant?: BadgeVariant;
     subtle?: boolean;
     icon?: ReactNode;
   },
   E
 >;
 
-const BADGE_TYPOGRAPHY_SIZES = {
-  lg: "md",
-  md: "sm",
-  sm: "xs",
-} as const;
+const BADGE_TYPOGRAPHY_VARIANTS: { [S in BadgeSize]: TypographyVariant } = {
+  lg: "label-md",
+  md: "label-sm",
+  sm: "label-xs",
+};
 
 export function Badge<E extends ElementType = "div">(props: BadgeProps<E>) {
   const {
     as: Component = "div",
     className,
-    size,
-    variant,
+    size = "lg",
+    variant = "accent",
     subtle,
     icon,
     children,
@@ -54,8 +65,7 @@ export function Badge<E extends ElementType = "div">(props: BadgeProps<E>) {
       {icon && <span className="vesper-badge-icon">{icon}</span>}
       <Typography
         as="span"
-        variant="label"
-        size={BADGE_TYPOGRAPHY_SIZES[size]}
+        variant={BADGE_TYPOGRAPHY_VARIANTS[size]}
         className="vesper-badge-text"
       >
         {children}

@@ -1,0 +1,182 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`avatar-group [snapshot] > <=3 avatars 1`] = `
+<div
+  class="vesper-avatar-group"
+>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt="avatar alt text"
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt="avatar alt text"
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+</div>
+`;
+
+exports[`avatar-group [snapshot] > >100 avatars 1`] = `
+<div
+  class="vesper-avatar-group"
+>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt=""
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt=""
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt=""
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar-group-overflow vesper-avatar vesper-avatar-undefined"
+  >
+    99+
+  </div>
+</div>
+`;
+
+exports[`avatar-group [snapshot] > lg 1`] = `
+<div
+  class="vesper-avatar-group"
+>
+  <div
+    class="vesper-avatar vesper-avatar-lg"
+  >
+    <img
+      alt="avatar alt text"
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar vesper-avatar-lg"
+  >
+    <img
+      alt="avatar alt text"
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar vesper-avatar-lg"
+  >
+    <img
+      alt="avatar alt text"
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar-group-overflow vesper-avatar vesper-avatar-lg"
+  >
+    +2
+  </div>
+</div>
+`;
+
+exports[`avatar-group [snapshot] > md 1`] = `
+<div
+  class="vesper-avatar-group"
+>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt="avatar alt text"
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt="avatar alt text"
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt="avatar alt text"
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar-group-overflow vesper-avatar vesper-avatar-md"
+  >
+    +2
+  </div>
+</div>
+`;
+
+exports[`avatar-group [snapshot] > sm 1`] = `
+<div
+  class="vesper-avatar-group"
+>
+  <div
+    class="vesper-avatar vesper-avatar-sm"
+  >
+    <img
+      alt="avatar alt text"
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar vesper-avatar-sm"
+  >
+    <img
+      alt="avatar alt text"
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar vesper-avatar-sm"
+  >
+    <img
+      alt="avatar alt text"
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar-group-overflow vesper-avatar vesper-avatar-sm"
+  >
+    +2
+  </div>
+</div>
+`;

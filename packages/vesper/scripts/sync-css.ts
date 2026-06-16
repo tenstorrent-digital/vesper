@@ -14,9 +14,7 @@ const __dirname = path.dirname(__filename);
 export const srcRoot = path.resolve(__dirname, "../src");
 export const distRoot = path.resolve(__dirname, "../dist");
 
-export const sideEffectExtensions = [".css"];
-
-const getSideEffectFiles = (root: string, currentDir = root): string[] => {
+const getCSSFiles = (root: string, currentDir = root): string[] => {
   if (!existsSync(currentDir)) {
     return [];
   }
@@ -27,13 +25,14 @@ const getSideEffectFiles = (root: string, currentDir = root): string[] => {
     const entryPath = path.join(currentDir, entry.name);
 
     if (entry.isDirectory()) {
-      cssFiles.push(...getSideEffectFiles(root, entryPath));
+      cssFiles.push(...getCSSFiles(root, entryPath));
       continue;
     }
 
     if (
       entry.isFile() &&
-      sideEffectExtensions.some((ext) => entry.name.endsWith(ext))
+      entry.name.endsWith(".css") &&
+      entry.name !== "test.css"
     ) {
       cssFiles.push(path.relative(root, entryPath));
     }
@@ -60,9 +59,9 @@ const removeEmptyDirectories = (currentDir: string) => {
   }
 };
 
-export const syncSideEffects = () => {
-  const sourceCssFiles = new Set(getSideEffectFiles(srcRoot));
-  const distCssFiles = new Set(getSideEffectFiles(distRoot));
+export const syncCSS = () => {
+  const sourceCssFiles = new Set(getCSSFiles(srcRoot));
+  const distCssFiles = new Set(getCSSFiles(distRoot));
 
   for (const relativePath of sourceCssFiles) {
     const sourcePath = path.join(srcRoot, relativePath);

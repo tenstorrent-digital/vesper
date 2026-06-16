@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter+Tight:wght@100..900&display=swap");
+
+@import "./styles.css";
+
+*,
+*::before,
+*::after {
+  animation-duration: 0 !important;
+}

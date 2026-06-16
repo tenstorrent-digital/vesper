@@ -1,26 +1,12 @@
-import { Badge, type BadgeProps } from "@repo/vesper/badge";
+import { Badge, BADGE_SIZES, BADGE_VARIANTS } from "@repo/vesper/badge";
 import { Globe } from "@repo/vesper/icons";
-
-const VARIANTS: BadgeProps["variant"][] = [
-  "accent",
-  "contrast",
-  "danger",
-  "info",
-  "mint",
-  "pink",
-  "purple",
-  "success",
-  "warning",
-];
-
-const SIZES: BadgeProps["size"][] = ["sm", "md", "lg"];
 
 export function BadgePreview() {
   return (
     <div className="bg-vesper-stone-50 text-vesper-stone-900 flex flex-wrap gap-vesper-4 p-vesper-4">
-      {VARIANTS.map((variant) => (
+      {BADGE_VARIANTS.map((variant) => (
         <div className="flex flex-col gap-vesper-4" key={variant}>
-          {SIZES.map((size) => (
+          {BADGE_SIZES.map((size) => (
             <div key={size} className="flex gap-vesper-4">
               <Badge size={size} variant={variant} icon={<Globe />}>
                 {variant}

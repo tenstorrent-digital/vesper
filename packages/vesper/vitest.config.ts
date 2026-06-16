@@ -7,6 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   resolve: {
+    dedupe: ["react", "react-dom", "react/jsx-runtime"],
     alias: {
       "@": resolve(__dirname, "src"),
     },
@@ -14,8 +15,15 @@ export default defineConfig({
   test: {
     browser: {
       enabled: true,
-      provider: playwright(),
+      provider: playwright({}),
       instances: [{ browser: "chromium" }],
+    },
+    coverage: {
+      enabled: true,
+      reporter: ["text", "html"],
+      provider: "v8",
+      reportOnFailure: true,
+      exclude: ["src/components/icons/**"],
     },
     include: ["src/**/*.test.{ts,tsx}"],
     exclude: ["dist/**", "node_modules/**"],

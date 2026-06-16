@@ -2,23 +2,31 @@ import type { ElementType, ReactNode } from "react";
 import type { Polymorphic } from "@/utils/polymorphic";
 import { cn } from "@/utils/cn";
 
+export const TEXT_BUTTON_SIZES = ["lg", "md", "sm"] as const;
+
+export const TEXT_BUTTON_VARIANTS = [
+  "subtle",
+  "contrast",
+  "accent",
+  "success",
+  "warning",
+  "danger",
+  "info",
+  "purple",
+  "pink",
+] as const;
+
+export type TextButtonSize = (typeof TEXT_BUTTON_SIZES)[number];
+
+export type TextButtonVariant = (typeof TEXT_BUTTON_VARIANTS)[number];
+
 export type TextButtonProps<E extends ElementType = "button"> = Polymorphic<
   {
-    size: "lg" | "md" | "sm";
-    variant:
-      | "subtle"
-      | "contrast"
-      | "accent"
-      | "success"
-      | "warning"
-      | "danger"
-      | "info"
-      | "purple"
-      | "pink";
+    size?: TextButtonSize;
+    variant?: TextButtonVariant;
     disabled?: boolean;
     iconLeft?: ReactNode;
     iconRight?: ReactNode;
-    className?: string;
   },
   E
 >;
@@ -26,8 +34,8 @@ export type TextButtonProps<E extends ElementType = "button"> = Polymorphic<
 export function TextButton<E extends ElementType>(props: TextButtonProps<E>) {
   const {
     as: Component = "button",
-    size,
-    variant,
+    size = "lg",
+    variant = "accent",
     iconLeft,
     iconRight,
     children,

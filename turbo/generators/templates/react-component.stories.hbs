@@ -5,11 +5,21 @@ import { {{ name }} } from "@/components/{{ kebabCase name }}/{{ kebabCase name 
 const meta = {
   component: {{ name }},
   parameters: { layout: "centered" },
+  {{#if element}}
+  argTypes: {
+    as: { table: { disable: true } },
+  },
+  {{else}}
+  argTypes: {},
+  {{/if}}
 } satisfies Meta<typeof {{ name }}>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Playground: Story = {};
+export const Playground: Story = {
+  args: {},
+  render: (props) => <{{ name }} {...props} />
+};
 Playground.storyName = "{{ kebabCase name }}";
