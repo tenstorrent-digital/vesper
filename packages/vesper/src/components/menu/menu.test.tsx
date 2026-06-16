@@ -236,46 +236,44 @@ describe("menu [snapshot]", () => {
 
 describe("menu [a11y]", () => {
   ["light", "dark"].forEach((theme) => {
-    describe(`${theme} mode`, () => {
-      beforeEach(() => {
-        document.documentElement.setAttribute("data-vesper-theme", theme);
-      });
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+    });
 
-      afterEach(() => {
-        document.documentElement.removeAttribute("data-vesper-theme");
-      });
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+    });
 
-      test("renders without wcag2aaa violations when open", async () => {
-        const result = render(
-          <Menu items={MENU_ITEMS} open>
-            <TextButton variant="contrast">trigger</TextButton>
-          </Menu>,
-        );
+    test("wcag2aaa (open)", async () => {
+      const result = render(
+        <Menu items={MENU_ITEMS} open>
+          <TextButton variant="contrast">trigger</TextButton>
+        </Menu>,
+      );
 
-        await waitFor(() =>
-          expect(document.querySelector(".vesper-menu")).not.toBeNull(),
-        );
+      await waitFor(() =>
+        expect(document.querySelector(".vesper-menu")).not.toBeNull(),
+      );
 
-        expect(
-          await axe.run(result.container.ownerDocument, {
-            runOnly: "wcag2aaa",
-          }),
-        ).toHaveNoViolations();
-      });
+      expect(
+        await axe.run(result.container.ownerDocument, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
 
-      test("renders without wcag2aaa violations when closed", async () => {
-        const result = render(
-          <Menu items={MENU_ITEMS} open={false}>
-            <TextButton variant="contrast">trigger</TextButton>
-          </Menu>,
-        );
+    test("wcag2aaa (closed)", async () => {
+      const result = render(
+        <Menu items={MENU_ITEMS} open={false}>
+          <TextButton variant="contrast">trigger</TextButton>
+        </Menu>,
+      );
 
-        expect(
-          await axe.run(result.container.ownerDocument, {
-            runOnly: "wcag2aaa",
-          }),
-        ).toHaveNoViolations();
-      });
+      expect(
+        await axe.run(result.container.ownerDocument, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
     });
   });
 });

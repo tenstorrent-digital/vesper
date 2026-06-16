@@ -214,47 +214,45 @@ describe("split-button [snapshot]", () => {
 
 describe("split-button [a11y]", () => {
   ["light", "dark"].forEach((theme) => {
-    describe(`${theme} mode`, () => {
-      beforeEach(() => {
-        document.documentElement.setAttribute("data-vesper-theme", theme);
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+    });
+
+    SPLIT_BUTTON_PERMUTATIONS.forEach((permutation) => {
+      const { disabled, variant, size } = permutation;
+
+      test(`wcag2aaa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`, async () => {
+        const result = render(
+          <SplitButton {...permutation}>button text</SplitButton>,
+        );
+
+        expect(
+          await axe.run(result.container.ownerDocument, {
+            runOnly: "wcag2aaa",
+          }),
+        ).toHaveNoViolations();
       });
 
-      afterEach(() => {
-        document.documentElement.removeAttribute("data-vesper-theme");
-      });
+      test(`wcag2aaa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`, async () => {
+        const result = render(
+          <SplitButton {...permutation} menuOpen>
+            button text
+          </SplitButton>,
+        );
 
-      SPLIT_BUTTON_PERMUTATIONS.forEach((permutation) => {
-        const { disabled, variant, size } = permutation;
+        await waitFor(() =>
+          expect(document.querySelector(".vesper-menu")).not.toBeNull(),
+        );
 
-        test(`renders without wcag2aaa violations when closed and size="${size}", variant="${variant}", disabled=${disabled}`, async () => {
-          const result = render(
-            <SplitButton {...permutation}>button text</SplitButton>,
-          );
-
-          expect(
-            await axe.run(result.container.ownerDocument, {
-              runOnly: "wcag2aaa",
-            }),
-          ).toHaveNoViolations();
-        });
-
-        test(`renders without wcag2aaa violations when open and size="${size}", variant="${variant}", disabled=${disabled}`, async () => {
-          const result = render(
-            <SplitButton {...permutation} menuOpen>
-              button text
-            </SplitButton>,
-          );
-
-          await waitFor(() =>
-            expect(document.querySelector(".vesper-menu")).not.toBeNull(),
-          );
-
-          expect(
-            await axe.run(result.container.ownerDocument, {
-              runOnly: "wcag2aaa",
-            }),
-          ).toHaveNoViolations();
-        });
+        expect(
+          await axe.run(result.container.ownerDocument, {
+            runOnly: "wcag2aaa",
+          }),
+        ).toHaveNoViolations();
       });
     });
   });

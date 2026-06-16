@@ -76,27 +76,25 @@ describe("avatar [snapshot]", () => {
 
 describe("avatar [a11y]", () => {
   ["light", "dark"].forEach((theme) => {
-    describe(`${theme} mode`, () => {
-      beforeEach(() => {
-        document.documentElement.setAttribute("data-vesper-theme", theme);
-      });
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+    });
 
-      afterEach(() => {
-        document.documentElement.removeAttribute("data-vesper-theme");
-      });
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+    });
 
-      AVATAR_SIZES.forEach((size) => {
-        test(`renders without wcag2aaa violations when size="${size}"`, async () => {
-          const result = render(
-            <Avatar size={size} src="https://unsplash.it/300/300" />,
-          );
+    AVATAR_SIZES.forEach((size) => {
+      test(`wcag2aaa (${size}, ${theme})`, async () => {
+        const result = render(
+          <Avatar size={size} src="https://unsplash.it/300/300" />,
+        );
 
-          expect(
-            await axe.run(result.container, {
-              runOnly: "wcag2aaa",
-            }),
-          ).toHaveNoViolations();
-        });
+        expect(
+          await axe.run(result.container, {
+            runOnly: "wcag2aaa",
+          }),
+        ).toHaveNoViolations();
       });
     });
   });

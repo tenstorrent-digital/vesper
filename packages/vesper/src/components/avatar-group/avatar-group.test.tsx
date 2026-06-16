@@ -169,36 +169,34 @@ describe("avatar-group [snapshot]", () => {
 
 describe("avatar-group [a11y]", () => {
   ["light", "dark"].forEach((theme) => {
-    describe(`${theme} mode`, () => {
-      beforeEach(() => {
-        document.documentElement.setAttribute("data-vesper-theme", theme);
-      });
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+    });
 
-      afterEach(() => {
-        document.documentElement.removeAttribute("data-vesper-theme");
-      });
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+    });
 
-      AVATAR_SIZES.forEach((size) => {
-        test(`renders without wcag2aaa violations when size="${size}"`, async () => {
-          const result = render(
-            <AvatarGroup
-              size={size}
-              avatars={[
-                { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
-                { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
-                { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
-                { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
-                { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
-              ]}
-            />,
-          );
+    AVATAR_SIZES.forEach((size) => {
+      test(`wcag2aaa (${size}, ${theme})`, async () => {
+        const result = render(
+          <AvatarGroup
+            size={size}
+            avatars={[
+              { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
+              { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
+              { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
+              { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
+              { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
+            ]}
+          />,
+        );
 
-          expect(
-            await axe.run(result.container, {
-              runOnly: "wcag2aaa",
-            }),
-          ).toHaveNoViolations();
-        });
+        expect(
+          await axe.run(result.container, {
+            runOnly: "wcag2aaa",
+          }),
+        ).toHaveNoViolations();
       });
     });
   });

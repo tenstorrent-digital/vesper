@@ -72,27 +72,25 @@ describe("typography [snapshot]", () => {
 
 describe("typography [a11y]", () => {
   ["light", "dark"].forEach((theme) => {
-    describe(`${theme} mode`, () => {
-      beforeEach(() => {
-        document.documentElement.setAttribute("data-vesper-theme", theme);
-      });
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+    });
 
-      afterEach(() => {
-        document.documentElement.removeAttribute("data-vesper-theme");
-      });
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+    });
 
-      TYPOGRAPHY_VARIANTS.forEach((variant) => {
-        test(`renders without wcag2aaa violations when variant="${variant}"`, async () => {
-          const result = render(
-            <Typography variant={variant}>{variant}</Typography>,
-          );
+    TYPOGRAPHY_VARIANTS.forEach((variant) => {
+      test(`wcag2aaa (${variant}, ${theme})`, async () => {
+        const result = render(
+          <Typography variant={variant}>{variant}</Typography>,
+        );
 
-          expect(
-            await axe.run(result.container, {
-              runOnly: "wcag2aaa",
-            }),
-          ).toHaveNoViolations();
-        });
+        expect(
+          await axe.run(result.container, {
+            runOnly: "wcag2aaa",
+          }),
+        ).toHaveNoViolations();
       });
     });
   });

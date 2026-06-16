@@ -115,27 +115,25 @@ describe("badge [snapshot]", () => {
 
 describe("badge [a11y]", () => {
   ["light", "dark"].forEach((theme) => {
-    describe(`${theme} mode`, () => {
-      beforeEach(() => {
-        document.documentElement.setAttribute("data-vesper-theme", theme);
-      });
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+    });
 
-      afterEach(() => {
-        document.documentElement.removeAttribute("data-vesper-theme");
-      });
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+    });
 
-      BADGE_PERMUTATIONS.forEach((permutation) => {
-        const { size, variant, subtle } = permutation;
+    BADGE_PERMUTATIONS.forEach((permutation) => {
+      const { size, variant, subtle } = permutation;
 
-        test(`renders without wcag2aaa violations when variant="${variant}", size="${size}", subtle={${subtle}}`, async () => {
-          const result = render(<Badge {...permutation}>Badge Text</Badge>);
+      test(`wcag2aaa (${variant}, ${size},${subtle ? " subtle," : ""} ${theme})`, async () => {
+        const result = render(<Badge {...permutation}>Badge Text</Badge>);
 
-          expect(
-            await axe.run(result.container, {
-              runOnly: "wcag2aaa",
-            }),
-          ).toHaveNoViolations();
-        });
+        expect(
+          await axe.run(result.container, {
+            runOnly: "wcag2aaa",
+          }),
+        ).toHaveNoViolations();
       });
     });
   });

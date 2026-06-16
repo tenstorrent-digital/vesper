@@ -171,27 +171,25 @@ describe("button [snapshot]", () => {
 
 describe("button [a11y]", () => {
   ["light", "dark"].forEach((theme) => {
-    describe(`${theme} mode`, () => {
-      beforeEach(() => {
-        document.documentElement.setAttribute("data-vesper-theme", theme);
-      });
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+    });
 
-      afterEach(() => {
-        document.documentElement.removeAttribute("data-vesper-theme");
-      });
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+    });
 
-      BUTTON_PERMUTATIONS.forEach((permutation) => {
-        const { size, variant, disabled } = permutation;
+    BUTTON_PERMUTATIONS.forEach((permutation) => {
+      const { size, variant, disabled } = permutation;
 
-        test(`renders without wcag2aaa violations when variant="${variant}", size="${size}", disabled={${disabled}}`, async () => {
-          const result = render(<Button {...permutation}>Button Text</Button>);
+      test(`wcag2aaa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`, async () => {
+        const result = render(<Button {...permutation}>Button Text</Button>);
 
-          expect(
-            await axe.run(result.container, {
-              runOnly: "wcag2aaa",
-            }),
-          ).toHaveNoViolations();
-        });
+        expect(
+          await axe.run(result.container, {
+            runOnly: "wcag2aaa",
+          }),
+        ).toHaveNoViolations();
       });
     });
   });

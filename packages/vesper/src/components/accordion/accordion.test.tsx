@@ -82,42 +82,40 @@ describe("accordion [snapshot]", () => {
 
 describe("accordion [a11y]", () => {
   ["light", "dark"].forEach((theme) => {
-    describe(`${theme} mode`, () => {
-      beforeEach(() => {
-        document.documentElement.setAttribute("data-vesper-theme", theme);
-      });
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+    });
 
-      afterEach(() => {
-        document.documentElement.removeAttribute("data-vesper-theme");
-      });
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+    });
 
-      test("renders without wcag2aaa violations when open", async () => {
-        const result = render(
-          <Accordion title={TITLE} open>
-            {CHILDREN}
-          </Accordion>,
-        );
+    test(`wcag2aaa (open, ${theme})`, async () => {
+      const result = render(
+        <Accordion title={TITLE} open>
+          {CHILDREN}
+        </Accordion>,
+      );
 
-        expect(
-          await axe.run(result.container, {
-            runOnly: "wcag2aaa",
-          }),
-        ).toHaveNoViolations();
-      });
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
 
-      test("renders without wcag2aaa violations when closed", async () => {
-        const result = render(
-          <Accordion title={TITLE} open={false}>
-            {CHILDREN}
-          </Accordion>,
-        );
+    test(`wcag2aaa (closed, ${theme})`, async () => {
+      const result = render(
+        <Accordion title={TITLE} open={false}>
+          {CHILDREN}
+        </Accordion>,
+      );
 
-        expect(
-          await axe.run(result.container, {
-            runOnly: "wcag2aaa",
-          }),
-        ).toHaveNoViolations();
-      });
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
     });
   });
 });

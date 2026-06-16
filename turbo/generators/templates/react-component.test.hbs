@@ -31,22 +31,20 @@ describe("{{ kebabCase name }} [snapshot]", () => {
 
 describe("{{ kebabCase name }} [a11y]", () => {
   ["light", "dark"].forEach((theme) => {
-    describe(`${theme} mode`, () => {
-      beforeEach(() => {
-        document.documentElement.setAttribute("data-vesper-theme", theme);
-      });
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+    });
 
-      afterEach(() => {
-        document.documentElement.removeAttribute("data-vesper-theme");
-      });
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+    });
 
-      it("renders without wcag2aaa violations", async () => {
-        const result = render(<{{ name }} />);
+    it(`wcag2aaa (${theme})`, async () => {
+      const result = render(<{{ name }} />);
 
-        expect(
-          await axe.run(result.container, { runOnly: "wcag2aaa" }),
-        ).toHaveNoViolations();
-      });
+      expect(
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
+      ).toHaveNoViolations();
     });
   });
 });
