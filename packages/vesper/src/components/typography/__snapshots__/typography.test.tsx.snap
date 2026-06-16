@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`typography [snapshot] > renders correctly when variant="copy-lg" 1`] = `
+exports[`typography [snapshot] > copy-lg 1`] = `
 <p
   class="vesper-typography vesper-typography-copy-lg"
 >
@@ -8,7 +8,7 @@ exports[`typography [snapshot] > renders correctly when variant="copy-lg" 1`] = 
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="copy-lg-bold" 1`] = `
+exports[`typography [snapshot] > copy-lg-bold 1`] = `
 <p
   class="vesper-typography vesper-typography-copy-lg-bold"
 >
@@ -16,7 +16,7 @@ exports[`typography [snapshot] > renders correctly when variant="copy-lg-bold" 1
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="copy-md" 1`] = `
+exports[`typography [snapshot] > copy-md 1`] = `
 <p
   class="vesper-typography vesper-typography-copy-md"
 >
@@ -24,7 +24,7 @@ exports[`typography [snapshot] > renders correctly when variant="copy-md" 1`] = 
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="copy-md-bold" 1`] = `
+exports[`typography [snapshot] > copy-md-bold 1`] = `
 <p
   class="vesper-typography vesper-typography-copy-md-bold"
 >
@@ -32,7 +32,7 @@ exports[`typography [snapshot] > renders correctly when variant="copy-md-bold" 1
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="copy-sm" 1`] = `
+exports[`typography [snapshot] > copy-sm 1`] = `
 <p
   class="vesper-typography vesper-typography-copy-sm"
 >
@@ -40,7 +40,7 @@ exports[`typography [snapshot] > renders correctly when variant="copy-sm" 1`] = 
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="copy-sm-bold" 1`] = `
+exports[`typography [snapshot] > copy-sm-bold 1`] = `
 <p
   class="vesper-typography vesper-typography-copy-sm-bold"
 >
@@ -48,7 +48,7 @@ exports[`typography [snapshot] > renders correctly when variant="copy-sm-bold" 1
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="copy-xl" 1`] = `
+exports[`typography [snapshot] > copy-xl 1`] = `
 <p
   class="vesper-typography vesper-typography-copy-xl"
 >
@@ -56,7 +56,7 @@ exports[`typography [snapshot] > renders correctly when variant="copy-xl" 1`] = 
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="copy-xl-bold" 1`] = `
+exports[`typography [snapshot] > copy-xl-bold 1`] = `
 <p
   class="vesper-typography vesper-typography-copy-xl-bold"
 >
@@ -64,7 +64,7 @@ exports[`typography [snapshot] > renders correctly when variant="copy-xl-bold" 1
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="copy-xs" 1`] = `
+exports[`typography [snapshot] > copy-xs 1`] = `
 <p
   class="vesper-typography vesper-typography-copy-xs"
 >
@@ -72,7 +72,7 @@ exports[`typography [snapshot] > renders correctly when variant="copy-xs" 1`] = 
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="copy-xs-bold" 1`] = `
+exports[`typography [snapshot] > copy-xs-bold 1`] = `
 <p
   class="vesper-typography vesper-typography-copy-xs-bold"
 >
@@ -80,7 +80,7 @@ exports[`typography [snapshot] > renders correctly when variant="copy-xs-bold" 1
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="copy-xs-mono" 1`] = `
+exports[`typography [snapshot] > copy-xs-mono 1`] = `
 <p
   class="vesper-typography vesper-typography-copy-xs-mono"
 >
@@ -88,7 +88,7 @@ exports[`typography [snapshot] > renders correctly when variant="copy-xs-mono" 1
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="display-lg" 1`] = `
+exports[`typography [snapshot] > display-lg 1`] = `
 <p
   class="vesper-typography vesper-typography-display-lg"
 >
@@ -96,7 +96,7 @@ exports[`typography [snapshot] > renders correctly when variant="display-lg" 1`]
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="display-md" 1`] = `
+exports[`typography [snapshot] > display-md 1`] = `
 <p
   class="vesper-typography vesper-typography-display-md"
 >
@@ -104,7 +104,7 @@ exports[`typography [snapshot] > renders correctly when variant="display-md" 1`]
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="display-sm" 1`] = `
+exports[`typography [snapshot] > display-sm 1`] = `
 <p
   class="vesper-typography vesper-typography-display-sm"
 >
@@ -112,7 +112,7 @@ exports[`typography [snapshot] > renders correctly when variant="display-sm" 1`]
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="heading-2xl" 1`] = `
+exports[`typography [snapshot] > heading-2xl 1`] = `
 <p
   class="vesper-typography vesper-typography-heading-2xl"
 >
@@ -120,7 +120,7 @@ exports[`typography [snapshot] > renders correctly when variant="heading-2xl" 1`
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="heading-lg" 1`] = `
+exports[`typography [snapshot] > heading-lg 1`] = `
 <p
   class="vesper-typography vesper-typography-heading-lg"
 >
@@ -128,7 +128,7 @@ exports[`typography [snapshot] > renders correctly when variant="heading-lg" 1`]
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="heading-md" 1`] = `
+exports[`typography [snapshot] > heading-md 1`] = `
 <p
   class="vesper-typography vesper-typography-heading-md"
 >
@@ -136,7 +136,7 @@ exports[`typography [snapshot] > renders correctly when variant="heading-md" 1`]
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="heading-sm" 1`] = `
+exports[`typography [snapshot] > heading-sm 1`] = `
 <p
   class="vesper-typography vesper-typography-heading-sm"
 >
@@ -144,7 +144,7 @@ exports[`typography [snapshot] > renders correctly when variant="heading-sm" 1`]
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="heading-xl" 1`] = `
+exports[`typography [snapshot] > heading-xl 1`] = `
 <p
   class="vesper-typography vesper-typography-heading-xl"
 >
@@ -152,7 +152,7 @@ exports[`typography [snapshot] > renders correctly when variant="heading-xl" 1`]
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="heading-xs" 1`] = `
+exports[`typography [snapshot] > heading-xs 1`] = `
 <p
   class="vesper-typography vesper-typography-heading-xs"
 >
@@ -160,7 +160,7 @@ exports[`typography [snapshot] > renders correctly when variant="heading-xs" 1`]
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="label-lg" 1`] = `
+exports[`typography [snapshot] > label-lg 1`] = `
 <p
   class="vesper-typography vesper-typography-label-lg"
 >
@@ -168,7 +168,7 @@ exports[`typography [snapshot] > renders correctly when variant="label-lg" 1`] =
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="label-lg-bold" 1`] = `
+exports[`typography [snapshot] > label-lg-bold 1`] = `
 <p
   class="vesper-typography vesper-typography-label-lg-bold"
 >
@@ -176,7 +176,7 @@ exports[`typography [snapshot] > renders correctly when variant="label-lg-bold" 
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="label-md" 1`] = `
+exports[`typography [snapshot] > label-md 1`] = `
 <p
   class="vesper-typography vesper-typography-label-md"
 >
@@ -184,7 +184,7 @@ exports[`typography [snapshot] > renders correctly when variant="label-md" 1`] =
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="label-md-bold" 1`] = `
+exports[`typography [snapshot] > label-md-bold 1`] = `
 <p
   class="vesper-typography vesper-typography-label-md-bold"
 >
@@ -192,7 +192,7 @@ exports[`typography [snapshot] > renders correctly when variant="label-md-bold" 
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="label-md-mono" 1`] = `
+exports[`typography [snapshot] > label-md-mono 1`] = `
 <p
   class="vesper-typography vesper-typography-label-md-mono"
 >
@@ -200,7 +200,7 @@ exports[`typography [snapshot] > renders correctly when variant="label-md-mono" 
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="label-sm" 1`] = `
+exports[`typography [snapshot] > label-sm 1`] = `
 <p
   class="vesper-typography vesper-typography-label-sm"
 >
@@ -208,7 +208,7 @@ exports[`typography [snapshot] > renders correctly when variant="label-sm" 1`] =
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="label-sm-bold" 1`] = `
+exports[`typography [snapshot] > label-sm-bold 1`] = `
 <p
   class="vesper-typography vesper-typography-label-sm-bold"
 >
@@ -216,7 +216,7 @@ exports[`typography [snapshot] > renders correctly when variant="label-sm-bold" 
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="label-sm-mono" 1`] = `
+exports[`typography [snapshot] > label-sm-mono 1`] = `
 <p
   class="vesper-typography vesper-typography-label-sm-mono"
 >
@@ -224,7 +224,7 @@ exports[`typography [snapshot] > renders correctly when variant="label-sm-mono" 
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="label-xs" 1`] = `
+exports[`typography [snapshot] > label-xs 1`] = `
 <p
   class="vesper-typography vesper-typography-label-xs"
 >
@@ -232,7 +232,7 @@ exports[`typography [snapshot] > renders correctly when variant="label-xs" 1`] =
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="label-xs-bold" 1`] = `
+exports[`typography [snapshot] > label-xs-bold 1`] = `
 <p
   class="vesper-typography vesper-typography-label-xs-bold"
 >
@@ -240,7 +240,7 @@ exports[`typography [snapshot] > renders correctly when variant="label-xs-bold" 
 </p>
 `;
 
-exports[`typography [snapshot] > renders correctly when variant="label-xs-mono" 1`] = `
+exports[`typography [snapshot] > label-xs-mono 1`] = `
 <p
   class="vesper-typography vesper-typography-label-xs-mono"
 >

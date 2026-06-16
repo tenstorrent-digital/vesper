@@ -1,8 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`menu [snapshot] > renders correctly when closed 1`] = `null`;
+exports[`menu [snapshot] > closed 1`] = `null`;
 
-exports[`menu [snapshot] > renders correctly when open 1`] = `
+exports[`menu [snapshot] > open 1`] = `
 <div
   aria-labelledby="radix-_r_1t_"
   aria-orientation="vertical"

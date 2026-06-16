@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`accordion [snapshot] > renders correctly when closed 1`] = `
+exports[`accordion [snapshot] > closed 1`] = `
 <div
   class="vesper-accordion"
   data-state="closed"
@@ -36,7 +36,7 @@ exports[`accordion [snapshot] > renders correctly when closed 1`] = `
 </div>
 `;
 
-exports[`accordion [snapshot] > renders correctly when open 1`] = `
+exports[`accordion [snapshot] > open 1`] = `
 <div
   class="vesper-accordion"
   data-state="open"

@@ -1,6 +1,70 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`avatar-group [snapshot] > renders correctly when size="lg" 1`] = `
+exports[`avatar-group [snapshot] > <=3 avatars 1`] = `
+<div
+  class="vesper-avatar-group"
+>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt="avatar alt text"
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt="avatar alt text"
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+</div>
+`;
+
+exports[`avatar-group [snapshot] > >100 avatars 1`] = `
+<div
+  class="vesper-avatar-group"
+>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt=""
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt=""
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar vesper-avatar-md"
+  >
+    <img
+      alt=""
+      class="vesper-avatar-image"
+      src="https://unsplash.it/200/200"
+    />
+  </div>
+  <div
+    class="vesper-avatar-group-overflow vesper-avatar vesper-avatar-undefined"
+  >
+    99+
+  </div>
+</div>
+`;
+
+exports[`avatar-group [snapshot] > lg 1`] = `
 <div
   class="vesper-avatar-group"
 >
@@ -39,7 +103,7 @@ exports[`avatar-group [snapshot] > renders correctly when size="lg" 1`] = `
 </div>
 `;
 
-exports[`avatar-group [snapshot] > renders correctly when size="md" 1`] = `
+exports[`avatar-group [snapshot] > md 1`] = `
 <div
   class="vesper-avatar-group"
 >
@@ -78,7 +142,7 @@ exports[`avatar-group [snapshot] > renders correctly when size="md" 1`] = `
 </div>
 `;
 
-exports[`avatar-group [snapshot] > renders correctly when size="sm" 1`] = `
+exports[`avatar-group [snapshot] > sm 1`] = `
 <div
   class="vesper-avatar-group"
 >
@@ -113,70 +177,6 @@ exports[`avatar-group [snapshot] > renders correctly when size="sm" 1`] = `
     class="vesper-avatar-group-overflow vesper-avatar vesper-avatar-sm"
   >
     +2
-  </div>
-</div>
-`;
-
-exports[`avatar-group [snapshot] > renders correctly when there are 3 or fewer avatars 1`] = `
-<div
-  class="vesper-avatar-group"
->
-  <div
-    class="vesper-avatar vesper-avatar-md"
-  >
-    <img
-      alt="avatar alt text"
-      class="vesper-avatar-image"
-      src="https://unsplash.it/200/200"
-    />
-  </div>
-  <div
-    class="vesper-avatar vesper-avatar-md"
-  >
-    <img
-      alt="avatar alt text"
-      class="vesper-avatar-image"
-      src="https://unsplash.it/200/200"
-    />
-  </div>
-</div>
-`;
-
-exports[`avatar-group [snapshot] > renders correctly when there are more than 100 avatars 1`] = `
-<div
-  class="vesper-avatar-group"
->
-  <div
-    class="vesper-avatar vesper-avatar-md"
-  >
-    <img
-      alt=""
-      class="vesper-avatar-image"
-      src="https://unsplash.it/200/200"
-    />
-  </div>
-  <div
-    class="vesper-avatar vesper-avatar-md"
-  >
-    <img
-      alt=""
-      class="vesper-avatar-image"
-      src="https://unsplash.it/200/200"
-    />
-  </div>
-  <div
-    class="vesper-avatar vesper-avatar-md"
-  >
-    <img
-      alt=""
-      class="vesper-avatar-image"
-      src="https://unsplash.it/200/200"
-    />
-  </div>
-  <div
-    class="vesper-avatar-group-overflow vesper-avatar vesper-avatar-undefined"
-  >
-    99+
   </div>
 </div>
 `;

@@ -1,6 +1,54 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`split-button [snapshot] > renders correctly when size="lg", variant="contrast", disabled=false 1`] = `
+exports[`split-button [snapshot] > contrast, lg 1`] = `
+<div>
+  <div
+    aria-expanded="false"
+    aria-haspopup="menu"
+    class="vesper-split-button"
+    data-state="closed"
+    id="radix-_r_1n_"
+    type="button"
+  >
+    <button
+      class="vesper-button vesper-button-lg vesper-button-contrast"
+    >
+      button text
+    </button>
+    <button
+      aria-label="Toggle menu"
+      class="vesper-button vesper-button-lg vesper-button-contrast"
+    >
+      <span
+        class="vesper-button-icon"
+      >
+        <svg
+          class="vesper-split-button-caret-down"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+            fill="currentColor"
+          />
+        </svg>
+        <svg
+          class="vesper-split-button-caret-up"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`split-button [snapshot] > contrast, lg, disabled 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -11,13 +59,15 @@ exports[`split-button [snapshot] > renders correctly when size="lg", variant="co
     type="button"
   >
     <button
-      class="vesper-button vesper-button-lg vesper-button-contrast"
+      class="vesper-button vesper-button-lg vesper-button-disabled"
+      disabled=""
     >
       button text
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-contrast"
+      class="vesper-button vesper-button-lg vesper-button-disabled"
+      disabled=""
     >
       <span
         class="vesper-button-icon"
@@ -48,7 +98,7 @@ exports[`split-button [snapshot] > renders correctly when size="lg", variant="co
 </div>
 `;
 
-exports[`split-button [snapshot] > renders correctly when size="lg", variant="contrast", disabled=true 1`] = `
+exports[`split-button [snapshot] > contrast, md 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -59,15 +109,13 @@ exports[`split-button [snapshot] > renders correctly when size="lg", variant="co
     type="button"
   >
     <button
-      class="vesper-button vesper-button-lg vesper-button-disabled"
-      disabled=""
+      class="vesper-button vesper-button-md vesper-button-contrast"
     >
       button text
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-disabled"
-      disabled=""
+      class="vesper-button vesper-button-md vesper-button-contrast"
     >
       <span
         class="vesper-button-icon"
@@ -98,105 +146,7 @@ exports[`split-button [snapshot] > renders correctly when size="lg", variant="co
 </div>
 `;
 
-exports[`split-button [snapshot] > renders correctly when size="lg", variant="subtle", disabled=false 1`] = `
-<div>
-  <div
-    aria-expanded="false"
-    aria-haspopup="menu"
-    class="vesper-split-button"
-    data-state="closed"
-    id="radix-_r_1d_"
-    type="button"
-  >
-    <button
-      class="vesper-button vesper-button-lg vesper-button-subtle"
-    >
-      button text
-    </button>
-    <button
-      aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-subtle"
-    >
-      <span
-        class="vesper-button-icon"
-      >
-        <svg
-          class="vesper-split-button-caret-down"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-            fill="currentColor"
-          />
-        </svg>
-        <svg
-          class="vesper-split-button-caret-up"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </button>
-  </div>
-</div>
-`;
-
-exports[`split-button [snapshot] > renders correctly when size="lg", variant="subtle", disabled=true 1`] = `
-<div>
-  <div
-    aria-expanded="false"
-    aria-haspopup="menu"
-    class="vesper-split-button"
-    data-state="closed"
-    id="radix-_r_1f_"
-    type="button"
-  >
-    <button
-      class="vesper-button vesper-button-lg vesper-button-disabled"
-      disabled=""
-    >
-      button text
-    </button>
-    <button
-      aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-disabled"
-      disabled=""
-    >
-      <span
-        class="vesper-button-icon"
-      >
-        <svg
-          class="vesper-split-button-caret-down"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-            fill="currentColor"
-          />
-        </svg>
-        <svg
-          class="vesper-split-button-caret-up"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </button>
-  </div>
-</div>
-`;
-
-exports[`split-button [snapshot] > renders correctly when size="md", variant="contrast", disabled=false 1`] = `
+exports[`split-button [snapshot] > contrast, md, disabled 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -207,13 +157,15 @@ exports[`split-button [snapshot] > renders correctly when size="md", variant="co
     type="button"
   >
     <button
-      class="vesper-button vesper-button-md vesper-button-contrast"
+      class="vesper-button vesper-button-md vesper-button-disabled"
+      disabled=""
     >
       button text
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-contrast"
+      class="vesper-button vesper-button-md vesper-button-disabled"
+      disabled=""
     >
       <span
         class="vesper-button-icon"
@@ -244,7 +196,7 @@ exports[`split-button [snapshot] > renders correctly when size="md", variant="co
 </div>
 `;
 
-exports[`split-button [snapshot] > renders correctly when size="md", variant="contrast", disabled=true 1`] = `
+exports[`split-button [snapshot] > contrast, sm 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -255,15 +207,13 @@ exports[`split-button [snapshot] > renders correctly when size="md", variant="co
     type="button"
   >
     <button
-      class="vesper-button vesper-button-md vesper-button-disabled"
-      disabled=""
+      class="vesper-button vesper-button-sm vesper-button-contrast"
     >
       button text
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-disabled"
-      disabled=""
+      class="vesper-button vesper-button-sm vesper-button-contrast"
     >
       <span
         class="vesper-button-icon"
@@ -294,105 +244,7 @@ exports[`split-button [snapshot] > renders correctly when size="md", variant="co
 </div>
 `;
 
-exports[`split-button [snapshot] > renders correctly when size="md", variant="subtle", disabled=false 1`] = `
-<div>
-  <div
-    aria-expanded="false"
-    aria-haspopup="menu"
-    class="vesper-split-button"
-    data-state="closed"
-    id="radix-_r_1h_"
-    type="button"
-  >
-    <button
-      class="vesper-button vesper-button-md vesper-button-subtle"
-    >
-      button text
-    </button>
-    <button
-      aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-subtle"
-    >
-      <span
-        class="vesper-button-icon"
-      >
-        <svg
-          class="vesper-split-button-caret-down"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-            fill="currentColor"
-          />
-        </svg>
-        <svg
-          class="vesper-split-button-caret-up"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </button>
-  </div>
-</div>
-`;
-
-exports[`split-button [snapshot] > renders correctly when size="md", variant="subtle", disabled=true 1`] = `
-<div>
-  <div
-    aria-expanded="false"
-    aria-haspopup="menu"
-    class="vesper-split-button"
-    data-state="closed"
-    id="radix-_r_1j_"
-    type="button"
-  >
-    <button
-      class="vesper-button vesper-button-md vesper-button-disabled"
-      disabled=""
-    >
-      button text
-    </button>
-    <button
-      aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-disabled"
-      disabled=""
-    >
-      <span
-        class="vesper-button-icon"
-      >
-        <svg
-          class="vesper-split-button-caret-down"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-            fill="currentColor"
-          />
-        </svg>
-        <svg
-          class="vesper-split-button-caret-up"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </button>
-  </div>
-</div>
-`;
-
-exports[`split-button [snapshot] > renders correctly when size="sm", variant="contrast", disabled=false 1`] = `
+exports[`split-button [snapshot] > contrast, sm, disabled 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -403,13 +255,15 @@ exports[`split-button [snapshot] > renders correctly when size="sm", variant="co
     type="button"
   >
     <button
-      class="vesper-button vesper-button-sm vesper-button-contrast"
+      class="vesper-button vesper-button-sm vesper-button-disabled"
+      disabled=""
     >
       button text
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-contrast"
+      class="vesper-button vesper-button-sm vesper-button-disabled"
+      disabled=""
     >
       <span
         class="vesper-button-icon"
@@ -440,25 +294,73 @@ exports[`split-button [snapshot] > renders correctly when size="sm", variant="co
 </div>
 `;
 
-exports[`split-button [snapshot] > renders correctly when size="sm", variant="contrast", disabled=true 1`] = `
+exports[`split-button [snapshot] > subtle, lg 1`] = `
 <div>
   <div
     aria-expanded="false"
     aria-haspopup="menu"
     class="vesper-split-button"
     data-state="closed"
-    id="radix-_r_23_"
+    id="radix-_r_1b_"
     type="button"
   >
     <button
-      class="vesper-button vesper-button-sm vesper-button-disabled"
+      class="vesper-button vesper-button-lg vesper-button-subtle"
+    >
+      button text
+    </button>
+    <button
+      aria-label="Toggle menu"
+      class="vesper-button vesper-button-lg vesper-button-subtle"
+    >
+      <span
+        class="vesper-button-icon"
+      >
+        <svg
+          class="vesper-split-button-caret-down"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+            fill="currentColor"
+          />
+        </svg>
+        <svg
+          class="vesper-split-button-caret-up"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`split-button [snapshot] > subtle, lg, disabled 1`] = `
+<div>
+  <div
+    aria-expanded="false"
+    aria-haspopup="menu"
+    class="vesper-split-button"
+    data-state="closed"
+    id="radix-_r_1d_"
+    type="button"
+  >
+    <button
+      class="vesper-button vesper-button-lg vesper-button-disabled"
       disabled=""
     >
       button text
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-disabled"
+      class="vesper-button vesper-button-lg vesper-button-disabled"
       disabled=""
     >
       <span
@@ -490,7 +392,153 @@ exports[`split-button [snapshot] > renders correctly when size="sm", variant="co
 </div>
 `;
 
-exports[`split-button [snapshot] > renders correctly when size="sm", variant="subtle", disabled=false 1`] = `
+exports[`split-button [snapshot] > subtle, md 1`] = `
+<div>
+  <div
+    aria-expanded="false"
+    aria-haspopup="menu"
+    class="vesper-split-button"
+    data-state="closed"
+    id="radix-_r_1f_"
+    type="button"
+  >
+    <button
+      class="vesper-button vesper-button-md vesper-button-subtle"
+    >
+      button text
+    </button>
+    <button
+      aria-label="Toggle menu"
+      class="vesper-button vesper-button-md vesper-button-subtle"
+    >
+      <span
+        class="vesper-button-icon"
+      >
+        <svg
+          class="vesper-split-button-caret-down"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+            fill="currentColor"
+          />
+        </svg>
+        <svg
+          class="vesper-split-button-caret-up"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`split-button [snapshot] > subtle, md, disabled 1`] = `
+<div>
+  <div
+    aria-expanded="false"
+    aria-haspopup="menu"
+    class="vesper-split-button"
+    data-state="closed"
+    id="radix-_r_1h_"
+    type="button"
+  >
+    <button
+      class="vesper-button vesper-button-md vesper-button-disabled"
+      disabled=""
+    >
+      button text
+    </button>
+    <button
+      aria-label="Toggle menu"
+      class="vesper-button vesper-button-md vesper-button-disabled"
+      disabled=""
+    >
+      <span
+        class="vesper-button-icon"
+      >
+        <svg
+          class="vesper-split-button-caret-down"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+            fill="currentColor"
+          />
+        </svg>
+        <svg
+          class="vesper-split-button-caret-up"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`split-button [snapshot] > subtle, sm 1`] = `
+<div>
+  <div
+    aria-expanded="false"
+    aria-haspopup="menu"
+    class="vesper-split-button"
+    data-state="closed"
+    id="radix-_r_1j_"
+    type="button"
+  >
+    <button
+      class="vesper-button vesper-button-sm vesper-button-subtle"
+    >
+      button text
+    </button>
+    <button
+      aria-label="Toggle menu"
+      class="vesper-button vesper-button-sm vesper-button-subtle"
+    >
+      <span
+        class="vesper-button-icon"
+      >
+        <svg
+          class="vesper-split-button-caret-down"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+            fill="currentColor"
+          />
+        </svg>
+        <svg
+          class="vesper-split-button-caret-up"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`split-button [snapshot] > subtle, sm, disabled 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -498,54 +546,6 @@ exports[`split-button [snapshot] > renders correctly when size="sm", variant="su
     class="vesper-split-button"
     data-state="closed"
     id="radix-_r_1l_"
-    type="button"
-  >
-    <button
-      class="vesper-button vesper-button-sm vesper-button-subtle"
-    >
-      button text
-    </button>
-    <button
-      aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-subtle"
-    >
-      <span
-        class="vesper-button-icon"
-      >
-        <svg
-          class="vesper-split-button-caret-down"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-            fill="currentColor"
-          />
-        </svg>
-        <svg
-          class="vesper-split-button-caret-up"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </button>
-  </div>
-</div>
-`;
-
-exports[`split-button [snapshot] > renders correctly when size="sm", variant="subtle", disabled=true 1`] = `
-<div>
-  <div
-    aria-expanded="false"
-    aria-haspopup="menu"
-    class="vesper-split-button"
-    data-state="closed"
-    id="radix-_r_1n_"
     type="button"
   >
     <button

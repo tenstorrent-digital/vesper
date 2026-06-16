@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`text-button [snapshot] > renders correctly when variant="accent", size="lg", disabled={false} 1`] = `
+exports[`text-button [snapshot] > accent, lg 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-accent"
 >
@@ -8,7 +8,7 @@ exports[`text-button [snapshot] > renders correctly when variant="accent", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="accent", size="lg", disabled={true} 1`] = `
+exports[`text-button [snapshot] > accent, lg, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
   disabled=""
@@ -17,7 +17,7 @@ exports[`text-button [snapshot] > renders correctly when variant="accent", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="accent", size="md", disabled={false} 1`] = `
+exports[`text-button [snapshot] > accent, md 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-accent"
 >
@@ -25,7 +25,7 @@ exports[`text-button [snapshot] > renders correctly when variant="accent", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="accent", size="md", disabled={true} 1`] = `
+exports[`text-button [snapshot] > accent, md, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
   disabled=""
@@ -34,7 +34,7 @@ exports[`text-button [snapshot] > renders correctly when variant="accent", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="accent", size="sm", disabled={false} 1`] = `
+exports[`text-button [snapshot] > accent, sm 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-accent"
 >
@@ -42,7 +42,7 @@ exports[`text-button [snapshot] > renders correctly when variant="accent", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="accent", size="sm", disabled={true} 1`] = `
+exports[`text-button [snapshot] > accent, sm, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
   disabled=""
@@ -51,7 +51,7 @@ exports[`text-button [snapshot] > renders correctly when variant="accent", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="contrast", size="lg", disabled={false} 1`] = `
+exports[`text-button [snapshot] > contrast, lg 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-contrast"
 >
@@ -59,7 +59,7 @@ exports[`text-button [snapshot] > renders correctly when variant="contrast", siz
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="contrast", size="lg", disabled={true} 1`] = `
+exports[`text-button [snapshot] > contrast, lg, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
   disabled=""
@@ -68,7 +68,7 @@ exports[`text-button [snapshot] > renders correctly when variant="contrast", siz
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="contrast", size="md", disabled={false} 1`] = `
+exports[`text-button [snapshot] > contrast, md 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-contrast"
 >
@@ -76,7 +76,7 @@ exports[`text-button [snapshot] > renders correctly when variant="contrast", siz
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="contrast", size="md", disabled={true} 1`] = `
+exports[`text-button [snapshot] > contrast, md, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
   disabled=""
@@ -85,7 +85,7 @@ exports[`text-button [snapshot] > renders correctly when variant="contrast", siz
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="contrast", size="sm", disabled={false} 1`] = `
+exports[`text-button [snapshot] > contrast, sm 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-contrast"
 >
@@ -93,7 +93,7 @@ exports[`text-button [snapshot] > renders correctly when variant="contrast", siz
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="contrast", size="sm", disabled={true} 1`] = `
+exports[`text-button [snapshot] > contrast, sm, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
   disabled=""
@@ -102,7 +102,7 @@ exports[`text-button [snapshot] > renders correctly when variant="contrast", siz
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="danger", size="lg", disabled={false} 1`] = `
+exports[`text-button [snapshot] > danger, lg 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-danger"
 >
@@ -110,7 +110,7 @@ exports[`text-button [snapshot] > renders correctly when variant="danger", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="danger", size="lg", disabled={true} 1`] = `
+exports[`text-button [snapshot] > danger, lg, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
   disabled=""
@@ -119,7 +119,7 @@ exports[`text-button [snapshot] > renders correctly when variant="danger", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="danger", size="md", disabled={false} 1`] = `
+exports[`text-button [snapshot] > danger, md 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-danger"
 >
@@ -127,7 +127,7 @@ exports[`text-button [snapshot] > renders correctly when variant="danger", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="danger", size="md", disabled={true} 1`] = `
+exports[`text-button [snapshot] > danger, md, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
   disabled=""
@@ -136,7 +136,7 @@ exports[`text-button [snapshot] > renders correctly when variant="danger", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="danger", size="sm", disabled={false} 1`] = `
+exports[`text-button [snapshot] > danger, sm 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-danger"
 >
@@ -144,7 +144,7 @@ exports[`text-button [snapshot] > renders correctly when variant="danger", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="danger", size="sm", disabled={true} 1`] = `
+exports[`text-button [snapshot] > danger, sm, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
   disabled=""
@@ -153,7 +153,7 @@ exports[`text-button [snapshot] > renders correctly when variant="danger", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="info", size="lg", disabled={false} 1`] = `
+exports[`text-button [snapshot] > info, lg 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-info"
 >
@@ -161,7 +161,7 @@ exports[`text-button [snapshot] > renders correctly when variant="info", size="l
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="info", size="lg", disabled={true} 1`] = `
+exports[`text-button [snapshot] > info, lg, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
   disabled=""
@@ -170,7 +170,7 @@ exports[`text-button [snapshot] > renders correctly when variant="info", size="l
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="info", size="md", disabled={false} 1`] = `
+exports[`text-button [snapshot] > info, md 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-info"
 >
@@ -178,7 +178,7 @@ exports[`text-button [snapshot] > renders correctly when variant="info", size="m
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="info", size="md", disabled={true} 1`] = `
+exports[`text-button [snapshot] > info, md, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
   disabled=""
@@ -187,7 +187,7 @@ exports[`text-button [snapshot] > renders correctly when variant="info", size="m
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="info", size="sm", disabled={false} 1`] = `
+exports[`text-button [snapshot] > info, sm 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-info"
 >
@@ -195,7 +195,7 @@ exports[`text-button [snapshot] > renders correctly when variant="info", size="s
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="info", size="sm", disabled={true} 1`] = `
+exports[`text-button [snapshot] > info, sm, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
   disabled=""
@@ -204,7 +204,7 @@ exports[`text-button [snapshot] > renders correctly when variant="info", size="s
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="pink", size="lg", disabled={false} 1`] = `
+exports[`text-button [snapshot] > pink, lg 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-pink"
 >
@@ -212,7 +212,7 @@ exports[`text-button [snapshot] > renders correctly when variant="pink", size="l
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="pink", size="lg", disabled={true} 1`] = `
+exports[`text-button [snapshot] > pink, lg, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
   disabled=""
@@ -221,7 +221,7 @@ exports[`text-button [snapshot] > renders correctly when variant="pink", size="l
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="pink", size="md", disabled={false} 1`] = `
+exports[`text-button [snapshot] > pink, md 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-pink"
 >
@@ -229,7 +229,7 @@ exports[`text-button [snapshot] > renders correctly when variant="pink", size="m
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="pink", size="md", disabled={true} 1`] = `
+exports[`text-button [snapshot] > pink, md, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
   disabled=""
@@ -238,7 +238,7 @@ exports[`text-button [snapshot] > renders correctly when variant="pink", size="m
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="pink", size="sm", disabled={false} 1`] = `
+exports[`text-button [snapshot] > pink, sm 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-pink"
 >
@@ -246,7 +246,7 @@ exports[`text-button [snapshot] > renders correctly when variant="pink", size="s
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="pink", size="sm", disabled={true} 1`] = `
+exports[`text-button [snapshot] > pink, sm, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
   disabled=""
@@ -255,7 +255,7 @@ exports[`text-button [snapshot] > renders correctly when variant="pink", size="s
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="purple", size="lg", disabled={false} 1`] = `
+exports[`text-button [snapshot] > purple, lg 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-purple"
 >
@@ -263,7 +263,7 @@ exports[`text-button [snapshot] > renders correctly when variant="purple", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="purple", size="lg", disabled={true} 1`] = `
+exports[`text-button [snapshot] > purple, lg, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
   disabled=""
@@ -272,7 +272,7 @@ exports[`text-button [snapshot] > renders correctly when variant="purple", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="purple", size="md", disabled={false} 1`] = `
+exports[`text-button [snapshot] > purple, md 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-purple"
 >
@@ -280,7 +280,7 @@ exports[`text-button [snapshot] > renders correctly when variant="purple", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="purple", size="md", disabled={true} 1`] = `
+exports[`text-button [snapshot] > purple, md, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
   disabled=""
@@ -289,7 +289,7 @@ exports[`text-button [snapshot] > renders correctly when variant="purple", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="purple", size="sm", disabled={false} 1`] = `
+exports[`text-button [snapshot] > purple, sm 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-purple"
 >
@@ -297,7 +297,7 @@ exports[`text-button [snapshot] > renders correctly when variant="purple", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="purple", size="sm", disabled={true} 1`] = `
+exports[`text-button [snapshot] > purple, sm, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
   disabled=""
@@ -306,7 +306,7 @@ exports[`text-button [snapshot] > renders correctly when variant="purple", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="subtle", size="lg", disabled={false} 1`] = `
+exports[`text-button [snapshot] > subtle, lg 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-subtle"
 >
@@ -314,7 +314,7 @@ exports[`text-button [snapshot] > renders correctly when variant="subtle", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="subtle", size="lg", disabled={true} 1`] = `
+exports[`text-button [snapshot] > subtle, lg, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
   disabled=""
@@ -323,7 +323,7 @@ exports[`text-button [snapshot] > renders correctly when variant="subtle", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="subtle", size="md", disabled={false} 1`] = `
+exports[`text-button [snapshot] > subtle, md 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-subtle"
 >
@@ -331,7 +331,7 @@ exports[`text-button [snapshot] > renders correctly when variant="subtle", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="subtle", size="md", disabled={true} 1`] = `
+exports[`text-button [snapshot] > subtle, md, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
   disabled=""
@@ -340,7 +340,7 @@ exports[`text-button [snapshot] > renders correctly when variant="subtle", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="subtle", size="sm", disabled={false} 1`] = `
+exports[`text-button [snapshot] > subtle, sm 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-subtle"
 >
@@ -348,7 +348,7 @@ exports[`text-button [snapshot] > renders correctly when variant="subtle", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="subtle", size="sm", disabled={true} 1`] = `
+exports[`text-button [snapshot] > subtle, sm, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
   disabled=""
@@ -357,7 +357,7 @@ exports[`text-button [snapshot] > renders correctly when variant="subtle", size=
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="success", size="lg", disabled={false} 1`] = `
+exports[`text-button [snapshot] > success, lg 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-success"
 >
@@ -365,7 +365,7 @@ exports[`text-button [snapshot] > renders correctly when variant="success", size
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="success", size="lg", disabled={true} 1`] = `
+exports[`text-button [snapshot] > success, lg, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
   disabled=""
@@ -374,7 +374,7 @@ exports[`text-button [snapshot] > renders correctly when variant="success", size
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="success", size="md", disabled={false} 1`] = `
+exports[`text-button [snapshot] > success, md 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-success"
 >
@@ -382,7 +382,7 @@ exports[`text-button [snapshot] > renders correctly when variant="success", size
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="success", size="md", disabled={true} 1`] = `
+exports[`text-button [snapshot] > success, md, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
   disabled=""
@@ -391,7 +391,7 @@ exports[`text-button [snapshot] > renders correctly when variant="success", size
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="success", size="sm", disabled={false} 1`] = `
+exports[`text-button [snapshot] > success, sm 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-success"
 >
@@ -399,7 +399,7 @@ exports[`text-button [snapshot] > renders correctly when variant="success", size
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="success", size="sm", disabled={true} 1`] = `
+exports[`text-button [snapshot] > success, sm, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
   disabled=""
@@ -408,7 +408,7 @@ exports[`text-button [snapshot] > renders correctly when variant="success", size
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="warning", size="lg", disabled={false} 1`] = `
+exports[`text-button [snapshot] > warning, lg 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-warning"
 >
@@ -416,7 +416,7 @@ exports[`text-button [snapshot] > renders correctly when variant="warning", size
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="warning", size="lg", disabled={true} 1`] = `
+exports[`text-button [snapshot] > warning, lg, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-lg vesper-text-button-disabled"
   disabled=""
@@ -425,7 +425,7 @@ exports[`text-button [snapshot] > renders correctly when variant="warning", size
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="warning", size="md", disabled={false} 1`] = `
+exports[`text-button [snapshot] > warning, md 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-warning"
 >
@@ -433,7 +433,7 @@ exports[`text-button [snapshot] > renders correctly when variant="warning", size
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="warning", size="md", disabled={true} 1`] = `
+exports[`text-button [snapshot] > warning, md, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-md vesper-text-button-disabled"
   disabled=""
@@ -442,7 +442,7 @@ exports[`text-button [snapshot] > renders correctly when variant="warning", size
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="warning", size="sm", disabled={false} 1`] = `
+exports[`text-button [snapshot] > warning, sm 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-warning"
 >
@@ -450,7 +450,7 @@ exports[`text-button [snapshot] > renders correctly when variant="warning", size
 </button>
 `;
 
-exports[`text-button [snapshot] > renders correctly when variant="warning", size="sm", disabled={true} 1`] = `
+exports[`text-button [snapshot] > warning, sm, disabled 1`] = `
 <button
   class="vesper-text-button vesper-text-button-sm vesper-text-button-disabled"
   disabled=""

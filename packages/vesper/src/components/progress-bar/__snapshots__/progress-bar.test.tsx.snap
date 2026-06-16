@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`progress-bar [snapshot] > renders correctly when size="lg" and variant="default" 1`] = `
+exports[`progress-bar [snapshot] > lg, default 1`] = `
 <div
   aria-valuemax="100"
   aria-valuemin="0"
@@ -22,7 +22,7 @@ exports[`progress-bar [snapshot] > renders correctly when size="lg" and variant=
 </div>
 `;
 
-exports[`progress-bar [snapshot] > renders correctly when size="lg" and variant="steps" 1`] = `
+exports[`progress-bar [snapshot] > lg, steps 1`] = `
 <div
   aria-valuemax="100"
   aria-valuemin="0"
@@ -71,7 +71,7 @@ exports[`progress-bar [snapshot] > renders correctly when size="lg" and variant=
 </div>
 `;
 
-exports[`progress-bar [snapshot] > renders correctly when size="md" and variant="default" 1`] = `
+exports[`progress-bar [snapshot] > md, default 1`] = `
 <div
   aria-valuemax="100"
   aria-valuemin="0"
@@ -93,7 +93,7 @@ exports[`progress-bar [snapshot] > renders correctly when size="md" and variant=
 </div>
 `;
 
-exports[`progress-bar [snapshot] > renders correctly when size="md" and variant="steps" 1`] = `
+exports[`progress-bar [snapshot] > md, steps 1`] = `
 <div
   aria-valuemax="100"
   aria-valuemin="0"
@@ -142,7 +142,7 @@ exports[`progress-bar [snapshot] > renders correctly when size="md" and variant=
 </div>
 `;
 
-exports[`progress-bar [snapshot] > renders correctly when size="sm" and variant="default" 1`] = `
+exports[`progress-bar [snapshot] > sm, default 1`] = `
 <div
   aria-valuemax="100"
   aria-valuemin="0"
@@ -164,7 +164,7 @@ exports[`progress-bar [snapshot] > renders correctly when size="sm" and variant=
 </div>
 `;
 
-exports[`progress-bar [snapshot] > renders correctly when size="sm" and variant="steps" 1`] = `
+exports[`progress-bar [snapshot] > sm, steps 1`] = `
 <div
   aria-valuemax="100"
   aria-valuemin="0"
