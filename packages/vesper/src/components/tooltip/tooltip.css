@@ -1,0 +1,53 @@
+.vesper-tooltip {
+  max-width: 240px;
+  text-align: center;
+  background: var(--vesper-stone-900);
+  color: var(--vesper-stone-0);
+  padding: var(--vesper-spacing-2) var(--vesper-spacing-3);
+  border-radius: var(--vesper-radius-1);
+  position: relative;
+  &[data-side="top"] .vesper-tooltip-arrow {
+    top: 100%;
+  }
+  &[data-side="bottom"] .vesper-tooltip-arrow {
+    bottom: 100%;
+    transform: rotate(180deg);
+  }
+  &[data-side="top"][data-align="center"] .vesper-tooltip-arrow,
+  &[data-side="bottom"][data-align="center"] .vesper-tooltip-arrow {
+    left: calc(50% - 7px);
+  }
+  &[data-side="top"][data-align="start"] .vesper-tooltip-arrow,
+  &[data-side="bottom"][data-align="start"] .vesper-tooltip-arrow {
+    left: min(calc(50% - 7px), var(--vesper-spacing-4));
+  }
+  &[data-side="top"][data-align="end"] .vesper-tooltip-arrow,
+  &[data-side="bottom"][data-align="end"] .vesper-tooltip-arrow {
+    right: min(calc(50% - 7px), var(--vesper-spacing-4));
+  }
+  &[data-side="left"] .vesper-tooltip-arrow {
+    left: 100%;
+    transform: translateX(-3px) rotate(-90deg);
+  }
+  &[data-side="right"] .vesper-tooltip-arrow {
+    right: 100%;
+    transform: translateX(3px) rotate(90deg);
+  }
+  &[data-side="right"][data-align="center"] .vesper-tooltip-arrow,
+  &[data-side="left"][data-align="center"] .vesper-tooltip-arrow {
+    top: calc(50% - 4px);
+  }
+  &[data-side="right"][data-align="start"] .vesper-tooltip-arrow,
+  &[data-side="left"][data-align="start"] .vesper-tooltip-arrow {
+    top: min(calc(50% - 4px), var(--vesper-spacing-3));
+  }
+  &[data-side="right"][data-align="end"] .vesper-tooltip-arrow,
+  &[data-side="left"][data-align="end"] .vesper-tooltip-arrow {
+    bottom: min(calc(50% - 4px), var(--vesper-spacing-3));
+  }
+}
+
+.vesper-tooltip-arrow {
+  position: absolute;
+  fill: var(--vesper-stone-900);
+}
