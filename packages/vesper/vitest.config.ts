@@ -27,6 +27,7 @@ export default defineConfig({
       reporter: ["text", "html"],
       provider: "v8",
       reportOnFailure: true,
+      exclude: ["src/components/icons/**"],
     },
     include: ["src/**/*.test.{ts,tsx}"],
     exclude: ["dist/**", "node_modules/**"],
