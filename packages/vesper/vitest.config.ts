@@ -22,6 +22,12 @@ export default defineConfig({
       }),
       instances: [{ browser: "chromium" }],
     },
+    coverage: {
+      enabled: true,
+      reporter: ["text", "html"],
+      provider: "v8",
+      reportOnFailure: true,
+    },
     include: ["src/**/*.test.{ts,tsx}"],
     exclude: ["dist/**", "node_modules/**"],
     setupFiles: ["./vitest.setup.ts"],

@@ -83,7 +83,7 @@
     "lint": "eslint . --max-warnings 0",
     "scaffold:component": "turbo gen vesper-component",
     "generate:icons": "tsx scripts/generate-icons.ts && eslint src/components/icons/*.{ts,tsx} --fix && prettier --write src/components/icons/*.{ts,tsx}",
-    "test": "vitest run",
+    "test": "vitest run --coverage",
     "test:watch": "vitest",
     "check-types": "tsc --noEmit -p tsconfig.build.json"
   },
@@ -104,6 +104,7 @@
     "@types/react-dom": "19.2.2",
     "@vitest/browser": "^4.1.8",
     "@vitest/browser-playwright": "^4.1.8",
+    "@vitest/coverage-v8": "^4.1.9",
     "@vitest/ui": "^4.1.8",
     "chokidar": "^4.0.3",
     "concurrently": "^9.2.1",

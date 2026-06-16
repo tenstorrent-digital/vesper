@@ -12,6 +12,7 @@ node_modules
 
 # Testing
 coverage
+test-results
 
 # Turbo
 .turbo
@@ -24,9 +25,6 @@ coverage
 out/
 build
 dist
-
-# Test Results
-test-results/
 
 # Debug
 npm-debug.log*
