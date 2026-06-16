@@ -19,6 +19,7 @@
 }
 
 .vesper-accordion-trigger {
+  padding: 0;
   position: relative;
   color: var(--vesper-stone-700);
   cursor: pointer;
