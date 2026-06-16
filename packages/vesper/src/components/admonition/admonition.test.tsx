@@ -22,7 +22,7 @@ afterEach(cleanup);
 
 describe("admonition [unit]", () => {
   ADMONITION_VARIANTS.forEach((variant) => {
-    test(`applies the correct variant class when variant is set to "${variant}"`, () => {
+    test(`${variant} variant class`, () => {
       const result = render(
         <Admonition variant={variant}>{variant}</Admonition>,
       );
@@ -34,7 +34,7 @@ describe("admonition [unit]", () => {
   });
 
   ADMONITION_SIZES.forEach((size) => {
-    test(`applies the correct size class when size is set to "${size}"`, () => {
+    test(`${size} size class`, () => {
       const result = render(<Admonition size={size}>{size}</Admonition>);
       expect(result.container.firstChild).toHaveClass(
         `vesper-admonition-${size}`,
@@ -42,7 +42,7 @@ describe("admonition [unit]", () => {
     });
   });
 
-  test("applies subtle variant class when subtle={true}", () => {
+  test("subtle variant class", () => {
     const result = render(<Admonition subtle>Subtle</Admonition>);
 
     expect(result.container.firstChild).toHaveClass("vesper-admonition-subtle");
@@ -57,7 +57,7 @@ describe("admonition [unit]", () => {
     expect(cta).toBeDefined();
   });
 
-  test('renders as a custom element via the "as" prop', () => {
+  test("polymorphism", () => {
     const result = render(
       <Admonition as="a" href="/link">
         As Link
@@ -69,7 +69,7 @@ describe("admonition [unit]", () => {
     expect(link).toHaveAttribute("href", "/link");
   });
 
-  test("passes additional props through to the element", () => {
+  test("additional prop passthrough", () => {
     const result = render(
       <Admonition aria-label="custom label">With Aria Label</Admonition>,
     );
@@ -80,7 +80,7 @@ describe("admonition [unit]", () => {
     );
   });
 
-  test("merges custom className with component classes", () => {
+  test("custom className", () => {
     const result = render(
       <Admonition className="custom-class">Styled</Admonition>,
     );
@@ -90,13 +90,13 @@ describe("admonition [unit]", () => {
     expect(el).toHaveClass("custom-class");
   });
 
-  test("renders children text content in the DOM", () => {
+  test("children", () => {
     const result = render(<Admonition>Hello world</Admonition>);
 
     expect(result.container).toHaveTextContent("Hello world");
   });
 
-  test("renders cta as a custom element via the ctaAs prop", () => {
+  test("polymorphic cta", () => {
     const result = render(
       <Admonition ctaAs="a" cta={{ children: "Go", href: "/link" }}>
         With CTA Link
@@ -114,7 +114,7 @@ describe("admonition [snapshot]", () => {
   ADMONITION_PERMUTATIONS.forEach((permutation) => {
     const { size, variant, subtle } = permutation;
 
-    test(`renders correctly when variant="${variant}", size="${size}", subtle={${subtle}}`, () => {
+    test(`${variant}, ${size}${subtle ? ", subtle" : ""}`, () => {
       const result = render(<Admonition {...permutation}>content</Admonition>);
 
       expect(result.container.firstChild).toMatchSnapshot();

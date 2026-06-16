@@ -66,7 +66,7 @@ const SPLIT_BUTTON_PERMUTATIONS = SPLIT_BUTTON_VARIANTS.flatMap((variant) =>
 afterEach(cleanup);
 
 describe("split-button [unit]", () => {
-  test("fires onClick when the action button is clicked", async () => {
+  test("clicking action button", async () => {
     const onClick = vi.fn();
     const result = render(
       <SplitButton onClick={onClick} menuItems={MENU_ITEMS}>
@@ -77,9 +77,10 @@ describe("split-button [unit]", () => {
     const [actionButton] = within(result.container).getAllByRole("button");
     actionButton?.click();
     expect(onClick).toHaveBeenCalled();
+    expect(document.querySelector(".vesper-menu")).toBeNull();
   });
 
-  test("does not fire onClick when disabled", async () => {
+  test("clicking disabled action button", async () => {
     const onClick = vi.fn();
     const result = render(
       <SplitButton disabled onClick={onClick} menuItems={MENU_ITEMS}>
@@ -92,17 +93,17 @@ describe("split-button [unit]", () => {
     expect(onClick).not.toHaveBeenCalled();
   });
 
-  test("does not open the menu when action button is clicked", async () => {
+  test("clicking menu button", () => {
     const result = render(
       <SplitButton menuItems={MENU_ITEMS}>button text</SplitButton>,
     );
 
-    const [actionButton] = within(result.container).getAllByRole("button");
-    actionButton?.click();
-    expect(document.querySelector(".vesper-menu")).toBeNull();
+    const [, menuButton] = within(result.container).getAllByRole("button");
+    fireEvent.pointerDown(menuButton!);
+    expect(document.querySelector(".vesper-menu")).not.toBeNull();
   });
 
-  test("does not open the menu when disabled and the menu button is clicked", async () => {
+  test("clicking disabled menu button", async () => {
     const result = render(
       <SplitButton disabled menuItems={MENU_ITEMS}>
         button text
@@ -114,17 +115,7 @@ describe("split-button [unit]", () => {
     expect(document.querySelector(".vesper-menu")).toBeNull();
   });
 
-  test("opens the menu when the menu button is clicked in a closed state", () => {
-    const result = render(
-      <SplitButton menuItems={MENU_ITEMS}>button text</SplitButton>,
-    );
-
-    const [, menuButton] = within(result.container).getAllByRole("button");
-    fireEvent.pointerDown(menuButton!);
-    expect(document.querySelector(".vesper-menu")).not.toBeNull();
-  });
-
-  test("closes the menu when clicking a non-disabled menu item", async () => {
+  test("clicking menu item", async () => {
     render(
       <SplitButton menuItems={MENU_ITEMS} defaultMenuOpen>
         button text
@@ -137,7 +128,7 @@ describe("split-button [unit]", () => {
     expect(document.querySelector(".vesper-menu")).toBeNull();
   });
 
-  test("closes the menu when pointerdown fires on anything outside the menu", async () => {
+  test("pointerdown outside menu when open", async () => {
     const result = render(
       <>
         <SplitButton menuItems={MENU_ITEMS} defaultMenuOpen>
@@ -158,7 +149,7 @@ describe("split-button [unit]", () => {
     );
   });
 
-  test("closes the menu via Escape key", async () => {
+  test("closing via Escape key", async () => {
     render(
       <SplitButton menuItems={MENU_ITEMS} defaultMenuOpen>
         button text
@@ -174,7 +165,7 @@ describe("split-button [unit]", () => {
     );
   });
 
-  test("applies menuButtonAriaLabel to the menu trigger button", () => {
+  test("menuButtonAriaLabel", () => {
     const result = render(
       <SplitButton menuItems={MENU_ITEMS} menuButtonAriaLabel="Open options">
         button text
@@ -185,7 +176,7 @@ describe("split-button [unit]", () => {
     expect(menuButton).toHaveAttribute("aria-label", "Open options");
   });
 
-  test("sets a custom menu width when provided", async () => {
+  test("custom menu width", async () => {
     render(
       <SplitButton menuItems={MENU_ITEMS} menuWidth={300} defaultMenuOpen>
         button text
@@ -203,7 +194,7 @@ describe("split-button [snapshot]", () => {
   SPLIT_BUTTON_PERMUTATIONS.forEach((permutation) => {
     const { disabled, variant, size } = permutation;
 
-    test(`renders correctly when size="${size}", variant="${variant}", disabled=${disabled}`, () => {
+    test(`${variant}, ${size}${disabled ? ", disabled" : ""}`, () => {
       const result = render(
         <SplitButton {...permutation}>button text</SplitButton>,
       );

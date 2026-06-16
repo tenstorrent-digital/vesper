@@ -13,7 +13,7 @@ const CHILDREN =
 afterEach(cleanup);
 
 describe("accordion [unit]", () => {
-  test("opens when the trigger is clicked in a closed state", async () => {
+  test("it opens", async () => {
     const result = render(
       <Accordion title={TITLE} defaultOpen={false}>
         {CHILDREN}
@@ -28,7 +28,7 @@ describe("accordion [unit]", () => {
     );
   });
 
-  test("closes when the trigger is clicked in an opened state", async () => {
+  test("it closes", async () => {
     const result = render(
       <Accordion title={TITLE} defaultOpen>
         {CHILDREN}
@@ -43,7 +43,7 @@ describe("accordion [unit]", () => {
     );
   });
 
-  test("merges custom className with component classes", () => {
+  test("custom className", () => {
     const result = render(
       <Accordion title={TITLE} className="custom-class">
         {CHILDREN}
@@ -57,7 +57,7 @@ describe("accordion [unit]", () => {
 });
 
 describe("accordion [snapshot]", () => {
-  test("renders correctly when closed", () => {
+  test("closed", () => {
     // instead of rendering text content for snapshot tests, we render a div with a fixed height, because subpixel rendering differences between local machines and CI machines affects the output of radix's computed css values such as --radix-collapsible-content-height
     const result = render(
       <Accordion title={TITLE} open={false}>
@@ -68,7 +68,7 @@ describe("accordion [snapshot]", () => {
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("renders correctly when open", () => {
+  test("open", () => {
     // instead of rendering text content for snapshot tests, we render a div with a fixed height, because subpixel rendering differences between local machines and CI machines affects the output of radix's computed css values such as --radix-collapsible-content-height
     const result = render(
       <Accordion title={TITLE} open>

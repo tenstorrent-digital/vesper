@@ -16,7 +16,7 @@ describe("avatar [unit]", () => {
     });
   });
 
-  test("renders an image when src is present", () => {
+  test("img renders when src present", () => {
     const result = render(
       <Avatar src="https://unsplash.it/300/300" alt="avatar alt text" />,
     );
@@ -26,19 +26,19 @@ describe("avatar [unit]", () => {
     expect(image).toHaveAttribute("alt", "avatar alt text");
   });
 
-  test("does not render an image when src is undefined", () => {
+  test("img missing when src undefined", () => {
     const result = render(<Avatar />);
     const image = result.container.querySelector("img");
     expect(image).toBeNull();
   });
 
-  test("defaults alt to an empty string when no alt is provided", () => {
+  test("alt is empty string not provided", () => {
     const result = render(<Avatar src="https://unsplash.it/300/300" />);
     const image = result.container.querySelector("img");
     expect(image).toHaveAttribute("alt", "");
   });
 
-  test('renders as a custom element via the "as" prop', () => {
+  test("polymorphism", () => {
     const result = render(<Avatar as="a" href="/link" />);
     const view = within(result.container);
     const link = view.getByRole("link");
@@ -46,7 +46,7 @@ describe("avatar [unit]", () => {
     expect(link).toHaveAttribute("href", "/link");
   });
 
-  test("passes additional props through to the element", () => {
+  test("additional prop passthrough", () => {
     const result = render(<Avatar aria-label="custom label" />);
 
     expect(result.container.firstChild).toHaveAttribute(
@@ -55,7 +55,7 @@ describe("avatar [unit]", () => {
     );
   });
 
-  test("merges custom className with component classes", () => {
+  test("custom className", () => {
     const result = render(<Avatar size="md" className="custom-class" />);
 
     const el = result.container.firstChild;
@@ -66,7 +66,7 @@ describe("avatar [unit]", () => {
 
 describe("avatar [snapshot]", () => {
   AVATAR_SIZES.forEach((size) => {
-    test(`renders correctly when size="${size}"`, () => {
+    test(`${size}`, () => {
       const result = render(<Avatar size={size} />);
 
       expect(result.container.firstChild).toMatchSnapshot();

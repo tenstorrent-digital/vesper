@@ -24,7 +24,7 @@ afterEach(cleanup);
 
 describe("text-button [unit]", () => {
   TEXT_BUTTON_VARIANTS.forEach((variant) => {
-    test(`applies the correct variant class when variant is set to "${variant}"`, () => {
+    test(`${variant} variant class`, () => {
       const result = render(
         <TextButton variant={variant}>{variant}</TextButton>,
       );
@@ -36,7 +36,7 @@ describe("text-button [unit]", () => {
   });
 
   TEXT_BUTTON_SIZES.forEach((size) => {
-    test(`applies the correct size class when size is set to "${size}"`, () => {
+    test(`${size} size class`, () => {
       const result = render(<TextButton size={size}>{size}</TextButton>);
 
       expect(result.container.firstChild).toHaveClass(
@@ -45,19 +45,14 @@ describe("text-button [unit]", () => {
     });
   });
 
-  test("sets the disabled attribute when disabled", () => {
-    const result = render(<TextButton disabled>Disabled</TextButton>);
-
-    expect(result.container.firstChild).toBeDisabled();
-  });
-
-  test("applies disabled variant class when disabled", () => {
+  test("disabled", () => {
     const result = render(
       <TextButton disabled variant="accent">
         Disabled
       </TextButton>,
     );
 
+    expect(result.container.firstChild).toBeDisabled();
     expect(result.container.firstChild).toHaveClass(
       "vesper-text-button-disabled",
     );
@@ -66,7 +61,7 @@ describe("text-button [unit]", () => {
     );
   });
 
-  test("renders iconLeft when provided", () => {
+  test("renders iconLeft", () => {
     const result = render(
       <TextButton size="md" iconLeft={<Tenstorrent data-testid="icon-left" />}>
         With Icon Left
@@ -77,7 +72,7 @@ describe("text-button [unit]", () => {
     expect(view.getByTestId("icon-left")).toBeDefined();
   });
 
-  test("renders iconRight when provided", () => {
+  test("renders iconRight", () => {
     const result = render(
       <TextButton
         size="md"
@@ -91,7 +86,7 @@ describe("text-button [unit]", () => {
     expect(view.getByTestId("icon-right")).toBeDefined();
   });
 
-  test("renders iconLeft and iconRight when provided", () => {
+  test("renders iconLeft and iconRight", () => {
     const result = render(
       <TextButton
         size="md"
@@ -107,7 +102,7 @@ describe("text-button [unit]", () => {
     expect(view.getByTestId("icon-right")).toBeDefined();
   });
 
-  test('renders as a custom element via the "as" prop', () => {
+  test("polymorphism", () => {
     const result = render(
       <TextButton as="a" href="/link">
         As Link
@@ -119,7 +114,7 @@ describe("text-button [unit]", () => {
     expect(link).toHaveAttribute("href", "/link");
   });
 
-  test("passes additional props through to the element", () => {
+  test("additional prop passthrough", () => {
     const result = render(
       <TextButton aria-label="custom label">With Aria Label</TextButton>,
     );
@@ -130,7 +125,7 @@ describe("text-button [unit]", () => {
     );
   });
 
-  test("merges custom className with component classes", () => {
+  test("custom className", () => {
     const result = render(
       <TextButton className="custom-class" size="md" variant="accent">
         Styled
@@ -149,7 +144,7 @@ describe("text-button [snapshot]", () => {
   TEXT_BUTTON_PERMUTATIONS.forEach((permutation) => {
     const { size, variant, disabled } = permutation;
 
-    test(`renders correctly when variant="${variant}", size="${size}", disabled={${disabled}}`, () => {
+    test(`${variant}, ${size}${disabled ? ", disabled" : ""}`, () => {
       const result = render(
         <TextButton {...permutation}>Button Text</TextButton>,
       );

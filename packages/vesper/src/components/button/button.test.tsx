@@ -23,7 +23,7 @@ afterEach(cleanup);
 
 describe("button [unit]", () => {
   BUTTON_VARIANTS.forEach((variant) => {
-    test(`applies the correct variant class when variant is set to "${variant}"`, () => {
+    test(`${variant} variant class`, () => {
       const result = render(
         <Button size="lg" variant={variant}>
           {variant}
@@ -37,7 +37,7 @@ describe("button [unit]", () => {
   });
 
   BUTTON_SIZES.forEach((size) => {
-    test(`applies the correct size class when size is set to "${size}"`, () => {
+    test(`${size} size class`, () => {
       const result = render(
         <Button size={size} variant="primary">
           {size}
@@ -47,7 +47,7 @@ describe("button [unit]", () => {
     });
   });
 
-  test("sets the disabled attribute when disabled", () => {
+  test("disabled", () => {
     const result = render(
       <Button size="md" variant="primary" disabled>
         Disabled
@@ -55,22 +55,13 @@ describe("button [unit]", () => {
     );
 
     expect(result.container.firstChild).toBeDisabled();
-  });
-
-  test("applies disabled variant class when disabled", () => {
-    const result = render(
-      <Button size="md" variant="primary" disabled>
-        Disabled
-      </Button>,
-    );
-
     expect(result.container.firstChild).toHaveClass("vesper-button-disabled");
     expect(result.container.firstChild).not.toHaveClass(
       "vesper-button-primary",
     );
   });
 
-  test("renders iconLeft when provided", () => {
+  test("renders iconLeft", () => {
     const result = render(
       <Button
         size="md"
@@ -85,7 +76,7 @@ describe("button [unit]", () => {
     expect(view.getByTestId("icon-left")).toBeDefined();
   });
 
-  test("renders iconRight when provided", () => {
+  test("renders iconRight", () => {
     const result = render(
       <Button
         size="md"
@@ -100,7 +91,7 @@ describe("button [unit]", () => {
     expect(view.getByTestId("icon-right")).toBeDefined();
   });
 
-  test("renders iconLeft and iconRight when provided", () => {
+  test("renders iconLeft and iconRight", () => {
     const result = render(
       <Button
         size="md"
@@ -117,7 +108,7 @@ describe("button [unit]", () => {
     expect(view.getByTestId("icon-right")).toBeDefined();
   });
 
-  test('renders as a custom element via the "as" prop', () => {
+  test("polymorphism", () => {
     const result = render(
       <Button as="a" href="/link" size="md" variant="primary">
         As Link
@@ -129,7 +120,7 @@ describe("button [unit]", () => {
     expect(link).toHaveAttribute("href", "/link");
   });
 
-  test("passes additional props through to the element", () => {
+  test("additional prop passthrough", () => {
     const result = render(
       <Button size="md" variant="primary" aria-label="custom label">
         With Aria Label
@@ -142,7 +133,7 @@ describe("button [unit]", () => {
     );
   });
 
-  test("merges custom className with component classes", () => {
+  test("custom className", () => {
     const result = render(
       <Button size="md" variant="primary" className="custom-class">
         Styled
@@ -161,7 +152,7 @@ describe("button [snapshot]", () => {
   BUTTON_PERMUTATIONS.forEach((permutation) => {
     const { size, variant, disabled } = permutation;
 
-    test(`renders correctly when variant="${variant}", size="${size}", disabled={${disabled}}`, () => {
+    test(`${variant}, ${size}${disabled ? ", disabled" : ""}`, () => {
       const result = render(<Button {...permutation}>Button Text</Button>);
 
       expect(result.container.firstChild).toMatchSnapshot();

@@ -54,7 +54,7 @@ const MENU_ITEMS: MenuItemProps[] = [
 afterEach(cleanup);
 
 describe("menu [unit]", () => {
-  test("opens when the trigger is clicked in a closed state", () => {
+  test("clicking trigger when closed", () => {
     const result = render(
       <Menu items={MENU_ITEMS} defaultOpen={false}>
         <TextButton>trigger</TextButton>
@@ -65,7 +65,7 @@ describe("menu [unit]", () => {
     expect(document.querySelector(".vesper-menu")).not.toBeNull();
   });
 
-  test("closes when clicking a non-disabled menu item", async () => {
+  test("clicking non-disabled menu item", async () => {
     render(
       <Menu items={MENU_ITEMS} defaultOpen>
         <TextButton>trigger</TextButton>
@@ -78,7 +78,7 @@ describe("menu [unit]", () => {
     expect(document.querySelector(".vesper-menu")).toBeNull();
   });
 
-  test("closes when pointerdown fires on anything outside the menu", async () => {
+  test("pointerdown outside menu when open", async () => {
     const result = render(
       <>
         <Menu items={MENU_ITEMS} defaultOpen>
@@ -99,7 +99,7 @@ describe("menu [unit]", () => {
     );
   });
 
-  test("closes via Escape key", async () => {
+  test("closing via Escape key", async () => {
     render(
       <Menu items={MENU_ITEMS} defaultOpen>
         <TextButton>trigger</TextButton>
@@ -115,7 +115,7 @@ describe("menu [unit]", () => {
     );
   });
 
-  test("sets a custom width when provided", async () => {
+  test("custom width", async () => {
     render(
       <Menu items={MENU_ITEMS} width={300} defaultOpen>
         <TextButton>trigger</TextButton>
@@ -128,7 +128,7 @@ describe("menu [unit]", () => {
     expect(document.querySelector(".vesper-menu")).toHaveStyle("width: 300px;");
   });
 
-  test("fires onSelect when a menu item is clicked", async () => {
+  test("menu item onSelect", async () => {
     const onSelect = vi.fn();
     const items: MenuItemProps[] = [
       { text: "Item", style: "default", onSelect },
@@ -147,7 +147,7 @@ describe("menu [unit]", () => {
     expect(onSelect).toHaveBeenCalledTimes(1);
   });
 
-  test("does not fire onSelect when a disabled item is clicked", async () => {
+  test("disabled menu item onSelect", async () => {
     const onSelect = vi.fn();
     const items: MenuItemProps[] = [
       { text: "Disabled Item", style: "disabled", onSelect },
@@ -167,7 +167,7 @@ describe("menu [unit]", () => {
     expect(document.querySelector(".vesper-menu")).not.toBeNull();
   });
 
-  test("does not fire onSelect when a locked item is clicked", async () => {
+  test("locked menu item onSelect", async () => {
     const onSelect = vi.fn();
     const items: MenuItemProps[] = [
       { text: "Locked Item", style: "locked", onSelect },
@@ -189,7 +189,7 @@ describe("menu [unit]", () => {
 
   (["default", "danger", "locked", "selected", "disabled"] as const).forEach(
     (style) => {
-      test(`applies the correct class for item style "${style}"`, async () => {
+      test(`menu item ${style} class`, async () => {
         const items: MenuItemProps[] = [{ text: "Item", style, onSelect() {} }];
 
         render(
@@ -210,7 +210,7 @@ describe("menu [unit]", () => {
 });
 
 describe("menu [snapshot]", () => {
-  test("renders correctly when closed", () => {
+  test("closed", () => {
     render(
       <Menu items={MENU_ITEMS} open={false}>
         <TextButton>trigger</TextButton>
@@ -220,7 +220,7 @@ describe("menu [snapshot]", () => {
     expect(document.querySelector(".vesper-menu")).toMatchSnapshot();
   });
 
-  test("renders correctly when open", async () => {
+  test("open", async () => {
     render(
       <Menu items={MENU_ITEMS} open>
         <TextButton>trigger</TextButton>

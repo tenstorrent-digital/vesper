@@ -13,7 +13,7 @@ afterEach(cleanup);
 
 describe("typography [unit]", () => {
   TYPOGRAPHY_VARIANTS.forEach((variant) => {
-    test(`applies the correct variant class when variant is set to "${variant}"`, () => {
+    test(`${variant} variant class`, () => {
       const result = render(<Typography variant={variant}>Text</Typography>);
 
       expect(result.container.firstChild).toHaveClass(
@@ -22,7 +22,7 @@ describe("typography [unit]", () => {
     });
   });
 
-  test('renders as a custom element via the "as" prop', () => {
+  test("polymorphism", () => {
     const result = render(
       <Typography as="a" href="/link">
         As Link
@@ -34,7 +34,7 @@ describe("typography [unit]", () => {
     expect(link).toHaveAttribute("href", "/link");
   });
 
-  test("passes additional props through to the element", () => {
+  test("additional prop passthrough", () => {
     const result = render(
       <Typography aria-label="custom label">With Aria Label</Typography>,
     );
@@ -45,7 +45,7 @@ describe("typography [unit]", () => {
     );
   });
 
-  test("merges custom className with component classes", () => {
+  test("custom className", () => {
     const result = render(
       <Typography variant="copy-sm" className="custom-class">
         Styled
@@ -60,7 +60,7 @@ describe("typography [unit]", () => {
 
 describe("typography [snapshot]", () => {
   TYPOGRAPHY_VARIANTS.forEach((variant) => {
-    test(`renders correctly when variant="${variant}"`, () => {
+    test(`${variant}`, () => {
       const result = render(
         <Typography variant={variant}>{variant}</Typography>,
       );

@@ -11,7 +11,7 @@ afterEach(cleanup);
 
 describe("avatar-group [unit]", () => {
   AVATAR_SIZES.forEach((size) => {
-    test(`applies the correct size prop to each avatar when size is set to "${size}"`, () => {
+    test(`${size}`, () => {
       const result = render(
         <AvatarGroup
           size={size}
@@ -30,7 +30,7 @@ describe("avatar-group [unit]", () => {
     });
   });
 
-  test("does not render an overflow placeholder when there are 3 or fewer avatars", () => {
+  test("no overflow placeholder", () => {
     const result = render(
       <AvatarGroup
         avatars={[
@@ -43,7 +43,7 @@ describe("avatar-group [unit]", () => {
     expect(el).toBeNull();
   });
 
-  test("renders an overflow placeholder when there are more than 3 avatars", () => {
+  test("overflow placeholder", () => {
     const result = render(
       <AvatarGroup
         avatars={[
@@ -60,7 +60,7 @@ describe("avatar-group [unit]", () => {
     expect(el).toHaveTextContent("+2");
   });
 
-  test('shows "99+" in the overflow placeholder when there are more than 100 avatars', () => {
+  test("overflow placeholder with >100 avatars", () => {
     const result = render(
       <AvatarGroup
         avatars={Array.from<{ src: string }>({ length: 101 }).fill({
@@ -73,7 +73,7 @@ describe("avatar-group [unit]", () => {
     expect(el).toHaveTextContent("99+");
   });
 
-  test('renders as a custom element via the "as" prop', () => {
+  test("polymorphism", () => {
     const result = render(
       <AvatarGroup
         as="a"
@@ -89,7 +89,7 @@ describe("avatar-group [unit]", () => {
     expect(link).toHaveAttribute("href", "/link");
   });
 
-  test("passes additional props through to the element", () => {
+  test("additional prop passthrough", () => {
     const result = render(
       <AvatarGroup
         aria-label="custom label"
@@ -105,7 +105,7 @@ describe("avatar-group [unit]", () => {
     );
   });
 
-  test("merges custom className with component classes", () => {
+  test("custom className", () => {
     const result = render(
       <AvatarGroup
         className="custom-class"
@@ -123,7 +123,7 @@ describe("avatar-group [unit]", () => {
 
 describe("avatar-group [snapshot]", () => {
   AVATAR_SIZES.forEach((size) => {
-    test(`renders correctly when size="${size}"`, () => {
+    test(`${size}`, () => {
       const result = render(
         <AvatarGroup
           size={size}
@@ -141,7 +141,7 @@ describe("avatar-group [snapshot]", () => {
     });
   });
 
-  test(`renders correctly when there are 3 or fewer avatars`, () => {
+  test(`<=3 avatars`, () => {
     const result = render(
       <AvatarGroup
         avatars={[
@@ -154,7 +154,7 @@ describe("avatar-group [snapshot]", () => {
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test(`renders correctly when there are more than 100 avatars`, () => {
+  test(`>100 avatars`, () => {
     const result = render(
       <AvatarGroup
         avatars={Array.from<{ src: string }>({ length: 101 }).fill({

@@ -23,7 +23,7 @@ afterEach(cleanup);
 
 describe("badge [unit]", () => {
   BADGE_VARIANTS.forEach((variant) => {
-    test(`applies the correct variant class when variant is set to "${variant}"`, () => {
+    test(`${variant} variant class`, () => {
       const result = render(<Badge variant={variant}>{variant}</Badge>);
 
       expect(result.container.firstChild).toHaveClass(
@@ -33,13 +33,13 @@ describe("badge [unit]", () => {
   });
 
   BADGE_SIZES.forEach((size) => {
-    test(`applies the correct size class when size is set to "${size}"`, () => {
+    test(`${size} size class`, () => {
       const result = render(<Badge size={size}>{size}</Badge>);
       expect(result.container.firstChild).toHaveClass(`vesper-badge-${size}`);
     });
   });
 
-  test("applies subtle variant class when subtle={true}", () => {
+  test("subtle variant class", () => {
     const result = render(
       <Badge variant="accent" subtle>
         Disabled
@@ -63,7 +63,7 @@ describe("badge [unit]", () => {
     expect(view.getByTestId("icon")).toBeDefined();
   });
 
-  test('renders as a custom element via the "as" prop', () => {
+  test("polymorphism", () => {
     const result = render(
       <Badge as="a" href="/link">
         As Link
@@ -75,7 +75,7 @@ describe("badge [unit]", () => {
     expect(link).toHaveAttribute("href", "/link");
   });
 
-  test("passes additional props through to the element", () => {
+  test("additional prop passthrough", () => {
     const result = render(
       <Badge aria-label="custom label">With Aria Label</Badge>,
     );
@@ -86,7 +86,7 @@ describe("badge [unit]", () => {
     );
   });
 
-  test("merges custom className with component classes", () => {
+  test("custom className", () => {
     const result = render(
       <Badge size="md" variant="accent" className="custom-class">
         Styled
@@ -105,7 +105,7 @@ describe("badge [snapshot]", () => {
   BADGE_PERMUTATIONS.forEach((permutation) => {
     const { size, variant, subtle } = permutation;
 
-    test(`renders correctly when variant="${variant}", size="${size}", subtle={${subtle}}`, () => {
+    test(`${variant}, ${size}${subtle ? ", subtle" : ""}`, () => {
       const result = render(<Badge {...permutation}>Badge Text</Badge>);
 
       expect(result.container.firstChild).toMatchSnapshot();
