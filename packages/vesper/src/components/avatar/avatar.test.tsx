@@ -1,5 +1,5 @@
 import { render, within, cleanup } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import axe from "axe-core";
 
 import { Avatar, AVATAR_SIZES } from "@/components/avatar/avatar";
@@ -10,13 +10,13 @@ afterEach(cleanup);
 
 describe("avatar [unit]", () => {
   AVATAR_SIZES.forEach((size) => {
-    it(`applies the correct size class when size is set to "${size}"`, () => {
+    test(`applies the correct size class when size is set to "${size}"`, () => {
       const result = render(<Avatar size={size} />);
       expect(result.container.firstChild).toHaveClass(`vesper-avatar-${size}`);
     });
   });
 
-  it("renders an image when src is present", () => {
+  test("renders an image when src is present", () => {
     const result = render(
       <Avatar src="https://unsplash.it/300/300" alt="avatar alt text" />,
     );
@@ -26,19 +26,19 @@ describe("avatar [unit]", () => {
     expect(image).toHaveAttribute("alt", "avatar alt text");
   });
 
-  it("does not render an image when src is undefined", () => {
+  test("does not render an image when src is undefined", () => {
     const result = render(<Avatar />);
     const image = result.container.querySelector("img");
     expect(image).toBeNull();
   });
 
-  it("defaults alt to an empty string when no alt is provided", () => {
+  test("defaults alt to an empty string when no alt is provided", () => {
     const result = render(<Avatar src="https://unsplash.it/300/300" />);
     const image = result.container.querySelector("img");
     expect(image).toHaveAttribute("alt", "");
   });
 
-  it('renders as a custom element via the "as" prop', () => {
+  test('renders as a custom element via the "as" prop', () => {
     const result = render(<Avatar as="a" href="/link" />);
     const view = within(result.container);
     const link = view.getByRole("link");
@@ -46,7 +46,7 @@ describe("avatar [unit]", () => {
     expect(link).toHaveAttribute("href", "/link");
   });
 
-  it("passes additional props through to the element", () => {
+  test("passes additional props through to the element", () => {
     const result = render(<Avatar aria-label="custom label" />);
 
     expect(result.container.firstChild).toHaveAttribute(
@@ -55,7 +55,7 @@ describe("avatar [unit]", () => {
     );
   });
 
-  it("merges custom className with component classes", () => {
+  test("merges custom className with component classes", () => {
     const result = render(<Avatar size="md" className="custom-class" />);
 
     const el = result.container.firstChild;
@@ -66,7 +66,7 @@ describe("avatar [unit]", () => {
 
 describe("avatar [snapshot]", () => {
   AVATAR_SIZES.forEach((size) => {
-    it(`renders correctly when size="${size}"`, () => {
+    test(`renders correctly when size="${size}"`, () => {
       const result = render(<Avatar size={size} />);
 
       expect(result.container.firstChild).toMatchSnapshot();
@@ -86,7 +86,7 @@ describe("avatar [a11y]", () => {
       });
 
       AVATAR_SIZES.forEach((size) => {
-        it(`renders without wcag2aaa violations when size="${size}"`, async () => {
+        test(`renders without wcag2aaa violations when size="${size}"`, async () => {
           const result = render(
             <Avatar size={size} src="https://unsplash.it/300/300" />,
           );

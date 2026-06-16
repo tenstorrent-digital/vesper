@@ -1,5 +1,5 @@
 import { render, within, cleanup } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import axe from "axe-core";
 
 import {
@@ -13,7 +13,7 @@ afterEach(cleanup);
 
 describe("typography [unit]", () => {
   TYPOGRAPHY_VARIANTS.forEach((variant) => {
-    it(`applies the correct variant class when variant is set to "${variant}"`, () => {
+    test(`applies the correct variant class when variant is set to "${variant}"`, () => {
       const result = render(<Typography variant={variant}>Text</Typography>);
 
       expect(result.container.firstChild).toHaveClass(
@@ -22,7 +22,7 @@ describe("typography [unit]", () => {
     });
   });
 
-  it('renders as a custom element via the "as" prop', () => {
+  test('renders as a custom element via the "as" prop', () => {
     const result = render(
       <Typography as="a" href="/link">
         As Link
@@ -34,7 +34,7 @@ describe("typography [unit]", () => {
     expect(link).toHaveAttribute("href", "/link");
   });
 
-  it("passes additional props through to the element", () => {
+  test("passes additional props through to the element", () => {
     const result = render(
       <Typography aria-label="custom label">With Aria Label</Typography>,
     );
@@ -45,7 +45,7 @@ describe("typography [unit]", () => {
     );
   });
 
-  it("merges custom className with component classes", () => {
+  test("merges custom className with component classes", () => {
     const result = render(
       <Typography variant="copy-sm" className="custom-class">
         Styled
@@ -60,7 +60,7 @@ describe("typography [unit]", () => {
 
 describe("typography [snapshot]", () => {
   TYPOGRAPHY_VARIANTS.forEach((variant) => {
-    it(`renders correctly when variant="${variant}"`, () => {
+    test(`renders correctly when variant="${variant}"`, () => {
       const result = render(
         <Typography variant={variant}>{variant}</Typography>,
       );
@@ -82,7 +82,7 @@ describe("typography [a11y]", () => {
       });
 
       TYPOGRAPHY_VARIANTS.forEach((variant) => {
-        it(`renders without wcag2aaa violations when variant="${variant}"`, async () => {
+        test(`renders without wcag2aaa violations when variant="${variant}"`, async () => {
           const result = render(
             <Typography variant={variant}>{variant}</Typography>,
           );

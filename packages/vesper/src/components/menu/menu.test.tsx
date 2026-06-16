@@ -5,7 +5,7 @@ import {
   waitFor,
   fireEvent,
 } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import axe from "axe-core";
 import { userEvent } from "vitest/browser";
 
@@ -54,7 +54,7 @@ const MENU_ITEMS: MenuItemProps[] = [
 afterEach(cleanup);
 
 describe("menu [unit]", () => {
-  it("opens when the trigger is clicked in a closed state", () => {
+  test("opens when the trigger is clicked in a closed state", () => {
     const result = render(
       <Menu items={MENU_ITEMS} defaultOpen={false}>
         <TextButton>trigger</TextButton>
@@ -65,7 +65,7 @@ describe("menu [unit]", () => {
     expect(document.querySelector(".vesper-menu")).not.toBeNull();
   });
 
-  it("closes when clicking a non-disabled menu item", async () => {
+  test("closes when clicking a non-disabled menu item", async () => {
     render(
       <Menu items={MENU_ITEMS} defaultOpen>
         <TextButton>trigger</TextButton>
@@ -78,7 +78,7 @@ describe("menu [unit]", () => {
     expect(document.querySelector(".vesper-menu")).toBeNull();
   });
 
-  it("closes when pointerdown fires on anything outside the menu", async () => {
+  test("closes when pointerdown fires on anything outside the menu", async () => {
     const result = render(
       <>
         <Menu items={MENU_ITEMS} defaultOpen>
@@ -99,7 +99,7 @@ describe("menu [unit]", () => {
     );
   });
 
-  it("closes via Escape key", async () => {
+  test("closes via Escape key", async () => {
     render(
       <Menu items={MENU_ITEMS} defaultOpen>
         <TextButton>trigger</TextButton>
@@ -115,7 +115,7 @@ describe("menu [unit]", () => {
     );
   });
 
-  it("sets a custom width when provided", async () => {
+  test("sets a custom width when provided", async () => {
     render(
       <Menu items={MENU_ITEMS} width={300} defaultOpen>
         <TextButton>trigger</TextButton>
@@ -128,7 +128,7 @@ describe("menu [unit]", () => {
     expect(document.querySelector(".vesper-menu")).toHaveStyle("width: 300px;");
   });
 
-  it("fires onSelect when a menu item is clicked", async () => {
+  test("fires onSelect when a menu item is clicked", async () => {
     const onSelect = vi.fn();
     const items: MenuItemProps[] = [
       { text: "Item", style: "default", onSelect },
@@ -147,7 +147,7 @@ describe("menu [unit]", () => {
     expect(onSelect).toHaveBeenCalledTimes(1);
   });
 
-  it("does not fire onSelect when a disabled item is clicked", async () => {
+  test("does not fire onSelect when a disabled item is clicked", async () => {
     const onSelect = vi.fn();
     const items: MenuItemProps[] = [
       { text: "Disabled Item", style: "disabled", onSelect },
@@ -167,7 +167,7 @@ describe("menu [unit]", () => {
     expect(document.querySelector(".vesper-menu")).not.toBeNull();
   });
 
-  it("does not fire onSelect when a locked item is clicked", async () => {
+  test("does not fire onSelect when a locked item is clicked", async () => {
     const onSelect = vi.fn();
     const items: MenuItemProps[] = [
       { text: "Locked Item", style: "locked", onSelect },
@@ -189,7 +189,7 @@ describe("menu [unit]", () => {
 
   (["default", "danger", "locked", "selected", "disabled"] as const).forEach(
     (style) => {
-      it(`applies the correct class for item style "${style}"`, async () => {
+      test(`applies the correct class for item style "${style}"`, async () => {
         const items: MenuItemProps[] = [{ text: "Item", style, onSelect() {} }];
 
         render(
@@ -210,7 +210,7 @@ describe("menu [unit]", () => {
 });
 
 describe("menu [snapshot]", () => {
-  it("renders correctly when closed", () => {
+  test("renders correctly when closed", () => {
     render(
       <Menu items={MENU_ITEMS} open={false}>
         <TextButton>trigger</TextButton>
@@ -220,7 +220,7 @@ describe("menu [snapshot]", () => {
     expect(document.querySelector(".vesper-menu")).toMatchSnapshot();
   });
 
-  it("renders correctly when open", async () => {
+  test("renders correctly when open", async () => {
     render(
       <Menu items={MENU_ITEMS} open>
         <TextButton>trigger</TextButton>
@@ -245,7 +245,7 @@ describe("menu [a11y]", () => {
         document.documentElement.removeAttribute("data-vesper-theme");
       });
 
-      it("renders without wcag2aaa violations when open", async () => {
+      test("renders without wcag2aaa violations when open", async () => {
         const result = render(
           <Menu items={MENU_ITEMS} open>
             <TextButton variant="contrast">trigger</TextButton>
@@ -263,7 +263,7 @@ describe("menu [a11y]", () => {
         ).toHaveNoViolations();
       });
 
-      it("renders without wcag2aaa violations when closed", async () => {
+      test("renders without wcag2aaa violations when closed", async () => {
         const result = render(
           <Menu items={MENU_ITEMS} open={false}>
             <TextButton variant="contrast">trigger</TextButton>

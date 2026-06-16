@@ -1,5 +1,5 @@
 import { render, within, cleanup } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import axe from "axe-core";
 
 import {
@@ -22,7 +22,7 @@ afterEach(cleanup);
 
 describe("admonition [unit]", () => {
   ADMONITION_VARIANTS.forEach((variant) => {
-    it(`applies the correct variant class when variant is set to "${variant}"`, () => {
+    test(`applies the correct variant class when variant is set to "${variant}"`, () => {
       const result = render(
         <Admonition variant={variant}>{variant}</Admonition>,
       );
@@ -34,7 +34,7 @@ describe("admonition [unit]", () => {
   });
 
   ADMONITION_SIZES.forEach((size) => {
-    it(`applies the correct size class when size is set to "${size}"`, () => {
+    test(`applies the correct size class when size is set to "${size}"`, () => {
       const result = render(<Admonition size={size}>{size}</Admonition>);
       expect(result.container.firstChild).toHaveClass(
         `vesper-admonition-${size}`,
@@ -42,13 +42,13 @@ describe("admonition [unit]", () => {
     });
   });
 
-  it("applies subtle variant class when subtle={true}", () => {
+  test("applies subtle variant class when subtle={true}", () => {
     const result = render(<Admonition subtle>Subtle</Admonition>);
 
     expect(result.container.firstChild).toHaveClass("vesper-admonition-subtle");
   });
 
-  it("renders cta when provided", () => {
+  test("renders cta when provided", () => {
     const result = render(
       <Admonition cta={{ children: "explore" }}>With CTA</Admonition>,
     );
@@ -57,7 +57,7 @@ describe("admonition [unit]", () => {
     expect(cta).toBeDefined();
   });
 
-  it('renders as a custom element via the "as" prop', () => {
+  test('renders as a custom element via the "as" prop', () => {
     const result = render(
       <Admonition as="a" href="/link">
         As Link
@@ -69,7 +69,7 @@ describe("admonition [unit]", () => {
     expect(link).toHaveAttribute("href", "/link");
   });
 
-  it("passes additional props through to the element", () => {
+  test("passes additional props through to the element", () => {
     const result = render(
       <Admonition aria-label="custom label">With Aria Label</Admonition>,
     );
@@ -80,7 +80,7 @@ describe("admonition [unit]", () => {
     );
   });
 
-  it("merges custom className with component classes", () => {
+  test("merges custom className with component classes", () => {
     const result = render(
       <Admonition className="custom-class">Styled</Admonition>,
     );
@@ -90,13 +90,13 @@ describe("admonition [unit]", () => {
     expect(el).toHaveClass("custom-class");
   });
 
-  it("renders children text content in the DOM", () => {
+  test("renders children text content in the DOM", () => {
     const result = render(<Admonition>Hello world</Admonition>);
 
     expect(result.container).toHaveTextContent("Hello world");
   });
 
-  it("renders cta as a custom element via the ctaAs prop", () => {
+  test("renders cta as a custom element via the ctaAs prop", () => {
     const result = render(
       <Admonition ctaAs="a" cta={{ children: "Go", href: "/link" }}>
         With CTA Link
@@ -114,7 +114,7 @@ describe("admonition [snapshot]", () => {
   ADMONITION_PERMUTATIONS.forEach((permutation) => {
     const { size, variant, subtle } = permutation;
 
-    it(`renders correctly when variant="${variant}", size="${size}", subtle={${subtle}}`, () => {
+    test(`renders correctly when variant="${variant}", size="${size}", subtle={${subtle}}`, () => {
       const result = render(<Admonition {...permutation}>content</Admonition>);
 
       expect(result.container.firstChild).toMatchSnapshot();
@@ -136,7 +136,7 @@ describe("admonition [a11y]", () => {
       ADMONITION_PERMUTATIONS.forEach((permutation) => {
         const { size, variant, subtle } = permutation;
 
-        it(`renders without wcag2aaa violations when variant="${variant}", size="${size}", subtle={${subtle}}`, async () => {
+        test(`renders without wcag2aaa violations when variant="${variant}", size="${size}", subtle={${subtle}}`, async () => {
           const result = render(
             <Admonition {...permutation}>content</Admonition>,
           );

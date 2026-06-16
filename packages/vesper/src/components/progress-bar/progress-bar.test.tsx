@@ -1,5 +1,5 @@
 import { render, cleanup } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import axe from "axe-core";
 
 import {
@@ -21,7 +21,7 @@ afterEach(cleanup);
 
 describe("progress-bar [unit]", () => {
   PROGRESS_BAR_SIZES.forEach((size) => {
-    it(`applies the correct size class when size is set to "${size}"`, () => {
+    test(`applies the correct size class when size is set to "${size}"`, () => {
       const result = render(<ProgressBar size={size} value={23} />);
 
       expect(result.container.firstChild).toHaveClass(
@@ -30,7 +30,7 @@ describe("progress-bar [unit]", () => {
     });
   });
 
-  it("applies the animated class when animated prop is set to true", () => {
+  test("applies the animated class when animated prop is set to true", () => {
     const result = render(<ProgressBar value={23} animated />);
 
     expect(result.container.firstChild).toHaveClass(
@@ -38,7 +38,7 @@ describe("progress-bar [unit]", () => {
     );
   });
 
-  it('renders indicator element with percentage width that matches the given value prop when variant is "default"', () => {
+  test('renders indicator element with percentage width that matches the given value prop when variant is "default"', () => {
     const result = render(<ProgressBar value={23} variant="default" />);
 
     const indicator = result.container.querySelector(
@@ -48,7 +48,7 @@ describe("progress-bar [unit]", () => {
     expect(indicator.style.width).toBe("23%");
   });
 
-  it('renders indicator element with percentage width that matches the nearest tick value when variant is "steps"', () => {
+  test('renders indicator element with percentage width that matches the nearest tick value when variant is "steps"', () => {
     const result = render(
       <ProgressBar
         value={23}
@@ -65,7 +65,7 @@ describe("progress-bar [unit]", () => {
     expect(indicator.style.width).toBe("20%");
   });
 
-  it('renders indicator ticks when variant is "steps" and there is at least 2 steps', () => {
+  test('renders indicator ticks when variant is "steps" and there is at least 2 steps', () => {
     const result = render(
       <ProgressBar value={23} steps={10} variant="steps" />,
     );
@@ -75,7 +75,7 @@ describe("progress-bar [unit]", () => {
     ).toHaveLength(9);
   });
 
-  it("passes additional props through to the element", () => {
+  test("passes additional props through to the element", () => {
     const result = render(<ProgressBar value={23} aria-label="custom label" />);
 
     expect(result.container.firstChild).toHaveAttribute(
@@ -84,7 +84,7 @@ describe("progress-bar [unit]", () => {
     );
   });
 
-  it("merges custom className with component classes", () => {
+  test("merges custom className with component classes", () => {
     const result = render(<ProgressBar value={23} className="custom-class" />);
 
     const el = result.container.firstChild;
@@ -97,7 +97,7 @@ describe("progress-bar [snapshot]", () => {
   PROGRESS_BAR_PERMUTATIONS.forEach((permutation) => {
     const { size, variant } = permutation;
 
-    it(`renders correctly when size="${size}" and variant="${variant}"`, () => {
+    test(`renders correctly when size="${size}" and variant="${variant}"`, () => {
       const result = render(
         <ProgressBar size={size} variant={variant} value={23} />,
       );
@@ -121,7 +121,7 @@ describe("progress-bar [a11y]", () => {
       PROGRESS_BAR_PERMUTATIONS.forEach((permutation) => {
         const { size, variant } = permutation;
 
-        it(`renders without wcag2aaa violations when size="${size}" and variant="${variant}"`, async () => {
+        test(`renders without wcag2aaa violations when size="${size}" and variant="${variant}"`, async () => {
           const result = render(
             <ProgressBar size={size} variant={variant} value={23} />,
           );

@@ -1,5 +1,5 @@
 import { render, within, cleanup } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import axe from "axe-core";
 
 import {
@@ -23,7 +23,7 @@ afterEach(cleanup);
 
 describe("button [unit]", () => {
   BUTTON_VARIANTS.forEach((variant) => {
-    it(`applies the correct variant class when variant is set to "${variant}"`, () => {
+    test(`applies the correct variant class when variant is set to "${variant}"`, () => {
       const result = render(
         <Button size="lg" variant={variant}>
           {variant}
@@ -37,7 +37,7 @@ describe("button [unit]", () => {
   });
 
   BUTTON_SIZES.forEach((size) => {
-    it(`applies the correct size class when size is set to "${size}"`, () => {
+    test(`applies the correct size class when size is set to "${size}"`, () => {
       const result = render(
         <Button size={size} variant="primary">
           {size}
@@ -47,7 +47,7 @@ describe("button [unit]", () => {
     });
   });
 
-  it("sets the disabled attribute when disabled", () => {
+  test("sets the disabled attribute when disabled", () => {
     const result = render(
       <Button size="md" variant="primary" disabled>
         Disabled
@@ -57,7 +57,7 @@ describe("button [unit]", () => {
     expect(result.container.firstChild).toBeDisabled();
   });
 
-  it("applies disabled variant class when disabled", () => {
+  test("applies disabled variant class when disabled", () => {
     const result = render(
       <Button size="md" variant="primary" disabled>
         Disabled
@@ -70,7 +70,7 @@ describe("button [unit]", () => {
     );
   });
 
-  it("renders iconLeft when provided", () => {
+  test("renders iconLeft when provided", () => {
     const result = render(
       <Button
         size="md"
@@ -85,7 +85,7 @@ describe("button [unit]", () => {
     expect(view.getByTestId("icon-left")).toBeDefined();
   });
 
-  it("renders iconRight when provided", () => {
+  test("renders iconRight when provided", () => {
     const result = render(
       <Button
         size="md"
@@ -100,7 +100,7 @@ describe("button [unit]", () => {
     expect(view.getByTestId("icon-right")).toBeDefined();
   });
 
-  it("renders iconLeft and iconRight when provided", () => {
+  test("renders iconLeft and iconRight when provided", () => {
     const result = render(
       <Button
         size="md"
@@ -117,7 +117,7 @@ describe("button [unit]", () => {
     expect(view.getByTestId("icon-right")).toBeDefined();
   });
 
-  it('renders as a custom element via the "as" prop', () => {
+  test('renders as a custom element via the "as" prop', () => {
     const result = render(
       <Button as="a" href="/link" size="md" variant="primary">
         As Link
@@ -129,7 +129,7 @@ describe("button [unit]", () => {
     expect(link).toHaveAttribute("href", "/link");
   });
 
-  it("passes additional props through to the element", () => {
+  test("passes additional props through to the element", () => {
     const result = render(
       <Button size="md" variant="primary" aria-label="custom label">
         With Aria Label
@@ -142,7 +142,7 @@ describe("button [unit]", () => {
     );
   });
 
-  it("merges custom className with component classes", () => {
+  test("merges custom className with component classes", () => {
     const result = render(
       <Button size="md" variant="primary" className="custom-class">
         Styled
@@ -161,7 +161,7 @@ describe("button [snapshot]", () => {
   BUTTON_PERMUTATIONS.forEach((permutation) => {
     const { size, variant, disabled } = permutation;
 
-    it(`renders correctly when variant="${variant}", size="${size}", disabled={${disabled}}`, () => {
+    test(`renders correctly when variant="${variant}", size="${size}", disabled={${disabled}}`, () => {
       const result = render(<Button {...permutation}>Button Text</Button>);
 
       expect(result.container.firstChild).toMatchSnapshot();
@@ -183,7 +183,7 @@ describe("button [a11y]", () => {
       BUTTON_PERMUTATIONS.forEach((permutation) => {
         const { size, variant, disabled } = permutation;
 
-        it(`renders without wcag2aaa violations when variant="${variant}", size="${size}", disabled={${disabled}}`, async () => {
+        test(`renders without wcag2aaa violations when variant="${variant}", size="${size}", disabled={${disabled}}`, async () => {
           const result = render(<Button {...permutation}>Button Text</Button>);
 
           expect(

@@ -1,5 +1,5 @@
 import { render, within, cleanup } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import axe from "axe-core";
 
 import {
@@ -23,7 +23,7 @@ afterEach(cleanup);
 
 describe("badge [unit]", () => {
   BADGE_VARIANTS.forEach((variant) => {
-    it(`applies the correct variant class when variant is set to "${variant}"`, () => {
+    test(`applies the correct variant class when variant is set to "${variant}"`, () => {
       const result = render(<Badge variant={variant}>{variant}</Badge>);
 
       expect(result.container.firstChild).toHaveClass(
@@ -33,13 +33,13 @@ describe("badge [unit]", () => {
   });
 
   BADGE_SIZES.forEach((size) => {
-    it(`applies the correct size class when size is set to "${size}"`, () => {
+    test(`applies the correct size class when size is set to "${size}"`, () => {
       const result = render(<Badge size={size}>{size}</Badge>);
       expect(result.container.firstChild).toHaveClass(`vesper-badge-${size}`);
     });
   });
 
-  it("applies subtle variant class when subtle={true}", () => {
+  test("applies subtle variant class when subtle={true}", () => {
     const result = render(
       <Badge variant="accent" subtle>
         Disabled
@@ -52,7 +52,7 @@ describe("badge [unit]", () => {
     expect(result.container.firstChild).not.toHaveClass("vesper-badge-accent");
   });
 
-  it("renders icon when provided", () => {
+  test("renders icon when provided", () => {
     const result = render(
       <Badge variant="accent" icon={<Tenstorrent data-testid="icon" />}>
         With Icon
@@ -63,7 +63,7 @@ describe("badge [unit]", () => {
     expect(view.getByTestId("icon")).toBeDefined();
   });
 
-  it('renders as a custom element via the "as" prop', () => {
+  test('renders as a custom element via the "as" prop', () => {
     const result = render(
       <Badge as="a" href="/link">
         As Link
@@ -75,7 +75,7 @@ describe("badge [unit]", () => {
     expect(link).toHaveAttribute("href", "/link");
   });
 
-  it("passes additional props through to the element", () => {
+  test("passes additional props through to the element", () => {
     const result = render(
       <Badge aria-label="custom label">With Aria Label</Badge>,
     );
@@ -86,7 +86,7 @@ describe("badge [unit]", () => {
     );
   });
 
-  it("merges custom className with component classes", () => {
+  test("merges custom className with component classes", () => {
     const result = render(
       <Badge size="md" variant="accent" className="custom-class">
         Styled
@@ -105,7 +105,7 @@ describe("badge [snapshot]", () => {
   BADGE_PERMUTATIONS.forEach((permutation) => {
     const { size, variant, subtle } = permutation;
 
-    it(`renders correctly when variant="${variant}", size="${size}", subtle={${subtle}}`, () => {
+    test(`renders correctly when variant="${variant}", size="${size}", subtle={${subtle}}`, () => {
       const result = render(<Badge {...permutation}>Badge Text</Badge>);
 
       expect(result.container.firstChild).toMatchSnapshot();
@@ -127,7 +127,7 @@ describe("badge [a11y]", () => {
       BADGE_PERMUTATIONS.forEach((permutation) => {
         const { size, variant, subtle } = permutation;
 
-        it(`renders without wcag2aaa violations when variant="${variant}", size="${size}", subtle={${subtle}}`, async () => {
+        test(`renders without wcag2aaa violations when variant="${variant}", size="${size}", subtle={${subtle}}`, async () => {
           const result = render(<Badge {...permutation}>Badge Text</Badge>);
 
           expect(

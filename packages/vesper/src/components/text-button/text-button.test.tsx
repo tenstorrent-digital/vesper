@@ -1,5 +1,5 @@
 import { render, within, cleanup } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import axe from "axe-core";
 
 import {
@@ -24,7 +24,7 @@ afterEach(cleanup);
 
 describe("text-button [unit]", () => {
   TEXT_BUTTON_VARIANTS.forEach((variant) => {
-    it(`applies the correct variant class when variant is set to "${variant}"`, () => {
+    test(`applies the correct variant class when variant is set to "${variant}"`, () => {
       const result = render(
         <TextButton variant={variant}>{variant}</TextButton>,
       );
@@ -36,7 +36,7 @@ describe("text-button [unit]", () => {
   });
 
   TEXT_BUTTON_SIZES.forEach((size) => {
-    it(`applies the correct size class when size is set to "${size}"`, () => {
+    test(`applies the correct size class when size is set to "${size}"`, () => {
       const result = render(<TextButton size={size}>{size}</TextButton>);
 
       expect(result.container.firstChild).toHaveClass(
@@ -45,13 +45,13 @@ describe("text-button [unit]", () => {
     });
   });
 
-  it("sets the disabled attribute when disabled", () => {
+  test("sets the disabled attribute when disabled", () => {
     const result = render(<TextButton disabled>Disabled</TextButton>);
 
     expect(result.container.firstChild).toBeDisabled();
   });
 
-  it("applies disabled variant class when disabled", () => {
+  test("applies disabled variant class when disabled", () => {
     const result = render(
       <TextButton disabled variant="accent">
         Disabled
@@ -66,7 +66,7 @@ describe("text-button [unit]", () => {
     );
   });
 
-  it("renders iconLeft when provided", () => {
+  test("renders iconLeft when provided", () => {
     const result = render(
       <TextButton size="md" iconLeft={<Tenstorrent data-testid="icon-left" />}>
         With Icon Left
@@ -77,7 +77,7 @@ describe("text-button [unit]", () => {
     expect(view.getByTestId("icon-left")).toBeDefined();
   });
 
-  it("renders iconRight when provided", () => {
+  test("renders iconRight when provided", () => {
     const result = render(
       <TextButton
         size="md"
@@ -91,7 +91,7 @@ describe("text-button [unit]", () => {
     expect(view.getByTestId("icon-right")).toBeDefined();
   });
 
-  it("renders iconLeft and iconRight when provided", () => {
+  test("renders iconLeft and iconRight when provided", () => {
     const result = render(
       <TextButton
         size="md"
@@ -107,7 +107,7 @@ describe("text-button [unit]", () => {
     expect(view.getByTestId("icon-right")).toBeDefined();
   });
 
-  it('renders as a custom element via the "as" prop', () => {
+  test('renders as a custom element via the "as" prop', () => {
     const result = render(
       <TextButton as="a" href="/link">
         As Link
@@ -119,7 +119,7 @@ describe("text-button [unit]", () => {
     expect(link).toHaveAttribute("href", "/link");
   });
 
-  it("passes additional props through to the element", () => {
+  test("passes additional props through to the element", () => {
     const result = render(
       <TextButton aria-label="custom label">With Aria Label</TextButton>,
     );
@@ -130,7 +130,7 @@ describe("text-button [unit]", () => {
     );
   });
 
-  it("merges custom className with component classes", () => {
+  test("merges custom className with component classes", () => {
     const result = render(
       <TextButton className="custom-class" size="md" variant="accent">
         Styled
@@ -149,7 +149,7 @@ describe("text-button [snapshot]", () => {
   TEXT_BUTTON_PERMUTATIONS.forEach((permutation) => {
     const { size, variant, disabled } = permutation;
 
-    it(`renders correctly when variant="${variant}", size="${size}", disabled={${disabled}}`, () => {
+    test(`renders correctly when variant="${variant}", size="${size}", disabled={${disabled}}`, () => {
       const result = render(
         <TextButton {...permutation}>Button Text</TextButton>,
       );
@@ -173,7 +173,7 @@ describe("text-button [a11y]", () => {
       TEXT_BUTTON_PERMUTATIONS.forEach((permutation) => {
         const { size, variant, disabled } = permutation;
 
-        it(`renders without wcag2aaa violations when variant="${variant}", size="${size}", disabled={${disabled}}`, async () => {
+        test(`renders without wcag2aaa violations when variant="${variant}", size="${size}", disabled={${disabled}}`, async () => {
           const result = render(
             <TextButton {...permutation}>Button Text</TextButton>,
           );
