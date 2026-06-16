@@ -15,11 +15,7 @@ export default defineConfig({
   test: {
     browser: {
       enabled: true,
-      provider: playwright({
-        launchOptions: {
-          args: ["--font-render-hinting=none", "--disable-lcd-text"],
-        },
-      }),
+      provider: playwright({}),
       instances: [{ browser: "chromium" }],
     },
     coverage: {
