@@ -33,8 +33,6 @@ export interface SplitButtonProps extends Omit<
   menuItems: MenuItemProps[];
   onClick?: MouseEventHandler<HTMLButtonElement>;
   menuButtonAriaLabel?: string;
-  children?: ReactNode;
-  className?: string;
   menuWidth?: MenuProps["width"];
   menuSide?: MenuProps["side"];
   menuSideOffset?: MenuProps["sideOffset"];
