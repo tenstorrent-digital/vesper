@@ -26,6 +26,9 @@
       "cache": false,
       "persistent": true
     },
+    "build:storybook": {
+      "outputs": ["$TURBO_ROOT$/apps/docs/public/storybook/**"]
+    },
     "generate:icons": {
       "inputs": [
         "$TURBO_ROOT$/packages/vesper/assets/icons/**",
