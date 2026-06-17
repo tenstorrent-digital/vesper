@@ -94,7 +94,7 @@
     "test": "vitest run --coverage",
     "test:watch": "vitest",
     "check-types": "tsc --noEmit -p tsconfig.build.json",
-    "build:storybook": "storybook build -c storybook -o ../../apps/docs/src/public/storybook"
+    "build:storybook": "storybook build -c storybook -o ../../apps/docs/public/storybook"
   },
   "peerDependencies": {
     "react": "^19.0.0",

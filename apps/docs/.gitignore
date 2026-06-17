@@ -10,7 +10,7 @@
 /coverage
 
 # storybook
-/src/public/storybook
+/public/storybook
 
 # next.js
 /.next/
