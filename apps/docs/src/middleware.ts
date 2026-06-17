@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 
-const STORYBOOK_URL = "http://localhost:6006";
+const STORYBOOK_URL = "http://localhost:3000";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

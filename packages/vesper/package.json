@@ -87,7 +87,7 @@
     "watch:alias": "tsc-alias -p tsconfig.build.json -w --resolve-full-paths --resolve-full-extension .js",
     "watch:css": "tsx scripts/watch-css.ts",
     "watch": "concurrently --kill-others-on-fail --names tsc,alias,css --prefix-colors auto \"yarn watch:tsc\" \"yarn watch:alias\" \"yarn watch:css\"",
-    "dev": "storybook dev -p 6006 -c storybook",
+    "dev": "storybook dev -p 3000 -c storybook",
     "build:storybook": "storybook build -c storybook -o ../../apps/docs/public/storybook",
     "lint": "eslint . --max-warnings 0",
     "scaffold:component": "turbo gen vesper-component",
