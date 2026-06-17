@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from "next/server";
 
 const STORYBOOK_URL = "http://localhost:3000";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Redirect /storybook to /storybook/ for correct relative path resolution
