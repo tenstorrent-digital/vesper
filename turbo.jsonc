@@ -27,12 +27,7 @@
       "persistent": true
     },
     "dev:docs": {
-      "with": ["docs#dev", "@repo/vesper#watch"],
-      "cache": false,
-      "persistent": true
-    },
-    "dev:docs:storybook": {
-      "with": ["docs#dev", "@repo/vesper#dev"],
+      "with": ["docs#dev", "@repo/vesper#dev", "@repo/vesper#watch"],
       "cache": false,
       "persistent": true
     },
