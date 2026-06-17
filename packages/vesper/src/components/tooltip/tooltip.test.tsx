@@ -1,5 +1,5 @@
-import { render, cleanup } from "@testing-library/react";
-import { beforeEach, afterEach, describe, expect, test } from "vitest";
+import { render, cleanup, waitFor } from "@testing-library/react";
+import { beforeEach, afterEach, describe, expect, test, vi } from "vitest";
 import axe from "axe-core";
 
 import { Tooltip } from "@/components/tooltip/tooltip";
@@ -39,7 +39,7 @@ describe("tooltip [unit]", () => {
     expect(tooltip).not.toBeNull();
   });
 
-  test("side prop", async () => {
+  test("side", async () => {
     const result = render(
       <Tooltip open side="left" text="Tooltip text">
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
@@ -52,7 +52,7 @@ describe("tooltip [unit]", () => {
     expect(tooltip).toHaveAttribute("data-side", "left");
   });
 
-  test("align prop", async () => {
+  test("alignment", async () => {
     const result = render(
       <Tooltip open align="end" text="Tooltip text">
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
@@ -63,6 +63,34 @@ describe("tooltip [unit]", () => {
 
     const tooltip = result.container.querySelector(".vesper-tooltip");
     expect(tooltip).toHaveAttribute("data-align", "end");
+  });
+
+  test("custom max width", async () => {
+    const result = render(
+      <Tooltip open maxWidth={360} text="Tooltip text">
+        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+          tooltip trigger
+        </Typography>
+      </Tooltip>,
+    );
+
+    const tooltip = result.container.querySelector(".vesper-tooltip");
+    expect(tooltip).toHaveStyle("max-width: 360px;");
+  });
+
+  test("onOpenChange callback", async () => {
+    const handleOpenChange = vi.fn();
+
+    const result = render(
+      <Tooltip onOpenChange={handleOpenChange} text="Tooltip text">
+        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+          tooltip trigger
+        </Typography>
+      </Tooltip>,
+    );
+
+    await userEvent.hover(result.container.firstChild as HTMLElement);
+    await waitFor(() => expect(handleOpenChange).toHaveBeenCalled());
   });
 });
 
