@@ -28,7 +28,10 @@ const config: StorybookConfig = {
         prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
     },
   },
-  viteFinal(config) {
+  viteFinal(config, { configType }) {
+    if (configType === "PRODUCTION") {
+      config.base = "/storybook/";
+    }
     config.resolve = config.resolve || {};
 
     if (Array.isArray(config.resolve.alias)) {

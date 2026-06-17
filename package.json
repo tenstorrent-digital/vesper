@@ -7,6 +7,7 @@
     "dev": "turbo run dev watch",
     "dev:vesper": "turbo run dev:vesper",
     "dev:docs": "turbo run dev:docs",
+    "build:storybook": "turbo run build:storybook --filter=@repo/vesper",
     "test:vesper": "turbo run test --filter=@repo/vesper",
     "lint": "turbo run lint",
     "format": "prettier --write .",
