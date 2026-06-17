@@ -1,4 +1,4 @@
-import { type ReactNode, isValidElement } from "react";
+import { Fragment, type ReactNode, isValidElement } from "react";
 import {
   Tooltip as TooltipRoot,
   TooltipContent,
@@ -57,7 +57,11 @@ export function Tooltip({
         open={open}
       >
         <TooltipTrigger asChild>
-          {isValidElement(children) ? children : <span>{children}</span>}
+          {isValidElement(children) && children.type !== Fragment ? (
+            children
+          ) : (
+            <span>{children}</span>
+          )}
         </TooltipTrigger>
         <Typography
           variant="label-xs"
