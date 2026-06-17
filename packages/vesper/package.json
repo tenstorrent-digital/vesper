@@ -11,6 +11,10 @@
       "types": "./dist/components/tooltip/tooltip.d.ts",
       "import": "./dist/components/tooltip/tooltip.js"
     },
+    "./theme-switcher": {
+      "types": "./dist/components/theme-switcher/theme-switcher.d.ts",
+      "import": "./dist/components/theme-switcher/theme-switcher.js"
+    },
     "./admonition": {
       "types": "./dist/components/admonition/admonition.d.ts",
       "import": "./dist/components/admonition/admonition.js"
