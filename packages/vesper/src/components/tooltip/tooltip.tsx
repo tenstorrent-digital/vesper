@@ -44,7 +44,9 @@ export function Tooltip({
 }: TooltipProps) {
   const sideOffset = TOOLTIP_ARROW_HEIGHT + _sideOffset;
 
-  if (!content || !children) return children;
+  if (isValidTooltipChild(!content) || !isValidTooltipChild(children)) {
+    return children;
+  }
 
   return (
     <TooltipProvider>
@@ -74,6 +76,13 @@ export function Tooltip({
     </TooltipProvider>
   );
 }
+
+/**
+ * Checks to see if a `ReactNode` can be rendered with a `Tooltip`. Valid nodes must be numeric or non-empty string values, OR they must be non-nullable and non-boolean values
+ * */
+const isValidTooltipChild = (node: ReactNode) => {
+  return typeof node === "number" || (!!node && typeof node !== "boolean");
+};
 
 const TOOLTIP_ARROW_HEIGHT = 8;
 const TOOLTIP_ARROW_WIDTH = 14;
