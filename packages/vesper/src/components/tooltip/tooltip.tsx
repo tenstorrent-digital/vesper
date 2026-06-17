@@ -1,3 +1,4 @@
+import { type ReactNode, isValidElement } from "react";
 import {
   Tooltip as TooltipRoot,
   TooltipContent,
@@ -5,7 +6,6 @@ import {
   TooltipProvider,
 } from "@radix-ui/react-tooltip";
 import { Typography } from "@/components/typography/typography";
-import { ReactNode } from "react";
 
 export interface TooltipProps {
   text: string;
@@ -25,16 +25,18 @@ export function Tooltip({
   children,
   text,
   defaultOpen,
-  delayDuration = 500,
-  maxWidth = 240,
   open,
   onOpenChange,
+  delayDuration = 500,
+  maxWidth = 240,
   align = "center",
   alignOffset = 0,
   side = "top",
   sideOffset: _sideOffset = 4,
 }: TooltipProps) {
   const sideOffset = TOOLTIP_ARROW_HEIGHT + _sideOffset;
+
+  if (!text) return children;
 
   return (
     <TooltipProvider>
@@ -44,7 +46,9 @@ export function Tooltip({
         onOpenChange={onOpenChange}
         open={open}
       >
-        <TooltipTrigger asChild>{children}</TooltipTrigger>
+        <TooltipTrigger asChild>
+          {isValidElement(children) ? children : <span>{children}</span>}
+        </TooltipTrigger>
         <Typography
           variant="label-xs"
           className="vesper-tooltip"
