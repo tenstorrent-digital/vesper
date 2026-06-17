@@ -3,7 +3,7 @@
   "extends": ["//"],
   "tasks": {
     "build": {
-      "dependsOn": ["@repo/vesper#build:storybook"]
+      "dependsOn": ["^build", "@repo/vesper#build:storybook"]
     }
   }
 }
