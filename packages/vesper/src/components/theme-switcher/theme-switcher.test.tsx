@@ -61,6 +61,8 @@ describe("theme-switcher [unit]", () => {
       "data-vesper-theme",
       "dark",
     );
+
+    document.documentElement.removeAttribute("data-vesper-theme");
   });
 });
 
