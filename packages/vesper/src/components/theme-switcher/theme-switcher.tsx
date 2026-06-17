@@ -8,7 +8,10 @@ export type ThemeSwitcherSize = (typeof THEME_SWITCHER_SIZES)[number];
 
 export type VesperTheme = "light" | "dark" | "system";
 
-export interface ThemeSwitcherProps extends ComponentProps<"div"> {
+export interface ThemeSwitcherProps extends Omit<
+  ComponentProps<"div">,
+  "children"
+> {
   size?: ThemeSwitcherSize;
 }
 
