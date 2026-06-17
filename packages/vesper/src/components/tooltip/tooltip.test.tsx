@@ -1,4 +1,4 @@
-import { render, cleanup, waitFor } from "@testing-library/react";
+import { render, cleanup, waitFor, fireEvent } from "@testing-library/react";
 import { beforeEach, afterEach, describe, expect, test, vi } from "vitest";
 import axe from "axe-core";
 
@@ -6,7 +6,6 @@ import { Tooltip } from "@/components/tooltip/tooltip";
 import { Typography } from "@/components/typography/typography";
 
 import "@/styles/test.css";
-import { userEvent } from "vitest/browser";
 
 afterEach(cleanup);
 
@@ -25,15 +24,26 @@ describe("tooltip [unit]", () => {
   });
 
   test("with interaction", async () => {
+    const handleOpenChange = vi.fn();
+
     const result = render(
-      <Tooltip delayDuration={0} text="Tooltip text">
+      <Tooltip
+        delayDuration={0}
+        onOpenChange={handleOpenChange}
+        text="Tooltip text"
+      >
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
           tooltip trigger
         </Typography>
       </Tooltip>,
     );
 
-    await userEvent.hover(result.container.firstChild as HTMLElement);
+    const trigger = result.container.firstChild as HTMLElement;
+    fireEvent.pointerMove(trigger);
+
+    await waitFor(() => {
+      expect(handleOpenChange).toHaveBeenCalledWith(true);
+    });
 
     const tooltip = result.container.querySelector(".vesper-tooltip");
     expect(tooltip).not.toBeNull();
@@ -82,20 +92,28 @@ describe("tooltip [unit]", () => {
     const handleOpenChange = vi.fn();
 
     const result = render(
-      <Tooltip onOpenChange={handleOpenChange} text="Tooltip text">
+      <Tooltip
+        delayDuration={0}
+        onOpenChange={handleOpenChange}
+        text="Tooltip text"
+      >
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
           tooltip trigger
         </Typography>
       </Tooltip>,
     );
 
-    await userEvent.hover(result.container.firstChild as HTMLElement);
-    await waitFor(() => expect(handleOpenChange).toHaveBeenCalled());
+    const trigger = result.container.firstChild as HTMLElement;
+    fireEvent.pointerMove(trigger);
+
+    await waitFor(() => {
+      expect(handleOpenChange).toHaveBeenCalledWith(true);
+    });
   });
 
   test("empty tooltip text", () => {
     const result = render(
-      <Tooltip text="">
+      <Tooltip open text="">
         <Typography>trigger</Typography>
       </Tooltip>,
     );
@@ -105,7 +123,7 @@ describe("tooltip [unit]", () => {
   });
 
   test("nullable children", () => {
-    const result = render(<Tooltip text="Tooltip text" />);
+    const result = render(<Tooltip open text="Tooltip text" />);
 
     expect(result.container.innerHTML).toBe("");
   });
@@ -133,23 +151,31 @@ describe("tooltip [unit]", () => {
     expect(tooltip).not.toBeNull();
   });
 
-  test("unhover", async () => {
+  test("dismisses on escape", async () => {
+    const handleOpenChange = vi.fn();
+
     const result = render(
-      <Tooltip delayDuration={0} text="Tooltip text">
+      <Tooltip
+        delayDuration={0}
+        onOpenChange={handleOpenChange}
+        text="Tooltip text"
+      >
         <Typography>trigger</Typography>
       </Tooltip>,
     );
 
     const trigger = result.container.firstChild as HTMLElement;
-    await userEvent.hover(trigger);
-    await waitFor(() =>
-      expect(result.container.querySelector(".vesper-tooltip")).not.toBeNull(),
-    );
+    fireEvent.pointerMove(trigger);
 
-    await userEvent.unhover(trigger);
-    await waitFor(() =>
-      expect(result.container.querySelector(".vesper-tooltip")).toBeNull(),
-    );
+    await waitFor(() => {
+      expect(handleOpenChange).toHaveBeenCalledWith(true);
+    });
+
+    fireEvent.keyDown(document, { key: "Escape" });
+
+    await waitFor(() => {
+      expect(handleOpenChange).toHaveBeenCalledWith(false);
+    });
   });
 });
 
