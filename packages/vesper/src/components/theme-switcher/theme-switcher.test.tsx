@@ -2,16 +2,65 @@ import { render, cleanup } from "@testing-library/react";
 import { beforeEach, afterEach, describe, expect, test } from "vitest";
 import axe from "axe-core";
 
-import { ThemeSwitcher } from "@/components/theme-switcher/theme-switcher";
+import {
+  THEME_SWITCHER_SIZES,
+  ThemeSwitcher,
+} from "@/components/theme-switcher/theme-switcher";
 
 import "@/styles/test.css";
 
 afterEach(cleanup);
 
 describe("theme-switcher [unit]", () => {
-  test("renders a div", () => {
-    const { container } = render(<ThemeSwitcher />);
-    expect(container.firstElementChild?.tagName).toBe("DIV");
+  THEME_SWITCHER_SIZES.forEach((size) => {
+    test(`${size} size class`, () => {
+      const result = render(<ThemeSwitcher size={size} />);
+      expect(result.container.firstChild).toHaveClass(
+        `vesper-theme-switcher-${size}`,
+      );
+    });
+  });
+
+  test("additional prop passthrough", () => {
+    const result = render(<ThemeSwitcher aria-label="custom label" />);
+
+    expect(result.container.firstChild).toHaveAttribute(
+      "aria-label",
+      "custom label",
+    );
+  });
+
+  test("custom className", () => {
+    const result = render(<ThemeSwitcher size="lg" className="custom-class" />);
+
+    const switcher = result.container.firstChild;
+    expect(switcher).toHaveClass("vesper-theme-switcher");
+    expect(switcher).toHaveClass("vesper-theme-switcher-lg");
+    expect(switcher).toHaveClass("custom-class");
+  });
+
+  test("theme switching", () => {
+    const result = render(<ThemeSwitcher />);
+
+    const [system, light, dark] = result.getAllByRole("button");
+
+    system?.click();
+    expect(document.documentElement).toHaveAttribute(
+      "data-vesper-theme",
+      "system",
+    );
+
+    light?.click();
+    expect(document.documentElement).toHaveAttribute(
+      "data-vesper-theme",
+      "light",
+    );
+
+    dark?.click();
+    expect(document.documentElement).toHaveAttribute(
+      "data-vesper-theme",
+      "dark",
+    );
   });
 });
 
