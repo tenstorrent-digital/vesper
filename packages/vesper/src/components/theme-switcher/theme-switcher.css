@@ -1,8 +1,12 @@
 .vesper-theme-switcher {
   display: inline-flex;
+  max-width: fit-content;
   background: var(--vesper-stone-0);
   border: 1px solid var(--vesper-stone-400);
   position: relative;
+  * {
+    box-sizing: border-box;
+  }
 }
 .vesper-theme-switcher-lg {
   height: 32px;
@@ -43,7 +47,7 @@
   position: absolute;
   top: -1px;
   left: -1px;
-  height: 100%;
+  height: calc(100% + 2px);
   aspect-ratio: 1/1;
   border: 1px solid var(--vesper-stone-400);
   transition: transform 0.2s ease;

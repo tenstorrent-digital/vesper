@@ -7,11 +7,13 @@ import { MenuPreview } from "@/components/menu-preview";
 import { TypographyPreview } from "@/components/typography-preview";
 import { AdmonitionPreview } from "@/components/admonition-preview";
 import { TooltipPreview } from "@/components/tooltip-preview";
+import { ThemeSwitcherPreview } from "@/components/theme-switcher-preview";
 
 export default function Page() {
   return (
     <div>
       <TypographyPreview />
+      <ThemeSwitcherPreview />
       <TooltipPreview />
       <AdmonitionPreview />
       <BadgePreview />
