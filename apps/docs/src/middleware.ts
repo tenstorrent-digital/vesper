@@ -6,12 +6,17 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Redirect /storybook to /storybook/ for correct relative path resolution
+  // (needed in both dev and production for Storybook's relative asset paths)
   if (pathname === "/storybook") {
     return NextResponse.redirect(new URL("/storybook/", request.url), 307);
   }
 
-  // Proxy /storybook/* to the Storybook dev server
-  if (pathname.startsWith("/storybook/")) {
+  // In development, proxy to the Storybook dev server for HMR support.
+  // In production, static files in public/storybook/ are served directly by the platform.
+  if (
+    process.env.NODE_ENV === "development" &&
+    pathname.startsWith("/storybook/")
+  ) {
     const storybookPath = pathname.slice("/storybook".length) || "/";
     const destination = `${STORYBOOK_URL}${storybookPath}`;
     return NextResponse.rewrite(new URL(destination));
