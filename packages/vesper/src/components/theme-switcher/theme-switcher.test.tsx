@@ -16,8 +16,14 @@ describe("theme-switcher [unit]", () => {
 });
 
 describe("theme-switcher [snapshot]", () => {
-  test("renders correctly", async () => {
-    const { container } = render(<ThemeSwitcher />);
+  test("lg", async () => {
+    const { container } = render(<ThemeSwitcher size="lg" />);
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("sm", async () => {
+    const { container } = render(<ThemeSwitcher size="sm" />);
 
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -33,8 +39,16 @@ describe("theme-switcher [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    test(`wcag2aaa (${theme})`, async () => {
-      const { container } = render(<ThemeSwitcher />);
+    test(`wcag2aaa (lg, ${theme})`, async () => {
+      const { container } = render(<ThemeSwitcher size="lg" />);
+
+      expect(
+        await axe.run(container, { runOnly: "wcag2aaa" }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (sm, ${theme})`, async () => {
+      const { container } = render(<ThemeSwitcher size="sm" />);
 
       expect(
         await axe.run(container, { runOnly: "wcag2aaa" }),
