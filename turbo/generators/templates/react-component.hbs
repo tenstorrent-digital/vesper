@@ -1,10 +1,11 @@
 {{#if element}}
 import type { ComponentProps } from 'react';
+import { cn } from '@/utils/cn';
 
 export interface {{ name }}Props extends ComponentProps<'{{ element }}'> {}
 
-export function {{ name }}(props: {{ name }}Props) {
-  return <{{ element }} {...props} />;
+export function {{ name }}({ className, ...props }: {{ name }}Props) {
+  return <{{ element }} className={cn("vesper-{{ kebabCase name }}", className)} {...props} />;
 }
 {{else}}
 export interface {{ name }}Props {}
