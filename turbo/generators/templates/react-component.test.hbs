@@ -1,20 +1,21 @@
 import { render, cleanup } from "@testing-library/react";
-import { beforeEach, afterEach, describe, expect, it } from "vitest";
+import { beforeEach, afterEach, describe, expect, test } from "vitest";
 import axe from "axe-core";
+
 import { {{ name }} } from "@/components/{{ kebabCase name }}/{{ kebabCase name }}";
 
-import "@/styles/styles.css";
+import "@/styles/test.css";
 
 afterEach(cleanup);
 
 describe("{{ kebabCase name }} [unit]", () => {
   {{#if element}}
-  it("renders a {{ element }}", () => {
+  test("renders a {{ element }}", () => {
     const { container } = render(<{{ name }} />);
     expect(container.firstElementChild?.tagName).toBe("{{ upperCase element }}");
   });
   {{else}}
-  it("renders null", () => {
+  test("renders null", () => {
     const { container } = render(<{{ name }} />);
     expect(container.firstChild).toBeNull();
   });
@@ -22,10 +23,10 @@ describe("{{ kebabCase name }} [unit]", () => {
 });
 
 describe("{{ kebabCase name }} [snapshot]", () => {
-  it("renders correctly", async () => {
-    const result = render(<{{ name }} />);
+  test("renders correctly", async () => {
+    const { container } = render(<{{ name }} />);
 
-    expect(result.container.firstChild).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
 
@@ -39,11 +40,11 @@ describe("{{ kebabCase name }} [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    it(`wcag2aaa (${theme})`, async () => {
-      const result = render(<{{ name }} />);
+    test(`wcag2aaa (${theme})`, async () => {
+      const { container } = render(<{{ name }} />);
 
       expect(
-        await axe.run(result.container, { runOnly: "wcag2aaa" }),
+        await axe.run(container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
   });

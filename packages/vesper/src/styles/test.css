@@ -6,4 +6,5 @@
 *::before,
 *::after {
   animation-duration: 0 !important;
+  transition-duration: 0 !important;
 }

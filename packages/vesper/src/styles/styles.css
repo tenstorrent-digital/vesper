@@ -13,6 +13,7 @@
 @import "../components/typography/typography.css";
 
 /* components */
+@import "../components/tooltip/tooltip.css";
 @import "../components/admonition/admonition.css";
 @import "../components/badge/badge.css";
 @import "../components/accordion/accordion.css";
@@ -30,5 +31,6 @@
   *::before,
   *::after {
     animation-duration: 0 !important;
+    transition-duration: 0 !important;
   }
 }

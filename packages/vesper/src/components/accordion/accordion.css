@@ -63,10 +63,10 @@
   overflow: visible;
   will-change: opacity;
   &[data-state="open"] {
-    animation: accordion-open 0.3s ease;
+    animation: vesper-accordion-open 0.3s ease;
   }
   &[data-state="closed"] {
-    animation: accordion-close 0.3s ease;
+    animation: vesper-accordion-close 0.3s ease;
   }
 }
 
@@ -76,7 +76,7 @@
   white-space: pre-line;
 }
 
-@keyframes accordion-open {
+@keyframes vesper-accordion-open {
   0% {
     height: 0px;
     opacity: 0;
@@ -86,7 +86,7 @@
     opacity: 1;
   }
 }
-@keyframes accordion-close {
+@keyframes vesper-accordion-close {
   0% {
     height: var(--radix-collapsible-content-height);
     opacity: 1;
