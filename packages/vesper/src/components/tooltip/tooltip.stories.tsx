@@ -7,6 +7,7 @@ const meta = {
   component: Tooltip,
   parameters: { layout: "centered" },
   argTypes: {
+    content: { control: "text" },
     open: { table: { disable: true } },
     defaultOpen: { table: { disable: true } },
     onOpenChange: { table: { disable: true } },
@@ -19,7 +20,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
   args: {
-    text: "The tooltip text",
+    content: "The tooltip text",
     side: "top",
     sideOffset: 4,
     alignOffset: 0,

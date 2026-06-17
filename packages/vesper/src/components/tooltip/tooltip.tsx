@@ -7,11 +7,19 @@ import {
 } from "@radix-ui/react-tooltip";
 import { Typography } from "@/components/typography/typography";
 
+export const TOOLTIP_SIDES = ["top", "right", "bottom", "left"] as const;
+
+export const TOOLTIP_ALIGNMENTS = ["center", "start", "end"] as const;
+
+export type TooltipSide = (typeof TOOLTIP_SIDES)[number];
+
+export type TooltipAlign = (typeof TOOLTIP_ALIGNMENTS)[number];
+
 export interface TooltipProps {
-  text: string;
-  side?: "top" | "right" | "bottom" | "left";
+  content: ReactNode;
+  side?: TooltipSide;
   sideOffset?: number;
-  align?: "center" | "start" | "end";
+  align?: TooltipAlign;
   alignOffset?: number;
   open?: boolean;
   onOpenChange?(value: boolean): void;
@@ -23,7 +31,7 @@ export interface TooltipProps {
 
 export function Tooltip({
   children,
-  text,
+  content,
   defaultOpen,
   open,
   onOpenChange,
@@ -36,7 +44,7 @@ export function Tooltip({
 }: TooltipProps) {
   const sideOffset = TOOLTIP_ARROW_HEIGHT + _sideOffset;
 
-  if (!text || !children) return children;
+  if (!content || !children) return children;
 
   return (
     <TooltipProvider>
@@ -59,7 +67,7 @@ export function Tooltip({
           side={side}
           sideOffset={sideOffset}
         >
-          {text}
+          {content}
           <TooltipArrow />
         </Typography>
       </TooltipRoot>

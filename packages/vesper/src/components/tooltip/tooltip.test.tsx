@@ -12,7 +12,7 @@ afterEach(cleanup);
 describe("tooltip [unit]", () => {
   test("no interaction", () => {
     const result = render(
-      <Tooltip text="Tooltip text">
+      <Tooltip content="Tooltip text">
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
           tooltip trigger
         </Typography>
@@ -30,7 +30,7 @@ describe("tooltip [unit]", () => {
       <Tooltip
         delayDuration={0}
         onOpenChange={handleOpenChange}
-        text="Tooltip text"
+        content="Tooltip text"
       >
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
           tooltip trigger
@@ -51,7 +51,7 @@ describe("tooltip [unit]", () => {
 
   test("side prop", async () => {
     const result = render(
-      <Tooltip open side="left" text="Tooltip text">
+      <Tooltip open side="left" content="Tooltip text">
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
           tooltip trigger
         </Typography>
@@ -64,7 +64,7 @@ describe("tooltip [unit]", () => {
 
   test("alignment prop", async () => {
     const result = render(
-      <Tooltip open align="end" text="Tooltip text">
+      <Tooltip open align="end" content="Tooltip text">
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
           tooltip trigger
         </Typography>
@@ -77,7 +77,7 @@ describe("tooltip [unit]", () => {
 
   test("custom max width", async () => {
     const result = render(
-      <Tooltip open maxWidth={360} text="Tooltip text">
+      <Tooltip open maxWidth={360} content="Tooltip text">
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
           tooltip trigger
         </Typography>
@@ -95,7 +95,7 @@ describe("tooltip [unit]", () => {
       <Tooltip
         delayDuration={0}
         onOpenChange={handleOpenChange}
-        text="Tooltip text"
+        content="Tooltip text"
       >
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
           tooltip trigger
@@ -111,9 +111,9 @@ describe("tooltip [unit]", () => {
     });
   });
 
-  test("empty tooltip text", () => {
+  test("empty tooltip content", () => {
     const result = render(
-      <Tooltip open text="">
+      <Tooltip open content="">
         <Typography>trigger</Typography>
       </Tooltip>,
     );
@@ -123,14 +123,14 @@ describe("tooltip [unit]", () => {
   });
 
   test("nullable children", () => {
-    const result = render(<Tooltip open text="Tooltip text" />);
+    const result = render(<Tooltip open content="Tooltip text" />);
 
     expect(result.container.innerHTML).toBe("");
   });
 
   test("non-element children", () => {
     const result = render(
-      <Tooltip open text="Tooltip text">
+      <Tooltip open content="Tooltip text">
         plain text trigger
       </Tooltip>,
     );
@@ -142,7 +142,7 @@ describe("tooltip [unit]", () => {
 
   test("defaultOpen prop", () => {
     const result = render(
-      <Tooltip defaultOpen text="Tooltip text">
+      <Tooltip defaultOpen content="Tooltip text">
         <Typography>trigger</Typography>
       </Tooltip>,
     );
@@ -158,7 +158,7 @@ describe("tooltip [unit]", () => {
       <Tooltip
         delayDuration={0}
         onOpenChange={handleOpenChange}
-        text="Tooltip text"
+        content="Tooltip text"
       >
         <Typography>trigger</Typography>
       </Tooltip>,
@@ -182,7 +182,7 @@ describe("tooltip [unit]", () => {
 describe("tooltip [snapshot]", () => {
   test("open", async () => {
     const result = render(
-      <Tooltip open text="Tooltip text">
+      <Tooltip open content="Tooltip text">
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
           tooltip trigger
         </Typography>
@@ -194,7 +194,7 @@ describe("tooltip [snapshot]", () => {
 
   test("closed", async () => {
     const result = render(
-      <Tooltip open={false} text="Tooltip text">
+      <Tooltip open={false} content="Tooltip text">
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
           tooltip trigger
         </Typography>
@@ -217,7 +217,7 @@ describe("tooltip [a11y]", () => {
 
     test(`wcag2aaa (${theme})`, async () => {
       const result = render(
-        <Tooltip open text="Tooltip text">
+        <Tooltip open content="Tooltip text">
           <Typography style={{ color: "var(--vesper-stone-900)" }}>
             tooltip trigger
           </Typography>
