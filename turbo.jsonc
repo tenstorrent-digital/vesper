@@ -7,6 +7,11 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
+    "build:storybook": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", "storybook/**"],
+      "outputs": ["../../apps/docs/public/storybook/**"]
+    },
     "lint": {
       "dependsOn": ["^lint"]
     },
@@ -23,6 +28,11 @@
     },
     "dev:docs": {
       "with": ["docs#dev", "@repo/vesper#watch"],
+      "cache": false,
+      "persistent": true
+    },
+    "dev:docs:storybook": {
+      "with": ["docs#dev", "@repo/vesper#dev"],
       "cache": false,
       "persistent": true
     },
