@@ -39,7 +39,7 @@ describe("tooltip [unit]", () => {
     expect(tooltip).not.toBeNull();
   });
 
-  test("side", async () => {
+  test("side prop", async () => {
     const result = render(
       <Tooltip open side="left" text="Tooltip text">
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
@@ -52,7 +52,7 @@ describe("tooltip [unit]", () => {
     expect(tooltip).toHaveAttribute("data-side", "left");
   });
 
-  test("alignment", async () => {
+  test("alignment prop", async () => {
     const result = render(
       <Tooltip open align="end" text="Tooltip text">
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
@@ -91,6 +91,65 @@ describe("tooltip [unit]", () => {
 
     await userEvent.hover(result.container.firstChild as HTMLElement);
     await waitFor(() => expect(handleOpenChange).toHaveBeenCalled());
+  });
+
+  test("empty tooltip text", () => {
+    const result = render(
+      <Tooltip text="">
+        <Typography>trigger</Typography>
+      </Tooltip>,
+    );
+
+    expect(result.container.querySelector(".vesper-tooltip")).toBeNull();
+    expect(result.container.textContent).toBe("trigger");
+  });
+
+  test("nullable children", () => {
+    const result = render(<Tooltip text="Tooltip text" />);
+
+    expect(result.container.innerHTML).toBe("");
+  });
+
+  test("non-element children", () => {
+    const result = render(
+      <Tooltip open text="Tooltip text">
+        plain text trigger
+      </Tooltip>,
+    );
+
+    const span = result.container.querySelector("span");
+    expect(span).not.toBeNull();
+    expect(span?.textContent).toBe("plain text trigger");
+  });
+
+  test("defaultOpen prop", () => {
+    const result = render(
+      <Tooltip defaultOpen text="Tooltip text">
+        <Typography>trigger</Typography>
+      </Tooltip>,
+    );
+
+    const tooltip = result.container.querySelector(".vesper-tooltip");
+    expect(tooltip).not.toBeNull();
+  });
+
+  test("unhover", async () => {
+    const result = render(
+      <Tooltip delayDuration={0} text="Tooltip text">
+        <Typography>trigger</Typography>
+      </Tooltip>,
+    );
+
+    const trigger = result.container.firstChild as HTMLElement;
+    await userEvent.hover(trigger);
+    await waitFor(() =>
+      expect(result.container.querySelector(".vesper-tooltip")).not.toBeNull(),
+    );
+
+    await userEvent.unhover(trigger);
+    await waitFor(() =>
+      expect(result.container.querySelector(".vesper-tooltip")).toBeNull(),
+    );
   });
 });
 
