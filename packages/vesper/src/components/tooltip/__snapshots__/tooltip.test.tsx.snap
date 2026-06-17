@@ -15,7 +15,7 @@ exports[`tooltip [snapshot] > closed 1`] = `
 exports[`tooltip [snapshot] > open 1`] = `
 <div>
   <p
-    aria-describedby="radix-_r_9_"
+    aria-describedby="radix-_r_a_"
     class="vesper-typography vesper-typography-copy-sm"
     data-radix-popper-align="center"
     data-radix-popper-side="top"
@@ -48,7 +48,7 @@ exports[`tooltip [snapshot] > open 1`] = `
         />
       </svg>
       <span
-        id="radix-_r_9_"
+        id="radix-_r_a_"
         role="tooltip"
         style="position: absolute; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; overflow-wrap: normal;"
       >

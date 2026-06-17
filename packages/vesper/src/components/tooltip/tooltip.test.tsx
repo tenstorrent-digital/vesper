@@ -151,6 +151,28 @@ describe("tooltip [unit]", () => {
     expect(tooltip).not.toBeNull();
   });
 
+  test("renders non-string content", () => {
+    const result = render(
+      <Tooltip
+        open
+        content={
+          <span>
+            Press <kbd>Enter</kbd> to confirm
+          </span>
+        }
+      >
+        <Typography>trigger</Typography>
+      </Tooltip>,
+    );
+
+    const tooltip = result.container.querySelector(".vesper-tooltip");
+    expect(tooltip).not.toBeNull();
+
+    const kbd = tooltip?.querySelector("kbd");
+    expect(kbd).not.toBeNull();
+    expect(kbd?.textContent).toBe("Enter");
+  });
+
   test("dismisses on escape", async () => {
     const handleOpenChange = vi.fn();
 
