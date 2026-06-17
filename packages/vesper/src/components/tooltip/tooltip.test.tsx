@@ -38,6 +38,32 @@ describe("tooltip [unit]", () => {
     const tooltip = result.container.querySelector(".vesper-tooltip");
     expect(tooltip).not.toBeNull();
   });
+
+  test("side prop", async () => {
+    const result = render(
+      <Tooltip open side="left" text="Tooltip text">
+        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+          tooltip trigger
+        </Typography>
+      </Tooltip>,
+    );
+
+    const tooltip = result.container.querySelector(".vesper-tooltip");
+    expect(tooltip).toHaveAttribute("data-side", "left");
+  });
+
+  test("align prop", async () => {
+    const result = render(
+      <Tooltip open align="end" text="Tooltip text">
+        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+          tooltip trigger
+        </Typography>
+      </Tooltip>,
+    );
+
+    const tooltip = result.container.querySelector(".vesper-tooltip");
+    expect(tooltip).toHaveAttribute("data-align", "end");
+  });
 });
 
 describe("tooltip [snapshot]", () => {
@@ -50,7 +76,7 @@ describe("tooltip [snapshot]", () => {
       </Tooltip>,
     );
 
-    expect(result.container.firstChild).toMatchSnapshot();
+    expect(result.container).toMatchSnapshot();
   });
 
   test("closed", async () => {
@@ -62,7 +88,7 @@ describe("tooltip [snapshot]", () => {
       </Tooltip>,
     );
 
-    expect(result.container.firstChild).toMatchSnapshot();
+    expect(result.container).toMatchSnapshot();
   });
 });
 

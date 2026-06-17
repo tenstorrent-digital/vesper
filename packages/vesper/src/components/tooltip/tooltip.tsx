@@ -36,7 +36,7 @@ export function Tooltip({
 }: TooltipProps) {
   const sideOffset = TOOLTIP_ARROW_HEIGHT + _sideOffset;
 
-  if (!text) return children;
+  if (!text || !children) return children;
 
   return (
     <TooltipProvider>
