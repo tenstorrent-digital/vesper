@@ -3,7 +3,7 @@
   "extends": ["//"],
   "tasks": {
     "build": {
-      "dependsOn": ["^build", "@repo/vesper#build:storybook"]
+      "dependsOn": ["$TURBO_EXTENDS$", "@repo/vesper#build:storybook"]
     }
   }
 }
