@@ -33,6 +33,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
       {
         type: "add",
         path: "{{ turbo.paths.root }}/packages/vesper/src/components/{{ kebabCase name }}/{{ kebabCase name }}.css",
+        template: ".vesper-{{ kebabeCase name }} {\n}",
       },
       {
         type: "add",
