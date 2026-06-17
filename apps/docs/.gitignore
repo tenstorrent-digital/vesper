@@ -9,6 +9,9 @@
 # testing
 /coverage
 
+# storybook
+/src/public/storybook
+
 # next.js
 /.next/
 /out/
