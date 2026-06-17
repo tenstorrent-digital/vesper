@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`tooltip [snapshot] > closed 1`] = `
+<p
+  class="vesper-typography vesper-typography-copy-sm"
+  data-state="closed"
+  style="color: var(--vesper-stone-900);"
+>
+  tooltip trigger
+</p>
+`;
+
+exports[`tooltip [snapshot] > open 1`] = `
+<p
+  aria-describedby="radix-_r_2_"
+  class="vesper-typography vesper-typography-copy-sm"
+  data-radix-popper-align="center"
+  data-radix-popper-side="top"
+  data-state="instant-open"
+  style="color: var(--vesper-stone-900);"
+>
+  tooltip trigger
+</p>
+`;

@@ -1,22 +1,66 @@
 import { render, cleanup } from "@testing-library/react";
-import { beforeEach, afterEach, describe, expect, it } from "vitest";
+import { beforeEach, afterEach, describe, expect, test } from "vitest";
 import axe from "axe-core";
-import { Tooltip } from "@/components/tooltip/tooltip";
 
-import "@/styles/styles.css";
+import { Tooltip } from "@/components/tooltip/tooltip";
+import { Typography } from "@/components/typography/typography";
+
+import "@/styles/test.css";
+import { userEvent } from "vitest/browser";
 
 afterEach(cleanup);
 
 describe("tooltip [unit]", () => {
-  it("renders null", () => {
-    const { container } = render(<Tooltip />);
-    expect(container.firstChild).toBeNull();
+  test("no interaction", () => {
+    const result = render(
+      <Tooltip text="Tooltip text">
+        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+          tooltip trigger
+        </Typography>
+      </Tooltip>,
+    );
+
+    const tooltip = result.container.querySelector(".vesper-tooltip");
+    expect(tooltip).toBeNull();
+  });
+
+  test("with interaction", async () => {
+    const result = render(
+      <Tooltip delayDuration={0} text="Tooltip text">
+        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+          tooltip trigger
+        </Typography>
+      </Tooltip>,
+    );
+
+    await userEvent.hover(result.container.firstChild as HTMLElement);
+
+    const tooltip = result.container.querySelector(".vesper-tooltip");
+    expect(tooltip).not.toBeNull();
   });
 });
 
 describe("tooltip [snapshot]", () => {
-  it("renders correctly", async () => {
-    const result = render(<Tooltip />);
+  test("open", async () => {
+    const result = render(
+      <Tooltip open text="Tooltip text">
+        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+          tooltip trigger
+        </Typography>
+      </Tooltip>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("closed", async () => {
+    const result = render(
+      <Tooltip open={false} text="Tooltip text">
+        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+          tooltip trigger
+        </Typography>
+      </Tooltip>,
+    );
 
     expect(result.container.firstChild).toMatchSnapshot();
   });
@@ -32,8 +76,14 @@ describe("tooltip [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    it(`wcag2aaa (${theme})`, async () => {
-      const result = render(<Tooltip />);
+    test(`wcag2aaa (${theme})`, async () => {
+      const result = render(
+        <Tooltip open text="Tooltip text">
+          <Typography style={{ color: "var(--vesper-stone-900)" }}>
+            tooltip trigger
+          </Typography>
+        </Tooltip>,
+      );
 
       expect(
         await axe.run(result.container, { runOnly: "wcag2aaa" }),
