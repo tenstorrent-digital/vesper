@@ -6,7 +6,7 @@ import {
   type TypographyVariant,
 } from "@/components/typography/typography";
 
-export const BADGE_SIZES = ["lg", "md", "sm"] as const;
+export const BADGE_SIZES = ["sm", "md", "lg"] as const;
 
 export const BADGE_VARIANTS = [
   "accent",

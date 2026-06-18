@@ -2,7 +2,7 @@ import type { ElementType } from "react";
 import type { Polymorphic } from "@/utils/polymorphic";
 import { cn } from "@/utils/cn";
 
-export const AVATAR_SIZES = ["lg", "md", "sm"] as const;
+export const AVATAR_SIZES = ["sm", "md", "lg"] as const;
 
 export type AvatarSize = (typeof AVATAR_SIZES)[number];
 
