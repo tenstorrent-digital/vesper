@@ -25,8 +25,7 @@ export const Playground: Story = {
     label: "Label",
     placeholder: "This is placeholder text",
     icon: false,
-    message:
-      "This is a message you can display under the input. It can be as long or as short as you like",
+    message: "This is a message you can display under the input.",
   },
   render: ({ icon = false, ...props }) => (
     <TextInput
