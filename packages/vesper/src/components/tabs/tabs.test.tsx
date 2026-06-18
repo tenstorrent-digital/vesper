@@ -100,7 +100,7 @@ describe("tabs [unit]", () => {
   });
 
   test("clicking tabs", async () => {
-    const result = render(<TabsTestComponent defaultValue="tab-1" />);
+    const result = render(<TabsTestComponent />);
 
     const [tab1, tab2, tab3] = result.getAllByRole("tab");
 
@@ -108,9 +108,11 @@ describe("tabs [unit]", () => {
     expect(result.queryByTestId("tab-1-content")).not.toBeNull();
 
     await userEvent.click(tab2!);
+    expect(result.queryByTestId("tab-1-content")).toBeNull();
     expect(result.queryByTestId("tab-2-content")).not.toBeNull();
 
     await userEvent.click(tab3!);
+    expect(result.queryByTestId("tab-2-content")).toBeNull();
     expect(result.queryByTestId("tab-3-content")).not.toBeNull();
   });
 });
