@@ -2,7 +2,6 @@
   display: inline-flex;
   align-items: center;
   border-radius: var(--vesper-radius-4);
-  outline: none;
   @media (forced-colors: active) {
     border: 1px solid CanvasText;
     &:focus-visible {

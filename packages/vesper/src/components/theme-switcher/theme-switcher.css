@@ -31,12 +31,8 @@
   transition: color 0.2s ease;
   height: 100%;
   aspect-ratio: 1;
-  outline: none;
-  border: none;
-  background: transparent;
   border-radius: var(--vesper-radius-2);
   &:focus-visible {
-    outline: none;
     box-shadow: var(--vesper-shadow-focus-ring);
   }
 }
