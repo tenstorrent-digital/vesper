@@ -19,6 +19,7 @@
 @import "../components/typography/typography.css";
 
 /* components */
+@import "../components/tabs/tabs.css";
 @import "../components/tooltip/tooltip.css";
 @import "../components/theme-switcher/theme-switcher.css";
 @import "../components/admonition/admonition.css";
