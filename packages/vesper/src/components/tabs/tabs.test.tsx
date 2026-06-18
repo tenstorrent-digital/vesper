@@ -154,7 +154,7 @@ describe("tabs [unit]", () => {
 
   test("onValueChange callback", async () => {
     const onValueChange = vi.fn();
-    const result = render(<TabsTestComponent />);
+    const result = render(<TabsTestComponent onValueChange={onValueChange} />);
 
     const [, tab2] = result.getAllByRole("tab");
     await userEvent.click(tab2!);

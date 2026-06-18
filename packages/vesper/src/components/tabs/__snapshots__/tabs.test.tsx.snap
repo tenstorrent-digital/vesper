@@ -16,13 +16,13 @@ exports[`tabs [snapshot] > primary, default value 1`] = `
     tabindex="0"
   >
     <button
-      aria-controls="radix-_r_o_-content-tab-1"
+      aria-controls="radix-_r_1a_-content-tab-1"
       aria-selected="true"
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
       data-orientation="horizontal"
       data-radix-collection-item=""
       data-state="active"
-      id="radix-_r_o_-trigger-tab-1"
+      id="radix-_r_1a_-trigger-tab-1"
       role="tab"
       tabindex="-1"
       type="button"
@@ -45,13 +45,13 @@ exports[`tabs [snapshot] > primary, default value 1`] = `
       Tab 1
     </button>
     <button
-      aria-controls="radix-_r_o_-content-tab-2"
+      aria-controls="radix-_r_1a_-content-tab-2"
       aria-selected="false"
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
       data-orientation="horizontal"
       data-radix-collection-item=""
       data-state="inactive"
-      id="radix-_r_o_-trigger-tab-2"
+      id="radix-_r_1a_-trigger-tab-2"
       role="tab"
       tabindex="-1"
       type="button"
@@ -59,13 +59,13 @@ exports[`tabs [snapshot] > primary, default value 1`] = `
       Tab 2
     </button>
     <button
-      aria-controls="radix-_r_o_-content-tab-3"
+      aria-controls="radix-_r_1a_-content-tab-3"
       aria-selected="false"
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
       data-orientation="horizontal"
       data-radix-collection-item=""
       data-state="inactive"
-      id="radix-_r_o_-trigger-tab-3"
+      id="radix-_r_1a_-trigger-tab-3"
       role="tab"
       tabindex="-1"
       type="button"
@@ -74,12 +74,12 @@ exports[`tabs [snapshot] > primary, default value 1`] = `
     </button>
   </div>
   <p
-    aria-labelledby="radix-_r_o_-trigger-tab-1"
+    aria-labelledby="radix-_r_1a_-trigger-tab-1"
     class="vesper-typography vesper-typography-copy-sm"
     data-orientation="horizontal"
     data-state="active"
     data-testid="tab-1-content"
-    id="radix-_r_o_-content-tab-1"
+    id="radix-_r_1a_-content-tab-1"
     role="tabpanel"
     style="animation-duration: 0s; color: var(--vesper-stone-900);"
     tabindex="0"
@@ -105,13 +105,13 @@ exports[`tabs [snapshot] > primary, no default value 1`] = `
     tabindex="0"
   >
     <button
-      aria-controls="radix-_r_k_-content-tab-1"
+      aria-controls="radix-_r_16_-content-tab-1"
       aria-selected="false"
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
       data-orientation="horizontal"
       data-radix-collection-item=""
       data-state="inactive"
-      id="radix-_r_k_-trigger-tab-1"
+      id="radix-_r_16_-trigger-tab-1"
       role="tab"
       tabindex="-1"
       type="button"
@@ -134,13 +134,13 @@ exports[`tabs [snapshot] > primary, no default value 1`] = `
       Tab 1
     </button>
     <button
-      aria-controls="radix-_r_k_-content-tab-2"
+      aria-controls="radix-_r_16_-content-tab-2"
       aria-selected="false"
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
       data-orientation="horizontal"
       data-radix-collection-item=""
       data-state="inactive"
-      id="radix-_r_k_-trigger-tab-2"
+      id="radix-_r_16_-trigger-tab-2"
       role="tab"
       tabindex="-1"
       type="button"
@@ -148,13 +148,13 @@ exports[`tabs [snapshot] > primary, no default value 1`] = `
       Tab 2
     </button>
     <button
-      aria-controls="radix-_r_k_-content-tab-3"
+      aria-controls="radix-_r_16_-content-tab-3"
       aria-selected="false"
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
       data-orientation="horizontal"
       data-radix-collection-item=""
       data-state="inactive"
-      id="radix-_r_k_-trigger-tab-3"
+      id="radix-_r_16_-trigger-tab-3"
       role="tab"
       tabindex="-1"
       type="button"
@@ -181,13 +181,13 @@ exports[`tabs [snapshot] > secondary, default value 1`] = `
     tabindex="0"
   >
     <button
-      aria-controls="radix-_r_10_-content-tab-1"
+      aria-controls="radix-_r_1i_-content-tab-1"
       aria-selected="true"
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
       data-orientation="horizontal"
       data-radix-collection-item=""
       data-state="active"
-      id="radix-_r_10_-trigger-tab-1"
+      id="radix-_r_1i_-trigger-tab-1"
       role="tab"
       tabindex="-1"
       type="button"
@@ -210,13 +210,13 @@ exports[`tabs [snapshot] > secondary, default value 1`] = `
       Tab 1
     </button>
     <button
-      aria-controls="radix-_r_10_-content-tab-2"
+      aria-controls="radix-_r_1i_-content-tab-2"
       aria-selected="false"
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
       data-orientation="horizontal"
       data-radix-collection-item=""
       data-state="inactive"
-      id="radix-_r_10_-trigger-tab-2"
+      id="radix-_r_1i_-trigger-tab-2"
       role="tab"
       tabindex="-1"
       type="button"
@@ -224,13 +224,13 @@ exports[`tabs [snapshot] > secondary, default value 1`] = `
       Tab 2
     </button>
     <button
-      aria-controls="radix-_r_10_-content-tab-3"
+      aria-controls="radix-_r_1i_-content-tab-3"
       aria-selected="false"
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
       data-orientation="horizontal"
       data-radix-collection-item=""
       data-state="inactive"
-      id="radix-_r_10_-trigger-tab-3"
+      id="radix-_r_1i_-trigger-tab-3"
       role="tab"
       tabindex="-1"
       type="button"
@@ -239,12 +239,12 @@ exports[`tabs [snapshot] > secondary, default value 1`] = `
     </button>
   </div>
   <p
-    aria-labelledby="radix-_r_10_-trigger-tab-1"
+    aria-labelledby="radix-_r_1i_-trigger-tab-1"
     class="vesper-typography vesper-typography-copy-sm"
     data-orientation="horizontal"
     data-state="active"
     data-testid="tab-1-content"
-    id="radix-_r_10_-content-tab-1"
+    id="radix-_r_1i_-content-tab-1"
     role="tabpanel"
     style="animation-duration: 0s; color: var(--vesper-stone-900);"
     tabindex="0"
@@ -270,13 +270,13 @@ exports[`tabs [snapshot] > secondary, no default value 1`] = `
     tabindex="0"
   >
     <button
-      aria-controls="radix-_r_s_-content-tab-1"
+      aria-controls="radix-_r_1e_-content-tab-1"
       aria-selected="false"
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
       data-orientation="horizontal"
       data-radix-collection-item=""
       data-state="inactive"
-      id="radix-_r_s_-trigger-tab-1"
+      id="radix-_r_1e_-trigger-tab-1"
       role="tab"
       tabindex="-1"
       type="button"
@@ -299,13 +299,13 @@ exports[`tabs [snapshot] > secondary, no default value 1`] = `
       Tab 1
     </button>
     <button
-      aria-controls="radix-_r_s_-content-tab-2"
+      aria-controls="radix-_r_1e_-content-tab-2"
       aria-selected="false"
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
       data-orientation="horizontal"
       data-radix-collection-item=""
       data-state="inactive"
-      id="radix-_r_s_-trigger-tab-2"
+      id="radix-_r_1e_-trigger-tab-2"
       role="tab"
       tabindex="-1"
       type="button"
@@ -313,13 +313,13 @@ exports[`tabs [snapshot] > secondary, no default value 1`] = `
       Tab 2
     </button>
     <button
-      aria-controls="radix-_r_s_-content-tab-3"
+      aria-controls="radix-_r_1e_-content-tab-3"
       aria-selected="false"
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
       data-orientation="horizontal"
       data-radix-collection-item=""
       data-state="inactive"
-      id="radix-_r_s_-trigger-tab-3"
+      id="radix-_r_1e_-trigger-tab-3"
       role="tab"
       tabindex="-1"
       type="button"
