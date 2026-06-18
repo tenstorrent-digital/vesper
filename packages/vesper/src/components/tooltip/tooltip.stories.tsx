@@ -22,6 +22,7 @@ export const Playground: Story = {
   args: {
     content: "The tooltip text",
     side: "top",
+    align: "center",
     sideOffset: 4,
     alignOffset: 0,
     delayDuration: 500,

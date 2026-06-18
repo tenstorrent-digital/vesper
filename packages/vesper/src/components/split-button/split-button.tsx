@@ -15,7 +15,7 @@ import { CaretDown, CaretUp } from "@/components/icons/icons";
 import { Button } from "@/components/button/button";
 import { IconButton } from "@/components/icon-button/icon-button";
 
-export const SPLIT_BUTTON_SIZES = ["lg", "md", "sm"] as const;
+export const SPLIT_BUTTON_SIZES = ["sm", "md", "lg"] as const;
 
 export const SPLIT_BUTTON_VARIANTS = ["subtle", "contrast"] as const;
 

@@ -1,5 +1,16 @@
 .vesper-avatar-group {
   display: flex;
+  border-radius: 32px;
+  @media (forced-colors: active) {
+    &:focus-visible {
+      outline: 2px solid CanvasText;
+    }
+  }
+  @media not (forced-colors: active) {
+    &:focus-visible {
+      box-shadow: var(--vesper-shadow-focus-ring);
+    }
+  }
   .vesper-avatar:not(:first-child) {
     margin-left: -6px;
   }

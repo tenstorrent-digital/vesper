@@ -4,9 +4,6 @@
   background: var(--vesper-stone-0);
   border: 1px solid var(--vesper-stone-400);
   position: relative;
-  * {
-    box-sizing: border-box;
-  }
 }
 .vesper-theme-switcher-lg {
   height: 32px;
@@ -34,13 +31,16 @@
   transition: color 0.2s ease;
   height: 100%;
   aspect-ratio: 1;
-  outline: none;
-  border: none;
-  background: transparent;
   border-radius: var(--vesper-radius-2);
-  &:focus-visible {
-    outline: none;
-    box-shadow: var(--vesper-shadow-focus-ring);
+  @media (forced-colors: active) {
+    &:focus-visible {
+      outline: 2px solid CanvasText;
+    }
+  }
+  @media not (forced-colors: active) {
+    &:focus-visible {
+      box-shadow: var(--vesper-shadow-focus-ring);
+    }
   }
 }
 .vesper-theme-switcher-indicator {

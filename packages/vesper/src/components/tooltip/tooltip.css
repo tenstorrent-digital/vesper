@@ -5,6 +5,11 @@
   padding: var(--vesper-spacing-2) var(--vesper-spacing-3);
   border-radius: var(--vesper-radius-1);
   position: relative;
+  @media (forced-colors: active) {
+    forced-color-adjust: none;
+    background: CanvasText;
+    color: Canvas;
+  }
   &[data-side="top"] .vesper-tooltip-arrow {
     top: 100%;
   }

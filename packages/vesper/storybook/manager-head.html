@@ -2,7 +2,10 @@
   // In local development, when Storybook is proxied through the docs app,
   // the preview iframe should load directly from the Storybook dev server
   // to avoid having to proxy all Vite dev server paths.
-  if (window.location.hostname === 'localhost' && window.location.port !== '3000') {
-    window['PREVIEW_URL'] = 'http://localhost:3000/iframe.html';
+  if (
+    window.location.hostname === "localhost" &&
+    window.location.port !== "3000"
+  ) {
+    window["PREVIEW_URL"] = "http://localhost:3000/iframe.html";
   }
 </script>

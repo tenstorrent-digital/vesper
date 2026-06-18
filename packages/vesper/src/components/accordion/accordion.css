@@ -27,9 +27,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  outline: none;
-  border: none;
-  background: transparent;
   z-index: 2;
   &::before {
     position: absolute;

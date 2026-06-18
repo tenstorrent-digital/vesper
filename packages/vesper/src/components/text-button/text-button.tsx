@@ -2,7 +2,7 @@ import type { ElementType, ReactNode } from "react";
 import type { Polymorphic } from "@/utils/polymorphic";
 import { cn } from "@/utils/cn";
 
-export const TEXT_BUTTON_SIZES = ["lg", "md", "sm"] as const;
+export const TEXT_BUTTON_SIZES = ["sm", "md", "lg"] as const;
 
 export const TEXT_BUTTON_VARIANTS = [
   "subtle",

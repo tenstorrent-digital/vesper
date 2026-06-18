@@ -9,16 +9,15 @@
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
   cursor: pointer;
-  border: none;
-  background: transparent;
-  &:focus-visible {
-    outline: none;
-    box-shadow: var(--vesper-shadow-focus-ring);
-  }
   @media (forced-colors: active) {
     border: 1px solid CanvasText;
     &:focus-visible {
       outline: 2px solid CanvasText;
+    }
+  }
+  @media not (forced-colors: active) {
+    &:focus-visible {
+      box-shadow: var(--vesper-shadow-focus-ring);
     }
   }
 }
@@ -82,16 +81,27 @@
 }
 
 .vesper-button-contrast {
-  color: var(--vesper-stone-0);
-  background: var(--vesper-stone-900);
-  &:hover {
-    background:
-      linear-gradient(
-        0deg,
-        var(--vesper-alpha-inverse-100) 0%,
-        var(--vesper-alpha-inverse-100) 100%
-      ),
-      var(--vesper-stone-900);
+  @media not (forced-colors: active) {
+    color: var(--vesper-stone-0);
+    background: var(--vesper-stone-900);
+    &:hover {
+      background:
+        linear-gradient(
+          0deg,
+          var(--vesper-alpha-inverse-100) 0%,
+          var(--vesper-alpha-inverse-100) 100%
+        ),
+        var(--vesper-stone-900);
+    }
+  }
+  @media (forced-colors: active) {
+    &:focus-visible {
+      outline-offset: 1px;
+      outline-width: 1px;
+    }
+    forced-color-adjust: none;
+    color: Canvas;
+    background: CanvasText;
   }
 }
 
