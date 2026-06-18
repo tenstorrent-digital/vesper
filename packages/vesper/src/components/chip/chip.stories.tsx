@@ -8,6 +8,7 @@ const meta = {
   parameters: { layout: "centered" },
   argTypes: {
     as: { table: { disable: true } },
+    onChange: { table: { disable: true } },
     iconLeft: { control: "boolean" },
     iconRight: { control: "boolean" },
   },
