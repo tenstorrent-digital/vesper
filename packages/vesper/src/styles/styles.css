@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter+Tight:wght@100..900&display=swap");
 
+/* globals */
+@import "./globals.css";
+
 /* css tokens */
 @import "./colors.css";
 @import "./fonts.css";
@@ -8,6 +11,9 @@
 @import "./shadows.css";
 @import "./spacing.css";
 @import "./tracking.css";
+
+/* a11y */
+@import "./a11y.css";
 
 /* typography */
 @import "../components/typography/typography.css";
@@ -25,13 +31,3 @@
 @import "../components/text-button/text-button.css";
 @import "../components/button/button.css";
 @import "../components/menu/menu.css";
-
-/* reduced-motion */
-@media (prefers-reduced-motion) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0 !important;
-    transition-duration: 0 !important;
-  }
-}

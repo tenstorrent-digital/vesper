@@ -4,9 +4,6 @@
   background: var(--vesper-stone-0);
   border: 1px solid var(--vesper-stone-400);
   position: relative;
-  * {
-    box-sizing: border-box;
-  }
 }
 .vesper-theme-switcher-lg {
   height: 32px;
