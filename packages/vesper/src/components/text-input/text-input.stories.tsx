@@ -16,6 +16,9 @@ export const Playground: Story = {
   args: {
     placeholder: "This is placeholder text",
     icon: <Globe />,
+    label: "Label",
+    message: "Verification was successful",
+    variant: "success",
   },
 };
 Playground.storyName = "text-input";
