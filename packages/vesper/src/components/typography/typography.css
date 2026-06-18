@@ -4,6 +4,16 @@
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
   color: currentColor;
+  @media (forced-colors: active) {
+    &:focus-visible {
+      outline: 2px solid CanvasText;
+    }
+  }
+  @media not (forced-colors: active) {
+    &:focus-visible {
+      box-shadow: var(--vesper-shadow-focus-ring);
+    }
+  }
 }
 
 /* Display styles */
