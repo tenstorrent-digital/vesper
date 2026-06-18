@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { TextInput } from "@/components/text-input/text-input";
+import { Globe } from "@/components/icons/icons";
 
 const meta = {
   component: TextInput,
@@ -12,6 +13,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
-  args: {},
+  args: {
+    placeholder: "This is placeholder text",
+    icon: <Globe />,
+  },
 };
 Playground.storyName = "text-input";

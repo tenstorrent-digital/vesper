@@ -1,2 +1,70 @@
 .vesper-text-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--vesper-stone-300);
+  background: var(--vesper-alpha-stone-0);
+  &:has(:focus-visible) {
+    box-shadow: var(--vesper-shadow-focus-ring);
+  }
+  .vesper-text-input-field {
+    &:focus-visible {
+      outline: none;
+    }
+    &:focus-visible {
+      box-shadow: none;
+    }
+  }
+}
+
+.vesper-text-input-icon {
+  color: var(--vesper-stone-700);
+}
+
+.vesper-text-input-sm {
+  gap: var(--vesper-spacing-1);
+  padding: 0 var(--vesper-spacing-2);
+  border-radius: var(--vesper-radius-1);
+  height: 32px;
+  .vesper-text-input-icon {
+    width: 14px;
+    height: 14px;
+  }
+  .vesper-text-input-field {
+    padding: var(--vesper-spacing-1) 0;
+  }
+}
+
+.vesper-text-input-md {
+  gap: var(--vesper-spacing-2);
+  padding: 0 var(--vesper-spacing-3);
+  border-radius: var(--vesper-radius-2);
+  height: 40px;
+  .vesper-text-input-icon {
+    width: 16px;
+    height: 16px;
+  }
+  .vesper-text-input-field {
+    padding: var(--vesper-spacing-2) 0;
+  }
+}
+
+.vesper-text-input-lg {
+  gap: var(--vesper-spacing-2);
+  padding: 0 var(--vesper-spacing-3);
+  border-radius: var(--vesper-radius-2);
+  height: 48px;
+  .vesper-text-input-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .vesper-text-input-field {
+    padding: var(--vesper-spacing-3) 0;
+  }
+}
+
+.vesper-text-input-field {
+  color: var(--vesper-stone-900);
+  &::placeholder {
+    color: var(--vesper-stone-400);
+  }
 }
