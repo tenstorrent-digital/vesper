@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import {
   Tabs as RadixTabs,
   TabsContent,
@@ -6,24 +7,52 @@ import {
   type TabsProps as RadixTabsProps,
 } from "@radix-ui/react-tabs";
 import { cn } from "@/utils/cn";
-import { ReactNode } from "react";
+import {
+  Typography,
+  TypographyVariant,
+} from "@/components/typography/typography";
+
+export const TABS_VARIANTS = ["primary", "secondary"] as const;
+
+export type TabsVariant = (typeof TABS_VARIANTS)[number];
 
 export interface TabsProps extends Omit<RadixTabsProps, "orientation"> {
-  items: { label: string; value: string; content: ReactNode }[];
+  variant?: TabsVariant;
+  items: {
+    label: string;
+    value: string;
+    icon?: ReactNode;
+    content: ReactNode;
+  }[];
 }
 
-export function Tabs({ items, className, ...props }: TabsProps) {
+const TRIGGER_TYPOGRAPHY: { [V in TabsVariant]: TypographyVariant } = {
+  primary: "label-md",
+  secondary: "label-sm",
+};
+
+export function Tabs({
+  items,
+  className,
+  variant = "primary",
+  ...props
+}: TabsProps) {
   return (
-    <RadixTabs className={cn("vesper-tabs", className)} {...props}>
+    <RadixTabs className={cn(`vesper-tabs-${variant}`, className)} {...props}>
       <TabsList className="vesper-tabs-list">
         {items.map((item) => (
-          <TabsTrigger
+          <Typography
+            as={TabsTrigger}
+            variant={TRIGGER_TYPOGRAPHY[variant]}
             key={item.value}
             value={item.value}
             className="vesper-tabs-trigger"
           >
+            {item.icon && (
+              <span className="vesper-tabs-trigger-icon">{item.icon}</span>
+            )}
             {item.label}
-          </TabsTrigger>
+          </Typography>
         ))}
       </TabsList>
       {items.map((item) => (
