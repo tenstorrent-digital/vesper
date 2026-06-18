@@ -21,6 +21,8 @@ export const Playground: Story = {
   args: {
     children: "Label",
     variant: "default",
+    selected: false,
+    disabled: false,
     iconLeft: false,
     iconRight: false,
   },

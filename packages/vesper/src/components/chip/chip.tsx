@@ -1,4 +1,4 @@
-import type { ComponentProps, ElementType, ReactNode } from "react";
+import type { ElementType, ReactNode } from "react";
 import { cn } from "@/utils/cn";
 import type { Polymorphic } from "@/utils/polymorphic";
 import {
@@ -15,6 +15,9 @@ export type ChipProps<E extends ElementType = "button"> = Polymorphic<
     variant?: ChipVariant;
     iconLeft?: ReactNode;
     iconRight?: ReactNode;
+    selected?: boolean;
+    disabled?: boolean;
+    onChange?(selected: boolean): void;
   },
   E
 >;
@@ -27,6 +30,10 @@ export function Chip<E extends ElementType = "button">(props: ChipProps<E>) {
     iconLeft,
     iconRight,
     className,
+    selected,
+    disabled,
+    onChange,
+    onClick,
     ...rest
   } = props;
 
@@ -34,7 +41,21 @@ export function Chip<E extends ElementType = "button">(props: ChipProps<E>) {
     <Typography
       as={Component}
       variant="label-md"
-      className={cn("vesper-chip", `vesper-chip-${variant}`, className)}
+      aria-pressed={Component === "button" ? selected : undefined}
+      disabled={disabled}
+      className={cn(
+        "vesper-chip",
+        `vesper-chip-${variant}`,
+        selected && `vesper-chip-selected`,
+        disabled && `vesper-chip-disabled`,
+        className,
+      )}
+      // eslint-disable-next-line
+      onClick={(e: any) => {
+        if (props.disabled) return;
+        onChange?.(!selected);
+        onClick?.(e);
+      }}
       {...(rest as TypographyProps<E>)}
     >
       {iconLeft && <span className="vesper-chip-icon">{iconLeft}</span>}
