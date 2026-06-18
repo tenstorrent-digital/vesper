@@ -6,6 +6,11 @@ import { Globe } from "@/components/icons/icons";
 const meta = {
   component: TextInput,
   parameters: { layout: "centered" },
+  argTypes: {
+    icon: { control: "boolean" },
+    type: { table: { disable: true } },
+    inputRef: { table: { disable: true } },
+  },
 } satisfies Meta<typeof TextInput>;
 
 export default meta;
@@ -15,10 +20,19 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   args: {
     placeholder: "This is placeholder text",
-    icon: <Globe />,
+    icon: false,
     label: "Label",
-    message: "Verification was successful",
-    variant: "success",
+    variant: "default",
+    size: "lg",
+    message:
+      "This is a message you can display under the input. It can be as long or as short as you like",
   },
+  render: ({ icon = false, ...props }) => (
+    <TextInput
+      style={{ width: "min(calc(100vw - 4rem), 400px)" }}
+      icon={icon ? <Globe /> : undefined}
+      {...props}
+    />
+  ),
 };
 Playground.storyName = "text-input";

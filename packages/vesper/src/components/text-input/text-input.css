@@ -36,9 +36,11 @@
 
 .vesper-text-input-icon {
   color: var(--vesper-stone-700);
+  flex-shrink: 0;
 }
 
 .vesper-text-input-field {
+  width: 100%;
   &:focus-visible {
     outline: none;
   }
@@ -126,7 +128,10 @@
 }
 .vesper-text-input-message-icon {
   width: 14px;
-  height: 14px;
+  flex-shrink: 0;
+  display: flex;
+  align-self: stretch;
+  align-items: start;
 }
 .vesper-text-input-success {
   .vesper-text-input-message {
