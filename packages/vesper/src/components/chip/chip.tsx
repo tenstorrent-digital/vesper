@@ -52,7 +52,11 @@ export function Chip<E extends ElementType = "button">(props: ChipProps<E>) {
       )}
       // eslint-disable-next-line
       onClick={(e: any) => {
-        if (props.disabled) return;
+        if (props.disabled) {
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
         onChange?.(!selected);
         onClick?.(e);
       }}
