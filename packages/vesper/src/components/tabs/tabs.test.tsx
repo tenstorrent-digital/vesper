@@ -1,5 +1,5 @@
 import { render, cleanup } from "@testing-library/react";
-import { beforeEach, afterEach, describe, expect, test } from "vitest";
+import { beforeEach, afterEach, describe, expect, test, vi } from "vitest";
 import axe from "axe-core";
 
 import { Tabs, type TabsVariant } from "@/components/tabs/tabs";
@@ -12,14 +12,17 @@ import { userEvent } from "vitest/browser";
 const TabsTestComponent = ({
   variant,
   defaultValue,
+  onValueChange,
 }: {
   variant?: TabsVariant;
   defaultValue?: string;
+  onValueChange?(value: string): void;
 }) => (
   <Tabs
     data-testid="tabs"
     variant={variant}
     defaultValue={defaultValue}
+    onValueChange={onValueChange}
     items={[
       {
         value: "tab-1",
@@ -114,6 +117,68 @@ describe("tabs [unit]", () => {
     await userEvent.click(tab3!);
     expect(result.queryByTestId("tab-2-content")).toBeNull();
     expect(result.queryByTestId("tab-3-content")).not.toBeNull();
+  });
+
+  test("defaults to primary variant", () => {
+    const result = render(<TabsTestComponent />);
+
+    const tabs = result.getByTestId("tabs");
+    expect(tabs).toHaveClass("vesper-tabs-primary");
+  });
+
+  test("custom className", () => {
+    const result = render(
+      <Tabs
+        data-testid="tabs"
+        className="custom-class"
+        variant="primary"
+        items={[
+          { value: "tab-1", label: "Tab 1", content: <div>Content</div> },
+        ]}
+      />,
+    );
+
+    const tabs = result.getByTestId("tabs");
+    expect(tabs).toHaveClass("vesper-tabs-primary");
+    expect(tabs).toHaveClass("custom-class");
+  });
+
+  test("icon rendering", () => {
+    const result = render(<TabsTestComponent />);
+
+    const [tab1, tab2, tab3] = result.getAllByRole("tab");
+    expect(tab1!.querySelector(".vesper-tabs-trigger-icon")).not.toBeNull();
+    expect(tab2!.querySelector(".vesper-tabs-trigger-icon")).toBeNull();
+    expect(tab3!.querySelector(".vesper-tabs-trigger-icon")).toBeNull();
+  });
+
+  test("onValueChange callback", async () => {
+    const onValueChange = vi.fn();
+    const result = render(<TabsTestComponent />);
+
+    const [, tab2] = result.getAllByRole("tab");
+    await userEvent.click(tab2!);
+    expect(onValueChange).toHaveBeenCalledWith("tab-2");
+  });
+
+  test("keyboard navigation", async () => {
+    const result = render(<TabsTestComponent defaultValue="tab-1" />);
+
+    const [tab1] = result.getAllByRole("tab");
+    await userEvent.click(tab1!);
+    expect(result.queryByTestId("tab-1-content")).not.toBeNull();
+
+    await userEvent.keyboard("{ArrowRight}");
+    expect(result.queryByTestId("tab-1-content")).toBeNull();
+    expect(result.queryByTestId("tab-2-content")).not.toBeNull();
+
+    await userEvent.keyboard("{ArrowRight}");
+    expect(result.queryByTestId("tab-2-content")).toBeNull();
+    expect(result.queryByTestId("tab-3-content")).not.toBeNull();
+
+    await userEvent.keyboard("{ArrowLeft}");
+    expect(result.queryByTestId("tab-3-content")).toBeNull();
+    expect(result.queryByTestId("tab-2-content")).not.toBeNull();
   });
 });
 
