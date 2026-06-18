@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./text-input": {
+      "types": "./dist/components/text-input/text-input.d.ts",
+      "import": "./dist/components/text-input/text-input.js"
+    },
     "./tabs": {
       "types": "./dist/components/tabs/tabs.d.ts",
       "import": "./dist/components/tabs/tabs.js"
