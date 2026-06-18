@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { Fragment, isValidElement, ReactNode } from "react";
 import {
   Tabs as RadixTabs,
   TabsContent,
@@ -57,7 +57,11 @@ export function Tabs({
       </TabsList>
       {items.map((item) => (
         <TabsContent asChild key={item.value} value={item.value}>
-          {item.content}
+          {isValidElement(item.content) && item.content.type !== Fragment ? (
+            item.content
+          ) : (
+            <span>{item.content}</span>
+          )}
         </TabsContent>
       ))}
     </RadixTabs>
