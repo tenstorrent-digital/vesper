@@ -1,0 +1,32 @@
+.vesper-chip {
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vesper-spacing-1);
+  border-radius: var(--vesper-radius-1);
+  padding: 0 var(--vesper-spacing-2);
+  cursor: pointer;
+}
+
+.vesper-chip-default {
+  color: var(--vesper-stone-900);
+  border: 1px solid var(--vesper-stone-400);
+  background: var(--vesper-alpha-inverse-500);
+  &:hover {
+    border: 1px solid var(--vesper-stone-900);
+  }
+}
+
+.vesper-chip-contrast {
+  color: var(--vesper-stone-0);
+  border: 1px solid var(--vesper-stone-900);
+  background: var(--vesper-stone-900);
+  &:hover {
+    background: var(--vesper-stone-800);
+  }
+}
+
+.vesper-chip-icon {
+  width: 14px;
+  height: 14px;
+}
