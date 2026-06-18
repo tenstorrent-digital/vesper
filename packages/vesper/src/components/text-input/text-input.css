@@ -19,6 +19,20 @@
       outline: 2px solid CanvasText;
     }
   }
+  &:has(.vesper-text-input-field:disabled) {
+    border: 1px solid var(--vesper-alpha-stone-200);
+    background: var(--vesper-alpha-stone-50);
+    .vesper-text-input-icon {
+      color: var(--vesper-alpha-stone-500);
+      pointer-events: none;
+    }
+    .vesper-text-input-field {
+      color: var(--vesper-stone-500);
+      &::placeholder {
+        color: var(--vesper-alpha-stone-400);
+      }
+    }
+  }
 }
 
 .vesper-text-input-success {
@@ -56,6 +70,7 @@
     }
   }
   & + .vesper-text-input-icon {
+    cursor: pointer;
     border-radius: 50%;
     &:focus-visible {
       box-shadow: var(--vesper-shadow-focus-ring);

@@ -29,6 +29,7 @@ export type TextInputVariant = (typeof TEXT_INPUT_VARIANTS)[number];
  * Union of all the event handlers that should be forwarded to the input element, and excluded from the containing div element
  * */
 type InputPropTypes =
+  | "disabled"
   | "spellCheck"
   | "name"
   | "pattern"
@@ -93,6 +94,7 @@ export function TextInput({
   type = "text",
   variant = "default",
   size = "lg",
+  disabled,
   spellCheck,
   name,
   pattern,
@@ -157,6 +159,7 @@ export function TextInput({
           variant={TEXT_INPUT_TYPOGRAPHY[size]}
           className="vesper-text-input-field"
           type={type}
+          disabled={disabled}
           spellCheck={spellCheck}
           name={name}
           pattern={pattern}
@@ -196,6 +199,7 @@ export function TextInput({
         <button
           type="button"
           className="vesper-text-input-icon"
+          disabled={disabled}
           onClick={(e) => {
             const input = e.currentTarget.previousElementSibling;
             if (input?.tagName !== "INPUT") return;

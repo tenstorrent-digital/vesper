@@ -19,11 +19,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
   args: {
-    placeholder: "This is placeholder text",
-    icon: false,
-    label: "Label",
     variant: "default",
     size: "lg",
+    disabled: false,
+    label: "Label",
+    placeholder: "This is placeholder text",
+    icon: false,
     message:
       "This is a message you can display under the input. It can be as long or as short as you like",
   },
