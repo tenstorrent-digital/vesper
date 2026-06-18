@@ -1,0 +1,331 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`tabs [snapshot] > primary, default value 1`] = `
+<div
+  class="vesper-tabs-primary"
+  data-orientation="horizontal"
+  data-testid="tabs"
+  dir="ltr"
+>
+  <div
+    aria-orientation="horizontal"
+    class="vesper-tabs-list"
+    data-orientation="horizontal"
+    role="tablist"
+    style="outline: none;"
+    tabindex="0"
+  >
+    <button
+      aria-controls="radix-_r_1a_-content-tab-1"
+      aria-selected="true"
+      class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      data-state="active"
+      id="radix-_r_1a_-trigger-tab-1"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        class="vesper-tabs-trigger-icon"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M21 9V15L16 21H8L3 15V9L8 3H16L21 9ZM8.43652 20H9.25684L7.53711 15.7676L7.5 15.6768V15.5H4.8291L8.43652 20ZM16.5 15.6768L16.4629 15.7676L14.7432 20H15.5635L19.1709 15.5H16.5V15.6768ZM10.3359 20H13.6641L15.4932 15.5H8.50781L10.3359 20ZM4 14.5H7.5V9.5H4V14.5ZM16.5 14.5H20V9.5H16.5V14.5ZM8.5 14.5H15.5V9.5H8.5V14.5ZM4.71875 8.5H7.5V8.32324L7.53711 8.23242L9.25684 4H8.46875L4.71875 8.5ZM16.4629 8.23242L16.5 8.32324V8.5H19.2812L15.5312 4H14.7432L16.4629 8.23242ZM8.50684 8.5H15.4922L13.6641 4H10.3359L8.50684 8.5Z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </span>
+      Tab 1
+    </button>
+    <button
+      aria-controls="radix-_r_1a_-content-tab-2"
+      aria-selected="false"
+      class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      data-state="inactive"
+      id="radix-_r_1a_-trigger-tab-2"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      Tab 2
+    </button>
+    <button
+      aria-controls="radix-_r_1a_-content-tab-3"
+      aria-selected="false"
+      class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      data-state="inactive"
+      id="radix-_r_1a_-trigger-tab-3"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      Tab 3
+    </button>
+  </div>
+  <p
+    aria-labelledby="radix-_r_1a_-trigger-tab-1"
+    class="vesper-typography vesper-typography-copy-sm"
+    data-orientation="horizontal"
+    data-state="active"
+    data-testid="tab-1-content"
+    id="radix-_r_1a_-content-tab-1"
+    role="tabpanel"
+    style="animation-duration: 0s; color: var(--vesper-stone-900);"
+    tabindex="0"
+  >
+    Tab 1 Content
+  </p>
+</div>
+`;
+
+exports[`tabs [snapshot] > primary, no default value 1`] = `
+<div
+  class="vesper-tabs-primary"
+  data-orientation="horizontal"
+  data-testid="tabs"
+  dir="ltr"
+>
+  <div
+    aria-orientation="horizontal"
+    class="vesper-tabs-list"
+    data-orientation="horizontal"
+    role="tablist"
+    style="outline: none;"
+    tabindex="0"
+  >
+    <button
+      aria-controls="radix-_r_16_-content-tab-1"
+      aria-selected="false"
+      class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      data-state="inactive"
+      id="radix-_r_16_-trigger-tab-1"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        class="vesper-tabs-trigger-icon"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M21 9V15L16 21H8L3 15V9L8 3H16L21 9ZM8.43652 20H9.25684L7.53711 15.7676L7.5 15.6768V15.5H4.8291L8.43652 20ZM16.5 15.6768L16.4629 15.7676L14.7432 20H15.5635L19.1709 15.5H16.5V15.6768ZM10.3359 20H13.6641L15.4932 15.5H8.50781L10.3359 20ZM4 14.5H7.5V9.5H4V14.5ZM16.5 14.5H20V9.5H16.5V14.5ZM8.5 14.5H15.5V9.5H8.5V14.5ZM4.71875 8.5H7.5V8.32324L7.53711 8.23242L9.25684 4H8.46875L4.71875 8.5ZM16.4629 8.23242L16.5 8.32324V8.5H19.2812L15.5312 4H14.7432L16.4629 8.23242ZM8.50684 8.5H15.4922L13.6641 4H10.3359L8.50684 8.5Z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </span>
+      Tab 1
+    </button>
+    <button
+      aria-controls="radix-_r_16_-content-tab-2"
+      aria-selected="false"
+      class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      data-state="inactive"
+      id="radix-_r_16_-trigger-tab-2"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      Tab 2
+    </button>
+    <button
+      aria-controls="radix-_r_16_-content-tab-3"
+      aria-selected="false"
+      class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      data-state="inactive"
+      id="radix-_r_16_-trigger-tab-3"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      Tab 3
+    </button>
+  </div>
+</div>
+`;
+
+exports[`tabs [snapshot] > secondary, default value 1`] = `
+<div
+  class="vesper-tabs-secondary"
+  data-orientation="horizontal"
+  data-testid="tabs"
+  dir="ltr"
+>
+  <div
+    aria-orientation="horizontal"
+    class="vesper-tabs-list"
+    data-orientation="horizontal"
+    role="tablist"
+    style="outline: none;"
+    tabindex="0"
+  >
+    <button
+      aria-controls="radix-_r_1i_-content-tab-1"
+      aria-selected="true"
+      class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      data-state="active"
+      id="radix-_r_1i_-trigger-tab-1"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        class="vesper-tabs-trigger-icon"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M21 9V15L16 21H8L3 15V9L8 3H16L21 9ZM8.43652 20H9.25684L7.53711 15.7676L7.5 15.6768V15.5H4.8291L8.43652 20ZM16.5 15.6768L16.4629 15.7676L14.7432 20H15.5635L19.1709 15.5H16.5V15.6768ZM10.3359 20H13.6641L15.4932 15.5H8.50781L10.3359 20ZM4 14.5H7.5V9.5H4V14.5ZM16.5 14.5H20V9.5H16.5V14.5ZM8.5 14.5H15.5V9.5H8.5V14.5ZM4.71875 8.5H7.5V8.32324L7.53711 8.23242L9.25684 4H8.46875L4.71875 8.5ZM16.4629 8.23242L16.5 8.32324V8.5H19.2812L15.5312 4H14.7432L16.4629 8.23242ZM8.50684 8.5H15.4922L13.6641 4H10.3359L8.50684 8.5Z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </span>
+      Tab 1
+    </button>
+    <button
+      aria-controls="radix-_r_1i_-content-tab-2"
+      aria-selected="false"
+      class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      data-state="inactive"
+      id="radix-_r_1i_-trigger-tab-2"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      Tab 2
+    </button>
+    <button
+      aria-controls="radix-_r_1i_-content-tab-3"
+      aria-selected="false"
+      class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      data-state="inactive"
+      id="radix-_r_1i_-trigger-tab-3"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      Tab 3
+    </button>
+  </div>
+  <p
+    aria-labelledby="radix-_r_1i_-trigger-tab-1"
+    class="vesper-typography vesper-typography-copy-sm"
+    data-orientation="horizontal"
+    data-state="active"
+    data-testid="tab-1-content"
+    id="radix-_r_1i_-content-tab-1"
+    role="tabpanel"
+    style="animation-duration: 0s; color: var(--vesper-stone-900);"
+    tabindex="0"
+  >
+    Tab 1 Content
+  </p>
+</div>
+`;
+
+exports[`tabs [snapshot] > secondary, no default value 1`] = `
+<div
+  class="vesper-tabs-secondary"
+  data-orientation="horizontal"
+  data-testid="tabs"
+  dir="ltr"
+>
+  <div
+    aria-orientation="horizontal"
+    class="vesper-tabs-list"
+    data-orientation="horizontal"
+    role="tablist"
+    style="outline: none;"
+    tabindex="0"
+  >
+    <button
+      aria-controls="radix-_r_1e_-content-tab-1"
+      aria-selected="false"
+      class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      data-state="inactive"
+      id="radix-_r_1e_-trigger-tab-1"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        class="vesper-tabs-trigger-icon"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M21 9V15L16 21H8L3 15V9L8 3H16L21 9ZM8.43652 20H9.25684L7.53711 15.7676L7.5 15.6768V15.5H4.8291L8.43652 20ZM16.5 15.6768L16.4629 15.7676L14.7432 20H15.5635L19.1709 15.5H16.5V15.6768ZM10.3359 20H13.6641L15.4932 15.5H8.50781L10.3359 20ZM4 14.5H7.5V9.5H4V14.5ZM16.5 14.5H20V9.5H16.5V14.5ZM8.5 14.5H15.5V9.5H8.5V14.5ZM4.71875 8.5H7.5V8.32324L7.53711 8.23242L9.25684 4H8.46875L4.71875 8.5ZM16.4629 8.23242L16.5 8.32324V8.5H19.2812L15.5312 4H14.7432L16.4629 8.23242ZM8.50684 8.5H15.4922L13.6641 4H10.3359L8.50684 8.5Z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </span>
+      Tab 1
+    </button>
+    <button
+      aria-controls="radix-_r_1e_-content-tab-2"
+      aria-selected="false"
+      class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      data-state="inactive"
+      id="radix-_r_1e_-trigger-tab-2"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      Tab 2
+    </button>
+    <button
+      aria-controls="radix-_r_1e_-content-tab-3"
+      aria-selected="false"
+      class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      data-state="inactive"
+      id="radix-_r_1e_-trigger-tab-3"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      Tab 3
+    </button>
+  </div>
+</div>
+`;
