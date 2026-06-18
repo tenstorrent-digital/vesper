@@ -56,14 +56,14 @@
     color: var(--vesper-stone-0);
   }
   @media (forced-colors: active) {
+    background: CanvasText;
+    color: Canvas;
+    forced-color-adjust: none;
     &:focus-visible {
       outline-offset: 1px;
       outline-width: 1px;
     }
   }
-  background: CanvasText;
-  color: Canvas;
-  forced-color-adjust: none;
 }
 .vesper-badge-contrast-subtle {
   background: var(--vesper-alpha-stone-100);
