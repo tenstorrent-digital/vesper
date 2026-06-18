@@ -3,6 +3,16 @@
   border: 1px solid var(--vesper-stone-0);
   background: var(--vesper-stone-400);
   overflow: hidden;
+  @media (forced-colors: active) {
+    &:focus-visible {
+      outline: 2px solid CanvasText;
+    }
+  }
+  @media not (forced-colors: active) {
+    &:focus-visible {
+      box-shadow: var(--vesper-shadow-focus-ring);
+    }
+  }
 }
 
 .vesper-avatar-sm {
