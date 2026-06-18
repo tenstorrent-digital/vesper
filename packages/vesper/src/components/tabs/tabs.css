@@ -3,6 +3,11 @@
   align-items: center;
   cursor: pointer;
   gap: var(--vesper-spacing-1);
+  @media not (forced-colors: active) {
+    &:focus-visible {
+      box-shadow: var(--vesper-shadow-focus-ring);
+    }
+  }
 }
 
 .vesper-tabs-list {
@@ -45,6 +50,14 @@
       right: 0;
       height: 2px;
       background: var(--vesper-stone-900);
+      @media (forced-colors: active) {
+        background: CanvasText;
+      }
+    }
+  }
+  @media (forced-colors: active) {
+    &:focus-visible {
+      outline: 2px solid CanvasText;
     }
   }
   .vesper-tabs-trigger-icon {
@@ -65,6 +78,20 @@
     &[data-state="active"] {
       background: var(--vesper-alpha-stone-900);
       color: var(--vesper-stone-0);
+      @media (forced-colors: active) {
+        forced-color-adjust: none;
+        color: Canvas;
+        background: CanvasText;
+      }
+    }
+    @media (forced-colors: active) {
+      border: 1px solid CanvasText;
+    }
+    @media (forced-colors: active) {
+      &:focus-visible {
+        outline: 1px solid CanvasText;
+        outline-offset: 1px;
+      }
     }
   }
   .vesper-tabs-trigger-icon {
