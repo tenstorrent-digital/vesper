@@ -3,11 +3,23 @@
   align-items: center;
   gap: var(--vesper-spacing-4);
   border-radius: var(--vesper-radius-2);
+  outline: none;
   &.vesper-admonition-subtle {
     background: var(--vesper-stone-0);
   }
   .vesper-button {
     align-self: flex-start;
+  }
+  @media (forced-colors: active) {
+    border: 1px solid CanvasText;
+    &:focus-visible {
+      outline: 2px solid CanvasText;
+    }
+  }
+  @media not (forced-colors: active) {
+    &:focus-visible {
+      box-shadow: var(--vesper-shadow-focus-ring);
+    }
   }
 }
 
