@@ -99,10 +99,10 @@
       outline-offset: 1px;
       outline-width: 1px;
     }
+    forced-color-adjust: none;
+    color: Canvas;
+    background: CanvasText;
   }
-  forced-color-adjust: none;
-  color: Canvas;
-  background: CanvasText;
 }
 
 .vesper-button-danger {
