@@ -50,6 +50,22 @@ describe("text-input [unit]", () => {
       );
     });
   });
+
+  test("disabling when single line", () => {
+    const result = render(<TextInput disabled />);
+
+    const clearButton = result.container.querySelector(
+      'button[aria-label="Clear text input"]',
+    );
+    expect(clearButton).toBeDisabled();
+    expect(result.getByRole("textbox")).toBeDisabled();
+  });
+
+  test("disabling when multiline", () => {
+    const result = render(<TextInput multiline disabled />);
+
+    expect(result.getByRole("textbox")).toBeDisabled();
+  });
 });
 
 // describe("text-input [snapshot]", () => {
