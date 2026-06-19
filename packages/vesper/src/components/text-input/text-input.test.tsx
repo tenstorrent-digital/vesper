@@ -8,6 +8,7 @@ import {
   TEXT_INPUT_VARIANTS,
   TextInput,
 } from "@/components/text-input/text-input";
+import { Globe } from "@/components/icons/icons";
 
 import "@/styles/test.css";
 
@@ -106,6 +107,13 @@ describe("text-input [unit]", () => {
 
     const label = result.container.querySelector(".vesper-text-input-label");
     expect(label).toHaveAttribute("for", "email-input");
+  });
+
+  test("renders an icon when provided", () => {
+    const result = render(
+      <TextInput icon={<Globe data-testid="search-icon" />} />,
+    );
+    expect(result.getByTestId("search-icon")).not.toBeNull();
   });
 });
 
