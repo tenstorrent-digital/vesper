@@ -241,6 +241,7 @@ export function TextInput({
           <button
             type="button"
             className="vesper-text-input-icon"
+            aria-label="Clear text input"
             disabled={disabled}
             onClick={(e) => {
               const input = e.currentTarget.previousElementSibling;
