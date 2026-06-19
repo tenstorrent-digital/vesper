@@ -39,12 +39,6 @@
       color: var(--vesper-alpha-stone-500);
       pointer-events: none;
     }
-    .vesper-text-input-field {
-      color: var(--vesper-stone-500);
-      &::placeholder {
-        color: var(--vesper-alpha-stone-400);
-      }
-    }
   }
 }
 
@@ -80,6 +74,12 @@
   &:placeholder-shown {
     & + .vesper-text-input-icon {
       visibility: hidden;
+    }
+  }
+  &:disabled {
+    color: var(--vesper-stone-500);
+    &::placeholder {
+      color: var(--vesper-alpha-stone-400);
     }
   }
   & + .vesper-text-input-icon {
