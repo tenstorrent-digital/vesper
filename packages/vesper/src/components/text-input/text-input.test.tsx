@@ -1,5 +1,6 @@
 import { render, cleanup } from "@testing-library/react";
-import { beforeEach, afterEach, describe, expect, test } from "vitest";
+import { afterEach, describe, expect, test, vi } from "vitest";
+import { userEvent } from "vitest/browser";
 import axe from "axe-core";
 
 import {
@@ -71,6 +72,24 @@ describe("text-input [unit]", () => {
     const result = render(<TextInput multiline height={200} />);
 
     expect(result.getByRole("textbox")).toHaveStyle({ height: "200px" });
+  });
+
+  test("clicking clear button", async () => {
+    const onChange = vi.fn();
+    const result = render(
+      <TextInput defaultValue="hello" onChange={onChange} />,
+    );
+
+    const input = result.getByRole("textbox") as HTMLInputElement;
+    expect(input.value).toBe("hello");
+
+    const clearButton = result.getByRole("button", {
+      name: "Clear text input",
+    });
+    await userEvent.click(clearButton);
+
+    expect(input.value).toBe("");
+    expect(onChange).toHaveBeenCalled();
   });
 });
 
