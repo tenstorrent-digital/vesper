@@ -11,6 +11,10 @@
       "types": "./dist/components/text-input/text-input.d.ts",
       "import": "./dist/components/text-input/text-input.js"
     },
+    "./toggle": {
+      "types": "./dist/components/toggle/toggle.d.ts",
+      "import": "./dist/components/toggle/toggle.js"
+    },
     "./tabs": {
       "types": "./dist/components/tabs/tabs.d.ts",
       "import": "./dist/components/tabs/tabs.js"
@@ -152,6 +156,7 @@
     "@radix-ui/react-dropdown-menu": "^2.1.16",
     "@radix-ui/react-progress": "^1.1.8",
     "@radix-ui/react-tabs": "^1.1.15",
+    "@radix-ui/react-toggle-group": "^1.1.13",
     "@radix-ui/react-tooltip": "^1.2.10"
   }
 }
