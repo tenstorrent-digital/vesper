@@ -134,6 +134,26 @@ describe("text-input [unit]", () => {
       expect(icon).not.toBeNull();
     });
   });
+
+  test("additional prop passthrough", () => {
+    const result = render(<TextInput aria-label="custom label" />);
+    expect(result.container.firstChild).toHaveAttribute(
+      "aria-label",
+      "custom label",
+    );
+  });
+
+  test("custom className", () => {
+    const result = render(
+      <TextInput size="lg" variant="default" className="custom-class" />,
+    );
+
+    const el = result.container.firstChild;
+    expect(el).toHaveClass("vesper-text-input");
+    expect(el).toHaveClass("vesper-text-input-lg");
+    expect(el).toHaveClass("vesper-text-input-default");
+    expect(el).toHaveClass("custom-class");
+  });
 });
 
 // describe("text-input [snapshot]", () => {
