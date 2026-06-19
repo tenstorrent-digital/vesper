@@ -1,5 +1,5 @@
 import { render, cleanup } from "@testing-library/react";
-import { afterEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 import axe from "axe-core";
 
@@ -7,10 +7,63 @@ import {
   TEXT_INPUT_SIZES,
   TEXT_INPUT_VARIANTS,
   TextInput,
+  TextInputProps,
 } from "@/components/text-input/text-input";
 import { Globe } from "@/components/icons/icons";
 
 import "@/styles/test.css";
+
+const TEXT_INPUT_PERMUTATIONS = TEXT_INPUT_VARIANTS.flatMap((variant) =>
+  TEXT_INPUT_SIZES.flatMap((size): (TextInputProps & { name: string })[] => [
+    {
+      name: `${variant}, ${size}, multiline`,
+      variant,
+      size,
+      multiline: true,
+      message: "Message text",
+    },
+    {
+      name: `${variant}, ${size}`,
+      variant,
+      size,
+      multiline: false,
+      message: "Message text",
+    },
+    {
+      name: `${variant}, ${size}, icon`,
+      variant,
+      size,
+      multiline: false,
+      icon: <Globe />,
+      message: "Message text",
+    },
+    {
+      name: `${variant}, ${size}, multiline, disabled`,
+      variant,
+      size,
+      multiline: true,
+      message: "Message text",
+      disabled: true,
+    },
+    {
+      name: `${variant}, ${size}, disabled`,
+      variant,
+      size,
+      multiline: false,
+      message: "Message text",
+      disabled: true,
+    },
+    {
+      name: `${variant}, ${size}, icon, disabled`,
+      variant,
+      size,
+      multiline: false,
+      icon: <Globe />,
+      message: "Message text",
+      disabled: true,
+    },
+  ]),
+);
 
 afterEach(cleanup);
 
@@ -156,30 +209,36 @@ describe("text-input [unit]", () => {
   });
 });
 
-// describe("text-input [snapshot]", () => {
-//   test("renders correctly", async () => {
-//     const { container } = render(<TextInput />);
+describe("text-input [snapshot]", () => {
+  TEXT_INPUT_PERMUTATIONS.forEach((permutation) => {
+    const { name, ...props } = permutation;
 
-//     expect(container.firstChild).toMatchSnapshot();
-//   });
-// });
+    test(name, async () => {
+      const { container } = render(<TextInput {...props} />);
+      expect(container.firstChild).toMatchSnapshot();
+    });
+  });
+});
 
-// describe("text-input [a11y]", () => {
-//   ["light", "dark"].forEach((theme) => {
-//     beforeEach(() => {
-//       document.documentElement.setAttribute("data-vesper-theme", theme);
-//     });
+describe("text-input [a11y]", () => {
+  ["light", "dark"].forEach((theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+    });
 
-//     afterEach(() => {
-//       document.documentElement.removeAttribute("data-vesper-theme");
-//     });
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+    });
 
-//     test(`wcag2aaa (${theme})`, async () => {
-//       const { container } = render(<TextInput />);
+    TEXT_INPUT_PERMUTATIONS.forEach((permutation) => {
+      const { name, ...props } = permutation;
 
-//       expect(
-//         await axe.run(container, { runOnly: "wcag2aaa" }),
-//       ).toHaveNoViolations();
-//     });
-//   });
-// });
+      test(`wcag2aaa (${name}, ${theme})`, async () => {
+        const { container } = render(<TextInput {...props} />);
+        expect(
+          await axe.run(container.firstChild!, { runOnly: "wcag2aaa" }),
+        ).toHaveNoViolations();
+      });
+    });
+  });
+});
