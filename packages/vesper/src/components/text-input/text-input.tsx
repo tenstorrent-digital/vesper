@@ -181,7 +181,8 @@ export function TextInput({
     >
       {label && (
         <Typography
-          {...(id ? { as: "label", htmlFor: id } : {})}
+          as="label"
+          htmlFor={id}
           variant="label-sm"
           className="vesper-text-input-label"
         >
