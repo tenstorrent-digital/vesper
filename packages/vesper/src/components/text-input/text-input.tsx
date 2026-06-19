@@ -29,11 +29,6 @@ export type TextInputVariant = (typeof TEXT_INPUT_VARIANTS)[number];
  * Union of all the prop types that should be forwarded to the input/textarea element, and excluded from the containing div element
  * */
 type ForwardedPropTypes =
-  | "min"
-  | "max"
-  | "multiple"
-  | "pattern"
-  | "list"
   | "defaultValue"
   | "inputMode"
   | "enterKeyHint"
@@ -72,33 +67,37 @@ type ForwardedPropTypes =
   | "onKeyUp"
   | "onKeyUpCapture";
 
+/**
+ * Union of all the prop types that should only be forwarded to an input element
+ * */
+type InputOnlyPropTypes = "min" | "max" | "multiple" | "pattern" | "list";
+
 interface TextInputBaseProps {
   size?: TextInputSize;
   variant?: TextInputVariant;
   message?: string;
   label?: string;
-  icon?: ReactNode;
-  type?: "text" | "email" | "password" | "url" | "tel" | "search";
-  height?: number;
 }
 
-export interface MultiLineTextInputProps
-  extends
-    TextInputBaseProps,
-    Omit<ComponentProps<"div">, ForwardedPropTypes>,
-    Pick<ComponentProps<"input">, ForwardedPropTypes> {
-  multiline: true;
-  inputRef?: RefObject<HTMLTextAreaElement | null>;
-}
+export type MultiLineTextInputProps = TextInputBaseProps &
+  Omit<ComponentProps<"div">, ForwardedPropTypes> &
+  Pick<ComponentProps<"textarea">, ForwardedPropTypes> & {
+    multiline: true;
+    inputRef?: RefObject<HTMLTextAreaElement | null>;
+    height?: number;
+    icon?: never;
+    type?: never;
+  } & { [P in InputOnlyPropTypes]?: never };
 
-export interface SingleLineTextInputProps
-  extends
-    TextInputBaseProps,
-    Omit<ComponentProps<"div">, ForwardedPropTypes>,
-    Pick<ComponentProps<"input">, ForwardedPropTypes> {
-  multiline?: false;
-  inputRef?: RefObject<HTMLInputElement | null>;
-}
+export type SingleLineTextInputProps = TextInputBaseProps &
+  Omit<ComponentProps<"div">, ForwardedPropTypes> &
+  Pick<ComponentProps<"input">, ForwardedPropTypes | InputOnlyPropTypes> & {
+    multiline?: false;
+    inputRef?: RefObject<HTMLInputElement | null>;
+    height?: never;
+    icon?: ReactNode;
+    type?: "text" | "email" | "password" | "url" | "tel" | "search";
+  };
 
 export type TextInputProps = SingleLineTextInputProps | MultiLineTextInputProps;
 
