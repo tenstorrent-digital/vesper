@@ -29,6 +29,12 @@ export type TextInputVariant = (typeof TEXT_INPUT_VARIANTS)[number];
  * Union of all the event handlers that should be forwarded to the input element, and excluded from the containing div element
  * */
 type InputPropTypes =
+  | "defaultValue"
+  | "inputMode"
+  | "enterKeyHint"
+  | "form"
+  | "list"
+  | "multiple"
   | "disabled"
   | "spellCheck"
   | "name"
@@ -86,7 +92,7 @@ const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
 };
 
 export function TextInput({
-  className,
+  // component-specific props
   icon,
   inputRef,
   message,
@@ -94,6 +100,13 @@ export function TextInput({
   type = "text",
   variant = "default",
   size = "lg",
+  // props that should get forwarded to input element
+  defaultValue,
+  inputMode,
+  enterKeyHint,
+  form,
+  list,
+  multiple,
   disabled,
   spellCheck,
   name,
@@ -130,6 +143,8 @@ export function TextInput({
   onKeyDownCapture,
   onKeyUp,
   onKeyUpCapture,
+  // props that should get spread onto the wrapper div
+  className,
   ...props
 }: TextInputProps) {
   return (
@@ -159,6 +174,12 @@ export function TextInput({
           variant={TEXT_INPUT_TYPOGRAPHY[size]}
           className="vesper-text-input-field"
           type={type}
+          defaultValue={defaultValue}
+          inputMode={inputMode}
+          enterKeyHint={enterKeyHint}
+          form={form}
+          list={list}
+          multiple={multiple}
           disabled={disabled}
           spellCheck={spellCheck}
           name={name}
