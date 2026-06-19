@@ -246,11 +246,10 @@ export function TextInput(props: TextInputProps) {
             aria-label="Clear text input"
             disabled={disabled}
             onClick={(e) => {
-              const input = e.currentTarget.previousElementSibling;
-              if (input?.tagName !== "INPUT") return;
-
-              fireReactOnChange(input as HTMLInputElement, "");
-              (input as HTMLInputElement).focus();
+              const input = e.currentTarget
+                .previousElementSibling as HTMLInputElement;
+              fireReactOnChange(input, "");
+              input.focus();
             }}
           >
             <CircleXSolid />
