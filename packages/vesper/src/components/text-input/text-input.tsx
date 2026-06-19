@@ -251,6 +251,7 @@ export function TextInput({
               if (input?.tagName !== "INPUT") return;
 
               fireReactOnChange(input as HTMLInputElement, "");
+              (input as HTMLInputElement).focus();
             }}
           >
             <CircleXSolid />

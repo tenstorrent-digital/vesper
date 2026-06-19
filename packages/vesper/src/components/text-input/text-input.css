@@ -13,7 +13,8 @@
   align-items: center;
   border: 1px solid var(--vesper-stone-300);
   background: var(--vesper-alpha-stone-0);
-  &:has(.vesper-text-input-field:focus-visible) {
+  &:has(.vesper-text-input-field:focus-visible),
+  &:has(.vesper-text-input-icon:focus) {
     border: 1px solid var(--vesper-stone-900);
     box-shadow: var(--vesper-shadow-focus-ring);
     @media (forced-colors: active) {
