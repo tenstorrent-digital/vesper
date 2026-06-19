@@ -34,15 +34,6 @@ export const Playground: Story = {
     height: 104 as unknown as undefined,
   },
   render: (props) => {
-    if (props.multiline) {
-      return (
-        <TextInput
-          {...props}
-          style={{ width: "min(calc(100vw - 4rem), 400px)" }}
-        />
-      );
-    }
-
     return (
       <TextInput
         {...props}

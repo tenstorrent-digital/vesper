@@ -29,6 +29,11 @@ export type TextInputVariant = (typeof TEXT_INPUT_VARIANTS)[number];
  * Union of all the prop types that should be forwarded to the input/textarea element, and excluded from the containing div element
  * */
 type ForwardedPropTypes =
+  | "min"
+  | "max"
+  | "multiple"
+  | "pattern"
+  | "list"
   | "defaultValue"
   | "inputMode"
   | "enterKeyHint"
@@ -67,42 +72,33 @@ type ForwardedPropTypes =
   | "onKeyUp"
   | "onKeyUpCapture";
 
-/**
- * Union of prop types that an input element can have, but a textarea element cannot
- */
-type InputOnlyPropTypes = "min" | "max" | "multiple" | "pattern" | "list";
+interface TextInputBaseProps {
+  size?: TextInputSize;
+  variant?: TextInputVariant;
+  message?: string;
+  label?: string;
+  icon?: ReactNode;
+  type?: "text" | "email" | "password" | "url" | "tel" | "search";
+  height?: number;
+}
 
-export type MultiLineTextInputProps = Omit<
-  ComponentProps<"div">,
-  ForwardedPropTypes
-> &
-  Pick<ComponentProps<"textarea">, ForwardedPropTypes> & {
-    multiline: true;
-    size?: TextInputSize;
-    variant?: TextInputVariant;
-    inputRef?: RefObject<HTMLTextAreaElement>;
-    message?: string;
-    label?: string;
-    icon?: never;
-    type?: never;
-    height?: number;
-  } & { [K in InputOnlyPropTypes]?: never };
+export interface MultiLineTextInputProps
+  extends
+    TextInputBaseProps,
+    Omit<ComponentProps<"div">, ForwardedPropTypes>,
+    Pick<ComponentProps<"input">, ForwardedPropTypes> {
+  multiline: true;
+  inputRef?: RefObject<HTMLTextAreaElement | null>;
+}
 
-export type SingleLineTextInputProps = Omit<
-  ComponentProps<"div">,
-  ForwardedPropTypes
-> &
-  Pick<ComponentProps<"input">, ForwardedPropTypes | InputOnlyPropTypes> & {
-    multiline?: false;
-    size?: TextInputSize;
-    variant?: TextInputVariant;
-    inputRef?: RefObject<HTMLTextAreaElement>;
-    message?: string;
-    label?: string;
-    icon?: ReactNode;
-    type?: "text" | "email" | "password" | "url" | "tel" | "search";
-    height?: never;
-  };
+export interface SingleLineTextInputProps
+  extends
+    TextInputBaseProps,
+    Omit<ComponentProps<"div">, ForwardedPropTypes>,
+    Pick<ComponentProps<"input">, ForwardedPropTypes> {
+  multiline?: false;
+  inputRef?: RefObject<HTMLInputElement | null>;
+}
 
 export type TextInputProps = SingleLineTextInputProps | MultiLineTextInputProps;
 
