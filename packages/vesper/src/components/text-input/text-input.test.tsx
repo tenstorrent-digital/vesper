@@ -91,6 +91,22 @@ describe("text-input [unit]", () => {
     expect(input.value).toBe("");
     expect(onChange).toHaveBeenCalled();
   });
+
+  test("renders a label when supplied", () => {
+    const result = render(<TextInput label="Username" />);
+
+    const label = result.container.querySelector(".vesper-text-input-label");
+    expect(label).not.toBeNull();
+    expect(label!.tagName).toBe("LABEL");
+    expect(label).toHaveTextContent("Username");
+  });
+
+  test("label htmlFor matches the id prop", () => {
+    const result = render(<TextInput label="Email" id="email-input" />);
+
+    const label = result.container.querySelector(".vesper-text-input-label");
+    expect(label).toHaveAttribute("for", "email-input");
+  });
 });
 
 // describe("text-input [snapshot]", () => {
