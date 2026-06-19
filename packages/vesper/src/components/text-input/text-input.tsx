@@ -108,66 +108,68 @@ const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
   lg: "copy-md",
 };
 
-export function TextInput({
-  // component-specific props
-  multiline,
-  icon,
-  inputRef,
-  message,
-  label,
-  type = "text",
-  variant = "default",
-  size = "lg",
-  // props that may only get forwarded to an input element
-  min,
-  max,
-  multiple,
-  pattern,
-  list,
-  // props that may only get forwarded to a textarea element
-  height,
-  // props that should get forwarded to input & textarea elements
-  defaultValue,
-  inputMode,
-  enterKeyHint,
-  form,
-  disabled,
-  spellCheck,
-  name,
-  minLength,
-  maxLength,
-  readOnly,
-  id,
-  placeholder = " ",
-  value,
-  required,
-  autoFocus,
-  autoComplete,
-  autoCorrect,
-  onFocus,
-  onFocusCapture,
-  onBlur,
-  onBlurCapture,
-  onChange,
-  onChangeCapture,
-  onBeforeInput,
-  onBeforeInputCapture,
-  onInput,
-  onInputCapture,
-  onReset,
-  onResetCapture,
-  onSubmit,
-  onSubmitCapture,
-  onInvalid,
-  onInvalidCapture,
-  onKeyDown,
-  onKeyDownCapture,
-  onKeyUp,
-  onKeyUpCapture,
-  // props that should get spread onto the wrapper div
-  className,
-  ...props
-}: TextInputProps) {
+export function TextInput(props: TextInputProps) {
+  const {
+    // component-specific props
+    multiline,
+    icon,
+    inputRef,
+    message,
+    label,
+    type = "text",
+    variant = "default",
+    size = "lg",
+    // props that may only get forwarded to an input element
+    min,
+    max,
+    multiple,
+    pattern,
+    list,
+    // props that may only get forwarded to a textarea element
+    height,
+    // props that should get forwarded to input & textarea elements
+    defaultValue,
+    inputMode,
+    enterKeyHint,
+    form,
+    disabled,
+    spellCheck,
+    name,
+    minLength,
+    maxLength,
+    readOnly,
+    id,
+    placeholder = " ",
+    value,
+    required,
+    autoFocus,
+    autoComplete,
+    autoCorrect,
+    onFocus,
+    onFocusCapture,
+    onBlur,
+    onBlurCapture,
+    onChange,
+    onChangeCapture,
+    onBeforeInput,
+    onBeforeInputCapture,
+    onInput,
+    onInputCapture,
+    onReset,
+    onResetCapture,
+    onSubmit,
+    onSubmitCapture,
+    onInvalid,
+    onInvalidCapture,
+    onKeyDown,
+    onKeyDownCapture,
+    onKeyUp,
+    onKeyUpCapture,
+    // props that should get spread onto the wrapper div
+    className,
+    ...rest
+  } = props;
+
   return (
     <div
       className={cn(
@@ -177,7 +179,7 @@ export function TextInput({
         multiline && "vesper-text-input-multiline",
         className,
       )}
-      {...props}
+      {...rest}
     >
       {label && (
         <Typography
