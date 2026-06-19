@@ -66,6 +66,12 @@ describe("text-input [unit]", () => {
 
     expect(result.getByRole("textbox")).toBeDisabled();
   });
+
+  test("multiline with custom height", () => {
+    const result = render(<TextInput multiline height={200} />);
+
+    expect(result.getByRole("textbox")).toHaveStyle({ height: "200px" });
+  });
 });
 
 // describe("text-input [snapshot]", () => {
