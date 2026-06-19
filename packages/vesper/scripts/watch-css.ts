@@ -2,7 +2,7 @@ import chokidar from "chokidar";
 import path from "node:path";
 import { srcRoot, syncCSS } from "./sync-css";
 
-syncCSS();
+await syncCSS();
 console.log(`[watch-css] synced css from ${srcRoot}`);
 
 let timeout: NodeJS.Timeout | undefined;
@@ -11,8 +11,8 @@ const scheduleSync = (event: string, filePath: string) => {
     clearTimeout(timeout);
   }
 
-  timeout = setTimeout(() => {
-    syncCSS();
+  timeout = setTimeout(async () => {
+    await syncCSS();
     console.log(
       `[watch-css] synced side-effect files after ${event}: ${path.relative(srcRoot, filePath)}`,
     );

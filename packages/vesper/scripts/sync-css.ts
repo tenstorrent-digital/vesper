@@ -1,18 +1,30 @@
 import {
-  copyFileSync,
   existsSync,
   mkdirSync,
+  readFileSync,
   readdirSync,
   rmSync,
+  writeFileSync,
 } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import postcss from "postcss";
+import postcssPresetEnv from "postcss-preset-env";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export const srcRoot = path.resolve(__dirname, "../src");
 export const distRoot = path.resolve(__dirname, "../dist");
+
+const processor = postcss([
+  postcssPresetEnv({
+    features: {
+      "nesting-rules": true,
+      "has-pseudo-class": false,
+    },
+  }),
+]);
 
 const getCSSFiles = (root: string, currentDir = root): string[] => {
   if (!existsSync(currentDir)) {
@@ -59,16 +71,22 @@ const removeEmptyDirectories = (currentDir: string) => {
   }
 };
 
-export const syncCSS = () => {
+export const syncCSS = async () => {
   const sourceCssFiles = new Set(getCSSFiles(srcRoot));
   const distCssFiles = new Set(getCSSFiles(distRoot));
 
   for (const relativePath of sourceCssFiles) {
     const sourcePath = path.join(srcRoot, relativePath);
     const destinationPath = path.join(distRoot, relativePath);
+    const css = readFileSync(sourcePath, "utf-8");
+
+    const result = await processor.process(css, {
+      from: sourcePath,
+      to: destinationPath,
+    });
 
     mkdirSync(path.dirname(destinationPath), { recursive: true });
-    copyFileSync(sourcePath, destinationPath);
+    writeFileSync(destinationPath, result.css);
   }
 
   for (const relativePath of distCssFiles) {
