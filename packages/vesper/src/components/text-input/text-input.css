@@ -67,8 +67,6 @@
   width: 100%;
   &:focus-visible {
     outline: none;
-  }
-  &:focus-visible {
     box-shadow: none;
   }
   &:placeholder-shown {
