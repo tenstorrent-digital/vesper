@@ -6,6 +6,17 @@
 
 .vesper-text-input-label {
   color: var(--vesper-stone-700);
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-2);
+  pointer-events: none;
+  * {
+    pointer-events: auto;
+  }
+}
+
+.vesper-text-input-label-text {
+  width: fit-content;
 }
 
 .vesper-text-input-field-wrapper {

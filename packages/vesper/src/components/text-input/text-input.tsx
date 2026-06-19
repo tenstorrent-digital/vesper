@@ -169,6 +169,75 @@ export function TextInput(props: TextInputProps) {
     ...rest
   } = props;
 
+  const input = (
+    <div className="vesper-text-input-field-wrapper">
+      {icon && !multiline && (
+        <span className="vesper-text-input-icon">{icon}</span>
+      )}
+      <Typography
+        {...(multiline
+          ? { as: "textarea", style: { height } }
+          : { as: "input", type, list, multiple, pattern, min, max })}
+        ref={inputRef}
+        variant={TEXT_INPUT_TYPOGRAPHY[size]}
+        className="vesper-text-input-field"
+        defaultValue={defaultValue}
+        inputMode={inputMode}
+        enterKeyHint={enterKeyHint}
+        form={form}
+        disabled={disabled}
+        spellCheck={spellCheck}
+        name={name}
+        minLength={minLength}
+        maxLength={maxLength}
+        readOnly={readOnly}
+        id={id}
+        placeholder={placeholder}
+        value={value}
+        required={required}
+        autoFocus={autoFocus}
+        autoComplete={autoComplete}
+        autoCorrect={autoCorrect}
+        onFocus={onFocus}
+        onFocusCapture={onFocusCapture}
+        onBlur={onBlur}
+        onBlurCapture={onBlurCapture}
+        onChange={onChange}
+        onChangeCapture={onChangeCapture}
+        onBeforeInput={onBeforeInput}
+        onBeforeInputCapture={onBeforeInputCapture}
+        onInput={onInput}
+        onInputCapture={onInputCapture}
+        onReset={onReset}
+        onResetCapture={onResetCapture}
+        onSubmit={onSubmit}
+        onSubmitCapture={onSubmitCapture}
+        onInvalid={onInvalid}
+        onInvalidCapture={onInvalidCapture}
+        onKeyDown={onKeyDown}
+        onKeyDownCapture={onKeyDownCapture}
+        onKeyUp={onKeyUp}
+        onKeyUpCapture={onKeyUpCapture}
+      />
+      {!multiline && (
+        <button
+          type="button"
+          className="vesper-text-input-icon"
+          aria-label="Clear text input"
+          disabled={disabled}
+          onClick={(e) => {
+            const input = e.currentTarget
+              .previousElementSibling as HTMLInputElement;
+            fireReactOnChange(input, "");
+            input.focus();
+          }}
+        >
+          <CircleXSolid />
+        </button>
+      )}
+    </div>
+  );
+
   return (
     <div
       className={cn(
@@ -180,82 +249,19 @@ export function TextInput(props: TextInputProps) {
       )}
       {...rest}
     >
-      {label && (
+      {label ? (
         <Typography
           as="label"
           htmlFor={id}
           variant="label-sm"
           className="vesper-text-input-label"
         >
-          {label}
+          <span className="vesper-text-input-label-text">{label}</span>
+          {input}
         </Typography>
+      ) : (
+        input
       )}
-      <div className="vesper-text-input-field-wrapper">
-        {icon && !multiline && (
-          <span className="vesper-text-input-icon">{icon}</span>
-        )}
-        <Typography
-          {...(multiline
-            ? { as: "textarea", style: { height } }
-            : { as: "input", type, list, multiple, pattern, min, max })}
-          ref={inputRef}
-          variant={TEXT_INPUT_TYPOGRAPHY[size]}
-          className="vesper-text-input-field"
-          defaultValue={defaultValue}
-          inputMode={inputMode}
-          enterKeyHint={enterKeyHint}
-          form={form}
-          disabled={disabled}
-          spellCheck={spellCheck}
-          name={name}
-          minLength={minLength}
-          maxLength={maxLength}
-          readOnly={readOnly}
-          id={id}
-          placeholder={placeholder}
-          value={value}
-          required={required}
-          autoFocus={autoFocus}
-          autoComplete={autoComplete}
-          autoCorrect={autoCorrect}
-          onFocus={onFocus}
-          onFocusCapture={onFocusCapture}
-          onBlur={onBlur}
-          onBlurCapture={onBlurCapture}
-          onChange={onChange}
-          onChangeCapture={onChangeCapture}
-          onBeforeInput={onBeforeInput}
-          onBeforeInputCapture={onBeforeInputCapture}
-          onInput={onInput}
-          onInputCapture={onInputCapture}
-          onReset={onReset}
-          onResetCapture={onResetCapture}
-          onSubmit={onSubmit}
-          onSubmitCapture={onSubmitCapture}
-          onInvalid={onInvalid}
-          onInvalidCapture={onInvalidCapture}
-          onKeyDown={onKeyDown}
-          onKeyDownCapture={onKeyDownCapture}
-          onKeyUp={onKeyUp}
-          onKeyUpCapture={onKeyUpCapture}
-        />
-        {!multiline && (
-          <button
-            type="button"
-            className="vesper-text-input-icon"
-            aria-label="Clear text input"
-            disabled={disabled}
-            onClick={(e) => {
-              const input = e.currentTarget
-                .previousElementSibling as HTMLInputElement;
-              fireReactOnChange(input, "");
-              input.focus();
-            }}
-          >
-            <CircleXSolid />
-          </button>
-        )}
-      </div>
       {message && (
         <p className="vesper-text-input-message">
           <span className="vesper-text-input-message-icon">
