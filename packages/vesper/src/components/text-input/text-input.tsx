@@ -219,7 +219,7 @@ export function TextInput(props: TextInputProps) {
         onKeyUp={onKeyUp}
         onKeyUpCapture={onKeyUpCapture}
       />
-      {!multiline && (
+      {!multiline && !readOnly && (
         <button
           type="button"
           className="vesper-text-input-icon"
