@@ -162,6 +162,15 @@ describe("text-input [unit]", () => {
     expect(label).toHaveAttribute("for", "email-input");
   });
 
+  test("clicking the label focuses the input", async () => {
+    const result = render(<TextInput label="Username" id="username-input" />);
+
+    const label = result.container.querySelector(".vesper-text-input-label")!;
+    await userEvent.click(label);
+
+    expect(result.getByRole("textbox")).toHaveFocus();
+  });
+
   test("renders an icon when provided", () => {
     const result = render(
       <TextInput icon={<Globe data-testid="search-icon" />} />,
@@ -213,7 +222,7 @@ describe("text-input [snapshot]", () => {
   TEXT_INPUT_PERMUTATIONS.forEach((permutation) => {
     const { name, ...props } = permutation;
 
-    test(name, async () => {
+    test(name, () => {
       const { container } = render(<TextInput {...props} />);
       expect(container.firstChild).toMatchSnapshot();
     });
