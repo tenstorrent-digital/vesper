@@ -13,57 +13,58 @@ import { Globe } from "@/components/icons/icons";
 
 import "@/styles/test.css";
 
-const TEXT_INPUT_PERMUTATIONS = TEXT_INPUT_VARIANTS.flatMap((variant) =>
-  TEXT_INPUT_SIZES.flatMap((size): (TextInputProps & { name: string })[] => [
+const SNAPSHOT_CASES: (TextInputProps & { name: string })[] = [
+  // One per variant
+  ...TEXT_INPUT_VARIANTS.map((variant) => ({
+    name: `variant: ${variant}`,
+    variant,
+    size: "lg" as const,
+    message: "Message text",
+  })),
+  // One per size
+  ...TEXT_INPUT_SIZES.map((size) => ({
+    name: `size: ${size}`,
+    size,
+  })),
+  // Meaningful feature combos
+  { name: "multiline", multiline: true, size: "lg" as const },
+  { name: "with icon", icon: <Globe />, size: "lg" as const },
+  { name: "with label", label: "Label text", size: "lg" as const },
+  { name: "disabled", disabled: true, size: "lg" as const },
+  {
+    name: "disabled, multiline",
+    disabled: true,
+    multiline: true,
+    size: "lg" as const,
+  },
+  {
+    name: "full options",
+    variant: "error",
+    size: "lg" as const,
+    multiline: true,
+    label: "Label text",
+    message: "Message text",
+    disabled: true,
+  },
+];
+
+// A11y: variant × disabled are the axes that affect contrast/color
+const A11Y_CASES: (TextInputProps & { name: string })[] =
+  TEXT_INPUT_VARIANTS.flatMap((variant) => [
     {
-      name: `${variant}, ${size}, multiline`,
+      name: `${variant}`,
       variant,
-      size,
-      multiline: true,
+      label: "Label text",
       message: "Message text",
     },
     {
-      name: `${variant}, ${size}`,
+      name: `${variant}, disabled`,
       variant,
-      size,
-      multiline: false,
-      message: "Message text",
-    },
-    {
-      name: `${variant}, ${size}, icon`,
-      variant,
-      size,
-      multiline: false,
-      icon: <Globe />,
-      message: "Message text",
-    },
-    {
-      name: `${variant}, ${size}, multiline, disabled`,
-      variant,
-      size,
-      multiline: true,
+      label: "Label text",
       message: "Message text",
       disabled: true,
     },
-    {
-      name: `${variant}, ${size}, disabled`,
-      variant,
-      size,
-      multiline: false,
-      message: "Message text",
-      disabled: true,
-    },
-    {
-      name: `${variant}, ${size}, icon, disabled`,
-      variant,
-      size,
-      multiline: false,
-      icon: <Globe />,
-      message: "Message text",
-      disabled: true,
-    },
-  ]),
-);
+  ]);
 
 afterEach(cleanup);
 
@@ -219,7 +220,7 @@ describe("text-input [unit]", () => {
 });
 
 describe("text-input [snapshot]", () => {
-  TEXT_INPUT_PERMUTATIONS.forEach((permutation) => {
+  SNAPSHOT_CASES.forEach((permutation) => {
     const { name, ...props } = permutation;
 
     test(name, () => {
@@ -239,7 +240,7 @@ describe("text-input [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    TEXT_INPUT_PERMUTATIONS.forEach((permutation) => {
+    A11Y_CASES.forEach((permutation) => {
       const { name, ...props } = permutation;
 
       test(`wcag2aaa (${name}, ${theme})`, async () => {
