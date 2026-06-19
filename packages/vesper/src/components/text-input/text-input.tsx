@@ -26,7 +26,7 @@ export type TextInputSize = (typeof TEXT_INPUT_SIZES)[number];
 export type TextInputVariant = (typeof TEXT_INPUT_VARIANTS)[number];
 
 /**
- * Union of all the event handlers that should be forwarded to the input element, and excluded from the containing div element
+ * Union of all the prop types that should be forwarded to the input element, and excluded from the containing div element
  * */
 type InputPropTypes =
   | "defaultValue"
