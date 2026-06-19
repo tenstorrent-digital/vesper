@@ -10,7 +10,7 @@
   flex-direction: column;
   gap: var(--vesper-spacing-2);
   pointer-events: none;
-  * {
+  > * {
     pointer-events: auto;
   }
 }
