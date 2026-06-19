@@ -28,17 +28,14 @@ export type TextInputVariant = (typeof TEXT_INPUT_VARIANTS)[number];
 /**
  * Union of all the prop types that should be forwarded to the input element, and excluded from the containing div element
  * */
-type InputPropTypes =
+type ForwardedPropTypes =
   | "defaultValue"
   | "inputMode"
   | "enterKeyHint"
   | "form"
-  | "list"
-  | "multiple"
   | "disabled"
   | "spellCheck"
   | "name"
-  | "pattern"
   | "minLength"
   | "maxLength"
   | "readOnly"
@@ -46,8 +43,6 @@ type InputPropTypes =
   | "placeholder"
   | "value"
   | "required"
-  | "min"
-  | "max"
   | "autoFocus"
   | "autoComplete"
   | "autoCorrect"
@@ -72,18 +67,44 @@ type InputPropTypes =
   | "onKeyUp"
   | "onKeyUpCapture";
 
-export interface TextInputProps
-  extends
-    Omit<ComponentProps<"div">, InputPropTypes>,
-    Pick<ComponentProps<"input">, InputPropTypes> {
-  size?: TextInputSize;
-  variant?: TextInputVariant;
-  icon?: ReactNode;
-  type?: "text" | "email" | "password" | "url";
-  inputRef?: RefObject<HTMLInputElement>;
-  message?: string;
-  label?: string;
-}
+/**
+ * Union of prop types that an input element can have, but a textarea element cannot
+ */
+type InputOnlyPropTypes = "min" | "max" | "multiple" | "pattern" | "list";
+
+export type MultiLineTextInputProps = Omit<
+  ComponentProps<"div">,
+  ForwardedPropTypes
+> &
+  Pick<ComponentProps<"textarea">, ForwardedPropTypes> & {
+    multiline: true;
+    size?: TextInputSize;
+    variant?: TextInputVariant;
+    inputRef?: RefObject<HTMLTextAreaElement>;
+    message?: string;
+    label?: string;
+    icon?: never;
+    type?: never;
+    height?: number;
+  } & { [K in InputOnlyPropTypes]?: never };
+
+export type SingleLineTextInputProps = Omit<
+  ComponentProps<"div">,
+  ForwardedPropTypes | InputOnlyPropTypes
+> &
+  Pick<ComponentProps<"input">, ForwardedPropTypes | InputOnlyPropTypes> & {
+    multiline?: false;
+    size?: TextInputSize;
+    variant?: TextInputVariant;
+    inputRef?: RefObject<HTMLTextAreaElement>;
+    message?: string;
+    label?: string;
+    icon?: ReactNode;
+    type?: "text" | "email" | "password" | "url";
+    height?: never;
+  };
+
+export type TextInputProps = SingleLineTextInputProps | MultiLineTextInputProps;
 
 const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
   sm: "copy-xs",
@@ -93,6 +114,7 @@ const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
 
 export function TextInput({
   // component-specific props
+  multiline,
   icon,
   inputRef,
   message,
@@ -100,17 +122,22 @@ export function TextInput({
   type = "text",
   variant = "default",
   size = "lg",
-  // props that should get forwarded to input element
+  // props that may only get forwarded to an input element
+  min,
+  max,
+  multiple,
+  pattern,
+  list,
+  // props that may only get forwarded to a textarea element
+  height,
+  // props that should get forwarded to input & textarea elements
   defaultValue,
   inputMode,
   enterKeyHint,
   form,
-  list,
-  multiple,
   disabled,
   spellCheck,
   name,
-  pattern,
   minLength,
   maxLength,
   readOnly,
@@ -118,8 +145,6 @@ export function TextInput({
   placeholder = " ",
   value,
   required,
-  min,
-  max,
   autoFocus,
   autoComplete,
   autoCorrect,
@@ -153,6 +178,7 @@ export function TextInput({
         "vesper-text-input",
         `vesper-text-input-${size}`,
         `vesper-text-input-${variant}`,
+        multiline && "vesper-text-input-multiline",
         className,
       )}
       {...props}
@@ -167,23 +193,23 @@ export function TextInput({
         </Typography>
       )}
       <div className="vesper-text-input-field-wrapper">
-        {icon && <span className="vesper-text-input-icon">{icon}</span>}
+        {icon && !multiline && (
+          <span className="vesper-text-input-icon">{icon}</span>
+        )}
         <Typography
+          {...(multiline
+            ? { as: "textarea", style: { height } }
+            : { as: "input", type, list, multiple, pattern, min, max })}
           ref={inputRef}
-          as="input"
           variant={TEXT_INPUT_TYPOGRAPHY[size]}
           className="vesper-text-input-field"
-          type={type}
           defaultValue={defaultValue}
           inputMode={inputMode}
           enterKeyHint={enterKeyHint}
           form={form}
-          list={list}
-          multiple={multiple}
           disabled={disabled}
           spellCheck={spellCheck}
           name={name}
-          pattern={pattern}
           minLength={minLength}
           maxLength={maxLength}
           readOnly={readOnly}
@@ -191,8 +217,6 @@ export function TextInput({
           placeholder={placeholder}
           value={value}
           required={required}
-          min={min}
-          max={max}
           autoFocus={autoFocus}
           autoComplete={autoComplete}
           autoCorrect={autoCorrect}
@@ -217,19 +241,21 @@ export function TextInput({
           onKeyUp={onKeyUp}
           onKeyUpCapture={onKeyUpCapture}
         />
-        <button
-          type="button"
-          className="vesper-text-input-icon"
-          disabled={disabled}
-          onClick={(e) => {
-            const input = e.currentTarget.previousElementSibling;
-            if (input?.tagName !== "INPUT") return;
+        {!multiline && (
+          <button
+            type="button"
+            className="vesper-text-input-icon"
+            disabled={disabled}
+            onClick={(e) => {
+              const input = e.currentTarget.previousElementSibling;
+              if (input?.tagName !== "INPUT") return;
 
-            fireReactOnChange(input as HTMLInputElement, "");
-          }}
-        >
-          <CircleXSolid />
-        </button>
+              fireReactOnChange(input as HTMLInputElement, "");
+            }}
+          >
+            <CircleXSolid />
+          </button>
+        )}
       </div>
       {message && (
         <p className="vesper-text-input-message">

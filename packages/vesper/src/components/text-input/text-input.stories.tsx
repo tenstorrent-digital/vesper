@@ -7,7 +7,11 @@ const meta = {
   component: TextInput,
   parameters: { layout: "centered" },
   argTypes: {
-    icon: { control: "boolean" },
+    icon: { control: "boolean", name: "icon (no effect on multiline inputs)" },
+    height: {
+      control: "number",
+      name: "height (only affects multiline inputs)",
+    },
     type: { table: { disable: true } },
     inputRef: { table: { disable: true } },
   },
@@ -26,13 +30,26 @@ export const Playground: Story = {
     placeholder: "This is placeholder text",
     icon: false,
     message: "This is a message you can display under the input.",
+    multiline: false,
+    height: 104 as unknown as undefined,
   },
-  render: ({ icon = false, ...props }) => (
-    <TextInput
-      style={{ width: "min(calc(100vw - 4rem), 400px)" }}
-      icon={icon ? <Globe /> : undefined}
-      {...props}
-    />
-  ),
+  render: (props) => {
+    if (props.multiline) {
+      return (
+        <TextInput
+          {...props}
+          style={{ width: "min(calc(100vw - 4rem), 400px)" }}
+        />
+      );
+    }
+
+    return (
+      <TextInput
+        {...props}
+        style={{ width: "min(calc(100vw - 4rem), 400px)" }}
+        icon={props.icon ? <Globe /> : undefined}
+      />
+    );
+  },
 };
 Playground.storyName = "text-input";
