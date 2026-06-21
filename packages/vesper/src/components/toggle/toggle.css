@@ -54,8 +54,15 @@
   &[data-state="on"] {
     background: var(--vesper-alpha-stone-200);
     color: var(--vesper-stone-900);
-    &:hover {
-      background: var(--vesper-stone-50);
+    @media not (forced-colors: active) {
+      &:hover {
+        background: var(--vesper-stone-50);
+      }
+    }
+    @media (forced-colors: active) {
+      background: CanvasText;
+      color: Canvas;
+      forced-color-adjust: none;
     }
   }
 }
