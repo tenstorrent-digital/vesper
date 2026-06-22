@@ -188,6 +188,7 @@
 }
 .vesper-text-input-message-text {
   font-size: 10px;
+  white-space: pre-line;
 }
 .vesper-text-input-message-icon {
   flex-shrink: 0;
