@@ -1,4 +1,9 @@
-import type { ComponentProps, ReactNode, RefObject } from "react";
+import {
+  useId,
+  type ComponentProps,
+  type ReactNode,
+  type RefObject,
+} from "react";
 import { cn } from "@/utils/cn";
 import {
   Typography,
@@ -189,6 +194,8 @@ export function TextInput(props: TextInputProps) {
     ...rest
   } = props;
 
+  const messageId = useId();
+
   const input = (
     <div className="vesper-text-input-field-wrapper">
       {icon && !multiline && (
@@ -200,6 +207,7 @@ export function TextInput(props: TextInputProps) {
           : { as: "input", type, list, multiple, pattern, min, max })}
         ref={inputRef}
         variant={TEXT_INPUT_TYPOGRAPHY[size]}
+        aria-describedby={message ? messageId : undefined}
         className="vesper-text-input-field"
         defaultValue={defaultValue}
         inputMode={inputMode}
@@ -293,9 +301,11 @@ export function TextInput(props: TextInputProps) {
             {variant === "warning" && <WarningSolid />}
           </span>
           <Typography
+            id={messageId}
             as="span"
             variant="label-xs"
             className="vesper-text-input-message-text"
+            aria-live="polite"
           >
             {message}
           </Typography>
