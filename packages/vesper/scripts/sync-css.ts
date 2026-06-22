@@ -24,8 +24,6 @@ export const distRoot = path.resolve(__dirname, "../dist");
  */
 const targets = browserslistToTargets(browserslist(">= 0.25%"));
 
-console.log(JSON.stringify(targets, null, 2));
-
 const getCSSFiles = (root: string, currentDir = root): string[] => {
   if (!existsSync(currentDir)) {
     return [];
