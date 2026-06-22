@@ -220,7 +220,11 @@ export function TextInput(props: TextInputProps) {
         maxLength={maxLength}
         readOnly={readOnly}
         id={id}
-        placeholder={placeholder}
+        placeholder={
+          required && !label && placeholder.trim()
+            ? `${placeholder.trim()} *`
+            : placeholder
+        }
         value={value}
         required={required}
         autoFocus={autoFocus}
@@ -286,7 +290,9 @@ export function TextInput(props: TextInputProps) {
           variant="label-sm"
           className="vesper-text-input-label"
         >
-          <span className="vesper-text-input-label-text">{label}</span>
+          <span className="vesper-text-input-label-text">
+            {label + (required ? " *" : "")}
+          </span>
           {input}
         </Typography>
       ) : (
