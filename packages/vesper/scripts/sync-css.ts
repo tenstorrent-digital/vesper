@@ -8,8 +8,8 @@ import {
 } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import postcss from "postcss";
-import postcssPresetEnv from "postcss-preset-env";
+import browserslist from "browserslist";
+import { transform, browserslistToTargets } from "lightningcss";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,14 +17,14 @@ const __dirname = path.dirname(__filename);
 export const srcRoot = path.resolve(__dirname, "../src");
 export const distRoot = path.resolve(__dirname, "../dist");
 
-const processor = postcss([
-  postcssPresetEnv({
-    features: {
-      "nesting-rules": true,
-      "has-pseudo-class": false,
-    },
-  }),
-]);
+/**
+ * Target browsers with >= 0.25% market share
+ *
+ * https://lightningcss.dev/transpilation.html#browser-targets
+ */
+const targets = browserslistToTargets(browserslist(">= 0.25%"));
+
+console.log(JSON.stringify(targets, null, 2));
 
 const getCSSFiles = (root: string, currentDir = root): string[] => {
   if (!existsSync(currentDir)) {
@@ -80,13 +80,15 @@ export const syncCSS = async () => {
     const destinationPath = path.join(distRoot, relativePath);
     const css = readFileSync(sourcePath, "utf-8");
 
-    const result = await processor.process(css, {
-      from: sourcePath,
-      to: destinationPath,
+    const result = transform({
+      filename: relativePath,
+      code: Buffer.from(css),
+      minify: true,
+      targets,
     });
 
     mkdirSync(path.dirname(destinationPath), { recursive: true });
-    writeFileSync(destinationPath, result.css);
+    writeFileSync(destinationPath, result.code);
   }
 
   for (const relativePath of distCssFiles) {
