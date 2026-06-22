@@ -65,6 +65,7 @@ exports[`text-input [snapshot] > full options 1`] = `
       class="vesper-text-input-field-wrapper"
     >
       <textarea
+        aria-describedby="_r_13_"
         class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
         disabled=""
         placeholder=" "
@@ -90,7 +91,9 @@ exports[`text-input [snapshot] > full options 1`] = `
       </svg>
     </span>
     <span
+      aria-live="polite"
       class="vesper-typography vesper-typography-label-xs vesper-text-input-message-text"
+      id="_r_13_"
     >
       Message text
     </span>
@@ -214,6 +217,7 @@ exports[`text-input [snapshot] > variant: default 1`] = `
     class="vesper-text-input-field-wrapper"
   >
     <input
+      aria-describedby="_r_n_"
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
       placeholder=" "
       type="text"
@@ -253,7 +257,9 @@ exports[`text-input [snapshot] > variant: default 1`] = `
       </svg>
     </span>
     <span
+      aria-live="polite"
       class="vesper-typography vesper-typography-label-xs vesper-text-input-message-text"
+      id="_r_n_"
     >
       Message text
     </span>
@@ -269,6 +275,7 @@ exports[`text-input [snapshot] > variant: error 1`] = `
     class="vesper-text-input-field-wrapper"
   >
     <input
+      aria-describedby="_r_q_"
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
       placeholder=" "
       type="text"
@@ -308,7 +315,9 @@ exports[`text-input [snapshot] > variant: error 1`] = `
       </svg>
     </span>
     <span
+      aria-live="polite"
       class="vesper-typography vesper-typography-label-xs vesper-text-input-message-text"
+      id="_r_q_"
     >
       Message text
     </span>
@@ -324,6 +333,7 @@ exports[`text-input [snapshot] > variant: success 1`] = `
     class="vesper-text-input-field-wrapper"
   >
     <input
+      aria-describedby="_r_p_"
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
       placeholder=" "
       type="text"
@@ -361,7 +371,9 @@ exports[`text-input [snapshot] > variant: success 1`] = `
       </svg>
     </span>
     <span
+      aria-live="polite"
       class="vesper-typography vesper-typography-label-xs vesper-text-input-message-text"
+      id="_r_p_"
     >
       Message text
     </span>
@@ -377,6 +389,7 @@ exports[`text-input [snapshot] > variant: warning 1`] = `
     class="vesper-text-input-field-wrapper"
   >
     <input
+      aria-describedby="_r_o_"
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
       placeholder=" "
       type="text"
@@ -416,7 +429,9 @@ exports[`text-input [snapshot] > variant: warning 1`] = `
       </svg>
     </span>
     <span
+      aria-live="polite"
       class="vesper-typography vesper-typography-label-xs vesper-text-input-message-text"
+      id="_r_o_"
     >
       Message text
     </span>
