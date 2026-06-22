@@ -45,7 +45,6 @@ export const Playground: Story = {
     return (
       <TextInput
         {...props}
-        type="number"
         style={{ width: "min(calc(100vw - 4rem), 400px)" }}
         icon={props.icon ? <Globe /> : undefined}
       />
