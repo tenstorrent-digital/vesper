@@ -19,6 +19,7 @@
 @import "../components/typography/typography.css";
 
 /* components */
+@import "../components/text-input/text-input.css";
 @import "../components/tabs/tabs.css";
 @import "../components/chip/chip.css";
 @import "../components/tooltip/tooltip.css";

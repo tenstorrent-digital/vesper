@@ -1,0 +1,225 @@
+.vesper-text-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-2);
+}
+
+.vesper-text-input-label {
+  color: var(--vesper-stone-700);
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-2);
+  pointer-events: none;
+  > * {
+    pointer-events: auto;
+  }
+}
+
+.vesper-text-input-label-text {
+  width: fit-content;
+}
+
+.vesper-text-input-field-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--vesper-stone-300);
+  background: var(--vesper-alpha-stone-0);
+  &:has(.vesper-text-input-field:focus-visible),
+  &:has(.vesper-text-input-icon:focus) {
+    border: 1px solid var(--vesper-stone-900);
+    box-shadow: var(--vesper-shadow-focus-ring);
+    @media (forced-colors: active) {
+      outline: 2px solid CanvasText;
+    }
+  }
+  &:has(.vesper-text-input-field:disabled) {
+    border: 1px solid var(--vesper-alpha-stone-200);
+    background: var(--vesper-alpha-stone-50);
+    .vesper-text-input-icon {
+      color: var(--vesper-alpha-stone-500);
+      pointer-events: none;
+    }
+  }
+}
+
+.vesper-text-input-success {
+  .vesper-text-input-field-wrapper {
+    border: 1px solid var(--vesper-green-500);
+  }
+}
+.vesper-text-input-warning {
+  .vesper-text-input-field-wrapper {
+    border: 1px solid var(--vesper-amber-500);
+  }
+}
+.vesper-text-input-error {
+  .vesper-text-input-field-wrapper {
+    border: 1px solid var(--vesper-red-500);
+  }
+}
+
+.vesper-text-input-icon {
+  color: var(--vesper-stone-700);
+  flex-shrink: 0;
+}
+
+.vesper-text-input-field {
+  width: 100%;
+  &:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+  &:placeholder-shown {
+    & + .vesper-text-input-icon {
+      display: none;
+    }
+  }
+  &:disabled {
+    color: var(--vesper-stone-500);
+    &::placeholder {
+      color: var(--vesper-alpha-stone-400);
+    }
+  }
+  & + .vesper-text-input-icon {
+    cursor: pointer;
+    border-radius: 50%;
+    &:focus-visible {
+      box-shadow: var(--vesper-shadow-focus-ring);
+      @media (forced-colors: active) {
+        outline: 2px solid CanvasText;
+      }
+    }
+  }
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none; /* Secondary fallback to guarantee removal */
+  }
+}
+
+.vesper-text-input-sm {
+  .vesper-text-input-field-wrapper {
+    gap: var(--vesper-spacing-1);
+    padding: 0 var(--vesper-spacing-2);
+    border-radius: var(--vesper-radius-1);
+    height: 32px;
+  }
+  .vesper-text-input-icon {
+    width: 14px;
+    height: 14px;
+  }
+  .vesper-text-input-field {
+    padding: var(--vesper-spacing-1) 0;
+  }
+}
+
+.vesper-text-input-md {
+  .vesper-text-input-field-wrapper {
+    gap: var(--vesper-spacing-2);
+    padding: 0 var(--vesper-spacing-3);
+    border-radius: var(--vesper-radius-2);
+    height: 40px;
+  }
+  .vesper-text-input-icon {
+    width: 16px;
+    height: 16px;
+  }
+  .vesper-text-input-field {
+    padding: var(--vesper-spacing-2) 0;
+  }
+}
+
+.vesper-text-input-lg {
+  .vesper-text-input-field-wrapper {
+    gap: var(--vesper-spacing-2);
+    padding: 0 var(--vesper-spacing-3);
+    border-radius: var(--vesper-radius-2);
+    height: 48px;
+  }
+  .vesper-text-input-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .vesper-text-input-field {
+    padding: var(--vesper-spacing-3) 0;
+  }
+}
+
+.vesper-text-input-field {
+  color: var(--vesper-stone-900);
+  &::placeholder {
+    color: var(--vesper-stone-400);
+  }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &[type="number"] {
+    appearance: textfield;
+  }
+}
+
+.vesper-text-input-multiline {
+  .vesper-text-input-field-wrapper {
+    height: auto;
+  }
+  textarea {
+    height: 104px;
+    resize: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.vesper-text-input-message {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vesper-spacing-1);
+  padding: var(--vesper-spacing-half);
+  border-radius: var(--vesper-radius-half);
+  width: fit-content;
+}
+.vesper-text-input-message-text {
+  font-size: 10px;
+  white-space: pre-line;
+}
+.vesper-text-input-message-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-self: stretch;
+  align-items: start;
+  > svg {
+    width: 14px;
+  }
+}
+.vesper-text-input-success {
+  .vesper-text-input-message {
+    background: var(--vesper-green-50);
+    color: var(--vesper-mint-600);
+  }
+}
+.vesper-text-input-error {
+  .vesper-text-input-message {
+    background: var(--vesper-red-50);
+    color: var(--vesper-red-600);
+  }
+}
+.vesper-text-input-default {
+  .vesper-text-input-message {
+    background: var(--vesper-sky-50);
+    color: var(--vesper-sky-600);
+  }
+}
+.vesper-text-input-warning {
+  .vesper-text-input-message {
+    background: var(--vesper-amber-50);
+    color: var(--vesper-amber-600);
+  }
+}
