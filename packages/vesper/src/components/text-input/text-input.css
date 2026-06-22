@@ -71,7 +71,7 @@
   }
   &:placeholder-shown {
     & + .vesper-text-input-icon {
-      visibility: hidden;
+      display: none;
     }
   }
   &:disabled {
@@ -89,6 +89,14 @@
         outline: 2px solid CanvasText;
       }
     }
+  }
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none; /* Secondary fallback to guarantee removal */
   }
 }
 
@@ -174,11 +182,13 @@
   font-size: 10px;
 }
 .vesper-text-input-message-icon {
-  width: 14px;
   flex-shrink: 0;
   display: flex;
   align-self: stretch;
   align-items: start;
+  > svg {
+    width: 14px;
+  }
 }
 .vesper-text-input-success {
   .vesper-text-input-message {

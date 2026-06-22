@@ -176,7 +176,7 @@ export function TextInput(props: TextInputProps) {
       )}
       <Typography
         {...(multiline
-          ? { as: "textarea", style: { height } }
+          ? { as: "textarea", type, style: { height } }
           : { as: "input", type, list, multiple, pattern, min, max })}
         ref={inputRef}
         variant={TEXT_INPUT_TYPOGRAPHY[size]}
