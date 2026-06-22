@@ -96,7 +96,19 @@ export type SingleLineTextInputProps = TextInputBaseProps &
     inputRef?: RefObject<HTMLInputElement | null>;
     height?: never;
     icon?: ReactNode;
-    type?: "text" | "email" | "password" | "url" | "tel" | "search";
+    type?:
+      | "text"
+      | "email"
+      | "password"
+      | "url"
+      | "tel"
+      | "search"
+      | "number"
+      | "date"
+      | "datetime-local"
+      | "week"
+      | "month"
+      | "time";
   };
 
 export type TextInputProps = SingleLineTextInputProps | MultiLineTextInputProps;
@@ -106,6 +118,14 @@ const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
   md: "copy-sm",
   lg: "copy-md",
 };
+
+const CLEAR_BUTTON_DISABLED_TYPES = [
+  "date",
+  "datetime-local",
+  "week",
+  "month",
+  "time",
+];
 
 export function TextInput(props: TextInputProps) {
   const {
@@ -176,7 +196,7 @@ export function TextInput(props: TextInputProps) {
       )}
       <Typography
         {...(multiline
-          ? { as: "textarea", type, style: { height } }
+          ? { as: "textarea", style: { height } }
           : { as: "input", type, list, multiple, pattern, min, max })}
         ref={inputRef}
         variant={TEXT_INPUT_TYPOGRAPHY[size]}
@@ -219,22 +239,24 @@ export function TextInput(props: TextInputProps) {
         onKeyUp={onKeyUp}
         onKeyUpCapture={onKeyUpCapture}
       />
-      {!multiline && !readOnly && (
-        <button
-          type="button"
-          className="vesper-text-input-icon"
-          aria-label="Clear text input"
-          disabled={disabled}
-          onClick={(e) => {
-            const input = e.currentTarget
-              .previousElementSibling as HTMLInputElement;
-            fireReactOnChange(input, "");
-            input.focus();
-          }}
-        >
-          <CircleXSolid />
-        </button>
-      )}
+      {!multiline &&
+        !readOnly &&
+        !CLEAR_BUTTON_DISABLED_TYPES.includes(type) && (
+          <button
+            type="button"
+            className="vesper-text-input-icon"
+            aria-label="Clear text input"
+            disabled={disabled}
+            onClick={(e) => {
+              const input = e.currentTarget
+                .previousElementSibling as HTMLInputElement;
+              fireReactOnChange(input, "");
+              input.focus();
+            }}
+          >
+            <CircleXSolid />
+          </button>
+        )}
     </div>
   );
 
