@@ -155,42 +155,1355 @@ describe("text-button [snapshot]", () => {
 });
 
 describe("text-button [a11y]", () => {
-  ["light", "dark"].forEach((theme) => {
-    describe(`${theme} mode`, () => {
-      beforeEach(() => {
-        document.documentElement.setAttribute("data-vesper-theme", theme);
-      });
+  describe(`light mode`, () => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", "light");
+    });
 
-      afterEach(() => {
-        document.documentElement.removeAttribute("data-vesper-theme");
-      });
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+    });
 
-      TEXT_BUTTON_PERMUTATIONS.forEach((permutation) => {
-        const { size, variant, disabled } = permutation;
-        const testName = `wcag2aaa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`;
+    test("wcag2aaa (subtle, sm, light)", async () => {
+      const result = render(
+        <TextButton variant="subtle" size="sm">
+          Button Text
+        </TextButton>,
+      );
 
-        const isFailing =
-          !disabled &&
-          ((theme === "light" &&
-            ["accent", "success", "warning", "danger"].includes(variant)) ||
-            (theme === "dark" && variant === "subtle"));
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
 
-        if (isFailing) {
-          test.todo(testName);
-        } else {
-          test(testName, async () => {
-            const result = render(
-              <TextButton {...permutation}>Button Text</TextButton>,
-            );
+    test("wcag2aaa (subtle, sm, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="subtle" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
 
-            expect(
-              await axe.run(result.container, {
-                runOnly: "wcag2aaa",
-              }),
-            ).toHaveNoViolations();
-          });
-        }
-      });
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (subtle, md, light)", async () => {
+      const result = render(
+        <TextButton variant="subtle" size="md">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (subtle, md, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="subtle" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (subtle, lg, light)", async () => {
+      const result = render(
+        <TextButton variant="subtle" size="lg">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (subtle, lg, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="subtle" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (contrast, sm, light)", async () => {
+      const result = render(
+        <TextButton variant="contrast" size="sm">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (contrast, sm, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="contrast" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (contrast, md, light)", async () => {
+      const result = render(
+        <TextButton variant="contrast" size="md">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (contrast, md, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="contrast" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (contrast, lg, light)", async () => {
+      const result = render(
+        <TextButton variant="contrast" size="lg">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (contrast, lg, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="contrast" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo("wcag2aaa (accent, sm, light)");
+
+    test("wcag2aaa (accent, sm, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="accent" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo("wcag2aaa (accent, md, light)");
+
+    test("wcag2aaa (accent, md, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="accent" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo("wcag2aaa (accent, lg, light)");
+
+    test("wcag2aaa (accent, lg, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="accent" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo("wcag2aaa (success, sm, light)");
+
+    test("wcag2aaa (success, sm, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="success" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo("wcag2aaa (success, md, light)");
+
+    test("wcag2aaa (success, md, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="success" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo("wcag2aaa (success, lg, light)");
+
+    test("wcag2aaa (success, lg, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="success" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo("wcag2aaa (warning, sm, light)");
+
+    test("wcag2aaa (warning, sm, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="warning" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo("wcag2aaa (warning, md, light)");
+
+    test("wcag2aaa (warning, md, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="warning" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo("wcag2aaa (warning, lg, light)");
+
+    test("wcag2aaa (warning, lg, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="warning" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo("wcag2aaa (danger, sm, light)");
+
+    test("wcag2aaa (danger, sm, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="danger" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo("wcag2aaa (danger, md, light)");
+
+    test("wcag2aaa (danger, md, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="danger" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo("wcag2aaa (danger, lg, light)");
+
+    test("wcag2aaa (danger, lg, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="danger" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (info, sm, light)", async () => {
+      const result = render(
+        <TextButton variant="info" size="sm">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (info, sm, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="info" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (info, md, light)", async () => {
+      const result = render(
+        <TextButton variant="info" size="md">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (info, md, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="info" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (info, lg, light)", async () => {
+      const result = render(
+        <TextButton variant="info" size="lg">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (info, lg, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="info" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (purple, sm, light)", async () => {
+      const result = render(
+        <TextButton variant="purple" size="sm">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (purple, sm, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="purple" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (purple, md, light)", async () => {
+      const result = render(
+        <TextButton variant="purple" size="md">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (purple, md, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="purple" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (purple, lg, light)", async () => {
+      const result = render(
+        <TextButton variant="purple" size="lg">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (purple, lg, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="purple" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (pink, sm, light)", async () => {
+      const result = render(
+        <TextButton variant="pink" size="sm">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (pink, sm, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="pink" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (pink, md, light)", async () => {
+      const result = render(
+        <TextButton variant="pink" size="md">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (pink, md, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="pink" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (pink, lg, light)", async () => {
+      const result = render(
+        <TextButton variant="pink" size="lg">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (pink, lg, disabled, light)", async () => {
+      const result = render(
+        <TextButton variant="pink" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+  });
+
+  describe(`dark mode`, () => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", "dark");
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+    });
+
+    test.todo("wcag2aaa (subtle, sm, dark)");
+
+    test("wcag2aaa (subtle, sm, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="subtle" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo("wcag2aaa (subtle, md, dark)");
+
+    test("wcag2aaa (subtle, md, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="subtle" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo("wcag2aaa (subtle, lg, dark)");
+
+    test("wcag2aaa (subtle, lg, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="subtle" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (contrast, sm, dark)", async () => {
+      const result = render(
+        <TextButton variant="contrast" size="sm">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (contrast, sm, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="contrast" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (contrast, md, dark)", async () => {
+      const result = render(
+        <TextButton variant="contrast" size="md">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (contrast, md, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="contrast" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (contrast, lg, dark)", async () => {
+      const result = render(
+        <TextButton variant="contrast" size="lg">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (contrast, lg, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="contrast" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (accent, sm, dark)", async () => {
+      const result = render(
+        <TextButton variant="accent" size="sm">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (accent, sm, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="accent" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (accent, md, dark)", async () => {
+      const result = render(
+        <TextButton variant="accent" size="md">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (accent, md, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="accent" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (accent, lg, dark)", async () => {
+      const result = render(
+        <TextButton variant="accent" size="lg">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (accent, lg, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="accent" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (success, sm, dark)", async () => {
+      const result = render(
+        <TextButton variant="success" size="sm">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (success, sm, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="success" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (success, md, dark)", async () => {
+      const result = render(
+        <TextButton variant="success" size="md">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (success, md, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="success" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (success, lg, dark)", async () => {
+      const result = render(
+        <TextButton variant="success" size="lg">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (success, lg, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="success" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (warning, sm, dark)", async () => {
+      const result = render(
+        <TextButton variant="warning" size="sm">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (warning, sm, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="warning" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (warning, md, dark)", async () => {
+      const result = render(
+        <TextButton variant="warning" size="md">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (warning, md, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="warning" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (warning, lg, dark)", async () => {
+      const result = render(
+        <TextButton variant="warning" size="lg">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (warning, lg, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="warning" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (danger, sm, dark)", async () => {
+      const result = render(
+        <TextButton variant="danger" size="sm">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (danger, sm, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="danger" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (danger, md, dark)", async () => {
+      const result = render(
+        <TextButton variant="danger" size="md">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (danger, md, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="danger" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (danger, lg, dark)", async () => {
+      const result = render(
+        <TextButton variant="danger" size="lg">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (danger, lg, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="danger" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (info, sm, dark)", async () => {
+      const result = render(
+        <TextButton variant="info" size="sm">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (info, sm, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="info" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (info, md, dark)", async () => {
+      const result = render(
+        <TextButton variant="info" size="md">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (info, md, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="info" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (info, lg, dark)", async () => {
+      const result = render(
+        <TextButton variant="info" size="lg">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (info, lg, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="info" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (purple, sm, dark)", async () => {
+      const result = render(
+        <TextButton variant="purple" size="sm">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (purple, sm, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="purple" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (purple, md, dark)", async () => {
+      const result = render(
+        <TextButton variant="purple" size="md">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (purple, md, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="purple" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (purple, lg, dark)", async () => {
+      const result = render(
+        <TextButton variant="purple" size="lg">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (purple, lg, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="purple" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (pink, sm, dark)", async () => {
+      const result = render(
+        <TextButton variant="pink" size="sm">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (pink, sm, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="pink" size="sm" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (pink, md, dark)", async () => {
+      const result = render(
+        <TextButton variant="pink" size="md">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (pink, md, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="pink" size="md" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (pink, lg, dark)", async () => {
+      const result = render(
+        <TextButton variant="pink" size="lg">
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test("wcag2aaa (pink, lg, disabled, dark)", async () => {
+      const result = render(
+        <TextButton variant="pink" size="lg" disabled>
+          Button Text
+        </TextButton>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
     });
   });
 });

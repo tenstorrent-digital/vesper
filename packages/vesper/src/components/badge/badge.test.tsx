@@ -123,30 +123,508 @@ describe("badge [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    BADGE_PERMUTATIONS.forEach((permutation) => {
-      const { size, variant, subtle } = permutation;
-      const testName = `wcag2aaa (${variant}, ${size},${subtle ? " subtle," : ""} ${theme})`;
+    test(`wcag2aaa (accent, sm, subtle, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="accent" size="sm" subtle={true}>
+          Badge Text
+        </Badge>,
+      );
 
-      const isFailing =
-        (variant === "accent" && !subtle) ||
-        (variant === "success" && subtle) ||
-        variant === "info" ||
-        variant === "pink" ||
-        (variant === "mint" && subtle);
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
 
-      if (isFailing) {
-        test.todo(testName);
-      } else {
-        test(testName, async () => {
-          const result = render(<Badge {...permutation}>Badge Text</Badge>);
+    test.todo(`wcag2aaa (accent, sm, ${theme})`);
 
-          expect(
-            await axe.run(result.container, {
-              runOnly: "wcag2aaa",
-            }),
-          ).toHaveNoViolations();
-        });
-      }
+    test(`wcag2aaa (accent, md, subtle, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="accent" size="md" subtle={true}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (accent, md, ${theme})`);
+
+    test(`wcag2aaa (accent, lg, subtle, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="accent" size="lg" subtle={true}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (accent, lg, ${theme})`);
+
+    test.todo(`wcag2aaa (success, sm, subtle, ${theme})`);
+
+    test(`wcag2aaa (success, sm, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="success" size="sm" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (success, md, subtle, ${theme})`);
+
+    test(`wcag2aaa (success, md, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="success" size="md" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (success, lg, subtle, ${theme})`);
+
+    test(`wcag2aaa (success, lg, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="success" size="lg" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (warning, sm, subtle, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="warning" size="sm" subtle={true}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (warning, sm, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="warning" size="sm" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (warning, md, subtle, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="warning" size="md" subtle={true}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (warning, md, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="warning" size="md" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (warning, lg, subtle, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="warning" size="lg" subtle={true}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (warning, lg, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="warning" size="lg" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (danger, sm, subtle, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="danger" size="sm" subtle={true}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (danger, sm, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="danger" size="sm" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (danger, md, subtle, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="danger" size="md" subtle={true}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (danger, md, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="danger" size="md" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (danger, lg, subtle, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="danger" size="lg" subtle={true}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (danger, lg, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="danger" size="lg" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (info, sm, subtle, ${theme})`);
+
+    test.todo(`wcag2aaa (info, sm, ${theme})`);
+
+    test.todo(`wcag2aaa (info, md, subtle, ${theme})`);
+
+    test.todo(`wcag2aaa (info, md, ${theme})`);
+
+    test.todo(`wcag2aaa (info, lg, subtle, ${theme})`);
+
+    test.todo(`wcag2aaa (info, lg, ${theme})`);
+
+    test(`wcag2aaa (purple, sm, subtle, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="purple" size="sm" subtle={true}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (purple, sm, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="purple" size="sm" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (purple, md, subtle, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="purple" size="md" subtle={true}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (purple, md, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="purple" size="md" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (purple, lg, subtle, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="purple" size="lg" subtle={true}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (purple, lg, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="purple" size="lg" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (pink, sm, subtle, ${theme})`);
+
+    test.todo(`wcag2aaa (pink, sm, ${theme})`);
+
+    test.todo(`wcag2aaa (pink, md, subtle, ${theme})`);
+
+    test.todo(`wcag2aaa (pink, md, ${theme})`);
+
+    test.todo(`wcag2aaa (pink, lg, subtle, ${theme})`);
+
+    test.todo(`wcag2aaa (pink, lg, ${theme})`);
+
+    test.todo(`wcag2aaa (mint, sm, subtle, ${theme})`);
+
+    test(`wcag2aaa (mint, sm, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="mint" size="sm" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (mint, md, subtle, ${theme})`);
+
+    test(`wcag2aaa (mint, md, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="mint" size="md" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (mint, lg, subtle, ${theme})`);
+
+    test(`wcag2aaa (mint, lg, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="mint" size="lg" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (contrast, sm, subtle, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="contrast" size="sm" subtle={true}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (contrast, sm, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="contrast" size="sm" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (contrast, md, subtle, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="contrast" size="md" subtle={true}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (contrast, md, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="contrast" size="md" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (contrast, lg, subtle, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="contrast" size="lg" subtle={true}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (contrast, lg, ${theme})`, async () => {
+      const result = render(
+        <Badge variant="contrast" size="lg" subtle={false}>
+          Badge Text
+        </Badge>,
+      );
+
+      expect(
+        await axe.run(result.container, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
     });
   });
 });

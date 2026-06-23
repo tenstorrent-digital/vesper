@@ -244,9 +244,9 @@ describe("menu [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    test.todo("wcag2aaa (open)");
+    test.todo(`wcag2aaa (open, ${theme})`);
 
-    test("wcag2aaa (closed)", async () => {
+    test(`wcag2aaa (closed, ${theme})`, async () => {
       const result = render(
         <Menu items={MENU_ITEMS} open={false}>
           <TextButton variant="contrast">trigger</TextButton>

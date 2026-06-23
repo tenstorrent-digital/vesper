@@ -48,24 +48,6 @@ const SNAPSHOT_CASES: (TextInputProps & { name: string })[] = [
   },
 ];
 
-// A11y: variant × disabled are the axes that affect contrast/color
-const A11Y_CASES: (TextInputProps & { name: string })[] =
-  TEXT_INPUT_VARIANTS.flatMap((variant) => [
-    {
-      name: `${variant}`,
-      variant,
-      label: "Label text",
-      message: "Message text",
-    },
-    {
-      name: `${variant}, disabled`,
-      variant,
-      label: "Label text",
-      message: "Message text",
-      disabled: true,
-    },
-  ]);
-
 afterEach(cleanup);
 
 describe("text-input [unit]", () => {
@@ -240,23 +222,62 @@ describe("text-input [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    A11Y_CASES.forEach((permutation) => {
-      const { name, ...props } = permutation;
-      const testName = `wcag2aaa (${name}, ${theme})`;
+    test.todo(`wcag2aaa (default, ${theme})`);
 
-      const isFailing =
-        permutation.variant === "default" || permutation.variant === "success";
+    test.todo(`wcag2aaa (default, disabled, ${theme})`);
 
-      if (isFailing) {
-        test.todo(testName);
-      } else {
-        test(testName, async () => {
-          const { container } = render(<TextInput {...props} />);
-          expect(
-            await axe.run(container.firstChild!, { runOnly: "wcag2aaa" }),
-          ).toHaveNoViolations();
-        });
-      }
+    test(`wcag2aaa (warning, ${theme})`, async () => {
+      const { container } = render(
+        <TextInput
+          variant="warning"
+          label="Label text"
+          message="Message text"
+        />,
+      );
+      expect(
+        await axe.run(container.firstChild!, { runOnly: "wcag2aaa" }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (warning, disabled, ${theme})`, async () => {
+      const { container } = render(
+        <TextInput
+          variant="warning"
+          label="Label text"
+          message="Message text"
+          disabled
+        />,
+      );
+      expect(
+        await axe.run(container.firstChild!, { runOnly: "wcag2aaa" }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (success, ${theme})`);
+
+    test.todo(`wcag2aaa (success, disabled, ${theme})`);
+
+    test(`wcag2aaa (error, ${theme})`, async () => {
+      const { container } = render(
+        <TextInput variant="error" label="Label text" message="Message text" />,
+      );
+      expect(
+        await axe.run(container.firstChild!, { runOnly: "wcag2aaa" }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (error, disabled, ${theme})`, async () => {
+      const { container } = render(
+        <TextInput
+          variant="error"
+          label="Label text"
+          message="Message text"
+          disabled
+        />,
+      );
+      expect(
+        await axe.run(container.firstChild!, { runOnly: "wcag2aaa" }),
+      ).toHaveNoViolations();
     });
   });
 });

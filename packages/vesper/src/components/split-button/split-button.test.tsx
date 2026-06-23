@@ -213,22 +213,211 @@ describe("split-button [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    SPLIT_BUTTON_PERMUTATIONS.forEach((permutation) => {
-      const { disabled, variant, size } = permutation;
+    test(`wcag2aaa (subtle, sm, ${theme})`, async () => {
+      const result = render(
+        <SplitButton variant="subtle" size="sm" menuItems={MENU_ITEMS}>
+          button text
+        </SplitButton>,
+      );
 
-      test(`wcag2aaa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`, async () => {
-        const result = render(
-          <SplitButton {...permutation}>button text</SplitButton>,
-        );
-
-        expect(
-          await axe.run(result.container.ownerDocument, {
-            runOnly: "wcag2aaa",
-          }),
-        ).toHaveNoViolations();
-      });
-
-      test.todo(`wcag2aaa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme}, open)`);
+      expect(
+        await axe.run(result.container.ownerDocument, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
     });
+
+    test.todo(`wcag2aaa (subtle, sm, ${theme}, open)`);
+
+    test(`wcag2aaa (subtle, sm, disabled, ${theme})`, async () => {
+      const result = render(
+        <SplitButton variant="subtle" size="sm" disabled menuItems={MENU_ITEMS}>
+          button text
+        </SplitButton>,
+      );
+
+      expect(
+        await axe.run(result.container.ownerDocument, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (subtle, sm, disabled, ${theme}, open)`);
+
+    test(`wcag2aaa (subtle, md, ${theme})`, async () => {
+      const result = render(
+        <SplitButton variant="subtle" size="md" menuItems={MENU_ITEMS}>
+          button text
+        </SplitButton>,
+      );
+
+      expect(
+        await axe.run(result.container.ownerDocument, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (subtle, md, ${theme}, open)`);
+
+    test(`wcag2aaa (subtle, md, disabled, ${theme})`, async () => {
+      const result = render(
+        <SplitButton variant="subtle" size="md" disabled menuItems={MENU_ITEMS}>
+          button text
+        </SplitButton>,
+      );
+
+      expect(
+        await axe.run(result.container.ownerDocument, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (subtle, md, disabled, ${theme}, open)`);
+
+    test(`wcag2aaa (subtle, lg, ${theme})`, async () => {
+      const result = render(
+        <SplitButton variant="subtle" size="lg" menuItems={MENU_ITEMS}>
+          button text
+        </SplitButton>,
+      );
+
+      expect(
+        await axe.run(result.container.ownerDocument, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (subtle, lg, ${theme}, open)`);
+
+    test(`wcag2aaa (subtle, lg, disabled, ${theme})`, async () => {
+      const result = render(
+        <SplitButton variant="subtle" size="lg" disabled menuItems={MENU_ITEMS}>
+          button text
+        </SplitButton>,
+      );
+
+      expect(
+        await axe.run(result.container.ownerDocument, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (subtle, lg, disabled, ${theme}, open)`);
+
+    test(`wcag2aaa (contrast, sm, ${theme})`, async () => {
+      const result = render(
+        <SplitButton variant="contrast" size="sm" menuItems={MENU_ITEMS}>
+          button text
+        </SplitButton>,
+      );
+
+      expect(
+        await axe.run(result.container.ownerDocument, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (contrast, sm, ${theme}, open)`);
+
+    test(`wcag2aaa (contrast, sm, disabled, ${theme})`, async () => {
+      const result = render(
+        <SplitButton
+          variant="contrast"
+          size="sm"
+          disabled
+          menuItems={MENU_ITEMS}
+        >
+          button text
+        </SplitButton>,
+      );
+
+      expect(
+        await axe.run(result.container.ownerDocument, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (contrast, sm, disabled, ${theme}, open)`);
+
+    test(`wcag2aaa (contrast, md, ${theme})`, async () => {
+      const result = render(
+        <SplitButton variant="contrast" size="md" menuItems={MENU_ITEMS}>
+          button text
+        </SplitButton>,
+      );
+
+      expect(
+        await axe.run(result.container.ownerDocument, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (contrast, md, ${theme}, open)`);
+
+    test(`wcag2aaa (contrast, md, disabled, ${theme})`, async () => {
+      const result = render(
+        <SplitButton
+          variant="contrast"
+          size="md"
+          disabled
+          menuItems={MENU_ITEMS}
+        >
+          button text
+        </SplitButton>,
+      );
+
+      expect(
+        await axe.run(result.container.ownerDocument, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (contrast, md, disabled, ${theme}, open)`);
+
+    test(`wcag2aaa (contrast, lg, ${theme})`, async () => {
+      const result = render(
+        <SplitButton variant="contrast" size="lg" menuItems={MENU_ITEMS}>
+          button text
+        </SplitButton>,
+      );
+
+      expect(
+        await axe.run(result.container.ownerDocument, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (contrast, lg, ${theme}, open)`);
+
+    test(`wcag2aaa (contrast, lg, disabled, ${theme})`, async () => {
+      const result = render(
+        <SplitButton
+          variant="contrast"
+          size="lg"
+          disabled
+          menuItems={MENU_ITEMS}
+        >
+          button text
+        </SplitButton>,
+      );
+
+      expect(
+        await axe.run(result.container.ownerDocument, {
+          runOnly: "wcag2aaa",
+        }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (contrast, lg, disabled, ${theme}, open)`);
   });
 });
