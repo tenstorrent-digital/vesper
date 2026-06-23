@@ -1,6 +1,15 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`button [snapshot] > contrast, lg 1`] = `
+exports[`button [snapshot] > disabled 1`] = `
+<button
+  class="vesper-button vesper-button-md vesper-button-disabled"
+  disabled=""
+>
+  Button Text
+</button>
+`;
+
+exports[`button [snapshot] > size: lg 1`] = `
 <button
   class="vesper-button vesper-button-lg vesper-button-contrast"
 >
@@ -8,16 +17,7 @@ exports[`button [snapshot] > contrast, lg 1`] = `
 </button>
 `;
 
-exports[`button [snapshot] > contrast, lg, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-lg vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > contrast, md 1`] = `
+exports[`button [snapshot] > size: md 1`] = `
 <button
   class="vesper-button vesper-button-md vesper-button-contrast"
 >
@@ -25,16 +25,7 @@ exports[`button [snapshot] > contrast, md 1`] = `
 </button>
 `;
 
-exports[`button [snapshot] > contrast, md, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-md vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > contrast, sm 1`] = `
+exports[`button [snapshot] > size: sm 1`] = `
 <button
   class="vesper-button vesper-button-sm vesper-button-contrast"
 >
@@ -42,16 +33,7 @@ exports[`button [snapshot] > contrast, sm 1`] = `
 </button>
 `;
 
-exports[`button [snapshot] > contrast, sm, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-sm vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > contrast, xs 1`] = `
+exports[`button [snapshot] > size: xs 1`] = `
 <button
   class="vesper-button vesper-button-xs vesper-button-contrast"
 >
@@ -59,33 +41,15 @@ exports[`button [snapshot] > contrast, xs 1`] = `
 </button>
 `;
 
-exports[`button [snapshot] > contrast, xs, disabled 1`] = `
+exports[`button [snapshot] > variant: contrast 1`] = `
 <button
-  class="vesper-button vesper-button-xs vesper-button-disabled"
-  disabled=""
+  class="vesper-button vesper-button-md vesper-button-contrast"
 >
   Button Text
 </button>
 `;
 
-exports[`button [snapshot] > danger, lg 1`] = `
-<button
-  class="vesper-button vesper-button-lg vesper-button-danger"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > danger, lg, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-lg vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > danger, md 1`] = `
+exports[`button [snapshot] > variant: danger 1`] = `
 <button
   class="vesper-button vesper-button-md vesper-button-danger"
 >
@@ -93,67 +57,7 @@ exports[`button [snapshot] > danger, md 1`] = `
 </button>
 `;
 
-exports[`button [snapshot] > danger, md, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-md vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > danger, sm 1`] = `
-<button
-  class="vesper-button vesper-button-sm vesper-button-danger"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > danger, sm, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-sm vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > danger, xs 1`] = `
-<button
-  class="vesper-button vesper-button-xs vesper-button-danger"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > danger, xs, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-xs vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > ghost, lg 1`] = `
-<button
-  class="vesper-button vesper-button-lg vesper-button-ghost"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > ghost, lg, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-lg vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > ghost, md 1`] = `
+exports[`button [snapshot] > variant: ghost 1`] = `
 <button
   class="vesper-button vesper-button-md vesper-button-ghost"
 >
@@ -161,67 +65,7 @@ exports[`button [snapshot] > ghost, md 1`] = `
 </button>
 `;
 
-exports[`button [snapshot] > ghost, md, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-md vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > ghost, sm 1`] = `
-<button
-  class="vesper-button vesper-button-sm vesper-button-ghost"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > ghost, sm, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-sm vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > ghost, xs 1`] = `
-<button
-  class="vesper-button vesper-button-xs vesper-button-ghost"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > ghost, xs, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-xs vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > primary, lg 1`] = `
-<button
-  class="vesper-button vesper-button-lg vesper-button-primary"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > primary, lg, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-lg vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > primary, md 1`] = `
+exports[`button [snapshot] > variant: primary 1`] = `
 <button
   class="vesper-button vesper-button-md vesper-button-primary"
 >
@@ -229,67 +73,7 @@ exports[`button [snapshot] > primary, md 1`] = `
 </button>
 `;
 
-exports[`button [snapshot] > primary, md, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-md vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > primary, sm 1`] = `
-<button
-  class="vesper-button vesper-button-sm vesper-button-primary"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > primary, sm, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-sm vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > primary, xs 1`] = `
-<button
-  class="vesper-button vesper-button-xs vesper-button-primary"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > primary, xs, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-xs vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > subtle, lg 1`] = `
-<button
-  class="vesper-button vesper-button-lg vesper-button-subtle"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > subtle, lg, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-lg vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > subtle, md 1`] = `
+exports[`button [snapshot] > variant: subtle 1`] = `
 <button
   class="vesper-button vesper-button-md vesper-button-subtle"
 >
@@ -297,67 +81,7 @@ exports[`button [snapshot] > subtle, md 1`] = `
 </button>
 `;
 
-exports[`button [snapshot] > subtle, md, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-md vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > subtle, sm 1`] = `
-<button
-  class="vesper-button vesper-button-sm vesper-button-subtle"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > subtle, sm, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-sm vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > subtle, xs 1`] = `
-<button
-  class="vesper-button vesper-button-xs vesper-button-subtle"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > subtle, xs, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-xs vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > tertiary, lg 1`] = `
-<button
-  class="vesper-button vesper-button-lg vesper-button-tertiary"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > tertiary, lg, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-lg vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > tertiary, md 1`] = `
+exports[`button [snapshot] > variant: tertiary 1`] = `
 <button
   class="vesper-button vesper-button-md vesper-button-tertiary"
 >
@@ -365,112 +89,9 @@ exports[`button [snapshot] > tertiary, md 1`] = `
 </button>
 `;
 
-exports[`button [snapshot] > tertiary, md, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-md vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > tertiary, sm 1`] = `
-<button
-  class="vesper-button vesper-button-sm vesper-button-tertiary"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > tertiary, sm, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-sm vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > tertiary, xs 1`] = `
-<button
-  class="vesper-button vesper-button-xs vesper-button-tertiary"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > tertiary, xs, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-xs vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > warning, lg 1`] = `
-<button
-  class="vesper-button vesper-button-lg vesper-button-warning"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > warning, lg, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-lg vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > warning, md 1`] = `
+exports[`button [snapshot] > variant: warning 1`] = `
 <button
   class="vesper-button vesper-button-md vesper-button-warning"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > warning, md, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-md vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > warning, sm 1`] = `
-<button
-  class="vesper-button vesper-button-sm vesper-button-warning"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > warning, sm, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-sm vesper-button-disabled"
-  disabled=""
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > warning, xs 1`] = `
-<button
-  class="vesper-button vesper-button-xs vesper-button-warning"
->
-  Button Text
-</button>
-`;
-
-exports[`button [snapshot] > warning, xs, disabled 1`] = `
-<button
-  class="vesper-button vesper-button-xs vesper-button-disabled"
-  disabled=""
 >
   Button Text
 </button>

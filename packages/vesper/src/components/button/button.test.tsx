@@ -141,563 +141,114 @@ describe("button [unit]", () => {
 });
 
 describe("button [snapshot]", () => {
-  test("contrast, xs", () => {
-    const result = render(
-      <Button variant="contrast" size="xs">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("contrast, xs, disabled", () => {
-    const result = render(
-      <Button variant="contrast" size="xs" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("contrast, sm", () => {
-    const result = render(
-      <Button variant="contrast" size="sm">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("contrast, sm, disabled", () => {
-    const result = render(
-      <Button variant="contrast" size="sm" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("contrast, md", () => {
+  // 1 case for each variant
+  test("variant: contrast", () => {
     const result = render(
       <Button variant="contrast" size="md">
         Button Text
       </Button>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("contrast, md, disabled", () => {
-    const result = render(
-      <Button variant="contrast" size="md" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("contrast, lg", () => {
-    const result = render(
-      <Button variant="contrast" size="lg">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("contrast, lg, disabled", () => {
-    const result = render(
-      <Button variant="contrast" size="lg" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("danger, xs", () => {
-    const result = render(
-      <Button variant="danger" size="xs">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("danger, xs, disabled", () => {
-    const result = render(
-      <Button variant="danger" size="xs" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("danger, sm", () => {
-    const result = render(
-      <Button variant="danger" size="sm">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("danger, sm, disabled", () => {
-    const result = render(
-      <Button variant="danger" size="sm" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("danger, md", () => {
+  test("variant: danger", () => {
     const result = render(
       <Button variant="danger" size="md">
         Button Text
       </Button>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("danger, md, disabled", () => {
-    const result = render(
-      <Button variant="danger" size="md" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("danger, lg", () => {
-    const result = render(
-      <Button variant="danger" size="lg">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("danger, lg, disabled", () => {
-    const result = render(
-      <Button variant="danger" size="lg" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("ghost, xs", () => {
-    const result = render(
-      <Button variant="ghost" size="xs">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("ghost, xs, disabled", () => {
-    const result = render(
-      <Button variant="ghost" size="xs" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("ghost, sm", () => {
-    const result = render(
-      <Button variant="ghost" size="sm">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("ghost, sm, disabled", () => {
-    const result = render(
-      <Button variant="ghost" size="sm" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("ghost, md", () => {
+  test("variant: ghost", () => {
     const result = render(
       <Button variant="ghost" size="md">
         Button Text
       </Button>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("ghost, md, disabled", () => {
-    const result = render(
-      <Button variant="ghost" size="md" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("ghost, lg", () => {
-    const result = render(
-      <Button variant="ghost" size="lg">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("ghost, lg, disabled", () => {
-    const result = render(
-      <Button variant="ghost" size="lg" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("primary, xs", () => {
-    const result = render(
-      <Button variant="primary" size="xs">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("primary, xs, disabled", () => {
-    const result = render(
-      <Button variant="primary" size="xs" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("primary, sm", () => {
-    const result = render(
-      <Button variant="primary" size="sm">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("primary, sm, disabled", () => {
-    const result = render(
-      <Button variant="primary" size="sm" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("primary, md", () => {
+  test("variant: primary", () => {
     const result = render(
       <Button variant="primary" size="md">
         Button Text
       </Button>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("primary, md, disabled", () => {
-    const result = render(
-      <Button variant="primary" size="md" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("primary, lg", () => {
-    const result = render(
-      <Button variant="primary" size="lg">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("primary, lg, disabled", () => {
-    const result = render(
-      <Button variant="primary" size="lg" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("subtle, xs", () => {
-    const result = render(
-      <Button variant="subtle" size="xs">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("subtle, xs, disabled", () => {
-    const result = render(
-      <Button variant="subtle" size="xs" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("subtle, sm", () => {
-    const result = render(
-      <Button variant="subtle" size="sm">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("subtle, sm, disabled", () => {
-    const result = render(
-      <Button variant="subtle" size="sm" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("subtle, md", () => {
+  test("variant: subtle", () => {
     const result = render(
       <Button variant="subtle" size="md">
         Button Text
       </Button>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("subtle, md, disabled", () => {
-    const result = render(
-      <Button variant="subtle" size="md" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("subtle, lg", () => {
-    const result = render(
-      <Button variant="subtle" size="lg">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("subtle, lg, disabled", () => {
-    const result = render(
-      <Button variant="subtle" size="lg" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("tertiary, xs", () => {
-    const result = render(
-      <Button variant="tertiary" size="xs">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("tertiary, xs, disabled", () => {
-    const result = render(
-      <Button variant="tertiary" size="xs" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("tertiary, sm", () => {
-    const result = render(
-      <Button variant="tertiary" size="sm">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("tertiary, sm, disabled", () => {
-    const result = render(
-      <Button variant="tertiary" size="sm" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("tertiary, md", () => {
+  test("variant: tertiary", () => {
     const result = render(
       <Button variant="tertiary" size="md">
         Button Text
       </Button>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("tertiary, md, disabled", () => {
-    const result = render(
-      <Button variant="tertiary" size="md" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("tertiary, lg", () => {
-    const result = render(
-      <Button variant="tertiary" size="lg">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("tertiary, lg, disabled", () => {
-    const result = render(
-      <Button variant="tertiary" size="lg" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("warning, xs", () => {
-    const result = render(
-      <Button variant="warning" size="xs">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("warning, xs, disabled", () => {
-    const result = render(
-      <Button variant="warning" size="xs" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("warning, sm", () => {
-    const result = render(
-      <Button variant="warning" size="sm">
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("warning, sm, disabled", () => {
-    const result = render(
-      <Button variant="warning" size="sm" disabled>
-        Button Text
-      </Button>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("warning, md", () => {
+  test("variant: warning", () => {
     const result = render(
       <Button variant="warning" size="md">
         Button Text
       </Button>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("warning, md, disabled", () => {
+  // 1 case for each size
+  test("size: xs", () => {
     const result = render(
-      <Button variant="warning" size="md" disabled>
+      <Button variant="contrast" size="xs">
         Button Text
       </Button>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("warning, lg", () => {
+  test("size: sm", () => {
     const result = render(
-      <Button variant="warning" size="lg">
+      <Button variant="contrast" size="sm">
         Button Text
       </Button>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("warning, lg, disabled", () => {
+  test("size: md", () => {
     const result = render(
-      <Button variant="warning" size="lg" disabled>
+      <Button variant="contrast" size="md">
         Button Text
       </Button>,
     );
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
 
+  test("size: lg", () => {
+    const result = render(
+      <Button variant="contrast" size="lg">
+        Button Text
+      </Button>,
+    );
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  // 1 case for disabled
+  test("disabled", () => {
+    const result = render(
+      <Button variant="primary" size="md" disabled>
+        Button Text
+      </Button>,
+    );
     expect(result.container.firstChild).toMatchSnapshot();
   });
 });
@@ -712,63 +263,8 @@ describe("button [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    test(`wcag2aaa (contrast, xs, ${theme})`, async () => {
-      const result = render(
-        <Button variant="contrast" size="xs">
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (contrast, xs, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="contrast" size="xs" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (contrast, sm, ${theme})`, async () => {
-      const result = render(
-        <Button variant="contrast" size="sm">
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (contrast, sm, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="contrast" size="sm" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (contrast, md, ${theme})`, async () => {
+    // 1 case for each variant
+    test(`wcag2aaa (variant: contrast, ${theme})`, async () => {
       const result = render(
         <Button variant="contrast" size="md">
           Button Text
@@ -776,111 +272,11 @@ describe("button [a11y]", () => {
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (contrast, md, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="contrast" size="md" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (contrast, lg, ${theme})`, async () => {
-      const result = render(
-        <Button variant="contrast" size="lg">
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (contrast, lg, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="contrast" size="lg" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (danger, xs, ${theme})`, async () => {
-      const result = render(
-        <Button variant="danger" size="xs">
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (danger, xs, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="danger" size="xs" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (danger, sm, ${theme})`, async () => {
-      const result = render(
-        <Button variant="danger" size="sm">
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (danger, sm, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="danger" size="sm" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (danger, md, ${theme})`, async () => {
+    test(`wcag2aaa (variant: danger, ${theme})`, async () => {
       const result = render(
         <Button variant="danger" size="md">
           Button Text
@@ -888,111 +284,11 @@ describe("button [a11y]", () => {
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (danger, md, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="danger" size="md" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (danger, lg, ${theme})`, async () => {
-      const result = render(
-        <Button variant="danger" size="lg">
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (danger, lg, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="danger" size="lg" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (ghost, xs, ${theme})`, async () => {
-      const result = render(
-        <Button variant="ghost" size="xs">
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (ghost, xs, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="ghost" size="xs" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (ghost, sm, ${theme})`, async () => {
-      const result = render(
-        <Button variant="ghost" size="sm">
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (ghost, sm, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="ghost" size="sm" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (ghost, md, ${theme})`, async () => {
+    test(`wcag2aaa (variant: ghost, ${theme})`, async () => {
       const result = render(
         <Button variant="ghost" size="md">
           Button Text
@@ -1000,175 +296,13 @@ describe("button [a11y]", () => {
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (ghost, md, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="ghost" size="md" disabled>
-          Button Text
-        </Button>,
-      );
+    test.todo(`wcag2aaa (variant: primary, ${theme})`);
 
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (ghost, lg, ${theme})`, async () => {
-      const result = render(
-        <Button variant="ghost" size="lg">
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (ghost, lg, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="ghost" size="lg" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test.todo(`wcag2aaa (primary, xs, ${theme})`);
-
-    test(`wcag2aaa (primary, xs, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="primary" size="xs" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test.todo(`wcag2aaa (primary, sm, ${theme})`);
-
-    test(`wcag2aaa (primary, sm, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="primary" size="sm" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test.todo(`wcag2aaa (primary, md, ${theme})`);
-
-    test(`wcag2aaa (primary, md, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="primary" size="md" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test.todo(`wcag2aaa (primary, lg, ${theme})`);
-
-    test(`wcag2aaa (primary, lg, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="primary" size="lg" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (subtle, xs, ${theme})`, async () => {
-      const result = render(
-        <Button variant="subtle" size="xs">
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (subtle, xs, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="subtle" size="xs" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (subtle, sm, ${theme})`, async () => {
-      const result = render(
-        <Button variant="subtle" size="sm">
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (subtle, sm, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="subtle" size="sm" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (subtle, md, ${theme})`, async () => {
+    test(`wcag2aaa (variant: subtle, ${theme})`, async () => {
       const result = render(
         <Button variant="subtle" size="md">
           Button Text
@@ -1176,111 +310,11 @@ describe("button [a11y]", () => {
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (subtle, md, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="subtle" size="md" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (subtle, lg, ${theme})`, async () => {
-      const result = render(
-        <Button variant="subtle" size="lg">
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (subtle, lg, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="subtle" size="lg" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (tertiary, xs, ${theme})`, async () => {
-      const result = render(
-        <Button variant="tertiary" size="xs">
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (tertiary, xs, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="tertiary" size="xs" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (tertiary, sm, ${theme})`, async () => {
-      const result = render(
-        <Button variant="tertiary" size="sm">
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (tertiary, sm, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="tertiary" size="sm" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (tertiary, md, ${theme})`, async () => {
+    test(`wcag2aaa (variant: tertiary, ${theme})`, async () => {
       const result = render(
         <Button variant="tertiary" size="md">
           Button Text
@@ -1288,111 +322,11 @@ describe("button [a11y]", () => {
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (tertiary, md, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="tertiary" size="md" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (tertiary, lg, ${theme})`, async () => {
-      const result = render(
-        <Button variant="tertiary" size="lg">
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (tertiary, lg, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="tertiary" size="lg" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (warning, xs, ${theme})`, async () => {
-      const result = render(
-        <Button variant="warning" size="xs">
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (warning, xs, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="warning" size="xs" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (warning, sm, ${theme})`, async () => {
-      const result = render(
-        <Button variant="warning" size="sm">
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (warning, sm, disabled, ${theme})`, async () => {
-      const result = render(
-        <Button variant="warning" size="sm" disabled>
-          Button Text
-        </Button>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (warning, md, ${theme})`, async () => {
+    test(`wcag2aaa (variant: warning, ${theme})`, async () => {
       const result = render(
         <Button variant="warning" size="md">
           Button Text
@@ -1400,51 +334,69 @@ describe("button [a11y]", () => {
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (warning, md, disabled, ${theme})`, async () => {
+    // 1 case for each size
+    test(`wcag2aaa (size: xs, ${theme})`, async () => {
       const result = render(
-        <Button variant="warning" size="md" disabled>
+        <Button variant="contrast" size="xs">
           Button Text
         </Button>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (warning, lg, ${theme})`, async () => {
+    test(`wcag2aaa (size: sm, ${theme})`, async () => {
       const result = render(
-        <Button variant="warning" size="lg">
+        <Button variant="contrast" size="sm">
           Button Text
         </Button>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (warning, lg, disabled, ${theme})`, async () => {
+    test(`wcag2aaa (size: md, ${theme})`, async () => {
       const result = render(
-        <Button variant="warning" size="lg" disabled>
+        <Button variant="contrast" size="md">
           Button Text
         </Button>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
+      ).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (size: lg, ${theme})`, async () => {
+      const result = render(
+        <Button variant="contrast" size="lg">
+          Button Text
+        </Button>,
+      );
+
+      expect(
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
+      ).toHaveNoViolations();
+    });
+
+    // 1 case for disabled
+    test(`wcag2aaa (disabled, ${theme})`, async () => {
+      const result = render(
+        <Button variant="primary" size="md" disabled>
+          Button Text
+        </Button>,
+      );
+
+      expect(
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
   });
