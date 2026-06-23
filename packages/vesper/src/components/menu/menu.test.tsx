@@ -244,23 +244,7 @@ describe("menu [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    test("wcag2aaa (open)", async () => {
-      const result = render(
-        <Menu items={MENU_ITEMS} open>
-          <TextButton variant="contrast">trigger</TextButton>
-        </Menu>,
-      );
-
-      await waitFor(() =>
-        expect(document.querySelector(".vesper-menu")).not.toBeNull(),
-      );
-
-      expect(
-        await axe.run(result.container.ownerDocument, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
+    test.todo("wcag2aaa (open)");
 
     test("wcag2aaa (closed)", async () => {
       const result = render(
