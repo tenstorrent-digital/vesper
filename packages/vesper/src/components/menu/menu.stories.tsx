@@ -55,7 +55,7 @@ export const Playground: Story = {
   },
   render: (props) => (
     <Menu {...props}>
-      <TextButton size="lg" variant="accent">
+      <TextButton size="lg" variant="contrast">
         click me
       </TextButton>
     </Menu>
