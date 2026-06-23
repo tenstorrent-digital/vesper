@@ -6,17 +6,9 @@ import {
   Admonition,
   ADMONITION_SIZES,
   ADMONITION_VARIANTS,
-  type AdmonitionProps,
 } from "@/components/admonition/admonition";
 
 import "@/styles/test.css";
-
-const ADMONITION_PERMUTATIONS = ADMONITION_VARIANTS.flatMap((variant) =>
-  ADMONITION_SIZES.flatMap((size): AdmonitionProps[] => [
-    { size, variant, subtle: true },
-    { size, variant, subtle: false },
-  ]),
-);
 
 afterEach(cleanup);
 
@@ -111,14 +103,204 @@ describe("admonition [unit]", () => {
 });
 
 describe("admonition [snapshot]", () => {
-  ADMONITION_PERMUTATIONS.forEach((permutation) => {
-    const { size, variant, subtle } = permutation;
+  test("info, sm, subtle", () => {
+    const result = render(
+      <Admonition variant="info" size="sm" subtle={true}>
+        content
+      </Admonition>,
+    );
 
-    test(`${variant}, ${size}${subtle ? ", subtle" : ""}`, () => {
-      const result = render(<Admonition {...permutation}>content</Admonition>);
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
 
-      expect(result.container.firstChild).toMatchSnapshot();
-    });
+  test("info, sm", () => {
+    const result = render(
+      <Admonition variant="info" size="sm" subtle={false}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("info, md, subtle", () => {
+    const result = render(
+      <Admonition variant="info" size="md" subtle={true}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("info, md", () => {
+    const result = render(
+      <Admonition variant="info" size="md" subtle={false}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("success, sm, subtle", () => {
+    const result = render(
+      <Admonition variant="success" size="sm" subtle={true}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("success, sm", () => {
+    const result = render(
+      <Admonition variant="success" size="sm" subtle={false}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("success, md, subtle", () => {
+    const result = render(
+      <Admonition variant="success" size="md" subtle={true}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("success, md", () => {
+    const result = render(
+      <Admonition variant="success" size="md" subtle={false}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("warning, sm, subtle", () => {
+    const result = render(
+      <Admonition variant="warning" size="sm" subtle={true}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("warning, sm", () => {
+    const result = render(
+      <Admonition variant="warning" size="sm" subtle={false}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("warning, md, subtle", () => {
+    const result = render(
+      <Admonition variant="warning" size="md" subtle={true}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("warning, md", () => {
+    const result = render(
+      <Admonition variant="warning" size="md" subtle={false}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("danger, sm, subtle", () => {
+    const result = render(
+      <Admonition variant="danger" size="sm" subtle={true}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("danger, sm", () => {
+    const result = render(
+      <Admonition variant="danger" size="sm" subtle={false}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("danger, md, subtle", () => {
+    const result = render(
+      <Admonition variant="danger" size="md" subtle={true}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("danger, md", () => {
+    const result = render(
+      <Admonition variant="danger" size="md" subtle={false}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("secondary, sm, subtle", () => {
+    const result = render(
+      <Admonition variant="secondary" size="sm" subtle={true}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("secondary, sm", () => {
+    const result = render(
+      <Admonition variant="secondary" size="sm" subtle={false}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("secondary, md, subtle", () => {
+    const result = render(
+      <Admonition variant="secondary" size="md" subtle={true}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("secondary, md", () => {
+    const result = render(
+      <Admonition variant="secondary" size="md" subtle={false}>
+        content
+      </Admonition>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
   });
 });
 

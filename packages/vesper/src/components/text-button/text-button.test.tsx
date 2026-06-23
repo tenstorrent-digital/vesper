@@ -4,21 +4,12 @@ import axe from "axe-core";
 
 import {
   TextButton,
-  type TextButtonProps,
   TEXT_BUTTON_SIZES,
   TEXT_BUTTON_VARIANTS,
 } from "@/components/text-button/text-button";
 import { Tenstorrent } from "@/components/icons/icons";
 
 import "@/styles/test.css";
-
-const TEXT_BUTTON_PERMUTATIONS: TextButtonProps[] =
-  TEXT_BUTTON_VARIANTS.flatMap((variant) =>
-    TEXT_BUTTON_SIZES.flatMap((size) => [
-      { size, variant, disabled: false },
-      { size, variant, disabled: true },
-    ]),
-  );
 
 afterEach(cleanup);
 
@@ -141,16 +132,544 @@ describe("text-button [unit]", () => {
 });
 
 describe("text-button [snapshot]", () => {
-  TEXT_BUTTON_PERMUTATIONS.forEach((permutation) => {
-    const { size, variant, disabled } = permutation;
+  test("subtle, sm", () => {
+    const result = render(
+      <TextButton variant="subtle" size="sm">
+        Button Text
+      </TextButton>,
+    );
 
-    test(`${variant}, ${size}${disabled ? ", disabled" : ""}`, () => {
-      const result = render(
-        <TextButton {...permutation}>Button Text</TextButton>,
-      );
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
 
-      expect(result.container.firstChild).toMatchSnapshot();
-    });
+  test("subtle, sm, disabled", () => {
+    const result = render(
+      <TextButton variant="subtle" size="sm" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("subtle, md", () => {
+    const result = render(
+      <TextButton variant="subtle" size="md">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("subtle, md, disabled", () => {
+    const result = render(
+      <TextButton variant="subtle" size="md" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("subtle, lg", () => {
+    const result = render(
+      <TextButton variant="subtle" size="lg">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("subtle, lg, disabled", () => {
+    const result = render(
+      <TextButton variant="subtle" size="lg" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("contrast, sm", () => {
+    const result = render(
+      <TextButton variant="contrast" size="sm">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("contrast, sm, disabled", () => {
+    const result = render(
+      <TextButton variant="contrast" size="sm" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("contrast, md", () => {
+    const result = render(
+      <TextButton variant="contrast" size="md">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("contrast, md, disabled", () => {
+    const result = render(
+      <TextButton variant="contrast" size="md" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("contrast, lg", () => {
+    const result = render(
+      <TextButton variant="contrast" size="lg">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("contrast, lg, disabled", () => {
+    const result = render(
+      <TextButton variant="contrast" size="lg" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("accent, sm", () => {
+    const result = render(
+      <TextButton variant="accent" size="sm">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("accent, sm, disabled", () => {
+    const result = render(
+      <TextButton variant="accent" size="sm" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("accent, md", () => {
+    const result = render(
+      <TextButton variant="accent" size="md">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("accent, md, disabled", () => {
+    const result = render(
+      <TextButton variant="accent" size="md" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("accent, lg", () => {
+    const result = render(
+      <TextButton variant="accent" size="lg">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("accent, lg, disabled", () => {
+    const result = render(
+      <TextButton variant="accent" size="lg" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("success, sm", () => {
+    const result = render(
+      <TextButton variant="success" size="sm">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("success, sm, disabled", () => {
+    const result = render(
+      <TextButton variant="success" size="sm" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("success, md", () => {
+    const result = render(
+      <TextButton variant="success" size="md">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("success, md, disabled", () => {
+    const result = render(
+      <TextButton variant="success" size="md" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("success, lg", () => {
+    const result = render(
+      <TextButton variant="success" size="lg">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("success, lg, disabled", () => {
+    const result = render(
+      <TextButton variant="success" size="lg" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("warning, sm", () => {
+    const result = render(
+      <TextButton variant="warning" size="sm">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("warning, sm, disabled", () => {
+    const result = render(
+      <TextButton variant="warning" size="sm" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("warning, md", () => {
+    const result = render(
+      <TextButton variant="warning" size="md">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("warning, md, disabled", () => {
+    const result = render(
+      <TextButton variant="warning" size="md" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("warning, lg", () => {
+    const result = render(
+      <TextButton variant="warning" size="lg">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("warning, lg, disabled", () => {
+    const result = render(
+      <TextButton variant="warning" size="lg" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("danger, sm", () => {
+    const result = render(
+      <TextButton variant="danger" size="sm">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("danger, sm, disabled", () => {
+    const result = render(
+      <TextButton variant="danger" size="sm" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("danger, md", () => {
+    const result = render(
+      <TextButton variant="danger" size="md">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("danger, md, disabled", () => {
+    const result = render(
+      <TextButton variant="danger" size="md" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("danger, lg", () => {
+    const result = render(
+      <TextButton variant="danger" size="lg">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("danger, lg, disabled", () => {
+    const result = render(
+      <TextButton variant="danger" size="lg" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("info, sm", () => {
+    const result = render(
+      <TextButton variant="info" size="sm">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("info, sm, disabled", () => {
+    const result = render(
+      <TextButton variant="info" size="sm" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("info, md", () => {
+    const result = render(
+      <TextButton variant="info" size="md">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("info, md, disabled", () => {
+    const result = render(
+      <TextButton variant="info" size="md" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("info, lg", () => {
+    const result = render(
+      <TextButton variant="info" size="lg">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("info, lg, disabled", () => {
+    const result = render(
+      <TextButton variant="info" size="lg" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("purple, sm", () => {
+    const result = render(
+      <TextButton variant="purple" size="sm">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("purple, sm, disabled", () => {
+    const result = render(
+      <TextButton variant="purple" size="sm" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("purple, md", () => {
+    const result = render(
+      <TextButton variant="purple" size="md">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("purple, md, disabled", () => {
+    const result = render(
+      <TextButton variant="purple" size="md" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("purple, lg", () => {
+    const result = render(
+      <TextButton variant="purple" size="lg">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("purple, lg, disabled", () => {
+    const result = render(
+      <TextButton variant="purple" size="lg" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("pink, sm", () => {
+    const result = render(
+      <TextButton variant="pink" size="sm">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("pink, sm, disabled", () => {
+    const result = render(
+      <TextButton variant="pink" size="sm" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("pink, md", () => {
+    const result = render(
+      <TextButton variant="pink" size="md">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("pink, md, disabled", () => {
+    const result = render(
+      <TextButton variant="pink" size="md" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("pink, lg", () => {
+    const result = render(
+      <TextButton variant="pink" size="lg">
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("pink, lg, disabled", () => {
+    const result = render(
+      <TextButton variant="pink" size="lg" disabled>
+        Button Text
+      </TextButton>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
   });
 });
 

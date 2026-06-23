@@ -9,12 +9,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 import axe from "axe-core";
 
-import {
-  SplitButton,
-  SPLIT_BUTTON_SIZES,
-  SPLIT_BUTTON_VARIANTS,
-  type SplitButtonProps,
-} from "@/components/split-button/split-button";
+import { SplitButton } from "@/components/split-button/split-button";
 import { MenuItemProps } from "@/components/menu/menu";
 import { Blackhole, Globe, Tenstorrent } from "@/components/icons/icons";
 
@@ -55,13 +50,6 @@ const MENU_ITEMS: MenuItemProps[] = [
     onSelect() {},
   },
 ];
-
-const SPLIT_BUTTON_PERMUTATIONS = SPLIT_BUTTON_VARIANTS.flatMap((variant) =>
-  SPLIT_BUTTON_SIZES.flatMap((size): SplitButtonProps[] => [
-    { size, variant, disabled: false, menuItems: MENU_ITEMS },
-    { size, variant, disabled: true, menuItems: MENU_ITEMS },
-  ]),
-);
 
 afterEach(cleanup);
 
@@ -191,15 +179,112 @@ describe("split-button [unit]", () => {
 });
 
 describe("split-button [snapshot]", () => {
-  SPLIT_BUTTON_PERMUTATIONS.forEach((permutation) => {
-    const { disabled, variant, size } = permutation;
+  test("subtle, sm", () => {
+    const result = render(
+      <SplitButton variant="subtle" size="sm" menuItems={MENU_ITEMS}>
+        button text
+      </SplitButton>,
+    );
+    expect(result.container).toMatchSnapshot();
+  });
 
-    test(`${variant}, ${size}${disabled ? ", disabled" : ""}`, () => {
-      const result = render(
-        <SplitButton {...permutation}>button text</SplitButton>,
-      );
-      expect(result.container).toMatchSnapshot();
-    });
+  test("subtle, sm, disabled", () => {
+    const result = render(
+      <SplitButton variant="subtle" size="sm" disabled menuItems={MENU_ITEMS}>
+        button text
+      </SplitButton>,
+    );
+    expect(result.container).toMatchSnapshot();
+  });
+
+  test("subtle, md", () => {
+    const result = render(
+      <SplitButton variant="subtle" size="md" menuItems={MENU_ITEMS}>
+        button text
+      </SplitButton>,
+    );
+    expect(result.container).toMatchSnapshot();
+  });
+
+  test("subtle, md, disabled", () => {
+    const result = render(
+      <SplitButton variant="subtle" size="md" disabled menuItems={MENU_ITEMS}>
+        button text
+      </SplitButton>,
+    );
+    expect(result.container).toMatchSnapshot();
+  });
+
+  test("subtle, lg", () => {
+    const result = render(
+      <SplitButton variant="subtle" size="lg" menuItems={MENU_ITEMS}>
+        button text
+      </SplitButton>,
+    );
+    expect(result.container).toMatchSnapshot();
+  });
+
+  test("subtle, lg, disabled", () => {
+    const result = render(
+      <SplitButton variant="subtle" size="lg" disabled menuItems={MENU_ITEMS}>
+        button text
+      </SplitButton>,
+    );
+    expect(result.container).toMatchSnapshot();
+  });
+
+  test("contrast, sm", () => {
+    const result = render(
+      <SplitButton variant="contrast" size="sm" menuItems={MENU_ITEMS}>
+        button text
+      </SplitButton>,
+    );
+    expect(result.container).toMatchSnapshot();
+  });
+
+  test("contrast, sm, disabled", () => {
+    const result = render(
+      <SplitButton variant="contrast" size="sm" disabled menuItems={MENU_ITEMS}>
+        button text
+      </SplitButton>,
+    );
+    expect(result.container).toMatchSnapshot();
+  });
+
+  test("contrast, md", () => {
+    const result = render(
+      <SplitButton variant="contrast" size="md" menuItems={MENU_ITEMS}>
+        button text
+      </SplitButton>,
+    );
+    expect(result.container).toMatchSnapshot();
+  });
+
+  test("contrast, md, disabled", () => {
+    const result = render(
+      <SplitButton variant="contrast" size="md" disabled menuItems={MENU_ITEMS}>
+        button text
+      </SplitButton>,
+    );
+    expect(result.container).toMatchSnapshot();
+  });
+
+  test("contrast, lg", () => {
+    const result = render(
+      <SplitButton variant="contrast" size="lg" menuItems={MENU_ITEMS}>
+        button text
+      </SplitButton>,
+    );
+    expect(result.container).toMatchSnapshot();
+  });
+
+  test("contrast, lg, disabled", () => {
+    const result = render(
+      <SplitButton variant="contrast" size="lg" disabled menuItems={MENU_ITEMS}>
+        button text
+      </SplitButton>,
+    );
+    expect(result.container).toMatchSnapshot();
   });
 });
 

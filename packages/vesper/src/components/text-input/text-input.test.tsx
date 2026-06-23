@@ -7,46 +7,10 @@ import {
   TEXT_INPUT_SIZES,
   TEXT_INPUT_VARIANTS,
   TextInput,
-  TextInputProps,
 } from "@/components/text-input/text-input";
 import { Globe } from "@/components/icons/icons";
 
 import "@/styles/test.css";
-
-const SNAPSHOT_CASES: (TextInputProps & { name: string })[] = [
-  // One per variant
-  ...TEXT_INPUT_VARIANTS.map((variant) => ({
-    name: `variant: ${variant}`,
-    variant,
-    size: "lg" as const,
-    message: "Message text",
-  })),
-  // One per size
-  ...TEXT_INPUT_SIZES.map((size) => ({
-    name: `size: ${size}`,
-    size,
-  })),
-  // Meaningful feature combos
-  { name: "multiline", multiline: true, size: "lg" as const },
-  { name: "with icon", icon: <Globe />, size: "lg" as const },
-  { name: "with label", label: "Label text", size: "lg" as const },
-  { name: "disabled", disabled: true, size: "lg" as const },
-  {
-    name: "disabled, multiline",
-    disabled: true,
-    multiline: true,
-    size: "lg" as const,
-  },
-  {
-    name: "full options",
-    variant: "error",
-    size: "lg" as const,
-    multiline: true,
-    label: "Label text",
-    message: "Message text",
-    disabled: true,
-  },
-];
 
 afterEach(cleanup);
 
@@ -202,13 +166,86 @@ describe("text-input [unit]", () => {
 });
 
 describe("text-input [snapshot]", () => {
-  SNAPSHOT_CASES.forEach((permutation) => {
-    const { name, ...props } = permutation;
+  test("variant: default", () => {
+    const { container } = render(
+      <TextInput variant="default" size="lg" message="Message text" />,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
 
-    test(name, () => {
-      const { container } = render(<TextInput {...props} />);
-      expect(container.firstChild).toMatchSnapshot();
-    });
+  test("variant: warning", () => {
+    const { container } = render(
+      <TextInput variant="warning" size="lg" message="Message text" />,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("variant: success", () => {
+    const { container } = render(
+      <TextInput variant="success" size="lg" message="Message text" />,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("variant: error", () => {
+    const { container } = render(
+      <TextInput variant="error" size="lg" message="Message text" />,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("size: sm", () => {
+    const { container } = render(<TextInput size="sm" />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("size: md", () => {
+    const { container } = render(<TextInput size="md" />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("size: lg", () => {
+    const { container } = render(<TextInput size="lg" />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("multiline", () => {
+    const { container } = render(<TextInput multiline size="lg" />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("with icon", () => {
+    const { container } = render(<TextInput icon={<Globe />} size="lg" />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("with label", () => {
+    const { container } = render(<TextInput label="Label text" size="lg" />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("disabled", () => {
+    const { container } = render(<TextInput disabled size="lg" />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("disabled, multiline", () => {
+    const { container } = render(<TextInput disabled multiline size="lg" />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("full options", () => {
+    const { container } = render(
+      <TextInput
+        variant="error"
+        size="lg"
+        multiline
+        label="Label text"
+        message="Message text"
+        disabled
+      />,
+    );
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
 

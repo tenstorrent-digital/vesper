@@ -2,22 +2,10 @@ import { render, within, cleanup } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import axe from "axe-core";
 
-import {
-  Badge,
-  type BadgeProps,
-  BADGE_SIZES,
-  BADGE_VARIANTS,
-} from "@/components/badge/badge";
+import { Badge, BADGE_SIZES, BADGE_VARIANTS } from "@/components/badge/badge";
 import { Tenstorrent } from "@/components/icons/icons";
 
 import "@/styles/test.css";
-
-const BADGE_PERMUTATIONS = BADGE_VARIANTS.flatMap((variant) =>
-  BADGE_SIZES.flatMap((size): BadgeProps[] => [
-    { size, variant, subtle: true },
-    { size, variant, subtle: false },
-  ]),
-);
 
 afterEach(cleanup);
 
@@ -102,14 +90,544 @@ describe("badge [unit]", () => {
 });
 
 describe("badge [snapshot]", () => {
-  BADGE_PERMUTATIONS.forEach((permutation) => {
-    const { size, variant, subtle } = permutation;
+  test("accent, sm, subtle", () => {
+    const result = render(
+      <Badge variant="accent" size="sm" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
 
-    test(`${variant}, ${size}${subtle ? ", subtle" : ""}`, () => {
-      const result = render(<Badge {...permutation}>Badge Text</Badge>);
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
 
-      expect(result.container.firstChild).toMatchSnapshot();
-    });
+  test("accent, sm", () => {
+    const result = render(
+      <Badge variant="accent" size="sm" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("accent, md, subtle", () => {
+    const result = render(
+      <Badge variant="accent" size="md" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("accent, md", () => {
+    const result = render(
+      <Badge variant="accent" size="md" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("accent, lg, subtle", () => {
+    const result = render(
+      <Badge variant="accent" size="lg" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("accent, lg", () => {
+    const result = render(
+      <Badge variant="accent" size="lg" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("success, sm, subtle", () => {
+    const result = render(
+      <Badge variant="success" size="sm" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("success, sm", () => {
+    const result = render(
+      <Badge variant="success" size="sm" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("success, md, subtle", () => {
+    const result = render(
+      <Badge variant="success" size="md" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("success, md", () => {
+    const result = render(
+      <Badge variant="success" size="md" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("success, lg, subtle", () => {
+    const result = render(
+      <Badge variant="success" size="lg" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("success, lg", () => {
+    const result = render(
+      <Badge variant="success" size="lg" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("warning, sm, subtle", () => {
+    const result = render(
+      <Badge variant="warning" size="sm" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("warning, sm", () => {
+    const result = render(
+      <Badge variant="warning" size="sm" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("warning, md, subtle", () => {
+    const result = render(
+      <Badge variant="warning" size="md" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("warning, md", () => {
+    const result = render(
+      <Badge variant="warning" size="md" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("warning, lg, subtle", () => {
+    const result = render(
+      <Badge variant="warning" size="lg" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("warning, lg", () => {
+    const result = render(
+      <Badge variant="warning" size="lg" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("danger, sm, subtle", () => {
+    const result = render(
+      <Badge variant="danger" size="sm" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("danger, sm", () => {
+    const result = render(
+      <Badge variant="danger" size="sm" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("danger, md, subtle", () => {
+    const result = render(
+      <Badge variant="danger" size="md" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("danger, md", () => {
+    const result = render(
+      <Badge variant="danger" size="md" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("danger, lg, subtle", () => {
+    const result = render(
+      <Badge variant="danger" size="lg" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("danger, lg", () => {
+    const result = render(
+      <Badge variant="danger" size="lg" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("info, sm, subtle", () => {
+    const result = render(
+      <Badge variant="info" size="sm" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("info, sm", () => {
+    const result = render(
+      <Badge variant="info" size="sm" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("info, md, subtle", () => {
+    const result = render(
+      <Badge variant="info" size="md" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("info, md", () => {
+    const result = render(
+      <Badge variant="info" size="md" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("info, lg, subtle", () => {
+    const result = render(
+      <Badge variant="info" size="lg" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("info, lg", () => {
+    const result = render(
+      <Badge variant="info" size="lg" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("purple, sm, subtle", () => {
+    const result = render(
+      <Badge variant="purple" size="sm" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("purple, sm", () => {
+    const result = render(
+      <Badge variant="purple" size="sm" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("purple, md, subtle", () => {
+    const result = render(
+      <Badge variant="purple" size="md" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("purple, md", () => {
+    const result = render(
+      <Badge variant="purple" size="md" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("purple, lg, subtle", () => {
+    const result = render(
+      <Badge variant="purple" size="lg" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("purple, lg", () => {
+    const result = render(
+      <Badge variant="purple" size="lg" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("pink, sm, subtle", () => {
+    const result = render(
+      <Badge variant="pink" size="sm" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("pink, sm", () => {
+    const result = render(
+      <Badge variant="pink" size="sm" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("pink, md, subtle", () => {
+    const result = render(
+      <Badge variant="pink" size="md" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("pink, md", () => {
+    const result = render(
+      <Badge variant="pink" size="md" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("pink, lg, subtle", () => {
+    const result = render(
+      <Badge variant="pink" size="lg" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("pink, lg", () => {
+    const result = render(
+      <Badge variant="pink" size="lg" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("mint, sm, subtle", () => {
+    const result = render(
+      <Badge variant="mint" size="sm" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("mint, sm", () => {
+    const result = render(
+      <Badge variant="mint" size="sm" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("mint, md, subtle", () => {
+    const result = render(
+      <Badge variant="mint" size="md" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("mint, md", () => {
+    const result = render(
+      <Badge variant="mint" size="md" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("mint, lg, subtle", () => {
+    const result = render(
+      <Badge variant="mint" size="lg" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("mint, lg", () => {
+    const result = render(
+      <Badge variant="mint" size="lg" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("contrast, sm, subtle", () => {
+    const result = render(
+      <Badge variant="contrast" size="sm" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("contrast, sm", () => {
+    const result = render(
+      <Badge variant="contrast" size="sm" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("contrast, md, subtle", () => {
+    const result = render(
+      <Badge variant="contrast" size="md" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("contrast, md", () => {
+    const result = render(
+      <Badge variant="contrast" size="md" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("contrast, lg, subtle", () => {
+    const result = render(
+      <Badge variant="contrast" size="lg" subtle={true}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
+  });
+
+  test("contrast, lg", () => {
+    const result = render(
+      <Badge variant="contrast" size="lg" subtle={false}>
+        Badge Text
+      </Badge>,
+    );
+
+    expect(result.container.firstChild).toMatchSnapshot();
   });
 });
 
