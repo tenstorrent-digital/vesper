@@ -20,7 +20,7 @@ export type ToggleOption =
       text: string;
       ariaLabel?: string;
     }
-  | { value: string; icon: ReactNode; ariaLabel?: string };
+  | { value: string; icon: ReactNode; ariaLabel: string };
 
 export interface ToggleProps extends Omit<
   ToggleGroupSingleProps,
