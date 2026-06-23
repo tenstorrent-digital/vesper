@@ -181,17 +181,7 @@ describe("button [a11y]", () => {
       const { size, variant, disabled } = permutation;
       const testName = `wcag2aaa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`;
 
-      const failsA11y = BUTTON_A11Y_FAILING_PERMUTATIONS.some(
-        (p) =>
-          p.size === size && p.variant === variant && p.disabled === disabled,
-      );
-
-      if (failsA11y) {
-        test.todo(testName);
-        return;
-      }
-
-      test(testName, async () => {
+      const testFn = async () => {
         const result = render(<Button {...permutation}>Button Text</Button>);
 
         expect(
@@ -199,7 +189,15 @@ describe("button [a11y]", () => {
             runOnly: "wcag2aaa",
           }),
         ).toHaveNoViolations();
-      });
+      };
+
+      const failsA11y = BUTTON_A11Y_FAILING_PERMUTATIONS.some(
+        (p) =>
+          p.size === size && p.variant === variant && p.disabled === disabled,
+      );
+
+      if (failsA11y) test.todo(testName, testFn);
+      else test(testName, testFn);
     });
   });
 });
