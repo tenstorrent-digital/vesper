@@ -103,203 +103,90 @@ describe("admonition [unit]", () => {
 });
 
 describe("admonition [snapshot]", () => {
-  test("info, sm, subtle", () => {
+  // 1 case for each size
+  test("size: sm", () => {
     const result = render(
-      <Admonition variant="info" size="sm" subtle={true}>
-        content
-      </Admonition>,
+      <Admonition variant="warning" size="sm">content</Admonition>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("info, sm", () => {
+  test("size: md", () => {
     const result = render(
-      <Admonition variant="info" size="sm" subtle={false}>
-        content
-      </Admonition>,
+      <Admonition variant="warning" size="md">content</Admonition>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("info, md, subtle", () => {
+  // 1 case for each variant
+  test("variant: info", () => {
     const result = render(
-      <Admonition variant="info" size="md" subtle={true}>
-        content
-      </Admonition>,
+      <Admonition variant="info" size="md">content</Admonition>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("info, md", () => {
+  test("variant: success", () => {
     const result = render(
-      <Admonition variant="info" size="md" subtle={false}>
-        content
-      </Admonition>,
+      <Admonition variant="success" size="md">content</Admonition>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("success, sm, subtle", () => {
+  test("variant: warning", () => {
     const result = render(
-      <Admonition variant="success" size="sm" subtle={true}>
-        content
-      </Admonition>,
+      <Admonition variant="warning" size="md">content</Admonition>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("success, sm", () => {
+  test("variant: danger", () => {
     const result = render(
-      <Admonition variant="success" size="sm" subtle={false}>
-        content
-      </Admonition>,
+      <Admonition variant="danger" size="md">content</Admonition>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("success, md, subtle", () => {
+  test("variant: secondary", () => {
     const result = render(
-      <Admonition variant="success" size="md" subtle={true}>
-        content
-      </Admonition>,
+      <Admonition variant="secondary" size="md">content</Admonition>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("success, md", () => {
+  // 1 case for each variant + subtle
+  test("variant: info, subtle", () => {
     const result = render(
-      <Admonition variant="success" size="md" subtle={false}>
-        content
-      </Admonition>,
+      <Admonition variant="info" size="md" subtle>content</Admonition>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("warning, sm, subtle", () => {
+  test("variant: success, subtle", () => {
     const result = render(
-      <Admonition variant="warning" size="sm" subtle={true}>
-        content
-      </Admonition>,
+      <Admonition variant="success" size="md" subtle>content</Admonition>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("warning, sm", () => {
+  test("variant: warning, subtle", () => {
     const result = render(
-      <Admonition variant="warning" size="sm" subtle={false}>
-        content
-      </Admonition>,
+      <Admonition variant="warning" size="md" subtle>content</Admonition>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("warning, md, subtle", () => {
+  test("variant: danger, subtle", () => {
     const result = render(
-      <Admonition variant="warning" size="md" subtle={true}>
-        content
-      </Admonition>,
+      <Admonition variant="danger" size="md" subtle>content</Admonition>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("warning, md", () => {
+  test("variant: secondary, subtle", () => {
     const result = render(
-      <Admonition variant="warning" size="md" subtle={false}>
-        content
-      </Admonition>,
+      <Admonition variant="secondary" size="md" subtle>content</Admonition>,
     );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("danger, sm, subtle", () => {
-    const result = render(
-      <Admonition variant="danger" size="sm" subtle={true}>
-        content
-      </Admonition>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("danger, sm", () => {
-    const result = render(
-      <Admonition variant="danger" size="sm" subtle={false}>
-        content
-      </Admonition>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("danger, md, subtle", () => {
-    const result = render(
-      <Admonition variant="danger" size="md" subtle={true}>
-        content
-      </Admonition>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("danger, md", () => {
-    const result = render(
-      <Admonition variant="danger" size="md" subtle={false}>
-        content
-      </Admonition>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("secondary, sm, subtle", () => {
-    const result = render(
-      <Admonition variant="secondary" size="sm" subtle={true}>
-        content
-      </Admonition>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("secondary, sm", () => {
-    const result = render(
-      <Admonition variant="secondary" size="sm" subtle={false}>
-        content
-      </Admonition>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("secondary, md, subtle", () => {
-    const result = render(
-      <Admonition variant="secondary" size="md" subtle={true}>
-        content
-      </Admonition>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("secondary, md", () => {
-    const result = render(
-      <Admonition variant="secondary" size="md" subtle={false}>
-        content
-      </Admonition>,
-    );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 });
@@ -314,187 +201,94 @@ describe("admonition [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    test.todo(`wcag2aaa (info, sm, subtle, ${theme})`);
-
-    test.todo(`wcag2aaa (info, sm, ${theme})`);
-
-    test.todo(`wcag2aaa (info, md, subtle, ${theme})`);
-
-    test.todo(`wcag2aaa (info, md, ${theme})`);
-
-    test(`wcag2aaa (success, sm, subtle, ${theme})`, async () => {
+    // 1 case for each size
+    test(`wcag2aaa (size: sm, ${theme})`, async () => {
       const result = render(
-        <Admonition variant="success" size="sm" subtle={true}>
-          content
-        </Admonition>,
+        <Admonition variant="warning" size="sm">content</Admonition>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test.todo(`wcag2aaa (success, sm, ${theme})`);
-
-    test(`wcag2aaa (success, md, subtle, ${theme})`, async () => {
+    test(`wcag2aaa (size: md, ${theme})`, async () => {
       const result = render(
-        <Admonition variant="success" size="md" subtle={true}>
-          content
-        </Admonition>,
+        <Admonition variant="warning" size="md">content</Admonition>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test.todo(`wcag2aaa (success, md, ${theme})`);
+    // 1 case for each variant
+    test.todo(`wcag2aaa (variant: info, ${theme})`);
 
-    test(`wcag2aaa (warning, sm, subtle, ${theme})`, async () => {
+    test.todo(`wcag2aaa (variant: success, ${theme})`);
+
+    test(`wcag2aaa (variant: warning, ${theme})`, async () => {
       const result = render(
-        <Admonition variant="warning" size="sm" subtle={true}>
-          content
-        </Admonition>,
+        <Admonition variant="warning" size="md">content</Admonition>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (warning, sm, ${theme})`, async () => {
+    test(`wcag2aaa (variant: danger, ${theme})`, async () => {
       const result = render(
-        <Admonition variant="warning" size="sm" subtle={false}>
-          content
-        </Admonition>,
+        <Admonition variant="danger" size="md">content</Admonition>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (warning, md, subtle, ${theme})`, async () => {
+    test(`wcag2aaa (variant: secondary, ${theme})`, async () => {
       const result = render(
-        <Admonition variant="warning" size="md" subtle={true}>
-          content
-        </Admonition>,
+        <Admonition variant="secondary" size="md">content</Admonition>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (warning, md, ${theme})`, async () => {
+    // 1 case for each variant + subtle
+    test.todo(`wcag2aaa (variant: info, subtle, ${theme})`);
+
+    test(`wcag2aaa (variant: success, subtle, ${theme})`, async () => {
       const result = render(
-        <Admonition variant="warning" size="md" subtle={false}>
-          content
-        </Admonition>,
+        <Admonition variant="success" size="md" subtle>content</Admonition>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test.todo(`wcag2aaa (danger, sm, subtle, ${theme})`);
-
-    test(`wcag2aaa (danger, sm, ${theme})`, async () => {
+    test(`wcag2aaa (variant: warning, subtle, ${theme})`, async () => {
       const result = render(
-        <Admonition variant="danger" size="sm" subtle={false}>
-          content
-        </Admonition>,
+        <Admonition variant="warning" size="md" subtle>content</Admonition>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test.todo(`wcag2aaa (danger, md, subtle, ${theme})`);
+    test.todo(`wcag2aaa (variant: danger, subtle, ${theme})`);
 
-    test(`wcag2aaa (danger, md, ${theme})`, async () => {
+    test(`wcag2aaa (variant: secondary, subtle, ${theme})`, async () => {
       const result = render(
-        <Admonition variant="danger" size="md" subtle={false}>
-          content
-        </Admonition>,
+        <Admonition variant="secondary" size="md" subtle>content</Admonition>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (secondary, sm, subtle, ${theme})`, async () => {
-      const result = render(
-        <Admonition variant="secondary" size="sm" subtle={true}>
-          content
-        </Admonition>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (secondary, sm, ${theme})`, async () => {
-      const result = render(
-        <Admonition variant="secondary" size="sm" subtle={false}>
-          content
-        </Admonition>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (secondary, md, subtle, ${theme})`, async () => {
-      const result = render(
-        <Admonition variant="secondary" size="md" subtle={true}>
-          content
-        </Admonition>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (secondary, md, ${theme})`, async () => {
-      const result = render(
-        <Admonition variant="secondary" size="md" subtle={false}>
-          content
-        </Admonition>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
   });
