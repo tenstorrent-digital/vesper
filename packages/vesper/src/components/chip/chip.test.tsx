@@ -139,6 +139,20 @@ describe("chip [unit]", () => {
     expect(onChange).not.toHaveBeenCalled();
     expect(onClick).not.toHaveBeenCalled();
   });
+
+  test("disabled non-button chip does not call onChange or onClick", () => {
+    const onChange = vi.fn();
+    const onClick = vi.fn();
+    const { container } = render(
+      <Chip as="span" disabled onChange={onChange} onClick={onClick}>
+        Label
+      </Chip>,
+    );
+
+    fireEvent.click(container.firstElementChild!);
+    expect(onChange).not.toHaveBeenCalled();
+    expect(onClick).not.toHaveBeenCalled();
+  });
 });
 
 describe("chip [snapshot]", () => {
