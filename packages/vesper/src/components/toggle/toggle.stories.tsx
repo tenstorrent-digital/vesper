@@ -22,8 +22,8 @@ const ToggleStoryComponent = ({
             { value: "option-b", text: "Option B" },
           ]
         : [
-            { value: "option-a", icon: <Grid /> },
-            { value: "option-b", icon: <List /> },
+            { value: "option-a", icon: <Grid />, ariaLabel: "Option A" },
+            { value: "option-b", icon: <List />, ariaLabel: "Option B" },
           ]
     }
   />
