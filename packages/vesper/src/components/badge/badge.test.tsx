@@ -90,543 +90,195 @@ describe("badge [unit]", () => {
 });
 
 describe("badge [snapshot]", () => {
-  test("accent, sm, subtle", () => {
+  // 1 case for each size
+  test("size: sm", () => {
     const result = render(
-      <Badge variant="accent" size="sm" subtle={true}>
+      <Badge variant="warning" size="sm">
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("accent, sm", () => {
+  test("size: md", () => {
     const result = render(
-      <Badge variant="accent" size="sm" subtle={false}>
+      <Badge variant="warning" size="md">
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("accent, md, subtle", () => {
+  test("size: lg", () => {
     const result = render(
-      <Badge variant="accent" size="md" subtle={true}>
+      <Badge variant="warning" size="lg">
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("accent, md", () => {
+  // 1 case for each variant
+  test("variant: accent", () => {
     const result = render(
-      <Badge variant="accent" size="md" subtle={false}>
+      <Badge variant="accent" size="md">
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("accent, lg, subtle", () => {
+  test("variant: success", () => {
     const result = render(
-      <Badge variant="accent" size="lg" subtle={true}>
+      <Badge variant="success" size="md">
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("accent, lg", () => {
+  test("variant: warning", () => {
     const result = render(
-      <Badge variant="accent" size="lg" subtle={false}>
+      <Badge variant="warning" size="md">
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("success, sm, subtle", () => {
+  test("variant: danger", () => {
     const result = render(
-      <Badge variant="success" size="sm" subtle={true}>
+      <Badge variant="danger" size="md">
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("success, sm", () => {
+  test("variant: info", () => {
     const result = render(
-      <Badge variant="success" size="sm" subtle={false}>
+      <Badge variant="info" size="md">
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("success, md, subtle", () => {
+  test("variant: purple", () => {
     const result = render(
-      <Badge variant="success" size="md" subtle={true}>
+      <Badge variant="purple" size="md">
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("success, md", () => {
+  test("variant: pink", () => {
     const result = render(
-      <Badge variant="success" size="md" subtle={false}>
+      <Badge variant="pink" size="md">
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("success, lg, subtle", () => {
+  test("variant: mint", () => {
     const result = render(
-      <Badge variant="success" size="lg" subtle={true}>
+      <Badge variant="mint" size="md">
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("success, lg", () => {
+  test("variant: contrast", () => {
     const result = render(
-      <Badge variant="success" size="lg" subtle={false}>
+      <Badge variant="contrast" size="md">
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("warning, sm, subtle", () => {
+  // 1 case for each variant + subtle
+  test("variant: accent, subtle", () => {
     const result = render(
-      <Badge variant="warning" size="sm" subtle={true}>
+      <Badge variant="accent" size="md" subtle>
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("warning, sm", () => {
+  test("variant: success, subtle", () => {
     const result = render(
-      <Badge variant="warning" size="sm" subtle={false}>
+      <Badge variant="success" size="md" subtle>
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("warning, md, subtle", () => {
+  test("variant: warning, subtle", () => {
     const result = render(
-      <Badge variant="warning" size="md" subtle={true}>
+      <Badge variant="warning" size="md" subtle>
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("warning, md", () => {
+  test("variant: danger, subtle", () => {
     const result = render(
-      <Badge variant="warning" size="md" subtle={false}>
+      <Badge variant="danger" size="md" subtle>
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("warning, lg, subtle", () => {
+  test("variant: info, subtle", () => {
     const result = render(
-      <Badge variant="warning" size="lg" subtle={true}>
+      <Badge variant="info" size="md" subtle>
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("warning, lg", () => {
+  test("variant: purple, subtle", () => {
     const result = render(
-      <Badge variant="warning" size="lg" subtle={false}>
+      <Badge variant="purple" size="md" subtle>
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("danger, sm, subtle", () => {
+  test("variant: pink, subtle", () => {
     const result = render(
-      <Badge variant="danger" size="sm" subtle={true}>
+      <Badge variant="pink" size="md" subtle>
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("danger, sm", () => {
+  test("variant: mint, subtle", () => {
     const result = render(
-      <Badge variant="danger" size="sm" subtle={false}>
+      <Badge variant="mint" size="md" subtle>
         Badge Text
       </Badge>,
     );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  test("danger, md, subtle", () => {
+  test("variant: contrast, subtle", () => {
     const result = render(
-      <Badge variant="danger" size="md" subtle={true}>
+      <Badge variant="contrast" size="md" subtle>
         Badge Text
       </Badge>,
     );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("danger, md", () => {
-    const result = render(
-      <Badge variant="danger" size="md" subtle={false}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("danger, lg, subtle", () => {
-    const result = render(
-      <Badge variant="danger" size="lg" subtle={true}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("danger, lg", () => {
-    const result = render(
-      <Badge variant="danger" size="lg" subtle={false}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("info, sm, subtle", () => {
-    const result = render(
-      <Badge variant="info" size="sm" subtle={true}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("info, sm", () => {
-    const result = render(
-      <Badge variant="info" size="sm" subtle={false}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("info, md, subtle", () => {
-    const result = render(
-      <Badge variant="info" size="md" subtle={true}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("info, md", () => {
-    const result = render(
-      <Badge variant="info" size="md" subtle={false}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("info, lg, subtle", () => {
-    const result = render(
-      <Badge variant="info" size="lg" subtle={true}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("info, lg", () => {
-    const result = render(
-      <Badge variant="info" size="lg" subtle={false}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("purple, sm, subtle", () => {
-    const result = render(
-      <Badge variant="purple" size="sm" subtle={true}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("purple, sm", () => {
-    const result = render(
-      <Badge variant="purple" size="sm" subtle={false}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("purple, md, subtle", () => {
-    const result = render(
-      <Badge variant="purple" size="md" subtle={true}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("purple, md", () => {
-    const result = render(
-      <Badge variant="purple" size="md" subtle={false}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("purple, lg, subtle", () => {
-    const result = render(
-      <Badge variant="purple" size="lg" subtle={true}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("purple, lg", () => {
-    const result = render(
-      <Badge variant="purple" size="lg" subtle={false}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("pink, sm, subtle", () => {
-    const result = render(
-      <Badge variant="pink" size="sm" subtle={true}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("pink, sm", () => {
-    const result = render(
-      <Badge variant="pink" size="sm" subtle={false}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("pink, md, subtle", () => {
-    const result = render(
-      <Badge variant="pink" size="md" subtle={true}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("pink, md", () => {
-    const result = render(
-      <Badge variant="pink" size="md" subtle={false}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("pink, lg, subtle", () => {
-    const result = render(
-      <Badge variant="pink" size="lg" subtle={true}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("pink, lg", () => {
-    const result = render(
-      <Badge variant="pink" size="lg" subtle={false}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("mint, sm, subtle", () => {
-    const result = render(
-      <Badge variant="mint" size="sm" subtle={true}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("mint, sm", () => {
-    const result = render(
-      <Badge variant="mint" size="sm" subtle={false}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("mint, md, subtle", () => {
-    const result = render(
-      <Badge variant="mint" size="md" subtle={true}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("mint, md", () => {
-    const result = render(
-      <Badge variant="mint" size="md" subtle={false}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("mint, lg, subtle", () => {
-    const result = render(
-      <Badge variant="mint" size="lg" subtle={true}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("mint, lg", () => {
-    const result = render(
-      <Badge variant="mint" size="lg" subtle={false}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("contrast, sm, subtle", () => {
-    const result = render(
-      <Badge variant="contrast" size="sm" subtle={true}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("contrast, sm", () => {
-    const result = render(
-      <Badge variant="contrast" size="sm" subtle={false}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("contrast, md, subtle", () => {
-    const result = render(
-      <Badge variant="contrast" size="md" subtle={true}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("contrast, md", () => {
-    const result = render(
-      <Badge variant="contrast" size="md" subtle={false}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("contrast, lg, subtle", () => {
-    const result = render(
-      <Badge variant="contrast" size="lg" subtle={true}>
-        Badge Text
-      </Badge>,
-    );
-
-    expect(result.container.firstChild).toMatchSnapshot();
-  });
-
-  test("contrast, lg", () => {
-    const result = render(
-      <Badge variant="contrast" size="lg" subtle={false}>
-        Badge Text
-      </Badge>,
-    );
-
     expect(result.container.firstChild).toMatchSnapshot();
   });
 });
@@ -641,507 +293,188 @@ describe("badge [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    test(`wcag2aaa (accent, sm, subtle, ${theme})`, async () => {
+    // 1 case for each size
+    test(`wcag2aaa (size: sm, ${theme})`, async () => {
       const result = render(
-        <Badge variant="accent" size="sm" subtle={true}>
+        <Badge variant="warning" size="sm">
           Badge Text
         </Badge>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test.todo(`wcag2aaa (accent, sm, ${theme})`);
-
-    test(`wcag2aaa (accent, md, subtle, ${theme})`, async () => {
+    test(`wcag2aaa (size: md, ${theme})`, async () => {
       const result = render(
-        <Badge variant="accent" size="md" subtle={true}>
+        <Badge variant="warning" size="md">
           Badge Text
         </Badge>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test.todo(`wcag2aaa (accent, md, ${theme})`);
-
-    test(`wcag2aaa (accent, lg, subtle, ${theme})`, async () => {
+    test(`wcag2aaa (size: lg, ${theme})`, async () => {
       const result = render(
-        <Badge variant="accent" size="lg" subtle={true}>
+        <Badge variant="warning" size="lg">
           Badge Text
         </Badge>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test.todo(`wcag2aaa (accent, lg, ${theme})`);
+    // 1 case for each variant
+    test.todo(`wcag2aaa (variant: accent, ${theme})`);
 
-    test.todo(`wcag2aaa (success, sm, subtle, ${theme})`);
-
-    test(`wcag2aaa (success, sm, ${theme})`, async () => {
+    test(`wcag2aaa (variant: success, ${theme})`, async () => {
       const result = render(
-        <Badge variant="success" size="sm" subtle={false}>
+        <Badge variant="success" size="md">
           Badge Text
         </Badge>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test.todo(`wcag2aaa (success, md, subtle, ${theme})`);
-
-    test(`wcag2aaa (success, md, ${theme})`, async () => {
+    test(`wcag2aaa (variant: warning, ${theme})`, async () => {
       const result = render(
-        <Badge variant="success" size="md" subtle={false}>
+        <Badge variant="warning" size="md">
           Badge Text
         </Badge>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test.todo(`wcag2aaa (success, lg, subtle, ${theme})`);
-
-    test(`wcag2aaa (success, lg, ${theme})`, async () => {
+    test(`wcag2aaa (variant: danger, ${theme})`, async () => {
       const result = render(
-        <Badge variant="success" size="lg" subtle={false}>
+        <Badge variant="danger" size="md">
           Badge Text
         </Badge>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (warning, sm, subtle, ${theme})`, async () => {
+    test.todo(`wcag2aaa (variant: info, ${theme})`);
+
+    test(`wcag2aaa (variant: purple, ${theme})`, async () => {
       const result = render(
-        <Badge variant="warning" size="sm" subtle={true}>
+        <Badge variant="purple" size="md">
           Badge Text
         </Badge>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (warning, sm, ${theme})`, async () => {
+    test.todo(`wcag2aaa (variant: pink, ${theme})`);
+
+    test(`wcag2aaa (variant: mint, ${theme})`, async () => {
       const result = render(
-        <Badge variant="warning" size="sm" subtle={false}>
+        <Badge variant="mint" size="md">
           Badge Text
         </Badge>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (warning, md, subtle, ${theme})`, async () => {
+    test(`wcag2aaa (variant: contrast, ${theme})`, async () => {
       const result = render(
-        <Badge variant="warning" size="md" subtle={true}>
+        <Badge variant="contrast" size="md">
           Badge Text
         </Badge>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (warning, md, ${theme})`, async () => {
+    // 1 case for each variant + subtle
+    test(`wcag2aaa (variant: accent, subtle, ${theme})`, async () => {
       const result = render(
-        <Badge variant="warning" size="md" subtle={false}>
+        <Badge variant="accent" size="md" subtle>
           Badge Text
         </Badge>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (warning, lg, subtle, ${theme})`, async () => {
+    test.todo(`wcag2aaa (variant: success, subtle, ${theme})`);
+
+    test(`wcag2aaa (variant: warning, subtle, ${theme})`, async () => {
       const result = render(
-        <Badge variant="warning" size="lg" subtle={true}>
+        <Badge variant="warning" size="md" subtle>
           Badge Text
         </Badge>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (warning, lg, ${theme})`, async () => {
+    test(`wcag2aaa (variant: danger, subtle, ${theme})`, async () => {
       const result = render(
-        <Badge variant="warning" size="lg" subtle={false}>
+        <Badge variant="danger" size="md" subtle>
           Badge Text
         </Badge>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (danger, sm, subtle, ${theme})`, async () => {
+    test.todo(`wcag2aaa (variant: info, subtle, ${theme})`);
+
+    test(`wcag2aaa (variant: purple, subtle, ${theme})`, async () => {
       const result = render(
-        <Badge variant="danger" size="sm" subtle={true}>
+        <Badge variant="purple" size="md" subtle>
           Badge Text
         </Badge>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (danger, sm, ${theme})`, async () => {
+    test.todo(`wcag2aaa (variant: pink, subtle, ${theme})`);
+
+    test.todo(`wcag2aaa (variant: mint, subtle, ${theme})`);
+
+    test(`wcag2aaa (variant: contrast, subtle, ${theme})`, async () => {
       const result = render(
-        <Badge variant="danger" size="sm" subtle={false}>
+        <Badge variant="contrast" size="md" subtle>
           Badge Text
         </Badge>,
       );
 
       expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (danger, md, subtle, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="danger" size="md" subtle={true}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (danger, md, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="danger" size="md" subtle={false}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (danger, lg, subtle, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="danger" size="lg" subtle={true}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (danger, lg, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="danger" size="lg" subtle={false}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test.todo(`wcag2aaa (info, sm, subtle, ${theme})`);
-
-    test.todo(`wcag2aaa (info, sm, ${theme})`);
-
-    test.todo(`wcag2aaa (info, md, subtle, ${theme})`);
-
-    test.todo(`wcag2aaa (info, md, ${theme})`);
-
-    test.todo(`wcag2aaa (info, lg, subtle, ${theme})`);
-
-    test.todo(`wcag2aaa (info, lg, ${theme})`);
-
-    test(`wcag2aaa (purple, sm, subtle, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="purple" size="sm" subtle={true}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (purple, sm, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="purple" size="sm" subtle={false}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (purple, md, subtle, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="purple" size="md" subtle={true}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (purple, md, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="purple" size="md" subtle={false}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (purple, lg, subtle, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="purple" size="lg" subtle={true}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (purple, lg, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="purple" size="lg" subtle={false}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test.todo(`wcag2aaa (pink, sm, subtle, ${theme})`);
-
-    test.todo(`wcag2aaa (pink, sm, ${theme})`);
-
-    test.todo(`wcag2aaa (pink, md, subtle, ${theme})`);
-
-    test.todo(`wcag2aaa (pink, md, ${theme})`);
-
-    test.todo(`wcag2aaa (pink, lg, subtle, ${theme})`);
-
-    test.todo(`wcag2aaa (pink, lg, ${theme})`);
-
-    test.todo(`wcag2aaa (mint, sm, subtle, ${theme})`);
-
-    test(`wcag2aaa (mint, sm, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="mint" size="sm" subtle={false}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test.todo(`wcag2aaa (mint, md, subtle, ${theme})`);
-
-    test(`wcag2aaa (mint, md, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="mint" size="md" subtle={false}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test.todo(`wcag2aaa (mint, lg, subtle, ${theme})`);
-
-    test(`wcag2aaa (mint, lg, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="mint" size="lg" subtle={false}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (contrast, sm, subtle, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="contrast" size="sm" subtle={true}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (contrast, sm, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="contrast" size="sm" subtle={false}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (contrast, md, subtle, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="contrast" size="md" subtle={true}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (contrast, md, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="contrast" size="md" subtle={false}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (contrast, lg, subtle, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="contrast" size="lg" subtle={true}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test(`wcag2aaa (contrast, lg, ${theme})`, async () => {
-      const result = render(
-        <Badge variant="contrast" size="lg" subtle={false}>
-          Badge Text
-        </Badge>,
-      );
-
-      expect(
-        await axe.run(result.container, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
   });
