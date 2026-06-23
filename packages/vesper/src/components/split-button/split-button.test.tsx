@@ -176,6 +176,16 @@ describe("split-button [unit]", () => {
     );
     expect(document.querySelector(".vesper-menu")).toHaveStyle("width: 300px;");
   });
+
+  test("keydown on action button does not open menu", async () => {
+    const result = render(
+      <SplitButton menuItems={MENU_ITEMS}>button text</SplitButton>,
+    );
+
+    const [actionButton] = within(result.container).getAllByRole("button");
+    fireEvent.keyDown(actionButton!, { key: "Enter" });
+    expect(document.querySelector(".vesper-menu")).toBeNull();
+  });
 });
 
 describe("split-button [snapshot]", () => {
