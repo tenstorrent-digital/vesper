@@ -22,7 +22,10 @@ export type ToggleOption =
     }
   | { value: string; icon: ReactNode; ariaLabel?: string };
 
-export interface ToggleProps extends Omit<ToggleGroupSingleProps, "type"> {
+export interface ToggleProps extends Omit<
+  ToggleGroupSingleProps,
+  "type" | "disabled"
+> {
   options: ToggleOption[];
   size?: ToggleSize;
 }
