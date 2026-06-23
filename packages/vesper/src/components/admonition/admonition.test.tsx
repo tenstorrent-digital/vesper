@@ -161,7 +161,7 @@ describe("admonition [a11y]", () => {
         (p) => p.size === size && p.variant === variant && p.subtle === subtle,
       );
 
-      if (failsA11y) test.todo(label);
+      if (failsA11y) test.todo(label, testFn);
       else test(label, testFn);
     });
   });
