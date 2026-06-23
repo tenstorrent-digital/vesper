@@ -58,16 +58,18 @@ const MENU_ITEMS: MenuItemProps[] = [
 
 const SPLIT_BUTTON_PERMUTATIONS = SPLIT_BUTTON_VARIANTS.flatMap((variant) =>
   SPLIT_BUTTON_SIZES.flatMap((size): SplitButtonProps[] => [
-    { size, variant, disabled: false, menuItems: MENU_ITEMS },
-    { size, variant, disabled: true, menuItems: MENU_ITEMS },
+    { size, variant, disabled: false, menuItems: MENU_ITEMS, menuOpen: false },
+    { size, variant, disabled: false, menuItems: MENU_ITEMS, menuOpen: true },
+    { size, variant, disabled: true, menuItems: MENU_ITEMS, menuOpen: false },
+    { size, variant, disabled: true, menuItems: MENU_ITEMS, menuOpen: true },
   ]),
 );
 
 const SPLIT_BUTTON_A11Y_FAILING_PERMUTATIONS: SplitButtonProps[] =
   SPLIT_BUTTON_VARIANTS.flatMap((variant) =>
-    SPLIT_BUTTON_SIZES.flatMap((size) => [
-      { size, variant, disabled: false, menuItems: MENU_ITEMS },
-      { size, variant, disabled: true, menuItems: MENU_ITEMS },
+    SPLIT_BUTTON_SIZES.flatMap((size): SplitButtonProps[] => [
+      { size, variant, disabled: false, menuItems: MENU_ITEMS, menuOpen: true },
+      { size, variant, disabled: true, menuItems: MENU_ITEMS, menuOpen: true },
     ]),
   );
 
@@ -200,9 +202,13 @@ describe("split-button [unit]", () => {
 
 describe("split-button [snapshot]", () => {
   SPLIT_BUTTON_PERMUTATIONS.forEach((permutation) => {
-    const { disabled, variant, size } = permutation;
+    const { disabled, variant, size, menuOpen } = permutation;
+    const testName =
+      ["wcag2aaa (" + variant, size, disabled && "disabled", menuOpen && "open"]
+        .filter(Boolean)
+        .join(", ") + ")";
 
-    test(`${variant}, ${size}${disabled ? ", disabled" : ""}`, () => {
+    test(testName, () => {
       const result = render(
         <SplitButton {...permutation}>button text</SplitButton>,
       );
@@ -222,15 +228,26 @@ describe("split-button [a11y]", () => {
     });
 
     SPLIT_BUTTON_PERMUTATIONS.forEach((permutation) => {
-      const { disabled, variant, size } = permutation;
-      const testName = `wcag2aaa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`;
+      const { disabled, variant, size, menuOpen } = permutation;
+      const testName = [
+        "wcag2aaa (" + variant,
+        size,
+        disabled && "disabled",
+        menuOpen && "open",
+        theme + ")",
+      ]
+        .filter(Boolean)
+        .join(", ");
 
       const failsA11y = SPLIT_BUTTON_A11Y_FAILING_PERMUTATIONS.some(
         (p) =>
-          p.size === size && p.variant === variant && p.disabled === disabled,
+          p.size === size &&
+          p.variant === variant &&
+          p.disabled === disabled &&
+          p.menuOpen === menuOpen,
       );
 
-      const testFnMenuClosed = async () => {
+      const testFn = async () => {
         const result = render(
           <SplitButton {...permutation}>button text</SplitButton>,
         );
@@ -242,31 +259,8 @@ describe("split-button [a11y]", () => {
         ).toHaveNoViolations();
       };
 
-      const testFnMenuOpen = async () => {
-        const result = render(
-          <SplitButton {...permutation} menuOpen>
-            button text
-          </SplitButton>,
-        );
-
-        await waitFor(() =>
-          expect(document.querySelector(".vesper-menu")).not.toBeNull(),
-        );
-
-        expect(
-          await axe.run(result.container.ownerDocument, {
-            runOnly: "wcag2aaa",
-          }),
-        ).toHaveNoViolations();
-      };
-
-      if (failsA11y) {
-        test.todo(testName, testFnMenuClosed);
-        test.todo(`${testName} (menu open)`, testFnMenuOpen);
-      } else {
-        test(testName, testFnMenuClosed);
-        test(`${testName} (menu open)`, testFnMenuOpen);
-      }
+      if (failsA11y) test.todo(testName, testFn);
+      else test(testName, testFn);
     });
   });
 });
