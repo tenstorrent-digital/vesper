@@ -103,89 +103,110 @@ describe("admonition [unit]", () => {
 });
 
 describe("admonition [snapshot]", () => {
-  // 1 case for each size
   test("size: sm", () => {
     const result = render(
-      <Admonition variant="warning" size="sm">content</Admonition>,
+      <Admonition variant="warning" size="sm">
+        content
+      </Admonition>,
     );
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
   test("size: md", () => {
     const result = render(
-      <Admonition variant="warning" size="md">content</Admonition>,
+      <Admonition variant="warning" size="md">
+        content
+      </Admonition>,
     );
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  // 1 case for each variant
   test("variant: info", () => {
     const result = render(
-      <Admonition variant="info" size="md">content</Admonition>,
+      <Admonition variant="info" size="md">
+        content
+      </Admonition>,
     );
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
   test("variant: success", () => {
     const result = render(
-      <Admonition variant="success" size="md">content</Admonition>,
+      <Admonition variant="success" size="md">
+        content
+      </Admonition>,
     );
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
   test("variant: warning", () => {
     const result = render(
-      <Admonition variant="warning" size="md">content</Admonition>,
+      <Admonition variant="warning" size="md">
+        content
+      </Admonition>,
     );
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
   test("variant: danger", () => {
     const result = render(
-      <Admonition variant="danger" size="md">content</Admonition>,
+      <Admonition variant="danger" size="md">
+        content
+      </Admonition>,
     );
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
   test("variant: secondary", () => {
     const result = render(
-      <Admonition variant="secondary" size="md">content</Admonition>,
+      <Admonition variant="secondary" size="md">
+        content
+      </Admonition>,
     );
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  // 1 case for each variant + subtle
   test("variant: info, subtle", () => {
     const result = render(
-      <Admonition variant="info" size="md" subtle>content</Admonition>,
+      <Admonition variant="info" size="md" subtle>
+        content
+      </Admonition>,
     );
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
   test("variant: success, subtle", () => {
     const result = render(
-      <Admonition variant="success" size="md" subtle>content</Admonition>,
+      <Admonition variant="success" size="md" subtle>
+        content
+      </Admonition>,
     );
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
   test("variant: warning, subtle", () => {
     const result = render(
-      <Admonition variant="warning" size="md" subtle>content</Admonition>,
+      <Admonition variant="warning" size="md" subtle>
+        content
+      </Admonition>,
     );
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
   test("variant: danger, subtle", () => {
     const result = render(
-      <Admonition variant="danger" size="md" subtle>content</Admonition>,
+      <Admonition variant="danger" size="md" subtle>
+        content
+      </Admonition>,
     );
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
   test("variant: secondary, subtle", () => {
     const result = render(
-      <Admonition variant="secondary" size="md" subtle>content</Admonition>,
+      <Admonition variant="secondary" size="md" subtle>
+        content
+      </Admonition>,
     );
     expect(result.container.firstChild).toMatchSnapshot();
   });
@@ -201,10 +222,11 @@ describe("admonition [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    // 1 case for each size
     test(`wcag2aaa (size: sm, ${theme})`, async () => {
       const result = render(
-        <Admonition variant="warning" size="sm">content</Admonition>,
+        <Admonition variant="warning" size="sm">
+          content
+        </Admonition>,
       );
 
       expect(
@@ -214,7 +236,9 @@ describe("admonition [a11y]", () => {
 
     test(`wcag2aaa (size: md, ${theme})`, async () => {
       const result = render(
-        <Admonition variant="warning" size="md">content</Admonition>,
+        <Admonition variant="warning" size="md">
+          content
+        </Admonition>,
       );
 
       expect(
@@ -222,14 +246,15 @@ describe("admonition [a11y]", () => {
       ).toHaveNoViolations();
     });
 
-    // 1 case for each variant
     test.todo(`wcag2aaa (variant: info, ${theme})`);
 
     test.todo(`wcag2aaa (variant: success, ${theme})`);
 
     test(`wcag2aaa (variant: warning, ${theme})`, async () => {
       const result = render(
-        <Admonition variant="warning" size="md">content</Admonition>,
+        <Admonition variant="warning" size="md">
+          content
+        </Admonition>,
       );
 
       expect(
@@ -239,7 +264,9 @@ describe("admonition [a11y]", () => {
 
     test(`wcag2aaa (variant: danger, ${theme})`, async () => {
       const result = render(
-        <Admonition variant="danger" size="md">content</Admonition>,
+        <Admonition variant="danger" size="md">
+          content
+        </Admonition>,
       );
 
       expect(
@@ -249,7 +276,9 @@ describe("admonition [a11y]", () => {
 
     test(`wcag2aaa (variant: secondary, ${theme})`, async () => {
       const result = render(
-        <Admonition variant="secondary" size="md">content</Admonition>,
+        <Admonition variant="secondary" size="md">
+          content
+        </Admonition>,
       );
 
       expect(
@@ -257,12 +286,13 @@ describe("admonition [a11y]", () => {
       ).toHaveNoViolations();
     });
 
-    // 1 case for each variant + subtle
     test.todo(`wcag2aaa (variant: info, subtle, ${theme})`);
 
     test(`wcag2aaa (variant: success, subtle, ${theme})`, async () => {
       const result = render(
-        <Admonition variant="success" size="md" subtle>content</Admonition>,
+        <Admonition variant="success" size="md" subtle>
+          content
+        </Admonition>,
       );
 
       expect(
@@ -272,7 +302,9 @@ describe("admonition [a11y]", () => {
 
     test(`wcag2aaa (variant: warning, subtle, ${theme})`, async () => {
       const result = render(
-        <Admonition variant="warning" size="md" subtle>content</Admonition>,
+        <Admonition variant="warning" size="md" subtle>
+          content
+        </Admonition>,
       );
 
       expect(
@@ -284,7 +316,9 @@ describe("admonition [a11y]", () => {
 
     test(`wcag2aaa (variant: secondary, subtle, ${theme})`, async () => {
       const result = render(
-        <Admonition variant="secondary" size="md" subtle>content</Admonition>,
+        <Admonition variant="secondary" size="md" subtle>
+          content
+        </Admonition>,
       );
 
       expect(

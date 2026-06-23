@@ -189,7 +189,6 @@ describe("split-button [unit]", () => {
 });
 
 describe("split-button [snapshot]", () => {
-  // 1 case for each variant
   test("variant: subtle", () => {
     const result = render(
       <SplitButton variant="subtle" size="md" menuItems={MENU_ITEMS}>
@@ -208,7 +207,6 @@ describe("split-button [snapshot]", () => {
     expect(result.container).toMatchSnapshot();
   });
 
-  // 1 case for each size
   test("size: sm", () => {
     const result = render(
       <SplitButton variant="subtle" size="sm" menuItems={MENU_ITEMS}>
@@ -236,7 +234,6 @@ describe("split-button [snapshot]", () => {
     expect(result.container).toMatchSnapshot();
   });
 
-  // 1 case for disabled
   test("disabled", () => {
     const result = render(
       <SplitButton variant="subtle" size="md" menuItems={MENU_ITEMS} disabled>
@@ -257,7 +254,6 @@ describe("split-button [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    // 1 case for each variant
     test(`wcag2aaa (variant: subtle, ${theme})`, async () => {
       const result = render(
         <SplitButton variant="subtle" size="md" menuItems={MENU_ITEMS}>
@@ -286,7 +282,6 @@ describe("split-button [a11y]", () => {
 
     test.todo(`wcag2aaa (variant: contrast, open, ${theme})`);
 
-    // 1 case for each size
     test(`wcag2aaa (size: sm, ${theme})`, async () => {
       const result = render(
         <SplitButton variant="subtle" size="sm" menuItems={MENU_ITEMS}>
@@ -329,7 +324,6 @@ describe("split-button [a11y]", () => {
 
     test.todo(`wcag2aaa (size: lg, open, ${theme})`);
 
-    // 1 case for disabled
     test(`wcag2aaa (disabled, ${theme})`, async () => {
       const result = render(
         <SplitButton variant="subtle" size="md" menuItems={MENU_ITEMS} disabled>

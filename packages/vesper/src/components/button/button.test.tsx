@@ -141,7 +141,6 @@ describe("button [unit]", () => {
 });
 
 describe("button [snapshot]", () => {
-  // 1 case for each variant
   test("variant: contrast", () => {
     const result = render(
       <Button variant="contrast" size="md">
@@ -205,7 +204,6 @@ describe("button [snapshot]", () => {
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  // 1 case for each size
   test("size: xs", () => {
     const result = render(
       <Button variant="contrast" size="xs">
@@ -242,7 +240,6 @@ describe("button [snapshot]", () => {
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  // 1 case for disabled
   test("disabled", () => {
     const result = render(
       <Button variant="primary" size="md" disabled>
@@ -263,7 +260,6 @@ describe("button [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    // 1 case for each variant
     test(`wcag2aaa (variant: contrast, ${theme})`, async () => {
       const result = render(
         <Button variant="contrast" size="md">
@@ -338,7 +334,6 @@ describe("button [a11y]", () => {
       ).toHaveNoViolations();
     });
 
-    // 1 case for each size
     test(`wcag2aaa (size: xs, ${theme})`, async () => {
       const result = render(
         <Button variant="contrast" size="xs">
@@ -387,7 +382,6 @@ describe("button [a11y]", () => {
       ).toHaveNoViolations();
     });
 
-    // 1 case for disabled
     test(`wcag2aaa (disabled, ${theme})`, async () => {
       const result = render(
         <Button variant="primary" size="md" disabled>

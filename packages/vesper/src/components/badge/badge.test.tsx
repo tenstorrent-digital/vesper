@@ -90,7 +90,6 @@ describe("badge [unit]", () => {
 });
 
 describe("badge [snapshot]", () => {
-  // 1 case for each size
   test("size: sm", () => {
     const result = render(
       <Badge variant="warning" size="sm">
@@ -118,7 +117,6 @@ describe("badge [snapshot]", () => {
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  // 1 case for each variant
   test("variant: accent", () => {
     const result = render(
       <Badge variant="accent" size="md">
@@ -200,7 +198,6 @@ describe("badge [snapshot]", () => {
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  // 1 case for each variant + subtle
   test("variant: accent, subtle", () => {
     const result = render(
       <Badge variant="accent" size="md" subtle>
@@ -293,7 +290,6 @@ describe("badge [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    // 1 case for each size
     test(`wcag2aaa (size: sm, ${theme})`, async () => {
       const result = render(
         <Badge variant="warning" size="sm">
@@ -330,7 +326,6 @@ describe("badge [a11y]", () => {
       ).toHaveNoViolations();
     });
 
-    // 1 case for each variant
     test.todo(`wcag2aaa (variant: accent, ${theme})`);
 
     test(`wcag2aaa (variant: success, ${theme})`, async () => {
@@ -409,7 +404,6 @@ describe("badge [a11y]", () => {
       ).toHaveNoViolations();
     });
 
-    // 1 case for each variant + subtle
     test(`wcag2aaa (variant: accent, subtle, ${theme})`, async () => {
       const result = render(
         <Badge variant="accent" size="md" subtle>

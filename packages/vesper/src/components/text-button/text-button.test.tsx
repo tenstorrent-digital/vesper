@@ -132,7 +132,6 @@ describe("text-button [unit]", () => {
 });
 
 describe("text-button [snapshot]", () => {
-  // 1 case for each variant
   test("variant: subtle", () => {
     const result = render(
       <TextButton variant="subtle" size="md">
@@ -214,7 +213,6 @@ describe("text-button [snapshot]", () => {
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  // 1 case for each size
   test("size: sm", () => {
     const result = render(
       <TextButton variant="contrast" size="sm">
@@ -242,7 +240,6 @@ describe("text-button [snapshot]", () => {
     expect(result.container.firstChild).toMatchSnapshot();
   });
 
-  // 1 case for disabled
   test("disabled", () => {
     const result = render(
       <TextButton variant="accent" size="md" disabled>
@@ -264,8 +261,6 @@ describe("text-button [a11y]", () => {
         document.documentElement.removeAttribute("data-vesper-theme");
       });
 
-      // 1 case for each variant
-      // subtle: todo in dark
       if (theme === "dark") {
         test.todo(`wcag2aaa (variant: subtle, ${theme})`);
       } else {
@@ -294,7 +289,6 @@ describe("text-button [a11y]", () => {
         ).toHaveNoViolations();
       });
 
-      // accent, success, warning, danger: todo in light
       if (theme === "light") {
         test.todo(`wcag2aaa (variant: accent, ${theme})`);
         test.todo(`wcag2aaa (variant: success, ${theme})`);
@@ -386,7 +380,6 @@ describe("text-button [a11y]", () => {
         ).toHaveNoViolations();
       });
 
-      // 1 case for each size
       test(`wcag2aaa (size: sm, ${theme})`, async () => {
         const result = render(
           <TextButton variant="contrast" size="sm">
@@ -423,7 +416,6 @@ describe("text-button [a11y]", () => {
         ).toHaveNoViolations();
       });
 
-      // 1 case for disabled
       test(`wcag2aaa (disabled, ${theme})`, async () => {
         const result = render(
           <TextButton variant="accent" size="md" disabled>
