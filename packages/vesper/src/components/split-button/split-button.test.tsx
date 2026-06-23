@@ -179,25 +179,8 @@ describe("split-button [unit]", () => {
 });
 
 describe("split-button [snapshot]", () => {
-  test("subtle, sm", () => {
-    const result = render(
-      <SplitButton variant="subtle" size="sm" menuItems={MENU_ITEMS}>
-        button text
-      </SplitButton>,
-    );
-    expect(result.container).toMatchSnapshot();
-  });
-
-  test("subtle, sm, disabled", () => {
-    const result = render(
-      <SplitButton variant="subtle" size="sm" disabled menuItems={MENU_ITEMS}>
-        button text
-      </SplitButton>,
-    );
-    expect(result.container).toMatchSnapshot();
-  });
-
-  test("subtle, md", () => {
+  // 1 case for each variant
+  test("variant: subtle", () => {
     const result = render(
       <SplitButton variant="subtle" size="md" menuItems={MENU_ITEMS}>
         button text
@@ -206,52 +189,7 @@ describe("split-button [snapshot]", () => {
     expect(result.container).toMatchSnapshot();
   });
 
-  test("subtle, md, disabled", () => {
-    const result = render(
-      <SplitButton variant="subtle" size="md" disabled menuItems={MENU_ITEMS}>
-        button text
-      </SplitButton>,
-    );
-    expect(result.container).toMatchSnapshot();
-  });
-
-  test("subtle, lg", () => {
-    const result = render(
-      <SplitButton variant="subtle" size="lg" menuItems={MENU_ITEMS}>
-        button text
-      </SplitButton>,
-    );
-    expect(result.container).toMatchSnapshot();
-  });
-
-  test("subtle, lg, disabled", () => {
-    const result = render(
-      <SplitButton variant="subtle" size="lg" disabled menuItems={MENU_ITEMS}>
-        button text
-      </SplitButton>,
-    );
-    expect(result.container).toMatchSnapshot();
-  });
-
-  test("contrast, sm", () => {
-    const result = render(
-      <SplitButton variant="contrast" size="sm" menuItems={MENU_ITEMS}>
-        button text
-      </SplitButton>,
-    );
-    expect(result.container).toMatchSnapshot();
-  });
-
-  test("contrast, sm, disabled", () => {
-    const result = render(
-      <SplitButton variant="contrast" size="sm" disabled menuItems={MENU_ITEMS}>
-        button text
-      </SplitButton>,
-    );
-    expect(result.container).toMatchSnapshot();
-  });
-
-  test("contrast, md", () => {
+  test("variant: contrast", () => {
     const result = render(
       <SplitButton variant="contrast" size="md" menuItems={MENU_ITEMS}>
         button text
@@ -260,27 +198,38 @@ describe("split-button [snapshot]", () => {
     expect(result.container).toMatchSnapshot();
   });
 
-  test("contrast, md, disabled", () => {
+  // 1 case for each size
+  test("size: sm", () => {
     const result = render(
-      <SplitButton variant="contrast" size="md" disabled menuItems={MENU_ITEMS}>
+      <SplitButton variant="subtle" size="sm" menuItems={MENU_ITEMS}>
         button text
       </SplitButton>,
     );
     expect(result.container).toMatchSnapshot();
   });
 
-  test("contrast, lg", () => {
+  test("size: md", () => {
     const result = render(
-      <SplitButton variant="contrast" size="lg" menuItems={MENU_ITEMS}>
+      <SplitButton variant="subtle" size="md" menuItems={MENU_ITEMS}>
         button text
       </SplitButton>,
     );
     expect(result.container).toMatchSnapshot();
   });
 
-  test("contrast, lg, disabled", () => {
+  test("size: lg", () => {
     const result = render(
-      <SplitButton variant="contrast" size="lg" disabled menuItems={MENU_ITEMS}>
+      <SplitButton variant="subtle" size="lg" menuItems={MENU_ITEMS}>
+        button text
+      </SplitButton>,
+    );
+    expect(result.container).toMatchSnapshot();
+  });
+
+  // 1 case for disabled
+  test("disabled", () => {
+    const result = render(
+      <SplitButton variant="subtle" size="md" menuItems={MENU_ITEMS} disabled>
         button text
       </SplitButton>,
     );
@@ -298,39 +247,8 @@ describe("split-button [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    test(`wcag2aaa (subtle, sm, ${theme})`, async () => {
-      const result = render(
-        <SplitButton variant="subtle" size="sm" menuItems={MENU_ITEMS}>
-          button text
-        </SplitButton>,
-      );
-
-      expect(
-        await axe.run(result.container.ownerDocument, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test.todo(`wcag2aaa (subtle, sm, ${theme}, open)`);
-
-    test(`wcag2aaa (subtle, sm, disabled, ${theme})`, async () => {
-      const result = render(
-        <SplitButton variant="subtle" size="sm" disabled menuItems={MENU_ITEMS}>
-          button text
-        </SplitButton>,
-      );
-
-      expect(
-        await axe.run(result.container.ownerDocument, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test.todo(`wcag2aaa (subtle, sm, disabled, ${theme}, open)`);
-
-    test(`wcag2aaa (subtle, md, ${theme})`, async () => {
+    // 1 case for each variant
+    test(`wcag2aaa (variant: subtle, ${theme})`, async () => {
       const result = render(
         <SplitButton variant="subtle" size="md" menuItems={MENU_ITEMS}>
           button text
@@ -338,100 +256,13 @@ describe("split-button [a11y]", () => {
       );
 
       expect(
-        await axe.run(result.container.ownerDocument, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container.ownerDocument, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test.todo(`wcag2aaa (subtle, md, ${theme}, open)`);
+    test.todo(`wcag2aaa (variant: subtle, open, ${theme})`);
 
-    test(`wcag2aaa (subtle, md, disabled, ${theme})`, async () => {
-      const result = render(
-        <SplitButton variant="subtle" size="md" disabled menuItems={MENU_ITEMS}>
-          button text
-        </SplitButton>,
-      );
-
-      expect(
-        await axe.run(result.container.ownerDocument, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test.todo(`wcag2aaa (subtle, md, disabled, ${theme}, open)`);
-
-    test(`wcag2aaa (subtle, lg, ${theme})`, async () => {
-      const result = render(
-        <SplitButton variant="subtle" size="lg" menuItems={MENU_ITEMS}>
-          button text
-        </SplitButton>,
-      );
-
-      expect(
-        await axe.run(result.container.ownerDocument, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test.todo(`wcag2aaa (subtle, lg, ${theme}, open)`);
-
-    test(`wcag2aaa (subtle, lg, disabled, ${theme})`, async () => {
-      const result = render(
-        <SplitButton variant="subtle" size="lg" disabled menuItems={MENU_ITEMS}>
-          button text
-        </SplitButton>,
-      );
-
-      expect(
-        await axe.run(result.container.ownerDocument, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test.todo(`wcag2aaa (subtle, lg, disabled, ${theme}, open)`);
-
-    test(`wcag2aaa (contrast, sm, ${theme})`, async () => {
-      const result = render(
-        <SplitButton variant="contrast" size="sm" menuItems={MENU_ITEMS}>
-          button text
-        </SplitButton>,
-      );
-
-      expect(
-        await axe.run(result.container.ownerDocument, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test.todo(`wcag2aaa (contrast, sm, ${theme}, open)`);
-
-    test(`wcag2aaa (contrast, sm, disabled, ${theme})`, async () => {
-      const result = render(
-        <SplitButton
-          variant="contrast"
-          size="sm"
-          disabled
-          menuItems={MENU_ITEMS}
-        >
-          button text
-        </SplitButton>,
-      );
-
-      expect(
-        await axe.run(result.container.ownerDocument, {
-          runOnly: "wcag2aaa",
-        }),
-      ).toHaveNoViolations();
-    });
-
-    test.todo(`wcag2aaa (contrast, sm, disabled, ${theme}, open)`);
-
-    test(`wcag2aaa (contrast, md, ${theme})`, async () => {
+    test(`wcag2aaa (variant: contrast, ${theme})`, async () => {
       const result = render(
         <SplitButton variant="contrast" size="md" menuItems={MENU_ITEMS}>
           button text
@@ -439,70 +270,68 @@ describe("split-button [a11y]", () => {
       );
 
       expect(
-        await axe.run(result.container.ownerDocument, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container.ownerDocument, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test.todo(`wcag2aaa (contrast, md, ${theme}, open)`);
+    test.todo(`wcag2aaa (variant: contrast, open, ${theme})`);
 
-    test(`wcag2aaa (contrast, md, disabled, ${theme})`, async () => {
+    // 1 case for each size
+    test(`wcag2aaa (size: sm, ${theme})`, async () => {
       const result = render(
-        <SplitButton
-          variant="contrast"
-          size="md"
-          disabled
-          menuItems={MENU_ITEMS}
-        >
+        <SplitButton variant="subtle" size="sm" menuItems={MENU_ITEMS}>
           button text
         </SplitButton>,
       );
 
       expect(
-        await axe.run(result.container.ownerDocument, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container.ownerDocument, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test.todo(`wcag2aaa (contrast, md, disabled, ${theme}, open)`);
+    test.todo(`wcag2aaa (size: sm, open, ${theme})`);
 
-    test(`wcag2aaa (contrast, lg, ${theme})`, async () => {
+    test(`wcag2aaa (size: md, ${theme})`, async () => {
       const result = render(
-        <SplitButton variant="contrast" size="lg" menuItems={MENU_ITEMS}>
+        <SplitButton variant="subtle" size="md" menuItems={MENU_ITEMS}>
           button text
         </SplitButton>,
       );
 
       expect(
-        await axe.run(result.container.ownerDocument, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container.ownerDocument, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test.todo(`wcag2aaa (contrast, lg, ${theme}, open)`);
+    test.todo(`wcag2aaa (size: md, open, ${theme})`);
 
-    test(`wcag2aaa (contrast, lg, disabled, ${theme})`, async () => {
+    test(`wcag2aaa (size: lg, ${theme})`, async () => {
       const result = render(
-        <SplitButton
-          variant="contrast"
-          size="lg"
-          disabled
-          menuItems={MENU_ITEMS}
-        >
+        <SplitButton variant="subtle" size="lg" menuItems={MENU_ITEMS}>
           button text
         </SplitButton>,
       );
 
       expect(
-        await axe.run(result.container.ownerDocument, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container.ownerDocument, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
     });
 
-    test.todo(`wcag2aaa (contrast, lg, disabled, ${theme}, open)`);
+    test.todo(`wcag2aaa (size: lg, open, ${theme})`);
+
+    // 1 case for disabled
+    test(`wcag2aaa (disabled, ${theme})`, async () => {
+      const result = render(
+        <SplitButton variant="subtle" size="md" menuItems={MENU_ITEMS} disabled>
+          button text
+        </SplitButton>,
+      );
+
+      expect(
+        await axe.run(result.container.ownerDocument, { runOnly: "wcag2aaa" }),
+      ).toHaveNoViolations();
+    });
+
+    test.todo(`wcag2aaa (disabled, open, ${theme})`);
   });
 });
