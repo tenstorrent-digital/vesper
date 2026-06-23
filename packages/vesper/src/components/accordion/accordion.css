@@ -35,6 +35,8 @@
     content: "";
   }
   &:focus-visible {
+    outline: none;
+    box-shadow: none;
     &::before {
       box-shadow: var(--vesper-shadow-focus-ring);
     }
