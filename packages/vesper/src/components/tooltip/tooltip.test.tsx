@@ -211,7 +211,7 @@ describe("tooltip [snapshot]", () => {
       </Tooltip>,
     );
 
-    expect(result.container).toMatchSnapshot();
+    expect(result.container.querySelector(".vesper-tooltip")).toMatchSnapshot();
   });
 
   test("closed", async () => {
