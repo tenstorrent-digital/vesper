@@ -28,6 +28,7 @@ export function Switch({
   size = "md",
   label,
   className,
+  required,
   ...props
 }: SwitchProps) {
   const switchEl = (
@@ -40,10 +41,13 @@ export function Switch({
   );
 
   if (label) {
+    let labelText = label;
+    if (required) labelText += " *";
+
     return (
       <label className="vesper-switch-label">
         {switchEl}
-        <Typography variant={SWITCH_TYPOGRAPHY[size]}>{label}</Typography>
+        <Typography variant={SWITCH_TYPOGRAPHY[size]}>{labelText}</Typography>
       </label>
     );
   }
