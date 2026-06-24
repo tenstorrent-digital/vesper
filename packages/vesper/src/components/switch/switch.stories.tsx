@@ -18,6 +18,7 @@ export const Playground: Story = {
   args: {
     size: "md",
     label: "Label",
+    disabled: false,
   },
 };
 Playground.storyName = "switch";
