@@ -2,7 +2,7 @@ import { render, cleanup } from "@testing-library/react";
 import { beforeEach, afterEach, describe, expect, test } from "vitest";
 import axe from "axe-core";
 
-import { Switch } from "@/components/switch/switch";
+import { Switch, SWITCH_SIZES } from "@/components/switch/switch";
 
 import "@/styles/test.css";
 
@@ -16,9 +16,43 @@ describe("switch [unit]", () => {
 });
 
 describe("switch [snapshot]", () => {
-  test("renders correctly", async () => {
-    const { container } = render(<Switch />);
+  test("sm", async () => {
+    const { container } = render(<Switch size="sm" />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
 
+  test("sm, with label", async () => {
+    const { container } = render(<Switch size="sm" label="Label" />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("sm, disabled", async () => {
+    const { container } = render(<Switch size="sm" disabled />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("sm, disabled, with label", async () => {
+    const { container } = render(<Switch size="sm" disabled label="Label" />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("md", async () => {
+    const { container } = render(<Switch size="md" />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("md, with label", async () => {
+    const { container } = render(<Switch size="md" label="Label" />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("md, disabled", async () => {
+    const { container } = render(<Switch size="md" disabled />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test("sm, disabled, with label", async () => {
+    const { container } = render(<Switch size="sm" disabled label="Label" />);
     expect(container.firstChild).toMatchSnapshot();
   });
 });
@@ -33,12 +67,14 @@ describe("switch [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    test(`wcag2aaa (${theme})`, async () => {
-      const { container } = render(<Switch />);
+    SWITCH_SIZES.forEach((size) => {
+      test(`wcag2aaa (${size}, ${theme})`, async () => {
+        const { container } = render(<Switch size={size} label="Label" />);
 
-      expect(
-        await axe.run(container, { runOnly: "wcag2aaa" }),
-      ).toHaveNoViolations();
+        expect(
+          await axe.run(container, { runOnly: "wcag2aaa" }),
+        ).toHaveNoViolations();
+      });
     });
   });
 });
