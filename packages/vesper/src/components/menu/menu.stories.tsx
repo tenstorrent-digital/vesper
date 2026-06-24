@@ -52,6 +52,7 @@ export const Playground: Story = {
       },
     ],
     width: 200,
+    defaultOpen: true,
   },
   render: (props) => (
     <Menu {...props}>

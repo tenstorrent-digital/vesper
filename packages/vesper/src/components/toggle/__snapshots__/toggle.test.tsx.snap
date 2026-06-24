@@ -1,0 +1,160 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`toggle [snapshot] > icon options 1`] = `
+<div
+  class="vesper-toggle vesper-toggle-lg"
+  dir="ltr"
+  role="radiogroup"
+  style="outline: none;"
+  tabindex="0"
+>
+  <button
+    aria-checked="false"
+    aria-label="aria-label A"
+    class="vesper-typography vesper-typography-label-lg vesper-toggle-item"
+    data-radix-collection-item=""
+    data-state="off"
+    role="radio"
+    tabindex="-1"
+    type="button"
+  >
+    <span
+      class="vesper-toggle-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M21 9V15L16 21H8L3 15V9L8 3H16L21 9ZM8.43652 20H9.25684L7.53711 15.7676L7.5 15.6768V15.5H4.8291L8.43652 20ZM16.5 15.6768L16.4629 15.7676L14.7432 20H15.5635L19.1709 15.5H16.5V15.6768ZM10.3359 20H13.6641L15.4932 15.5H8.50781L10.3359 20ZM4 14.5H7.5V9.5H4V14.5ZM16.5 14.5H20V9.5H16.5V14.5ZM8.5 14.5H15.5V9.5H8.5V14.5ZM4.71875 8.5H7.5V8.32324L7.53711 8.23242L9.25684 4H8.46875L4.71875 8.5ZM16.4629 8.23242L16.5 8.32324V8.5H19.2812L15.5312 4H14.7432L16.4629 8.23242ZM8.50684 8.5H15.4922L13.6641 4H10.3359L8.50684 8.5Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
+  </button>
+  <button
+    aria-checked="false"
+    aria-label="aria-label B"
+    class="vesper-typography vesper-typography-label-lg vesper-toggle-item"
+    data-radix-collection-item=""
+    data-state="off"
+    role="radio"
+    tabindex="-1"
+    type="button"
+  >
+    <span
+      class="vesper-toggle-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M16.8 13.3698L12 16.1151L7.20002 13.3698V18.8603L12 21.6L16.8 18.8603V13.3698Z"
+          fill="currentColor"
+        />
+        <path
+          d="M16.8 7.88492L12 10.6301L7.20002 7.88492L7.20002 13.3698L2.40002 10.6301V5.14522L7.20002 2.39999L16.8 7.88492Z"
+          fill="currentColor"
+        />
+        <path
+          d="M16.8 13.3698L21.6 10.6301V5.14522L16.8 2.39999L16.8 13.3698Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`toggle [snapshot] > mixed options 1`] = `
+<div
+  class="vesper-toggle vesper-toggle-lg"
+  dir="ltr"
+  role="radiogroup"
+  style="outline: none;"
+  tabindex="0"
+>
+  <button
+    aria-checked="false"
+    aria-label="aria-label A"
+    class="vesper-typography vesper-typography-label-lg vesper-toggle-item"
+    data-radix-collection-item=""
+    data-state="off"
+    role="radio"
+    tabindex="-1"
+    type="button"
+  >
+    Option A
+  </button>
+  <button
+    aria-checked="false"
+    aria-label="aria-label B"
+    class="vesper-typography vesper-typography-label-lg vesper-toggle-item"
+    data-radix-collection-item=""
+    data-state="off"
+    role="radio"
+    tabindex="-1"
+    type="button"
+  >
+    <span
+      class="vesper-toggle-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M16.8 13.3698L12 16.1151L7.20002 13.3698V18.8603L12 21.6L16.8 18.8603V13.3698Z"
+          fill="currentColor"
+        />
+        <path
+          d="M16.8 7.88492L12 10.6301L7.20002 7.88492L7.20002 13.3698L2.40002 10.6301V5.14522L7.20002 2.39999L16.8 7.88492Z"
+          fill="currentColor"
+        />
+        <path
+          d="M16.8 13.3698L21.6 10.6301V5.14522L16.8 2.39999L16.8 13.3698Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`toggle [snapshot] > text options 1`] = `
+<div
+  class="vesper-toggle vesper-toggle-lg"
+  dir="ltr"
+  role="radiogroup"
+  style="outline: none;"
+  tabindex="0"
+>
+  <button
+    aria-checked="false"
+    aria-label="aria-label A"
+    class="vesper-typography vesper-typography-label-lg vesper-toggle-item"
+    data-radix-collection-item=""
+    data-state="off"
+    role="radio"
+    tabindex="-1"
+    type="button"
+  >
+    Option A
+  </button>
+  <button
+    aria-checked="false"
+    aria-label="aria-label B"
+    class="vesper-typography vesper-typography-label-lg vesper-toggle-item"
+    data-radix-collection-item=""
+    data-state="off"
+    role="radio"
+    tabindex="-1"
+    type="button"
+  >
+    Option B
+  </button>
+</div>
+`;
