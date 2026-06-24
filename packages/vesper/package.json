@@ -15,6 +15,10 @@
       "types": "./dist/components/tag/tag.d.ts",
       "import": "./dist/components/tag/tag.js"
     },
+    "./slider": {
+      "types": "./dist/components/slider/slider.d.ts",
+      "import": "./dist/components/slider/slider.js"
+    },
     "./text-input": {
       "types": "./dist/components/text-input/text-input.d.ts",
       "import": "./dist/components/text-input/text-input.js"
