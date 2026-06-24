@@ -59,3 +59,11 @@
     background: var(--vesper-stone-0);
   }
 }
+
+.vesper-switch-label {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vesper-spacing-2);
+  color: var(--vesper-stone-900);
+}
