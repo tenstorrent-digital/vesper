@@ -35,6 +35,34 @@ exports[`switch [snapshot] > md, disabled 1`] = `
 </button>
 `;
 
+exports[`switch [snapshot] > md, disabled, with label 1`] = `
+<label
+  class="vesper-switch-label"
+>
+  <button
+    aria-checked="false"
+    class="vesper-switch vesper-switch-md"
+    data-disabled=""
+    data-state="unchecked"
+    disabled=""
+    role="switch"
+    type="button"
+    value="on"
+  >
+    <span
+      class="vesper-switch-thumb"
+      data-disabled=""
+      data-state="unchecked"
+    />
+  </button>
+  <p
+    class="vesper-typography vesper-typography-label-lg"
+  >
+    Label
+  </p>
+</label>
+`;
+
 exports[`switch [snapshot] > md, with label 1`] = `
 <label
   class="vesper-switch-label"
@@ -96,34 +124,6 @@ exports[`switch [snapshot] > sm, disabled 1`] = `
 `;
 
 exports[`switch [snapshot] > sm, disabled, with label 1`] = `
-<label
-  class="vesper-switch-label"
->
-  <button
-    aria-checked="false"
-    class="vesper-switch vesper-switch-sm"
-    data-disabled=""
-    data-state="unchecked"
-    disabled=""
-    role="switch"
-    type="button"
-    value="on"
-  >
-    <span
-      class="vesper-switch-thumb"
-      data-disabled=""
-      data-state="unchecked"
-    />
-  </button>
-  <p
-    class="vesper-typography vesper-typography-label-md"
-  >
-    Label
-  </p>
-</label>
-`;
-
-exports[`switch [snapshot] > sm, disabled, with label 2`] = `
 <label
   class="vesper-switch-label"
 >

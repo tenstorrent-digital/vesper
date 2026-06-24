@@ -191,8 +191,8 @@ describe("switch [snapshot]", () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  test("sm, disabled, with label", async () => {
-    const { container } = render(<Switch size="sm" disabled label="Label" />);
+  test("md, disabled, with label", async () => {
+    const { container } = render(<Switch size="md" disabled label="Label" />);
     expect(container.firstChild).toMatchSnapshot();
   });
 });
