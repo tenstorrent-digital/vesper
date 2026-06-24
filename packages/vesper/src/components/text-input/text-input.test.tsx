@@ -67,14 +67,22 @@ const A11Y_CASES: (TextInputProps & { name: string })[] =
     },
   ]);
 
-const TEXT_INPUT_A11Y_FAILING_PERMUTATIONS: Pick<
+const TEXT_INPUT_A11Y_FAILING_PERMUTATIONS: (Pick<
   TextInputProps,
   "variant" | "disabled"
->[] = [
-  { variant: "default", disabled: false },
-  { variant: "default", disabled: true },
-  { variant: "success", disabled: false },
-  { variant: "success", disabled: true },
+> & { theme: string })[] = [
+  { variant: "default", disabled: false, theme: "light" },
+  { variant: "default", disabled: true, theme: "light" },
+  { variant: "warning", disabled: false, theme: "light" },
+  { variant: "warning", disabled: true, theme: "light" },
+  { variant: "success", disabled: false, theme: "light" },
+  { variant: "success", disabled: true, theme: "light" },
+  { variant: "error", disabled: false, theme: "light" },
+  { variant: "error", disabled: true, theme: "light" },
+  { variant: "default", disabled: false, theme: "dark" },
+  { variant: "default", disabled: true, theme: "dark" },
+  { variant: "success", disabled: false, theme: "dark" },
+  { variant: "success", disabled: true, theme: "dark" },
 ];
 
 afterEach(cleanup);
@@ -242,7 +250,7 @@ describe("text-input [snapshot]", () => {
 });
 
 describe("text-input [a11y]", () => {
-  ["light", "dark"].forEach((theme) => {
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
     });
@@ -263,7 +271,10 @@ describe("text-input [a11y]", () => {
       };
 
       const failsA11y = TEXT_INPUT_A11Y_FAILING_PERMUTATIONS.some(
-        (p) => p.variant === props.variant && p.disabled === props.disabled,
+        (p) =>
+          p.variant === props.variant &&
+          p.disabled === props.disabled &&
+          p.theme === theme,
       );
 
       if (failsA11y) test.todo(label, testFn);
