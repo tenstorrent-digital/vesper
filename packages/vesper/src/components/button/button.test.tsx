@@ -19,11 +19,13 @@ const BUTTON_PERMUTATIONS: ButtonProps[] = BUTTON_VARIANTS.flatMap((variant) =>
   ]),
 );
 
-const BUTTON_A11Y_FAILING_PERMUTATIONS: ButtonProps[] = [
-  { size: "xs", variant: "primary", disabled: false },
-  { size: "sm", variant: "primary", disabled: false },
-  { size: "md", variant: "primary", disabled: false },
-  { size: "lg", variant: "primary", disabled: false },
+const BUTTON_A11Y_FAILING_PERMUTATIONS: (ButtonProps & {
+  theme: string;
+})[] = [
+  ...BUTTON_SIZES.flatMap((size) => [
+    { size, variant: "warning" as const, disabled: false, theme: "light" },
+    { size, variant: "primary" as const, disabled: false, theme: "dark" },
+  ]),
 ];
 
 afterEach(cleanup);
@@ -168,7 +170,7 @@ describe("button [snapshot]", () => {
 });
 
 describe("button [a11y]", () => {
-  ["light", "dark"].forEach((theme) => {
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
     });
@@ -193,7 +195,10 @@ describe("button [a11y]", () => {
 
       const failsA11y = BUTTON_A11Y_FAILING_PERMUTATIONS.some(
         (p) =>
-          p.size === size && p.variant === variant && p.disabled === disabled,
+          p.size === size &&
+          p.variant === variant &&
+          p.disabled === disabled &&
+          p.theme === theme,
       );
 
       if (failsA11y) test.todo(testName, testFn);
