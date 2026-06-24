@@ -31,6 +31,10 @@
       "types": "./dist/components/radio-group/radio-group.d.ts",
       "import": "./dist/components/radio-group/radio-group.js"
     },
+    "./switch": {
+      "types": "./dist/components/switch/switch.d.ts",
+      "import": "./dist/components/switch/switch.js"
+    },
     "./text-input": {
       "types": "./dist/components/text-input/text-input.d.ts",
       "import": "./dist/components/text-input/text-input.js"
