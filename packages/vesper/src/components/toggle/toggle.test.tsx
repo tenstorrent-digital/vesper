@@ -295,7 +295,7 @@ describe("toggle [snapshot]", () => {
 });
 
 describe("toggle [a11y]", () => {
-  ["light", "dark"].forEach((theme) => {
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
     });
@@ -304,7 +304,7 @@ describe("toggle [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    test.todo(`wcag2aaa (text, ${theme})`, async () => {
+    const testFn = async () => {
       const { container } = render(
         <Toggle
           options={[
@@ -317,7 +317,13 @@ describe("toggle [a11y]", () => {
       expect(
         await axe.run(container, { runOnly: "wcag2aaa" }),
       ).toHaveNoViolations();
-    });
+    };
+
+    if (theme === "light") {
+      test.todo(`wcag2aaa (text, ${theme})`, testFn);
+    } else {
+      test(`wcag2aaa (text, ${theme})`, testFn);
+    }
 
     test(`wcag2aaa (icons, ${theme})`, async () => {
       const { container } = render(
