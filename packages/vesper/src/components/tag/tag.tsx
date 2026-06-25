@@ -1,6 +1,10 @@
 import type { ElementType, ReactNode } from "react";
 import type { Polymorphic } from "@/utils/polymorphic";
 import { cn } from "@/utils/cn";
+import {
+  Typography,
+  type TypographyProps,
+} from "@/components/typography/typography";
 
 export const TAG_SIZES = ["sm", "md", "lg"] as const;
 
@@ -46,7 +50,9 @@ export function Tag<E extends ElementType = "div">(props: TagProps<E>) {
   } = props;
 
   return (
-    <Component
+    <Typography
+      as={Component}
+      variant="label-xs"
       disabled={disabled}
       aria-disabled={disabled}
       className={cn(
@@ -56,10 +62,10 @@ export function Tag<E extends ElementType = "div">(props: TagProps<E>) {
         disabled && "vesper-tag-disabled",
         className,
       )}
-      {...rest}
+      {...(rest as TypographyProps<E>)}
     >
       {icon && <span className="vesper-tag-icon">{icon}</span>}
       {children}
-    </Component>
+    </Typography>
   );
 }
