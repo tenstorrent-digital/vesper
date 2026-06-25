@@ -26,7 +26,7 @@ export const Playground: Story = {
     max: 10,
     step: 1,
     showTicks: true,
-    showValueLabels: true,
+    showValueLabel: true,
   },
 };
 Playground.storyName = "slider";

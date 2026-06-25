@@ -1,15 +1,8 @@
-import {
-  Slider as RadixSlider,
-  type SliderProps as RadixSliderProps,
-  SliderTrack,
-  SliderRange,
-  SliderThumb,
-} from "@radix-ui/react-slider";
-import { cn } from "@/utils/cn";
-import { CSSProperties, useCallback, useMemo } from "react";
-import { Typography } from "@/components/typography/typography";
+import { useCallback } from "react";
+import { type SliderProps as RadixSliderProps } from "@radix-ui/react-slider";
+import { Range } from "@/components/range/range";
 
-export interface SliderProps extends Omit<
+interface SliderProps extends Omit<
   RadixSliderProps,
   | "asChild"
   | "value"
@@ -28,18 +21,12 @@ export interface SliderProps extends Omit<
 }
 
 export function Slider({
-  className,
-  "aria-label": ariaLabel,
   value,
   valueLabel,
   defaultValue,
   onValueChange,
   onValueCommit,
-  showTicks,
   showValueLabel,
-  min = 0,
-  max = 100,
-  step = 1,
   ...props
 }: SliderProps) {
   const handleValueChange = useCallback(
@@ -58,46 +45,17 @@ export function Slider({
     [onValueCommit],
   );
 
-  const numTicks = useMemo(
-    () => Math.max(Math.ceil((max - min) / step) - 1, 0),
-    [min, max, step],
-  );
-
   return (
-    <RadixSlider
-      className={cn("vesper-slider", className)}
-      value={typeof value === "number" ? [value] : undefined}
-      defaultValue={
+    <Range
+      values={typeof value === "number" ? [value] : undefined}
+      valueLabels={typeof valueLabel === "string" ? [valueLabel] : undefined}
+      defaultValues={
         typeof defaultValue === "number" ? [defaultValue] : undefined
       }
-      onValueChange={handleValueChange}
-      onValueCommit={handleValueCommit}
-      min={min}
-      max={max}
-      step={step}
+      showValueLabels={showValueLabel}
+      onValuesChange={handleValueChange}
+      onValuesCommit={handleValueCommit}
       {...props}
-    >
-      <SliderTrack className="vesper-slider-track">
-        {showTicks &&
-          Array.from({ length: numTicks }).map((_, i) => (
-            <span key={i} className="vesper-slider-tick" />
-          ))}
-        <SliderRange className="vesper-slider-range" />
-      </SliderTrack>
-      <Typography
-        as={SliderThumb}
-        variant="label-xs"
-        className={cn(
-          "vesper-slider-thumb",
-          showValueLabel && "vesper-slider-thumb-labeled",
-        )}
-        aria-label={ariaLabel}
-        style={
-          valueLabel
-            ? ({ ["--vesper-thumb-label"]: `"${valueLabel}"` } as CSSProperties)
-            : {}
-        }
-      />
-    </RadixSlider>
+    />
   );
 }
