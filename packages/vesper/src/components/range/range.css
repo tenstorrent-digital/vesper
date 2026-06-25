@@ -27,6 +27,9 @@
   height: 16px;
   width: 1px;
   background: var(--vesper-stone-400);
+  @media (forced-colors: active) {
+    background: CanvasText;
+  }
 }
 
 .vesper-range-range {
@@ -36,6 +39,9 @@
   position: absolute;
   top: 5px;
   bottom: 5px;
+  @media (forced-colors: active) {
+    background: CanvasText;
+  }
 }
 
 .vesper-range-thumb {
@@ -67,6 +73,21 @@
       padding: var(--vesper-spacing-1);
       position: absolute;
       bottom: 17px;
+    }
+  }
+  @media (forced-colors: active) {
+    &:focus-visible {
+      outline: none;
+      &::before {
+        outline: 2px solid CanvasText;
+      }
+    }
+  }
+  @media not (forced-colors: active) {
+    &:focus-visible {
+      &::before {
+        box-shadow: var(--vesper-shadow-focus-ring);
+      }
     }
   }
 }
