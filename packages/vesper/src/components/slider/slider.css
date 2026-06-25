@@ -1,2 +1,83 @@
 .vesper-slider {
+  width: 100%;
+  display: block;
+  position: relative;
+}
+
+.vesper-slider-track {
+  display: flex;
+  position: relative;
+  justify-content: space-evenly;
+  height: 16px;
+  width: 100%;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    background: var(--vesper-teal-400);
+    border: 1px solid var(--vesper-teal-600);
+    border-radius: var(--vesper-spacing-1);
+  }
+}
+
+.vesper-slider-tick {
+  height: 16px;
+  width: 1px;
+  background: var(--vesper-stone-400);
+}
+
+.vesper-slider-range {
+  background: var(--vesper-stone-200);
+  border: 1px solid var(--vesper-stone-400);
+  border-radius: var(--vesper-spacing-1);
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+}
+
+.vesper-slider-thumb {
+  cursor: pointer;
+  width: 0px;
+  height: 0px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: -16px;
+    left: -8px;
+    width: 16px;
+    height: 16px;
+    background: var(--vesper-stone-100);
+    border: 1px solid var(--vesper-teal-600);
+    border-radius: var(--vesper-spacing-2);
+  }
+  &.vesper-slider-thumb-labeled {
+    &::after {
+      white-space: pre;
+      content: var(--vesper-thumb-label, attr(aria-valuenow));
+      color: var(--vesper-stone-900);
+      background: var(--vesper-alpha-stone-0);
+      border: 1px solid var(--vesper-stone-300);
+      border-radius: var(--vesper-radius-half);
+      padding: var(--vesper-spacing-1);
+      position: absolute;
+      bottom: 17px;
+    }
+  }
+}
+
+.vesper-slider-thumb-label {
+  color: var(--vesper-stone-900);
+  background: var(--vesper-alpha-stone-0);
+  border: 1px solid var(--vesper-stone-300);
+  border-radius: var(--vesper-radius-half);
+  padding: var(--vesper-spacing-1);
+  position: absolute;
+  bottom: 17px;
+  left: -8px;
 }
