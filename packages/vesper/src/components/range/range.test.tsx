@@ -118,7 +118,7 @@ describe("range [unit]", () => {
     );
     const ticks = container.querySelectorAll(".vesper-range-tick");
     // tickLeft = 100 / (100 - 0) = 1
-    // positions: 1*25=25%, 1*50=50%, 1*75=75%
+    // positions: 1 * 25 = 25%, 1 * 50 = 50%, 1 * 75 = 75%
     expect(ticks).toHaveLength(3);
     expect((ticks[0] as HTMLElement).style.left).toBe("25%");
     expect((ticks[1] as HTMLElement).style.left).toBe("50%");
@@ -145,16 +145,17 @@ describe("range [unit]", () => {
     const { container } = render(
       <Range aria-label="Range" valueLabels={["$10", "$90"]} showValueLabels />,
     );
-    const thumbs = container.querySelectorAll(".vesper-range-thumb");
+
+    const thumbs = container.querySelectorAll(
+      ".vesper-range-thumb",
+    ) as NodeListOf<HTMLElement>;
+
     expect(
-      (thumbs[0] as HTMLElement).style.getPropertyValue(
-        "--vesper-range-thumb-label",
-      ),
+      thumbs[0]!.style.getPropertyValue("--vesper-range-thumb-label"),
     ).toBe('"$10"');
+
     expect(
-      (thumbs[1] as HTMLElement).style.getPropertyValue(
-        "--vesper-range-thumb-label",
-      ),
+      thumbs[1]!.style.getPropertyValue("--vesper-range-thumb-label"),
     ).toBe('"$90"');
   });
 
@@ -167,34 +168,36 @@ describe("range [unit]", () => {
         showValueLabels
       />,
     );
-    const thumbs = container.querySelectorAll(".vesper-range-thumb");
+    const thumbs = container.querySelectorAll(
+      ".vesper-range-thumb",
+    ) as NodeListOf<HTMLElement>;
+
     expect(thumbs).toHaveLength(3);
+
     expect(
-      (thumbs[0] as HTMLElement).style.getPropertyValue(
-        "--vesper-range-thumb-label",
-      ),
+      thumbs[0]!.style.getPropertyValue("--vesper-range-thumb-label"),
     ).toBe('"Low"');
+
     expect(
-      (thumbs[1] as HTMLElement).style.getPropertyValue(
-        "--vesper-range-thumb-label",
-      ),
+      thumbs[1]!.style.getPropertyValue("--vesper-range-thumb-label"),
     ).toBe('"Mid"');
+
     expect(
-      (thumbs[2] as HTMLElement).style.getPropertyValue(
-        "--vesper-range-thumb-label",
-      ),
+      thumbs[2]!.style.getPropertyValue("--vesper-range-thumb-label"),
     ).toBe('"High"');
   });
 
   test("no inline style when valueLabels are not provided", () => {
     const { container } = render(<Range aria-label="Range" showValueLabels />);
-    const thumbs = container.querySelectorAll(".vesper-range-thumb");
+
+    const thumbs = container.querySelectorAll(
+      ".vesper-range-thumb",
+    ) as NodeListOf<HTMLElement>;
+
     thumbs.forEach((thumb) => {
-      expect(
-        (thumb as HTMLElement).style.getPropertyValue(
-          "--vesper-range-thumb-label",
-        ),
-      ).toBe("");
+      expect(thumb.style.getPropertyValue("--vesper-range-thumb-label")).toBe(
+        "",
+      );
     });
   });
 
