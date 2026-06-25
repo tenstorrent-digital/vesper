@@ -48,6 +48,8 @@ export function Range({
     [min, max, step],
   );
 
+  const tickLeft = useMemo(() => 100 / Math.max(max - min, 0), [min, max]);
+
   return (
     <RadixSlider
       className={cn("vesper-range", className)}
@@ -64,7 +66,11 @@ export function Range({
       <SliderTrack className="vesper-range-track">
         {showTicks &&
           Array.from({ length: numTicks }).map((_, i) => (
-            <span key={i} className="vesper-range-tick" />
+            <span
+              key={i}
+              className="vesper-range-tick"
+              style={{ left: tickLeft * ((i + 1) * step) + "%" }}
+            />
           ))}
         <SliderRange className="vesper-range-range" />
       </SliderTrack>

@@ -5,9 +5,8 @@
 }
 
 .vesper-range-track {
-  display: flex;
+  display: block;
   position: relative;
-  justify-content: space-evenly;
   height: 16px;
   width: 100%;
   &::before {
@@ -26,6 +25,7 @@
 .vesper-range-tick {
   height: 16px;
   width: 1px;
+  position: absolute;
   background: var(--vesper-stone-400);
   @media (forced-colors: active) {
     background: CanvasText;
