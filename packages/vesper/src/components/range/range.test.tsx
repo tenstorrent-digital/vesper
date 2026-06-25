@@ -203,6 +203,28 @@ describe("range [unit]", () => {
     expect(container.firstChild).toHaveAttribute("data-disabled", "");
   });
 
+  test("disabled thumbs cannot be adjusted via keyboard", async () => {
+    const onValuesChange = vi.fn();
+    const result = render(
+      <Range
+        aria-label="Range"
+        defaultValues={[25, 75]}
+        disabled
+        onValuesChange={onValuesChange}
+      />,
+    );
+    const thumbs = result.getAllByRole("slider");
+
+    thumbs[0]!.focus();
+    await userEvent.keyboard("{ArrowRight}");
+    expect(thumbs[0]).toHaveAttribute("aria-valuenow", "25");
+
+    await userEvent.keyboard("{ArrowLeft}");
+    expect(thumbs[0]).toHaveAttribute("aria-valuenow", "25");
+
+    expect(onValuesChange).not.toHaveBeenCalled();
+  });
+
   test("onValuesChange callback on keyboard interaction", async () => {
     const onValuesChange = vi.fn();
     const result = render(
