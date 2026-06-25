@@ -32,7 +32,6 @@ export function Range({
   "aria-label": ariaLabel,
   values,
   valueLabels,
-  defaultValues,
   onValuesChange,
   onValuesCommit,
   showTicks,
@@ -41,6 +40,7 @@ export function Range({
   min = 0,
   max = 100,
   step = 1,
+  defaultValues = [min, max],
   ...props
 }: RangeProps) {
   const numTicks = useMemo(

@@ -27,6 +27,7 @@ export function Slider({
   onValueChange,
   onValueCommit,
   showValueLabel,
+  min = 0,
   ...props
 }: SliderProps) {
   const handleValueChange = useCallback(
@@ -49,12 +50,11 @@ export function Slider({
     <Range
       values={typeof value === "number" ? [value] : undefined}
       valueLabels={typeof valueLabel === "string" ? [valueLabel] : undefined}
-      defaultValues={
-        typeof defaultValue === "number" ? [defaultValue] : undefined
-      }
+      defaultValues={typeof defaultValue === "number" ? [defaultValue] : [min]}
       showValueLabels={showValueLabel}
       onValuesChange={handleValueChange}
       onValuesCommit={handleValueCommit}
+      min={min}
       {...props}
     />
   );
