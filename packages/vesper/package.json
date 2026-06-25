@@ -11,6 +11,10 @@
       "types": "./dist/components/show-more/show-more.d.ts",
       "import": "./dist/components/show-more/show-more.js"
     },
+    "./tag": {
+      "types": "./dist/components/tag/tag.d.ts",
+      "import": "./dist/components/tag/tag.js"
+    },
     "./text-input": {
       "types": "./dist/components/text-input/text-input.d.ts",
       "import": "./dist/components/text-input/text-input.js"
