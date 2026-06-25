@@ -1,0 +1,242 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`slider [snapshot] > default 1`] = `
+<span
+  aria-disabled="false"
+  class="vesper-range"
+  data-orientation="horizontal"
+  dir="ltr"
+  style="--radix-slider-thumb-transform: translateX(-50%);"
+>
+  <span
+    class="vesper-range-track"
+    data-orientation="horizontal"
+  >
+    <span
+      class="vesper-range-range"
+      data-orientation="horizontal"
+      style="left: 0%; right: 50%;"
+    />
+  </span>
+  <span
+    style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(50% + 0px);"
+  >
+    <span
+      aria-label="Volume"
+      aria-orientation="horizontal"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
+      class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      role="slider"
+      style=""
+      tabindex="0"
+    />
+  </span>
+  <span
+    style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(0% + 0px);"
+  >
+    <span
+      aria-label="Volume"
+      aria-orientation="horizontal"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      role="slider"
+      style="display: none;"
+      tabindex="0"
+    />
+  </span>
+</span>
+`;
+
+exports[`slider [snapshot] > disabled 1`] = `
+<span
+  aria-disabled="true"
+  class="vesper-range"
+  data-disabled=""
+  data-orientation="horizontal"
+  dir="ltr"
+  style="--radix-slider-thumb-transform: translateX(-50%);"
+>
+  <span
+    class="vesper-range-track"
+    data-disabled=""
+    data-orientation="horizontal"
+  >
+    <span
+      class="vesper-range-range"
+      data-disabled=""
+      data-orientation="horizontal"
+      style="left: 0%; right: 50%;"
+    />
+  </span>
+  <span
+    style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(50% + 0px);"
+  >
+    <span
+      aria-label="Volume"
+      aria-orientation="horizontal"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="50"
+      class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
+      data-disabled=""
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      role="slider"
+      style=""
+    />
+  </span>
+</span>
+`;
+
+exports[`slider [snapshot] > with custom min/max/step 1`] = `
+<span
+  aria-disabled="false"
+  class="vesper-range"
+  data-orientation="horizontal"
+  dir="ltr"
+  style="--radix-slider-thumb-transform: translateX(-50%);"
+>
+  <span
+    class="vesper-range-track"
+    data-orientation="horizontal"
+  >
+    <span
+      class="vesper-range-range"
+      data-orientation="horizontal"
+      style="left: 0%; right: 60%;"
+    />
+  </span>
+  <span
+    style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(40% + 0px);"
+  >
+    <span
+      aria-label="Volume"
+      aria-orientation="horizontal"
+      aria-valuemax="10"
+      aria-valuemin="0"
+      aria-valuenow="4"
+      class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      role="slider"
+      style=""
+      tabindex="0"
+    />
+  </span>
+</span>
+`;
+
+exports[`slider [snapshot] > with ticks 1`] = `
+<span
+  aria-disabled="false"
+  class="vesper-range"
+  data-orientation="horizontal"
+  dir="ltr"
+  style="--radix-slider-thumb-transform: translateX(-50%);"
+>
+  <span
+    class="vesper-range-track"
+    data-orientation="horizontal"
+  >
+    <span
+      class="vesper-range-tick"
+      style="left: 20%;"
+    />
+    <span
+      class="vesper-range-tick"
+      style="left: 40%;"
+    />
+    <span
+      class="vesper-range-tick"
+      style="left: 60%;"
+    />
+    <span
+      class="vesper-range-tick"
+      style="left: 80%;"
+    />
+    <span
+      class="vesper-range-range"
+      data-orientation="horizontal"
+      style="left: 0%; right: 60%;"
+    />
+  </span>
+  <span
+    style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(40% + 0px);"
+  >
+    <span
+      aria-label="Volume"
+      aria-orientation="horizontal"
+      aria-valuemax="5"
+      aria-valuemin="0"
+      aria-valuenow="2"
+      class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      role="slider"
+      style=""
+      tabindex="0"
+    />
+  </span>
+  <span
+    style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(0% + 0px);"
+  >
+    <span
+      aria-label="Volume"
+      aria-orientation="horizontal"
+      aria-valuemax="5"
+      aria-valuemin="0"
+      class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      role="slider"
+      style="display: none;"
+      tabindex="0"
+    />
+  </span>
+</span>
+`;
+
+exports[`slider [snapshot] > with value label 1`] = `
+<span
+  aria-disabled="false"
+  class="vesper-range"
+  data-orientation="horizontal"
+  dir="ltr"
+  style="--radix-slider-thumb-transform: translateX(-50%);"
+>
+  <span
+    class="vesper-range-track"
+    data-orientation="horizontal"
+  >
+    <span
+      class="vesper-range-range"
+      data-orientation="horizontal"
+      style="left: 0%; right: 25%;"
+    />
+  </span>
+  <span
+    style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(75% + 0px);"
+  >
+    <span
+      aria-label="Volume"
+      aria-orientation="horizontal"
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="75"
+      class="vesper-typography vesper-typography-label-xs vesper-range-thumb vesper-range-thumb-labeled"
+      data-orientation="horizontal"
+      data-radix-collection-item=""
+      role="slider"
+      style="--vesper-range-thumb-label: "75%";"
+      tabindex="0"
+    />
+  </span>
+</span>
+`;
