@@ -27,6 +27,7 @@ export const Playground: Story = {
     showTicks: true,
     showValueLabels: true,
     minStepsBetweenThumbs: 1,
+    disabled: false,
   },
 };
 Playground.storyName = "range";

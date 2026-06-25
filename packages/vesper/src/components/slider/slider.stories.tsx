@@ -27,6 +27,7 @@ export const Playground: Story = {
     step: 1,
     showTicks: false,
     showValueLabel: false,
+    disabled: false,
   },
 };
 Playground.storyName = "slider";
