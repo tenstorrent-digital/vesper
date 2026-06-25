@@ -15,6 +15,10 @@
       "types": "./dist/components/tag/tag.d.ts",
       "import": "./dist/components/tag/tag.js"
     },
+    "./range": {
+      "types": "./dist/components/range/range.d.ts",
+      "import": "./dist/components/range/range.js"
+    },
     "./slider": {
       "types": "./dist/components/slider/slider.d.ts",
       "import": "./dist/components/slider/slider.js"
