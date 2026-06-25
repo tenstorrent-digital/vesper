@@ -20,7 +20,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
   args: {
-    valueLabel: "<1B",
     style: { width: "min(calc(100vw - 4rem), 400px)" },
     min: 0,
     max: 10,
