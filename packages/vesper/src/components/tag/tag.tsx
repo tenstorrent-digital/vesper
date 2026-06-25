@@ -58,8 +58,7 @@ export function Tag<E extends ElementType = "div">(props: TagProps<E>) {
       className={cn(
         "vesper-tag",
         `vesper-tag-${size}`,
-        `vesper-tag-${variant}`,
-        disabled && "vesper-tag-disabled",
+        disabled ? "vesper-tag-disabled" : `vesper-tag-${variant}`,
         className,
       )}
       {...(rest as TypographyProps<E>)}
