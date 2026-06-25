@@ -20,7 +20,7 @@ export interface SliderProps extends Omit<
 > {
   value?: number;
   valueLabel?: string;
-  showValueLabels?: boolean;
+  showValueLabel?: boolean;
   defaultValue?: number;
   onValueChange?(value: number): void;
   onValueCommit?(value: number): void;
@@ -36,7 +36,7 @@ export function Slider({
   onValueChange,
   onValueCommit,
   showTicks,
-  showValueLabels,
+  showValueLabel,
   min = 0,
   max = 100,
   step = 1,
@@ -89,7 +89,7 @@ export function Slider({
         variant="label-xs"
         className={cn(
           "vesper-slider-thumb",
-          showValueLabels && "vesper-slider-thumb-labeled",
+          showValueLabel && "vesper-slider-thumb-labeled",
         )}
         aria-label={ariaLabel}
         style={
