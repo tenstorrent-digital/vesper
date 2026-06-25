@@ -31,18 +31,12 @@ export function Slider({
   ...props
 }: SliderProps) {
   const handleValueChange = useCallback(
-    ([value]: number[]) => {
-      if (!value) return;
-      onValueChange?.(value);
-    },
+    ([value]: number[]) => onValueChange?.(value!),
     [onValueChange],
   );
 
   const handleValueCommit = useCallback(
-    ([value]: number[]) => {
-      if (!value) return;
-      onValueCommit?.(value);
-    },
+    ([value]: number[]) => onValueCommit?.(value!),
     [onValueCommit],
   );
 
