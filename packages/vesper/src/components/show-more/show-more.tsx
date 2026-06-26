@@ -4,13 +4,13 @@ import { Button } from "@/components/button/button";
 import { CaretDown, CaretUp } from "@/components/icons/icons";
 
 export interface ShowMoreProps extends Omit<ComponentProps<"div">, "onClick"> {
-  showMore?: boolean;
+  isOpen?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 export function ShowMore({
   className,
-  showMore,
+  isOpen,
   onClick,
   ...props
 }: ShowMoreProps) {
@@ -19,10 +19,10 @@ export function ShowMore({
       <Button
         size="sm"
         variant="tertiary"
-        iconRight={showMore ? <CaretUp /> : <CaretDown />}
+        iconRight={isOpen ? <CaretUp /> : <CaretDown />}
         onClick={onClick}
       >
-        {showMore ? "Show less" : "Show more"}
+        {isOpen ? "Show less" : "Show more"}
       </Button>
     </div>
   );

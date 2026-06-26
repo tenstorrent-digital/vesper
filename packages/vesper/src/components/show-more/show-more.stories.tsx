@@ -1,11 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { useState } from "storybook/internal/preview-api";
+import { useEffect, useState } from "storybook/internal/preview-api";
 
 import { ShowMore } from "@/components/show-more/show-more";
 
 const meta = {
   component: ShowMore,
   parameters: { layout: "centered" },
+  argTypes: {
+    onClick: { table: { disable: true } },
+  },
 } satisfies Meta<typeof ShowMore>;
 
 export default meta;
@@ -13,15 +16,18 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
-  args: {},
-  render: function Render() {
-    const [showMore, setShowMore] = useState(false);
+  args: {
+    isOpen: false,
+  },
+  render: function Render({ isOpen: _isOpen }) {
+    const [isOpen, setIsOpen] = useState(_isOpen);
+    useEffect(() => setIsOpen(_isOpen), [_isOpen]);
 
     return (
       <ShowMore
         style={{ width: "min(calc(100vw - 4rem), 800px)" }}
-        showMore={showMore}
-        onClick={() => setShowMore(!showMore)}
+        isOpen={isOpen}
+        onClick={() => setIsOpen(!isOpen)}
       />
     );
   },
