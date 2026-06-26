@@ -17,17 +17,19 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
   args: {
-    isOpen: false,
+    expanded: false,
+    disabled: false,
   },
-  render: function Render({ isOpen: _isOpen }) {
-    const [isOpen, setIsOpen] = useState(_isOpen);
-    useEffect(() => setIsOpen(_isOpen), [_isOpen]);
+  render: function Render({ expanded: _expanded, disabled }) {
+    const [expanded, setExpanded] = useState(_expanded);
+    useEffect(() => setExpanded(_expanded), [_expanded]);
 
     return (
       <ShowMore
         style={{ width: "min(calc(100vw - 4rem), 800px)" }}
-        isOpen={isOpen}
-        onClick={() => setIsOpen(!isOpen)}
+        expanded={expanded}
+        disabled={disabled}
+        onClick={() => setExpanded(!expanded)}
       />
     );
   },
