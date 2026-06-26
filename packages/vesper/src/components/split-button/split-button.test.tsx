@@ -65,14 +65,6 @@ const SPLIT_BUTTON_PERMUTATIONS = SPLIT_BUTTON_VARIANTS.flatMap((variant) =>
   ]),
 );
 
-const SPLIT_BUTTON_A11Y_FAILING_PERMUTATIONS: SplitButtonProps[] =
-  SPLIT_BUTTON_VARIANTS.flatMap((variant) =>
-    SPLIT_BUTTON_SIZES.flatMap((size): SplitButtonProps[] => [
-      { size, variant, disabled: false, menuItems: MENU_ITEMS, menuOpen: true },
-      { size, variant, disabled: true, menuItems: MENU_ITEMS, menuOpen: true },
-    ]),
-  );
-
 afterEach(cleanup);
 
 describe("split-button [unit]", () => {
@@ -218,7 +210,7 @@ describe("split-button [snapshot]", () => {
 });
 
 describe("split-button [a11y]", () => {
-  ["light", "dark"].forEach((theme) => {
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
     });
@@ -239,15 +231,7 @@ describe("split-button [a11y]", () => {
         .filter(Boolean)
         .join(", ");
 
-      const failsA11y = SPLIT_BUTTON_A11Y_FAILING_PERMUTATIONS.some(
-        (p) =>
-          p.size === size &&
-          p.variant === variant &&
-          p.disabled === disabled &&
-          p.menuOpen === menuOpen,
-      );
-
-      const testFn = async () => {
+      test(testName, async () => {
         const result = render(
           <SplitButton {...permutation}>button text</SplitButton>,
         );
@@ -257,10 +241,7 @@ describe("split-button [a11y]", () => {
             runOnly: "wcag2aaa",
           }),
         ).toHaveNoViolations();
-      };
-
-      if (failsA11y) test.todo(testName, testFn);
-      else test(testName, testFn);
+      });
     });
   });
 });

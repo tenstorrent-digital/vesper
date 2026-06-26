@@ -108,30 +108,28 @@ describe("progress-bar [snapshot]", () => {
 });
 
 describe("progress-bar [a11y]", () => {
-  ["light", "dark"].forEach((theme) => {
-    describe(`${theme} mode`, () => {
-      beforeEach(() => {
-        document.documentElement.setAttribute("data-vesper-theme", theme);
-      });
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+    });
 
-      afterEach(() => {
-        document.documentElement.removeAttribute("data-vesper-theme");
-      });
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+    });
 
-      PROGRESS_BAR_PERMUTATIONS.forEach((permutation) => {
-        const { size, variant } = permutation;
+    PROGRESS_BAR_PERMUTATIONS.forEach((permutation) => {
+      const { size, variant } = permutation;
 
-        test(`wcag2aaa (${size}, ${variant})`, async () => {
-          const result = render(
-            <ProgressBar size={size} variant={variant} value={23} />,
-          );
+      test(`wcag2aaa (${size}, ${variant})`, async () => {
+        const result = render(
+          <ProgressBar size={size} variant={variant} value={23} />,
+        );
 
-          expect(
-            await axe.run(result.container, {
-              runOnly: "wcag2aaa",
-            }),
-          ).toHaveNoViolations();
-        });
+        expect(
+          await axe.run(result.container, {
+            runOnly: "wcag2aaa",
+          }),
+        ).toHaveNoViolations();
       });
     });
   });

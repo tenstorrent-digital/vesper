@@ -228,7 +228,7 @@ describe("tooltip [snapshot]", () => {
 });
 
 describe("tooltip [a11y]", () => {
-  ["light", "dark"].forEach((theme) => {
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
     });

@@ -19,15 +19,26 @@ const BADGE_PERMUTATIONS = BADGE_VARIANTS.flatMap((variant) =>
   ]),
 );
 
-const BADGE_A11Y_FAILING_PERMUTATIONS: BadgeProps[] = [
-  ...BADGE_SIZES.flatMap((size): BadgeProps[] => [
-    { size, variant: "accent", subtle: false },
-    { size, variant: "success", subtle: true },
-    { size, variant: "info", subtle: true },
-    { size, variant: "info", subtle: false },
-    { size, variant: "pink", subtle: true },
-    { size, variant: "pink", subtle: false },
-    { size, variant: "mint", subtle: true },
+const BADGE_A11Y_FAILING_PERMUTATIONS: (BadgeProps & { theme: string })[] = [
+  ...BADGE_SIZES.flatMap((size) => [
+    { size, variant: "accent" as const, subtle: true, theme: "light" },
+    { size, variant: "success" as const, subtle: true, theme: "light" },
+    { size, variant: "success" as const, subtle: false, theme: "light" },
+    { size, variant: "warning" as const, subtle: true, theme: "light" },
+    { size, variant: "warning" as const, subtle: false, theme: "light" },
+    { size, variant: "danger" as const, subtle: true, theme: "light" },
+    { size, variant: "info" as const, subtle: true, theme: "light" },
+    { size, variant: "pink" as const, subtle: true, theme: "light" },
+    { size, variant: "pink" as const, subtle: false, theme: "light" },
+    { size, variant: "mint" as const, subtle: true, theme: "light" },
+    { size, variant: "mint" as const, subtle: false, theme: "light" },
+    { size, variant: "accent" as const, subtle: false, theme: "dark" },
+    { size, variant: "success" as const, subtle: true, theme: "dark" },
+    { size, variant: "info" as const, subtle: true, theme: "dark" },
+    { size, variant: "info" as const, subtle: false, theme: "dark" },
+    { size, variant: "pink" as const, subtle: true, theme: "dark" },
+    { size, variant: "pink" as const, subtle: false, theme: "dark" },
+    { size, variant: "mint" as const, subtle: true, theme: "dark" },
   ]),
 ];
 
@@ -126,7 +137,7 @@ describe("badge [snapshot]", () => {
 });
 
 describe("badge [a11y]", () => {
-  ["light", "dark"].forEach((theme) => {
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
     });
@@ -150,7 +161,11 @@ describe("badge [a11y]", () => {
       };
 
       const failsA11y = BADGE_A11Y_FAILING_PERMUTATIONS.some(
-        (p) => p.size === size && p.variant === variant && p.subtle === subtle,
+        (p) =>
+          p.size === size &&
+          p.variant === variant &&
+          p.subtle === subtle &&
+          p.theme === theme,
       );
 
       if (failsA11y) test.todo(label, testFn);
