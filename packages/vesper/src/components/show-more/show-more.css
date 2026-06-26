@@ -1,0 +1,12 @@
+.vesper-show-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--vesper-stone-200);
+  }
+}
