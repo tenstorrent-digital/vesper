@@ -23,6 +23,7 @@
 @import "../components/tag/tag.css";
 @import "../components/range/range.css";
 @import "../components/checkbox/checkbox.css";
+@import "../components/radio-group/radio-group.css";
 @import "../components/text-input/text-input.css";
 @import "../components/toggle/toggle.css";
 @import "../components/tabs/tabs.css";
