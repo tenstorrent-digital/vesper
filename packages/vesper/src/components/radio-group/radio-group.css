@@ -31,9 +31,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  &:not(:disabled) {
-    cursor: pointer;
-  }
+  cursor: pointer;
   &:hover:not(:disabled, [data-state="checked"]) {
     background: var(--vesper-alpha-stone-0);
   }
@@ -46,6 +44,7 @@
     }
   }
   &:disabled {
+    cursor: auto;
     border: 1px solid var(--vesper-alpha-stone-200);
     background: var(--vesper-alpha-stone-100);
     @media (forced-colors: active) {
