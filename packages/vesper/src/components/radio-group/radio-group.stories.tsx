@@ -6,16 +6,15 @@ import {
   type RadioGroupProps,
 } from "@/components/radio-group/radio-group";
 
-const RadioGroupStory = ({
-  disabled,
-  ...props
-}: Omit<RadioGroupProps, "options"> & { disabled: boolean }) => {
+const RadioGroupStory = (
+  props: Omit<RadioGroupProps, "options"> & { disabled: boolean },
+) => {
   return (
     <RadioGroup
       options={[
-        { value: "option-a", label: "Label", disabled },
-        { value: "option-b", label: "Label", disabled },
-        { value: "option-c", label: "Label", disabled },
+        { value: "option-a", label: "Label" },
+        { value: "option-b", label: "Label" },
+        { value: "option-c", label: "Label" },
       ]}
       {...props}
     />

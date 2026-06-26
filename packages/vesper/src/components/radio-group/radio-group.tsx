@@ -33,6 +33,7 @@ export function RadioGroup({
   orientation = "vertical",
   options,
   size = "md",
+  disabled,
   ...props
 }: RadioGroupProps) {
   return (
@@ -43,33 +44,38 @@ export function RadioGroup({
         className,
       )}
       orientation={orientation}
+      disabled={disabled}
       {...props}
     >
-      {options.map((option) => (
-        <label
-          data-disabled={option.disabled}
-          className="vesper-radio-group-item-wrapper"
-          key={option.value}
-        >
-          <RadioGroupItem
-            disabled={option.disabled}
-            className={cn(
-              "vesper-radio-group-item",
-              `vesper-radio-group-item-${size}`,
-            )}
-            value={option.value}
+      {options.map((option) => {
+        const optionDisabled = disabled || option.disabled;
+
+        return (
+          <label
+            data-disabled={optionDisabled}
+            className="vesper-radio-group-item-wrapper"
+            key={option.value}
           >
-            <RadioGroupIndicator className="vesper-radio-group-item-indicator" />
-          </RadioGroupItem>
-          <Typography
-            as="span"
-            variant={RADIO_GROUP_ITEM_TYPOGRAPHY[size]}
-            className="vesper-radio-group-item-label"
-          >
-            {option.label}
-          </Typography>
-        </label>
-      ))}
+            <RadioGroupItem
+              disabled={optionDisabled}
+              className={cn(
+                "vesper-radio-group-item",
+                `vesper-radio-group-item-${size}`,
+              )}
+              value={option.value}
+            >
+              <RadioGroupIndicator className="vesper-radio-group-item-indicator" />
+            </RadioGroupItem>
+            <Typography
+              as="span"
+              variant={RADIO_GROUP_ITEM_TYPOGRAPHY[size]}
+              className="vesper-radio-group-item-label"
+            >
+              {option.label}
+            </Typography>
+          </label>
+        );
+      })}
     </RadixRadioGroup>
   );
 }
