@@ -1,0 +1,80 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`show-more [snapshot] > closed state 1`] = `
+<div
+  class="vesper-show-more"
+>
+  <button
+    aria-expanded="false"
+    class="vesper-button vesper-button-sm vesper-button-tertiary"
+  >
+    Show more
+    <span
+      class="vesper-button-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`show-more [snapshot] > disabled 1`] = `
+<div
+  class="vesper-show-more"
+>
+  <button
+    aria-expanded="false"
+    class="vesper-button vesper-button-sm vesper-button-disabled"
+    disabled=""
+  >
+    Show more
+    <span
+      class="vesper-button-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`show-more [snapshot] > open state 1`] = `
+<div
+  class="vesper-show-more"
+>
+  <button
+    aria-expanded="true"
+    class="vesper-button vesper-button-sm vesper-button-tertiary"
+  >
+    Show less
+    <span
+      class="vesper-button-icon"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+</div>
+`;
