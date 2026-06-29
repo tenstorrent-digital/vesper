@@ -19,6 +19,7 @@ export function ShowMore({
   return (
     <div className={cn("vesper-show-more", className)} {...props}>
       <Button
+        aria-expanded={expanded ?? false}
         disabled={disabled}
         size="sm"
         variant="tertiary"
