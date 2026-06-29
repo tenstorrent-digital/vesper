@@ -2,14 +2,14 @@
   display: flex;
   align-items: center;
   gap: var(--vesper-spacing-2);
+  &:not(.vesper-checkbox-disabled) {
+    cursor: pointer;
+  }
 }
 
 .vesper-checkbox-box {
   border-radius: var(--vesper-radius-half);
   border: 1px solid var(--vesper-stone-400);
-  &:not(:disabled) {
-    cursor: pointer;
-  }
   &:not([data-state="unchecked"]) {
     background: var(--vesper-teal-400);
     border-color: var(--vesper-teal-400);
