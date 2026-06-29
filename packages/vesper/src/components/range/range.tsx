@@ -44,10 +44,11 @@ export function Range({
   defaultValues = [min, max],
   ...props
 }: RangeProps) {
-  const numTicks = useMemo(
-    () => Math.max(Math.ceil((max - min) / step) - 1, 0),
-    [min, max, step],
-  );
+  const numTicks = useMemo(() => {
+    let n = Math.max(Math.ceil((max - min) / step) - 1, 0);
+    if (n === Infinity) n = 0;
+    return n;
+  }, [min, max, step]);
 
   const tickLeft = useMemo(() => 100 / Math.max(max - min, 0), [min, max]);
 
