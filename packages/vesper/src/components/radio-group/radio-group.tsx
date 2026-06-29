@@ -1,11 +1,14 @@
-import { cn } from "@/utils/cn";
 import {
   RadioGroup as RadixRadioGroup,
   type RadioGroupProps as RadixRadioGroupProps,
   RadioGroupItem,
   RadioGroupIndicator,
 } from "@radix-ui/react-radio-group";
-import { Typography, TypographyVariant } from "../typography/typography";
+import { cn } from "@/utils/cn";
+import {
+  Typography,
+  TypographyVariant,
+} from "@/components/typography/typography";
 
 export const RADIO_SIZES = ["sm", "md"] as const;
 
