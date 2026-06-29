@@ -5,6 +5,7 @@ exports[`show-more [snapshot] > closed state 1`] = `
   class="vesper-show-more"
 >
   <button
+    aria-expanded="false"
     class="vesper-button vesper-button-sm vesper-button-tertiary"
   >
     Show more
@@ -30,6 +31,7 @@ exports[`show-more [snapshot] > disabled 1`] = `
   class="vesper-show-more"
 >
   <button
+    aria-expanded="false"
     class="vesper-button vesper-button-sm vesper-button-disabled"
     disabled=""
   >
@@ -56,6 +58,7 @@ exports[`show-more [snapshot] > open state 1`] = `
   class="vesper-show-more"
 >
   <button
+    aria-expanded="true"
     class="vesper-button vesper-button-sm vesper-button-tertiary"
   >
     Show less
