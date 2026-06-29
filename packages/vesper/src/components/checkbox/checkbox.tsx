@@ -1,8 +1,10 @@
 import {
-  Checkbox as RadixCheckbox,
-  CheckboxIndicator,
-  type CheckboxProps as RadixCheckboxProps,
-} from "@radix-ui/react-checkbox";
+  RefObject,
+  useImperativeHandle,
+  useLayoutEffect,
+  useRef,
+  type ComponentProps,
+} from "react";
 import { cn } from "@/utils/cn";
 import {
   Typography,
@@ -15,11 +17,19 @@ export const CHECKBOX_SIZES = ["sm", "md"] as const;
 export type CheckboxSize = (typeof CHECKBOX_SIZES)[number];
 
 export interface CheckboxProps extends Omit<
-  RadixCheckboxProps,
-  "asChild" | "children"
+  ComponentProps<"label">,
+  "children" | "defaultChecked" | "onChange"
 > {
   label: string;
+  required?: boolean;
+  disabled?: boolean;
+  name?: string;
+  checked?: boolean;
+  defaultChecked?: boolean;
+  indeterminate?: boolean;
   size?: CheckboxSize;
+  onChange?(value: boolean): void;
+  inputRef?: RefObject<HTMLInputElement | null>;
 }
 
 const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
@@ -33,8 +43,21 @@ export function Checkbox({
   size = "md",
   className,
   disabled,
+  name,
+  checked,
+  defaultChecked,
+  onChange,
+  indeterminate,
+  inputRef,
   ...props
 }: CheckboxProps) {
+  const ref = useRef<HTMLInputElement>(null);
+  useLayoutEffect(() => {
+    if (ref.current) ref.current.indeterminate = !!indeterminate;
+  }, [indeterminate]);
+
+  useImperativeHandle(inputRef, () => ref.current!);
+
   return (
     <label
       className={cn(
@@ -43,18 +66,26 @@ export function Checkbox({
         disabled && "vesper-checkbox-disabled",
         className,
       )}
+      {...props}
     >
-      <RadixCheckbox
-        className="vesper-checkbox-box"
+      <input
+        ref={ref}
+        type="checkbox"
+        className="vesper-checkbox-input"
+        defaultChecked={defaultChecked}
+        checked={checked}
+        name={name}
         required={required}
         disabled={disabled}
-        {...props}
-      >
-        <CheckboxIndicator className="vesper-checkbox-indicator">
+        onChange={(e) => onChange?.(e.target.checked)}
+      />
+
+      <div className="vesper-checkbox-box">
+        <div className="vesper-checkbox-indicator">
           <Checkmark className="vesper-checkbox-checked-icon" />
           <Minus className="vesper-checkbox-indeterminate-icon" />
-        </CheckboxIndicator>
-      </RadixCheckbox>
+        </div>
+      </div>
       <Typography
         variant={CHECKBOX_TYPOGRAPHY[size]}
         className="vesper-checkbox-label"

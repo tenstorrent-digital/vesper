@@ -7,6 +7,9 @@ const meta = {
   parameters: { layout: "centered" },
   argTypes: {
     defaultChecked: { table: { disable: true } },
+    checked: { table: { disable: true } },
+    name: { table: { disable: true } },
+    onChange: { table: { disable: true } },
   },
 } satisfies Meta<typeof Checkbox>;
 
@@ -19,8 +22,9 @@ export const Playground: Story = {
     size: "md",
     label: "Label",
     disabled: false,
-    defaultChecked: "indeterminate",
+    indeterminate: true,
     required: false,
+    defaultChecked: true,
   },
 };
 Playground.storyName = "checkbox";

@@ -11,42 +11,47 @@ import {
 
 import "@/styles/test.css";
 
-const CHECKBOX_PERMUTATIONS = [true, false, "indeterminate" as const].flatMap(
-  (checked) =>
+const CHECKBOX_PERMUTATIONS = [true, false].flatMap((checked) =>
+  [true, false].flatMap((indeterminate) =>
     CHECKBOX_SIZES.flatMap((size): (CheckboxProps & { name: string })[] => [
       {
-        name: `${size}, checked: ${checked}`,
+        name: `${size}, checked: ${checked}, indeterminate: ${indeterminate}`,
         size,
         label: "Label text",
         disabled: false,
         required: false,
-        checked,
+        defaultChecked: checked,
+        indeterminate,
       },
       {
-        name: `${size}, required, disabled, checked: ${checked}`,
+        name: `${size}, required, disabled, checked: ${checked}, indeterminate: ${indeterminate}`,
         size,
         label: "Label text",
         disabled: true,
         required: true,
-        checked,
+        defaultChecked: checked,
+        indeterminate,
       },
       {
-        name: `${size}, disabled, checked: ${checked}`,
+        name: `${size}, disabled, checked: ${checked}, indeterminate: ${indeterminate}`,
         size,
         label: "Label text",
         disabled: true,
         required: false,
-        checked,
+        defaultChecked: checked,
+        indeterminate,
       },
       {
-        name: `${size}, required, checked: ${checked}`,
+        name: `${size}, required, checked: ${checked}, indeterminate: ${indeterminate}`,
         size,
         label: "Label text",
         disabled: false,
         required: true,
-        checked,
+        defaultChecked: checked,
+        indeterminate,
       },
     ]),
+  ),
 );
 
 afterEach(cleanup);
@@ -88,64 +93,76 @@ describe("checkbox [unit]", () => {
     expect(container.firstChild).toHaveClass("custom-class");
   });
 
-  test("additional props are passed through", () => {
-    const result = render(
+  test("additional props are passed through to label", () => {
+    const { container } = render(
       <Checkbox
         label="Label"
         data-testid="my-checkbox"
         aria-describedby="help-text"
       />,
     );
-    const checkbox = result.getByRole("checkbox");
-    expect(checkbox).toHaveAttribute("data-testid", "my-checkbox");
-    expect(checkbox).toHaveAttribute("aria-describedby", "help-text");
+    expect(container.firstChild).toHaveAttribute(
+      "data-testid",
+      "my-checkbox",
+    );
+    expect(container.firstChild).toHaveAttribute(
+      "aria-describedby",
+      "help-text",
+    );
   });
 
   test("defaultChecked sets initial checked state", () => {
     const result = render(<Checkbox label="Label" defaultChecked />);
     const checkbox = result.getByRole("checkbox");
-    expect(checkbox).toHaveAttribute("data-state", "checked");
+    expect(checkbox).toBeChecked();
   });
 
   test("unchecked by default", () => {
     const result = render(<Checkbox label="Label" />);
     const checkbox = result.getByRole("checkbox");
-    expect(checkbox).toHaveAttribute("data-state", "unchecked");
+    expect(checkbox).not.toBeChecked();
   });
 
   test("indeterminate state", () => {
-    const result = render(
-      <Checkbox label="Label" defaultChecked="indeterminate" />,
-    );
+    const result = render(<Checkbox label="Label" indeterminate />);
+    const checkbox = result.getByRole("checkbox") as HTMLInputElement;
+    expect(checkbox.indeterminate).toBe(true);
+  });
+
+  test("name prop is passed to input", () => {
+    const result = render(<Checkbox label="Label" name="agree" />);
     const checkbox = result.getByRole("checkbox");
-    expect(checkbox).toHaveAttribute("data-state", "indeterminate");
+    expect(checkbox).toHaveAttribute("name", "agree");
   });
 
   test("clicking toggles checked state", async () => {
-    const result = render(<Checkbox label="Label" />);
-    const checkbox = result.getByRole("checkbox");
+    const { container } = render(<Checkbox label="Label" />);
+    const label = container.firstChild as HTMLLabelElement;
+    const checkbox = container.querySelector(
+      'input[type="checkbox"]',
+    ) as HTMLInputElement;
 
-    expect(checkbox).toHaveAttribute("data-state", "unchecked");
+    expect(checkbox).not.toBeChecked();
 
-    await userEvent.click(checkbox);
-    expect(checkbox).toHaveAttribute("data-state", "checked");
+    await userEvent.click(label);
+    expect(checkbox).toBeChecked();
 
-    await userEvent.click(checkbox);
-    expect(checkbox).toHaveAttribute("data-state", "unchecked");
+    await userEvent.click(label);
+    expect(checkbox).not.toBeChecked();
   });
 
-  test("onCheckedChange callback", async () => {
-    const onCheckedChange = vi.fn();
-    const result = render(
-      <Checkbox label="Label" onCheckedChange={onCheckedChange} />,
+  test("onChange callback", async () => {
+    const onChange = vi.fn();
+    const { container } = render(
+      <Checkbox label="Label" onChange={onChange} />,
     );
-    const checkbox = result.getByRole("checkbox");
+    const label = container.firstChild as HTMLLabelElement;
 
-    await userEvent.click(checkbox);
-    expect(onCheckedChange).toHaveBeenCalledWith(true);
+    await userEvent.click(label);
+    expect(onChange).toHaveBeenCalledWith(true);
 
-    await userEvent.click(checkbox);
-    expect(onCheckedChange).toHaveBeenCalledWith(false);
+    await userEvent.click(label);
+    expect(onChange).toHaveBeenCalledWith(false);
   });
 
   test("disabled class applied when disabled", () => {
@@ -158,53 +175,66 @@ describe("checkbox [unit]", () => {
     expect(container.firstChild).not.toHaveClass("vesper-checkbox-disabled");
   });
 
-  test("disabled checkbox doesn't toggle on click", () => {
-    const onCheckedChange = vi.fn();
-    const result = render(
-      <Checkbox label="Label" disabled onCheckedChange={onCheckedChange} />,
+  test("disabled checkbox does not toggle on click", () => {
+    const onChange = vi.fn();
+    const { container } = render(
+      <Checkbox label="Label" disabled onChange={onChange} />,
     );
-    const checkbox = result.getByRole("checkbox");
+    const label = container.firstChild as HTMLLabelElement;
+    const checkbox = container.querySelector(
+      'input[type="checkbox"]',
+    ) as HTMLInputElement;
 
-    fireEvent.click(checkbox);
-    expect(onCheckedChange).not.toHaveBeenCalled();
-    expect(checkbox).toHaveAttribute("data-state", "unchecked");
+    fireEvent.click(label);
+    expect(onChange).not.toHaveBeenCalled();
+    expect(checkbox).not.toBeChecked();
+  });
+
+  test("disabled checkbox has disabled attribute", () => {
+    const result = render(<Checkbox label="Label" disabled />);
+    const checkbox = result.getByRole("checkbox");
+    expect(checkbox).toBeDisabled();
+  });
+
+  test("required checkbox has required attribute", () => {
+    const result = render(<Checkbox label="Label" required />);
+    const checkbox = result.getByRole("checkbox");
+    expect(checkbox).toBeRequired();
   });
 
   test("keyboard Space toggles checkbox", async () => {
-    const onCheckedChange = vi.fn();
-    const result = render(
-      <Checkbox label="Label" onCheckedChange={onCheckedChange} />,
-    );
+    const onChange = vi.fn();
+    const result = render(<Checkbox label="Label" onChange={onChange} />);
     const checkbox = result.getByRole("checkbox");
 
     await userEvent.tab();
     expect(checkbox).toHaveFocus();
 
     await userEvent.keyboard(" ");
-    expect(checkbox).toHaveAttribute("data-state", "checked");
-    expect(onCheckedChange).toHaveBeenCalledWith(true);
+    expect(checkbox).toBeChecked();
+    expect(onChange).toHaveBeenCalledWith(true);
   });
 
-  test("keyboard Space doesn't toggle when disabled", async () => {
-    const onCheckedChange = vi.fn();
+  test("keyboard Space does not toggle disabled checkbox", async () => {
+    const onChange = vi.fn();
     const result = render(
-      <Checkbox label="Label" disabled onCheckedChange={onCheckedChange} />,
+      <Checkbox label="Label" disabled onChange={onChange} />,
     );
     const checkbox = result.getByRole("checkbox");
 
     checkbox.focus();
     await userEvent.keyboard(" ");
-    expect(onCheckedChange).not.toHaveBeenCalled();
-    expect(checkbox).toHaveAttribute("data-state", "unchecked");
+    expect(onChange).not.toHaveBeenCalled();
+    expect(checkbox).not.toBeChecked();
   });
 
-  test("clicking label toggles checkbox", async () => {
+  test("clicking label text toggles checkbox", async () => {
     const result = render(<Checkbox label="Label" />);
-    const label = result.getByText("Label");
+    const labelText = result.getByText("Label");
     const checkbox = result.getByRole("checkbox");
 
-    await userEvent.click(label);
-    expect(checkbox).toHaveAttribute("data-state", "checked");
+    await userEvent.click(labelText);
+    expect(checkbox).toBeChecked();
   });
 });
 

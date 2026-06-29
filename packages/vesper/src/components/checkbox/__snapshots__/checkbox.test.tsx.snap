@@ -1,18 +1,41 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`checkbox [snapshot] > md, checked: false 1`] = `
+exports[`checkbox [snapshot] > md, checked: false, indeterminate: false 1`] = `
 <label
   class="vesper-checkbox vesper-checkbox-md"
 >
-  <button
-    aria-checked="false"
-    aria-required="false"
-    class="vesper-checkbox-box"
-    data-state="unchecked"
-    role="checkbox"
-    type="button"
-    value="on"
+  <input
+    class="vesper-checkbox-input"
+    type="checkbox"
   />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
   <span
     class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
   >
@@ -21,23 +44,19 @@ exports[`checkbox [snapshot] > md, checked: false 1`] = `
 </label>
 `;
 
-exports[`checkbox [snapshot] > md, checked: indeterminate 1`] = `
+exports[`checkbox [snapshot] > md, checked: false, indeterminate: true 1`] = `
 <label
   class="vesper-checkbox vesper-checkbox-md"
 >
-  <button
-    aria-checked="mixed"
-    aria-required="false"
+  <input
+    class="vesper-checkbox-input"
+    type="checkbox"
+  />
+  <div
     class="vesper-checkbox-box"
-    data-state="indeterminate"
-    role="checkbox"
-    type="button"
-    value="on"
   >
-    <span
+    <div
       class="vesper-checkbox-indicator"
-      data-state="indeterminate"
-      style="pointer-events: none;"
     >
       <svg
         class="vesper-checkbox-checked-icon"
@@ -59,8 +78,8 @@ exports[`checkbox [snapshot] > md, checked: indeterminate 1`] = `
           fill="currentColor"
         />
       </svg>
-    </span>
-  </button>
+    </div>
+  </div>
   <span
     class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
   >
@@ -69,97 +88,20 @@ exports[`checkbox [snapshot] > md, checked: indeterminate 1`] = `
 </label>
 `;
 
-exports[`checkbox [snapshot] > md, checked: true 1`] = `
+exports[`checkbox [snapshot] > md, checked: true, indeterminate: false 1`] = `
 <label
   class="vesper-checkbox vesper-checkbox-md"
 >
-  <button
-    aria-checked="true"
-    aria-required="false"
-    class="vesper-checkbox-box"
-    data-state="checked"
-    role="checkbox"
-    type="button"
-    value="on"
-  >
-    <span
-      class="vesper-checkbox-indicator"
-      data-state="checked"
-      style="pointer-events: none;"
-    >
-      <svg
-        class="vesper-checkbox-checked-icon"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-checkbox-indeterminate-icon"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <span
-    class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
-  >
-    Label text
-  </span>
-</label>
-`;
-
-exports[`checkbox [snapshot] > md, disabled, checked: false 1`] = `
-<label
-  class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
->
-  <button
-    aria-checked="false"
-    aria-required="false"
-    class="vesper-checkbox-box"
-    data-disabled=""
-    data-state="unchecked"
-    disabled=""
-    role="checkbox"
-    type="button"
-    value="on"
+  <input
+    checked=""
+    class="vesper-checkbox-input"
+    type="checkbox"
   />
-  <span
-    class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
-  >
-    Label text
-  </span>
-</label>
-`;
-
-exports[`checkbox [snapshot] > md, disabled, checked: indeterminate 1`] = `
-<label
-  class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
->
-  <button
-    aria-checked="mixed"
-    aria-required="false"
+  <div
     class="vesper-checkbox-box"
-    data-disabled=""
-    data-state="indeterminate"
-    disabled=""
-    role="checkbox"
-    type="button"
-    value="on"
   >
-    <span
+    <div
       class="vesper-checkbox-indicator"
-      data-disabled=""
-      data-state="indeterminate"
-      style="pointer-events: none;"
     >
       <svg
         class="vesper-checkbox-checked-icon"
@@ -181,8 +123,8 @@ exports[`checkbox [snapshot] > md, disabled, checked: indeterminate 1`] = `
           fill="currentColor"
         />
       </svg>
-    </span>
-  </button>
+    </div>
+  </div>
   <span
     class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
   >
@@ -191,95 +133,247 @@ exports[`checkbox [snapshot] > md, disabled, checked: indeterminate 1`] = `
 </label>
 `;
 
-exports[`checkbox [snapshot] > md, disabled, checked: true 1`] = `
-<label
-  class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
->
-  <button
-    aria-checked="true"
-    aria-required="false"
-    class="vesper-checkbox-box"
-    data-disabled=""
-    data-state="checked"
-    disabled=""
-    role="checkbox"
-    type="button"
-    value="on"
-  >
-    <span
-      class="vesper-checkbox-indicator"
-      data-disabled=""
-      data-state="checked"
-      style="pointer-events: none;"
-    >
-      <svg
-        class="vesper-checkbox-checked-icon"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-checkbox-indeterminate-icon"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <span
-    class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
-  >
-    Label text
-  </span>
-</label>
-`;
-
-exports[`checkbox [snapshot] > md, required, checked: false 1`] = `
+exports[`checkbox [snapshot] > md, checked: true, indeterminate: true 1`] = `
 <label
   class="vesper-checkbox vesper-checkbox-md"
 >
-  <button
-    aria-checked="false"
-    aria-required="true"
-    class="vesper-checkbox-box"
-    data-state="unchecked"
-    role="checkbox"
-    type="button"
-    value="on"
+  <input
+    checked=""
+    class="vesper-checkbox-input"
+    type="checkbox"
   />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
   <span
     class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
   >
-    Label text *
+    Label text
   </span>
 </label>
 `;
 
-exports[`checkbox [snapshot] > md, required, checked: indeterminate 1`] = `
+exports[`checkbox [snapshot] > md, disabled, checked: false, indeterminate: false 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
+>
+  <input
+    class="vesper-checkbox-input"
+    disabled=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
+  >
+    Label text
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > md, disabled, checked: false, indeterminate: true 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
+>
+  <input
+    class="vesper-checkbox-input"
+    disabled=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
+  >
+    Label text
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > md, disabled, checked: true, indeterminate: false 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
+>
+  <input
+    checked=""
+    class="vesper-checkbox-input"
+    disabled=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
+  >
+    Label text
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > md, disabled, checked: true, indeterminate: true 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
+>
+  <input
+    checked=""
+    class="vesper-checkbox-input"
+    disabled=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
+  >
+    Label text
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > md, required, checked: false, indeterminate: false 1`] = `
 <label
   class="vesper-checkbox vesper-checkbox-md"
 >
-  <button
-    aria-checked="mixed"
-    aria-required="true"
+  <input
+    class="vesper-checkbox-input"
+    required=""
+    type="checkbox"
+  />
+  <div
     class="vesper-checkbox-box"
-    data-state="indeterminate"
-    role="checkbox"
-    type="button"
-    value="on"
   >
-    <span
+    <div
       class="vesper-checkbox-indicator"
-      data-state="indeterminate"
-      style="pointer-events: none;"
     >
       <svg
         class="vesper-checkbox-checked-icon"
@@ -301,8 +395,8 @@ exports[`checkbox [snapshot] > md, required, checked: indeterminate 1`] = `
           fill="currentColor"
         />
       </svg>
-    </span>
-  </button>
+    </div>
+  </div>
   <span
     class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
   >
@@ -311,23 +405,20 @@ exports[`checkbox [snapshot] > md, required, checked: indeterminate 1`] = `
 </label>
 `;
 
-exports[`checkbox [snapshot] > md, required, checked: true 1`] = `
+exports[`checkbox [snapshot] > md, required, checked: false, indeterminate: true 1`] = `
 <label
   class="vesper-checkbox vesper-checkbox-md"
 >
-  <button
-    aria-checked="true"
-    aria-required="true"
+  <input
+    class="vesper-checkbox-input"
+    required=""
+    type="checkbox"
+  />
+  <div
     class="vesper-checkbox-box"
-    data-state="checked"
-    role="checkbox"
-    type="button"
-    value="on"
   >
-    <span
+    <div
       class="vesper-checkbox-indicator"
-      data-state="checked"
-      style="pointer-events: none;"
     >
       <svg
         class="vesper-checkbox-checked-icon"
@@ -349,8 +440,8 @@ exports[`checkbox [snapshot] > md, required, checked: true 1`] = `
           fill="currentColor"
         />
       </svg>
-    </span>
-  </button>
+    </div>
+  </div>
   <span
     class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
   >
@@ -359,21 +450,136 @@ exports[`checkbox [snapshot] > md, required, checked: true 1`] = `
 </label>
 `;
 
-exports[`checkbox [snapshot] > md, required, disabled, checked: false 1`] = `
+exports[`checkbox [snapshot] > md, required, checked: true, indeterminate: false 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-md"
+>
+  <input
+    checked=""
+    class="vesper-checkbox-input"
+    required=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
+  >
+    Label text *
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > md, required, checked: true, indeterminate: true 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-md"
+>
+  <input
+    checked=""
+    class="vesper-checkbox-input"
+    required=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
+  >
+    Label text *
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > md, required, disabled, checked: false, indeterminate: false 1`] = `
 <label
   class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
 >
-  <button
-    aria-checked="false"
-    aria-required="true"
-    class="vesper-checkbox-box"
-    data-disabled=""
-    data-state="unchecked"
+  <input
+    class="vesper-checkbox-input"
     disabled=""
-    role="checkbox"
-    type="button"
-    value="on"
+    required=""
+    type="checkbox"
   />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
   <span
     class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
   >
@@ -382,26 +588,21 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: false 1`] = `
 </label>
 `;
 
-exports[`checkbox [snapshot] > md, required, disabled, checked: indeterminate 1`] = `
+exports[`checkbox [snapshot] > md, required, disabled, checked: false, indeterminate: true 1`] = `
 <label
   class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
 >
-  <button
-    aria-checked="mixed"
-    aria-required="true"
-    class="vesper-checkbox-box"
-    data-disabled=""
-    data-state="indeterminate"
+  <input
+    class="vesper-checkbox-input"
     disabled=""
-    role="checkbox"
-    type="button"
-    value="on"
+    required=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
   >
-    <span
+    <div
       class="vesper-checkbox-indicator"
-      data-disabled=""
-      data-state="indeterminate"
-      style="pointer-events: none;"
     >
       <svg
         class="vesper-checkbox-checked-icon"
@@ -423,8 +624,8 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: indeterminate 1`
           fill="currentColor"
         />
       </svg>
-    </span>
-  </button>
+    </div>
+  </div>
   <span
     class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
   >
@@ -433,26 +634,22 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: indeterminate 1`
 </label>
 `;
 
-exports[`checkbox [snapshot] > md, required, disabled, checked: true 1`] = `
+exports[`checkbox [snapshot] > md, required, disabled, checked: true, indeterminate: false 1`] = `
 <label
   class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
 >
-  <button
-    aria-checked="true"
-    aria-required="true"
-    class="vesper-checkbox-box"
-    data-disabled=""
-    data-state="checked"
+  <input
+    checked=""
+    class="vesper-checkbox-input"
     disabled=""
-    role="checkbox"
-    type="button"
-    value="on"
+    required=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
   >
-    <span
+    <div
       class="vesper-checkbox-indicator"
-      data-disabled=""
-      data-state="checked"
-      style="pointer-events: none;"
     >
       <svg
         class="vesper-checkbox-checked-icon"
@@ -474,8 +671,8 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: true 1`] = `
           fill="currentColor"
         />
       </svg>
-    </span>
-  </button>
+    </div>
+  </div>
   <span
     class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
   >
@@ -484,44 +681,22 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: true 1`] = `
 </label>
 `;
 
-exports[`checkbox [snapshot] > sm, checked: false 1`] = `
+exports[`checkbox [snapshot] > md, required, disabled, checked: true, indeterminate: true 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-sm"
+  class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
 >
-  <button
-    aria-checked="false"
-    aria-required="false"
-    class="vesper-checkbox-box"
-    data-state="unchecked"
-    role="checkbox"
-    type="button"
-    value="on"
+  <input
+    checked=""
+    class="vesper-checkbox-input"
+    disabled=""
+    required=""
+    type="checkbox"
   />
-  <span
-    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
-  >
-    Label text
-  </span>
-</label>
-`;
-
-exports[`checkbox [snapshot] > sm, checked: indeterminate 1`] = `
-<label
-  class="vesper-checkbox vesper-checkbox-sm"
->
-  <button
-    aria-checked="mixed"
-    aria-required="false"
+  <div
     class="vesper-checkbox-box"
-    data-state="indeterminate"
-    role="checkbox"
-    type="button"
-    value="on"
   >
-    <span
+    <div
       class="vesper-checkbox-indicator"
-      data-state="indeterminate"
-      style="pointer-events: none;"
     >
       <svg
         class="vesper-checkbox-checked-icon"
@@ -543,107 +718,29 @@ exports[`checkbox [snapshot] > sm, checked: indeterminate 1`] = `
           fill="currentColor"
         />
       </svg>
-    </span>
-  </button>
+    </div>
+  </div>
   <span
-    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
+    class="vesper-typography vesper-typography-label-lg vesper-checkbox-label"
   >
-    Label text
+    Label text *
   </span>
 </label>
 `;
 
-exports[`checkbox [snapshot] > sm, checked: true 1`] = `
+exports[`checkbox [snapshot] > sm, checked: false, indeterminate: false 1`] = `
 <label
   class="vesper-checkbox vesper-checkbox-sm"
 >
-  <button
-    aria-checked="true"
-    aria-required="false"
-    class="vesper-checkbox-box"
-    data-state="checked"
-    role="checkbox"
-    type="button"
-    value="on"
-  >
-    <span
-      class="vesper-checkbox-indicator"
-      data-state="checked"
-      style="pointer-events: none;"
-    >
-      <svg
-        class="vesper-checkbox-checked-icon"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-checkbox-indeterminate-icon"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <span
-    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
-  >
-    Label text
-  </span>
-</label>
-`;
-
-exports[`checkbox [snapshot] > sm, disabled, checked: false 1`] = `
-<label
-  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
->
-  <button
-    aria-checked="false"
-    aria-required="false"
-    class="vesper-checkbox-box"
-    data-disabled=""
-    data-state="unchecked"
-    disabled=""
-    role="checkbox"
-    type="button"
-    value="on"
+  <input
+    class="vesper-checkbox-input"
+    type="checkbox"
   />
-  <span
-    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
-  >
-    Label text
-  </span>
-</label>
-`;
-
-exports[`checkbox [snapshot] > sm, disabled, checked: indeterminate 1`] = `
-<label
-  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
->
-  <button
-    aria-checked="mixed"
-    aria-required="false"
+  <div
     class="vesper-checkbox-box"
-    data-disabled=""
-    data-state="indeterminate"
-    disabled=""
-    role="checkbox"
-    type="button"
-    value="on"
   >
-    <span
+    <div
       class="vesper-checkbox-indicator"
-      data-disabled=""
-      data-state="indeterminate"
-      style="pointer-events: none;"
     >
       <svg
         class="vesper-checkbox-checked-icon"
@@ -665,8 +762,8 @@ exports[`checkbox [snapshot] > sm, disabled, checked: indeterminate 1`] = `
           fill="currentColor"
         />
       </svg>
-    </span>
-  </button>
+    </div>
+  </div>
   <span
     class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
   >
@@ -675,95 +772,19 @@ exports[`checkbox [snapshot] > sm, disabled, checked: indeterminate 1`] = `
 </label>
 `;
 
-exports[`checkbox [snapshot] > sm, disabled, checked: true 1`] = `
-<label
-  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
->
-  <button
-    aria-checked="true"
-    aria-required="false"
-    class="vesper-checkbox-box"
-    data-disabled=""
-    data-state="checked"
-    disabled=""
-    role="checkbox"
-    type="button"
-    value="on"
-  >
-    <span
-      class="vesper-checkbox-indicator"
-      data-disabled=""
-      data-state="checked"
-      style="pointer-events: none;"
-    >
-      <svg
-        class="vesper-checkbox-checked-icon"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-checkbox-indeterminate-icon"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <span
-    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
-  >
-    Label text
-  </span>
-</label>
-`;
-
-exports[`checkbox [snapshot] > sm, required, checked: false 1`] = `
+exports[`checkbox [snapshot] > sm, checked: false, indeterminate: true 1`] = `
 <label
   class="vesper-checkbox vesper-checkbox-sm"
 >
-  <button
-    aria-checked="false"
-    aria-required="true"
-    class="vesper-checkbox-box"
-    data-state="unchecked"
-    role="checkbox"
-    type="button"
-    value="on"
+  <input
+    class="vesper-checkbox-input"
+    type="checkbox"
   />
-  <span
-    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
-  >
-    Label text *
-  </span>
-</label>
-`;
-
-exports[`checkbox [snapshot] > sm, required, checked: indeterminate 1`] = `
-<label
-  class="vesper-checkbox vesper-checkbox-sm"
->
-  <button
-    aria-checked="mixed"
-    aria-required="true"
+  <div
     class="vesper-checkbox-box"
-    data-state="indeterminate"
-    role="checkbox"
-    type="button"
-    value="on"
   >
-    <span
+    <div
       class="vesper-checkbox-indicator"
-      data-state="indeterminate"
-      style="pointer-events: none;"
     >
       <svg
         class="vesper-checkbox-checked-icon"
@@ -785,107 +806,30 @@ exports[`checkbox [snapshot] > sm, required, checked: indeterminate 1`] = `
           fill="currentColor"
         />
       </svg>
-    </span>
-  </button>
+    </div>
+  </div>
   <span
     class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
   >
-    Label text *
+    Label text
   </span>
 </label>
 `;
 
-exports[`checkbox [snapshot] > sm, required, checked: true 1`] = `
+exports[`checkbox [snapshot] > sm, checked: true, indeterminate: false 1`] = `
 <label
   class="vesper-checkbox vesper-checkbox-sm"
 >
-  <button
-    aria-checked="true"
-    aria-required="true"
-    class="vesper-checkbox-box"
-    data-state="checked"
-    role="checkbox"
-    type="button"
-    value="on"
-  >
-    <span
-      class="vesper-checkbox-indicator"
-      data-state="checked"
-      style="pointer-events: none;"
-    >
-      <svg
-        class="vesper-checkbox-checked-icon"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-checkbox-indeterminate-icon"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <span
-    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
-  >
-    Label text *
-  </span>
-</label>
-`;
-
-exports[`checkbox [snapshot] > sm, required, disabled, checked: false 1`] = `
-<label
-  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
->
-  <button
-    aria-checked="false"
-    aria-required="true"
-    class="vesper-checkbox-box"
-    data-disabled=""
-    data-state="unchecked"
-    disabled=""
-    role="checkbox"
-    type="button"
-    value="on"
+  <input
+    checked=""
+    class="vesper-checkbox-input"
+    type="checkbox"
   />
-  <span
-    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
-  >
-    Label text *
-  </span>
-</label>
-`;
-
-exports[`checkbox [snapshot] > sm, required, disabled, checked: indeterminate 1`] = `
-<label
-  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
->
-  <button
-    aria-checked="mixed"
-    aria-required="true"
+  <div
     class="vesper-checkbox-box"
-    data-disabled=""
-    data-state="indeterminate"
-    disabled=""
-    role="checkbox"
-    type="button"
-    value="on"
   >
-    <span
+    <div
       class="vesper-checkbox-indicator"
-      data-disabled=""
-      data-state="indeterminate"
-      style="pointer-events: none;"
     >
       <svg
         class="vesper-checkbox-checked-icon"
@@ -907,36 +851,30 @@ exports[`checkbox [snapshot] > sm, required, disabled, checked: indeterminate 1`
           fill="currentColor"
         />
       </svg>
-    </span>
-  </button>
+    </div>
+  </div>
   <span
     class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
   >
-    Label text *
+    Label text
   </span>
 </label>
 `;
 
-exports[`checkbox [snapshot] > sm, required, disabled, checked: true 1`] = `
+exports[`checkbox [snapshot] > sm, checked: true, indeterminate: true 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
+  class="vesper-checkbox vesper-checkbox-sm"
 >
-  <button
-    aria-checked="true"
-    aria-required="true"
+  <input
+    checked=""
+    class="vesper-checkbox-input"
+    type="checkbox"
+  />
+  <div
     class="vesper-checkbox-box"
-    data-disabled=""
-    data-state="checked"
-    disabled=""
-    role="checkbox"
-    type="button"
-    value="on"
   >
-    <span
+    <div
       class="vesper-checkbox-indicator"
-      data-disabled=""
-      data-state="checked"
-      style="pointer-events: none;"
     >
       <svg
         class="vesper-checkbox-checked-icon"
@@ -958,8 +896,558 @@ exports[`checkbox [snapshot] > sm, required, disabled, checked: true 1`] = `
           fill="currentColor"
         />
       </svg>
-    </span>
-  </button>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
+  >
+    Label text
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > sm, disabled, checked: false, indeterminate: false 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
+>
+  <input
+    class="vesper-checkbox-input"
+    disabled=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
+  >
+    Label text
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > sm, disabled, checked: false, indeterminate: true 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
+>
+  <input
+    class="vesper-checkbox-input"
+    disabled=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
+  >
+    Label text
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > sm, disabled, checked: true, indeterminate: false 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
+>
+  <input
+    checked=""
+    class="vesper-checkbox-input"
+    disabled=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
+  >
+    Label text
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > sm, disabled, checked: true, indeterminate: true 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
+>
+  <input
+    checked=""
+    class="vesper-checkbox-input"
+    disabled=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
+  >
+    Label text
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > sm, required, checked: false, indeterminate: false 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-sm"
+>
+  <input
+    class="vesper-checkbox-input"
+    required=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
+  >
+    Label text *
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > sm, required, checked: false, indeterminate: true 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-sm"
+>
+  <input
+    class="vesper-checkbox-input"
+    required=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
+  >
+    Label text *
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > sm, required, checked: true, indeterminate: false 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-sm"
+>
+  <input
+    checked=""
+    class="vesper-checkbox-input"
+    required=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
+  >
+    Label text *
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > sm, required, checked: true, indeterminate: true 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-sm"
+>
+  <input
+    checked=""
+    class="vesper-checkbox-input"
+    required=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
+  >
+    Label text *
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > sm, required, disabled, checked: false, indeterminate: false 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
+>
+  <input
+    class="vesper-checkbox-input"
+    disabled=""
+    required=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
+  >
+    Label text *
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > sm, required, disabled, checked: false, indeterminate: true 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
+>
+  <input
+    class="vesper-checkbox-input"
+    disabled=""
+    required=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
+  >
+    Label text *
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > sm, required, disabled, checked: true, indeterminate: false 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
+>
+  <input
+    checked=""
+    class="vesper-checkbox-input"
+    disabled=""
+    required=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+  <span
+    class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
+  >
+    Label text *
+  </span>
+</label>
+`;
+
+exports[`checkbox [snapshot] > sm, required, disabled, checked: true, indeterminate: true 1`] = `
+<label
+  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
+>
+  <input
+    checked=""
+    class="vesper-checkbox-input"
+    disabled=""
+    required=""
+    type="checkbox"
+  />
+  <div
+    class="vesper-checkbox-box"
+  >
+    <div
+      class="vesper-checkbox-indicator"
+    >
+      <svg
+        class="vesper-checkbox-checked-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-checkbox-indeterminate-icon"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
   <span
     class="vesper-typography vesper-typography-label-md vesper-checkbox-label"
   >
