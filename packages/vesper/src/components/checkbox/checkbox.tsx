@@ -16,19 +16,47 @@ export const CHECKBOX_SIZES = ["sm", "md"] as const;
 
 export type CheckboxSize = (typeof CHECKBOX_SIZES)[number];
 
-export interface CheckboxProps extends Omit<
-  ComponentProps<"label">,
-  "children" | "defaultChecked" | "onChange"
-> {
+/**
+ * Union of all the prop types that should be forwarded to the input element, and excluded from the containing label element
+ */
+type ForwardedPropTypes =
+  | "id"
+  | "form"
+  | "value"
+  | "autoFocus"
+  | "disabled"
+  | "name"
+  | "required"
+  | "checked"
+  | "defaultChecked"
+  | "onFocus"
+  | "onFocusCapture"
+  | "onBlur"
+  | "onBlurCapture"
+  | "onChange"
+  | "onChangeCapture"
+  | "onBeforeInput"
+  | "onBeforeInputCapture"
+  | "onInput"
+  | "onInputCapture"
+  | "onReset"
+  | "onResetCapture"
+  | "onSubmit"
+  | "onSubmitCapture"
+  | "onInvalid"
+  | "onInvalidCapture"
+  | "onKeyDown"
+  | "onKeyDownCapture"
+  | "onKeyUp"
+  | "onKeyUpCapture";
+
+export interface CheckboxProps
+  extends
+    Omit<ComponentProps<"label">, "children" | "onChange" | ForwardedPropTypes>,
+    Pick<ComponentProps<"input">, ForwardedPropTypes> {
   label: string;
-  required?: boolean;
-  disabled?: boolean;
-  name?: string;
-  checked?: boolean;
-  defaultChecked?: boolean;
   indeterminate?: boolean;
   size?: CheckboxSize;
-  onChange?(value: boolean): void;
   inputRef?: RefObject<HTMLInputElement | null>;
 }
 
@@ -38,17 +66,43 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
 };
 
 export function Checkbox({
-  required,
+  // component-specific props
   label,
   size = "md",
-  className,
-  disabled,
-  name,
-  checked,
-  defaultChecked,
-  onChange,
   indeterminate,
   inputRef,
+  // props forwarded to the inner input
+  id,
+  form,
+  value,
+  autoFocus,
+  disabled,
+  name,
+  required,
+  checked,
+  defaultChecked,
+  onFocus,
+  onFocusCapture,
+  onBlur,
+  onBlurCapture,
+  onChange,
+  onChangeCapture,
+  onBeforeInput,
+  onBeforeInputCapture,
+  onInput,
+  onInputCapture,
+  onReset,
+  onResetCapture,
+  onSubmit,
+  onSubmitCapture,
+  onInvalid,
+  onInvalidCapture,
+  onKeyDown,
+  onKeyDownCapture,
+  onKeyUp,
+  onKeyUpCapture,
+  // props spread onto the wrapper label
+  className,
   ...props
 }: CheckboxProps) {
   const ref = useRef<HTMLInputElement>(null);
@@ -72,12 +126,35 @@ export function Checkbox({
         ref={ref}
         type="checkbox"
         className="vesper-checkbox-input"
-        defaultChecked={defaultChecked}
-        checked={checked}
+        id={id}
+        form={form}
+        value={value}
+        autoFocus={autoFocus}
+        disabled={disabled}
         name={name}
         required={required}
-        disabled={disabled}
-        onChange={(e) => onChange?.(e.target.checked)}
+        checked={checked}
+        defaultChecked={defaultChecked}
+        onChange={onChange}
+        onFocus={onFocus}
+        onFocusCapture={onFocusCapture}
+        onBlur={onBlur}
+        onBlurCapture={onBlurCapture}
+        onChangeCapture={onChangeCapture}
+        onBeforeInput={onBeforeInput}
+        onBeforeInputCapture={onBeforeInputCapture}
+        onInput={onInput}
+        onInputCapture={onInputCapture}
+        onReset={onReset}
+        onResetCapture={onResetCapture}
+        onSubmit={onSubmit}
+        onSubmitCapture={onSubmitCapture}
+        onInvalid={onInvalid}
+        onInvalidCapture={onInvalidCapture}
+        onKeyDown={onKeyDown}
+        onKeyDownCapture={onKeyDownCapture}
+        onKeyUp={onKeyUp}
+        onKeyUpCapture={onKeyUpCapture}
       />
 
       <div className="vesper-checkbox-box">

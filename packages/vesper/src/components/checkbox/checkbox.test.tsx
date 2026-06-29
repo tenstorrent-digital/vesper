@@ -101,10 +101,7 @@ describe("checkbox [unit]", () => {
         aria-describedby="help-text"
       />,
     );
-    expect(container.firstChild).toHaveAttribute(
-      "data-testid",
-      "my-checkbox",
-    );
+    expect(container.firstChild).toHaveAttribute("data-testid", "my-checkbox");
     expect(container.firstChild).toHaveAttribute(
       "aria-describedby",
       "help-text",
@@ -159,10 +156,10 @@ describe("checkbox [unit]", () => {
     const label = container.firstChild as HTMLLabelElement;
 
     await userEvent.click(label);
-    expect(onChange).toHaveBeenCalledWith(true);
+    expect(onChange).toHaveBeenCalled();
 
     await userEvent.click(label);
-    expect(onChange).toHaveBeenCalledWith(false);
+    expect(onChange).toHaveBeenCalled();
   });
 
   test("disabled class applied when disabled", () => {
@@ -212,7 +209,7 @@ describe("checkbox [unit]", () => {
 
     await userEvent.keyboard(" ");
     expect(checkbox).toBeChecked();
-    expect(onChange).toHaveBeenCalledWith(true);
+    expect(onChange).toHaveBeenCalled();
   });
 
   test("keyboard Space does not toggle disabled checkbox", async () => {
