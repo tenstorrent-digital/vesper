@@ -21,6 +21,13 @@
       color: var(--vesper-alpha-stone-500);
     }
   }
+  &:focus-visible {
+    outline-offset: 1px;
+    outline: 1px solid var(--vesper-teal-200);
+    @media (forced-colors: active) {
+      outline-color: CanvasText;
+    }
+  }
 }
 
 .vesper-checkbox-sm {
