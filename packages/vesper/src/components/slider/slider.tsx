@@ -10,6 +10,7 @@ interface SliderProps extends Omit<
   | "onValueChange"
   | "onValueCommit"
   | "orientation"
+  | "thumbAriaLabels"
 > {
   value?: number;
   valueLabel?: string;
@@ -18,6 +19,7 @@ interface SliderProps extends Omit<
   onValueChange?(value: number): void;
   onValueCommit?(value: number): void;
   showTicks?: boolean;
+  thumbAriaLabel?: string;
 }
 
 export function Slider({
@@ -27,6 +29,7 @@ export function Slider({
   onValueChange,
   onValueCommit,
   showValueLabel,
+  thumbAriaLabel,
   min = 0,
   ...props
 }: SliderProps) {
@@ -48,6 +51,9 @@ export function Slider({
       showValueLabels={showValueLabel}
       onValuesChange={handleValueChange}
       onValuesCommit={handleValueCommit}
+      thumbAriaLabels={
+        typeof thumbAriaLabel === "string" ? [thumbAriaLabel] : undefined
+      }
       min={min}
       {...props}
     />

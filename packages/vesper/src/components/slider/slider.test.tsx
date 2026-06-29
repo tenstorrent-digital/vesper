@@ -44,8 +44,8 @@ describe("slider [unit]", () => {
     expect(thumb).toHaveAttribute("aria-valuenow", "25");
   });
 
-  test("aria-label is applied to thumb", () => {
-    const result = render(<Slider aria-label="Brightness" value={50} />);
+  test("thumb aria label", () => {
+    const result = render(<Slider thumbAriaLabel="Brightness" value={50} />);
     const thumb = result.getByRole("slider");
     expect(thumb).toHaveAttribute("aria-label", "Brightness");
   });

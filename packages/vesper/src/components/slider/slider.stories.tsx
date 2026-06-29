@@ -27,6 +27,7 @@ export const Playground: Story = {
     showTicks: false,
     showValueLabel: false,
     disabled: false,
+    thumbAriaLabel: "Volume",
   },
 };
 Playground.storyName = "slider";

@@ -3,6 +3,7 @@
 exports[`range [snapshot] > default 1`] = `
 <span
   aria-disabled="false"
+  aria-label="Range"
   class="vesper-range"
   data-orientation="horizontal"
   dir="ltr"
@@ -22,7 +23,6 @@ exports[`range [snapshot] > default 1`] = `
     style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(0% + 0px);"
   >
     <span
-      aria-label="Range"
       aria-orientation="horizontal"
       aria-valuemax="100"
       aria-valuemin="0"
@@ -39,7 +39,6 @@ exports[`range [snapshot] > default 1`] = `
     style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(100% + 0px);"
   >
     <span
-      aria-label="Range"
       aria-orientation="horizontal"
       aria-valuemax="100"
       aria-valuemin="0"
@@ -58,6 +57,7 @@ exports[`range [snapshot] > default 1`] = `
 exports[`range [snapshot] > disabled 1`] = `
 <span
   aria-disabled="true"
+  aria-label="Range"
   class="vesper-range"
   data-disabled=""
   data-orientation="horizontal"
@@ -80,7 +80,6 @@ exports[`range [snapshot] > disabled 1`] = `
     style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(0% + 0px);"
   >
     <span
-      aria-label="Range"
       aria-orientation="horizontal"
       aria-valuemax="100"
       aria-valuemin="0"
@@ -97,7 +96,6 @@ exports[`range [snapshot] > disabled 1`] = `
     style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(100% + 0px);"
   >
     <span
-      aria-label="Range"
       aria-orientation="horizontal"
       aria-valuemax="100"
       aria-valuemin="0"
@@ -116,6 +114,7 @@ exports[`range [snapshot] > disabled 1`] = `
 exports[`range [snapshot] > with custom min/max/step 1`] = `
 <span
   aria-disabled="false"
+  aria-label="Range"
   class="vesper-range"
   data-orientation="horizontal"
   dir="ltr"
@@ -135,7 +134,6 @@ exports[`range [snapshot] > with custom min/max/step 1`] = `
     style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(0% + 0px);"
   >
     <span
-      aria-label="Range"
       aria-orientation="horizontal"
       aria-valuemax="10"
       aria-valuemin="0"
@@ -152,7 +150,6 @@ exports[`range [snapshot] > with custom min/max/step 1`] = `
     style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(100% + 0px);"
   >
     <span
-      aria-label="Range"
       aria-orientation="horizontal"
       aria-valuemax="10"
       aria-valuemin="0"
@@ -171,6 +168,7 @@ exports[`range [snapshot] > with custom min/max/step 1`] = `
 exports[`range [snapshot] > with multiple values 1`] = `
 <span
   aria-disabled="false"
+  aria-label="Range"
   class="vesper-range"
   data-orientation="horizontal"
   dir="ltr"
@@ -190,7 +188,6 @@ exports[`range [snapshot] > with multiple values 1`] = `
     style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(20% + 0px);"
   >
     <span
-      aria-label="Range"
       aria-orientation="horizontal"
       aria-valuemax="100"
       aria-valuemin="0"
@@ -207,7 +204,6 @@ exports[`range [snapshot] > with multiple values 1`] = `
     style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(40% + 0px);"
   >
     <span
-      aria-label="Range"
       aria-orientation="horizontal"
       aria-valuemax="100"
       aria-valuemin="0"
@@ -224,7 +220,6 @@ exports[`range [snapshot] > with multiple values 1`] = `
     style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(60% + 0px);"
   >
     <span
-      aria-label="Range"
       aria-orientation="horizontal"
       aria-valuemax="100"
       aria-valuemin="0"
@@ -241,7 +236,6 @@ exports[`range [snapshot] > with multiple values 1`] = `
     style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(80% + 0px);"
   >
     <span
-      aria-label="Range"
       aria-orientation="horizontal"
       aria-valuemax="100"
       aria-valuemin="0"
@@ -260,6 +254,7 @@ exports[`range [snapshot] > with multiple values 1`] = `
 exports[`range [snapshot] > with ticks 1`] = `
 <span
   aria-disabled="false"
+  aria-label="Range"
   class="vesper-range"
   data-orientation="horizontal"
   dir="ltr"
@@ -295,7 +290,6 @@ exports[`range [snapshot] > with ticks 1`] = `
     style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(0% + 0px);"
   >
     <span
-      aria-label="Range"
       aria-orientation="horizontal"
       aria-valuemax="5"
       aria-valuemin="0"
@@ -312,7 +306,6 @@ exports[`range [snapshot] > with ticks 1`] = `
     style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(100% + 0px);"
   >
     <span
-      aria-label="Range"
       aria-orientation="horizontal"
       aria-valuemax="5"
       aria-valuemin="0"
@@ -331,6 +324,7 @@ exports[`range [snapshot] > with ticks 1`] = `
 exports[`range [snapshot] > with value labels 1`] = `
 <span
   aria-disabled="false"
+  aria-label="Range"
   class="vesper-range"
   data-orientation="horizontal"
   dir="ltr"
@@ -350,7 +344,6 @@ exports[`range [snapshot] > with value labels 1`] = `
     style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(0% + 0px);"
   >
     <span
-      aria-label="Range"
       aria-orientation="horizontal"
       aria-valuemax="100"
       aria-valuemin="0"
@@ -367,7 +360,6 @@ exports[`range [snapshot] > with value labels 1`] = `
     style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(100% + 0px);"
   >
     <span
-      aria-label="Range"
       aria-orientation="horizontal"
       aria-valuemax="100"
       aria-valuemin="0"

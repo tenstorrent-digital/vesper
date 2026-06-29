@@ -25,12 +25,14 @@ describe("range [unit]", () => {
     expect(container.firstChild).toHaveAttribute("data-testid", "range-slider");
   });
 
-  test("aria-label is applied to thumbs", () => {
-    const result = render(<Range aria-label="Price range" />);
+  test("thumb aria labels", () => {
+    const result = render(
+      <Range thumbAriaLabels={["Price (min)", "Price (max)"]} />,
+    );
     const thumbs = result.getAllByRole("slider");
-    thumbs.forEach((thumb) => {
-      expect(thumb).toHaveAttribute("aria-label", "Price range");
-    });
+
+    expect(thumbs[0]).toHaveAttribute("aria-label", "Price (min)");
+    expect(thumbs[1]).toHaveAttribute("aria-label", "Price (max)");
   });
 
   test("renders two thumbs by default", () => {

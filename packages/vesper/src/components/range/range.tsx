@@ -20,6 +20,7 @@ export interface RangeProps extends Omit<
 > {
   values?: number[];
   valueLabels?: string[];
+  thumbAriaLabels?: string[];
   showValueLabels?: boolean;
   defaultValues?: number[];
   onValuesChange?(value: number[]): void;
@@ -29,7 +30,7 @@ export interface RangeProps extends Omit<
 
 export function Range({
   className,
-  "aria-label": ariaLabel,
+  thumbAriaLabels,
   values,
   valueLabels,
   onValuesChange,
@@ -77,12 +78,12 @@ export function Range({
       {!values?.length && (
         <>
           <RangeThumb
-            ariaLabel={ariaLabel}
+            ariaLabel={thumbAriaLabels?.[0]}
             showLabel={showValueLabels}
             label={valueLabels?.[0]}
           />
           <RangeThumb
-            ariaLabel={ariaLabel}
+            ariaLabel={thumbAriaLabels?.[1]}
             showLabel={showValueLabels}
             label={valueLabels?.[1]}
           />
@@ -91,7 +92,7 @@ export function Range({
       {values?.map((_, index) => (
         <RangeThumb
           key={index}
-          ariaLabel={ariaLabel}
+          ariaLabel={thumbAriaLabels?.[index]}
           showLabel={showValueLabels}
           label={valueLabels?.[index]}
         />

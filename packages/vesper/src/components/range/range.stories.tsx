@@ -28,6 +28,7 @@ export const Playground: Story = {
     showValueLabels: true,
     minStepsBetweenThumbs: 1,
     disabled: false,
+    thumbAriaLabels: ["Volume (min)", "Volume (max)"],
   },
 };
 Playground.storyName = "range";
