@@ -1,3 +1,4 @@
+import { createRef } from "react";
 import { render, cleanup, fireEvent } from "@testing-library/react";
 import { beforeEach, afterEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
@@ -232,6 +233,13 @@ describe("checkbox [unit]", () => {
 
     await userEvent.click(labelText);
     expect(checkbox).toBeChecked();
+  });
+
+  test("inputRef exposes the input element", () => {
+    const inputRef = createRef<HTMLInputElement>();
+    const result = render(<Checkbox label="Label" inputRef={inputRef} />);
+    const checkbox = result.getByRole("checkbox");
+    expect(inputRef.current).toBe(checkbox);
   });
 });
 
