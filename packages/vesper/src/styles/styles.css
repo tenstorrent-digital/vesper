@@ -20,6 +20,7 @@
 
 /* components */
 @import "../components/show-more/show-more.css";
+@import "../components/tag/tag.css";
 @import "../components/text-input/text-input.css";
 @import "../components/toggle/toggle.css";
 @import "../components/tabs/tabs.css";

@@ -1,0 +1,102 @@
+.vesper-tag {
+  display: inline-flex;
+  align-items: center;
+}
+
+.vesper-tag-sm {
+  height: 20px;
+  gap: var(--vesper-spacing-half);
+  padding: 0 var(--vesper-spacing-1);
+  border-radius: var(--vesper-radius-half);
+  .vesper-tag-icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.vesper-tag-md {
+  height: 24px;
+  gap: var(--vesper-spacing-1);
+  padding: 0 var(--vesper-spacing-2);
+  border-radius: var(--vesper-radius-1);
+  .vesper-tag-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.vesper-tag-lg {
+  height: 28px;
+  gap: var(--vesper-spacing-1);
+  padding: 0 var(--vesper-spacing-2);
+  border-radius: var(--vesper-radius-1);
+  .vesper-tag-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.vesper-tag-default {
+  background: var(--vesper-alpha-stone-100);
+  color: var(--vesper-stone-900);
+}
+
+.vesper-tag-contrast {
+  background: var(--vesper-stone-900);
+  color: var(--vesper-stone-0);
+}
+
+.vesper-tag-accent-subtle {
+  color: var(--vesper-teal-700);
+  background: var(--vesper-teal-50);
+}
+
+.vesper-tag-accent-bold {
+  color: var(--vesper-stone-900);
+  background: var(--vesper-teal-400);
+}
+
+.vesper-tag-danger-subtle {
+  color: var(--vesper-red-600);
+  background: var(--vesper-red-50);
+}
+
+.vesper-tag-danger-bold {
+  color: var(--vesper-stone-0);
+  background: var(--vesper-red-500);
+}
+
+.vesper-tag-warning-subtle {
+  color: var(--vesper-amber-600);
+  background: var(--vesper-amber-50);
+}
+
+.vesper-tag-warning-bold {
+  color: var(--vesper-stone-0);
+  background: var(--vesper-amber-500);
+}
+
+.vesper-tag-success-subtle {
+  color: var(--vesper-mint-600);
+  background: var(--vesper-green-50);
+}
+
+.vesper-tag-success-bold {
+  color: var(--vesper-stone-0);
+  background: var(--vesper-green-600);
+}
+
+.vesper-tag-info-subtle {
+  color: var(--vesper-sky-600);
+  background: var(--vesper-sky-50);
+}
+
+.vesper-tag-info-bold {
+  color: var(--vesper-stone-0);
+  background: var(--vesper-sky-600);
+}
+
+.vesper-tag-disabled {
+  color: var(--vesper-alpha-stone-400);
+  background: var(--vesper-alpha-stone-100);
+}
