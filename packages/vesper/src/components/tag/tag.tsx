@@ -1,10 +1,7 @@
 import type { ElementType, ReactNode } from "react";
 import type { Polymorphic } from "@/utils/polymorphic";
 import { cn } from "@/utils/cn";
-import {
-  Typography,
-  type TypographyProps,
-} from "@/components/typography/typography";
+import { Typography } from "@/components/typography/typography";
 
 export const TAG_SIZES = ["sm", "md", "lg"] as const;
 
