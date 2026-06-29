@@ -189,14 +189,14 @@ describe("slider [unit]", () => {
 describe("slider [snapshot]", () => {
   test("default", () => {
     const { container } = render(
-      <Slider aria-label="Volume" defaultValue={50} />,
+      <Slider thumbAriaLabel="Volume" defaultValue={50} />,
     );
     expect(container.firstChild).toMatchSnapshot();
   });
 
   test("with custom min/max/step", () => {
     const { container } = render(
-      <Slider aria-label="Volume" value={4} min={0} max={10} step={2} />,
+      <Slider thumbAriaLabel="Volume" value={4} min={0} max={10} step={2} />,
     );
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -204,7 +204,7 @@ describe("slider [snapshot]", () => {
   test("with ticks", () => {
     const { container } = render(
       <Slider
-        aria-label="Volume"
+        thumbAriaLabel="Volume"
         defaultValue={2}
         min={0}
         max={5}
@@ -217,14 +217,19 @@ describe("slider [snapshot]", () => {
 
   test("with value label", () => {
     const { container } = render(
-      <Slider aria-label="Volume" value={75} valueLabel="75%" showValueLabel />,
+      <Slider
+        thumbAriaLabel="Volume"
+        value={75}
+        valueLabel="75%"
+        showValueLabel
+      />,
     );
     expect(container.firstChild).toMatchSnapshot();
   });
 
   test("disabled", () => {
     const { container } = render(
-      <Slider aria-label="Volume" value={50} disabled />,
+      <Slider thumbAriaLabel="Volume" value={50} disabled />,
     );
     expect(container.firstChild).toMatchSnapshot();
   });

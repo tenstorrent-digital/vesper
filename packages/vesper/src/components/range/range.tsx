@@ -52,6 +52,8 @@ export function Range({
 
   const tickLeft = useMemo(() => 100 / Math.max(max - min, 0), [min, max]);
 
+  const thumbValues = values ?? defaultValues;
+
   return (
     <RadixSlider
       className={cn("vesper-range", className)}
@@ -76,21 +78,7 @@ export function Range({
           ))}
         <SliderRange className="vesper-range-range" />
       </SliderTrack>
-      {!values?.length && (
-        <>
-          <RangeThumb
-            ariaLabel={thumbAriaLabels?.[0]}
-            showLabel={showValueLabels}
-            label={valueLabels?.[0]}
-          />
-          <RangeThumb
-            ariaLabel={thumbAriaLabels?.[1]}
-            showLabel={showValueLabels}
-            label={valueLabels?.[1]}
-          />
-        </>
-      )}
-      {values?.map((_, index) => (
+      {thumbValues.map((_, index) => (
         <RangeThumb
           key={index}
           ariaLabel={thumbAriaLabels?.[index]}
