@@ -107,10 +107,8 @@ export function Checkbox({
 }: CheckboxProps) {
   const ref = useRef<HTMLInputElement>(null);
   useLayoutEffect(() => {
-    ref.current!.indeterminate = !!indeterminate;
-    // we only want this effect to run once on mount so exhaustive deps would cause undesireable behavior here
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (ref.current) ref.current.indeterminate = !!indeterminate;
+  }, [indeterminate]);
 
   useImperativeHandle(inputRef, () => ref.current!);
 
