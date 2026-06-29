@@ -50,9 +50,7 @@ export function Tag<E extends ElementType = "div">(props: TagProps<E>) {
   } = props;
 
   return (
-    <Typography
-      as={Component}
-      variant="label-xs"
+    <Component
       disabled={disabled}
       aria-disabled={disabled}
       className={cn(
@@ -61,10 +59,12 @@ export function Tag<E extends ElementType = "div">(props: TagProps<E>) {
         disabled ? "vesper-tag-disabled" : `vesper-tag-${variant}`,
         className,
       )}
-      {...(rest as TypographyProps<E>)}
+      {...rest}
     >
       {icon && <span className="vesper-tag-icon">{icon}</span>}
-      {children}
-    </Typography>
+      <Typography as="span" variant="label-xs">
+        {children}
+      </Typography>
+    </Component>
   );
 }
