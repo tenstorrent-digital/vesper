@@ -45,6 +45,7 @@ export const Playground: Story = {
     orientation: "vertical",
     size: "md",
     disabled: false,
+    name: "example",
   },
 };
 Playground.storyName = "radio-group";

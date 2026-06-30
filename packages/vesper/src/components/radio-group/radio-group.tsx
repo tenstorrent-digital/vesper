@@ -1,29 +1,34 @@
-import {
-  RadioGroup as RadixRadioGroup,
-  type RadioGroupProps as RadixRadioGroupProps,
-  RadioGroupItem,
-  RadioGroupIndicator,
-} from "@radix-ui/react-radio-group";
+import type { ComponentProps } from "react";
 import { cn } from "@/utils/cn";
 import {
   Typography,
-  TypographyVariant,
+  type TypographyVariant,
 } from "@/components/typography/typography";
 
 export const RADIO_SIZES = ["sm", "md"] as const;
 
+export const RADIO_GROUP_ORIENTATIONS = ["horizontal", "vertical"] as const;
+
 export type RadioSize = (typeof RADIO_SIZES)[number];
 
+export type RadioGroupOrientation = (typeof RADIO_GROUP_ORIENTATIONS)[number];
+
+export type RadioGroupItem = {
+  value: string;
+  label: string;
+  disabled?: boolean;
+  id?: string;
+};
+
 export interface RadioGroupProps extends Omit<
-  RadixRadioGroupProps,
-  "asChild" | "children"
+  ComponentProps<"fieldset">,
+  "children"
 > {
   size?: RadioSize;
-  options: {
-    value: string;
-    label: string;
-    disabled?: boolean;
-  }[];
+  orientation?: RadioGroupOrientation;
+  required?: boolean;
+  options: RadioGroupItem[];
+  name: string;
 }
 
 const RADIO_GROUP_ITEM_TYPOGRAPHY: { [S in RadioSize]: TypographyVariant } = {
@@ -32,53 +37,57 @@ const RADIO_GROUP_ITEM_TYPOGRAPHY: { [S in RadioSize]: TypographyVariant } = {
 };
 
 export function RadioGroup({
-  className,
-  orientation = "vertical",
-  options,
   size = "md",
+  orientation = "vertical",
+  required,
   disabled,
+  options,
+  className,
+  name,
   ...props
 }: RadioGroupProps) {
   return (
-    <RadixRadioGroup
+    <fieldset
+      disabled={disabled}
       className={cn(
         "vesper-radio-group",
         `vesper-radio-group-${orientation}`,
         className,
       )}
-      orientation={orientation}
-      disabled={disabled}
       {...props}
     >
       {options.map((option) => {
-        const optionDisabled = disabled || option.disabled;
+        const isDisabled = disabled || option.disabled;
 
         return (
           <label
-            data-disabled={optionDisabled}
-            className="vesper-radio-group-item-wrapper"
             key={option.value}
+            htmlFor={option.id}
+            className={cn(
+              "vesper-radio-group-item",
+              `vesper-radio-group-item-${size}`,
+              isDisabled && "vesper-radio-group-item-disabled",
+            )}
           >
-            <RadioGroupItem
-              disabled={optionDisabled}
-              className={cn(
-                "vesper-radio-group-item",
-                `vesper-radio-group-item-${size}`,
-              )}
+            <input
+              type="radio"
+              name={name}
+              required={required}
+              id={option.id}
               value={option.value}
-            >
-              <RadioGroupIndicator className="vesper-radio-group-item-indicator" />
-            </RadioGroupItem>
+              className="vesper-radio-input"
+            />
+            <div className="vesper-radio-group-item-indicator" />
             <Typography
               as="span"
-              variant={RADIO_GROUP_ITEM_TYPOGRAPHY[size]}
               className="vesper-radio-group-item-label"
+              variant={RADIO_GROUP_ITEM_TYPOGRAPHY[size]}
             >
               {option.label}
             </Typography>
           </label>
         );
       })}
-    </RadixRadioGroup>
+    </fieldset>
   );
 }
