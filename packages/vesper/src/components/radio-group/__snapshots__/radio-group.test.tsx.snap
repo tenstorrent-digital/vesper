@@ -1,0 +1,505 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`radio-group [snapshot] > md, horizontal 1`] = `
+<fieldset
+  class="vesper-radio-group vesper-radio-group-horizontal"
+>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-md"
+  >
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
+      value="option-a"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
+    >
+      Option A
+    </span>
+  </label>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-md"
+  >
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
+      value="option-b"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
+    >
+      Option B
+    </span>
+  </label>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-md"
+  >
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
+      value="option-c"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
+    >
+      Option C
+    </span>
+  </label>
+</fieldset>
+`;
+
+exports[`radio-group [snapshot] > md, horizontal, disabled 1`] = `
+<fieldset
+  class="vesper-radio-group vesper-radio-group-horizontal"
+  disabled=""
+>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-md vesper-radio-group-item-disabled"
+  >
+    <input
+      class="vesper-radio-input"
+      disabled=""
+      name="test-radio-group"
+      type="radio"
+      value="option-a"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
+    >
+      Option A
+    </span>
+  </label>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-md vesper-radio-group-item-disabled"
+  >
+    <input
+      class="vesper-radio-input"
+      disabled=""
+      name="test-radio-group"
+      type="radio"
+      value="option-b"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
+    >
+      Option B
+    </span>
+  </label>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-md vesper-radio-group-item-disabled"
+  >
+    <input
+      class="vesper-radio-input"
+      disabled=""
+      name="test-radio-group"
+      type="radio"
+      value="option-c"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
+    >
+      Option C
+    </span>
+  </label>
+</fieldset>
+`;
+
+exports[`radio-group [snapshot] > md, vertical 1`] = `
+<fieldset
+  class="vesper-radio-group vesper-radio-group-vertical"
+>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-md"
+  >
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
+      value="option-a"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
+    >
+      Option A
+    </span>
+  </label>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-md"
+  >
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
+      value="option-b"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
+    >
+      Option B
+    </span>
+  </label>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-md"
+  >
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
+      value="option-c"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
+    >
+      Option C
+    </span>
+  </label>
+</fieldset>
+`;
+
+exports[`radio-group [snapshot] > md, vertical, disabled 1`] = `
+<fieldset
+  class="vesper-radio-group vesper-radio-group-vertical"
+  disabled=""
+>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-md vesper-radio-group-item-disabled"
+  >
+    <input
+      class="vesper-radio-input"
+      disabled=""
+      name="test-radio-group"
+      type="radio"
+      value="option-a"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
+    >
+      Option A
+    </span>
+  </label>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-md vesper-radio-group-item-disabled"
+  >
+    <input
+      class="vesper-radio-input"
+      disabled=""
+      name="test-radio-group"
+      type="radio"
+      value="option-b"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
+    >
+      Option B
+    </span>
+  </label>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-md vesper-radio-group-item-disabled"
+  >
+    <input
+      class="vesper-radio-input"
+      disabled=""
+      name="test-radio-group"
+      type="radio"
+      value="option-c"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
+    >
+      Option C
+    </span>
+  </label>
+</fieldset>
+`;
+
+exports[`radio-group [snapshot] > sm, horizontal 1`] = `
+<fieldset
+  class="vesper-radio-group vesper-radio-group-horizontal"
+>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-sm"
+  >
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
+      value="option-a"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
+    >
+      Option A
+    </span>
+  </label>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-sm"
+  >
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
+      value="option-b"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
+    >
+      Option B
+    </span>
+  </label>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-sm"
+  >
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
+      value="option-c"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
+    >
+      Option C
+    </span>
+  </label>
+</fieldset>
+`;
+
+exports[`radio-group [snapshot] > sm, horizontal, disabled 1`] = `
+<fieldset
+  class="vesper-radio-group vesper-radio-group-horizontal"
+  disabled=""
+>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-sm vesper-radio-group-item-disabled"
+  >
+    <input
+      class="vesper-radio-input"
+      disabled=""
+      name="test-radio-group"
+      type="radio"
+      value="option-a"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
+    >
+      Option A
+    </span>
+  </label>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-sm vesper-radio-group-item-disabled"
+  >
+    <input
+      class="vesper-radio-input"
+      disabled=""
+      name="test-radio-group"
+      type="radio"
+      value="option-b"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
+    >
+      Option B
+    </span>
+  </label>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-sm vesper-radio-group-item-disabled"
+  >
+    <input
+      class="vesper-radio-input"
+      disabled=""
+      name="test-radio-group"
+      type="radio"
+      value="option-c"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
+    >
+      Option C
+    </span>
+  </label>
+</fieldset>
+`;
+
+exports[`radio-group [snapshot] > sm, vertical 1`] = `
+<fieldset
+  class="vesper-radio-group vesper-radio-group-vertical"
+>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-sm"
+  >
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
+      value="option-a"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
+    >
+      Option A
+    </span>
+  </label>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-sm"
+  >
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
+      value="option-b"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
+    >
+      Option B
+    </span>
+  </label>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-sm"
+  >
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
+      value="option-c"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
+    >
+      Option C
+    </span>
+  </label>
+</fieldset>
+`;
+
+exports[`radio-group [snapshot] > sm, vertical, disabled 1`] = `
+<fieldset
+  class="vesper-radio-group vesper-radio-group-vertical"
+  disabled=""
+>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-sm vesper-radio-group-item-disabled"
+  >
+    <input
+      class="vesper-radio-input"
+      disabled=""
+      name="test-radio-group"
+      type="radio"
+      value="option-a"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
+    >
+      Option A
+    </span>
+  </label>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-sm vesper-radio-group-item-disabled"
+  >
+    <input
+      class="vesper-radio-input"
+      disabled=""
+      name="test-radio-group"
+      type="radio"
+      value="option-b"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
+    >
+      Option B
+    </span>
+  </label>
+  <label
+    class="vesper-radio-group-item vesper-radio-group-item-sm vesper-radio-group-item-disabled"
+  >
+    <input
+      class="vesper-radio-input"
+      disabled=""
+      name="test-radio-group"
+      type="radio"
+      value="option-c"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
+    />
+    <span
+      class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
+    >
+      Option C
+    </span>
+  </label>
+</fieldset>
+`;

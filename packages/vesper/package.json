@@ -27,6 +27,10 @@
       "types": "./dist/components/checkbox/checkbox.d.ts",
       "import": "./dist/components/checkbox/checkbox.js"
     },
+    "./radio-group": {
+      "types": "./dist/components/radio-group/radio-group.d.ts",
+      "import": "./dist/components/radio-group/radio-group.js"
+    },
     "./text-input": {
       "types": "./dist/components/text-input/text-input.d.ts",
       "import": "./dist/components/text-input/text-input.js"
