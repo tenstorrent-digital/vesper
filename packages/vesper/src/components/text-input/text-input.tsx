@@ -51,6 +51,12 @@ type ForwardedPropTypes =
   | "autoFocus"
   | "autoComplete"
   | "autoCorrect"
+  | "role"
+  | "tabIndex"
+  | "aria-label"
+  | "aria-labelledby"
+  | "aria-describedby"
+  | "aria-invalid"
   | "onFocus"
   | "onFocusCapture"
   | "onBlur"
@@ -169,6 +175,12 @@ export function TextInput(props: TextInputProps) {
     autoFocus,
     autoComplete,
     autoCorrect,
+    role,
+    tabIndex,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby,
+    "aria-describedby": ariaDescribedby,
+    "aria-invalid": ariaInvalid,
     onFocus,
     onFocusCapture,
     onBlur,
@@ -196,6 +208,11 @@ export function TextInput(props: TextInputProps) {
 
   const messageId = useId();
 
+  const describedBy =
+    [ariaDescribedby, message ? messageId : undefined]
+      .filter(Boolean)
+      .join(" ") || undefined;
+
   const input = (
     <div className="vesper-text-input-field-wrapper">
       {icon && !multiline && (
@@ -207,7 +224,12 @@ export function TextInput(props: TextInputProps) {
           : { as: "input", type, list, multiple, pattern, min, max })}
         ref={inputRef}
         variant={TEXT_INPUT_TYPOGRAPHY[size]}
-        aria-describedby={message ? messageId : undefined}
+        aria-describedby={describedBy}
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledby}
+        aria-invalid={ariaInvalid}
+        role={role}
+        tabIndex={tabIndex}
         className="vesper-text-input-field"
         defaultValue={defaultValue}
         inputMode={inputMode}
