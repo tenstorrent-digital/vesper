@@ -64,13 +64,13 @@ describe("switch [unit]", () => {
 
   test("unchecked by default", () => {
     const result = render(<Switch label="toggle" />);
-    const checkbox = result.getByRole("checkbox");
+    const checkbox = result.getByRole("switch");
     expect(checkbox).not.toBeChecked();
   });
 
   test("defaultChecked sets initial state", () => {
     const result = render(<Switch defaultChecked label="toggle" />);
-    const checkbox = result.getByRole("checkbox");
+    const checkbox = result.getByRole("switch");
     expect(checkbox).toBeChecked();
   });
 
@@ -104,7 +104,7 @@ describe("switch [unit]", () => {
     const result = render(
       <Switch disabled onChange={onChange} label="toggle" />,
     );
-    const checkbox = result.getByRole("checkbox");
+    const checkbox = result.getByRole("switch");
     const label = result.container.firstChild as HTMLLabelElement;
 
     fireEvent.click(label);
@@ -117,7 +117,7 @@ describe("switch [unit]", () => {
     const result = render(
       <Switch disabled onChange={onChange} label="toggle" />,
     );
-    const checkbox = result.getByRole("checkbox");
+    const checkbox = result.getByRole("switch");
 
     fireEvent.keyDown(checkbox, { key: " " });
     fireEvent.keyUp(checkbox, { key: " " });
@@ -127,7 +127,7 @@ describe("switch [unit]", () => {
 
   test("keyboard Space toggles the switch", async () => {
     const result = render(<Switch label="toggle" />);
-    const checkbox = result.getByRole("checkbox");
+    const checkbox = result.getByRole("switch");
 
     await userEvent.tab();
     expect(checkbox).toHaveFocus();
@@ -141,7 +141,7 @@ describe("switch [unit]", () => {
 
   test("switch is focusable via Tab", async () => {
     const result = render(<Switch label="toggle" />);
-    const checkbox = result.getByRole("checkbox");
+    const checkbox = result.getByRole("switch");
 
     await userEvent.tab();
     expect(checkbox).toHaveFocus();

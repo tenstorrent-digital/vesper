@@ -22,6 +22,13 @@ type ForwardedPropTypes =
   | "required"
   | "checked"
   | "defaultChecked"
+  | "readOnly"
+  | "role"
+  | "tabIndex"
+  | "aria-label"
+  | "aria-labelledby"
+  | "aria-describedby"
+  | "aria-invalid"
   | "onFocus"
   | "onFocusCapture"
   | "onBlur"
@@ -72,6 +79,13 @@ export function Switch({
   required,
   checked,
   defaultChecked,
+  readOnly,
+  role = "switch",
+  tabIndex,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledby,
+  "aria-describedby": ariaDescribedby,
+  "aria-invalid": ariaInvalid,
   onFocus,
   onFocusCapture,
   onBlur,
@@ -114,6 +128,13 @@ export function Switch({
         required={required}
         checked={checked}
         defaultChecked={defaultChecked}
+        readOnly={readOnly}
+        role={role}
+        tabIndex={tabIndex}
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledby}
+        aria-describedby={ariaDescribedby}
+        aria-invalid={ariaInvalid}
         onFocus={onFocus}
         onFocusCapture={onFocusCapture}
         onBlur={onBlur}
