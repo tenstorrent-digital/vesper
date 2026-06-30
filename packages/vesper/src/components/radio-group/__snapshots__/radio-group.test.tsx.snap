@@ -1,29 +1,20 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`radio-group [snapshot] > md, horizontal 1`] = `
-<div
-  aria-orientation="horizontal"
-  aria-required="false"
+<fieldset
   class="vesper-radio-group vesper-radio-group-horizontal"
-  data-orientation="horizontal"
-  dir="ltr"
-  role="radiogroup"
-  style="outline: none;"
-  tabindex="0"
 >
   <label
-    class="vesper-radio-group-item-wrapper"
+    class="vesper-radio-group-item vesper-radio-group-item-md"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-md"
-      data-orientation="horizontal"
-      data-radix-collection-item=""
-      data-state="unchecked"
-      role="radio"
-      tabindex="-1"
-      type="button"
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
       value="option-a"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
@@ -32,18 +23,16 @@ exports[`radio-group [snapshot] > md, horizontal 1`] = `
     </span>
   </label>
   <label
-    class="vesper-radio-group-item-wrapper"
+    class="vesper-radio-group-item vesper-radio-group-item-md"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-md"
-      data-orientation="horizontal"
-      data-radix-collection-item=""
-      data-state="unchecked"
-      role="radio"
-      tabindex="-1"
-      type="button"
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
       value="option-b"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
@@ -52,18 +41,16 @@ exports[`radio-group [snapshot] > md, horizontal 1`] = `
     </span>
   </label>
   <label
-    class="vesper-radio-group-item-wrapper"
+    class="vesper-radio-group-item vesper-radio-group-item-md"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-md"
-      data-orientation="horizontal"
-      data-radix-collection-item=""
-      data-state="unchecked"
-      role="radio"
-      tabindex="-1"
-      type="button"
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
       value="option-c"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
@@ -71,37 +58,26 @@ exports[`radio-group [snapshot] > md, horizontal 1`] = `
       Option C
     </span>
   </label>
-</div>
+</fieldset>
 `;
 
 exports[`radio-group [snapshot] > md, horizontal, disabled 1`] = `
-<div
-  aria-orientation="horizontal"
-  aria-required="false"
+<fieldset
   class="vesper-radio-group vesper-radio-group-horizontal"
-  data-disabled=""
-  data-orientation="horizontal"
-  dir="ltr"
-  role="radiogroup"
-  style="outline: none;"
-  tabindex="-1"
+  disabled=""
 >
   <label
-    class="vesper-radio-group-item-wrapper"
-    data-disabled="true"
+    class="vesper-radio-group-item vesper-radio-group-item-md vesper-radio-group-item-disabled"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-md"
-      data-disabled=""
-      data-orientation="horizontal"
-      data-radix-collection-item=""
-      data-state="unchecked"
+    <input
+      class="vesper-radio-input"
       disabled=""
-      role="radio"
-      tabindex="-1"
-      type="button"
+      name="test-radio-group"
+      type="radio"
       value="option-a"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
@@ -110,21 +86,17 @@ exports[`radio-group [snapshot] > md, horizontal, disabled 1`] = `
     </span>
   </label>
   <label
-    class="vesper-radio-group-item-wrapper"
-    data-disabled="true"
+    class="vesper-radio-group-item vesper-radio-group-item-md vesper-radio-group-item-disabled"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-md"
-      data-disabled=""
-      data-orientation="horizontal"
-      data-radix-collection-item=""
-      data-state="unchecked"
+    <input
+      class="vesper-radio-input"
       disabled=""
-      role="radio"
-      tabindex="-1"
-      type="button"
+      name="test-radio-group"
+      type="radio"
       value="option-b"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
@@ -133,21 +105,17 @@ exports[`radio-group [snapshot] > md, horizontal, disabled 1`] = `
     </span>
   </label>
   <label
-    class="vesper-radio-group-item-wrapper"
-    data-disabled="true"
+    class="vesper-radio-group-item vesper-radio-group-item-md vesper-radio-group-item-disabled"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-md"
-      data-disabled=""
-      data-orientation="horizontal"
-      data-radix-collection-item=""
-      data-state="unchecked"
+    <input
+      class="vesper-radio-input"
       disabled=""
-      role="radio"
-      tabindex="-1"
-      type="button"
+      name="test-radio-group"
+      type="radio"
       value="option-c"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
@@ -155,33 +123,24 @@ exports[`radio-group [snapshot] > md, horizontal, disabled 1`] = `
       Option C
     </span>
   </label>
-</div>
+</fieldset>
 `;
 
 exports[`radio-group [snapshot] > md, vertical 1`] = `
-<div
-  aria-orientation="vertical"
-  aria-required="false"
+<fieldset
   class="vesper-radio-group vesper-radio-group-vertical"
-  data-orientation="vertical"
-  dir="ltr"
-  role="radiogroup"
-  style="outline: none;"
-  tabindex="0"
 >
   <label
-    class="vesper-radio-group-item-wrapper"
+    class="vesper-radio-group-item vesper-radio-group-item-md"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-md"
-      data-orientation="vertical"
-      data-radix-collection-item=""
-      data-state="unchecked"
-      role="radio"
-      tabindex="-1"
-      type="button"
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
       value="option-a"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
@@ -190,18 +149,16 @@ exports[`radio-group [snapshot] > md, vertical 1`] = `
     </span>
   </label>
   <label
-    class="vesper-radio-group-item-wrapper"
+    class="vesper-radio-group-item vesper-radio-group-item-md"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-md"
-      data-orientation="vertical"
-      data-radix-collection-item=""
-      data-state="unchecked"
-      role="radio"
-      tabindex="-1"
-      type="button"
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
       value="option-b"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
@@ -210,18 +167,16 @@ exports[`radio-group [snapshot] > md, vertical 1`] = `
     </span>
   </label>
   <label
-    class="vesper-radio-group-item-wrapper"
+    class="vesper-radio-group-item vesper-radio-group-item-md"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-md"
-      data-orientation="vertical"
-      data-radix-collection-item=""
-      data-state="unchecked"
-      role="radio"
-      tabindex="-1"
-      type="button"
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
       value="option-c"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
@@ -229,37 +184,26 @@ exports[`radio-group [snapshot] > md, vertical 1`] = `
       Option C
     </span>
   </label>
-</div>
+</fieldset>
 `;
 
 exports[`radio-group [snapshot] > md, vertical, disabled 1`] = `
-<div
-  aria-orientation="vertical"
-  aria-required="false"
+<fieldset
   class="vesper-radio-group vesper-radio-group-vertical"
-  data-disabled=""
-  data-orientation="vertical"
-  dir="ltr"
-  role="radiogroup"
-  style="outline: none;"
-  tabindex="-1"
+  disabled=""
 >
   <label
-    class="vesper-radio-group-item-wrapper"
-    data-disabled="true"
+    class="vesper-radio-group-item vesper-radio-group-item-md vesper-radio-group-item-disabled"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-md"
-      data-disabled=""
-      data-orientation="vertical"
-      data-radix-collection-item=""
-      data-state="unchecked"
+    <input
+      class="vesper-radio-input"
       disabled=""
-      role="radio"
-      tabindex="-1"
-      type="button"
+      name="test-radio-group"
+      type="radio"
       value="option-a"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
@@ -268,21 +212,17 @@ exports[`radio-group [snapshot] > md, vertical, disabled 1`] = `
     </span>
   </label>
   <label
-    class="vesper-radio-group-item-wrapper"
-    data-disabled="true"
+    class="vesper-radio-group-item vesper-radio-group-item-md vesper-radio-group-item-disabled"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-md"
-      data-disabled=""
-      data-orientation="vertical"
-      data-radix-collection-item=""
-      data-state="unchecked"
+    <input
+      class="vesper-radio-input"
       disabled=""
-      role="radio"
-      tabindex="-1"
-      type="button"
+      name="test-radio-group"
+      type="radio"
       value="option-b"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
@@ -291,21 +231,17 @@ exports[`radio-group [snapshot] > md, vertical, disabled 1`] = `
     </span>
   </label>
   <label
-    class="vesper-radio-group-item-wrapper"
-    data-disabled="true"
+    class="vesper-radio-group-item vesper-radio-group-item-md vesper-radio-group-item-disabled"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-md"
-      data-disabled=""
-      data-orientation="vertical"
-      data-radix-collection-item=""
-      data-state="unchecked"
+    <input
+      class="vesper-radio-input"
       disabled=""
-      role="radio"
-      tabindex="-1"
-      type="button"
+      name="test-radio-group"
+      type="radio"
       value="option-c"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-lg vesper-radio-group-item-label"
@@ -313,33 +249,24 @@ exports[`radio-group [snapshot] > md, vertical, disabled 1`] = `
       Option C
     </span>
   </label>
-</div>
+</fieldset>
 `;
 
 exports[`radio-group [snapshot] > sm, horizontal 1`] = `
-<div
-  aria-orientation="horizontal"
-  aria-required="false"
+<fieldset
   class="vesper-radio-group vesper-radio-group-horizontal"
-  data-orientation="horizontal"
-  dir="ltr"
-  role="radiogroup"
-  style="outline: none;"
-  tabindex="0"
 >
   <label
-    class="vesper-radio-group-item-wrapper"
+    class="vesper-radio-group-item vesper-radio-group-item-sm"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-sm"
-      data-orientation="horizontal"
-      data-radix-collection-item=""
-      data-state="unchecked"
-      role="radio"
-      tabindex="-1"
-      type="button"
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
       value="option-a"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
@@ -348,18 +275,16 @@ exports[`radio-group [snapshot] > sm, horizontal 1`] = `
     </span>
   </label>
   <label
-    class="vesper-radio-group-item-wrapper"
+    class="vesper-radio-group-item vesper-radio-group-item-sm"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-sm"
-      data-orientation="horizontal"
-      data-radix-collection-item=""
-      data-state="unchecked"
-      role="radio"
-      tabindex="-1"
-      type="button"
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
       value="option-b"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
@@ -368,18 +293,16 @@ exports[`radio-group [snapshot] > sm, horizontal 1`] = `
     </span>
   </label>
   <label
-    class="vesper-radio-group-item-wrapper"
+    class="vesper-radio-group-item vesper-radio-group-item-sm"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-sm"
-      data-orientation="horizontal"
-      data-radix-collection-item=""
-      data-state="unchecked"
-      role="radio"
-      tabindex="-1"
-      type="button"
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
       value="option-c"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
@@ -387,37 +310,26 @@ exports[`radio-group [snapshot] > sm, horizontal 1`] = `
       Option C
     </span>
   </label>
-</div>
+</fieldset>
 `;
 
 exports[`radio-group [snapshot] > sm, horizontal, disabled 1`] = `
-<div
-  aria-orientation="horizontal"
-  aria-required="false"
+<fieldset
   class="vesper-radio-group vesper-radio-group-horizontal"
-  data-disabled=""
-  data-orientation="horizontal"
-  dir="ltr"
-  role="radiogroup"
-  style="outline: none;"
-  tabindex="-1"
+  disabled=""
 >
   <label
-    class="vesper-radio-group-item-wrapper"
-    data-disabled="true"
+    class="vesper-radio-group-item vesper-radio-group-item-sm vesper-radio-group-item-disabled"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-sm"
-      data-disabled=""
-      data-orientation="horizontal"
-      data-radix-collection-item=""
-      data-state="unchecked"
+    <input
+      class="vesper-radio-input"
       disabled=""
-      role="radio"
-      tabindex="-1"
-      type="button"
+      name="test-radio-group"
+      type="radio"
       value="option-a"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
@@ -426,21 +338,17 @@ exports[`radio-group [snapshot] > sm, horizontal, disabled 1`] = `
     </span>
   </label>
   <label
-    class="vesper-radio-group-item-wrapper"
-    data-disabled="true"
+    class="vesper-radio-group-item vesper-radio-group-item-sm vesper-radio-group-item-disabled"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-sm"
-      data-disabled=""
-      data-orientation="horizontal"
-      data-radix-collection-item=""
-      data-state="unchecked"
+    <input
+      class="vesper-radio-input"
       disabled=""
-      role="radio"
-      tabindex="-1"
-      type="button"
+      name="test-radio-group"
+      type="radio"
       value="option-b"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
@@ -449,21 +357,17 @@ exports[`radio-group [snapshot] > sm, horizontal, disabled 1`] = `
     </span>
   </label>
   <label
-    class="vesper-radio-group-item-wrapper"
-    data-disabled="true"
+    class="vesper-radio-group-item vesper-radio-group-item-sm vesper-radio-group-item-disabled"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-sm"
-      data-disabled=""
-      data-orientation="horizontal"
-      data-radix-collection-item=""
-      data-state="unchecked"
+    <input
+      class="vesper-radio-input"
       disabled=""
-      role="radio"
-      tabindex="-1"
-      type="button"
+      name="test-radio-group"
+      type="radio"
       value="option-c"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
@@ -471,33 +375,24 @@ exports[`radio-group [snapshot] > sm, horizontal, disabled 1`] = `
       Option C
     </span>
   </label>
-</div>
+</fieldset>
 `;
 
 exports[`radio-group [snapshot] > sm, vertical 1`] = `
-<div
-  aria-orientation="vertical"
-  aria-required="false"
+<fieldset
   class="vesper-radio-group vesper-radio-group-vertical"
-  data-orientation="vertical"
-  dir="ltr"
-  role="radiogroup"
-  style="outline: none;"
-  tabindex="0"
 >
   <label
-    class="vesper-radio-group-item-wrapper"
+    class="vesper-radio-group-item vesper-radio-group-item-sm"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-sm"
-      data-orientation="vertical"
-      data-radix-collection-item=""
-      data-state="unchecked"
-      role="radio"
-      tabindex="-1"
-      type="button"
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
       value="option-a"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
@@ -506,18 +401,16 @@ exports[`radio-group [snapshot] > sm, vertical 1`] = `
     </span>
   </label>
   <label
-    class="vesper-radio-group-item-wrapper"
+    class="vesper-radio-group-item vesper-radio-group-item-sm"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-sm"
-      data-orientation="vertical"
-      data-radix-collection-item=""
-      data-state="unchecked"
-      role="radio"
-      tabindex="-1"
-      type="button"
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
       value="option-b"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
@@ -526,18 +419,16 @@ exports[`radio-group [snapshot] > sm, vertical 1`] = `
     </span>
   </label>
   <label
-    class="vesper-radio-group-item-wrapper"
+    class="vesper-radio-group-item vesper-radio-group-item-sm"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-sm"
-      data-orientation="vertical"
-      data-radix-collection-item=""
-      data-state="unchecked"
-      role="radio"
-      tabindex="-1"
-      type="button"
+    <input
+      class="vesper-radio-input"
+      name="test-radio-group"
+      type="radio"
       value="option-c"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
@@ -545,37 +436,26 @@ exports[`radio-group [snapshot] > sm, vertical 1`] = `
       Option C
     </span>
   </label>
-</div>
+</fieldset>
 `;
 
 exports[`radio-group [snapshot] > sm, vertical, disabled 1`] = `
-<div
-  aria-orientation="vertical"
-  aria-required="false"
+<fieldset
   class="vesper-radio-group vesper-radio-group-vertical"
-  data-disabled=""
-  data-orientation="vertical"
-  dir="ltr"
-  role="radiogroup"
-  style="outline: none;"
-  tabindex="-1"
+  disabled=""
 >
   <label
-    class="vesper-radio-group-item-wrapper"
-    data-disabled="true"
+    class="vesper-radio-group-item vesper-radio-group-item-sm vesper-radio-group-item-disabled"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-sm"
-      data-disabled=""
-      data-orientation="vertical"
-      data-radix-collection-item=""
-      data-state="unchecked"
+    <input
+      class="vesper-radio-input"
       disabled=""
-      role="radio"
-      tabindex="-1"
-      type="button"
+      name="test-radio-group"
+      type="radio"
       value="option-a"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
@@ -584,21 +464,17 @@ exports[`radio-group [snapshot] > sm, vertical, disabled 1`] = `
     </span>
   </label>
   <label
-    class="vesper-radio-group-item-wrapper"
-    data-disabled="true"
+    class="vesper-radio-group-item vesper-radio-group-item-sm vesper-radio-group-item-disabled"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-sm"
-      data-disabled=""
-      data-orientation="vertical"
-      data-radix-collection-item=""
-      data-state="unchecked"
+    <input
+      class="vesper-radio-input"
       disabled=""
-      role="radio"
-      tabindex="-1"
-      type="button"
+      name="test-radio-group"
+      type="radio"
       value="option-b"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
@@ -607,21 +483,17 @@ exports[`radio-group [snapshot] > sm, vertical, disabled 1`] = `
     </span>
   </label>
   <label
-    class="vesper-radio-group-item-wrapper"
-    data-disabled="true"
+    class="vesper-radio-group-item vesper-radio-group-item-sm vesper-radio-group-item-disabled"
   >
-    <button
-      aria-checked="false"
-      class="vesper-radio-group-item vesper-radio-group-item-sm"
-      data-disabled=""
-      data-orientation="vertical"
-      data-radix-collection-item=""
-      data-state="unchecked"
+    <input
+      class="vesper-radio-input"
       disabled=""
-      role="radio"
-      tabindex="-1"
-      type="button"
+      name="test-radio-group"
+      type="radio"
       value="option-c"
+    />
+    <div
+      class="vesper-radio-group-item-indicator"
     />
     <span
       class="vesper-typography vesper-typography-label-md vesper-radio-group-item-label"
@@ -629,5 +501,5 @@ exports[`radio-group [snapshot] > sm, vertical, disabled 1`] = `
       Option C
     </span>
   </label>
-</div>
+</fieldset>
 `;

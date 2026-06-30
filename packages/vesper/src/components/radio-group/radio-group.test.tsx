@@ -6,6 +6,7 @@ import axe from "axe-core";
 import {
   RadioGroup,
   RADIO_SIZES,
+  RADIO_GROUP_ORIENTATIONS,
   type RadioGroupProps,
 } from "@/components/radio-group/radio-group";
 
@@ -17,56 +18,51 @@ const RADIO_GROUP_OPTIONS = [
   { value: "option-c", label: "Option C" },
 ];
 
+type RadioGroupPermutation = RadioGroupProps & { permutationName: string };
+
 const RADIO_GROUP_PERMUTATIONS = RADIO_SIZES.flatMap(
-  (size): (RadioGroupProps & { name: string })[] => [
-    {
-      name: `${size}, vertical`,
-      size,
-      options: RADIO_GROUP_OPTIONS,
-      orientation: "vertical",
-      disabled: false,
-    },
-    {
-      name: `${size}, vertical, disabled`,
-      size,
-      options: RADIO_GROUP_OPTIONS,
-      orientation: "vertical",
-      disabled: true,
-    },
-    {
-      name: `${size}, horizontal`,
-      size,
-      options: RADIO_GROUP_OPTIONS,
-      orientation: "horizontal",
-      disabled: false,
-    },
-    {
-      name: `${size}, horizontal, disabled`,
-      size,
-      options: RADIO_GROUP_OPTIONS,
-      orientation: "horizontal",
-      disabled: true,
-    },
-  ],
+  (size): RadioGroupPermutation[] =>
+    RADIO_GROUP_ORIENTATIONS.flatMap((orientation) => [
+      {
+        permutationName: `${size}, ${orientation}`,
+        name: "test-radio-group",
+        size,
+        options: RADIO_GROUP_OPTIONS,
+        orientation,
+        disabled: false,
+      },
+      {
+        permutationName: `${size}, ${orientation}, disabled`,
+        name: "test-radio-group",
+        size,
+        options: RADIO_GROUP_OPTIONS,
+        orientation,
+        disabled: true,
+      },
+    ]),
 );
 
 afterEach(cleanup);
 
 describe("radio-group [unit]", () => {
   test("renders empty group when options are empty", () => {
-    const result = render(<RadioGroup options={[]} />);
+    const result = render(<RadioGroup name="test" options={[]} />);
     const radios = result.queryAllByRole("radio");
     expect(radios).toHaveLength(0);
   });
 
   test("renders radio items for each option", () => {
-    const result = render(<RadioGroup options={RADIO_GROUP_OPTIONS} />);
+    const result = render(
+      <RadioGroup name="test" options={RADIO_GROUP_OPTIONS} />,
+    );
     const items = result.getAllByRole("radio");
     expect(items).toHaveLength(3);
   });
 
   test("renders labels for each option", () => {
-    const result = render(<RadioGroup options={RADIO_GROUP_OPTIONS} />);
+    const result = render(
+      <RadioGroup name="test" options={RADIO_GROUP_OPTIONS} />,
+    );
     expect(result.getByText("Option A")).not.toBeNull();
     expect(result.getByText("Option B")).not.toBeNull();
     expect(result.getByText("Option C")).not.toBeNull();
@@ -75,25 +71,35 @@ describe("radio-group [unit]", () => {
   RADIO_SIZES.forEach((size) => {
     test(`${size} size class on items`, () => {
       const result = render(
-        <RadioGroup size={size} options={RADIO_GROUP_OPTIONS} />,
+        <RadioGroup name="test" size={size} options={RADIO_GROUP_OPTIONS} />,
       );
       const items = result.getAllByRole("radio");
       items.forEach((item) => {
-        expect(item).toHaveClass(`vesper-radio-group-item-${size}`);
+        expect(item.closest("label")).toHaveClass(
+          `vesper-radio-group-item-${size}`,
+        );
       });
     });
   });
 
   test("vertical orientation", () => {
     const { container } = render(
-      <RadioGroup orientation="vertical" options={RADIO_GROUP_OPTIONS} />,
+      <RadioGroup
+        name="test"
+        orientation="vertical"
+        options={RADIO_GROUP_OPTIONS}
+      />,
     );
     expect(container.firstChild).toHaveClass("vesper-radio-group-vertical");
   });
 
   test("horizontal orientation", () => {
     const { container } = render(
-      <RadioGroup orientation="horizontal" options={RADIO_GROUP_OPTIONS} />,
+      <RadioGroup
+        name="test"
+        orientation="horizontal"
+        options={RADIO_GROUP_OPTIONS}
+      />,
     );
     expect(container.firstChild).toHaveClass("vesper-radio-group-horizontal");
   });
@@ -101,6 +107,7 @@ describe("radio-group [unit]", () => {
   test("custom className is merged", () => {
     const { container } = render(
       <RadioGroup
+        name="test"
         orientation="vertical"
         className="custom-class"
         options={RADIO_GROUP_OPTIONS}
@@ -114,6 +121,7 @@ describe("radio-group [unit]", () => {
   test("additional props are passed through", () => {
     const { container } = render(
       <RadioGroup
+        name="test"
         data-testid="radio-group"
         aria-label="Choose an option"
         options={RADIO_GROUP_OPTIONS}
@@ -128,46 +136,52 @@ describe("radio-group [unit]", () => {
 
   test("defaultValue selects the correct option", () => {
     const result = render(
-      <RadioGroup defaultValue="option-b" options={RADIO_GROUP_OPTIONS} />,
-    );
-    const items = result.getAllByRole("radio");
-    expect(items[0]).toHaveAttribute("data-state", "unchecked");
-    expect(items[1]).toHaveAttribute("data-state", "checked");
-    expect(items[2]).toHaveAttribute("data-state", "unchecked");
-  });
-
-  test("clicking an option selects it", async () => {
-    const result = render(<RadioGroup options={RADIO_GROUP_OPTIONS} />);
-    const items = result.getAllByRole("radio");
-
-    await userEvent.click(items[0]!);
-    expect(items[0]).toHaveAttribute("data-state", "checked");
-    expect(items[1]).toHaveAttribute("data-state", "unchecked");
-    expect(items[2]).toHaveAttribute("data-state", "unchecked");
-
-    await userEvent.click(items[2]!);
-    expect(items[0]).toHaveAttribute("data-state", "unchecked");
-    expect(items[1]).toHaveAttribute("data-state", "unchecked");
-    expect(items[2]).toHaveAttribute("data-state", "checked");
-  });
-
-  test("onValueChange callback", async () => {
-    const onValueChange = vi.fn();
-    const result = render(
       <RadioGroup
-        onValueChange={onValueChange}
+        name="test"
+        defaultValue="option-b"
         options={RADIO_GROUP_OPTIONS}
       />,
     );
     const items = result.getAllByRole("radio");
+    expect(items[0]).not.toBeChecked();
+    expect(items[1]).toBeChecked();
+    expect(items[2]).not.toBeChecked();
+  });
 
-    await userEvent.click(items[1]!);
-    expect(onValueChange).toHaveBeenCalledWith("option-b");
+  test("clicking an option selects it", async () => {
+    const result = render(
+      <RadioGroup name="test" options={RADIO_GROUP_OPTIONS} />,
+    );
+    const items = result.getAllByRole("radio");
+
+    await userEvent.click(result.getByText("Option A"));
+    expect(items[0]).toBeChecked();
+    expect(items[1]).not.toBeChecked();
+    expect(items[2]).not.toBeChecked();
+
+    await userEvent.click(result.getByText("Option C"));
+    expect(items[0]).not.toBeChecked();
+    expect(items[1]).not.toBeChecked();
+    expect(items[2]).toBeChecked();
+  });
+
+  test("onChange callback", async () => {
+    const onChange = vi.fn();
+    const result = render(
+      <RadioGroup
+        name="test"
+        onChange={onChange}
+        options={RADIO_GROUP_OPTIONS}
+      />,
+    );
+
+    await userEvent.click(result.getByText("Option B"));
+    expect(onChange).toHaveBeenCalledWith("option-b");
   });
 
   test("disabling all items via disabled prop", () => {
     const result = render(
-      <RadioGroup disabled options={RADIO_GROUP_OPTIONS} />,
+      <RadioGroup name="test" disabled options={RADIO_GROUP_OPTIONS} />,
     );
     const items = result.getAllByRole("radio");
     items.forEach((item) => {
@@ -176,23 +190,25 @@ describe("radio-group [unit]", () => {
   });
 
   test("disabled group does not respond to clicks", () => {
-    const onValueChange = vi.fn();
+    const onChange = vi.fn();
     const result = render(
       <RadioGroup
+        name="test"
         disabled
-        onValueChange={onValueChange}
+        onChange={onChange}
         options={RADIO_GROUP_OPTIONS}
       />,
     );
-    const items = result.getAllByRole("radio");
+    const label = result.getByText("Option A").closest("label")!;
 
-    fireEvent.click(items[0]!);
-    expect(onValueChange).not.toHaveBeenCalled();
+    fireEvent.click(label);
+    expect(onChange).not.toHaveBeenCalled();
   });
 
   test("disabling individual option", () => {
     const result = render(
       <RadioGroup
+        name="test"
         options={[
           { value: "option-a", label: "Option A" },
           { value: "option-b", label: "Option B", disabled: true },
@@ -207,10 +223,11 @@ describe("radio-group [unit]", () => {
   });
 
   test("disabled individual option does not respond to click", () => {
-    const onValueChange = vi.fn();
+    const onChange = vi.fn();
     const result = render(
       <RadioGroup
-        onValueChange={onValueChange}
+        name="test"
+        onChange={onChange}
         options={[
           { value: "option-a", label: "Option A" },
           { value: "option-b", label: "Option B", disabled: true },
@@ -218,16 +235,21 @@ describe("radio-group [unit]", () => {
         ]}
       />,
     );
-    const items = result.getAllByRole("radio");
+    const label = result.getByText("Option B").closest("label")!;
+    const input = result.getAllByRole("radio")[1]!;
 
-    fireEvent.click(items[1]!);
-    expect(onValueChange).not.toHaveBeenCalled();
-    expect(items[1]).toHaveAttribute("data-state", "unchecked");
+    fireEvent.click(label);
+    expect(onChange).not.toHaveBeenCalled();
+    expect(input).not.toBeChecked();
   });
 
   test("keyboard navigation (vertical orientation)", async () => {
     const result = render(
-      <RadioGroup defaultValue="option-a" options={RADIO_GROUP_OPTIONS} />,
+      <RadioGroup
+        name="test"
+        defaultValue="option-a"
+        options={RADIO_GROUP_OPTIONS}
+      />,
     );
     const items = result.getAllByRole("radio");
 
@@ -244,6 +266,7 @@ describe("radio-group [unit]", () => {
   test("keyboard navigation (horizontal orientation)", async () => {
     const result = render(
       <RadioGroup
+        name="test"
         orientation="horizontal"
         defaultValue="option-a"
         options={RADIO_GROUP_OPTIONS}
@@ -264,6 +287,7 @@ describe("radio-group [unit]", () => {
   test("keyboard navigation skips disabled items", async () => {
     const result = render(
       <RadioGroup
+        name="test"
         defaultValue="option-a"
         options={[
           { value: "option-a", label: "Option A" },
@@ -283,8 +307,8 @@ describe("radio-group [unit]", () => {
 });
 
 describe("radio-group [snapshot]", () => {
-  RADIO_GROUP_PERMUTATIONS.forEach(({ name, ...props }) => {
-    test(name, () => {
+  RADIO_GROUP_PERMUTATIONS.forEach(({ permutationName, ...props }) => {
+    test(permutationName, () => {
       const { container } = render(<RadioGroup {...props} />);
       expect(container.firstChild).toMatchSnapshot();
     });
@@ -301,8 +325,8 @@ describe("radio-group [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    RADIO_GROUP_PERMUTATIONS.forEach(({ name, ...props }) => {
-      test(`wcag2aaa (${name}, ${theme})`, async () => {
+    RADIO_GROUP_PERMUTATIONS.forEach(({ permutationName, ...props }) => {
+      test(`wcag2aaa (${permutationName}, ${theme})`, async () => {
         const { container } = render(<RadioGroup {...props} />);
         expect(
           await axe.run(container, { runOnly: "wcag2aaa" }),
