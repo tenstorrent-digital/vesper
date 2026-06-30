@@ -23,6 +23,10 @@
       "types": "./dist/components/slider/slider.d.ts",
       "import": "./dist/components/slider/slider.js"
     },
+    "./checkbox": {
+      "types": "./dist/components/checkbox/checkbox.d.ts",
+      "import": "./dist/components/checkbox/checkbox.js"
+    },
     "./text-input": {
       "types": "./dist/components/text-input/text-input.d.ts",
       "import": "./dist/components/text-input/text-input.js"
