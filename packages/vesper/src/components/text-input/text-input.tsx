@@ -208,6 +208,7 @@ export function TextInput(props: TextInputProps) {
 
   const messageId = useId();
 
+  // If an additional aria-describedby is supplied, this ensures that both ids get used
   const describedBy =
     [ariaDescribedby, message ? messageId : undefined]
       .filter(Boolean)
