@@ -103,10 +103,8 @@ describe("checkbox [unit]", () => {
       />,
     );
     expect(container.firstChild).toHaveAttribute("data-testid", "my-checkbox");
-    expect(container.firstChild).toHaveAttribute(
-      "aria-describedby",
-      "help-text",
-    );
+    const input = container.querySelector('input[type="checkbox"]')!;
+    expect(input).toHaveAttribute("aria-describedby", "help-text");
   });
 
   test("defaultChecked sets initial checked state", () => {

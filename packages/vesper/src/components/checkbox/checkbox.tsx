@@ -29,6 +29,12 @@ type ForwardedPropTypes =
   | "required"
   | "checked"
   | "defaultChecked"
+  | "role"
+  | "tabIndex"
+  | "aria-label"
+  | "aria-labelledby"
+  | "aria-describedby"
+  | "aria-invalid"
   | "onFocus"
   | "onFocusCapture"
   | "onBlur"
@@ -81,6 +87,12 @@ export function Checkbox({
   required,
   checked,
   defaultChecked,
+  role,
+  tabIndex,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledby,
+  "aria-describedby": ariaDescribedby,
+  "aria-invalid": ariaInvalid,
   onFocus,
   onFocusCapture,
   onBlur,
@@ -135,6 +147,12 @@ export function Checkbox({
         required={required}
         checked={checked}
         defaultChecked={defaultChecked}
+        role={role}
+        tabIndex={tabIndex}
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledby}
+        aria-describedby={ariaDescribedby}
+        aria-invalid={ariaInvalid}
         onChange={onChange}
         onFocus={onFocus}
         onFocusCapture={onFocusCapture}
