@@ -7,6 +7,7 @@ const meta = {
   parameters: { layout: "centered" },
   argTypes: {
     label: { control: "text" },
+    inputRef: { table: { disable: true } },
   },
 } satisfies Meta<typeof Switch>;
 

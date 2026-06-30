@@ -1,9 +1,4 @@
-import { ReactNode } from "react";
-import {
-  type SwitchProps as RadixSwitchProps,
-  Switch as RadixSwitch,
-  SwitchThumb,
-} from "@radix-ui/react-switch";
+import type { ComponentProps, RefObject } from "react";
 import { cn } from "@/utils/cn";
 import {
   Typography,
@@ -14,9 +9,47 @@ export const SWITCH_SIZES = ["sm", "md"] as const;
 
 export type SwitchSize = (typeof SWITCH_SIZES)[number];
 
-export interface SwitchProps extends Omit<RadixSwitchProps, "asChild"> {
+/**
+ * Union of all the prop types that should be forwarded to the input element, and excluded from the containing label element
+ */
+type ForwardedPropTypes =
+  | "id"
+  | "form"
+  | "value"
+  | "autoFocus"
+  | "disabled"
+  | "name"
+  | "required"
+  | "checked"
+  | "defaultChecked"
+  | "onFocus"
+  | "onFocusCapture"
+  | "onBlur"
+  | "onBlurCapture"
+  | "onChange"
+  | "onChangeCapture"
+  | "onBeforeInput"
+  | "onBeforeInputCapture"
+  | "onInput"
+  | "onInputCapture"
+  | "onReset"
+  | "onResetCapture"
+  | "onSubmit"
+  | "onSubmitCapture"
+  | "onInvalid"
+  | "onInvalidCapture"
+  | "onKeyDown"
+  | "onKeyDownCapture"
+  | "onKeyUp"
+  | "onKeyUpCapture";
+
+export interface SwitchProps
+  extends
+    Omit<ComponentProps<"label">, "children" | "onChange" | ForwardedPropTypes>,
+    Pick<ComponentProps<"input">, ForwardedPropTypes> {
+  label?: string;
   size?: SwitchSize;
-  label?: ReactNode;
+  inputRef?: RefObject<HTMLInputElement | null>;
 }
 
 const SWITCH_TYPOGRAPHY: { [S in SwitchSize]: TypographyVariant } = {
@@ -25,32 +58,92 @@ const SWITCH_TYPOGRAPHY: { [S in SwitchSize]: TypographyVariant } = {
 };
 
 export function Switch({
-  size = "md",
+  // component-specific props
   label,
-  className,
+  size = "md",
+  inputRef,
+  // props forwarded to the inner input
+  id,
+  form,
+  value,
+  autoFocus,
+  disabled,
+  name,
   required,
+  checked,
+  defaultChecked,
+  onFocus,
+  onFocusCapture,
+  onBlur,
+  onBlurCapture,
+  onChange,
+  onChangeCapture,
+  onBeforeInput,
+  onBeforeInputCapture,
+  onInput,
+  onInputCapture,
+  onReset,
+  onResetCapture,
+  onSubmit,
+  onSubmitCapture,
+  onInvalid,
+  onInvalidCapture,
+  onKeyDown,
+  onKeyDownCapture,
+  onKeyUp,
+  onKeyUpCapture,
+  // props spread onto the wrapper label
+  className,
   ...props
 }: SwitchProps) {
-  const switchEl = (
-    <RadixSwitch
+  return (
+    <label
       className={cn("vesper-switch", `vesper-switch-${size}`, className)}
       {...props}
     >
-      <SwitchThumb className="vesper-switch-thumb" />
-    </RadixSwitch>
+      <input
+        className="vesper-switch-input"
+        type="checkbox"
+        ref={inputRef}
+        id={id}
+        form={form}
+        value={value}
+        autoFocus={autoFocus}
+        disabled={disabled}
+        name={name}
+        required={required}
+        checked={checked}
+        defaultChecked={defaultChecked}
+        onFocus={onFocus}
+        onFocusCapture={onFocusCapture}
+        onBlur={onBlur}
+        onBlurCapture={onBlurCapture}
+        onChange={onChange}
+        onChangeCapture={onChangeCapture}
+        onBeforeInput={onBeforeInput}
+        onBeforeInputCapture={onBeforeInputCapture}
+        onInput={onInput}
+        onInputCapture={onInputCapture}
+        onReset={onReset}
+        onResetCapture={onResetCapture}
+        onSubmit={onSubmit}
+        onSubmitCapture={onSubmitCapture}
+        onInvalid={onInvalid}
+        onInvalidCapture={onInvalidCapture}
+        onKeyDown={onKeyDown}
+        onKeyDownCapture={onKeyDownCapture}
+        onKeyUp={onKeyUp}
+        onKeyUpCapture={onKeyUpCapture}
+      />
+      <div className="vesper-switch-pill" />
+      {label && (
+        <Typography
+          className="vesper-switch-label"
+          variant={SWITCH_TYPOGRAPHY[size]}
+        >
+          {required ? `${label} *` : label}
+        </Typography>
+      )}
+    </label>
   );
-
-  if (label) {
-    let labelText = label;
-    if (required) labelText += " *";
-
-    return (
-      <label className="vesper-switch-label">
-        {switchEl}
-        <Typography variant={SWITCH_TYPOGRAPHY[size]}>{labelText}</Typography>
-      </label>
-    );
-  }
-
-  return switchEl;
 }
