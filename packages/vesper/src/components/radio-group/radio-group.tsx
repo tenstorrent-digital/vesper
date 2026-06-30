@@ -22,13 +22,16 @@ export type RadioGroupItem = {
 
 export interface RadioGroupProps extends Omit<
   ComponentProps<"fieldset">,
-  "children"
+  "children" | "onChange" | "defaultValue"
 > {
   size?: RadioSize;
   orientation?: RadioGroupOrientation;
   required?: boolean;
   options: RadioGroupItem[];
   name: string;
+  value?: string;
+  defaultValue?: string;
+  onChange?(value: string): void;
 }
 
 const RADIO_GROUP_ITEM_TYPOGRAPHY: { [S in RadioSize]: TypographyVariant } = {
@@ -44,6 +47,9 @@ export function RadioGroup({
   options,
   className,
   name,
+  value,
+  defaultValue,
+  onChange,
   ...props
 }: RadioGroupProps) {
   return (
@@ -58,6 +64,14 @@ export function RadioGroup({
     >
       {options.map((option) => {
         const isDisabled = disabled || option.disabled;
+
+        const checkedProps =
+          defaultValue === undefined
+            ? {
+                checked:
+                  value === undefined ? undefined : value === option.value,
+              }
+            : { defaultChecked: defaultValue === option.value };
 
         return (
           <label
@@ -76,6 +90,11 @@ export function RadioGroup({
               id={option.id}
               value={option.value}
               className="vesper-radio-input"
+              onChange={(e) => {
+                if (!onChange) return;
+                if (e.target.checked) onChange(option.value);
+              }}
+              {...checkedProps}
             />
             <div className="vesper-radio-group-item-indicator" />
             <Typography
