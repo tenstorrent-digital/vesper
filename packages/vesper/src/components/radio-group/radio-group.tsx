@@ -87,6 +87,7 @@ export function RadioGroup({
               type="radio"
               name={name}
               required={required}
+              disabled={isDisabled}
               id={option.id}
               value={option.value}
               className="vesper-radio-input"
