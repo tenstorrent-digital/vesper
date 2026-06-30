@@ -33,6 +33,7 @@ const meta = {
       control: "radio",
       options: RADIO_SIZES,
     },
+    name: { table: { disable: true } },
   },
 } satisfies Meta<typeof RadioGroupStory>;
 
