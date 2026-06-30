@@ -10,6 +10,7 @@
 .vesper-checkbox-box {
   border-radius: var(--vesper-radius-half);
   border: 1px solid var(--vesper-stone-400);
+  position: relative;
 }
 
 .vesper-checkbox-sm {
@@ -27,10 +28,12 @@
 }
 
 .vesper-checkbox-checked-icon {
-  display: none;
+  position: absolute;
+  visibility: hidden;
 }
 .vesper-checkbox-indeterminate-icon {
-  display: none;
+  position: absolute;
+  visibility: hidden;
 }
 
 .vesper-checkbox-input {
@@ -43,7 +46,7 @@
     background: var(--vesper-teal-400);
     border-color: var(--vesper-teal-400);
     .vesper-checkbox-checked-icon {
-      display: block;
+      visibility: visible;
     }
   }
   &:disabled + .vesper-checkbox-box {
@@ -64,7 +67,7 @@
     background: var(--vesper-teal-400);
     border-color: var(--vesper-teal-400);
     .vesper-checkbox-indeterminate-icon {
-      display: block;
+      visibility: visible;
     }
   }
 }
