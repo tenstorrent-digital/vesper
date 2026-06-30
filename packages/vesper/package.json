@@ -15,6 +15,14 @@
       "types": "./dist/components/tag/tag.d.ts",
       "import": "./dist/components/tag/tag.js"
     },
+    "./range": {
+      "types": "./dist/components/range/range.d.ts",
+      "import": "./dist/components/range/range.js"
+    },
+    "./slider": {
+      "types": "./dist/components/slider/slider.d.ts",
+      "import": "./dist/components/slider/slider.js"
+    },
     "./text-input": {
       "types": "./dist/components/text-input/text-input.d.ts",
       "import": "./dist/components/text-input/text-input.js"
@@ -163,6 +171,7 @@
     "@radix-ui/react-collapsible": "^1.1.12",
     "@radix-ui/react-dropdown-menu": "^2.1.16",
     "@radix-ui/react-progress": "^1.1.8",
+    "@radix-ui/react-slider": "^1.4.1",
     "@radix-ui/react-tabs": "^1.1.15",
     "@radix-ui/react-toggle-group": "^1.1.13",
     "@radix-ui/react-tooltip": "^1.2.10"

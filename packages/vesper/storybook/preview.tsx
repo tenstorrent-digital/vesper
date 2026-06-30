@@ -28,6 +28,9 @@ const preview: Preview = {
     },
   ],
   parameters: {
+    controls: {
+      disableSaveFromUI: true,
+    },
     a11y: {
       test: "error",
       options: {
