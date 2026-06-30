@@ -66,11 +66,8 @@ export function RadioGroup({
         const isDisabled = disabled || option.disabled;
 
         const checkedProps =
-          defaultValue === undefined
-            ? {
-                checked:
-                  value === undefined ? undefined : value === option.value,
-              }
+          value !== undefined
+            ? { checked: value === option.value }
             : { defaultChecked: defaultValue === option.value };
 
         return (
