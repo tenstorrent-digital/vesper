@@ -3,38 +3,52 @@ import { beforeEach, afterEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 import axe from "axe-core";
 
-import { Switch, SWITCH_SIZES } from "@/components/switch/switch";
+import {
+  Switch,
+  SWITCH_SIZES,
+  type SwitchProps,
+} from "@/components/switch/switch";
 
 import "@/styles/test.css";
+
+export const SWITCH_PERMUTATIONS = SWITCH_SIZES.flatMap(
+  (size): (SwitchProps & { name: string })[] => [
+    { name: `${size}`, size },
+    { name: `${size}, disabled`, size, disabled: true },
+    { name: `${size}, with label`, size, label: "Label" },
+    {
+      name: `${size}, disabled, with label`,
+      size,
+      disabled: true,
+      label: "Label",
+    },
+  ],
+);
 
 afterEach(cleanup);
 
 describe("switch [unit]", () => {
   SWITCH_SIZES.forEach((size) => {
     test(`${size} size class`, () => {
-      const result = render(<Switch size={size} aria-label="toggle" />);
-      const switchEl = result.getByRole("switch");
-      expect(switchEl).toHaveClass(`vesper-switch-${size}`);
+      const { container } = render(<Switch size={size} label="toggle" />);
+      expect(container.firstChild).toHaveClass(`vesper-switch-${size}`);
     });
   });
 
   test("custom className is merged", () => {
-    const result = render(
-      <Switch className="custom-class" aria-label="toggle" />,
+    const { container } = render(
+      <Switch className="custom-class" label="toggle" />,
     );
-    const switchEl = result.getByRole("switch");
-    expect(switchEl).toHaveClass("vesper-switch");
-    expect(switchEl).toHaveClass("vesper-switch-md");
-    expect(switchEl).toHaveClass("custom-class");
+    expect(container.firstChild).toHaveClass("vesper-switch");
+    expect(container.firstChild).toHaveClass("vesper-switch-md");
+    expect(container.firstChild).toHaveClass("custom-class");
   });
 
   test("additional props are passed through", () => {
-    const result = render(
-      <Switch data-testid="my-switch" aria-label="toggle" />,
+    const { container } = render(
+      <Switch data-testid="my-switch" label="toggle" />,
     );
-    const switchEl = result.getByRole("switch");
-    expect(switchEl).toHaveAttribute("data-testid", "my-switch");
-    expect(switchEl).toHaveAttribute("aria-label", "toggle");
+    expect(container.firstChild).toHaveAttribute("data-testid", "my-switch");
   });
 
   test("renders label text", () => {
@@ -42,158 +56,104 @@ describe("switch [unit]", () => {
     expect(result.getByText("Enable notifications")).not.toBeNull();
   });
 
-  test("label wraps switch in a label element", () => {
-    const { container } = render(<Switch label="My Label" />);
-    const labelEl = container.querySelector("label");
-    expect(labelEl).not.toBeNull();
-    expect(labelEl).toHaveClass("vesper-switch-label");
-  });
-
-  test("no label element when label prop is not provided", () => {
-    const { container } = render(<Switch aria-label="toggle" />);
-    const labelEl = container.querySelector("label");
-    expect(labelEl).toBeNull();
+  test("no label text rendered when label prop is not provided", () => {
+    const { container } = render(<Switch />);
+    const labelText = container.querySelector(".vesper-switch-label");
+    expect(labelText).toBeNull();
   });
 
   test("unchecked by default", () => {
-    const result = render(<Switch aria-label="toggle" />);
-    const switchEl = result.getByRole("switch");
-    expect(switchEl).toHaveAttribute("data-state", "unchecked");
-    expect(switchEl).toHaveAttribute("aria-checked", "false");
+    const result = render(<Switch label="toggle" />);
+    const checkbox = result.getByRole("checkbox");
+    expect(checkbox).not.toBeChecked();
   });
 
   test("defaultChecked sets initial state", () => {
-    const result = render(<Switch defaultChecked aria-label="toggle" />);
-    const switchEl = result.getByRole("switch");
-    expect(switchEl).toHaveAttribute("data-state", "checked");
-    expect(switchEl).toHaveAttribute("aria-checked", "true");
+    const result = render(<Switch defaultChecked label="toggle" />);
+    const checkbox = result.getByRole("checkbox");
+    expect(checkbox).toBeChecked();
   });
 
   test("clicking toggles the switch", async () => {
-    const result = render(<Switch aria-label="toggle" />);
-    const switchEl = result.getByRole("switch");
+    const { container } = render(<Switch label="toggle" />);
+    const checkbox = container.querySelector(
+      'input[type="checkbox"]',
+    ) as HTMLInputElement;
+    const label = container.firstChild as HTMLLabelElement;
 
-    expect(switchEl).toHaveAttribute("data-state", "unchecked");
+    expect(checkbox).not.toBeChecked();
 
-    await userEvent.click(switchEl);
-    expect(switchEl).toHaveAttribute("data-state", "checked");
+    await userEvent.click(label);
+    expect(checkbox).toBeChecked();
 
-    await userEvent.click(switchEl);
-    expect(switchEl).toHaveAttribute("data-state", "unchecked");
+    await userEvent.click(label);
+    expect(checkbox).not.toBeChecked();
   });
 
-  test("onCheckedChange callback is called", async () => {
-    const onCheckedChange = vi.fn();
-    const result = render(
-      <Switch onCheckedChange={onCheckedChange} aria-label="toggle" />,
-    );
-    const switchEl = result.getByRole("switch");
+  test("onChange callback is called", async () => {
+    const onChange = vi.fn();
+    const { container } = render(<Switch onChange={onChange} label="toggle" />);
+    const label = container.firstChild as HTMLLabelElement;
 
-    await userEvent.click(switchEl);
-    expect(onCheckedChange).toHaveBeenCalledWith(true);
-
-    await userEvent.click(switchEl);
-    expect(onCheckedChange).toHaveBeenCalledWith(false);
+    await userEvent.click(label);
+    expect(onChange).toHaveBeenCalled();
   });
 
   test("disabled switch not toggled by click", () => {
-    const onCheckedChange = vi.fn();
+    const onChange = vi.fn();
     const result = render(
-      <Switch disabled onCheckedChange={onCheckedChange} aria-label="toggle" />,
+      <Switch disabled onChange={onChange} label="toggle" />,
     );
-    const switchEl = result.getByRole("switch");
+    const checkbox = result.getByRole("checkbox");
+    const label = result.container.firstChild as HTMLLabelElement;
 
-    fireEvent.click(switchEl);
-    expect(switchEl).toHaveAttribute("data-state", "unchecked");
-    expect(onCheckedChange).not.toHaveBeenCalled();
+    fireEvent.click(label);
+    expect(checkbox).not.toBeChecked();
+    expect(onChange).not.toHaveBeenCalled();
   });
 
   test("disabled switch not toggled by keyboard", () => {
-    const onCheckedChange = vi.fn();
+    const onChange = vi.fn();
     const result = render(
-      <Switch disabled onCheckedChange={onCheckedChange} aria-label="toggle" />,
+      <Switch disabled onChange={onChange} label="toggle" />,
     );
-    const switchEl = result.getByRole("switch");
+    const checkbox = result.getByRole("checkbox");
 
-    fireEvent.keyDown(switchEl, { key: " " });
-    fireEvent.keyUp(switchEl, { key: " " });
-    expect(switchEl).toHaveAttribute("data-state", "unchecked");
-    expect(onCheckedChange).not.toHaveBeenCalled();
+    fireEvent.keyDown(checkbox, { key: " " });
+    fireEvent.keyUp(checkbox, { key: " " });
+    expect(checkbox).not.toBeChecked();
+    expect(onChange).not.toHaveBeenCalled();
   });
 
   test("keyboard Space toggles the switch", async () => {
-    const result = render(<Switch aria-label="toggle" />);
-    const switchEl = result.getByRole("switch");
+    const result = render(<Switch label="toggle" />);
+    const checkbox = result.getByRole("checkbox");
 
     await userEvent.tab();
-    expect(switchEl).toHaveFocus();
+    expect(checkbox).toHaveFocus();
 
     await userEvent.keyboard(" ");
-    expect(switchEl).toHaveAttribute("data-state", "checked");
+    expect(checkbox).toBeChecked();
 
     await userEvent.keyboard(" ");
-    expect(switchEl).toHaveAttribute("data-state", "unchecked");
-  });
-
-  test("keyboard Enter toggles the switch", async () => {
-    const result = render(<Switch aria-label="toggle" />);
-    const switchEl = result.getByRole("switch");
-
-    await userEvent.tab();
-    expect(switchEl).toHaveFocus();
-
-    await userEvent.keyboard("{Enter}");
-    expect(switchEl).toHaveAttribute("data-state", "checked");
+    expect(checkbox).not.toBeChecked();
   });
 
   test("switch is focusable via Tab", async () => {
-    const result = render(<Switch aria-label="toggle" />);
-    const switchEl = result.getByRole("switch");
+    const result = render(<Switch label="toggle" />);
+    const checkbox = result.getByRole("checkbox");
 
     await userEvent.tab();
-    expect(switchEl).toHaveFocus();
+    expect(checkbox).toHaveFocus();
   });
 });
 
 describe("switch [snapshot]", () => {
-  test("sm", async () => {
-    const { container } = render(<Switch size="sm" />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test("sm, with label", async () => {
-    const { container } = render(<Switch size="sm" label="Label" />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test("sm, disabled", async () => {
-    const { container } = render(<Switch size="sm" disabled />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test("sm, disabled, with label", async () => {
-    const { container } = render(<Switch size="sm" disabled label="Label" />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test("md", async () => {
-    const { container } = render(<Switch size="md" />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test("md, with label", async () => {
-    const { container } = render(<Switch size="md" label="Label" />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test("md, disabled", async () => {
-    const { container } = render(<Switch size="md" disabled />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test("md, disabled, with label", async () => {
-    const { container } = render(<Switch size="md" disabled label="Label" />);
-    expect(container.firstChild).toMatchSnapshot();
+  SWITCH_PERMUTATIONS.forEach(({ name, ...props }) => {
+    test(name, () => {
+      const { container } = render(<Switch {...props} />);
+      expect(container.firstChild).toMatchSnapshot();
+    });
   });
 });
 
@@ -207,9 +167,9 @@ describe("switch [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    SWITCH_SIZES.forEach((size) => {
-      test(`wcag2aaa (${size}, ${theme})`, async () => {
-        const { container } = render(<Switch size={size} label="Label" />);
+    SWITCH_PERMUTATIONS.forEach(({ name, ...props }) => {
+      test(`wcag2aaa (${name}, ${theme})`, async () => {
+        const { container } = render(<Switch {...props} />);
 
         expect(
           await axe.run(container, { runOnly: "wcag2aaa" }),
