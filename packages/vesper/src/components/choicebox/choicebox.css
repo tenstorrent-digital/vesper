@@ -1,2 +1,104 @@
 .vesper-choicebox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-2);
+}
+
+.vesper-choicebox-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--vesper-spacing-3);
+  border-radius: var(--vesper-radius-1);
+  border: 1px solid var(--vesper-stone-300);
+  background: var(--vesper-stone-0);
+  padding: var(--vesper-spacing-3);
+  &.vesper-choicebox-item-compact {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  &:has(:disabled) {
+    border-color: var(--vesper-alpha-stone-200);
+    .vesper-choicebox-item-label {
+      color: var(--vesper-alpha-stone-400);
+    }
+    .vesper-choicebox-item-description {
+      color: var(--vesper-alpha-stone-400);
+    }
+  }
+  &:not(:has(:disabled)) {
+    &:hover {
+      background:
+        linear-gradient(
+          0deg,
+          var(--vesper-alpha-stone-0) 0%,
+          var(--vesper-alpha-stone-0) 100%
+        ),
+        var(--vesper-stone-0);
+    }
+    &:has(:checked) {
+      border-color: var(--vesper-stone-900);
+      background:
+        linear-gradient(
+          0deg,
+          var(--vesper-alpha-stone-50) 0%,
+          var(--vesper-alpha-stone-50) 100%
+        ),
+        var(--vesper-stone-0);
+    }
+    cursor: pointer;
+  }
+  &:has(:focus-visible) {
+    box-shadow: var(--vesper-shadow-focus-ring);
+  }
+}
+
+.vesper-choicebox-item-label {
+  color: var(--vesper-stone-900);
+}
+
+.vesper-choicebox-item-description {
+  color: var(--vesper-stone-700);
+  margin-top: var(--vesper-spacing-1);
+}
+
+.vesper-choicebox-radio-input-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--vesper-stone-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &::after {
+    content: "";
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+  }
+}
+
+.vesper-choicebox-radio-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+  &:checked + .vesper-choicebox-radio-input-indicator {
+    border-color: var(--vesper-teal-400);
+    background: var(--vesper-teal-400);
+    &::after {
+      background: var(--vesper-stone-0);
+    }
+  }
+  &:disabled {
+    & + .vesper-choicebox-radio-input-indicator {
+      border-color: var(--vesper-alpha-stone-200);
+      background: var(--vesper-alpha-stone-100);
+    }
+    &:checked + .vesper-choicebox-radio-input-indicator {
+      &::after {
+        background: var(--vesper-alpha-stone-500);
+      }
+    }
+  }
 }
