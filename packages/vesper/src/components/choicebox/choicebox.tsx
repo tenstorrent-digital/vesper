@@ -1,8 +1,10 @@
 import {
+  useCallback,
   useImperativeHandle,
   useRef,
   type ChangeEventHandler,
   type ComponentProps,
+  type KeyboardEventHandler,
 } from "react";
 import { cn } from "@/utils/cn";
 import { Typography } from "@/components/typography/typography";
@@ -101,10 +103,40 @@ function ChoiceboxMultiSelect({
   const innerRef = useRef<HTMLFieldSetElement>(null);
   useImperativeHandle(ref, () => innerRef.current!);
 
+  const handleKeyDown: KeyboardEventHandler<HTMLFieldSetElement> = useCallback(
+    (e) => {
+      if (
+        !["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)
+      ) {
+        return;
+      }
+
+      const inputs = Array.from(
+        innerRef.current!.querySelectorAll<HTMLInputElement>(
+          "input:not(:disabled)",
+        ),
+      );
+
+      const currentIndex = inputs.indexOf(e.target as HTMLInputElement);
+      if (currentIndex === -1) return;
+
+      e.preventDefault();
+
+      const direction = ["ArrowDown", "ArrowRight"].includes(e.key) ? 1 : -1;
+
+      const nextIndex =
+        (currentIndex + direction + inputs.length) % inputs.length;
+
+      inputs[nextIndex]?.focus();
+    },
+    [],
+  );
+
   return (
     <fieldset
       ref={innerRef}
       className={cn("vesper-choicebox", className)}
+      onKeyDown={handleKeyDown}
       {...props}
     >
       {options.map((option) => {
