@@ -1,6 +1,12 @@
-import type { ComponentProps } from "react";
+import {
+  useImperativeHandle,
+  useRef,
+  type ChangeEventHandler,
+  type ComponentProps,
+} from "react";
 import { cn } from "@/utils/cn";
 import { Typography } from "@/components/typography/typography";
+import { Checkmark } from "@/components/icons/icons";
 
 export type ChoiceboxItem = {
   value: string;
@@ -29,8 +35,8 @@ export interface ChoiceboxSingleSelectProps extends ChoiceboxBaseProps {
 
 export interface ChoiceboxMultiSelectProps extends ChoiceboxBaseProps {
   multiselect: true;
-  value?: string[];
-  defaultValue?: string[];
+  values?: string[];
+  defaultValues?: string[];
   onChange?(values: string[]): void;
 }
 
@@ -57,53 +63,24 @@ function ChoiceboxSingleSelect({
   return (
     <fieldset className={cn("vesper-choicebox", className)} {...props}>
       {options.map((option) => {
-        const isDisabled = option.disabled || disabled;
-
         const checkedProps =
           value !== undefined
             ? { checked: value === option.value }
             : { defaultChecked: defaultValue === option.value };
 
         return (
-          <label
+          <ChoiceboxItem
             key={option.value}
-            htmlFor={option.id}
-            className={cn(
-              "vesper-choicebox-item",
-              !option.description && "vesper-choicebox-item-compact",
-            )}
-          >
-            <div>
-              <Typography
-                variant="copy-sm-bold"
-                className="vesper-choicebox-item-label"
-              >
-                {option.label}
-              </Typography>
-              {option.description && (
-                <Typography
-                  variant="copy-xs"
-                  className="vesper-choicebox-item-description"
-                >
-                  {option.description}
-                </Typography>
-              )}
-            </div>
-            <input
-              id={option.id}
-              name={name}
-              required={required}
-              disabled={isDisabled}
-              type="radio"
-              className="vesper-choicebox-radio-input"
-              onChange={(e) => {
-                if (!onChange) return;
-                if (e.target.checked) onChange(option.value);
-              }}
-              {...checkedProps}
-            />
-            <div className="vesper-choicebox-radio-input-indicator" />
-          </label>
+            option={option}
+            required={required}
+            disabled={disabled}
+            name={name}
+            onChange={(e) => {
+              if (!onChange) return;
+              if (e.target.checked) onChange(option.value);
+            }}
+            {...checkedProps}
+          />
         );
       })}
     </fieldset>
@@ -112,15 +89,117 @@ function ChoiceboxSingleSelect({
 
 function ChoiceboxMultiSelect({
   className,
-  value,
-  defaultValue,
+  values,
+  defaultValues,
   onChange,
+  options,
+  disabled,
+  name,
+  ref,
   ...props
 }: ChoiceboxMultiSelectProps) {
+  const innerRef = useRef<HTMLFieldSetElement>(null);
+  useImperativeHandle(ref, () => innerRef.current!);
+
   return (
     <fieldset
+      ref={innerRef}
       className={cn("vesper-choicebox", className)}
       {...props}
-    ></fieldset>
+    >
+      {options.map((option) => {
+        const checkedProps =
+          values !== undefined
+            ? { checked: values.includes(option.value) }
+            : { defaultChecked: defaultValues?.includes(option.value) };
+
+        return (
+          <ChoiceboxItem
+            key={option.value}
+            multiselect
+            option={option}
+            disabled={disabled}
+            name={name + "[]"}
+            onChange={() => {
+              if (!onChange) return;
+              onChange(
+                Array.from(innerRef.current!.querySelectorAll("input"))
+                  .filter((v) => v.checked)
+                  .map((v) => v.value),
+              );
+            }}
+            {...checkedProps}
+          />
+        );
+      })}
+    </fieldset>
+  );
+}
+
+function ChoiceboxItem({
+  option,
+  multiselect,
+  disabled,
+  required,
+  name,
+  checked,
+  defaultChecked,
+  onChange,
+}: {
+  option: ChoiceboxItem;
+  multiselect?: boolean;
+  required?: boolean;
+  disabled?: boolean;
+  name: string;
+  checked?: boolean;
+  defaultChecked?: boolean;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+}) {
+  const isDisabled = option.disabled || disabled;
+
+  return (
+    <label
+      key={option.value}
+      htmlFor={option.id}
+      className={cn(
+        "vesper-choicebox-item",
+        !option.description && "vesper-choicebox-item-compact",
+      )}
+    >
+      <div>
+        <Typography
+          variant="copy-sm-bold"
+          className="vesper-choicebox-item-label"
+        >
+          {option.label}
+        </Typography>
+        {option.description && (
+          <Typography
+            variant="copy-xs"
+            className="vesper-choicebox-item-description"
+          >
+            {option.description}
+          </Typography>
+        )}
+      </div>
+      <input
+        type={multiselect ? "checkbox" : "radio"}
+        className="vesper-choicebox-input"
+        id={option.id}
+        name={name}
+        required={required}
+        disabled={isDisabled}
+        onChange={onChange}
+        checked={checked}
+        defaultChecked={defaultChecked}
+      />
+      {multiselect ? (
+        <div className="vesper-choicebox-input-multi-indicator">
+          <Checkmark />
+        </div>
+      ) : (
+        <div className="vesper-choicebox-input-single-indicator" />
+      )}
+    </label>
   );
 }

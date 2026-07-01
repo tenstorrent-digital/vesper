@@ -62,7 +62,7 @@
   margin-top: var(--vesper-spacing-1);
 }
 
-.vesper-choicebox-radio-input-indicator {
+.vesper-choicebox-input-single-indicator {
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -78,26 +78,56 @@
   }
 }
 
-.vesper-choicebox-radio-input {
+.vesper-choicebox-input-multi-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--vesper-radius-half);
+  border: 1px solid var(--vesper-stone-400);
+  color: var(--vesper-stone-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    visibility: hidden;
+  }
+}
+
+.vesper-choicebox-input {
   opacity: 0;
   width: 0;
   height: 0;
   position: absolute;
-  &:checked + .vesper-choicebox-radio-input-indicator {
-    border-color: var(--vesper-teal-400);
-    background: var(--vesper-teal-400);
-    &::after {
-      background: var(--vesper-stone-0);
+  &:checked {
+    & + .vesper-choicebox-input-single-indicator {
+      border-color: var(--vesper-teal-400);
+      background: var(--vesper-teal-400);
+      &::after {
+        background: var(--vesper-stone-0);
+      }
+    }
+    & + .vesper-choicebox-input-multi-indicator {
+      border-color: var(--vesper-teal-400);
+      background: var(--vesper-teal-400);
+      svg {
+        visibility: visible;
+      }
     }
   }
   &:disabled {
-    & + .vesper-choicebox-radio-input-indicator {
+    & + .vesper-choicebox-input-single-indicator {
       border-color: var(--vesper-alpha-stone-200);
       background: var(--vesper-alpha-stone-100);
     }
-    &:checked + .vesper-choicebox-radio-input-indicator {
-      &::after {
+    & + .vesper-choicebox-input-multi-indicator {
+      border-color: var(--vesper-alpha-stone-200);
+      background: var(--vesper-alpha-stone-100);
+    }
+    &:checked {
+      & + .vesper-choicebox-input-single-indicator::after {
         background: var(--vesper-alpha-stone-500);
+      }
+      & + .vesper-choicebox-input-multi-indicator {
+        color: var(--vesper-alpha-stone-500);
       }
     }
   }
