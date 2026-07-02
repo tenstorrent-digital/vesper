@@ -86,6 +86,10 @@ export function Switch({
   checked,
   defaultChecked,
   readOnly,
+  /**
+   * set default role to "switch" as the switch component has no indeterminate state
+   * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/switch_role#:~:text=Unlike%20an%20%3Cinput%20type%3D%22checkbox%22%3E%20or%20role%3D%22checkbox%22%2C%20there%20is%20no%20indeterminate%20or%20mixed%20state
+   */
   role = "switch",
   tabIndex,
   "aria-label": ariaLabel,
