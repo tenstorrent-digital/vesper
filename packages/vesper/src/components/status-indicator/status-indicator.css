@@ -27,7 +27,9 @@
     border-radius: 50%;
   }
   &.vesper-status-indicator-dot-animated::before {
-    animation: vesper-status-indicator-dot-pulse 0.6s linear infinite alternate;
+    animation: vesper-status-indicator-dot-pulse
+      var(--vesper-transition-duration-slow) cubic-bezier(0.85, 0, 0.35, 1)
+      infinite alternate;
   }
 }
 

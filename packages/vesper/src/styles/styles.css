@@ -11,6 +11,7 @@
 @import "./shadows.css";
 @import "./spacing.css";
 @import "./tracking.css";
+@import "./animation.css";
 
 /* a11y */
 @import "./a11y.css";
