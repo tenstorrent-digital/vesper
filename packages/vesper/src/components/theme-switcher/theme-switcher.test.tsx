@@ -1,5 +1,12 @@
 import { render, cleanup } from "@testing-library/react";
-import { beforeEach, afterEach, describe, expect, test } from "vitest";
+import {
+  beforeEach,
+  afterEach,
+  describe,
+  expect,
+  test,
+  onTestFinished,
+} from "vitest";
 import axe from "axe-core";
 
 import {
@@ -40,6 +47,10 @@ describe("theme-switcher [unit]", () => {
   });
 
   test("theme switching", () => {
+    onTestFinished(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+    });
+
     const result = render(<ThemeSwitcher />);
 
     const [system, light, dark] = result.getAllByRole("button");
@@ -61,9 +72,6 @@ describe("theme-switcher [unit]", () => {
       "data-vesper-theme",
       "dark",
     );
-
-    document.documentElement.removeAttribute("data-vesper-theme");
-    document.body.style.removeProperty("background");
   });
 });
 
@@ -99,12 +107,10 @@ describe("theme-switcher [a11y]", () => {
       expect(await axe.run(container)).toHaveNoViolations();
     });
 
-    const smTestFn = async () => {
+    test.todo(`a11y (sm, ${theme})`, async () => {
       const { container } = render(<ThemeSwitcher size="sm" />);
 
       expect(await axe.run(container)).toHaveNoViolations();
-    };
-
-    test.todo(`a11y (sm, ${theme})`, smTestFn);
+    });
   });
 });
