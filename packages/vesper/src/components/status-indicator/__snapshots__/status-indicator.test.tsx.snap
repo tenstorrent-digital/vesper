@@ -1,0 +1,301 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`status-indicator [snapshot] > cancelled, badge 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-badge"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-cancelled"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    cancelled
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > cancelled, badge, animated 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-badge"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-cancelled vesper-status-indicator-dot-animated"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    cancelled
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > cancelled, default 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-default"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-cancelled"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    cancelled
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > cancelled, default, animated 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-default"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-cancelled vesper-status-indicator-dot-animated"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    cancelled
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > error, badge 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-badge"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-error"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    error
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > error, badge, animated 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-badge"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-error vesper-status-indicator-dot-animated"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    error
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > error, default 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-default"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-error"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    error
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > error, default, animated 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-default"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-error vesper-status-indicator-dot-animated"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    error
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > progress, badge 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-badge"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-progress"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    progress
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > progress, badge, animated 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-badge"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-progress vesper-status-indicator-dot-animated"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    progress
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > progress, default 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-default"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-progress"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    progress
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > progress, default, animated 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-default"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-progress vesper-status-indicator-dot-animated"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    progress
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > queued, badge 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-badge"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-queued"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    queued
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > queued, badge, animated 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-badge"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-queued vesper-status-indicator-dot-animated"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    queued
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > queued, default 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-default"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-queued"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    queued
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > queued, default, animated 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-default"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-queued vesper-status-indicator-dot-animated"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    queued
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > ready, badge 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-badge"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-ready"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    ready
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > ready, badge, animated 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-badge"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-ready vesper-status-indicator-dot-animated"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    ready
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > ready, default 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-default"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-ready"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    ready
+  </p>
+</div>
+`;
+
+exports[`status-indicator [snapshot] > ready, default, animated 1`] = `
+<div
+  class="vesper-status-indicator vesper-status-indicator-default"
+>
+  <span
+    class="vesper-status-indicator-dot vesper-status-indicator-dot-ready vesper-status-indicator-dot-animated"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
+  >
+    ready
+  </p>
+</div>
+`;
