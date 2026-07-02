@@ -10,6 +10,9 @@ const meta = {
   parameters: { layout: "centered" },
   argTypes: {
     shape: { control: "radio", options: SKELETON_SHAPES },
+    width: { table: { disable: true } },
+    height: { table: { disable: true } },
+    size: { table: { disable: true } },
   },
 } satisfies Meta<typeof Skeleton>;
 

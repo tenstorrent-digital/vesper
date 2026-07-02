@@ -80,7 +80,6 @@ function SkeletonOverlay({
       <svg aria-hidden width="100%" height="100%">
         <defs>
           <mask id={maskId} maskContentUnits="userSpaceOnUse">
-            <rect width="100%" height="100%" fill="#000" />
             <rect width="100%" height="100%" fill="#fff" rx={rx} ry={ry} />
           </mask>
         </defs>

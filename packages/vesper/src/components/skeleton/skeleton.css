@@ -4,6 +4,9 @@
 
 .vesper-skeleton-overlay {
   background: var(--vesper-stone-300);
+  @media (forced-colors: active) {
+    background: CanvasText;
+  }
   position: absolute;
   inset: 0;
 }
