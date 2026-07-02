@@ -1,0 +1,192 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`skeleton [snapshot] > shape: box 1`] = `
+<div
+  class="vesper-skeleton"
+>
+  <div
+    class="vesper-skeleton-overlay"
+    style="mask-image: url("#_r_n_");"
+  >
+    <svg
+      aria-hidden="true"
+      height="100%"
+      width="100%"
+    >
+      <defs>
+        <mask
+          id="_r_n_"
+          maskContentUnits="userSpaceOnUse"
+        >
+          <rect
+            fill="#fff"
+            height="100%"
+            rx="var(--vesper-radius-1)"
+            width="100%"
+          />
+        </mask>
+      </defs>
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`skeleton [snapshot] > shape: circle 1`] = `
+<div
+  class="vesper-skeleton"
+>
+  <div
+    class="vesper-skeleton-overlay"
+    style="mask-image: url("#_r_p_");"
+  >
+    <svg
+      aria-hidden="true"
+      height="100%"
+      width="100%"
+    >
+      <defs>
+        <mask
+          id="_r_p_"
+          maskContentUnits="userSpaceOnUse"
+        >
+          <rect
+            fill="#fff"
+            height="100%"
+            rx="50%"
+            width="100%"
+          />
+        </mask>
+      </defs>
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`skeleton [snapshot] > shape: pill 1`] = `
+<div
+  class="vesper-skeleton"
+>
+  <div
+    class="vesper-skeleton-overlay"
+    style="mask-image: url("#_r_o_");"
+  >
+    <svg
+      aria-hidden="true"
+      height="100%"
+      width="100%"
+    >
+      <defs>
+        <mask
+          id="_r_o_"
+          maskContentUnits="userSpaceOnUse"
+        >
+          <rect
+            fill="#fff"
+            height="100%"
+            ry="50%"
+            width="100%"
+          />
+        </mask>
+      </defs>
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`skeleton [snapshot] > with children 1`] = `
+<div
+  class="vesper-skeleton"
+>
+  <span>
+    Loading content
+  </span>
+  <div
+    class="vesper-skeleton-overlay"
+    style="mask-image: url("#_r_s_");"
+  >
+    <svg
+      aria-hidden="true"
+      height="100%"
+      width="100%"
+    >
+      <defs>
+        <mask
+          id="_r_s_"
+          maskContentUnits="userSpaceOnUse"
+        >
+          <rect
+            fill="#fff"
+            height="100%"
+            rx="var(--vesper-radius-1)"
+            width="100%"
+          />
+        </mask>
+      </defs>
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`skeleton [snapshot] > with size 1`] = `
+<div
+  class="vesper-skeleton"
+  style="width: 100px; height: 100px;"
+>
+  <div
+    class="vesper-skeleton-overlay"
+    style="mask-image: url("#_r_q_");"
+  >
+    <svg
+      aria-hidden="true"
+      height="100%"
+      width="100%"
+    >
+      <defs>
+        <mask
+          id="_r_q_"
+          maskContentUnits="userSpaceOnUse"
+        >
+          <rect
+            fill="#fff"
+            height="100%"
+            rx="var(--vesper-radius-1)"
+            width="100%"
+          />
+        </mask>
+      </defs>
+    </svg>
+  </div>
+</div>
+`;
+
+exports[`skeleton [snapshot] > with width and height 1`] = `
+<div
+  class="vesper-skeleton"
+  style="width: 200px; height: 50px;"
+>
+  <div
+    class="vesper-skeleton-overlay"
+    style="mask-image: url("#_r_r_");"
+  >
+    <svg
+      aria-hidden="true"
+      height="100%"
+      width="100%"
+    >
+      <defs>
+        <mask
+          id="_r_r_"
+          maskContentUnits="userSpaceOnUse"
+        >
+          <rect
+            fill="#fff"
+            height="100%"
+            rx="var(--vesper-radius-1)"
+            width="100%"
+          />
+        </mask>
+      </defs>
+    </svg>
+  </div>
+</div>
+`;
