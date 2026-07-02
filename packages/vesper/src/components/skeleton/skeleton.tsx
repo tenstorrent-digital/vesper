@@ -1,4 +1,4 @@
-import { useEffect, useState, type ComponentProps } from "react";
+import { useEffect, useId, useState, type ComponentProps } from "react";
 import { cn } from "@/utils/cn";
 
 export const SKELETON_SHAPES = ["box", "pill", "circle"] as const;
@@ -24,7 +24,9 @@ export function Skeleton({
   style,
   ...props
 }: SkeletonProps) {
+  const maskId = useId();
   const [didAnimateOut, setDidAnimateOut] = useState(!show);
+
   useEffect(() => {
     if (show) setDidAnimateOut(false);
   }, [show]);
@@ -38,40 +40,50 @@ export function Skeleton({
       }
       className={cn(
         "vesper-skeleton",
-        `vesper-skeleton-${shape}`,
         !show && "vesper-skeleton-hidden",
         className,
       )}
-      style={{ width: size ?? width, height: size ?? height, ...style }}
+      style={{
+        width: size ?? width,
+        height: size ?? height,
+        ...style,
+      }}
       {...props}
     >
       {children}
-      <svg
-        aria-hidden
-        className={cn(
-          "vesper-skeleton-overlay",
-          `vesper-skeleton-overlay-${shape}`,
-        )}
-        width="100%"
-        height="100%"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect
-          x="0"
-          y="0"
-          width="100%"
-          height="100%"
-          rx={
-            shape === "box"
-              ? "var(--vesper-radius-1)"
-              : shape === "circle"
-                ? "50%"
-                : undefined
-          }
-          ry={shape === "pill" ? "50%" : undefined}
-          fill="var(--vesper-stone-300)"
-        />
+      <SkeletonOverlay maskId={maskId} shape={shape} />
+    </div>
+  );
+}
+
+function SkeletonOverlay({
+  shape,
+  maskId,
+}: {
+  shape: SkeletonShape;
+  maskId: string;
+}) {
+  const rx =
+    shape === "box"
+      ? "var(--vesper-radius-1)"
+      : shape === "circle"
+        ? "50%"
+        : undefined;
+
+  const ry = shape === "pill" ? "50%" : undefined;
+
+  return (
+    <div
+      className="vesper-skeleton-overlay"
+      style={{ maskImage: `url(#${maskId})` }}
+    >
+      <svg aria-hidden width="100%" height="100%">
+        <defs>
+          <mask id={maskId} maskContentUnits="userSpaceOnUse">
+            <rect width="100%" height="100%" fill="#000" />
+            <rect width="100%" height="100%" fill="#fff" rx={rx} ry={ry} />
+          </mask>
+        </defs>
       </svg>
     </div>
   );
