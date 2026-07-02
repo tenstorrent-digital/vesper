@@ -1,2 +1,90 @@
 .vesper-status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vesper-spacing-2);
+}
+
+.vesper-status-indicator-badge {
+  padding: var(--vesper-spacing-1);
+  border: 1px solid var(--vesper-stone-300);
+  border-radius: var(--vesper-radius-half);
+}
+
+.vesper-status-indicator-dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+  }
+  &.vesper-status-indicator-dot-animated::before {
+    animation: vesper-status-indicator-dot-pulse 0.6s linear infinite alternate;
+  }
+}
+
+@keyframes vesper-status-indicator-dot-pulse {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.1;
+  }
+}
+
+.vesper-status-indicator-dot-queued {
+  &::before {
+    background: var(--vesper-sky-300);
+  }
+  &::after {
+    background: var(--vesper-sky-700);
+  }
+}
+
+.vesper-status-indicator-dot-progress {
+  &::before {
+    background: var(--vesper-amber-400);
+  }
+  &::after {
+    background: var(--vesper-amber-700);
+  }
+}
+
+.vesper-status-indicator-dot-error {
+  &::before {
+    background: var(--vesper-red-400);
+  }
+  &::after {
+    background: var(--vesper-red-700);
+  }
+}
+
+.vesper-status-indicator-dot-ready {
+  &::before {
+    background: var(--vesper-mint-400);
+  }
+  &::after {
+    background: var(--vesper-mint-700);
+  }
+}
+
+.vesper-status-indicator-dot-cancelled {
+  &::before {
+    background: var(--vesper-stone-400);
+  }
+  &::after {
+    background: var(--vesper-stone-700);
+  }
+}
+
+.vesper-status-indicator-label {
+  color: var(--vesper-stone-900);
 }
