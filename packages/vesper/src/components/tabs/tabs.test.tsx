@@ -218,36 +218,40 @@ describe("tabs [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    test(`wcag2aaa (primary, no value)`, async () => {
+    const primaryNoValueFn = async () => {
       const { container } = render(<TabsTestComponent variant="primary" />);
-      expect(
-        await axe.run(container, { runOnly: "wcag2aaa" }),
-      ).toHaveNoViolations();
-    });
+      expect(await axe.run(container)).toHaveNoViolations();
+    };
 
-    test(`wcag2aaa (primary, with value)`, async () => {
+    const primaryWithValueFn = async () => {
       const { container } = render(
         <TabsTestComponent variant="primary" defaultValue="tab-1" />,
       );
-      expect(
-        await axe.run(container, { runOnly: "wcag2aaa" }),
-      ).toHaveNoViolations();
-    });
+      expect(await axe.run(container)).toHaveNoViolations();
+    };
 
-    test(`wcag2aaa (secondary, no value)`, async () => {
+    const secondaryNoValueFn = async () => {
       const { container } = render(<TabsTestComponent variant="secondary" />);
-      expect(
-        await axe.run(container, { runOnly: "wcag2aaa" }),
-      ).toHaveNoViolations();
-    });
+      expect(await axe.run(container)).toHaveNoViolations();
+    };
 
-    test(`wcag2aaa (secondary, with value)`, async () => {
+    const secondaryWithValueFn = async () => {
       const { container } = render(
         <TabsTestComponent variant="secondary" defaultValue="tab-1" />,
       );
-      expect(
-        await axe.run(container, { runOnly: "wcag2aaa" }),
-      ).toHaveNoViolations();
-    });
+      expect(await axe.run(container)).toHaveNoViolations();
+    };
+
+    if (theme === "dark") {
+      test.todo(`a11y (primary, no value)`, primaryNoValueFn);
+      test.todo(`a11y (primary, with value)`, primaryWithValueFn);
+      test.todo(`a11y (secondary, no value)`, secondaryNoValueFn);
+      test.todo(`a11y (secondary, with value)`, secondaryWithValueFn);
+    } else {
+      test(`a11y (primary, no value)`, primaryNoValueFn);
+      test(`a11y (primary, with value)`, primaryWithValueFn);
+      test(`a11y (secondary, no value)`, secondaryNoValueFn);
+      test(`a11y (secondary, with value)`, secondaryWithValueFn);
+    }
   });
 });

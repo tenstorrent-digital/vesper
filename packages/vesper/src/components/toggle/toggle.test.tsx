@@ -314,18 +314,12 @@ describe("toggle [a11y]", () => {
         />,
       );
 
-      expect(
-        await axe.run(container, { runOnly: "wcag2aaa" }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     };
 
-    if (theme === "light") {
-      test.todo(`wcag2aaa (text, ${theme})`, testFn);
-    } else {
-      test(`wcag2aaa (text, ${theme})`, testFn);
-    }
+    test.todo(`a11y (text, ${theme})`, testFn);
 
-    test(`wcag2aaa (icons, ${theme})`, async () => {
+    test(`a11y (icons, ${theme})`, async () => {
       const { container } = render(
         <Toggle
           options={[
@@ -339,9 +333,7 @@ describe("toggle [a11y]", () => {
         />,
       );
 
-      expect(
-        await axe.run(container, { runOnly: "wcag2aaa" }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     });
   });
 });

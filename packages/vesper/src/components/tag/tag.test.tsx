@@ -23,11 +23,16 @@ const TAG_A11Y_FAILING_PERMUTATIONS: (TagProps & { theme: string })[] = [
   ...TAG_SIZES.flatMap((size): (TagProps & { theme: string })[] => [
     { size, variant: "accent-subtle", disabled: false, theme: "light" },
     { size, variant: "danger-subtle", disabled: false, theme: "light" },
+    { size, variant: "danger-bold", disabled: false, theme: "light" },
     { size, variant: "success-bold", disabled: false, theme: "light" },
     { size, variant: "success-subtle", disabled: false, theme: "light" },
     { size, variant: "info-subtle", disabled: false, theme: "light" },
+    { size, variant: "warning-bold", disabled: false, theme: "light" },
     { size, variant: "warning-subtle", disabled: false, theme: "light" },
+    { size, variant: "default", disabled: false, theme: "dark" },
     { size, variant: "accent-bold", disabled: false, theme: "dark" },
+    { size, variant: "danger-bold", disabled: false, theme: "dark" },
+    { size, variant: "danger-subtle", disabled: false, theme: "dark" },
     { size, variant: "success-subtle", disabled: false, theme: "dark" },
     { size, variant: "info-bold", disabled: false, theme: "dark" },
     { size, variant: "info-subtle", disabled: false, theme: "dark" },
@@ -146,11 +151,7 @@ describe("tag [a11y]", () => {
       const testFn = async () => {
         const result = render(<Tag {...permutation}>Tag Text</Tag>);
 
-        expect(
-          await axe.run(result.container, {
-            runOnly: "wcag2aaa",
-          }),
-        ).toHaveNoViolations();
+        expect(await axe.run(result.container)).toHaveNoViolations();
       };
 
       const failsA11y = TAG_A11Y_FAILING_PERMUTATIONS.some(

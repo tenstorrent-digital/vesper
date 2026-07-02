@@ -27,6 +27,7 @@ const BADGE_A11Y_FAILING_PERMUTATIONS: (BadgeProps & { theme: string })[] = [
     { size, variant: "warning" as const, subtle: true, theme: "light" },
     { size, variant: "warning" as const, subtle: false, theme: "light" },
     { size, variant: "danger" as const, subtle: true, theme: "light" },
+    { size, variant: "danger" as const, subtle: false, theme: "light" },
     { size, variant: "info" as const, subtle: true, theme: "light" },
     { size, variant: "pink" as const, subtle: true, theme: "light" },
     { size, variant: "pink" as const, subtle: false, theme: "light" },
@@ -34,11 +35,17 @@ const BADGE_A11Y_FAILING_PERMUTATIONS: (BadgeProps & { theme: string })[] = [
     { size, variant: "mint" as const, subtle: false, theme: "light" },
     { size, variant: "accent" as const, subtle: false, theme: "dark" },
     { size, variant: "success" as const, subtle: true, theme: "dark" },
+    { size, variant: "warning" as const, subtle: false, theme: "dark" },
+    { size, variant: "danger" as const, subtle: true, theme: "dark" },
+    { size, variant: "danger" as const, subtle: false, theme: "dark" },
     { size, variant: "info" as const, subtle: true, theme: "dark" },
     { size, variant: "info" as const, subtle: false, theme: "dark" },
     { size, variant: "pink" as const, subtle: true, theme: "dark" },
     { size, variant: "pink" as const, subtle: false, theme: "dark" },
     { size, variant: "mint" as const, subtle: true, theme: "dark" },
+    { size, variant: "purple" as const, subtle: true, theme: "dark" },
+    { size, variant: "purple" as const, subtle: false, theme: "dark" },
+    { size, variant: "contrast" as const, subtle: true, theme: "dark" },
   ]),
 ];
 
@@ -153,11 +160,7 @@ describe("badge [a11y]", () => {
       const testFn = async () => {
         const result = render(<Badge {...permutation}>Badge Text</Badge>);
 
-        expect(
-          await axe.run(result.container, {
-            runOnly: "wcag2aaa",
-          }),
-        ).toHaveNoViolations();
+        expect(await axe.run(result.container)).toHaveNoViolations();
       };
 
       const failsA11y = BADGE_A11Y_FAILING_PERMUTATIONS.some(

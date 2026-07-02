@@ -178,7 +178,7 @@ describe("avatar-group [a11y]", () => {
     });
 
     AVATAR_SIZES.forEach((size) => {
-      test(`wcag2aaa (${size}, ${theme})`, async () => {
+      test(`a11y (${size}, ${theme})`, async () => {
         const result = render(
           <AvatarGroup
             size={size}
@@ -192,11 +192,7 @@ describe("avatar-group [a11y]", () => {
           />,
         );
 
-        expect(
-          await axe.run(result.container, {
-            runOnly: "wcag2aaa",
-          }),
-        ).toHaveNoViolations();
+        expect(await axe.run(result.container)).toHaveNoViolations();
       });
     });
   });

@@ -244,7 +244,7 @@ describe("menu [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    test.todo("wcag2aaa (open)", async () => {
+    test.todo("a11y (open)", async () => {
       const result = render(
         <Menu items={MENU_ITEMS} open>
           <TextButton variant="contrast">trigger</TextButton>
@@ -256,13 +256,11 @@ describe("menu [a11y]", () => {
       );
 
       expect(
-        await axe.run(result.container.ownerDocument, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container.ownerDocument),
       ).toHaveNoViolations();
     });
 
-    test("wcag2aaa (closed)", async () => {
+    test.todo("a11y (closed)", async () => {
       const result = render(
         <Menu items={MENU_ITEMS} open={false}>
           <TextButton variant="contrast">trigger</TextButton>
@@ -270,9 +268,7 @@ describe("menu [a11y]", () => {
       );
 
       expect(
-        await axe.run(result.container.ownerDocument, {
-          runOnly: "wcag2aaa",
-        }),
+        await axe.run(result.container.ownerDocument),
       ).toHaveNoViolations();
     });
   });

@@ -81,16 +81,12 @@ describe("typography [a11y]", () => {
     });
 
     TYPOGRAPHY_VARIANTS.forEach((variant) => {
-      test(`wcag2aaa (${variant}, ${theme})`, async () => {
+      test(`a11y (${variant}, ${theme})`, async () => {
         const result = render(
           <Typography variant={variant}>{variant}</Typography>,
         );
 
-        expect(
-          await axe.run(result.container, {
-            runOnly: "wcag2aaa",
-          }),
-        ).toHaveNoViolations();
+        expect(await axe.run(result.container)).toHaveNoViolations();
       });
     });
   });

@@ -40,12 +40,10 @@ describe("{{ kebabCase name }} [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    test(`wcag2aaa (${theme})`, async () => {
+    test(`a11y (${theme})`, async () => {
       const { container } = render(<{{ name }} />);
 
-      expect(
-        await axe.run(container, { runOnly: "wcag2aaa" }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     });
   });
 });
