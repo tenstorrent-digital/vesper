@@ -171,26 +171,24 @@ describe("status-indicator [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty(
+        "background-color",
+        "var(--vesper-stone-0)",
+      );
     });
 
     afterEach(() => {
       document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background-color");
     });
 
     STATUS_INDICATOR_PERMUTATIONS.forEach((permutation) => {
       const { name, ...props } = permutation;
 
-      if (theme === "dark") {
-        test.todo(`wcag2aaa (${name}, ${theme})`, async () => {
-          const { container } = render(<StatusIndicator {...props} />);
-          expect(await axe.run(container)).toHaveNoViolations();
-        });
-      } else {
-        test(`wcag2aaa (${name}, ${theme})`, async () => {
-          const { container } = render(<StatusIndicator {...props} />);
-          expect(await axe.run(container)).toHaveNoViolations();
-        });
-      }
+      test(`wcag2aaa (${name}, ${theme})`, async () => {
+        const { container } = render(<StatusIndicator {...props} />);
+        expect(await axe.run(container)).toHaveNoViolations();
+      });
     });
   });
 });
