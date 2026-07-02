@@ -1,8 +1,64 @@
-import type { ComponentProps } from 'react';
-import { cn } from '@/utils/cn';
+import type { ElementType } from "react";
+import type { Polymorphic } from "@/utils/polymorphic";
+import { cn } from "@/utils/cn";
+import { Typography } from "@/components/typography/typography";
 
-export interface StatusIndicatorProps extends ComponentProps<'div'> {}
+export const STATUS_INDICATOR_STATES = [
+  "queued",
+  "progress",
+  "error",
+  "ready",
+  "cancelled",
+] as const;
 
-export function StatusIndicator({ className, ...props }: StatusIndicatorProps) {
-  return <div className={cn("vesper-status-indicator", className)} {...props} />;
+export const STATUS_INDICATOR_VARIANTS = ["default", "badge"] as const;
+
+export type StatusIndicatorState = (typeof STATUS_INDICATOR_STATES)[number];
+
+export type StatusIndicatorVariants =
+  (typeof STATUS_INDICATOR_VARIANTS)[number];
+
+export type StatusIndicatorProps<E extends ElementType = "div"> = Polymorphic<
+  {
+    label: string;
+    state: StatusIndicatorState;
+    variant?: StatusIndicatorVariants;
+    animated?: boolean;
+  },
+  E,
+  "children"
+>;
+
+export function StatusIndicator({
+  className,
+  label,
+  state,
+  animated,
+  variant = "default",
+  ...props
+}: StatusIndicatorProps) {
+  return (
+    <div
+      className={cn(
+        "vesper-status-indicator",
+        `vesper-status-indicator-${variant}`,
+        className,
+      )}
+      {...props}
+    >
+      <span
+        className={cn(
+          "vesper-status-indicator-dot",
+          `vesper-status-indicator-dot-${state}`,
+          animated && "vesper-status-indicator-dot-animated",
+        )}
+      />
+      <Typography
+        className="vesper-status-indicator-label"
+        variant="label-xs-mono"
+      >
+        {label}
+      </Typography>
+    </div>
+  );
 }
