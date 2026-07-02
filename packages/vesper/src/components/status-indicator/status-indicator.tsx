@@ -29,15 +29,19 @@ export type StatusIndicatorProps<E extends ElementType = "div"> = Polymorphic<
   "children"
 >;
 
-export function StatusIndicator({
-  className,
-  label,
-  state,
-  animated,
-  variant = "default",
-  as: Component = "div",
-  ...props
-}: StatusIndicatorProps) {
+export function StatusIndicator<E extends ElementType = "div">(
+  props: StatusIndicatorProps<E>,
+) {
+  const {
+    className,
+    label,
+    state,
+    animated,
+    variant = "default",
+    as: Component = "div",
+    ...rest
+  } = props;
+
   return (
     <Component
       className={cn(
@@ -45,7 +49,7 @@ export function StatusIndicator({
         `vesper-status-indicator-${variant}`,
         className,
       )}
-      {...props}
+      {...rest}
     >
       <span
         className={cn(
