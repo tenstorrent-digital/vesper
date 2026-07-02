@@ -56,6 +56,11 @@ describe("switch [unit]", () => {
     expect(result.getByText("Enable notifications")).not.toBeNull();
   });
 
+  test("renders label text with asterisk when marked as required", () => {
+    const result = render(<Switch label="Enable notifications" required />);
+    expect(result.getByText("Enable notifications *")).not.toBeNull();
+  });
+
   test("no label text rendered when label prop is not provided", () => {
     const { container } = render(<Switch />);
     const labelText = container.querySelector(".vesper-switch-label");
