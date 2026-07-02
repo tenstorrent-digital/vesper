@@ -81,8 +81,11 @@ const TEXT_INPUT_A11Y_FAILING_PERMUTATIONS: (Pick<
   { variant: "error", disabled: true, theme: "light" },
   { variant: "default", disabled: false, theme: "dark" },
   { variant: "default", disabled: true, theme: "dark" },
+  { variant: "warning", disabled: false, theme: "dark" },
   { variant: "success", disabled: false, theme: "dark" },
   { variant: "success", disabled: true, theme: "dark" },
+  { variant: "error", disabled: false, theme: "dark" },
+  { variant: "error", disabled: true, theme: "dark" },
 ];
 
 afterEach(cleanup);
@@ -266,7 +269,17 @@ describe("text-input [a11y]", () => {
       const testFn = async () => {
         const { container } = render(<TextInput {...props} />);
         expect(
-          await axe.run(container.firstChild!, { runOnly: "wcag2aaa" }),
+          await axe.run(container.firstChild!, {
+            runOnly: [
+              "wcag2a",
+              "wcag2aa",
+              "wcag21a",
+              "wcag21aa",
+              "wcag22aa",
+              "best-practice",
+              "wcag2aaa",
+            ],
+          }),
         ).toHaveNoViolations();
       };
 

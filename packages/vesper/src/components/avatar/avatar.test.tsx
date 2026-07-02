@@ -85,14 +85,22 @@ describe("avatar [a11y]", () => {
     });
 
     AVATAR_SIZES.forEach((size) => {
-      test(`wcag2aaa (${size}, ${theme})`, async () => {
+      test(`a11y (${size}, ${theme})`, async () => {
         const result = render(
           <Avatar size={size} src="https://unsplash.it/300/300" />,
         );
 
         expect(
           await axe.run(result.container, {
-            runOnly: "wcag2aaa",
+            runOnly: [
+              "wcag2a",
+              "wcag2aa",
+              "wcag21a",
+              "wcag21aa",
+              "wcag22aa",
+              "best-practice",
+              "wcag2aaa",
+            ],
           }),
         ).toHaveNoViolations();
       });

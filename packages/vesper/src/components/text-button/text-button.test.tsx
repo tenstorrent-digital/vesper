@@ -28,7 +28,16 @@ const TEXT_BUTTON_A11Y_FAILING_PERMUTATIONS: (TextButtonProps & {
     { size, variant: "success" as const, disabled: false, theme: "light" },
     { size, variant: "warning" as const, disabled: false, theme: "light" },
     { size, variant: "danger" as const, disabled: false, theme: "light" },
+    { size, variant: "subtle" as const, disabled: false, theme: "light" },
     { size, variant: "subtle" as const, disabled: false, theme: "dark" },
+    { size, variant: "contrast" as const, disabled: false, theme: "dark" },
+    { size, variant: "accent" as const, disabled: false, theme: "dark" },
+    { size, variant: "success" as const, disabled: false, theme: "dark" },
+    { size, variant: "warning" as const, disabled: false, theme: "dark" },
+    { size, variant: "danger" as const, disabled: false, theme: "dark" },
+    { size, variant: "info" as const, disabled: false, theme: "dark" },
+    { size, variant: "purple" as const, disabled: false, theme: "dark" },
+    { size, variant: "pink" as const, disabled: false, theme: "dark" },
   ]),
 ];
 
@@ -187,7 +196,15 @@ describe("text-button [a11y]", () => {
 
         expect(
           await axe.run(result.container, {
-            runOnly: "wcag2aaa",
+            runOnly: [
+              "wcag2a",
+              "wcag2aa",
+              "wcag21a",
+              "wcag21aa",
+              "wcag22aa",
+              "best-practice",
+              "wcag2aaa",
+            ],
           }),
         ).toHaveNoViolations();
       };

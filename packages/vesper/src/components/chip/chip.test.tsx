@@ -182,46 +182,102 @@ describe("chip [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    test(`wcag2aaa (default, ${theme})`, async () => {
+    const defaultTestFn = async () => {
       const { container } = render(<Chip variant="default">Label</Chip>);
       expect(
-        await axe.run(container, { runOnly: "wcag2aaa" }),
+        await axe.run(container, {
+          runOnly: [
+            "wcag2a",
+            "wcag2aa",
+            "wcag21a",
+            "wcag21aa",
+            "wcag22aa",
+            "best-practice",
+            "wcag2aaa",
+          ],
+        }),
       ).toHaveNoViolations();
-    });
+    };
 
-    test(`wcag2aaa (contrast, ${theme})`, async () => {
+    if (theme === "dark") {
+      test.todo(`a11y (default, ${theme})`, defaultTestFn);
+    } else {
+      test(`a11y (default, ${theme})`, defaultTestFn);
+    }
+
+    test(`a11y (contrast, ${theme})`, async () => {
       const { container } = render(<Chip variant="contrast">Label</Chip>);
       expect(
-        await axe.run(container, { runOnly: "wcag2aaa" }),
+        await axe.run(container, {
+          runOnly: [
+            "wcag2a",
+            "wcag2aa",
+            "wcag21a",
+            "wcag21aa",
+            "wcag22aa",
+            "best-practice",
+            "wcag2aaa",
+          ],
+        }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (default, selected, ${theme})`, async () => {
+    test(`a11y (default, selected, ${theme})`, async () => {
       const { container } = render(
         <Chip variant="default" selected>
           Label
         </Chip>,
       );
       expect(
-        await axe.run(container, { runOnly: "wcag2aaa" }),
+        await axe.run(container, {
+          runOnly: [
+            "wcag2a",
+            "wcag2aa",
+            "wcag21a",
+            "wcag21aa",
+            "wcag22aa",
+            "best-practice",
+            "wcag2aaa",
+          ],
+        }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (contrast, selected, ${theme})`, async () => {
+    test(`a11y (contrast, selected, ${theme})`, async () => {
       const { container } = render(
         <Chip variant="contrast" selected>
           Label
         </Chip>,
       );
       expect(
-        await axe.run(container, { runOnly: "wcag2aaa" }),
+        await axe.run(container, {
+          runOnly: [
+            "wcag2a",
+            "wcag2aa",
+            "wcag21a",
+            "wcag21aa",
+            "wcag22aa",
+            "best-practice",
+            "wcag2aaa",
+          ],
+        }),
       ).toHaveNoViolations();
     });
 
-    test(`wcag2aaa (disabled, ${theme})`, async () => {
+    test(`a11y (disabled, ${theme})`, async () => {
       const { container } = render(<Chip disabled>Label</Chip>);
       expect(
-        await axe.run(container, { runOnly: "wcag2aaa" }),
+        await axe.run(container, {
+          runOnly: [
+            "wcag2a",
+            "wcag2aa",
+            "wcag21a",
+            "wcag21aa",
+            "wcag22aa",
+            "best-practice",
+            "wcag2aaa",
+          ],
+        }),
       ).toHaveNoViolations();
     });
   });

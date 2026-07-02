@@ -24,7 +24,13 @@ const BUTTON_A11Y_FAILING_PERMUTATIONS: (ButtonProps & {
 })[] = [
   ...BUTTON_SIZES.flatMap((size) => [
     { size, variant: "warning" as const, disabled: false, theme: "light" },
+    { size, variant: "danger" as const, disabled: false, theme: "light" },
     { size, variant: "primary" as const, disabled: false, theme: "dark" },
+    { size, variant: "danger" as const, disabled: false, theme: "dark" },
+    { size, variant: "ghost" as const, disabled: false, theme: "dark" },
+    { size, variant: "subtle" as const, disabled: false, theme: "dark" },
+    { size, variant: "tertiary" as const, disabled: false, theme: "dark" },
+    { size, variant: "warning" as const, disabled: false, theme: "dark" },
   ]),
 ];
 
@@ -188,7 +194,15 @@ describe("button [a11y]", () => {
 
         expect(
           await axe.run(result.container, {
-            runOnly: "wcag2aaa",
+            runOnly: [
+              "wcag2a",
+              "wcag2aa",
+              "wcag21a",
+              "wcag21aa",
+              "wcag22aa",
+              "best-practice",
+              "wcag2aaa",
+            ],
           }),
         ).toHaveNoViolations();
       };

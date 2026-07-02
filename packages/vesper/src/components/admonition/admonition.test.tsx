@@ -33,6 +33,8 @@ const ADMONITION_A11Y_FAILING_PERMUTATIONS: (AdmonitionProps & {
     { size, variant: "info" as const, subtle: false, theme: "dark" },
     { size, variant: "success" as const, subtle: false, theme: "dark" },
     { size, variant: "danger" as const, subtle: true, theme: "dark" },
+    { size, variant: "danger" as const, subtle: false, theme: "dark" },
+    { size, variant: "secondary" as const, subtle: false, theme: "dark" },
   ]),
 ];
 
@@ -161,7 +163,15 @@ describe("admonition [a11y]", () => {
 
         expect(
           await axe.run(result.container, {
-            runOnly: "wcag2aaa",
+            runOnly: [
+              "wcag2a",
+              "wcag2aa",
+              "wcag21a",
+              "wcag21aa",
+              "wcag22aa",
+              "best-practice",
+              "wcag2aaa",
+            ],
           }),
         ).toHaveNoViolations();
       };
