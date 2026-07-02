@@ -19,6 +19,7 @@
 @import "../components/typography/typography.css";
 
 /* components */
+@import "../components/status-indicator/status-indicator.css";
 @import "../components/show-more/show-more.css";
 @import "../components/tag/tag.css";
 @import "../components/range/range.css";
