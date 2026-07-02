@@ -21,6 +21,7 @@
     "dev": {},
     "watch": {},
     "test": {},
+    "test:watch": {},
     "dev:vesper": {
       "with": ["@repo/vesper#dev"],
       "cache": false,
