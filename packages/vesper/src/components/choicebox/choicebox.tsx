@@ -60,6 +60,8 @@ function ChoiceboxSingleSelect({
   name,
   disabled,
   required,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  multiselect,
   ...props
 }: ChoiceboxSingleSelectProps) {
   return (
@@ -98,6 +100,8 @@ function ChoiceboxMultiSelect({
   disabled,
   name,
   ref,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  multiselect,
   ...props
 }: ChoiceboxMultiSelectProps) {
   const innerRef = useRef<HTMLFieldSetElement>(null);
