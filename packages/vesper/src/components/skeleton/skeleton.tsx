@@ -7,9 +7,9 @@ export type SkeletonShape = (typeof SKELETON_SHAPES)[number];
 
 export interface SkeletonProps extends ComponentProps<"div"> {
   shape?: SkeletonShape;
-  size?: number;
-  width?: number;
-  height?: number;
+  size?: number | string;
+  width?: number | string;
+  height?: number | string;
   show?: boolean;
 }
 
