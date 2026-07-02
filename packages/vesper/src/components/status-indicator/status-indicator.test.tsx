@@ -182,12 +182,7 @@ describe("status-indicator [a11y]", () => {
 
       test(`wcag2aaa (${name}, ${theme})`, async () => {
         const { container } = render(<StatusIndicator {...props} />);
-
-        expect(
-          await axe.run(container, {
-            runOnly: "wcag2aaa",
-          }),
-        ).toHaveNoViolations();
+        expect(await axe.run(container)).toHaveNoViolations();
       });
     });
   });
