@@ -1,0 +1,22 @@
+.vesper-skeleton {
+  position: relative;
+}
+
+.vesper-skeleton-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.vesper-skeleton-hidden .vesper-skeleton-overlay {
+  animation: vesper-skeleton-fade 0.4s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes vesper-skeleton-fade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

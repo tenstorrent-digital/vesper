@@ -15,6 +15,10 @@
       "types": "./dist/components/choicebox/choicebox.d.ts",
       "import": "./dist/components/choicebox/choicebox.js"
     },
+    "./skeleton": {
+      "types": "./dist/components/skeleton/skeleton.d.ts",
+      "import": "./dist/components/skeleton/skeleton.js"
+    },
     "./show-more": {
       "types": "./dist/components/show-more/show-more.d.ts",
       "import": "./dist/components/show-more/show-more.js"
