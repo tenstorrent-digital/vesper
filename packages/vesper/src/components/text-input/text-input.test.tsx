@@ -219,10 +219,8 @@ describe("text-input [unit]", () => {
 
   test("additional prop passthrough", () => {
     const result = render(<TextInput aria-label="custom label" />);
-    expect(result.container.firstChild).toHaveAttribute(
-      "aria-label",
-      "custom label",
-    );
+    const input = result.container.querySelector("input")!;
+    expect(input).toHaveAttribute("aria-label", "custom label");
   });
 
   test("custom className", () => {

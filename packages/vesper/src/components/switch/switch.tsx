@@ -1,20 +1,19 @@
 import {
-  RefObject,
-  useImperativeHandle,
-  useLayoutEffect,
-  useRef,
+  type ChangeEvent,
   type ComponentProps,
+  type RefObject,
+  useCallback,
+  useState,
 } from "react";
 import { cn } from "@/utils/cn";
 import {
   Typography,
   type TypographyVariant,
 } from "@/components/typography/typography";
-import { Checkmark, Minus } from "@/components/icons/icons";
 
-export const CHECKBOX_SIZES = ["sm", "md"] as const;
+export const SWITCH_SIZES = ["sm", "md"] as const;
 
-export type CheckboxSize = (typeof CHECKBOX_SIZES)[number];
+export type SwitchSize = (typeof SWITCH_SIZES)[number];
 
 /**
  * Union of all the prop types that should be forwarded to the input element, and excluded from the containing label element
@@ -29,6 +28,7 @@ type ForwardedPropTypes =
   | "required"
   | "checked"
   | "defaultChecked"
+  | "readOnly"
   | "role"
   | "tabIndex"
   | "aria-label"
@@ -56,26 +56,24 @@ type ForwardedPropTypes =
   | "onKeyUp"
   | "onKeyUpCapture";
 
-export interface CheckboxProps
+export interface SwitchProps
   extends
     Omit<ComponentProps<"label">, "children" | "onChange" | ForwardedPropTypes>,
     Pick<ComponentProps<"input">, ForwardedPropTypes> {
-  label: string;
-  indeterminate?: boolean;
-  size?: CheckboxSize;
+  label?: string;
+  size?: SwitchSize;
   inputRef?: RefObject<HTMLInputElement | null>;
 }
 
-const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
+const SWITCH_TYPOGRAPHY: { [S in SwitchSize]: TypographyVariant } = {
   sm: "label-md",
   md: "label-lg",
 };
 
-export function Checkbox({
+export function Switch({
   // component-specific props
   label,
   size = "md",
-  indeterminate,
   inputRef,
   // props forwarded to the inner input
   id,
@@ -87,7 +85,12 @@ export function Checkbox({
   required,
   checked,
   defaultChecked,
-  role,
+  readOnly,
+  /**
+   * set default role to "switch" as the switch component has no indeterminate state
+   * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/switch_role#:~:text=Unlike%20an%20%3Cinput%20type%3D%22checkbox%22%3E%20or%20role%3D%22checkbox%22%2C%20there%20is%20no%20indeterminate%20or%20mixed%20state
+   */
+  role = "switch",
   tabIndex,
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledby,
@@ -116,28 +119,32 @@ export function Checkbox({
   // props spread onto the wrapper label
   className,
   ...props
-}: CheckboxProps) {
-  const ref = useRef<HTMLInputElement>(null);
-  useLayoutEffect(() => {
-    if (ref.current) ref.current.indeterminate = !!indeterminate;
-  }, [indeterminate]);
+}: SwitchProps) {
+  const isControlled = checked !== undefined;
+  const [internalChecked, setInternalChecked] = useState(
+    defaultChecked ?? false,
+  );
+  const ariaChecked = isControlled ? checked : internalChecked;
 
-  useImperativeHandle(inputRef, () => ref.current!);
+  const handleChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      if (!isControlled) {
+        setInternalChecked(event.target.checked);
+      }
+      onChange?.(event);
+    },
+    [isControlled, onChange],
+  );
 
   return (
     <label
-      className={cn(
-        "vesper-checkbox",
-        `vesper-checkbox-${size}`,
-        disabled && "vesper-checkbox-disabled",
-        className,
-      )}
+      className={cn("vesper-switch", `vesper-switch-${size}`, className)}
       {...props}
     >
       <input
-        ref={ref}
+        className="vesper-switch-input"
         type="checkbox"
-        className="vesper-checkbox-input"
+        ref={inputRef}
         id={id}
         form={form}
         value={value}
@@ -147,17 +154,19 @@ export function Checkbox({
         required={required}
         checked={checked}
         defaultChecked={defaultChecked}
+        readOnly={readOnly}
         role={role}
         tabIndex={tabIndex}
+        aria-checked={role === "switch" ? ariaChecked : undefined}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledby}
         aria-describedby={ariaDescribedby}
         aria-invalid={ariaInvalid}
-        onChange={onChange}
         onFocus={onFocus}
         onFocusCapture={onFocusCapture}
         onBlur={onBlur}
         onBlurCapture={onBlurCapture}
+        onChange={handleChange}
         onChangeCapture={onChangeCapture}
         onBeforeInput={onBeforeInput}
         onBeforeInputCapture={onBeforeInputCapture}
@@ -174,20 +183,15 @@ export function Checkbox({
         onKeyUp={onKeyUp}
         onKeyUpCapture={onKeyUpCapture}
       />
-
-      <div className="vesper-checkbox-box">
-        <div className="vesper-checkbox-indicator">
-          <Checkmark className="vesper-checkbox-checked-icon" />
-          <Minus className="vesper-checkbox-indeterminate-icon" />
-        </div>
-      </div>
-      <Typography
-        variant={CHECKBOX_TYPOGRAPHY[size]}
-        className="vesper-checkbox-label"
-        as="span"
-      >
-        {required ? label + " *" : label}
-      </Typography>
+      <div className="vesper-switch-pill" />
+      {label && (
+        <Typography
+          className="vesper-switch-label"
+          variant={SWITCH_TYPOGRAPHY[size]}
+        >
+          {required ? `${label} *` : label}
+        </Typography>
+      )}
     </label>
   );
 }

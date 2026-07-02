@@ -1,0 +1,153 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`switch [snapshot] > md 1`] = `
+<label
+  class="vesper-switch vesper-switch-md"
+>
+  <input
+    aria-checked="false"
+    class="vesper-switch-input"
+    role="switch"
+    type="checkbox"
+  />
+  <div
+    class="vesper-switch-pill"
+  />
+</label>
+`;
+
+exports[`switch [snapshot] > md, disabled 1`] = `
+<label
+  class="vesper-switch vesper-switch-md"
+>
+  <input
+    aria-checked="false"
+    class="vesper-switch-input"
+    disabled=""
+    role="switch"
+    type="checkbox"
+  />
+  <div
+    class="vesper-switch-pill"
+  />
+</label>
+`;
+
+exports[`switch [snapshot] > md, disabled, with label 1`] = `
+<label
+  class="vesper-switch vesper-switch-md"
+>
+  <input
+    aria-checked="false"
+    class="vesper-switch-input"
+    disabled=""
+    role="switch"
+    type="checkbox"
+  />
+  <div
+    class="vesper-switch-pill"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-lg vesper-switch-label"
+  >
+    Label
+  </p>
+</label>
+`;
+
+exports[`switch [snapshot] > md, with label 1`] = `
+<label
+  class="vesper-switch vesper-switch-md"
+>
+  <input
+    aria-checked="false"
+    class="vesper-switch-input"
+    role="switch"
+    type="checkbox"
+  />
+  <div
+    class="vesper-switch-pill"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-lg vesper-switch-label"
+  >
+    Label
+  </p>
+</label>
+`;
+
+exports[`switch [snapshot] > sm 1`] = `
+<label
+  class="vesper-switch vesper-switch-sm"
+>
+  <input
+    aria-checked="false"
+    class="vesper-switch-input"
+    role="switch"
+    type="checkbox"
+  />
+  <div
+    class="vesper-switch-pill"
+  />
+</label>
+`;
+
+exports[`switch [snapshot] > sm, disabled 1`] = `
+<label
+  class="vesper-switch vesper-switch-sm"
+>
+  <input
+    aria-checked="false"
+    class="vesper-switch-input"
+    disabled=""
+    role="switch"
+    type="checkbox"
+  />
+  <div
+    class="vesper-switch-pill"
+  />
+</label>
+`;
+
+exports[`switch [snapshot] > sm, disabled, with label 1`] = `
+<label
+  class="vesper-switch vesper-switch-sm"
+>
+  <input
+    aria-checked="false"
+    class="vesper-switch-input"
+    disabled=""
+    role="switch"
+    type="checkbox"
+  />
+  <div
+    class="vesper-switch-pill"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-md vesper-switch-label"
+  >
+    Label
+  </p>
+</label>
+`;
+
+exports[`switch [snapshot] > sm, with label 1`] = `
+<label
+  class="vesper-switch vesper-switch-sm"
+>
+  <input
+    aria-checked="false"
+    class="vesper-switch-input"
+    role="switch"
+    type="checkbox"
+  />
+  <div
+    class="vesper-switch-pill"
+  />
+  <p
+    class="vesper-typography vesper-typography-label-md vesper-switch-label"
+  >
+    Label
+  </p>
+</label>
+`;

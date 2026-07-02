@@ -1,0 +1,89 @@
+.vesper-switch {
+  display: flex;
+  align-items: center;
+  gap: var(--vesper-spacing-2);
+  &:not(:has(:disabled)) {
+    cursor: pointer;
+  }
+}
+
+.vesper-switch-pill {
+  aspect-ratio: 2;
+  background: var(--vesper-alpha-stone-200);
+  overflow: hidden;
+  padding: var(--vesper-spacing-half);
+  &::after {
+    content: "";
+    display: block;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    height: 100%;
+    transition: transform 0.2s ease;
+  }
+  @media (forced-colors: active) {
+    background: CanvasText;
+    &::after {
+      background: Canvas;
+    }
+  }
+}
+
+.vesper-switch-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--vesper-spacing-2);
+  color: var(--vesper-stone-900);
+}
+
+.vesper-switch-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+  &:not(:disabled) + .vesper-switch-pill {
+    transition: background 0.2s ease;
+    &::after {
+      box-shadow: var(--vesper-shadow-100);
+    }
+  }
+  &:checked + .vesper-switch-pill {
+    background: var(--vesper-teal-400);
+    &::after {
+      transform: translateX(calc(100% + 4px));
+    }
+    @media (forced-colors: active) {
+      background: CanvasText;
+    }
+  }
+  &:focus-visible + .vesper-switch-pill {
+    box-shadow: var(--vesper-shadow-focus-ring);
+    @media (forced-colors: active) {
+      box-shadow: none;
+      outline: 1px solid CanvasText;
+      outline-offset: 1px;
+    }
+  }
+  &:disabled + .vesper-switch-pill {
+    background: var(--vesper-alpha-stone-100);
+    &::after {
+      background: var(--vesper-stone-50);
+    }
+    @media (forced-colors: active) {
+      opacity: 0.35;
+      background: CanvasText;
+    }
+  }
+  & + .vesper-switch-pill::after {
+    background: var(--vesper-stone-0);
+  }
+}
+
+.vesper-switch-sm .vesper-switch-pill {
+  height: 16px;
+  border-radius: 16px;
+}
+
+.vesper-switch-md .vesper-switch-pill {
+  height: 24px;
+  border-radius: 24px;
+}
