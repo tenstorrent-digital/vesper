@@ -63,7 +63,7 @@ describe("theme-switcher [unit]", () => {
     );
 
     document.documentElement.removeAttribute("data-vesper-theme");
-      document.body.style.removeProperty("background");
+    document.body.style.removeProperty("background");
   });
 });
 

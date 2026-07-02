@@ -262,7 +262,7 @@ describe("menu [a11y]", () => {
       ).toHaveNoViolations();
     });
 
-    test.todo("a11y (closed)", async () => {
+    test("a11y (closed)", async () => {
       const result = render(
         <Menu items={MENU_ITEMS} open={false}>
           <TextButton variant="contrast">trigger</TextButton>

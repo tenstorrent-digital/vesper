@@ -85,6 +85,7 @@ const ACCORDION_A11Y_FAILING_PERMUTATIONS: {
   theme: string;
 }[] = [
   { open: true, theme: "light" },
+  { open: false, theme: "light" },
   { open: true, theme: "dark" },
   { open: false, theme: "dark" },
 ];

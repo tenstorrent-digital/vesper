@@ -27,9 +27,6 @@ const BUTTON_A11Y_FAILING_PERMUTATIONS: (ButtonProps & {
     { size, variant: "danger" as const, disabled: false, theme: "light" },
     { size, variant: "primary" as const, disabled: false, theme: "dark" },
     { size, variant: "danger" as const, disabled: false, theme: "dark" },
-    { size, variant: "ghost" as const, disabled: false, theme: "dark" },
-    { size, variant: "subtle" as const, disabled: false, theme: "dark" },
-    { size, variant: "tertiary" as const, disabled: false, theme: "dark" },
     { size, variant: "warning" as const, disabled: false, theme: "dark" },
   ]),
 ];

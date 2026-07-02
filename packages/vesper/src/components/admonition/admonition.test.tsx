@@ -34,7 +34,6 @@ const ADMONITION_A11Y_FAILING_PERMUTATIONS: (AdmonitionProps & {
     { size, variant: "success" as const, subtle: false, theme: "dark" },
     { size, variant: "danger" as const, subtle: true, theme: "dark" },
     { size, variant: "danger" as const, subtle: false, theme: "dark" },
-    { size, variant: "secondary" as const, subtle: false, theme: "dark" },
   ]),
 ];
 

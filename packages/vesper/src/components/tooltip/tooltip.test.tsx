@@ -239,7 +239,7 @@ describe("tooltip [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    const testFn = async () => {
+    test(`a11y (${theme})`, async () => {
       const result = render(
         <Tooltip open content="Tooltip text">
           <Typography style={{ color: "var(--vesper-stone-900)" }}>
@@ -249,12 +249,6 @@ describe("tooltip [a11y]", () => {
       );
 
       expect(await axe.run(result.container)).toHaveNoViolations();
-    };
-
-    if (theme === "dark") {
-      test.todo(`a11y (${theme})`, testFn);
-    } else {
-      test(`a11y (${theme})`, testFn);
-    }
+    });
   });
 });

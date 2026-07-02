@@ -184,16 +184,10 @@ describe("chip [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    const defaultTestFn = async () => {
+    test(`a11y (default, ${theme})`, async () => {
       const { container } = render(<Chip variant="default">Label</Chip>);
       expect(await axe.run(container)).toHaveNoViolations();
-    };
-
-    if (theme === "dark") {
-      test.todo(`a11y (default, ${theme})`, defaultTestFn);
-    } else {
-      test(`a11y (default, ${theme})`, defaultTestFn);
-    }
+    });
 
     test(`a11y (contrast, ${theme})`, async () => {
       const { container } = render(<Chip variant="contrast">Label</Chip>);

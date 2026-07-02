@@ -126,13 +126,8 @@ describe("show-more [a11y]", () => {
       expect(await axe.run(container)).toHaveNoViolations();
     };
 
-    if (theme === "dark") {
-      test.todo(`a11y (closed, ${theme})`, closedTestFn);
-      test.todo(`a11y (open, ${theme})`, openTestFn);
-    } else {
-      test(`a11y (closed, ${theme})`, closedTestFn);
-      test(`a11y (open, ${theme})`, openTestFn);
-    }
+    test(`a11y (closed, ${theme})`, closedTestFn);
+    test(`a11y (open, ${theme})`, openTestFn);
 
     test(`a11y (disabled, ${theme})`, async () => {
       const { container } = render(<ShowMore disabled />);

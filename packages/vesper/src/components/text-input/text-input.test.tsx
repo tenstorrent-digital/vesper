@@ -81,7 +81,6 @@ const TEXT_INPUT_A11Y_FAILING_PERMUTATIONS: (Pick<
   { variant: "error", disabled: true, theme: "light" },
   { variant: "default", disabled: false, theme: "dark" },
   { variant: "default", disabled: true, theme: "dark" },
-  { variant: "warning", disabled: false, theme: "dark" },
   { variant: "success", disabled: false, theme: "dark" },
   { variant: "success", disabled: true, theme: "dark" },
   { variant: "error", disabled: false, theme: "dark" },

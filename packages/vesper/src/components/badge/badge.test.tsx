@@ -45,7 +45,6 @@ const BADGE_A11Y_FAILING_PERMUTATIONS: (BadgeProps & { theme: string })[] = [
     { size, variant: "mint" as const, subtle: true, theme: "dark" },
     { size, variant: "purple" as const, subtle: true, theme: "dark" },
     { size, variant: "purple" as const, subtle: false, theme: "dark" },
-    { size, variant: "contrast" as const, subtle: true, theme: "dark" },
   ]),
 ];
 

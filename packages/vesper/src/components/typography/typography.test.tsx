@@ -75,11 +75,13 @@ describe("typography [a11y]", () => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
       document.body.style.setProperty("background", "var(--vesper-stone-0)");
+      document.body.style.setProperty("color", "var(--vesper-stone-900)");
     });
 
     afterEach(() => {
       document.documentElement.removeAttribute("data-vesper-theme");
       document.body.style.removeProperty("background");
+      document.body.style.removeProperty("color");
     });
 
     TYPOGRAPHY_VARIANTS.forEach((variant) => {

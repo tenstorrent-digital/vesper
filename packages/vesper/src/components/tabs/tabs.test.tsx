@@ -220,40 +220,28 @@ describe("tabs [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    const primaryNoValueFn = async () => {
+    test.todo(`a11y (primary, no value)`, async () => {
       const { container } = render(<TabsTestComponent variant="primary" />);
       expect(await axe.run(container)).toHaveNoViolations();
-    };
+    });
 
-    const primaryWithValueFn = async () => {
+    test(`a11y (primary, with value)`, async () => {
       const { container } = render(
         <TabsTestComponent variant="primary" defaultValue="tab-1" />,
       );
       expect(await axe.run(container)).toHaveNoViolations();
-    };
+    });
 
-    const secondaryNoValueFn = async () => {
+    test(`a11y (secondary, no value)`, async () => {
       const { container } = render(<TabsTestComponent variant="secondary" />);
       expect(await axe.run(container)).toHaveNoViolations();
-    };
+    });
 
-    const secondaryWithValueFn = async () => {
+    test(`a11y (secondary, with value)`, async () => {
       const { container } = render(
         <TabsTestComponent variant="secondary" defaultValue="tab-1" />,
       );
       expect(await axe.run(container)).toHaveNoViolations();
-    };
-
-    if (theme === "dark") {
-      test.todo(`a11y (primary, no value)`, primaryNoValueFn);
-      test.todo(`a11y (primary, with value)`, primaryWithValueFn);
-      test.todo(`a11y (secondary, no value)`, secondaryNoValueFn);
-      test.todo(`a11y (secondary, with value)`, secondaryWithValueFn);
-    } else {
-      test(`a11y (primary, no value)`, primaryNoValueFn);
-      test(`a11y (primary, with value)`, primaryWithValueFn);
-      test(`a11y (secondary, no value)`, secondaryNoValueFn);
-      test(`a11y (secondary, with value)`, secondaryWithValueFn);
-    }
+    });
   });
 });

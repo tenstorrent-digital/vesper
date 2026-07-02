@@ -250,11 +250,6 @@ describe("checkbox [snapshot]", () => {
   });
 });
 
-const CHECKBOX_A11Y_FAILING_PERMUTATIONS: {
-  disabled: boolean;
-  theme: string;
-}[] = [{ disabled: false, theme: "dark" }];
-
 describe("checkbox [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
@@ -268,19 +263,10 @@ describe("checkbox [a11y]", () => {
     });
 
     CHECKBOX_PERMUTATIONS.forEach(({ name, ...props }) => {
-      const label = `a11y (${name}, ${theme})`;
-
-      const testFn = async () => {
+      test(`a11y (${name}, ${theme})`, async () => {
         const { container } = render(<Checkbox {...props} />);
         expect(await axe.run(container)).toHaveNoViolations();
-      };
-
-      const failsA11y = CHECKBOX_A11Y_FAILING_PERMUTATIONS.some(
-        (p) => p.disabled === props.disabled && p.theme === theme,
-      );
-
-      if (failsA11y) test.todo(label, testFn);
-      else test(label, testFn);
+      });
     });
   });
 });
