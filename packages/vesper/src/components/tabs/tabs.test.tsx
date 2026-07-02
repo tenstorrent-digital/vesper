@@ -9,6 +9,34 @@ import { Typography } from "@/components/typography/typography";
 import "@/styles/test.css";
 import { userEvent } from "vitest/browser";
 
+const TABS_PERMUTATIONS: {
+  name: string;
+  variant: TabsVariant;
+  defaultValue?: string;
+}[] = [
+  { name: "primary, no value", variant: "primary", defaultValue: undefined },
+  { name: "primary, value", variant: "primary", defaultValue: "tab-1" },
+  {
+    name: "secondary, no value",
+    variant: "secondary",
+    defaultValue: undefined,
+  },
+  { name: "secondary, value", variant: "secondary", defaultValue: "tab-1" },
+];
+
+const TABS_A11Y_FAILING_PERMUTATIONS: {
+  name: string;
+  variant: TabsVariant;
+  defaultValue?: string;
+}[] = [
+  { name: "primary, no value", variant: "primary", defaultValue: undefined },
+  {
+    name: "secondary, no value",
+    variant: "secondary",
+    defaultValue: undefined,
+  },
+];
+
 const TabsTestComponent = ({
   variant,
   defaultValue,
@@ -183,28 +211,13 @@ describe("tabs [unit]", () => {
 });
 
 describe("tabs [snapshot]", () => {
-  test("primary, no default value", async () => {
-    const { container } = render(<TabsTestComponent variant="primary" />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
+  TABS_PERMUTATIONS.forEach((permutation) => {
+    const { name, ...props } = permutation;
 
-  test("primary, default value", async () => {
-    const { container } = render(
-      <TabsTestComponent variant="primary" defaultValue="tab-1" />,
-    );
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test("secondary, no default value", async () => {
-    const { container } = render(<TabsTestComponent variant="secondary" />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test("secondary, default value", async () => {
-    const { container } = render(
-      <TabsTestComponent variant="secondary" defaultValue="tab-1" />,
-    );
-    expect(container.firstChild).toMatchSnapshot();
+    test(name, async () => {
+      const { container } = render(<TabsTestComponent {...props} />);
+      expect(container.firstChild).toMatchSnapshot();
+    });
   });
 });
 
@@ -220,28 +233,21 @@ describe("tabs [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    test.todo(`a11y (primary, no value)`, async () => {
-      const { container } = render(<TabsTestComponent variant="primary" />);
-      expect(await axe.run(container)).toHaveNoViolations();
-    });
+    TABS_PERMUTATIONS.forEach((permutation) => {
+      const { name, ...props } = permutation;
 
-    test(`a11y (primary, with value)`, async () => {
-      const { container } = render(
-        <TabsTestComponent variant="primary" defaultValue="tab-1" />,
+      const failsA11y = TABS_A11Y_FAILING_PERMUTATIONS.some(
+        (p) =>
+          p.variant === props.variant && p.defaultValue === props.defaultValue,
       );
-      expect(await axe.run(container)).toHaveNoViolations();
-    });
 
-    test(`a11y (secondary, no value)`, async () => {
-      const { container } = render(<TabsTestComponent variant="secondary" />);
-      expect(await axe.run(container)).toHaveNoViolations();
-    });
+      const testFn = async () => {
+        const { container } = render(<TabsTestComponent {...props} />);
+        expect(await axe.run(container)).toHaveNoViolations();
+      };
 
-    test(`a11y (secondary, with value)`, async () => {
-      const { container } = render(
-        <TabsTestComponent variant="secondary" defaultValue="tab-1" />,
-      );
-      expect(await axe.run(container)).toHaveNoViolations();
+      if (failsA11y) test.todo(`a11y (${name})`, testFn);
+      else test(`a11y (${name})`, testFn);
     });
   });
 });
