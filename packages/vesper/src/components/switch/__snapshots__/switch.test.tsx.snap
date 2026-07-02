@@ -5,6 +5,7 @@ exports[`switch [snapshot] > md 1`] = `
   class="vesper-switch vesper-switch-md"
 >
   <input
+    aria-checked="false"
     class="vesper-switch-input"
     role="switch"
     type="checkbox"
@@ -20,6 +21,7 @@ exports[`switch [snapshot] > md, disabled 1`] = `
   class="vesper-switch vesper-switch-md"
 >
   <input
+    aria-checked="false"
     class="vesper-switch-input"
     disabled=""
     role="switch"
@@ -36,6 +38,7 @@ exports[`switch [snapshot] > md, disabled, with label 1`] = `
   class="vesper-switch vesper-switch-md"
 >
   <input
+    aria-checked="false"
     class="vesper-switch-input"
     disabled=""
     role="switch"
@@ -57,6 +60,7 @@ exports[`switch [snapshot] > md, with label 1`] = `
   class="vesper-switch vesper-switch-md"
 >
   <input
+    aria-checked="false"
     class="vesper-switch-input"
     role="switch"
     type="checkbox"
@@ -77,6 +81,7 @@ exports[`switch [snapshot] > sm 1`] = `
   class="vesper-switch vesper-switch-sm"
 >
   <input
+    aria-checked="false"
     class="vesper-switch-input"
     role="switch"
     type="checkbox"
@@ -92,6 +97,7 @@ exports[`switch [snapshot] > sm, disabled 1`] = `
   class="vesper-switch vesper-switch-sm"
 >
   <input
+    aria-checked="false"
     class="vesper-switch-input"
     disabled=""
     role="switch"
@@ -108,6 +114,7 @@ exports[`switch [snapshot] > sm, disabled, with label 1`] = `
   class="vesper-switch vesper-switch-sm"
 >
   <input
+    aria-checked="false"
     class="vesper-switch-input"
     disabled=""
     role="switch"
@@ -129,6 +136,7 @@ exports[`switch [snapshot] > sm, with label 1`] = `
   class="vesper-switch vesper-switch-sm"
 >
   <input
+    aria-checked="false"
     class="vesper-switch-input"
     role="switch"
     type="checkbox"

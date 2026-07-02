@@ -1,4 +1,10 @@
-import type { ComponentProps, RefObject } from "react";
+import {
+  type ChangeEvent,
+  type ComponentProps,
+  type RefObject,
+  useCallback,
+  useState,
+} from "react";
 import { cn } from "@/utils/cn";
 import {
   Typography,
@@ -110,6 +116,22 @@ export function Switch({
   className,
   ...props
 }: SwitchProps) {
+  const isControlled = checked !== undefined;
+  const [internalChecked, setInternalChecked] = useState(
+    defaultChecked ?? false,
+  );
+  const ariaChecked = isControlled ? checked : internalChecked;
+
+  const handleChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      if (!isControlled) {
+        setInternalChecked(event.target.checked);
+      }
+      onChange?.(event);
+    },
+    [isControlled, onChange],
+  );
+
   return (
     <label
       className={cn("vesper-switch", `vesper-switch-${size}`, className)}
@@ -131,6 +153,7 @@ export function Switch({
         readOnly={readOnly}
         role={role}
         tabIndex={tabIndex}
+        aria-checked={role === "switch" ? ariaChecked : undefined}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledby}
         aria-describedby={ariaDescribedby}
@@ -139,7 +162,7 @@ export function Switch({
         onFocusCapture={onFocusCapture}
         onBlur={onBlur}
         onBlurCapture={onBlurCapture}
-        onChange={onChange}
+        onChange={handleChange}
         onChangeCapture={onChangeCapture}
         onBeforeInput={onBeforeInput}
         onBeforeInputCapture={onBeforeInputCapture}
