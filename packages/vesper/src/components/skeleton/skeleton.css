@@ -3,16 +3,34 @@
 }
 
 .vesper-skeleton-overlay {
+  position: absolute;
+  inset: 0;
   background: var(--vesper-stone-300);
   @media (forced-colors: active) {
     background: CanvasText;
   }
-  position: absolute;
-  inset: 0;
+  @media not (forced-colors: active) {
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 64px;
+      background: linear-gradient(
+        to left,
+        transparent,
+        var(--vesper-alpha-inverse-200),
+        transparent
+      );
+      animation: vesper-skeleton-shimmer 1.5s linear infinite;
+    }
+  }
 }
 
 .vesper-skeleton-hidden .vesper-skeleton-overlay {
-  animation: vesper-skeleton-fade 0.3s ease forwards;
+  animation: vesper-skeleton-fade var(--vesper-transition-duration-default) ease
+    forwards;
   pointer-events: none;
 }
 
@@ -22,5 +40,15 @@
   }
   to {
     opacity: 0;
+  }
+}
+
+@keyframes vesper-skeleton-shimmer {
+  0% {
+    left: -64px;
+  }
+  66%,
+  100% {
+    left: 100%;
   }
 }
