@@ -51,11 +51,11 @@
   }
 
   &[data-state="closed"] {
-    animation: vesper-tooltip-hide 0.2s ease;
+    animation: vesper-tooltip-hide var(--vesper-transition-duration-fast) ease;
   }
   &[data-state="delayed-open"],
   &[data-state="instant-open"] {
-    animation: vesper-tooltip-show 0.2s ease;
+    animation: vesper-tooltip-show var(--vesper-transition-duration-fast) ease;
   }
 }
 

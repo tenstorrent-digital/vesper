@@ -51,10 +51,12 @@
 
 .vesper-progress-bar-animated {
   .vesper-progress-bar-indicator {
-    transition: width 0.3s cubic-bezier(0.45, 0.15, 0.25, 0.95);
+    transition: width var(--vesper-transition-duration-default)
+      cubic-bezier(0.45, 0.15, 0.25, 0.95);
   }
   .vesper-progress-bar-tick {
-    transition: background 0.3s cubic-bezier(0.45, 0.15, 0.25, 0.95);
+    transition: background var(--vesper-transition-duration-default)
+      cubic-bezier(0.45, 0.15, 0.25, 0.95);
   }
 }
 

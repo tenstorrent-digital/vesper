@@ -11,6 +11,7 @@
 @import "./shadows.css";
 @import "./spacing.css";
 @import "./tracking.css";
+@import "./animation.css";
 
 /* a11y */
 @import "./a11y.css";
@@ -19,6 +20,7 @@
 @import "../components/typography/typography.css";
 
 /* components */
+@import "../components/status-indicator/status-indicator.css";
 @import "../components/show-more/show-more.css";
 @import "../components/tag/tag.css";
 @import "../components/range/range.css";

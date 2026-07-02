@@ -28,7 +28,7 @@
 .vesper-theme-switcher-button {
   cursor: pointer;
   color: var(--vesper-stone-700);
-  transition: color 0.2s ease;
+  transition: color var(--vesper-transition-duration-fast) ease;
   height: 100%;
   aspect-ratio: 1;
   border-radius: var(--vesper-radius-2);
@@ -50,7 +50,7 @@
   height: calc(100% + 2px);
   aspect-ratio: 1;
   border: 1px solid var(--vesper-stone-400);
-  transition: transform 0.2s ease;
+  transition: transform var(--vesper-transition-duration-fast) ease;
   pointer-events: none;
 }
 html[data-vesper-theme="system"] {

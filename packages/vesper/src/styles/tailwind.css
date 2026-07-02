@@ -192,4 +192,9 @@
   --shadow-vesper-inset-100: var(--vesper-shadow-inset-100);
   --shadow-vesper-inset-200: var(--vesper-shadow-inset-200);
   --shadow-vesper-focus-ring: var(--vesper-shadow-focus-ring);
+  --transition-duration-vesper-fast: var(--vesper-transition-duration-fast);
+  --transition-duration-vesper-default: var(
+    --vesper-transition-duration-default
+  );
+  --transition-duration-vesper-slow: var(--vesper-transition-duration-slow);
 }

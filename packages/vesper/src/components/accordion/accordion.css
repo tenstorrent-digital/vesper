@@ -53,7 +53,7 @@
 .vesper-accordion-trigger-icon {
   width: 16px;
   height: 16px;
-  transition: transform 0.3s ease;
+  transition: transform var(--vesper-transition-duration-default) ease;
 }
 
 .vesper-accordion-content {
@@ -62,10 +62,12 @@
   overflow: visible;
   will-change: opacity;
   &[data-state="open"] {
-    animation: vesper-accordion-open 0.3s ease;
+    animation: vesper-accordion-open var(--vesper-transition-duration-default)
+      ease;
   }
   &[data-state="closed"] {
-    animation: vesper-accordion-close 0.3s ease;
+    animation: vesper-accordion-close var(--vesper-transition-duration-default)
+      ease;
   }
 }
 
