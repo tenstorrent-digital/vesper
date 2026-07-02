@@ -192,19 +192,7 @@ describe("button [a11y]", () => {
       const testFn = async () => {
         const result = render(<Button {...permutation}>Button Text</Button>);
 
-        expect(
-          await axe.run(result.container, {
-            runOnly: [
-              "wcag2a",
-              "wcag2aa",
-              "wcag21a",
-              "wcag21aa",
-              "wcag22aa",
-              "best-practice",
-              "wcag2aaa",
-            ],
-          }),
-        ).toHaveNoViolations();
+        expect(await axe.run(result.container)).toHaveNoViolations();
       };
 
       const failsA11y = BUTTON_A11Y_FAILING_PERMUTATIONS.some(

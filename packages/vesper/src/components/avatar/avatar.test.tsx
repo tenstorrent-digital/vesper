@@ -90,19 +90,7 @@ describe("avatar [a11y]", () => {
           <Avatar size={size} src="https://unsplash.it/300/300" />,
         );
 
-        expect(
-          await axe.run(result.container, {
-            runOnly: [
-              "wcag2a",
-              "wcag2aa",
-              "wcag21a",
-              "wcag21aa",
-              "wcag22aa",
-              "best-practice",
-              "wcag2aaa",
-            ],
-          }),
-        ).toHaveNoViolations();
+        expect(await axe.run(result.container)).toHaveNoViolations();
       });
     });
   });

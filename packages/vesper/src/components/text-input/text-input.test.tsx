@@ -268,19 +268,7 @@ describe("text-input [a11y]", () => {
 
       const testFn = async () => {
         const { container } = render(<TextInput {...props} />);
-        expect(
-          await axe.run(container.firstChild!, {
-            runOnly: [
-              "wcag2a",
-              "wcag2aa",
-              "wcag21a",
-              "wcag21aa",
-              "wcag22aa",
-              "best-practice",
-              "wcag2aaa",
-            ],
-          }),
-        ).toHaveNoViolations();
+        expect(await axe.run(container.firstChild!)).toHaveNoViolations();
       };
 
       const failsA11y = TEXT_INPUT_A11Y_FAILING_PERMUTATIONS.some(

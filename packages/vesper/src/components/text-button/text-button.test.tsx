@@ -194,19 +194,7 @@ describe("text-button [a11y]", () => {
           <TextButton {...permutation}>Button Text</TextButton>,
         );
 
-        expect(
-          await axe.run(result.container, {
-            runOnly: [
-              "wcag2a",
-              "wcag2aa",
-              "wcag21a",
-              "wcag21aa",
-              "wcag22aa",
-              "best-practice",
-              "wcag2aaa",
-            ],
-          }),
-        ).toHaveNoViolations();
+        expect(await axe.run(result.container)).toHaveNoViolations();
       };
 
       const failsA11y = TEXT_BUTTON_A11Y_FAILING_PERMUTATIONS.some(

@@ -272,19 +272,7 @@ describe("checkbox [a11y]", () => {
 
       const testFn = async () => {
         const { container } = render(<Checkbox {...props} />);
-        expect(
-          await axe.run(container, {
-            runOnly: [
-              "wcag2a",
-              "wcag2aa",
-              "wcag21a",
-              "wcag21aa",
-              "wcag22aa",
-              "best-practice",
-              "wcag2aaa",
-            ],
-          }),
-        ).toHaveNoViolations();
+        expect(await axe.run(container)).toHaveNoViolations();
       };
 
       const failsA11y = CHECKBOX_A11Y_FAILING_PERMUTATIONS.some(

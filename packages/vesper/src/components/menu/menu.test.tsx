@@ -256,17 +256,7 @@ describe("menu [a11y]", () => {
       );
 
       expect(
-        await axe.run(result.container.ownerDocument, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
+        await axe.run(result.container.ownerDocument),
       ).toHaveNoViolations();
     });
 
@@ -278,17 +268,7 @@ describe("menu [a11y]", () => {
       );
 
       expect(
-        await axe.run(result.container.ownerDocument, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
+        await axe.run(result.container.ownerDocument),
       ).toHaveNoViolations();
     });
   });

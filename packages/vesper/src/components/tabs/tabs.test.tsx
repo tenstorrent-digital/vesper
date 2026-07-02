@@ -220,74 +220,26 @@ describe("tabs [a11y]", () => {
 
     const primaryNoValueFn = async () => {
       const { container } = render(<TabsTestComponent variant="primary" />);
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     };
 
     const primaryWithValueFn = async () => {
       const { container } = render(
         <TabsTestComponent variant="primary" defaultValue="tab-1" />,
       );
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     };
 
     const secondaryNoValueFn = async () => {
       const { container } = render(<TabsTestComponent variant="secondary" />);
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     };
 
     const secondaryWithValueFn = async () => {
       const { container } = render(
         <TabsTestComponent variant="secondary" defaultValue="tab-1" />,
       );
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     };
 
     if (theme === "dark") {

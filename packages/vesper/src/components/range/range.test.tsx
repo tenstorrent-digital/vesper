@@ -372,19 +372,7 @@ describe("range [a11y]", () => {
     test.todo(`a11y (default, ${theme})`, async () => {
       const { container } = render(<Range aria-label="Price range" />);
 
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     });
 
     test.todo(`a11y (with ticks, ${theme})`, async () => {
@@ -392,19 +380,7 @@ describe("range [a11y]", () => {
         <Range aria-label="Price range" min={0} max={5} step={1} showTicks />,
       );
 
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     });
 
     test.todo(`a11y (with value labels, ${theme})`, async () => {
@@ -416,37 +392,13 @@ describe("range [a11y]", () => {
         />,
       );
 
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     });
 
     test.todo(`a11y (disabled, ${theme})`, async () => {
       const { container } = render(<Range aria-label="Price range" disabled />);
 
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     });
   });
 });

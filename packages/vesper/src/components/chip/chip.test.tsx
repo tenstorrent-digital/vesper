@@ -184,19 +184,7 @@ describe("chip [a11y]", () => {
 
     const defaultTestFn = async () => {
       const { container } = render(<Chip variant="default">Label</Chip>);
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     };
 
     if (theme === "dark") {
@@ -207,19 +195,7 @@ describe("chip [a11y]", () => {
 
     test(`a11y (contrast, ${theme})`, async () => {
       const { container } = render(<Chip variant="contrast">Label</Chip>);
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     });
 
     test(`a11y (default, selected, ${theme})`, async () => {
@@ -228,19 +204,7 @@ describe("chip [a11y]", () => {
           Label
         </Chip>,
       );
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     });
 
     test(`a11y (contrast, selected, ${theme})`, async () => {
@@ -249,36 +213,12 @@ describe("chip [a11y]", () => {
           Label
         </Chip>,
       );
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     });
 
     test(`a11y (disabled, ${theme})`, async () => {
       const { container } = render(<Chip disabled>Label</Chip>);
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     });
   });
 });

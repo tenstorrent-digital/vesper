@@ -135,19 +135,7 @@ describe("progress-bar [a11y]", () => {
           <ProgressBar size={size} variant={variant} value={23} />,
         );
 
-        expect(
-          await axe.run(result.container, {
-            runOnly: [
-              "wcag2a",
-              "wcag2aa",
-              "wcag21a",
-              "wcag21aa",
-              "wcag22aa",
-              "best-practice",
-              "wcag2aaa",
-            ],
-          }),
-        ).toHaveNoViolations();
+        expect(await axe.run(result.container)).toHaveNoViolations();
       };
 
       const failsA11y = PROGRESS_BAR_A11Y_FAILING_PERMUTATIONS.some(

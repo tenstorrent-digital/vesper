@@ -314,19 +314,7 @@ describe("toggle [a11y]", () => {
         />,
       );
 
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     };
 
     test.todo(`a11y (text, ${theme})`, testFn);
@@ -345,19 +333,7 @@ describe("toggle [a11y]", () => {
         />,
       );
 
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     });
   });
 });

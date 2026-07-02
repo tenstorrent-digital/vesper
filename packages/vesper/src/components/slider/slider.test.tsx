@@ -250,19 +250,7 @@ describe("slider [a11y]", () => {
         <Slider aria-label="Volume" defaultValue={50} />,
       );
 
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     });
 
     test.todo(`a11y (with ticks, ${theme})`, async () => {
@@ -277,19 +265,7 @@ describe("slider [a11y]", () => {
         />,
       );
 
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     });
 
     test.todo(`a11y (with value label, ${theme})`, async () => {
@@ -302,19 +278,7 @@ describe("slider [a11y]", () => {
         />,
       );
 
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     });
 
     test.todo(`a11y (disabled, ${theme})`, async () => {
@@ -322,19 +286,7 @@ describe("slider [a11y]", () => {
         <Slider aria-label="Volume" value={50} disabled />,
       );
 
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     });
   });
 });

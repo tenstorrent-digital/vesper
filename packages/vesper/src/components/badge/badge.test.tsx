@@ -160,19 +160,7 @@ describe("badge [a11y]", () => {
       const testFn = async () => {
         const result = render(<Badge {...permutation}>Badge Text</Badge>);
 
-        expect(
-          await axe.run(result.container, {
-            runOnly: [
-              "wcag2a",
-              "wcag2aa",
-              "wcag21a",
-              "wcag21aa",
-              "wcag22aa",
-              "best-practice",
-              "wcag2aaa",
-            ],
-          }),
-        ).toHaveNoViolations();
+        expect(await axe.run(result.container)).toHaveNoViolations();
       };
 
       const failsA11y = BADGE_A11Y_FAILING_PERMUTATIONS.some(

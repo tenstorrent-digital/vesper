@@ -115,37 +115,13 @@ describe("show-more [a11y]", () => {
     const closedTestFn = async () => {
       const { container } = render(<ShowMore />);
 
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     };
 
     const openTestFn = async () => {
       const { container } = render(<ShowMore expanded />);
 
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     };
 
     if (theme === "dark") {
@@ -159,19 +135,7 @@ describe("show-more [a11y]", () => {
     test(`a11y (disabled, ${theme})`, async () => {
       const { container } = render(<ShowMore disabled />);
 
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     });
   });
 });

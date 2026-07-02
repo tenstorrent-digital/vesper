@@ -93,37 +93,13 @@ describe("theme-switcher [a11y]", () => {
     test(`a11y (lg, ${theme})`, async () => {
       const { container } = render(<ThemeSwitcher size="lg" />);
 
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     });
 
     const smTestFn = async () => {
       const { container } = render(<ThemeSwitcher size="sm" />);
 
-      expect(
-        await axe.run(container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(container)).toHaveNoViolations();
     };
 
     test.todo(`a11y (sm, ${theme})`, smTestFn);

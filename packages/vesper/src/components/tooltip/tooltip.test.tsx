@@ -246,19 +246,7 @@ describe("tooltip [a11y]", () => {
         </Tooltip>,
       );
 
-      expect(
-        await axe.run(result.container, {
-          runOnly: [
-            "wcag2a",
-            "wcag2aa",
-            "wcag21a",
-            "wcag21aa",
-            "wcag22aa",
-            "best-practice",
-            "wcag2aaa",
-          ],
-        }),
-      ).toHaveNoViolations();
+      expect(await axe.run(result.container)).toHaveNoViolations();
     };
 
     if (theme === "dark") {

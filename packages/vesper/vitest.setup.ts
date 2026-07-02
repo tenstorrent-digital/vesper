@@ -7,17 +7,33 @@ expect.extend(jestMatchers);
 expect.extend(axeMatchers);
 
 /**
- * exclude all rules categorized under cat.semantics (e.g. landmark-*,
- * page-has-heading-one, definition-list, list/listitem) as they test page-level
- * structure and document semantics rather than individual components
+ * axe-core tags we want to test for
  *
- * @see https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md
+ * @see https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#axe-core-tags for available tags
+ * @see https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md for individual rules
  */
-const semanticsRules = axe.getRules(["cat.semantics"]);
+const ENABLED_TAGS = [
+  "wcag2a",
+  "wcag2aa",
+  "wcag21a",
+  "wcag21aa",
+  "wcag22aa",
+  "best-practice",
+  "wcag2aaa",
+];
+
+/**
+ * globally configure axe-core to only run rules matching our desired tags
+ */
+const accessibilityRules = axe.getRules(ENABLED_TAGS);
 
 axe.configure({
-  rules: semanticsRules.map((rule) => ({
+  rules: accessibilityRules.map((rule) => ({
     id: rule.ruleId,
-    enabled: false,
+    enabled:
+      /**
+       * disable rules with the `cat.semantics` tag (mostly document-level structure checks) that don't apply to individual component tests
+       */
+      !rule.tags.includes("cat.semantics"),
   })),
 });
