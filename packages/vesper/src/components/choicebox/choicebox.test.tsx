@@ -1,3 +1,4 @@
+import type { RefObject } from "react";
 import { render, cleanup, fireEvent } from "@testing-library/react";
 import { beforeEach, afterEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
@@ -599,6 +600,36 @@ describe("choicebox [unit]", () => {
       expect(
         container.querySelectorAll(".vesper-choicebox-input-single-indicator"),
       ).toHaveLength(0);
+    });
+
+    test("forwards ref to fieldset element", () => {
+      const ref = { current: null } as RefObject<HTMLFieldSetElement | null>;
+      render(
+        <Choicebox
+          name="test"
+          multiselect
+          ref={ref}
+          options={CHOICEBOX_OPTIONS}
+        />,
+      );
+      expect(ref.current).not.toBeNull();
+      expect(ref.current!.tagName).toBe("FIELDSET");
+    });
+
+    test("arrow key on non-input element does not move focus", () => {
+      const { container } = render(
+        <Choicebox name="test" multiselect options={CHOICEBOX_OPTIONS} />,
+      );
+      const fieldset = container.firstElementChild as HTMLFieldSetElement;
+      const items = container.querySelectorAll<HTMLInputElement>("input");
+
+      // Fire keydown directly on the fieldset (not an input)
+      fireEvent.keyDown(fieldset, { key: "ArrowDown" });
+
+      // No input should have gained focus from this
+      items.forEach((item) => {
+        expect(item).not.toHaveFocus();
+      });
     });
 
     test("keyboard navigation does not toggle selection", async () => {
