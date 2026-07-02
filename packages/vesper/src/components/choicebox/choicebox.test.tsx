@@ -473,7 +473,7 @@ describe("choicebox [unit]", () => {
       });
     });
 
-    test("renders radio indicator)", () => {
+    test("renders radio indicator", () => {
       const { container } = render(
         <Choicebox name="test" options={CHOICEBOX_OPTIONS} />,
       );
