@@ -687,9 +687,7 @@ describe("choicebox [a11y]", () => {
       ({ permutationName, ...props }) => {
         test(`wcag2aaa (${permutationName}, ${theme})`, async () => {
           const { container } = render(<Choicebox {...props} />);
-          expect(
-            await axe.run(container, { runOnly: "wcag2aaa" }),
-          ).toHaveNoViolations();
+          expect(await axe.run(container)).toHaveNoViolations();
         });
       },
     );
@@ -698,9 +696,7 @@ describe("choicebox [a11y]", () => {
       ({ permutationName, ...props }) => {
         test.todo(`wcag2aaa (${permutationName}, ${theme})`, async () => {
           const { container } = render(<Choicebox {...props} />);
-          expect(
-            await axe.run(container, { runOnly: "wcag2aaa" }),
-          ).toHaveNoViolations();
+          expect(await axe.run(container)).toHaveNoViolations();
         });
       },
     );
