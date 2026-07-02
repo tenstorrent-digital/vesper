@@ -35,10 +35,11 @@ export function StatusIndicator({
   state,
   animated,
   variant = "default",
+  as: Component = "div",
   ...props
 }: StatusIndicatorProps) {
   return (
-    <div
+    <Component
       className={cn(
         "vesper-status-indicator",
         `vesper-status-indicator-${variant}`,
@@ -59,6 +60,6 @@ export function StatusIndicator({
       >
         {label}
       </Typography>
-    </div>
+    </Component>
   );
 }
