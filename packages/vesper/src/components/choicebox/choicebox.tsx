@@ -113,7 +113,7 @@ function ChoiceboxMultiSelect({
 
       const inputs = Array.from(
         innerRef.current!.querySelectorAll<HTMLInputElement>(
-          "input:not(:disabled)",
+          ".vesper-choicebox-input:not(:disabled)",
         ),
       );
 
@@ -155,7 +155,11 @@ function ChoiceboxMultiSelect({
             onChange={() => {
               if (!onChange) return;
               onChange(
-                Array.from(innerRef.current!.querySelectorAll("input"))
+                Array.from(
+                  innerRef.current!.querySelectorAll<HTMLInputElement>(
+                    ".vesper-choicebox-input",
+                  ),
+                )
                   .filter((v) => v.checked)
                   .map((v) => v.value),
               );
@@ -219,6 +223,7 @@ function ChoiceboxItem({
         className="vesper-choicebox-input"
         id={option.id}
         name={name}
+        value={option.value}
         required={required}
         disabled={isDisabled}
         onChange={onChange}
