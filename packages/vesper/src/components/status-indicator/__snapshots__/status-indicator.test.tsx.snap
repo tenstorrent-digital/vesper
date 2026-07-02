@@ -7,11 +7,11 @@ exports[`status-indicator [snapshot] > cancelled, badge 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-cancelled"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     cancelled
-  </p>
+  </span>
 </div>
 `;
 
@@ -22,11 +22,11 @@ exports[`status-indicator [snapshot] > cancelled, badge, animated 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-cancelled vesper-status-indicator-dot-animated"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     cancelled
-  </p>
+  </span>
 </div>
 `;
 
@@ -37,11 +37,11 @@ exports[`status-indicator [snapshot] > cancelled, default 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-cancelled"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     cancelled
-  </p>
+  </span>
 </div>
 `;
 
@@ -52,11 +52,11 @@ exports[`status-indicator [snapshot] > cancelled, default, animated 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-cancelled vesper-status-indicator-dot-animated"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     cancelled
-  </p>
+  </span>
 </div>
 `;
 
@@ -67,11 +67,11 @@ exports[`status-indicator [snapshot] > error, badge 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-error"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     error
-  </p>
+  </span>
 </div>
 `;
 
@@ -82,11 +82,11 @@ exports[`status-indicator [snapshot] > error, badge, animated 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-error vesper-status-indicator-dot-animated"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     error
-  </p>
+  </span>
 </div>
 `;
 
@@ -97,11 +97,11 @@ exports[`status-indicator [snapshot] > error, default 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-error"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     error
-  </p>
+  </span>
 </div>
 `;
 
@@ -112,11 +112,11 @@ exports[`status-indicator [snapshot] > error, default, animated 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-error vesper-status-indicator-dot-animated"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     error
-  </p>
+  </span>
 </div>
 `;
 
@@ -127,11 +127,11 @@ exports[`status-indicator [snapshot] > progress, badge 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-progress"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     progress
-  </p>
+  </span>
 </div>
 `;
 
@@ -142,11 +142,11 @@ exports[`status-indicator [snapshot] > progress, badge, animated 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-progress vesper-status-indicator-dot-animated"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     progress
-  </p>
+  </span>
 </div>
 `;
 
@@ -157,11 +157,11 @@ exports[`status-indicator [snapshot] > progress, default 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-progress"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     progress
-  </p>
+  </span>
 </div>
 `;
 
@@ -172,11 +172,11 @@ exports[`status-indicator [snapshot] > progress, default, animated 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-progress vesper-status-indicator-dot-animated"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     progress
-  </p>
+  </span>
 </div>
 `;
 
@@ -187,11 +187,11 @@ exports[`status-indicator [snapshot] > queued, badge 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-queued"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     queued
-  </p>
+  </span>
 </div>
 `;
 
@@ -202,11 +202,11 @@ exports[`status-indicator [snapshot] > queued, badge, animated 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-queued vesper-status-indicator-dot-animated"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     queued
-  </p>
+  </span>
 </div>
 `;
 
@@ -217,11 +217,11 @@ exports[`status-indicator [snapshot] > queued, default 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-queued"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     queued
-  </p>
+  </span>
 </div>
 `;
 
@@ -232,11 +232,11 @@ exports[`status-indicator [snapshot] > queued, default, animated 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-queued vesper-status-indicator-dot-animated"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     queued
-  </p>
+  </span>
 </div>
 `;
 
@@ -247,11 +247,11 @@ exports[`status-indicator [snapshot] > ready, badge 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-ready"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     ready
-  </p>
+  </span>
 </div>
 `;
 
@@ -262,11 +262,11 @@ exports[`status-indicator [snapshot] > ready, badge, animated 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-ready vesper-status-indicator-dot-animated"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     ready
-  </p>
+  </span>
 </div>
 `;
 
@@ -277,11 +277,11 @@ exports[`status-indicator [snapshot] > ready, default 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-ready"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     ready
-  </p>
+  </span>
 </div>
 `;
 
@@ -292,10 +292,10 @@ exports[`status-indicator [snapshot] > ready, default, animated 1`] = `
   <span
     class="vesper-status-indicator-dot vesper-status-indicator-dot-ready vesper-status-indicator-dot-animated"
   />
-  <p
+  <span
     class="vesper-typography vesper-typography-label-xs-mono vesper-status-indicator-label"
   >
     ready
-  </p>
+  </span>
 </div>
 `;

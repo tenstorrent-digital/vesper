@@ -59,6 +59,7 @@ export function StatusIndicator<E extends ElementType = "div">(
         )}
       />
       <Typography
+        as="span"
         className="vesper-status-indicator-label"
         variant="label-xs-mono"
       >
