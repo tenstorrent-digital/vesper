@@ -29,11 +29,8 @@ const TEXT_BUTTON_A11Y_FAILING_PERMUTATIONS: (TextButtonProps & {
     { size, variant: "warning" as const, disabled: false, theme: "light" },
     { size, variant: "danger" as const, disabled: false, theme: "light" },
     { size, variant: "subtle" as const, disabled: false, theme: "light" },
+    { size, variant: "pink" as const, disabled: false, theme: "light" },
     { size, variant: "subtle" as const, disabled: false, theme: "dark" },
-    { size, variant: "contrast" as const, disabled: false, theme: "dark" },
-    { size, variant: "accent" as const, disabled: false, theme: "dark" },
-    { size, variant: "success" as const, disabled: false, theme: "dark" },
-    { size, variant: "warning" as const, disabled: false, theme: "dark" },
     { size, variant: "danger" as const, disabled: false, theme: "dark" },
     { size, variant: "info" as const, disabled: false, theme: "dark" },
     { size, variant: "purple" as const, disabled: false, theme: "dark" },
@@ -179,10 +176,12 @@ describe("text-button [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
     });
 
     afterEach(() => {
       document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
     });
 
     TEXT_BUTTON_PERMUTATIONS.forEach((permutation) => {

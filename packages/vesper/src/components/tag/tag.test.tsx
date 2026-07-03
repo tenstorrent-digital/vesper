@@ -29,7 +29,6 @@ const TAG_A11Y_FAILING_PERMUTATIONS: (TagProps & { theme: string })[] = [
     { size, variant: "info-subtle", disabled: false, theme: "light" },
     { size, variant: "warning-bold", disabled: false, theme: "light" },
     { size, variant: "warning-subtle", disabled: false, theme: "light" },
-    { size, variant: "default", disabled: false, theme: "dark" },
     { size, variant: "accent-bold", disabled: false, theme: "dark" },
     { size, variant: "danger-bold", disabled: false, theme: "dark" },
     { size, variant: "danger-subtle", disabled: false, theme: "dark" },
@@ -138,10 +137,12 @@ describe("tag [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
     });
 
     afterEach(() => {
       document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
     });
 
     TAG_PERMUTATIONS.forEach((permutation) => {

@@ -27,9 +27,6 @@ const BUTTON_A11Y_FAILING_PERMUTATIONS: (ButtonProps & {
     { size, variant: "danger" as const, disabled: false, theme: "light" },
     { size, variant: "primary" as const, disabled: false, theme: "dark" },
     { size, variant: "danger" as const, disabled: false, theme: "dark" },
-    { size, variant: "ghost" as const, disabled: false, theme: "dark" },
-    { size, variant: "subtle" as const, disabled: false, theme: "dark" },
-    { size, variant: "tertiary" as const, disabled: false, theme: "dark" },
     { size, variant: "warning" as const, disabled: false, theme: "dark" },
   ]),
 ];
@@ -179,10 +176,12 @@ describe("button [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
     });
 
     afterEach(() => {
       document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
     });
 
     BUTTON_PERMUTATIONS.forEach((permutation) => {

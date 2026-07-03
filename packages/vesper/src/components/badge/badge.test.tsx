@@ -45,7 +45,6 @@ const BADGE_A11Y_FAILING_PERMUTATIONS: (BadgeProps & { theme: string })[] = [
     { size, variant: "mint" as const, subtle: true, theme: "dark" },
     { size, variant: "purple" as const, subtle: true, theme: "dark" },
     { size, variant: "purple" as const, subtle: false, theme: "dark" },
-    { size, variant: "contrast" as const, subtle: true, theme: "dark" },
   ]),
 ];
 
@@ -147,10 +146,12 @@ describe("badge [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
     });
 
     afterEach(() => {
       document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
     });
 
     BADGE_PERMUTATIONS.forEach((permutation) => {

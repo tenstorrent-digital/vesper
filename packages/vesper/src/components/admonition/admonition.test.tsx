@@ -34,7 +34,6 @@ const ADMONITION_A11Y_FAILING_PERMUTATIONS: (AdmonitionProps & {
     { size, variant: "success" as const, subtle: false, theme: "dark" },
     { size, variant: "danger" as const, subtle: true, theme: "dark" },
     { size, variant: "danger" as const, subtle: false, theme: "dark" },
-    { size, variant: "secondary" as const, subtle: false, theme: "dark" },
   ]),
 ];
 
@@ -146,10 +145,12 @@ describe("admonition [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
     });
 
     afterEach(() => {
       document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
     });
 
     ADMONITION_PERMUTATIONS.forEach((permutation) => {

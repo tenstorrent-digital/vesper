@@ -238,10 +238,12 @@ describe("menu [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
     });
 
     afterEach(() => {
       document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
     });
 
     test.todo("a11y (open)", async () => {
@@ -260,7 +262,7 @@ describe("menu [a11y]", () => {
       ).toHaveNoViolations();
     });
 
-    test.todo("a11y (closed)", async () => {
+    test("a11y (closed)", async () => {
       const result = render(
         <Menu items={MENU_ITEMS} open={false}>
           <TextButton variant="contrast">trigger</TextButton>

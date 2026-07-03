@@ -9,6 +9,7 @@
     "dev:docs": "turbo run dev:docs",
     "build:storybook": "turbo run build:storybook --filter=@repo/vesper",
     "test:vesper": "turbo run test --filter=@repo/vesper",
+    "test:watch:vesper": "turbo run test:watch --filter=@repo/vesper",
     "lint": "turbo run lint",
     "format": "prettier --write .",
     "check-types": "turbo run check-types",

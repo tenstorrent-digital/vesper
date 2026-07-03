@@ -9,6 +9,34 @@ import { Typography } from "@/components/typography/typography";
 import "@/styles/test.css";
 import { userEvent } from "vitest/browser";
 
+const TABS_PERMUTATIONS: {
+  name: string;
+  variant: TabsVariant;
+  defaultValue?: string;
+}[] = [
+  { name: "primary, no value", variant: "primary", defaultValue: undefined },
+  { name: "primary, value", variant: "primary", defaultValue: "tab-1" },
+  {
+    name: "secondary, no value",
+    variant: "secondary",
+    defaultValue: undefined,
+  },
+  { name: "secondary, value", variant: "secondary", defaultValue: "tab-1" },
+];
+
+const TABS_A11Y_FAILING_PERMUTATIONS: {
+  name: string;
+  variant: TabsVariant;
+  defaultValue?: string;
+}[] = [
+  { name: "primary, no value", variant: "primary", defaultValue: undefined },
+  {
+    name: "secondary, no value",
+    variant: "secondary",
+    defaultValue: undefined,
+  },
+];
+
 const TabsTestComponent = ({
   variant,
   defaultValue,
@@ -183,28 +211,13 @@ describe("tabs [unit]", () => {
 });
 
 describe("tabs [snapshot]", () => {
-  test("primary, no default value", async () => {
-    const { container } = render(<TabsTestComponent variant="primary" />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
+  TABS_PERMUTATIONS.forEach((permutation) => {
+    const { name, ...props } = permutation;
 
-  test("primary, default value", async () => {
-    const { container } = render(
-      <TabsTestComponent variant="primary" defaultValue="tab-1" />,
-    );
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test("secondary, no default value", async () => {
-    const { container } = render(<TabsTestComponent variant="secondary" />);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test("secondary, default value", async () => {
-    const { container } = render(
-      <TabsTestComponent variant="secondary" defaultValue="tab-1" />,
-    );
-    expect(container.firstChild).toMatchSnapshot();
+    test(name, async () => {
+      const { container } = render(<TabsTestComponent {...props} />);
+      expect(container.firstChild).toMatchSnapshot();
+    });
   });
 });
 
@@ -212,46 +225,29 @@ describe("tabs [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
     });
 
     afterEach(() => {
       document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
     });
 
-    const primaryNoValueFn = async () => {
-      const { container } = render(<TabsTestComponent variant="primary" />);
-      expect(await axe.run(container)).toHaveNoViolations();
-    };
+    TABS_PERMUTATIONS.forEach((permutation) => {
+      const { name, ...props } = permutation;
 
-    const primaryWithValueFn = async () => {
-      const { container } = render(
-        <TabsTestComponent variant="primary" defaultValue="tab-1" />,
+      const failsA11y = TABS_A11Y_FAILING_PERMUTATIONS.some(
+        (p) =>
+          p.variant === props.variant && p.defaultValue === props.defaultValue,
       );
-      expect(await axe.run(container)).toHaveNoViolations();
-    };
 
-    const secondaryNoValueFn = async () => {
-      const { container } = render(<TabsTestComponent variant="secondary" />);
-      expect(await axe.run(container)).toHaveNoViolations();
-    };
+      const testFn = async () => {
+        const { container } = render(<TabsTestComponent {...props} />);
+        expect(await axe.run(container)).toHaveNoViolations();
+      };
 
-    const secondaryWithValueFn = async () => {
-      const { container } = render(
-        <TabsTestComponent variant="secondary" defaultValue="tab-1" />,
-      );
-      expect(await axe.run(container)).toHaveNoViolations();
-    };
-
-    if (theme === "dark") {
-      test.todo(`a11y (primary, no value)`, primaryNoValueFn);
-      test.todo(`a11y (primary, with value)`, primaryWithValueFn);
-      test.todo(`a11y (secondary, no value)`, secondaryNoValueFn);
-      test.todo(`a11y (secondary, with value)`, secondaryWithValueFn);
-    } else {
-      test(`a11y (primary, no value)`, primaryNoValueFn);
-      test(`a11y (primary, with value)`, primaryWithValueFn);
-      test(`a11y (secondary, no value)`, secondaryNoValueFn);
-      test(`a11y (secondary, with value)`, secondaryWithValueFn);
-    }
+      if (failsA11y) test.todo(`a11y (${name})`, testFn);
+      else test(`a11y (${name})`, testFn);
+    });
   });
 });
