@@ -88,6 +88,8 @@
   align-items: center;
   justify-content: center;
   svg {
+    width: 10px;
+    height: 10px;
     visibility: hidden;
   }
 }
