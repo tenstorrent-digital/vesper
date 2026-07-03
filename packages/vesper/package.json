@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./toast": {
+      "types": "./dist/components/toast/toast.d.ts",
+      "import": "./dist/components/toast/toast.js"
+    },
     "./status-indicator": {
       "types": "./dist/components/status-indicator/status-indicator.d.ts",
       "import": "./dist/components/status-indicator/status-indicator.js"
