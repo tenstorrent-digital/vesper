@@ -170,7 +170,9 @@ export function Modal({
       {...props}
     >
       {form ? (
-        <form {...containerProps}>{modalContents}</form>
+        <form {...containerProps} {...form}>
+          {modalContents}
+        </form>
       ) : (
         <div {...containerProps}>{modalContents}</div>
       )}
