@@ -107,6 +107,13 @@ function ChoiceboxMultiSelect({
   const innerRef = useRef<HTMLFieldSetElement>(null);
   useImperativeHandle(ref, () => innerRef.current!);
 
+  /**
+   * Mimic the keyboard accessibility of single-select (group of radio inputs)
+   * - ArrowLeft/ArrowDown moves focus forwards to the next input
+   * - ArrowRight/ArrowUp moves focus back to the previous input
+   * - disabled inputs are skipped
+   * - moving back/forward at the first/last inputs loops around
+   */
   const handleKeyDown: KeyboardEventHandler<HTMLFieldSetElement> = useCallback(
     (e) => {
       if (
