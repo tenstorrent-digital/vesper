@@ -72,7 +72,6 @@ export function Modal({
       className={cn("vesper-modal", className)}
       aria-labelledby={labelledBy}
       aria-describedby={describedBy}
-      open={isOpen}
       {...props}
     >
       <div className="vesper-modal-container" style={{ width }}>

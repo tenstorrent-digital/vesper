@@ -14,7 +14,7 @@
 @keyframes vesper-modal-fade-in {
   from {
     opacity: 0;
-    transform: translateY(5px);
+    transform: translateY(var(--vesper-spacing-2));
   }
   to {
     opacity: 1;
@@ -68,5 +68,16 @@
   }
   &:hover {
     background: var(--vesper-alpha-stone-200);
+  }
+  @media (forced-colors: active) {
+    border: 1px solid CanvasText;
+    &:focus-visible {
+      outline: 2px solid CanvasText;
+    }
+  }
+  @media not (forced-colors: active) {
+    &:focus-visible {
+      box-shadow: var(--vesper-shadow-focus-ring);
+    }
   }
 }

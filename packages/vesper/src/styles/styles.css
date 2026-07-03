@@ -20,6 +20,7 @@
 @import "../components/typography/typography.css";
 
 /* components */
+@import "../components/modal/modal.css";
 @import "../components/status-indicator/status-indicator.css";
 @import "../components/choicebox/choicebox.css";
 @import "../components/skeleton/skeleton.css";
@@ -45,4 +46,3 @@
 @import "../components/text-button/text-button.css";
 @import "../components/button/button.css";
 @import "../components/menu/menu.css";
-@import "../components/modal/modal.css";
