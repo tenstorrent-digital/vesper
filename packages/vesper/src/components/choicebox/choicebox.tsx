@@ -1,5 +1,6 @@
 import {
   useCallback,
+  useEffect,
   useImperativeHandle,
   useRef,
   type ChangeEventHandler,
@@ -40,6 +41,8 @@ export interface ChoiceboxMultiSelectProps extends ChoiceboxBaseProps {
   values?: string[];
   defaultValues?: string[];
   onChange?(values: string[]): void;
+  min?: number;
+  max?: number;
 }
 
 export type ChoiceboxProps =
@@ -100,12 +103,19 @@ function ChoiceboxMultiSelect({
   disabled,
   name,
   ref,
+  min = 0,
+  max = Infinity,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   multiselect,
   ...props
 }: ChoiceboxMultiSelectProps) {
   const innerRef = useRef<HTMLFieldSetElement>(null);
   useImperativeHandle(ref, () => innerRef.current!);
+
+  useEffect(() => {
+    if (!innerRef.current) return;
+    setMinMaxValidity(getCheckboxes(innerRef.current), min, max);
+  }, [min, max]);
 
   /**
    * Mimic the keyboard accessibility of single-select (group of radio inputs)
@@ -164,16 +174,11 @@ function ChoiceboxMultiSelect({
             disabled={disabled}
             name={name}
             onChange={() => {
+              const checkboxes = getCheckboxes(innerRef.current!);
+              setMinMaxValidity(checkboxes, min, max);
+
               if (!onChange) return;
-              onChange(
-                Array.from(
-                  innerRef.current!.querySelectorAll<HTMLInputElement>(
-                    ".vesper-choicebox-input",
-                  ),
-                )
-                  .filter((v) => v.checked)
-                  .map((v) => v.value),
-              );
+              onChange(checkboxes.filter((v) => v.checked).map((v) => v.value));
             }}
             {...checkedProps}
           />
@@ -250,4 +255,35 @@ function ChoiceboxItem({
       )}
     </label>
   );
+}
+
+function getCheckboxes(ref: HTMLFieldSetElement) {
+  return Array.from(
+    ref.querySelectorAll<HTMLInputElement>(".vesper-choicebox-input"),
+  );
+}
+
+function setMinMaxValidity(
+  checkboxes: HTMLInputElement[],
+  min: number,
+  max: number,
+) {
+  if (checkboxes.length === 0) return;
+
+  const numChecked = checkboxes.filter((c) => c.checked).length;
+  const lastCheckbox = checkboxes[checkboxes.length - 1]!;
+
+  if (numChecked < min) {
+    lastCheckbox.setCustomValidity(
+      `Please select at least ${min} ${min === 1 ? "item" : "items"}`,
+    );
+    return;
+  }
+
+  if (numChecked > max) {
+    lastCheckbox.setCustomValidity(`Please ${max} or fewer items`);
+    return;
+  }
+
+  lastCheckbox.setCustomValidity("");
 }
