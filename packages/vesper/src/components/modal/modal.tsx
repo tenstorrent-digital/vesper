@@ -1,5 +1,6 @@
 import {
   type ComponentPropsWithoutRef,
+  type ReactNode,
   type RefObject,
   useCallback,
   useId,
@@ -10,7 +11,17 @@ import {
 import { cn } from "@/utils/cn";
 import { Typography } from "@/components/typography/typography";
 import { Close } from "@/components/icons/icons";
+import { type ButtonProps, Button } from "@/components/button/button";
 import { useScrollLock } from "@/utils/useScrollLock";
+
+export const MODAL_BUTTONS_ALIGNMENTS = [
+  "start",
+  "end",
+  "fill",
+  "between",
+] as const;
+
+export type ModalButtonsAlignment = (typeof MODAL_BUTTONS_ALIGNMENTS)[number];
 
 export interface ModalRef {
   open(): void;
@@ -22,9 +33,11 @@ export interface ModalProps extends Omit<
   "open"
 > {
   title: string;
-  description?: string;
-  ref?: RefObject<ModalRef>;
+  description: string;
   width?: number;
+  buttons?: Omit<ButtonProps, "size">[];
+  buttonsAlignment?: ModalButtonsAlignment;
+  ref?: RefObject<ModalRef>;
 }
 
 export function Modal({
@@ -35,6 +48,9 @@ export function Modal({
   title,
   description,
   width = 452,
+  buttons,
+  buttonsAlignment = "end",
+  children,
   ...props
 }: ModalProps) {
   const titleId = useId();
@@ -62,9 +78,7 @@ export function Modal({
 
   // If an additional aria-describedby is supplied, this ensures that both ids get used
   const describedBy =
-    [ariaDescribedby, description ? descriptionId : undefined]
-      .filter(Boolean)
-      .join(" ") || undefined;
+    [ariaDescribedby, descriptionId].filter(Boolean).join(" ") || undefined;
 
   return (
     <dialog
@@ -104,6 +118,21 @@ export function Modal({
             <Close />
           </button>
         </div>
+        <Typography as="div" variant="copy-md" className="vesper-modal-content">
+          {children}
+        </Typography>
+        {!!buttons?.length && (
+          <div
+            className={cn(
+              "vesper-modal-buttons",
+              `vesper-modal-buttons-${buttonsAlignment}`,
+            )}
+          >
+            {buttons!.map((button, index) => (
+              <Button key={index} {...button} />
+            ))}
+          </div>
+        )}
       </div>
     </dialog>
   );
@@ -111,4 +140,18 @@ export function Modal({
 
 export function useModalRef() {
   return useRef<ModalRef>({ open() {}, close() {} });
+}
+
+export function useModal(
+  props: Pick<ModalProps, "title" | "description" | "buttons">,
+) {
+  const ref = useModalRef();
+
+  const render = (children: ReactNode) => (
+    <Modal ref={ref} {...props}>
+      {children}
+    </Modal>
+  );
+
+  return [ref.current, render] as const;
 }

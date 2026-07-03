@@ -37,9 +37,13 @@
   border: 1px solid var(--vesper-stone-400);
   box-shadow: var(--vesper-shadow-300);
   max-width: calc(100vw - var(--vesper-spacing-16));
+  max-height: min(calc(100vh - var(--vesper-spacing-16)), 640px);
+  display: flex;
+  flex-direction: column;
 }
 
 .vesper-modal-header {
+  flex-shrink: 0;
   display: flex;
   align-items: flex-start;
   gap: var(--vesper-spacing-5);
@@ -80,4 +84,37 @@
       box-shadow: var(--vesper-shadow-focus-ring);
     }
   }
+}
+
+.vesper-modal-content {
+  color: var(--vesper-stone-900);
+  flex-shrink: 1;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  padding: 0 var(--vesper-spacing-6) var(--vesper-spacing-6)
+    var(--vesper-spacing-6);
+}
+
+.vesper-modal-buttons {
+  flex-shrink: 0;
+  display: flex;
+  padding: 0 var(--vesper-spacing-6) var(--vesper-spacing-6)
+    var(--vesper-spacing-6);
+  gap: var(--vesper-spacing-6);
+}
+.vesper-modal-buttons-start {
+  justify-content: flex-start;
+}
+.vesper-modal-buttons-end {
+  justify-content: flex-end;
+}
+.vesper-modal-buttons-fill .vesper-button {
+  width: 100%;
+}
+.vesper-modal-buttons-between {
+  justify-content: space-between;
 }
