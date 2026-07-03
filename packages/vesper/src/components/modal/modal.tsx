@@ -1,6 +1,5 @@
 import {
   type ComponentPropsWithoutRef,
-  type ReactNode,
   type RefObject,
   useCallback,
   useId,
@@ -34,7 +33,7 @@ export interface ModalProps extends Omit<
 > {
   title: string;
   description: string;
-  width?: number;
+  width?: number | string;
   buttons?: Omit<ButtonProps, "size">[];
   buttonsAlignment?: ModalButtonsAlignment;
   ref?: RefObject<ModalRef>;
@@ -140,18 +139,4 @@ export function Modal({
 
 export function useModalRef() {
   return useRef<ModalRef>({ open() {}, close() {} });
-}
-
-export function useModal(
-  props: Pick<ModalProps, "title" | "description" | "buttons">,
-) {
-  const ref = useModalRef();
-
-  const render = (children: ReactNode) => (
-    <Modal ref={ref} {...props}>
-      {children}
-    </Modal>
-  );
-
-  return [ref.current, render] as const;
 }
