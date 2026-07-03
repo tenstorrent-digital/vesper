@@ -1,0 +1,141 @@
+.vesper-choicebox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-2);
+}
+
+.vesper-choicebox-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--vesper-spacing-3);
+  border-radius: var(--vesper-radius-1);
+  border: 1px solid var(--vesper-stone-300);
+  background: var(--vesper-stone-0);
+  padding: var(--vesper-spacing-3);
+  &.vesper-choicebox-item-compact {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  &:has(:disabled) {
+    border-color: var(--vesper-alpha-stone-200);
+    .vesper-choicebox-item-label {
+      color: var(--vesper-alpha-stone-400);
+    }
+    .vesper-choicebox-item-description {
+      color: var(--vesper-alpha-stone-400);
+    }
+  }
+  &:not(:has(:disabled)) {
+    &:hover {
+      background:
+        linear-gradient(
+          0deg,
+          var(--vesper-alpha-stone-0) 0%,
+          var(--vesper-alpha-stone-0) 100%
+        ),
+        var(--vesper-stone-0);
+    }
+    &:has(:checked) {
+      border-color: var(--vesper-stone-900);
+      background:
+        linear-gradient(
+          0deg,
+          var(--vesper-alpha-stone-50) 0%,
+          var(--vesper-alpha-stone-50) 100%
+        ),
+        var(--vesper-stone-0);
+    }
+    cursor: pointer;
+  }
+  &:has(:focus-visible) {
+    box-shadow: var(--vesper-shadow-focus-ring);
+  }
+}
+
+.vesper-choicebox-item-label {
+  color: var(--vesper-stone-900);
+}
+
+.vesper-choicebox-item-description {
+  color: var(--vesper-stone-700);
+  margin-top: var(--vesper-spacing-1);
+}
+
+.vesper-choicebox-input-single-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--vesper-stone-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &::after {
+    content: "";
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+  }
+}
+
+.vesper-choicebox-input-multi-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--vesper-radius-half);
+  border: 1px solid var(--vesper-stone-400);
+  color: var(--vesper-stone-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    width: 10px;
+    height: 10px;
+    visibility: hidden;
+  }
+}
+
+.vesper-choicebox-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+  &:checked {
+    & + .vesper-choicebox-input-single-indicator {
+      border-color: var(--vesper-teal-400);
+      background: var(--vesper-teal-400);
+      &::after {
+        background: var(--vesper-stone-0);
+      }
+    }
+    & + .vesper-choicebox-input-multi-indicator {
+      border-color: var(--vesper-teal-400);
+      background: var(--vesper-teal-400);
+      svg {
+        visibility: visible;
+      }
+    }
+  }
+  &:disabled {
+    & + .vesper-choicebox-input-single-indicator {
+      border-color: var(--vesper-alpha-stone-200);
+      background: var(--vesper-alpha-stone-100);
+    }
+    & + .vesper-choicebox-input-multi-indicator {
+      border-color: var(--vesper-alpha-stone-200);
+      background: var(--vesper-alpha-stone-100);
+    }
+    &:checked {
+      & + .vesper-choicebox-input-single-indicator::after {
+        background: var(--vesper-alpha-stone-500);
+      }
+      & + .vesper-choicebox-input-multi-indicator {
+        color: var(--vesper-alpha-stone-500);
+      }
+    }
+  }
+}

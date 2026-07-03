@@ -1,0 +1,729 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`choicebox [snapshot] > multi-select 1`] = `
+<fieldset
+  class="vesper-choicebox"
+>
+  <label
+    class="vesper-choicebox-item vesper-choicebox-item-compact"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option A
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      name="test-choicebox"
+      type="checkbox"
+      value="option-a"
+    />
+    <div
+      class="vesper-choicebox-input-multi-indicator"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </label>
+  <label
+    class="vesper-choicebox-item vesper-choicebox-item-compact"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option B
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      name="test-choicebox"
+      type="checkbox"
+      value="option-b"
+    />
+    <div
+      class="vesper-choicebox-input-multi-indicator"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </label>
+  <label
+    class="vesper-choicebox-item vesper-choicebox-item-compact"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option C
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      name="test-choicebox"
+      type="checkbox"
+      value="option-c"
+    />
+    <div
+      class="vesper-choicebox-input-multi-indicator"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </label>
+</fieldset>
+`;
+
+exports[`choicebox [snapshot] > multi-select, disabled 1`] = `
+<fieldset
+  class="vesper-choicebox"
+>
+  <label
+    class="vesper-choicebox-item vesper-choicebox-item-compact"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option A
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      disabled=""
+      name="test-choicebox"
+      type="checkbox"
+      value="option-a"
+    />
+    <div
+      class="vesper-choicebox-input-multi-indicator"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </label>
+  <label
+    class="vesper-choicebox-item vesper-choicebox-item-compact"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option B
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      disabled=""
+      name="test-choicebox"
+      type="checkbox"
+      value="option-b"
+    />
+    <div
+      class="vesper-choicebox-input-multi-indicator"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </label>
+  <label
+    class="vesper-choicebox-item vesper-choicebox-item-compact"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option C
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      disabled=""
+      name="test-choicebox"
+      type="checkbox"
+      value="option-c"
+    />
+    <div
+      class="vesper-choicebox-input-multi-indicator"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </label>
+</fieldset>
+`;
+
+exports[`choicebox [snapshot] > multi-select, with descriptions 1`] = `
+<fieldset
+  class="vesper-choicebox"
+>
+  <label
+    class="vesper-choicebox-item"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option A
+      </p>
+      <p
+        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+      >
+        Description for option A
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      name="test-choicebox"
+      type="checkbox"
+      value="option-a"
+    />
+    <div
+      class="vesper-choicebox-input-multi-indicator"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </label>
+  <label
+    class="vesper-choicebox-item"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option B
+      </p>
+      <p
+        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+      >
+        Description for option B
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      name="test-choicebox"
+      type="checkbox"
+      value="option-b"
+    />
+    <div
+      class="vesper-choicebox-input-multi-indicator"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </label>
+  <label
+    class="vesper-choicebox-item"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option C
+      </p>
+      <p
+        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+      >
+        Description for option C
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      name="test-choicebox"
+      type="checkbox"
+      value="option-c"
+    />
+    <div
+      class="vesper-choicebox-input-multi-indicator"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </label>
+</fieldset>
+`;
+
+exports[`choicebox [snapshot] > multi-select, with descriptions, disabled 1`] = `
+<fieldset
+  class="vesper-choicebox"
+>
+  <label
+    class="vesper-choicebox-item"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option A
+      </p>
+      <p
+        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+      >
+        Description for option A
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      disabled=""
+      name="test-choicebox"
+      type="checkbox"
+      value="option-a"
+    />
+    <div
+      class="vesper-choicebox-input-multi-indicator"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </label>
+  <label
+    class="vesper-choicebox-item"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option B
+      </p>
+      <p
+        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+      >
+        Description for option B
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      disabled=""
+      name="test-choicebox"
+      type="checkbox"
+      value="option-b"
+    />
+    <div
+      class="vesper-choicebox-input-multi-indicator"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </label>
+  <label
+    class="vesper-choicebox-item"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option C
+      </p>
+      <p
+        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+      >
+        Description for option C
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      disabled=""
+      name="test-choicebox"
+      type="checkbox"
+      value="option-c"
+    />
+    <div
+      class="vesper-choicebox-input-multi-indicator"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </label>
+</fieldset>
+`;
+
+exports[`choicebox [snapshot] > single-select 1`] = `
+<fieldset
+  class="vesper-choicebox"
+>
+  <label
+    class="vesper-choicebox-item vesper-choicebox-item-compact"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option A
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      name="test-choicebox"
+      type="radio"
+      value="option-a"
+    />
+    <div
+      class="vesper-choicebox-input-single-indicator"
+    />
+  </label>
+  <label
+    class="vesper-choicebox-item vesper-choicebox-item-compact"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option B
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      name="test-choicebox"
+      type="radio"
+      value="option-b"
+    />
+    <div
+      class="vesper-choicebox-input-single-indicator"
+    />
+  </label>
+  <label
+    class="vesper-choicebox-item vesper-choicebox-item-compact"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option C
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      name="test-choicebox"
+      type="radio"
+      value="option-c"
+    />
+    <div
+      class="vesper-choicebox-input-single-indicator"
+    />
+  </label>
+</fieldset>
+`;
+
+exports[`choicebox [snapshot] > single-select, disabled 1`] = `
+<fieldset
+  class="vesper-choicebox"
+>
+  <label
+    class="vesper-choicebox-item vesper-choicebox-item-compact"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option A
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      disabled=""
+      name="test-choicebox"
+      type="radio"
+      value="option-a"
+    />
+    <div
+      class="vesper-choicebox-input-single-indicator"
+    />
+  </label>
+  <label
+    class="vesper-choicebox-item vesper-choicebox-item-compact"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option B
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      disabled=""
+      name="test-choicebox"
+      type="radio"
+      value="option-b"
+    />
+    <div
+      class="vesper-choicebox-input-single-indicator"
+    />
+  </label>
+  <label
+    class="vesper-choicebox-item vesper-choicebox-item-compact"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option C
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      disabled=""
+      name="test-choicebox"
+      type="radio"
+      value="option-c"
+    />
+    <div
+      class="vesper-choicebox-input-single-indicator"
+    />
+  </label>
+</fieldset>
+`;
+
+exports[`choicebox [snapshot] > single-select, with descriptions 1`] = `
+<fieldset
+  class="vesper-choicebox"
+>
+  <label
+    class="vesper-choicebox-item"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option A
+      </p>
+      <p
+        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+      >
+        Description for option A
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      name="test-choicebox"
+      type="radio"
+      value="option-a"
+    />
+    <div
+      class="vesper-choicebox-input-single-indicator"
+    />
+  </label>
+  <label
+    class="vesper-choicebox-item"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option B
+      </p>
+      <p
+        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+      >
+        Description for option B
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      name="test-choicebox"
+      type="radio"
+      value="option-b"
+    />
+    <div
+      class="vesper-choicebox-input-single-indicator"
+    />
+  </label>
+  <label
+    class="vesper-choicebox-item"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option C
+      </p>
+      <p
+        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+      >
+        Description for option C
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      name="test-choicebox"
+      type="radio"
+      value="option-c"
+    />
+    <div
+      class="vesper-choicebox-input-single-indicator"
+    />
+  </label>
+</fieldset>
+`;
+
+exports[`choicebox [snapshot] > single-select, with descriptions, disabled 1`] = `
+<fieldset
+  class="vesper-choicebox"
+>
+  <label
+    class="vesper-choicebox-item"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option A
+      </p>
+      <p
+        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+      >
+        Description for option A
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      disabled=""
+      name="test-choicebox"
+      type="radio"
+      value="option-a"
+    />
+    <div
+      class="vesper-choicebox-input-single-indicator"
+    />
+  </label>
+  <label
+    class="vesper-choicebox-item"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option B
+      </p>
+      <p
+        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+      >
+        Description for option B
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      disabled=""
+      name="test-choicebox"
+      type="radio"
+      value="option-b"
+    />
+    <div
+      class="vesper-choicebox-input-single-indicator"
+    />
+  </label>
+  <label
+    class="vesper-choicebox-item"
+  >
+    <div>
+      <p
+        class="vesper-typography vesper-typography-copy-sm-bold vesper-choicebox-item-label"
+      >
+        Option C
+      </p>
+      <p
+        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+      >
+        Description for option C
+      </p>
+    </div>
+    <input
+      class="vesper-choicebox-input"
+      disabled=""
+      name="test-choicebox"
+      type="radio"
+      value="option-c"
+    />
+    <div
+      class="vesper-choicebox-input-single-indicator"
+    />
+  </label>
+</fieldset>
+`;

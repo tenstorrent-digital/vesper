@@ -11,6 +11,10 @@
       "types": "./dist/components/status-indicator/status-indicator.d.ts",
       "import": "./dist/components/status-indicator/status-indicator.js"
     },
+    "./choicebox": {
+      "types": "./dist/components/choicebox/choicebox.d.ts",
+      "import": "./dist/components/choicebox/choicebox.js"
+    },
     "./show-more": {
       "types": "./dist/components/show-more/show-more.d.ts",
       "import": "./dist/components/show-more/show-more.js"
