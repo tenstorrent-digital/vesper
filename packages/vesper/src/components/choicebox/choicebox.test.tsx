@@ -670,8 +670,7 @@ describe("choicebox [unit]", () => {
           />,
         );
         const items = result.getAllByRole("checkbox") as HTMLInputElement[];
-        const lastItem = items[items.length - 1]!;
-        expect(lastItem.validationMessage).toBe(
+        expect(items[0]!.validationMessage).toBe(
           "Please select at least 2 items",
         );
       });
@@ -688,8 +687,7 @@ describe("choicebox [unit]", () => {
           />,
         );
         const items = result.getAllByRole("checkbox") as HTMLInputElement[];
-        const lastItem = items[items.length - 1]!;
-        expect(lastItem.validationMessage).toBe("");
+        expect(items[0]!.validationMessage).toBe("");
       });
 
       test("clears validity when within min/max after interaction", async () => {
@@ -703,17 +701,16 @@ describe("choicebox [unit]", () => {
           />,
         );
         const items = result.getAllByRole("checkbox") as HTMLInputElement[];
-        const lastItem = items[items.length - 1]!;
 
-        expect(lastItem.validationMessage).toBe(
+        expect(items[0]!.validationMessage).toBe(
           "Please select at least 1 item",
         );
 
         await userEvent.click(result.getByText("Option A"));
-        expect(lastItem.validationMessage).toBe("");
+        expect(items[0]!.validationMessage).toBe("");
 
         await userEvent.click(result.getByText("Option B"));
-        expect(lastItem.validationMessage).toBe("");
+        expect(items[0]!.validationMessage).toBe("");
       });
 
       test("sets validity when selection exceeds max", async () => {
@@ -726,13 +723,12 @@ describe("choicebox [unit]", () => {
           />,
         );
         const items = result.getAllByRole("checkbox") as HTMLInputElement[];
-        const lastItem = items[items.length - 1]!;
 
         await userEvent.click(result.getByText("Option A"));
-        expect(lastItem.validationMessage).toBe("");
+        expect(items[0]!.validationMessage).toBe("");
 
         await userEvent.click(result.getByText("Option B"));
-        expect(lastItem.validationMessage).toBe("Please 1 or fewer items");
+        expect(items[0]!.validationMessage).toBe("Please 1 or fewer items");
       });
 
       test("clears validity when returning within min/max", async () => {
@@ -746,12 +742,11 @@ describe("choicebox [unit]", () => {
           />,
         );
         const items = result.getAllByRole("checkbox") as HTMLInputElement[];
-        const lastItem = items[items.length - 1]!;
 
-        expect(lastItem.validationMessage).toBe("Please 1 or fewer items");
+        expect(items[0]!.validationMessage).toBe("Please 1 or fewer items");
 
         await userEvent.click(result.getByText("Option A"));
-        expect(lastItem.validationMessage).toBe("");
+        expect(items[0]!.validationMessage).toBe("");
       });
 
       test("valid when within min/max range", async () => {
@@ -766,12 +761,11 @@ describe("choicebox [unit]", () => {
           />,
         );
         const items = result.getAllByRole("checkbox") as HTMLInputElement[];
-        const lastItem = items[items.length - 1]!;
 
-        expect(lastItem.validationMessage).toBe("");
+        expect(items[0]!.validationMessage).toBe("");
 
         await userEvent.click(result.getByText("Option B"));
-        expect(lastItem.validationMessage).toBe("");
+        expect(items[0]!.validationMessage).toBe("");
       });
 
       test("invalid when below min", () => {
@@ -785,8 +779,7 @@ describe("choicebox [unit]", () => {
           />,
         );
         const items = result.getAllByRole("checkbox") as HTMLInputElement[];
-        const lastItem = items[items.length - 1]!;
-        expect(lastItem.validationMessage).toBe(
+        expect(items[0]!.validationMessage).toBe(
           "Please select at least 1 item",
         );
       });
@@ -803,10 +796,9 @@ describe("choicebox [unit]", () => {
           />,
         );
         const items = result.getAllByRole("checkbox") as HTMLInputElement[];
-        const lastItem = items[items.length - 1]!;
 
         await userEvent.click(result.getByText("Option C"));
-        expect(lastItem.validationMessage).toBe("Please 2 or fewer items");
+        expect(items[0]!.validationMessage).toBe("Please 2 or fewer items");
       });
 
       test("validity is updated when min prop changes", () => {
@@ -820,13 +812,13 @@ describe("choicebox [unit]", () => {
           />,
         );
 
-        const getLastCheckbox = () => {
+        const getFirstCheckbox = () => {
           const fieldset = document.querySelector("fieldset")!;
           const inputs = fieldset.querySelectorAll<HTMLInputElement>("input");
-          return inputs[inputs.length - 1]!;
+          return inputs[0]!;
         };
 
-        expect(getLastCheckbox().validationMessage).toBe("");
+        expect(getFirstCheckbox().validationMessage).toBe("");
 
         rerender(
           <Choicebox
@@ -838,7 +830,7 @@ describe("choicebox [unit]", () => {
           />,
         );
 
-        expect(getLastCheckbox().validationMessage).toBe(
+        expect(getFirstCheckbox().validationMessage).toBe(
           "Please select at least 3 items",
         );
       });
@@ -854,13 +846,13 @@ describe("choicebox [unit]", () => {
           />,
         );
 
-        const getLastCheckbox = () => {
+        const getFirstCheckbox = () => {
           const fieldset = document.querySelector("fieldset")!;
           const inputs = fieldset.querySelectorAll<HTMLInputElement>("input");
-          return inputs[inputs.length - 1]!;
+          return inputs[0]!;
         };
 
-        expect(getLastCheckbox().validationMessage).toBe("");
+        expect(getFirstCheckbox().validationMessage).toBe("");
 
         rerender(
           <Choicebox
@@ -872,12 +864,12 @@ describe("choicebox [unit]", () => {
           />,
         );
 
-        expect(getLastCheckbox().validationMessage).toBe(
+        expect(getFirstCheckbox().validationMessage).toBe(
           "Please 1 or fewer items",
         );
       });
 
-      test("validity only set on last checkbox", async () => {
+      test("validity only set on first checkbox", async () => {
         const result = render(
           <Choicebox
             name="test"
@@ -889,11 +881,11 @@ describe("choicebox [unit]", () => {
         const items = result.getAllByRole("checkbox") as HTMLInputElement[];
 
         // Only the last checkbox should have the validity message
-        expect(items[0]!.validationMessage).toBe("");
-        expect(items[1]!.validationMessage).toBe("");
-        expect(items[2]!.validationMessage).toBe(
+        expect(items[0]!.validationMessage).toBe(
           "Please select at least 2 items",
         );
+        expect(items[1]!.validationMessage).toBe("");
+        expect(items[2]!.validationMessage).toBe("");
       });
     });
   });

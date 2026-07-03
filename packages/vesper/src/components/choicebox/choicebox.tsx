@@ -271,19 +271,18 @@ function setMinMaxValidity(
   if (checkboxes.length === 0) return;
 
   const numChecked = checkboxes.filter((c) => c.checked).length;
-  const lastCheckbox = checkboxes[checkboxes.length - 1]!;
 
   if (numChecked < min) {
-    lastCheckbox.setCustomValidity(
+    checkboxes[0]!.setCustomValidity(
       `Please select at least ${min} ${min === 1 ? "item" : "items"}`,
     );
     return;
   }
 
   if (numChecked > max) {
-    lastCheckbox.setCustomValidity(`Please ${max} or fewer items`);
+    checkboxes[0]!.setCustomValidity(`Please ${max} or fewer items`);
     return;
   }
 
-  lastCheckbox.setCustomValidity("");
+  checkboxes[0]!.setCustomValidity("");
 }
