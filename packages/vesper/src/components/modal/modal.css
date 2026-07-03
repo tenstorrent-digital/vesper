@@ -37,7 +37,6 @@
   border: 1px solid var(--vesper-stone-400);
   box-shadow: var(--vesper-shadow-300);
   max-width: calc(100vw - var(--vesper-spacing-16));
-  max-height: min(calc(100vh - var(--vesper-spacing-16)), 640px);
   display: flex;
   flex-direction: column;
 }
@@ -46,6 +45,7 @@
   flex-shrink: 0;
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
   gap: var(--vesper-spacing-5);
   padding: var(--vesper-spacing-6);
 }

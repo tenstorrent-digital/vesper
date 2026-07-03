@@ -35,6 +35,7 @@ export interface ModalProps extends Omit<
   title: string;
   description: string;
   width?: number | string;
+  maxHeight?: number | string;
   buttons?: Omit<ButtonProps, "size">[];
   buttonsAlignment?: ModalButtonsAlignment;
   ref?: RefObject<ModalRef>;
@@ -48,6 +49,7 @@ export function Modal({
   title,
   description,
   width = 452,
+  maxHeight = 640,
   buttons,
   buttonsAlignment = "end",
   children,
@@ -88,7 +90,13 @@ export function Modal({
       aria-describedby={describedBy}
       {...props}
     >
-      <div className="vesper-modal-container" style={{ width }}>
+      <div
+        className="vesper-modal-container"
+        style={{
+          width,
+          maxHeight: `min(calc(100vh - var(--vesper-spacing-16)), ${typeof maxHeight === "number" ? maxHeight + "px" : maxHeight})`,
+        }}
+      >
         <div className="vesper-modal-header">
           <div>
             <Typography
@@ -142,7 +150,9 @@ export function useModalRef() {
   return useRef<ModalRef>({ open() {}, close() {} });
 }
 
-export function useModal(options: Omit<ModalProps, "ref" | "children">) {
+export type UseModalOptions = Omit<ModalProps, "ref" | "children">;
+
+export function useModal(options: UseModalOptions) {
   const ref = useModalRef();
 
   const open = useCallback(() => {
