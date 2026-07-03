@@ -162,7 +162,7 @@ function ChoiceboxMultiSelect({
             multiselect
             option={option}
             disabled={disabled}
-            name={name + "[]"}
+            name={name}
             onChange={() => {
               if (!onChange) return;
               onChange(

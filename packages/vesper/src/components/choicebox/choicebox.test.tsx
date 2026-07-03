@@ -494,7 +494,7 @@ describe("choicebox [unit]", () => {
       );
       const items = result.getAllByRole("checkbox");
       items.forEach((item) => {
-        expect(item).toHaveAttribute("name", "test-group[]");
+        expect(item).toHaveAttribute("name", "test-group");
       });
     });
 
