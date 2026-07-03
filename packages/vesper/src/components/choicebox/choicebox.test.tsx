@@ -728,7 +728,9 @@ describe("choicebox [unit]", () => {
         expect(items[0]!.validationMessage).toBe("");
 
         await userEvent.click(result.getByText("Option B"));
-        expect(items[0]!.validationMessage).toBe("Please 1 or fewer items");
+        expect(items[0]!.validationMessage).toBe(
+          "Please select 1 or fewer items",
+        );
       });
 
       test("clears validity when returning within min/max", async () => {
@@ -743,7 +745,9 @@ describe("choicebox [unit]", () => {
         );
         const items = result.getAllByRole("checkbox") as HTMLInputElement[];
 
-        expect(items[0]!.validationMessage).toBe("Please 1 or fewer items");
+        expect(items[0]!.validationMessage).toBe(
+          "Please select 1 or fewer items",
+        );
 
         await userEvent.click(result.getByText("Option A"));
         expect(items[0]!.validationMessage).toBe("");
@@ -798,7 +802,9 @@ describe("choicebox [unit]", () => {
         const items = result.getAllByRole("checkbox") as HTMLInputElement[];
 
         await userEvent.click(result.getByText("Option C"));
-        expect(items[0]!.validationMessage).toBe("Please 2 or fewer items");
+        expect(items[0]!.validationMessage).toBe(
+          "Please select 2 or fewer items",
+        );
       });
 
       test("validity is updated when min prop changes", () => {
@@ -865,7 +871,7 @@ describe("choicebox [unit]", () => {
         );
 
         expect(getFirstCheckbox().validationMessage).toBe(
-          "Please 1 or fewer items",
+          "Please select 1 or fewer items",
         );
       });
 

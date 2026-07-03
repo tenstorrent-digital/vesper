@@ -280,7 +280,7 @@ function setMinMaxValidity(
   }
 
   if (numChecked > max) {
-    checkboxes[0]!.setCustomValidity(`Please ${max} or fewer items`);
+    checkboxes[0]!.setCustomValidity(`Please select ${max} or fewer items`);
     return;
   }
 
