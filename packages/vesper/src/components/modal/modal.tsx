@@ -133,9 +133,11 @@ export function Modal({
           <Close />
         </button>
       </div>
-      <Typography as="div" variant="copy-md" className="vesper-modal-content">
-        {children}
-      </Typography>
+      {children && (
+        <Typography as="div" variant="copy-md" className="vesper-modal-content">
+          {children}
+        </Typography>
+      )}
       {!!buttons?.length && (
         <div
           className={cn(
