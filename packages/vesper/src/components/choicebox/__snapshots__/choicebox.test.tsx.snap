@@ -16,7 +16,7 @@ exports[`choicebox [snapshot] > multi-select 1`] = `
     </div>
     <input
       class="vesper-choicebox-input"
-      name="test-choicebox[]"
+      name="test-choicebox"
       type="checkbox"
       value="option-a"
     />
@@ -46,7 +46,7 @@ exports[`choicebox [snapshot] > multi-select 1`] = `
     </div>
     <input
       class="vesper-choicebox-input"
-      name="test-choicebox[]"
+      name="test-choicebox"
       type="checkbox"
       value="option-b"
     />
@@ -76,7 +76,7 @@ exports[`choicebox [snapshot] > multi-select 1`] = `
     </div>
     <input
       class="vesper-choicebox-input"
-      name="test-choicebox[]"
+      name="test-choicebox"
       type="checkbox"
       value="option-c"
     />
@@ -114,7 +114,7 @@ exports[`choicebox [snapshot] > multi-select, disabled 1`] = `
     <input
       class="vesper-choicebox-input"
       disabled=""
-      name="test-choicebox[]"
+      name="test-choicebox"
       type="checkbox"
       value="option-a"
     />
@@ -145,7 +145,7 @@ exports[`choicebox [snapshot] > multi-select, disabled 1`] = `
     <input
       class="vesper-choicebox-input"
       disabled=""
-      name="test-choicebox[]"
+      name="test-choicebox"
       type="checkbox"
       value="option-b"
     />
@@ -176,7 +176,7 @@ exports[`choicebox [snapshot] > multi-select, disabled 1`] = `
     <input
       class="vesper-choicebox-input"
       disabled=""
-      name="test-choicebox[]"
+      name="test-choicebox"
       type="checkbox"
       value="option-c"
     />
@@ -218,7 +218,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions 1`] = `
     </div>
     <input
       class="vesper-choicebox-input"
-      name="test-choicebox[]"
+      name="test-choicebox"
       type="checkbox"
       value="option-a"
     />
@@ -253,7 +253,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions 1`] = `
     </div>
     <input
       class="vesper-choicebox-input"
-      name="test-choicebox[]"
+      name="test-choicebox"
       type="checkbox"
       value="option-b"
     />
@@ -288,7 +288,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions 1`] = `
     </div>
     <input
       class="vesper-choicebox-input"
-      name="test-choicebox[]"
+      name="test-choicebox"
       type="checkbox"
       value="option-c"
     />
@@ -331,7 +331,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions, disabled 1`] = 
     <input
       class="vesper-choicebox-input"
       disabled=""
-      name="test-choicebox[]"
+      name="test-choicebox"
       type="checkbox"
       value="option-a"
     />
@@ -367,7 +367,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions, disabled 1`] = 
     <input
       class="vesper-choicebox-input"
       disabled=""
-      name="test-choicebox[]"
+      name="test-choicebox"
       type="checkbox"
       value="option-b"
     />
@@ -403,7 +403,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions, disabled 1`] = 
     <input
       class="vesper-choicebox-input"
       disabled=""
-      name="test-choicebox[]"
+      name="test-choicebox"
       type="checkbox"
       value="option-c"
     />

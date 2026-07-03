@@ -658,6 +658,244 @@ describe("choicebox [unit]", () => {
       await userEvent.keyboard(" ");
       expect(items[0]).not.toBeChecked();
     });
+
+    describe("min/max validity", () => {
+      test("sets custom validity on mount", () => {
+        const result = render(
+          <Choicebox
+            name="test"
+            multiselect
+            min={2}
+            options={CHOICEBOX_OPTIONS}
+          />,
+        );
+        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+        const lastItem = items[items.length - 1]!;
+        expect(lastItem.validationMessage).toBe(
+          "Please select at least 2 items",
+        );
+      });
+
+      test("no validity error when defaultValues within min/max", () => {
+        const result = render(
+          <Choicebox
+            name="test"
+            multiselect
+            min={1}
+            max={3}
+            defaultValues={["option-a", "option-b"]}
+            options={CHOICEBOX_OPTIONS}
+          />,
+        );
+        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+        const lastItem = items[items.length - 1]!;
+        expect(lastItem.validationMessage).toBe("");
+      });
+
+      test("clears validity when within min/max after interaction", async () => {
+        const result = render(
+          <Choicebox
+            name="test"
+            multiselect
+            min={1}
+            max={2}
+            options={CHOICEBOX_OPTIONS}
+          />,
+        );
+        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+        const lastItem = items[items.length - 1]!;
+
+        expect(lastItem.validationMessage).toBe(
+          "Please select at least 1 item",
+        );
+
+        await userEvent.click(result.getByText("Option A"));
+        expect(lastItem.validationMessage).toBe("");
+
+        await userEvent.click(result.getByText("Option B"));
+        expect(lastItem.validationMessage).toBe("");
+      });
+
+      test("sets validity when selection exceeds max", async () => {
+        const result = render(
+          <Choicebox
+            name="test"
+            multiselect
+            max={1}
+            options={CHOICEBOX_OPTIONS}
+          />,
+        );
+        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+        const lastItem = items[items.length - 1]!;
+
+        await userEvent.click(result.getByText("Option A"));
+        expect(lastItem.validationMessage).toBe("");
+
+        await userEvent.click(result.getByText("Option B"));
+        expect(lastItem.validationMessage).toBe("Please 1 or fewer items");
+      });
+
+      test("clears validity when returning within min/max", async () => {
+        const result = render(
+          <Choicebox
+            name="test"
+            multiselect
+            max={1}
+            defaultValues={["option-a", "option-b"]}
+            options={CHOICEBOX_OPTIONS}
+          />,
+        );
+        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+        const lastItem = items[items.length - 1]!;
+
+        expect(lastItem.validationMessage).toBe("Please 1 or fewer items");
+
+        await userEvent.click(result.getByText("Option A"));
+        expect(lastItem.validationMessage).toBe("");
+      });
+
+      test("valid when within min/max range", async () => {
+        const result = render(
+          <Choicebox
+            name="test"
+            multiselect
+            min={1}
+            max={2}
+            defaultValues={["option-a"]}
+            options={CHOICEBOX_OPTIONS}
+          />,
+        );
+        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+        const lastItem = items[items.length - 1]!;
+
+        expect(lastItem.validationMessage).toBe("");
+
+        await userEvent.click(result.getByText("Option B"));
+        expect(lastItem.validationMessage).toBe("");
+      });
+
+      test("invalid when below min", () => {
+        const result = render(
+          <Choicebox
+            name="test"
+            multiselect
+            min={1}
+            max={2}
+            options={CHOICEBOX_OPTIONS}
+          />,
+        );
+        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+        const lastItem = items[items.length - 1]!;
+        expect(lastItem.validationMessage).toBe(
+          "Please select at least 1 item",
+        );
+      });
+
+      test("invalid when above max", async () => {
+        const result = render(
+          <Choicebox
+            name="test"
+            multiselect
+            min={1}
+            max={2}
+            defaultValues={["option-a", "option-b"]}
+            options={CHOICEBOX_OPTIONS}
+          />,
+        );
+        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+        const lastItem = items[items.length - 1]!;
+
+        await userEvent.click(result.getByText("Option C"));
+        expect(lastItem.validationMessage).toBe("Please 2 or fewer items");
+      });
+
+      test("validity is updated when min prop changes", () => {
+        const { rerender } = render(
+          <Choicebox
+            name="test"
+            multiselect
+            min={1}
+            defaultValues={["option-a"]}
+            options={CHOICEBOX_OPTIONS}
+          />,
+        );
+
+        const getLastCheckbox = () => {
+          const fieldset = document.querySelector("fieldset")!;
+          const inputs = fieldset.querySelectorAll<HTMLInputElement>("input");
+          return inputs[inputs.length - 1]!;
+        };
+
+        expect(getLastCheckbox().validationMessage).toBe("");
+
+        rerender(
+          <Choicebox
+            name="test"
+            multiselect
+            min={3}
+            defaultValues={["option-a"]}
+            options={CHOICEBOX_OPTIONS}
+          />,
+        );
+
+        expect(getLastCheckbox().validationMessage).toBe(
+          "Please select at least 3 items",
+        );
+      });
+
+      test("validity is updated when max prop changes", () => {
+        const { rerender } = render(
+          <Choicebox
+            name="test"
+            multiselect
+            max={3}
+            defaultValues={["option-a", "option-b", "option-c"]}
+            options={CHOICEBOX_OPTIONS}
+          />,
+        );
+
+        const getLastCheckbox = () => {
+          const fieldset = document.querySelector("fieldset")!;
+          const inputs = fieldset.querySelectorAll<HTMLInputElement>("input");
+          return inputs[inputs.length - 1]!;
+        };
+
+        expect(getLastCheckbox().validationMessage).toBe("");
+
+        rerender(
+          <Choicebox
+            name="test"
+            multiselect
+            max={1}
+            defaultValues={["option-a", "option-b", "option-c"]}
+            options={CHOICEBOX_OPTIONS}
+          />,
+        );
+
+        expect(getLastCheckbox().validationMessage).toBe(
+          "Please 1 or fewer items",
+        );
+      });
+
+      test("validity only set on last checkbox", async () => {
+        const result = render(
+          <Choicebox
+            name="test"
+            multiselect
+            min={2}
+            options={CHOICEBOX_OPTIONS}
+          />,
+        );
+        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+
+        // Only the last checkbox should have the validity message
+        expect(items[0]!.validationMessage).toBe("");
+        expect(items[1]!.validationMessage).toBe("");
+        expect(items[2]!.validationMessage).toBe(
+          "Please select at least 2 items",
+        );
+      });
+    });
   });
 });
 
