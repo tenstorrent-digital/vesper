@@ -1,2 +1,42 @@
 .vesper-toast {
+  padding: var(--vesper-spacing-5);
+  box-shadow: var(--vesper-shadow-200);
+  border: 1px solid var(--vesper-stone-300);
+  background: var(--vesper-stone-0);
+  border-radius: var(--vesper-radius-2);
+  margin: var(--vesper-spacing-2) var(--vesper-spacing-6);
+}
+
+.vesper-toast-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--vesper-spacing-3);
+}
+
+.vesper-toast-children {
+  color: var(--vesper-stone-900);
+}
+
+.vesper-toast-close-button {
+  cursor: pointer;
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.vesper-toast-buttons {
+  display: flex;
+  gap: var(--vesper-spacing-3);
+  justify-content: flex-end;
+  margin-top: var(--vesper-spacing-3);
+}
+
+.vesper-toasts {
+  width: 420px;
+  max-width: 100vw;
+  position: fixed;
+  bottom: 0;
+  right: 0;
 }
