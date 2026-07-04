@@ -7,13 +7,24 @@ import { createPortal } from "react-dom";
 
 export interface ToastProps extends ComponentProps<"div"> {
   buttons?: Omit<ButtonProps, "size" | "as">[];
+  timeout?: number | false;
   dismissable?: boolean;
   dismiss?(): void;
 }
 
+const TOAST_DEFAULT_TIMEOUT = 5000;
+
 export function Toast(toast: ToastProps) {
-  const { buttons, children, className, dismissable, dismiss, ...props } =
-    toast;
+  const {
+    buttons,
+    children,
+    className,
+    dismissable,
+    dismiss,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    timeout = TOAST_DEFAULT_TIMEOUT,
+    ...props
+  } = toast;
 
   return (
     <div className={cn("vesper-toast", className)} {...props}>
@@ -50,7 +61,7 @@ export function Toast(toast: ToastProps) {
 
 let currentKey = -1;
 
-let toasts: { toast: ToastProps; key: string }[] = [];
+let toasts: { toast: Omit<ToastProps, "dismiss">; key: string }[] = [];
 
 let listeners: (() => void)[] = [];
 
@@ -69,24 +80,26 @@ const emitChange = () => {
   listeners.forEach((listener) => listener());
 };
 
-export const addToast = (
-  toast: ToastProps,
-  dismiss = 5000 as number | false,
-) => {
+export const addToast = (toast: Omit<ToastProps, "dismiss">) => {
   currentKey++;
   const key = `vesper-toast-${currentKey}`;
 
-  toasts = [...toasts, { toast, key }];
+  const timeoutDuration = toast.timeout ?? TOAST_DEFAULT_TIMEOUT;
 
-  if (dismiss !== false) {
+  toasts = [...toasts, { toast: { ...toast, timeout: timeoutDuration }, key }];
+
+  if (timeoutDuration !== false) {
     const timeout = setTimeout(() => {
       dismissToast(key);
       timeouts = timeouts.filter((t) => t !== timeout);
-    }, dismiss);
+    }, timeoutDuration);
+
     timeouts.push(timeout);
   }
 
   emitChange();
+
+  return () => dismissToast(key);
 };
 
 const dismissToast = (key: string) => {

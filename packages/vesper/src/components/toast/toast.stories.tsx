@@ -8,13 +8,17 @@ function ToastStoryComponent() {
     <>
       <Button
         variant="contrast"
-        onClick={() =>
-          addToast({
-            children: "Hello world!",
+        onClick={() => {
+          const dismissToast = addToast({
+            children: "Hello world!\n\n\n",
             dismissable: true,
-            buttons: [{ children: "Undo" }, { children: "Dismiss" }],
-          })
-        }
+            timeout: false,
+            buttons: [
+              { children: "Undo" },
+              { children: "Dismiss", onClick: () => dismissToast() },
+            ],
+          });
+        }}
       >
         add toast
       </Button>
