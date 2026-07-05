@@ -49,13 +49,7 @@ function Toast({
   }, [state, id]);
 
   return (
-    <div
-      ref={wrapperRef}
-      className="vesper-toast-wrapper"
-      aria-hidden={state === "dismissed"}
-      role="status"
-      aria-live="polite"
-    >
+    <div ref={wrapperRef} className="vesper-toast-wrapper" role="status">
       <div
         ref={toastRef}
         className={cn("vesper-toast", `vesper-toast-${state}`)}
@@ -100,7 +94,7 @@ export function Toasts() {
   const toasts = useToasts();
 
   return createPortal(
-    <div className="vesper-toasts-container">
+    <div className="vesper-toasts-container" role="region">
       {toasts.map(({ id, options, state }) => (
         <Toast key={id} id={id} options={options} state={state} />
       ))}
