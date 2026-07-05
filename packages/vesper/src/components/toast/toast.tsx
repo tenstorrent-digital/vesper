@@ -1,30 +1,45 @@
-import { type ComponentProps, useSyncExternalStore } from "react";
+import {
+  type ComponentProps,
+  ReactNode,
+  useEffect,
+  useSyncExternalStore,
+} from "react";
 import { Button, type ButtonProps } from "@/components/button/button";
 import { cn } from "@/utils/cn";
 import { Typography } from "@/components/typography/typography";
 import { Close } from "@/components/icons/icons";
 import { createPortal } from "react-dom";
 
-export interface ToastProps extends ComponentProps<"div"> {
+export interface ToastOptions {
+  content: ReactNode;
   buttons?: Omit<ButtonProps, "size" | "as">[];
   timeout?: number | false;
   dismissable?: boolean;
-  dismiss?(): void;
+}
+
+interface ToastProps
+  extends ToastOptions, Omit<ComponentProps<"div">, "children" | "content"> {
+  _id: string;
 }
 
 const TOAST_DEFAULT_TIMEOUT = 5000;
 
-export function Toast(toast: ToastProps) {
+function Toast(toast: ToastProps) {
   const {
     buttons,
-    children,
+    content,
     className,
     dismissable,
-    dismiss,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     timeout = TOAST_DEFAULT_TIMEOUT,
+    _id,
     ...props
   } = toast;
+
+  useEffect(() => {
+    if (timeout === false) return;
+    const t = setTimeout(() => dismissToast(_id), timeout);
+    return () => clearTimeout(t);
+  }, [timeout, _id]);
 
   return (
     <div className={cn("vesper-toast", className)} {...props}>
@@ -34,13 +49,13 @@ export function Toast(toast: ToastProps) {
           className="vesper-toast-children"
           variant="copy-sm"
         >
-          {children}
+          {content}
         </Typography>
         {dismissable && (
           <button
             aria-label="Dismiss"
             className="vesper-toast-close-button"
-            onClick={dismiss}
+            onClick={() => dismissToast(_id)}
           >
             <Close />
           </button>
@@ -63,9 +78,9 @@ export function Toast(toast: ToastProps) {
   );
 }
 
-let currentKey = -1;
+let currentId = -1;
 
-let toasts: { toast: Omit<ToastProps, "dismiss">; key: string }[] = [];
+let toasts: { toast: ToastOptions; _id: string }[] = [];
 
 let listeners: (() => void)[] = [];
 
@@ -84,17 +99,17 @@ const emitChange = () => {
   listeners.forEach((listener) => listener());
 };
 
-export const addToast = (toast: Omit<ToastProps, "dismiss">) => {
-  currentKey++;
-  const key = `vesper-toast-${currentKey}`;
+export const addToast = (toast: ToastOptions) => {
+  currentId++;
+  const _id = `vesper-toast-${currentId}`;
 
   const timeoutDuration = toast.timeout ?? TOAST_DEFAULT_TIMEOUT;
 
-  toasts = [...toasts, { toast: { ...toast, timeout: timeoutDuration }, key }];
+  toasts = [...toasts, { toast: { ...toast, timeout: timeoutDuration }, _id }];
 
   if (timeoutDuration !== false) {
     const timeout = setTimeout(() => {
-      dismissToast(key);
+      dismissToast(_id);
       timeouts = timeouts.filter((t) => t !== timeout);
     }, timeoutDuration);
 
@@ -103,11 +118,11 @@ export const addToast = (toast: Omit<ToastProps, "dismiss">) => {
 
   emitChange();
 
-  return () => dismissToast(key);
+  return () => dismissToast(_id);
 };
 
-const dismissToast = (key: string) => {
-  toasts = toasts.filter((t) => t.key !== key);
+const dismissToast = (_id: string) => {
+  toasts = toasts.filter((t) => t._id !== _id);
   emitChange();
 };
 
@@ -116,8 +131,8 @@ export function Toasts() {
 
   return createPortal(
     <div className="vesper-toasts">
-      {toasts.map(({ key, toast }) => (
-        <Toast key={key} {...toast} dismiss={() => dismissToast(key)} />
+      {toasts.map(({ _id, toast }) => (
+        <Toast key={_id} _id={_id} {...toast} />
       ))}
     </div>,
     document.body,

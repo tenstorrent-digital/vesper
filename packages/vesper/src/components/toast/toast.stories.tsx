@@ -10,7 +10,7 @@ function ToastStoryComponent() {
         variant="contrast"
         onClick={() => {
           const dismissToast = addToast({
-            children: "Hello world!\n\n\n",
+            content: "Hello world!\n\n\n",
             dismissable: true,
             timeout: false,
             buttons: [
