@@ -4,7 +4,6 @@
   border: 1px solid var(--vesper-stone-300);
   background: var(--vesper-stone-0);
   border-radius: var(--vesper-radius-2);
-  margin: var(--vesper-spacing-2) var(--vesper-spacing-6);
 }
 
 .vesper-toast-content {
