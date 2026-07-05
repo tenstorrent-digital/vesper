@@ -11,13 +11,7 @@
 .vesper-toast-wrapper {
   position: relative;
   overflow: visible;
-  transition: height var(--vesper-transition-duration-default) ease;
-}
-.vesper-toast-active {
-  pointer-events: auto;
-}
-.vesper-toast-dismissed {
-  pointer-events: none;
+  margin-top: var(--vesper-spacing-4);
 }
 
 .vesper-toast {
@@ -29,6 +23,16 @@
   border: 1px solid var(--vesper-stone-300);
   background: var(--vesper-stone-0);
   border-radius: var(--vesper-radius-2);
+}
+.vesper-toast-entering {
+  pointer-events: auto;
+}
+.vesper-toast-active {
+  position: relative;
+  pointer-events: auto;
+}
+.vesper-toast-dismissed {
+  pointer-events: none;
 }
 
 .vesper-toast-content {

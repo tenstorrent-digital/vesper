@@ -1,10 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/button/button";
 import { Typography } from "@/components/typography/typography";
 import { Close } from "@/components/icons/icons";
 import { cn } from "@/utils/cn";
-import { useToasts, dismissToast, type ToastData, destroyToast } from "./store";
+import {
+  useToasts,
+  dismissToast,
+  type ToastData,
+  destroyToast,
+  updateToastState,
+} from "./store";
 import { animateToastEnter, animateToastExit } from "./animations";
 
 export { type ToastOptions, addToast } from "./store";
@@ -19,18 +25,6 @@ function Toast({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const toastRef = useRef<HTMLDivElement>(null);
 
-  const [observedHeight, setObservedHeight] = useState(0);
-
-  useEffect(() => {
-    if (!toastRef.current) return;
-
-    const observer = new ResizeObserver((entries) => {
-      setObservedHeight(entries[0]?.borderBoxSize[0]?.blockSize || 0);
-    });
-    observer.observe(toastRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   useEffect(() => {
     if (timeout === false) return;
     const t = setTimeout(() => dismissToast(id), timeout);
@@ -39,11 +33,13 @@ function Toast({
 
   useEffect(() => {
     switch (state) {
-      case "active":
-        animateToastEnter(wrapperRef.current);
+      case "entering":
+        animateToastEnter(wrapperRef.current, toastRef.current, () =>
+          updateToastState(id, "active"),
+        );
         break;
       case "dismissed":
-        animateToastExit(wrapperRef.current)?.finished.then(() =>
+        animateToastExit(wrapperRef.current, toastRef.current, () =>
           destroyToast(id),
         );
         break;
@@ -55,7 +51,6 @@ function Toast({
   return (
     <div
       ref={wrapperRef}
-      style={{ height: state === "active" ? observedHeight : 0 }}
       className="vesper-toast-wrapper"
       aria-hidden={state === "dismissed"}
       role="status"

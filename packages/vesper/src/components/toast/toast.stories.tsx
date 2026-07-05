@@ -11,11 +11,8 @@ function ToastStoryComponent() {
         variant="contrast"
         onClick={() => {
           const dismissToast = addToast({
-            content: (
-              <Accordion title="This expands">
-                What does it expand to??
-              </Accordion>
-            ),
+            content:
+              "Just relax and let it flow. That easy. Exercising the imagination, experimenting with talents, being creative; these things, to me, are truly the windows to your soul. Go out on a limb - that's where the fruit is.",
             dismissable: true,
             timeout: false,
             buttons: [

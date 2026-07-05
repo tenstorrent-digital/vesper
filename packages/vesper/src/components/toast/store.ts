@@ -8,7 +8,7 @@ export interface ToastOptions {
   dismissable?: boolean;
 }
 
-export type ToastState = "active" | "dismissed";
+export type ToastState = "entering" | "active" | "dismissed";
 
 export interface ToastData {
   options: ToastOptions;
@@ -41,7 +41,7 @@ class ToastsStore {
     const toast: ToastData = {
       options: { ...options, timeout },
       id: crypto.randomUUID(),
-      state: "active",
+      state: "entering",
     };
 
     this.toasts = [...this.toasts, toast];
@@ -54,11 +54,16 @@ class ToastsStore {
     return () => this.dismissToast(toast.id);
   };
 
-  static dismissToast = (id: string) => {
+  static updateToastState = (id: string, state: ToastState) => {
     this.toasts = this.toasts.map((t) => {
       if (t.id !== id) return t;
-      return { ...t, state: "dismissed" };
+      return { ...t, state };
     });
+    this.emitChange();
+  };
+
+  static dismissToast = (id: string) => {
+    this.updateToastState(id, "dismissed");
     this.emitChange();
   };
 
@@ -71,6 +76,8 @@ class ToastsStore {
 export const addToast = ToastsStore.addToast;
 
 export const dismissToast = ToastsStore.dismissToast;
+
+export const updateToastState = ToastsStore.updateToastState;
 
 export const destroyToast = ToastsStore.destroyToast;
 
