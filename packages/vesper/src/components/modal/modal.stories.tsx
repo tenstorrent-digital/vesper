@@ -22,12 +22,10 @@ function ModalStoryComponent({
     buttons: withButtons
       ? [
           {
-            variant: "tertiary",
             children: "cancel",
             onClick: () => modal.close(),
           },
           {
-            variant: "primary",
             children: "continue",
             onClick: () => modal.close(),
           },

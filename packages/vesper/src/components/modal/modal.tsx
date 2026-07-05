@@ -145,9 +145,13 @@ export function Modal({
             `vesper-modal-buttons-${buttonsAlignment}`,
           )}
         >
-          {buttons!.map((button, index) => (
-            <Button key={index} {...button} />
-          ))}
+          {buttons!.map((button, index) => {
+            const variant =
+              button.variant ||
+              (index === buttons.length - 1 ? "primary" : "tertiary");
+
+            return <Button key={index} {...button} variant={variant} />;
+          })}
         </div>
       )}
     </>
