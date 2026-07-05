@@ -49,9 +49,21 @@
 .vesper-toast-close-button {
   cursor: pointer;
   color: var(--vesper-stone-900);
+  width: 16px;
+  height: 16px;
+  border-radius: var(--vesper-radius-half);
   svg {
-    width: 16px;
-    height: 16px;
+    width: 100%;
+  }
+  @media (forced-colors: active) {
+    &:focus-visible {
+      outline: 2px solid CanvasText;
+    }
+  }
+  @media not (forced-colors: active) {
+    &:focus-visible {
+      box-shadow: var(--vesper-shadow-focus-ring);
+    }
   }
 }
 
