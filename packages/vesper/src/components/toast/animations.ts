@@ -1,3 +1,6 @@
+const getIsReducedMotion = () =>
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 export const animateToastEnter = (
   wrapper: HTMLDivElement | null,
   toast: HTMLDivElement | null,
@@ -14,7 +17,7 @@ export const animateToastEnter = (
         marginTop: ["0px", "var(--vesper-spacing-4)"],
         height: ["0px", (toast?.getBoundingClientRect().height || 0) + "px"],
       },
-      { duration: 300, easing: "ease" },
+      { duration: getIsReducedMotion() ? 0 : 300, easing: "ease" },
     )
     .finished.then(cb);
 
@@ -34,6 +37,10 @@ export const animateToastExit = (
         marginTop: ["var(--vesper-spacing-4)", "0px"],
         height: [(toast?.getBoundingClientRect().height || 0) + "px", "0px"],
       },
-      { fill: "forwards", duration: 300, easing: "ease" },
+      {
+        fill: "forwards",
+        duration: getIsReducedMotion() ? 0 : 300,
+        easing: "ease",
+      },
     )
     .finished.then(cb);
