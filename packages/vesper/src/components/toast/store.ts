@@ -1,4 +1,4 @@
-import { type ReactNode, useMemo, useSyncExternalStore } from "react";
+import { type ReactNode, useSyncExternalStore } from "react";
 import { type ButtonProps } from "@/components/button/button";
 
 export interface ToastOptions {
@@ -8,10 +8,18 @@ export interface ToastOptions {
   dismissable?: boolean;
 }
 
+export type ToastState = "active" | "dismissed";
+
+export interface ToastData {
+  options: ToastOptions;
+  id: string;
+  state: ToastState;
+}
+
 export const TOAST_DEFAULT_TIMEOUT = 5000;
 
 class ToastsStore {
-  static toasts: { options: ToastOptions; id: string }[] = [];
+  static toasts: ToastData[] = [];
 
   static listeners = new Set<() => void>();
   static subscribe = (listener: () => void) => {
@@ -30,9 +38,10 @@ class ToastsStore {
   static addToast = (options: ToastOptions) => {
     const timeout = options.timeout ?? TOAST_DEFAULT_TIMEOUT;
 
-    const toast = {
+    const toast: ToastData = {
       options: { ...options, timeout },
       id: crypto.randomUUID(),
+      state: "active",
     };
 
     this.toasts = [...this.toasts, toast];
@@ -45,8 +54,16 @@ class ToastsStore {
     return () => this.dismissToast(toast.id);
   };
 
-  static dismissToast = (_id: string) => {
-    this.toasts = this.toasts.filter((t) => t.id !== _id);
+  static dismissToast = (id: string) => {
+    this.toasts = this.toasts.map((t) => {
+      if (t.id !== id) return t;
+      return { ...t, state: "dismissed" };
+    });
+    this.emitChange();
+  };
+
+  static destroyToast = (id: string) => {
+    this.toasts = this.toasts.filter((t) => t.id !== id);
     this.emitChange();
   };
 }
@@ -54,6 +71,8 @@ class ToastsStore {
 export const addToast = ToastsStore.addToast;
 
 export const dismissToast = ToastsStore.dismissToast;
+
+export const destroyToast = ToastsStore.destroyToast;
 
 export const useToasts = () =>
   useSyncExternalStore(

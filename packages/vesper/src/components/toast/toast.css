@@ -1,4 +1,29 @@
+.vesper-toasts-container {
+  pointer-events: none;
+  padding: var(--vesper-spacing-6);
+  width: 420px;
+  max-width: 100vw;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.vesper-toast-wrapper {
+  position: relative;
+  overflow: visible;
+  transition: height var(--vesper-transition-duration-default) ease;
+}
+.vesper-toast-active {
+  pointer-events: auto;
+}
+.vesper-toast-dismissed {
+  pointer-events: none;
+}
+
 .vesper-toast {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   padding: var(--vesper-spacing-5);
   box-shadow: var(--vesper-shadow-200);
   border: 1px solid var(--vesper-stone-300);
@@ -9,12 +34,12 @@
 .vesper-toast-content {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
   gap: var(--vesper-spacing-3);
 }
 
 .vesper-toast-children {
   color: var(--vesper-stone-900);
+  flex: 1;
 }
 
 .vesper-toast-close-button {
@@ -31,12 +56,4 @@
   gap: var(--vesper-spacing-3);
   justify-content: flex-end;
   margin-top: var(--vesper-spacing-3);
-}
-
-.vesper-toasts {
-  width: 420px;
-  max-width: 100vw;
-  position: fixed;
-  bottom: 0;
-  right: 0;
 }

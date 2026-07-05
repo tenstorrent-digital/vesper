@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Toasts, addToast } from "@/components/toast/toast";
 import { Button } from "@/components/button/button";
+import { Accordion } from "../accordion/accordion";
 
 function ToastStoryComponent() {
   return (
@@ -10,7 +11,11 @@ function ToastStoryComponent() {
         variant="contrast"
         onClick={() => {
           const dismissToast = addToast({
-            content: "Hello world!\n\n\n",
+            content: (
+              <Accordion title="This expands">
+                What does it expand to??
+              </Accordion>
+            ),
             dismissable: true,
             timeout: false,
             buttons: [
