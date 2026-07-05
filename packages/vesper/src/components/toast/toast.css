@@ -19,6 +19,7 @@
 
 .vesper-toast-close-button {
   cursor: pointer;
+  color: var(--vesper-stone-900);
   svg {
     width: 16px;
     height: 16px;
