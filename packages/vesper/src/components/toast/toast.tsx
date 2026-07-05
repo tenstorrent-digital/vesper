@@ -37,7 +37,11 @@ export function Toast(toast: ToastProps) {
           {children}
         </Typography>
         {dismissable && (
-          <button className="vesper-toast-close-button" onClick={dismiss}>
+          <button
+            aria-label="Dismiss"
+            className="vesper-toast-close-button"
+            onClick={dismiss}
+          >
             <Close />
           </button>
         )}
