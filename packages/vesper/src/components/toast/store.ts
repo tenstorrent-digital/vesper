@@ -45,12 +45,8 @@ class ToastsStore {
     };
 
     this.toasts = [...this.toasts, toast];
-
-    if (timeout !== false) {
-      setTimeout(() => this.dismissToast(toast.id), timeout);
-    }
-
     this.emitChange();
+
     return () => this.dismissToast(toast.id);
   };
 
@@ -71,6 +67,11 @@ class ToastsStore {
     this.toasts = this.toasts.filter((t) => t.id !== id);
     this.emitChange();
   };
+
+  static clearAllToasts = () => {
+    this.toasts = [];
+    this.emitChange();
+  };
 }
 
 export const addToast = ToastsStore.addToast;
@@ -80,6 +81,8 @@ export const dismissToast = ToastsStore.dismissToast;
 export const updateToastState = ToastsStore.updateToastState;
 
 export const destroyToast = ToastsStore.destroyToast;
+
+export const clearAllToasts = ToastsStore.clearAllToasts;
 
 export const useToasts = () =>
   useSyncExternalStore(
