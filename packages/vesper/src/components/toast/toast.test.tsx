@@ -337,6 +337,79 @@ describe("toast [unit]", () => {
     });
   });
 
+  describe("tab focus", () => {
+    test("Tab moves focus to the first non-dismissed toast", async () => {
+      render(<Toasts />);
+
+      addToast({ content: "First toast" });
+      addToast({ content: "Second toast" });
+      await flush();
+
+      fireEvent.keyDown(window, { key: "Tab" });
+
+      const firstToast = screen
+        .getByText("First toast")
+        .closest(".vesper-toast");
+      expect(document.activeElement).toBe(firstToast);
+    });
+
+    test("Tab does nothing when no toasts are present", () => {
+      render(<Toasts />);
+
+      fireEvent.keyDown(window, { key: "Tab" });
+
+      expect(document.activeElement).toBe(document.body);
+    });
+
+    test("Tab does nothing when focus is already inside the toast container", async () => {
+      render(<Toasts />);
+
+      addToast({ content: "Focused toast" });
+      await flush();
+
+      const toast = screen
+        .getByText("Focused toast")
+        .closest(".vesper-toast") as HTMLElement;
+      toast.focus();
+
+      fireEvent.keyDown(window, { key: "Tab" });
+
+      expect(document.activeElement).toBe(toast);
+    });
+
+    test("Shift+Tab does not move focus to the first toast", async () => {
+      render(<Toasts />);
+
+      addToast({ content: "Should not focus" });
+      await flush();
+
+      fireEvent.keyDown(window, { key: "Tab", shiftKey: true });
+
+      const toast = screen
+        .getByText("Should not focus")
+        .closest(".vesper-toast");
+      expect(document.activeElement).not.toBe(toast);
+    });
+
+    test("Tab skips dismissed toasts and focuses the first non-dismissed one", async () => {
+      render(<Toasts />);
+
+      const first = addToast({ content: "Dismissed toast" });
+      addToast({ content: "Active toast" });
+      await flush();
+
+      first.dismiss();
+      await flush();
+
+      fireEvent.keyDown(window, { key: "Tab" });
+
+      const activeToast = screen
+        .getByText("Active toast")
+        .closest(".vesper-toast");
+      expect(document.activeElement).toBe(activeToast);
+    });
+  });
+
   describe("timeout", () => {
     test("timeout defaults to false (toast persists indefinitely)", async () => {
       vi.useFakeTimers();

@@ -19,6 +19,7 @@ exports[`toast [snapshot] > multiple toasts 1`] = `
   >
     <div
       class="vesper-toast vesper-toast-active vesper-toast-default"
+      tabindex="0"
     >
       <div
         class="vesper-toast-content"
@@ -52,6 +53,7 @@ exports[`toast [snapshot] > multiple toasts 1`] = `
   >
     <div
       class="vesper-toast vesper-toast-active vesper-toast-success"
+      tabindex="0"
     >
       <div
         class="vesper-toast-content"
@@ -95,6 +97,7 @@ exports[`toast [snapshot] > multiple toasts 1`] = `
   >
     <div
       class="vesper-toast vesper-toast-active vesper-toast-danger"
+      tabindex="0"
     >
       <div
         class="vesper-toast-content"
@@ -144,6 +147,7 @@ exports[`toast [snapshot] > variant: danger 1`] = `
 >
   <div
     class="vesper-toast vesper-toast-active vesper-toast-danger"
+    tabindex="0"
   >
     <div
       class="vesper-toast-content"
@@ -192,6 +196,7 @@ exports[`toast [snapshot] > variant: default 1`] = `
 >
   <div
     class="vesper-toast vesper-toast-active vesper-toast-default"
+    tabindex="0"
   >
     <div
       class="vesper-toast-content"
@@ -228,6 +233,7 @@ exports[`toast [snapshot] > variant: loading 1`] = `
 >
   <div
     class="vesper-toast vesper-toast-active vesper-toast-loading"
+    tabindex="0"
   >
     <div
       class="vesper-toast-content"
@@ -274,6 +280,7 @@ exports[`toast [snapshot] > variant: success 1`] = `
 >
   <div
     class="vesper-toast vesper-toast-active vesper-toast-success"
+    tabindex="0"
   >
     <div
       class="vesper-toast-content"
@@ -320,6 +327,7 @@ exports[`toast [snapshot] > variant: warning 1`] = `
 >
   <div
     class="vesper-toast vesper-toast-active vesper-toast-warning"
+    tabindex="0"
   >
     <div
       class="vesper-toast-content"
@@ -368,6 +376,7 @@ exports[`toast [snapshot] > with alert role 1`] = `
 >
   <div
     class="vesper-toast vesper-toast-active vesper-toast-danger"
+    tabindex="0"
   >
     <div
       class="vesper-toast-content"
@@ -416,6 +425,7 @@ exports[`toast [snapshot] > with buttons 1`] = `
 >
   <div
     class="vesper-toast vesper-toast-active vesper-toast-default"
+    tabindex="0"
   >
     <div
       class="vesper-toast-content"
