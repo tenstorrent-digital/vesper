@@ -75,6 +75,7 @@ export function Modal({
   children,
   form,
   closeOnClickOutside = false,
+  onClose,
   ...props
 }: ModalProps) {
   const titleId = useId();
@@ -182,6 +183,10 @@ export function Modal({
       className={cn("vesper-modal", className)}
       aria-labelledby={labelledBy}
       aria-describedby={describedBy}
+      onClose={(e) => {
+        setIsOpen(false);
+        onClose?.(e);
+      }}
       {...props}
     >
       {form ? (
