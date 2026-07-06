@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/button/button";
 import { Typography } from "@/components/typography/typography";
@@ -18,18 +18,27 @@ export { type ToastOptions, addToast } from "./store";
 const TOAST_DEFAULT_TIMEOUT = 5000;
 
 function Toast({
-  options: { buttons, content, dismissable, timeout = TOAST_DEFAULT_TIMEOUT },
+  options: { buttons, content, passive, timeout = TOAST_DEFAULT_TIMEOUT },
   state,
   id,
 }: ToastData) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const toastRef = useRef<HTMLDivElement>(null);
 
+  const [hasFocus, setHasFocus] = useState(false);
+  const [hasPointer, setHasPointer] = useState(false);
+
   useEffect(() => {
-    if (timeout === false) return;
-    const t = setTimeout(() => dismissToast(id), timeout);
+    if (passive || timeout === false || hasFocus || hasPointer) {
+      return;
+    }
+
+    const t = setTimeout(() => {
+      dismissToast(id);
+    }, timeout);
+
     return () => clearTimeout(t);
-  }, [timeout, id]);
+  }, [passive, timeout, id, hasFocus, hasPointer]);
 
   useEffect(() => {
     switch (state) {
@@ -49,7 +58,14 @@ function Toast({
   }, [state, id]);
 
   return (
-    <div ref={wrapperRef} className="vesper-toast-wrapper">
+    <div
+      ref={wrapperRef}
+      className="vesper-toast-wrapper"
+      onPointerEnter={() => setHasPointer(true)}
+      onPointerLeave={() => setHasPointer(false)}
+      onFocus={() => setHasFocus(true)}
+      onBlur={() => setHasFocus(false)}
+    >
       <div
         ref={toastRef}
         className={cn("vesper-toast", `vesper-toast-${state}`)}
@@ -62,7 +78,7 @@ function Toast({
           >
             {content}
           </Typography>
-          {dismissable && (
+          {(passive || timeout === false) && (
             <button
               aria-label="Dismiss"
               className="vesper-toast-close-button"

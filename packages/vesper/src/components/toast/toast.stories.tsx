@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Toasts, addToast } from "@/components/toast/toast";
 import { Button } from "@/components/button/button";
-import { Accordion } from "../accordion/accordion";
 
 function ToastStoryComponent() {
   return (
@@ -13,8 +12,6 @@ function ToastStoryComponent() {
           const dismissToast = addToast({
             content:
               "Just relax and let it flow. That easy. Exercising the imagination, experimenting with talents, being creative; these things, to me, are truly the windows to your soul. Go out on a limb - that's where the fruit is.",
-            dismissable: true,
-            timeout: false,
             buttons: [
               { children: "Undo" },
               { children: "Dismiss", onClick: () => dismissToast() },

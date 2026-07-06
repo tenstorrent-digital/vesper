@@ -5,7 +5,7 @@ export interface ToastOptions {
   content: ReactNode;
   buttons?: Omit<ButtonProps, "size" | "as">[];
   timeout?: number | false;
-  dismissable?: boolean;
+  passive?: boolean;
 }
 
 export type ToastState = "entering" | "active" | "dismissed";
