@@ -3,6 +3,7 @@ import {
   type ComponentPropsWithoutRef,
   type RefObject,
   useCallback,
+  useEffect,
   useId,
   useImperativeHandle,
   useRef,
@@ -39,6 +40,7 @@ export interface ModalProps extends Omit<
   buttons?: Omit<ButtonProps, "size">[];
   buttonsAlignment?: ModalButtonsAlignment;
   ref?: RefObject<ModalRef>;
+  closeOnClickOutside?: boolean;
   form?: Pick<
     ComponentProps<"form">,
     | "id"
@@ -72,6 +74,7 @@ export function Modal({
   buttonsAlignment = "end",
   children,
   form,
+  closeOnClickOutside = false,
   ...props
 }: ModalProps) {
   const titleId = useId();
@@ -92,6 +95,17 @@ export function Modal({
   }, []);
 
   useImperativeHandle(ref, () => ({ open, close }));
+
+  useEffect(() => {
+    if (!closeOnClickOutside) return;
+
+    const handleClick = (e: PointerEvent) => {
+      if (e.target === innerRef.current) close();
+    };
+
+    window.addEventListener("click", handleClick);
+    return () => window.removeEventListener("click", handleClick);
+  }, [closeOnClickOutside, close]);
 
   // If an additional aria-labelledby is supplied, this ensures that both ids get used
   const labelledBy =

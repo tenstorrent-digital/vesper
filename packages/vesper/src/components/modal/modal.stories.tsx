@@ -96,6 +96,7 @@ export const Playground: Story = {
     withButtons: true,
     buttonsAlignment: "end",
     contents: "inputs",
+    closeOnClickOutside: false,
   },
 };
 Playground.storyName = "modal";
