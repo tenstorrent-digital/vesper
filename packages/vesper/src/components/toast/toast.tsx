@@ -10,10 +10,11 @@ import {
   type ToastData,
   destroyToast,
   updateToastState,
+  dismissLastToast,
 } from "./store";
 import { animateToastEnter, animateToastExit } from "./animations";
 
-export { type ToastOptions, addToast } from "./store";
+export { type ToastOptions, addToast, dismissAllToasts } from "./store";
 
 const TOAST_DEFAULT_TIMEOUT = 5000;
 
@@ -121,6 +122,14 @@ function Toast({
 
 export function Toasts() {
   const toasts = useToasts();
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") dismissLastToast();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return createPortal(
     <div className="vesper-toasts-container">

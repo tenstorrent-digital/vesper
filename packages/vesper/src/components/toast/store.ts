@@ -68,9 +68,19 @@ class ToastsStore {
     this.emitChange();
   };
 
-  static clearAllToasts = () => {
+  static dismissAllToasts = () => {
     this.toasts = [];
     this.emitChange();
+  };
+
+  static dismissLastToast = () => {
+    const lastActiveToast = [...this.toasts]
+      .reverse()
+      .find((t) => t.state === "active" || t.state === "entering");
+
+    if (lastActiveToast) {
+      this.dismissToast(lastActiveToast.id);
+    }
   };
 }
 
@@ -82,7 +92,9 @@ export const updateToastState = ToastsStore.updateToastState;
 
 export const destroyToast = ToastsStore.destroyToast;
 
-export const clearAllToasts = ToastsStore.clearAllToasts;
+export const dismissLastToast = ToastsStore.dismissLastToast;
+
+export const dismissAllToasts = ToastsStore.dismissAllToasts;
 
 export const useToasts = () =>
   useSyncExternalStore(
