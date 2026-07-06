@@ -84,6 +84,7 @@ function Toast({
           </Typography>
           {(passive || timeout === false) && (
             <button
+              type="button"
               aria-label="Dismiss"
               className="vesper-toast-close-button"
               onClick={() => dismissToast(id)}
@@ -99,8 +100,16 @@ function Toast({
                 button.variant ||
                 (index === buttons.length - 1 ? "contrast" : "ghost");
 
+              const type = button.type || "button";
+
               return (
-                <Button key={index} size="xs" {...button} variant={variant} />
+                <Button
+                  key={index}
+                  {...button}
+                  size="xs"
+                  type={type}
+                  variant={variant}
+                />
               );
             })}
           </div>
