@@ -29,6 +29,14 @@
   @media (forced-colors: active) {
     background: Canvas;
     border-color: CanvasText;
+    &:focus-visible {
+      outline: 2px solid CanvasText;
+    }
+  }
+  @media not (forced-colors: active) {
+    &:focus-visible {
+      box-shadow: var(--vesper-shadow-focus-ring);
+    }
   }
 }
 .vesper-toast-entering {

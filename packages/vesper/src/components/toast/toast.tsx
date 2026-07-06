@@ -88,6 +88,7 @@ function Toast({
           `vesper-toast-${state}`,
           `vesper-toast-${variant}`,
         )}
+        tabIndex={0}
       >
         <div className="vesper-toast-content">
           {variant === "loading" && <Spinner className="vesper-toast-icon" />}
@@ -147,17 +148,38 @@ export function Toasts({
   ariaLabel?: string;
 }) {
   const toasts = useToasts();
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const activeToasts = toasts.filter((t) => t.state !== "dismissed");
+    if (activeToasts.length === 0) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") dismissOldestToast();
+      if (e.key === "Escape") {
+        dismissOldestToast();
+        return;
+      }
+
+      if (
+        e.key === "Tab" &&
+        !e.shiftKey &&
+        !ref.current?.contains(document.activeElement)
+      ) {
+        e.preventDefault();
+        const firstToast = ref.current?.querySelector<HTMLElement>(
+          ".vesper-toast:not(.vesper-toast-dismissed)",
+        );
+        firstToast?.focus();
+      }
     };
+
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [toasts]);
 
   return createPortal(
     <div
+      ref={ref}
       className="vesper-toasts-container"
       role="region"
       aria-label={ariaLabel}
