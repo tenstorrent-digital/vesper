@@ -1,4 +1,4 @@
-import { render, cleanup, fireEvent } from "@testing-library/react";
+import { render, cleanup } from "@testing-library/react";
 import { beforeEach, afterEach, describe, expect, test } from "vitest";
 import axe from "axe-core";
 
