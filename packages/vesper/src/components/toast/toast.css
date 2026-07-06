@@ -52,7 +52,7 @@
 
 .vesper-toast-content {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--vesper-spacing-3);
 }
 
