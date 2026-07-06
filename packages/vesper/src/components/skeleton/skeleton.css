@@ -23,7 +23,7 @@
         var(--vesper-alpha-inverse-200),
         transparent
       );
-      animation: vesper-skeleton-shimmer 1.5s linear infinite;
+      animation: vesper-skeleton-shimmer 1.2s linear infinite;
     }
   }
 }
