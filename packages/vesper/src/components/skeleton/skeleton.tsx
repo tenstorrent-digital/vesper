@@ -28,7 +28,7 @@ export function Skeleton({
 
   return (
     <div
-      className={cn("vesper-skeleton", className)}
+      className={cn("vesper-skeleton", `vesper-skeleton-${shape}`, className)}
       style={{
         width: size ?? width,
         height: size ?? height,
@@ -37,35 +37,6 @@ export function Skeleton({
       {...props}
     >
       {children}
-      <SkeletonOverlay shape={shape} />
-    </div>
-  );
-}
-
-function SkeletonOverlay({ shape }: { shape: SkeletonShape }) {
-  const maskId = useId();
-
-  const rx =
-    shape === "box"
-      ? "var(--vesper-radius-1)"
-      : shape === "circle"
-        ? "50%"
-        : undefined;
-
-  const ry = shape === "pill" ? "50%" : undefined;
-
-  return (
-    <div
-      className="vesper-skeleton-overlay"
-      style={{ maskImage: `url(#${CSS.escape(maskId)})` }}
-    >
-      <svg aria-hidden width="100%" height="100%">
-        <defs>
-          <mask id={maskId} maskContentUnits="userSpaceOnUse">
-            <rect width="100%" height="100%" fill="#fff" rx={rx} ry={ry} />
-          </mask>
-        </defs>
-      </svg>
     </div>
   );
 }
