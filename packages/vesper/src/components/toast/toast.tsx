@@ -64,7 +64,11 @@ function Toast({
       onPointerEnter={() => setHasPointer(true)}
       onPointerLeave={() => setHasPointer(false)}
       onFocus={() => setHasFocus(true)}
-      onBlur={() => setHasFocus(false)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+          setHasFocus(false);
+        }
+      }}
     >
       <div
         ref={toastRef}
