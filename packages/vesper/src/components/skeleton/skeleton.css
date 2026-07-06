@@ -1,0 +1,39 @@
+.vesper-skeleton {
+  position: relative;
+}
+
+.vesper-skeleton-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--vesper-stone-300);
+  @media (forced-colors: active) {
+    background: CanvasText;
+  }
+  @media not (forced-colors: active) {
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 64px;
+      background: linear-gradient(
+        to left,
+        transparent,
+        var(--vesper-alpha-inverse-200),
+        transparent
+      );
+      animation: vesper-skeleton-shimmer 1.2s linear infinite;
+    }
+  }
+}
+
+@keyframes vesper-skeleton-shimmer {
+  0% {
+    left: -64px;
+  }
+  66%,
+  100% {
+    left: 100%;
+  }
+}
