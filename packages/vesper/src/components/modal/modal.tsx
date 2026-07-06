@@ -23,7 +23,7 @@ export const MODAL_BUTTONS_ALIGNMENTS = [
 
 export type ModalButtonsAlignment = (typeof MODAL_BUTTONS_ALIGNMENTS)[number];
 
-export interface ModalRef {
+interface ModalRef {
   open(): void;
   close(): void;
 }
@@ -183,12 +183,8 @@ export function Modal({
   );
 }
 
-export function useModalRef() {
-  return useRef<ModalRef>({ open() {}, close() {} });
-}
-
 export function useModal() {
-  const ref = useModalRef();
+  const ref = useRef<ModalRef>({ open() {}, close() {} });
 
   const open = useCallback(() => {
     ref.current.open();
