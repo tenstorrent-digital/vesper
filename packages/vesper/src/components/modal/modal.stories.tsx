@@ -3,7 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ReactNode } from "react";
 import {
   MODAL_BUTTONS_ALIGNMENTS,
-  type UseModalOptions,
+  Modal,
+  type ModalProps,
   useModal,
 } from "@/components/modal/modal";
 import { Button } from "@/components/button/button";
@@ -13,27 +14,11 @@ function ModalStoryComponent({
   withButtons,
   contents,
   ...props
-}: UseModalOptions & {
+}: ModalProps & {
   withButtons: boolean;
   contents: "none" | "inputs" | "long text";
 }) {
-  const modalProps = {
-    ...props,
-    buttons: withButtons
-      ? [
-          {
-            children: "cancel",
-            onClick: () => modal.close(),
-          },
-          {
-            children: "continue",
-            onClick: () => modal.close(),
-          },
-        ]
-      : [],
-  } as UseModalOptions;
-
-  const modal = useModal(modalProps);
+  const modal = useModal();
 
   let children: ReactNode = null;
   switch (contents) {
@@ -64,7 +49,26 @@ function ModalStoryComponent({
       <Button onClick={modal.open} variant="contrast">
         open modal
       </Button>
-      {modal.render(children)}
+      <Modal
+        ref={modal.ref}
+        {...props}
+        buttons={
+          withButtons
+            ? [
+                {
+                  children: "cancel",
+                  onClick: () => modal.close(),
+                },
+                {
+                  children: "continue",
+                  onClick: () => modal.close(),
+                },
+              ]
+            : []
+        }
+      >
+        {children}
+      </Modal>
     </>
   );
 }

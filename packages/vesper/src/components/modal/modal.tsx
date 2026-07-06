@@ -1,7 +1,6 @@
 import {
   ComponentProps,
   type ComponentPropsWithoutRef,
-  type ReactNode,
   type RefObject,
   useCallback,
   useId,
@@ -188,9 +187,7 @@ export function useModalRef() {
   return useRef<ModalRef>({ open() {}, close() {} });
 }
 
-export type UseModalOptions = Omit<ModalProps, "ref" | "children">;
-
-export function useModal(options: UseModalOptions) {
+export function useModal() {
   const ref = useModalRef();
 
   const open = useCallback(() => {
@@ -201,11 +198,5 @@ export function useModal(options: UseModalOptions) {
     ref.current.close();
   }, [ref]);
 
-  const render = (children?: ReactNode) => (
-    <Modal ref={ref} {...options}>
-      {children}
-    </Modal>
-  );
-
-  return { open, close, render };
+  return { open, close, ref };
 }
