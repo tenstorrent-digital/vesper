@@ -106,6 +106,11 @@ class ToastsStore {
       this.dismissToast(lastActiveToast.id);
     }
   };
+
+  static destroyAllToasts = () => {
+    this.toasts = [];
+    this.emitChange();
+  };
 }
 
 export const addToast = ToastsStore.addToast;
@@ -117,6 +122,8 @@ export const updateToastState = ToastsStore.updateToastState;
 export const destroyToast = ToastsStore.destroyToast;
 
 export const dismissLastToast = ToastsStore.dismissLastToast;
+
+export const destroyAllToasts = ToastsStore.destroyAllToasts;
 
 export const useToasts = () =>
   useSyncExternalStore(

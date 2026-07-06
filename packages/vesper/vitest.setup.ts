@@ -1,7 +1,26 @@
 import * as jestMatchers from "@testing-library/jest-dom/matchers";
 import * as axeMatchers from "vitest-axe/matchers";
-import { expect } from "vitest";
+import { expect, vi } from "vitest";
 import axe from "axe-core";
+
+/**
+ * Mock window.matchMedia so that prefers-reduced-motion: reduce returns true.
+ * This causes the toast Web Animations API calls to use duration: 0,
+ * making animation-dependent state transitions resolve immediately in tests.
+ */
+Object.defineProperty(window, "matchMedia", {
+  writable: true,
+  value: vi.fn().mockImplementation((query: string) => ({
+    matches: query === "(prefers-reduced-motion: reduce)",
+    media: query,
+    onchange: null,
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
+});
 
 expect.extend(jestMatchers);
 expect.extend(axeMatchers);
