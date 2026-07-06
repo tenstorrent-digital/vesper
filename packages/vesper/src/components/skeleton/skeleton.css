@@ -28,21 +28,6 @@
   }
 }
 
-.vesper-skeleton-hidden .vesper-skeleton-overlay {
-  animation: vesper-skeleton-fade var(--vesper-transition-duration-default) ease
-    forwards;
-  pointer-events: none;
-}
-
-@keyframes vesper-skeleton-fade {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
 @keyframes vesper-skeleton-shimmer {
   0% {
     left: -64px;

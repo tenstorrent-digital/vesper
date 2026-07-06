@@ -1,4 +1,4 @@
-import { useEffect, useId, useState, type ComponentProps } from "react";
+import { useId, type ComponentProps } from "react";
 import { cn } from "@/utils/cn";
 
 export const SKELETON_SHAPES = ["box", "pill", "circle"] as const;
@@ -19,31 +19,16 @@ export function Skeleton({
   width,
   height,
   size,
-  show,
+  show = true,
   children,
   style,
   ...props
 }: SkeletonProps) {
-  const maskId = useId();
-  const [didAnimateOut, setDidAnimateOut] = useState(!show);
-
-  useEffect(() => {
-    if (show) setDidAnimateOut(false);
-  }, [show]);
-
-  if (didAnimateOut) return children;
+  if (!show) return children;
 
   return (
     <div
-      onAnimationEnd={(e) => {
-        if (e.target !== e.currentTarget) return;
-        setDidAnimateOut(e.animationName === "vesper-skeleton-fade");
-      }}
-      className={cn(
-        "vesper-skeleton",
-        !show && "vesper-skeleton-hidden",
-        className,
-      )}
+      className={cn("vesper-skeleton", className)}
       style={{
         width: size ?? width,
         height: size ?? height,
@@ -52,18 +37,14 @@ export function Skeleton({
       {...props}
     >
       {children}
-      <SkeletonOverlay maskId={maskId} shape={shape} />
+      <SkeletonOverlay shape={shape} />
     </div>
   );
 }
 
-function SkeletonOverlay({
-  shape,
-  maskId,
-}: {
-  shape: SkeletonShape;
-  maskId: string;
-}) {
+function SkeletonOverlay({ shape }: { shape: SkeletonShape }) {
+  const maskId = useId();
+
   const rx =
     shape === "box"
       ? "var(--vesper-radius-1)"

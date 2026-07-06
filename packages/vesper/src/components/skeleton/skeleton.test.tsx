@@ -195,20 +195,13 @@ describe("skeleton [unit]", () => {
       ).not.toBeNull();
     });
 
-    test("does not apply hidden class when show is true", () => {
-      const { container } = render(<Skeleton show />);
-      expect(container.firstElementChild).not.toHaveClass(
-        "vesper-skeleton-hidden",
-      );
-    });
-
-    test("returns only children when show is undefined", () => {
+    test("renders skeleton wrapper when show is undefined", () => {
       const { container } = render(
         <Skeleton>
           <span data-testid="child">Content</span>
         </Skeleton>,
       );
-      expect(container.querySelector(".vesper-skeleton")).toBeNull();
+      expect(container.querySelector(".vesper-skeleton")).not.toBeNull();
       expect(container.querySelector("[data-testid='child']")).not.toBeNull();
     });
 
@@ -227,112 +220,12 @@ describe("skeleton [unit]", () => {
       expect(container.innerHTML).toBe("");
     });
 
-    test("returns nothing when show is undefined and no children", () => {
+    test("returns skeleton when show is undefined and no children", () => {
       const { container } = render(<Skeleton />);
-      expect(container.innerHTML).toBe("");
+      expect(container.querySelector(".vesper-skeleton")).not.toBeNull();
     });
 
-    test("applies hidden class when show moves from true to false", () => {
-      const { container, rerender } = render(
-        <Skeleton show>
-          <span>Content</span>
-        </Skeleton>,
-      );
-
-      rerender(
-        <Skeleton show={false}>
-          <span>Content</span>
-        </Skeleton>,
-      );
-
-      expect(container.firstElementChild).toHaveClass("vesper-skeleton-hidden");
-    });
-
-    test("still renders overlay while hidden class is applied", () => {
-      const { container, rerender } = render(
-        <Skeleton show>
-          <span>Content</span>
-        </Skeleton>,
-      );
-
-      rerender(
-        <Skeleton show={false}>
-          <span>Content</span>
-        </Skeleton>,
-      );
-
-      expect(
-        container.querySelector(".vesper-skeleton-overlay"),
-      ).not.toBeNull();
-    });
-
-    test("returns only children after fade animation ends", () => {
-      const { container, rerender } = render(
-        <Skeleton show>
-          <span data-testid="child">Content</span>
-        </Skeleton>,
-      );
-
-      rerender(
-        <Skeleton show={false}>
-          <span data-testid="child">Content</span>
-        </Skeleton>,
-      );
-
-      const skeletonEl = container.firstElementChild as HTMLElement;
-      fireEvent.animationEnd(skeletonEl, {
-        animationName: "vesper-skeleton-fade",
-      });
-
-      expect(container.querySelector(".vesper-skeleton-overlay")).toBeNull();
-      expect(container.querySelector("[data-testid='child']")).not.toBeNull();
-    });
-
-    test("skeleton wrapper is removed after fade animation ends", () => {
-      const { container, rerender } = render(
-        <Skeleton show>
-          <span data-testid="child">Content</span>
-        </Skeleton>,
-      );
-
-      rerender(
-        <Skeleton show={false}>
-          <span data-testid="child">Content</span>
-        </Skeleton>,
-      );
-
-      const skeletonEl = container.firstElementChild as HTMLElement;
-      fireEvent.animationEnd(skeletonEl, {
-        animationName: "vesper-skeleton-fade",
-      });
-
-      expect(container.querySelector(".vesper-skeleton")).toBeNull();
-    });
-
-    test("does not remove overlay after other animations", () => {
-      const { container, rerender } = render(
-        <Skeleton show>
-          <span>Content</span>
-        </Skeleton>,
-      );
-
-      rerender(
-        <Skeleton show={false}>
-          <span>Content</span>
-        </Skeleton>,
-      );
-
-      const skeletonEl = container.firstElementChild as HTMLElement;
-      fireEvent.animationEnd(skeletonEl, {
-        animationName: "some-other-animation",
-      });
-
-      expect(
-        container.querySelector(".vesper-skeleton-overlay"),
-      ).not.toBeNull();
-    });
-
-    test("re-shows skeleton after it was hidden and fade completed", () => {
+    test("re-shows skeleton after it was hidden", () => {
       const { container, rerender } = render(
         <Skeleton show>
           <span data-testid="child">Content</span>
@@ -346,11 +239,6 @@ describe("skeleton [unit]", () => {
         </Skeleton>,
       );
 
-      const skeletonEl = container.firstElementChild as HTMLElement;
-      fireEvent.animationEnd(skeletonEl, {
-        animationName: "vesper-skeleton-fade",
-      });
-
       // Verify it's gone
       expect(container.querySelector(".vesper-skeleton")).toBeNull();
 
@@ -361,13 +249,10 @@ describe("skeleton [unit]", () => {
         </Skeleton>,
       );
 
-      expect(container.firstElementChild).toHaveClass("vesper-skeleton");
+      expect(container.querySelector(".vesper-skeleton")).not.toBeNull();
       expect(
         container.querySelector(".vesper-skeleton-overlay"),
       ).not.toBeNull();
-      expect(container.firstElementChild).not.toHaveClass(
-        "vesper-skeleton-hidden",
-      );
     });
   });
 });
@@ -395,20 +280,6 @@ describe("skeleton [snapshot]", () => {
       const { container } = render(
         <Skeleton shape={shape} show>
           <span>Loading content</span>
-        </Skeleton>,
-      );
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    test(`shape: ${shape} hidden state`, () => {
-      const { container, rerender } = render(
-        <Skeleton shape={shape} show>
-          <span>Content</span>
-        </Skeleton>,
-      );
-      rerender(
-        <Skeleton shape={shape} show={false}>
-          <span>Content</span>
         </Skeleton>,
       );
       expect(container.firstChild).toMatchSnapshot();
