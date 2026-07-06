@@ -76,7 +76,7 @@ function SkeletonOverlay({
   return (
     <div
       className="vesper-skeleton-overlay"
-      style={{ maskImage: `url(#${maskId})` }}
+      style={{ maskImage: `url(#${CSS.escape(maskId)})` }}
     >
       <svg aria-hidden width="100%" height="100%">
         <defs>
