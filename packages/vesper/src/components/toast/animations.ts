@@ -4,7 +4,7 @@ const getIsReducedMotion = () =>
 export const animateToastEnter = (
   wrapper: HTMLDivElement | null,
   toast: HTMLDivElement | null,
-  cb = () => {},
+  onFinished: () => void,
 ) =>
   wrapper
     ?.animate(
@@ -19,12 +19,12 @@ export const animateToastEnter = (
       },
       { duration: getIsReducedMotion() ? 0 : 300, easing: "ease" },
     )
-    .finished.then(cb);
+    .finished.then(onFinished);
 
 export const animateToastExit = (
   wrapper: HTMLDivElement | null,
   toast: HTMLDivElement | null,
-  cb = () => {},
+  onFinished: () => void,
 ) =>
   wrapper
     ?.animate(
@@ -43,4 +43,4 @@ export const animateToastExit = (
         easing: "ease",
       },
     )
-    .finished.then(cb);
+    .finished.then(onFinished);
