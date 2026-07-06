@@ -298,7 +298,7 @@ describe("toast [unit]", () => {
       expect(screen.queryByText("Dismiss me")).toBeNull();
     });
 
-    test("Escape key dismisses the oldest active toast", async () => {
+    test("Escape key when no toast has focus", async () => {
       render(<Toasts />);
 
       addToast({ content: "First" });
@@ -312,6 +312,25 @@ describe("toast [unit]", () => {
       expect(screen.getByText("Second")).not.toBeNull();
     });
 
+    test("Escape key when a toast has focus", async () => {
+      render(<Toasts />);
+
+      addToast({ content: "First" });
+      addToast({ content: "Second" });
+      await flush();
+
+      const secondToast = screen
+        .getByText("Second")
+        .closest(".vesper-toast") as HTMLElement;
+      secondToast.focus();
+
+      fireEvent.keyDown(secondToast, { key: "Escape" });
+      await flush();
+
+      expect(screen.getByText("First")).not.toBeNull();
+      expect(screen.queryByText("Second")).toBeNull();
+    });
+
     test("Escape key does nothing when no toasts exist", () => {
       render(<Toasts />);
 
@@ -319,7 +338,7 @@ describe("toast [unit]", () => {
       expect(document.querySelectorAll(".vesper-toast")).toHaveLength(0);
     });
 
-    test("multiple Escape presses dismiss toasts one by one", async () => {
+    test("multiple Escape presses dismiss toasts one by one (no focus)", async () => {
       render(<Toasts />);
 
       addToast({ content: "Toast A" });
