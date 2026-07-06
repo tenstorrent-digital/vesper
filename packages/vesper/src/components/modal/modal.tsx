@@ -108,12 +108,12 @@ export function Modal({
   }, [closeOnClickOutside, close]);
 
   // If an additional aria-labelledby is supplied, this ensures that both ids get used
-  const labelledBy =
-    [ariaLabelledby, titleId].filter(Boolean).join(" ") || undefined;
+  const labelledBy = [ariaLabelledby, titleId].filter(Boolean).join(" ");
 
   // If an additional aria-describedby is supplied, this ensures that both ids get used
-  const describedBy =
-    [ariaDescribedby, descriptionId].filter(Boolean).join(" ") || undefined;
+  const describedBy = [ariaDescribedby, descriptionId]
+    .filter(Boolean)
+    .join(" ");
 
   const modalContents = (
     <>
@@ -127,15 +127,13 @@ export function Modal({
           >
             {title}
           </Typography>
-          {description && (
-            <Typography
-              id={descriptionId}
-              variant="copy-md"
-              className="vesper-modal-description"
-            >
-              {description}
-            </Typography>
-          )}
+          <Typography
+            id={descriptionId}
+            variant="copy-md"
+            className="vesper-modal-description"
+          >
+            {description}
+          </Typography>
         </div>
         <button
           aria-label="Close modal"
