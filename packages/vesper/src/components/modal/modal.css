@@ -1,7 +1,5 @@
 .vesper-modal {
   margin: auto;
-  inset-inline-start: unset;
-  inset: 0;
   overflow: visible;
   &::backdrop {
     animation: vesper-modal-backdrop-fade-in
