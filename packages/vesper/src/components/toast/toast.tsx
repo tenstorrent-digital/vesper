@@ -120,7 +120,11 @@ function Toast({
   );
 }
 
-export function Toasts() {
+export function Toasts({
+  ariaLabel = "Notifications",
+}: {
+  ariaLabel?: string;
+}) {
   const toasts = useToasts();
 
   useEffect(() => {
@@ -132,7 +136,11 @@ export function Toasts() {
   }, []);
 
   return createPortal(
-    <div className="vesper-toasts-container">
+    <div
+      className="vesper-toasts-container"
+      role="region"
+      aria-label={ariaLabel}
+    >
       {toasts.map(({ id, options, state }) => (
         <Toast key={id} id={id} options={options} state={state} />
       ))}
