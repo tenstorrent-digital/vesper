@@ -2,7 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/button/button";
 import { Typography } from "@/components/typography/typography";
-import { Close } from "@/components/icons/icons";
+import {
+  Close,
+  ErrorSolid,
+  Spinner,
+  SuccessSolid,
+  WarningSolid,
+} from "@/components/icons/icons";
 import { cn } from "@/utils/cn";
 import {
   useToasts,
@@ -19,7 +25,14 @@ export { type ToastOptions, addToast, dismissAllToasts } from "./store";
 const TOAST_DEFAULT_TIMEOUT = 5000;
 
 function Toast({
-  options: { buttons, content, passive, timeout = TOAST_DEFAULT_TIMEOUT },
+  options: {
+    content,
+    buttons = [],
+    timeout = TOAST_DEFAULT_TIMEOUT,
+    role = "status",
+    variant = "default",
+    passive = variant === "loading" || buttons.length > 0,
+  },
   state,
   id,
 }: ToastData) {
@@ -73,13 +86,26 @@ function Toast({
     >
       <div
         ref={toastRef}
-        className={cn("vesper-toast", `vesper-toast-${state}`)}
+        className={cn(
+          "vesper-toast",
+          `vesper-toast-${state}`,
+          `vesper-toast-${variant}`,
+        )}
       >
         <div className="vesper-toast-content">
+          {variant === "loading" && <Spinner className="vesper-toast-icon" />}
+          {variant === "success" && (
+            <SuccessSolid className="vesper-toast-icon" />
+          )}
+          {variant === "warning" && (
+            <WarningSolid className="vesper-toast-icon" />
+          )}
+          {variant === "danger" && <ErrorSolid className="vesper-toast-icon" />}
           <Typography
             as="span"
             className="vesper-toast-children"
             variant="copy-sm"
+            role={role}
           >
             {content}
           </Typography>

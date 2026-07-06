@@ -9,14 +9,18 @@ function ToastStoryComponent() {
       <Button
         variant="contrast"
         onClick={() => {
-          const dismissToast = addToast({
-            content:
-              "Just relax and let it flow. That easy. Exercising the imagination, experimenting with talents, being creative; these things, to me, are truly the windows to your soul. Go out on a limb - that's where the fruit is.",
-            buttons: [
-              { children: "Undo" },
-              { children: "Dismiss", onClick: () => dismissToast() },
-            ],
+          const toast = addToast({
+            variant: "loading",
+            content: "Loading...",
           });
+          setTimeout(
+            () =>
+              toast.update({
+                variant: "danger",
+                content: "Done",
+              }),
+            2000,
+          );
         }}
       >
         add toast

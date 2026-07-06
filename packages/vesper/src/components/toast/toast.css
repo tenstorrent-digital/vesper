@@ -23,6 +23,13 @@
   border: 1px solid var(--vesper-stone-300);
   background: var(--vesper-stone-0);
   border-radius: var(--vesper-radius-2);
+  transition:
+    background var(--vesper-transition-duration-default) ease,
+    border-color var(--vesper-transition-duration-default) ease;
+  @media (forced-colors: active) {
+    background: Canvas;
+    border-color: CanvasText;
+  }
 }
 .vesper-toast-entering {
   pointer-events: auto;
@@ -41,9 +48,73 @@
   gap: var(--vesper-spacing-3);
 }
 
+.vesper-toast-icon {
+  width: 16px;
+  height: 16px;
+  transition: color var(--vesper-transition-duration-default) ease;
+  @media (forced-colors: active) {
+    color: CanvasText;
+  }
+}
+
+.vesper-toast-loading {
+  .vesper-toast-icon {
+    @media not (forced-colors: active) {
+      color: var(--vesper-stone-600);
+    }
+    animation: vesper-toast-icon-spin var(--vesper-transition-duration-slow)
+      linear infinite;
+  }
+}
+
+.vesper-toast-success {
+  border-color: var(--vesper-green-200);
+  background: var(--vesper-green-50);
+  .vesper-toast-icon,
+  .vesper-toast-children {
+    @media not (forced-colors: active) {
+      color: var(--vesper-mint-600);
+    }
+  }
+}
+
+.vesper-toast-warning {
+  border-color: var(--vesper-amber-200);
+  background: var(--vesper-amber-50);
+  .vesper-toast-icon,
+  .vesper-toast-children {
+    @media not (forced-colors: active) {
+      color: var(--vesper-amber-600);
+    }
+  }
+}
+
+.vesper-toast-danger {
+  border-color: var(--vesper-red-200);
+  background: var(--vesper-red-50);
+  .vesper-toast-icon,
+  .vesper-toast-children {
+    @media not (forced-colors: active) {
+      color: var(--vesper-red-600);
+    }
+  }
+}
+
+@keyframes vesper-toast-icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .vesper-toast-children {
   color: var(--vesper-stone-900);
   flex: 1;
+  @media (forced-colors: active) {
+    color: CanvasText;
+  }
 }
 
 .vesper-toast-close-button {
@@ -56,6 +127,7 @@
     width: 100%;
   }
   @media (forced-colors: active) {
+    color: CanvasText;
     &:focus-visible {
       outline: 2px solid CanvasText;
     }
@@ -69,7 +141,7 @@
 
 .vesper-toast-buttons {
   display: flex;
-  gap: var(--vesper-spacing-3);
   justify-content: flex-end;
+  gap: var(--vesper-spacing-3);
   margin-top: var(--vesper-spacing-3);
 }

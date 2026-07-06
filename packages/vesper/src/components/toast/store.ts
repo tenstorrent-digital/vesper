@@ -1,14 +1,30 @@
 import { type ReactNode, useSyncExternalStore } from "react";
 import { type ButtonProps } from "@/components/button/button";
 
+export const TOAST_ROLES = ["status", "alert"] as const;
+
+export const TOAST_VARIANTS = [
+  "default",
+  "loading",
+  "success",
+  "warning",
+  "danger",
+] as const;
+
 export interface ToastOptions {
   content: ReactNode;
   buttons?: Omit<ButtonProps, "size" | "as">[];
   timeout?: number | false;
   passive?: boolean;
+  role?: ToastRole;
+  variant?: ToastVariant;
 }
 
 export type ToastState = "entering" | "active" | "dismissed";
+
+export type ToastRole = (typeof TOAST_ROLES)[number];
+
+export type ToastVariant = (typeof TOAST_VARIANTS)[number];
 
 export interface ToastData {
   options: ToastOptions;
@@ -35,11 +51,16 @@ class ToastsStore {
     }
   };
 
-  static addToast = (options: ToastOptions) => {
-    const timeout = options.timeout ?? TOAST_DEFAULT_TIMEOUT;
-
+  static addToast = ({
+    content,
+    buttons = [],
+    timeout = TOAST_DEFAULT_TIMEOUT,
+    role = "status",
+    variant = "default",
+    passive = variant === "loading" || buttons.length > 0,
+  }: ToastOptions) => {
     const toast: ToastData = {
-      options: { ...options, timeout },
+      options: { content, buttons, passive, timeout, role, variant },
       id: crypto.randomUUID(),
       state: "entering",
     };
@@ -47,7 +68,19 @@ class ToastsStore {
     this.toasts = [...this.toasts, toast];
     this.emitChange();
 
-    return () => this.dismissToast(toast.id);
+    return {
+      dismiss: () => this.dismissToast(toast.id),
+      update: (updates: Partial<ToastOptions>) =>
+        this.updateToast(toast.id, updates),
+    };
+  };
+
+  static updateToast = (id: string, updates: Partial<ToastOptions>) => {
+    this.toasts = this.toasts.map((t) => {
+      if (t.id !== id) return t;
+      return { ...t, options: { ...t.options, ...updates } };
+    });
+    this.emitChange();
   };
 
   static updateToastState = (id: string, state: ToastState) => {
