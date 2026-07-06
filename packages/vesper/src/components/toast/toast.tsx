@@ -16,7 +16,7 @@ import {
   type ToastData,
   destroyToast,
   updateToastState,
-  dismissLastToast,
+  dismissOldestToast,
 } from "./store";
 import { animateToastEnter, animateToastExit } from "./animations";
 
@@ -150,7 +150,7 @@ export function Toasts({
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") dismissLastToast();
+      if (e.key === "Escape") dismissOldestToast();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);

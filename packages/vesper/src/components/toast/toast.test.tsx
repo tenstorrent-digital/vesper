@@ -298,7 +298,7 @@ describe("toast [unit]", () => {
       expect(screen.queryByText("Dismiss me")).toBeNull();
     });
 
-    test("Escape key dismisses the last active toast", async () => {
+    test("Escape key dismisses the oldest active toast", async () => {
       render(<Toasts />);
 
       addToast({ content: "First" });
@@ -308,8 +308,8 @@ describe("toast [unit]", () => {
       fireEvent.keyDown(window, { key: "Escape" });
       await flush();
 
-      expect(screen.queryByText("Second")).toBeNull();
-      expect(screen.getByText("First")).not.toBeNull();
+      expect(screen.queryByText("First")).toBeNull();
+      expect(screen.getByText("Second")).not.toBeNull();
     });
 
     test("Escape key does nothing when no toasts exist", () => {
@@ -328,12 +328,12 @@ describe("toast [unit]", () => {
 
       fireEvent.keyDown(window, { key: "Escape" });
       await flush();
-      expect(screen.queryByText("Toast B")).toBeNull();
-      expect(screen.getByText("Toast A")).not.toBeNull();
+      expect(screen.queryByText("Toast A")).toBeNull();
+      expect(screen.getByText("Toast B")).not.toBeNull();
 
       fireEvent.keyDown(window, { key: "Escape" });
       await flush();
-      expect(screen.queryByText("Toast A")).toBeNull();
+      expect(screen.queryByText("Toast B")).toBeNull();
     });
   });
 
