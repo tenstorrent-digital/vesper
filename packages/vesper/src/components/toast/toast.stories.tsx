@@ -16,8 +16,9 @@ function ToastStoryComponent() {
           setTimeout(
             () =>
               toast.update({
-                variant: "danger",
-                content: "Done",
+                variant: "success",
+                content: "Success!",
+                timeout: 3000,
               }),
             2000,
           );

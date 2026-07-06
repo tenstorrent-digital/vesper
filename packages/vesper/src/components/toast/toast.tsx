@@ -20,18 +20,15 @@ import {
 } from "./store";
 import { animateToastEnter, animateToastExit } from "./animations";
 
-export { type ToastOptions, addToast, dismissAllToasts } from "./store";
-
-const TOAST_DEFAULT_TIMEOUT = 5000;
+export { type ToastOptions, addToast } from "./store";
 
 function Toast({
   options: {
     content,
     buttons = [],
-    timeout = TOAST_DEFAULT_TIMEOUT,
+    timeout = false,
     role = "status",
     variant = "default",
-    passive = variant === "loading" || buttons.length > 0,
   },
   state,
   id,
@@ -43,7 +40,7 @@ function Toast({
   const [hasPointer, setHasPointer] = useState(false);
 
   useEffect(() => {
-    if (passive || timeout === false || hasFocus || hasPointer) {
+    if (timeout === false || hasFocus || hasPointer) {
       return;
     }
 
@@ -52,7 +49,7 @@ function Toast({
     }, timeout);
 
     return () => clearTimeout(t);
-  }, [passive, timeout, id, hasFocus, hasPointer]);
+  }, [timeout, id, hasFocus, hasPointer]);
 
   useEffect(() => {
     switch (state) {
@@ -109,16 +106,14 @@ function Toast({
           >
             {content}
           </Typography>
-          {(passive || timeout === false) && (
-            <button
-              type="button"
-              aria-label="Dismiss"
-              className="vesper-toast-close-button"
-              onClick={() => dismissToast(id)}
-            >
-              <Close />
-            </button>
-          )}
+          <button
+            type="button"
+            aria-label="Dismiss"
+            className="vesper-toast-close-button"
+            onClick={() => dismissToast(id)}
+          >
+            <Close />
+          </button>
         </div>
         {!!buttons?.length && (
           <div className="vesper-toast-buttons">

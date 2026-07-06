@@ -15,7 +15,6 @@ export interface ToastOptions {
   content: ReactNode;
   buttons?: Omit<ButtonProps, "size" | "as">[];
   timeout?: number | false;
-  passive?: boolean;
   role?: ToastRole;
   variant?: ToastVariant;
 }
@@ -31,8 +30,6 @@ export interface ToastData {
   id: string;
   state: ToastState;
 }
-
-export const TOAST_DEFAULT_TIMEOUT = 5000;
 
 class ToastsStore {
   static toasts: ToastData[] = [];
@@ -54,13 +51,12 @@ class ToastsStore {
   static addToast = ({
     content,
     buttons = [],
-    timeout = TOAST_DEFAULT_TIMEOUT,
+    timeout = false,
     role = "status",
     variant = "default",
-    passive = variant === "loading" || buttons.length > 0,
   }: ToastOptions) => {
     const toast: ToastData = {
-      options: { content, buttons, passive, timeout, role, variant },
+      options: { content, buttons, timeout, role, variant },
       id: crypto.randomUUID(),
       state: "entering",
     };
@@ -101,11 +97,6 @@ class ToastsStore {
     this.emitChange();
   };
 
-  static dismissAllToasts = () => {
-    this.toasts = [];
-    this.emitChange();
-  };
-
   static dismissLastToast = () => {
     const lastActiveToast = [...this.toasts]
       .reverse()
@@ -126,8 +117,6 @@ export const updateToastState = ToastsStore.updateToastState;
 export const destroyToast = ToastsStore.destroyToast;
 
 export const dismissLastToast = ToastsStore.dismissLastToast;
-
-export const dismissAllToasts = ToastsStore.dismissAllToasts;
 
 export const useToasts = () =>
   useSyncExternalStore(
