@@ -80,6 +80,10 @@ function Toast({
           setHasFocus(false);
         }
       }}
+      onKeyDown={(e) => {
+        if (e.key !== "Escape") return;
+        dismissToast(id);
+      }}
     >
       <div
         ref={toastRef}
@@ -156,7 +160,9 @@ export function Toasts({
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        dismissOldestToast();
+        if (!ref.current?.contains(document.activeElement)) {
+          dismissOldestToast();
+        }
         return;
       }
 
