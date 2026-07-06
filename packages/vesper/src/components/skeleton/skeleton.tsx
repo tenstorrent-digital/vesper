@@ -35,9 +35,10 @@ export function Skeleton({
 
   return (
     <div
-      onAnimationEnd={(e) =>
-        setDidAnimateOut(e.animationName === "vesper-skeleton-fade")
-      }
+      onAnimationEnd={(e) => {
+        if (e.target !== e.currentTarget) return;
+        setDidAnimateOut(e.animationName === "vesper-skeleton-fade");
+      }}
       className={cn(
         "vesper-skeleton",
         !show && "vesper-skeleton-hidden",
