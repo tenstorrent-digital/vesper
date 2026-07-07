@@ -10,17 +10,12 @@ import {
   WarningSolid,
 } from "@/components/icons/icons";
 import { cn } from "@/utils/cn";
-import {
-  useToasts,
-  dismissToast,
-  type ToastData,
-  destroyToast,
-  updateToastState,
-  dismissOldestToast,
-} from "./store";
+import { useToasts, type ToastData, store } from "./store";
 import { animateToastEnter, animateToastExit } from "./animations";
 
-export { type ToastOptions, addToast } from "./store";
+export { type ToastOptions } from "./store";
+
+export const { addToast } = store;
 
 function Toast({
   options: {
@@ -45,7 +40,7 @@ function Toast({
     }
 
     const t = setTimeout(() => {
-      dismissToast(id);
+      store.dismissToast(id);
     }, timeout);
 
     return () => clearTimeout(t);
@@ -55,12 +50,12 @@ function Toast({
     switch (state) {
       case "entering":
         animateToastEnter(wrapperRef.current, toastRef.current, () =>
-          updateToastState(id, "active"),
+          store.updateToastState(id, "active"),
         );
         break;
       case "dismissed":
         animateToastExit(wrapperRef.current, toastRef.current, () =>
-          destroyToast(id),
+          store.destroyToast(id),
         );
         break;
       default:
@@ -82,7 +77,7 @@ function Toast({
       }}
       onKeyDown={(e) => {
         if (e.key !== "Escape") return;
-        dismissToast(id);
+        store.dismissToast(id);
       }}
     >
       <div
@@ -119,7 +114,7 @@ function Toast({
             type="button"
             aria-label="Dismiss"
             className="vesper-toast-close-button"
-            onClick={() => dismissToast(id)}
+            onClick={() => store.dismissToast(id)}
           >
             <Close aria-hidden />
           </button>
@@ -165,7 +160,7 @@ export function Toasts({
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         if (!ref.current?.contains(document.activeElement)) {
-          dismissOldestToast();
+          store.dismissOldestToast();
         }
         return;
       }

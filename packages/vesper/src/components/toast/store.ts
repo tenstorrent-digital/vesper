@@ -32,23 +32,23 @@ export interface ToastData {
 }
 
 class ToastsStore {
-  static toasts: ToastData[] = [];
+  toasts: ToastData[] = [];
 
-  static listeners = new Set<() => void>();
-  static subscribe = (listener: () => void) => {
+  listeners = new Set<() => void>();
+  subscribe = (listener: () => void) => {
     this.listeners.add(listener);
     return () => this.listeners.delete(listener);
   };
 
-  static getSnapshot = () => this.toasts;
+  getSnapshot = () => this.toasts;
 
-  static emitChange = () => {
+  emitChange = () => {
     for (const listener of this.listeners) {
       listener();
     }
   };
 
-  static addToast = ({
+  addToast = ({
     content,
     buttons = [],
     timeout = false,
@@ -71,7 +71,7 @@ class ToastsStore {
     };
   };
 
-  static updateToast = (id: string, updates: Partial<ToastOptions>) => {
+  updateToast = (id: string, updates: Partial<ToastOptions>) => {
     this.toasts = this.toasts.map((t) => {
       if (t.id !== id) return t;
       return { ...t, options: { ...t.options, ...updates } };
@@ -79,7 +79,7 @@ class ToastsStore {
     this.emitChange();
   };
 
-  static updateToastState = (id: string, state: ToastState) => {
+  updateToastState = (id: string, state: ToastState) => {
     this.toasts = this.toasts.map((t) => {
       if (t.id !== id) return t;
       return { ...t, state };
@@ -87,17 +87,17 @@ class ToastsStore {
     this.emitChange();
   };
 
-  static dismissToast = (id: string) => {
+  dismissToast = (id: string) => {
     this.updateToastState(id, "dismissed");
     this.emitChange();
   };
 
-  static destroyToast = (id: string) => {
+  destroyToast = (id: string) => {
     this.toasts = this.toasts.filter((t) => t.id !== id);
     this.emitChange();
   };
 
-  static dismissOldestToast = () => {
+  dismissOldestToast = () => {
     const oldestActiveToast = [...this.toasts].find(
       (t) => t.state === "active" || t.state === "entering",
     );
@@ -107,27 +107,13 @@ class ToastsStore {
     }
   };
 
-  static destroyAllToasts = () => {
+  destroyAllToasts = () => {
     this.toasts = [];
     this.emitChange();
   };
 }
 
-export const addToast = ToastsStore.addToast;
-
-export const dismissToast = ToastsStore.dismissToast;
-
-export const updateToastState = ToastsStore.updateToastState;
-
-export const destroyToast = ToastsStore.destroyToast;
-
-export const dismissOldestToast = ToastsStore.dismissOldestToast;
-
-export const destroyAllToasts = ToastsStore.destroyAllToasts;
+export const store = new ToastsStore();
 
 export const useToasts = () =>
-  useSyncExternalStore(
-    ToastsStore.subscribe,
-    ToastsStore.getSnapshot,
-    ToastsStore.getSnapshot,
-  );
+  useSyncExternalStore(store.subscribe, store.getSnapshot, store.getSnapshot);
