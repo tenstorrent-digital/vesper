@@ -95,14 +95,18 @@ function Toast({
         tabIndex={0}
       >
         <div className="vesper-toast-content">
-          {variant === "loading" && <Spinner className="vesper-toast-icon" />}
+          {variant === "loading" && (
+            <Spinner aria-hidden className="vesper-toast-icon" />
+          )}
           {variant === "success" && (
-            <SuccessSolid className="vesper-toast-icon" />
+            <SuccessSolid aria-hidden className="vesper-toast-icon" />
           )}
           {variant === "warning" && (
-            <WarningSolid className="vesper-toast-icon" />
+            <WarningSolid aria-hidden className="vesper-toast-icon" />
           )}
-          {variant === "danger" && <ErrorSolid className="vesper-toast-icon" />}
+          {variant === "danger" && (
+            <ErrorSolid aria-hidden className="vesper-toast-icon" />
+          )}
           <Typography
             as="span"
             className="vesper-toast-children"
@@ -117,7 +121,7 @@ function Toast({
             className="vesper-toast-close-button"
             onClick={() => dismissToast(id)}
           >
-            <Close />
+            <Close aria-hidden />
           </button>
         </div>
         {!!buttons?.length && (
