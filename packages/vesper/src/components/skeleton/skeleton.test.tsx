@@ -14,24 +14,40 @@ afterEach(cleanup);
 
 describe("skeleton [unit]", () => {
   test("renders a div", () => {
-    const { container } = render(<Skeleton show />);
+    const { container } = render(<Skeleton />);
     expect(container.firstElementChild?.tagName).toBe("DIV");
   });
 
   test("applies vesper-skeleton class", () => {
-    const { container } = render(<Skeleton show />);
+    const { container } = render(<Skeleton />);
     expect(container.firstElementChild).toHaveClass("vesper-skeleton");
   });
 
+  test("is box shape by default", () => {
+    const { container } = render(<Skeleton />);
+    expect(container.firstElementChild).toHaveClass("vesper-skeleton");
+    expect(container.firstElementChild).toHaveClass("vesper-skeleton-box");
+  });
+
+  SKELETON_SHAPES.forEach((shape) => {
+    test(`${shape} shape class`, () => {
+      const { container } = render(<Skeleton shape={shape} />);
+      expect(container.firstElementChild).toHaveClass("vesper-skeleton");
+      expect(container.firstElementChild).toHaveClass(
+        `vesper-skeleton-${shape}`,
+      );
+    });
+  });
+
   test("custom className is merged", () => {
-    const { container } = render(<Skeleton show className="custom-class" />);
+    const { container } = render(<Skeleton className="custom-class" />);
     expect(container.firstElementChild).toHaveClass("vesper-skeleton");
     expect(container.firstElementChild).toHaveClass("custom-class");
   });
 
   test("additional prop passthrough", () => {
     const { container } = render(
-      <Skeleton show data-testid="skeleton" aria-label="loading" />,
+      <Skeleton data-testid="skeleton" aria-label="loading" />,
     );
     expect(container.firstElementChild).toHaveAttribute(
       "aria-label",
@@ -41,27 +57,27 @@ describe("skeleton [unit]", () => {
 
   describe("dimensions", () => {
     test("size prop sets width and height", () => {
-      const { container } = render(<Skeleton show size={100} />);
+      const { container } = render(<Skeleton size={100} />);
       const el = container.firstElementChild as HTMLElement;
       expect(el.style.width).toBe("100px");
       expect(el.style.height).toBe("100px");
     });
 
     test("width prop sets width", () => {
-      const { container } = render(<Skeleton show width={200} />);
+      const { container } = render(<Skeleton width={200} />);
       const el = container.firstElementChild as HTMLElement;
       expect(el.style.width).toBe("200px");
     });
 
     test("height prop sets height", () => {
-      const { container } = render(<Skeleton show height={150} />);
+      const { container } = render(<Skeleton height={150} />);
       const el = container.firstElementChild as HTMLElement;
       expect(el.style.height).toBe("150px");
     });
 
     test("size prop overrides width and height", () => {
       const { container } = render(
-        <Skeleton show size={80} width={200} height={150} />,
+        <Skeleton size={80} width={200} height={150} />,
       );
       const el = container.firstElementChild as HTMLElement;
       expect(el.style.width).toBe("80px");
@@ -69,26 +85,26 @@ describe("skeleton [unit]", () => {
     });
 
     test("string size prop", () => {
-      const { container } = render(<Skeleton show size="50%" />);
+      const { container } = render(<Skeleton size="50%" />);
       const el = container.firstElementChild as HTMLElement;
       expect(el.style.width).toBe("50%");
       expect(el.style.height).toBe("50%");
     });
 
     test("string width prop", () => {
-      const { container } = render(<Skeleton show width="100%" />);
+      const { container } = render(<Skeleton width="100%" />);
       const el = container.firstElementChild as HTMLElement;
       expect(el.style.width).toBe("100%");
     });
 
     test("string height prop", () => {
-      const { container } = render(<Skeleton show height="2rem" />);
+      const { container } = render(<Skeleton height="2rem" />);
       const el = container.firstElementChild as HTMLElement;
       expect(el.style.height).toBe("2rem");
     });
 
     test("no inline width or height when no dimension props provided", () => {
-      const { container } = render(<Skeleton show />);
+      const { container } = render(<Skeleton />);
       const el = container.firstElementChild as HTMLElement;
       expect(el.style.width).toBe("");
       expect(el.style.height).toBe("");
@@ -97,7 +113,7 @@ describe("skeleton [unit]", () => {
 
   test("style prop is merged with size styles", () => {
     const { container } = render(
-      <Skeleton show size={80} style={{ backgroundColor: "red" }} />,
+      <Skeleton size={80} style={{ backgroundColor: "red" }} />,
     );
     const el = container.firstElementChild as HTMLElement;
     expect(el.style.width).toBe("80px");
@@ -106,7 +122,7 @@ describe("skeleton [unit]", () => {
 
   test("style prop works without dimension props", () => {
     const { container } = render(
-      <Skeleton show style={{ opacity: "0.5", margin: "8px" }} />,
+      <Skeleton style={{ opacity: "0.5", margin: "8px" }} />,
     );
     const el = container.firstElementChild as HTMLElement;
     expect(el.style.opacity).toBe("0.5");
@@ -115,75 +131,11 @@ describe("skeleton [unit]", () => {
 
   test("renders children", () => {
     const { container } = render(
-      <Skeleton show>
+      <Skeleton>
         <span data-testid="child">Content</span>
       </Skeleton>,
     );
     expect(container.querySelector("[data-testid='child']")).not.toBeNull();
-  });
-
-  describe("overlay", () => {
-    test("renders overlay element", () => {
-      const { container } = render(<Skeleton show />);
-      expect(
-        container.querySelector(".vesper-skeleton-overlay"),
-      ).not.toBeNull();
-    });
-
-    test("overlay has mask-image style", () => {
-      const { container } = render(<Skeleton show />);
-      const overlay = container.querySelector(
-        ".vesper-skeleton-overlay",
-      ) as HTMLElement;
-      expect(overlay.style.maskImage).toContain("url");
-    });
-
-    test("overlay contains SVG with aria-hidden", () => {
-      const { container } = render(<Skeleton show />);
-      const svg = container.querySelector(".vesper-skeleton-overlay svg");
-      expect(svg).not.toBeNull();
-      expect(svg).toHaveAttribute("aria-hidden", "true");
-    });
-
-    test("overlay appears after children in DOM", () => {
-      const { container } = render(
-        <Skeleton show>
-          <span data-testid="child">Content</span>
-        </Skeleton>,
-      );
-      const wrapper = container.firstElementChild as HTMLElement;
-      const lastChild = wrapper.lastElementChild;
-      expect(lastChild).toHaveClass("vesper-skeleton-overlay");
-    });
-  });
-
-  describe("shape", () => {
-    test("defaults to box shape", () => {
-      const { container } = render(<Skeleton show />);
-      const rect = container.querySelector("rect");
-      expect(rect).toHaveAttribute("rx", "var(--vesper-radius-1)");
-    });
-
-    test("box shape", () => {
-      const { container } = render(<Skeleton show shape="box" />);
-      const rect = container.querySelector("rect");
-      expect(rect).toHaveAttribute("rx", "var(--vesper-radius-1)");
-      expect(rect).not.toHaveAttribute("ry");
-    });
-
-    test("circle shape", () => {
-      const { container } = render(<Skeleton show shape="circle" />);
-      const rect = container.querySelector("rect");
-      expect(rect).toHaveAttribute("rx", "50%");
-      expect(rect).not.toHaveAttribute("ry");
-    });
-
-    test("pill shape", () => {
-      const { container } = render(<Skeleton show shape="pill" />);
-      const rect = container.querySelector("rect");
-      expect(rect).toHaveAttribute("ry", "50%");
-      expect(rect).not.toHaveAttribute("rx");
-    });
   });
 
   describe("show/hide behavior", () => {
@@ -202,6 +154,9 @@ describe("skeleton [unit]", () => {
         </Skeleton>,
       );
       expect(container.querySelector(".vesper-skeleton")).not.toBeNull();
+      expect(
+        container.querySelector(".vesper-skeleton-overlay"),
+      ).not.toBeNull();
       expect(container.querySelector("[data-testid='child']")).not.toBeNull();
     });
 
@@ -212,6 +167,7 @@ describe("skeleton [unit]", () => {
         </Skeleton>,
       );
       expect(container.querySelector(".vesper-skeleton")).toBeNull();
+      expect(container.querySelector(".vesper-skeleton-overlay")).toBeNull();
       expect(container.querySelector("[data-testid='child']")).not.toBeNull();
     });
 
@@ -223,6 +179,9 @@ describe("skeleton [unit]", () => {
     test("returns skeleton when show is undefined and no children", () => {
       const { container } = render(<Skeleton />);
       expect(container.querySelector(".vesper-skeleton")).not.toBeNull();
+      expect(
+        container.querySelector(".vesper-skeleton-overlay"),
+      ).not.toBeNull();
     });
 
     test("re-shows skeleton after it was hidden", () => {
@@ -241,6 +200,7 @@ describe("skeleton [unit]", () => {
 
       // Verify it's gone
       expect(container.querySelector(".vesper-skeleton")).toBeNull();
+      expect(container.querySelector(".vesper-skeleton-overlay")).toBeNull();
 
       // Re-show
       rerender(
