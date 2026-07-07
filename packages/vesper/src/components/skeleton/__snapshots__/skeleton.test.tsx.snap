@@ -2,387 +2,135 @@
 
 exports[`skeleton [snapshot] > shape: box 1`] = `
 <div
-  class="vesper-skeleton"
+  class="vesper-skeleton vesper-skeleton-box"
 >
   <div
     class="vesper-skeleton-overlay"
-    style="mask-image: url("#_r_s_");"
-  >
-    <svg
-      aria-hidden="true"
-      height="100%"
-      width="100%"
-    >
-      <defs>
-        <mask
-          id="_r_s_"
-          maskContentUnits="userSpaceOnUse"
-        >
-          <rect
-            fill="#fff"
-            height="100%"
-            rx="var(--vesper-radius-1)"
-            width="100%"
-          />
-        </mask>
-      </defs>
-    </svg>
-  </div>
+  />
 </div>
 `;
 
 exports[`skeleton [snapshot] > shape: box with children 1`] = `
 <div
-  class="vesper-skeleton"
+  class="vesper-skeleton vesper-skeleton-box"
 >
   <span>
     Loading content
   </span>
   <div
     class="vesper-skeleton-overlay"
-    style="mask-image: url("#_r_v_");"
-  >
-    <svg
-      aria-hidden="true"
-      height="100%"
-      width="100%"
-    >
-      <defs>
-        <mask
-          id="_r_v_"
-          maskContentUnits="userSpaceOnUse"
-        >
-          <rect
-            fill="#fff"
-            height="100%"
-            rx="var(--vesper-radius-1)"
-            width="100%"
-          />
-        </mask>
-      </defs>
-    </svg>
-  </div>
+  />
 </div>
 `;
 
 exports[`skeleton [snapshot] > shape: box with size 1`] = `
 <div
-  class="vesper-skeleton"
+  class="vesper-skeleton vesper-skeleton-box"
   style="width: 100px; height: 100px;"
 >
   <div
     class="vesper-skeleton-overlay"
-    style="mask-image: url("#_r_t_");"
-  >
-    <svg
-      aria-hidden="true"
-      height="100%"
-      width="100%"
-    >
-      <defs>
-        <mask
-          id="_r_t_"
-          maskContentUnits="userSpaceOnUse"
-        >
-          <rect
-            fill="#fff"
-            height="100%"
-            rx="var(--vesper-radius-1)"
-            width="100%"
-          />
-        </mask>
-      </defs>
-    </svg>
-  </div>
+  />
 </div>
 `;
 
 exports[`skeleton [snapshot] > shape: box with width and height 1`] = `
 <div
-  class="vesper-skeleton"
+  class="vesper-skeleton vesper-skeleton-box"
   style="width: 200px; height: 50px;"
 >
   <div
     class="vesper-skeleton-overlay"
-    style="mask-image: url("#_r_u_");"
-  >
-    <svg
-      aria-hidden="true"
-      height="100%"
-      width="100%"
-    >
-      <defs>
-        <mask
-          id="_r_u_"
-          maskContentUnits="userSpaceOnUse"
-        >
-          <rect
-            fill="#fff"
-            height="100%"
-            rx="var(--vesper-radius-1)"
-            width="100%"
-          />
-        </mask>
-      </defs>
-    </svg>
-  </div>
+  />
 </div>
 `;
 
 exports[`skeleton [snapshot] > shape: circle 1`] = `
 <div
-  class="vesper-skeleton"
+  class="vesper-skeleton vesper-skeleton-circle"
 >
   <div
     class="vesper-skeleton-overlay"
-    style="mask-image: url("#_r_14_");"
-  >
-    <svg
-      aria-hidden="true"
-      height="100%"
-      width="100%"
-    >
-      <defs>
-        <mask
-          id="_r_14_"
-          maskContentUnits="userSpaceOnUse"
-        >
-          <rect
-            fill="#fff"
-            height="100%"
-            rx="50%"
-            width="100%"
-          />
-        </mask>
-      </defs>
-    </svg>
-  </div>
+  />
 </div>
 `;
 
 exports[`skeleton [snapshot] > shape: circle with children 1`] = `
 <div
-  class="vesper-skeleton"
+  class="vesper-skeleton vesper-skeleton-circle"
 >
   <span>
     Loading content
   </span>
   <div
     class="vesper-skeleton-overlay"
-    style="mask-image: url("#_r_17_");"
-  >
-    <svg
-      aria-hidden="true"
-      height="100%"
-      width="100%"
-    >
-      <defs>
-        <mask
-          id="_r_17_"
-          maskContentUnits="userSpaceOnUse"
-        >
-          <rect
-            fill="#fff"
-            height="100%"
-            rx="50%"
-            width="100%"
-          />
-        </mask>
-      </defs>
-    </svg>
-  </div>
+  />
 </div>
 `;
 
 exports[`skeleton [snapshot] > shape: circle with size 1`] = `
 <div
-  class="vesper-skeleton"
+  class="vesper-skeleton vesper-skeleton-circle"
   style="width: 100px; height: 100px;"
 >
   <div
     class="vesper-skeleton-overlay"
-    style="mask-image: url("#_r_15_");"
-  >
-    <svg
-      aria-hidden="true"
-      height="100%"
-      width="100%"
-    >
-      <defs>
-        <mask
-          id="_r_15_"
-          maskContentUnits="userSpaceOnUse"
-        >
-          <rect
-            fill="#fff"
-            height="100%"
-            rx="50%"
-            width="100%"
-          />
-        </mask>
-      </defs>
-    </svg>
-  </div>
+  />
 </div>
 `;
 
 exports[`skeleton [snapshot] > shape: circle with width and height 1`] = `
 <div
-  class="vesper-skeleton"
+  class="vesper-skeleton vesper-skeleton-circle"
   style="width: 200px; height: 50px;"
 >
   <div
     class="vesper-skeleton-overlay"
-    style="mask-image: url("#_r_16_");"
-  >
-    <svg
-      aria-hidden="true"
-      height="100%"
-      width="100%"
-    >
-      <defs>
-        <mask
-          id="_r_16_"
-          maskContentUnits="userSpaceOnUse"
-        >
-          <rect
-            fill="#fff"
-            height="100%"
-            rx="50%"
-            width="100%"
-          />
-        </mask>
-      </defs>
-    </svg>
-  </div>
+  />
 </div>
 `;
 
 exports[`skeleton [snapshot] > shape: pill 1`] = `
 <div
-  class="vesper-skeleton"
+  class="vesper-skeleton vesper-skeleton-pill"
 >
   <div
     class="vesper-skeleton-overlay"
-    style="mask-image: url("#_r_10_");"
-  >
-    <svg
-      aria-hidden="true"
-      height="100%"
-      width="100%"
-    >
-      <defs>
-        <mask
-          id="_r_10_"
-          maskContentUnits="userSpaceOnUse"
-        >
-          <rect
-            fill="#fff"
-            height="100%"
-            ry="50%"
-            width="100%"
-          />
-        </mask>
-      </defs>
-    </svg>
-  </div>
+  />
 </div>
 `;
 
 exports[`skeleton [snapshot] > shape: pill with children 1`] = `
 <div
-  class="vesper-skeleton"
+  class="vesper-skeleton vesper-skeleton-pill"
 >
   <span>
     Loading content
   </span>
   <div
     class="vesper-skeleton-overlay"
-    style="mask-image: url("#_r_13_");"
-  >
-    <svg
-      aria-hidden="true"
-      height="100%"
-      width="100%"
-    >
-      <defs>
-        <mask
-          id="_r_13_"
-          maskContentUnits="userSpaceOnUse"
-        >
-          <rect
-            fill="#fff"
-            height="100%"
-            ry="50%"
-            width="100%"
-          />
-        </mask>
-      </defs>
-    </svg>
-  </div>
+  />
 </div>
 `;
 
 exports[`skeleton [snapshot] > shape: pill with size 1`] = `
 <div
-  class="vesper-skeleton"
+  class="vesper-skeleton vesper-skeleton-pill"
   style="width: 100px; height: 100px;"
 >
   <div
     class="vesper-skeleton-overlay"
-    style="mask-image: url("#_r_11_");"
-  >
-    <svg
-      aria-hidden="true"
-      height="100%"
-      width="100%"
-    >
-      <defs>
-        <mask
-          id="_r_11_"
-          maskContentUnits="userSpaceOnUse"
-        >
-          <rect
-            fill="#fff"
-            height="100%"
-            ry="50%"
-            width="100%"
-          />
-        </mask>
-      </defs>
-    </svg>
-  </div>
+  />
 </div>
 `;
 
 exports[`skeleton [snapshot] > shape: pill with width and height 1`] = `
 <div
-  class="vesper-skeleton"
+  class="vesper-skeleton vesper-skeleton-pill"
   style="width: 200px; height: 50px;"
 >
   <div
     class="vesper-skeleton-overlay"
-    style="mask-image: url("#_r_12_");"
-  >
-    <svg
-      aria-hidden="true"
-      height="100%"
-      width="100%"
-    >
-      <defs>
-        <mask
-          id="_r_12_"
-          maskContentUnits="userSpaceOnUse"
-        >
-          <rect
-            fill="#fff"
-            height="100%"
-            ry="50%"
-            width="100%"
-          />
-        </mask>
-      </defs>
-    </svg>
-  </div>
+  />
 </div>
 `;
