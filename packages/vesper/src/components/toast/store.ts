@@ -15,7 +15,6 @@ export interface ToastOptions {
   content: ReactNode;
   buttons?: Omit<ButtonProps, "size" | "as">[];
   timeout?: number | false;
-  role?: ToastRole;
   variant?: ToastVariant;
 }
 
@@ -52,11 +51,10 @@ class ToastsStore {
     content,
     buttons = [],
     timeout = false,
-    role = "status",
     variant = "default",
   }: ToastOptions) => {
     const toast: ToastData = {
-      options: { content, buttons, timeout, role, variant },
+      options: { content, buttons, timeout, variant },
       id: crypto.randomUUID(),
       state: "entering",
     };

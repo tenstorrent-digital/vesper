@@ -18,13 +18,7 @@ export { type ToastOptions } from "./store";
 export const { addToast } = store;
 
 function Toast({
-  options: {
-    content,
-    buttons = [],
-    timeout = false,
-    role = "status",
-    variant = "default",
-  },
+  options: { content, buttons = [], timeout = false, variant = "default" },
   state,
   id,
 }: ToastData) {
@@ -106,7 +100,6 @@ function Toast({
             as="span"
             className="vesper-toast-children"
             variant="copy-sm"
-            role={role}
           >
             {content}
           </Typography>
