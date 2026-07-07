@@ -142,6 +142,9 @@ describe("skeleton [unit]", () => {
     test("renders skeleton wrapper when show is true", () => {
       const { container } = render(<Skeleton show />);
       expect(container.firstElementChild).toHaveClass("vesper-skeleton");
+      expect(
+        container.querySelector(".vesper-skeleton-overlay"),
+      ).not.toBeNull();
     });
 
     test("renders skeleton wrapper when show is undefined", () => {
@@ -151,6 +154,9 @@ describe("skeleton [unit]", () => {
         </Skeleton>,
       );
       expect(container.querySelector(".vesper-skeleton")).not.toBeNull();
+      expect(
+        container.querySelector(".vesper-skeleton-overlay"),
+      ).not.toBeNull();
       expect(container.querySelector("[data-testid='child']")).not.toBeNull();
     });
 
@@ -161,6 +167,7 @@ describe("skeleton [unit]", () => {
         </Skeleton>,
       );
       expect(container.querySelector(".vesper-skeleton")).toBeNull();
+      expect(container.querySelector(".vesper-skeleton-overlay")).toBeNull();
       expect(container.querySelector("[data-testid='child']")).not.toBeNull();
     });
 
@@ -172,6 +179,9 @@ describe("skeleton [unit]", () => {
     test("returns skeleton when show is undefined and no children", () => {
       const { container } = render(<Skeleton />);
       expect(container.querySelector(".vesper-skeleton")).not.toBeNull();
+      expect(
+        container.querySelector(".vesper-skeleton-overlay"),
+      ).not.toBeNull();
     });
 
     test("re-shows skeleton after it was hidden", () => {
@@ -190,6 +200,7 @@ describe("skeleton [unit]", () => {
 
       // Verify it's gone
       expect(container.querySelector(".vesper-skeleton")).toBeNull();
+      expect(container.querySelector(".vesper-skeleton-overlay")).toBeNull();
 
       // Re-show
       rerender(
@@ -199,6 +210,9 @@ describe("skeleton [unit]", () => {
       );
 
       expect(container.querySelector(".vesper-skeleton")).not.toBeNull();
+      expect(
+        container.querySelector(".vesper-skeleton-overlay"),
+      ).not.toBeNull();
     });
   });
 });

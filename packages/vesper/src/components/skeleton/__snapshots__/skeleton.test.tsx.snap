@@ -3,7 +3,11 @@
 exports[`skeleton [snapshot] > shape: box 1`] = `
 <div
   class="vesper-skeleton vesper-skeleton-box"
-/>
+>
+  <div
+    class="vesper-skeleton-overlay"
+  />
+</div>
 `;
 
 exports[`skeleton [snapshot] > shape: box with children 1`] = `
@@ -13,6 +17,9 @@ exports[`skeleton [snapshot] > shape: box with children 1`] = `
   <span>
     Loading content
   </span>
+  <div
+    class="vesper-skeleton-overlay"
+  />
 </div>
 `;
 
@@ -20,20 +27,32 @@ exports[`skeleton [snapshot] > shape: box with size 1`] = `
 <div
   class="vesper-skeleton vesper-skeleton-box"
   style="width: 100px; height: 100px;"
-/>
+>
+  <div
+    class="vesper-skeleton-overlay"
+  />
+</div>
 `;
 
 exports[`skeleton [snapshot] > shape: box with width and height 1`] = `
 <div
   class="vesper-skeleton vesper-skeleton-box"
   style="width: 200px; height: 50px;"
-/>
+>
+  <div
+    class="vesper-skeleton-overlay"
+  />
+</div>
 `;
 
 exports[`skeleton [snapshot] > shape: circle 1`] = `
 <div
   class="vesper-skeleton vesper-skeleton-circle"
-/>
+>
+  <div
+    class="vesper-skeleton-overlay"
+  />
+</div>
 `;
 
 exports[`skeleton [snapshot] > shape: circle with children 1`] = `
@@ -43,6 +62,9 @@ exports[`skeleton [snapshot] > shape: circle with children 1`] = `
   <span>
     Loading content
   </span>
+  <div
+    class="vesper-skeleton-overlay"
+  />
 </div>
 `;
 
@@ -50,20 +72,32 @@ exports[`skeleton [snapshot] > shape: circle with size 1`] = `
 <div
   class="vesper-skeleton vesper-skeleton-circle"
   style="width: 100px; height: 100px;"
-/>
+>
+  <div
+    class="vesper-skeleton-overlay"
+  />
+</div>
 `;
 
 exports[`skeleton [snapshot] > shape: circle with width and height 1`] = `
 <div
   class="vesper-skeleton vesper-skeleton-circle"
   style="width: 200px; height: 50px;"
-/>
+>
+  <div
+    class="vesper-skeleton-overlay"
+  />
+</div>
 `;
 
 exports[`skeleton [snapshot] > shape: pill 1`] = `
 <div
   class="vesper-skeleton vesper-skeleton-pill"
-/>
+>
+  <div
+    class="vesper-skeleton-overlay"
+  />
+</div>
 `;
 
 exports[`skeleton [snapshot] > shape: pill with children 1`] = `
@@ -73,6 +107,9 @@ exports[`skeleton [snapshot] > shape: pill with children 1`] = `
   <span>
     Loading content
   </span>
+  <div
+    class="vesper-skeleton-overlay"
+  />
 </div>
 `;
 
@@ -80,12 +117,20 @@ exports[`skeleton [snapshot] > shape: pill with size 1`] = `
 <div
   class="vesper-skeleton vesper-skeleton-pill"
   style="width: 100px; height: 100px;"
-/>
+>
+  <div
+    class="vesper-skeleton-overlay"
+  />
+</div>
 `;
 
 exports[`skeleton [snapshot] > shape: pill with width and height 1`] = `
 <div
   class="vesper-skeleton vesper-skeleton-pill"
   style="width: 200px; height: 50px;"
-/>
+>
+  <div
+    class="vesper-skeleton-overlay"
+  />
+</div>
 `;

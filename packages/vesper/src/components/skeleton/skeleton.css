@@ -1,15 +1,14 @@
 .vesper-skeleton {
   position: relative;
   overflow: hidden;
-  &::before {
-    z-index: 9999999;
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--vesper-stone-300);
-  }
+}
+
+.vesper-skeleton-overlay {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--vesper-stone-300);
   &::after {
-    z-index: 10000000;
     content: "";
     position: absolute;
     top: 0;

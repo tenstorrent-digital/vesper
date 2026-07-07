@@ -37,6 +37,7 @@ export function Skeleton({
       {...props}
     >
       {children}
+      <div className="vesper-skeleton-overlay" />
     </div>
   );
 }
