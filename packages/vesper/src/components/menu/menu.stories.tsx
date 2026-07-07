@@ -6,7 +6,6 @@ import { TextButton } from "@/components/text-button/text-button";
 
 const meta = {
   component: Menu,
-  parameters: { layout: "centered" },
   argTypes: {},
 } satisfies Meta<typeof Menu>;
 

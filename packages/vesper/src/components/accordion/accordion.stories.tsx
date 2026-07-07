@@ -4,7 +4,6 @@ import { Accordion } from "@/components/accordion/accordion";
 
 const meta = {
   component: Accordion,
-  parameters: { layout: "centered" },
   argTypes: {},
 } satisfies Meta<typeof Accordion>;
 

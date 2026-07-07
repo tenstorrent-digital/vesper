@@ -5,7 +5,6 @@ import { Tenstorrent } from "@/components/icons/icons";
 
 const meta = {
   component: TextButton,
-  parameters: { layout: "centered" },
   argTypes: {
     as: { table: { disable: true } },
     iconLeft: { control: "boolean" },

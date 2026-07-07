@@ -5,7 +5,6 @@ import { Tenstorrent, Globe, Blackhole } from "@/components/icons/icons";
 
 const meta = {
   component: SplitButton,
-  parameters: { layout: "centered" },
   argTypes: {
     onClick: { table: { disable: true } },
     menuButtonAriaLabel: { table: { disable: true } },

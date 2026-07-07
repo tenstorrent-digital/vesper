@@ -48,6 +48,9 @@ const config: StorybookConfig = {
     };
     return config;
   },
+  features: {
+    sidebarOnboardingChecklist: false,
+  },
   core: {
     disableTelemetry: true,
   },
