@@ -1,4 +1,50 @@
+<style>
+  /*
+   * Fix: Mobile controls panel last row being obscured on iOS Safari 26+.
+   *
+   * Storybook's bottom-drawer modal sets `overflow: hidden` on its container,
+   * preventing scrolling when panel content extends beyond the visible height.
+   * On iOS Safari 26 (liquid glass), the translucent bottom toolbar floats over
+   * the bottom portion of the viewport, causing the last row of controls to be
+   * visually obscured even though the content technically fits the container.
+   *
+   * Fix:
+   * 1. Allow vertical scrolling in the addon panel container
+   * 2. Add bottom padding to push the last row above the floating toolbar.
+   *    Uses max() to take the larger of the safe-area inset (when available)
+   *    or a fixed value that clears the iOS Safari bottom toolbar.
+   */
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    #storybook-mobile-addon-panel {
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: max(env(safe-area-inset-bottom, 0px), 34px) !important;
+    }
+  }
+
+  #storybook-mobile-addon-panel {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 34px !important;
+  }
+
+  /* Ensure the mobile menu drawer is similarly scrollable */
+  #storybook-mobile-menu {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 34px !important;
+  }
+</style>
 <script>
+  // Ensure viewport-fit=cover so env(safe-area-inset-*) values are populated
+  // on iOS Safari. Without this, env() always returns 0.
+  (function () {
+    var meta = document.querySelector('meta[name="viewport"]');
+    if (meta && !meta.content.includes("viewport-fit")) {
+      meta.content += ", viewport-fit=cover";
+    }
+  })();
+
   // In local development, when Storybook is proxied through the docs app,
   // the preview iframe should load directly from the Storybook dev server
   // to avoid having to proxy all Vite dev server paths.
