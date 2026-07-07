@@ -53,6 +53,9 @@ const config: StorybookConfig = {
   },
   core: {
     disableTelemetry: true,
+    allowedHosts:
+      // allow all hosts in development
+      process.env.NODE_ENV === "development" ? true : undefined,
   },
 };
 export default config;
