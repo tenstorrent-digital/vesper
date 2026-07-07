@@ -4,7 +4,6 @@
 }
 
 .vesper-skeleton-overlay {
-  content: "";
   position: absolute;
   inset: 0;
   background: var(--vesper-stone-300);
