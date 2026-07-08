@@ -75,7 +75,6 @@ function ModalStoryComponent({
 
 const meta = {
   component: ModalStoryComponent,
-  parameters: { layout: "centered" },
   argTypes: {
     buttonsAlignment: { options: MODAL_BUTTONS_ALIGNMENTS, control: "radio" },
     contents: { options: ["inputs", "long text", "none"], control: "radio" },
