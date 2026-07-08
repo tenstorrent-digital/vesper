@@ -4,7 +4,6 @@ import { StatusIndicator } from "@/components/status-indicator/status-indicator"
 
 const meta = {
   component: StatusIndicator,
-  parameters: { layout: "centered" },
   argTypes: { as: { table: { disable: true } } },
 } satisfies Meta<typeof StatusIndicator>;
 

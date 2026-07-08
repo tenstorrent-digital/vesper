@@ -4,7 +4,6 @@ import { AvatarGroup } from "@/components/avatar-group/avatar-group";
 
 const meta = {
   component: AvatarGroup,
-  parameters: { layout: "centered" },
   argTypes: {
     as: { table: { disable: true } },
   },

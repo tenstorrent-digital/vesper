@@ -5,7 +5,6 @@ import { Tag } from "@/components/tag/tag";
 
 const meta = {
   component: Tag,
-  parameters: { layout: "centered" },
   argTypes: {
     icon: { control: "boolean" },
     as: { table: { disable: true } },

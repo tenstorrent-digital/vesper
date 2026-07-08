@@ -23,7 +23,6 @@ const RadioGroupStory = (
 
 const meta = {
   component: RadioGroupStory,
-  parameters: { layout: "centered" },
   argTypes: {
     orientation: {
       control: "radio",

@@ -78,7 +78,6 @@ const TabsStoryComponent = ({
 
 const meta = {
   component: TabsStoryComponent,
-  parameters: { layout: "centered" },
   argTypes: {
     variant: { control: "radio", options: TABS_VARIANTS },
   },

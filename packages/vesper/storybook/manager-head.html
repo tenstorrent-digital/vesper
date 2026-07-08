@@ -1,11 +1,17 @@
-<script>
-  // In local development, when Storybook is proxied through the docs app,
-  // the preview iframe should load directly from the Storybook dev server
-  // to avoid having to proxy all Vite dev server paths.
-  if (
-    window.location.hostname === "localhost" &&
-    window.location.port !== "3000"
-  ) {
-    window["PREVIEW_URL"] = "http://localhost:3000/iframe.html";
+<style>
+  /*
+   * Storybook's bottom-drawer modal (#storybook-mobile-addon-panel) uses
+   * `position: absolute; bottom: 0px;` to fix itself to the bottom of the
+   * viewport when open. Because `body` uses `height: 100vh`, on iOS Safari 26+,
+   * this positions the panel underneath the browser search bar, and because of
+   * how the panel content height, overflow-behaviour, and overflows are
+   * calculated, this both obscures the last row of control options, and prevents
+   * a user from scrolling to them (they are beyond the visible area)
+   *
+   * By unsetting the `body` height, we allow the panel to expand to fit its content
+   * without being constrained by the viewport height calculation
+   */
+  body {
+    height: unset !important;
   }
-</script>
+</style>
