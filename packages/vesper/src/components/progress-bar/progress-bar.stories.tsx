@@ -4,7 +4,6 @@ import { ProgressBar } from "@/components/progress-bar/progress-bar";
 
 const meta = {
   component: ProgressBar,
-  parameters: { layout: "centered" },
   argTypes: {
     value: {
       control: {

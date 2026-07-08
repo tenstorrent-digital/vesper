@@ -5,7 +5,6 @@ import { AI, CaretDown } from "@/components/icons/icons";
 
 const meta = {
   component: Chip,
-  parameters: { layout: "centered" },
   argTypes: {
     as: { table: { disable: true } },
     onChange: { table: { disable: true } },

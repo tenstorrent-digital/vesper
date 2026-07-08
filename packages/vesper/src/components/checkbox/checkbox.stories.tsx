@@ -4,7 +4,6 @@ import { Checkbox } from "@/components/checkbox/checkbox";
 
 const meta = {
   component: Checkbox,
-  parameters: { layout: "centered" },
   argTypes: {
     defaultChecked: { table: { disable: true } },
     checked: { table: { disable: true } },

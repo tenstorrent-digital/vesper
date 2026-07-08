@@ -5,7 +5,6 @@ import { ICON_KINDS, Icon, type IconKind } from "@/components/icons/icons";
 
 const meta = {
   component: IconButton,
-  parameters: { layout: "centered" },
   argTypes: {
     as: { table: { disable: true } },
     icon: { control: "select", options: ICON_KINDS },

@@ -4,7 +4,6 @@ import { Admonition } from "@/components/admonition/admonition";
 
 const meta = {
   component: Admonition,
-  parameters: { layout: "centered" },
   argTypes: {
     as: { table: { disable: true } },
     ctaAs: { table: { disable: true } },

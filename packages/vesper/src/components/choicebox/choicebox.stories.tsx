@@ -40,7 +40,6 @@ function ChoiceboxStoryComponent({
 
 const meta = {
   component: ChoiceboxStoryComponent,
-  parameters: { layout: "centered" },
 } satisfies Meta<typeof ChoiceboxStoryComponent>;
 
 export default meta;

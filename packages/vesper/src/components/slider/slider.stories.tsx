@@ -4,7 +4,6 @@ import { Slider } from "@/components/slider/slider";
 
 const meta = {
   component: Slider,
-  parameters: { layout: "centered" },
   argTypes: {
     value: { table: { disable: true } },
     style: { table: { disable: true } },

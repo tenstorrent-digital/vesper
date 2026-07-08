@@ -4,7 +4,6 @@ import { Range } from "@/components/range/range";
 
 const meta = {
   component: Range,
-  parameters: { layout: "centered" },
   argTypes: {
     values: { table: { disable: true } },
     style: { table: { disable: true } },

@@ -31,7 +31,6 @@ const ToggleStoryComponent = ({
 
 const meta = {
   component: ToggleStoryComponent,
-  parameters: { layout: "centered" },
   argTypes: {
     size: { control: "radio", options: TOGGLE_SIZES },
     type: { control: "radio", options: ["icons", "text"] },

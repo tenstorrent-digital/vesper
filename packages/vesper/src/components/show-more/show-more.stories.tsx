@@ -5,7 +5,6 @@ import { ShowMore } from "@/components/show-more/show-more";
 
 const meta = {
   component: ShowMore,
-  parameters: { layout: "centered" },
   argTypes: {
     onClick: { table: { disable: true } },
   },

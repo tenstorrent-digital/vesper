@@ -4,7 +4,6 @@ import { Typography } from "@/components/typography/typography";
 
 const meta = {
   component: Typography,
-  parameters: { layout: "centered" },
   argTypes: {
     as: { table: { disable: true } },
   },

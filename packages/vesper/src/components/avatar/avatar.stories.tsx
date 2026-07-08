@@ -4,7 +4,6 @@ import { Avatar } from "@/components/avatar/avatar";
 
 const meta = {
   component: Avatar,
-  parameters: { layout: "centered" },
   argTypes: {
     as: { table: { disable: true } },
     alt: { table: { disable: true } },

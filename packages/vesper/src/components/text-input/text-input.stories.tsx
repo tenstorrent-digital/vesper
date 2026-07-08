@@ -5,7 +5,6 @@ import { Globe } from "@/components/icons/icons";
 
 const meta = {
   component: TextInput,
-  parameters: { layout: "centered" },
   argTypes: {
     icon: { control: "boolean", name: "icon (no effect on multiline inputs)" },
     height: {
