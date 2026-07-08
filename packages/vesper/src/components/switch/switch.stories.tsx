@@ -4,7 +4,6 @@ import { Switch } from "@/components/switch/switch";
 
 const meta = {
   component: Switch,
-  parameters: { layout: "centered" },
   argTypes: {
     label: { control: "text" },
     inputRef: { table: { disable: true } },

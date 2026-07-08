@@ -57,6 +57,7 @@ const preview: Preview = {
     },
   ],
   parameters: {
+    layout: "centered",
     controls: {
       disableSaveFromUI: true,
     },

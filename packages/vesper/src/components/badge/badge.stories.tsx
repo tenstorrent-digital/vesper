@@ -5,7 +5,6 @@ import { Tenstorrent } from "@/components/icons/icons";
 
 const meta = {
   component: Badge,
-  parameters: { layout: "centered" },
   argTypes: {
     as: { table: { disable: true } },
     icon: { control: "boolean" },

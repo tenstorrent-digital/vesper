@@ -4,7 +4,6 @@ import { ThemeSwitcher } from "@/components/theme-switcher/theme-switcher";
 
 const meta = {
   component: ThemeSwitcher,
-  parameters: { layout: "centered" },
 } satisfies Meta<typeof ThemeSwitcher>;
 
 export default meta;

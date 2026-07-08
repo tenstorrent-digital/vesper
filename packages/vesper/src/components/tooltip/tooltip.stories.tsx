@@ -5,7 +5,6 @@ import { Typography } from "@/components/typography/typography";
 
 const meta = {
   component: Tooltip,
-  parameters: { layout: "centered" },
   argTypes: {
     content: { control: "text" },
     open: { table: { disable: true } },

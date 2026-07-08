@@ -211,7 +211,6 @@ fs.writeFileSync(
 
   const meta = {
     component: Icon,
-    parameters: { layout: "centered" },
   } satisfies Meta<typeof Icon>;
 
   export default meta;

@@ -7,7 +7,6 @@ import { Avatar } from "@/components/avatar/avatar";
 
 const meta = {
   component: Skeleton,
-  parameters: { layout: "centered" },
   argTypes: {
     shape: { control: "radio", options: SKELETON_SHAPES },
     width: { table: { disable: true } },
