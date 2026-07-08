@@ -1,57 +1,17 @@
 <style>
   /*
-   * Fix: Mobile controls panel last row being obscured on iOS Safari 26+.
+   * Storybook's bottom-drawer modal (#storybook-mobile-addon-panel) uses
+   * `position: absolute; bottom: 0px;` to fix itself to the bottom of the
+   * viewport when open. Because `body` uses `height: 100vh`, on iOS Safari 26+,
+   * this positions the panel underneath the browser search bar, and because of
+   * how the panel content height, overflow-behaviour, and overflows are
+   * calculated, this both obscures the last row of control options, and prevents
+   * a user from scrolling to them (they are beyond the visible area)
    *
-   * Storybook's bottom-drawer modal sets `overflow: hidden` on its container,
-   * preventing scrolling when panel content extends beyond the visible height.
-   * On iOS Safari 26 (liquid glass), the translucent bottom toolbar floats over
-   * the bottom portion of the viewport, causing the last row of controls to be
-   * visually obscured even though the content technically fits the container.
-   *
-   * Fix:
-   * 1. Allow vertical scrolling in the addon panel container
-   * 2. Add bottom padding to push the last row above the floating toolbar.
-   *    Uses max() to take the larger of the safe-area inset (when available)
-   *    or a fixed value that clears the iOS Safari bottom toolbar.
+   * By unsetting the `body` height, we allow the panel to expand to fit its content
+   * without being constrained by the viewport height calculation
    */
-  @supports (padding-bottom: env(safe-area-inset-bottom)) {
-    #storybook-mobile-addon-panel {
-      overflow-y: auto !important;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: max(env(safe-area-inset-bottom, 0px), 34px) !important;
-    }
-  }
-
-  #storybook-mobile-addon-panel {
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 34px !important;
-  }
-
-  /* Ensure the mobile menu drawer is similarly scrollable */
-  #storybook-mobile-menu {
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 34px !important;
+  body {
+    height: unset !important;
   }
 </style>
-<script>
-  // Ensure viewport-fit=cover so env(safe-area-inset-*) values are populated
-  // on iOS Safari. Without this, env() always returns 0.
-  (function () {
-    var meta = document.querySelector('meta[name="viewport"]');
-    if (meta && !meta.content.includes("viewport-fit")) {
-      meta.content += ", viewport-fit=cover";
-    }
-  })();
-
-  // In local development, when Storybook is proxied through the docs app,
-  // the preview iframe should load directly from the Storybook dev server
-  // to avoid having to proxy all Vite dev server paths.
-  if (
-    window.location.hostname === "localhost" &&
-    window.location.port !== "3000"
-  ) {
-    window["PREVIEW_URL"] = "http://localhost:3000/iframe.html";
-  }
-</script>
