@@ -29,7 +29,7 @@ function ModalStoryComponent({
           <TextInput
             label="Username"
             name="username"
-            style={{ marginTop: "var(--vesper-spacing-4)" }}
+            style={{ marginTop: "var(--vesper-spacing-4)", marginBottom: 3 }}
           />
         </div>
       );
