@@ -1,31 +1,33 @@
 .vesper-modal {
   margin: auto;
   overflow: visible;
+  opacity: 0;
+  transform: translateY(var(--vesper-spacing-2));
+  transition:
+    opacity var(--vesper-transition-duration-fast) ease,
+    transform var(--vesper-transition-duration-fast) ease,
+    display var(--vesper-transition-duration-fast) ease allow-discrete,
+    overlay var(--vesper-transition-duration-fast) ease allow-discrete;
   &::backdrop {
-    animation: vesper-modal-backdrop-fade-in
-      var(--vesper-transition-duration-fast) ease forwards;
+    background: transparent;
+    transition:
+      background var(--vesper-transition-duration-fast) ease,
+      display var(--vesper-transition-duration-fast) ease allow-discrete,
+      overlay var(--vesper-transition-duration-fast) ease allow-discrete;
   }
-  animation: vesper-modal-fade-in var(--vesper-transition-duration-fast) ease
-    forwards;
-}
-
-@keyframes vesper-modal-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(var(--vesper-spacing-2));
-  }
-  to {
+  &[open] {
     opacity: 1;
     transform: translateY(0px);
-  }
-}
-
-@keyframes vesper-modal-backdrop-fade-in {
-  from {
-    background: transparent;
-  }
-  to {
-    background: var(--vesper-alpha-contrast-200);
+    @starting-style {
+      opacity: 0;
+      transform: translateY(var(--vesper-spacing-2));
+    }
+    &::backdrop {
+      background: var(--vesper-alpha-contrast-200);
+      @starting-style {
+        background: transparent;
+      }
+    }
   }
 }
 
