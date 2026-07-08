@@ -7,13 +7,11 @@ import {
   useId,
   useImperativeHandle,
   useRef,
-  useState,
 } from "react";
 import { cn } from "@/utils/cn";
 import { Typography } from "@/components/typography/typography";
 import { Close } from "@/components/icons/icons";
 import { type ButtonProps, Button } from "@/components/button/button";
-import { useScrollLock } from "@/utils/useScrollLock";
 
 export const MODAL_BUTTONS_ALIGNMENTS = [
   "start",
@@ -75,27 +73,21 @@ export function Modal({
   children,
   form,
   closeOnClickOutside = false,
-  onClose,
   ...props
 }: ModalProps) {
   const titleId = useId();
   const descriptionId = useId();
   const innerRef = useRef<HTMLDialogElement>(null);
-  const [isOpen, setIsOpen] = useState(false);
-
-  useScrollLock(isOpen);
 
   const open = useCallback(() => {
     innerRef.current?.showModal();
-    setIsOpen(true);
   }, []);
 
   const close = useCallback(() => {
     innerRef.current?.close();
-    setIsOpen(false);
   }, []);
 
-  useImperativeHandle(ref, () => ({ open, close }));
+  useImperativeHandle(ref, () => ({ open, close }), [open, close]);
 
   useEffect(() => {
     if (!closeOnClickOutside) return;
@@ -183,10 +175,6 @@ export function Modal({
       className={cn("vesper-modal", className)}
       aria-labelledby={labelledBy}
       aria-describedby={describedBy}
-      onClose={(e) => {
-        setIsOpen(false);
-        onClose?.(e);
-      }}
       {...props}
     >
       {form ? (
