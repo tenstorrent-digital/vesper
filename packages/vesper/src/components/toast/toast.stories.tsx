@@ -33,7 +33,6 @@ function ToastStoryComponent() {
 
 const meta = {
   component: ToastStoryComponent,
-  parameters: { layout: "centered" },
 } satisfies Meta<typeof ToastStoryComponent>;
 
 export default meta;
