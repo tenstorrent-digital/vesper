@@ -60,6 +60,7 @@ const preview: Preview = {
     layout: "centered",
     controls: {
       disableSaveFromUI: true,
+      expanded: true,
     },
     a11y: {
       test: "error",

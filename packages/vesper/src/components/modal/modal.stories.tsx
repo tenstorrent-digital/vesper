@@ -77,7 +77,16 @@ const meta = {
   component: ModalStoryComponent,
   argTypes: {
     buttonsAlignment: { options: MODAL_BUTTONS_ALIGNMENTS, control: "radio" },
-    contents: { options: ["inputs", "long text", "none"], control: "radio" },
+    contents: {
+      options: ["inputs", "long text", "none"],
+      control: "radio",
+      description:
+        "Not a `Modal` component prop; this control is used to easily display different modal content in the storybook preview UI.",
+    },
+    withButtons: {
+      description:
+        "Not a `Modal` component prop; this control is used to easily toggle on/off buttons in the storybook preview UI.",
+    },
   },
 } satisfies Meta<typeof ModalStoryComponent>;
 
@@ -92,9 +101,9 @@ export const Playground: Story = {
     title: "Are you absolutely sure?",
     description:
       "This action cannot be undone. This will permanently delete your account from our servers.",
+    contents: "inputs",
     withButtons: true,
     buttonsAlignment: "end",
-    contents: "inputs",
     closeOnClickOutside: false,
   },
 };
