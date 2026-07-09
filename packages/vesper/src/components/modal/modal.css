@@ -13,6 +13,7 @@
   &::backdrop {
     opacity: 0;
   }
+  /* We use ::before instead of ::backdrop here because backdrop pseudo elements don't have full cross-browser support for allowing discrete overlay transitions */
   &::before {
     content: "";
     background: transparent;
