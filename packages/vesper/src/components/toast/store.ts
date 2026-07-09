@@ -31,7 +31,10 @@ export interface ToastData {
 }
 
 class ToastsStore {
-  toasts: ToastData[] = [];
+  data = {
+    toasts: [] as ToastData[],
+    announcement: null as string | null,
+  };
 
   listeners = new Set<() => void>();
   subscribe = (listener: () => void) => {
@@ -39,7 +42,7 @@ class ToastsStore {
     return () => this.listeners.delete(listener);
   };
 
-  getSnapshot = () => this.toasts;
+  getSnapshot = () => this.data;
 
   emitChange = () => {
     for (const listener of this.listeners) {
@@ -59,7 +62,8 @@ class ToastsStore {
       state: "entering",
     };
 
-    this.toasts = [...this.toasts, toast];
+    const toasts = [...this.data.toasts, toast];
+    this.data = { ...this.data, toasts };
     this.emitChange();
 
     return {
@@ -70,18 +74,20 @@ class ToastsStore {
   };
 
   updateToast = (id: string, updates: Partial<ToastOptions>) => {
-    this.toasts = this.toasts.map((t) => {
+    const toasts = this.data.toasts.map((t) => {
       if (t.id !== id) return t;
       return { ...t, options: { ...t.options, ...updates } };
     });
+    this.data = { ...this.data, toasts };
     this.emitChange();
   };
 
   updateToastState = (id: string, state: ToastState) => {
-    this.toasts = this.toasts.map((t) => {
+    const toasts = this.data.toasts.map((t) => {
       if (t.id !== id) return t;
       return { ...t, state };
     });
+    this.data = { ...this.data, toasts };
     this.emitChange();
   };
 
@@ -91,12 +97,13 @@ class ToastsStore {
   };
 
   destroyToast = (id: string) => {
-    this.toasts = this.toasts.filter((t) => t.id !== id);
+    const toasts = this.data.toasts.filter((t) => t.id !== id);
+    this.data = { ...this.data, toasts };
     this.emitChange();
   };
 
   dismissOldestToast = () => {
-    const oldestActiveToast = [...this.toasts].find(
+    const oldestActiveToast = this.data.toasts.find(
       (t) => t.state === "active" || t.state === "entering",
     );
 
@@ -106,12 +113,21 @@ class ToastsStore {
   };
 
   destroyAllToasts = () => {
-    this.toasts = [];
+    this.data = { ...this.data, toasts: [] };
+    this.emitChange();
+  };
+
+  setAnnouncement = (announcement: string | null) => {
+    this.data = { ...this.data, announcement };
     this.emitChange();
   };
 }
 
 export const store = new ToastsStore();
 
-export const useToasts = () =>
+const useStore = () =>
   useSyncExternalStore(store.subscribe, store.getSnapshot, store.getSnapshot);
+
+export const useToasts = () => useStore().toasts;
+
+export const useAnnouncement = () => useStore().announcement;
