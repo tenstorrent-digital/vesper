@@ -1,5 +1,7 @@
 .vesper-modal {
   margin: auto;
+  position: fixed;
+  inset: 0;
   overflow: visible;
   opacity: 0;
   transform: translateY(var(--vesper-spacing-2));
@@ -9,7 +11,16 @@
     display var(--vesper-transition-duration-fast) ease allow-discrete,
     overlay var(--vesper-transition-duration-fast) ease allow-discrete;
   &::backdrop {
+    opacity: 0;
+  }
+  &::before {
+    content: "";
     background: transparent;
+    position: fixed;
+    top: -100vh;
+    bottom: -100vh;
+    left: -100vw;
+    right: -100vw;
     transition:
       background var(--vesper-transition-duration-fast) ease,
       display var(--vesper-transition-duration-fast) ease allow-discrete,
@@ -18,13 +29,13 @@
   &[open] {
     opacity: 1;
     transform: translateY(0px);
+    &::before {
+      background: var(--vesper-alpha-contrast-200);
+    }
     @starting-style {
       opacity: 0;
       transform: translateY(var(--vesper-spacing-2));
-    }
-    &::backdrop {
-      background: var(--vesper-alpha-contrast-200);
-      @starting-style {
+      &::before {
         background: transparent;
       }
     }
@@ -32,6 +43,7 @@
 }
 
 .vesper-modal-container {
+  position: relative;
   background: var(--vesper-stone-0);
   border-radius: var(--vesper-radius-3);
   border: 1px solid var(--vesper-stone-400);
