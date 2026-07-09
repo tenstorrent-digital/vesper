@@ -125,9 +125,5 @@ class ToastsStore {
 
 export const store = new ToastsStore();
 
-const useStore = () =>
+export const useStore = () =>
   useSyncExternalStore(store.subscribe, store.getSnapshot, store.getSnapshot);
-
-export const useToasts = () => useStore().toasts;
-
-export const useAnnouncement = () => useStore().announcement;

@@ -10,7 +10,7 @@ import {
   WarningSolid,
 } from "@/components/icons/icons";
 import { cn } from "@/utils/cn";
-import { useToasts, type ToastData, store } from "./store";
+import { type ToastData, store, useStore } from "./store";
 import { animateToastEnter, animateToastExit } from "./animations";
 
 export { type ToastOptions } from "./store";
@@ -143,7 +143,7 @@ export function Toasts({
 }: {
   ariaLabel?: string;
 }) {
-  const toasts = useToasts();
+  const { announcement, toasts } = useStore();
 
   return createPortal(
     <div
@@ -151,6 +151,13 @@ export function Toasts({
       role="region"
       aria-label={ariaLabel}
     >
+      <span
+        className="vesper-toast-announcer"
+        role="status"
+        aria-atomic={false}
+      >
+        {announcement}
+      </span>
       {toasts.map(({ id, options, state }) => (
         <Toast key={id} id={id} options={options} state={state} />
       ))}

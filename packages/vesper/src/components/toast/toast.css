@@ -153,3 +153,11 @@
   gap: var(--vesper-spacing-3);
   margin-top: var(--vesper-spacing-3);
 }
+
+.vesper-toast-announcer {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
