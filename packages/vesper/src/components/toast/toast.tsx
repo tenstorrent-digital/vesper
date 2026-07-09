@@ -25,6 +25,32 @@ function Toast({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const toastRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    if (state === "dismissed" || !toastRef.current) return;
+
+    const updateAnnouncement = () => {
+      if (!toastRef.current) return;
+
+      const contentText = toastRef.current.querySelector<HTMLDivElement>(
+        ".vesper-toast-children",
+      )?.innerText;
+
+      const buttonsText = Array.from(
+        toastRef.current.querySelectorAll<HTMLButtonElement>(
+          ".vesper-toast-buttons",
+        ),
+      ).map((button) => button.ariaLabel || button.innerText);
+
+      const announcement = [contentText, ...buttonsText].join(". ");
+      store.setAnnouncement(announcement);
+    };
+    updateAnnouncement();
+
+    const observer = new MutationObserver(updateAnnouncement);
+    observer.observe(toastRef.current, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, [state]);
+
   const [hasFocus, setHasFocus] = useState(false);
   const [hasPointer, setHasPointer] = useState(false);
 
@@ -138,12 +164,27 @@ function Toast({
   );
 }
 
+function ToastAnnouncer() {
+  const { announcement, toasts } = useStore();
+
+  const numToasts = toasts.length;
+  useEffect(() => {
+    if (numToasts === 0) store.setAnnouncement(null);
+  }, [numToasts]);
+
+  return (
+    <span className="vesper-toast-announcer" role="status" aria-atomic={false}>
+      {announcement}
+    </span>
+  );
+}
+
 export function Toasts({
   ariaLabel = "Notifications",
 }: {
   ariaLabel?: string;
 }) {
-  const { announcement, toasts } = useStore();
+  const { toasts } = useStore();
 
   return createPortal(
     <div
@@ -151,13 +192,7 @@ export function Toasts({
       role="region"
       aria-label={ariaLabel}
     >
-      <span
-        className="vesper-toast-announcer"
-        role="status"
-        aria-atomic={false}
-      >
-        {announcement}
-      </span>
+      <ToastAnnouncer />
       {toasts.map(({ id, options, state }) => (
         <Toast key={id} id={id} options={options} state={state} />
       ))}
