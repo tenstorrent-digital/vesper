@@ -257,6 +257,7 @@ export function Toasts({
       ref={ref}
       onFocus={(e) => {
         if (
+          document.body.contains(e.relatedTarget) &&
           !ref.current?.contains(e.relatedTarget) &&
           e.relatedTarget instanceof HTMLElement
         ) {
