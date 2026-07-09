@@ -34,6 +34,12 @@ export interface ModalProps extends Omit<
   title: string;
   description: string;
   width?: number | string;
+  /**
+   * The maximum height of the modal container. Accepts a number (interpreted as pixels)
+   * or a CSS string value. The effective max height is the minimum of this value and
+   * `calc(100vh - var(--vesper-spacing-16))`, ensuring the modal never exceeds the
+   * viewport height minus spacing. Defaults to `640`.
+   */
   maxHeight?: number | string;
   buttons?: Omit<ButtonProps, "size">[];
   buttonsAlignment?: ModalButtonsAlignment;
