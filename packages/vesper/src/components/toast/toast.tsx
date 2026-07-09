@@ -265,8 +265,6 @@ export function Toasts({
       }}
       onBlur={(e) => {
         if (!e.relatedTarget || !e.currentTarget.contains(e.relatedTarget)) {
-          console.log("got here!", previouslyFocused.current);
-
           previouslyFocused.current?.focus();
           previouslyFocused.current = null;
         }
