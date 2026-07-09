@@ -12,7 +12,7 @@ import {
 import { cn } from "@/utils/cn";
 import { type ToastData, store, useStore } from "./store";
 import { animateToastEnter, animateToastExit } from "./animations";
-import { focusOldestToast, getNearestActiveToast } from "./utils";
+import { focusOldestToast, getNearestActiveToast, isFocusable } from "./utils";
 
 export { type ToastOptions } from "./store";
 
@@ -83,9 +83,18 @@ function Toast({
 
   useEffect(() => {
     if (state === "dismissed" && hasFocus && toastRef.current) {
-      const nearestToast = getNearestActiveToast(toastRef.current);
-      if (nearestToast) nearestToast.focus();
-      else toastRef.current.blur();
+      const ref = toastRef.current;
+
+      /**
+       * requestAnimationFrame gives React a chance to flush all pending state updates
+       * (e.g., if multiple toasts were dismissed in the same batch), so by the time we
+       * query for the nearest active toast, the DOM reflects the true current state
+       * */
+      requestAnimationFrame(() => {
+        const nearestToast = getNearestActiveToast(ref);
+        if (nearestToast) nearestToast.focus();
+        else ref.blur();
+      });
     }
   }, [state, hasFocus]);
 
@@ -108,6 +117,7 @@ function Toast({
     >
       <div
         ref={toastRef}
+        data-state={state}
         className={cn(
           "vesper-toast",
           `vesper-toast-${state}`,
@@ -268,7 +278,17 @@ export function Toasts({
         if (!e.relatedTarget || !e.currentTarget.contains(e.relatedTarget)) {
           const elementToRestore = previouslyFocused.current;
           previouslyFocused.current = null;
-          requestAnimationFrame(() => elementToRestore?.focus());
+
+          /**
+           * requestAnimationFrame gives React a chance to flush all pending state updates
+           * in case the DOM structure changes and the element we want to restore focus to
+           * no longer exists in the dom or otherwise becomes not focusable.
+           */
+          requestAnimationFrame(() => {
+            if (elementToRestore && isFocusable(elementToRestore)) {
+              elementToRestore.focus();
+            }
+          });
         }
       }}
     >
