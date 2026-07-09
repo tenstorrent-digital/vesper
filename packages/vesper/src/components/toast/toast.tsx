@@ -212,10 +212,18 @@ export function Toasts({
           .join("+")})`;
 
   useEffect(() => {
+    const focusOldestToast = () => {
+      document
+        .querySelector<HTMLDivElement>(
+          ".vesper-toast:not(.vesper-toast-dismissed)",
+        )
+        ?.focus();
+    };
+
     const handleKeydown = (e: KeyboardEvent) => {
       if (typeof shortcut === "string") {
         if (e.key === shortcut) {
-          // move focus to oldest toast
+          focusOldestToast();
         }
         return;
       }
@@ -227,7 +235,7 @@ export function Toasts({
         !!shortcut.ctrl === e.ctrlKey &&
         !!shortcut.shift === e.shiftKey
       ) {
-        // move focus to oldest toast
+        focusOldestToast();
       }
     };
     window.addEventListener("keydown", handleKeydown);
