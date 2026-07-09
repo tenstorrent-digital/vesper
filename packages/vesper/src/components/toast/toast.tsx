@@ -265,8 +265,9 @@ export function Toasts({
       }}
       onBlur={(e) => {
         if (!e.relatedTarget || !e.currentTarget.contains(e.relatedTarget)) {
-          previouslyFocused.current?.focus();
+          const elementToRestore = previouslyFocused.current;
           previouslyFocused.current = null;
+          requestAnimationFrame(() => elementToRestore?.focus());
         }
       }}
     >
