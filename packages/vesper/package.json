@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./modal": {
+      "types": "./dist/components/modal/modal.d.ts",
+      "import": "./dist/components/modal/modal.js"
+    },
     "./status-indicator": {
       "types": "./dist/components/status-indicator/status-indicator.d.ts",
       "import": "./dist/components/status-indicator/status-indicator.js"

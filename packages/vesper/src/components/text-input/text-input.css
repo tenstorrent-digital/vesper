@@ -70,7 +70,7 @@
     box-shadow: none;
   }
   &:placeholder-shown {
-    & + .vesper-text-input-icon {
+    & ~ .vesper-text-input-icon {
       display: none;
     }
   }
@@ -80,7 +80,7 @@
       color: var(--vesper-alpha-stone-400);
     }
   }
-  & + .vesper-text-input-icon {
+  & ~ .vesper-text-input-icon {
     cursor: pointer;
     border-radius: 50%;
     &:focus-visible {
