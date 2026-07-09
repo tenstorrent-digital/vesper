@@ -224,19 +224,11 @@ export function Toasts({
 
   useEffect(() => {
     const handleKeydown = (e: KeyboardEvent) => {
-      if (e.key === "Tab") {
-        console.log(document.activeElement);
-        if (toasts.length > 0) {
-          if (!ref.current?.contains(document.activeElement)) {
-            e.preventDefault();
-            focusOldestToast();
-          }
-          return;
-        }
-      }
-
       if (typeof shortcut === "string") {
-        if (e.key === shortcut) focusOldestToast();
+        if (e.key === shortcut) {
+          e.preventDefault();
+          focusOldestToast();
+        }
         return;
       }
 
@@ -247,6 +239,7 @@ export function Toasts({
         !!shortcut.ctrl === e.ctrlKey &&
         !!shortcut.shift === e.shiftKey
       ) {
+        e.preventDefault();
         focusOldestToast();
       }
     };
@@ -272,6 +265,8 @@ export function Toasts({
       }}
       onBlur={(e) => {
         if (!e.relatedTarget || !e.currentTarget.contains(e.relatedTarget)) {
+          console.log("got here!", previouslyFocused.current);
+
           previouslyFocused.current?.focus();
           previouslyFocused.current = null;
         }
