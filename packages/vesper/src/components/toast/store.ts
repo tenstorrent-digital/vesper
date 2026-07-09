@@ -14,7 +14,7 @@ export const TOAST_VARIANTS = [
 export interface ToastOptions {
   content: ReactNode;
   buttons?: {
-    variant: ButtonVariant;
+    variant?: ButtonVariant;
     handler: () => void;
     content: ReactNode;
     altText: string;
