@@ -182,16 +182,64 @@ function ToastAnnouncer() {
 
 export function Toasts({
   ariaLabel = "Notifications",
+  shortcut = "F8",
 }: {
   ariaLabel?: string;
+  shortcut?:
+    | string
+    | {
+        key: string;
+        alt?: boolean;
+        ctrl?: boolean;
+        shift?: boolean;
+        meta?: boolean;
+      };
 }) {
   const { toasts } = useStore();
+  const ref = useRef<HTMLDivElement>(null);
+
+  const shortcutString =
+    typeof shortcut === "string"
+      ? `(${shortcut})`
+      : `(${[
+          shortcut.ctrl && "Ctrl",
+          shortcut.alt && "Alt",
+          shortcut.shift && "Shift",
+          shortcut.meta && "Cmd",
+          shortcut.key,
+        ]
+          .filter(Boolean)
+          .join("+")})`;
+
+  useEffect(() => {
+    const handleKeydown = (e: KeyboardEvent) => {
+      if (typeof shortcut === "string") {
+        if (e.key === shortcut) {
+          // move focus to oldest toast
+        }
+        return;
+      }
+
+      if (
+        e.key === shortcut.key &&
+        !!shortcut.alt === e.altKey &&
+        !!shortcut.meta === e.metaKey &&
+        !!shortcut.ctrl === e.ctrlKey &&
+        !!shortcut.shift === e.shiftKey
+      ) {
+        // move focus to oldest toast
+      }
+    };
+    window.addEventListener("keydown", handleKeydown);
+    return () => window.removeEventListener("keydown", handleKeydown);
+  }, [shortcut]);
 
   return createPortal(
     <div
       className="vesper-toasts-container"
       role="region"
-      aria-label={ariaLabel}
+      aria-label={`${ariaLabel} ${shortcutString}`}
+      ref={ref}
     >
       <ToastAnnouncer />
       {toasts.map(({ id, options, state }) => (
