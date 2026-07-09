@@ -1,0 +1,147 @@
+.vesper-modal {
+  margin: auto;
+  position: fixed;
+  inset: 0;
+  overflow: visible;
+  opacity: 0;
+  transform: translateY(var(--vesper-spacing-2));
+  transition:
+    opacity var(--vesper-transition-duration-fast) ease,
+    transform var(--vesper-transition-duration-fast) ease,
+    display var(--vesper-transition-duration-fast) ease allow-discrete,
+    overlay var(--vesper-transition-duration-fast) ease allow-discrete;
+  &::backdrop {
+    opacity: 0;
+  }
+  /*
+    We use ::before instead of ::backdrop here because backdrop pseudo elements don't
+    have full cross-browser support for allowing discrete overlay transitions.
+
+    At the time of writing, neither Firefox nor Safari support discrete transitions for the overlay property.
+
+    Support tables for discrete overlay transitions:
+    https://web-platform-dx.github.io/web-features-explorer/features/overlay/
+    https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overlay#browser_compatibility
+
+    Relevant GitHub issues:
+    https://github.com/mozilla/standards-positions/issues/777
+    https://bugs.webkit.org/show_bug.cgi?id=276727
+  */
+  &::before {
+    content: "";
+    background: transparent;
+    position: fixed;
+    top: -100vh;
+    bottom: -100vh;
+    left: -100vw;
+    right: -100vw;
+    transition:
+      background var(--vesper-transition-duration-fast) ease,
+      display var(--vesper-transition-duration-fast) ease allow-discrete,
+      overlay var(--vesper-transition-duration-fast) ease allow-discrete;
+  }
+  &[open] {
+    opacity: 1;
+    transform: translateY(0px);
+    &::before {
+      background: var(--vesper-alpha-contrast-200);
+    }
+    @starting-style {
+      opacity: 0;
+      transform: translateY(var(--vesper-spacing-2));
+      &::before {
+        background: transparent;
+      }
+    }
+  }
+}
+
+.vesper-modal-container {
+  position: relative;
+  background: var(--vesper-stone-0);
+  border-radius: var(--vesper-radius-3);
+  border: 1px solid var(--vesper-stone-400);
+  box-shadow: var(--vesper-shadow-300);
+  max-width: calc(100vw - var(--vesper-spacing-16));
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-6);
+  padding-bottom: var(--vesper-spacing-6);
+}
+
+.vesper-modal-header {
+  padding: var(--vesper-spacing-6) var(--vesper-spacing-6) 0
+    var(--vesper-spacing-6);
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--vesper-spacing-5);
+}
+
+.vesper-modal-title {
+  color: var(--vesper-stone-900);
+}
+
+.vesper-modal-description {
+  color: var(--vesper-stone-700);
+  margin-top: var(--vesper-spacing-2);
+}
+
+.vesper-modal-close-button {
+  padding: var(--vesper-spacing-2);
+  display: flex;
+  border-radius: var(--vesper-radius-1);
+  color: var(--vesper-stone-900);
+  background: var(--vesper-alpha-stone-100);
+  cursor: pointer;
+  > svg {
+    width: 16px;
+    height: 16px;
+  }
+  &:hover {
+    background: var(--vesper-alpha-stone-200);
+  }
+  @media (forced-colors: active) {
+    border: 1px solid CanvasText;
+    &:focus-visible {
+      outline: 2px solid CanvasText;
+    }
+  }
+  @media not (forced-colors: active) {
+    &:focus-visible {
+      box-shadow: var(--vesper-shadow-focus-ring);
+    }
+  }
+}
+
+.vesper-modal-content {
+  padding: 0 var(--vesper-spacing-6);
+  color: var(--vesper-stone-900);
+  flex-shrink: 1;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.vesper-modal-buttons {
+  flex-shrink: 0;
+  display: flex;
+  gap: var(--vesper-spacing-6);
+  padding: 0 var(--vesper-spacing-6);
+}
+.vesper-modal-buttons-start {
+  justify-content: flex-start;
+}
+.vesper-modal-buttons-end {
+  justify-content: flex-end;
+}
+.vesper-modal-buttons-fill .vesper-button {
+  width: 100%;
+}
+.vesper-modal-buttons-between {
+  justify-content: space-between;
+}
