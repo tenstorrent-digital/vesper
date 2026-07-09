@@ -35,13 +35,10 @@ function Toast({
         ".vesper-toast-children",
       )?.innerText;
 
-      const buttonsText = Array.from(
-        toastRef.current.querySelectorAll<HTMLButtonElement>(
-          ".vesper-toast-buttons",
-        ),
-      ).map((button) => button.ariaLabel || button.innerText);
-
-      const announcement = [contentText, ...buttonsText].join(". ");
+      const announcement = [
+        contentText,
+        ...buttons.map((button) => button.altText),
+      ].join(". ");
       store.setAnnouncement(announcement);
     };
     updateAnnouncement();
@@ -49,7 +46,7 @@ function Toast({
     const observer = new MutationObserver(updateAnnouncement);
     observer.observe(toastRef.current, { childList: true, subtree: true });
     return () => observer.disconnect();
-  }, [state]);
+  }, [state, buttons]);
 
   const [hasFocus, setHasFocus] = useState(false);
   const [hasPointer, setHasPointer] = useState(false);
@@ -140,21 +137,25 @@ function Toast({
         </div>
         {!!buttons?.length && (
           <div className="vesper-toast-buttons">
-            {buttons.map((button, index) => {
-              const variant =
-                button.variant ||
+            {buttons.map(({ altText, content, handler, variant }, index) => {
+              const renderedVariant =
+                variant ||
                 (index === buttons.length - 1 ? "contrast" : "ghost");
-
-              const type = button.type || "button";
 
               return (
                 <Button
                   key={index}
-                  {...button}
                   size="xs"
-                  type={type}
-                  variant={variant}
-                />
+                  type="button"
+                  variant={renderedVariant}
+                  data-vesper-modal-button-alt-text={altText}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handler();
+                  }}
+                >
+                  {content}
+                </Button>
               );
             })}
           </div>
