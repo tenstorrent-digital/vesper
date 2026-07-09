@@ -12,6 +12,7 @@ import {
 import { cn } from "@/utils/cn";
 import { type ToastData, store, useStore } from "./store";
 import { animateToastEnter, animateToastExit } from "./animations";
+import { focusOldestToast, getNearestActiveToast } from "./utils";
 
 export { type ToastOptions } from "./store";
 
@@ -79,6 +80,14 @@ function Toast({
         break;
     }
   }, [state, id]);
+
+  useEffect(() => {
+    if (state === "dismissed" && hasFocus && toastRef.current) {
+      const nearestToast = getNearestActiveToast(toastRef.current);
+      if (nearestToast) nearestToast.focus();
+      else toastRef.current.blur();
+    }
+  }, [state, hasFocus]);
 
   return (
     <div
@@ -180,20 +189,22 @@ function ToastAnnouncer() {
   );
 }
 
+export type ToastsShortcut =
+  | string
+  | {
+      key: string;
+      alt?: boolean;
+      ctrl?: boolean;
+      shift?: boolean;
+      meta?: boolean;
+    };
+
 export function Toasts({
   ariaLabel = "Notifications",
   shortcut = "F8",
 }: {
   ariaLabel?: string;
-  shortcut?:
-    | string
-    | {
-        key: string;
-        alt?: boolean;
-        ctrl?: boolean;
-        shift?: boolean;
-        meta?: boolean;
-      };
+  shortcut?: ToastsShortcut;
 }) {
   const { toasts } = useStore();
   const ref = useRef<HTMLDivElement>(null);
@@ -212,19 +223,20 @@ export function Toasts({
           .join("+")})`;
 
   useEffect(() => {
-    const focusOldestToast = () => {
-      document
-        .querySelector<HTMLDivElement>(
-          ".vesper-toast:not(.vesper-toast-dismissed)",
-        )
-        ?.focus();
-    };
-
     const handleKeydown = (e: KeyboardEvent) => {
-      if (typeof shortcut === "string") {
-        if (e.key === shortcut) {
-          focusOldestToast();
+      if (e.key === "Tab") {
+        console.log(document.activeElement);
+        if (toasts.length > 0) {
+          if (!ref.current?.contains(document.activeElement)) {
+            e.preventDefault();
+            focusOldestToast();
+          }
+          return;
         }
+      }
+
+      if (typeof shortcut === "string") {
+        if (e.key === shortcut) focusOldestToast();
         return;
       }
 
@@ -240,7 +252,9 @@ export function Toasts({
     };
     window.addEventListener("keydown", handleKeydown);
     return () => window.removeEventListener("keydown", handleKeydown);
-  }, [shortcut]);
+  }, [shortcut, toasts]);
+
+  const previouslyFocused = useRef<HTMLElement | null>(null);
 
   return createPortal(
     <div
@@ -248,6 +262,20 @@ export function Toasts({
       role="region"
       aria-label={`${ariaLabel} ${shortcutString}`}
       ref={ref}
+      onFocus={(e) => {
+        if (
+          !ref.current?.contains(e.relatedTarget) &&
+          e.relatedTarget instanceof HTMLElement
+        ) {
+          previouslyFocused.current = e.relatedTarget;
+        }
+      }}
+      onBlur={(e) => {
+        if (!e.relatedTarget || !e.currentTarget.contains(e.relatedTarget)) {
+          previouslyFocused.current?.focus();
+          previouslyFocused.current = null;
+        }
+      }}
     >
       <ToastAnnouncer />
       {toasts.map(({ id, options, state }) => (
