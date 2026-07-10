@@ -1,8 +1,6 @@
 import { type ReactNode, useSyncExternalStore } from "react";
 import { type ButtonVariant } from "@/components/button/button";
 
-export const TOAST_ROLES = ["status", "alert"] as const;
-
 export const TOAST_VARIANTS = [
   "default",
   "loading",
@@ -17,15 +15,13 @@ export interface ToastOptions {
     variant?: ButtonVariant;
     handler: () => void;
     content: ReactNode;
-    altText: string;
+    altText?: string;
   }[];
   timeout?: number | false;
   variant?: ToastVariant;
 }
 
 export type ToastState = "entering" | "active" | "dismissed";
-
-export type ToastRole = (typeof TOAST_ROLES)[number];
 
 export type ToastVariant = (typeof TOAST_VARIANTS)[number];
 

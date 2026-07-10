@@ -14,7 +14,7 @@ import { type ToastData, store, useStore } from "./store";
 import { animateToastEnter, animateToastExit } from "./animations";
 import { focusOldestToast, getNearestActiveToast, isFocusable } from "./utils";
 
-export { type ToastOptions } from "./store";
+export { type ToastOptions, TOAST_VARIANTS } from "./store";
 
 export const { addToast } = store;
 
@@ -39,7 +39,7 @@ function Toast({
 
       const announcement = [
         contentText,
-        ...buttons.map((button) => button.altText),
+        ...buttons.map((button) => button.altText).filter(Boolean),
       ].join(". ");
       store.setAnnouncement(announcement);
     };
