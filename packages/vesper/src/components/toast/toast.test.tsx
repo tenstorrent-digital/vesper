@@ -401,6 +401,142 @@ describe("toast [unit]", () => {
       document.body.querySelector(".vesper-toasts-container"),
     ).not.toBeNull();
   });
+
+  test("focus restores to previously focused element when leaving toast region", async () => {
+    const { container } = render(
+      <>
+        <button data-testid="outside-button">Outside</button>
+        <Toasts />
+      </>,
+    );
+
+    addToast({ content: "Focus test" });
+    await waitForActiveToasts(1);
+
+    const outsideButton = container.querySelector(
+      "[data-testid='outside-button']",
+    ) as HTMLElement;
+    outsideButton.focus();
+    expect(document.activeElement).toBe(outsideButton);
+
+    // move focus into the toast region — captures previouslyFocused
+    const toast = document.querySelector<HTMLElement>(".vesper-toast")!;
+    toast.focus();
+    expect(document.activeElement).toBe(toast);
+
+    // blur the toast without moving focus to another element inside the region,
+    // simulating focus leaving the container (e.g. tabbing past the last element)
+    toast.blur();
+    await flush();
+
+    expect(document.activeElement).toBe(outsideButton);
+  });
+
+  test("focus does not restore to a non-focusable element", async () => {
+    const { container } = render(
+      <>
+        <button data-testid="outside-button">Outside</button>
+        <Toasts />
+      </>,
+    );
+
+    addToast({ content: "Focus test" });
+    await waitForActiveToasts(1);
+
+    const outsideButton = container.querySelector(
+      "[data-testid='outside-button']",
+    ) as HTMLElement;
+    outsideButton.focus();
+
+    // move focus into the toast region
+    const toast = document.querySelector<HTMLElement>(".vesper-toast")!;
+    toast.focus();
+
+    // disable the outside button so it's no longer focusable
+    outsideButton.setAttribute("disabled", "");
+
+    // blur the toast — focus should NOT restore to the disabled button
+    toast.blur();
+    await flush();
+
+    expect(document.activeElement).not.toBe(outsideButton);
+  });
+
+  test("dismissing focused toast moves focus to nearest active toast", async () => {
+    render(<Toasts />);
+
+    addToast({ content: "First" });
+    addToast({ content: "Second" });
+    addToast({ content: "Third" });
+    await waitForActiveToasts(3);
+
+    const toasts = document.querySelectorAll<HTMLElement>(".vesper-toast");
+
+    // focus the middle toast
+    toasts[1]!.focus();
+    expect(document.activeElement).toBe(toasts[1]);
+
+    // dismiss the middle toast — focus should move to the previous (first) toast
+    store.dismissToast(
+      store.getSnapshot().toasts[1]!.id,
+    );
+    await flush();
+
+    await waitFor(() => {
+      expect(document.activeElement).toBe(
+        document.querySelectorAll<HTMLElement>(".vesper-toast")[0],
+      );
+    });
+  });
+
+  test("dismissing first focused toast moves focus to next toast", async () => {
+    render(<Toasts />);
+
+    addToast({ content: "First" });
+    addToast({ content: "Second" });
+    await waitForActiveToasts(2);
+
+    const toasts = document.querySelectorAll<HTMLElement>(".vesper-toast");
+
+    // focus the first toast
+    toasts[0]!.focus();
+    expect(document.activeElement).toBe(toasts[0]);
+
+    // dismiss the first toast — focus should move to the next (second) toast
+    store.dismissToast(
+      store.getSnapshot().toasts[0]!.id,
+    );
+    await flush();
+
+    await waitFor(() => {
+      expect(document.activeElement).toBe(
+        document.querySelectorAll<HTMLElement>(".vesper-toast")[0],
+      );
+    });
+  });
+
+  test("dismissing the only focused toast blurs focus", async () => {
+    render(<Toasts />);
+
+    addToast({ content: "Only" });
+    await waitForActiveToasts(1);
+
+    const toast = document.querySelector<HTMLElement>(".vesper-toast")!;
+    toast.focus();
+    expect(document.activeElement).toBe(toast);
+
+    store.dismissToast(
+      store.getSnapshot().toasts[0]!.id,
+    );
+    await flush();
+
+    await waitFor(() => {
+      expect(document.querySelector(".vesper-toast")).toBeNull();
+    });
+
+    // with no other toasts, activeElement should not be the dismissed toast
+    expect(document.activeElement).not.toBe(toast);
+  });
 });
 
 describe("toast [snapshot]", () => {
