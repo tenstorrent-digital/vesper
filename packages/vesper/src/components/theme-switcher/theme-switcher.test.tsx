@@ -107,7 +107,7 @@ describe("theme-switcher [a11y]", () => {
       expect(await axe.run(container)).toHaveNoViolations();
     });
 
-    test.todo(`a11y (sm, ${theme})`, async () => {
+    test(`a11y (sm, ${theme})`, async () => {
       const { container } = render(<ThemeSwitcher size="sm" />);
 
       expect(await axe.run(container)).toHaveNoViolations();
