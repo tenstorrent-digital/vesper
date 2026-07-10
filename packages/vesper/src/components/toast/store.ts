@@ -103,16 +103,6 @@ class ToastsStore {
     this.emitChange();
   };
 
-  dismissOldestToast = () => {
-    const oldestActiveToast = this.data.toasts.find(
-      (t) => t.state === "active" || t.state === "entering",
-    );
-
-    if (oldestActiveToast) {
-      this.dismissToast(oldestActiveToast.id);
-    }
-  };
-
   destroyAllToasts = () => {
     this.data = { ...this.data, toasts: [] };
     this.emitChange();
