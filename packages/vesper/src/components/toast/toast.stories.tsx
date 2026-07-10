@@ -10,13 +10,12 @@ import { Button } from "@/components/button/button";
 
 function ToastStoryComponent({
   content,
-  useTimeout,
+  dismissAfterDelay,
   withButtons,
-  timeout,
   variant,
-}: Omit<ToastOptions, "buttons"> & {
+}: Omit<ToastOptions, "buttons" | "timeout"> & {
   withButtons: boolean;
-  useTimeout: boolean;
+  dismissAfterDelay: boolean;
 }) {
   return (
     <>
@@ -25,7 +24,7 @@ function ToastStoryComponent({
         onClick={() => {
           const toast = addToast({
             content,
-            timeout: useTimeout ? timeout : false,
+            timeout: dismissAfterDelay ? 5000 : false,
             buttons: withButtons
               ? [
                   {
@@ -54,6 +53,14 @@ const meta = {
   component: ToastStoryComponent,
   argTypes: {
     variant: { options: TOAST_VARIANTS, control: "select" },
+    withButtons: {
+      description:
+        "Not a `Toast` component prop; this control is used to easily toggle on/off buttons in the storybook preview UI.",
+    },
+    dismissAfterDelay: {
+      description:
+        "Not a `Toast` component prop; this control is used to easily toggle on/off timeout in the storybook preview UI.",
+    },
   },
 } satisfies Meta<typeof ToastStoryComponent>;
 
@@ -67,8 +74,7 @@ export const Playground: Story = {
     content:
       "Don't be afraid to make decisions. Put your feelings into it, your heart, it's your world. You are just a whisper floating across a mountain.",
     withButtons: false,
-    useTimeout: true,
-    timeout: 5000,
+    dismissAfterDelay: true,
   },
 };
 Playground.storyName = "toast";
