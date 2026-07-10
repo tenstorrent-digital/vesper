@@ -26,6 +26,7 @@ function Toast({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const toastRef = useRef<HTMLDivElement>(null);
 
+  // handle updating announcement text when content changes
   useEffect(() => {
     if (state === "dismissed" || !toastRef.current) return;
 
@@ -52,6 +53,7 @@ function Toast({
   const [hasFocus, setHasFocus] = useState(false);
   const [hasPointer, setHasPointer] = useState(false);
 
+  // handle timeout if present
   useEffect(() => {
     if (timeout === false || hasFocus || hasPointer) {
       return;
@@ -64,6 +66,7 @@ function Toast({
     return () => clearTimeout(t);
   }, [timeout, id, hasFocus, hasPointer]);
 
+  // handle enter and exit animations
   useEffect(() => {
     switch (state) {
       case "entering":
@@ -81,6 +84,7 @@ function Toast({
     }
   }, [state, id]);
 
+  // move focus to the nearest active toast if this one was dismissed while focused
   useEffect(() => {
     if (state === "dismissed" && hasFocus && toastRef.current) {
       const ref = toastRef.current;
