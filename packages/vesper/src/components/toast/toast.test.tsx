@@ -377,6 +377,52 @@ describe("toast [unit]", () => {
     expect(announcer).toHaveAttribute("role", "status");
   });
 
+  test("announcer includes button altText in announcement", async () => {
+    render(<Toasts />);
+
+    addToast({
+      content: "File deleted",
+      buttons: [
+        {
+          content: "Undo",
+          altText: "Go to dashboard to undo",
+          handler: () => {},
+        },
+        {
+          content: "Dismiss",
+          handler: () => {},
+        },
+      ],
+    });
+    await waitForActiveToasts(1);
+
+    const announcer = document.querySelector(".vesper-toast-announcer");
+    expect(announcer?.textContent).toContain("File deleted");
+    expect(announcer?.textContent).toContain("Go to dashboard to undo");
+    // buttons without altText should not contribute to announcement
+    expect(announcer?.textContent).not.toContain("Dismiss");
+  });
+
+  test("announcer clears when all toasts are removed", async () => {
+    render(<Toasts />);
+
+    const toast = addToast({ content: "Temporary" });
+    await waitForActiveToasts(1);
+
+    const announcer = document.querySelector(".vesper-toast-announcer");
+    expect(announcer?.textContent).toContain("Temporary");
+
+    toast.dismiss();
+
+    await waitFor(() => {
+      expect(document.querySelector(".vesper-toast")).toBeNull();
+    });
+
+    await waitFor(() => {
+      expect(announcer?.textContent).toBe("");
+    });
+  });
+
   test("toast without timeout does not auto-dismiss", async () => {
     render(<Toasts />);
 
