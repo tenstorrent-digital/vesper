@@ -24,8 +24,8 @@
   background: var(--vesper-stone-0);
   border-radius: var(--vesper-radius-2);
   transition:
-    background var(--vesper-transition-duration-default) ease,
-    border-color var(--vesper-transition-duration-default) ease;
+    background var(--vesper-transition-duration-fast) ease,
+    border-color var(--vesper-transition-duration-fast) ease;
   @media (forced-colors: active) {
     background: Canvas;
     border-color: CanvasText;
@@ -74,6 +74,14 @@
       linear infinite;
   }
 }
+@keyframes vesper-toast-icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 .vesper-toast-success {
   border-color: var(--vesper-green-200);
@@ -105,15 +113,6 @@
     @media not (forced-colors: active) {
       color: var(--vesper-red-600);
     }
-  }
-}
-
-@keyframes vesper-toast-icon-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
   }
 }
 
