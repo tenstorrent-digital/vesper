@@ -160,7 +160,7 @@ function Toast({
         </div>
         {!!buttons?.length && (
           <div className="vesper-toast-buttons">
-            {buttons.map(({ altText, content, handler, variant }, index) => {
+            {buttons.map(({ content, handler, variant }, index) => {
               const renderedVariant =
                 variant ||
                 (index === buttons.length - 1 ? "contrast" : "ghost");
@@ -171,7 +171,6 @@ function Toast({
                   size="xs"
                   type="button"
                   variant={renderedVariant}
-                  data-vesper-modal-button-alt-text={altText}
                   onClick={(e) => {
                     e.preventDefault();
                     handler();
