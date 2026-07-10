@@ -2,23 +2,37 @@
 
 exports[`toast [snapshot] > empty container 1`] = `
 <div
-  aria-label="Notifications"
+  aria-label="Notifications ()"
   class="vesper-toasts-container"
   role="region"
-/>
+>
+  <span
+    aria-atomic="false"
+    class="vesper-toast-announcer"
+    role="status"
+  />
+</div>
 `;
 
 exports[`toast [snapshot] > multiple toasts 1`] = `
 <div
-  aria-label="Notifications"
+  aria-label="Notifications ()"
   class="vesper-toasts-container"
   role="region"
 >
+  <span
+    aria-atomic="false"
+    class="vesper-toast-announcer"
+    role="status"
+  >
+    Third
+  </span>
   <div
     class="vesper-toast-wrapper"
   >
     <div
       class="vesper-toast vesper-toast-active vesper-toast-default"
+      data-state="active"
       tabindex="0"
     >
       <div
@@ -26,7 +40,6 @@ exports[`toast [snapshot] > multiple toasts 1`] = `
       >
         <span
           class="vesper-typography vesper-typography-copy-sm vesper-toast-children"
-          role="status"
         >
           First
         </span>
@@ -36,6 +49,7 @@ exports[`toast [snapshot] > multiple toasts 1`] = `
           type="button"
         >
           <svg
+            aria-hidden="true"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -53,12 +67,14 @@ exports[`toast [snapshot] > multiple toasts 1`] = `
   >
     <div
       class="vesper-toast vesper-toast-active vesper-toast-success"
+      data-state="active"
       tabindex="0"
     >
       <div
         class="vesper-toast-content"
       >
         <svg
+          aria-hidden="true"
           class="vesper-toast-icon"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +86,6 @@ exports[`toast [snapshot] > multiple toasts 1`] = `
         </svg>
         <span
           class="vesper-typography vesper-typography-copy-sm vesper-toast-children"
-          role="status"
         >
           Second
         </span>
@@ -80,6 +95,7 @@ exports[`toast [snapshot] > multiple toasts 1`] = `
           type="button"
         >
           <svg
+            aria-hidden="true"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -97,12 +113,14 @@ exports[`toast [snapshot] > multiple toasts 1`] = `
   >
     <div
       class="vesper-toast vesper-toast-active vesper-toast-danger"
+      data-state="active"
       tabindex="0"
     >
       <div
         class="vesper-toast-content"
       >
         <svg
+          aria-hidden="true"
           class="vesper-toast-icon"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +134,6 @@ exports[`toast [snapshot] > multiple toasts 1`] = `
         </svg>
         <span
           class="vesper-typography vesper-typography-copy-sm vesper-toast-children"
-          role="status"
         >
           Third
         </span>
@@ -126,6 +143,7 @@ exports[`toast [snapshot] > multiple toasts 1`] = `
           type="button"
         >
           <svg
+            aria-hidden="true"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -147,12 +165,14 @@ exports[`toast [snapshot] > variant: danger 1`] = `
 >
   <div
     class="vesper-toast vesper-toast-active vesper-toast-danger"
+    data-state="active"
     tabindex="0"
   >
     <div
       class="vesper-toast-content"
     >
       <svg
+        aria-hidden="true"
         class="vesper-toast-icon"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +186,6 @@ exports[`toast [snapshot] > variant: danger 1`] = `
       </svg>
       <span
         class="vesper-typography vesper-typography-copy-sm vesper-toast-children"
-        role="status"
       >
         danger toast message
       </span>
@@ -176,6 +195,7 @@ exports[`toast [snapshot] > variant: danger 1`] = `
         type="button"
       >
         <svg
+          aria-hidden="true"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -196,6 +216,7 @@ exports[`toast [snapshot] > variant: default 1`] = `
 >
   <div
     class="vesper-toast vesper-toast-active vesper-toast-default"
+    data-state="active"
     tabindex="0"
   >
     <div
@@ -203,7 +224,6 @@ exports[`toast [snapshot] > variant: default 1`] = `
     >
       <span
         class="vesper-typography vesper-typography-copy-sm vesper-toast-children"
-        role="status"
       >
         default toast message
       </span>
@@ -213,6 +233,7 @@ exports[`toast [snapshot] > variant: default 1`] = `
         type="button"
       >
         <svg
+          aria-hidden="true"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -233,12 +254,14 @@ exports[`toast [snapshot] > variant: loading 1`] = `
 >
   <div
     class="vesper-toast vesper-toast-active vesper-toast-loading"
+    data-state="active"
     tabindex="0"
   >
     <div
       class="vesper-toast-content"
     >
       <svg
+        aria-hidden="true"
         class="vesper-toast-icon"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -250,7 +273,6 @@ exports[`toast [snapshot] > variant: loading 1`] = `
       </svg>
       <span
         class="vesper-typography vesper-typography-copy-sm vesper-toast-children"
-        role="status"
       >
         loading toast message
       </span>
@@ -260,6 +282,7 @@ exports[`toast [snapshot] > variant: loading 1`] = `
         type="button"
       >
         <svg
+          aria-hidden="true"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -280,12 +303,14 @@ exports[`toast [snapshot] > variant: success 1`] = `
 >
   <div
     class="vesper-toast vesper-toast-active vesper-toast-success"
+    data-state="active"
     tabindex="0"
   >
     <div
       class="vesper-toast-content"
     >
       <svg
+        aria-hidden="true"
         class="vesper-toast-icon"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -297,7 +322,6 @@ exports[`toast [snapshot] > variant: success 1`] = `
       </svg>
       <span
         class="vesper-typography vesper-typography-copy-sm vesper-toast-children"
-        role="status"
       >
         success toast message
       </span>
@@ -307,6 +331,7 @@ exports[`toast [snapshot] > variant: success 1`] = `
         type="button"
       >
         <svg
+          aria-hidden="true"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -327,12 +352,14 @@ exports[`toast [snapshot] > variant: warning 1`] = `
 >
   <div
     class="vesper-toast vesper-toast-active vesper-toast-warning"
+    data-state="active"
     tabindex="0"
   >
     <div
       class="vesper-toast-content"
     >
       <svg
+        aria-hidden="true"
         class="vesper-toast-icon"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -346,7 +373,6 @@ exports[`toast [snapshot] > variant: warning 1`] = `
       </svg>
       <span
         class="vesper-typography vesper-typography-copy-sm vesper-toast-children"
-        role="status"
       >
         warning toast message
       </span>
@@ -356,55 +382,7 @@ exports[`toast [snapshot] > variant: warning 1`] = `
         type="button"
       >
         <svg
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
-            fill="currentColor"
-          />
-        </svg>
-      </button>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`toast [snapshot] > with alert role 1`] = `
-<div
-  class="vesper-toast-wrapper"
->
-  <div
-    class="vesper-toast vesper-toast-active vesper-toast-danger"
-    tabindex="0"
-  >
-    <div
-      class="vesper-toast-content"
-    >
-      <svg
-        class="vesper-toast-icon"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          clip-rule="evenodd"
-          d="M21 8V16L16 21H8L3 16V8L8 3H16L21 8ZM11.4932 15.2422L10.9766 15.7578V16.7881L11.4932 17.3027H12.5264L13.042 16.7881V15.7578L12.5264 15.2422H11.4932ZM11.2354 7L10.7188 7.51562L11.2354 13.6973L11.751 14.2119H12.2676L12.7842 13.6973L13.3008 7.51562L12.7842 7H11.2354Z"
-          fill="currentColor"
-          fill-rule="evenodd"
-        />
-      </svg>
-      <span
-        class="vesper-typography vesper-typography-copy-sm vesper-toast-children"
-        role="alert"
-      >
-        Critical alert
-      </span>
-      <button
-        aria-label="Dismiss"
-        class="vesper-toast-close-button"
-        type="button"
-      >
-        <svg
+          aria-hidden="true"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -425,6 +403,7 @@ exports[`toast [snapshot] > with buttons 1`] = `
 >
   <div
     class="vesper-toast vesper-toast-active vesper-toast-default"
+    data-state="active"
     tabindex="0"
   >
     <div
@@ -432,7 +411,6 @@ exports[`toast [snapshot] > with buttons 1`] = `
     >
       <span
         class="vesper-typography vesper-typography-copy-sm vesper-toast-children"
-        role="status"
       >
         Toast with buttons
       </span>
@@ -442,6 +420,7 @@ exports[`toast [snapshot] > with buttons 1`] = `
         type="button"
       >
         <svg
+          aria-hidden="true"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
