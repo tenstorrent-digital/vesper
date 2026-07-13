@@ -410,7 +410,7 @@ describe("sheet [a11y]", () => {
     SHEET_A11Y_PERMUTATIONS.forEach(({ label, props, children }) => {
       const testLabel = `a11y - ${label} (${theme})`;
 
-      const testFn = async () => {
+      test.todo(testLabel, async () => {
         const result = render(
           <SheetWithHook {...props}>{children}</SheetWithHook>,
         );
@@ -420,9 +420,7 @@ describe("sheet [a11y]", () => {
         ) as HTMLDialogElement;
         expect(dialog.matches(":popover-open")).toBe(true);
         expect(await axe.run(result.container)).toHaveNoViolations();
-      };
-
-      test.todo(testLabel, testFn);
+      });
     });
   });
 });
