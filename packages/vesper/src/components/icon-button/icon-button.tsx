@@ -5,7 +5,8 @@ import {
   type ButtonSize,
   type ButtonVariant,
 } from "@/components/button/button";
-import { Polymorphic } from "@/utils/polymorphic";
+import type { Polymorphic } from "@/utils/polymorphic";
+import { cn } from "@/utils/cn";
 
 export type IconButtonProps<E extends ElementType = "button"> = Polymorphic<
   {
@@ -20,7 +21,14 @@ export type IconButtonProps<E extends ElementType = "button"> = Polymorphic<
 
 export function IconButton<E extends ElementType = "button">({
   icon,
+  className,
   ...props
 }: IconButtonProps<E>) {
-  return <Button iconLeft={icon} {...(props as ButtonProps<E>)} />;
+  return (
+    <Button
+      iconLeft={icon}
+      className={cn("vesper-icon-button", className)}
+      {...(props as ButtonProps<E>)}
+    />
+  );
 }
