@@ -110,6 +110,7 @@ function Toast({
     <div
       ref={wrapperRef}
       className="vesper-toast-wrapper"
+      inert={state === "dismissed"}
       onPointerEnter={() => setHasPointer(true)}
       onPointerLeave={() => setHasPointer(false)}
       onFocus={() => setHasFocus(true)}
