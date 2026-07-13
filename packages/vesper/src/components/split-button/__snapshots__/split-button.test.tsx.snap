@@ -17,7 +17,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, lg) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-contrast"
+      class="vesper-button vesper-button-lg vesper-button-contrast vesper-icon-button"
     >
       <span
         class="vesper-button-icon"
@@ -66,7 +66,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, lg, disabled) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-disabled"
+      class="vesper-button vesper-button-lg vesper-button-disabled vesper-icon-button"
       disabled=""
     >
       <span
@@ -120,7 +120,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, lg, disabled, open) 1`] =
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-disabled"
+      class="vesper-button vesper-button-lg vesper-button-disabled vesper-icon-button"
       disabled=""
     >
       <span
@@ -173,7 +173,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, lg, open) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-contrast"
+      class="vesper-button vesper-button-lg vesper-button-contrast vesper-icon-button"
     >
       <span
         class="vesper-button-icon"
@@ -221,7 +221,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, md) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-contrast"
+      class="vesper-button vesper-button-md vesper-button-contrast vesper-icon-button"
     >
       <span
         class="vesper-button-icon"
@@ -270,7 +270,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, md, disabled) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-disabled"
+      class="vesper-button vesper-button-md vesper-button-disabled vesper-icon-button"
       disabled=""
     >
       <span
@@ -324,7 +324,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, md, disabled, open) 1`] =
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-disabled"
+      class="vesper-button vesper-button-md vesper-button-disabled vesper-icon-button"
       disabled=""
     >
       <span
@@ -377,7 +377,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, md, open) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-contrast"
+      class="vesper-button vesper-button-md vesper-button-contrast vesper-icon-button"
     >
       <span
         class="vesper-button-icon"
@@ -425,7 +425,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, sm) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-contrast"
+      class="vesper-button vesper-button-sm vesper-button-contrast vesper-icon-button"
     >
       <span
         class="vesper-button-icon"
@@ -474,7 +474,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, sm, disabled) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-disabled"
+      class="vesper-button vesper-button-sm vesper-button-disabled vesper-icon-button"
       disabled=""
     >
       <span
@@ -528,7 +528,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, sm, disabled, open) 1`] =
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-disabled"
+      class="vesper-button vesper-button-sm vesper-button-disabled vesper-icon-button"
       disabled=""
     >
       <span
@@ -581,7 +581,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, sm, open) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-contrast"
+      class="vesper-button vesper-button-sm vesper-button-contrast vesper-icon-button"
     >
       <span
         class="vesper-button-icon"
@@ -629,7 +629,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, lg) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-subtle"
+      class="vesper-button vesper-button-lg vesper-button-subtle vesper-icon-button"
     >
       <span
         class="vesper-button-icon"
@@ -678,7 +678,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, lg, disabled) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-disabled"
+      class="vesper-button vesper-button-lg vesper-button-disabled vesper-icon-button"
       disabled=""
     >
       <span
@@ -732,7 +732,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, lg, disabled, open) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-disabled"
+      class="vesper-button vesper-button-lg vesper-button-disabled vesper-icon-button"
       disabled=""
     >
       <span
@@ -785,7 +785,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, lg, open) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-subtle"
+      class="vesper-button vesper-button-lg vesper-button-subtle vesper-icon-button"
     >
       <span
         class="vesper-button-icon"
@@ -833,7 +833,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, md) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-subtle"
+      class="vesper-button vesper-button-md vesper-button-subtle vesper-icon-button"
     >
       <span
         class="vesper-button-icon"
@@ -882,7 +882,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, md, disabled) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-disabled"
+      class="vesper-button vesper-button-md vesper-button-disabled vesper-icon-button"
       disabled=""
     >
       <span
@@ -936,7 +936,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, md, disabled, open) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-disabled"
+      class="vesper-button vesper-button-md vesper-button-disabled vesper-icon-button"
       disabled=""
     >
       <span
@@ -989,7 +989,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, md, open) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-subtle"
+      class="vesper-button vesper-button-md vesper-button-subtle vesper-icon-button"
     >
       <span
         class="vesper-button-icon"
@@ -1037,7 +1037,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, sm) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-subtle"
+      class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
     >
       <span
         class="vesper-button-icon"
@@ -1086,7 +1086,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, sm, disabled) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-disabled"
+      class="vesper-button vesper-button-sm vesper-button-disabled vesper-icon-button"
       disabled=""
     >
       <span
@@ -1140,7 +1140,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, sm, disabled, open) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-disabled"
+      class="vesper-button vesper-button-sm vesper-button-disabled vesper-icon-button"
       disabled=""
     >
       <span
@@ -1193,7 +1193,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, sm, open) 1`] = `
     </button>
     <button
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-subtle"
+      class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
     >
       <span
         class="vesper-button-icon"
