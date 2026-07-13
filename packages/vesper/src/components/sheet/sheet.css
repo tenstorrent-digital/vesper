@@ -54,3 +54,9 @@
   overflow-y: scroll;
   flex: 1;
 }
+
+.vesper-sheet-buttons {
+  display: flex;
+  gap: var(--vesper-spacing-4);
+  justify-content: flex-end;
+}

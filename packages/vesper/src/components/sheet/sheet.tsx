@@ -10,6 +10,11 @@ import { cn } from "@/utils/cn";
 import { Typography } from "@/components/typography/typography";
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Close } from "@/components/icons/icons";
+import {
+  type ButtonProps,
+  Button,
+  type ButtonVariant,
+} from "@/components/button/button";
 
 interface SheetRef {
   open(): void;
@@ -24,6 +29,7 @@ export interface SheetProps extends Omit<
   description: string;
   ref?: RefObject<SheetRef>;
   side?: "left" | "right";
+  buttons?: Omit<ButtonProps, "size" | "as">[];
 }
 
 export function Sheet({
@@ -35,6 +41,7 @@ export function Sheet({
   side = "right",
   title,
   description,
+  buttons = [],
   ...props
 }: SheetProps) {
   const titleId = useId();
@@ -96,6 +103,19 @@ export function Sheet({
           />
         </div>
         <div className="vesper-sheet-children">{children}</div>
+        {buttons.length > 0 && (
+          <div className="vesper-sheet-buttons">
+            {buttons.map((button, index) => {
+              const variant: ButtonVariant =
+                button.variant ||
+                (index === buttons.length - 1 ? "contrast" : "tertiary");
+
+              return (
+                <Button size="lg" key={index} {...button} variant={variant} />
+              );
+            })}
+          </div>
+        )}
       </div>
     </dialog>
   );
