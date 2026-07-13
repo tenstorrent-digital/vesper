@@ -1,2 +1,56 @@
-.vesper-sheet {
+.vesper-sheet::backdrop {
+  background: rgba(7, 22, 20, 0.6);
+}
+
+.vesper-sheet-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-6);
+  width: 472px;
+  background: var(--vesper-stone-0);
+  padding: var(--vesper-spacing-6);
+  border: 1px solid var(--vesper-stone-400);
+  border-radius: var(--vesper-radius-3);
+  position: fixed;
+  top: var(--vesper-spacing-6);
+  height: calc(100vh - var(--vesper-spacing-12));
+}
+
+.vesper-sheet-left .vesper-sheet-content {
+  left: var(--vesper-spacing-6);
+}
+
+.vesper-sheet-right .vesper-sheet-content {
+  right: var(--vesper-spacing-6);
+}
+
+.vesper-sheet-header {
+  width: 100%;
+  display: flex;
+  gap: var(--vesper-spacing-10);
+}
+
+.vesper-sheet-title-description {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-2);
+}
+
+.vesper-sheet-title {
+  color: var(--vesper-stone-900);
+}
+
+.vesper-sheet-description {
+  color: var(--vesper-stone-700);
+}
+
+.vesper-sheet-children {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  overflow-y: scroll;
+  flex: 1;
 }

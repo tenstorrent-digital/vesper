@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Sheet } from "@/components/sheet/sheet";
+import { Sheet, useSheet } from "@/components/sheet/sheet";
+import { Button } from "@/components/button/button";
 
 const meta = {
   component: Sheet,
@@ -11,6 +12,21 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
-  args: {},
+  args: {
+    title: "Sheet title",
+    description: "Sheet description",
+  },
+  render: function Render(props) {
+    const sheet = useSheet();
+
+    return (
+      <>
+        <Button onClick={sheet.open} variant="contrast">
+          Open sheet
+        </Button>
+        <Sheet ref={sheet.ref} {...props} />
+      </>
+    );
+  },
 };
 Playground.storyName = "sheet";
