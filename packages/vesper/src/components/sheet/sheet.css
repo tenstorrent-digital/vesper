@@ -5,9 +5,23 @@
 }
 
 .vesper-sheet::backdrop {
-  background: transparent;
+  opacity: 0;
 }
 
+/*
+  We use ::before instead of ::backdrop here because backdrop pseudo elements don't
+  have full cross-browser support for allowing discrete overlay transitions.
+
+  At the time of writing, neither Firefox nor Safari support discrete transitions for the overlay property.
+
+  Support tables for discrete overlay transitions:
+  https://web-platform-dx.github.io/web-features-explorer/features/overlay/
+  https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overlay#browser_compatibility
+
+  Relevant GitHub issues:
+  https://github.com/mozilla/standards-positions/issues/777
+  https://bugs.webkit.org/show_bug.cgi?id=276727
+*/
 .vesper-sheet::before {
   content: "";
   background: transparent;
