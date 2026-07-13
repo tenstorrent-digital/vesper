@@ -220,9 +220,11 @@ export type ToastsShortcut =
 export function Toasts({
   ariaLabel = "Notifications",
   shortcut = "F8",
+  container,
 }: {
   ariaLabel?: string;
   shortcut?: ToastsShortcut;
+  container?: Element | DocumentFragment;
 }) {
   const { toasts } = useStore();
   const ref = useRef<HTMLDivElement>(null);
@@ -310,6 +312,6 @@ export function Toasts({
         <Toast key={id} id={id} options={options} state={state} />
       ))}
     </div>,
-    document.body,
+    container || document.body,
   );
 }
