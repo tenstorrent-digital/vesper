@@ -1,0 +1,313 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sheet [snapshot] > default (right side) 1`] = `
+<dialog
+  aria-describedby="_r_1j_"
+  aria-labelledby="_r_1i_"
+  class="vesper-sheet vesper-sheet-right"
+  popover=""
+>
+  <div
+    class="vesper-sheet-content"
+  >
+    <div
+      class="vesper-sheet-header"
+    >
+      <div
+        class="vesper-sheet-title-description"
+      >
+        <p
+          class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
+          id="_r_1i_"
+        >
+          Sheet title
+        </p>
+        <p
+          class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
+          id="_r_1j_"
+        >
+          This is a description of the sheet content.
+        </p>
+      </div>
+      <button
+        aria-label="Close sheet"
+        class="vesper-button vesper-button-md vesper-button-tertiary vesper-icon-button"
+        type="button"
+      >
+        <span
+          class="vesper-button-icon"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      class="vesper-sheet-children"
+    />
+  </div>
+</dialog>
+`;
+
+exports[`sheet [snapshot] > left side 1`] = `
+<dialog
+  aria-describedby="_r_1l_"
+  aria-labelledby="_r_1k_"
+  class="vesper-sheet vesper-sheet-left"
+  popover=""
+>
+  <div
+    class="vesper-sheet-content"
+  >
+    <div
+      class="vesper-sheet-header"
+    >
+      <div
+        class="vesper-sheet-title-description"
+      >
+        <p
+          class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
+          id="_r_1k_"
+        >
+          Sheet title
+        </p>
+        <p
+          class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
+          id="_r_1l_"
+        >
+          This is a description of the sheet content.
+        </p>
+      </div>
+      <button
+        aria-label="Close sheet"
+        class="vesper-button vesper-button-md vesper-button-tertiary vesper-icon-button"
+        type="button"
+      >
+        <span
+          class="vesper-button-icon"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      class="vesper-sheet-children"
+    />
+  </div>
+</dialog>
+`;
+
+exports[`sheet [snapshot] > left side with buttons and children 1`] = `
+<dialog
+  aria-describedby="_r_1r_"
+  aria-labelledby="_r_1q_"
+  class="vesper-sheet vesper-sheet-left"
+  popover=""
+>
+  <div
+    class="vesper-sheet-content"
+  >
+    <div
+      class="vesper-sheet-header"
+    >
+      <div
+        class="vesper-sheet-title-description"
+      >
+        <p
+          class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
+          id="_r_1q_"
+        >
+          Sheet title
+        </p>
+        <p
+          class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
+          id="_r_1r_"
+        >
+          This is a description of the sheet content.
+        </p>
+      </div>
+      <button
+        aria-label="Close sheet"
+        class="vesper-button vesper-button-md vesper-button-tertiary vesper-icon-button"
+        type="button"
+      >
+        <span
+          class="vesper-button-icon"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      class="vesper-sheet-children"
+    >
+      Sheet body content
+    </div>
+    <div
+      class="vesper-sheet-buttons"
+    >
+      <button
+        class="vesper-button vesper-button-lg vesper-button-tertiary"
+      >
+        Cancel
+      </button>
+      <button
+        class="vesper-button vesper-button-lg vesper-button-contrast"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</dialog>
+`;
+
+exports[`sheet [snapshot] > with buttons 1`] = `
+<dialog
+  aria-describedby="_r_1p_"
+  aria-labelledby="_r_1o_"
+  class="vesper-sheet vesper-sheet-right"
+  popover=""
+>
+  <div
+    class="vesper-sheet-content"
+  >
+    <div
+      class="vesper-sheet-header"
+    >
+      <div
+        class="vesper-sheet-title-description"
+      >
+        <p
+          class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
+          id="_r_1o_"
+        >
+          Sheet title
+        </p>
+        <p
+          class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
+          id="_r_1p_"
+        >
+          This is a description of the sheet content.
+        </p>
+      </div>
+      <button
+        aria-label="Close sheet"
+        class="vesper-button vesper-button-md vesper-button-tertiary vesper-icon-button"
+        type="button"
+      >
+        <span
+          class="vesper-button-icon"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      class="vesper-sheet-children"
+    />
+    <div
+      class="vesper-sheet-buttons"
+    >
+      <button
+        class="vesper-button vesper-button-lg vesper-button-tertiary"
+      >
+        Cancel
+      </button>
+      <button
+        class="vesper-button vesper-button-lg vesper-button-contrast"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</dialog>
+`;
+
+exports[`sheet [snapshot] > with children 1`] = `
+<dialog
+  aria-describedby="_r_1n_"
+  aria-labelledby="_r_1m_"
+  class="vesper-sheet vesper-sheet-right"
+  popover=""
+>
+  <div
+    class="vesper-sheet-content"
+  >
+    <div
+      class="vesper-sheet-header"
+    >
+      <div
+        class="vesper-sheet-title-description"
+      >
+        <p
+          class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
+          id="_r_1m_"
+        >
+          Sheet title
+        </p>
+        <p
+          class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
+          id="_r_1n_"
+        >
+          This is a description of the sheet content.
+        </p>
+      </div>
+      <button
+        aria-label="Close sheet"
+        class="vesper-button vesper-button-md vesper-button-tertiary vesper-icon-button"
+        type="button"
+      >
+        <span
+          class="vesper-button-icon"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      class="vesper-sheet-children"
+    >
+      Sheet body content
+    </div>
+  </div>
+</dialog>
+`;
