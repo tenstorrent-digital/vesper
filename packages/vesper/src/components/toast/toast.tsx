@@ -46,7 +46,11 @@ function Toast({
     updateAnnouncement();
 
     const observer = new MutationObserver(updateAnnouncement);
-    observer.observe(toastRef.current, { childList: true, subtree: true });
+    observer.observe(toastRef.current, {
+      childList: true,
+      characterData: true,
+      subtree: true,
+    });
     return () => observer.disconnect();
   }, [state, buttons]);
 
