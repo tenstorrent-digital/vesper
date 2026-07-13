@@ -267,6 +267,11 @@ export function Toasts({
 
   const previouslyFocused = useRef<HTMLElement | null>(null);
 
+  // makes rendering Toasts SSR-safe
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
+
   return createPortal(
     <div
       className="vesper-toasts-container"
