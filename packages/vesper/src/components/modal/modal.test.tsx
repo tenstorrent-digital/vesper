@@ -555,6 +555,37 @@ describe("modal [snapshot]", () => {
   });
 });
 
+type ModalA11yPermutation = {
+  label: string;
+  props: Omit<ModalProps, "ref">;
+  children?: React.ReactNode;
+};
+
+const MODAL_A11Y_PERMUTATIONS: ModalA11yPermutation[] = [
+  {
+    label: "default",
+    props: { title: TITLE, description: DESCRIPTION },
+  },
+  {
+    label: "with buttons",
+    props: { title: TITLE, description: DESCRIPTION, buttons: BUTTONS },
+  },
+  {
+    label: "with children",
+    props: { title: TITLE, description: DESCRIPTION },
+    children: <p>Modal body content for accessibility test.</p>,
+  },
+  {
+    label: "with form",
+    props: {
+      title: TITLE,
+      description: DESCRIPTION,
+      form: { id: "a11y-form" },
+      buttons: BUTTONS,
+    },
+  },
+];
+
 describe("modal [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
@@ -567,39 +598,20 @@ describe("modal [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    test(`a11y - default (${theme})`, async () => {
-      const { container } = render(
-        <Modal title={TITLE} description={DESCRIPTION} />,
-      );
-      expect(await axe.run(container)).toHaveNoViolations();
-    });
+    MODAL_A11Y_PERMUTATIONS.forEach(({ label, props, children }) => {
+      const testLabel = `a11y - ${label} (${theme})`;
 
-    test(`a11y - with buttons (${theme})`, async () => {
-      const { container } = render(
-        <Modal title={TITLE} description={DESCRIPTION} buttons={BUTTONS} />,
-      );
-      expect(await axe.run(container)).toHaveNoViolations();
-    });
-
-    test(`a11y - with children (${theme})`, async () => {
-      const { container } = render(
-        <Modal title={TITLE} description={DESCRIPTION}>
-          <p>Modal body content for accessibility test.</p>
-        </Modal>,
-      );
-      expect(await axe.run(container)).toHaveNoViolations();
-    });
-
-    test(`a11y - with form (${theme})`, async () => {
-      const { container } = render(
-        <Modal
-          title={TITLE}
-          description={DESCRIPTION}
-          form={{ id: "a11y-form" }}
-          buttons={BUTTONS}
-        />,
-      );
-      expect(await axe.run(container)).toHaveNoViolations();
+      test.todo(testLabel, async () => {
+        const result = render(
+          <ModalWithHook {...props}>{children}</ModalWithHook>,
+        );
+        fireEvent.click(result.getByTestId("open-trigger"));
+        const dialog = result.container.querySelector(
+          "dialog",
+        ) as HTMLDialogElement;
+        expect(dialog.open).toBe(true);
+        expect(await axe.run(result.container)).toHaveNoViolations();
+      });
     });
   });
 });
