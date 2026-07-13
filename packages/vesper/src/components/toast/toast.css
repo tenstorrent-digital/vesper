@@ -1,0 +1,162 @@
+.vesper-toasts-container {
+  pointer-events: none;
+  padding: var(--vesper-spacing-6);
+  width: 420px;
+  max-width: 100vw;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.vesper-toast-wrapper {
+  position: relative;
+  overflow: visible;
+  margin-top: var(--vesper-spacing-4);
+}
+
+.vesper-toast {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: var(--vesper-spacing-5);
+  box-shadow: var(--vesper-shadow-200);
+  border: 1px solid var(--vesper-stone-300);
+  background: var(--vesper-stone-0);
+  border-radius: var(--vesper-radius-2);
+  transition:
+    background var(--vesper-transition-duration-fast) ease,
+    border-color var(--vesper-transition-duration-fast) ease;
+  @media (forced-colors: active) {
+    background: Canvas;
+    border-color: CanvasText;
+    &:focus-visible {
+      outline: 2px solid CanvasText;
+    }
+  }
+  @media not (forced-colors: active) {
+    &:focus-visible {
+      box-shadow: var(--vesper-shadow-focus-ring);
+    }
+  }
+}
+.vesper-toast-entering {
+  pointer-events: auto;
+}
+.vesper-toast-active {
+  position: relative;
+  pointer-events: auto;
+}
+.vesper-toast-dismissed {
+  pointer-events: none;
+}
+
+.vesper-toast-content {
+  display: flex;
+  align-items: center;
+  gap: var(--vesper-spacing-3);
+}
+
+.vesper-toast-icon {
+  width: 16px;
+  height: 16px;
+  transition: color var(--vesper-transition-duration-default) ease;
+  @media (forced-colors: active) {
+    color: CanvasText;
+  }
+}
+
+.vesper-toast-loading {
+  .vesper-toast-icon {
+    @media not (forced-colors: active) {
+      color: var(--vesper-stone-600);
+    }
+    animation: vesper-toast-icon-spin var(--vesper-transition-duration-slow)
+      linear infinite;
+  }
+}
+@keyframes vesper-toast-icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.vesper-toast-success {
+  border-color: var(--vesper-green-200);
+  background: var(--vesper-green-50);
+  .vesper-toast-icon,
+  .vesper-toast-children {
+    @media not (forced-colors: active) {
+      color: var(--vesper-mint-600);
+    }
+  }
+}
+
+.vesper-toast-warning {
+  border-color: var(--vesper-amber-200);
+  background: var(--vesper-amber-50);
+  .vesper-toast-icon,
+  .vesper-toast-children {
+    @media not (forced-colors: active) {
+      color: var(--vesper-amber-600);
+    }
+  }
+}
+
+.vesper-toast-danger {
+  border-color: var(--vesper-red-200);
+  background: var(--vesper-red-50);
+  .vesper-toast-icon,
+  .vesper-toast-children {
+    @media not (forced-colors: active) {
+      color: var(--vesper-red-600);
+    }
+  }
+}
+
+.vesper-toast-children {
+  color: var(--vesper-stone-900);
+  flex: 1;
+  @media (forced-colors: active) {
+    color: CanvasText;
+  }
+}
+
+.vesper-toast-close-button {
+  cursor: pointer;
+  color: var(--vesper-stone-900);
+  width: 16px;
+  height: 16px;
+  border-radius: var(--vesper-radius-half);
+  svg {
+    width: 100%;
+  }
+  @media (forced-colors: active) {
+    color: CanvasText;
+    &:focus-visible {
+      outline: 2px solid CanvasText;
+    }
+  }
+  @media not (forced-colors: active) {
+    &:focus-visible {
+      box-shadow: var(--vesper-shadow-focus-ring);
+    }
+  }
+}
+
+.vesper-toast-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--vesper-spacing-3);
+  margin-top: var(--vesper-spacing-3);
+}
+
+.vesper-toast-announcer {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
