@@ -268,6 +268,18 @@ export function Toasts({
   }, [shortcut, toasts]);
 
   const previouslyFocused = useRef<HTMLElement | null>(null);
+  const pointerDown = useRef(false);
+
+  useEffect(() => {
+    const handlePointerDown = () => (pointerDown.current = true);
+    const handlePointerUp = () => (pointerDown.current = false);
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("pointerup", handlePointerUp);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("pointerup", handlePointerUp);
+    };
+  }, []);
 
   // makes rendering Toasts SSR-safe
   const [mounted, setMounted] = useState(false);
@@ -290,9 +302,21 @@ export function Toasts({
         }
       }}
       onBlur={(e) => {
-        if (!e.relatedTarget || !e.currentTarget.contains(e.relatedTarget)) {
+        if (!e.currentTarget.contains(e.relatedTarget)) {
           const elementToRestore = previouslyFocused.current;
           previouslyFocused.current = null;
+
+          /**
+           * If focus is moving to a specific element outside the container
+           * (e.g., the user clicked a button), don't interfere.
+           * */
+          if (e.relatedTarget) return;
+
+          /**
+           * If the blur was triggered by a pointer event
+           * (e.g., clicking on empty space), don't restore focus.
+           * */
+          if (pointerDown.current) return;
 
           /**
            * requestAnimationFrame gives React a chance to flush all pending state updates
