@@ -15,6 +15,7 @@ export const Playground: Story = {
   args: {
     title: "Sheet title",
     description: "Sheet description",
+    side: "right",
   },
   render: function Render(props) {
     const sheet = useSheet();

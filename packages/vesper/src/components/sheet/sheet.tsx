@@ -1,5 +1,6 @@
 import {
   useCallback,
+  useEffect,
   useId,
   useImperativeHandle,
   useRef,
@@ -57,6 +58,15 @@ export function Sheet({
   }, []);
 
   useImperativeHandle(ref, () => ({ open, close }), [open, close]);
+
+  useEffect(() => {
+    const handleClick = (e: PointerEvent) => {
+      if (e.target === innerRef.current) close();
+    };
+
+    window.addEventListener("click", handleClick);
+    return () => window.removeEventListener("click", handleClick);
+  }, [close]);
 
   // If an additional aria-labelledby is supplied, this ensures that both ids get used
   const labelledBy = [ariaLabelledby, titleId].filter(Boolean).join(" ");
