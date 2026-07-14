@@ -34,6 +34,7 @@ export interface SheetProps extends Omit<
   description: string;
   ref?: RefObject<SheetRef>;
   side?: SheetSide;
+  blocking?: boolean;
   buttons?: Omit<ButtonProps, "size" | "as">[];
 }
 
@@ -44,6 +45,7 @@ export function Sheet({
   "aria-describedby": ariaDescribedby,
   children,
   side = "right",
+  blocking = false,
   title,
   description,
   buttons = [],
@@ -54,23 +56,34 @@ export function Sheet({
   const innerRef = useRef<HTMLDialogElement>(null);
 
   const open = useCallback(() => {
-    innerRef.current?.showPopover();
-  }, []);
+    if (blocking) innerRef.current?.showModal();
+    else innerRef.current?.showPopover();
+  }, [blocking]);
 
   const close = useCallback(() => {
-    innerRef.current?.hidePopover();
-  }, []);
+    if (blocking) innerRef.current?.close();
+    else innerRef.current?.hidePopover();
+  }, [blocking]);
 
   useImperativeHandle(ref, () => ({ open, close }), [open, close]);
 
   useEffect(() => {
-    const handleClick = (e: PointerEvent) => {
-      if (e.target === innerRef.current) close();
-    };
+    // when rendered as a modal, ensure clicking outside the container closes the sheet
+    if (blocking) {
+      const handleClick = (e: PointerEvent) => {
+        if (e.target === innerRef.current) close();
+      };
+      window.addEventListener("click", handleClick);
+      return () => window.removeEventListener("click", handleClick);
+    }
 
-    window.addEventListener("click", handleClick);
-    return () => window.removeEventListener("click", handleClick);
-  }, [close]);
+    // when rendered as a popover, ensure pressing the escape key closes the sheet
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [close, blocking]);
 
   // If an additional aria-labelledby is supplied, this ensures that both ids get used
   const labelledBy = [ariaLabelledby, titleId].filter(Boolean).join(" ");
@@ -82,9 +95,14 @@ export function Sheet({
 
   return (
     <dialog
-      popover=""
+      {...(!blocking && { popover: "manual" })}
       ref={innerRef}
-      className={cn("vesper-sheet", `vesper-sheet-${side}`, className)}
+      className={cn(
+        "vesper-sheet",
+        `vesper-sheet-${side}`,
+        blocking && "vesper-sheet-blocking",
+        className,
+      )}
       aria-labelledby={labelledBy}
       aria-describedby={describedBy}
       {...props}

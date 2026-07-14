@@ -61,6 +61,7 @@ export const Playground: Story = {
     description: "Sheet description",
     side: "right",
     withButtons: false,
+    blocking: false,
   },
 };
 Playground.storyName = "sheet";

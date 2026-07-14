@@ -22,7 +22,7 @@
   https://github.com/mozilla/standards-positions/issues/777
   https://bugs.webkit.org/show_bug.cgi?id=276727
 */
-.vesper-sheet::before {
+.vesper-sheet-blocking::before {
   content: "";
   background: transparent;
   position: fixed;
@@ -62,7 +62,8 @@
   height: calc(100vh - var(--vesper-spacing-12));
 }
 
-.vesper-sheet:popover-open {
+.vesper-sheet:popover-open,
+.vesper-sheet[open] {
   .vesper-sheet-content {
     opacity: 1;
     transform: translateX(0);
@@ -72,7 +73,8 @@
   }
 }
 
-.vesper-sheet-right:popover-open {
+.vesper-sheet-right:popover-open,
+.vesper-sheet-right[open] {
   @starting-style {
     .vesper-sheet-content {
       opacity: 0;
@@ -84,7 +86,8 @@
   }
 }
 
-.vesper-sheet-left:popover-open {
+.vesper-sheet-left:popover-open,
+.vesper-sheet-left[open] {
   @starting-style {
     .vesper-sheet-content {
       opacity: 0;
