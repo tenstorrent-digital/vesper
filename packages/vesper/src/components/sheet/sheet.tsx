@@ -22,6 +22,10 @@ interface SheetRef {
   close(): void;
 }
 
+export const SHEET_SIDES = ["left", "right"] as const;
+
+export type SheetSide = (typeof SHEET_SIDES)[number];
+
 export interface SheetProps extends Omit<
   ComponentPropsWithoutRef<"dialog">,
   "open"
@@ -29,7 +33,7 @@ export interface SheetProps extends Omit<
   title: string;
   description: string;
   ref?: RefObject<SheetRef>;
-  side?: "left" | "right";
+  side?: SheetSide;
   buttons?: Omit<ButtonProps, "size" | "as">[];
 }
 
