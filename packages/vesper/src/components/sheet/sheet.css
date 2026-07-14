@@ -133,6 +133,7 @@
   }
   overflow-y: scroll;
   flex: 1;
+  color: var(--vesper-stone-900);
 }
 
 .vesper-sheet-buttons {
