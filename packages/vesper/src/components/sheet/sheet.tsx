@@ -56,13 +56,20 @@ export function Sheet({
   const innerRef = useRef<HTMLDialogElement>(null);
 
   const open = useCallback(() => {
-    if (blocking) innerRef.current?.showModal();
-    else innerRef.current?.showPopover();
+    if (!innerRef.current) return;
+
+    if (blocking) {
+      if (!innerRef.current.open) innerRef.current.showModal();
+    } else {
+      innerRef.current?.showPopover();
+    }
   }, [blocking]);
 
   const close = useCallback(() => {
-    if (blocking) innerRef.current?.close();
-    else innerRef.current?.hidePopover();
+    if (!innerRef.current) return;
+
+    if (blocking) innerRef.current.close();
+    else innerRef.current.hidePopover();
   }, [blocking]);
 
   useImperativeHandle(ref, () => ({ open, close }), [open, close]);
