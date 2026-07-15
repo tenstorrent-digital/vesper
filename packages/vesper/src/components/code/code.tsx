@@ -1,8 +1,22 @@
-import type { ComponentProps } from 'react';
-import { cn } from '@/utils/cn';
+import type { ComponentProps } from "react";
+import { cn } from "@/utils/cn";
+import { Typography } from "@/components/typography/typography";
 
-export interface CodeProps extends ComponentProps<'code'> {}
+export const CODE_VARIANTS = ["default", "contrast"] as const;
 
-export function Code({ className, ...props }: CodeProps) {
-  return <code className={cn("vesper-code", className)} {...props} />;
+export type CodeVariant = (typeof CODE_VARIANTS)[number];
+
+export interface CodeProps extends ComponentProps<"code"> {
+  variant?: CodeVariant;
+}
+
+export function Code({ className, variant = "default", ...props }: CodeProps) {
+  return (
+    <Typography
+      as="code"
+      variant="copy-xs-mono"
+      className={cn("vesper-code", `vesper-code-${variant}`, className)}
+      {...props}
+    />
+  );
 }

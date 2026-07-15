@@ -1,2 +1,13 @@
 .vesper-code {
+  padding: var(--vesper-spacing-half) var(--vesper-spacing-1);
+  border: 1px solid var(--vesper-stone-200);
+  border-radius: var(--vesper-radius-1);
+}
+.vesper-code-default {
+  background: var(--vesper-alpha-stone-0);
+  color: var(--vesper-stone-900);
+}
+.vesper-code-contrast {
+  background: var(--vesper-alpha-stone-900);
+  color: var(--vesper-stone-0);
 }
