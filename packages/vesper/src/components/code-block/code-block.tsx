@@ -29,16 +29,14 @@ export function CodeBlock({
       {...props}
     >
       {store.codeToJsx({ code, lang })}
-      <div className="vesper-code-block-copy-button-container">
-        <IconButton
-          variant="tertiary"
-          icon={<Copy />}
-          aria-label="Copy code"
-          size="sm"
-          type="button"
-          onClick={() => navigator.clipboard.writeText(code)}
-        />
-      </div>
+      <IconButton
+        variant="tertiary"
+        icon={<Copy />}
+        aria-label="Copy code"
+        size="sm"
+        type="button"
+        onClick={() => navigator.clipboard.writeText(code)}
+      />
     </div>
   );
 }
