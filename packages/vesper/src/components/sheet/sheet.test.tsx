@@ -39,12 +39,20 @@ describe("sheet [unit]", () => {
     expect(container.firstElementChild?.tagName).toBe("DIALOG");
   });
 
-  test("renders with popover attribute", () => {
+  test("does not render with popover attribute by default", () => {
     const { container } = render(
       <Sheet title={TITLE} description={DESCRIPTION} />,
     );
     const dialog = container.firstElementChild as HTMLDialogElement;
-    expect(dialog).toHaveAttribute("popover");
+    expect(dialog).not.toHaveAttribute("popover");
+  });
+
+  test("renders with popover attribute when popover prop is true", () => {
+    const { container } = render(
+      <Sheet title={TITLE} description={DESCRIPTION} popover />,
+    );
+    const dialog = container.firstElementChild as HTMLDialogElement;
+    expect(dialog).toHaveAttribute("popover", "manual");
   });
 
   test("renders title", () => {
@@ -287,39 +295,128 @@ describe("sheet [unit]", () => {
   });
 
   describe("open and close", () => {
-    test("opens/closes via useSheet hook", () => {
-      const result = render(
-        <SheetWithHook title={TITLE} description={DESCRIPTION} />,
-      );
-      const dialog = result.container.querySelector(
-        "dialog",
-      ) as HTMLDialogElement;
+    describe("modal mode (default)", () => {
+      test("opens/closes via useSheet hook", () => {
+        const result = render(
+          <SheetWithHook title={TITLE} description={DESCRIPTION} />,
+        );
+        const dialog = result.container.querySelector(
+          "dialog",
+        ) as HTMLDialogElement;
 
-      expect(dialog.matches(":popover-open")).toBe(false);
+        expect(dialog.open).toBe(false);
 
-      fireEvent.click(result.getByTestId("open-trigger"));
-      expect(dialog.matches(":popover-open")).toBe(true);
+        fireEvent.click(result.getByTestId("open-trigger"));
+        expect(dialog.open).toBe(true);
 
-      fireEvent.click(result.getByTestId("close-trigger"));
-      expect(dialog.matches(":popover-open")).toBe(false);
+        fireEvent.click(result.getByTestId("close-trigger"));
+        expect(dialog.open).toBe(false);
+      });
+
+      test("closes via close button", () => {
+        const result = render(
+          <SheetWithHook title={TITLE} description={DESCRIPTION} />,
+        );
+        const dialog = result.container.querySelector(
+          "dialog",
+        ) as HTMLDialogElement;
+
+        fireEvent.click(result.getByTestId("open-trigger"));
+        expect(dialog.open).toBe(true);
+
+        const closeBtn = result.container.querySelector(
+          '[aria-label="Close sheet"]',
+        ) as HTMLButtonElement;
+        fireEvent.click(closeBtn);
+        expect(dialog.open).toBe(false);
+      });
+
+      test("closes when clicking outside", () => {
+        const result = render(
+          <SheetWithHook title={TITLE} description={DESCRIPTION} />,
+        );
+        const dialog = result.container.querySelector(
+          "dialog",
+        ) as HTMLDialogElement;
+
+        fireEvent.click(result.getByTestId("open-trigger"));
+        expect(dialog.open).toBe(true);
+
+        fireEvent.click(dialog);
+        expect(dialog.open).toBe(false);
+      });
+
+      test("does not close when clicking inside", () => {
+        const result = render(
+          <SheetWithHook title={TITLE} description={DESCRIPTION}>
+            <p>Inner content</p>
+          </SheetWithHook>,
+        );
+        const dialog = result.container.querySelector(
+          "dialog",
+        ) as HTMLDialogElement;
+
+        fireEvent.click(result.getByTestId("open-trigger"));
+        expect(dialog.open).toBe(true);
+
+        const content = result.container.querySelector(
+          ".vesper-sheet-content",
+        ) as HTMLElement;
+        fireEvent.click(content);
+        expect(dialog.open).toBe(true);
+      });
     });
 
-    test("closes via close button", () => {
-      const result = render(
-        <SheetWithHook title={TITLE} description={DESCRIPTION} />,
-      );
-      const dialog = result.container.querySelector(
-        "dialog",
-      ) as HTMLDialogElement;
+    describe("popover mode", () => {
+      test("opens/closes via useSheet hook", () => {
+        const result = render(
+          <SheetWithHook title={TITLE} description={DESCRIPTION} popover />,
+        );
+        const dialog = result.container.querySelector(
+          "dialog",
+        ) as HTMLDialogElement;
 
-      fireEvent.click(result.getByTestId("open-trigger"));
-      expect(dialog.matches(":popover-open")).toBe(true);
+        expect(dialog.matches(":popover-open")).toBe(false);
 
-      const closeBtn = result.container.querySelector(
-        '[aria-label="Close sheet"]',
-      ) as HTMLButtonElement;
-      fireEvent.click(closeBtn);
-      expect(dialog.matches(":popover-open")).toBe(false);
+        fireEvent.click(result.getByTestId("open-trigger"));
+        expect(dialog.matches(":popover-open")).toBe(true);
+
+        fireEvent.click(result.getByTestId("close-trigger"));
+        expect(dialog.matches(":popover-open")).toBe(false);
+      });
+
+      test("closes via close button", () => {
+        const result = render(
+          <SheetWithHook title={TITLE} description={DESCRIPTION} popover />,
+        );
+        const dialog = result.container.querySelector(
+          "dialog",
+        ) as HTMLDialogElement;
+
+        fireEvent.click(result.getByTestId("open-trigger"));
+        expect(dialog.matches(":popover-open")).toBe(true);
+
+        const closeBtn = result.container.querySelector(
+          '[aria-label="Close sheet"]',
+        ) as HTMLButtonElement;
+        fireEvent.click(closeBtn);
+        expect(dialog.matches(":popover-open")).toBe(false);
+      });
+
+      test("closes when pressing escape key", () => {
+        const result = render(
+          <SheetWithHook title={TITLE} description={DESCRIPTION} popover />,
+        );
+        const dialog = result.container.querySelector(
+          "dialog",
+        ) as HTMLDialogElement;
+
+        fireEvent.click(result.getByTestId("open-trigger"));
+        expect(dialog.matches(":popover-open")).toBe(true);
+
+        fireEvent.keyDown(window, { key: "Escape" });
+        expect(dialog.matches(":popover-open")).toBe(false);
+      });
     });
   });
 });
@@ -358,6 +455,21 @@ const SHEET_SNAPSHOT_PERMUTATIONS: SheetSnapshotPermutation[] = [
     buttons: BUTTONS,
     children: "Sheet body content",
   },
+  {
+    permutationName: "popover mode (right side)",
+    title: TITLE,
+    description: DESCRIPTION,
+    popover: true,
+  },
+  {
+    permutationName: "popover mode (left side with buttons and children)",
+    title: TITLE,
+    description: DESCRIPTION,
+    side: "left",
+    popover: true,
+    buttons: BUTTONS,
+    children: "Sheet body content",
+  },
 ];
 
 describe("sheet [snapshot]", () => {
@@ -393,6 +505,19 @@ const SHEET_A11Y_PERMUTATIONS: SheetA11yPermutation[] = [
     label: "left side",
     props: { title: TITLE, description: DESCRIPTION, side: "left" as const },
   },
+  {
+    label: "popover mode",
+    props: { title: TITLE, description: DESCRIPTION, popover: true },
+  },
+  {
+    label: "popover mode with buttons",
+    props: {
+      title: TITLE,
+      description: DESCRIPTION,
+      popover: true,
+      buttons: BUTTONS,
+    },
+  },
 ];
 
 describe("sheet [a11y]", () => {
@@ -418,7 +543,11 @@ describe("sheet [a11y]", () => {
         const dialog = result.container.querySelector(
           "dialog",
         ) as HTMLDialogElement;
-        expect(dialog.matches(":popover-open")).toBe(true);
+        if (props.popover) {
+          expect(dialog.matches(":popover-open")).toBe(true);
+        } else {
+          expect(dialog.open).toBe(true);
+        }
         expect(await axe.run(result.container)).toHaveNoViolations();
       });
     });
