@@ -28,13 +28,13 @@ export type SheetSide = (typeof SHEET_SIDES)[number];
 
 export interface SheetProps extends Omit<
   ComponentPropsWithoutRef<"dialog">,
-  "open"
+  "open" | "popover"
 > {
   title: string;
   description: string;
   ref?: RefObject<SheetRef>;
   side?: SheetSide;
-  blocking?: boolean;
+  popover?: boolean;
   buttons?: Omit<ButtonProps, "size" | "as">[];
 }
 
@@ -45,7 +45,7 @@ export function Sheet({
   "aria-describedby": ariaDescribedby,
   children,
   side = "right",
-  blocking = false,
+  popover = false,
   title,
   description,
   buttons = [],
@@ -58,25 +58,25 @@ export function Sheet({
   const open = useCallback(() => {
     if (!innerRef.current) return;
 
-    if (blocking) {
+    if (!popover) {
       if (!innerRef.current.open) innerRef.current.showModal();
     } else {
       innerRef.current?.showPopover();
     }
-  }, [blocking]);
+  }, [popover]);
 
   const close = useCallback(() => {
     if (!innerRef.current) return;
 
-    if (blocking) innerRef.current.close();
+    if (!popover) innerRef.current.close();
     else innerRef.current.hidePopover();
-  }, [blocking]);
+  }, [popover]);
 
   useImperativeHandle(ref, () => ({ open, close }), [open, close]);
 
   useEffect(() => {
     // when rendered as a modal, ensure clicking outside the container closes the sheet
-    if (blocking) {
+    if (!popover) {
       const handleClick = (e: PointerEvent) => {
         if (e.target === innerRef.current) close();
       };
@@ -90,7 +90,7 @@ export function Sheet({
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [close, blocking]);
+  }, [close, popover]);
 
   // If an additional aria-labelledby is supplied, this ensures that both ids get used
   const labelledBy = [ariaLabelledby, titleId].filter(Boolean).join(" ");
@@ -102,14 +102,9 @@ export function Sheet({
 
   return (
     <dialog
-      {...(!blocking && { popover: "manual" })}
+      {...(popover && { popover: "manual" })}
       ref={innerRef}
-      className={cn(
-        "vesper-sheet",
-        `vesper-sheet-${side}`,
-        blocking && "vesper-sheet-blocking",
-        className,
-      )}
+      className={cn("vesper-sheet", `vesper-sheet-${side}`, className)}
       aria-labelledby={labelledBy}
       aria-describedby={describedBy}
       {...props}
