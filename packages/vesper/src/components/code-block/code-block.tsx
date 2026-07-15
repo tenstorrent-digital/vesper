@@ -1,5 +1,7 @@
-import type { ComponentProps } from "react";
+import { type ComponentProps } from "react";
 import { cn } from "@/utils/cn";
+import { IconButton } from "@/components/icon-button/icon-button";
+import { Copy } from "@/components/icons/icons";
 import { store } from "./store";
 
 export const { setupCodeBlock } = store;
@@ -8,27 +10,35 @@ export interface CodeBlockProps extends Omit<
   ComponentProps<"div">,
   "children" | "dangerouslySetInnerHTML"
 > {
-  lang: string;
-  children?: string;
+  lang?: string;
+  code?: string;
   showLineNumbers?: boolean;
 }
 
 export function CodeBlock({
   className,
-  children: code = "",
-  lang,
+  code = "",
+  lang = "text",
   showLineNumbers = false,
   ...props
 }: CodeBlockProps) {
   return (
     <div
-      className={cn(
-        "vesper-code-block",
-        showLineNumbers && "vesper-code-block-with-line-numbers",
-        className,
-      )}
-      dangerouslySetInnerHTML={{ __html: store.codeToHtml({ code, lang }) }}
+      data-line-numbers={showLineNumbers}
+      className={cn("vesper-code-block", className)}
       {...props}
-    />
+    >
+      {store.codeToJsx({ code, lang })}
+      <div className="vesper-code-block-copy-button-container">
+        <IconButton
+          variant="tertiary"
+          icon={<Copy />}
+          aria-label="Copy code"
+          size="sm"
+          type="button"
+          onClick={() => navigator.clipboard.writeText(code)}
+        />
+      </div>
+    </div>
   );
 }

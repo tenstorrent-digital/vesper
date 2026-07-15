@@ -1,2 +1,36 @@
 .vesper-code-block {
+  position: relative;
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  border-radius: var(--vesper-radius-2);
+  border: 1px solid var(--vesper-stone-200);
+  box-shadow: var(--vesper-shadow-inset-100);
+  pre {
+    margin: 0;
+    padding: var(--vesper-spacing-5);
+  }
+  &:hover .vesper-icon-button {
+    visibility: visible;
+  }
+  &[data-line-numbers="true"] pre code {
+    counter-reset: step;
+    counter-increment: step 0;
+    .line::before {
+      content: counter(step);
+      counter-increment: step;
+      width: var(--vesper-spacing-12);
+      display: inline-block;
+      text-align: left;
+      color: rgba(115, 115, 115, 0.5); /* Muted gray color */
+      user-select: none; /* Prevents numbers from being highlighted/copied */
+    }
+  }
+}
+
+.vesper-icon-button {
+  position: absolute;
+  top: var(--vesper-spacing-5);
+  right: var(--vesper-spacing-5);
+  visibility: hidden;
 }

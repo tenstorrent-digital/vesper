@@ -216,6 +216,8 @@
     "@radix-ui/react-toggle-group": "^1.1.13",
     "@radix-ui/react-tooltip": "^1.2.10",
     "@shikijs/core": "^4.3.1",
-    "@shikijs/engine-javascript": "^4.3.1"
+    "@shikijs/engine-javascript": "^4.3.1",
+    "@shikijs/langs": "^4.3.1",
+    "hast-util-to-jsx-runtime": "^2.3.6"
   }
 }

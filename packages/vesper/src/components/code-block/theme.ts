@@ -6,7 +6,7 @@ export const theme: ThemeRegistration = {
     "actionBar.toggledBackground": "#383a49",
     "activityBarBadge.background": "#007ACC",
     "checkbox.border": "#6B6B6B",
-    "editor.background": "#1E1E1E",
+    "editor.background": "var(--vesper-alpha-stone-0)",
     "editor.foreground": "#D4D4D4",
     "editor.inactiveSelectionBackground": "#3A3D41",
     "editor.selectionHighlightBackground": "#ADD6FF26",
