@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./snippet": {
+      "types": "./dist/components/snippet/snippet.d.ts",
+      "import": "./dist/components/snippet/snippet.js"
+    },
     "./code-block": {
       "types": "./dist/components/code-block/code-block.d.ts",
       "import": "./dist/components/code-block/code-block.js"
