@@ -49,11 +49,10 @@
       box-shadow: var(--vesper-shadow-focus-ring);
     }
   }
-}
-
-.vesper-icon-button {
-  position: absolute;
-  top: var(--vesper-spacing-5);
-  right: var(--vesper-spacing-5);
-  visibility: hidden;
+  .vesper-icon-button {
+    position: absolute;
+    top: var(--vesper-spacing-5);
+    right: var(--vesper-spacing-5);
+    visibility: hidden;
+  }
 }
