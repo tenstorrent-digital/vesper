@@ -45,5 +45,4 @@ export function Snippet({
       />
     </Typography>
   );
-  a;
 }
