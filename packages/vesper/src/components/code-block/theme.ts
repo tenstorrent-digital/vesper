@@ -1,45 +1,80 @@
 import { type ThemeRegistration } from "@shikijs/core";
 
-// TextMate Dark Plus theme (temp while we configure Vesper theme colors)
+/**
+ * Vesper code block theme.
+ *
+ * Color mapping from TextMate Dark Plus → Vesper brand colors:
+ *
+ * Foreground/text:    stone-800  (#c2d6d3)
+ * Comments:           green-600  (#39c692)
+ * Keywords/storage:   teal-600   (#4eb3d4)
+ * Control flow:       pink-700   (#f17ec5)
+ * Strings:            amber-700  (#ffb057)
+ * Numbers:            green-800  (#82edc6)
+ * Functions:          yellow-800 (#ffd88a)
+ * Types/classes:      mint-700   (#4ce5c9)
+ * Variables:          teal-800   (#a3e0f5)
+ * Constants:          teal-700   (#6cc7e5)
+ * Regex:              red-700    (#f37359)
+ * Escape chars:       yellow-700 (#ffc757)
+ * Invalid:            red-600    (#e44e2f)
+ * Punctuation:        stone-600  (#60807b)
+ */
 export const theme: ThemeRegistration = {
   colors: {
-    "actionBar.toggledBackground": "#383a49",
-    "activityBarBadge.background": "#007ACC",
-    "checkbox.border": "#6B6B6B",
+    "actionBar.toggledBackground": "var(--vesper-stone-300)",
+    "activityBarBadge.background": "var(--vesper-sky-500)",
+    "checkbox.border": "var(--vesper-stone-500)",
     "editor.background": "var(--vesper-alpha-stone-0)",
-    "editor.foreground": "#D4D4D4",
-    "editor.inactiveSelectionBackground": "#3A3D41",
-    "editor.selectionHighlightBackground": "#ADD6FF26",
-    "editorIndentGuide.activeBackground1": "#707070",
-    "editorIndentGuide.background1": "#404040",
-    "input.placeholderForeground": "#A6A6A6",
-    "list.activeSelectionIconForeground": "#FFF",
-    "list.dropBackground": "#383B3D",
-    "menu.background": "#252526",
-    "menu.border": "#454545",
-    "menu.foreground": "#CCCCCC",
-    "menu.selectionBackground": "#0078d4",
-    "menu.separatorBackground": "#454545",
-    "ports.iconRunningProcessForeground": "#369432",
-    "sideBarSectionHeader.background": "#0000",
-    "sideBarSectionHeader.border": "#ccc3",
-    "sideBarTitle.foreground": "#BBBBBB",
-    "statusBarItem.remoteBackground": "#16825D",
-    "statusBarItem.remoteForeground": "#FFF",
-    "tab.lastPinnedBorder": "#ccc3",
-    "tab.selectedBackground": "#222222",
-    "tab.selectedForeground": "#ffffffa0",
-    "terminal.inactiveSelectionBackground": "#3A3D41",
-    "widget.border": "#303031",
+    "editor.foreground": "var(--vesper-stone-800)",
+    "editor.inactiveSelectionBackground": "var(--vesper-stone-300)",
+    "editor.selectionHighlightBackground": "var(--vesper-alpha-stone-400)",
+    "editorIndentGuide.activeBackground1": "var(--vesper-stone-500)",
+    "editorIndentGuide.background1": "var(--vesper-stone-400)",
+    "input.placeholderForeground": "var(--vesper-stone-600)",
+    "list.activeSelectionIconForeground": "var(--vesper-static-white)",
+    "list.dropBackground": "var(--vesper-stone-300)",
+    "menu.background": "var(--vesper-stone-100)",
+    "menu.border": "var(--vesper-stone-400)",
+    "menu.foreground": "var(--vesper-stone-800)",
+    "menu.selectionBackground": "var(--vesper-sky-500)",
+    "menu.separatorBackground": "var(--vesper-stone-400)",
+    "ports.iconRunningProcessForeground": "var(--vesper-green-500)",
+    "sideBarSectionHeader.background": "var(--vesper-transparent)",
+    "sideBarSectionHeader.border": "var(--vesper-alpha-contrast-200)",
+    "sideBarTitle.foreground": "var(--vesper-stone-700)",
+    "statusBarItem.remoteBackground": "var(--vesper-mint-400)",
+    "statusBarItem.remoteForeground": "var(--vesper-static-white)",
+    "tab.lastPinnedBorder": "var(--vesper-alpha-contrast-200)",
+    "tab.selectedBackground": "var(--vesper-stone-50)",
+    "tab.selectedForeground": "var(--vesper-alpha-contrast-700)",
+    "terminal.inactiveSelectionBackground": "var(--vesper-stone-300)",
+    "widget.border": "var(--vesper-stone-200)",
+    "terminal.ansiBlack": "var(--vesper-stone-900)",
+    "terminal.ansiRed": "var(--vesper-red-600)",
+    "terminal.ansiGreen": "var(--vesper-green-600)",
+    "terminal.ansiYellow": "var(--vesper-yellow-600)",
+    "terminal.ansiBlue": "var(--vesper-sky-600)",
+    "terminal.ansiMagenta": "var(--vesper-pink-600)",
+    "terminal.ansiCyan": "var(--vesper-teal-600)",
+    "terminal.ansiWhite": "var(--vesper-stone-100)",
+    "terminal.ansiBrightBlack": "var(--vesper-stone-800)",
+    "terminal.ansiBrightRed": "var(--vesper-red-400)",
+    "terminal.ansiBrightGreen": "var(--vesper-green-400)",
+    "terminal.ansiBrightYellow": "var(--vesper-yellow-400)",
+    "terminal.ansiBrightBlue": "var(--vesper-sky-400)",
+    "terminal.ansiBrightMagenta": "var(--vesper-pink-400)",
+    "terminal.ansiBrightCyan": "var(--vesper-teal-400)",
+    "terminal.ansiBrightWhite": "var(--vesper-stone-0)",
   },
   displayName: "Vesper",
   name: "vesper",
   semanticHighlighting: true,
   semanticTokenColors: {
-    customLiteral: "#DCDCAA",
-    newOperator: "#C586C0",
-    numberLiteral: "#b5cea8",
-    stringLiteral: "#ce9178",
+    customLiteral: "var(--vesper-yellow-800)",
+    newOperator: "var(--vesper-pink-700)",
+    numberLiteral: "var(--vesper-green-800)",
+    stringLiteral: "var(--vesper-amber-700)",
   },
   tokenColors: [
     {
@@ -50,7 +85,7 @@ export const theme: ThemeRegistration = {
         "variable.legacy.builtin.python",
       ],
       settings: {
-        foreground: "#D4D4D4",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
@@ -68,19 +103,19 @@ export const theme: ThemeRegistration = {
     {
       scope: "header",
       settings: {
-        foreground: "#000080",
+        foreground: "var(--vesper-sky-200)",
       },
     },
     {
       scope: "comment",
       settings: {
-        foreground: "#6A9955",
+        foreground: "var(--vesper-green-600)",
       },
     },
     {
       scope: "constant.language",
       settings: {
-        foreground: "#569cd6",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
@@ -91,31 +126,31 @@ export const theme: ThemeRegistration = {
         "keyword.operator.minus.exponent",
       ],
       settings: {
-        foreground: "#b5cea8",
+        foreground: "var(--vesper-green-800)",
       },
     },
     {
       scope: "constant.regexp",
       settings: {
-        foreground: "#646695",
+        foreground: "var(--vesper-purple-600)",
       },
     },
     {
       scope: "entity.name.tag",
       settings: {
-        foreground: "#569cd6",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: ["entity.name.tag.css", "entity.name.tag.less"],
       settings: {
-        foreground: "#d7ba7d",
+        foreground: "var(--vesper-yellow-700)",
       },
     },
     {
       scope: "entity.other.attribute-name",
       settings: {
-        foreground: "#9cdcfe",
+        foreground: "var(--vesper-teal-800)",
       },
     },
     {
@@ -131,13 +166,13 @@ export const theme: ThemeRegistration = {
         "entity.other.attribute-name.scss",
       ],
       settings: {
-        foreground: "#d7ba7d",
+        foreground: "var(--vesper-yellow-700)",
       },
     },
     {
       scope: "invalid",
       settings: {
-        foreground: "#f44747",
+        foreground: "var(--vesper-red-600)",
       },
     },
     {
@@ -150,14 +185,14 @@ export const theme: ThemeRegistration = {
       scope: "markup.bold",
       settings: {
         fontStyle: "bold",
-        foreground: "#569cd6",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "markup.heading",
       settings: {
         fontStyle: "bold",
-        foreground: "#569cd6",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
@@ -175,115 +210,115 @@ export const theme: ThemeRegistration = {
     {
       scope: "markup.inserted",
       settings: {
-        foreground: "#b5cea8",
+        foreground: "var(--vesper-green-800)",
       },
     },
     {
       scope: "markup.deleted",
       settings: {
-        foreground: "#ce9178",
+        foreground: "var(--vesper-amber-700)",
       },
     },
     {
       scope: "markup.changed",
       settings: {
-        foreground: "#569cd6",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "punctuation.definition.quote.begin.markdown",
       settings: {
-        foreground: "#6A9955",
+        foreground: "var(--vesper-green-600)",
       },
     },
     {
       scope: "punctuation.definition.list.begin.markdown",
       settings: {
-        foreground: "#6796e6",
+        foreground: "var(--vesper-sky-700)",
       },
     },
     {
       scope: "markup.inline.raw",
       settings: {
-        foreground: "#ce9178",
+        foreground: "var(--vesper-amber-700)",
       },
     },
     {
       scope: "punctuation.definition.tag",
       settings: {
-        foreground: "#808080",
+        foreground: "var(--vesper-stone-600)",
       },
     },
     {
       scope: ["meta.preprocessor", "entity.name.function.preprocessor"],
       settings: {
-        foreground: "#569cd6",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "meta.preprocessor.string",
       settings: {
-        foreground: "#ce9178",
+        foreground: "var(--vesper-amber-700)",
       },
     },
     {
       scope: "meta.preprocessor.numeric",
       settings: {
-        foreground: "#b5cea8",
+        foreground: "var(--vesper-green-800)",
       },
     },
     {
       scope: "meta.structure.dictionary.key.python",
       settings: {
-        foreground: "#9cdcfe",
+        foreground: "var(--vesper-teal-800)",
       },
     },
     {
       scope: "meta.diff.header",
       settings: {
-        foreground: "#569cd6",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "storage",
       settings: {
-        foreground: "#569cd6",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "storage.type",
       settings: {
-        foreground: "#569cd6",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: ["storage.modifier", "keyword.operator.noexcept"],
       settings: {
-        foreground: "#569cd6",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: ["string", "meta.embedded.assembly"],
       settings: {
-        foreground: "#ce9178",
+        foreground: "var(--vesper-amber-700)",
       },
     },
     {
       scope: "string.tag",
       settings: {
-        foreground: "#ce9178",
+        foreground: "var(--vesper-amber-700)",
       },
     },
     {
       scope: "string.value",
       settings: {
-        foreground: "#ce9178",
+        foreground: "var(--vesper-amber-700)",
       },
     },
     {
       scope: "string.regexp",
       settings: {
-        foreground: "#d16969",
+        foreground: "var(--vesper-red-700)",
       },
     },
     {
@@ -293,13 +328,13 @@ export const theme: ThemeRegistration = {
         "punctuation.section.embedded",
       ],
       settings: {
-        foreground: "#569cd6",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: ["meta.template.expression"],
       settings: {
-        foreground: "#d4d4d4",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
@@ -310,25 +345,25 @@ export const theme: ThemeRegistration = {
         "source.coffee.embedded",
       ],
       settings: {
-        foreground: "#9cdcfe",
+        foreground: "var(--vesper-teal-800)",
       },
     },
     {
       scope: "keyword",
       settings: {
-        foreground: "#569cd6",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "keyword.control",
       settings: {
-        foreground: "#569cd6",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "keyword.operator",
       settings: {
-        foreground: "#d4d4d4",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
@@ -345,13 +380,13 @@ export const theme: ThemeRegistration = {
         "keyword.operator.wordlike",
       ],
       settings: {
-        foreground: "#569cd6",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "keyword.other.unit",
       settings: {
-        foreground: "#b5cea8",
+        foreground: "var(--vesper-green-800)",
       },
     },
     {
@@ -360,19 +395,19 @@ export const theme: ThemeRegistration = {
         "punctuation.section.embedded.end.php",
       ],
       settings: {
-        foreground: "#569cd6",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "support.function.git-rebase",
       settings: {
-        foreground: "#9cdcfe",
+        foreground: "var(--vesper-teal-800)",
       },
     },
     {
       scope: "constant.sha.git-rebase",
       settings: {
-        foreground: "#b5cea8",
+        foreground: "var(--vesper-green-800)",
       },
     },
     {
@@ -382,13 +417,13 @@ export const theme: ThemeRegistration = {
         "storage.modifier.package.java",
       ],
       settings: {
-        foreground: "#d4d4d4",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "variable.language",
       settings: {
-        foreground: "#569cd6",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
@@ -400,7 +435,7 @@ export const theme: ThemeRegistration = {
         "entity.name.operator.custom-literal",
       ],
       settings: {
-        foreground: "#DCDCAA",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
@@ -439,7 +474,7 @@ export const theme: ThemeRegistration = {
         "storage.type.primitive.groovy",
       ],
       settings: {
-        foreground: "#4EC9B0",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
@@ -453,7 +488,7 @@ export const theme: ThemeRegistration = {
         "punctuation.separator.namespace.ruby",
       ],
       settings: {
-        foreground: "#4EC9B0",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
@@ -467,7 +502,7 @@ export const theme: ThemeRegistration = {
         "entity.name.operator",
       ],
       settings: {
-        foreground: "#C586C0",
+        foreground: "var(--vesper-pink-700)",
       },
     },
     {
@@ -479,19 +514,19 @@ export const theme: ThemeRegistration = {
         "constant.other.placeholder",
       ],
       settings: {
-        foreground: "#9CDCFE",
+        foreground: "var(--vesper-teal-800)",
       },
     },
     {
       scope: ["variable.other.constant", "variable.other.enummember"],
       settings: {
-        foreground: "#4FC1FF",
+        foreground: "var(--vesper-teal-700)",
       },
     },
     {
       scope: ["meta.object-literal.key"],
       settings: {
-        foreground: "#9CDCFE",
+        foreground: "var(--vesper-teal-800)",
       },
     },
     {
@@ -505,7 +540,7 @@ export const theme: ThemeRegistration = {
         "support.constant.color",
       ],
       settings: {
-        foreground: "#CE9178",
+        foreground: "var(--vesper-amber-700)",
       },
     },
     {
@@ -519,7 +554,7 @@ export const theme: ThemeRegistration = {
         "support.other.parenthesis.regexp",
       ],
       settings: {
-        foreground: "#CE9178",
+        foreground: "var(--vesper-amber-700)",
       },
     },
     {
@@ -530,37 +565,37 @@ export const theme: ThemeRegistration = {
         "constant.character.set.regexp",
       ],
       settings: {
-        foreground: "#d16969",
+        foreground: "var(--vesper-red-700)",
       },
     },
     {
       scope: ["keyword.operator.or.regexp", "keyword.control.anchor.regexp"],
       settings: {
-        foreground: "#DCDCAA",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       scope: "keyword.operator.quantifier.regexp",
       settings: {
-        foreground: "#d7ba7d",
+        foreground: "var(--vesper-yellow-700)",
       },
     },
     {
       scope: ["constant.character", "constant.other.option"],
       settings: {
-        foreground: "#569cd6",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "constant.character.escape",
       settings: {
-        foreground: "#d7ba7d",
+        foreground: "var(--vesper-yellow-700)",
       },
     },
     {
       scope: "entity.name.label",
       settings: {
-        foreground: "#C8C8C8",
+        foreground: "var(--vesper-stone-800)",
       },
     },
   ],
