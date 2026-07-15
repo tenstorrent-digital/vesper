@@ -2,6 +2,7 @@ import { type ComponentProps } from "react";
 import { cn } from "@/utils/cn";
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Copy } from "@/components/icons/icons";
+import { Typography } from "@/components/typography/typography";
 
 export const SNIPPET_VARIANTS = ["default", "contrast"] as const;
 
@@ -19,14 +20,10 @@ export function Snippet({
   ...props
 }: SnippetProps) {
   return (
-    <div
-      className={cn(
-        "vesper-snippet",
-        `vesper-snippet-${variant}`,
-        "vesper-typography",
-        "vesper-typography-copy-xs-mono",
-        className,
-      )}
+    <Typography
+      as="div"
+      variant="copy-xs-mono"
+      className={cn("vesper-snippet", `vesper-snippet-${variant}`, className)}
       {...props}
     >
       <pre tabIndex={0}>
@@ -46,6 +43,7 @@ export function Snippet({
         type="button"
         onClick={() => navigator.clipboard.writeText(code)}
       />
-    </div>
+    </Typography>
   );
+  a;
 }

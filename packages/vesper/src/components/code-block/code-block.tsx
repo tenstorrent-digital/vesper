@@ -2,6 +2,7 @@ import { type ComponentProps } from "react";
 import { cn } from "@/utils/cn";
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Copy } from "@/components/icons/icons";
+import { Typography } from "@/components/typography/typography";
 import { store } from "./store";
 
 export const { setupCodeBlock } = store;
@@ -23,14 +24,11 @@ export function CodeBlock({
   ...props
 }: CodeBlockProps) {
   return (
-    <div
+    <Typography
+      as="div"
       data-line-numbers={showLineNumbers}
-      className={cn(
-        "vesper-code-block",
-        "vesper-typography",
-        "vesper-typography-copy-xs-mono",
-        className,
-      )}
+      variant="copy-xs-mono"
+      className={cn("vesper-code-block", className)}
       {...props}
     >
       {store.codeToJsx({ code, lang })}
@@ -42,6 +40,6 @@ export function CodeBlock({
         type="button"
         onClick={() => navigator.clipboard.writeText(code)}
       />
-    </div>
+    </Typography>
   );
 }
