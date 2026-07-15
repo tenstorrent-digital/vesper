@@ -4,6 +4,9 @@ import { CodeBlock, setupCodeBlock } from "@/components/code-block/code-block";
 
 const meta = {
   component: CodeBlock,
+  argTypes: {
+    style: { table: { disable: true } },
+  },
 } satisfies Meta<typeof CodeBlock>;
 
 export default meta;
