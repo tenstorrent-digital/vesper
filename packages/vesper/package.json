@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./code-block": {
+      "types": "./dist/components/code-block/code-block.d.ts",
+      "import": "./dist/components/code-block/code-block.js"
+    },
     "./toast": {
       "types": "./dist/components/toast/toast.d.ts",
       "import": "./dist/components/toast/toast.js"
