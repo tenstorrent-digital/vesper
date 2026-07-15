@@ -15,12 +15,26 @@ type Story = StoryObj<typeof meta>;
 
 await setupCodeBlock({ langs: [import("@shikijs/langs/typescript")] });
 
+const SAMPLE_CODE = `export interface MyComponentProps {
+  name: string
+  description: string
+}
+
+export function MyComponent(props: MyComponentProps) {
+  return (
+    <div>
+      <h1>Hello, {props.name}!</h1>
+      <p>{props.description}</p>
+    </div>
+  )
+}`;
+
 export const Playground: Story = {
   args: {
-    code: "const count: number = 123",
+    code: SAMPLE_CODE,
     lang: "typescript",
     showLineNumbers: false,
-    style: { width: "min(calc(100vw - 4rem), 400px)" },
+    style: { width: "min(calc(100vw - 4rem), 600px)" },
   },
 };
 Playground.storyName = "code-block";

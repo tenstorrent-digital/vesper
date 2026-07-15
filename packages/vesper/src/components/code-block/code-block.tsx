@@ -25,7 +25,12 @@ export function CodeBlock({
   return (
     <div
       data-line-numbers={showLineNumbers}
-      className={cn("vesper-code-block", className)}
+      className={cn(
+        "vesper-code-block",
+        "vesper-typography",
+        "vesper-typography-copy-xs-mono",
+        className,
+      )}
       {...props}
     >
       {store.codeToJsx({ code, lang })}
