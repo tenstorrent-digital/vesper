@@ -86,11 +86,13 @@ export function Modal({
   const innerRef = useRef<HTMLDialogElement>(null);
 
   const open = useCallback(() => {
-    innerRef.current?.showModal();
+    if (!innerRef.current) return;
+    if (!innerRef.current.open) innerRef.current.showModal();
   }, []);
 
   const close = useCallback(() => {
-    innerRef.current?.close();
+    if (!innerRef.current) return;
+    innerRef.current.close();
   }, []);
 
   useImperativeHandle(ref, () => ({ open, close }), [open, close]);

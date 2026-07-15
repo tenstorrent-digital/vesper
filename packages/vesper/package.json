@@ -11,6 +11,10 @@
       "types": "./dist/components/toast/toast.d.ts",
       "import": "./dist/components/toast/toast.js"
     },
+    "./sheet": {
+      "types": "./dist/components/sheet/sheet.d.ts",
+      "import": "./dist/components/sheet/sheet.js"
+    },
     "./modal": {
       "types": "./dist/components/modal/modal.d.ts",
       "import": "./dist/components/modal/modal.js"
