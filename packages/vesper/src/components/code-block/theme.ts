@@ -25,7 +25,7 @@ export const theme: ThemeRegistration = {
     "actionBar.toggledBackground": "var(--vesper-stone-300)",
     "activityBarBadge.background": "var(--vesper-sky-500)",
     "checkbox.border": "var(--vesper-stone-500)",
-    "editor.background": "var(--vesper-alpha-stone-0)",
+    "editor.background": "transparent",
     "editor.foreground": "var(--vesper-stone-800)",
     "editor.inactiveSelectionBackground": "var(--vesper-stone-300)",
     "editor.selectionHighlightBackground": "var(--vesper-alpha-stone-400)",

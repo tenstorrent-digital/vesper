@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { transformerNotationDiff } from "@shikijs/transformers";
 
 import { CodeBlock, setupCodeBlock } from "@/components/code-block/code-block";
 
@@ -47,6 +48,7 @@ function CodeBlockStoryComponent({
       showLineNumbers={showLineNumbers}
       lang={lang}
       code={code}
+      transformers={[transformerNotationDiff()]}
       style={{ width: "min(calc(100vw - 4rem), 720px)" }}
     />
   );
@@ -109,11 +111,11 @@ const MAX_RETRIES = 3;
 const PI = 3.14159;
 const HEX_MASK = 0x1f;
 const BINARY_FLAG = 0b1010;
-const OCTAL_VAL = 0o755;
-const SCIENTIFIC = 1.5e10;
-const GREETING = "Hello, world!";
+const OCTAL_VAL = 0o755; // [!code --]
+const SCIENTIFIC = 1.5e10; // [!code --]
+const GREETING = "Hello, world!"; // [!code --]
 const TEMPLATE = \`Status: \${Status.Loading} at \${Date.now()}\`;
-const REGEX_PATTERN = /^[a-z]+\\d{2,4}$/gi;
+const REGEX_PATTERN = /^[a-z]+\\d{2,4}$/gi; // [!code ++]
 
 // Abstract class with decorator-style pattern
 abstract class BaseComponent<T extends EventMap> {

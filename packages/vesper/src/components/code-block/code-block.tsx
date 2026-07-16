@@ -27,14 +27,15 @@ export function CodeBlock({
   ...props
 }: CodeBlockProps) {
   return (
-    <Typography
-      as="div"
-      data-line-numbers={showLineNumbers}
-      variant="copy-xs-mono"
-      className={cn("vesper-code-block", className)}
-      {...props}
-    >
-      {store.codeToJsx({ code, lang, transformers })}
+    <div className={cn("vesper-code-block", className)} {...props}>
+      <Typography
+        as="div"
+        data-line-numbers={showLineNumbers}
+        variant="copy-xs-mono"
+        className="vesper-code-block-pre-wrapper"
+      >
+        {store.codeToJsx({ code, lang, transformers })}
+      </Typography>
       <IconButton
         variant="tertiary"
         icon={<Copy />}
@@ -43,6 +44,6 @@ export function CodeBlock({
         type="button"
         onClick={() => navigator.clipboard.writeText(code)}
       />
-    </Typography>
+    </div>
   );
 }

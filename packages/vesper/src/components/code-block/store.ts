@@ -50,6 +50,7 @@ class CodeBlockStore {
         lang,
         theme: "vesper",
         transformers,
+        tabindex: false,
       }),
       jsxRuntime,
     );

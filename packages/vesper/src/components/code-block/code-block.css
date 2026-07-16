@@ -5,53 +5,63 @@
   align-items: center;
   border-radius: var(--vesper-radius-2);
   border: 1px solid var(--vesper-stone-200);
+  background: var(--vesper-alpha-stone-0);
   box-shadow: var(--vesper-shadow-inset-100);
-  pre {
-    width: 100%;
-    margin: 0;
-    padding: var(--vesper-spacing-5);
-    overflow: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    outline: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-  .line:not(:first-child) {
-    display: inline-block;
-    margin-top: var(--vesper-spacing-1);
+  .vesper-icon-button {
+    position: absolute;
+    top: var(--vesper-spacing-5);
+    right: var(--vesper-spacing-5);
+    visibility: hidden;
   }
   &:hover .vesper-icon-button {
     visibility: visible;
   }
-  &[data-line-numbers="true"] pre code {
+}
+
+.vesper-code-block-pre-wrapper {
+  width: 100%;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  border-radius: var(--vesper-radius-2);
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  pre.shiki.vesper {
+    min-width: max-content;
+    margin: 0;
+    padding: var(--vesper-spacing-5) 0;
+    outline: none;
+    .line {
+      display: inline-flex;
+      padding: 0 var(--vesper-spacing-5);
+      width: calc(100% - var(--vesper-spacing-10));
+      &:not(:first-child) {
+        margin-top: var(--vesper-spacing-1);
+      }
+    }
+    .line.diff.remove {
+      background: var(--vesper-red-50);
+    }
+    .line.diff.add {
+      background: var(--vesper-green-50);
+    }
+  }
+  &[data-line-numbers="true"] pre.shiki.vesper {
     counter-reset: step;
     counter-increment: step 0;
     .line::before {
       content: counter(step);
       counter-increment: step;
       width: var(--vesper-spacing-12);
-      display: inline-block;
-      text-align: left;
       color: var(--vesper-stone-500);
       user-select: none;
     }
-  }
-  @media (forced-colors: active) {
-    &:has(pre:focus-visible) {
-      outline: 2px solid CanvasText;
+    .line.diff.remove {
+      &::before {
+        counter-increment: none;
+        content: " ";
+      }
     }
-  }
-  @media not (forced-colors: active) {
-    &:has(pre:focus-visible) {
-      box-shadow: var(--vesper-shadow-focus-ring);
-    }
-  }
-  .vesper-icon-button {
-    position: absolute;
-    top: var(--vesper-spacing-5);
-    right: var(--vesper-spacing-5);
-    visibility: hidden;
   }
 }
