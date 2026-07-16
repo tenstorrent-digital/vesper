@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`code [snapshot] > variant: contrast 1`] = `
+<code
+  class="vesper-typography vesper-typography-copy-xs-mono vesper-code vesper-code-contrast"
+>
+  const x = 1;
+</code>
+`;
+
+exports[`code [snapshot] > variant: default 1`] = `
+<code
+  class="vesper-typography vesper-typography-copy-xs-mono vesper-code vesper-code-default"
+>
+  const x = 1;
+</code>
+`;
+
+exports[`code [snapshot] > with custom className 1`] = `
+<code
+  class="vesper-typography vesper-typography-copy-xs-mono vesper-code vesper-code-default custom-class"
+>
+  snippet
+</code>
+`;
