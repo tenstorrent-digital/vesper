@@ -241,8 +241,7 @@ export async function main(): Promise<void> {
   const { count } = handler({ count: 0 });
   delete (manager as Record<string, unknown>)["temp"];
   console.log(\`Final count: \${count}\`);
-}
-`;
+}`;
 
 // Covers: CSS selectors (tag, class, id), pseudo-classes, pseudo-elements,
 // property names, vendor-prefixed properties, values, units, colors,
@@ -345,8 +344,7 @@ button:not(:disabled):active {
     color: white;
     cursor: pointer;
   }
-}
-`;
+}`;
 
 // Covers: JSON keys, string values, numbers, booleans, null, nested objects/arrays
 const SAMPLE_CODE_JSON = `{
@@ -427,8 +425,7 @@ Import components _directly_ from the package. Each component supports
 For more details, visit [the docs](https://vesper.dev/docs) or check the
 ![badge](https://img.shields.io/badge/coverage-98%25-green) on GitHub.
 
-Use inline code like \`<Button variant="primary" />\` in your JSX files.
-`;
+Use inline code like \`<Button variant="primary" />\` in your JSX files.`;
 
 // Covers: shell commands, variables, pipes, redirects, subshells,
 // conditionals, loops, functions, heredocs, globs, quoting
@@ -507,8 +504,7 @@ EOF
 }
 
 # Main execution
-deploy "\${1:-staging}"
-`;
+deploy "\${1:-staging}"`;
 
 // ANSI escape sequences for terminal output rendering
 // Covers: all 8 standard colors, all 8 bright colors, bold, italic,
