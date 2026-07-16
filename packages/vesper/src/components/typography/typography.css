@@ -4,6 +4,9 @@
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
   color: currentColor;
+  widows: 2;
+  orphans: 2;
+  white-space: pre-wrap;
   @media (forced-colors: active) {
     &:focus-visible {
       outline: 2px solid CanvasText;
@@ -23,6 +26,7 @@
   font-size: 4rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-tighter);
+  text-wrap: pretty;
 }
 
 .vesper-typography-display-md {
@@ -30,6 +34,7 @@
   font-size: 3rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-tighter);
+  text-wrap: pretty;
 }
 
 .vesper-typography-display-sm {
@@ -37,6 +42,7 @@
   font-size: 2.5rem;
   line-height: var(--vesper-leading-tight);
   letter-spacing: var(--vesper-tracking-tighter);
+  text-wrap: pretty;
 }
 
 /* Heading styles */
@@ -47,6 +53,7 @@
   line-height: var(--vesper-leading-tight);
   letter-spacing: var(--vesper-tracking-tighter);
   font-weight: 500;
+  text-wrap: pretty;
 }
 
 .vesper-typography-heading-xl {
@@ -55,6 +62,7 @@
   line-height: var(--vesper-leading-tight);
   letter-spacing: var(--vesper-tracking-tighter);
   font-weight: 500;
+  text-wrap: pretty;
 }
 
 .vesper-typography-heading-lg {
@@ -63,6 +71,7 @@
   line-height: var(--vesper-leading-tight);
   letter-spacing: var(--vesper-tracking-tighter);
   font-weight: 500;
+  text-wrap: pretty;
 }
 
 .vesper-typography-heading-md {
@@ -71,6 +80,7 @@
   line-height: var(--vesper-leading-snug);
   letter-spacing: var(--vesper-tracking-tight);
   font-weight: 500;
+  text-wrap: pretty;
 }
 
 .vesper-typography-heading-sm {
@@ -79,6 +89,7 @@
   line-height: var(--vesper-leading-snug);
   letter-spacing: var(--vesper-tracking-tight);
   font-weight: 500;
+  text-wrap: pretty;
 }
 
 .vesper-typography-heading-xs {
@@ -87,6 +98,7 @@
   line-height: var(--vesper-leading-snug);
   letter-spacing: var(--vesper-tracking-tight);
   font-weight: 500;
+  text-wrap: pretty;
 }
 
 /* Copy styles */
