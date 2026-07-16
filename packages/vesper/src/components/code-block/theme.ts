@@ -6,7 +6,7 @@ import { type ThemeRegistration } from "@shikijs/core";
  * Color mapping from TextMate Dark Plus → Vesper brand colors:
  *
  * Foreground/text:    stone-800  (#c2d6d3)
- * Comments:           green-600  (#39c692)
+ * Comments:           stone-600  (#60807b)
  * Keywords/storage:   teal-600   (#4eb3d4)
  * Control flow:       pink-700   (#f17ec5)
  * Strings:            amber-700  (#ffb057)
@@ -109,7 +109,7 @@ export const theme: ThemeRegistration = {
     {
       scope: "comment",
       settings: {
-        foreground: "var(--vesper-green-600)",
+        foreground: "var(--vesper-stone-600)",
       },
     },
     {
