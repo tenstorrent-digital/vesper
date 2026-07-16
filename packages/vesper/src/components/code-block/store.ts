@@ -32,7 +32,7 @@ class CodeBlockStore {
      *
      * @example
      * ```ts
-     * await registerLanguages({
+     * await setupCodeBlock({
      *   langs: [
      *     import("@shikijs/langs/typescript"),
      *     import("@shikijs/langs/css"),
