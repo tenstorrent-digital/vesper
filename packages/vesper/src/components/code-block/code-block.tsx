@@ -1,4 +1,4 @@
-import { type ComponentProps } from "react";
+import { useRef, type ComponentProps } from "react";
 import { type ShikiTransformer } from "@shikijs/core";
 import { cn } from "@/utils/cn";
 import { IconButton } from "@/components/icon-button/icon-button";
@@ -26,6 +26,8 @@ export function CodeBlock({
   transformers,
   ...props
 }: CodeBlockProps) {
+  const ref = useRef<HTMLDivElement>(null);
+
   return (
     <div className={cn("vesper-code-block", className)} {...props}>
       <Typography
@@ -33,6 +35,7 @@ export function CodeBlock({
         data-line-numbers={showLineNumbers}
         variant="copy-xs-mono"
         className="vesper-code-block-pre-wrapper"
+        ref={ref}
       >
         {store.codeToJsx({ code, lang, transformers })}
       </Typography>
@@ -42,7 +45,10 @@ export function CodeBlock({
         aria-label="Copy code"
         size="sm"
         type="button"
-        onClick={() => navigator.clipboard.writeText(code)}
+        onClick={() => {
+          const content = ref.current?.textContent || "";
+          navigator.clipboard.writeText(content);
+        }}
       />
     </div>
   );
