@@ -1,3 +1,4 @@
+import * as jsxRuntime from "react/jsx-runtime";
 import {
   createHighlighterCore,
   type ShikiTransformer,
@@ -5,9 +6,9 @@ import {
   type LanguageInput,
 } from "@shikijs/core";
 import { createJavaScriptRegexEngine } from "@shikijs/engine-javascript";
+import { CodeToTokenTransformStream } from "@shikijs/stream";
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 import { theme } from "./theme";
-import * as jsxRuntime from "react/jsx-runtime";
 
 type CodeBlockStoreState =
   | { highlighter: null; initialized: false }
@@ -70,6 +71,25 @@ class CodeBlockStore {
     };
   };
 
+  codeToStream = ({
+    code,
+    lang,
+  }: {
+    code: ReadableStream<string>;
+    lang: string;
+  }) => {
+    this.requireInitialization();
+
+    return code.pipeThrough(
+      new CodeToTokenTransformStream({
+        highlighter: this.state.highlighter!,
+        lang,
+        theme: "vesper",
+        allowRecalls: true,
+      }),
+    );
+  };
+
   codeToJsx = ({
     code,
     lang,
@@ -79,14 +99,10 @@ class CodeBlockStore {
     lang: string;
     transformers?: ShikiTransformer[];
   }) => {
-    if (!this.state.initialized) {
-      throw new Error(
-        "CodeBlock has not been initialized. setupCodeBlock must be called with an array of language grammars prior to usage.",
-      );
-    }
+    this.requireInitialization();
 
     return toJsxRuntime(
-      this.state.highlighter.codeToHast(code, {
+      this.state.highlighter!.codeToHast(code, {
         lang,
         theme: "vesper",
         transformers,
@@ -94,6 +110,14 @@ class CodeBlockStore {
       }),
       jsxRuntime,
     );
+  };
+
+  requireInitialization = () => {
+    if (!this.state.initialized) {
+      throw new Error(
+        "CodeBlock has not been initialized. setupCodeBlock must be called with an array of language grammars prior to usage.",
+      );
+    }
   };
 }
 
