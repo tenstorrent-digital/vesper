@@ -17,9 +17,27 @@
   &:hover .vesper-icon-button {
     visibility: visible;
   }
+  @media (forced-colors: active) {
+    &:has(.vesper-code-block-pre-wrapper:focus-visible) {
+      outline: 2px solid CanvasText;
+    }
+  }
+  @media not (forced-colors: active) {
+    &:has(.vesper-code-block-pre-wrapper:focus-visible) {
+      box-shadow: var(--vesper-shadow-focus-ring);
+    }
+  }
 }
 
 .vesper-code-block-pre-wrapper {
+  &:focus-visible {
+    @media (forced-colors: active) {
+      outline: none;
+    }
+    @media not (forced-colors: active) {
+      box-shadow: none;
+    }
+  }
   width: 100%;
   overflow: scroll;
   -ms-overflow-style: none;
