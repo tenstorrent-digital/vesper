@@ -459,6 +459,22 @@ export const SAMPLE_CODE_ANSI = [
   `  ${ESC}[96m    5 pending${ESC}[0m`,
 ].join("\n");
 
+export const SAMPLE_CODE_PYTHON = `x_dfb = ttl.make_dataflow_buffer_like(x,
+    shape = (2, 2),
+    block_count = 2)
+
+@ttl.datamovement()
+def some_read():
+    with x_dfb.reserve() as x_blk:
+        # produce data into x_blk ...
+        # implicit x_dfb.push() at the end of the scope
+
+@ttl.compute()
+def some_compute():
+    x_blk = x_dfb.wait()
+    # consume data in x_blk ...
+    x_blk.pop() # explicit`;
+
 /**
  * Simulate an incoming text stream
  */

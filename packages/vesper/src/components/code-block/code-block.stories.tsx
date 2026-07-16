@@ -8,6 +8,7 @@ import {
   SAMPLE_CODE_CSS,
   SAMPLE_CODE_JSON,
   SAMPLE_CODE_MARKDOWN,
+  SAMPLE_CODE_PYTHON,
   SAMPLE_CODE_TYPESCRIPT,
 } from "./fixtures";
 
@@ -18,6 +19,7 @@ await setupCodeBlock({
     import("@shikijs/langs/json"),
     import("@shikijs/langs/markdown"),
     import("@shikijs/langs/shellscript"),
+    import("@shikijs/langs/python"),
   ],
 });
 
@@ -27,7 +29,7 @@ function CodeBlockStoryComponent({
   stream,
 }: {
   showLineNumbers: boolean;
-  lang: "typescript" | "css" | "json" | "markdown" | "ansi" | "bash";
+  lang: "typescript" | "css" | "json" | "markdown" | "ansi" | "bash" | "python";
   stream: boolean;
 }) {
   let code: string | ReadableStream<string> = SAMPLE_CODE_TYPESCRIPT;
@@ -49,6 +51,9 @@ function CodeBlockStoryComponent({
       break;
     case "bash":
       code = SAMPLE_CODE_BASH;
+      break;
+    case "python":
+      code = SAMPLE_CODE_PYTHON;
       break;
     default:
       break;
@@ -76,7 +81,15 @@ const meta = {
   argTypes: {
     lang: {
       control: "radio",
-      options: ["typescript", "css", "json", "markdown", "ansi", "bash"],
+      options: [
+        "typescript",
+        "css",
+        "json",
+        "markdown",
+        "ansi",
+        "bash",
+        "python",
+      ],
     },
     stream: {
       description:
