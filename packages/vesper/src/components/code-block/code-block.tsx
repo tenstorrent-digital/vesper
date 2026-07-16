@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ComponentProps } from "react";
+import { useEffect, useRef, type ComponentProps } from "react";
 import { type ShikiTransformer } from "@shikijs/core";
 import { ShikiStreamRenderer } from "@shikijs/stream/react";
 import { cn } from "@/utils/cn";
@@ -28,6 +28,20 @@ export function CodeBlock({
   ...props
 }: CodeBlockProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const content =
+    typeof code === "string" ? code : store.codeToStream({ code, lang });
+
+  useEffect(() => {
+    if (typeof content === "string" || !ref.current) return;
+
+    const observer = new MutationObserver(() => {
+      if (!ref.current) return;
+      ref.current.scrollTop = ref.current.scrollHeight;
+    });
+
+    observer.observe(ref.current, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, [content]);
 
   return (
     <div className={cn("vesper-code-block", className)} {...props}>
@@ -38,10 +52,10 @@ export function CodeBlock({
         className="vesper-code-block-pre-wrapper"
         ref={ref}
       >
-        {typeof code === "string" ? (
-          store.codeToJsx({ code, lang, transformers })
+        {typeof content === "string" ? (
+          store.codeToJsx({ code: content, lang, transformers })
         ) : (
-          <StreamedCode code={code} lang={lang} />
+          <ShikiStreamRenderer stream={content} />
         )}
       </Typography>
       <IconButton
@@ -60,21 +74,4 @@ export function CodeBlock({
       />
     </div>
   );
-}
-
-function StreamedCode({
-  code,
-  lang,
-}: {
-  lang: string;
-  code: ReadableStream<string>;
-}) {
-  const stream = useRef(store.codeToStream({ code, lang }));
-  const [key, setKey] = useState(0);
-  useEffect(() => {
-    stream.current = store.codeToStream({ code, lang });
-    setKey((k) => k + 1);
-  }, [code, lang]);
-
-  return <ShikiStreamRenderer key={key} stream={stream.current} />;
 }
