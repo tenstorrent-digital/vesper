@@ -26,7 +26,7 @@ export function Snippet({
       className={cn("vesper-snippet", `vesper-snippet-${variant}`, className)}
       {...props}
     >
-      <pre tabIndex={0}>
+      <pre>
         <code>
           {children.split("\n").map((line, index) => (
             <span key={index} className="line">
