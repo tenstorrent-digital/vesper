@@ -1,5 +1,6 @@
 import {
   createHighlighterCore,
+  type ShikiTransformer,
   type HighlighterCore,
   type LanguageInput,
 } from "@shikijs/core";
@@ -29,7 +30,15 @@ class CodeBlockStore {
     };
   };
 
-  codeToJsx = ({ code, lang }: { code: string; lang: string }) => {
+  codeToJsx = ({
+    code,
+    lang,
+    transformers,
+  }: {
+    code: string;
+    lang: string;
+    transformers?: ShikiTransformer[];
+  }) => {
     if (!this.state.initialized) {
       throw new Error(
         "CodeBlock has not been initialized. setupCodeBlock must be called with an array of language grammars prior to usage.",
@@ -40,6 +49,7 @@ class CodeBlockStore {
       this.state.highlighter.codeToHast(code, {
         lang,
         theme: "vesper",
+        transformers,
       }),
       jsxRuntime,
     );

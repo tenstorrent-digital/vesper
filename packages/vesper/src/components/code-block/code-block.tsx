@@ -1,4 +1,5 @@
 import { type ComponentProps } from "react";
+import { type ShikiTransformer } from "@shikijs/core";
 import { cn } from "@/utils/cn";
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Copy } from "@/components/icons/icons";
@@ -14,6 +15,7 @@ export interface CodeBlockProps extends Omit<
   lang?: string;
   code?: string;
   showLineNumbers?: boolean;
+  transformers?: ShikiTransformer[];
 }
 
 export function CodeBlock({
@@ -21,6 +23,7 @@ export function CodeBlock({
   code = "",
   lang = "text",
   showLineNumbers = false,
+  transformers,
   ...props
 }: CodeBlockProps) {
   return (
@@ -31,7 +34,7 @@ export function CodeBlock({
       className={cn("vesper-code-block", className)}
       {...props}
     >
-      {store.codeToJsx({ code, lang })}
+      {store.codeToJsx({ code, lang, transformers })}
       <IconButton
         variant="tertiary"
         icon={<Copy />}
