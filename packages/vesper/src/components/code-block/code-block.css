@@ -46,7 +46,7 @@
   &::-webkit-scrollbar {
     display: none;
   }
-  pre.shiki.vesper {
+  pre.shiki {
     min-width: max-content;
     margin: 0;
     padding: var(--vesper-spacing-5) 0;
@@ -60,7 +60,7 @@
       }
     }
   }
-  &[data-line-numbers="true"] pre.shiki.vesper {
+  &[data-line-numbers="true"] pre.shiki {
     counter-reset: step;
     counter-increment: step 0;
     .line::before {
@@ -70,5 +70,9 @@
       color: var(--vesper-stone-500);
       user-select: none;
     }
+  }
+  pre.shiki-stream code {
+    padding: 0 var(--vesper-spacing-5);
+    display: block;
   }
 }
