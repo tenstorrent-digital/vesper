@@ -121,6 +121,13 @@ class CodeBlockStore {
       );
     }
   };
+
+  reset = () => {
+    this.state = {
+      initialized: false,
+      highlighter: null,
+    };
+  };
 }
 
 export const store = new CodeBlockStore();
