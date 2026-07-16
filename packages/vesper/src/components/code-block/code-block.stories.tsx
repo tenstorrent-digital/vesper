@@ -67,12 +67,13 @@ function CodeBlockStoryComponent({
     <CodeBlock
       showLineNumbers={showLineNumbers}
       lang={lang}
-      code={code}
       style={{
         width: "min(calc(100vw - 4rem), 720px)",
         maxHeight: "calc(100vh - 4rem)",
       }}
-    />
+    >
+      {code}
+    </CodeBlock>
   );
 }
 

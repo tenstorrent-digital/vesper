@@ -17,30 +17,40 @@ export interface CodeBlockProps extends Omit<
    * The language syntax of the supplied code. The language must correspond to one of the languages registered when calling `setupCodeBlock`. Omitting this prop will render supplied code as plain text with no syntax highlighting.
    *
    * @example
-   * <CodeBlock lang="javascript" />
+   * <CodeBlock lang="javascript">
+   *   const count = 0
+   * </CodeBlock>
    * */
   lang?: string;
   /**
    * The code to render. Can be a `string`, or a `ReadableStream<string>` if you wish to stream something like build logs, output from an LLM, etc.
    *
    * @example
-   * <CodeBlock code="const count = 1" />
+   * <CodeBlock>
+   *   const count = 0
+   * </CodeBlock>
    */
-  code?: string | ReadableStream<string>;
+  children?: string | ReadableStream<string>;
   /**
-   * Where to show line numbers on the left-hand side of the code block or not. Note that if you are streaming code, line numbers will not appear.
+   * Whether or not to show line numbers on the left-hand side of the code block. Note that if you are streaming code, line numbers will not appear.
    *
    * @example
-   * <CodeBlock showLineNumbers />
+   * <CodeBlock showLineNumbers>
+   *   const count = 0
+   * </CodeBlock>
    */
   showLineNumbers?: boolean;
   /**
-   * An array of transformers to apply and manipulate the hast tree. For information on Shiki transformers, see [the shiki transformers guide](https://shiki.style/guide/transformers)
+   * An array of transformers to apply and manipulate the hast tree. For information on Shiki transformers, see [the shiki transformers guide](https://shiki.style/guide/transformers).
+   *
+   * Transforms will not apply to streamed code.
    *
    * @example
-   * import { transformerNotationDiff } from '@shikijs/transformers/'
+   * import { transformerNotationDiff } from '@shikijs/transformers'
    *
-   * <CodeBlock transformers={[transformerNotationDiff()]} />
+   * <CodeBlock transformers={[transformerNotationDiff()]}>
+   *   const count = 0
+   * </CodeBlock>
    */
   transformers?: ShikiTransformer[];
 }
@@ -62,22 +72,26 @@ export interface CodeBlockProps extends Omit<
  *   ],
  * });
  *
- * <CodeBlock lang="javascript" code="const count = 0" />
+ * <CodeBlock lang="javascript">
+ *   const count = 0
+ * </CodeBlock>
  * */
 export function CodeBlock({
   className,
-  code = "",
+  children = "",
   lang = "text",
   showLineNumbers = false,
   transformers,
   ...props
 }: CodeBlockProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const content =
-    typeof code === "string" ? code : store.codeToStream({ code, lang });
+  const code =
+    typeof children === "string"
+      ? children
+      : store.codeToStream({ code: children, lang });
 
   useEffect(() => {
-    if (typeof content === "string" || !ref.current) return;
+    if (typeof code === "string" || !ref.current) return;
 
     const observer = new MutationObserver(() => {
       if (!ref.current) return;
@@ -86,7 +100,7 @@ export function CodeBlock({
 
     observer.observe(ref.current, { childList: true, subtree: true });
     return () => observer.disconnect();
-  }, [content]);
+  }, [code]);
 
   return (
     <div className={cn("vesper-code-block", className)} {...props}>
@@ -97,10 +111,10 @@ export function CodeBlock({
         className="vesper-code-block-pre-wrapper"
         ref={ref}
       >
-        {typeof content === "string" ? (
-          store.codeToJsx({ code: content, lang, transformers })
+        {typeof code === "string" ? (
+          store.codeToJsx({ code, lang, transformers })
         ) : (
-          <ShikiStreamRenderer stream={content} />
+          <ShikiStreamRenderer stream={code} />
         )}
       </Typography>
       <IconButton

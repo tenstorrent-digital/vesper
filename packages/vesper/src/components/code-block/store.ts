@@ -30,6 +30,8 @@ class CodeBlockStore {
     /**
      * Array of language grammars to support. You can install the `@shikijs/langs` package and pick and choose which languages to support by importing the individual grammars. To support plaintext only, you can pass an empty array.
      *
+     * To enable syntax highlighting for a custom language grammar, or a language grammar unsupported by the `@shikijs/langs` package, you can pass in a TextMate grammar object. For example, the llvm project has a custom [TextMate grammar for MLIR](https://github.com/llvm/llvm-project/blob/main/mlir/utils/textmate/mlir.json) on GitHub.
+     *
      * @example
      * ```ts
      * await setupCodeBlock({
