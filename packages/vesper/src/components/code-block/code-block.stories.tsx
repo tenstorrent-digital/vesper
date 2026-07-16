@@ -388,9 +388,9 @@ const SAMPLE_CODE_MARKDOWN = `# Design System Documentation
 
 Install the package using your preferred **package manager**:
 
-\\\`\\\`\\\`bash
+\`\`\`bash
 yarn add @vesper/design-system
-\\\`\\\`\\\`
+\`\`\`
 
 ### Basic Usage
 
@@ -424,7 +424,7 @@ Import components _directly_ from the package. Each component supports
 For more details, visit [the docs](https://vesper.dev/docs) or check the
 ![badge](https://img.shields.io/badge/coverage-98%25-green) on GitHub.
 
-Use inline code like \\\`<Button variant="primary" />\\\` in your JSX files.
+Use inline code like \`<Button variant="primary" />\` in your JSX files.
 `;
 
 // Covers: shell commands, variables, pipes, redirects, subshells,
