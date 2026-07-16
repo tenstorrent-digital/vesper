@@ -2,6 +2,16 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { CodeBlock, setupCodeBlock } from "@/components/code-block/code-block";
 
+await setupCodeBlock({
+  langs: [
+    import("@shikijs/langs/typescript"),
+    import("@shikijs/langs/css"),
+    import("@shikijs/langs/json"),
+    import("@shikijs/langs/markdown"),
+    import("@shikijs/langs/shellscript"),
+  ],
+});
+
 function CodeBlockStoryComponent({
   lang,
   showLineNumbers,
@@ -52,6 +62,8 @@ const meta = {
   },
 } satisfies Meta<typeof CodeBlockStoryComponent>;
 
+type Story = StoryObj<typeof meta>;
+
 export const Playground: Story = {
   args: {
     lang: "typescript",
@@ -61,18 +73,6 @@ export const Playground: Story = {
 Playground.storyName = "code-block";
 
 export default meta;
-
-type Story = StoryObj<typeof meta>;
-
-await setupCodeBlock({
-  langs: [
-    import("@shikijs/langs/typescript"),
-    import("@shikijs/langs/css"),
-    import("@shikijs/langs/json"),
-    import("@shikijs/langs/markdown"),
-    import("@shikijs/langs/shellscript"),
-  ],
-});
 
 // Covers: keywords, storage types, interfaces, generics, type annotations,
 // constants, enums, classes, decorators, functions, async/await, control flow,
