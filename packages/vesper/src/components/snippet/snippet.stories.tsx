@@ -15,7 +15,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
   args: {
-    code: `cd tt-studio\nrun.py --dev --skip-fastapi`,
+    children: `cd tt-studio\nrun.py --dev --skip-fastapi`,
     variant: "default",
   },
 };

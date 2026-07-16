@@ -9,13 +9,13 @@ export const SNIPPET_VARIANTS = ["default", "contrast"] as const;
 export type SnippetVariant = (typeof SNIPPET_VARIANTS)[number];
 
 export interface SnippetProps extends Omit<ComponentProps<"div">, "children"> {
-  code?: string;
+  children?: string;
   variant?: SnippetVariant;
 }
 
 export function Snippet({
   className,
-  code = "",
+  children = "",
   variant = "default",
   ...props
 }: SnippetProps) {
@@ -28,7 +28,7 @@ export function Snippet({
     >
       <pre tabIndex={0}>
         <code>
-          {code.split("\n").map((line, index) => (
+          {children.split("\n").map((line, index) => (
             <span key={index} className="line">
               {line}
             </span>
@@ -41,7 +41,7 @@ export function Snippet({
         aria-label="Copy code"
         size="xs"
         type="button"
-        onClick={() => navigator.clipboard.writeText(code)}
+        onClick={() => navigator.clipboard.writeText(children)}
       />
     </Typography>
   );
