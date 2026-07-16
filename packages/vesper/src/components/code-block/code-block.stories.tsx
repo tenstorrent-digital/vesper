@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { transformerNotationDiff } from "@shikijs/transformers";
 
 import { CodeBlock, setupCodeBlock } from "@/components/code-block/code-block";
 
@@ -48,7 +47,6 @@ function CodeBlockStoryComponent({
       showLineNumbers={showLineNumbers}
       lang={lang}
       code={code}
-      transformers={[transformerNotationDiff()]}
       style={{
         width: "min(calc(100vw - 4rem), 720px)",
         maxHeight: "calc(100vh - 4rem)",

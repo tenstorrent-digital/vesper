@@ -1957,7 +1957,7 @@
     estree-walker "^2.0.2"
     picomatch "^4.0.2"
 
-"@shikijs/core@4.3.1", "@shikijs/core@^4.3.1":
+"@shikijs/core@^4.3.1":
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/@shikijs/core/-/core-4.3.1.tgz#d1e4b67f747d547177519ef768b0636c97cedd5d"
   integrity sha512-ANMDxuaPsNMdDC1m4vfvhlDmJweMwkE5XitTwrq2rWHx5jM+dlm4MmHt2PP6t0uejfR77SuhrhJ0zEijIF/uhA==
@@ -1992,14 +1992,6 @@
     "@shikijs/types" "4.3.1"
     "@shikijs/vscode-textmate" "^10.0.2"
     "@types/hast" "^3.0.4"
-
-"@shikijs/transformers@^4.3.1":
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/@shikijs/transformers/-/transformers-4.3.1.tgz#f9ec46a7253df4aed0d2d2f1268d2763061691f5"
-  integrity sha512-z6ir0bGDgWcF2FduktEfPgIsdOtIlDiLAjFBgBzE42Q9xHbkkIXZtORHzlLVB71iZP9elEcqKg6keajvOUwE2A==
-  dependencies:
-    "@shikijs/core" "4.3.1"
-    "@shikijs/types" "4.3.1"
 
 "@shikijs/types@4.3.1":
   version "4.3.1"
