@@ -458,3 +458,26 @@ export const SAMPLE_CODE_ANSI = [
   `  ${ESC}[91m    2 failing${ESC}[0m`,
   `  ${ESC}[96m    5 pending${ESC}[0m`,
 ].join("\n");
+
+/**
+ * Simulate an incoming text stream
+ */
+export function createTextStream(code: string) {
+  let str = code;
+
+  function getNextChunk() {
+    const chunk = str.slice(0, 25);
+    str = str.slice(25);
+    return chunk;
+  }
+
+  return new ReadableStream({
+    async start(controller) {
+      while (str.length) {
+        controller.enqueue(getNextChunk());
+        await new Promise((r) => setTimeout(r, 50));
+      }
+      controller.close();
+    },
+  });
+}
