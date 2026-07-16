@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { CodeBlock, setupCodeBlock } from "@/components/code-block/code-block";
 import {
+  createTextStream,
   SAMPLE_CODE_ANSI,
   SAMPLE_CODE_BASH,
   SAMPLE_CODE_CSS,
@@ -23,11 +24,13 @@ await setupCodeBlock({
 function CodeBlockStoryComponent({
   lang,
   showLineNumbers,
+  stream,
 }: {
   showLineNumbers: boolean;
   lang: "typescript" | "css" | "json" | "markdown" | "ansi" | "bash";
+  stream: boolean;
 }) {
-  let code = SAMPLE_CODE_TYPESCRIPT;
+  let code: string | ReadableStream<string> = SAMPLE_CODE_TYPESCRIPT;
   switch (lang) {
     case "ansi":
       code = SAMPLE_CODE_ANSI;
@@ -50,6 +53,11 @@ function CodeBlockStoryComponent({
     default:
       break;
   }
+
+  if (stream) {
+    code = createTextStream(code);
+  }
+
   return (
     <CodeBlock
       showLineNumbers={showLineNumbers}
@@ -70,6 +78,10 @@ const meta = {
       control: "radio",
       options: ["typescript", "css", "json", "markdown", "ansi", "bash"],
     },
+    stream: {
+      description:
+        "Not a `CodeBlock` component prop; this control is used to easily toggle on/off text streaming the storybook preview UI.",
+    },
   },
 } satisfies Meta<typeof CodeBlockStoryComponent>;
 
@@ -79,6 +91,7 @@ export const Playground: Story = {
   args: {
     lang: "typescript",
     showLineNumbers: false,
+    stream: false,
   },
 };
 Playground.storyName = "code-block";
