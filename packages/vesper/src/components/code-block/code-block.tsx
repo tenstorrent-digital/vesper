@@ -13,12 +13,57 @@ export interface CodeBlockProps extends Omit<
   ComponentProps<"div">,
   "children" | "dangerouslySetInnerHTML"
 > {
+  /**
+   * The language syntax of the supplied code. The language must correspond to one of the languages registered when calling `setupCodeBlock`. Omitting this prop will render supplied code as plain text with no syntax highlighting.
+   *
+   * @example
+   * <CodeBlock lang="javascript" />
+   * */
   lang?: string;
+  /**
+   * The code to render. Can be a `string`, or a `ReadableStream<string>` if you wish to stream something like build logs, output from an LLM, etc.
+   *
+   * @example
+   * <CodeBlock code="const count = 1" />
+   */
   code?: string | ReadableStream<string>;
+  /**
+   * Where to show line numbers on the left-hand side of the code block or not. Note that if you are streaming code, line numbers will not appear.
+   *
+   * @example
+   * <CodeBlock showLineNumbers />
+   */
   showLineNumbers?: boolean;
+  /**
+   * An array of transformers to apply and manipulate the hast tree. For information on Shiki transformers, see [the shiki transformers guide](https://shiki.style/guide/transformers)
+   *
+   * @example
+   * import { transformerNotationDiff } from '@shikijs/transformers/'
+   *
+   * <CodeBlock transformers={[transformerNotationDiff()]} />
+   */
   transformers?: ShikiTransformer[];
 }
 
+/**
+ * Render code with highlighted syntax in a code block with a copy-to-clipboard button. Code by default is rendered as plain text unless a specified `lang` prop is supplied.
+ *
+ * Prior to usage, you _must_ call the `setupCodeBlock` function exported from this module once in your application. Zero languages are configured out-of-the-box, so you will need to supply your own language grammars when calling `setupCodeBlock`.
+ *
+ * @example
+ * await setupCodeBlock({
+ *   langs: [
+ *     import("@shikijs/langs/typescript"),
+ *     import("@shikijs/langs/css"),
+ *     import("@shikijs/langs/json"),
+ *     import("@shikijs/langs/markdown"),
+ *     import("@shikijs/langs/shellscript"),
+ *     // any other languages you wish to support
+ *   ],
+ * });
+ *
+ * <CodeBlock lang="javascript" code="const count = 0" />
+ * */
 export function CodeBlock({
   className,
   code = "",
