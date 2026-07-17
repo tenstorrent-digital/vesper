@@ -78,17 +78,13 @@ export interface CodeBlockProps extends Omit<
  * */
 export function CodeBlock({
   className,
-  children = "",
+  children: code = "",
   lang = "text",
   showLineNumbers = false,
   transformers,
   ...props
 }: CodeBlockProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const code =
-    typeof children === "string"
-      ? children
-      : store.codeToStream({ code: children, lang });
 
   useEffect(() => {
     if (typeof code === "string" || !ref.current) return;
@@ -114,7 +110,7 @@ export function CodeBlock({
         {typeof code === "string" ? (
           store.codeToJsx({ code, lang, transformers })
         ) : (
-          <ShikiStreamRenderer stream={code} />
+          <ShikiStreamRenderer stream={store.codeToStream({ code, lang })} />
         )}
       </Typography>
       <IconButton
