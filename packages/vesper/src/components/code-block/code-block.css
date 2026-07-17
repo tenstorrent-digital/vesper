@@ -1,6 +1,6 @@
 .vesper-code-block {
   position: relative;
-  min-height: 60px;
+  min-height: 74px;
   display: flex;
   flex-direction: column;
   border-radius: var(--vesper-radius-2);
@@ -9,12 +9,8 @@
   box-shadow: var(--vesper-shadow-inset-100);
   .vesper-icon-button {
     position: absolute;
-    top: min(var(--vesper-spacing-5), calc(50% - 16px));
+    top: var(--vesper-spacing-5);
     right: var(--vesper-spacing-5);
-    visibility: hidden;
-  }
-  &:hover .vesper-icon-button {
-    visibility: visible;
   }
   @media (forced-colors: active) {
     &:has(.vesper-code-block-pre-wrapper:focus-visible) {
