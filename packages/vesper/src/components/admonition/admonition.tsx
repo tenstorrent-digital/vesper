@@ -1,18 +1,20 @@
 import type { ElementType } from "react";
-import { cn } from "@/utils/cn";
-import { Polymorphic } from "@/utils/polymorphic";
+
+import { Button, ButtonProps } from "@/components/button/button";
 import {
   ErrorSolid,
-  InfoSolid,
   Info,
+  InfoSolid,
   SuccessSolid,
   WarningSolid,
 } from "@/components/icons/icons";
-import { Button, ButtonProps } from "@/components/button/button";
 import {
   Typography,
   TypographyVariant,
 } from "@/components/typography/typography";
+
+import { cn } from "@/utils/cn";
+import { Polymorphic } from "@/utils/polymorphic";
 
 export const ADMONITION_SIZES = ["sm", "md"] as const;
 

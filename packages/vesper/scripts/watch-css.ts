@@ -1,5 +1,6 @@
 import chokidar from "chokidar";
 import path from "node:path";
+
 import { srcRoot, syncCSS } from "./sync-css";
 
 await syncCSS();

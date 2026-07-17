@@ -1,12 +1,14 @@
 import {
   Collapsible,
+  CollapsibleContent,
   type CollapsibleProps,
   CollapsibleTrigger,
-  CollapsibleContent,
 } from "@radix-ui/react-collapsible";
-import { cn } from "@/utils/cn";
-import { Typography } from "@/components/typography/typography";
+
 import { CaretRight } from "@/components/icons/icons";
+import { Typography } from "@/components/typography/typography";
+
+import { cn } from "@/utils/cn";
 
 export interface AccordionProps extends Omit<
   CollapsibleProps,

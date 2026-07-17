@@ -1,10 +1,10 @@
-import { render, cleanup } from "@testing-library/react";
-import { beforeEach, afterEach, describe, expect, test, vi } from "vitest";
-import { userEvent } from "vitest/browser";
+import { cleanup, render } from "@testing-library/react";
 import axe from "axe-core";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { userEvent } from "vitest/browser";
 
-import { Toggle, TOGGLE_SIZES } from "@/components/toggle/toggle";
 import { Globe, Tenstorrent } from "@/components/icons/icons";
+import { Toggle, TOGGLE_SIZES } from "@/components/toggle/toggle";
 
 import "@/styles/test.css";
 

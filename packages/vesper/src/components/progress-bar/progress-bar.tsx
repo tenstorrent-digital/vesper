@@ -1,5 +1,6 @@
 import type { ComponentProps } from "react";
 import { Progress, ProgressIndicator } from "@radix-ui/react-progress";
+
 import { cn } from "@/utils/cn";
 
 export const PROGRESS_BAR_SIZES = ["sm", "md", "lg"] as const;

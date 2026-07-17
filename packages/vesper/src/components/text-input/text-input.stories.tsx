@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { TextInput } from "@/components/text-input/text-input";
 import { Globe } from "@/components/icons/icons";
+import { TextInput } from "@/components/text-input/text-input";
 
 const meta = {
   component: TextInput,

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { TextButton } from "@/components/text-button/text-button";
 import { Tenstorrent } from "@/components/icons/icons";
+import { TextButton } from "@/components/text-button/text-button";
 
 const meta = {
   component: TextButton,

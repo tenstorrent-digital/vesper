@@ -1,16 +1,16 @@
 import {
-  render,
-  within,
   cleanup,
-  waitFor,
   fireEvent,
+  render,
+  waitFor,
+  within,
 } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import axe from "axe-core";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 
-import { Menu, type MenuItemProps } from "@/components/menu/menu";
 import { Blackhole, Globe, Tenstorrent } from "@/components/icons/icons";
+import { Menu, type MenuItemProps } from "@/components/menu/menu";
 import { TextButton } from "@/components/text-button/text-button";
 
 import "@/styles/test.css";

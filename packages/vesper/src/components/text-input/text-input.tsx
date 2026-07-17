@@ -1,14 +1,10 @@
 import {
-  useId,
   type ComponentProps,
   type ReactNode,
   type RefObject,
+  useId,
 } from "react";
-import { cn } from "@/utils/cn";
-import {
-  Typography,
-  type TypographyVariant,
-} from "@/components/typography/typography";
+
 import {
   CircleXSolid,
   ErrorSolid,
@@ -16,6 +12,12 @@ import {
   SuccessSolid,
   WarningSolid,
 } from "@/components/icons/icons";
+import {
+  Typography,
+  type TypographyVariant,
+} from "@/components/typography/typography";
+
+import { cn } from "@/utils/cn";
 
 export const TEXT_INPUT_SIZES = ["sm", "md", "lg"] as const;
 

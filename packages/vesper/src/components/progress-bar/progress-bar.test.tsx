@@ -1,11 +1,11 @@
-import { render, cleanup } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, test } from "vitest";
+import { cleanup, render } from "@testing-library/react";
 import axe from "axe-core";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
 import {
-  ProgressBar,
   PROGRESS_BAR_SIZES,
   PROGRESS_BAR_VARIANTS,
+  ProgressBar,
   type ProgressBarProps,
 } from "@/components/progress-bar/progress-bar";
 

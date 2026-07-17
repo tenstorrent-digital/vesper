@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { Grid, List } from "@/components/icons/icons";
 import {
   Toggle,
   TOGGLE_SIZES,
   type ToggleProps,
 } from "@/components/toggle/toggle";
-import { Grid, List } from "@/components/icons/icons";
 
 const ToggleStoryComponent = ({
   size = "lg",

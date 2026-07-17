@@ -1,15 +1,15 @@
+import browserslist from "browserslist";
+import { browserslistToTargets, transform } from "lightningcss";
 import {
   existsSync,
   mkdirSync,
-  readFileSync,
   readdirSync,
+  readFileSync,
   rmSync,
   writeFileSync,
 } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import browserslist from "browserslist";
-import { transform, browserslistToTargets } from "lightningcss";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

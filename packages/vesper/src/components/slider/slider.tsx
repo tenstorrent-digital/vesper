@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { type SliderProps as RadixSliderProps } from "@radix-ui/react-slider";
+
 import { Range } from "@/components/range/range";
 
 interface SliderProps extends Omit<

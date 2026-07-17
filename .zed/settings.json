@@ -1,4 +1,16 @@
+// Folder-specific settings
+//
+// For a full list of overridable settings, and general information
+// on folder-specific settings, documentation:
+// https://zed.dev/docs/configuring-zed#settings-files
 {
+  // Zed format on save is not "off" by default
+  //
+  // Add "format_on_save": "on" to your global Zed settings to
+  // enable it:
+  // ~/.config/zed/settings.json
+  // cmd-,
+
   "languages": {
     "CSS": {
       // use both tailwind LSP and css LSP
@@ -34,15 +46,19 @@
       "settings": {
         "css": {
           "lint": {
-            // ignore @_ rules from tailwind that conflict with css spec
+            // ignore @_ rules from tailwind that conflict
+            // with css spec
             "unknownAtRules": "ignore"
           }
         }
       }
     }
   },
+
   "file_scan_exclusions": [
-    // defaults
+    // defaults - specifying any exclusions overrides the
+    // default exclusions so we add them back here
+    // see: https://zed.dev/docs/reference/all-settings#file-scan-exclusions
     "**/.git",
     "**/.svn",
     "**/.hg",
@@ -66,6 +82,5 @@
     // all files in `.claude` (symlinks to .agents)
     ".claude/**"
   ],
-  "read_only_files": ["yarn.lock", "skills-lock.json"],
-  "format_on_save": "on"
+  "read_only_files": ["yarn.lock", "skills-lock.json"]
 }

@@ -1,6 +1,6 @@
-import { render, cleanup, fireEvent } from "@testing-library/react";
-import { beforeEach, afterEach, describe, expect, test } from "vitest";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
 import { Sheet, type SheetProps, useSheet } from "@/components/sheet/sheet";
 
