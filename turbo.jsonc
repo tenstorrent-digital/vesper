@@ -46,8 +46,7 @@
       "outputs": ["$TURBO_ROOT$/packages/vesper/src/components/Icon/**"]
     },
     "lint": {
-      "dependsOn": ["^lint"],
-      "cache": false
+      "dependsOn": ["^lint"]
     },
     "lint:fix": {
       "dependsOn": ["^lint:fix"],
