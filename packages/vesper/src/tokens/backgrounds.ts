@@ -5,6 +5,6 @@ export const backgrounds = {
     "var(--vesper-pattern-dots) repeat top var(--vesper-stone-50)",
   ["dots-tertiary"]:
     "var(--vesper-pattern-dots) repeat top var(--vesper-stone-100)",
-  ["dots-inverted"]:
-    "var(--vesper-pattern-dots-inverted) repeat top var(--vesper-stone-900)",
+  ["dots-inverse"]:
+    "var(--vesper-pattern-dots-inverse) repeat top var(--vesper-stone-900)",
 };

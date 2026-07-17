@@ -5,6 +5,6 @@
     var(--vesper-stone-50);
   --vesper-bg-dots-tertiary: var(--vesper-pattern-dots) repeat top
     var(--vesper-stone-100);
-  --vesper-bg-dots-inverted: var(--vesper-pattern-dots-inverted) repeat top
+  --vesper-bg-dots-inverse: var(--vesper-pattern-dots-inverse) repeat top
     var(--vesper-stone-900);
 }
