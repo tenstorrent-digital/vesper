@@ -27,22 +27,22 @@
   }
   @media (forced-colors: none) {
     .vesper-button-contrast:first-child {
-      border-color: var(--vesper-stone-600);
+      border-color: var(--vesper-border-inverse-secondary);
     }
     .vesper-button-contrast:last-child {
-      border-color: var(--vesper-stone-600);
+      border-color: var(--vesper-border-inverse-secondary);
     }
     .vesper-button-subtle:first-child {
-      border-color: var(--vesper-stone-300);
+      border-color: var(--vesper-border-secondary);
     }
     .vesper-button-subtle:last-child {
-      border-color: var(--vesper-stone-300);
+      border-color: var(--vesper-border-secondary);
     }
     .vesper-button-disabled:first-child {
-      border-color: var(--vesper-stone-300);
+      border-color: var(--vesper-border-secondary);
     }
     .vesper-button-disabled:last-child {
-      border-color: var(--vesper-stone-300);
+      border-color: var(--vesper-border-secondary);
     }
   }
   &[data-state="open"] {
