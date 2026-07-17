@@ -626,4 +626,30 @@ html[data-vesper-theme="dark"] {
   --vesper-background-brand-pink-base: var(--vesper-pink-600);
   --vesper-background-brand-yellow-subtle: var(--vesper-yellow-50);
   --vesper-background-brand-yellow-base: var(--vesper-yellow-400);
+
+  /* text colors */
+  --vesper-text-primary: var(--vesper-stone-900);
+  --vesper-text-secondary: var(--vesper-stone-700);
+  --vesper-text-tertiary: var(--vesper-stone-500);
+  --vesper-text-disabled: var(--vesper-alpha-stone-400);
+  --vesper-text-inverse-primary: var(--vesper-stone-0);
+  --vesper-text-inverse-secondary: var(--vesper-stone-500);
+  --vesper-text-inverse-tertiary: var(--vesper-stone-600);
+  --vesper-text-alpha-disabled: var(--vesper-alpha-inverse-300);
+  --vesper-text-on-color: var(--vesper-static-white);
+  --vesper-text-accent: var(--vesper-teal-700);
+  --vesper-text-success: var(--vesper-mint-600);
+  --vesper-text-warning: var(--vesper-amber-600);
+  --vesper-text-error: var(--vesper-red-600);
+  --vesper-text-info: var(--vesper-sky-600);
+  --vesper-text-static-black: var(--vesper-static-black);
+  --vesper-text-static-white: var(--vesper-static-white);
+  --vesper-text-link-default: var(--vesper-teal-700);
+  --vesper-text-link-hover: var(--vesper-teal-600);
+  --vesper-text-link-visited: var(--vesper-teal-800);
+  --vesper-text-link-disabled: var(--vesper-alpha-stone-400);
+  --vesper-text-brand-purple: var(--vesper-purple-600);
+  --vesper-text-brand-mint: var(--vesper-mint-600);
+  --vesper-text-brand-pink: var(--vesper-pink-600);
+  --vesper-text-brand-yellow: var(--vesper-yellow-600);
 }
