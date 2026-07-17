@@ -1,5 +1,6 @@
 .vesper-code-block {
   position: relative;
+  /* Since the copy-to-clipboard button is positioned absolutely, we use min-height here to guarantee the code block will be at least the height of the button plus padding */
   min-height: 74px;
   display: flex;
   flex-direction: column;
