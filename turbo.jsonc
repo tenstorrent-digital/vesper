@@ -47,19 +47,20 @@
     },
     "lint": {
       "dependsOn": ["^lint"],
-      "outputs": []
+      "cache": false
     },
     "lint:fix": {
       "dependsOn": ["^lint:fix"],
-      "outputs": [],
       "cache": false
     },
     "format": {
-      "dependsOn": ["^format"]
+      "dependsOn": ["^format"],
+      "cache": false
     },
     "//#format:root": {
       // root task to allow running `format` from root
       // see: https://turborepo.dev/docs/crafting-your-repository/configuring-tasks#registering-root-tasks
+      "cache": false
     }
   }
 }
