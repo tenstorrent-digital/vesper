@@ -10,7 +10,7 @@ import simpleImportSort from "eslint-plugin-simple-import-sort";
  *
  * @type {import("eslint").Linter.Config[]}
  * */
-export const config = [
+export default [
   js.configs.recommended,
   eslintConfigPrettier,
   ...tseslint.configs.recommended,

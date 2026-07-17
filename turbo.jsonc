@@ -13,9 +13,6 @@
       "inputs": ["$TURBO_DEFAULT$", "storybook/**"],
       "outputs": ["../../apps/docs/public/storybook/**"]
     },
-    "lint": {
-      "dependsOn": ["^lint"]
-    },
     "check-types": {
       "dependsOn": ["^build", "^check-types"]
     },
@@ -47,6 +44,22 @@
         "$TURBO_ROOT$/packages/vesper/scripts/generate-icons.ts"
       ],
       "outputs": ["$TURBO_ROOT$/packages/vesper/src/components/Icon/**"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"],
+      "outputs": []
+    },
+    "lint:fix": {
+      "dependsOn": ["^lint:fix"],
+      "outputs": [],
+      "cache": false
+    },
+    "format": {
+      "dependsOn": ["^format"]
+    },
+    "//#format:root": {
+      // root task to allow running `format` from root
+      // see: https://turborepo.dev/docs/crafting-your-repository/configuring-tasks#registering-root-tasks
     }
   }
 }
