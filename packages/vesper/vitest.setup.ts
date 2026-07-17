@@ -1,7 +1,7 @@
 import * as jestMatchers from "@testing-library/jest-dom/matchers";
-import * as axeMatchers from "vitest-axe/matchers";
-import { expect, vi } from "vitest";
 import axe from "axe-core";
+import { expect, vi } from "vitest";
+import * as axeMatchers from "vitest-axe/matchers";
 
 /**
  * Mock window.matchMedia so that prefers-reduced-motion: reduce returns true.

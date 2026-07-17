@@ -1,9 +1,11 @@
 import type { ComponentProps } from "react";
-import { cn } from "@/utils/cn";
+
 import {
   Typography,
   type TypographyVariant,
 } from "@/components/typography/typography";
+
+import { cn } from "@/utils/cn";
 
 export const RADIO_SIZES = ["sm", "md"] as const;
 

@@ -1,13 +1,13 @@
-import { render, cleanup } from "@testing-library/react";
-import { beforeEach, afterEach, describe, expect, test, vi } from "vitest";
+import { cleanup, render } from "@testing-library/react";
 import axe from "axe-core";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { userEvent } from "vitest/browser";
 
-import { Tabs, type TabsVariant } from "@/components/tabs/tabs";
 import { Globe } from "@/components/icons/icons";
+import { Tabs, type TabsVariant } from "@/components/tabs/tabs";
 import { Typography } from "@/components/typography/typography";
 
 import "@/styles/test.css";
-import { userEvent } from "vitest/browser";
 
 const TABS_PERMUTATIONS: {
   name: string;

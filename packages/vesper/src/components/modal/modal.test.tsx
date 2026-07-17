@@ -1,11 +1,11 @@
-import { render, cleanup, fireEvent } from "@testing-library/react";
-import { beforeEach, afterEach, describe, expect, test, vi } from "vitest";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import {
   Modal,
-  type ModalProps,
   MODAL_BUTTONS_ALIGNMENTS,
+  type ModalProps,
   useModal,
 } from "@/components/modal/modal";
 

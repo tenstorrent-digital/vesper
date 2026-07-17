@@ -3,14 +3,16 @@ import {
   Tabs as RadixTabs,
   TabsContent,
   TabsList,
-  TabsTrigger,
   type TabsProps as RadixTabsProps,
+  TabsTrigger,
 } from "@radix-ui/react-tabs";
-import { cn } from "@/utils/cn";
+
 import {
   Typography,
   TypographyVariant,
 } from "@/components/typography/typography";
+
+import { cn } from "@/utils/cn";
 
 export const TABS_VARIANTS = ["primary", "secondary"] as const;
 

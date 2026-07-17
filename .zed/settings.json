@@ -16,19 +16,19 @@
       // use both tailwind LSP and css LSP
       "language_servers": [
         "tailwindcss-language-server",
-        "vscode-css-language-server",
-      ],
+        "vscode-css-language-server"
+      ]
     },
     "TSX": {
       "code_actions_on_format": {
-        "source.fixAll.eslint": true,
-      },
+        "source.fixAll.eslint": true
+      }
     },
     "TypeScript": {
       "code_actions_on_format": {
-        "source.fixAll.eslint": true,
-      },
-    },
+        "source.fixAll.eslint": true
+      }
+    }
   },
   "lsp": {
     "tailwindcss-language-server": {
@@ -38,9 +38,9 @@
           // don't suggest canonical classes since
           // it flags our custom spacing utilities
           // eg. w-* (in px)
-          "suggestCanonicalClasses": "ignore",
-        },
-      },
+          "suggestCanonicalClasses": "ignore"
+        }
+      }
     },
     "vscode-css-language-server": {
       "settings": {
@@ -48,11 +48,11 @@
           "lint": {
             // ignore @_ rules from tailwind that conflict
             // with css spec
-            "unknownAtRules": "ignore",
-          },
-        },
-      },
-    },
+            "unknownAtRules": "ignore"
+          }
+        }
+      }
+    }
   },
 
   "file_scan_exclusions": [
@@ -80,7 +80,7 @@
     ".agents/skills/**/rules/**",
 
     // all files in `.claude` (symlinks to .agents)
-    ".claude/**",
+    ".claude/**"
   ],
-  "read_only_files": ["yarn.lock", "skills-lock.json"],
+  "read_only_files": ["yarn.lock", "skills-lock.json"]
 }

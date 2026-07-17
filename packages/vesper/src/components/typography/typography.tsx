@@ -1,6 +1,7 @@
 import type { ElementType } from "react";
-import type { Polymorphic } from "@/utils/polymorphic";
+
 import { cn } from "@/utils/cn";
+import type { Polymorphic } from "@/utils/polymorphic";
 
 export const TYPOGRAPHY_VARIANTS = [
   "display-sm",

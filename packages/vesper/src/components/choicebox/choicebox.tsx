@@ -1,15 +1,17 @@
 import {
+  type ChangeEventHandler,
+  type ComponentProps,
+  type KeyboardEventHandler,
   useCallback,
   useEffect,
   useImperativeHandle,
   useRef,
-  type ChangeEventHandler,
-  type ComponentProps,
-  type KeyboardEventHandler,
 } from "react";
-import { cn } from "@/utils/cn";
-import { Typography } from "@/components/typography/typography";
+
 import { Checkmark } from "@/components/icons/icons";
+import { Typography } from "@/components/typography/typography";
+
+import { cn } from "@/utils/cn";
 
 export type ChoiceboxItem = {
   value: string;

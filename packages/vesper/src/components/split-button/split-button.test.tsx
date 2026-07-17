@@ -1,22 +1,22 @@
 import {
-  render,
-  within,
   cleanup,
-  waitFor,
   fireEvent,
+  render,
+  waitFor,
+  within,
 } from "@testing-library/react";
+import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
-import axe from "axe-core";
 
+import { Blackhole, Globe, Tenstorrent } from "@/components/icons/icons";
+import { MenuItemProps } from "@/components/menu/menu";
 import {
-  SplitButton,
   SPLIT_BUTTON_SIZES,
   SPLIT_BUTTON_VARIANTS,
+  SplitButton,
   type SplitButtonProps,
 } from "@/components/split-button/split-button";
-import { MenuItemProps } from "@/components/menu/menu";
-import { Blackhole, Globe, Tenstorrent } from "@/components/icons/icons";
 
 import "@/styles/test.css";
 

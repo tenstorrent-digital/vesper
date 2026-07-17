@@ -1,13 +1,13 @@
+import type { ReactNode } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import type { ReactNode } from "react";
+import { Button } from "@/components/button/button";
 import {
-  MODAL_BUTTONS_ALIGNMENTS,
   Modal,
+  MODAL_BUTTONS_ALIGNMENTS,
   type ModalProps,
   useModal,
 } from "@/components/modal/modal";
-import { Button } from "@/components/button/button";
 import { TextInput } from "@/components/text-input/text-input";
 
 function ModalStoryComponent({

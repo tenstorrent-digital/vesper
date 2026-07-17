@@ -2,12 +2,14 @@ import { type CSSProperties, useMemo } from "react";
 import {
   Slider as RadixSlider,
   type SliderProps as RadixSliderProps,
-  SliderTrack,
   SliderRange,
   SliderThumb,
+  SliderTrack,
 } from "@radix-ui/react-slider";
-import { cn } from "@/utils/cn";
+
 import { Typography } from "@/components/typography/typography";
+
+import { cn } from "@/utils/cn";
 
 export interface RangeProps extends Omit<
   RadixSliderProps,

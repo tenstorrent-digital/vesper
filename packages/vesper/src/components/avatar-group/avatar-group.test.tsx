@@ -1,6 +1,6 @@
-import { render, within, cleanup } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, test } from "vitest";
+import { cleanup, render, within } from "@testing-library/react";
 import axe from "axe-core";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
 import { AVATAR_SIZES } from "@/components/avatar/avatar";
 import { AvatarGroup } from "@/components/avatar-group/avatar-group";

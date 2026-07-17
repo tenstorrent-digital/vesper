@@ -5,11 +5,13 @@ import {
   useCallback,
   useState,
 } from "react";
-import { cn } from "@/utils/cn";
+
 import {
   Typography,
   type TypographyVariant,
 } from "@/components/typography/typography";
+
+import { cn } from "@/utils/cn";
 
 export const SWITCH_SIZES = ["sm", "md"] as const;
 
