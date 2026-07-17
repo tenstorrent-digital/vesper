@@ -1,0 +1,74 @@
+.vesper-code-block {
+  position: relative;
+  /* Since the copy-to-clipboard button is positioned absolutely, we use min-height here to guarantee the code block will be at least the height of the button plus padding */
+  min-height: 74px;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--vesper-radius-2);
+  border: 1px solid var(--vesper-stone-200);
+  background: var(--vesper-alpha-stone-0);
+  box-shadow: var(--vesper-shadow-inset-100);
+  .vesper-icon-button {
+    position: absolute;
+    top: var(--vesper-spacing-5);
+    right: var(--vesper-spacing-5);
+  }
+  @media (forced-colors: active) {
+    &:has(.vesper-code-block-pre-wrapper:focus-visible) {
+      outline: 2px solid CanvasText;
+    }
+  }
+  @media not (forced-colors: active) {
+    &:has(.vesper-code-block-pre-wrapper:focus-visible) {
+      box-shadow: var(--vesper-shadow-focus-ring);
+    }
+  }
+}
+
+.vesper-code-block-pre-wrapper {
+  &:focus-visible {
+    @media (forced-colors: active) {
+      outline: none;
+    }
+    @media not (forced-colors: active) {
+      box-shadow: none;
+    }
+  }
+  width: 100%;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  border-radius: var(--vesper-radius-2);
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  pre.shiki {
+    min-width: max-content;
+    margin: 0;
+    padding: var(--vesper-spacing-5) 0;
+    outline: none;
+    .line {
+      display: inline-flex;
+      padding: 0 var(--vesper-spacing-5);
+      width: calc(100% - var(--vesper-spacing-10));
+      &:not(:first-child) {
+        margin-top: var(--vesper-spacing-1);
+      }
+    }
+  }
+  &[data-line-numbers="true"] pre.shiki {
+    counter-reset: step;
+    counter-increment: step 0;
+    .line::before {
+      content: counter(step);
+      counter-increment: step;
+      width: var(--vesper-spacing-12);
+      color: var(--vesper-stone-500);
+      user-select: none;
+    }
+  }
+  pre.shiki-stream code {
+    padding: 0 var(--vesper-spacing-5);
+    display: block;
+  }
+}

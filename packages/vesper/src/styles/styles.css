@@ -20,6 +20,9 @@
 @import "../components/typography/typography.css";
 
 /* components */
+@import "../components/code/code.css";
+@import "../components/snippet/snippet.css";
+@import "../components/code-block/code-block.css";
 @import "../components/toast/toast.css";
 @import "../components/sheet/sheet.css";
 @import "../components/modal/modal.css";

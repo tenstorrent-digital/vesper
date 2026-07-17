@@ -1,0 +1,36 @@
+.vesper-snippet {
+  position: relative;
+  display: flex;
+  padding: var(--vesper-spacing-2) var(--vesper-spacing-3);
+  align-items: center;
+  gap: var(--vesper-spacing-16);
+  border: 1px solid var(--vesper-stone-200);
+  border-radius: var(--vesper-radius-1);
+  pre {
+    margin: 0;
+    outline: none;
+  }
+  code {
+    display: flex;
+    flex-direction: column;
+  }
+  .line::before {
+    content: "$";
+    margin-right: var(--vesper-spacing-2);
+    user-select: none;
+  }
+}
+.vesper-snippet-default {
+  background: var(--vesper-alpha-stone-0);
+  color: var(--vesper-stone-900);
+  .line::before {
+    color: var(--vesper-stone-900);
+  }
+}
+.vesper-snippet-contrast {
+  background: var(--vesper-alpha-stone-900);
+  color: var(--vesper-stone-0);
+  .line::before {
+    color: var(--vesper-stone-0);
+  }
+}
