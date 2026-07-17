@@ -1,22 +1,26 @@
+// Folder-specific settings
+//
+// For a full list of overridable settings, and general information on folder-specific settings,
+// see the documentation: https://zed.dev/docs/configuring-zed#settings-files
 {
   "languages": {
     "CSS": {
       // use both tailwind LSP and css LSP
       "language_servers": [
         "tailwindcss-language-server",
-        "vscode-css-language-server"
-      ]
+        "vscode-css-language-server",
+      ],
     },
     "TSX": {
       "code_actions_on_format": {
-        "source.fixAll.eslint": true
-      }
+        "source.fixAll.eslint": true,
+      },
     },
     "TypeScript": {
       "code_actions_on_format": {
-        "source.fixAll.eslint": true
-      }
-    }
+        "source.fixAll.eslint": true,
+      },
+    },
   },
   "lsp": {
     "tailwindcss-language-server": {
@@ -26,20 +30,20 @@
           // don't suggest canonical classes since
           // it flags our custom spacing utilities
           // eg. w-* (in px)
-          "suggestCanonicalClasses": "ignore"
-        }
-      }
+          "suggestCanonicalClasses": "ignore",
+        },
+      },
     },
     "vscode-css-language-server": {
       "settings": {
         "css": {
           "lint": {
             // ignore @_ rules from tailwind that conflict with css spec
-            "unknownAtRules": "ignore"
-          }
-        }
-      }
-    }
+            "unknownAtRules": "ignore",
+          },
+        },
+      },
+    },
   },
   "file_scan_exclusions": [
     // defaults
@@ -64,8 +68,8 @@
     ".agents/skills/**/rules/**",
 
     // all files in `.claude` (symlinks to .agents)
-    ".claude/**"
+    ".claude/**",
   ],
   "read_only_files": ["yarn.lock", "skills-lock.json"],
-  "format_on_save": "on"
+  "format_on_save": "on",
 }
