@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Skeleton, SKELETON_SHAPES } from "@/components/skeleton/skeleton";
+import { Avatar } from "@/components/avatar/avatar";
 import { Button } from "@/components/button/button";
 import { ProgressBar } from "@/components/progress-bar/progress-bar";
-import { Avatar } from "@/components/avatar/avatar";
+import { Skeleton, SKELETON_SHAPES } from "@/components/skeleton/skeleton";
 
 const meta = {
   component: Skeleton,

@@ -1,6 +1,6 @@
-import { render, cleanup, waitFor, fireEvent } from "@testing-library/react";
-import { beforeEach, afterEach, describe, expect, test, vi } from "vitest";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import axe from "axe-core";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { Tooltip } from "@/components/tooltip/tooltip";
 import { Typography } from "@/components/typography/typography";

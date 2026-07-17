@@ -1,13 +1,13 @@
-import { render, cleanup, fireEvent, waitFor } from "@testing-library/react";
-import { beforeEach, afterEach, describe, expect, test, vi } from "vitest";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import axe from "axe-core";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
-import { Toasts, addToast } from "@/components/toast/toast";
 import {
   store,
   TOAST_VARIANTS,
   type ToastVariant,
 } from "@/components/toast/store";
+import { addToast, Toasts } from "@/components/toast/toast";
 
 import "@/styles/test.css";
 
@@ -523,9 +523,7 @@ describe("toast [unit]", () => {
     expect(document.activeElement).toBe(toasts[1]);
 
     // dismiss the middle toast — focus should move to the previous (first) toast
-    store.dismissToast(
-      store.getSnapshot().toasts[1]!.id,
-    );
+    store.dismissToast(store.getSnapshot().toasts[1]!.id);
     await flush();
 
     await waitFor(() => {
@@ -549,9 +547,7 @@ describe("toast [unit]", () => {
     expect(document.activeElement).toBe(toasts[0]);
 
     // dismiss the first toast — focus should move to the next (second) toast
-    store.dismissToast(
-      store.getSnapshot().toasts[0]!.id,
-    );
+    store.dismissToast(store.getSnapshot().toasts[0]!.id);
     await flush();
 
     await waitFor(() => {
@@ -571,9 +567,7 @@ describe("toast [unit]", () => {
     toast.focus();
     expect(document.activeElement).toBe(toast);
 
-    store.dismissToast(
-      store.getSnapshot().toasts[0]!.id,
-    );
+    store.dismissToast(store.getSnapshot().toasts[0]!.id);
     await flush();
 
     await waitFor(() => {

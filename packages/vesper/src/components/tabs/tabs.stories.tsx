@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { Globe } from "@/components/icons/icons";
 import { Tabs, TABS_VARIANTS, type TabsVariant } from "@/components/tabs/tabs";
 import { Typography } from "@/components/typography/typography";
-import { Globe } from "@/components/icons/icons";
 
 const TabsStoryComponent = ({
   tab1Label,

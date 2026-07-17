@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { Button } from "@/components/button/button";
 import {
   Sheet,
   SHEET_SIDES,
   type SheetProps,
   useSheet,
 } from "@/components/sheet/sheet";
-import { Button } from "@/components/button/button";
 import { Typography } from "@/components/typography/typography";
 
 function SheetStoryComponent({

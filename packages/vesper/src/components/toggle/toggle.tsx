@@ -4,11 +4,13 @@ import {
   ToggleGroupItem,
   type ToggleGroupSingleProps,
 } from "@radix-ui/react-toggle-group";
-import { cn } from "@/utils/cn";
+
 import {
   Typography,
   type TypographyVariant,
 } from "@/components/typography/typography";
+
+import { cn } from "@/utils/cn";
 
 export const TOGGLE_SIZES = ["sm", "md", "lg"] as const;
 

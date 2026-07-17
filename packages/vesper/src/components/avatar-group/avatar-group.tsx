@@ -1,7 +1,9 @@
 import type { ElementType } from "react";
-import type { Polymorphic } from "@/utils/polymorphic";
-import { cn } from "@/utils/cn";
+
 import { Avatar, type AvatarSize } from "@/components/avatar/avatar";
+
+import { cn } from "@/utils/cn";
+import type { Polymorphic } from "@/utils/polymorphic";
 
 export type AvatarGroupProps<E extends ElementType = "div"> = Polymorphic<
   {

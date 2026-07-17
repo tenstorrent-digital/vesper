@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { Blackhole, Globe, Tenstorrent } from "@/components/icons/icons";
 import { Menu } from "@/components/menu/menu";
-import { Tenstorrent, Globe, Blackhole } from "@/components/icons/icons";
 import { TextButton } from "@/components/text-button/text-button";
 
 const meta = {

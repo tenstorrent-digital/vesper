@@ -1,16 +1,18 @@
 import {
+  type ComponentProps,
   RefObject,
   useImperativeHandle,
   useLayoutEffect,
   useRef,
-  type ComponentProps,
 } from "react";
-import { cn } from "@/utils/cn";
+
+import { Checkmark, Minus } from "@/components/icons/icons";
 import {
   Typography,
   type TypographyVariant,
 } from "@/components/typography/typography";
-import { Checkmark, Minus } from "@/components/icons/icons";
+
+import { cn } from "@/utils/cn";
 
 export const CHECKBOX_SIZES = ["sm", "md"] as const;
 

@@ -1,13 +1,13 @@
-import { render, cleanup } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
+import axe from "axe-core";
 import {
-  beforeEach,
   afterEach,
+  beforeEach,
   describe,
   expect,
-  test,
   onTestFinished,
+  test,
 } from "vitest";
-import axe from "axe-core";
 
 import {
   THEME_SWITCHER_SIZES,

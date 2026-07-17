@@ -1,7 +1,7 @@
-import { render, cleanup } from "@testing-library/react";
-import { beforeEach, afterEach, describe, expect, test, vi } from "vitest";
-import { userEvent } from "vitest/browser";
+import { cleanup, render } from "@testing-library/react";
 import axe from "axe-core";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { userEvent } from "vitest/browser";
 
 import { Range } from "@/components/range/range";
 

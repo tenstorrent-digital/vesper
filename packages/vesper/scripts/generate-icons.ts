@@ -1,11 +1,12 @@
-import path from "path";
 import fs from "fs";
-import { fileURLToPath } from "url";
-import { optimize } from "svgo";
-import { unified } from "unified";
+import path from "path";
 import rehypeParse from "rehype-parse";
 import rehypeStringify from "rehype-stringify";
+import { optimize } from "svgo";
+import { unified } from "unified";
 import { visit } from "unist-util-visit";
+import { fileURLToPath } from "url";
+
 import { getGeneratedCodeWarning } from "./utils";
 
 const __filename = fileURLToPath(import.meta.url);

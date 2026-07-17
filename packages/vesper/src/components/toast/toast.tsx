@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+
 import { Button } from "@/components/button/button";
-import { Typography } from "@/components/typography/typography";
 import {
   Close,
   ErrorSolid,
@@ -9,12 +9,15 @@ import {
   SuccessSolid,
   WarningSolid,
 } from "@/components/icons/icons";
+import { Typography } from "@/components/typography/typography";
+
 import { cn } from "@/utils/cn";
-import { type ToastData, store, useStore } from "./store";
+
 import { animateToastEnter, animateToastExit } from "./animations";
+import { store, type ToastData, useStore } from "./store";
 import { focusOldestToast, getNearestActiveToast, isFocusable } from "./utils";
 
-export { type ToastOptions, TOAST_VARIANTS } from "./store";
+export { TOAST_VARIANTS, type ToastOptions } from "./store";
 
 export const { addToast } = store;
 

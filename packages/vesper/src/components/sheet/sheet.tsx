@@ -1,21 +1,23 @@
 import {
+  type ComponentPropsWithoutRef,
+  type RefObject,
   useCallback,
   useEffect,
   useId,
   useImperativeHandle,
   useRef,
-  type ComponentPropsWithoutRef,
-  type RefObject,
 } from "react";
-import { cn } from "@/utils/cn";
-import { Typography } from "@/components/typography/typography";
-import { IconButton } from "@/components/icon-button/icon-button";
-import { Close } from "@/components/icons/icons";
+
 import {
-  type ButtonProps,
   Button,
+  type ButtonProps,
   type ButtonVariant,
 } from "@/components/button/button";
+import { IconButton } from "@/components/icon-button/icon-button";
+import { Close } from "@/components/icons/icons";
+import { Typography } from "@/components/typography/typography";
+
+import { cn } from "@/utils/cn";
 
 interface SheetRef {
   open(): void;
