@@ -1,10 +1,20 @@
-import { useEffect, useRef, type ComponentProps } from "react";
-import { type ShikiTransformer } from "@shikijs/core";
-import { ShikiStreamRenderer } from "@shikijs/stream/react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ComponentProps,
+} from "react";
+import {
+  getTokenStyleObject,
+  ThemedToken,
+  type ShikiTransformer,
+} from "@shikijs/core";
 import { cn } from "@/utils/cn";
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Copy } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
+import { generateId } from "@/utils/generateId";
 import { store } from "./store";
 
 export const { setupCodeBlock } = store;
@@ -124,7 +134,7 @@ export function CodeBlock({
         {typeof code === "string" ? (
           store.codeToJsx({ code, lang, transformers })
         ) : (
-          <ShikiStreamRenderer stream={store.codeToStream({ code, lang })} />
+          <TokenStreamRenderer code={code} lang={lang} />
         )}
       </Typography>
       <IconButton
@@ -142,5 +152,72 @@ export function CodeBlock({
         }}
       />
     </div>
+  );
+}
+
+/**
+ * This component is a re-implementation of the `ShikiStreamRenderer` component from the shiki repo:
+ *
+ * https://github.com/shikijs/shiki/blob/main/packages/stream/src/react/renderer.ts
+ *
+ * The main difference between shiki's implementation and our implementation is we use an `AbortController` to abort the `WriteableStream` when the code/lang props change. This allows consumers to swap streamed code props on-demand without previously-supplied streams interfering with the rendered output of the new token streams.
+ * */
+function TokenStreamRenderer({
+  code,
+  lang,
+}: {
+  code: ReadableStream<string>;
+  lang: string;
+}) {
+  // WeakMap for storing references to ThemedToken keys
+  // Because WeakMaps garbage collect their own references, we dont have to worry about memory leaks when the tokens array gets reset or changes
+  const keys = useRef(new WeakMap<ThemedToken, string>());
+
+  // Pure function which gets the associated key in the above WeakMap for a ThemedToken
+  const getKey = useCallback((token: ThemedToken) => {
+    let key = keys.current.get(token);
+    if (!keys.current.has(token)) {
+      key = generateId();
+      keys.current.set(token, key);
+    }
+    return key;
+  }, []);
+
+  const [tokens, setTokens] = useState<ThemedToken[]>([]);
+
+  useEffect(() => {
+    setTokens((prevTokens) => (prevTokens.length ? [] : prevTokens));
+
+    const controller = new AbortController();
+
+    store
+      .codeToStream({ code, lang })
+      .pipeTo(
+        new WritableStream({
+          write(token) {
+            if ("recall" in token) setTokens((t) => t.slice(0, -token.recall));
+            else setTokens((tokens) => [...tokens, token]);
+          },
+        }),
+        { signal: controller.signal },
+      )
+      .catch(() => {});
+
+    return () => controller.abort();
+  }, [code, lang]);
+
+  return (
+    <pre className="shiki vesper shiki-stream">
+      <code>
+        {tokens.map((token) => (
+          <span
+            key={getKey(token)}
+            style={token.htmlStyle || getTokenStyleObject(token)}
+          >
+            {token.content}
+          </span>
+        ))}
+      </code>
+    </pre>
   );
 }
