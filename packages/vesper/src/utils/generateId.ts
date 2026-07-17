@@ -9,6 +9,9 @@
 const charset =
   "useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict";
 
+/**
+ * id generation function adapted from https://github.com/ai/nanoid/blob/c6246e036ca5e7a1d362c1a80726bab63b767754/non-secure/index.js#L5-L17
+ */
 export function generateId() {
   let id = "";
   let i = 16;
