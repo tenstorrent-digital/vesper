@@ -197,4 +197,22 @@
     --vesper-transition-duration-default
   );
   --transition-duration-vesper-slow: var(--vesper-transition-duration-slow);
+  --background-image-vesper-dots: var(--vesper-pattern-dots);
+  --background-image-vesper-dots-inverse: var(--vesper-pattern-dots-inverse);
+}
+
+@utility bg-vesper-dots-primary {
+  background: var(--vesper-bg-dots-primary);
+}
+
+@utility bg-vesper-dots-secondary {
+  background: var(--vesper-bg-dots-secondary);
+}
+
+@utility bg-vesper-dots-tertiary {
+  background: var(--vesper-bg-dots-tertiary);
+}
+
+@utility bg-vesper-dots-inverse {
+  background: var(--vesper-bg-dots-inverse);
 }
