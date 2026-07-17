@@ -674,4 +674,37 @@ html[data-vesper-theme="dark"] {
   --vesper-icon-brand-mint: var(--vesper-mint-600);
   --vesper-icon-brand-pink: var(--vesper-pink-600);
   --vesper-icon-brand-yellow: var(--vesper-yellow-600);
+
+  /* border colors */
+  --vesper-border-primary: var(--vesper-stone-400);
+  --vesper-border-secondary: var(--vesper-stone-300);
+  --vesper-border-tertiary: var(--vesper-stone-200);
+  --vesper-border-strong: var(--vesper-stone-900);
+  --vesper-border-disabled: var(--vesper-alpha-stone-200);
+  --vesper-border-focus: var(--vesper-teal-200);
+  --vesper-border-inverse-primary: var(--vesper-stone-400);
+  --vesper-border-inverse-secondary: var(--vesper-stone-600);
+  --vesper-border-inverse-strong: var(--vesper-stone-0);
+  --vesper-border-inverse-disabled: var(--vesper-alpha-inverse-100);
+  --vesper-border-inverse-focus: var(--vesper-teal-500);
+  --vesper-border-static-white: var(--vesper-static-white);
+  --vesper-border-static-black: var(--vesper-static-black);
+  --vesper-border-accent-subtle: var(--vesper-teal-200);
+  --vesper-border-accent-base: var(--vesper-teal-600);
+  --vesper-border-success-subtle: var(--vesper-green-200);
+  --vesper-border-success-base: var(--vesper-green-500);
+  --vesper-border-warning-subtle: var(--vesper-amber-200);
+  --vesper-border-warning-base: var(--vesper-amber-500);
+  --vesper-border-error-subtle: var(--vesper-red-200);
+  --vesper-border-error-base: var(--vesper-red-500);
+  --vesper-border-info-subtle: var(--vesper-sky-200);
+  --vesper-border-info-base: var(--vesper-sky-500);
+  --vesper-border-brand-purple-subtle: var(--vesper-purple-200);
+  --vesper-border-brand-purple-base: var(--vesper-purple-500);
+  --vesper-border-brand-mint-subtle: var(--vesper-mint-200);
+  --vesper-border-brand-mint-base: var(--vesper-mint-500);
+  --vesper-border-brand-pink-subtle: var(--vesper-pink-200);
+  --vesper-border-brand-pink-base: var(--vesper-pink-500);
+  --vesper-border-brand-yellow-subtle: var(--vesper-yellow-200);
+  --vesper-border-brand-yellow-base: var(--vesper-yellow-500);
 }
