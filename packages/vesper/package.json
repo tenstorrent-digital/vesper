@@ -159,7 +159,6 @@
     "build:storybook": "storybook build -c storybook -o ../../apps/docs/public/storybook",
     "lint": "eslint --max-warnings 0",
     "lint:fix": "eslint --fix",
-    "format": "prettier --write .",
     "scaffold:component": "turbo gen vesper-component",
     "generate:icons": "tsx scripts/generate-icons.ts && eslint src/components/icons/*.{ts,tsx} --fix && prettier --write src/components/icons/*.{ts,tsx}",
     "test": "vitest run --coverage",
