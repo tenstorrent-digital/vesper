@@ -170,10 +170,10 @@ function TokenStreamRenderer({
   lang: string;
 }) {
   // WeakMap for storing references to ThemedToken keys
-  // Because WeakMaps garbage collect their own references, we dont have to worry about memory leaks when the tokens array gets reset or changes
+  // Because WeakMaps garbage collect their own references, we don't have to worry about memory leaks when the tokens array is reset or changes
   const keys = useRef(new WeakMap<ThemedToken, string>());
 
-  // Pure function which gets the associated key in the above WeakMap for a ThemedToken
+  // Gets the associated key in the above WeakMap for a ThemedToken
   const getKey = useCallback((token: ThemedToken) => {
     let key = keys.current.get(token);
     if (!keys.current.has(token)) {
