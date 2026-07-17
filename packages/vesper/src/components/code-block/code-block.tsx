@@ -76,11 +76,7 @@ export interface CodeBlockProps extends Omit<
  * @example
  * await setupCodeBlock({
  *   langs: [
- *     import("@shikijs/langs/typescript"),
- *     import("@shikijs/langs/css"),
- *     import("@shikijs/langs/json"),
- *     import("@shikijs/langs/markdown"),
- *     import("@shikijs/langs/shellscript"),
+ *     import("@shikijs/langs/javacript"),
  *     // any other languages you wish to support
  *   ],
  * });
