@@ -1,9 +1,14 @@
+/**
+ * charset used to generate random IDs from `nanoid`'s alphabet
+ *
+ * - 64 characters
+ * - URL safe
+ *
+ * @see: https://github.com/ai/nanoid/blob/c6246e036ca5e7a1d362c1a80726bab63b767754/url-alphabet/index.js#L12
+ */
 const charset =
   "useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict";
 
-/**
- * Generates a random 16-character string
- * */
 export function generateId() {
   let id = "";
   let i = 16;
