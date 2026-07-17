@@ -123,6 +123,7 @@ class CodeBlockStore {
   };
 
   reset = () => {
+    this.state.highlighter?.dispose();
     this.state = {
       initialized: false,
       highlighter: null,
