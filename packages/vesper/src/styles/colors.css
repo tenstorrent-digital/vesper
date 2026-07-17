@@ -713,4 +713,12 @@ html[data-vesper-theme="dark"] {
   --vesper-scrim-contrast-base: var(--vesper-alpha-contrast-600);
   --vesper-scrim-inverse-subtle: var(--vesper-alpha-inverse-300);
   --vesper-scrim-inverse-base: var(--vesper-alpha-inverse-600);
+
+  /* state colors */
+  --vesper-state-neutral-hover: var(--vesper-alpha-stone-0);
+  --vesper-state-neutral-active: var(--vesper-alpha-stone-50);
+  --vesper-state-contrast-hover: var(--vesper-alpha-contrast-50);
+  --vesper-state-contrast-active: var(--vesper-alpha-contrast-100);
+  --vesper-state-inverse-hover: var(--vesper-alpha-inverse-100);
+  --vesper-state-inverse-active: var(--vesper-alpha-inverse-200);
 }
