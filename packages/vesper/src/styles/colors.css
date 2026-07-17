@@ -598,7 +598,6 @@ html[data-vesper-theme="dark"] {
 
 /* semantic color tokens */
 :root {
-  /* background colors */
   --vesper-background-primary: var(--vesper-stone-0);
   --vesper-background-secondary: var(--vesper-stone-50);
   --vesper-background-tertiary: var(--vesper-stone-100);
@@ -626,8 +625,6 @@ html[data-vesper-theme="dark"] {
   --vesper-background-brand-pink-base: var(--vesper-pink-600);
   --vesper-background-brand-yellow-subtle: var(--vesper-yellow-50);
   --vesper-background-brand-yellow-base: var(--vesper-yellow-400);
-
-  /* text colors */
   --vesper-text-primary: var(--vesper-stone-900);
   --vesper-text-secondary: var(--vesper-stone-700);
   --vesper-text-tertiary: var(--vesper-stone-500);
@@ -652,8 +649,6 @@ html[data-vesper-theme="dark"] {
   --vesper-text-brand-mint: var(--vesper-mint-600);
   --vesper-text-brand-pink: var(--vesper-pink-600);
   --vesper-text-brand-yellow: var(--vesper-yellow-600);
-
-  /* icon colors */
   --vesper-icon-primary: var(--vesper-stone-900);
   --vesper-icon-secondary: var(--vesper-stone-700);
   --vesper-icon-tertiary: var(--vesper-stone-600);
@@ -674,8 +669,6 @@ html[data-vesper-theme="dark"] {
   --vesper-icon-brand-mint: var(--vesper-mint-600);
   --vesper-icon-brand-pink: var(--vesper-pink-600);
   --vesper-icon-brand-yellow: var(--vesper-yellow-600);
-
-  /* border colors */
   --vesper-border-primary: var(--vesper-stone-400);
   --vesper-border-secondary: var(--vesper-stone-300);
   --vesper-border-tertiary: var(--vesper-stone-200);
@@ -707,22 +700,16 @@ html[data-vesper-theme="dark"] {
   --vesper-border-brand-pink-base: var(--vesper-pink-500);
   --vesper-border-brand-yellow-subtle: var(--vesper-yellow-200);
   --vesper-border-brand-yellow-base: var(--vesper-yellow-500);
-
-  /* scrim colors */
   --vesper-scrim-contrast-subtle: var(--vesper-alpha-contrast-300);
   --vesper-scrim-contrast-base: var(--vesper-alpha-contrast-600);
   --vesper-scrim-inverse-subtle: var(--vesper-alpha-inverse-300);
   --vesper-scrim-inverse-base: var(--vesper-alpha-inverse-600);
-
-  /* state colors */
   --vesper-state-neutral-hover: var(--vesper-alpha-stone-0);
   --vesper-state-neutral-active: var(--vesper-alpha-stone-50);
   --vesper-state-contrast-hover: var(--vesper-alpha-contrast-50);
   --vesper-state-contrast-active: var(--vesper-alpha-contrast-100);
   --vesper-state-inverse-hover: var(--vesper-alpha-inverse-100);
   --vesper-state-inverse-active: var(--vesper-alpha-inverse-200);
-
-  /* tint colors */
   --vesper-tint-neutral-100: var(--vesper-alpha-stone-0);
   --vesper-tint-neutral-200: var(--vesper-alpha-stone-50);
   --vesper-tint-neutral-300: var(--vesper-alpha-stone-100);
