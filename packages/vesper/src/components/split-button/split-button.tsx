@@ -5,15 +5,17 @@ import {
   useCallback,
   useRef,
 } from "react";
-import { cn } from "@/utils/cn";
-import {
-  Menu,
-  type MenuProps,
-  type MenuItemProps,
-} from "@/components/menu/menu";
-import { CaretDown, CaretUp } from "@/components/icons/icons";
+
 import { Button } from "@/components/button/button";
 import { IconButton } from "@/components/icon-button/icon-button";
+import { CaretDown, CaretUp } from "@/components/icons/icons";
+import {
+  Menu,
+  type MenuItemProps,
+  type MenuProps,
+} from "@/components/menu/menu";
+
+import { cn } from "@/utils/cn";
 
 export const SPLIT_BUTTON_SIZES = ["sm", "md", "lg"] as const;
 

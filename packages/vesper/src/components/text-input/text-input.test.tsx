@@ -1,15 +1,15 @@
-import { render, cleanup } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
+import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
-import axe from "axe-core";
 
+import { Globe } from "@/components/icons/icons";
 import {
   TEXT_INPUT_SIZES,
   TEXT_INPUT_VARIANTS,
   TextInput,
   TextInputProps,
 } from "@/components/text-input/text-input";
-import { Globe } from "@/components/icons/icons";
 
 import "@/styles/test.css";
 

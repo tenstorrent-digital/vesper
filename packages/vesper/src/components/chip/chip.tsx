@@ -1,10 +1,12 @@
 import type { ElementType, ReactNode } from "react";
-import { cn } from "@/utils/cn";
-import type { Polymorphic } from "@/utils/polymorphic";
+
 import {
   Typography,
   type TypographyProps,
 } from "@/components/typography/typography";
+
+import { cn } from "@/utils/cn";
+import type { Polymorphic } from "@/utils/polymorphic";
 
 export const CHIP_VARIANTS = ["default", "contrast"] as const;
 

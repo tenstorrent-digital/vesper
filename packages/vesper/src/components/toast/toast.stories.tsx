@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { Button } from "@/components/button/button";
 import {
-  type ToastOptions,
-  Toasts,
   addToast,
   TOAST_VARIANTS,
+  type ToastOptions,
+  Toasts,
 } from "@/components/toast/toast";
-import { Button } from "@/components/button/button";
 
 function ToastStoryComponent({
   content,

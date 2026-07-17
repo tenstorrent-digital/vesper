@@ -1,4 +1,5 @@
 import type { ComponentProps } from "react";
+
 import { cn } from "@/utils/cn";
 
 export const SKELETON_SHAPES = ["box", "pill", "circle"] as const;

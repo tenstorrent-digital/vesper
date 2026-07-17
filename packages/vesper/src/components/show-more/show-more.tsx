@@ -1,7 +1,9 @@
 import type { ComponentProps, MouseEventHandler } from "react";
-import { cn } from "@/utils/cn";
+
 import { Button } from "@/components/button/button";
 import { CaretDown, CaretUp } from "@/components/icons/icons";
+
+import { cn } from "@/utils/cn";
 
 export interface ShowMoreProps extends Omit<ComponentProps<"div">, "onClick"> {
   expanded?: boolean;

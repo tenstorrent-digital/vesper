@@ -1,12 +1,12 @@
-import { render, within, cleanup } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, test } from "vitest";
+import { cleanup, render, within } from "@testing-library/react";
 import axe from "axe-core";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
 import {
   Badge,
-  type BadgeProps,
   BADGE_SIZES,
   BADGE_VARIANTS,
+  type BadgeProps,
 } from "@/components/badge/badge";
 import { Tenstorrent } from "@/components/icons/icons";
 

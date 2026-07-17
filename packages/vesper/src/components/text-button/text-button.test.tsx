@@ -1,14 +1,14 @@
-import { render, within, cleanup } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, test } from "vitest";
+import { cleanup, render, within } from "@testing-library/react";
 import axe from "axe-core";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
+import { Tenstorrent } from "@/components/icons/icons";
 import {
-  TextButton,
-  type TextButtonProps,
   TEXT_BUTTON_SIZES,
   TEXT_BUTTON_VARIANTS,
+  TextButton,
+  type TextButtonProps,
 } from "@/components/text-button/text-button";
-import { Tenstorrent } from "@/components/icons/icons";
 
 import "@/styles/test.css";
 

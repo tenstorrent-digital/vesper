@@ -1,6 +1,6 @@
-import { render, within, cleanup, waitFor } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, test } from "vitest";
+import { cleanup, render, waitFor, within } from "@testing-library/react";
 import axe from "axe-core";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
 import { Accordion } from "@/components/accordion/accordion";
 

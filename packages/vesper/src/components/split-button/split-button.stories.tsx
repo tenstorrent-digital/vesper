@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { Blackhole, Globe, Tenstorrent } from "@/components/icons/icons";
 import { SplitButton } from "@/components/split-button/split-button";
-import { Tenstorrent, Globe, Blackhole } from "@/components/icons/icons";
 
 const meta = {
   component: SplitButton,

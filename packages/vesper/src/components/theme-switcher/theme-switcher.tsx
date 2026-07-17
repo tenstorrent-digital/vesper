@@ -1,6 +1,8 @@
 import { type ComponentProps } from "react";
-import { cn } from "@/utils/cn";
+
 import { ModeDark, ModeLight, ModeSystem } from "@/components/icons/icons";
+
+import { cn } from "@/utils/cn";
 
 export const THEME_SWITCHER_SIZES = ["sm", "lg"] as const;
 

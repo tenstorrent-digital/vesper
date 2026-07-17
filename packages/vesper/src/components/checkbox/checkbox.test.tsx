@@ -1,8 +1,8 @@
 import { createRef } from "react";
-import { render, cleanup, fireEvent } from "@testing-library/react";
-import { beforeEach, afterEach, describe, expect, test, vi } from "vitest";
-import { userEvent } from "vitest/browser";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { userEvent } from "vitest/browser";
 
 import {
   Checkbox,

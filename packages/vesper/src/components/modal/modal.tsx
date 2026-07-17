@@ -8,10 +8,12 @@ import {
   useImperativeHandle,
   useRef,
 } from "react";
-import { cn } from "@/utils/cn";
-import { Typography } from "@/components/typography/typography";
+
+import { Button, type ButtonProps } from "@/components/button/button";
 import { Close } from "@/components/icons/icons";
-import { type ButtonProps, Button } from "@/components/button/button";
+import { Typography } from "@/components/typography/typography";
+
+import { cn } from "@/utils/cn";
 
 export const MODAL_BUTTONS_ALIGNMENTS = [
   "start",

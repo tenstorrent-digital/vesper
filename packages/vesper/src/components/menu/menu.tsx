@@ -1,13 +1,14 @@
 import { type ReactNode } from "react";
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuPortal,
   DropdownMenuContent,
-  DropdownMenuItem,
-  type DropdownMenuProps,
   DropdownMenuContentProps,
+  DropdownMenuItem,
+  DropdownMenuPortal,
+  type DropdownMenuProps,
+  DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
+
 import { Checkmark, Lock } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 

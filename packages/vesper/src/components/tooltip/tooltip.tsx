@@ -1,10 +1,11 @@
-import { Fragment, type ReactNode, isValidElement } from "react";
+import { Fragment, isValidElement, type ReactNode } from "react";
 import {
   Tooltip as TooltipRoot,
   TooltipContent,
-  TooltipTrigger,
   TooltipProvider,
+  TooltipTrigger,
 } from "@radix-ui/react-tooltip";
+
 import { Typography } from "@/components/typography/typography";
 
 export const TOOLTIP_SIDES = ["top", "right", "bottom", "left"] as const;

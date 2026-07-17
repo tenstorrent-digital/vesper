@@ -1,4 +1,5 @@
 import { type ReactNode, useSyncExternalStore } from "react";
+
 import { type ButtonVariant } from "@/components/button/button";
 
 export const TOAST_VARIANTS = [
