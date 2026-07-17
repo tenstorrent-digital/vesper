@@ -3,7 +3,13 @@
 // For a full list of overridable settings, and general information on folder-specific settings,
 // see the documentation: https://zed.dev/docs/configuring-zed#settings-files
 {
-  "format_on_save": "on",
+  // Zed format on save is not "off" by default
+  //
+  // Add "format_on_save": "on" to your global Zed settings to
+  // enable it:
+  // ~/.config/zed/settings.json
+  // cmd-,
+
   "languages": {
     "CSS": {
       // use both tailwind LSP and css LSP
