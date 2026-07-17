@@ -707,4 +707,10 @@ html[data-vesper-theme="dark"] {
   --vesper-border-brand-pink-base: var(--vesper-pink-500);
   --vesper-border-brand-yellow-subtle: var(--vesper-yellow-200);
   --vesper-border-brand-yellow-base: var(--vesper-yellow-500);
+
+  /* scrim colors */
+  --vesper-scrim-contrast-subtle: var(--vesper-alpha-contrast-300);
+  --vesper-scrim-contrast-base: var(--vesper-alpha-contrast-600);
+  --vesper-scrim-inverse-subtle: var(--vesper-alpha-inverse-300);
+  --vesper-scrim-inverse-base: var(--vesper-alpha-inverse-600);
 }
