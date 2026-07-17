@@ -2,15 +2,14 @@
   padding: var(--vesper-spacing-3);
   border-radius: var(--vesper-radius-1);
   &:hover {
-    background: var(--vesper-alpha-stone-0);
     .vesper-accordion-trigger {
-      color: var(--vesper-stone-900);
+      color: var(--vesper-text-primary);
     }
   }
   &[data-state="open"] {
-    background: var(--vesper-alpha-stone-0);
+    background: var(--vesper-state-neutral-hover);
     .vesper-accordion-trigger {
-      color: var(--vesper-stone-900);
+      color: var(--vesper-text-primary);
     }
     .vesper-accordion-trigger-icon {
       transform: rotate(90deg);
@@ -21,7 +20,7 @@
 .vesper-accordion-trigger {
   padding: 0;
   position: relative;
-  color: var(--vesper-stone-700);
+  color: var(--vesper-text-secondary);
   cursor: pointer;
   width: 100%;
   display: flex;
@@ -37,6 +36,7 @@
   &:focus-visible {
     outline: none;
     box-shadow: none;
+    color: var(--vesper-text-primary);
     &::before {
       box-shadow: var(--vesper-shadow-focus-ring);
     }
@@ -73,7 +73,7 @@
 
 .vesper-accordion-content-children {
   padding-top: var(--vesper-spacing-2);
-  color: var(--vesper-stone-600);
+  color: var(--vesper-text-secondary);
   white-space: pre-line;
 }
 
