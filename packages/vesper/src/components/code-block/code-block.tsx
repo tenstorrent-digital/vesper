@@ -138,7 +138,7 @@ export function CodeBlock({
            * If a consumer supplies transformers to a code block instance, the passed in code string may contain hidden comments that tell the highlighter to output modified hast nodes. In such cases we want to copy the rendered text content because it will omit those hidden comments.
            */
           const content = ref.current?.textContent || "";
-          navigator.clipboard.writeText(content);
+          navigator.clipboard?.writeText(content).catch(() => {});
         }}
       />
     </div>
