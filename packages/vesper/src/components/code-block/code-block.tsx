@@ -1,20 +1,23 @@
 import {
+  type ComponentProps,
   useCallback,
   useEffect,
   useRef,
   useState,
-  type ComponentProps,
 } from "react";
 import {
   getTokenStyleObject,
-  ThemedToken,
   type ShikiTransformer,
+  ThemedToken,
 } from "@shikijs/core";
-import { cn } from "@/utils/cn";
+
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Copy } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
+
+import { cn } from "@/utils/cn";
 import { generateId } from "@/utils/generateId";
+
 import { store } from "./store";
 
 export const { setupCodeBlock } = store;

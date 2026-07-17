@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Code, CODE_VARIANTS } from "@/components/code/code";
+
 import { Typography } from "../typography/typography";
 
 const meta = {

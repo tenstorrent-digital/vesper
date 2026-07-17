@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { CodeBlock, setupCodeBlock } from "@/components/code-block/code-block";
+
 import {
   createTextStream,
   SAMPLE_CODE_ANSI,

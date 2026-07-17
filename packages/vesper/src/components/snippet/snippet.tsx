@@ -1,8 +1,10 @@
 import { type ComponentProps } from "react";
-import { cn } from "@/utils/cn";
+
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Copy } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
+
+import { cn } from "@/utils/cn";
 
 export const SNIPPET_VARIANTS = ["default", "contrast"] as const;
 

@@ -1,6 +1,8 @@
 import type { ComponentProps } from "react";
-import { cn } from "@/utils/cn";
+
 import { Typography } from "@/components/typography/typography";
+
+import { cn } from "@/utils/cn";
 
 export const CODE_VARIANTS = ["default", "contrast"] as const;
 

@@ -1,6 +1,6 @@
-import { render, cleanup, fireEvent } from "@testing-library/react";
-import { beforeEach, afterEach, describe, expect, test, vi } from "vitest";
+import { cleanup, fireEvent,render } from "@testing-library/react";
 import axe from "axe-core";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { CodeBlock, setupCodeBlock } from "@/components/code-block/code-block";
 import { store } from "@/components/code-block/store";
