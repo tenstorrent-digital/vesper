@@ -3,6 +3,7 @@
 // For a full list of overridable settings, and general information on folder-specific settings,
 // see the documentation: https://zed.dev/docs/configuring-zed#settings-files
 {
+  "format_on_save": "on",
   "languages": {
     "CSS": {
       // use both tailwind LSP and css LSP
@@ -71,5 +72,4 @@
     ".claude/**",
   ],
   "read_only_files": ["yarn.lock", "skills-lock.json"],
-  "format_on_save": "on",
 }
