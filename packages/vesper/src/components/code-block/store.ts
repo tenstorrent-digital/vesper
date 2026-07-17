@@ -66,7 +66,7 @@ class CodeBlockStore {
       initialized: true,
       highlighter: await createHighlighterCore({
         langs,
-        engine: createJavaScriptRegexEngine(),
+        engine: createJavaScriptRegexEngine({ forgiving: true }),
         themes: [theme],
         langAlias: aliases,
       }),
