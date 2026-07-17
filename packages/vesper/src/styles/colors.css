@@ -652,4 +652,26 @@ html[data-vesper-theme="dark"] {
   --vesper-text-brand-mint: var(--vesper-mint-600);
   --vesper-text-brand-pink: var(--vesper-pink-600);
   --vesper-text-brand-yellow: var(--vesper-yellow-600);
+
+  /* icon colors */
+  --vesper-icon-primary: var(--vesper-stone-900);
+  --vesper-icon-secondary: var(--vesper-stone-700);
+  --vesper-icon-tertiary: var(--vesper-stone-600);
+  --vesper-icon-disabled: var(--vesper-alpha-stone-500);
+  --vesper-icon-inverse-primary: var(--vesper-alpha-stone-0);
+  --vesper-icon-inverse-secondary: var(--vesper-alpha-stone-500);
+  --vesper-icon-inverse-tertiary: var(--vesper-alpha-stone-600);
+  --vesper-icon-inverse-disabled: var(--vesper-alpha-inverse-300);
+  --vesper-icon-on-color: var(--vesper-static-white);
+  --vesper-icon-accent: var(--vesper-teal-700);
+  --vesper-icon-success: var(--vesper-mint-600);
+  --vesper-icon-warning: var(--vesper-amber-600);
+  --vesper-icon-error: var(--vesper-red-600);
+  --vesper-icon-info: var(--vesper-sky-600);
+  --vesper-icon-static-black: var(--vesper-static-black);
+  --vesper-icon-static-white: var(--vesper-static-white);
+  --vesper-icon-brand-purple: var(--vesper-purple-600);
+  --vesper-icon-brand-mint: var(--vesper-mint-600);
+  --vesper-icon-brand-pink: var(--vesper-pink-600);
+  --vesper-icon-brand-yellow: var(--vesper-yellow-600);
 }
