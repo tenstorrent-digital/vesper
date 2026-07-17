@@ -19,6 +19,8 @@ import { type ThemeRegistration } from "@shikijs/core";
  * Escape chars:       yellow-700 (#ffc757)
  * Invalid:            red-600    (#e44e2f)
  * Punctuation:        stone-600  (#60807b)
+ *
+ * @see https://github.com/shikijs/textmate-grammars-themes/blob/main/packages/tm-themes/themes/dark-plus.json
  */
 export const theme: ThemeRegistration = {
   colors: {
