@@ -197,22 +197,22 @@
     --vesper-transition-duration-default
   );
   --transition-duration-vesper-slow: var(--vesper-transition-duration-slow);
-  --background-image-vesper-dots: var(--vesper-pattern-dots);
-  --background-image-vesper-dots-inverse: var(--vesper-pattern-dots-inverse);
+  --background-image-vesper-dot: var(--vesper-image-dot);
+  --background-image-vesper-dot-inverse: var(--vesper-image-dot-inverse);
 }
 
-@utility bg-vesper-dots-primary {
-  background: var(--vesper-bg-dots-primary);
+@utility bg-vesper-dot-pattern-primary {
+  background: var(--vesper-bg-dot-pattern-primary);
 }
 
-@utility bg-vesper-dots-secondary {
-  background: var(--vesper-bg-dots-secondary);
+@utility bg-vesper-dot-pattern-secondary {
+  background: var(--vesper-bg-dot-pattern-secondary);
 }
 
-@utility bg-vesper-dots-tertiary {
-  background: var(--vesper-bg-dots-tertiary);
+@utility bg-vesper-dot-pattern-tertiary {
+  background: var(--vesper-bg-dot-pattern-tertiary);
 }
 
-@utility bg-vesper-dots-inverse {
-  background: var(--vesper-bg-dots-inverse);
+@utility bg-vesper-dot-pattern-inverse {
+  background: var(--vesper-bg-dot-pattern-inverse);
 }

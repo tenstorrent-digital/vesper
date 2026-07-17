@@ -1,10 +1,10 @@
 export const backgrounds = {
-  ["dots-primary"]:
-    "var(--vesper-pattern-dots) repeat top var(--vesper-stone-0)",
-  ["dots-secondary"]:
-    "var(--vesper-pattern-dots) repeat top var(--vesper-stone-50)",
-  ["dots-tertiary"]:
-    "var(--vesper-pattern-dots) repeat top var(--vesper-stone-100)",
-  ["dots-inverse"]:
-    "var(--vesper-pattern-dots-inverse) repeat top var(--vesper-stone-900)",
+  ["dot-pattern-primary"]:
+    "var(--vesper-image-dot) repeat top var(--vesper-stone-0)",
+  ["dot-pattern-secondary"]:
+    "var(--vesper-image-dot) repeat top var(--vesper-stone-50)",
+  ["dot-pattern-tertiary"]:
+    "var(--vesper-image-dot) repeat top var(--vesper-stone-100)",
+  ["dot-pattern-inverse"]:
+    "var(--vesper-image-dot-inverse) repeat top var(--vesper-stone-900)",
 };

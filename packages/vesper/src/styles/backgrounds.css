@@ -1,10 +1,10 @@
 :root {
-  --vesper-bg-dots-primary: var(--vesper-pattern-dots) repeat top
+  --vesper-bg-dot-pattern-primary: var(--vesper-image-dot) repeat top
     var(--vesper-stone-0);
-  --vesper-bg-dots-secondary: var(--vesper-pattern-dots) repeat top
+  --vesper-bg-dot-pattern-secondary: var(--vesper-image-dot) repeat top
     var(--vesper-stone-50);
-  --vesper-bg-dots-tertiary: var(--vesper-pattern-dots) repeat top
+  --vesper-bg-dot-pattern-tertiary: var(--vesper-image-dot) repeat top
     var(--vesper-stone-100);
-  --vesper-bg-dots-inverse: var(--vesper-pattern-dots-inverse) repeat top
+  --vesper-bg-dot-pattern-inverse: var(--vesper-image-dot-inverse) repeat top
     var(--vesper-stone-900);
 }
