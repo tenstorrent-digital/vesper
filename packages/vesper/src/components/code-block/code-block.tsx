@@ -86,16 +86,30 @@ export function CodeBlock({
 }: CodeBlockProps) {
   const ref = useRef<HTMLDivElement>(null);
 
+  const shouldAutoScroll = useRef(true);
+
   useEffect(() => {
     if (typeof code === "string" || !ref.current) return;
 
     const observer = new MutationObserver(() => {
-      if (!ref.current) return;
+      if (!ref.current || !shouldAutoScroll.current) return;
       ref.current.scrollTop = ref.current.scrollHeight;
     });
 
-    observer.observe(ref.current, { childList: true, subtree: true });
-    return () => observer.disconnect();
+    const handleScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = el;
+      const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
+      shouldAutoScroll.current = distanceFromBottom < 10;
+    };
+
+    const el = ref.current;
+    el.addEventListener("scroll", handleScroll);
+    observer.observe(el, { childList: true, subtree: true });
+
+    return () => {
+      el.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
   }, [code]);
 
   return (
