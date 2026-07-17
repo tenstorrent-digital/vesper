@@ -30,7 +30,7 @@ function CodeBlockStoryComponent({
   stream,
 }: {
   showLineNumbers: boolean;
-  lang: "typescript" | "css" | "json" | "markdown" | "ansi" | "bash" | "python";
+  lang: "python" | "bash" | "ansi" | "json" | "markdown" | "typescript" | "css";
   stream: boolean;
 }) {
   let code: string | ReadableStream<string> = SAMPLE_CODE_TYPESCRIPT;
@@ -84,13 +84,13 @@ const meta = {
     lang: {
       control: "radio",
       options: [
-        "typescript",
-        "css",
+        "python",
+        "bash",
+        "ansi",
         "json",
         "markdown",
-        "ansi",
-        "bash",
-        "python",
+        "typescript",
+        "css",
       ],
     },
     stream: {
