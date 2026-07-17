@@ -1,7 +1,8 @@
 // Folder-specific settings
 //
-// For a full list of overridable settings, and general information on folder-specific settings,
-// see the documentation: https://zed.dev/docs/configuring-zed#settings-files
+// For a full list of overridable settings, and general information
+// on folder-specific settings, documentation:
+// https://zed.dev/docs/configuring-zed#settings-files
 {
   // Zed format on save is not "off" by default
   //
@@ -45,15 +46,19 @@
       "settings": {
         "css": {
           "lint": {
-            // ignore @_ rules from tailwind that conflict with css spec
+            // ignore @_ rules from tailwind that conflict
+            // with css spec
             "unknownAtRules": "ignore",
           },
         },
       },
     },
   },
+
   "file_scan_exclusions": [
-    // defaults
+    // defaults - specifying any exclusions overrides the
+    // default exclusions so we add them back here
+    // see: https://zed.dev/docs/reference/all-settings#file-scan-exclusions
     "**/.git",
     "**/.svn",
     "**/.hg",
