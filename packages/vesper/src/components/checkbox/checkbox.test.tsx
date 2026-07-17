@@ -161,16 +161,6 @@ describe("checkbox [unit]", () => {
     expect(onChange).toHaveBeenCalled();
   });
 
-  test("disabled class applied when disabled", () => {
-    const { container } = render(<Checkbox label="Label" disabled />);
-    expect(container.firstChild).toHaveClass("vesper-checkbox-disabled");
-  });
-
-  test("disabled class not applied when not disabled", () => {
-    const { container } = render(<Checkbox label="Label" />);
-    expect(container.firstChild).not.toHaveClass("vesper-checkbox-disabled");
-  });
-
   test("disabled checkbox does not toggle on click", () => {
     const onChange = vi.fn();
     const { container } = render(
