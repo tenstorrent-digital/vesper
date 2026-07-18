@@ -4,7 +4,7 @@
   padding: var(--vesper-spacing-2) var(--vesper-spacing-3);
   align-items: center;
   gap: var(--vesper-spacing-16);
-  border: 1px solid var(--vesper-stone-200);
+  border: 1px solid var(--vesper-border-tertiary);
   border-radius: var(--vesper-radius-1);
   pre {
     margin: 0;
@@ -21,16 +21,10 @@
   }
 }
 .vesper-snippet-default {
-  background: var(--vesper-alpha-stone-0);
-  color: var(--vesper-stone-900);
-  .line::before {
-    color: var(--vesper-stone-900);
-  }
+  background: var(--vesper-tint-neutral-100);
+  color: var(--vesper-text-primary);
 }
 .vesper-snippet-contrast {
-  background: var(--vesper-alpha-stone-900);
-  color: var(--vesper-stone-0);
-  .line::before {
-    color: var(--vesper-stone-0);
-  }
+  background: var(--vesper-background-inverse-primary);
+  color: var(--vesper-text-inverse-primary);
 }
