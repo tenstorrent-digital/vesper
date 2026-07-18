@@ -10,20 +10,20 @@
   justify-content: space-between;
   gap: var(--vesper-spacing-3);
   border-radius: var(--vesper-radius-1);
-  border: 1px solid var(--vesper-stone-300);
-  background: var(--vesper-stone-0);
+  border: 1px solid var(--vesper-border-secondary);
+  background: var(--vesper-background-primary);
   padding: var(--vesper-spacing-3);
   &.vesper-choicebox-item-compact {
     padding-top: 6px;
     padding-bottom: 6px;
   }
   &:has(:disabled) {
-    border-color: var(--vesper-alpha-stone-200);
+    border-color: var(--vesper-border-disabled);
     .vesper-choicebox-item-label {
-      color: var(--vesper-alpha-stone-400);
+      color: var(--vesper-text-disabled);
     }
     .vesper-choicebox-item-description {
-      color: var(--vesper-alpha-stone-400);
+      color: var(--vesper-text-disabled);
     }
   }
   &:not(:has(:disabled)) {
@@ -31,20 +31,20 @@
       background:
         linear-gradient(
           0deg,
-          var(--vesper-alpha-stone-0) 0%,
-          var(--vesper-alpha-stone-0) 100%
+          var(--vesper-tint-neutral-100) 0%,
+          var(--vesper-tint-neutral-100) 100%
         ),
-        var(--vesper-stone-0);
+        var(--vesper-background-primary);
     }
     &:has(:checked) {
       border-color: var(--vesper-stone-900);
       background:
         linear-gradient(
           0deg,
-          var(--vesper-alpha-stone-50) 0%,
-          var(--vesper-alpha-stone-50) 100%
+          var(--vesper-tint-neutral-200) 0%,
+          var(--vesper-tint-neutral-200) 100%
         ),
-        var(--vesper-stone-0);
+        var(--vesper-background-primary);
     }
     cursor: pointer;
   }
@@ -54,11 +54,11 @@
 }
 
 .vesper-choicebox-item-label {
-  color: var(--vesper-stone-900);
+  color: var(--vesper-text-primary);
 }
 
 .vesper-choicebox-item-description {
-  color: var(--vesper-stone-700);
+  color: var(--vesper-text-secondary);
   margin-top: var(--vesper-spacing-1);
 }
 
@@ -66,7 +66,7 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  border: 1px solid var(--vesper-stone-400);
+  border: 1px solid var(--vesper-border-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,8 +82,8 @@
   width: 12px;
   height: 12px;
   border-radius: var(--vesper-radius-half);
-  border: 1px solid var(--vesper-stone-400);
-  color: var(--vesper-stone-900);
+  border: 1px solid var(--vesper-border-primary);
+  color: var(--vesper-text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,15 +106,15 @@
   border: 0;
   &:checked {
     & + .vesper-choicebox-input-single-indicator {
-      border-color: var(--vesper-teal-400);
-      background: var(--vesper-teal-400);
+      border-color: var(--vesper-background-accent-base);
+      background: var(--vesper-background-accent-base);
       &::after {
-        background: var(--vesper-stone-0);
+        background: var(--vesper-background-primary);
       }
     }
     & + .vesper-choicebox-input-multi-indicator {
-      border-color: var(--vesper-teal-400);
-      background: var(--vesper-teal-400);
+      border-color: var(--vesper-background-accent-base);
+      background: var(--vesper-background-accent-base);
       svg {
         visibility: visible;
       }
@@ -122,19 +122,19 @@
   }
   &:disabled {
     & + .vesper-choicebox-input-single-indicator {
-      border-color: var(--vesper-alpha-stone-200);
-      background: var(--vesper-alpha-stone-100);
+      border-color: var(--vesper-border-disabled);
+      background: var(--vesper-background-disabled);
     }
     & + .vesper-choicebox-input-multi-indicator {
-      border-color: var(--vesper-alpha-stone-200);
-      background: var(--vesper-alpha-stone-100);
+      border-color: var(--vesper-border-disabled);
+      background: var(--vesper-background-disabled);
     }
     &:checked {
       & + .vesper-choicebox-input-single-indicator::after {
-        background: var(--vesper-alpha-stone-500);
+        background: var(--vesper-icon-disabled);
       }
       & + .vesper-choicebox-input-multi-indicator {
-        color: var(--vesper-alpha-stone-500);
+        color: var(--vesper-icon-disabled);
       }
     }
   }
