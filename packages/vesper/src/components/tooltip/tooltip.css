@@ -1,7 +1,7 @@
 .vesper-tooltip {
   text-align: center;
-  background: var(--vesper-stone-900);
-  color: var(--vesper-stone-0);
+  background: var(--vesper-background-inverse-primary);
+  color: var(--vesper-text-inverse-primary);
   padding: var(--vesper-spacing-2) var(--vesper-spacing-3);
   border-radius: var(--vesper-radius-1);
   position: relative;
@@ -79,5 +79,5 @@
 
 .vesper-tooltip-arrow {
   position: absolute;
-  fill: var(--vesper-stone-900);
+  fill: var(--vesper-background-inverse-primary);
 }
