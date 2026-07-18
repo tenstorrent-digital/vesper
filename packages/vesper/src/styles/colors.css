@@ -653,9 +653,9 @@ html[data-vesper-theme="dark"] {
   --vesper-icon-secondary: var(--vesper-stone-700);
   --vesper-icon-tertiary: var(--vesper-stone-600);
   --vesper-icon-disabled: var(--vesper-alpha-stone-500);
-  --vesper-icon-inverse-primary: var(--vesper-alpha-stone-0);
-  --vesper-icon-inverse-secondary: var(--vesper-alpha-stone-500);
-  --vesper-icon-inverse-tertiary: var(--vesper-alpha-stone-600);
+  --vesper-icon-inverse-primary: var(--vesper-stone-0);
+  --vesper-icon-inverse-secondary: var(--vesper-stone-500);
+  --vesper-icon-inverse-tertiary: var(--vesper-stone-600);
   --vesper-icon-inverse-disabled: var(--vesper-alpha-inverse-300);
   --vesper-icon-on-color: var(--vesper-static-white);
   --vesper-icon-accent: var(--vesper-teal-700);
