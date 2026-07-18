@@ -4,8 +4,8 @@
   padding: var(--vesper-spacing-2);
   gap: var(--vesper-spacing-half);
   border-radius: var(--vesper-radius-3);
-  border: 1px solid var(--vesper-stone-200);
-  background: var(--vesper-stone-0);
+  border: 1px solid var(--vesper-border-tertiary);
+  background: var(--vesper-background-primary);
   box-shadow: var(--vesper-shadow-200);
 }
 
@@ -26,22 +26,22 @@
 }
 
 .vesper-menu-item-default {
-  color: var(--vesper-stone-900);
+  color: var(--vesper-text-primary);
   .vesper-menu-item-label {
-    color: var(--vesper-stone-700);
+    color: var(--vesper-text-secondary);
   }
   &:hover,
   &:focus-visible,
   &[data-highlighted] {
-    background: var(--vesper-alpha-stone-0);
+    background: var(--vesper-tint-neutral-100);
   }
 }
 
 .vesper-menu-item-selected {
-  color: var(--vesper-stone-900);
-  background: var(--vesper-alpha-stone-50);
+  color: var(--vesper-text-primary);
+  background: var(--vesper-tint-neutral-200);
   .vesper-menu-item-label {
-    color: var(--vesper-stone-700);
+    color: var(--vesper-text-secondary);
   }
   &:hover,
   &:focus-visible,
@@ -49,37 +49,37 @@
     background:
       linear-gradient(
         0deg,
-        var(--vesper-alpha-stone-0) 0%,
-        var(--vesper-alpha-stone-0) 100%
+        var(--vesper-state-neutral-hover) 0%,
+        var(--vesper-state-neutral-hover) 100%
       ),
-      var(--vesper-alpha-stone-50);
+      var(--vesper-tint-neutral-200);
   }
 }
 
 .vesper-menu-item-danger {
-  color: var(--vesper-red-600);
+  color: var(--vesper-text-error);
   &:hover,
   &:focus-visible,
   &[data-highlighted] {
-    background: var(--vesper-red-50);
+    background: var(--vesper-background-error-subtle);
   }
 }
 
 .vesper-menu-item-locked {
   pointer-events: none;
-  color: var(--vesper-stone-500);
+  color: var(--vesper-text-tertiary);
   .vesper-menu-item-left-icon,
   .vesper-menu-item-right-icon {
-    color: var(--vesper-stone-600);
+    color: var(--vesper-icon-tertiary);
   }
 }
 
 .vesper-menu-item-disabled {
   pointer-events: none;
-  color: var(--vesper-stone-500);
+  color: var(--vesper-text-disabled);
   .vesper-menu-item-left-icon,
   .vesper-menu-item-right-icon {
-    color: var(--vesper-stone-600);
+    color: var(--vesper-icon-disabled);
   }
 }
 
