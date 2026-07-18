@@ -44,7 +44,7 @@
     opacity: 1;
     transform: translateY(0px);
     &::before {
-      background: var(--vesper-tint-contrast-300);
+      background: var(--vesper-scrim-contrast-base);
     }
     @starting-style {
       opacity: 0;
