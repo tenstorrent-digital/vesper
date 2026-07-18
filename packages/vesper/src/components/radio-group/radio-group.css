@@ -21,7 +21,7 @@
 
 .vesper-radio-group-item-indicator {
   border-radius: 50%;
-  border: 1px solid var(--vesper-stone-400);
+  border: 1px solid var(--vesper-border-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,7 +42,7 @@
 }
 
 .vesper-radio-group-item-label {
-  color: var(--vesper-stone-900);
+  color: var(--vesper-text-primary);
 }
 
 .vesper-radio-input {
@@ -56,17 +56,17 @@
   white-space: nowrap;
   border: 0;
   &:checked + .vesper-radio-group-item-indicator {
-    border-color: var(--vesper-teal-400);
-    background: var(--vesper-teal-400);
+    border-color: var(--vesper-background-accent-base);
+    background: var(--vesper-background-accent-base);
     &::after {
-      background: var(--vesper-stone-0);
+      background: var(--vesper-icon-inverse-primary);
       @media (forced-colors: active) {
         background: CanvasText;
       }
     }
   }
   &:focus-visible + .vesper-radio-group-item-indicator {
-    outline: 1px solid var(--vesper-teal-200);
+    outline: 1px solid var(--vesper-border-focus);
     outline-offset: 1px;
   }
 }
@@ -75,18 +75,18 @@
   cursor: auto;
   .vesper-radio-input {
     & + .vesper-radio-group-item-indicator {
-      border-color: var(--vesper-alpha-stone-200);
-      background: var(--vesper-alpha-stone-100);
+      border-color: var(--vesper-border-disabled);
+      background: var(--vesper-background-disabled);
     }
     &:checked + .vesper-radio-group-item-indicator::after {
-      background: var(--vesper-alpha-stone-500);
+      background: var(--vesper-icon-disabled);
       @media (forced-colors: active) {
         background: CanvasText;
       }
     }
   }
   .vesper-radio-group-item-label {
-    color: var(--vesper-alpha-stone-400);
+    color: var(--vesper-text-disabled);
   }
   @media (forced-colors: active) {
     opacity: 0.35;
