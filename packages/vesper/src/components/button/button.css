@@ -47,7 +47,7 @@
 .vesper-button-sm {
   height: 32px;
   padding: 0 var(--vesper-spacing-3);
-  border-radius: 6px;
+  border-radius: var(--vesper-radius-1);
   font-size: 0.875rem;
   .vesper-button-icon {
     width: 16px;
