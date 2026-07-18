@@ -22,7 +22,7 @@
     left: 0;
     right: 0;
     background: var(--vesper-stone-200);
-    border: 1px solid var(--vesper-stone-400);
+    border: 1px solid var(--vesper-border-primary);
     border-radius: var(--vesper-spacing-1);
   }
 }
@@ -31,7 +31,7 @@
   height: 16px;
   width: 1px;
   position: absolute;
-  background: var(--vesper-stone-400);
+  background: var(--vesper-border-primary);
   z-index: -1;
   @media (forced-colors: active) {
     background: CanvasText;
@@ -39,15 +39,15 @@
 }
 
 .vesper-range-range {
-  background: var(--vesper-teal-400);
-  border: 1px solid var(--vesper-teal-600);
+  background: var(--vesper-background-accent-base);
+  border: 1px solid var(--vesper-border-accent-base);
   border-radius: var(--vesper-spacing-1);
   position: absolute;
   top: 5px;
   bottom: 5px;
   &[data-disabled] {
-    background: var(--vesper-alpha-stone-200);
-    border: 1px solid var(--vesper-stone-400);
+    background: var(--vesper-tint-neutral-400);
+    border: 1px solid var(--vesper-border-primary);
   }
   @media (forced-colors: active) {
     background: CanvasText;
@@ -71,17 +71,17 @@
     left: -8px;
     width: 16px;
     height: 16px;
-    background: var(--vesper-stone-100);
-    border: 1px solid var(--vesper-teal-600);
+    background: var(--vesper-background-tertiary);
+    border: 1px solid var(--vesper-border-accent-base);
     border-radius: var(--vesper-spacing-2);
   }
   &.vesper-range-thumb-labeled {
     &::after {
       white-space: pre;
       content: var(--vesper-range-thumb-label, attr(aria-valuenow));
-      color: var(--vesper-stone-900);
-      background: var(--vesper-alpha-stone-0);
-      border: 1px solid var(--vesper-stone-300);
+      color: var(--vesper-text-primary);
+      background: var(--vesper-tint-neutral-100);
+      border: 1px solid var(--vesper-border-secondary);
       border-radius: var(--vesper-radius-half);
       padding: var(--vesper-spacing-1);
       position: absolute;
@@ -94,7 +94,7 @@
       border-color: var(--vesper-stone-400);
     }
     &::after {
-      color: var(--vesper-alpha-stone-400);
+      color: var(--vesper-text-disabled);
     }
   }
   @media (forced-colors: active) {
@@ -115,9 +115,9 @@
 }
 
 .vesper-range-thumb-label {
-  color: var(--vesper-stone-900);
-  background: var(--vesper-alpha-stone-0);
-  border: 1px solid var(--vesper-stone-300);
+  color: var(--vesper-text-primary);
+  background: var(--vesper-tint-neutral-100);
+  border: 1px solid var(--vesper-border-secondary);
   border-radius: var(--vesper-radius-half);
   padding: var(--vesper-spacing-1);
   position: absolute;
