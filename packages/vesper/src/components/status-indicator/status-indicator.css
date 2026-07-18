@@ -6,7 +6,7 @@
 
 .vesper-status-indicator-badge {
   padding: var(--vesper-spacing-1);
-  border: 1px solid var(--vesper-stone-300);
+  border: 1px solid var(--vesper-border-secondary);
   border-radius: var(--vesper-radius-half);
 }
 
@@ -88,5 +88,5 @@
 }
 
 .vesper-status-indicator-label {
-  color: var(--vesper-stone-900);
+  color: var(--vesper-text-primary);
 }
