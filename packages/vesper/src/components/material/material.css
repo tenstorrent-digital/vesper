@@ -1,5 +1,6 @@
 .vesper-material {
   border-radius: var(--vesper-radius-2);
+  color: var(--vesper-text-primary);
 }
 
 .vesper-material-outlined {
