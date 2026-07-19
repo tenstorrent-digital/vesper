@@ -197,8 +197,10 @@
     --vesper-transition-duration-default
   );
   --transition-duration-vesper-slow: var(--vesper-transition-duration-slow);
-  --background-image-vesper-dot: var(--vesper-image-dot);
-  --background-image-vesper-dot-inverse: var(--vesper-image-dot-inverse);
+}
+
+@utility bg-vesper-dot-pattern {
+  background: var(--vesper-bg-dot-pattern);
 }
 
 @utility bg-vesper-dot-pattern-primary {
@@ -213,6 +215,16 @@
   background: var(--vesper-bg-dot-pattern-tertiary);
 }
 
+@utility bg-vesper-dot-pattern-* {
+  background: var(--vesper-bg-dot-pattern-primary);
+  background-color: --value(--color-vesper-*);
+}
+
 @utility bg-vesper-dot-pattern-inverse {
   background: var(--vesper-bg-dot-pattern-inverse);
+}
+
+@utility bg-vesper-dot-pattern-inverse-* {
+  background: var(--vesper-bg-dot-pattern-inverse);
+  background-color: --value(--color-vesper-*);
 }
