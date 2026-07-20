@@ -57,13 +57,14 @@ export function Material<E extends ElementType = "div">(
 
   return (
     <Component
+      disabled={state === "disabled"}
+      aria-disabled={state === "disabled"}
       className={cn(
         "vesper-material",
         `vesper-material-${variant}`,
         variant === "interactive" && state && `vesper-material-${state}`,
         className,
       )}
-      {...(state === "disabled" && { "aria-disabled": true })}
       {...rest}
     />
   );
