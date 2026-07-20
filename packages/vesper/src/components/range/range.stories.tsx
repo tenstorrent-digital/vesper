@@ -10,6 +10,8 @@ const meta = {
     defaultValues: { table: { disable: true } },
     onValuesChange: { table: { disable: true } },
     onValuesCommit: { table: { disable: true } },
+    thumbAriaLabels: { table: { disable: true } },
+    valueLabels: { table: { disable: true } },
   },
 } satisfies Meta<typeof Range>;
 

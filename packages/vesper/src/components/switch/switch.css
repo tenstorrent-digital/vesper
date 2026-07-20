@@ -9,7 +9,7 @@
 
 .vesper-switch-pill {
   aspect-ratio: 2;
-  background: var(--vesper-alpha-stone-200);
+  background: var(--vesper-tint-neutral-400);
   overflow: hidden;
   padding: var(--vesper-spacing-half);
   &::after {
@@ -32,7 +32,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--vesper-spacing-2);
-  color: var(--vesper-stone-900);
+  color: var(--vesper-text-primary);
 }
 
 .vesper-switch-input {
@@ -52,7 +52,7 @@
     }
   }
   &:checked + .vesper-switch-pill {
-    background: var(--vesper-teal-400);
+    background: var(--vesper-background-accent-base);
     &::after {
       transform: translateX(calc(100% + 4px));
     }
@@ -69,9 +69,9 @@
     }
   }
   &:disabled + .vesper-switch-pill {
-    background: var(--vesper-alpha-stone-100);
+    background: var(--vesper-background-disabled);
     &::after {
-      background: var(--vesper-stone-50);
+      background: var(--vesper-background-secondary);
     }
     @media (forced-colors: active) {
       opacity: 0.35;
@@ -79,7 +79,7 @@
     }
   }
   & + .vesper-switch-pill::after {
-    background: var(--vesper-stone-0);
+    background: var(--vesper-background-primary);
   }
 }
 

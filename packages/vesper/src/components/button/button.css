@@ -47,7 +47,7 @@
 .vesper-button-sm {
   height: 32px;
   padding: 0 var(--vesper-spacing-3);
-  border-radius: 6px;
+  border-radius: var(--vesper-radius-1);
   font-size: 0.875rem;
   .vesper-button-icon {
     width: 16px;
@@ -67,31 +67,31 @@
 }
 
 .vesper-button-primary {
-  color: var(--vesper-stone-900);
-  background: var(--vesper-teal-400);
+  color: var(--vesper-text-primary);
+  background: var(--vesper-background-accent-base);
   &:hover {
     background:
       linear-gradient(
         0deg,
-        var(--vesper-alpha-inverse-100) 0%,
-        var(--vesper-alpha-inverse-100) 100%
+        var(--vesper-state-inverse-hover) 0%,
+        var(--vesper-state-inverse-hover) 100%
       ),
-      var(--vesper-teal-400);
+      var(--vesper-background-accent-base);
   }
 }
 
 .vesper-button-contrast {
   @media not (forced-colors: active) {
-    color: var(--vesper-stone-0);
-    background: var(--vesper-stone-900);
+    color: var(--vesper-text-inverse-primary);
+    background: var(--vesper-background-inverse-primary);
     &:hover {
       background:
         linear-gradient(
           0deg,
-          var(--vesper-alpha-inverse-100) 0%,
-          var(--vesper-alpha-inverse-100) 100%
+          var(--vesper-state-inverse-hover) 0%,
+          var(--vesper-state-inverse-hover) 100%
         ),
-        var(--vesper-stone-900);
+        var(--vesper-background-inverse-primary);
     }
   }
   @media (forced-colors: active) {
@@ -106,61 +106,61 @@
 }
 
 .vesper-button-danger {
-  color: var(--vesper-stone-0);
-  background: var(--vesper-red-500);
+  color: var(--vesper-text-inverse-primary);
+  background: var(--vesper-background-error-base);
   &:hover {
     background:
       linear-gradient(
         0deg,
-        var(--vesper-alpha-inverse-100) 0%,
-        var(--vesper-alpha-inverse-100) 100%
+        var(--vesper-state-inverse-hover) 0%,
+        var(--vesper-state-inverse-hover) 100%
       ),
-      var(--vesper-red-500);
+      var(--vesper-background-error-base);
   }
 }
 
 .vesper-button-warning {
-  color: var(--vesper-stone-900);
-  background: var(--vesper-amber-500);
+  color: var(--vesper-text-primary);
+  background: var(--vesper-background-warning-base);
   &:hover {
     background:
       linear-gradient(
         0deg,
-        var(--vesper-alpha-inverse-100) 0%,
-        var(--vesper-alpha-inverse-100) 100%
+        var(--vesper-state-inverse-hover) 0%,
+        var(--vesper-state-inverse-hover) 100%
       ),
-      var(--vesper-amber-500);
+      var(--vesper-background-warning-base);
   }
 }
 
 .vesper-button-subtle {
-  color: var(--vesper-stone-900);
-  background: var(--vesper-alpha-stone-100);
+  color: var(--vesper-text-primary);
+  background: var(--vesper-tint-neutral-300);
   &:hover {
-    background: var(--vesper-alpha-stone-200);
+    background: var(--vesper-tint-neutral-400);
   }
 }
 
 .vesper-button-tertiary {
-  color: var(--vesper-stone-900);
+  color: var(--vesper-text-primary);
   @media (forced-colors: none) {
-    border: 1px solid var(--vesper-stone-300);
+    border: 1px solid var(--vesper-border-secondary);
   }
-  background: var(--vesper-alpha-inverse-300);
+  background: var(--vesper-tint-inverse-100);
   &:hover {
-    background: var(--vesper-alpha-stone-50);
+    background: var(--vesper-tint-neutral-200);
   }
 }
 
 .vesper-button-ghost {
-  color: var(--vesper-stone-900);
+  color: var(--vesper-text-primary);
   &:hover {
-    background: var(--vesper-alpha-stone-50);
+    background: var(--vesper-tint-neutral-200);
   }
 }
 
 .vesper-button-disabled {
-  color: var(--vesper-alpha-stone-400);
-  background: var(--vesper-stone-100);
+  color: var(--vesper-text-disabled);
+  background: var(--vesper-background-disabled);
   pointer-events: none;
 }

@@ -1,13 +1,14 @@
 .vesper-code {
   padding: var(--vesper-spacing-half) var(--vesper-spacing-1);
-  border: 1px solid var(--vesper-stone-200);
   border-radius: var(--vesper-radius-1);
 }
 .vesper-code-default {
-  background: var(--vesper-alpha-stone-0);
-  color: var(--vesper-stone-900);
+  background: var(--vesper-tint-neutral-100);
+  color: var(--vesper-text-primary);
+  border: 1px solid var(--vesper-border-tertiary);
 }
 .vesper-code-contrast {
-  background: var(--vesper-alpha-stone-900);
-  color: var(--vesper-stone-0);
+  background: var(--vesper-background-inverse-primary);
+  color: var(--vesper-text-inverse-primary);
+  border: 1px solid var(--vesper-border-strong);
 }

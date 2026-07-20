@@ -3,8 +3,8 @@
   gap: var(--vesper-spacing-1);
   padding: var(--vesper-spacing-1);
   border-radius: var(--vesper-radius-2);
-  border: 1px solid var(--vesper-stone-300);
-  background: var(--vesper-alpha-inverse-800);
+  border: 1px solid var(--vesper-border-secondary);
+  background: var(--vesper-tint-inverse-400);
 }
 
 .vesper-toggle-sm {
@@ -46,17 +46,17 @@
   display: inline-flex;
   align-items: center;
   &[data-state="off"] {
-    color: var(--vesper-stone-700);
+    color: var(--vesper-text-secondary);
     &:hover {
-      background: var(--vesper-alpha-stone-50);
+      background: var(--vesper-tint-neutral-200);
     }
   }
   &[data-state="on"] {
-    background: var(--vesper-alpha-stone-200);
-    color: var(--vesper-stone-900);
+    background: var(--vesper-tint-neutral-400);
+    color: var(--vesper-text-primary);
     @media not (forced-colors: active) {
       &:hover {
-        background: var(--vesper-stone-50);
+        background: var(--vesper-background-secondary);
       }
     }
     @media (forced-colors: active) {

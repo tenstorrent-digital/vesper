@@ -29,18 +29,22 @@ exports[`modal [snapshot] > custom width and maxHeight 1`] = `
       </div>
       <button
         aria-label="Close modal"
-        class="vesper-modal-close-button"
+        class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
         type="button"
       >
-        <svg
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+        <span
+          class="vesper-button-icon"
         >
-          <path
-            d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
-            fill="currentColor"
-          />
-        </svg>
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
       </button>
     </div>
   </div>
@@ -76,18 +80,22 @@ exports[`modal [snapshot] > default 1`] = `
       </div>
       <button
         aria-label="Close modal"
-        class="vesper-modal-close-button"
+        class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
         type="button"
       >
-        <svg
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+        <span
+          class="vesper-button-icon"
         >
-          <path
-            d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
-            fill="currentColor"
-          />
-        </svg>
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
       </button>
     </div>
   </div>
@@ -123,18 +131,22 @@ exports[`modal [snapshot] > with buttons (between alignment) 1`] = `
       </div>
       <button
         aria-label="Close modal"
-        class="vesper-modal-close-button"
+        class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
         type="button"
       >
-        <svg
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+        <span
+          class="vesper-button-icon"
         >
-          <path
-            d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
-            fill="currentColor"
-          />
-        </svg>
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
       </button>
     </div>
     <div
@@ -184,18 +196,22 @@ exports[`modal [snapshot] > with buttons (end alignment) 1`] = `
       </div>
       <button
         aria-label="Close modal"
-        class="vesper-modal-close-button"
+        class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
         type="button"
       >
-        <svg
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+        <span
+          class="vesper-button-icon"
         >
-          <path
-            d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
-            fill="currentColor"
-          />
-        </svg>
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
       </button>
     </div>
     <div
@@ -245,18 +261,22 @@ exports[`modal [snapshot] > with buttons (fill alignment) 1`] = `
       </div>
       <button
         aria-label="Close modal"
-        class="vesper-modal-close-button"
+        class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
         type="button"
       >
-        <svg
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+        <span
+          class="vesper-button-icon"
         >
-          <path
-            d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
-            fill="currentColor"
-          />
-        </svg>
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
       </button>
     </div>
     <div
@@ -306,18 +326,22 @@ exports[`modal [snapshot] > with buttons (start alignment) 1`] = `
       </div>
       <button
         aria-label="Close modal"
-        class="vesper-modal-close-button"
+        class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
         type="button"
       >
-        <svg
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+        <span
+          class="vesper-button-icon"
         >
-          <path
-            d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
-            fill="currentColor"
-          />
-        </svg>
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
       </button>
     </div>
     <div
@@ -367,18 +391,22 @@ exports[`modal [snapshot] > with children 1`] = `
       </div>
       <button
         aria-label="Close modal"
-        class="vesper-modal-close-button"
+        class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
         type="button"
       >
-        <svg
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+        <span
+          class="vesper-button-icon"
         >
-          <path
-            d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
-            fill="currentColor"
-          />
-        </svg>
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
       </button>
     </div>
     <div
@@ -421,18 +449,22 @@ exports[`modal [snapshot] > with form 1`] = `
       </div>
       <button
         aria-label="Close modal"
-        class="vesper-modal-close-button"
+        class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
         type="button"
       >
-        <svg
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
+        <span
+          class="vesper-button-icon"
         >
-          <path
-            d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
-            fill="currentColor"
-          />
-        </svg>
+          <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
       </button>
     </div>
     <div

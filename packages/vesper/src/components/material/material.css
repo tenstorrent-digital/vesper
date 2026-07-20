@@ -1,0 +1,86 @@
+.vesper-material {
+  border-radius: var(--vesper-radius-2);
+  color: var(--vesper-text-primary);
+}
+
+.vesper-material-outlined {
+  border: 1px solid var(--vesper-border-secondary);
+  background: var(--vesper-background-primary);
+}
+
+.vesper-material-outlined-strong {
+  border: 1px solid var(--vesper-border-strong);
+  background: var(--vesper-background-primary);
+}
+
+.vesper-material-raised {
+  border: 1px solid var(--vesper-border-secondary);
+  background: var(--vesper-background-primary);
+  box-shadow: var(--vesper-shadow-100);
+}
+
+.vesper-material-floating {
+  border: 1px solid var(--vesper-border-secondary);
+  background: var(--vesper-background-primary);
+  box-shadow: var(--vesper-shadow-300);
+}
+
+.vesper-material-modal {
+  border: 1px solid var(--vesper-border-secondary);
+  background: var(--vesper-background-primary);
+  box-shadow: var(--vesper-shadow-400);
+}
+
+.vesper-material-inset {
+  border: 1px solid var(--vesper-border-secondary);
+  background: var(--vesper-tint-neutral-100);
+  box-shadow: var(--vesper-shadow-inset-100);
+}
+
+.vesper-material-inset-strong {
+  border: 1px solid var(--vesper-border-secondary);
+  background: var(--vesper-tint-neutral-100);
+  box-shadow: var(--vesper-shadow-inset-200);
+}
+
+.vesper-material-interactive {
+  border: 1px solid var(--vesper-border-secondary);
+  background: var(--vesper-background-primary);
+  &.vesper-material-disabled {
+    color: var(--vesper-text-disabled);
+    border-color: var(--vesper-border-disabled);
+    background: var(--vesper-background-disabled);
+  }
+  &.vesper-material-active {
+    background:
+      linear-gradient(
+        0deg,
+        var(--vesper-state-neutral-active) 0%,
+        var(--vesper-state-neutral-active) 100%
+      ),
+      var(--vesper-background-primary);
+    box-shadow: var(--vesper-shadow-100);
+  }
+  &.vesper-material-selected {
+    background: var(--vesper-tint-neutral-200);
+    border-color: var(--vesper-border-strong);
+  }
+  &:hover:not(.vesper-material-disabled) {
+    background:
+      linear-gradient(
+        0deg,
+        var(--vesper-state-neutral-hover) 0%,
+        var(--vesper-state-neutral-hover) 100%
+      ),
+      var(--vesper-background-primary);
+    box-shadow: var(--vesper-shadow-100);
+  }
+  &:focus-visible:not(.vesper-material-disabled) {
+    @media (forced-colors: active) {
+      outline: 2px solid CanvasText;
+    }
+    @media not (forced-colors: active) {
+      box-shadow: var(--vesper-shadow-focus-ring);
+    }
+  }
+}

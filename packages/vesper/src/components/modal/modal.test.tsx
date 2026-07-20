@@ -86,7 +86,9 @@ describe("modal [unit]", () => {
     const { container } = render(
       <Modal title={TITLE} description={DESCRIPTION} />,
     );
-    const closeBtn = container.querySelector(".vesper-modal-close-button");
+    const closeBtn = container.querySelector(
+      ".vesper-modal-header .vesper-button",
+    );
     expect(closeBtn).not.toBeNull();
     expect(closeBtn).toHaveAttribute("aria-label", "Close modal");
     expect(closeBtn).toHaveAttribute("type", "button");
@@ -359,7 +361,7 @@ describe("modal [unit]", () => {
       expect(dialog.open).toBe(true);
 
       const closeBtn = result.container.querySelector(
-        ".vesper-modal-close-button",
+        ".vesper-modal-header .vesper-button",
       ) as HTMLButtonElement;
       fireEvent.click(closeBtn);
       expect(dialog.open).toBe(false);

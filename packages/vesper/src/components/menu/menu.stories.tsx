@@ -6,7 +6,9 @@ import { TextButton } from "@/components/text-button/text-button";
 
 const meta = {
   component: Menu,
-  argTypes: {},
+  argTypes: {
+    items: { table: { disable: true } },
+  },
 } satisfies Meta<typeof Menu>;
 
 export default meta;

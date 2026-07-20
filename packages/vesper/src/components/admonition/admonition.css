@@ -4,7 +4,7 @@
   gap: var(--vesper-spacing-4);
   border-radius: var(--vesper-radius-2);
   &.vesper-admonition-subtle {
-    background: var(--vesper-stone-0);
+    background: var(--vesper-background-primary);
   }
   .vesper-button {
     align-self: flex-start;
@@ -51,31 +51,31 @@
 }
 
 .vesper-admonition-info {
-  background: var(--vesper-sky-50);
-  color: var(--vesper-sky-600);
-  border: 1px solid var(--vesper-sky-200);
+  background: var(--vesper-background-info-subtle);
+  border: 1px solid var(--vesper-border-info-subtle);
+  color: var(--vesper-text-info);
 }
 
 .vesper-admonition-success {
-  background: var(--vesper-green-50);
-  color: var(--vesper-mint-600);
-  border: 1px solid var(--vesper-green-200);
+  background: var(--vesper-background-success-subtle);
+  border: 1px solid var(--vesper-border-success-subtle);
+  color: var(--vesper-text-success);
 }
 
 .vesper-admonition-warning {
-  background: var(--vesper-amber-50);
-  color: var(--vesper-amber-600);
-  border: 1px solid var(--vesper-amber-200);
+  background: var(--vesper-background-warning-subtle);
+  border: 1px solid var(--vesper-border-warning-subtle);
+  color: var(--vesper-text-warning);
 }
 
 .vesper-admonition-danger {
-  background: var(--vesper-red-50);
-  color: var(--vesper-red-600);
-  border: 1px solid var(--vesper-red-200);
+  background: var(--vesper-background-error-subtle);
+  border: 1px solid var(--vesper-border-error-subtle);
+  color: var(--vesper-text-error);
 }
 
 .vesper-admonition-secondary {
-  background: var(--vesper-alpha-contrast-100);
-  color: var(--vesper-stone-900);
-  border: 1px solid var(--vesper-stone-300);
+  background: var(--vesper-tint-contrast-200);
+  border: 1px solid var(--vesper-border-secondary);
+  color: var(--vesper-text-primary);
 }

@@ -128,12 +128,7 @@ export function Checkbox({
 
   return (
     <label
-      className={cn(
-        "vesper-checkbox",
-        `vesper-checkbox-${size}`,
-        disabled && "vesper-checkbox-disabled",
-        className,
-      )}
+      className={cn("vesper-checkbox", `vesper-checkbox-${size}`, className)}
       {...props}
     >
       <input
@@ -176,7 +171,6 @@ export function Checkbox({
         onKeyUp={onKeyUp}
         onKeyUpCapture={onKeyUpCapture}
       />
-
       <div className="vesper-checkbox-box">
         <div className="vesper-checkbox-indicator">
           <Checkmark className="vesper-checkbox-checked-icon" />

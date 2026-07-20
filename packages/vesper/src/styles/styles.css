@@ -12,6 +12,7 @@
 @import "./spacing.css";
 @import "./tracking.css";
 @import "./animation.css";
+@import "./backgrounds.css";
 
 /* a11y */
 @import "./a11y.css";
@@ -20,6 +21,7 @@
 @import "../components/typography/typography.css";
 
 /* components */
+@import "../components/material/material.css";
 @import "../components/code/code.css";
 @import "../components/snippet/snippet.css";
 @import "../components/code-block/code-block.css";

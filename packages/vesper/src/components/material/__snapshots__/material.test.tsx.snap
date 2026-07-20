@@ -1,0 +1,69 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`material [snapshot] > floating 1`] = `
+<div
+  class="vesper-material vesper-material-floating"
+/>
+`;
+
+exports[`material [snapshot] > inset 1`] = `
+<div
+  class="vesper-material vesper-material-inset"
+/>
+`;
+
+exports[`material [snapshot] > inset-strong 1`] = `
+<div
+  class="vesper-material vesper-material-inset-strong"
+/>
+`;
+
+exports[`material [snapshot] > interactive 1`] = `
+<div
+  class="vesper-material vesper-material-interactive"
+/>
+`;
+
+exports[`material [snapshot] > interactive, active 1`] = `
+<div
+  class="vesper-material vesper-material-interactive vesper-material-active"
+/>
+`;
+
+exports[`material [snapshot] > interactive, disabled 1`] = `
+<div
+  aria-disabled="true"
+  class="vesper-material vesper-material-interactive vesper-material-disabled"
+  tabindex="-1"
+/>
+`;
+
+exports[`material [snapshot] > interactive, selected 1`] = `
+<div
+  class="vesper-material vesper-material-interactive vesper-material-selected"
+/>
+`;
+
+exports[`material [snapshot] > modal 1`] = `
+<div
+  class="vesper-material vesper-material-modal"
+/>
+`;
+
+exports[`material [snapshot] > outlined 1`] = `
+<div
+  class="vesper-material vesper-material-outlined"
+/>
+`;
+
+exports[`material [snapshot] > outlined-strong 1`] = `
+<div
+  class="vesper-material vesper-material-outlined-strong"
+/>
+`;
+
+exports[`material [snapshot] > raised 1`] = `
+<div
+  class="vesper-material vesper-material-raised"
+/>
+`;

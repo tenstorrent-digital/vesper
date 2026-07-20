@@ -1,6 +1,6 @@
-import { cleanup, render, within } from "@testing-library/react";
+import { cleanup, fireEvent, render, within } from "@testing-library/react";
 import axe from "axe-core";
-import { afterEach, beforeEach, describe, expect, test } from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { Tenstorrent } from "@/components/icons/icons";
 import {
@@ -57,7 +57,7 @@ describe("tag [unit]", () => {
     });
   });
 
-  test("disabled state class and aria attribute", () => {
+  test("disabled state class and aria-disabled for non-form elements", () => {
     const result = render(<Tag disabled>Disabled</Tag>);
 
     expect(result.container.firstChild).toHaveClass("vesper-tag-disabled");
@@ -65,6 +65,19 @@ describe("tag [unit]", () => {
       "aria-disabled",
       "true",
     );
+    expect(result.container.firstChild).not.toHaveAttribute("disabled");
+  });
+
+  test("disabled state uses disabled attribute for button elements", () => {
+    const result = render(
+      <Tag as="button" disabled>
+        Disabled
+      </Tag>,
+    );
+
+    expect(result.container.firstChild).toHaveClass("vesper-tag-disabled");
+    expect(result.container.firstChild).toHaveAttribute("disabled");
+    expect(result.container.firstChild).not.toHaveAttribute("aria-disabled");
   });
 
   test("not disabled by default", () => {
@@ -118,6 +131,76 @@ describe("tag [unit]", () => {
     expect(el).toHaveClass("vesper-tag-accent-bold");
     expect(el).toHaveClass("vesper-tag-md");
     expect(el).toHaveClass("custom-class");
+  });
+
+  test("disabled state sets tabIndex to -1", () => {
+    const result = render(<Tag disabled>Disabled</Tag>);
+
+    expect(result.container.firstChild).toHaveAttribute("tabindex", "-1");
+  });
+
+  test("disabled state suppresses click events", () => {
+    const onClick = vi.fn();
+    const result = render(
+      <Tag disabled onClick={onClick}>
+        Disabled
+      </Tag>,
+    );
+
+    fireEvent.click(result.container.firstElementChild!);
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
+  test("disabled state suppresses pointer events", () => {
+    const onPointerDown = vi.fn();
+    const onMouseDown = vi.fn();
+    const result = render(
+      <Tag disabled onPointerDown={onPointerDown} onMouseDown={onMouseDown}>
+        Disabled
+      </Tag>,
+    );
+
+    const el = result.container.firstElementChild!;
+    fireEvent.pointerDown(el);
+    fireEvent.mouseDown(el);
+    expect(onPointerDown).not.toHaveBeenCalled();
+    expect(onMouseDown).not.toHaveBeenCalled();
+  });
+
+  test("disabled state suppresses keyboard events", () => {
+    const onKeyDown = vi.fn();
+    const onKeyUp = vi.fn();
+    const result = render(
+      <Tag disabled onKeyDown={onKeyDown} onKeyUp={onKeyUp}>
+        Disabled
+      </Tag>,
+    );
+
+    const el = result.container.firstElementChild!;
+    fireEvent.keyDown(el, { key: "Enter" });
+    fireEvent.keyUp(el, { key: "Enter" });
+    expect(onKeyDown).not.toHaveBeenCalled();
+    expect(onKeyUp).not.toHaveBeenCalled();
+  });
+
+  test("disabled state suppresses focus events", () => {
+    const onFocus = vi.fn();
+    const result = render(
+      <Tag disabled onFocus={onFocus}>
+        Disabled
+      </Tag>,
+    );
+
+    fireEvent.focus(result.container.firstElementChild!);
+    expect(onFocus).not.toHaveBeenCalled();
+  });
+
+  test("non-disabled state does not suppress events", () => {
+    const onClick = vi.fn();
+    const result = render(<Tag onClick={onClick}>Enabled</Tag>);
+
+    fireEvent.click(result.container.firstElementChild!);
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 });
 

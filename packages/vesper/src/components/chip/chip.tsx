@@ -6,6 +6,7 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import { getDisabledProps } from "@/utils/getDisabledProps";
 import type { Polymorphic } from "@/utils/polymorphic";
 
 export const CHIP_VARIANTS = ["default", "contrast"] as const;
@@ -44,7 +45,6 @@ export function Chip<E extends ElementType = "button">(props: ChipProps<E>) {
       as={Component}
       variant="label-md"
       aria-pressed={Component === "button" ? selected : undefined}
-      disabled={disabled}
       className={cn(
         "vesper-chip",
         `vesper-chip-${variant}`,
@@ -55,15 +55,11 @@ export function Chip<E extends ElementType = "button">(props: ChipProps<E>) {
       // TypeScript cannot infer the type of onClick because this component is polymorphic
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onClick={(e: any) => {
-        if (props.disabled) {
-          e.preventDefault();
-          e.stopPropagation();
-          return;
-        }
         onChange?.(!selected);
         onClick?.(e);
       }}
       {...(rest as TypographyProps<E>)}
+      {...getDisabledProps(Component, !!disabled)}
     >
       {iconLeft && <span className="vesper-chip-icon">{iconLeft}</span>}
       {children}
