@@ -21,6 +21,13 @@ export interface ThemeSwitcherProps extends Omit<
 const setTheme = (theme: VesperTheme) =>
   document.documentElement.setAttribute("data-vesper-theme", theme);
 
+/**
+ * A segmented control for switching between light, dark, and system color themes.
+ * Sets the `data-vesper-theme` attribute on the document's root element to apply the selected theme.
+ *
+ * @example
+ * <ThemeSwitcher size="sm" />
+ */
 export function ThemeSwitcher({
   className,
   size = "lg",
