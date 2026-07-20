@@ -24,10 +24,15 @@ export type TextButtonVariant = (typeof TEXT_BUTTON_VARIANTS)[number];
 
 export type TextButtonProps<E extends ElementType = "button"> = Polymorphic<
   {
+    /** The size of the text button. Affects font size. Defaults to `"lg"`. */
     size?: TextButtonSize;
+    /** The color variant of the text button. Defaults to `"accent"`. */
     variant?: TextButtonVariant;
+    /** When `true`, renders the text button in a disabled state and prevents interaction. */
     disabled?: boolean;
+    /** An optional icon element rendered to the left of the text button content. */
     iconLeft?: ReactNode;
+    /** An optional icon element rendered to the right of the text button content. */
     iconRight?: ReactNode;
   },
   E
