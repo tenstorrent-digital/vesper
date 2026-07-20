@@ -12,23 +12,49 @@ import { Typography } from "@repo/vesper/typography";
 // components from other libraries, and more.
 
 const components = {
-  h1: (props) => <Typography variant="display-lg">{props.children}</Typography>,
-  h2: (props) => <Typography variant="display-md">{props.children}</Typography>,
-  h3: (props) => <Typography variant="display-sm">{props.children}</Typography>,
-  h4: (props) => <Typography variant="heading-md">{props.children}</Typography>,
-  h5: (props) => <Typography variant="heading-sm">{props.children}</Typography>,
-  h6: (props) => <Typography variant="heading-xs">{props.children}</Typography>,
-  p: (props) => <Typography variant="copy-md">{props.children}</Typography>,
-  strong: (props) => (
-    <Typography variant="copy-md-bold">{props.children}</Typography>
-  ),
-  code: (props) => <Code {...props} />,
-  blockquote: (props) => (
-    <Admonition size="sm" {...props}>
+  h1: (props) => (
+    <Typography as="h1" variant="display-lg">
       {props.children}
-    </Admonition>
+    </Typography>
   ),
-  // codeBlock: (props) => <CodeBlock {...props} />, // throws client/server errors
+  h2: (props) => (
+    <Typography as="h2" variant="display-md">
+      {props.children}
+    </Typography>
+  ),
+  h3: (props) => (
+    <Typography as="h3" variant="display-sm">
+      {props.children}
+    </Typography>
+  ),
+  h4: (props) => (
+    <Typography as="h4" variant="heading-md">
+      {props.children}
+    </Typography>
+  ),
+  h5: (props) => (
+    <Typography as="h5" variant="heading-sm">
+      {props.children}
+    </Typography>
+  ),
+  h6: (props) => (
+    <Typography as="h6" variant="heading-xs">
+      {props.children}
+    </Typography>
+  ),
+  p: (props) => (
+    <Typography as="p" variant="copy-md">
+      {props.children}
+    </Typography>
+  ),
+  strong: (props) => (
+    <Typography as="strong" variant="copy-md-bold">
+      {props.children}
+    </Typography>
+  ),
+  code: (props) => <Code>{props.children}</Code>,
+  blockquote: (props) => <Admonition size="sm">{props.children}</Admonition>,
+  // codeBlock: (props) => <CodeBlock>{props.children}</CodeBlock>, // throws client/server errors
 
   img: (props) => (
     <Image
