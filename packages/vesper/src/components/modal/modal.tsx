@@ -78,7 +78,7 @@ export interface ModalProps extends Omit<
 
 /**
  * A modal dialog rendered as a native `<dialog>` element with a title, description,
- * optional content, and action buttons. Controlled imperatively via a ref or the `useModal` hook.
+ * optional content, and action buttons. Controlled imperatively via the `useModal` hook.
  *
  * @example
  * const modal = useModal();
