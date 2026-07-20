@@ -77,52 +77,77 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
   md: "label-lg",
 };
 
-export function Checkbox({
-  // component-specific props
-  label,
-  size = "md",
-  indeterminate,
-  inputRef,
-  // props forwarded to the inner input
-  id,
-  form,
-  value,
-  autoFocus,
-  disabled,
-  name,
-  required,
-  checked,
-  defaultChecked,
-  role,
-  tabIndex,
-  "aria-label": ariaLabel,
-  "aria-labelledby": ariaLabelledby,
-  "aria-describedby": ariaDescribedby,
-  "aria-invalid": ariaInvalid,
-  onFocus,
-  onFocusCapture,
-  onBlur,
-  onBlurCapture,
-  onChange,
-  onChangeCapture,
-  onBeforeInput,
-  onBeforeInputCapture,
-  onInput,
-  onInputCapture,
-  onReset,
-  onResetCapture,
-  onSubmit,
-  onSubmitCapture,
-  onInvalid,
-  onInvalidCapture,
-  onKeyDown,
-  onKeyDownCapture,
-  onKeyUp,
-  onKeyUpCapture,
-  // props spread onto the wrapper label
-  className,
-  ...props
-}: CheckboxProps) {
+/**
+ * A checkbox input with a label, supporting checked, unchecked, and indeterminate states.
+ *
+ * @example
+ * // Uncontrolled usage
+ * <Checkbox label="Accept terms" required />
+ *
+ * @example
+ * // Controlled usage
+ * <Checkbox
+ *   label="Consent to marketing communications"
+ *   checked={allowMarketing}
+ *   onChange={(e) => setAllowMarketing(e.target.checked)}
+ * />
+ *
+ * @example
+ * // Indeterminate state usage
+ * <Checkbox
+ *   label="Select/deselect all options"
+ *   indeterminate={!allOptionsSelected}
+ *   onChange={(e) => setAllOptionsSelected(e.target.checked)}
+ * />
+ */
+export function Checkbox(props: CheckboxProps) {
+  const {
+    // component-specific props
+    label,
+    size = "md",
+    indeterminate,
+    inputRef,
+    // props forwarded to the inner input
+    id,
+    form,
+    value,
+    autoFocus,
+    disabled,
+    name,
+    required,
+    checked,
+    defaultChecked,
+    role,
+    tabIndex,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby,
+    "aria-describedby": ariaDescribedby,
+    "aria-invalid": ariaInvalid,
+    onFocus,
+    onFocusCapture,
+    onBlur,
+    onBlurCapture,
+    onChange,
+    onChangeCapture,
+    onBeforeInput,
+    onBeforeInputCapture,
+    onInput,
+    onInputCapture,
+    onReset,
+    onResetCapture,
+    onSubmit,
+    onSubmitCapture,
+    onInvalid,
+    onInvalidCapture,
+    onKeyDown,
+    onKeyDownCapture,
+    onKeyUp,
+    onKeyUpCapture,
+    // props spread onto the wrapper label
+    className,
+    ...rest
+  } = props;
+
   const ref = useRef<HTMLInputElement>(null);
   useLayoutEffect(() => {
     if (ref.current) ref.current.indeterminate = !!indeterminate;
@@ -133,7 +158,7 @@ export function Checkbox({
   return (
     <label
       className={cn("vesper-checkbox", `vesper-checkbox-${size}`, className)}
-      {...props}
+      {...rest}
     >
       <input
         ref={ref}
