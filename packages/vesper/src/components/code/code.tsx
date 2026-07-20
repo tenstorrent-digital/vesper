@@ -9,6 +9,7 @@ export const CODE_VARIANTS = ["default", "contrast"] as const;
 export type CodeVariant = (typeof CODE_VARIANTS)[number];
 
 export interface CodeProps extends ComponentProps<"code"> {
+  /** The visual style variant to render. Defaults to `"default"` */
   variant?: CodeVariant;
 }
 
