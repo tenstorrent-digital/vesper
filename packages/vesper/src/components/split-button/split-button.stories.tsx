@@ -12,6 +12,7 @@ const meta = {
     menuOpen: { table: { disable: true } },
     defaultMenuOpen: { table: { disable: true } },
     onMenuOpenChange: { table: { disable: true } },
+    menuItems: { table: { disable: true } },
   },
 } satisfies Meta<typeof SplitButton>;
 

@@ -14,6 +14,7 @@ const meta = {
       control: "radio",
       options: [...INTERACTIVE_MATERIAL_STATES, undefined],
     },
+    as: { table: { disable: true } },
   },
 } satisfies Meta<typeof Material>;
 

@@ -9,6 +9,7 @@ const meta = {
     checked: { table: { disable: true } },
     name: { table: { disable: true } },
     onChange: { table: { disable: true } },
+    inputRef: { table: { disable: true } },
   },
 } satisfies Meta<typeof Checkbox>;
 

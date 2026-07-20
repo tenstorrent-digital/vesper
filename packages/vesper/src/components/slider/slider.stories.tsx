@@ -10,6 +10,8 @@ const meta = {
     defaultValue: { table: { disable: true } },
     onValueChange: { table: { disable: true } },
     onValueCommit: { table: { disable: true } },
+    thumbAriaLabel: { table: { disable: true } },
+    valueLabel: { table: { disable: true } },
   },
 } satisfies Meta<typeof Slider>;
 
