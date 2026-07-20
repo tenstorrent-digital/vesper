@@ -229,6 +229,25 @@ export interface ToastsProps {
   container?: Element | DocumentFragment;
 }
 
+/**
+ * Toasts provide brief messages about app processes at the bottom of the screen.
+ *
+ * They are used for lightweight, ephemeral feedback related to completed actions, background activity, or transient system updates.
+ *
+ * To use this component, render it once in your application. In a framework like Next.js you will want to render this in your application's root layout, for example.
+ *
+ * To spawn a toast, you can call the `addToast` function from anywhere in your app.
+ *
+ * @example
+ * // Rendered somewhere high up in your application
+ * <Toasts />
+ *
+ * // Elsewhere in your application
+ * addToast({
+ *   variant: 'success',
+ *   content: 'Deploy successful!',
+ * })
+ * */
 export function Toasts({
   ariaLabel = "Notifications",
   shortcut = "F8",
