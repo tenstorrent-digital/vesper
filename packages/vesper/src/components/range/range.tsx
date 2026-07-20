@@ -20,13 +20,21 @@ export interface RangeProps extends Omit<
   | "onValueCommit"
   | "orientation"
 > {
+  /** The controlled values of the range thumbs. Each entry corresponds to a thumb position. */
   values?: number[];
+  /** Custom display labels for each thumb, shown as a tooltip-style label above the thumb. When left blank, defaults to the active values of each thumb. */
   valueLabels?: string[];
+  /** Accessible `aria-label` attributes for each thumb. */
   thumbAriaLabels?: string[];
+  /** When `true`, displays the value labels above each thumb. */
   showValueLabels?: boolean;
+  /** The initial thumb values (uncontrolled mode). Defaults to `[min, max]` */
   defaultValues?: number[];
+  /** Callback fired as thumb values change during interaction. Receives the full array of current values. */
   onValuesChange?(value: number[]): void;
+  /** Callback fired when a thumb interaction is completed (e.g., on pointer up). Receives the final array of values. */
   onValuesCommit?(value: number[]): void;
+  /** When `true`, renders tick marks along the track at each step interval. */
   showTicks?: boolean;
 }
 
