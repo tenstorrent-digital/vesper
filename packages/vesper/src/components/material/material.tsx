@@ -1,4 +1,4 @@
-import type { ElementType } from "react";
+import type { ElementType, SyntheticEvent } from "react";
 
 import { cn } from "@/utils/cn";
 import { Polymorphic } from "@/utils/polymorphic";
@@ -55,10 +55,15 @@ export function Material<E extends ElementType = "div">(
     ...rest
   } = props;
 
+  const isDisabled = state === "disabled";
+
+  function suppressEvent(e: SyntheticEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
   return (
     <Component
-      disabled={state === "disabled"}
-      aria-disabled={state === "disabled"}
       className={cn(
         "vesper-material",
         `vesper-material-${variant}`,
@@ -66,6 +71,17 @@ export function Material<E extends ElementType = "div">(
         className,
       )}
       {...rest}
+      {...(isDisabled && {
+        disabled: true,
+        ["aria-disabled"]: true,
+        tabIndex: -1,
+        onClickCapture: suppressEvent,
+        onMouseDownCapture: suppressEvent,
+        onPointerDownCapture: suppressEvent,
+        onKeyDownCapture: suppressEvent,
+        onKeyUpCapture: suppressEvent,
+        onFocusCapture: suppressEvent,
+      })}
     />
   );
 }

@@ -1,4 +1,4 @@
-import type { ElementType, ReactNode } from "react";
+import type { ElementType, ReactNode, SyntheticEvent } from "react";
 
 import { Typography } from "@/components/typography/typography";
 
@@ -48,10 +48,13 @@ export function Tag<E extends ElementType = "div">(props: TagProps<E>) {
     ...rest
   } = props;
 
+  function suppressEvent(e: SyntheticEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
   return (
     <Component
-      disabled={disabled}
-      aria-disabled={disabled}
       className={cn(
         "vesper-tag",
         `vesper-tag-${size}`,
@@ -59,6 +62,17 @@ export function Tag<E extends ElementType = "div">(props: TagProps<E>) {
         className,
       )}
       {...rest}
+      {...(disabled && {
+        disabled: true,
+        ["aria-disabled"]: true,
+        tabIndex: -1,
+        onClickCapture: suppressEvent,
+        onMouseDownCapture: suppressEvent,
+        onPointerDownCapture: suppressEvent,
+        onKeyDownCapture: suppressEvent,
+        onKeyUpCapture: suppressEvent,
+        onFocusCapture: suppressEvent,
+      })}
     >
       {icon && <span className="vesper-tag-icon">{icon}</span>}
       <Typography as="span" variant="label-xs">

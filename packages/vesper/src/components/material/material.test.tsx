@@ -1,6 +1,6 @@
-import { cleanup, render, within } from "@testing-library/react";
+import { cleanup, fireEvent, render, within } from "@testing-library/react";
 import axe from "axe-core";
-import { afterEach, beforeEach, describe, expect, test } from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import {
   INTERACTIVE_MATERIAL_STATES,
@@ -122,6 +122,80 @@ describe("material [unit]", () => {
     expect(el).toHaveClass("vesper-material");
     expect(el).toHaveClass("vesper-material-raised");
     expect(el).toHaveClass("custom-class");
+  });
+
+  test("disabled state sets tabIndex to -1", () => {
+    const result = render(<Material variant="interactive" state="disabled" />);
+
+    expect(result.container.firstChild).toHaveAttribute("tabindex", "-1");
+  });
+
+  test("disabled state suppresses click events", () => {
+    const onClick = vi.fn();
+    const result = render(
+      <Material variant="interactive" state="disabled" onClick={onClick} />,
+    );
+
+    fireEvent.click(result.container.firstElementChild!);
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
+  test("disabled state suppresses pointer events", () => {
+    const onPointerDown = vi.fn();
+    const onMouseDown = vi.fn();
+    const result = render(
+      <Material
+        variant="interactive"
+        state="disabled"
+        onPointerDown={onPointerDown}
+        onMouseDown={onMouseDown}
+      />,
+    );
+
+    const el = result.container.firstElementChild!;
+    fireEvent.pointerDown(el);
+    fireEvent.mouseDown(el);
+    expect(onPointerDown).not.toHaveBeenCalled();
+    expect(onMouseDown).not.toHaveBeenCalled();
+  });
+
+  test("disabled state suppresses keyboard events", () => {
+    const onKeyDown = vi.fn();
+    const onKeyUp = vi.fn();
+    const result = render(
+      <Material
+        variant="interactive"
+        state="disabled"
+        onKeyDown={onKeyDown}
+        onKeyUp={onKeyUp}
+      />,
+    );
+
+    const el = result.container.firstElementChild!;
+    fireEvent.keyDown(el, { key: "Enter" });
+    fireEvent.keyUp(el, { key: "Enter" });
+    expect(onKeyDown).not.toHaveBeenCalled();
+    expect(onKeyUp).not.toHaveBeenCalled();
+  });
+
+  test("disabled state suppresses focus events", () => {
+    const onFocus = vi.fn();
+    const result = render(
+      <Material variant="interactive" state="disabled" onFocus={onFocus} />,
+    );
+
+    fireEvent.focus(result.container.firstElementChild!);
+    expect(onFocus).not.toHaveBeenCalled();
+  });
+
+  test("non-disabled state does not suppress events", () => {
+    const onClick = vi.fn();
+    const result = render(
+      <Material variant="interactive" state="active" onClick={onClick} />,
+    );
+
+    fireEvent.click(result.container.firstElementChild!);
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 });
 
