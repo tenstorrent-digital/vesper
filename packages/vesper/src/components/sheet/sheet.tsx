@@ -46,6 +46,28 @@ export interface SheetProps extends Omit<
   buttons?: Omit<ButtonProps, "size" | "as">[];
 }
 
+/**
+ * A slide-in panel rendered as a native `<dialog>` element. Appears from the left or right side of the viewport. Controlled imperatively via the `useSheet` hook.
+ *
+ * Can render as a modal (with backdrop) or a popover (without backdrop).
+ *
+ * @example
+ * const sheet = useSheet();
+ *
+ * <Button onClick={sheet.open}>Open sheet</Button>
+ * <Sheet
+ *   ref={sheet.ref}
+ *   title="Settings"
+ *   description="Manage your preferences."
+ *   side="right"
+ *   buttons={[
+ *     { children: "Cancel", onClick: sheet.close },
+ *     { children: "Save", onClick: handleSave },
+ *   ]}
+ * >
+ *   <p>Sheet content goes here.</p>
+ * </Sheet>
+ */
 export function Sheet({
   className,
   ref,
