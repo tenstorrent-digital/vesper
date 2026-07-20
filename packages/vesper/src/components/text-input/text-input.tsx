@@ -86,17 +86,24 @@ type ForwardedPropTypes =
 type InputOnlyPropTypes = "min" | "max" | "multiple" | "pattern" | "list";
 
 interface TextInputBaseProps {
+  /** The size of the text input. Affects padding and typography. Defaults to `"lg"`. */
   size?: TextInputSize;
+  /** The visual variant of the text input, which determines its color scheme and message icon. Defaults to `"default"`. */
   variant?: TextInputVariant;
+  /** An optional message displayed below the input, paired with a variant-specific icon. Also linked to the input via `aria-describedby`. */
   message?: string;
+  /** An optional label displayed above the input. When provided, renders a `<label>` element associated with the input via `htmlFor`. An asterisk is appended when `required` is `true`. */
   label?: string;
 }
 
 export type MultiLineTextInputProps = TextInputBaseProps &
   Omit<ComponentProps<"div">, ForwardedPropTypes> &
   Pick<ComponentProps<"textarea">, ForwardedPropTypes> & {
+    /** When `true`, renders a `<textarea>` element instead of an `<input>`. */
     multiline: true;
+    /** A ref forwarded to the underlying `<textarea>` element for direct DOM access. */
     inputRef?: RefObject<HTMLTextAreaElement | null>;
+    /** The fixed height of the textarea in pixels. */
     height?: number;
     icon?: never;
     type?: never;
@@ -105,10 +112,14 @@ export type MultiLineTextInputProps = TextInputBaseProps &
 export type SingleLineTextInputProps = TextInputBaseProps &
   Omit<ComponentProps<"div">, ForwardedPropTypes> &
   Pick<ComponentProps<"input">, ForwardedPropTypes | InputOnlyPropTypes> & {
+    /** When false or omitted, renders a single-line `<input>` element. */
     multiline?: false;
+    /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
     inputRef?: RefObject<HTMLInputElement | null>;
     height?: never;
+    /** An optional icon element rendered to the left of the input field. */
     icon?: ReactNode;
+    /** The HTML input type. Determines the browser's native input behavior and keyboard. Defaults to `"text"`. */
     type?:
       | "text"
       | "email"
