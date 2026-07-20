@@ -46,6 +46,38 @@ export interface RangeProps extends Omit<
   form?: string;
 }
 
+/**
+ * A multi-thumb range slider for selecting a range of values between a min and max.
+ * Supports tick marks, value labels, and configurable step intervals.
+ *
+ * @example
+ * // Uncontrolled usage with default values
+ * <Range
+ *   min={0}
+ *   max={100}
+ *   defaultValues={[20, 80]}
+ *   onValuesChange={(values) => console.log(values)}
+ * />
+ *
+ * @example
+ * // Controlled usage with ticks and custom labels
+ * const [min, setMin] = useState(20)
+ * const [max, setMax] = useState(80)
+ *
+ * <Range
+ *   min={0}
+ *   max={80}
+ *   step={10}
+ *   showTicks
+ *   values={[min, max]}
+ *   showValueLabels
+ *   valueLabels={[
+ *     `${min}db`,
+ *     `${max}db`,
+ *   ]}
+ *   thumbAriaLabels={['min volume', 'max volume']}
+ * />
+ */
 export function Range({
   className,
   thumbAriaLabels,
