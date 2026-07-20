@@ -33,7 +33,7 @@ const components = {
   img: (props) => (
     <Image
       sizes="100vw"
-      style={{ width: "100%", height: "auto" }}
+      className="w-auto h-auto max-w-full"
       {...(props as ImageProps)}
     />
   ),
