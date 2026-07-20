@@ -18,6 +18,8 @@ exports[`tooltip [snapshot] > open 1`] = `
   data-align="center"
   data-side="top"
   data-state="instant-open"
+  id="radix-_r_a_"
+  role="tooltip"
   style="max-width: 240px; --radix-tooltip-content-transform-origin: var(--radix-popper-transform-origin); --radix-tooltip-content-available-width: var(--radix-popper-available-width); --radix-tooltip-content-available-height: var(--radix-popper-available-height); --radix-tooltip-trigger-width: var(--radix-popper-anchor-width); --radix-tooltip-trigger-height: var(--radix-popper-anchor-height); animation: auto ease 0s 1 normal none running none;"
 >
   Tooltip text
@@ -32,23 +34,5 @@ exports[`tooltip [snapshot] > open 1`] = `
       d="M 0,0 L 14,0 L 7,8 z"
     />
   </svg>
-  <span
-    id="radix-_r_a_"
-    role="tooltip"
-    style="position: absolute; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; overflow-wrap: normal;"
-  >
-    Tooltip text
-    <svg
-      class="vesper-tooltip-arrow"
-      height="8"
-      viewBox="0 0 14 8"
-      width="14"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M 0,0 L 14,0 L 7,8 z"
-      />
-    </svg>
-  </span>
 </div>
 `;
