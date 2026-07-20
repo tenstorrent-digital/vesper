@@ -13,6 +13,16 @@ export interface CodeProps extends ComponentProps<"code"> {
   variant?: CodeVariant;
 }
 
+/**
+ * An inline code element for displaying short code snippets within body text.
+ *
+ * Body text that renders inline `Code` should always be the `copy-sm` variant.
+ *
+ * @example
+ * <Typography variant="copy-sm">
+ *   Run <Code>yarn install</Code> to get started.
+ * </Typography>
+ */
 export function Code({ className, variant = "default", ...props }: CodeProps) {
   return (
     <Typography
