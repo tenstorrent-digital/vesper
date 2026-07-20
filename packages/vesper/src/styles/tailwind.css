@@ -145,6 +145,194 @@
   --color-vesper-alpha-inverse-700: var(--vesper-alpha-inverse-700);
   --color-vesper-alpha-inverse-800: var(--vesper-alpha-inverse-800);
   --color-vesper-alpha-inverse-900: var(--vesper-alpha-inverse-900);
+  --color-vesper-alpha-black-0: var(--vesper-alpha-black-0);
+  --color-vesper-alpha-black-50: var(--vesper-alpha-black-50);
+  --color-vesper-alpha-black-100: var(--vesper-alpha-black-100);
+  --color-vesper-alpha-black-200: var(--vesper-alpha-black-200);
+  --color-vesper-alpha-black-300: var(--vesper-alpha-black-300);
+  --color-vesper-alpha-black-400: var(--vesper-alpha-black-400);
+  --color-vesper-alpha-black-500: var(--vesper-alpha-black-500);
+  --color-vesper-alpha-black-600: var(--vesper-alpha-black-600);
+  --color-vesper-alpha-black-700: var(--vesper-alpha-black-700);
+  --color-vesper-alpha-black-800: var(--vesper-alpha-black-800);
+  --color-vesper-alpha-black-900: var(--vesper-alpha-black-900);
+  --color-vesper-alpha-white-0: var(--vesper-alpha-white-0);
+  --color-vesper-alpha-white-50: var(--vesper-alpha-white-50);
+  --color-vesper-alpha-white-100: var(--vesper-alpha-white-100);
+  --color-vesper-alpha-white-200: var(--vesper-alpha-white-200);
+  --color-vesper-alpha-white-300: var(--vesper-alpha-white-300);
+  --color-vesper-alpha-white-400: var(--vesper-alpha-white-400);
+  --color-vesper-alpha-white-500: var(--vesper-alpha-white-500);
+  --color-vesper-alpha-white-600: var(--vesper-alpha-white-600);
+  --color-vesper-alpha-white-700: var(--vesper-alpha-white-700);
+  --color-vesper-alpha-white-800: var(--vesper-alpha-white-800);
+  --color-vesper-alpha-white-900: var(--vesper-alpha-white-900);
+  --color-vesper-background-primary: var(--vesper-background-primary);
+  --color-vesper-background-secondary: var(--vesper-background-secondary);
+  --color-vesper-background-tertiary: var(--vesper-background-tertiary);
+  --color-vesper-background-disabled: var(--vesper-background-disabled);
+  --color-vesper-background-inverse-primary: var(
+    --vesper-background-inverse-primary
+  );
+  --color-vesper-background-inverse-secondary: var(
+    --vesper-background-inverse-secondary
+  );
+  --color-vesper-background-inverse-disabled: var(
+    --vesper-background-inverse-disabled
+  );
+  --color-vesper-background-accent-subtle: var(
+    --vesper-background-accent-subtle
+  );
+  --color-vesper-background-accent-base: var(--vesper-background-accent-base);
+  --color-vesper-background-success-subtle: var(
+    --vesper-background-success-subtle
+  );
+  --color-vesper-background-success-base: var(--vesper-background-success-base);
+  --color-vesper-background-warning-subtle: var(
+    --vesper-background-warning-subtle
+  );
+  --color-vesper-background-warning-base: var(--vesper-background-warning-base);
+  --color-vesper-background-error-subtle: var(--vesper-background-error-subtle);
+  --color-vesper-background-error-base: var(--vesper-background-error-base);
+  --color-vesper-background-info-subtle: var(--vesper-background-info-subtle);
+  --color-vesper-background-info-base: var(--vesper-background-info-base);
+  --color-vesper-background-static-white: var(--vesper-background-static-white);
+  --color-vesper-background-static-black: var(--vesper-background-static-black);
+  --color-vesper-background-brand-purple-subtle: var(
+    --vesper-background-brand-purple-subtle
+  );
+  --color-vesper-background-brand-purple-base: var(
+    --vesper-background-brand-purple-base
+  );
+  --color-vesper-background-brand-mint-subtle: var(
+    --vesper-background-brand-mint-subtle
+  );
+  --color-vesper-background-brand-mint-base: var(
+    --vesper-background-brand-mint-base
+  );
+  --color-vesper-background-brand-pink-subtle: var(
+    --vesper-background-brand-pink-subtle
+  );
+  --color-vesper-background-brand-pink-base: var(
+    --vesper-background-brand-pink-base
+  );
+  --color-vesper-background-brand-yellow-subtle: var(
+    --vesper-background-brand-yellow-subtle
+  );
+  --color-vesper-background-brand-yellow-base: var(
+    --vesper-background-brand-yellow-base
+  );
+  --color-vesper-text-primary: var(--vesper-text-primary);
+  --color-vesper-text-secondary: var(--vesper-text-secondary);
+  --color-vesper-text-tertiary: var(--vesper-text-tertiary);
+  --color-vesper-text-disabled: var(--vesper-text-disabled);
+  --color-vesper-text-inverse-primary: var(--vesper-text-inverse-primary);
+  --color-vesper-text-inverse-secondary: var(--vesper-text-inverse-secondary);
+  --color-vesper-text-inverse-tertiary: var(--vesper-text-inverse-tertiary);
+  --color-vesper-text-alpha-disabled: var(--vesper-text-alpha-disabled);
+  --color-vesper-text-on-color: var(--vesper-text-on-color);
+  --color-vesper-text-accent: var(--vesper-text-accent);
+  --color-vesper-text-success: var(--vesper-text-success);
+  --color-vesper-text-warning: var(--vesper-text-warning);
+  --color-vesper-text-error: var(--vesper-text-error);
+  --color-vesper-text-info: var(--vesper-text-info);
+  --color-vesper-text-static-black: var(--vesper-text-static-black);
+  --color-vesper-text-static-white: var(--vesper-text-static-white);
+  --color-vesper-text-link-default: var(--vesper-text-link-default);
+  --color-vesper-text-link-hover: var(--vesper-text-link-hover);
+  --color-vesper-text-link-visited: var(--vesper-text-link-visited);
+  --color-vesper-text-link-disabled: var(--vesper-text-link-disabled);
+  --color-vesper-text-brand-purple: var(--vesper-text-brand-purple);
+  --color-vesper-text-brand-mint: var(--vesper-text-brand-mint);
+  --color-vesper-text-brand-pink: var(--vesper-text-brand-pink);
+  --color-vesper-text-brand-yellow: var(--vesper-text-brand-yellow);
+  --color-vesper-icon-primary: var(--vesper-icon-primary);
+  --color-vesper-icon-secondary: var(--vesper-icon-secondary);
+  --color-vesper-icon-tertiary: var(--vesper-icon-tertiary);
+  --color-vesper-icon-disabled: var(--vesper-icon-disabled);
+  --color-vesper-icon-inverse-primary: var(--vesper-icon-inverse-primary);
+  --color-vesper-icon-inverse-secondary: var(--vesper-icon-inverse-secondary);
+  --color-vesper-icon-inverse-tertiary: var(--vesper-icon-inverse-tertiary);
+  --color-vesper-icon-inverse-disabled: var(--vesper-icon-inverse-disabled);
+  --color-vesper-icon-on-color: var(--vesper-icon-on-color);
+  --color-vesper-icon-accent: var(--vesper-icon-accent);
+  --color-vesper-icon-success: var(--vesper-icon-success);
+  --color-vesper-icon-warning: var(--vesper-icon-warning);
+  --color-vesper-icon-error: var(--vesper-icon-error);
+  --color-vesper-icon-info: var(--vesper-icon-info);
+  --color-vesper-icon-static-black: var(--vesper-icon-static-black);
+  --color-vesper-icon-static-white: var(--vesper-icon-static-white);
+  --color-vesper-icon-brand-purple: var(--vesper-icon-brand-purple);
+  --color-vesper-icon-brand-mint: var(--vesper-icon-brand-mint);
+  --color-vesper-icon-brand-pink: var(--vesper-icon-brand-pink);
+  --color-vesper-icon-brand-yellow: var(--vesper-icon-brand-yellow);
+  --color-vesper-border-primary: var(--vesper-border-primary);
+  --color-vesper-border-secondary: var(--vesper-border-secondary);
+  --color-vesper-border-tertiary: var(--vesper-border-tertiary);
+  --color-vesper-border-strong: var(--vesper-border-strong);
+  --color-vesper-border-disabled: var(--vesper-border-disabled);
+  --color-vesper-border-focus: var(--vesper-border-focus);
+  --color-vesper-border-inverse-primary: var(--vesper-border-inverse-primary);
+  --color-vesper-border-inverse-secondary: var(
+    --vesper-border-inverse-secondary
+  );
+  --color-vesper-border-inverse-strong: var(--vesper-border-inverse-strong);
+  --color-vesper-border-inverse-disabled: var(--vesper-border-inverse-disabled);
+  --color-vesper-border-inverse-focus: var(--vesper-border-inverse-focus);
+  --color-vesper-border-static-white: var(--vesper-border-static-white);
+  --color-vesper-border-static-black: var(--vesper-border-static-black);
+  --color-vesper-border-accent-subtle: var(--vesper-border-accent-subtle);
+  --color-vesper-border-accent-base: var(--vesper-border-accent-base);
+  --color-vesper-border-success-subtle: var(--vesper-border-success-subtle);
+  --color-vesper-border-success-base: var(--vesper-border-success-base);
+  --color-vesper-border-warning-subtle: var(--vesper-border-warning-subtle);
+  --color-vesper-border-warning-base: var(--vesper-border-warning-base);
+  --color-vesper-border-error-subtle: var(--vesper-border-error-subtle);
+  --color-vesper-border-error-base: var(--vesper-border-error-base);
+  --color-vesper-border-info-subtle: var(--vesper-border-info-subtle);
+  --color-vesper-border-info-base: var(--vesper-border-info-base);
+  --color-vesper-border-brand-purple-subtle: var(
+    --vesper-border-brand-purple-subtle
+  );
+  --color-vesper-border-brand-purple-base: var(
+    --vesper-border-brand-purple-base
+  );
+  --color-vesper-border-brand-mint-subtle: var(
+    --vesper-border-brand-mint-subtle
+  );
+  --color-vesper-border-brand-mint-base: var(--vesper-border-brand-mint-base);
+  --color-vesper-border-brand-pink-subtle: var(
+    --vesper-border-brand-pink-subtle
+  );
+  --color-vesper-border-brand-pink-base: var(--vesper-border-brand-pink-base);
+  --color-vesper-border-brand-yellow-subtle: var(
+    --vesper-border-brand-yellow-subtle
+  );
+  --color-vesper-border-brand-yellow-base: var(
+    --vesper-border-brand-yellow-base
+  );
+  --color-vesper-scrim-contrast-subtle: var(--vesper-scrim-contrast-subtle);
+  --color-vesper-scrim-contrast-base: var(--vesper-scrim-contrast-base);
+  --color-vesper-scrim-inverse-subtle: var(--vesper-scrim-inverse-subtle);
+  --color-vesper-scrim-inverse-base: var(--vesper-scrim-inverse-base);
+  --color-vesper-state-neutral-hover: var(--vesper-state-neutral-hover);
+  --color-vesper-state-neutral-active: var(--vesper-state-neutral-active);
+  --color-vesper-state-contrast-hover: var(--vesper-state-contrast-hover);
+  --color-vesper-state-contrast-active: var(--vesper-state-contrast-active);
+  --color-vesper-state-inverse-hover: var(--vesper-state-inverse-hover);
+  --color-vesper-state-inverse-active: var(--vesper-state-inverse-active);
+  --color-vesper-tint-neutral-100: var(--vesper-tint-neutral-100);
+  --color-vesper-tint-neutral-200: var(--vesper-tint-neutral-200);
+  --color-vesper-tint-neutral-300: var(--vesper-tint-neutral-300);
+  --color-vesper-tint-neutral-400: var(--vesper-tint-neutral-400);
+  --color-vesper-tint-contrast-100: var(--vesper-tint-contrast-100);
+  --color-vesper-tint-contrast-200: var(--vesper-tint-contrast-200);
+  --color-vesper-tint-contrast-300: var(--vesper-tint-contrast-300);
+  --color-vesper-tint-contrast-400: var(--vesper-tint-contrast-400);
+  --color-vesper-tint-inverse-100: var(--vesper-tint-inverse-100);
+  --color-vesper-tint-inverse-200: var(--vesper-tint-inverse-200);
+  --color-vesper-tint-inverse-300: var(--vesper-tint-inverse-300);
+  --color-vesper-tint-inverse-400: var(--vesper-tint-inverse-400);
   --spacing-vesper-0: var(--vesper-spacing-0);
   --spacing-vesper-1: var(--vesper-spacing-1);
   --spacing-vesper-2: var(--vesper-spacing-2);
@@ -197,4 +385,36 @@
     --vesper-transition-duration-default
   );
   --transition-duration-vesper-slow: var(--vesper-transition-duration-slow);
+}
+
+@utility bg-vesper-dot-pattern-primary {
+  background: var(--vesper-bg-dot-pattern-primary);
+}
+
+@utility bg-vesper-dot-pattern-secondary {
+  background: var(--vesper-bg-dot-pattern-secondary);
+}
+
+@utility bg-vesper-dot-pattern-tertiary {
+  background: var(--vesper-bg-dot-pattern-tertiary);
+}
+
+/* Dot pattern with a custom background color from vesper color tokens.
+ * Usage: bg-vesper-dot-pattern-{token}, e.g. bg-vesper-dot-pattern-stone-500,
+ * bg-vesper-dot-pattern-teal-200, bg-vesper-dot-pattern-purple-300, etc. */
+@utility bg-vesper-dot-pattern-* {
+  background: var(--vesper-bg-dot-pattern-primary);
+  background-color: --value(--color-vesper-*);
+}
+
+@utility bg-vesper-dot-pattern-inverse {
+  background: var(--vesper-bg-dot-pattern-inverse);
+}
+
+/* Inverse dot pattern with a custom background color from vesper color tokens.
+ * Usage: bg-vesper-dot-pattern-inverse-{token}, e.g. bg-vesper-dot-pattern-inverse-stone-500,
+ * bg-vesper-dot-pattern-inverse-teal-200, bg-vesper-dot-pattern-inverse-purple-300, etc. */
+@utility bg-vesper-dot-pattern-inverse-* {
+  background: var(--vesper-bg-dot-pattern-inverse);
+  background-color: --value(--color-vesper-*);
 }

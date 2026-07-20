@@ -24,8 +24,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--vesper-stone-0);
-    background: var(--vesper-stone-900);
+    color: var(--vesper-text-inverse-primary);
+    background: var(--vesper-background-inverse-primary);
     font-family: var(--vesper-font-sans);
     font-weight: 400;
     line-height: var(--vesper-leading-none);

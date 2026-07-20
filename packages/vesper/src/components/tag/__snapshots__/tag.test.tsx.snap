@@ -2,7 +2,6 @@
 
 exports[`tag [snapshot] > accent-bold, lg 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-lg vesper-tag-accent-bold"
 >
   <span
@@ -17,7 +16,7 @@ exports[`tag [snapshot] > accent-bold, lg, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-lg vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -29,7 +28,6 @@ exports[`tag [snapshot] > accent-bold, lg, disabled 1`] = `
 
 exports[`tag [snapshot] > accent-bold, md 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-md vesper-tag-accent-bold"
 >
   <span
@@ -44,7 +42,7 @@ exports[`tag [snapshot] > accent-bold, md, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-md vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -56,7 +54,6 @@ exports[`tag [snapshot] > accent-bold, md, disabled 1`] = `
 
 exports[`tag [snapshot] > accent-bold, sm 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-sm vesper-tag-accent-bold"
 >
   <span
@@ -71,7 +68,7 @@ exports[`tag [snapshot] > accent-bold, sm, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-sm vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -83,7 +80,6 @@ exports[`tag [snapshot] > accent-bold, sm, disabled 1`] = `
 
 exports[`tag [snapshot] > accent-subtle, lg 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-lg vesper-tag-accent-subtle"
 >
   <span
@@ -98,7 +94,7 @@ exports[`tag [snapshot] > accent-subtle, lg, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-lg vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -110,7 +106,6 @@ exports[`tag [snapshot] > accent-subtle, lg, disabled 1`] = `
 
 exports[`tag [snapshot] > accent-subtle, md 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-md vesper-tag-accent-subtle"
 >
   <span
@@ -125,7 +120,7 @@ exports[`tag [snapshot] > accent-subtle, md, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-md vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -137,7 +132,6 @@ exports[`tag [snapshot] > accent-subtle, md, disabled 1`] = `
 
 exports[`tag [snapshot] > accent-subtle, sm 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-sm vesper-tag-accent-subtle"
 >
   <span
@@ -152,7 +146,7 @@ exports[`tag [snapshot] > accent-subtle, sm, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-sm vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -164,7 +158,6 @@ exports[`tag [snapshot] > accent-subtle, sm, disabled 1`] = `
 
 exports[`tag [snapshot] > contrast, lg 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-lg vesper-tag-contrast"
 >
   <span
@@ -179,7 +172,7 @@ exports[`tag [snapshot] > contrast, lg, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-lg vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -191,7 +184,6 @@ exports[`tag [snapshot] > contrast, lg, disabled 1`] = `
 
 exports[`tag [snapshot] > contrast, md 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-md vesper-tag-contrast"
 >
   <span
@@ -206,7 +198,7 @@ exports[`tag [snapshot] > contrast, md, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-md vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -218,7 +210,6 @@ exports[`tag [snapshot] > contrast, md, disabled 1`] = `
 
 exports[`tag [snapshot] > contrast, sm 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-sm vesper-tag-contrast"
 >
   <span
@@ -233,7 +224,7 @@ exports[`tag [snapshot] > contrast, sm, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-sm vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -245,7 +236,6 @@ exports[`tag [snapshot] > contrast, sm, disabled 1`] = `
 
 exports[`tag [snapshot] > danger-bold, lg 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-lg vesper-tag-danger-bold"
 >
   <span
@@ -260,7 +250,7 @@ exports[`tag [snapshot] > danger-bold, lg, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-lg vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -272,7 +262,6 @@ exports[`tag [snapshot] > danger-bold, lg, disabled 1`] = `
 
 exports[`tag [snapshot] > danger-bold, md 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-md vesper-tag-danger-bold"
 >
   <span
@@ -287,7 +276,7 @@ exports[`tag [snapshot] > danger-bold, md, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-md vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -299,7 +288,6 @@ exports[`tag [snapshot] > danger-bold, md, disabled 1`] = `
 
 exports[`tag [snapshot] > danger-bold, sm 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-sm vesper-tag-danger-bold"
 >
   <span
@@ -314,7 +302,7 @@ exports[`tag [snapshot] > danger-bold, sm, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-sm vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -326,7 +314,6 @@ exports[`tag [snapshot] > danger-bold, sm, disabled 1`] = `
 
 exports[`tag [snapshot] > danger-subtle, lg 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-lg vesper-tag-danger-subtle"
 >
   <span
@@ -341,7 +328,7 @@ exports[`tag [snapshot] > danger-subtle, lg, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-lg vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -353,7 +340,6 @@ exports[`tag [snapshot] > danger-subtle, lg, disabled 1`] = `
 
 exports[`tag [snapshot] > danger-subtle, md 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-md vesper-tag-danger-subtle"
 >
   <span
@@ -368,7 +354,7 @@ exports[`tag [snapshot] > danger-subtle, md, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-md vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -380,7 +366,6 @@ exports[`tag [snapshot] > danger-subtle, md, disabled 1`] = `
 
 exports[`tag [snapshot] > danger-subtle, sm 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-sm vesper-tag-danger-subtle"
 >
   <span
@@ -395,7 +380,7 @@ exports[`tag [snapshot] > danger-subtle, sm, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-sm vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -407,7 +392,6 @@ exports[`tag [snapshot] > danger-subtle, sm, disabled 1`] = `
 
 exports[`tag [snapshot] > default, lg 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-lg vesper-tag-default"
 >
   <span
@@ -422,7 +406,7 @@ exports[`tag [snapshot] > default, lg, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-lg vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -434,7 +418,6 @@ exports[`tag [snapshot] > default, lg, disabled 1`] = `
 
 exports[`tag [snapshot] > default, md 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-md vesper-tag-default"
 >
   <span
@@ -449,7 +432,7 @@ exports[`tag [snapshot] > default, md, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-md vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -461,7 +444,6 @@ exports[`tag [snapshot] > default, md, disabled 1`] = `
 
 exports[`tag [snapshot] > default, sm 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-sm vesper-tag-default"
 >
   <span
@@ -476,7 +458,7 @@ exports[`tag [snapshot] > default, sm, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-sm vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -488,7 +470,6 @@ exports[`tag [snapshot] > default, sm, disabled 1`] = `
 
 exports[`tag [snapshot] > info-bold, lg 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-lg vesper-tag-info-bold"
 >
   <span
@@ -503,7 +484,7 @@ exports[`tag [snapshot] > info-bold, lg, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-lg vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -515,7 +496,6 @@ exports[`tag [snapshot] > info-bold, lg, disabled 1`] = `
 
 exports[`tag [snapshot] > info-bold, md 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-md vesper-tag-info-bold"
 >
   <span
@@ -530,7 +510,7 @@ exports[`tag [snapshot] > info-bold, md, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-md vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -542,7 +522,6 @@ exports[`tag [snapshot] > info-bold, md, disabled 1`] = `
 
 exports[`tag [snapshot] > info-bold, sm 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-sm vesper-tag-info-bold"
 >
   <span
@@ -557,7 +536,7 @@ exports[`tag [snapshot] > info-bold, sm, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-sm vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -569,7 +548,6 @@ exports[`tag [snapshot] > info-bold, sm, disabled 1`] = `
 
 exports[`tag [snapshot] > info-subtle, lg 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-lg vesper-tag-info-subtle"
 >
   <span
@@ -584,7 +562,7 @@ exports[`tag [snapshot] > info-subtle, lg, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-lg vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -596,7 +574,6 @@ exports[`tag [snapshot] > info-subtle, lg, disabled 1`] = `
 
 exports[`tag [snapshot] > info-subtle, md 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-md vesper-tag-info-subtle"
 >
   <span
@@ -611,7 +588,7 @@ exports[`tag [snapshot] > info-subtle, md, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-md vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -623,7 +600,6 @@ exports[`tag [snapshot] > info-subtle, md, disabled 1`] = `
 
 exports[`tag [snapshot] > info-subtle, sm 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-sm vesper-tag-info-subtle"
 >
   <span
@@ -638,7 +614,7 @@ exports[`tag [snapshot] > info-subtle, sm, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-sm vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -650,7 +626,6 @@ exports[`tag [snapshot] > info-subtle, sm, disabled 1`] = `
 
 exports[`tag [snapshot] > success-bold, lg 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-lg vesper-tag-success-bold"
 >
   <span
@@ -665,7 +640,7 @@ exports[`tag [snapshot] > success-bold, lg, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-lg vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -677,7 +652,6 @@ exports[`tag [snapshot] > success-bold, lg, disabled 1`] = `
 
 exports[`tag [snapshot] > success-bold, md 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-md vesper-tag-success-bold"
 >
   <span
@@ -692,7 +666,7 @@ exports[`tag [snapshot] > success-bold, md, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-md vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -704,7 +678,6 @@ exports[`tag [snapshot] > success-bold, md, disabled 1`] = `
 
 exports[`tag [snapshot] > success-bold, sm 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-sm vesper-tag-success-bold"
 >
   <span
@@ -719,7 +692,7 @@ exports[`tag [snapshot] > success-bold, sm, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-sm vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -731,7 +704,6 @@ exports[`tag [snapshot] > success-bold, sm, disabled 1`] = `
 
 exports[`tag [snapshot] > success-subtle, lg 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-lg vesper-tag-success-subtle"
 >
   <span
@@ -746,7 +718,7 @@ exports[`tag [snapshot] > success-subtle, lg, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-lg vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -758,7 +730,6 @@ exports[`tag [snapshot] > success-subtle, lg, disabled 1`] = `
 
 exports[`tag [snapshot] > success-subtle, md 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-md vesper-tag-success-subtle"
 >
   <span
@@ -773,7 +744,7 @@ exports[`tag [snapshot] > success-subtle, md, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-md vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -785,7 +756,6 @@ exports[`tag [snapshot] > success-subtle, md, disabled 1`] = `
 
 exports[`tag [snapshot] > success-subtle, sm 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-sm vesper-tag-success-subtle"
 >
   <span
@@ -800,7 +770,7 @@ exports[`tag [snapshot] > success-subtle, sm, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-sm vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -812,7 +782,6 @@ exports[`tag [snapshot] > success-subtle, sm, disabled 1`] = `
 
 exports[`tag [snapshot] > warning-bold, lg 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-lg vesper-tag-warning-bold"
 >
   <span
@@ -827,7 +796,7 @@ exports[`tag [snapshot] > warning-bold, lg, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-lg vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -839,7 +808,6 @@ exports[`tag [snapshot] > warning-bold, lg, disabled 1`] = `
 
 exports[`tag [snapshot] > warning-bold, md 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-md vesper-tag-warning-bold"
 >
   <span
@@ -854,7 +822,7 @@ exports[`tag [snapshot] > warning-bold, md, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-md vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -866,7 +834,6 @@ exports[`tag [snapshot] > warning-bold, md, disabled 1`] = `
 
 exports[`tag [snapshot] > warning-bold, sm 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-sm vesper-tag-warning-bold"
 >
   <span
@@ -881,7 +848,7 @@ exports[`tag [snapshot] > warning-bold, sm, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-sm vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -893,7 +860,6 @@ exports[`tag [snapshot] > warning-bold, sm, disabled 1`] = `
 
 exports[`tag [snapshot] > warning-subtle, lg 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-lg vesper-tag-warning-subtle"
 >
   <span
@@ -908,7 +874,7 @@ exports[`tag [snapshot] > warning-subtle, lg, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-lg vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -920,7 +886,6 @@ exports[`tag [snapshot] > warning-subtle, lg, disabled 1`] = `
 
 exports[`tag [snapshot] > warning-subtle, md 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-md vesper-tag-warning-subtle"
 >
   <span
@@ -935,7 +900,7 @@ exports[`tag [snapshot] > warning-subtle, md, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-md vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"
@@ -947,7 +912,6 @@ exports[`tag [snapshot] > warning-subtle, md, disabled 1`] = `
 
 exports[`tag [snapshot] > warning-subtle, sm 1`] = `
 <div
-  aria-disabled="false"
   class="vesper-tag vesper-tag-sm vesper-tag-warning-subtle"
 >
   <span
@@ -962,7 +926,7 @@ exports[`tag [snapshot] > warning-subtle, sm, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-tag vesper-tag-sm vesper-tag-disabled"
-  disabled=""
+  tabindex="-1"
 >
   <span
     class="vesper-typography vesper-typography-label-xs"

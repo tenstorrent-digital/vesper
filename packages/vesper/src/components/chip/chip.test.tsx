@@ -139,6 +139,93 @@ describe("chip [unit]", () => {
     expect(onChange).not.toHaveBeenCalled();
     expect(onClick).not.toHaveBeenCalled();
   });
+
+  describe("disabled as non-native element", () => {
+    test("uses aria-disabled instead of disabled", () => {
+      const { container } = render(
+        <Chip as="div" disabled>
+          Label
+        </Chip>,
+      );
+
+      const el = container.firstChild;
+      expect(el).toHaveAttribute("aria-disabled", "true");
+      expect(el).not.toHaveAttribute("disabled");
+    });
+
+    test("sets tabIndex to -1", () => {
+      const { container } = render(
+        <Chip as="div" disabled>
+          Label
+        </Chip>,
+      );
+
+      expect(container.firstChild).toHaveAttribute("tabindex", "-1");
+    });
+
+    test("suppresses click events", () => {
+      const onChange = vi.fn();
+      const onClick = vi.fn();
+      const { container } = render(
+        <Chip as="div" disabled onChange={onChange} onClick={onClick}>
+          Label
+        </Chip>,
+      );
+
+      fireEvent.click(container.firstElementChild!);
+      expect(onChange).not.toHaveBeenCalled();
+      expect(onClick).not.toHaveBeenCalled();
+    });
+
+    test("suppresses pointer events", () => {
+      const onPointerDown = vi.fn();
+      const onMouseDown = vi.fn();
+      const { container } = render(
+        <Chip
+          as="div"
+          disabled
+          onPointerDown={onPointerDown}
+          onMouseDown={onMouseDown}
+        >
+          Label
+        </Chip>,
+      );
+
+      const el = container.firstElementChild!;
+      fireEvent.pointerDown(el);
+      fireEvent.mouseDown(el);
+      expect(onPointerDown).not.toHaveBeenCalled();
+      expect(onMouseDown).not.toHaveBeenCalled();
+    });
+
+    test("suppresses keyboard events", () => {
+      const onKeyDown = vi.fn();
+      const onKeyUp = vi.fn();
+      const { container } = render(
+        <Chip as="div" disabled onKeyDown={onKeyDown} onKeyUp={onKeyUp}>
+          Label
+        </Chip>,
+      );
+
+      const el = container.firstElementChild!;
+      fireEvent.keyDown(el, { key: "Enter" });
+      fireEvent.keyUp(el, { key: "Enter" });
+      expect(onKeyDown).not.toHaveBeenCalled();
+      expect(onKeyUp).not.toHaveBeenCalled();
+    });
+
+    test("suppresses focus events", () => {
+      const onFocus = vi.fn();
+      const { container } = render(
+        <Chip as="div" disabled onFocus={onFocus}>
+          Label
+        </Chip>,
+      );
+
+      fireEvent.focus(container.firstElementChild!);
+      expect(onFocus).not.toHaveBeenCalled();
+    });
+  });
 });
 
 describe("chip [snapshot]", () => {

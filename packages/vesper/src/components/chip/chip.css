@@ -20,13 +20,13 @@
 }
 
 .vesper-chip-default {
-  color: var(--vesper-stone-900);
-  border: 1px solid var(--vesper-stone-400);
-  background: var(--vesper-alpha-inverse-500);
+  color: var(--vesper-text-primary);
+  border: 1px solid var(--vesper-border-primary);
+  background: var(--vesper-tint-inverse-200);
   &.vesper-chip-selected {
-    color: var(--vesper-stone-0);
-    background: var(--vesper-stone-900);
-    border: 1px solid var(--vesper-stone-900);
+    color: var(--vesper-text-inverse-primary);
+    background: var(--vesper-background-inverse-primary);
+    border: 1px solid var(--vesper-border-strong);
     @media (forced-colors: active) {
       background: CanvasText;
       border: 1px solid CanvasText;
@@ -35,17 +35,17 @@
     }
   }
   &:hover {
-    border: 1px solid var(--vesper-stone-900);
+    border: 1px solid var(--vesper-border-strong);
   }
 }
 
 .vesper-chip-contrast {
-  color: var(--vesper-stone-0);
-  border: 1px solid var(--vesper-stone-900);
-  background: var(--vesper-stone-900);
+  color: var(--vesper-text-inverse-primary);
+  border: 1px solid var(--vesper-border-strong);
+  background: var(--vesper-background-inverse-primary);
   &.vesper-chip-selected {
-    color: var(--vesper-stone-900);
-    background: var(--vesper-stone-0);
+    color: var(--vesper-text-primary);
+    background: var(--vesper-background-primary);
     @media (forced-colors: active) {
       background: Canvas;
       border: 1px solid CanvasText;
@@ -54,7 +54,7 @@
     }
   }
   &:hover:not(.vesper-chip-selected) {
-    background: var(--vesper-stone-800);
+    background: var(--vesper-background-inverse-secondary);
   }
   @media (forced-colors: active) {
     background: CanvasText;
@@ -69,11 +69,11 @@
 
 .vesper-chip.vesper-chip-disabled {
   pointer-events: none;
-  color: var(--vesper-alpha-stone-400);
-  background: var(--vesper-alpha-stone-100);
-  border: 1px solid var(--vesper-alpha-stone-200);
+  color: var(--vesper-text-disabled);
+  background: var(--vesper-background-disabled);
+  border: 1px solid var(--vesper-border-disabled);
   .vesper-chip-icon {
-    color: var(--vesper-alpha-stone-500);
+    color: var(--vesper-icon-disabled);
   }
   @media (forced-colors: active) {
     opacity: 0.5;

@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./material": {
+      "types": "./dist/components/material/material.d.ts",
+      "import": "./dist/components/material/material.js"
+    },
     "./code": {
       "types": "./dist/components/code/code.d.ts",
       "import": "./dist/components/code/code.js"

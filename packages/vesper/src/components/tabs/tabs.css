@@ -30,16 +30,16 @@
       left: 0;
       right: 0;
       height: 1px;
-      background: var(--vesper-stone-300);
+      background: var(--vesper-border-secondary);
     }
   }
   .vesper-tabs-trigger {
     padding: var(--vesper-spacing-4) 0;
-    color: var(--vesper-stone-700);
+    color: var(--vesper-text-secondary);
     position: relative;
     &:hover,
     &[data-state="active"] {
-      color: var(--vesper-stone-900);
+      color: var(--vesper-text-primary);
     }
     &:hover::after,
     &[data-state="active"]::after {
@@ -49,7 +49,7 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: var(--vesper-stone-900);
+      background: var(--vesper-border-strong);
       @media (forced-colors: active) {
         background: CanvasText;
       }
@@ -72,12 +72,12 @@
   .vesper-tabs-trigger {
     padding: var(--vesper-spacing-2);
     border-radius: var(--vesper-spacing-1);
-    background: var(--vesper-alpha-stone-100);
-    color: var(--vesper-stone-900);
+    background: var(--vesper-tint-neutral-300);
+    color: var(--vesper-text-primary);
     &:hover,
     &[data-state="active"] {
-      background: var(--vesper-alpha-stone-900);
-      color: var(--vesper-stone-0);
+      background: var(--vesper-background-inverse-primary);
+      color: var(--vesper-text-inverse-primary);
       @media (forced-colors: active) {
         forced-color-adjust: none;
         color: Canvas;

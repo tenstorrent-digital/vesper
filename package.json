@@ -19,11 +19,13 @@
     "scaffold:component": "yarn workspace @repo/vesper scaffold:component",
     "agent:skills:add": "DISABLE_TELEMETRY=true npx skills add --yes --agent pi claude-code codex --",
     "agent:skills:remove": "DISABLE_TELEMETRY=true npx skills remove --yes --agent '*'",
-    "agent:skills:update": "DISABLE_TELEMETRY=true npx skills update --yes --project"
+    "agent:skills:update": "DISABLE_TELEMETRY=true npx skills update --yes --project",
+    "clean-install": "yarn workspaces run rimraf node_modules && yarn rimraf node_modules && rm -f yarn.lock && yarn cache clean && yarn"
   },
   "devDependencies": {
     "@turbo/gen": "^2.9.14",
     "prettier": "^3.7.4",
+    "rimraf": "^6.1.3",
     "turbo": "^2.9.14",
     "typescript": "5.9.2"
   },

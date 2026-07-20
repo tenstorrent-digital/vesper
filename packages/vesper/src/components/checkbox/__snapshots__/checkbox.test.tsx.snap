@@ -180,7 +180,7 @@ exports[`checkbox [snapshot] > md, checked: true, indeterminate: true 1`] = `
 
 exports[`checkbox [snapshot] > md, disabled, checked: false, indeterminate: false 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
+  class="vesper-checkbox vesper-checkbox-md"
 >
   <input
     class="vesper-checkbox-input"
@@ -225,7 +225,7 @@ exports[`checkbox [snapshot] > md, disabled, checked: false, indeterminate: fals
 
 exports[`checkbox [snapshot] > md, disabled, checked: false, indeterminate: true 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
+  class="vesper-checkbox vesper-checkbox-md"
 >
   <input
     class="vesper-checkbox-input"
@@ -270,7 +270,7 @@ exports[`checkbox [snapshot] > md, disabled, checked: false, indeterminate: true
 
 exports[`checkbox [snapshot] > md, disabled, checked: true, indeterminate: false 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
+  class="vesper-checkbox vesper-checkbox-md"
 >
   <input
     checked=""
@@ -316,7 +316,7 @@ exports[`checkbox [snapshot] > md, disabled, checked: true, indeterminate: false
 
 exports[`checkbox [snapshot] > md, disabled, checked: true, indeterminate: true 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
+  class="vesper-checkbox vesper-checkbox-md"
 >
   <input
     checked=""
@@ -544,7 +544,7 @@ exports[`checkbox [snapshot] > md, required, checked: true, indeterminate: true 
 
 exports[`checkbox [snapshot] > md, required, disabled, checked: false, indeterminate: false 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
+  class="vesper-checkbox vesper-checkbox-md"
 >
   <input
     class="vesper-checkbox-input"
@@ -590,7 +590,7 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: false, indetermi
 
 exports[`checkbox [snapshot] > md, required, disabled, checked: false, indeterminate: true 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
+  class="vesper-checkbox vesper-checkbox-md"
 >
   <input
     class="vesper-checkbox-input"
@@ -636,7 +636,7 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: false, indetermi
 
 exports[`checkbox [snapshot] > md, required, disabled, checked: true, indeterminate: false 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
+  class="vesper-checkbox vesper-checkbox-md"
 >
   <input
     checked=""
@@ -683,7 +683,7 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: true, indetermin
 
 exports[`checkbox [snapshot] > md, required, disabled, checked: true, indeterminate: true 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-md vesper-checkbox-disabled"
+  class="vesper-checkbox vesper-checkbox-md"
 >
   <input
     checked=""
@@ -908,7 +908,7 @@ exports[`checkbox [snapshot] > sm, checked: true, indeterminate: true 1`] = `
 
 exports[`checkbox [snapshot] > sm, disabled, checked: false, indeterminate: false 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
+  class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
     class="vesper-checkbox-input"
@@ -953,7 +953,7 @@ exports[`checkbox [snapshot] > sm, disabled, checked: false, indeterminate: fals
 
 exports[`checkbox [snapshot] > sm, disabled, checked: false, indeterminate: true 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
+  class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
     class="vesper-checkbox-input"
@@ -998,7 +998,7 @@ exports[`checkbox [snapshot] > sm, disabled, checked: false, indeterminate: true
 
 exports[`checkbox [snapshot] > sm, disabled, checked: true, indeterminate: false 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
+  class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
     checked=""
@@ -1044,7 +1044,7 @@ exports[`checkbox [snapshot] > sm, disabled, checked: true, indeterminate: false
 
 exports[`checkbox [snapshot] > sm, disabled, checked: true, indeterminate: true 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
+  class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
     checked=""
@@ -1272,7 +1272,7 @@ exports[`checkbox [snapshot] > sm, required, checked: true, indeterminate: true 
 
 exports[`checkbox [snapshot] > sm, required, disabled, checked: false, indeterminate: false 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
+  class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
     class="vesper-checkbox-input"
@@ -1318,7 +1318,7 @@ exports[`checkbox [snapshot] > sm, required, disabled, checked: false, indetermi
 
 exports[`checkbox [snapshot] > sm, required, disabled, checked: false, indeterminate: true 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
+  class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
     class="vesper-checkbox-input"
@@ -1364,7 +1364,7 @@ exports[`checkbox [snapshot] > sm, required, disabled, checked: false, indetermi
 
 exports[`checkbox [snapshot] > sm, required, disabled, checked: true, indeterminate: false 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
+  class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
     checked=""
@@ -1411,7 +1411,7 @@ exports[`checkbox [snapshot] > sm, required, disabled, checked: true, indetermin
 
 exports[`checkbox [snapshot] > sm, required, disabled, checked: true, indeterminate: true 1`] = `
 <label
-  class="vesper-checkbox vesper-checkbox-sm vesper-checkbox-disabled"
+  class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
     checked=""

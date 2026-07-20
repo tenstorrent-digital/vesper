@@ -44,7 +44,7 @@
     opacity: 1;
     transform: translateY(0px);
     &::before {
-      background: var(--vesper-alpha-contrast-200);
+      background: var(--vesper-scrim-contrast-base);
     }
     @starting-style {
       opacity: 0;
@@ -58,9 +58,9 @@
 
 .vesper-modal-container {
   position: relative;
-  background: var(--vesper-stone-0);
+  background: var(--vesper-background-primary);
   border-radius: var(--vesper-radius-3);
-  border: 1px solid var(--vesper-stone-400);
+  border: 1px solid var(--vesper-border-primary);
   box-shadow: var(--vesper-shadow-300);
   max-width: calc(100vw - var(--vesper-spacing-16));
   display: flex;
@@ -80,44 +80,17 @@
 }
 
 .vesper-modal-title {
-  color: var(--vesper-stone-900);
+  color: var(--vesper-text-primary);
 }
 
 .vesper-modal-description {
-  color: var(--vesper-stone-700);
+  color: var(--vesper-text-secondary);
   margin-top: var(--vesper-spacing-2);
-}
-
-.vesper-modal-close-button {
-  padding: var(--vesper-spacing-2);
-  display: flex;
-  border-radius: var(--vesper-radius-1);
-  color: var(--vesper-stone-900);
-  background: var(--vesper-alpha-stone-100);
-  cursor: pointer;
-  > svg {
-    width: 16px;
-    height: 16px;
-  }
-  &:hover {
-    background: var(--vesper-alpha-stone-200);
-  }
-  @media (forced-colors: active) {
-    border: 1px solid CanvasText;
-    &:focus-visible {
-      outline: 2px solid CanvasText;
-    }
-  }
-  @media not (forced-colors: active) {
-    &:focus-visible {
-      box-shadow: var(--vesper-shadow-focus-ring);
-    }
-  }
 }
 
 .vesper-modal-content {
   padding: 0 var(--vesper-spacing-6);
-  color: var(--vesper-stone-900);
+  color: var(--vesper-text-primary);
   flex-shrink: 1;
   overflow-y: scroll;
   -ms-overflow-style: none;

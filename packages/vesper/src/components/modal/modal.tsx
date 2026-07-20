@@ -10,6 +10,7 @@ import {
 } from "react";
 
 import { Button, type ButtonProps } from "@/components/button/button";
+import { IconButton } from "@/components/icon-button/icon-button";
 import { Close } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 
@@ -138,14 +139,14 @@ export function Modal({
             {description}
           </Typography>
         </div>
-        <button
+        <IconButton
           aria-label="Close modal"
+          size="sm"
+          variant="subtle"
           type="button"
-          className="vesper-modal-close-button"
           onClick={close}
-        >
-          <Close />
-        </button>
+          icon={<Close />}
+        />
       </div>
       {children && (
         <Typography as="div" variant="copy-md" className="vesper-modal-content">

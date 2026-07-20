@@ -2,14 +2,14 @@
   display: flex;
   align-items: center;
   gap: var(--vesper-spacing-2);
-  &:not(.vesper-checkbox-disabled) {
+  &:not(:has(:disabled)) {
     cursor: pointer;
   }
 }
 
 .vesper-checkbox-box {
   border-radius: var(--vesper-radius-half);
-  border: 1px solid var(--vesper-stone-400);
+  border: 1px solid var(--vesper-border-primary);
   position: relative;
 }
 
@@ -47,41 +47,43 @@
   white-space: nowrap;
   border: 0;
 
-  &:checked:not(:indeterminate) + .vesper-checkbox-box {
-    background: var(--vesper-teal-400);
-    border-color: var(--vesper-teal-400);
-    .vesper-checkbox-checked-icon {
-      visibility: visible;
+  &:checked:not(:indeterminate) {
+    &:not(:disabled) + .vesper-checkbox-box {
+      background: var(--vesper-background-accent-base);
+      border-color: var(--vesper-background-accent-base);
     }
-  }
-  &:disabled + .vesper-checkbox-box {
-    border-color: var(--vesper-alpha-stone-200);
-    background: var(--vesper-alpha-stone-100);
-    .vesper-checkbox-indicator {
-      color: var(--vesper-alpha-stone-500);
+    + .vesper-checkbox-box .vesper-checkbox-checked-icon {
+      visibility: visible;
     }
   }
   &:focus-visible + .vesper-checkbox-box {
     outline-offset: 1px;
-    outline: 1px solid var(--vesper-teal-200);
+    outline: 1px solid var(--vesper-border-focus);
     @media (forced-colors: active) {
       outline-color: CanvasText;
     }
   }
   &:indeterminate + .vesper-checkbox-box {
-    background: var(--vesper-teal-400);
-    border-color: var(--vesper-teal-400);
+    background: var(--vesper-background-accent-base);
+    border-color: var(--vesper-background-accent-base);
     .vesper-checkbox-indeterminate-icon {
       visibility: visible;
+    }
+  }
+  &:disabled {
+    + .vesper-checkbox-box {
+      border-color: var(--vesper-border-disabled);
+      background: var(--vesper-background-disabled);
+      .vesper-checkbox-indicator {
+        color: var(--vesper-icon-disabled);
+      }
+    }
+    ~ .vesper-checkbox-label {
+      color: var(--vesper-text-disabled);
     }
   }
 }
 
 .vesper-checkbox-label {
-  color: var(--vesper-stone-900);
-}
-.vesper-checkbox-disabled {
-  .vesper-checkbox-label {
-    color: var(--vesper-alpha-stone-400);
-  }
+  color: var(--vesper-text-primary);
 }
