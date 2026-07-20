@@ -46,6 +46,20 @@ export interface MenuProps {
   width?: number;
 }
 
+/**
+ * A dropdown menu triggered by a child element. Built on Radix DropdownMenu.
+ *
+ * @example
+ * <Menu
+ *   align="end"
+ *   items={[
+ *     { text: "Edit", onSelect: handleEdit },
+ *     { text: "Delete", style: "danger", onSelect: handleDelete },
+ *   ]}
+ * >
+ *   <IconButton icon={<MoreIcon />} aria-label="Actions" />
+ * </Menu>
+ */
 export function Menu({
   items,
   children,
