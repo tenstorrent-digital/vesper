@@ -54,6 +54,45 @@ const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
   lg: "label-lg",
 };
 
+/**
+ * A single-select toggle group that renders a set of mutually exclusive options.
+ * Each option can display either a text label or an icon.
+ *
+ * @example
+ * // Text options
+ * <Toggle
+ *   defaultValue="grid"
+ *   options={[
+ *     { value: "list", text: "List" },
+ *     { value: "grid", text: "Grid" },
+ *   ]}
+ *   onValueChange={(value) => console.log(value)}
+ * />
+ *
+ * @example
+ * // Icon options
+ * <Toggle
+ *   defaultValue="grid"
+ *   options={[
+ *     { value: "list", icon: <ListIcon />, ariaLabel: "List view" },
+ *     { value: "grid", icon: <GridIcon />, ariaLabel: "Grid view" },
+ *   ]}
+ *   onValueChange={(value) => console.log(value)}
+ * />
+ *
+ * @example
+ * // Controlled usage
+ * const [view, setView] = useState("list");
+ *
+ * <Toggle
+ *   value={view}
+ *   onValueChange={setView}
+ *   options={[
+ *     { value: "list", text: "List" },
+ *     { value: "grid", text: "Grid" },
+ *   ]}
+ * />
+ */
 export function Toggle({
   options,
   className,
