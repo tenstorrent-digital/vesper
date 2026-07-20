@@ -47,6 +47,7 @@
   border: 1px solid var(--vesper-border-secondary);
   background: var(--vesper-background-primary);
   &.vesper-material-disabled {
+    color: var(--vesper-text-disabled);
     border-color: var(--vesper-border-disabled);
     background: var(--vesper-background-disabled);
   }

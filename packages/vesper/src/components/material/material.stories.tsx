@@ -5,6 +5,7 @@ import {
   Material,
   MATERIAL_VARIANTS,
 } from "@/components/material/material";
+import { Typography } from "@/components/typography/typography";
 
 const meta = {
   component: Material,
@@ -29,7 +30,9 @@ export const Playground: Story = {
   },
   render(props) {
     return (
-      <Material as="button" style={{ width: 200, aspectRatio: 1 }} {...props} />
+      <Material as="button" style={{ width: 200, aspectRatio: 1 }} {...props}>
+        <Typography variant="heading-md">Material</Typography>
+      </Material>
     );
   },
 };
