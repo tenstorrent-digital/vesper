@@ -25,6 +25,29 @@ export type IconButtonProps<E extends ElementType = "button"> = Polymorphic<
   "children"
 >;
 
+/**
+ * A button that renders a single icon without text. Built on top of the `Button` component.
+ *
+ * Be sure to always provide an accessible aria-label for users that rely on assistive technology.
+ *
+ * @example
+ * <IconButton
+ *   icon={<Close />}
+ *   aria-label="Close"
+ *   variant="subtle"
+ *   size="sm"
+ *   onClick={handleClose}
+ * />
+ *
+ * @example
+ * // Polymorphic usage as a link
+ * <IconButton
+ *   as="a"
+ *   href="/settings"
+ *   icon={<SettingsIcon />}
+ *   aria-label="Settings"
+ * />
+ */
 export function IconButton<E extends ElementType = "button">({
   icon,
   className,
