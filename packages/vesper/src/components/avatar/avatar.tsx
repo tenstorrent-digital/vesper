@@ -9,8 +9,11 @@ export type AvatarSize = (typeof AVATAR_SIZES)[number];
 
 export type AvatarProps<E extends ElementType = "div"> = Polymorphic<
   {
+    /** The size of the avatar. Defaults to `"md"`. */
     size?: AvatarSize;
+    /** The image source URL for the avatar. When not provided, the avatar renders as an empty placeholder. */
     src?: string;
+    /** The alt text for the avatar image. */
     alt?: string;
   },
   E,
