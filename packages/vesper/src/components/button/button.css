@@ -82,7 +82,7 @@
 
 .vesper-button-contrast {
   @media not (forced-colors: active) {
-    color: var(--vesper-stone-0);
+    color: var(--vesper-text-inverse-primary);
     background: var(--vesper-background-inverse-primary);
     &:hover {
       background:
@@ -106,7 +106,7 @@
 }
 
 .vesper-button-danger {
-  color: var(--vesper-stone-0);
+  color: var(--vesper-text-inverse-primary);
   background: var(--vesper-background-error-base);
   &:hover {
     background:
