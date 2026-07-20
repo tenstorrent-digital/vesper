@@ -29,19 +29,33 @@ export interface SplitButtonProps extends Omit<
   ComponentProps<"div">,
   "onClick"
 > {
+  /** The size of the split button, applied to both the action button and the menu toggle. Defaults to `"lg"`. */
   size?: SplitButtonSize;
+  /** The visual style variant, applied to both the action button and the menu toggle. Defaults to `"contrast"`. */
   variant?: SplitButtonVariant;
+  /** The list of menu items rendered in the dropdown when the menu toggle is clicked. */
   menuItems: MenuItemProps[];
+  /** Callback fired when the primary action button is clicked. */
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  /** An accessible `aria-label` for the menu toggle button. Defaults to `"Toggle menu"`. */
   menuButtonAriaLabel?: string;
+  /** The width of the dropdown menu in pixels. Defaults to `200`. */
   menuWidth?: MenuProps["width"];
+  /** The preferred side of the split button to render the dropdown menu against. Defaults to `"bottom"`. */
   menuSide?: MenuProps["side"];
+  /** The distance in pixels from the split button to the dropdown menu. Defaults to `8`. */
   menuSideOffset?: MenuProps["sideOffset"];
+  /** The alignment of the dropdown menu relative to the split button. Defaults to `"start"`. */
   menuAlign?: MenuProps["align"];
+  /** An offset in pixels from the aligned edge of the split button. */
   menuAlignOffset?: MenuProps["alignOffset"];
+  /** Controls the open state of the dropdown menu (controlled mode). */
   menuOpen?: MenuProps["open"];
+  /** Callback fired when the dropdown menu's open state changes. */
   onMenuOpenChange?: MenuProps["onOpenChange"];
+  /** Whether the dropdown menu is open by default (uncontrolled mode). */
   defaultMenuOpen?: MenuProps["defaultOpen"];
+  /** When `true`, disables both the action button and the menu toggle, preventing interaction. */
   disabled?: boolean;
 }
 
