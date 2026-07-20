@@ -1,6 +1,6 @@
-import { cleanup, render, within } from "@testing-library/react";
+import { cleanup, fireEvent, render, within } from "@testing-library/react";
 import axe from "axe-core";
-import { afterEach, beforeEach, describe, expect, test } from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { Tenstorrent } from "@/components/icons/icons";
 import {
@@ -155,6 +155,92 @@ describe("text-button [unit]", () => {
     expect(btn).toHaveClass("vesper-text-button-accent");
     expect(btn).toHaveClass("vesper-text-button-md");
     expect(btn).toHaveClass("custom-class");
+  });
+
+  describe("disabled as non-native element", () => {
+    test("uses aria-disabled instead of disabled", () => {
+      const result = render(
+        <TextButton as="a" href="/link" disabled>
+          Disabled Link
+        </TextButton>,
+      );
+
+      const el = result.container.firstChild;
+      expect(el).toHaveAttribute("aria-disabled", "true");
+      expect(el).not.toHaveAttribute("disabled");
+    });
+
+    test("sets tabIndex to -1", () => {
+      const result = render(
+        <TextButton as="a" href="/link" disabled>
+          Disabled Link
+        </TextButton>,
+      );
+
+      expect(result.container.firstChild).toHaveAttribute("tabindex", "-1");
+    });
+
+    test("suppresses click events", () => {
+      const onClick = vi.fn();
+      const result = render(
+        <TextButton as="a" href="/link" disabled onClick={onClick}>
+          Disabled Link
+        </TextButton>,
+      );
+
+      fireEvent.click(result.container.firstElementChild!);
+      expect(onClick).not.toHaveBeenCalled();
+    });
+
+    test("suppresses pointer events", () => {
+      const onPointerDown = vi.fn();
+      const onMouseDown = vi.fn();
+      const result = render(
+        <TextButton
+          as="a"
+          href="/link"
+          disabled
+          onPointerDown={onPointerDown}
+          onMouseDown={onMouseDown}
+        >
+          Disabled Link
+        </TextButton>,
+      );
+
+      const el = result.container.firstElementChild!;
+      fireEvent.pointerDown(el);
+      fireEvent.mouseDown(el);
+      expect(onPointerDown).not.toHaveBeenCalled();
+      expect(onMouseDown).not.toHaveBeenCalled();
+    });
+
+    test("suppresses keyboard events", () => {
+      const onKeyDown = vi.fn();
+      const onKeyUp = vi.fn();
+      const result = render(
+        <TextButton as="a" href="/link" disabled onKeyDown={onKeyDown} onKeyUp={onKeyUp}>
+          Disabled Link
+        </TextButton>,
+      );
+
+      const el = result.container.firstElementChild!;
+      fireEvent.keyDown(el, { key: "Enter" });
+      fireEvent.keyUp(el, { key: "Enter" });
+      expect(onKeyDown).not.toHaveBeenCalled();
+      expect(onKeyUp).not.toHaveBeenCalled();
+    });
+
+    test("suppresses focus events", () => {
+      const onFocus = vi.fn();
+      const result = render(
+        <TextButton as="a" href="/link" disabled onFocus={onFocus}>
+          Disabled Link
+        </TextButton>,
+      );
+
+      fireEvent.focus(result.container.firstElementChild!);
+      expect(onFocus).not.toHaveBeenCalled();
+    });
   });
 });
 
