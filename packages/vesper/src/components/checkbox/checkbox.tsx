@@ -62,9 +62,13 @@ export interface CheckboxProps
   extends
     Omit<ComponentProps<"label">, "children" | "onChange" | ForwardedPropTypes>,
     Pick<ComponentProps<"input">, ForwardedPropTypes> {
+  /** The text label displayed next to the checkbox. An asterisk is appended when `required` is true. */
   label: string;
+  /** When true, initially renders the checkbox in an indeterminate (mixed) state, displaying a dash icon instead of a checkmark. */
   indeterminate?: boolean;
+  /** The size of the checkbox and its label. Defaults to `"md"`. */
   size?: CheckboxSize;
+  /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
   inputRef?: RefObject<HTMLInputElement | null>;
 }
 
