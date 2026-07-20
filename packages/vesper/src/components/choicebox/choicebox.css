@@ -37,7 +37,7 @@
         var(--vesper-background-primary);
     }
     &:has(:checked) {
-      border-color: var(--vesper-stone-900);
+      border-color: var(--vesper-border-strong);
       background:
         linear-gradient(
           0deg,
