@@ -16,6 +16,28 @@ export type AvatarGroupProps<E extends ElementType = "div"> = Polymorphic<
   "children"
 >;
 
+/**
+ * Displays a group of avatars with a maximum of 3 visible, showing an overflow count for additional items.
+ *
+ * @example
+ * <AvatarGroup
+ *   size="md"
+ *   avatars={[
+ *     { src: "/img/user1.png", alt: "Alice" },
+ *     { src: "/img/user2.png", alt: "Bob" },
+ *     { src: "/img/user3.png", alt: "Carol" },
+ *     { src: "/img/user4.png", alt: "Dave" },
+ *   ]}
+ * />
+ *
+ * @example
+ * // Polymorphic usage
+ * <AvatarGroup
+ *   avatars={avatarData}
+ *   as="a"
+ *   href="/organization/users"
+ * />
+ */
 export function AvatarGroup<E extends ElementType = "div">(
   props: AvatarGroupProps<E>,
 ) {
