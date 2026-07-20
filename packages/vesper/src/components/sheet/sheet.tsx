@@ -32,11 +32,17 @@ export interface SheetProps extends Omit<
   ComponentPropsWithoutRef<"dialog">,
   "open" | "popover"
 > {
+  /** The title text displayed in the sheet header. Also used for the sheet's `aria-labelledby` association. */
   title: string;
+  /** A description displayed below the title in the sheet header. Also used for the sheet's `aria-describedby` association. */
   description: string;
+  /** A ref that exposes imperative `open()` and `close()` methods for controlling the sheet. Can be obtained via the `useSheet` hook. */
   ref?: RefObject<SheetRef>;
+  /** The side of the viewport the sheet slides in from. Defaults to `"right"`. */
   side?: SheetSide;
+  /** When `true`, renders the sheet as a popover instead of a modal dialog. Popovers do not render a backdrop, and allow interaction with the content behind them. Defaults to `false`. */
   popover?: boolean;
+  /** An optional array of button props to render as action buttons at the bottom of the sheet. The last button defaults to `"contrast"` variant; all others default to `"tertiary"`. */
   buttons?: Omit<ButtonProps, "size" | "as">[];
 }
 
@@ -157,6 +163,14 @@ export function Sheet({
   );
 }
 
+/**
+ * A convenience hook that returns a ref and imperative `open()` and `close()` functions for controlling a `Sheet` component.
+ *
+ * @example
+ * const { ref, open, close } = useSheet();
+ * <Sheet ref={ref} title="Example" description="An example sheet." />
+ * <Button onClick={open}>Open sheet</Button>
+ */
 export function useSheet() {
   const ref = useRef<SheetRef>({ open() {}, close() {} });
 
