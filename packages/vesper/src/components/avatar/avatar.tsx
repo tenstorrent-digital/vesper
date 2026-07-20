@@ -20,6 +20,25 @@ export type AvatarProps<E extends ElementType = "div"> = Polymorphic<
   "children"
 >;
 
+/**
+ * A circular avatar component that displays a user image or an empty placeholder.
+ *
+ * @example
+ * <Avatar src="/img/user.png" alt="Jane Doe" size="lg" />
+ *
+ * @example
+ * // Empty placeholder
+ * <Avatar size="sm" />
+ *
+ * @example
+ * // Polymorphic usage
+ * <Avatar
+ *   src="/img/user.png"
+ *   alt="Jane Doe"
+ *   as="a"
+ *   href="/settings/profile"
+ * />
+ */
 export function Avatar<E extends ElementType = "div">(props: AvatarProps<E>) {
   const {
     as: Component = "div",
