@@ -57,7 +57,7 @@ exports[`avatar-group [snapshot] > >100 avatars 1`] = `
     />
   </div>
   <div
-    class="vesper-avatar-group-overflow vesper-avatar vesper-avatar-undefined"
+    class="vesper-avatar-group-overflow vesper-avatar vesper-avatar-md"
   >
     99+
   </div>

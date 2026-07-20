@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`split-button [snapshot] > wcag2aaa (contrast, lg) 1`] = `
+exports[`split-button [snapshot] > contrast, lg 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -48,7 +48,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, lg) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (contrast, lg, disabled) 1`] = `
+exports[`split-button [snapshot] > contrast, lg, disabled 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -98,7 +98,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, lg, disabled) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (contrast, lg, disabled, open) 1`] = `
+exports[`split-button [snapshot] > contrast, lg, disabled, open 1`] = `
 <div
   aria-hidden="true"
   data-aria-hidden="true"
@@ -108,6 +108,8 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, lg, disabled, open) 1`] =
     aria-expanded="true"
     aria-haspopup="menu"
     class="vesper-split-button"
+    data-radix-popper-align="start"
+    data-radix-popper-side="bottom"
     data-state="open"
     id="radix-_r_4g_"
     type="button"
@@ -152,7 +154,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, lg, disabled, open) 1`] =
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (contrast, lg, open) 1`] = `
+exports[`split-button [snapshot] > contrast, lg, open 1`] = `
 <div
   aria-hidden="true"
   data-aria-hidden="true"
@@ -162,6 +164,8 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, lg, open) 1`] = `
     aria-expanded="true"
     aria-haspopup="menu"
     class="vesper-split-button"
+    data-radix-popper-align="start"
+    data-radix-popper-side="bottom"
     data-state="open"
     id="radix-_r_47_"
     type="button"
@@ -204,7 +208,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, lg, open) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (contrast, md) 1`] = `
+exports[`split-button [snapshot] > contrast, md 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -252,7 +256,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, md) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (contrast, md, disabled) 1`] = `
+exports[`split-button [snapshot] > contrast, md, disabled 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -302,7 +306,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, md, disabled) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (contrast, md, disabled, open) 1`] = `
+exports[`split-button [snapshot] > contrast, md, disabled, open 1`] = `
 <div
   aria-hidden="true"
   data-aria-hidden="true"
@@ -312,6 +316,8 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, md, disabled, open) 1`] =
     aria-expanded="true"
     aria-haspopup="menu"
     class="vesper-split-button"
+    data-radix-popper-align="start"
+    data-radix-popper-side="bottom"
     data-state="open"
     id="radix-_r_3u_"
     type="button"
@@ -356,7 +362,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, md, disabled, open) 1`] =
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (contrast, md, open) 1`] = `
+exports[`split-button [snapshot] > contrast, md, open 1`] = `
 <div
   aria-hidden="true"
   data-aria-hidden="true"
@@ -366,6 +372,8 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, md, open) 1`] = `
     aria-expanded="true"
     aria-haspopup="menu"
     class="vesper-split-button"
+    data-radix-popper-align="start"
+    data-radix-popper-side="bottom"
     data-state="open"
     id="radix-_r_3l_"
     type="button"
@@ -408,7 +416,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, md, open) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (contrast, sm) 1`] = `
+exports[`split-button [snapshot] > contrast, sm 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -456,7 +464,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, sm) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (contrast, sm, disabled) 1`] = `
+exports[`split-button [snapshot] > contrast, sm, disabled 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -506,7 +514,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, sm, disabled) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (contrast, sm, disabled, open) 1`] = `
+exports[`split-button [snapshot] > contrast, sm, disabled, open 1`] = `
 <div
   aria-hidden="true"
   data-aria-hidden="true"
@@ -516,6 +524,8 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, sm, disabled, open) 1`] =
     aria-expanded="true"
     aria-haspopup="menu"
     class="vesper-split-button"
+    data-radix-popper-align="start"
+    data-radix-popper-side="bottom"
     data-state="open"
     id="radix-_r_3c_"
     type="button"
@@ -560,7 +570,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, sm, disabled, open) 1`] =
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (contrast, sm, open) 1`] = `
+exports[`split-button [snapshot] > contrast, sm, open 1`] = `
 <div
   aria-hidden="true"
   data-aria-hidden="true"
@@ -570,6 +580,8 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, sm, open) 1`] = `
     aria-expanded="true"
     aria-haspopup="menu"
     class="vesper-split-button"
+    data-radix-popper-align="start"
+    data-radix-popper-side="bottom"
     data-state="open"
     id="radix-_r_33_"
     type="button"
@@ -612,7 +624,7 @@ exports[`split-button [snapshot] > wcag2aaa (contrast, sm, open) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (subtle, lg) 1`] = `
+exports[`split-button [snapshot] > subtle, lg 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -660,7 +672,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, lg) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (subtle, lg, disabled) 1`] = `
+exports[`split-button [snapshot] > subtle, lg, disabled 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -710,7 +722,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, lg, disabled) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (subtle, lg, disabled, open) 1`] = `
+exports[`split-button [snapshot] > subtle, lg, disabled, open 1`] = `
 <div
   aria-hidden="true"
   data-aria-hidden="true"
@@ -720,6 +732,8 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, lg, disabled, open) 1`] = `
     aria-expanded="true"
     aria-haspopup="menu"
     class="vesper-split-button"
+    data-radix-popper-align="start"
+    data-radix-popper-side="bottom"
     data-state="open"
     id="radix-_r_2q_"
     type="button"
@@ -764,7 +778,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, lg, disabled, open) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (subtle, lg, open) 1`] = `
+exports[`split-button [snapshot] > subtle, lg, open 1`] = `
 <div
   aria-hidden="true"
   data-aria-hidden="true"
@@ -774,6 +788,8 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, lg, open) 1`] = `
     aria-expanded="true"
     aria-haspopup="menu"
     class="vesper-split-button"
+    data-radix-popper-align="start"
+    data-radix-popper-side="bottom"
     data-state="open"
     id="radix-_r_2h_"
     type="button"
@@ -816,7 +832,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, lg, open) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (subtle, md) 1`] = `
+exports[`split-button [snapshot] > subtle, md 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -864,7 +880,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, md) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (subtle, md, disabled) 1`] = `
+exports[`split-button [snapshot] > subtle, md, disabled 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -914,7 +930,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, md, disabled) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (subtle, md, disabled, open) 1`] = `
+exports[`split-button [snapshot] > subtle, md, disabled, open 1`] = `
 <div
   aria-hidden="true"
   data-aria-hidden="true"
@@ -924,6 +940,8 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, md, disabled, open) 1`] = `
     aria-expanded="true"
     aria-haspopup="menu"
     class="vesper-split-button"
+    data-radix-popper-align="start"
+    data-radix-popper-side="bottom"
     data-state="open"
     id="radix-_r_28_"
     type="button"
@@ -968,7 +986,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, md, disabled, open) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (subtle, md, open) 1`] = `
+exports[`split-button [snapshot] > subtle, md, open 1`] = `
 <div
   aria-hidden="true"
   data-aria-hidden="true"
@@ -978,6 +996,8 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, md, open) 1`] = `
     aria-expanded="true"
     aria-haspopup="menu"
     class="vesper-split-button"
+    data-radix-popper-align="start"
+    data-radix-popper-side="bottom"
     data-state="open"
     id="radix-_r_1v_"
     type="button"
@@ -1020,7 +1040,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, md, open) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (subtle, sm) 1`] = `
+exports[`split-button [snapshot] > subtle, sm 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -1068,7 +1088,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, sm) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (subtle, sm, disabled) 1`] = `
+exports[`split-button [snapshot] > subtle, sm, disabled 1`] = `
 <div>
   <div
     aria-expanded="false"
@@ -1118,7 +1138,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, sm, disabled) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (subtle, sm, disabled, open) 1`] = `
+exports[`split-button [snapshot] > subtle, sm, disabled, open 1`] = `
 <div
   aria-hidden="true"
   data-aria-hidden="true"
@@ -1128,6 +1148,8 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, sm, disabled, open) 1`] = `
     aria-expanded="true"
     aria-haspopup="menu"
     class="vesper-split-button"
+    data-radix-popper-align="start"
+    data-radix-popper-side="bottom"
     data-state="open"
     id="radix-_r_1m_"
     type="button"
@@ -1172,7 +1194,7 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, sm, disabled, open) 1`] = `
 </div>
 `;
 
-exports[`split-button [snapshot] > wcag2aaa (subtle, sm, open) 1`] = `
+exports[`split-button [snapshot] > subtle, sm, open 1`] = `
 <div
   aria-hidden="true"
   data-aria-hidden="true"
@@ -1182,6 +1204,8 @@ exports[`split-button [snapshot] > wcag2aaa (subtle, sm, open) 1`] = `
     aria-expanded="true"
     aria-haspopup="menu"
     class="vesper-split-button"
+    data-radix-popper-align="start"
+    data-radix-popper-side="bottom"
     data-state="open"
     id="radix-_r_1d_"
     type="button"
