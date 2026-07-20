@@ -387,10 +387,6 @@
   --transition-duration-vesper-slow: var(--vesper-transition-duration-slow);
 }
 
-@utility bg-vesper-dot-pattern {
-  background: var(--vesper-bg-dot-pattern);
-}
-
 @utility bg-vesper-dot-pattern-primary {
   background: var(--vesper-bg-dot-pattern-primary);
 }
