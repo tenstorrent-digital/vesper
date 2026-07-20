@@ -6,7 +6,6 @@ exports[`accordion [snapshot] > closed 1`] = `
   data-state="closed"
 >
   <button
-    aria-controls="radix-_r_3_"
     aria-expanded="false"
     class="vesper-typography vesper-typography-label-md-bold vesper-accordion-trigger"
     data-state="closed"

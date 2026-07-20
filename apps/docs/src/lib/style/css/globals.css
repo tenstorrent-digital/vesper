@@ -1,0 +1,9 @@
+@import "tailwindcss" source("../../..");
+/*
+  1. import tailwind
+  2. set base path for detecting classes in source files (`src/` directory)
+    - See https://tailwindcss.com/docs/detecting-classes-in-source-files#setting-your-base-path
+*/
+
+@import "@repo/vesper/styles.css";
+@import "@repo/vesper/tailwind.css";
