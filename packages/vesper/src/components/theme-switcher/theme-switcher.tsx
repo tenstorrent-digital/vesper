@@ -14,6 +14,7 @@ export interface ThemeSwitcherProps extends Omit<
   ComponentProps<"div">,
   "children"
 > {
+  /** The size of the theme switcher. Defaults to `"lg"`. */
   size?: ThemeSwitcherSize;
 }
 
