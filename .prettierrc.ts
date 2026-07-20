@@ -27,6 +27,17 @@ const config: Config = {
         trailingComma: "none",
       },
     },
+
+    /**
+     * use the tailwindcss plugin for the docs app
+     */
+    {
+      files: ["apps/docs/**"],
+      options: {
+        plugins: ["prettier-plugin-tailwindcss"],
+        tailwindFunctions: ["clsx", "cn"],
+      },
+    },
   ],
 };
 

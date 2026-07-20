@@ -17,7 +17,7 @@ export function proxy(request: NextRequest) {
     process.env.NODE_ENV === "development" &&
     pathname.startsWith("/storybook/")
   ) {
-    const storybookPath = pathname.slice("/storybook".length) || "/";
+    const storybookPath = pathname.slice("/storybook".length);
     const destination = `${STORYBOOK_URL}${storybookPath}`;
     return NextResponse.rewrite(new URL(destination));
   }
