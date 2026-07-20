@@ -4,11 +4,11 @@
   --vesper-image-dot-inverse: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjIiIGhlaWdodD0iMiIgZmlsbD0iI0YxRjhGOCIgZmlsbC1vcGFjaXR5PSIwLjE1Ii8+Cjwvc3ZnPgo=");
   /* dot battern backgrounds */
   --vesper-bg-dot-pattern-primary: var(--vesper-image-dot) repeat top
-    var(--vesper-stone-0);
+    var(--vesper-background-primary);
   --vesper-bg-dot-pattern-secondary: var(--vesper-image-dot) repeat top
-    var(--vesper-stone-50);
+    var(--vesper-background-secondary);
   --vesper-bg-dot-pattern-tertiary: var(--vesper-image-dot) repeat top
-    var(--vesper-stone-100);
+    var(--vesper-background-tertiary);
   --vesper-bg-dot-pattern-inverse: var(--vesper-image-dot-inverse) repeat top
-    var(--vesper-stone-900);
+    var(--vesper-background-inverse-primary);
 }
