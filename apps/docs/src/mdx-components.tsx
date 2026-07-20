@@ -43,12 +43,12 @@ const components = {
     </Typography>
   ),
   p: (props) => (
-    <Typography as="p" variant="copy-md">
+    <Typography as="p" variant="copy-sm">
       {props.children}
     </Typography>
   ),
   strong: (props) => (
-    <Typography as="strong" variant="copy-md-bold">
+    <Typography as="strong" variant="copy-sm-bold">
       {props.children}
     </Typography>
   ),
