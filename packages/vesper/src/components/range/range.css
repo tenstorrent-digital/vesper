@@ -12,6 +12,7 @@
 .vesper-range-track {
   display: block;
   position: relative;
+  isolation: isolate;
   height: 16px;
   width: 100%;
   &::before {
