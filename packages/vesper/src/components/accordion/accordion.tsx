@@ -1,7 +1,7 @@
+import type { ComponentProps } from "react";
 import {
   Collapsible,
   CollapsibleContent,
-  type CollapsibleProps,
   CollapsibleTrigger,
 } from "@radix-ui/react-collapsible";
 
@@ -10,10 +10,10 @@ import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
 
-export interface AccordionProps extends Omit<
-  CollapsibleProps,
-  "disabled" | "asChild"
-> {
+export interface AccordionProps extends ComponentProps<"div"> {
+  defaultOpen?: boolean;
+  open?: boolean;
+  onOpenChange?(open: boolean): void;
   title: string;
 }
 

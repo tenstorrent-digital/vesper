@@ -4,7 +4,11 @@ import { Accordion } from "@/components/accordion/accordion";
 
 const meta = {
   component: Accordion,
-  argTypes: {},
+  argTypes: {
+    defaultOpen: { table: { disable: true } },
+    open: { table: { disable: true } },
+    onOpenChange: { table: { disable: true } },
+  },
 } satisfies Meta<typeof Accordion>;
 
 export default meta;
