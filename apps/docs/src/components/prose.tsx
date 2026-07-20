@@ -2,7 +2,7 @@
 
 import { ReactNode } from "react";
 
-const Content = ({ children }: { children: ReactNode }) => {
+const Prose = ({ children }: { children: ReactNode }) => {
   return (
     <main className="flex flex-col gap-4 p-4 w-full mt-16 mx-auto max-w-prose">
       {children}
@@ -10,4 +10,4 @@ const Content = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default Content;
+export default Prose;
