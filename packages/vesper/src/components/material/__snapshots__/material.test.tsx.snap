@@ -34,7 +34,6 @@ exports[`material [snapshot] > interactive, disabled 1`] = `
 <div
   aria-disabled="true"
   class="vesper-material vesper-material-interactive vesper-material-disabled"
-  disabled=""
   tabindex="-1"
 />
 `;

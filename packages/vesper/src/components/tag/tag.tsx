@@ -1,8 +1,9 @@
-import type { ElementType, ReactNode, SyntheticEvent } from "react";
+import type { ElementType, ReactNode } from "react";
 
 import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import { getDisabledProps } from "@/utils/getDisabledProps";
 import type { Polymorphic } from "@/utils/polymorphic";
 
 export const TAG_SIZES = ["sm", "md", "lg"] as const;
@@ -48,11 +49,6 @@ export function Tag<E extends ElementType = "div">(props: TagProps<E>) {
     ...rest
   } = props;
 
-  function suppressEvent(e: SyntheticEvent) {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
   return (
     <Component
       className={cn(
@@ -62,17 +58,7 @@ export function Tag<E extends ElementType = "div">(props: TagProps<E>) {
         className,
       )}
       {...rest}
-      {...(disabled && {
-        disabled: true,
-        ["aria-disabled"]: true,
-        tabIndex: -1,
-        onClickCapture: suppressEvent,
-        onMouseDownCapture: suppressEvent,
-        onPointerDownCapture: suppressEvent,
-        onKeyDownCapture: suppressEvent,
-        onKeyUpCapture: suppressEvent,
-        onFocusCapture: suppressEvent,
-      })}
+      {...getDisabledProps(Component, !!disabled)}
     >
       {icon && <span className="vesper-tag-icon">{icon}</span>}
       <Typography as="span" variant="label-xs">

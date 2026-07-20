@@ -1,6 +1,7 @@
-import type { ElementType, SyntheticEvent } from "react";
+import type { ElementType } from "react";
 
 import { cn } from "@/utils/cn";
+import { getDisabledProps } from "@/utils/getDisabledProps";
 import { Polymorphic } from "@/utils/polymorphic";
 
 export const BUTTON_SIZES = ["xs", "sm", "md", "lg"] as const;
@@ -55,13 +56,6 @@ export function Material<E extends ElementType = "div">(
     ...rest
   } = props;
 
-  const isDisabled = state === "disabled";
-
-  function suppressEvent(e: SyntheticEvent) {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
   return (
     <Component
       className={cn(
@@ -71,17 +65,7 @@ export function Material<E extends ElementType = "div">(
         className,
       )}
       {...rest}
-      {...(isDisabled && {
-        disabled: true,
-        ["aria-disabled"]: true,
-        tabIndex: -1,
-        onClickCapture: suppressEvent,
-        onMouseDownCapture: suppressEvent,
-        onPointerDownCapture: suppressEvent,
-        onKeyDownCapture: suppressEvent,
-        onKeyUpCapture: suppressEvent,
-        onFocusCapture: suppressEvent,
-      })}
+      {...getDisabledProps(Component, state === "disabled")}
     />
   );
 }

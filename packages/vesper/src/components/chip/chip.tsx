@@ -6,6 +6,7 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import { getDisabledProps } from "@/utils/getDisabledProps";
 import type { Polymorphic } from "@/utils/polymorphic";
 
 export const CHIP_VARIANTS = ["default", "contrast"] as const;
@@ -44,7 +45,6 @@ export function Chip<E extends ElementType = "button">(props: ChipProps<E>) {
       as={Component}
       variant="label-md"
       aria-pressed={Component === "button" ? selected : undefined}
-      disabled={disabled}
       className={cn(
         "vesper-chip",
         `vesper-chip-${variant}`,
@@ -64,6 +64,7 @@ export function Chip<E extends ElementType = "button">(props: ChipProps<E>) {
         onClick?.(e);
       }}
       {...(rest as TypographyProps<E>)}
+      {...getDisabledProps(Component, !!disabled)}
     >
       {iconLeft && <span className="vesper-chip-icon">{iconLeft}</span>}
       {children}

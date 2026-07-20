@@ -1,6 +1,7 @@
 import type { ElementType, ReactNode } from "react";
 
 import { cn } from "@/utils/cn";
+import { getDisabledProps } from "@/utils/getDisabledProps";
 import type { Polymorphic } from "@/utils/polymorphic";
 
 export const BUTTON_SIZES = ["xs", "sm", "md", "lg"] as const;
@@ -53,8 +54,8 @@ export function Button<E extends ElementType = "button">(
         `vesper-button-${disabled ? "disabled" : variant}`,
         className,
       )}
-      disabled={disabled}
       {...rest}
+      {...getDisabledProps(Component, !!disabled)}
     >
       {iconLeft && <span className="vesper-button-icon">{iconLeft}</span>}
       {children}

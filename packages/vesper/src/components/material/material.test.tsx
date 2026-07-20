@@ -68,13 +68,23 @@ describe("material [unit]", () => {
     });
   });
 
-  test("disabled state adds aria-disabled", () => {
+  test("disabled state adds aria-disabled for non-form elements", () => {
     const result = render(<Material variant="interactive" state="disabled" />);
 
     expect(result.container.firstChild).toHaveAttribute(
       "aria-disabled",
       "true",
     );
+    expect(result.container.firstChild).not.toHaveAttribute("disabled");
+  });
+
+  test("disabled state adds disabled attribute for button elements", () => {
+    const result = render(
+      <Material as="button" variant="interactive" state="disabled" />,
+    );
+
+    expect(result.container.firstChild).toHaveAttribute("disabled");
+    expect(result.container.firstChild).not.toHaveAttribute("aria-disabled");
   });
 
   test("non-disabled states do not add aria-disabled", () => {

@@ -57,7 +57,7 @@ describe("tag [unit]", () => {
     });
   });
 
-  test("disabled state class and aria attribute", () => {
+  test("disabled state class and aria-disabled for non-form elements", () => {
     const result = render(<Tag disabled>Disabled</Tag>);
 
     expect(result.container.firstChild).toHaveClass("vesper-tag-disabled");
@@ -65,6 +65,19 @@ describe("tag [unit]", () => {
       "aria-disabled",
       "true",
     );
+    expect(result.container.firstChild).not.toHaveAttribute("disabled");
+  });
+
+  test("disabled state uses disabled attribute for button elements", () => {
+    const result = render(
+      <Tag as="button" disabled>
+        Disabled
+      </Tag>,
+    );
+
+    expect(result.container.firstChild).toHaveClass("vesper-tag-disabled");
+    expect(result.container.firstChild).toHaveAttribute("disabled");
+    expect(result.container.firstChild).not.toHaveAttribute("aria-disabled");
   });
 
   test("not disabled by default", () => {
