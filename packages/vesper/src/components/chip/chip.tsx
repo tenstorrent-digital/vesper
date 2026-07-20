@@ -55,11 +55,6 @@ export function Chip<E extends ElementType = "button">(props: ChipProps<E>) {
       // TypeScript cannot infer the type of onClick because this component is polymorphic
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onClick={(e: any) => {
-        if (props.disabled) {
-          e.preventDefault();
-          e.stopPropagation();
-          return;
-        }
         onChange?.(!selected);
         onClick?.(e);
       }}
