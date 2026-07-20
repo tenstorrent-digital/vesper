@@ -70,6 +70,38 @@ export type ChoiceboxProps =
   | ChoiceboxSingleSelectProps
   | ChoiceboxMultiSelectProps;
 
+/**
+ * A selection component that renders a group of card-style options.
+ * Supports both single-select (radio) and multi-select (checkbox) modes.
+ *
+ * @example
+ * // Single select
+ * const [plan, setPlan] = useState("free")
+ * <Choicebox
+ *   name="plan"
+ *   value={plan}
+ *   options={[
+ *     { value: "free", label: "Free", description: "Basic features" },
+ *     { value: "pro", label: "Pro", description: "All features" },
+ *   ]}
+ *   onChange={setPlan}
+ * />
+ *
+ * @example
+ * // Multi-select with min/max constraints
+ * <Choicebox
+ *   multiselect
+ *   name="features"
+ *   min={1}
+ *   max={3}
+ *   options={[
+ *     { value: "sso", label: "SSO" },
+ *     { value: "2fa", label: "2FA" },
+ *     { value: "audit", label: "Audit logs" },
+ *   ]}
+ *   onChange={(values) => console.log(values)}
+ * />
+ */
 export function Choicebox(props: ChoiceboxProps) {
   if (props.multiselect) return <ChoiceboxMultiSelect {...props} />;
   return <ChoiceboxSingleSelect {...props} />;
