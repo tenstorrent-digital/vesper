@@ -7,11 +7,18 @@ import {
   useRef,
   useState,
 } from "react";
+import * as jsxRuntime from "react/jsx-runtime";
 import {
+  createHighlighterCoreSync,
   getTokenStyleObject,
+  type HighlighterCore,
+  type LanguageRegistration,
   type ShikiTransformer,
-  ThemedToken,
+  type ThemedToken,
 } from "@shikijs/core";
+import { createJavaScriptRegexEngine } from "@shikijs/engine-javascript";
+import { CodeToTokenTransformStream } from "@shikijs/stream";
+import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Copy } from "@/components/icons/icons";
@@ -20,13 +27,11 @@ import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
 import { generateId } from "@/utils/generateId";
 
-import { store } from "./store";
-
-export const { setupCodeBlock } = store;
+import { theme } from "./theme";
 
 export interface CodeBlockProps extends Omit<
   ComponentProps<"div">,
-  "children" | "dangerouslySetInnerHTML"
+  "children" | "dangerouslySetInnerHTML" | "lang"
 > {
   /**
    * The language syntax of the supplied code. The language must correspond to one of the languages registered when calling `setupCodeBlock`. Omitting this prop will render supplied code as plain text with no syntax highlighting.
@@ -36,7 +41,7 @@ export interface CodeBlockProps extends Omit<
    *   const count = 0
    * </CodeBlock>
    * */
-  lang?: string;
+  lang?: LanguageRegistration[] | "text" | "ansi";
   /**
    * The code to render. Can be a `string`, or a `ReadableStream<string>` if you wish to stream something like build logs, output from an LLM, etc.
    *
@@ -70,31 +75,37 @@ export interface CodeBlockProps extends Omit<
   transformers?: ShikiTransformer[];
 }
 
-/**
- * Render code with highlighted syntax in a code block with a copy-to-clipboard button. Code by default is rendered as plain text unless a specified `lang` prop is supplied.
- *
- * Prior to usage, you _must_ call the `setupCodeBlock` function exported from this module once in your application. Zero languages are configured out-of-the-box, so you will need to supply your own language grammars when calling `setupCodeBlock`.
- *
- * @example
- * await setupCodeBlock({
- *   langs: [
- *     import("@shikijs/langs/javacript"),
- *     // any other languages you wish to support
- *   ],
- * });
- *
- * <CodeBlock lang="javascript">
- *   const count = 0
- * </CodeBlock>
- * */
+let highlighter: HighlighterCore;
+
+function getHighlighter() {
+  highlighter ??= createHighlighterCoreSync({
+    langs: [],
+    engine: createJavaScriptRegexEngine({ forgiving: true }),
+    themes: [theme],
+  });
+  return highlighter;
+}
+
+export function registerLanguage(language: LanguageRegistration[]) {
+  const highlighter = getHighlighter();
+  const langName = language[0]?.name;
+  if (langName && !highlighter.getLoadedLanguages().includes(langName)) {
+    highlighter.loadLanguageSync(language);
+  }
+}
+
 export function CodeBlock({
   className,
   children: code = "",
-  lang = "text",
+  lang,
   showLineNumbers = false,
   transformers,
   ...props
 }: CodeBlockProps) {
+  if (lang && typeof lang !== "string") {
+    registerLanguage(lang);
+  }
+
   const ref = useRef<HTMLDivElement>(null);
 
   const shouldAutoScroll = useRef(true);
@@ -133,9 +144,17 @@ export function CodeBlock({
         ref={ref}
       >
         {typeof code === "string" ? (
-          store.codeToJsx({ code, lang, transformers })
+          toJsxRuntime(
+            getHighlighter().codeToHast(code, {
+              lang: getLangName(lang),
+              theme: "vesper",
+              transformers,
+              tabindex: false,
+            }),
+            jsxRuntime,
+          )
         ) : (
-          <TokenStreamRenderer code={code} lang={lang} />
+          <TokenStreamRenderer code={code} lang={getLangName(lang)} />
         )}
       </Typography>
       <IconButton
@@ -191,8 +210,15 @@ function TokenStreamRenderer({
 
     const controller = new AbortController();
 
-    store
-      .codeToStream({ code, lang })
+    code
+      .pipeThrough(
+        new CodeToTokenTransformStream({
+          highlighter: getHighlighter(),
+          lang,
+          theme: "vesper",
+          allowRecalls: true,
+        }),
+      )
       .pipeTo(
         new WritableStream({
           write(token) {
@@ -222,3 +248,6 @@ function TokenStreamRenderer({
     </pre>
   );
 }
+
+const getLangName = (lang?: LanguageRegistration[] | "text" | "ansi") =>
+  typeof lang === "string" ? lang : lang?.[0]?.name || "text";
