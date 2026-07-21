@@ -92,7 +92,7 @@ interface TextInputBaseProps {
   variant?: TextInputVariant;
   /** An optional message displayed below the input, paired with a variant-specific icon. Also linked to the input via `aria-describedby`. */
   message?: string;
-  /** An optional label displayed above the input. When provided, renders a `<label>` element associated with the input via `htmlFor`. An asterisk is appended when `required` is `true`. */
+  /** An optional label displayed above the input. The input is associated by nesting; when `id` is provided, it is also associated via `htmlFor`. An asterisk is appended when `required` is `true`. */
   label?: string;
 }
 
