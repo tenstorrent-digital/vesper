@@ -64,9 +64,13 @@ export interface CheckboxProps
   extends
     Omit<ComponentProps<"label">, "children" | "onChange" | ForwardedPropTypes>,
     Pick<ComponentProps<"input">, ForwardedPropTypes> {
+  /** The text label displayed next to the checkbox. An asterisk is appended when `required` is true. */
   label: string;
+  /** When true, renders the checkbox in an indeterminate (mixed) state, displaying a dash icon instead of a checkmark. */
   indeterminate?: boolean;
+  /** The size of the checkbox and its label. Defaults to `"md"`. */
   size?: CheckboxSize;
+  /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
   inputRef?: RefObject<HTMLInputElement | null>;
 }
 
@@ -75,52 +79,54 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
   md: "label-lg",
 };
 
-export function Checkbox({
-  // component-specific props
-  label,
-  size = "md",
-  indeterminate,
-  inputRef,
-  // props forwarded to the inner input
-  id,
-  form,
-  value,
-  autoFocus,
-  disabled,
-  name,
-  required,
-  checked,
-  defaultChecked,
-  role,
-  tabIndex,
-  "aria-label": ariaLabel,
-  "aria-labelledby": ariaLabelledby,
-  "aria-describedby": ariaDescribedby,
-  "aria-invalid": ariaInvalid,
-  onFocus,
-  onFocusCapture,
-  onBlur,
-  onBlurCapture,
-  onChange,
-  onChangeCapture,
-  onBeforeInput,
-  onBeforeInputCapture,
-  onInput,
-  onInputCapture,
-  onReset,
-  onResetCapture,
-  onSubmit,
-  onSubmitCapture,
-  onInvalid,
-  onInvalidCapture,
-  onKeyDown,
-  onKeyDownCapture,
-  onKeyUp,
-  onKeyUpCapture,
-  // props spread onto the wrapper label
-  className,
-  ...props
-}: CheckboxProps) {
+export function Checkbox(props: CheckboxProps) {
+  const {
+    // component-specific props
+    label,
+    size = "md",
+    indeterminate,
+    inputRef,
+    // props forwarded to the inner input
+    id,
+    form,
+    value,
+    autoFocus,
+    disabled,
+    name,
+    required,
+    checked,
+    defaultChecked,
+    role,
+    tabIndex,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby,
+    "aria-describedby": ariaDescribedby,
+    "aria-invalid": ariaInvalid,
+    onFocus,
+    onFocusCapture,
+    onBlur,
+    onBlurCapture,
+    onChange,
+    onChangeCapture,
+    onBeforeInput,
+    onBeforeInputCapture,
+    onInput,
+    onInputCapture,
+    onReset,
+    onResetCapture,
+    onSubmit,
+    onSubmitCapture,
+    onInvalid,
+    onInvalidCapture,
+    onKeyDown,
+    onKeyDownCapture,
+    onKeyUp,
+    onKeyUpCapture,
+    // props spread onto the wrapper label
+    className,
+    ...rest
+  } = props;
+
   const ref = useRef<HTMLInputElement>(null);
   useLayoutEffect(() => {
     if (ref.current) ref.current.indeterminate = !!indeterminate;
@@ -131,7 +137,7 @@ export function Checkbox({
   return (
     <label
       className={cn("vesper-checkbox", `vesper-checkbox-${size}`, className)}
-      {...props}
+      {...rest}
     >
       <input
         ref={ref}

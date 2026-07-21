@@ -35,11 +35,20 @@ export type AdmonitionProps<
   C extends ElementType = "button",
 > = Polymorphic<
   {
+    /** The size of the admonition. Affects padding and typography. Defaults to `"sm"`. */
     size?: AdmonitionSize;
+    /** The visual variant of the admonition, which determines its color scheme and icon. Default to `"info"`. */
     variant?: AdmonitionVariant;
+    /** When `true`, renders the admonition with a more subdued, subtle appearance. */
     subtle?: boolean;
-    ctaAs?: C;
+    /**
+     * Props passed to the optional call-to-action button rendered alongside the admonition content.
+     *
+     * The presence of this prop will render a small contrast-themed button to the right of the admonition content.
+     */
     cta?: Omit<ButtonProps<C>, "size" | "variant" | "as">;
+    /** Sets the `ElementType` the cta will render as. Defaults to `"button"`. */
+    ctaAs?: C;
   },
   E
 >;
@@ -91,6 +100,7 @@ export function Admonition<
       </div>
       {cta && (
         <Button
+          type="button"
           {...(cta as ButtonProps<E>)}
           as={ctaAs}
           variant="contrast"

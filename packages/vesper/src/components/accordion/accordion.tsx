@@ -1,7 +1,7 @@
+import type { ComponentProps } from "react";
 import {
   Collapsible,
   CollapsibleContent,
-  type CollapsibleProps,
   CollapsibleTrigger,
 } from "@radix-ui/react-collapsible";
 
@@ -10,10 +10,14 @@ import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
 
-export interface AccordionProps extends Omit<
-  CollapsibleProps,
-  "disabled" | "asChild"
-> {
+export interface AccordionProps extends ComponentProps<"div"> {
+  /** Whether the accordion is open by default (uncontrolled mode). */
+  defaultOpen?: boolean;
+  /** Controls the open state of the accordion (controlled mode). */
+  open?: boolean;
+  /** Callback fired when the open state changes. Receives the new open state as an argument. */
+  onOpenChange?(open: boolean): void;
+  /** The title text displayed in the accordion trigger. */
   title: string;
 }
 

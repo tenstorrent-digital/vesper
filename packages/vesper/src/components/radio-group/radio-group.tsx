@@ -16,9 +16,13 @@ export type RadioSize = (typeof RADIO_SIZES)[number];
 export type RadioGroupOrientation = (typeof RADIO_GROUP_ORIENTATIONS)[number];
 
 export type RadioGroupItem = {
+  /** The value associated with this radio option, used to identify it in selection callbacks. */
   value: string;
+  /** The text label displayed next to the radio input. */
   label: string;
+  /** When true, prevents this individual option from being selected. */
   disabled?: boolean;
+  /** An optional HTML `id` attribute applied to the underlying radio input element. */
   id?: string;
 };
 
@@ -26,13 +30,21 @@ export interface RadioGroupProps extends Omit<
   ComponentProps<"fieldset">,
   "children" | "onChange" | "defaultValue"
 > {
+  /** The size of the radio inputs and their labels. Default to `"md"`. */
   size?: RadioSize;
+  /** The layout direction of the radio options. Default to `"vertical"`. */
   orientation?: RadioGroupOrientation;
+  /** When `true`, a selection is required for form validation. */
   required?: boolean;
+  /** The list of radio options to render. */
   options: RadioGroupItem[];
+  /** The name attribute shared by all radio inputs in the group, used for form submission. */
   name: string;
+  /** The currently selected value (controlled mode). */
   value?: string;
+  /** The initially selected value (uncontrolled mode). */
   defaultValue?: string;
+  /** Callback fired when the selected value changes. Receives the newly selected value. */
   onChange?(value: string): void;
 }
 

@@ -15,11 +15,17 @@ export type ChipVariant = (typeof CHIP_VARIANTS)[number];
 
 export type ChipProps<E extends ElementType = "button"> = Polymorphic<
   {
+    /** The visual style variant of the chip. Defaults to `"default"` */
     variant?: ChipVariant;
+    /** An optional icon element rendered to the left of the chip content. */
     iconLeft?: ReactNode;
+    /** An optional icon element rendered to the right of the chip content. */
     iconRight?: ReactNode;
+    /** Whether the chip is currently selected. When rendered as a button, this value is reflected via `aria-pressed`. */
     selected?: boolean;
+    /** When `true`, renders the chip in a disabled state and prevents interaction. */
     disabled?: boolean;
+    /** Callback fired when the chip is clicked. Receives the next selected state as an argument. */
     onChange?(selected: boolean): void;
   },
   E

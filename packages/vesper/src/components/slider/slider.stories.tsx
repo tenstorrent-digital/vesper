@@ -12,6 +12,8 @@ const meta = {
     onValueCommit: { table: { disable: true } },
     thumbAriaLabel: { table: { disable: true } },
     valueLabel: { table: { disable: true } },
+    name: { table: { disable: true } },
+    form: { table: { disable: true } },
   },
 } satisfies Meta<typeof Slider>;
 

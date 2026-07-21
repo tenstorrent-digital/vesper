@@ -29,12 +29,16 @@ export type InteractiveMaterialState =
   (typeof INTERACTIVE_MATERIAL_STATES)[number];
 
 type NonInteractiveMaterialProps = {
+  /** The visual style variant of the material surface. Defaults to `"outlined"`. */
   variant?: Exclude<MaterialVariant, "interactive">;
+  /** The current interaction state of the material surface. Only applicable when `variant` is `"interactive"`. */
   state?: never;
 };
 
 type InteractiveMaterialProps = {
+  /** Must be set to `"interactive"` to enable interactive states such as active, selected, and disabled. */
   variant: Extract<MaterialVariant, "interactive">;
+  /** The current interaction state of the material surface. Only applicable when `variant` is `"interactive"`. */
   state?: InteractiveMaterialState;
 };
 

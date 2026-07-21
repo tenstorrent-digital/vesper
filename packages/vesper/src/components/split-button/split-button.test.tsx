@@ -195,10 +195,9 @@ describe("split-button [unit]", () => {
 describe("split-button [snapshot]", () => {
   SPLIT_BUTTON_PERMUTATIONS.forEach((permutation) => {
     const { disabled, variant, size, menuOpen } = permutation;
-    const testName =
-      ["wcag2aaa (" + variant, size, disabled && "disabled", menuOpen && "open"]
-        .filter(Boolean)
-        .join(", ") + ")";
+    const testName = [variant, size, disabled && "disabled", menuOpen && "open"]
+      .filter(Boolean)
+      .join(", ");
 
     test(testName, () => {
       const result = render(

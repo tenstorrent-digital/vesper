@@ -40,6 +40,7 @@ export type Polymorphic<
   E extends ElementType,
   O extends never | string | number | symbol = never,
 > = P & {
+  /** The `ElementType` to render this component as, eg. `as="button"` */
   as?: E;
 } & Omit<
     ComponentProps<E>,

@@ -1,27 +1,33 @@
 "use client";
 
 import { useCallback } from "react";
-import { type SliderProps as RadixSliderProps } from "@radix-ui/react-slider";
 
-import { Range } from "@/components/range/range";
+import { Range, type RangeProps } from "@/components/range/range";
 
 interface SliderProps extends Omit<
-  RadixSliderProps,
-  | "asChild"
-  | "value"
-  | "defaultValue"
-  | "onValueChange"
-  | "onValueCommit"
-  | "orientation"
+  RangeProps,
+  | "values"
+  | "valueLabels"
   | "thumbAriaLabels"
+  | "showValueLabels"
+  | "defaultValues"
+  | "onValuesChange"
+  | "onValuesCommit"
+  | "minStepsBetweenThumbs"
 > {
+  /** The controlled value of the slider thumb. */
   value?: number;
+  /** A custom display label for the thumb, shown as a tooltip-style label above it. When unset, defaults to the active value of the slider. */
   valueLabel?: string;
+  /** When `true`, displays the value label above the thumb. */
   showValueLabel?: boolean;
+  /** The initial thumb value (uncontrolled mode). Defaults to `min` */
   defaultValue?: number;
+  /** Callback fired as the thumb value changes during interaction. Receives the current value. */
   onValueChange?(value: number): void;
+  /** Callback fired when the thumb interaction is completed (e.g., on pointer up). Receives the final value. */
   onValueCommit?(value: number): void;
-  showTicks?: boolean;
+  /** An accessible `aria-label` attribute for the thumb. */
   thumbAriaLabel?: string;
 }
 

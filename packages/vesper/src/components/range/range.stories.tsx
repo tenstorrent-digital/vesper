@@ -12,6 +12,8 @@ const meta = {
     onValuesCommit: { table: { disable: true } },
     thumbAriaLabels: { table: { disable: true } },
     valueLabels: { table: { disable: true } },
+    name: { table: { disable: true } },
+    form: { table: { disable: true } },
   },
 } satisfies Meta<typeof Range>;
 

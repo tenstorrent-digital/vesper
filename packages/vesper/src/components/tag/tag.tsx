@@ -29,9 +29,13 @@ export type TagVariant = (typeof TAG_VARIANTS)[number];
 
 export type TagProps<E extends ElementType = "div"> = Polymorphic<
   {
+    /** The size of the tag. Affects padding and font size. Defaults to `"lg"`. */
     size?: TagSize;
+    /** The color variant of the tag. Defaults to `"default"`. */
     variant?: TagVariant;
+    /** When `true`, renders the tag in a disabled state and prevents interaction. */
     disabled?: boolean;
+    /** An optional icon element rendered to the left of the tag text. */
     icon?: ReactNode;
   },
   E

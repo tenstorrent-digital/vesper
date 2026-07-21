@@ -64,8 +64,11 @@ export interface SwitchProps
   extends
     Omit<ComponentProps<"label">, "children" | "onChange" | ForwardedPropTypes>,
     Pick<ComponentProps<"input">, ForwardedPropTypes> {
+  /** The text label displayed next to the switch. An asterisk is appended when `required` is `true`. */
   label?: string;
+  /** The size of the switch and its label. Defaults to `"md"`. */
   size?: SwitchSize;
+  /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
   inputRef?: RefObject<HTMLInputElement | null>;
 }
 

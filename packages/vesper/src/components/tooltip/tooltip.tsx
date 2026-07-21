@@ -17,16 +17,27 @@ export type TooltipSide = (typeof TOOLTIP_SIDES)[number];
 export type TooltipAlign = (typeof TOOLTIP_ALIGNMENTS)[number];
 
 export interface TooltipProps {
+  /** The content displayed inside the tooltip popup. If the content is falsy (null, undefined, empty string, or boolean), the tooltip will not render. */
   content: ReactNode;
+  /** The preferred side of the trigger to render the tooltip against. Defaults to `"top"`. */
   side?: TooltipSide;
+  /** The distance in pixels from the trigger to the tooltip (in addition to the arrow height). Defaults to `4`. */
   sideOffset?: number;
+  /** The alignment of the tooltip relative to the trigger along the perpendicular axis. Defaults to `"center"`. */
   align?: TooltipAlign;
+  /** An offset in pixels from the aligned edge of the trigger. Defaults to `0`. */
   alignOffset?: number;
+  /** Controls the open state of the tooltip (controlled mode). */
   open?: boolean;
+  /** Callback fired when the open state changes. Receives the new open state as an argument. */
   onOpenChange?(value: boolean): void;
+  /** The duration in milliseconds to wait before showing the tooltip after the pointer enters the trigger. Defaults to `500`. */
   delayDuration?: number;
+  /** Whether the tooltip is open by default (uncontrolled mode). */
   defaultOpen?: boolean;
+  /** The trigger element that the tooltip is attached to. */
   children?: ReactNode;
+  /** The maximum width of the tooltip in pixels. Content will wrap if it exceeds this width. Defaults to `240`. */
   maxWidth?: number;
 }
 

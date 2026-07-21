@@ -12,16 +12,17 @@ export type ProgressBarSize = (typeof PROGRESS_BAR_SIZES)[number];
 export type ProgressBarVariant = (typeof PROGRESS_BAR_VARIANTS)[number];
 
 export interface ProgressBarProps extends ComponentProps<"div"> {
-  /** value from `0` to `100` */
+  /** Value from `0` to `100`. */
   value: number;
+  /** The rendered size of the progress bar. Defaults to `"md"`. */
   size?: ProgressBarSize;
   /** The `default` variant will render the progress bar indicator width as a true percentage representation of `value / 100`. The `steps` variant will clamp the width of the progress bar indicator to the nearest rounded tick value. */
   variant?: ProgressBarVariant;
   /** The number of segments to split up the progress bar into when variant is `steps`. Must be an integer greater than `0`. */
   steps?: number;
-  /** Determines how to clamp the width of the progress bar to the nearest tick value. Defaults to `Math.round` */
+  /** Determines how to clamp the width of the progress bar to the nearest tick value. Defaults to `Math.round`. */
   stepRoundingStrategy?: (n: number) => number;
-  /** Whether to animate progress bar value changes */
+  /** Whether to animate progress bar value changes. */
   animated?: boolean;
 }
 

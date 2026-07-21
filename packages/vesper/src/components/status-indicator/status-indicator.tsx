@@ -22,9 +22,13 @@ export type StatusIndicatorVariants =
 
 export type StatusIndicatorProps<E extends ElementType = "div"> = Polymorphic<
   {
+    /** The text label displayed next to the status dot. */
     label: string;
+    /** The current status state, which determines the color of the indicator dot. */
     state: StatusIndicatorState;
+    /** The visual style variant of the status indicator. Defaults to `"default"`. */
     variant?: StatusIndicatorVariants;
+    /** When `true`, applies a pulsing animation to the status dot. */
     animated?: boolean;
   },
   E,
