@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback } from "react";
 import { type SliderProps as RadixSliderProps } from "@radix-ui/react-slider";
 

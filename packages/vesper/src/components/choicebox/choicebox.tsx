@@ -1,3 +1,5 @@
+"use client";
+
 import {
   type ChangeEventHandler,
   type ComponentProps,
