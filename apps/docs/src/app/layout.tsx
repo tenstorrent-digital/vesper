@@ -1,4 +1,7 @@
-import "./globals.css";
+import Nav from "@/components/nav";
+import Prose from "@/components/prose";
+
+import "@/lib/style/css/globals.css";
 
 export default function RootLayout({
   children,
@@ -7,7 +10,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="">
+        {/* nav, header, footer, etc */}
+        <Nav />
+
+        <Prose>{children}</Prose>
+      </body>
     </html>
   );
 }

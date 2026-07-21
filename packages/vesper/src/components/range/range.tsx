@@ -1,4 +1,6 @@
-import { ComponentProps, type CSSProperties, useMemo } from "react";
+"use client";
+
+import { type ComponentProps, type CSSProperties, useMemo } from "react";
 import {
   Slider as RadixSlider,
   SliderRange,
