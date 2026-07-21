@@ -11,7 +11,6 @@ import * as jsxRuntime from "react/jsx-runtime";
 import {
   createHighlighterCoreSync,
   getTokenStyleObject,
-  type HighlighterCore,
   type LanguageRegistration,
   type ShikiTransformer,
   type ThemedToken,
@@ -75,22 +74,18 @@ export interface CodeBlockProps extends Omit<
   transformers?: ShikiTransformer[];
 }
 
-let highlighter: HighlighterCore;
+const highlighter = createHighlighterCoreSync({
+  langs: [],
+  engine: createJavaScriptRegexEngine({ forgiving: true }),
+  themes: [theme],
+});
 
-function getHighlighter() {
-  highlighter ??= createHighlighterCoreSync({
-    langs: [],
-    engine: createJavaScriptRegexEngine({ forgiving: true }),
-    themes: [theme],
-  });
-  return highlighter;
-}
+function handleLanguageRegistration(lang: CodeBlockProps["lang"]) {
+  if (!lang || typeof lang === "string") return;
 
-export function registerLanguage(language: LanguageRegistration[]) {
-  const highlighter = getHighlighter();
-  const langName = language[0]?.name;
+  const langName = lang[0]?.name;
   if (langName && !highlighter.getLoadedLanguages().includes(langName)) {
-    highlighter.loadLanguageSync(language);
+    highlighter.loadLanguageSync(lang);
   }
 }
 
@@ -102,9 +97,7 @@ export function CodeBlock({
   transformers,
   ...props
 }: CodeBlockProps) {
-  if (lang && typeof lang !== "string") {
-    registerLanguage(lang);
-  }
+  handleLanguageRegistration(lang);
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -145,7 +138,7 @@ export function CodeBlock({
       >
         {typeof code === "string" ? (
           toJsxRuntime(
-            getHighlighter().codeToHast(code, {
+            highlighter.codeToHast(code, {
               lang: getLangName(lang),
               theme: "vesper",
               transformers,
@@ -213,7 +206,7 @@ function TokenStreamRenderer({
     code
       .pipeThrough(
         new CodeToTokenTransformStream({
-          highlighter: getHighlighter(),
+          highlighter,
           lang,
           theme: "vesper",
           allowRecalls: true,
