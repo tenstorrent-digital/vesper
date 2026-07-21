@@ -3,8 +3,9 @@ import Image, { ImageProps } from "next/image";
 
 import { Admonition } from "@repo/vesper/admonition";
 import { Code } from "@repo/vesper/code";
-// import { CodeBlock } from "@repo/vesper/code-block";
 import { Typography } from "@repo/vesper/typography";
+
+import { CodeBlock } from "@/components/code-block";
 
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any
@@ -54,8 +55,16 @@ const components = {
   ),
   code: (props) => <Code>{props.children}</Code>,
   blockquote: (props) => <Admonition size="sm">{props.children}</Admonition>,
-  // codeBlock: (props) => <CodeBlock>{props.children}</CodeBlock>, // throws client/server errors
+  pre: (props) => {
+    const codeElement = props.children as React.ReactElement<{
+      children?: string;
+      className?: string;
+    }>;
+    const code = codeElement?.props?.children ?? "";
+    const lang = codeElement?.props?.className?.replace("language-", ""); // strip `language-`
 
+    return <CodeBlock lang={lang}>{code}</CodeBlock>;
+  },
   img: (props) => (
     <Image
       sizes="100vw"
