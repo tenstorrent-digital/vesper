@@ -1,9 +1,8 @@
-import { Fragment, isValidElement, ReactNode } from "react";
+import { ComponentProps, Fragment, isValidElement, ReactNode } from "react";
 import {
   Tabs as RadixTabs,
   TabsContent,
   TabsList,
-  type TabsProps as RadixTabsProps,
   TabsTrigger,
 } from "@radix-ui/react-tabs";
 
@@ -18,14 +17,31 @@ export const TABS_VARIANTS = ["primary", "secondary"] as const;
 
 export type TabsVariant = (typeof TABS_VARIANTS)[number];
 
-export interface TabsProps extends Omit<RadixTabsProps, "orientation"> {
+export interface TabsProps extends Omit<
+  ComponentProps<"div">,
+  "children" | "dir"
+> {
+  /** The visual style variant of the tabs. Defaults to `"primary"`. */
   variant?: TabsVariant;
+  /** The list of tab items to render. Each item defines a tab trigger and its associated content panel. */
   items: {
+    /** The text label displayed in the tab trigger. */
     label: string;
+    /** A unique value identifying this tab, used for selection tracking. */
     value: string;
+    /** An optional icon element rendered before the label in the tab trigger. */
     icon?: ReactNode;
+    /** The content rendered in the panel when this tab is active. */
     content: ReactNode;
   }[];
+  /** The value for the selected tab (controlled). */
+  value?: string;
+  /** The value of the tab to select by default (uncontrolled). */
+  defaultValue?: string;
+  /** Callback fired when when a new tab is selected */
+  onValueChange?: (value: string) => void;
+  /** Whether a tab is activated automatically (when receiving focus) or manually (when clicked). Defaults to `"automatic"`. */
+  activationMode?: "automatic" | "manual";
 }
 
 const TRIGGER_TYPOGRAPHY: { [V in TabsVariant]: TypographyVariant } = {

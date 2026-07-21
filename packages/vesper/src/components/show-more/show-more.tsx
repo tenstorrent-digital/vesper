@@ -6,8 +6,11 @@ import { CaretDown, CaretUp } from "@/components/icons/icons";
 import { cn } from "@/utils/cn";
 
 export interface ShowMoreProps extends Omit<ComponentProps<"div">, "onClick"> {
+  /** Whether or not the content is currently expanded. Controls the button label ("Show more" / "Show less") and the `aria-expanded` attribute. */
   expanded?: boolean;
+  /** When `true`, renders the button in a disabled state and prevents interaction. */
   disabled?: boolean;
+  /** Callback fired when the show more/less button is clicked. */
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 

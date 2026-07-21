@@ -40,7 +40,10 @@ export const TYPOGRAPHY_VARIANTS = [
 export type TypographyVariant = (typeof TYPOGRAPHY_VARIANTS)[number];
 
 export type TypographyProps<E extends ElementType = "p"> = Polymorphic<
-  { variant?: TypographyVariant },
+  {
+    /** The typographic style variant to apply, controlling font size, weight, line height, and font family. Defaults to `"copy-sm"`. */
+    variant?: TypographyVariant;
+  },
   E
 >;
 

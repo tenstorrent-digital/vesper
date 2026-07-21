@@ -56,6 +56,21 @@ class ToastsStore {
     }
   };
 
+  /**
+   * Spawns a new toast, and returns a handle to that toast which allows you to update or dismiss it.
+   *
+   * @example
+   * const toast = addToast({
+   *   variant: 'loading',
+   *   content: 'Loading...',
+   * })
+   * await someAsynchronousTask()
+   * toast.update({
+   *   variant: 'success',
+   *   content: 'Success!',
+   *   timeout: 5000,
+   * })
+   * */
   addToast = ({
     content,
     buttons = [],

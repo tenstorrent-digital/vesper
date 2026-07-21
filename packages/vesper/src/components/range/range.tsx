@@ -1,9 +1,8 @@
 "use client";
 
-import { type CSSProperties, useMemo } from "react";
+import { type ComponentProps, type CSSProperties, useMemo } from "react";
 import {
   Slider as RadixSlider,
-  type SliderProps as RadixSliderProps,
   SliderRange,
   SliderThumb,
   SliderTrack,
@@ -14,22 +13,39 @@ import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
 
 export interface RangeProps extends Omit<
-  RadixSliderProps,
-  | "asChild"
-  | "value"
-  | "defaultValue"
-  | "onValueChange"
-  | "onValueCommit"
-  | "orientation"
+  ComponentProps<"div">,
+  "children" | "defaultValue" | "dir"
 > {
+  /** The controlled values of the range thumbs. Each entry corresponds to a thumb position. */
   values?: number[];
+  /** Custom display labels for each thumb, shown as a tooltip-style label above the thumb. When left blank, defaults to the active values of each thumb. */
   valueLabels?: string[];
+  /** Accessible `aria-label` attributes for each thumb. */
   thumbAriaLabels?: string[];
+  /** When `true`, displays the value labels above each thumb. */
   showValueLabels?: boolean;
+  /** The initial thumb values (uncontrolled mode). Defaults to `[min, max]` */
   defaultValues?: number[];
+  /** Callback fired as thumb values change during interaction. Receives the full array of current values. */
   onValuesChange?(value: number[]): void;
+  /** Callback fired when a thumb interaction is completed (e.g., on pointer up). Receives the final array of values. */
   onValuesCommit?(value: number[]): void;
+  /** When `true`, renders tick marks along the track at each step interval. */
   showTicks?: boolean;
+  /** The name attribute applied to the underlying hidden input, used for form submission. */
+  name?: string;
+  /** When true, prevents interaction. */
+  disabled?: boolean;
+  /** The minimum allowed value. Defaults to `0`. */
+  min?: number;
+  /** The maximum allowed value. Defaults to `100`. */
+  max?: number;
+  /** The stepping interval between selectable values. Defaults to `1`. */
+  step?: number;
+  /** The minimum number of steps required between thumbs, preventing them from overlapping. Defaults to `1`. */
+  minStepsBetweenThumbs?: number;
+  /** The `id` of the `<form>` element this input belongs to, allowing association with a form outside the input's DOM hierarchy. */
+  form?: string;
 }
 
 export function Range({

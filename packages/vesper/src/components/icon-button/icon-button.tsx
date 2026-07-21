@@ -12,10 +12,14 @@ import type { Polymorphic } from "@/utils/polymorphic";
 
 export type IconButtonProps<E extends ElementType = "button"> = Polymorphic<
   {
+    /** The size of the button. Affects padding and font size. @default "lg" */
     size?: ButtonSize;
+    /** The visual style variant of the button. @default "primary" */
     variant?: ButtonVariant;
-    icon: ReactNode;
+    /** When true, renders the button in a disabled state and prevents interaction. */
     disabled?: boolean;
+    /** The icon element to be rendered inside the button. */
+    icon: ReactNode;
   },
   E,
   "children"

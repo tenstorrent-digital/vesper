@@ -36,8 +36,11 @@ export interface ModalProps extends Omit<
   ComponentPropsWithoutRef<"dialog">,
   "open"
 > {
+  /** The title text displayed in the modal header. Also used for the modal's `aria-labelledby` association. */
   title: string;
+  /** A description displayed below the title in the modal header. Also used for the modal's `aria-describedby` association. */
   description: string;
+  /** The width of the modal container. Accepts a number (interpreted as pixels) or a CSS string value. Defaults to `452`. */
   width?: number | string;
   /**
    * The maximum height of the modal container. Accepts a number (interpreted as pixels)
@@ -46,10 +49,15 @@ export interface ModalProps extends Omit<
    * viewport height minus spacing. Defaults to `640`.
    */
   maxHeight?: number | string;
-  buttons?: Omit<ButtonProps, "size">[];
+  /** An optional array of button props to render as action buttons at the bottom of the modal. The last button defaults to `"primary"` variant; all others default to `"tertiary"`. */
+  buttons?: Omit<ButtonProps, "size" | "as">[];
+  /** Controls the horizontal alignment of the action buttons. Defaults to `"end"`. */
   buttonsAlignment?: ModalButtonsAlignment;
+  /** A ref that exposes imperative `open()` and `close()` methods for controlling the modal. Obtained via the `useModal` hook. */
   ref?: RefObject<ModalRef>;
+  /** When `true`, clicking the backdrop outside the modal will close it. Defaults to `false`. */
   closeOnClickOutside?: boolean;
+  /** When provided, wraps the modal content in a `<form>` element with the given form attributes, enabling native form submission from within the modal. */
   form?: Pick<
     ComponentProps<"form">,
     | "id"
@@ -201,6 +209,14 @@ export function Modal({
   );
 }
 
+/**
+ * A convenience hook that returns a ref and imperative `open()` and `close()` functions for controlling a `Modal` component.
+ *
+ * @example
+ * const { ref, open, close } = useModal();
+ * <Modal ref={ref} title="Example" description="An example modal." />
+ * <Button onClick={open}>Open modal</Button>
+ */
 export function useModal() {
   const ref = useRef<ModalRef>({ open() {}, close() {} });
 

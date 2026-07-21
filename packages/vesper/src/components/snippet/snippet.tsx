@@ -11,7 +11,9 @@ export const SNIPPET_VARIANTS = ["default", "contrast"] as const;
 export type SnippetVariant = (typeof SNIPPET_VARIANTS)[number];
 
 export interface SnippetProps extends Omit<ComponentProps<"div">, "children"> {
+  /** The code text to display in the snippet. Also used as the value copied to the clipboard when the copy button is clicked. */
   children?: string;
+  /** The visual style variant of the snippet. Defaults to `"default"`. */
   variant?: SnippetVariant;
 }
 

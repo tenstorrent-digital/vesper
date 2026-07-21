@@ -16,10 +16,15 @@ import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
 
 export type ChoiceboxItem = {
+  /** The value associated with this option. */
   value: string;
+  /** The text label displayed for this option. */
   label: string;
+  /** An optional secondary description displayed below the label. */
   description?: string;
+  /** When `true`, prevents this option from being selected. */
   disabled?: boolean;
+  /** An optional HTML `id` attribute applied to the underlying input element. */
   id?: string;
 };
 
@@ -27,25 +32,39 @@ interface ChoiceboxBaseProps extends Omit<
   ComponentProps<"fieldset">,
   "children" | "onChange" | "defaultValue"
 > {
+  /** The name attribute shared by all inputs in the group, used for form submission. */
   name: string;
+  /** The list of options to render. */
   options: ChoiceboxItem[];
+  /** When `true`, disables all options in the group, preventing interaction. */
   disabled?: boolean;
 }
 
 export interface ChoiceboxSingleSelectProps extends ChoiceboxBaseProps {
+  /** When `false` or omitted, the choicebox operates in single-select (radio) mode. */
   multiselect?: false;
+  /** When `true`, a selection is required for form validation. */
   required?: boolean;
+  /** The currently selected value (controlled mode). */
   value?: string;
+  /** The initially selected value (uncontrolled mode). */
   defaultValue?: string;
+  /** Callback fired when the selected value changes. Receives the newly selected value. */
   onChange?(value: string): void;
 }
 
 export interface ChoiceboxMultiSelectProps extends ChoiceboxBaseProps {
+  /** When `true`, the choicebox operates in multi-select (checkbox) mode. */
   multiselect: true;
+  /** The currently selected values (controlled mode). */
   values?: string[];
+  /** The initially selected values (uncontrolled mode). */
   defaultValues?: string[];
+  /** Callback fired when the selected values change. Receives the full array of currently selected values. */
   onChange?(values: string[]): void;
+  /** The minimum number of selections required for form validation. Defaults to `0`. */
   min?: number;
+  /** The maximum number of selections allowed for form validation. Defaults to `Infinity`. */
   max?: number;
 }
 

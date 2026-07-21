@@ -22,10 +22,15 @@ export type ButtonSize = (typeof BUTTON_SIZES)[number];
 
 export type ButtonProps<E extends ElementType = "button"> = Polymorphic<
   {
+    /** The size of the button. Affects padding and font size. @default "lg" */
     size?: ButtonSize;
+    /** The visual style variant of the button. @default "primary" */
     variant?: ButtonVariant;
+    /** When true, renders the button in a disabled state and prevents interaction. */
     disabled?: boolean;
+    /** An optional icon element rendered to the left of the button content. */
     iconLeft?: ReactNode;
+    /** An optional icon element rendered to the right of the button content. */
     iconRight?: ReactNode;
   },
   E

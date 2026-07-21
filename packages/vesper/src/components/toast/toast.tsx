@@ -222,15 +222,20 @@ export type ToastsShortcut =
       meta?: boolean;
     };
 
+export interface ToastsProps {
+  /** The accessible label for the toast region, announced by screen readers. The keyboard shortcut is automatically appended. Defaults to `"Notifications"`. */
+  ariaLabel?: string;
+  /** A keyboard shortcut that moves focus to the oldest active toast. Accepts a key name string or an object specifying modifier keys. Defaults to `"F8"`. */
+  shortcut?: ToastsShortcut;
+  /** The DOM element or document fragment to portal the toast container into. Defaults to the `document.body`. */
+  container?: Element | DocumentFragment;
+}
+
 export function Toasts({
   ariaLabel = "Notifications",
   shortcut = "F8",
   container,
-}: {
-  ariaLabel?: string;
-  shortcut?: ToastsShortcut;
-  container?: Element | DocumentFragment;
-}) {
+}: ToastsProps) {
   const { toasts } = useStore();
   const ref = useRef<HTMLDivElement>(null);
 

@@ -28,9 +28,13 @@ export type BadgeVariant = (typeof BADGE_VARIANTS)[number];
 
 export type BadgeProps<E extends ElementType = "div"> = Polymorphic<
   {
+    /** The size of the badge. Affects padding and typography. Defaults to `"lg"`. */
     size?: BadgeSize;
+    /** The color variant of the badge. Defaults to `"accent"`. */
     variant?: BadgeVariant;
+    /** When true, renders the badge with a more subdued, subtle appearance. */
     subtle?: boolean;
+    /** An optional icon element rendered to the left of the badge text. */
     icon?: ReactNode;
   },
   E
