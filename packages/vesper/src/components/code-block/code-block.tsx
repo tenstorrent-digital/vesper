@@ -73,9 +73,22 @@ export interface CodeBlockProps extends Omit<
 /**
  * Render code with highlighted syntax in a code block with a copy-to-clipboard button. Code by default is rendered as plain text unless a specified `lang` prop is supplied.
  *
- * Prior to usage, you _must_ call the `setupCodeBlock` function exported from this module once in your application. Zero languages are configured out-of-the-box, so you will need to supply your own language grammars when calling `setupCodeBlock`.
+ * **Important**:
+ * - `CodeBlock` is a _client_ component, so `setupCodeBlock` must be called from a `"use client"` module.
+ * - `setupCodeBlock` requires `@shikijs/langs` to be installed
+ *
+ * ### Setup
+ *
+ * Install `@shikijs/langs`:
+ * ```sh
+ * npm install "@shikijs/langs"
+ * // ^ escaped for jsdoc example
+ * ```
+ *
+ * Prior to usage, you _must_ call the `setupCodeBlock` function exported from this module once in your application. Zero languages are configured out-of-the-box, so you will need to supply your own language grammars when calling `setupCodeBlock`
  *
  * @example
+ * ```tsx
  * await setupCodeBlock({
  *   langs: [
  *     import("@shikijs/langs/javacript"),
@@ -86,6 +99,31 @@ export interface CodeBlockProps extends Omit<
  * <CodeBlock lang="javascript">
  *   const count = 0
  * </CodeBlock>
+ * ```
+ *
+ * ### Usage in frameworks with server/client boundaries
+ *
+ * Since `CodeBlock` is a _client_ component, `setupCodeBlock` is also a client function and **cannot be called from _server_ components**. In frameworks like Next.js with a server/client boundaries, call `setupCodeBlock` from a `"use client"` module — for example at module scope — and use React's `use()` hook to suspend until initialization completes
+ *
+ * @example
+ * ```tsx
+ * // From a Next.js app, ex: src/components/my-code-block.tsx
+ * "use client";
+ *
+ * import { use } from "react";
+ * import { CodeBlock, setupCodeBlock, type CodeBlockProps } from "@repo/vesper/code-block";
+ *
+ * // Call once at module scope — promise is created once and cached across renders
+ * const setup = setupCodeBlock({
+ *   langs: [import("@shikijs/langs/typescript")],
+ * });
+ *
+ * // Re-export a wrapper that suspends until setup resolves
+ * export const MyCodeBlock = (props: CodeBlockProps) => {
+ *   use(setup);
+ *   return <CodeBlock {...props} />;
+ * };
+ * ```
  * */
 export function CodeBlock({
   className,
