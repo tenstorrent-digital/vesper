@@ -7,6 +7,8 @@ import { Typography } from "@repo/vesper/typography";
 
 import { CodeBlock } from "@/components/code-block";
 
+import { trimChildren } from "@/lib/markdown/utils";
+
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any
 // React component you want, including inline styles,
@@ -54,7 +56,9 @@ const components = {
     </Typography>
   ),
   code: (props) => <Code>{props.children}</Code>,
-  blockquote: (props) => <Admonition size="sm">{props.children}</Admonition>,
+  blockquote: (props) => (
+    <Admonition size="sm">{trimChildren(props.children)}</Admonition>
+  ),
   pre: (props) => {
     const codeElement = props.children as React.ReactElement<{
       children?: string;
