@@ -79,29 +79,6 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
   md: "label-lg",
 };
 
-/**
- * A checkbox input with a label, supporting checked, unchecked, and indeterminate states.
- *
- * @example
- * // Uncontrolled usage
- * <Checkbox label="Accept terms" required />
- *
- * @example
- * // Controlled usage
- * <Checkbox
- *   label="Consent to marketing communications"
- *   checked={allowMarketing}
- *   onChange={(e) => setAllowMarketing(e.target.checked)}
- * />
- *
- * @example
- * // Indeterminate state usage
- * <Checkbox
- *   label="Select/deselect all options"
- *   indeterminate={!allOptionsSelected}
- *   onChange={(e) => setAllOptionsSelected(e.target.checked)}
- * />
- */
 export function Checkbox(props: CheckboxProps) {
   const {
     // component-specific props

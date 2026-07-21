@@ -36,21 +36,6 @@ export type ButtonProps<E extends ElementType = "button"> = Polymorphic<
   E
 >;
 
-/**
- * A polymorphic button component with multiple visual variants and sizes.
- * Supports leading and trailing icons.
- *
- * @example
- * <Button variant="primary" size="sm" onClick={handleClick}>
- *   Submit
- * </Button>
- *
- * @example
- * // As a link with icons
- * <Button as="a" href="/docs" variant="subtle" iconRight={<ArrowRight />}>
- *   Learn more
- * </Button>
- */
 export function Button<E extends ElementType = "button">(
   props: ButtonProps<E>,
 ) {

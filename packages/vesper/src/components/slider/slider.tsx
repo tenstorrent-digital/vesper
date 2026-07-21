@@ -31,17 +31,6 @@ interface SliderProps extends Omit<
   thumbAriaLabel?: string;
 }
 
-/**
- * A single-thumb slider for selecting a value within a range.
- * A simplified wrapper around `Range` for the common single-value use case.
- *
- * @example
- * <Slider min={0} max={100} defaultValue={50} onValueChange={setValue} />
- *
- * @example
- * // With ticks and a value label
- * <Slider min={0} max={10} step={1} showTicks showValueLabel defaultValue={5} />
- */
 export function Slider({
   value,
   valueLabel,

@@ -78,24 +78,6 @@ export interface ModalProps extends Omit<
   >;
 }
 
-/**
- * A modal dialog rendered as a native `<dialog>` element with a title, description,
- * optional content, and action buttons. Controlled imperatively via the `useModal` hook.
- *
- * @example
- * const modal = useModal();
- *
- * <Button onClick={modal.open}>Open</Button>
- * <Modal
- *   ref={modal.ref}
- *   title="Confirm action"
- *   description="Are you sure you want to proceed?"
- *   buttons={[
- *     { children: "Cancel", onClick: modal.close },
- *     { children: "Confirm", onClick: handleConfirm },
- *   ]}
- * />
- */
 export function Modal({
   className,
   ref,

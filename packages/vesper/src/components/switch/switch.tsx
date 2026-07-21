@@ -77,22 +77,6 @@ const SWITCH_TYPOGRAPHY: { [S in SwitchSize]: TypographyVariant } = {
   md: "label-lg",
 };
 
-/**
- * A toggle switch input with an optional label. Functions like a checkbox but uses
- * the `switch` ARIA role, indicating a binary on/off state without an indeterminate option.
- *
- * @example
- * <Switch label="Enable notifications" />
- *
- * @example
- * // Controlled usage
- * const [enabled, setEnabled] = useState(false);
- * <Switch
- *   label="Public profile"
- *   checked={enabled}
- *   onChange={(e) => setEnabled(e.target.checked)}
- * />
- */
 export function Switch({
   // component-specific props
   label,

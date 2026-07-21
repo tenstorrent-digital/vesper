@@ -17,17 +17,6 @@ export interface SnippetProps extends Omit<ComponentProps<"div">, "children"> {
   variant?: SnippetVariant;
 }
 
-/**
- * A compact code display block with a copy-to-clipboard button.
- * Suitable for short, single-line or multi-line code snippets such as terminal commands.
- *
- * @example
- * <Snippet>yarn add vesper</Snippet>
- *
- * @example
- * // Contrast variant
- * <Snippet variant="contrast">npx create-next-app</Snippet>
- */
 export function Snippet({
   className,
   children = "",

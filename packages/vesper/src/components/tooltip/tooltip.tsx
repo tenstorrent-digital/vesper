@@ -41,16 +41,6 @@ export interface TooltipProps {
   maxWidth?: number;
 }
 
-/**
- * Renders a tooltip popup anchored to a trigger element. The tooltip appears on hover/focus after a configurable delay and displays supplementary content such as labels or descriptions.
- *
- * If either `content` or `children` is falsy, the tooltip will not render and only the children are returned.
- *
- * @example
- * <Tooltip content="Save your changes" side="bottom">
- *   <Button>Save</Button>
- * </Tooltip>
- */
 export function Tooltip({
   children,
   content,

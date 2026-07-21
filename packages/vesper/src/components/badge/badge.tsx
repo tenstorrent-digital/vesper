@@ -46,24 +46,6 @@ const BADGE_TYPOGRAPHY_VARIANTS: { [S in BadgeSize]: TypographyVariant } = {
   sm: "label-xs",
 };
 
-/**
- * A polymorphic label component for categorizing or highlighting information with color-coded variants.
- *
- * @example
- * <Badge variant="success">Active</Badge>
- *
- * @example
- * // Subtle with an icon
- * <Badge variant="danger" subtle icon={<ErrorSolid />}>
- *   Failed
- * </Badge>
- *
- * @example
- * // Polymorphic usage as a link
- * <Badge as="a" href="/status" variant="info">
- *   View status
- * </Badge>
- */
 export function Badge<E extends ElementType = "div">(props: BadgeProps<E>) {
   const {
     as: Component = "div",

@@ -38,21 +38,6 @@ export type TextButtonProps<E extends ElementType = "button"> = Polymorphic<
   E
 >;
 
-/**
- * A button that renders as styled text without a visible background or border.
- * Supports leading and trailing icons and multiple color variants.
- *
- * @example
- * <TextButton variant="accent" onClick={handleClick}>
- *   View details
- * </TextButton>
- *
- * @example
- * // As a link with an icon
- * <TextButton as="a" href="/docs" iconRight={<Document />}>
- *   Documentation
- * </TextButton>
- */
 export function TextButton<E extends ElementType>(props: TextButtonProps<E>) {
   const {
     as: Component = "button",

@@ -61,21 +61,6 @@ export interface SplitButtonProps extends Omit<
   disabled?: boolean;
 }
 
-/**
- * A button split into a primary action and a dropdown menu toggle.
- * Clicking the main area triggers the primary action; clicking the caret opens a menu.
- *
- * @example
- * <SplitButton
- *   onClick={handleDeploy}
- *   menuItems={[
- *     { text: "Deploy to staging", onSelect: handleSelectStaging },
- *     { text: "Deploy to production", onSelect: handleSelectProduction },
- *   ]}
- * >
- *   Deploy
- * </SplitButton>
- */
 export function SplitButton({
   size = "lg",
   variant = "contrast",

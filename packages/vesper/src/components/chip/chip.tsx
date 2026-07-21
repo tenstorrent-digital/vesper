@@ -31,26 +31,6 @@ export type ChipProps<E extends ElementType = "button"> = Polymorphic<
   E
 >;
 
-/**
- * A polymorphic toggleable chip component that can be selected or deselected. Supports leading and trailing icons.
- *
- * @example
- * <Chip selected={isSelected} onChange={setIsSelected}>
- *   Featured
- * </Chip>
- *
- * @example
- * // With icons
- * <Chip iconLeft={<Phone />} variant="contrast">
- *   Mobile-only
- * </Chip>
- *
- * @example
- * // Polymorphic usage as a link
- * <Chip as="a" href="/category/featured">
- *   Featured
- * </Chip>
- */
 export function Chip<E extends ElementType = "button">(props: ChipProps<E>) {
   const {
     as: Component = "button",

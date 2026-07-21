@@ -153,42 +153,6 @@ const CLEAR_BUTTON_DISABLED_TYPES = [
   "time",
 ];
 
-/**
- * A versatile text input component supporting single-line and multiline modes,
- * with optional labels, validation messages, icons, and a clear button.
- *
- * @example
- * // Basic single-line input with a label
- * <TextInput label="Email" type="email" placeholder="you@example.com" />
- *
- * @example
- * // Input with an error message
- * <TextInput
- *   label="Username"
- *   variant="error"
- *   message="Username is already taken."
- *   value={username}
- *   onChange={(e) => setUsername(e.target.value)}
- * />
- *
- * @example
- * // Multiline textarea
- * <TextInput
- *   multiline
- *   label="Bio"
- *   height={120}
- *   placeholder="Tell us about yourself..."
- * />
- *
- * @example
- * // Input with a leading icon
- * <TextInput
- *   label="Search"
- *   type="search"
- *   icon={<SearchIcon />}
- *   placeholder="Search..."
- * />
- */
 export function TextInput(props: TextInputProps) {
   const {
     // component-specific props

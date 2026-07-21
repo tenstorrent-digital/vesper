@@ -41,24 +41,6 @@ export type TagProps<E extends ElementType = "div"> = Polymorphic<
   E
 >;
 
-/**
- * A small, color-coded label for categorizing content. Supports an optional leading icon.
- *
- * @example
- * <Tag variant="accent-bold">New</Tag>
- *
- * @example
- * // With an icon
- * <Tag icon={<StarIcon />} variant="success-subtle" size="md">
- *   Recommended
- * </Tag>
- *
- * @example
- * // Polymorphic usage as a link
- * <Tag as="a" href="/archive">
- *   Archived
- * </Tag>
- */
 export function Tag<E extends ElementType = "div">(props: TagProps<E>) {
   const {
     as: Component = "div",

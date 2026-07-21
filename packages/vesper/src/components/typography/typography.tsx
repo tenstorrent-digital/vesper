@@ -47,19 +47,6 @@ export type TypographyProps<E extends ElementType = "p"> = Polymorphic<
   E
 >;
 
-/**
- * A polymorphic component for rendering text with consistent typographic styles. It applies a predefined set of font size, weight, line height, and font family based on the selected `variant`.
- *
- * @example
- * <Typography variant="heading-lg" as="h1">
- *   Welcome to Vesper
- * </Typography>
- *
- * @example
- * <Typography variant="copy-md">
- *   This is a paragraph of body text.
- * </Typography>
- */
 export function Typography<E extends ElementType = "p">(
   props: TypographyProps<E>,
 ) {

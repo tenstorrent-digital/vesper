@@ -49,18 +49,6 @@ const TRIGGER_TYPOGRAPHY: { [V in TabsVariant]: TypographyVariant } = {
   secondary: "label-sm",
 };
 
-/**
- * A tabbed interface for switching between content panels. Built on Radix Tabs.
- *
- * @example
- * <Tabs
- *   defaultValue="overview"
- *   items={[
- *     { value: "overview", label: "Overview", content: <Overview /> },
- *     { value: "settings", label: "Settings", content: <Settings /> },
- *   ]}
- * />
- */
 export function Tabs({
   items,
   className,

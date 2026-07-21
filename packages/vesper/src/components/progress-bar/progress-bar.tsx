@@ -26,22 +26,6 @@ export interface ProgressBarProps extends ComponentProps<"div"> {
   animated?: boolean;
 }
 
-/**
- * A horizontal progress bar with support for smooth animations and a stepped variant.
- *
- * @example
- * // Default variant with animated value changes
- * <ProgressBar value={65} size="md" animated />
- *
- * @example
- * // Stepped variant with custom rounding strategy
- * <ProgressBar
- *   value={40}
- *   variant="steps"
- *   steps={5}
- *   stepRoundingStrategy={Math.ceil}
- * />
- */
 export function ProgressBar({
   value,
   variant = "default",

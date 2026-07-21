@@ -60,34 +60,6 @@ const ADMONITION_TYPOGRAPHY_VARIANTS: {
   sm: "copy-xs",
 };
 
-/**
- * A callout component for displaying contextual messages with variant-specific icons and colors.
- * Optionally includes a call-to-action button.
- *
- * @example
- * <Admonition variant="warning" size="md">
- *   This feature is experimental and subject to breaking changes.
- * </Admonition>
- *
- * @example
- * // With a call-to-action button
- * <Admonition variant="danger" cta={{ children: "Confirm", onClick: handleConfirm }}>
- *   The changes you are about to make are irreversible.
- * </Admonition>
- *
- * @example
- * // Call-to-action button polymorphism
- * <Admonition
- *   variant="info"
- *   ctaAs="a"
- *   cta={{
- *      children: "Settings",
- *      href: '/settings'
- *    }}
- *  >
- *   You can see the full set of options in app settings.
- * </Admonition>
- */
 export function Admonition<
   E extends ElementType = "div",
   C extends ElementType = "button",

@@ -53,22 +53,6 @@ const RADIO_GROUP_ITEM_TYPOGRAPHY: { [S in RadioSize]: TypographyVariant } = {
   md: "label-lg",
 };
 
-/**
- * A group of radio inputs for selecting a single option from a list.
- * Supports horizontal and vertical layouts.
- *
- * @example
- * <RadioGroup
- *   name="color"
- *   options={[
- *     { value: "red", label: "Red" },
- *     { value: "blue", label: "Blue" },
- *     { value: "green", label: "Green" },
- *   ]}
- *   defaultValue="red"
- *   onChange={(value) => console.log(value)}
- * />
- */
 export function RadioGroup({
   size = "md",
   orientation = "vertical",

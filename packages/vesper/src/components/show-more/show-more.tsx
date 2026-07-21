@@ -14,16 +14,6 @@ export interface ShowMoreProps extends Omit<ComponentProps<"div">, "onClick"> {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-/**
- * A button that toggles between "Show more" and "Show less" states,
- * typically used to reveal or hide additional content.
- *
- * @example
- * const [expanded, setExpanded] = useState(false);
- *
- * {expanded && <p>Additional content...</p>}
- * <ShowMore expanded={expanded} onClick={() => setExpanded(!expanded)} />
- */
 export function ShowMore({
   className,
   expanded,

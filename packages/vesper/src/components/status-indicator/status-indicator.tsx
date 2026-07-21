@@ -35,20 +35,6 @@ export type StatusIndicatorProps<E extends ElementType = "div"> = Polymorphic<
   "children"
 >;
 
-/**
- * Displays a colored dot alongside a label to indicate the status of a process or resource.
- *
- * @example
- * <StatusIndicator state="ready" label="Online" />
- *
- * @example
- * // Animated progress indicator with badge variant
- * <StatusIndicator state="progress" label="Deploying" variant="badge" animated />
- *
- * @example
- * // Polymorphic usage as a link
- * <StatusIndicator as="a" href="/deployments" state="progress" label="Deploying" />
- */
 export function StatusIndicator<E extends ElementType = "div">(
   props: StatusIndicatorProps<E>,
 ) {

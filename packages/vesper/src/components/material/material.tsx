@@ -49,22 +49,6 @@ export type MaterialProps<E extends ElementType = "div"> = Polymorphic<
   E
 >;
 
-/**
- * A polymorphic surface component providing consistent elevation and border styles. Used as a building block for cards, panels, and interactive containers.
- *
- * Materials should be used to communicate containment, hierarchy, interactivity, and depth across the interface.
- *
- * @example
- * <Material variant="raised">
- *   <Typography>Card content</Typography>
- * </Material>
- *
- * @example
- * // Interactive material with state
- * <Material as="button" variant="interactive" state="selected">
- *   Selected item
- * </Material>
- */
 export function Material<E extends ElementType = "div">(
   props: MaterialProps<E>,
 ) {

@@ -21,23 +21,6 @@ export interface AccordionProps extends ComponentProps<"div"> {
   title: string;
 }
 
-/**
- * A collapsible section with a trigger that expands/collapses its content.
- * Built on top of Radix Collapsible, supporting both controlled and uncontrolled modes.
- *
- * @example
- * <Accordion title="Details">
- *   Here is some additional content that can be expanded.
- * </Accordion>
- *
- * @example
- * // Controlled usage
- * const [open, setOpen] = useState(false);
- *
- * <Accordion title="Details" open={open} onOpenChange={setOpen}>
- *   Controlled content
- * </Accordion>
- */
 export function Accordion({
   defaultOpen,
   open,
