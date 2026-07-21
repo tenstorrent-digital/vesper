@@ -75,6 +75,17 @@ describe("code-block store [unit]", () => {
       /setupCodeBlock must be called/,
     );
   });
+
+  test("setupCodeBlock propagates rejection when createHighlighterCore fails", async () => {
+    const badLang = Promise.reject(new Error("bad language grammar"));
+
+    await expect(
+      setupCodeBlock({ langs: [badLang as never] }),
+    ).rejects.toThrow("bad language grammar");
+
+    expect(store.state.initialized).toBe(false);
+    expect(store.state.highlighter).toBeNull();
+  });
 });
 
 describe("code-block [unit]", () => {
