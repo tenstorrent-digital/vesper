@@ -76,9 +76,13 @@ class CodeBlockStore {
       engine: createJavaScriptRegexEngine({ forgiving: true }),
       themes: [theme],
       langAlias: aliases,
-    }).then((highlighter) => {
-      this.state = { initialized: true, highlighter };
-    });
+    })
+      .then((highlighter) => {
+        this.state = { initialized: true, highlighter };
+      })
+      .finally(() => {
+        this.setup = null;
+      });
 
     await this.setup;
   };
