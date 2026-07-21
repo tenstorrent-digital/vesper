@@ -48,6 +48,11 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
 }
 
 .vesper-admonition-info {
