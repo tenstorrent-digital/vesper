@@ -1,3 +1,5 @@
+"use client";
+
 import { type ReactNode, useSyncExternalStore } from "react";
 
 import { type ButtonVariant } from "@/components/button/button";
