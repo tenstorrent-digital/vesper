@@ -29,7 +29,7 @@ export interface MenuProps {
   /** The distance in pixels from the trigger to the menu. Defaults to `8`. */
   sideOffset?: number;
   /** The alignment of the menu relative to the trigger along the perpendicular axis. Defaults to `"start"`. */
-  align?: "start" | "end";
+  align?: "start" | "center" | "end";
   /** An offset in pixels from the aligned edge of the trigger. */
   alignOffset?: number;
   /** The trigger element that opens the menu. */
