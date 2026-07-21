@@ -44,7 +44,7 @@ export type AdmonitionProps<
     /**
      * Props passed to the optional call-to-action button rendered alongside the admonition content.
      *
-     * The presence of this prop will render a small constrast-themed button to the right of the admonition content.
+     * The presence of this prop will render a small contrast-themed button to the right of the admonition content.
      */
     cta?: Omit<ButtonProps<C>, "size" | "variant" | "as">;
     /** Sets the `ElementType` the cta will render as. Defaults to `"button"`. */
