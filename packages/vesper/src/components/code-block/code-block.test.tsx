@@ -1,4 +1,4 @@
-import { cleanup, fireEvent,render } from "@testing-library/react";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
@@ -10,8 +10,8 @@ import "@/styles/test.css";
 afterEach(cleanup);
 
 describe("code-block store [unit]", () => {
-  afterEach(() => {
-    store.reset();
+  afterEach(async () => {
+    await store.reset();
   });
 
   test("requireInitialization throws when not initialized", () => {
@@ -61,7 +61,7 @@ describe("code-block store [unit]", () => {
     await setupCodeBlock({ langs: [] });
     expect(store.state.initialized).toBe(true);
 
-    store.reset();
+    await store.reset();
 
     expect(store.state.initialized).toBe(false);
     expect(store.state.highlighter).toBeNull();
@@ -69,7 +69,7 @@ describe("code-block store [unit]", () => {
 
   test("requireInitialization throws after reset", async () => {
     await setupCodeBlock({ langs: [] });
-    store.reset();
+    await store.reset();
 
     expect(() => store.requireInitialization()).toThrow(
       /setupCodeBlock must be called/,
@@ -124,33 +124,25 @@ describe("code-block [unit]", () => {
 
   test("showLineNumbers defaults to false", () => {
     const { container } = render(<CodeBlock />);
-    const wrapper = container.querySelector(
-      ".vesper-code-block-pre-wrapper",
-    );
+    const wrapper = container.querySelector(".vesper-code-block-pre-wrapper");
     expect(wrapper).toHaveAttribute("data-line-numbers", "false");
   });
 
   test("showLineNumbers sets data-line-numbers to true", () => {
     const { container } = render(<CodeBlock showLineNumbers />);
-    const wrapper = container.querySelector(
-      ".vesper-code-block-pre-wrapper",
-    );
+    const wrapper = container.querySelector(".vesper-code-block-pre-wrapper");
     expect(wrapper).toHaveAttribute("data-line-numbers", "true");
   });
 
   test("renders string children as code content", () => {
     const { container } = render(<CodeBlock>const x = 1;</CodeBlock>);
-    const wrapper = container.querySelector(
-      ".vesper-code-block-pre-wrapper",
-    );
+    const wrapper = container.querySelector(".vesper-code-block-pre-wrapper");
     expect(wrapper?.textContent).toContain("const x = 1;");
   });
 
   test("renders empty content when no children provided", () => {
     const { container } = render(<CodeBlock />);
-    const wrapper = container.querySelector(
-      ".vesper-code-block-pre-wrapper",
-    );
+    const wrapper = container.querySelector(".vesper-code-block-pre-wrapper");
     expect(wrapper).not.toBeNull();
   });
 
@@ -203,14 +195,10 @@ describe("code-block [unit]", () => {
     });
 
     const { container } = render(<CodeBlock>{stream}</CodeBlock>);
-    const wrapper = container.querySelector(
-      ".vesper-code-block-pre-wrapper",
-    );
+    const wrapper = container.querySelector(".vesper-code-block-pre-wrapper");
     expect(wrapper).not.toBeNull();
     // streaming path renders via ShikiStreamRenderer which produces a shiki-stream pre
-    expect(
-      container.querySelector("pre.shiki-stream"),
-    ).not.toBeNull();
+    expect(container.querySelector("pre.shiki-stream")).not.toBeNull();
   });
 
   test("auto-scrolls pre-wrapper when stream appends content", async () => {
@@ -261,8 +249,8 @@ describe("code-block [snapshot]", () => {
     await setupCodeBlock({ langs: [] });
   });
 
-  afterEach(() => {
-    store.reset();
+  afterEach(async () => {
+    await store.reset();
   });
 
   test("default (no props)", () => {
@@ -302,8 +290,8 @@ describe("code-block [a11y]", () => {
     await setupCodeBlock({ langs: [] });
   });
 
-  afterEach(() => {
-    store.reset();
+  afterEach(async () => {
+    await store.reset();
   });
 
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {

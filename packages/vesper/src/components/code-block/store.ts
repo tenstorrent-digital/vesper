@@ -13,9 +13,11 @@ import { theme } from "./theme";
 
 type CodeBlockStoreState =
   | { highlighter: null; initialized: false }
+  | { highlighter: null; initialized: false }
   | { highlighter: HighlighterCore; initialized: true };
 
 class CodeBlockStore {
+  setup: null | Promise<void> = null;
   state: CodeBlockStoreState = {
     initialized: false,
     highlighter: null,
@@ -63,21 +65,22 @@ class CodeBlockStore {
      * */
     aliases?: { [key: string]: string };
   }) => {
-    if (this.state.initialized) {
+    if (this.state.initialized || this.setup !== null) {
       throw new Error(
         "CodeBlock was already initialized; setupCodeBlock should not be called more than once in your application.",
       );
     }
 
-    this.state = {
-      initialized: true,
-      highlighter: await createHighlighterCore({
-        langs,
-        engine: createJavaScriptRegexEngine({ forgiving: true }),
-        themes: [theme],
-        langAlias: aliases,
-      }),
-    };
+    this.setup = createHighlighterCore({
+      langs,
+      engine: createJavaScriptRegexEngine({ forgiving: true }),
+      themes: [theme],
+      langAlias: aliases,
+    }).then((highlighter) => {
+      this.state = { initialized: true, highlighter };
+    });
+
+    await this.setup;
   };
 
   codeToStream = ({
@@ -129,7 +132,10 @@ class CodeBlockStore {
     }
   };
 
-  reset = () => {
+  reset = async () => {
+    await Promise.resolve(this.setup);
+
+    this.setup = null;
     this.state.highlighter?.dispose();
     this.state = {
       initialized: false,
