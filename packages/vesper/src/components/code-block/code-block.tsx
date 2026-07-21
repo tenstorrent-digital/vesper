@@ -83,7 +83,7 @@ const highlighter = createHighlighterCoreSync({
 function handleLanguageRegistration(lang: CodeBlockProps["lang"]) {
   if (!lang || typeof lang === "string") return;
 
-  const langName = lang[0]?.name;
+  const langName = getLangName(lang);
   if (langName && !highlighter.getLoadedLanguages().includes(langName)) {
     highlighter.loadLanguageSync(lang);
   }
