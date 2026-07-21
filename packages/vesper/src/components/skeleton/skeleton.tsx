@@ -19,6 +19,29 @@ export interface SkeletonProps extends ComponentProps<"div"> {
   show?: boolean;
 }
 
+/**
+ * A placeholder loading indicator that mimics the shape of content while it loads.
+ * When `show` is false, renders only its children without the skeleton overlay.
+ *
+ * @example
+ * <Skeleton width={200} height={20} />
+ *
+ * @example
+ * // Circle avatar skeleton
+ * <Skeleton shape="circle" size={48} />
+ *
+ * @example
+ * // Conditional skeleton wrapping content
+ * <Skeleton show={isLoading} width={120} height={16}>
+ *   <span>{userName}</span>
+ * </Skeleton>
+ *
+ * @example
+ * // As a Suspense fallback
+ * <Suspense fallback={<Skeleton width={200} height={40} shape="pill" />}>
+ *   <AsyncContent />
+ * </Suspense>
+ */
 export function Skeleton({
   className,
   shape = "box",
