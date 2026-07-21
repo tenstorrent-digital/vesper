@@ -70,6 +70,10 @@ export interface RangeProps extends Omit<
  *   step={10}
  *   showTicks
  *   values={[min, max]}
+ *   onValuesChange={([nextMin, nextMax]) => {
+ *     setMin(nextMin);
+ *     setMax(nextMax);
+ *   }}
  *   showValueLabels
  *   valueLabels={[
  *     `${min}db`,
