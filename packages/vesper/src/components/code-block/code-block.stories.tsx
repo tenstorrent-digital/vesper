@@ -1,3 +1,4 @@
+import { CSSProperties } from "react";
 import css from "@shikijs/langs/css";
 import json from "@shikijs/langs/json";
 import markdown from "@shikijs/langs/markdown";
@@ -28,43 +29,27 @@ function CodeBlockStoryComponent({
   lang: "python" | "bash" | "ansi" | "json" | "markdown" | "typescript" | "css";
   stream: boolean;
 }) {
+  const style: CSSProperties = {
+    width: "min(calc(100vw - 4rem), 720px)",
+    maxHeight: "calc(100vh - 4rem)",
+  };
+
   switch (lang) {
     case "ansi":
       return (
-        <CodeBlock
-          showLineNumbers={showLineNumbers}
-          lang="ansi"
-          style={{
-            width: "min(calc(100vw - 4rem), 720px)",
-            maxHeight: "calc(100vh - 4rem)",
-          }}
-        >
+        <CodeBlock showLineNumbers={showLineNumbers} lang="ansi" style={style}>
           {stream ? createTextStream(SAMPLE_CODE_ANSI) : SAMPLE_CODE_ANSI}
         </CodeBlock>
       );
     case "css":
       return (
-        <CodeBlock
-          showLineNumbers={showLineNumbers}
-          lang={css}
-          style={{
-            width: "min(calc(100vw - 4rem), 720px)",
-            maxHeight: "calc(100vh - 4rem)",
-          }}
-        >
+        <CodeBlock showLineNumbers={showLineNumbers} lang={css} style={style}>
           {stream ? createTextStream(SAMPLE_CODE_CSS) : SAMPLE_CODE_CSS}
         </CodeBlock>
       );
     case "json":
       return (
-        <CodeBlock
-          showLineNumbers={showLineNumbers}
-          lang={json}
-          style={{
-            width: "min(calc(100vw - 4rem), 720px)",
-            maxHeight: "calc(100vh - 4rem)",
-          }}
-        >
+        <CodeBlock showLineNumbers={showLineNumbers} lang={json} style={style}>
           {stream ? createTextStream(SAMPLE_CODE_JSON) : SAMPLE_CODE_JSON}
         </CodeBlock>
       );
@@ -73,10 +58,7 @@ function CodeBlockStoryComponent({
         <CodeBlock
           showLineNumbers={showLineNumbers}
           lang={markdown}
-          style={{
-            width: "min(calc(100vw - 4rem), 720px)",
-            maxHeight: "calc(100vh - 4rem)",
-          }}
+          style={style}
         >
           {stream
             ? createTextStream(SAMPLE_CODE_MARKDOWN)
@@ -88,10 +70,7 @@ function CodeBlockStoryComponent({
         <CodeBlock
           showLineNumbers={showLineNumbers}
           lang={typescript}
-          style={{
-            width: "min(calc(100vw - 4rem), 720px)",
-            maxHeight: "calc(100vh - 4rem)",
-          }}
+          style={style}
         >
           {stream
             ? createTextStream(SAMPLE_CODE_TYPESCRIPT)
@@ -103,10 +82,7 @@ function CodeBlockStoryComponent({
         <CodeBlock
           showLineNumbers={showLineNumbers}
           lang={shellscript}
-          style={{
-            width: "min(calc(100vw - 4rem), 720px)",
-            maxHeight: "calc(100vh - 4rem)",
-          }}
+          style={style}
         >
           {stream ? createTextStream(SAMPLE_CODE_BASH) : SAMPLE_CODE_BASH}
         </CodeBlock>
@@ -116,10 +92,7 @@ function CodeBlockStoryComponent({
         <CodeBlock
           showLineNumbers={showLineNumbers}
           lang={python}
-          style={{
-            width: "min(calc(100vw - 4rem), 720px)",
-            maxHeight: "calc(100vh - 4rem)",
-          }}
+          style={style}
         >
           {stream ? createTextStream(SAMPLE_CODE_PYTHON) : SAMPLE_CODE_PYTHON}
         </CodeBlock>
