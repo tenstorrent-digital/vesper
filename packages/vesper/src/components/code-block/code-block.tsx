@@ -97,7 +97,7 @@ export function registerLanguage(language: LanguageRegistration[]) {
 export function CodeBlock({
   className,
   children: code = "",
-  lang,
+  lang = "text",
   showLineNumbers = false,
   transformers,
   ...props
@@ -249,5 +249,5 @@ function TokenStreamRenderer({
   );
 }
 
-const getLangName = (lang?: LanguageRegistration[] | "text" | "ansi") =>
-  typeof lang === "string" ? lang : lang?.[0]?.name || "text";
+const getLangName = (lang: LanguageRegistration[] | "text" | "ansi") =>
+  typeof lang === "string" ? lang : lang[0]?.name || "text";
