@@ -7,7 +7,7 @@ import shellscript from "@shikijs/langs/shellscript";
 import typescript from "@shikijs/langs/typescript";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { CodeBlock as CodeBlock } from "@/components/code-block/code-block";
+import { CodeBlock } from "@/components/code-block/code-block";
 
 import {
   createTextStream,
