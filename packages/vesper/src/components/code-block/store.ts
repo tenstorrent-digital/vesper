@@ -63,6 +63,12 @@ class CodeBlockStore {
      * */
     aliases?: { [key: string]: string };
   }) => {
+    if (this.state.initialized) {
+      throw new Error(
+        "CodeBlock was already initialized; setupCodeBlock should not be called more than once in your application.",
+      );
+    }
+
     this.state = {
       initialized: true,
       highlighter: await createHighlighterCore({
