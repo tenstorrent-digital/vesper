@@ -64,7 +64,7 @@ export interface CheckboxProps
     Pick<ComponentProps<"input">, ForwardedPropTypes> {
   /** The text label displayed next to the checkbox. An asterisk is appended when `required` is true. */
   label: string;
-  /** When true, initially renders the checkbox in an indeterminate (mixed) state, displaying a dash icon instead of a checkmark. */
+  /** When true, renders the checkbox in an indeterminate (mixed) state, displaying a dash icon instead of a checkmark. */
   indeterminate?: boolean;
   /** The size of the checkbox and its label. Defaults to `"md"`. */
   size?: CheckboxSize;
