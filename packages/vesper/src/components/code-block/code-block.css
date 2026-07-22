@@ -15,16 +15,11 @@
 
   @media (hover: hover) {
     &[data-copy-on-hover="true"] {
-      .vesper-icon-button {
-        display: none;
+      .vesper-icon-button:not(:focus-visible) {
         opacity: 0;
-        transition:
-          display 0.25s ease-in allow-discrete,
-          opacity 0.25s ease-in allow-discrete;
       }
       &:hover {
         .vesper-icon-button {
-          display: flex;
           opacity: 1;
         }
       }
