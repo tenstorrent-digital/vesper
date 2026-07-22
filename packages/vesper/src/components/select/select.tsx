@@ -6,9 +6,11 @@ import {
   SelectItemText,
   SelectPortal,
   SelectTrigger,
+  SelectValue,
   SelectViewport,
 } from "@radix-ui/react-select";
 
+import { CaretDown, CaretUp, Checkmark } from "@/components/icons/icons";
 import {
   Typography,
   type TypographyVariant,
@@ -58,12 +60,6 @@ export function Select(props: SelectProps) {
     ...rest
   } = props;
 
-  const displayedValue =
-    (value
-      ? options.find((o) => o.value === value)
-      : options.find((o) => o.value === defaultValue)
-    )?.label || placeholder;
-
   return (
     <SelectRoot
       value={value}
@@ -76,20 +72,35 @@ export function Select(props: SelectProps) {
         {...rest}
       >
         {icon && <span className="vesper-select-icon">{icon}</span>}
-        <Typography
-          as="span"
-          variant={SELECT_TRIGGER_TYPOGRAPHY[size]}
-          className="vesper-select-displayed-value"
-        >
-          {displayedValue}
+        <Typography as="span" variant={SELECT_TRIGGER_TYPOGRAPHY[size]}>
+          <SelectValue placeholder={placeholder} />
         </Typography>
+        <span className="vesper-select-state-indicator">
+          <CaretDown className="vespers-select-state-indicator-closed" />
+          <CaretUp className="vespers-select-state-indicator-open" />
+        </span>
       </SelectTrigger>
       <SelectPortal>
-        <SelectContent>
-          <SelectViewport>
+        <SelectContent
+          className="vesper-select-content"
+          side="bottom"
+          sideOffset={12}
+          align="start"
+          position="popper"
+        >
+          <SelectViewport className="vesper-select-viewport">
             {options.map((o) => (
-              <SelectItem value={o.value} key={o.value}>
-                <SelectItemText>{o.label}</SelectItemText>
+              <SelectItem
+                key={o.value}
+                value={o.value}
+                className="vesper-select-item"
+              >
+                <Typography variant="label-md">
+                  <SelectItemText>{o.label}</SelectItemText>
+                </Typography>
+                <span className="vesper-select-item-checkmark">
+                  <Checkmark />
+                </span>
               </SelectItem>
             ))}
           </SelectViewport>
