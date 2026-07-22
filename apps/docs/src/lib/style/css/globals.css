@@ -1,9 +1,123 @@
-@import "tailwindcss" source("../../..");
 /*
-  1. import tailwind
-  2. set base path for detecting classes in source files (`src/` directory)
-    - See https://tailwindcss.com/docs/detecting-classes-in-source-files#setting-your-base-path
+  setup tailwind
+  - `source("../../..")` tells Tailwind where to scan class names to watch
 */
-
-@import "@repo/vesper/styles.css";
+@import "tailwindcss" source("../../..");
 @import "@repo/vesper/tailwind.css";
+
+/* tailwind theme for docs */
+@theme {
+  --font-inter-tight: var(--font-inter-tight);
+  --font-plex-sans: var(--font-plex-sans);
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+:root {
+  --base-font-size: 16px;
+  --base-line-height: var(--vesper-leading-normal);
+
+  /*
+    variables for --font-inter-tight and --font-plex-sans are
+    set via `next/fonts/google`
+
+    these variables also include fallback fonts: system-ui, sans-serif
+
+    @see: @apps/docs/src/lib/style/fonts.ts
+    @see: @apps/docs/src/app/layout.tsx
+  */
+
+  color-scheme: light dark;
+}
+
+html {
+  font-size: var(--base-font-size); /* set 1rem */
+  line-height: var(--base-line-height);
+  font-family: var(--font-inter-tight);
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  &:where([inert], :has(dialog[open]:modal)) {
+    overflow-y: clip;
+  }
+}
+
+.prose {
+  --spacing: 1rem;
+  --content-width: 72ch;
+  --font-size: 1rem;
+  --gap: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap);
+  padding: var(--spacing);
+  margin: 0 auto;
+  min-width: 100%;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    scroll-margin-top: calc(var(--spacing) * 4);
+    letter-spacing: -2.5%;
+
+    text-wrap: pretty;
+    word-break: auto-phrase;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin-top: calc(var(--spacing) / 2);
+    margin-bottom: calc(var(--spacing) / 4);
+  }
+
+  h5,
+  h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  & > p {
+    max-width: var(--content-width);
+    line-height: var(
+      --base-line-height
+    ); /* overrides `--vesper-leading-snug` applied by Typography */
+  }
+
+  ul,
+  ol {
+    max-width: var(--content-width);
+    margin-block: 0;
+    padding-inline-start: 1.5em;
+    line-height: var(--base-line-height);
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  li {
+    line-height: var(--base-line-height);
+  }
+}

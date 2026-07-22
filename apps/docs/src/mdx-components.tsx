@@ -1,10 +1,17 @@
 import type { MDXComponents } from "mdx/types";
 import Image, { ImageProps } from "next/image";
+import {
+  type BundledLanguage,
+  bundledLanguages,
+  type LanguageRegistration,
+} from "shiki/bundle/web";
 
 import { Admonition } from "@repo/vesper/admonition";
 import { Code } from "@repo/vesper/code";
-// import { CodeBlock } from "@repo/vesper/code-block";
+import { CodeBlock } from "@repo/vesper/code-block";
 import { Typography } from "@repo/vesper/typography";
+
+import { trimChildren } from "@/lib/markdown/utils";
 
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any
@@ -43,25 +50,54 @@ const components = {
     </Typography>
   ),
   p: (props) => (
-    <Typography as="p" variant="copy-sm">
+    <Typography as="p" variant="copy-md">
       {props.children}
     </Typography>
   ),
   strong: (props) => (
-    <Typography as="strong" variant="copy-sm-bold">
+    <Typography as="strong" variant="copy-md-bold">
       {props.children}
     </Typography>
   ),
   code: (props) => <Code>{props.children}</Code>,
-  blockquote: (props) => <Admonition size="sm">{props.children}</Admonition>,
-  // codeBlock: (props) => <CodeBlock>{props.children}</CodeBlock>, // throws client/server errors
+  blockquote: (props) => (
+    <Admonition size="sm">{trimChildren(props.children)}</Admonition>
+  ),
+  pre: async (props) => {
+    const codeElement = props.children as React.ReactElement<{
+      children?: string;
+      className?: string;
+    }>;
+    const code = codeElement?.props?.children?.trim() ?? "";
+    const lang = codeElement?.props?.className?.replace("language-", "");
 
+    let resolvedLang: LanguageRegistration[] | "text" = "text";
+
+    // check if language is included in bundled languages
+    if (lang && lang in bundledLanguages) {
+      // if it is, get the ES module directly and grab the `LanguageRegistration`
+      // by using the default export
+      resolvedLang = (await bundledLanguages[lang as BundledLanguage]())
+        .default;
+    }
+
+    return (
+      <CodeBlock lang={resolvedLang} copyOnHover>
+        {code}
+      </CodeBlock>
+    );
+  },
   img: (props) => (
     <Image
       sizes="100vw"
-      className="w-auto h-auto max-w-full"
+      className="h-auto w-auto max-w-full"
       {...(props as ImageProps)}
     />
+  ),
+  li: (props) => (
+    <Typography as="li" variant="copy-md">
+      {props.children}
+    </Typography>
   ),
 } satisfies MDXComponents;
 

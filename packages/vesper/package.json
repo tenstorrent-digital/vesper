@@ -178,6 +178,7 @@
     "scaffold:component": "turbo gen vesper-component",
     "generate:icons": "tsx scripts/generate-icons.ts && eslint src/components/icons/*.{ts,tsx} --fix && prettier --write src/components/icons/*.{ts,tsx}",
     "test": "vitest run --coverage",
+    "test:update": "vitest run --coverage --update",
     "test:watch": "vitest",
     "check-types": "tsc --noEmit -p tsconfig.build.json"
   },

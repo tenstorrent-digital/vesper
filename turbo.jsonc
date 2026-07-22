@@ -25,6 +25,7 @@
       "persistent": true
     },
     "test": {},
+    "test:update": {},
     "test:watch": {
       "persistent": true
     },

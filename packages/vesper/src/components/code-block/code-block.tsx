@@ -95,7 +95,12 @@ export function CodeBlock({
 
   if (typeof code === "function") {
     return (
-      <StreamingCodeBlock className={className} lang={lang} copyOnHover={copyOnHover} {...props}>
+      <StreamingCodeBlock
+        className={className}
+        lang={lang}
+        copyOnHover={copyOnHover}
+        {...props}
+      >
         {code}
       </StreamingCodeBlock>
     );

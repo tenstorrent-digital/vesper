@@ -11,11 +11,11 @@
     "check-types": "next typegen && tsc --noEmit"
   },
   "dependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^16.2.10",
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
     "@repo/vesper": "*",
     "@tailwindcss/postcss": "^4.3.0",
     "next": "^16.2.10",
@@ -25,6 +25,7 @@
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
     "remark-mdx-frontmatter": "^5.2.0",
+    "shiki": "^4.3.1",
     "tailwindcss": "^4.3.0"
   },
   "devDependencies": {

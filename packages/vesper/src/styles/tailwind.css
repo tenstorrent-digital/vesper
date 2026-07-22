@@ -1,3 +1,6 @@
+@import "./styles.css" layer(components);
+@import "./tailwind-utilities.css";
+
 @theme {
   --color-vesper-static-black: var(--vesper-static-black);
   --color-vesper-static-white: var(--vesper-static-white);
@@ -385,36 +388,4 @@
     --vesper-transition-duration-default
   );
   --transition-duration-vesper-slow: var(--vesper-transition-duration-slow);
-}
-
-@utility bg-vesper-dot-pattern-primary {
-  background: var(--vesper-bg-dot-pattern-primary);
-}
-
-@utility bg-vesper-dot-pattern-secondary {
-  background: var(--vesper-bg-dot-pattern-secondary);
-}
-
-@utility bg-vesper-dot-pattern-tertiary {
-  background: var(--vesper-bg-dot-pattern-tertiary);
-}
-
-/* Dot pattern with a custom background color from vesper color tokens.
- * Usage: bg-vesper-dot-pattern-{token}, e.g. bg-vesper-dot-pattern-stone-500,
- * bg-vesper-dot-pattern-teal-200, bg-vesper-dot-pattern-purple-300, etc. */
-@utility bg-vesper-dot-pattern-* {
-  background: var(--vesper-bg-dot-pattern-primary);
-  background-color: --value(--color-vesper-*);
-}
-
-@utility bg-vesper-dot-pattern-inverse {
-  background: var(--vesper-bg-dot-pattern-inverse);
-}
-
-/* Inverse dot pattern with a custom background color from vesper color tokens.
- * Usage: bg-vesper-dot-pattern-inverse-{token}, e.g. bg-vesper-dot-pattern-inverse-stone-500,
- * bg-vesper-dot-pattern-inverse-teal-200, bg-vesper-dot-pattern-inverse-purple-300, etc. */
-@utility bg-vesper-dot-pattern-inverse-* {
-  background: var(--vesper-bg-dot-pattern-inverse);
-  background-color: --value(--color-vesper-*);
 }

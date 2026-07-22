@@ -50,7 +50,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         path: "{{ turbo.paths.root }}/packages/vesper/src/styles/styles.css",
         pattern: /\/\* components \*\//,
         template:
-          '@import "../components/{{ kebabCase name }}/{{ kebabCase name }}.css";',
+          '@import "../components/{{ kebabCase name }}/{{ kebabCase name }}.css" layer(vesper);',
       },
       {
         type: "modify",
