@@ -70,7 +70,7 @@ function CodeBlockStoryComponent({
   stream,
 }: {
   showLineNumbers: boolean;
-  lang: "python" | "bash" | "ansi" | "json" | "markdown" | "typescript" | "css";
+  lang: StoryLang;
   stream: boolean;
 }) {
   const params = PARAMS[lang];
