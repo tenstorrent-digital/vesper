@@ -7,3 +7,7 @@
 
 @import "@repo/vesper/styles.css";
 @import "@repo/vesper/tailwind.css";
+
+:root {
+  color-scheme: light dark;
+}
