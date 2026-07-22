@@ -80,7 +80,7 @@ Scaffolding a component from the command line will create a `.test.tsx` file in 
 
 #### Updating snapshots
 
-If a component's structure changes, we will need to update its snapshot tests. You can update snapshot tests across all test suites by running `yarn test:vesper -- -u` from the monorepo root, or `yarn test -- -u` from within the `vesper` package.
+If a component's structure changes, we will need to update its snapshot tests. You can update snapshot tests across all test suites by running `yarn test:vesper:update` from the monorepo root, or `yarn test:update` from within the `vesper` package.
 
 To update a specific test suite you can also supply a glob pattern to match whatever tests you would like to update the snapshots for:
 
