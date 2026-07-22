@@ -7,17 +7,13 @@ import {
   useRef,
   useState,
 } from "react";
-import * as jsxRuntime from "react/jsx-runtime";
 import {
-  createHighlighterCoreSync,
   getTokenStyleObject,
   type LanguageRegistration,
   type ShikiTransformer,
   type ThemedToken,
 } from "@shikijs/core";
-import { createJavaScriptRegexEngine } from "@shikijs/engine-javascript";
 import { CodeToTokenTransformStream } from "@shikijs/stream";
-import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Copy } from "@/components/icons/icons";
@@ -26,7 +22,13 @@ import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
 import { generateId } from "@/utils/generateId";
 
-import { theme } from "./theme";
+import {
+  codeToJsx,
+  codeToTokenStream,
+  getLangName,
+  handleLanguageRegistration,
+  highlighter,
+} from "./utils";
 
 export interface CodeBlockProps extends Omit<
   ComponentProps<"div">,
@@ -72,21 +74,6 @@ export interface CodeBlockProps extends Omit<
    * </CodeBlock>
    */
   transformers?: ShikiTransformer[];
-}
-
-const highlighter = createHighlighterCoreSync({
-  langs: [],
-  engine: createJavaScriptRegexEngine({ forgiving: true }),
-  themes: [theme],
-});
-
-function handleLanguageRegistration(lang: CodeBlockProps["lang"]) {
-  if (!lang || typeof lang === "string") return;
-
-  const langName = getLangName(lang);
-  if (langName && !highlighter.getLoadedLanguages().includes(langName)) {
-    highlighter.loadLanguageSync(lang);
-  }
 }
 
 export function CodeBlock({
@@ -137,17 +124,9 @@ export function CodeBlock({
         ref={ref}
       >
         {typeof code === "string" ? (
-          toJsxRuntime(
-            highlighter.codeToHast(code, {
-              lang: getLangName(lang),
-              theme: "vesper",
-              transformers,
-              tabindex: false,
-            }),
-            jsxRuntime,
-          )
+          codeToJsx(code, lang, transformers)
         ) : (
-          <TokenStreamRenderer code={code} lang={getLangName(lang)} />
+          <TokenStreamRenderer code={code} lang={lang} />
         )}
       </Typography>
       <IconButton
@@ -180,7 +159,7 @@ function TokenStreamRenderer({
   lang,
 }: {
   code: ReadableStream<string>;
-  lang: string;
+  lang: CodeBlockProps["lang"];
 }) {
   // WeakMap for storing references to ThemedToken keys
   // Because WeakMaps garbage collect their own references, we don't have to worry about memory leaks when the tokens array is reset or changes
@@ -204,14 +183,7 @@ function TokenStreamRenderer({
     const controller = new AbortController();
 
     code
-      .pipeThrough(
-        new CodeToTokenTransformStream({
-          highlighter,
-          lang,
-          theme: "vesper",
-          allowRecalls: true,
-        }),
-      )
+      .pipeThrough(codeToTokenStream(lang))
       .pipeTo(
         new WritableStream({
           write(token) {
@@ -241,6 +213,3 @@ function TokenStreamRenderer({
     </pre>
   );
 }
-
-const getLangName = (lang: LanguageRegistration[] | "text" | "ansi") =>
-  typeof lang === "string" ? lang : lang[0]?.name || "text";
