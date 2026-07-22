@@ -1,4 +1,3 @@
-import { CSSProperties } from "react";
 import css from "@shikijs/langs/css";
 import json from "@shikijs/langs/json";
 import markdown from "@shikijs/langs/markdown";
@@ -7,7 +6,7 @@ import shellscript from "@shikijs/langs/shellscript";
 import typescript from "@shikijs/langs/typescript";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { CodeBlock } from "@/components/code-block/code-block";
+import { CodeBlock, CodeBlockProps } from "@/components/code-block/code-block";
 
 import {
   createTextStream,
@@ -20,6 +19,51 @@ import {
   SAMPLE_CODE_TYPESCRIPT,
 } from "./fixtures";
 
+const STORY_LANG_OPTIONS = [
+  "python",
+  "bash",
+  "ansi",
+  "json",
+  "markdown",
+  "typescript",
+  "css",
+] as const;
+
+type StoryLang = (typeof STORY_LANG_OPTIONS)[number];
+
+const PARAMS: {
+  [K in StoryLang]: { code: string; lang: CodeBlockProps["lang"] };
+} = {
+  ansi: {
+    code: SAMPLE_CODE_ANSI,
+    lang: "ansi",
+  },
+  bash: {
+    code: SAMPLE_CODE_BASH,
+    lang: shellscript,
+  },
+  css: {
+    code: SAMPLE_CODE_CSS,
+    lang: css,
+  },
+  json: {
+    code: SAMPLE_CODE_JSON,
+    lang: json,
+  },
+  markdown: {
+    code: SAMPLE_CODE_MARKDOWN,
+    lang: markdown,
+  },
+  python: {
+    code: SAMPLE_CODE_PYTHON,
+    lang: python,
+  },
+  typescript: {
+    code: SAMPLE_CODE_TYPESCRIPT,
+    lang: typescript,
+  },
+};
+
 function CodeBlockStoryComponent({
   lang,
   showLineNumbers,
@@ -29,77 +73,20 @@ function CodeBlockStoryComponent({
   lang: "python" | "bash" | "ansi" | "json" | "markdown" | "typescript" | "css";
   stream: boolean;
 }) {
-  const style: CSSProperties = {
-    width: "min(calc(100vw - 4rem), 720px)",
-    maxHeight: "calc(100vh - 4rem)",
-  };
+  const params = PARAMS[lang];
 
-  switch (lang) {
-    case "ansi":
-      return (
-        <CodeBlock showLineNumbers={showLineNumbers} lang="ansi" style={style}>
-          {stream ? createTextStream(SAMPLE_CODE_ANSI) : SAMPLE_CODE_ANSI}
-        </CodeBlock>
-      );
-    case "css":
-      return (
-        <CodeBlock showLineNumbers={showLineNumbers} lang={css} style={style}>
-          {stream ? createTextStream(SAMPLE_CODE_CSS) : SAMPLE_CODE_CSS}
-        </CodeBlock>
-      );
-    case "json":
-      return (
-        <CodeBlock showLineNumbers={showLineNumbers} lang={json} style={style}>
-          {stream ? createTextStream(SAMPLE_CODE_JSON) : SAMPLE_CODE_JSON}
-        </CodeBlock>
-      );
-    case "markdown":
-      return (
-        <CodeBlock
-          showLineNumbers={showLineNumbers}
-          lang={markdown}
-          style={style}
-        >
-          {stream
-            ? createTextStream(SAMPLE_CODE_MARKDOWN)
-            : SAMPLE_CODE_MARKDOWN}
-        </CodeBlock>
-      );
-    case "typescript":
-      return (
-        <CodeBlock
-          showLineNumbers={showLineNumbers}
-          lang={typescript}
-          style={style}
-        >
-          {stream
-            ? createTextStream(SAMPLE_CODE_TYPESCRIPT)
-            : SAMPLE_CODE_TYPESCRIPT}
-        </CodeBlock>
-      );
-    case "bash":
-      return (
-        <CodeBlock
-          showLineNumbers={showLineNumbers}
-          lang={shellscript}
-          style={style}
-        >
-          {stream ? createTextStream(SAMPLE_CODE_BASH) : SAMPLE_CODE_BASH}
-        </CodeBlock>
-      );
-    case "python":
-      return (
-        <CodeBlock
-          showLineNumbers={showLineNumbers}
-          lang={python}
-          style={style}
-        >
-          {stream ? createTextStream(SAMPLE_CODE_PYTHON) : SAMPLE_CODE_PYTHON}
-        </CodeBlock>
-      );
-    default:
-      return null;
-  }
+  return (
+    <CodeBlock
+      showLineNumbers={showLineNumbers}
+      lang={params.lang}
+      style={{
+        width: "min(calc(100vw - 4rem), 720px)",
+        maxHeight: "calc(100vh - 4rem)",
+      }}
+    >
+      {stream ? createTextStream(params.code) : params.code}
+    </CodeBlock>
+  );
 }
 
 const meta = {
@@ -107,15 +94,7 @@ const meta = {
   argTypes: {
     lang: {
       control: "radio",
-      options: [
-        "python",
-        "bash",
-        "ansi",
-        "json",
-        "markdown",
-        "typescript",
-        "css",
-      ],
+      options: STORY_LANG_OPTIONS,
     },
     stream: {
       description:
