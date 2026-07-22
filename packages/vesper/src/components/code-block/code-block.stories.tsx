@@ -84,7 +84,7 @@ function CodeBlockStoryComponent({
         maxHeight: "calc(100vh - 4rem)",
       }}
     >
-      {stream ? createTextStream(params.code) : params.code}
+      {stream ? () => createTextStream(params.code) : params.code}
     </CodeBlock>
   );
 }

@@ -1,3 +1,4 @@
+import { StrictMode } from "react";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
@@ -110,14 +111,15 @@ describe("code-block [unit]", () => {
   });
 
   test("renders ShikiStreamRenderer for ReadableStream children", () => {
-    const stream = new ReadableStream<string>({
-      start(controller) {
-        controller.enqueue("streamed code");
-        controller.close();
-      },
-    });
+    const streamFactory = () =>
+      new ReadableStream<string>({
+        start(controller) {
+          controller.enqueue("streamed code");
+          controller.close();
+        },
+      });
 
-    const { container } = render(<CodeBlock>{stream}</CodeBlock>);
+    const { container } = render(<CodeBlock>{streamFactory}</CodeBlock>);
     const wrapper = container.querySelector(".vesper-code-block-pre-wrapper");
     expect(wrapper).not.toBeNull();
     // streaming path renders via ShikiStreamRenderer which produces a shiki-stream pre
@@ -128,14 +130,15 @@ describe("code-block [unit]", () => {
     let enqueue: (chunk: string) => void;
     let close: () => void;
 
-    const stream = new ReadableStream<string>({
-      start(controller) {
-        enqueue = (chunk: string) => controller.enqueue(chunk);
-        close = () => controller.close();
-      },
-    });
+    const streamFactory = () =>
+      new ReadableStream<string>({
+        start(controller) {
+          enqueue = (chunk: string) => controller.enqueue(chunk);
+          close = () => controller.close();
+        },
+      });
 
-    const { container } = render(<CodeBlock>{stream}</CodeBlock>);
+    const { container } = render(<CodeBlock>{streamFactory}</CodeBlock>);
     const wrapper = container.querySelector(
       ".vesper-code-block-pre-wrapper",
     ) as HTMLElement;
@@ -197,6 +200,54 @@ describe("code-block [snapshot]", () => {
       <CodeBlock className="custom-class">code</CodeBlock>,
     );
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  describe("strict mode", () => {
+    test("streaming code block does not throw on Strict Mode remount", async () => {
+      const streamFactory = () =>
+        new ReadableStream<string>({
+          start(controller) {
+            controller.enqueue("const x = 1;");
+            controller.close();
+          },
+        });
+
+      const { container } = render(
+        <StrictMode>
+          <CodeBlock>{streamFactory}</CodeBlock>
+        </StrictMode>,
+      );
+
+      // Allow the stream to be consumed and tokens to render
+      await new Promise((r) => setTimeout(r, 200));
+
+      const pre = container.querySelector("pre.shiki-stream");
+      expect(pre).not.toBeNull();
+      expect(pre?.textContent).toContain("const x = 1;");
+    });
+
+    test("stream factory is called once per effect run", async () => {
+      const factory = vi.fn(
+        () =>
+          new ReadableStream<string>({
+            start(controller) {
+              controller.enqueue("hello");
+              controller.close();
+            },
+          }),
+      );
+
+      render(
+        <StrictMode>
+          <CodeBlock>{factory}</CodeBlock>
+        </StrictMode>,
+      );
+
+      // Allow effects to run (Strict Mode: mount → unmount → mount = 2 calls)
+      await new Promise((r) => setTimeout(r, 200));
+
+      expect(factory).toHaveBeenCalledTimes(2);
+    });
   });
 });
 

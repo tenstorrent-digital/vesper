@@ -15,14 +15,21 @@ export interface CodeBlockProps extends Omit<
   "children" | "dangerouslySetInnerHTML" | "lang"
 > {
   /**
-   * The code to render. Can be a `string`, or a `ReadableStream<string>` if you wish to stream something like build logs, output from an LLM, etc.
+   * The code to render. Can be a `string`, or a factory `() => ReadableStream<string>` if you wish to stream something like build logs, output from an LLM, etc.
+   *
+   * A factory is used instead of a raw `ReadableStream` because streams are single-use — once piped they are locked and cannot be re-read. Passing a factory allows the component to create a fresh stream whenever it needs one (e.g. on React Strict Mode remounts or language changes).
    *
    * @example
    * <CodeBlock>
    *   const count = 0
    * </CodeBlock>
+   *
+   * @example
+   * <CodeBlock lang={typescript}>
+   *   {() => getCodeStream()}
+   * </CodeBlock>
    */
-  children?: string | ReadableStream<string>;
+  children?: string | (() => ReadableStream<string>);
   /**
    * The language syntax of the supplied code. The language must correspond to one of the languages registered when calling `setupCodeBlock`. Omitting this prop will render supplied code as plain text with no syntax highlighting.
    *
@@ -66,7 +73,7 @@ export function CodeBlock({
 }: CodeBlockProps) {
   handleLanguageRegistration(lang);
 
-  if (typeof code !== "string") {
+  if (typeof code === "function") {
     return (
       <StreamingCodeBlock className={className} lang={lang} {...props}>
         {code}

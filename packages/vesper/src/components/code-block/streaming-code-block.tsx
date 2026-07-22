@@ -16,7 +16,7 @@ export function StreamingCodeBlock({
   lang = "text",
   ...props
 }: Omit<CodeBlockProps, "children" | "showLineNumbers" | "transformers"> & {
-  children: ReadableStream<string>;
+  children: () => ReadableStream<string>;
 }) {
   handleLanguageRegistration(lang);
 
@@ -69,7 +69,7 @@ function TokenStreamRenderer({
   code,
   lang,
 }: {
-  code: ReadableStream<string>;
+  code: () => ReadableStream<string>;
   lang: CodeBlockProps["lang"];
 }) {
   // WeakMap for storing references to ThemedToken keys
@@ -93,7 +93,7 @@ function TokenStreamRenderer({
 
     const controller = new AbortController();
 
-    code
+    code()
       .pipeThrough(codeToTokenStream(lang))
       .pipeTo(
         new WritableStream({
