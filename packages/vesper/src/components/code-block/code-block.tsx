@@ -68,10 +68,6 @@ export interface CodeBlockProps extends Omit<
    * </CodeBlock>
    */
   transformers?: ShikiTransformer[];
-  /**
-   * hide the copy-to-clipboard button until CodeBlock is hovered
-   */
-  copyOnHover?: boolean;
 }
 
 /**
@@ -135,7 +131,6 @@ export function CodeBlock({
   lang = "text",
   showLineNumbers = false,
   transformers,
-  copyOnHover = false,
   ...props
 }: CodeBlockProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -167,11 +162,7 @@ export function CodeBlock({
   }, [code]);
 
   return (
-    <div
-      className={cn("vesper-code-block", className)}
-      data-copy-on-hover={copyOnHover}
-      {...props}
-    >
+    <div className={cn("vesper-code-block", className)} {...props}>
       <Typography
         as="div"
         data-line-numbers={showLineNumbers}
