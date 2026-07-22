@@ -6,8 +6,8 @@ import { getTokenStyleObject, type ThemedToken } from "@shikijs/core";
 import { cn } from "@/utils/cn";
 import { generateId } from "@/utils/generateId";
 
+import type { CodeBlockProps } from "./code-block";
 import { CodeBlockPreWrapper, CopyToClipboardButton } from "./components";
-import { CodeBlockProps } from "./types";
 import { codeToTokenStream, handleLanguageRegistration } from "./utils";
 
 export function StreamingCodeBlock({

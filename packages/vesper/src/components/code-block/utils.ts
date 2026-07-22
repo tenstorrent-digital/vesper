@@ -4,8 +4,8 @@ import { createJavaScriptRegexEngine } from "@shikijs/engine-javascript";
 import { CodeToTokenTransformStream } from "@shikijs/stream";
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 
+import type { CodeBlockProps } from "./code-block";
 import { theme } from "./theme";
-import type { CodeBlockProps } from "./types";
 
 export const getLangName = (lang: CodeBlockProps["lang"]) =>
   typeof lang === "string" ? lang : lang?.[0]?.name || "text";
