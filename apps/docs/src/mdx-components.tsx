@@ -46,12 +46,12 @@ const components = {
     </Typography>
   ),
   p: (props) => (
-    <Typography as="p" variant="copy-sm">
+    <Typography as="p" variant="copy-md">
       {props.children}
     </Typography>
   ),
   strong: (props) => (
-    <Typography as="strong" variant="copy-sm-bold">
+    <Typography as="strong" variant="copy-md-bold">
       {props.children}
     </Typography>
   ),
@@ -64,17 +64,26 @@ const components = {
       children?: string;
       className?: string;
     }>;
-    const code = codeElement?.props?.children ?? "";
+    const code = codeElement?.props?.children?.trim() ?? "";
     const lang = codeElement?.props?.className?.replace("language-", ""); // strip `language-`
 
-    return <CodeBlock lang={lang}>{code}</CodeBlock>;
+    return (
+      <CodeBlock lang={lang} copyOnHover>
+        {code}
+      </CodeBlock>
+    );
   },
   img: (props) => (
     <Image
       sizes="100vw"
-      className="w-auto h-auto max-w-full"
+      className="h-auto w-auto max-w-full"
       {...(props as ImageProps)}
     />
+  ),
+  li: (props) => (
+    <Typography as="li" variant="copy-md">
+      {props.children}
+    </Typography>
   ),
 } satisfies MDXComponents;
 

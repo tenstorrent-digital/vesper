@@ -1,6 +1,9 @@
 import Nav from "@/components/nav";
 import Prose from "@/components/prose";
 
+import { ibm_plex_sans, inter_tight } from "@/lib/style/fonts";
+import { cn } from "@/lib/tailwind/cn";
+
 import "@/lib/style/css/globals.css";
 
 export default function RootLayout({
@@ -9,7 +12,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={cn(
+        inter_tight.variable,
+        ibm_plex_sans.variable,
+        "antialiased",
+      )}
+    >
       <body className="">
         {/* nav, header, footer, etc */}
         <Nav />
