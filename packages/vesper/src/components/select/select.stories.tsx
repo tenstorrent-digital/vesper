@@ -11,6 +11,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
-  args: {},
+  args: {
+    options: [],
+    size: "lg",
+    placeholder: "Select an option",
+  },
 };
 Playground.storyName = "select";
