@@ -68,7 +68,10 @@ const components = {
     const lang = codeElement?.props?.className?.replace("language-", ""); // strip `language-`
 
     return (
-      <CodeBlock lang={lang} copyOnHover>
+      <CodeBlock
+        lang={lang}
+        // copyOnHover // add back after https://github.com/tenstorrent-digital/vesper/pull/65
+      >
         {code}
       </CodeBlock>
     );
