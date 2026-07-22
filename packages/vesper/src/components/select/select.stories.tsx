@@ -21,6 +21,7 @@ export const Playground: Story = {
     ],
     size: "lg",
     placeholder: "Select an option",
+    disabled: false,
     icon: <Server />,
   },
   render(props) {

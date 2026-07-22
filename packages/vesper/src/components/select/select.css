@@ -18,6 +18,15 @@
   &[data-state="closed"] .vespers-select-state-indicator-open {
     display: none;
   }
+  &:disabled {
+    border-color: var(--vesper-border-disabled);
+    color: var(--vesper-text-disabled);
+    background: var(--vesper-background-disabled);
+    .vesper-select-icon,
+    .vesper-select-state-indicator {
+      color: var(--vesper-icon-disabled);
+    }
+  }
 }
 
 .vesper-select-item-checkmark {

@@ -65,6 +65,7 @@ export function Select(props: SelectProps) {
       value={value}
       defaultValue={defaultValue}
       onValueChange={onValueChange}
+      disabled={disabled}
     >
       <SelectTrigger
         className={cn("vesper-select", `vesper-select-${size}`, className)}
