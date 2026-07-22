@@ -1,4 +1,5 @@
 import { StrictMode } from "react";
+import jsonLang from "@shikijs/langs/json";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
@@ -154,6 +155,73 @@ describe("code-block [unit]", () => {
 
     scrollTopSpy.mockRestore();
     close!();
+  });
+
+  test("disables auto-scroll when user scrolls away from bottom", async () => {
+    let enqueue: (chunk: string) => void;
+
+    const streamFactory = () =>
+      new ReadableStream<string>({
+        start(controller) {
+          enqueue = (chunk: string) => controller.enqueue(chunk);
+        },
+      });
+
+    const { container } = render(
+      // Give the CodeBlock a fixed height so it becomes scrollable
+      <CodeBlock style={{ height: 100 }}>{streamFactory}</CodeBlock>,
+    );
+
+    const wrapper = container.querySelector(
+      ".vesper-code-block-pre-wrapper",
+    ) as HTMLElement;
+
+    // Push enough content to overflow the wrapper
+    enqueue!("a\n".repeat(20));
+    await new Promise((r) => setTimeout(r, 200));
+
+    // Sanity: auto-scroll should have placed us at the bottom
+    expect(wrapper.scrollTop).toBeGreaterThan(0);
+
+    // Simulate user scrolling to the top
+    wrapper.scrollTop = 0;
+    await new Promise((r) => setTimeout(r, 50));
+
+    // Push more content — auto-scroll should be disabled
+    enqueue!("new line\n");
+    await new Promise((r) => setTimeout(r, 200));
+
+    // scrollTop should still be at 0 (user's scroll position preserved)
+    expect(wrapper.scrollTop).toBe(0);
+  });
+
+  test("renders with LanguageRegistration[] lang", () => {
+    const { container } = render(
+      <CodeBlock lang={jsonLang}>{'{"key": "value"}'}</CodeBlock>,
+    );
+    const pre = container.querySelector("pre.shiki");
+    expect(pre).not.toBeNull();
+    expect(pre?.textContent).toContain('{"key": "value"}');
+  });
+
+  test("streams with LanguageRegistration[] lang", async () => {
+    const streamFactory = () =>
+      new ReadableStream<string>({
+        start(controller) {
+          controller.enqueue('{"key": "value"}');
+          controller.close();
+        },
+      });
+
+    const { container } = render(
+      <CodeBlock lang={jsonLang}>{streamFactory}</CodeBlock>,
+    );
+
+    await new Promise((r) => setTimeout(r, 200));
+
+    const pre = container.querySelector("pre.shiki-stream");
+    expect(pre).not.toBeNull();
+    expect(pre?.textContent).toContain('{"key": "value"}');
   });
 
   test("copy button copies empty string when ref has no text content", () => {
