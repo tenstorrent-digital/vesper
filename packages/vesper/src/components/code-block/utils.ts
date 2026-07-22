@@ -1,15 +1,16 @@
 import * as jsxRuntime from "react/jsx-runtime";
 import { createHighlighterCoreSync, ShikiTransformer } from "@shikijs/core";
 import { createJavaScriptRegexEngine } from "@shikijs/engine-javascript";
-import { theme } from "./theme";
-import type { CodeBlockProps } from "./code-block";
-import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 import { CodeToTokenTransformStream } from "@shikijs/stream";
+import { toJsxRuntime } from "hast-util-to-jsx-runtime";
+
+import { theme } from "./theme";
+import type { CodeBlockProps } from "./types";
 
 export const getLangName = (lang: CodeBlockProps["lang"]) =>
   typeof lang === "string" ? lang : lang?.[0]?.name || "text";
 
-export const highlighter = createHighlighterCoreSync({
+const highlighter = createHighlighterCoreSync({
   langs: [],
   engine: createJavaScriptRegexEngine({ forgiving: true }),
   themes: [theme],
