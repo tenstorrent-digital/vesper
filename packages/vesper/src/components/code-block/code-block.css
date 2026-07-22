@@ -45,19 +45,17 @@
     margin: 0;
     padding: var(--vesper-spacing-5) 0;
     outline: none;
+    line-height: 1.3875rem;
     .line {
-      display: inline-flex;
       padding: 0 var(--vesper-spacing-5);
       width: calc(100% - var(--vesper-spacing-10));
-      &:not(:first-child) {
-        margin-top: var(--vesper-spacing-1);
-      }
     }
   }
   &[data-line-numbers="true"] pre.shiki {
     counter-reset: step;
     counter-increment: step 0;
     .line::before {
+      display: inline-block;
       content: counter(step);
       counter-increment: step;
       width: var(--vesper-spacing-12);
