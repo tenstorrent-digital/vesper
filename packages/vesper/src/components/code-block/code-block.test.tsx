@@ -146,6 +146,9 @@ describe("code-block [unit]", () => {
 
     const scrollTopSpy = vi.spyOn(wrapper, "scrollTop", "set");
 
+    // Allow the factory to be called (deferred to microtask)
+    await new Promise((r) => setTimeout(r, 0));
+
     // push a chunk and allow microtasks / MutationObserver to fire
     enqueue!("line 1\nline 2\nline 3\n");
     await new Promise((r) => setTimeout(r, 200));
@@ -175,6 +178,9 @@ describe("code-block [unit]", () => {
     const wrapper = container.querySelector(
       ".vesper-code-block-pre-wrapper",
     ) as HTMLElement;
+
+    // Allow the factory to be called (deferred to microtask)
+    await new Promise((r) => setTimeout(r, 0));
 
     // Push enough content to overflow the wrapper
     enqueue!("a\n".repeat(20));
@@ -242,9 +248,7 @@ describe("code-block [unit]", () => {
     expect(pre?.textContent).toContain("async content");
   });
 
-  test("async factory that resolves after cleanup does not pipe", async () => {
-    const pipeThroughSpy = vi.spyOn(ReadableStream.prototype, "pipeThrough");
-
+  test("async factory that resolves after cleanup cancels the stream", async () => {
     let resolveStream!: (stream: ReadableStream<string>) => void;
     const asyncFactory = () =>
       new Promise<ReadableStream<string>>((resolve) => {
@@ -253,23 +257,46 @@ describe("code-block [unit]", () => {
 
     const { unmount } = render(<CodeBlock>{asyncFactory}</CodeBlock>);
 
+    // Allow the factory to be called (deferred to microtask)
+    await new Promise((r) => setTimeout(r, 0));
+
     // Unmount before the factory resolves
     unmount();
 
-    // Now resolve the factory — the stream should NOT be piped
-    resolveStream(
-      new ReadableStream<string>({
-        start(controller) {
-          controller.enqueue("stale content");
-          controller.close();
-        },
-      }),
+    // Now resolve the factory — the stream should be cancelled, not piped
+    const stream = new ReadableStream<string>({
+      start(controller) {
+        controller.enqueue("stale content");
+        controller.close();
+      },
+    });
+    const cancelSpy = vi.spyOn(stream, "cancel");
+
+    resolveStream(stream);
+    await new Promise((r) => setTimeout(r, 100));
+
+    expect(cancelSpy).toHaveBeenCalled();
+    cancelSpy.mockRestore();
+  });
+
+  test("factory that throws synchronously does not crash the component", async () => {
+    const throwingFactory = () => {
+      throw new Error("factory error");
+    };
+
+    // Should not throw during render or effect execution
+    const { container } = render(
+      <CodeBlock>
+        {throwingFactory as unknown as () => ReadableStream<string>}
+      </CodeBlock>,
     );
 
     await new Promise((r) => setTimeout(r, 100));
 
-    expect(pipeThroughSpy).not.toHaveBeenCalled();
-    pipeThroughSpy.mockRestore();
+    // Component should still be in the DOM, just with no streamed content
+    const pre = container.querySelector("pre.shiki-stream");
+    expect(pre).not.toBeNull();
+    expect(pre?.textContent).toBe("");
   });
 
   test("copy button copies empty string when ref has no text content", () => {

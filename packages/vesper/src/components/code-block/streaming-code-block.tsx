@@ -93,9 +93,13 @@ function TokenStreamRenderer({
 
     const controller = new AbortController();
 
-    Promise.resolve(code())
+    Promise.resolve()
+      .then(code)
       .then((stream) => {
-        if (controller.signal.aborted) return;
+        if (controller.signal.aborted) {
+          stream.cancel();
+          return;
+        }
 
         stream
           .pipeThrough(codeToTokenStream(lang))
