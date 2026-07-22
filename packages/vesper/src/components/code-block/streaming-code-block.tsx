@@ -14,6 +14,7 @@ export function StreamingCodeBlock({
   className,
   children: code,
   lang = "text",
+  copyOnHover = false,
   ...props
 }: Omit<CodeBlockProps, "children" | "showLineNumbers" | "transformers"> & {
   children: () => ReadableStream<string> | Promise<ReadableStream<string>>;
@@ -49,7 +50,11 @@ export function StreamingCodeBlock({
   }, [code]);
 
   return (
-    <div className={cn("vesper-code-block", className)} {...props}>
+    <div
+      className={cn("vesper-code-block", className)}
+      data-copy-on-hover={copyOnHover}
+      {...props}
+    >
       <CodeBlockPreWrapper ref={ref} data-line-numbers>
         <TokenStreamRenderer code={code} lang={lang} />
       </CodeBlockPreWrapper>

@@ -84,6 +84,40 @@ describe("code-block [unit]", () => {
     expect(button).toHaveClass("vesper-button-tertiary");
   });
 
+  test("copyOnHover defaults to false", () => {
+    const { container } = render(<CodeBlock>code</CodeBlock>);
+    expect(container.firstElementChild).toHaveAttribute(
+      "data-copy-on-hover",
+      "false",
+    );
+  });
+
+  test("copyOnHover sets data-copy-on-hover to true", () => {
+    const { container } = render(<CodeBlock copyOnHover>code</CodeBlock>);
+    expect(container.firstElementChild).toHaveAttribute(
+      "data-copy-on-hover",
+      "true",
+    );
+  });
+
+  test("copyOnHover is applied to streaming code blocks", () => {
+    const streamFactory = () =>
+      new ReadableStream<string>({
+        start(controller) {
+          controller.enqueue("streamed code");
+          controller.close();
+        },
+      });
+
+    const { container } = render(
+      <CodeBlock copyOnHover>{streamFactory}</CodeBlock>,
+    );
+    expect(container.firstElementChild).toHaveAttribute(
+      "data-copy-on-hover",
+      "true",
+    );
+  });
+
   test("copy button copies rendered text content to clipboard", () => {
     const writeText = vi
       .spyOn(navigator.clipboard, "writeText")
