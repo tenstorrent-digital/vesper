@@ -1,39 +1,9 @@
-@layer /*
-   here we slot vesper component styles from @repo/vesper/styles.css
-   in-between tailwind's internal layer assignments
-
-   this way we can use the component styles from @repo/vesper/styles.css
-   but can still override them with tailwind's utility classes
-
-   will need to look into a better way to do this for vesper users
-
-   also to note - the import from @repo/vesper/tailwind.css can't be
-   assigned a layer (because of @utilities), but it doesn't matter bc it
-   gets absorbed into tailwind's own internal layer assignments
-  */
-
-  /* tailwind */
-  theme,
-  base,
-  components,
-
-  /* vesper component styles */
-  packages,
-
-  /* tailwind utility classes (`p-*`, etc) */
-  utilities;
-
 /*
   setup tailwind
   - `source("../../..")` tells Tailwind where to scan class names to watch
-  - note: adding @layer here breaks tailwind's internal layer assignments
 */
 @import "tailwindcss" source("../../..");
-
-/* vesper tailwind theme and utilities */
 @import "@repo/vesper/tailwind.css";
-/* vesper component styles */
-@import "@repo/vesper/styles.css" layer(packages);
 
 /* tailwind theme for docs */
 @theme {
