@@ -28,10 +28,12 @@ function CodeBlockStoryComponent({
   lang,
   showLineNumbers,
   stream,
+  copyOnHover,
 }: {
   showLineNumbers: boolean;
   lang: "python" | "bash" | "ansi" | "json" | "markdown" | "typescript" | "css";
   stream: boolean;
+  copyOnHover: boolean;
 }) {
   let code: string | ReadableStream<string> = SAMPLE_CODE_TYPESCRIPT;
   switch (lang) {
@@ -68,6 +70,7 @@ function CodeBlockStoryComponent({
     <CodeBlock
       showLineNumbers={showLineNumbers}
       lang={lang}
+      copyOnHover={copyOnHover}
       style={{
         width: "min(calc(100vw - 4rem), 720px)",
         maxHeight: "calc(100vh - 4rem)",
@@ -97,6 +100,11 @@ const meta = {
       description:
         "Not a `CodeBlock` component prop; this control is used to easily toggle on/off text streaming the storybook preview UI.",
     },
+    copyOnHover: {
+      control: "boolean",
+      description:
+        "Whether only show the copy to clipboard button when CodeBlock is hovered.",
+    },
   },
 } satisfies Meta<typeof CodeBlockStoryComponent>;
 
@@ -107,6 +115,7 @@ export const Playground: Story = {
     lang: "python",
     showLineNumbers: false,
     stream: false,
+    copyOnHover: false,
   },
 };
 Playground.storyName = "code-block";
