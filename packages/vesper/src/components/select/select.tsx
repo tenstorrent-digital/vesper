@@ -38,6 +38,8 @@ export interface SelectProps extends Omit<
   defaultValue?: string;
   value?: string;
   onValueChange?(value: string): void;
+  required?: boolean;
+  form?: string;
 }
 
 const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
@@ -57,6 +59,10 @@ export function Select(props: SelectProps) {
     onValueChange,
     size = "lg",
     icon,
+    name,
+    required,
+    form,
+    "aria-label": ariaLabel = placeholder,
     ...rest
   } = props;
 
@@ -66,10 +72,14 @@ export function Select(props: SelectProps) {
       defaultValue={defaultValue}
       onValueChange={onValueChange}
       disabled={disabled}
+      name={name}
+      required={required}
+      form={form}
     >
       <SelectTrigger
         className={cn("vesper-select", `vesper-select-${size}`, className)}
         disabled={disabled}
+        aria-label={ariaLabel}
         {...rest}
       >
         {icon && <span className="vesper-select-icon">{icon}</span>}
