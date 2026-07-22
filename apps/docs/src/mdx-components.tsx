@@ -3,9 +3,8 @@ import Image, { ImageProps } from "next/image";
 
 import { Admonition } from "@repo/vesper/admonition";
 import { Code } from "@repo/vesper/code";
+import { CodeBlock } from "@repo/vesper/code-block";
 import { Typography } from "@repo/vesper/typography";
-
-import { CodeBlock } from "@/components/code-block";
 
 import { trimChildren } from "@/lib/markdown/utils";
 
@@ -68,10 +67,7 @@ const components = {
     const lang = codeElement?.props?.className?.replace("language-", ""); // strip `language-`
 
     return (
-      <CodeBlock
-        lang={lang}
-        // copyOnHover // add back after https://github.com/tenstorrent-digital/vesper/pull/65
-      >
+      <CodeBlock lang={lang} copyOnHover>
         {code}
       </CodeBlock>
     );
