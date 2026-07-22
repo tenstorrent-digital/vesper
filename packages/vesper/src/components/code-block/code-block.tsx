@@ -32,8 +32,7 @@ export interface CodeBlockProps extends Omit<
    * </CodeBlock>
    */
   children?:
-    | string
-    | (() => ReadableStream<string> | Promise<ReadableStream<string>>);
+    string | (() => ReadableStream<string> | Promise<ReadableStream<string>>);
   /**
    * The language syntax of the supplied code. Omitting this prop will render supplied code as plain text with no syntax highlighting.
 
@@ -77,6 +76,10 @@ export interface CodeBlockProps extends Omit<
    * </CodeBlock>
    */
   transformers?: ShikiTransformer[];
+  /**
+   * hide the copy-to-clipboard button until CodeBlock is hovered
+   */
+  copyOnHover?: boolean;
 }
 
 export function CodeBlock({
@@ -85,6 +88,7 @@ export function CodeBlock({
   lang = "text",
   showLineNumbers = false,
   transformers,
+  copyOnHover = false,
   ...props
 }: CodeBlockProps) {
   handleLanguageRegistration(lang);
@@ -98,7 +102,11 @@ export function CodeBlock({
   }
 
   return (
-    <div className={cn("vesper-code-block", className)} {...props}>
+    <div
+      className={cn("vesper-code-block", className)}
+      data-copy-on-hover={copyOnHover}
+      {...props}
+    >
       <CodeBlockPreWrapper data-line-numbers={showLineNumbers}>
         {codeToJsx(code, lang, transformers)}
       </CodeBlockPreWrapper>

@@ -3,6 +3,7 @@
 exports[`code-block [snapshot] > default (no props) 1`] = `
 <div
   class="vesper-code-block"
+  data-copy-on-hover="false"
 >
   <div
     class="vesper-typography vesper-typography-copy-xs-mono vesper-code-block-pre-wrapper"
@@ -46,6 +47,7 @@ exports[`code-block [snapshot] > default (no props) 1`] = `
 exports[`code-block [snapshot] > with custom className 1`] = `
 <div
   class="vesper-code-block custom-class"
+  data-copy-on-hover="false"
 >
   <div
     class="vesper-typography vesper-typography-copy-xs-mono vesper-code-block-pre-wrapper"
@@ -91,6 +93,7 @@ exports[`code-block [snapshot] > with custom className 1`] = `
 exports[`code-block [snapshot] > with multi-line content 1`] = `
 <div
   class="vesper-code-block"
+  data-copy-on-hover="false"
 >
   <div
     class="vesper-typography vesper-typography-copy-xs-mono vesper-code-block-pre-wrapper"
@@ -145,6 +148,7 @@ exports[`code-block [snapshot] > with multi-line content 1`] = `
 exports[`code-block [snapshot] > with showLineNumbers 1`] = `
 <div
   class="vesper-code-block"
+  data-copy-on-hover="false"
 >
   <div
     class="vesper-typography vesper-typography-copy-xs-mono vesper-code-block-pre-wrapper"
@@ -190,6 +194,7 @@ exports[`code-block [snapshot] > with showLineNumbers 1`] = `
 exports[`code-block [snapshot] > with string children 1`] = `
 <div
   class="vesper-code-block"
+  data-copy-on-hover="false"
 >
   <div
     class="vesper-typography vesper-typography-copy-xs-mono vesper-code-block-pre-wrapper"
