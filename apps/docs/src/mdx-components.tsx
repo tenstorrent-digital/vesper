@@ -1,5 +1,10 @@
 import type { MDXComponents } from "mdx/types";
 import Image, { ImageProps } from "next/image";
+import {
+  type BundledLanguage,
+  bundledLanguages,
+  type LanguageRegistration,
+} from "shiki/bundle/web";
 
 import { Admonition } from "@repo/vesper/admonition";
 import { Code } from "@repo/vesper/code";
@@ -58,16 +63,26 @@ const components = {
   blockquote: (props) => (
     <Admonition size="sm">{trimChildren(props.children)}</Admonition>
   ),
-  pre: (props) => {
+  pre: async (props) => {
     const codeElement = props.children as React.ReactElement<{
       children?: string;
       className?: string;
     }>;
     const code = codeElement?.props?.children?.trim() ?? "";
-    const lang = codeElement?.props?.className?.replace("language-", ""); // strip `language-`
+    const lang = codeElement?.props?.className?.replace("language-", "");
+
+    let resolvedLang: LanguageRegistration[] | "text" = "text";
+
+    // check if language is included in bundled languages
+    if (lang && lang in bundledLanguages) {
+      // if it is, get the ES module directly and grab the `LanguageRegistration`
+      // by using the default export
+      resolvedLang = (await bundledLanguages[lang as BundledLanguage]())
+        .default;
+    }
 
     return (
-      <CodeBlock lang={lang} copyOnHover>
+      <CodeBlock lang={resolvedLang} copyOnHover>
         {code}
       </CodeBlock>
     );
