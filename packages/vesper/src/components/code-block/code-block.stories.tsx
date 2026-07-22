@@ -1,6 +1,12 @@
+import css from "@shikijs/langs/css";
+import json from "@shikijs/langs/json";
+import markdown from "@shikijs/langs/markdown";
+import python from "@shikijs/langs/python";
+import shellscript from "@shikijs/langs/shellscript";
+import typescript from "@shikijs/langs/typescript";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { CodeBlock, setupCodeBlock } from "@/components/code-block/code-block";
+import { CodeBlock, CodeBlockProps } from "@/components/code-block/code-block";
 
 import {
   createTextStream,
@@ -13,67 +19,75 @@ import {
   SAMPLE_CODE_TYPESCRIPT,
 } from "./fixtures";
 
-await setupCodeBlock({
-  langs: [
-    import("@shikijs/langs/typescript"),
-    import("@shikijs/langs/css"),
-    import("@shikijs/langs/json"),
-    import("@shikijs/langs/markdown"),
-    import("@shikijs/langs/shellscript"),
-    import("@shikijs/langs/python"),
-  ],
-});
+const STORY_LANG_OPTIONS = [
+  "python",
+  "bash",
+  "ansi",
+  "json",
+  "markdown",
+  "typescript",
+  "css",
+] as const;
+
+type StoryLang = (typeof STORY_LANG_OPTIONS)[number];
+
+const PARAMS: {
+  [K in StoryLang]: { code: string; lang: CodeBlockProps["lang"] };
+} = {
+  ansi: {
+    code: SAMPLE_CODE_ANSI,
+    lang: "ansi",
+  },
+  bash: {
+    code: SAMPLE_CODE_BASH,
+    lang: shellscript,
+  },
+  css: {
+    code: SAMPLE_CODE_CSS,
+    lang: css,
+  },
+  json: {
+    code: SAMPLE_CODE_JSON,
+    lang: json,
+  },
+  markdown: {
+    code: SAMPLE_CODE_MARKDOWN,
+    lang: markdown,
+  },
+  python: {
+    code: SAMPLE_CODE_PYTHON,
+    lang: python,
+  },
+  typescript: {
+    code: SAMPLE_CODE_TYPESCRIPT,
+    lang: typescript,
+  },
+};
 
 function CodeBlockStoryComponent({
   lang,
   showLineNumbers,
   stream,
+  copyOnHover,
 }: {
   showLineNumbers: boolean;
-  lang: "python" | "bash" | "ansi" | "json" | "markdown" | "typescript" | "css";
+  lang: StoryLang;
   stream: boolean;
+  copyOnHover: boolean;
 }) {
-  let code: string | ReadableStream<string> = SAMPLE_CODE_TYPESCRIPT;
-  switch (lang) {
-    case "ansi":
-      code = SAMPLE_CODE_ANSI;
-      break;
-    case "css":
-      code = SAMPLE_CODE_CSS;
-      break;
-    case "json":
-      code = SAMPLE_CODE_JSON;
-      break;
-    case "markdown":
-      code = SAMPLE_CODE_MARKDOWN;
-      break;
-    case "typescript":
-      code = SAMPLE_CODE_TYPESCRIPT;
-      break;
-    case "bash":
-      code = SAMPLE_CODE_BASH;
-      break;
-    case "python":
-      code = SAMPLE_CODE_PYTHON;
-      break;
-    default:
-      break;
-  }
-
-  if (stream) {
-    code = createTextStream(code);
-  }
+  const params = PARAMS[lang];
 
   return (
     <CodeBlock
       showLineNumbers={showLineNumbers}
-      lang={lang}
+      lang={params.lang}
+      copyOnHover={copyOnHover}
       style={{
         width: "min(calc(100vw - 4rem), 720px)",
         maxHeight: "calc(100vh - 4rem)",
       }}
     >
-      {code}
+      {stream ? () => createTextStream(params.code) : params.code}
     </CodeBlock>
   );
 }
@@ -83,19 +97,16 @@ const meta = {
   argTypes: {
     lang: {
       control: "radio",
-      options: [
-        "python",
-        "bash",
-        "ansi",
-        "json",
-        "markdown",
-        "typescript",
-        "css",
-      ],
+      options: STORY_LANG_OPTIONS,
     },
     stream: {
       description:
         "Not a `CodeBlock` component prop; this control is used to easily toggle on/off text streaming the storybook preview UI.",
+    },
+    copyOnHover: {
+      control: "boolean",
+      description:
+        "Whether only show the copy to clipboard button when CodeBlock is hovered.",
     },
   },
 } satisfies Meta<typeof CodeBlockStoryComponent>;
@@ -107,6 +118,7 @@ export const Playground: Story = {
     lang: "python",
     showLineNumbers: false,
     stream: false,
+    copyOnHover: false,
   },
 };
 Playground.storyName = "code-block";

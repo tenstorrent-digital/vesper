@@ -6,10 +6,24 @@
   border: 1px solid var(--vesper-stone-200);
   background: var(--vesper-alpha-stone-0);
   box-shadow: var(--vesper-shadow-inset-100);
+
   .vesper-icon-button {
     position: absolute;
     top: min(calc(50% - 16px), var(--vesper-spacing-5));
     right: var(--vesper-spacing-5);
+  }
+
+  @media (hover: hover) {
+    &[data-copy-on-hover="true"] {
+      .vesper-icon-button:not(:focus-visible) {
+        opacity: 0;
+      }
+      &:hover {
+        .vesper-icon-button {
+          opacity: 1;
+        }
+      }
+    }
   }
   @media (forced-colors: active) {
     &:has(.vesper-code-block-pre-wrapper:focus-visible) {
@@ -45,19 +59,18 @@
     margin: 0;
     padding: var(--vesper-spacing-5) 0;
     outline: none;
+    line-height: 1.3875rem;
     .line {
-      display: inline-flex;
+      display: inline-block;
       padding: 0 var(--vesper-spacing-5);
       width: calc(100% - var(--vesper-spacing-10));
-      &:not(:first-child) {
-        margin-top: var(--vesper-spacing-1);
-      }
     }
   }
   &[data-line-numbers="true"] pre.shiki {
     counter-reset: step;
     counter-increment: step 0;
     .line::before {
+      display: inline-block;
       content: counter(step);
       counter-increment: step;
       width: var(--vesper-spacing-12);
