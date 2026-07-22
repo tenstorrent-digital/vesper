@@ -7,6 +7,10 @@
     "dist"
   ],
   "exports": {
+    "./select": {
+      "types": "./dist/components/select/select.d.ts",
+      "import": "./dist/components/select/select.js"
+    },
     "./material": {
       "types": "./dist/components/material/material.d.ts",
       "import": "./dist/components/material/material.js"
