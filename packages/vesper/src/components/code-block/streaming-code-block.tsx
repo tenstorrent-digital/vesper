@@ -16,7 +16,7 @@ export function StreamingCodeBlock({
   lang = "text",
   ...props
 }: Omit<CodeBlockProps, "children" | "showLineNumbers" | "transformers"> & {
-  children: () => ReadableStream<string>;
+  children: () => ReadableStream<string> | Promise<ReadableStream<string>>;
 }) {
   handleLanguageRegistration(lang);
 
@@ -69,7 +69,7 @@ function TokenStreamRenderer({
   code,
   lang,
 }: {
-  code: () => ReadableStream<string>;
+  code: () => ReadableStream<string> | Promise<ReadableStream<string>>;
   lang: CodeBlockProps["lang"];
 }) {
   // WeakMap for storing references to ThemedToken keys
@@ -93,17 +93,24 @@ function TokenStreamRenderer({
 
     const controller = new AbortController();
 
-    code()
-      .pipeThrough(codeToTokenStream(lang))
-      .pipeTo(
-        new WritableStream({
-          write(token) {
-            if ("recall" in token) setTokens((t) => t.slice(0, -token.recall));
-            else setTokens((tokens) => [...tokens, token]);
-          },
-        }),
-        { signal: controller.signal },
-      )
+    Promise.resolve(code())
+      .then((stream) => {
+        if (controller.signal.aborted) return;
+
+        stream
+          .pipeThrough(codeToTokenStream(lang))
+          .pipeTo(
+            new WritableStream({
+              write(token) {
+                if ("recall" in token)
+                  setTokens((t) => t.slice(0, -token.recall));
+                else setTokens((tokens) => [...tokens, token]);
+              },
+            }),
+            { signal: controller.signal },
+          )
+          .catch(() => {});
+      })
       .catch(() => {});
 
     return () => controller.abort();

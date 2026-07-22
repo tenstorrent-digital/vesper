@@ -224,6 +224,54 @@ describe("code-block [unit]", () => {
     expect(pre?.textContent).toContain('{"key": "value"}');
   });
 
+  test("renders streamed content from an async factory", async () => {
+    const asyncFactory = async () =>
+      new ReadableStream<string>({
+        start(controller) {
+          controller.enqueue("async content");
+          controller.close();
+        },
+      });
+
+    const { container } = render(<CodeBlock>{asyncFactory}</CodeBlock>);
+
+    await new Promise((r) => setTimeout(r, 200));
+
+    const pre = container.querySelector("pre.shiki-stream");
+    expect(pre).not.toBeNull();
+    expect(pre?.textContent).toContain("async content");
+  });
+
+  test("async factory that resolves after cleanup does not pipe", async () => {
+    const pipeThroughSpy = vi.spyOn(ReadableStream.prototype, "pipeThrough");
+
+    let resolveStream!: (stream: ReadableStream<string>) => void;
+    const asyncFactory = () =>
+      new Promise<ReadableStream<string>>((resolve) => {
+        resolveStream = resolve;
+      });
+
+    const { unmount } = render(<CodeBlock>{asyncFactory}</CodeBlock>);
+
+    // Unmount before the factory resolves
+    unmount();
+
+    // Now resolve the factory — the stream should NOT be piped
+    resolveStream(
+      new ReadableStream<string>({
+        start(controller) {
+          controller.enqueue("stale content");
+          controller.close();
+        },
+      }),
+    );
+
+    await new Promise((r) => setTimeout(r, 100));
+
+    expect(pipeThroughSpy).not.toHaveBeenCalled();
+    pipeThroughSpy.mockRestore();
+  });
+
   test("copy button copies empty string when ref has no text content", () => {
     const writeText = vi
       .spyOn(navigator.clipboard, "writeText")
