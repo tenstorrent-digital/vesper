@@ -73,15 +73,14 @@ const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
  * - Automatic portal handling for use inside dialogs
  *
  * @param {SelectItem[]} props.options - The list of selectable options displayed in the dropdown. See {@link SelectItem} for the shape of each option
- * @param {SelectSize=} props.size - (optional) Size variant of the select trigger. Affects padding, height, and typography. Default: `"lg"`
- * @param {string=} props.placeholder - (optional) Placeholder text shown when no value is selected. Default: `"Select an option"`
- * @param {ReactNode} [props.icon] - (optional) An icon rendered at the leading edge of the select trigger
+ * @param {SelectSize} [props.size] - (optional) Size variant of the select trigger. Affects padding, height, and typography. Default: `"lg"`
+ * @param {string} [props.placeholder] - (optional) Placeholder text shown when no value is selected. Default: `"Select an option"`
+ * @param {ReactNode=} [props.icon] - (optional) An icon rendered at the leading edge of the select trigger
  * @param {string} [props.value] - (optional) The currently selected value for controlled usage
  * @param {string} [props.defaultValue] - (optional) The initial selected value for uncontrolled usage
  * @param {(value: string) => void} [props.onValueChange] - (optional) Callback invoked with the new value whenever the selection changes
  * @param {boolean} [props.required] - (optional) Marks the select as required for form validation
  * @param {string} [props.name] - (optional) Form field name submitted with form data
- * @param {string} [props.className] - (optional) Additional CSS `class` names to apply
  *
  * You may also pass any additional props to the underlying `button` element
  *
