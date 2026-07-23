@@ -50,7 +50,7 @@
   padding: 0 var(--vesper-spacing-3);
   gap: var(--vesper-spacing-2);
   border-radius: var(--vesper-radius-2);
-  height: 48px;
+  height: 3rem;
   .vesper-select-icon,
   .vesper-select-state-indicator {
     color: var(--vesper-icon-secondary);
@@ -63,7 +63,7 @@
   padding: 0 var(--vesper-spacing-3);
   gap: var(--vesper-spacing-2);
   border-radius: var(--vesper-radius-2);
-  height: 40px;
+  height: 2.5rem;
   .vesper-select-icon,
   .vesper-select-state-indicator {
     color: var(--vesper-icon-secondary);
@@ -76,7 +76,7 @@
   padding: 0 var(--vesper-spacing-2);
   gap: var(--vesper-spacing-1);
   border-radius: var(--vesper-radius-1);
-  height: 32px;
+  height: 2rem;
   .vesper-select-icon,
   .vesper-select-state-indicator {
     color: var(--vesper-icon-secondary);
