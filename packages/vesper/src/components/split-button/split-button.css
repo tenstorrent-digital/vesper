@@ -18,7 +18,7 @@
     position: relative;
     border-width: var(--vesper-stroke-base);
     border-style: solid;
-    border-left-width: 0px;
+    border-left-width: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     &:focus-visible {
