@@ -1,0 +1,1036 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`select [snapshot] > lg 1`] = `
+<button
+  aria-autocomplete="none"
+  aria-expanded="false"
+  aria-label="Select an option"
+  class="vesper-select vesper-select-lg"
+  data-placeholder=""
+  data-state="closed"
+  dir="ltr"
+  role="combobox"
+  type="button"
+>
+  <span
+    class="vesper-typography vesper-typography-copy-md"
+  >
+    <span
+      style="pointer-events: none;"
+    >
+      Select an option
+    </span>
+  </span>
+  <span
+    class="vesper-select-state-indicator"
+  >
+    <svg
+      class="vespers-select-state-indicator-closed"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      class="vespers-select-state-indicator-open"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`select [snapshot] > lg, disabled 1`] = `
+<button
+  aria-autocomplete="none"
+  aria-expanded="false"
+  aria-label="Select an option"
+  class="vesper-select vesper-select-lg"
+  data-disabled=""
+  data-placeholder=""
+  data-state="closed"
+  dir="ltr"
+  disabled=""
+  role="combobox"
+  type="button"
+>
+  <span
+    class="vesper-typography vesper-typography-copy-md"
+  >
+    <span
+      style="pointer-events: none;"
+    >
+      Select an option
+    </span>
+  </span>
+  <span
+    class="vesper-select-state-indicator"
+  >
+    <svg
+      class="vespers-select-state-indicator-closed"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      class="vespers-select-state-indicator-open"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`select [snapshot] > lg, with icon 1`] = `
+<button
+  aria-autocomplete="none"
+  aria-expanded="false"
+  aria-label="Select an option"
+  class="vesper-select vesper-select-lg"
+  data-placeholder=""
+  data-state="closed"
+  dir="ltr"
+  role="combobox"
+  type="button"
+>
+  <span
+    class="vesper-select-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M7.25 18.75H6V17.5H7.25V18.75Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 18.75H8.5V17.5H9.75V18.75Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 17V19.5L18.7012 21H5.26465L4 19.5V17L5.26465 15.5H18.7012L20 17ZM5 17.3652V19.1338L5.72949 20H18.2451L19 19.127V17.3721L18.2451 16.5H5.72949L5 17.3652Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+      <path
+        d="M7.25 12.5H6V11.25H7.25V12.5Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 12.5H8.5V11.25H9.75V12.5Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 10.75V13.25L18.7012 14.75H5.26465L4 13.25V10.75L5.26465 9.25H18.7012L20 10.75ZM5 11.1152V12.8838L5.72949 13.75H18.2451L19 12.877V11.1221L18.2451 10.25H5.72949L5 11.1152Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+      <path
+        d="M7.25 6.25H6V5H7.25V6.25Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 6.25H8.5V5H9.75V6.25Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 4.5V7L18.7012 8.5H5.26465L4 7V4.5L5.26465 3H18.7012L20 4.5ZM5 4.86523V6.63379L5.72949 7.5H18.2451L19 6.62695V4.87207L18.2451 4H5.72949L5 4.86523Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </span>
+  <span
+    class="vesper-typography vesper-typography-copy-md"
+  >
+    <span
+      style="pointer-events: none;"
+    >
+      Select an option
+    </span>
+  </span>
+  <span
+    class="vesper-select-state-indicator"
+  >
+    <svg
+      class="vespers-select-state-indicator-closed"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      class="vespers-select-state-indicator-open"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`select [snapshot] > lg, with icon, disabled 1`] = `
+<button
+  aria-autocomplete="none"
+  aria-expanded="false"
+  aria-label="Select an option"
+  class="vesper-select vesper-select-lg"
+  data-disabled=""
+  data-placeholder=""
+  data-state="closed"
+  dir="ltr"
+  disabled=""
+  role="combobox"
+  type="button"
+>
+  <span
+    class="vesper-select-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M7.25 18.75H6V17.5H7.25V18.75Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 18.75H8.5V17.5H9.75V18.75Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 17V19.5L18.7012 21H5.26465L4 19.5V17L5.26465 15.5H18.7012L20 17ZM5 17.3652V19.1338L5.72949 20H18.2451L19 19.127V17.3721L18.2451 16.5H5.72949L5 17.3652Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+      <path
+        d="M7.25 12.5H6V11.25H7.25V12.5Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 12.5H8.5V11.25H9.75V12.5Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 10.75V13.25L18.7012 14.75H5.26465L4 13.25V10.75L5.26465 9.25H18.7012L20 10.75ZM5 11.1152V12.8838L5.72949 13.75H18.2451L19 12.877V11.1221L18.2451 10.25H5.72949L5 11.1152Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+      <path
+        d="M7.25 6.25H6V5H7.25V6.25Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 6.25H8.5V5H9.75V6.25Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 4.5V7L18.7012 8.5H5.26465L4 7V4.5L5.26465 3H18.7012L20 4.5ZM5 4.86523V6.63379L5.72949 7.5H18.2451L19 6.62695V4.87207L18.2451 4H5.72949L5 4.86523Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </span>
+  <span
+    class="vesper-typography vesper-typography-copy-md"
+  >
+    <span
+      style="pointer-events: none;"
+    >
+      Select an option
+    </span>
+  </span>
+  <span
+    class="vesper-select-state-indicator"
+  >
+    <svg
+      class="vespers-select-state-indicator-closed"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      class="vespers-select-state-indicator-open"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`select [snapshot] > lg, with value 1`] = `
+<button
+  aria-autocomplete="none"
+  aria-expanded="false"
+  aria-label="Select an option"
+  class="vesper-select vesper-select-lg"
+  data-state="closed"
+  dir="ltr"
+  role="combobox"
+  type="button"
+>
+  <span
+    class="vesper-typography vesper-typography-copy-md"
+  >
+    <span
+      style="pointer-events: none;"
+    >
+      Tigers
+    </span>
+  </span>
+  <span
+    class="vesper-select-state-indicator"
+  >
+    <svg
+      class="vespers-select-state-indicator-closed"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      class="vespers-select-state-indicator-open"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`select [snapshot] > md 1`] = `
+<button
+  aria-autocomplete="none"
+  aria-expanded="false"
+  aria-label="Select an option"
+  class="vesper-select vesper-select-md"
+  data-placeholder=""
+  data-state="closed"
+  dir="ltr"
+  role="combobox"
+  type="button"
+>
+  <span
+    class="vesper-typography vesper-typography-copy-sm"
+  >
+    <span
+      style="pointer-events: none;"
+    >
+      Select an option
+    </span>
+  </span>
+  <span
+    class="vesper-select-state-indicator"
+  >
+    <svg
+      class="vespers-select-state-indicator-closed"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      class="vespers-select-state-indicator-open"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`select [snapshot] > md, disabled 1`] = `
+<button
+  aria-autocomplete="none"
+  aria-expanded="false"
+  aria-label="Select an option"
+  class="vesper-select vesper-select-md"
+  data-disabled=""
+  data-placeholder=""
+  data-state="closed"
+  dir="ltr"
+  disabled=""
+  role="combobox"
+  type="button"
+>
+  <span
+    class="vesper-typography vesper-typography-copy-sm"
+  >
+    <span
+      style="pointer-events: none;"
+    >
+      Select an option
+    </span>
+  </span>
+  <span
+    class="vesper-select-state-indicator"
+  >
+    <svg
+      class="vespers-select-state-indicator-closed"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      class="vespers-select-state-indicator-open"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`select [snapshot] > md, with icon 1`] = `
+<button
+  aria-autocomplete="none"
+  aria-expanded="false"
+  aria-label="Select an option"
+  class="vesper-select vesper-select-md"
+  data-placeholder=""
+  data-state="closed"
+  dir="ltr"
+  role="combobox"
+  type="button"
+>
+  <span
+    class="vesper-select-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M7.25 18.75H6V17.5H7.25V18.75Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 18.75H8.5V17.5H9.75V18.75Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 17V19.5L18.7012 21H5.26465L4 19.5V17L5.26465 15.5H18.7012L20 17ZM5 17.3652V19.1338L5.72949 20H18.2451L19 19.127V17.3721L18.2451 16.5H5.72949L5 17.3652Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+      <path
+        d="M7.25 12.5H6V11.25H7.25V12.5Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 12.5H8.5V11.25H9.75V12.5Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 10.75V13.25L18.7012 14.75H5.26465L4 13.25V10.75L5.26465 9.25H18.7012L20 10.75ZM5 11.1152V12.8838L5.72949 13.75H18.2451L19 12.877V11.1221L18.2451 10.25H5.72949L5 11.1152Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+      <path
+        d="M7.25 6.25H6V5H7.25V6.25Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 6.25H8.5V5H9.75V6.25Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 4.5V7L18.7012 8.5H5.26465L4 7V4.5L5.26465 3H18.7012L20 4.5ZM5 4.86523V6.63379L5.72949 7.5H18.2451L19 6.62695V4.87207L18.2451 4H5.72949L5 4.86523Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </span>
+  <span
+    class="vesper-typography vesper-typography-copy-sm"
+  >
+    <span
+      style="pointer-events: none;"
+    >
+      Select an option
+    </span>
+  </span>
+  <span
+    class="vesper-select-state-indicator"
+  >
+    <svg
+      class="vespers-select-state-indicator-closed"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      class="vespers-select-state-indicator-open"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`select [snapshot] > md, with icon, disabled 1`] = `
+<button
+  aria-autocomplete="none"
+  aria-expanded="false"
+  aria-label="Select an option"
+  class="vesper-select vesper-select-md"
+  data-disabled=""
+  data-placeholder=""
+  data-state="closed"
+  dir="ltr"
+  disabled=""
+  role="combobox"
+  type="button"
+>
+  <span
+    class="vesper-select-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M7.25 18.75H6V17.5H7.25V18.75Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 18.75H8.5V17.5H9.75V18.75Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 17V19.5L18.7012 21H5.26465L4 19.5V17L5.26465 15.5H18.7012L20 17ZM5 17.3652V19.1338L5.72949 20H18.2451L19 19.127V17.3721L18.2451 16.5H5.72949L5 17.3652Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+      <path
+        d="M7.25 12.5H6V11.25H7.25V12.5Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 12.5H8.5V11.25H9.75V12.5Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 10.75V13.25L18.7012 14.75H5.26465L4 13.25V10.75L5.26465 9.25H18.7012L20 10.75ZM5 11.1152V12.8838L5.72949 13.75H18.2451L19 12.877V11.1221L18.2451 10.25H5.72949L5 11.1152Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+      <path
+        d="M7.25 6.25H6V5H7.25V6.25Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 6.25H8.5V5H9.75V6.25Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 4.5V7L18.7012 8.5H5.26465L4 7V4.5L5.26465 3H18.7012L20 4.5ZM5 4.86523V6.63379L5.72949 7.5H18.2451L19 6.62695V4.87207L18.2451 4H5.72949L5 4.86523Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </span>
+  <span
+    class="vesper-typography vesper-typography-copy-sm"
+  >
+    <span
+      style="pointer-events: none;"
+    >
+      Select an option
+    </span>
+  </span>
+  <span
+    class="vesper-select-state-indicator"
+  >
+    <svg
+      class="vespers-select-state-indicator-closed"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      class="vespers-select-state-indicator-open"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`select [snapshot] > md, with value 1`] = `
+<button
+  aria-autocomplete="none"
+  aria-expanded="false"
+  aria-label="Select an option"
+  class="vesper-select vesper-select-md"
+  data-state="closed"
+  dir="ltr"
+  role="combobox"
+  type="button"
+>
+  <span
+    class="vesper-typography vesper-typography-copy-sm"
+  >
+    <span
+      style="pointer-events: none;"
+    >
+      Tigers
+    </span>
+  </span>
+  <span
+    class="vesper-select-state-indicator"
+  >
+    <svg
+      class="vespers-select-state-indicator-closed"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      class="vespers-select-state-indicator-open"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`select [snapshot] > sm 1`] = `
+<button
+  aria-autocomplete="none"
+  aria-expanded="false"
+  aria-label="Select an option"
+  class="vesper-select vesper-select-sm"
+  data-placeholder=""
+  data-state="closed"
+  dir="ltr"
+  role="combobox"
+  type="button"
+>
+  <span
+    class="vesper-typography vesper-typography-copy-xs"
+  >
+    <span
+      style="pointer-events: none;"
+    >
+      Select an option
+    </span>
+  </span>
+  <span
+    class="vesper-select-state-indicator"
+  >
+    <svg
+      class="vespers-select-state-indicator-closed"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      class="vespers-select-state-indicator-open"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`select [snapshot] > sm, disabled 1`] = `
+<button
+  aria-autocomplete="none"
+  aria-expanded="false"
+  aria-label="Select an option"
+  class="vesper-select vesper-select-sm"
+  data-disabled=""
+  data-placeholder=""
+  data-state="closed"
+  dir="ltr"
+  disabled=""
+  role="combobox"
+  type="button"
+>
+  <span
+    class="vesper-typography vesper-typography-copy-xs"
+  >
+    <span
+      style="pointer-events: none;"
+    >
+      Select an option
+    </span>
+  </span>
+  <span
+    class="vesper-select-state-indicator"
+  >
+    <svg
+      class="vespers-select-state-indicator-closed"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      class="vespers-select-state-indicator-open"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`select [snapshot] > sm, with icon 1`] = `
+<button
+  aria-autocomplete="none"
+  aria-expanded="false"
+  aria-label="Select an option"
+  class="vesper-select vesper-select-sm"
+  data-placeholder=""
+  data-state="closed"
+  dir="ltr"
+  role="combobox"
+  type="button"
+>
+  <span
+    class="vesper-select-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M7.25 18.75H6V17.5H7.25V18.75Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 18.75H8.5V17.5H9.75V18.75Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 17V19.5L18.7012 21H5.26465L4 19.5V17L5.26465 15.5H18.7012L20 17ZM5 17.3652V19.1338L5.72949 20H18.2451L19 19.127V17.3721L18.2451 16.5H5.72949L5 17.3652Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+      <path
+        d="M7.25 12.5H6V11.25H7.25V12.5Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 12.5H8.5V11.25H9.75V12.5Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 10.75V13.25L18.7012 14.75H5.26465L4 13.25V10.75L5.26465 9.25H18.7012L20 10.75ZM5 11.1152V12.8838L5.72949 13.75H18.2451L19 12.877V11.1221L18.2451 10.25H5.72949L5 11.1152Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+      <path
+        d="M7.25 6.25H6V5H7.25V6.25Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 6.25H8.5V5H9.75V6.25Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 4.5V7L18.7012 8.5H5.26465L4 7V4.5L5.26465 3H18.7012L20 4.5ZM5 4.86523V6.63379L5.72949 7.5H18.2451L19 6.62695V4.87207L18.2451 4H5.72949L5 4.86523Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </span>
+  <span
+    class="vesper-typography vesper-typography-copy-xs"
+  >
+    <span
+      style="pointer-events: none;"
+    >
+      Select an option
+    </span>
+  </span>
+  <span
+    class="vesper-select-state-indicator"
+  >
+    <svg
+      class="vespers-select-state-indicator-closed"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      class="vespers-select-state-indicator-open"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`select [snapshot] > sm, with icon, disabled 1`] = `
+<button
+  aria-autocomplete="none"
+  aria-expanded="false"
+  aria-label="Select an option"
+  class="vesper-select vesper-select-sm"
+  data-disabled=""
+  data-placeholder=""
+  data-state="closed"
+  dir="ltr"
+  disabled=""
+  role="combobox"
+  type="button"
+>
+  <span
+    class="vesper-select-icon"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M7.25 18.75H6V17.5H7.25V18.75Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 18.75H8.5V17.5H9.75V18.75Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 17V19.5L18.7012 21H5.26465L4 19.5V17L5.26465 15.5H18.7012L20 17ZM5 17.3652V19.1338L5.72949 20H18.2451L19 19.127V17.3721L18.2451 16.5H5.72949L5 17.3652Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+      <path
+        d="M7.25 12.5H6V11.25H7.25V12.5Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 12.5H8.5V11.25H9.75V12.5Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 10.75V13.25L18.7012 14.75H5.26465L4 13.25V10.75L5.26465 9.25H18.7012L20 10.75ZM5 11.1152V12.8838L5.72949 13.75H18.2451L19 12.877V11.1221L18.2451 10.25H5.72949L5 11.1152Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+      <path
+        d="M7.25 6.25H6V5H7.25V6.25Z"
+        fill="currentColor"
+      />
+      <path
+        d="M9.75 6.25H8.5V5H9.75V6.25Z"
+        fill="currentColor"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M20 4.5V7L18.7012 8.5H5.26465L4 7V4.5L5.26465 3H18.7012L20 4.5ZM5 4.86523V6.63379L5.72949 7.5H18.2451L19 6.62695V4.87207L18.2451 4H5.72949L5 4.86523Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </span>
+  <span
+    class="vesper-typography vesper-typography-copy-xs"
+  >
+    <span
+      style="pointer-events: none;"
+    >
+      Select an option
+    </span>
+  </span>
+  <span
+    class="vesper-select-state-indicator"
+  >
+    <svg
+      class="vespers-select-state-indicator-closed"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      class="vespers-select-state-indicator-open"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`select [snapshot] > sm, with value 1`] = `
+<button
+  aria-autocomplete="none"
+  aria-expanded="false"
+  aria-label="Select an option"
+  class="vesper-select vesper-select-sm"
+  data-state="closed"
+  dir="ltr"
+  role="combobox"
+  type="button"
+>
+  <span
+    class="vesper-typography vesper-typography-copy-xs"
+  >
+    <span
+      style="pointer-events: none;"
+    >
+      Tigers
+    </span>
+  </span>
+  <span
+    class="vesper-select-state-indicator"
+  >
+    <svg
+      class="vespers-select-state-indicator-closed"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      class="vespers-select-state-indicator-open"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
