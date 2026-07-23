@@ -9,34 +9,34 @@
 
 .vesper-toggle-sm {
   .vesper-toggle-item {
-    height: 24px;
+    height: 1.5rem;
     padding: 0 var(--vesper-spacing-3);
   }
   .vesper-toggle-icon {
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
   }
 }
 
 .vesper-toggle-md {
   .vesper-toggle-item {
-    height: 32px;
+    height: 2rem;
     padding: 0 var(--vesper-spacing-3);
   }
   .vesper-toggle-icon {
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
   }
 }
 
 .vesper-toggle-lg {
   .vesper-toggle-item {
-    height: 40px;
+    height: 2.5rem;
     padding: 0 var(--vesper-spacing-4);
   }
   .vesper-toggle-icon {
-    width: 24px;
-    height: 24px;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
 
