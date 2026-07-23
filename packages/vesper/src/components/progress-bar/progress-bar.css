@@ -62,19 +62,19 @@
 
 .vesper-progress-bar-tick {
   position: relative;
-  width: 1px;
+  border-left: var(--vesper-stroke-base) solid;
 }
 
 .vesper-progress-bar-tick-light {
-  background: var(--vesper-background-primary);
+  border-color: var(--vesper-background-primary);
   @media (forced-colors: active) {
-    background: Canvas;
+    border-color: Canvas;
   }
 }
 
 .vesper-progress-bar-tick-dark {
-  background: var(--vesper-border-primary);
+  border-color: var(--vesper-border-primary);
   @media (forced-colors: active) {
-    background: CanvasText;
+    border-color: CanvasText;
   }
 }

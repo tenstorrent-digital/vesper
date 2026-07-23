@@ -29,8 +29,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 1px;
-      background: var(--vesper-border-secondary);
+      border-top: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
     }
   }
   .vesper-tabs-trigger {
@@ -61,7 +60,7 @@
     }
   }
   .vesper-tabs-trigger-icon {
-    margin: -1px 0;
+    margin: calc(var(--vesper-spacing-micro) * -1) 0;
   }
 }
 

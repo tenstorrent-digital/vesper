@@ -30,9 +30,9 @@
 
 .vesper-range-tick {
   height: 16px;
-  width: 1px;
+
   position: absolute;
-  background: var(--vesper-border-primary);
+  border-left: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   z-index: -1;
   @media (forced-colors: active) {
     background: CanvasText;
