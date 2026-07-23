@@ -370,24 +370,28 @@ describe("select [unit]", () => {
     expect(items).toHaveLength(0);
   });
 
-  test("renders with required prop", () => {
-    const { container } = render(<Select options={OPTIONS} required />);
-    // Radix Select manages required internally via a hidden select
+  test("renders with required prop inside of forms", () => {
+    const { container } = render(
+      <form>
+        <Select options={OPTIONS} required />
+      </form>,
+    );
+
+    // Radix Select renders a hidden select when rendered inside a form
     const hiddenSelect = container.querySelector("select");
-    if (hiddenSelect) {
-      expect(hiddenSelect).toHaveAttribute("required");
-    }
-    // Trigger should still render
-    expect(container.querySelector(".vesper-select")).not.toBeNull();
+    expect(hiddenSelect).toHaveAttribute("required");
   });
 
-  test("renders with name prop", () => {
-    const { container } = render(<Select options={OPTIONS} name="animal" />);
-    // Radix Select uses a hidden native select with the name for form submission
+  test("renders with name prop inside of forms", () => {
+    const { container } = render(
+      <form>
+        <Select options={OPTIONS} name="animal" />
+      </form>,
+    );
+
+    // Radix Select renders a hidden select when rendered inside a form
     const hiddenSelect = container.querySelector("select");
-    if (hiddenSelect) {
-      expect(hiddenSelect).toHaveAttribute("name", "animal");
-    }
+    expect(hiddenSelect).toHaveAttribute("name", "animal");
   });
 
   test("trigger has correct data-state when closed", () => {
