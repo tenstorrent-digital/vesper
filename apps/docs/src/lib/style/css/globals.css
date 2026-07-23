@@ -19,6 +19,8 @@
   --base-font-size: 16px;
   --base-line-height: var(--vesper-leading-normal);
 
+  --spacing: 1rem;
+
   /*
     variables for --font-inter-tight and --font-plex-sans are
     set via `next/fonts/google`
@@ -49,6 +51,105 @@ body {
   }
 }
 
+.layout {
+  display: grid;
+  grid-template-areas:
+    "nav"
+    "sidebar"
+    "main";
+
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+  min-height: 100vh;
+
+  @media (min-width: 768px) {
+    grid-template-areas:
+      "nav nav nav nav"
+      "sidebar main main main";
+    grid-template-rows: auto 1fr;
+    grid-template-columns: auto 1fr;
+  }
+}
+
+nav#nav {
+  grid-area: nav;
+  width: 100%;
+  padding: var(--spacing);
+  border-bottom: 1px solid var(--color-vesper-alpha-black-50);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing);
+
+  .nav-group {
+    display: flex;
+    gap: var(--spacing);
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .nav-left {
+    #home {
+      @media (min-width: 768px) {
+        width: calc(
+          12rem /* min width of sidebar */ + calc(calc(var(--spacing) * 4))
+            /* the sidebar itself */ + calc(calc(var(--spacing) * 2))
+            /* prose padding */ - var(--spacing) /* gap in `.nav-left` */
+        );
+      }
+    }
+  }
+
+  #breadcrumbs {
+    width: 100%;
+    padding: var(--spacing) 0;
+    display: flex;
+    gap: var(--spacing);
+    align-items: center;
+
+    .divider {
+      opacity: 0.5;
+    }
+  }
+}
+
+nav#sidebar {
+  grid-area: sidebar;
+  width: 100%;
+  min-width: fit-content;
+  width: 100%;
+  padding: calc(var(--spacing));
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  a {
+    padding: calc(var(--spacing) / 2);
+    margin: calc(
+      var(--spacing) / 8 * -1
+    ); /* so hover can take up adjacent space */
+    border-radius: calc(var(--spacing) / 2);
+    &:hover {
+      background-color: var(--color-vesper-alpha-black-50);
+    }
+    &[data-active] {
+      background-color: var(--color-vesper-alpha-black-100);
+    }
+  }
+
+  @media (min-width: 768px) {
+    width: 12rem;
+  }
+}
+
+.content {
+  grid-area: main;
+  width: 100%;
+  min-width: 0;
+}
+
 .prose {
   --spacing: 1rem;
   --content-width: 72ch;
@@ -60,8 +161,10 @@ body {
   align-items: flex-start;
   gap: var(--gap);
   padding: var(--spacing);
-  margin: 0 auto;
-  min-width: 100%;
+  margin-right: auto;
+  width: 100%;
+  max-width: var(--content-width);
+  overflow-x: hidden;
 
   h1,
   h2,
@@ -154,6 +257,66 @@ table {
   tr {
     &:not(:last-child) {
       border-bottom: 1px solid var(--color-vesper-alpha-black-50);
+    }
+  }
+}
+
+.component-grid {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 8);
+  width: 100%;
+
+  & .component-grid-header {
+    display: flex;
+    flex-direction: column;
+
+    & .component-grid-subtitle {
+      margin-top: calc(var(--spacing) * 2);
+      color: var(--vesper-text-subtle);
+    }
+  }
+
+  & .component-grid-items {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: calc(var(--spacing) * 4);
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1280px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (min-width: 1920px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  & .component-grid-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--spacing) * 3);
+    padding: calc(var(--spacing) * 6);
+    border-radius: var(--vesper-radius-2);
+    border: 1px solid var(--color-vesper-alpha-black-50);
+    overflow: hidden;
+    min-width: 0;
+
+    & .component-grid-cell-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 4rem;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    & .component-grid-cell-name {
+      color: var(--vesper-text-subtle);
     }
   }
 }

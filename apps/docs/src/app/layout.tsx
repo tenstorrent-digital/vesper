@@ -1,5 +1,6 @@
-import Nav from "@/components/nav";
-import Prose from "@/components/prose";
+import { Nav } from "@/components/nav/nav";
+import { Sidebar } from "@/components/nav/sidebar";
+import { Prose } from "@/components/prose";
 
 import { ibm_plex_mono, inter_tight } from "@/lib/style/fonts";
 import { cn } from "@/lib/tailwind/cn";
@@ -20,11 +21,14 @@ export default function RootLayout({
         "antialiased",
       )}
     >
-      <body className="">
-        {/* nav, header, footer, etc */}
-        <Nav />
-
-        <Prose>{children}</Prose>
+      <body>
+        <div className="layout">
+          <Nav />
+          <Sidebar />
+          <section id="content">
+            <Prose>{children}</Prose>
+          </section>
+        </div>
       </body>
     </html>
   );
