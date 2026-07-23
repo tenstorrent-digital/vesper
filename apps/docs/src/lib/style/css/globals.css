@@ -148,6 +148,7 @@ nav#sidebar {
   grid-area: main;
   width: 100%;
   min-width: 0;
+  padding-bottom: calc(var(--spacing) * 2);
 }
 
 .prose {

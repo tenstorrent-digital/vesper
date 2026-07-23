@@ -25,7 +25,7 @@ export default function RootLayout({
         <div className="layout">
           <Nav />
           <Sidebar />
-          <section id="content">
+          <section className="content">
             <Prose>{children}</Prose>
           </section>
         </div>
