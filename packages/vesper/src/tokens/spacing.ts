@@ -17,4 +17,5 @@ export const spacing = {
   "32": "8rem",
   "40": "10rem",
   half: "0.125rem",
+  micro: "0.0625rem",
 };

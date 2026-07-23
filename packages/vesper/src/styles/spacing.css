@@ -17,4 +17,6 @@
   --vesper-spacing-32: 8rem;
   --vesper-spacing-40: 10rem;
   --vesper-spacing-half: 0.125rem;
+  /* 0.0625rem = 1px when base rem = 16px */
+  --vesper-spacing-micro: 0.0625rem;
 }
