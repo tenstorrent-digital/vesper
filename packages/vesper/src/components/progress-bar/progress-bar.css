@@ -15,7 +15,7 @@
 }
 
 .vesper-progress-bar-sm {
-  height: 8px;
+  height: 0.5rem;
   border-radius: var(--vesper-spacing-2);
   &::before {
     border-radius: var(--vesper-spacing-2);
@@ -23,7 +23,7 @@
 }
 
 .vesper-progress-bar-md {
-  height: 12px;
+  height: 0.75rem;
   border-radius: var(--vesper-spacing-3);
   &::before {
     border-radius: var(--vesper-spacing-3);
@@ -31,7 +31,7 @@
 }
 
 .vesper-progress-bar-lg {
-  height: 16px;
+  height: 1rem;
   border-radius: var(--vesper-spacing-4);
   &::before {
     border-radius: var(--vesper-spacing-4);
