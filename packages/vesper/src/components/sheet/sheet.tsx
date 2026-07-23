@@ -48,19 +48,21 @@ export interface SheetProps extends Omit<
   buttons?: Omit<ButtonProps, "size" | "as">[];
 }
 
-export function Sheet({
-  className,
-  ref,
-  "aria-labelledby": ariaLabelledby,
-  "aria-describedby": ariaDescribedby,
-  children,
-  side = "right",
-  popover = false,
-  title,
-  description,
-  buttons = [],
-  ...props
-}: SheetProps) {
+export function Sheet(props: SheetProps) {
+  const {
+    className,
+    ref,
+    "aria-labelledby": ariaLabelledby,
+    "aria-describedby": ariaDescribedby,
+    children,
+    side = "right",
+    popover = false,
+    title,
+    description,
+    buttons = [],
+    ...rest
+  } = props;
+
   const titleId = useId();
   const descriptionId = useId();
   const innerRef = useRef<HTMLDialogElement>(null);
@@ -117,7 +119,7 @@ export function Sheet({
       className={cn("vesper-sheet", `vesper-sheet-${side}`, className)}
       aria-labelledby={labelledBy}
       aria-describedby={describedBy}
-      {...props}
+      {...rest}
     >
       <div className="vesper-sheet-content">
         <div className="vesper-sheet-header">

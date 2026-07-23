@@ -78,22 +78,24 @@ export interface ModalProps extends Omit<
   >;
 }
 
-export function Modal({
-  className,
-  ref,
-  "aria-labelledby": ariaLabelledby,
-  "aria-describedby": ariaDescribedby,
-  title,
-  description,
-  width = 452,
-  maxHeight = 640,
-  buttons,
-  buttonsAlignment = "end",
-  children,
-  form,
-  closeOnClickOutside = false,
-  ...props
-}: ModalProps) {
+export function Modal(props: ModalProps) {
+  const {
+    className,
+    ref,
+    "aria-labelledby": ariaLabelledby,
+    "aria-describedby": ariaDescribedby,
+    title,
+    description,
+    width = 452,
+    maxHeight = 640,
+    buttons,
+    buttonsAlignment = "end",
+    children,
+    form,
+    closeOnClickOutside = false,
+    ...rest
+  } = props;
+
   const titleId = useId();
   const descriptionId = useId();
   const innerRef = useRef<HTMLDialogElement>(null);
@@ -196,7 +198,7 @@ export function Modal({
       className={cn("vesper-modal", className)}
       aria-labelledby={labelledBy}
       aria-describedby={describedBy}
-      {...props}
+      {...rest}
     >
       {form ? (
         <form {...containerProps} {...form}>

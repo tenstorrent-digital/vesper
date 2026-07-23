@@ -54,17 +54,14 @@ const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
   lg: "label-lg",
 };
 
-export function Toggle({
-  options,
-  className,
-  size = "lg",
-  ...props
-}: ToggleProps) {
+export function Toggle(props: ToggleProps) {
+  const { options, className, size = "lg", ...rest } = props;
+
   return (
     <ToggleGroup
       type="single"
       className={cn("vesper-toggle", `vesper-toggle-${size}`, className)}
-      {...props}
+      {...rest}
     >
       {options.map((option) => (
         <Typography

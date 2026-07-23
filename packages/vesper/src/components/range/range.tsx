@@ -48,22 +48,24 @@ export interface RangeProps extends Omit<
   form?: string;
 }
 
-export function Range({
-  className,
-  thumbAriaLabels,
-  values,
-  valueLabels,
-  onValuesChange,
-  onValuesCommit,
-  showTicks,
-  showValueLabels,
-  minStepsBetweenThumbs = 1,
-  min = 0,
-  max = 100,
-  step = 1,
-  defaultValues = [min, max],
-  ...props
-}: RangeProps) {
+export function Range(props: RangeProps) {
+  const {
+    className,
+    thumbAriaLabels,
+    values,
+    valueLabels,
+    onValuesChange,
+    onValuesCommit,
+    showTicks,
+    showValueLabels,
+    minStepsBetweenThumbs = 1,
+    min = 0,
+    max = 100,
+    step = 1,
+    defaultValues = [min, max],
+    ...rest
+  } = props;
+
   const numTicks = useMemo(() => {
     let n = Math.max(Math.ceil((max - min) / step) - 1, 0);
     if (n === Infinity) n = 0;
@@ -85,7 +87,7 @@ export function Range({
       max={max}
       step={step}
       minStepsBetweenThumbs={minStepsBetweenThumbs}
-      {...props}
+      {...rest}
     >
       <SliderTrack className="vesper-range-track">
         {showTicks &&

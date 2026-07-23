@@ -17,18 +17,15 @@ export interface SnippetProps extends Omit<ComponentProps<"div">, "children"> {
   variant?: SnippetVariant;
 }
 
-export function Snippet({
-  className,
-  children = "",
-  variant = "default",
-  ...props
-}: SnippetProps) {
+export function Snippet(props: SnippetProps) {
+  const { className, children = "", variant = "default", ...rest } = props;
+
   return (
     <Typography
       as="div"
       variant="copy-xs-mono"
       className={cn("vesper-snippet", `vesper-snippet-${variant}`, className)}
-      {...props}
+      {...rest}
     >
       <pre>
         <code>

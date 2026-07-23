@@ -53,19 +53,21 @@ const RADIO_GROUP_ITEM_TYPOGRAPHY: { [S in RadioSize]: TypographyVariant } = {
   md: "label-lg",
 };
 
-export function RadioGroup({
-  size = "md",
-  orientation = "vertical",
-  required,
-  disabled,
-  options,
-  className,
-  name,
-  value,
-  defaultValue,
-  onChange,
-  ...props
-}: RadioGroupProps) {
+export function RadioGroup(props: RadioGroupProps) {
+  const {
+    size = "md",
+    orientation = "vertical",
+    required,
+    disabled,
+    options,
+    className,
+    name,
+    value,
+    defaultValue,
+    onChange,
+    ...rest
+  } = props;
+
   return (
     <fieldset
       disabled={disabled}
@@ -74,7 +76,7 @@ export function RadioGroup({
         `vesper-radio-group-${orientation}`,
         className,
       )}
-      {...props}
+      {...rest}
     >
       {options.map((option) => {
         const isDisabled = disabled || option.disabled;
