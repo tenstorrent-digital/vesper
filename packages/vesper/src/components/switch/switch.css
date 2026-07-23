@@ -54,7 +54,7 @@
   &:checked + .vesper-switch-pill {
     background: var(--vesper-background-accent-base);
     &::after {
-      transform: translateX(calc(100% + 4px));
+      transform: translateX(calc(100% + var(--vesper-spacing-1)));
     }
     @media (forced-colors: active) {
       background: CanvasText;
@@ -84,11 +84,11 @@
 }
 
 .vesper-switch-sm .vesper-switch-pill {
-  height: 16px;
-  border-radius: 16px;
+  height: 1rem;
+  border-radius: 1rem;
 }
 
 .vesper-switch-md .vesper-switch-pill {
-  height: 24px;
-  border-radius: 24px;
+  height: 1.5rem;
+  border-radius: 1.5rem;
 }
