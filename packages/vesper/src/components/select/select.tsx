@@ -166,7 +166,6 @@ export function Select(props: SelectProps) {
         <SelectContent
           className="vesper-select-content"
           side="bottom"
-          sideOffset={12}
           align="start"
           position="popper"
         >
