@@ -25,16 +25,16 @@ export type IconButtonProps<E extends ElementType = "button"> = Polymorphic<
   "children"
 >;
 
-export function IconButton<E extends ElementType = "button">({
-  icon,
-  className,
-  ...props
-}: IconButtonProps<E>) {
+export function IconButton<E extends ElementType = "button">(
+  props: IconButtonProps<E>,
+) {
+  const { icon, className, ...rest } = props;
+
   return (
     <Button
       iconLeft={icon}
       className={cn("vesper-icon-button", className)}
-      {...(props as ButtonProps<E>)}
+      {...(rest as ButtonProps<E>)}
     />
   );
 }

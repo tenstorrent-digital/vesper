@@ -61,26 +61,28 @@ export interface SplitButtonProps extends Omit<
   disabled?: boolean;
 }
 
-export function SplitButton({
-  size = "lg",
-  variant = "contrast",
-  children,
-  className,
-  onClick,
-  menuItems = [],
-  menuAlign = "start",
-  menuAlignOffset,
-  menuOpen,
-  onMenuOpenChange,
-  menuSide = "bottom",
-  menuSideOffset,
-  menuWidth,
-  disabled,
-  menuButtonAriaLabel,
-  onPointerDown,
-  defaultMenuOpen,
-  ...props
-}: SplitButtonProps) {
+export function SplitButton(props: SplitButtonProps) {
+  const {
+    size = "lg",
+    variant = "contrast",
+    children,
+    className,
+    onClick,
+    menuItems = [],
+    menuAlign = "start",
+    menuAlignOffset,
+    menuOpen,
+    onMenuOpenChange,
+    menuSide = "bottom",
+    menuSideOffset,
+    menuWidth,
+    disabled,
+    menuButtonAriaLabel,
+    onPointerDown,
+    defaultMenuOpen,
+    ...rest
+  } = props;
+
   const actionButtonRef = useRef<HTMLButtonElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -117,7 +119,7 @@ export function SplitButton({
       <div
         className={cn("vesper-split-button", className)}
         onPointerDown={handlePointerDown}
-        {...props}
+        {...rest}
       >
         <Button
           ref={actionButtonRef}

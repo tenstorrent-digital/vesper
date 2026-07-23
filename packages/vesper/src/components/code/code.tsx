@@ -13,13 +13,15 @@ export interface CodeProps extends ComponentProps<"code"> {
   variant?: CodeVariant;
 }
 
-export function Code({ className, variant = "default", ...props }: CodeProps) {
+export function Code(props: CodeProps) {
+  const { className, variant = "default", ...rest } = props;
+
   return (
     <Typography
       as="code"
       variant="copy-xs-mono"
       className={cn("vesper-code", `vesper-code-${variant}`, className)}
-      {...props}
+      {...rest}
     />
   );
 }

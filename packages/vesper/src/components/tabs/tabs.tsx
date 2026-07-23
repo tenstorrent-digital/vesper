@@ -49,14 +49,11 @@ const TRIGGER_TYPOGRAPHY: { [V in TabsVariant]: TypographyVariant } = {
   secondary: "label-sm",
 };
 
-export function Tabs({
-  items,
-  className,
-  variant = "primary",
-  ...props
-}: TabsProps) {
+export function Tabs(props: TabsProps) {
+  const { items, className, variant = "primary", ...rest } = props;
+
   return (
-    <RadixTabs className={cn(`vesper-tabs-${variant}`, className)} {...props}>
+    <RadixTabs className={cn(`vesper-tabs-${variant}`, className)} {...rest}>
       <TabsList className="vesper-tabs-list">
         {items.map((item) => (
           <Typography

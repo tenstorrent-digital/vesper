@@ -46,18 +46,20 @@ export interface MenuProps {
   width?: number;
 }
 
-export function Menu({
-  items,
-  children,
-  width = 200,
-  side = "bottom",
-  sideOffset = 8,
-  align = "start",
-  alignOffset = 0,
-  ...props
-}: MenuProps) {
+export function Menu(props: MenuProps) {
+  const {
+    items,
+    children,
+    width = 200,
+    side = "bottom",
+    sideOffset = 8,
+    align = "start",
+    alignOffset = 0,
+    ...rest
+  } = props;
+
   return (
-    <DropdownMenu {...props}>
+    <DropdownMenu {...rest}>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuPortal>
         <DropdownMenuContent

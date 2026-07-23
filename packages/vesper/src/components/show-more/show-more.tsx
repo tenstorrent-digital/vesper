@@ -14,15 +14,11 @@ export interface ShowMoreProps extends Omit<ComponentProps<"div">, "onClick"> {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-export function ShowMore({
-  className,
-  expanded,
-  disabled,
-  onClick,
-  ...props
-}: ShowMoreProps) {
+export function ShowMore(props: ShowMoreProps) {
+  const { className, expanded, disabled, onClick, ...rest } = props;
+
   return (
-    <div className={cn("vesper-show-more", className)} {...props}>
+    <div className={cn("vesper-show-more", className)} {...rest}>
       <Button
         aria-expanded={expanded ?? false}
         disabled={disabled}

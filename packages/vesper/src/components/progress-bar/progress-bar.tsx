@@ -26,16 +26,18 @@ export interface ProgressBarProps extends ComponentProps<"div"> {
   animated?: boolean;
 }
 
-export function ProgressBar({
-  value,
-  variant = "default",
-  steps = 10,
-  className,
-  size = "md",
-  stepRoundingStrategy,
-  animated = false,
-  ...props
-}: ProgressBarProps) {
+export function ProgressBar(props: ProgressBarProps) {
+  const {
+    value,
+    variant = "default",
+    steps = 10,
+    className,
+    size = "md",
+    stepRoundingStrategy,
+    animated = false,
+    ...rest
+  } = props;
+
   const progress = Math.min(Math.max(value, 0), 100);
 
   return (
@@ -47,7 +49,7 @@ export function ProgressBar({
         className,
       )}
       value={progress}
-      {...props}
+      {...rest}
     >
       {variant === "default" && (
         <ProgressBarIndicatorDefault value={progress} />
