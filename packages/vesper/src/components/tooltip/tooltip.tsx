@@ -41,19 +41,21 @@ export interface TooltipProps {
   maxWidth?: number;
 }
 
-export function Tooltip({
-  children,
-  content,
-  defaultOpen,
-  open,
-  onOpenChange,
-  delayDuration = 500,
-  maxWidth = 240,
-  align = "center",
-  alignOffset = 0,
-  side = "top",
-  sideOffset: _sideOffset = 4,
-}: TooltipProps) {
+export function Tooltip(props: TooltipProps) {
+  const {
+    children,
+    content,
+    defaultOpen,
+    open,
+    onOpenChange,
+    delayDuration = 500,
+    maxWidth = 240,
+    align = "center",
+    alignOffset = 0,
+    side = "top",
+    sideOffset: _sideOffset = 4,
+  } = props;
+
   const sideOffset = TOOLTIP_ARROW_HEIGHT + _sideOffset;
 
   if (!isValidTooltipChild(content) || !isValidTooltipChild(children)) {

@@ -21,22 +21,24 @@ export interface AccordionProps extends ComponentProps<"div"> {
   title: string;
 }
 
-export function Accordion({
-  defaultOpen,
-  open,
-  onOpenChange,
-  children,
-  title,
-  className,
-  ...props
-}: AccordionProps) {
+export function Accordion(props: AccordionProps) {
+  const {
+    defaultOpen,
+    open,
+    onOpenChange,
+    children,
+    title,
+    className,
+    ...rest
+  } = props;
+
   return (
     <Collapsible
       defaultOpen={defaultOpen}
       open={open}
       onOpenChange={onOpenChange}
       className={cn("vesper-accordion", className)}
-      {...props}
+      {...rest}
     >
       <Typography
         as={CollapsibleTrigger}

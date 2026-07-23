@@ -32,7 +32,8 @@ export interface CodeBlockProps extends Omit<
    * </CodeBlock>
    */
   children?:
-    string | (() => ReadableStream<string> | Promise<ReadableStream<string>>);
+    | string
+    | (() => ReadableStream<string> | Promise<ReadableStream<string>>);
   /**
    * The language syntax of the supplied code. Omitting this prop will render supplied code as plain text with no syntax highlighting.
 
@@ -82,15 +83,17 @@ export interface CodeBlockProps extends Omit<
   copyOnHover?: boolean;
 }
 
-export function CodeBlock({
-  className,
-  children: code = "",
-  lang = "text",
-  showLineNumbers = false,
-  transformers,
-  copyOnHover = false,
-  ...props
-}: CodeBlockProps) {
+export function CodeBlock(props: CodeBlockProps) {
+  const {
+    className,
+    children: code = "",
+    lang = "text",
+    showLineNumbers = false,
+    transformers,
+    copyOnHover = false,
+    ...rest
+  } = props;
+
   handleLanguageRegistration(lang);
 
   if (typeof code === "function") {
@@ -99,7 +102,7 @@ export function CodeBlock({
         className={className}
         lang={lang}
         copyOnHover={copyOnHover}
-        {...props}
+        {...rest}
       >
         {code}
       </StreamingCodeBlock>
@@ -110,7 +113,7 @@ export function CodeBlock({
     <div
       className={cn("vesper-code-block", className)}
       data-copy-on-hover={copyOnHover}
-      {...props}
+      {...rest}
     >
       <CodeBlockPreWrapper data-line-numbers={showLineNumbers}>
         {codeToJsx(code, lang, transformers)}

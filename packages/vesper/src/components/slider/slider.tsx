@@ -31,17 +31,19 @@ interface SliderProps extends Omit<
   thumbAriaLabel?: string;
 }
 
-export function Slider({
-  value,
-  valueLabel,
-  defaultValue,
-  onValueChange,
-  onValueCommit,
-  showValueLabel,
-  thumbAriaLabel,
-  min = 0,
-  ...props
-}: SliderProps) {
+export function Slider(props: SliderProps) {
+  const {
+    value,
+    valueLabel,
+    defaultValue,
+    onValueChange,
+    onValueCommit,
+    showValueLabel,
+    thumbAriaLabel,
+    min = 0,
+    ...rest
+  } = props;
+
   const handleValueChange = useCallback(
     ([value]: number[]) => onValueChange?.(value!),
     [onValueChange],
@@ -64,7 +66,7 @@ export function Slider({
         typeof thumbAriaLabel === "string" ? [thumbAriaLabel] : undefined
       }
       min={min}
-      {...props}
+      {...rest}
     />
   );
 }

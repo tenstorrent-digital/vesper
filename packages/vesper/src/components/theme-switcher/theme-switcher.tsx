@@ -21,11 +21,9 @@ export interface ThemeSwitcherProps extends Omit<
 const setTheme = (theme: VesperTheme) =>
   document.documentElement.setAttribute("data-vesper-theme", theme);
 
-export function ThemeSwitcher({
-  className,
-  size = "lg",
-  ...props
-}: ThemeSwitcherProps) {
+export function ThemeSwitcher(props: ThemeSwitcherProps) {
+  const { className, size = "lg", ...rest } = props;
+
   return (
     <div
       className={cn(
@@ -33,7 +31,7 @@ export function ThemeSwitcher({
         `vesper-theme-switcher-${size}`,
         className,
       )}
-      {...props}
+      {...rest}
     >
       <button
         type="button"
