@@ -7,11 +7,6 @@
   &:not(:disabled) {
     cursor: pointer;
   }
-  &[data-state="open"],
-  &:focus-visible {
-    border-color: var(--vesper-border-strong);
-    box-shadow: var(--vesper-shadow-focus-ring);
-  }
   &[data-state="open"] .vespers-select-state-indicator-closed {
     display: none;
   }
@@ -25,6 +20,17 @@
     .vesper-select-icon,
     .vesper-select-state-indicator {
       color: var(--vesper-icon-disabled);
+    }
+  }
+  &[data-state="open"],
+  &:focus-visible {
+    border-color: var(--vesper-border-strong);
+    box-shadow: var(--vesper-shadow-focus-ring);
+    @media (forced-colors: active) {
+      outline: 2px solid CanvasText;
+    }
+    @media not (forced-colors: active) {
+      box-shadow: var(--vesper-shadow-focus-ring);
     }
   }
 }
