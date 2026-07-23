@@ -36,27 +36,33 @@
   }
   &:hover {
     border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
-    background: var(--vesper-background-inverse-primary);
-    &.vesper-chip-selected {
-      color: var(--vesper-text-primary);
-      background: var(--vesper-background-primary);
-      @media (forced-colors: active) {
-        background: Canvas;
-        border: var(--vesper-stroke-base) solid CanvasText;
-        forced-color-adjust: none;
-      }
-    }
-    &:hover:not(.vesper-chip-selected) {
-      background: var(--vesper-background-inverse-secondary);
-    }
+  }
+}
+
+.vesper-chip-contrast {
+  color: var(--vesper-text-inverse-primary);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
+  background: var(--vesper-background-inverse-primary);
+  &.vesper-chip-selected {
+    color: var(--vesper-text-primary);
+    background: var(--vesper-background-primary);
     @media (forced-colors: active) {
-      background: CanvasText;
-      color: Canvas;
+      background: Canvas;
+      border: var(--vesper-stroke-base) solid CanvasText;
+      color: CanvasText;
       forced-color-adjust: none;
-      &:focus-visible {
-        outline-offset: var(--vesper-spacing-micro);
-        outline-width: var(--vesper-stroke-base);
-      }
+    }
+  }
+  &:hover:not(.vesper-chip-selected) {
+    background: var(--vesper-background-inverse-secondary);
+  }
+  @media (forced-colors: active) {
+    background: CanvasText;
+    color: Canvas;
+    forced-color-adjust: none;
+    &:focus-visible {
+      outline-offset: var(--vesper-spacing-micro);
+      outline-width: var(--vesper-stroke-base);
     }
   }
 }
