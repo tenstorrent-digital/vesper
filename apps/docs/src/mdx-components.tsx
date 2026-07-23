@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import Image, { ImageProps } from "next/image";
+import Link from "next/link";
 import {
   type BundledLanguage,
   bundledLanguages,
@@ -58,6 +59,14 @@ const components = {
     <Typography as="strong" variant="copy-md-bold">
       {props.children}
     </Typography>
+  ),
+  a: (props) => (
+    <Link
+      target={props.href.startsWith("http") ? "_blank" : undefined}
+      href={props.href}
+    >
+      {props.children}
+    </Link>
   ),
   code: (props) => <Code>{props.children}</Code>,
   blockquote: (props) => (
