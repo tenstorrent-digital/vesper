@@ -23,46 +23,46 @@
 }
 
 .vesper-button-lg {
-  height: 48px;
+  height: 3rem;
   padding: 0 var(--vesper-spacing-5);
   border-radius: var(--vesper-radius-2);
   font-size: 1rem;
   .vesper-button-icon {
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
   }
 }
 
 .vesper-button-md {
-  height: 40px;
+  height: 2.5rem;
   padding: 0 var(--vesper-spacing-4);
   border-radius: var(--vesper-radius-2);
   font-size: 1rem;
   .vesper-button-icon {
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
   }
 }
 
 .vesper-button-sm {
-  height: 32px;
+  height: 2rem;
   padding: 0 var(--vesper-spacing-3);
   border-radius: var(--vesper-radius-1);
   font-size: 0.875rem;
   .vesper-button-icon {
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
   }
 }
 
 .vesper-button-xs {
-  height: 24px;
+  height: 1.5rem;
   padding: 0 var(--vesper-spacing-2);
   border-radius: var(--vesper-radius-1);
   font-size: 0.875rem;
   .vesper-button-icon {
-    width: 14px;
-    height: 14px;
+    width: 0.875rem;
+    height: 0.875rem;
   }
 }
 
