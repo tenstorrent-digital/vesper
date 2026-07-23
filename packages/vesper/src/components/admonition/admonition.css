@@ -43,8 +43,8 @@
 }
 
 .vesper-admonition-icon {
-  width: 16px;
-  height: 20px;
+  width: 1rem;
+  height: 1.25rem;
   display: flex;
   align-items: center;
   flex-shrink: 0;
