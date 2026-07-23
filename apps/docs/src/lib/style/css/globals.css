@@ -8,7 +8,7 @@
 /* tailwind theme for docs */
 @theme {
   --font-inter-tight: var(--font-inter-tight);
-  --font-plex-sans: var(--font-plex-sans);
+  --font-plex-mono: var(--font-plex-mono);
 }
 
 @view-transition {
