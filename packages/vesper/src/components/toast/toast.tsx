@@ -231,11 +231,9 @@ export interface ToastsProps {
   container?: Element | DocumentFragment;
 }
 
-export function Toasts({
-  ariaLabel = "Notifications",
-  shortcut = "F8",
-  container,
-}: ToastsProps) {
+export function Toasts(props: ToastsProps) {
+  const { ariaLabel = "Notifications", shortcut = "F8", container } = props;
+
   const { toasts } = useStore();
   const ref = useRef<HTMLDivElement>(null);
 

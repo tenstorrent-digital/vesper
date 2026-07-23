@@ -19,17 +19,19 @@ export interface SkeletonProps extends ComponentProps<"div"> {
   show?: boolean;
 }
 
-export function Skeleton({
-  className,
-  shape = "box",
-  width,
-  height,
-  size,
-  show = true,
-  children,
-  style,
-  ...props
-}: SkeletonProps) {
+export function Skeleton(props: SkeletonProps) {
+  const {
+    className,
+    shape = "box",
+    width,
+    height,
+    size,
+    show = true,
+    children,
+    style,
+    ...rest
+  } = props;
+
   if (!show) return children;
 
   return (
@@ -40,7 +42,7 @@ export function Skeleton({
         height: size ?? height,
         ...style,
       }}
-      {...props}
+      {...rest}
     >
       {children}
       <div className="vesper-skeleton-overlay" />

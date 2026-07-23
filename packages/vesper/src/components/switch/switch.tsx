@@ -77,56 +77,58 @@ const SWITCH_TYPOGRAPHY: { [S in SwitchSize]: TypographyVariant } = {
   md: "label-lg",
 };
 
-export function Switch({
-  // component-specific props
-  label,
-  size = "md",
-  inputRef,
-  // props forwarded to the inner input
-  id,
-  form,
-  value,
-  autoFocus,
-  disabled,
-  name,
-  required,
-  checked,
-  defaultChecked,
-  readOnly,
-  /**
-   * set default role to "switch" as the switch component has no indeterminate state
-   * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/switch_role#:~:text=Unlike%20an%20%3Cinput%20type%3D%22checkbox%22%3E%20or%20role%3D%22checkbox%22%2C%20there%20is%20no%20indeterminate%20or%20mixed%20state
-   */
-  role = "switch",
-  tabIndex,
-  "aria-label": ariaLabel,
-  "aria-labelledby": ariaLabelledby,
-  "aria-describedby": ariaDescribedby,
-  "aria-invalid": ariaInvalid,
-  onFocus,
-  onFocusCapture,
-  onBlur,
-  onBlurCapture,
-  onChange,
-  onChangeCapture,
-  onBeforeInput,
-  onBeforeInputCapture,
-  onInput,
-  onInputCapture,
-  onReset,
-  onResetCapture,
-  onSubmit,
-  onSubmitCapture,
-  onInvalid,
-  onInvalidCapture,
-  onKeyDown,
-  onKeyDownCapture,
-  onKeyUp,
-  onKeyUpCapture,
-  // props spread onto the wrapper label
-  className,
-  ...props
-}: SwitchProps) {
+export function Switch(props: SwitchProps) {
+  const {
+    // component-specific props
+    label,
+    size = "md",
+    inputRef,
+    // props forwarded to the inner input
+    id,
+    form,
+    value,
+    autoFocus,
+    disabled,
+    name,
+    required,
+    checked,
+    defaultChecked,
+    readOnly,
+    /**
+     * set default role to "switch" as the switch component has no indeterminate state
+     * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/switch_role#:~:text=Unlike%20an%20%3Cinput%20type%3D%22checkbox%22%3E%20or%20role%3D%22checkbox%22%2C%20there%20is%20no%20indeterminate%20or%20mixed%20state
+     */
+    role = "switch",
+    tabIndex,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby,
+    "aria-describedby": ariaDescribedby,
+    "aria-invalid": ariaInvalid,
+    onFocus,
+    onFocusCapture,
+    onBlur,
+    onBlurCapture,
+    onChange,
+    onChangeCapture,
+    onBeforeInput,
+    onBeforeInputCapture,
+    onInput,
+    onInputCapture,
+    onReset,
+    onResetCapture,
+    onSubmit,
+    onSubmitCapture,
+    onInvalid,
+    onInvalidCapture,
+    onKeyDown,
+    onKeyDownCapture,
+    onKeyUp,
+    onKeyUpCapture,
+    // props spread onto the wrapper label
+    className,
+    ...rest
+  } = props;
+
   const isControlled = checked !== undefined;
   const [internalChecked, setInternalChecked] = useState(
     defaultChecked ?? false,
@@ -146,7 +148,7 @@ export function Switch({
   return (
     <label
       className={cn("vesper-switch", `vesper-switch-${size}`, className)}
-      {...props}
+      {...rest}
     >
       <input
         className="vesper-switch-input"
