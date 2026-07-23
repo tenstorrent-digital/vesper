@@ -1,21 +1,21 @@
 import { Avatar } from "@repo/vesper/avatar";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Avatar
 
-A circular image component for representing users or entities. Renders an image when a `src` is provided, or an empty placeholder when omitted. [View in Storybook]({`${storybookUrl}/avatar`})
+A circular image component for representing users or entities. Renders an image when a `src` is provided, or an empty placeholder when omitted. [View in Storybook]({`${STORYBOOK_URL}/avatar`})
 
 <Avatar size="lg" src="https://i.pravatar.cc/128" alt="User avatar" />
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `size` | `"sm" \| "md" \| "lg"` | The size of the avatar. | `"md"` |
-| `src` | `string` | The image source URL. When not provided, renders as an empty placeholder. | — |
-| `alt` | `string` | The alt text for the avatar image. | `""` |
-| `as` | `ElementType` | The root element type for polymorphic rendering. | `"div"` |
+| Prop   | Type                   | Description                                                               | Default |
+| ------ | ---------------------- | ------------------------------------------------------------------------- | ------- |
+| `size` | `"sm" \| "md" \| "lg"` | The size of the avatar.                                                   | `"md"`  |
+| `src`  | `string`               | The image source URL. When not provided, renders as an empty placeholder. | —       |
+| `alt`  | `string`               | The alt text for the avatar image.                                        | `""`    |
+| `as`   | `ElementType`          | The root element type for polymorphic rendering.                          | `"div"` |
 
 ## Examples
 
@@ -23,7 +23,7 @@ A circular image component for representing users or entities. Renders an image 
 import { Avatar } from "@repo/vesper/avatar";
 
 // Basic usage
-<Avatar src="/avatar.png" alt="Jane Doe" />
+<Avatar src="/avatar.png" alt="Jane Doe" />;
 ```
 
 ```tsx

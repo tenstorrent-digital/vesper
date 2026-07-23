@@ -1,24 +1,24 @@
 import { Admonition } from "@repo/vesper/admonition";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Admonition
 
-A callout component for highlighting important information, warnings, errors, or success messages. Supports multiple color variants and an optional call-to-action button. [View in Storybook]({`${storybookUrl}/admonition`})
+A callout component for highlighting important information, warnings, errors, or success messages. Supports multiple color variants and an optional call-to-action button. [View in Storybook]({`${STORYBOOK_URL}/admonition`})
 
 <Admonition variant="info">This is an informational admonition.</Admonition>
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `size` | `"sm" \| "md"` | The size of the admonition. Affects padding and typography. | `"sm"` |
-| `variant` | `"info" \| "success" \| "warning" \| "danger" \| "secondary"` | The visual variant, which determines color scheme and icon. | `"info"` |
-| `subtle` | `boolean` | When `true`, renders the admonition with a more subdued appearance. | `false` |
-| `cta` | `ButtonProps` | Props passed to an optional call-to-action button rendered alongside the content. | — |
-| `ctaAs` | `ElementType` | The element type the CTA will render as. | `"button"` |
-| `as` | `ElementType` | The root element type for polymorphic rendering. | `"div"` |
-| `children` | `ReactNode` | The content displayed inside the admonition. | — |
+| Prop       | Type                                                          | Description                                                                       | Default    |
+| ---------- | ------------------------------------------------------------- | --------------------------------------------------------------------------------- | ---------- |
+| `size`     | `"sm" \| "md"`                                                | The size of the admonition. Affects padding and typography.                       | `"sm"`     |
+| `variant`  | `"info" \| "success" \| "warning" \| "danger" \| "secondary"` | The visual variant, which determines color scheme and icon.                       | `"info"`   |
+| `subtle`   | `boolean`                                                     | When `true`, renders the admonition with a more subdued appearance.               | `false`    |
+| `cta`      | `ButtonProps`                                                 | Props passed to an optional call-to-action button rendered alongside the content. | —          |
+| `ctaAs`    | `ElementType`                                                 | The element type the CTA will render as.                                          | `"button"` |
+| `as`       | `ElementType`                                                 | The root element type for polymorphic rendering.                                  | `"div"`    |
+| `children` | `ReactNode`                                                   | The content displayed inside the admonition.                                      | —          |
 
 ## Examples
 
@@ -26,7 +26,7 @@ A callout component for highlighting important information, warnings, errors, or
 import { Admonition } from "@repo/vesper/admonition";
 
 // Info variant (default)
-<Admonition>Helpful information goes here.</Admonition>
+<Admonition>Helpful information goes here.</Admonition>;
 ```
 
 ```tsx

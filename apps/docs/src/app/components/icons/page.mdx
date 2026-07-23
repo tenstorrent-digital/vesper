@@ -1,12 +1,26 @@
-import { Add, Gear, Search, Info, Globe, Tenstorrent } from "@repo/vesper/icons";
+import {
+  Add,
+  Gear,
+  Search,
+  Info,
+  Globe,
+  Tenstorrent,
+} from "@repo/vesper/icons";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Icons
 
-A library of SVG icon components used throughout Vesper. Each icon renders as an inline `<svg>` element with `currentColor` fill, making it easy to style via CSS. An `Icon` component is also available for rendering icons dynamically by name. [View in Storybook]({`${storybookUrl}/icons`})
+A library of SVG icon components used throughout Vesper. Each icon renders as an inline `<svg>` element with `currentColor` fill, making it easy to style via CSS. An `Icon` component is also available for rendering icons dynamically by name. [View in Storybook]({`${STORYBOOK_URL}/icons`})
 
-<div style={{ display: "flex", gap: "16px", alignItems: "center", fontSize: "24px" }}>
+<div
+  style={{
+    display: "flex",
+    gap: "16px",
+    alignItems: "center",
+    fontSize: "24px",
+  }}
+>
   <Add />
   <Gear />
   <Search />
@@ -21,9 +35,9 @@ Each individual icon component (e.g., `Add`, `Gear`, `Search`) accepts all stand
 
 The dynamic `Icon` component accepts:
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `kind` | `IconKind` | The name of the icon to render. See the full list of available icon names in Storybook. | — |
+| Prop   | Type       | Description                                                                             | Default |
+| ------ | ---------- | --------------------------------------------------------------------------------------- | ------- |
+| `kind` | `IconKind` | The name of the icon to render. See the full list of available icon names in Storybook. | —       |
 
 ## Examples
 

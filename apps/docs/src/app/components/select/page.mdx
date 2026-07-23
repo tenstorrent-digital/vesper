@@ -1,10 +1,10 @@
 import { Select } from "@repo/vesper/select";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Select
 
-A form-ready dropdown select component supporting controlled and uncontrolled usage. Includes three size variants, an optional leading icon, and automatic portal handling for use inside dialogs. [View in Storybook]({`${storybookUrl}/select`})
+A form-ready dropdown select component supporting controlled and uncontrolled usage. Includes three size variants, an optional leading icon, and automatic portal handling for use inside dialogs. [View in Storybook]({`${STORYBOOK_URL}/select`})
 
 <Select
   placeholder="Select a fruit"
@@ -17,18 +17,18 @@ A form-ready dropdown select component supporting controlled and uncontrolled us
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `options` | `SelectItem[]` | The list of selectable options. Each has `value` (unique) and `label` (display text). | — |
-| `size` | `"sm" \| "md" \| "lg"` | The size variant of the select trigger. | `"lg"` |
-| `placeholder` | `string` | Placeholder text shown when no value is selected. | `"Select an option"` |
-| `icon` | `ReactNode` | An optional icon rendered at the leading edge of the trigger. | — |
-| `value` | `string` | The currently selected value (controlled mode). | — |
-| `defaultValue` | `string` | The initial selected value (uncontrolled mode). | — |
-| `onValueChange` | `(value: string) => void` | Callback invoked when the selection changes. | — |
-| `required` | `boolean` | When `true`, marks the select as required for form validation. | `false` |
-| `form` | `string` | Associates the select with a `<form>` element by its `id`. | — |
-| `disabled` | `boolean` | When `true`, prevents interaction. | `false` |
+| Prop            | Type                      | Description                                                                           | Default              |
+| --------------- | ------------------------- | ------------------------------------------------------------------------------------- | -------------------- |
+| `options`       | `SelectItem[]`            | The list of selectable options. Each has `value` (unique) and `label` (display text). | —                    |
+| `size`          | `"sm" \| "md" \| "lg"`    | The size variant of the select trigger.                                               | `"lg"`               |
+| `placeholder`   | `string`                  | Placeholder text shown when no value is selected.                                     | `"Select an option"` |
+| `icon`          | `ReactNode`               | An optional icon rendered at the leading edge of the trigger.                         | —                    |
+| `value`         | `string`                  | The currently selected value (controlled mode).                                       | —                    |
+| `defaultValue`  | `string`                  | The initial selected value (uncontrolled mode).                                       | —                    |
+| `onValueChange` | `(value: string) => void` | Callback invoked when the selection changes.                                          | —                    |
+| `required`      | `boolean`                 | When `true`, marks the select as required for form validation.                        | `false`              |
+| `form`          | `string`                  | Associates the select with a `<form>` element by its `id`.                            | —                    |
+| `disabled`      | `boolean`                 | When `true`, prevents interaction.                                                    | `false`              |
 
 ## Examples
 
@@ -42,7 +42,7 @@ import { Select } from "@repo/vesper/select";
     { value: "md", label: "Medium" },
     { value: "lg", label: "Large" },
   ]}
-/>
+/>;
 ```
 
 ```tsx
@@ -69,7 +69,7 @@ import { Globe } from "@repo/vesper/icons";
     { value: "eu", label: "Europe" },
     { value: "ap", label: "Asia Pacific" },
   ]}
-/>
+/>;
 ```
 
 ```tsx
@@ -83,5 +83,5 @@ const [value, setValue] = useState("");
     { value: "a", label: "Option A" },
     { value: "b", label: "Option B" },
   ]}
-/>
+/>;
 ```

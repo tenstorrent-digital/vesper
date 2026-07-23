@@ -1,24 +1,24 @@
 import { Button } from "@repo/vesper/button";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Button
 
-A versatile, polymorphic button component supporting multiple sizes, visual variants, and optional leading or trailing icons. [View in Storybook]({`${storybookUrl}/button`})
+A versatile, polymorphic button component supporting multiple sizes, visual variants, and optional leading or trailing icons. [View in Storybook]({`${STORYBOOK_URL}/button`})
 
 <Button>Click me</Button>
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `size` | `"xs" \| "sm" \| "md" \| "lg"` | The size of the button. Affects padding and font size. | `"lg"` |
-| `variant` | `"contrast" \| "danger" \| "ghost" \| "primary" \| "subtle" \| "tertiary" \| "warning"` | The visual style variant of the button. | `"primary"` |
-| `disabled` | `boolean` | When `true`, renders the button in a disabled state and prevents interaction. | `false` |
-| `iconLeft` | `ReactNode` | An optional icon element rendered to the left of the button content. | — |
-| `iconRight` | `ReactNode` | An optional icon element rendered to the right of the button content. | — |
-| `as` | `ElementType` | The root element type for polymorphic rendering. | `"button"` |
-| `children` | `ReactNode` | The content of the button. | — |
+| Prop        | Type                                                                                    | Description                                                                   | Default     |
+| ----------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------- |
+| `size`      | `"xs" \| "sm" \| "md" \| "lg"`                                                          | The size of the button. Affects padding and font size.                        | `"lg"`      |
+| `variant`   | `"contrast" \| "danger" \| "ghost" \| "primary" \| "subtle" \| "tertiary" \| "warning"` | The visual style variant of the button.                                       | `"primary"` |
+| `disabled`  | `boolean`                                                                               | When `true`, renders the button in a disabled state and prevents interaction. | `false`     |
+| `iconLeft`  | `ReactNode`                                                                             | An optional icon element rendered to the left of the button content.          | —           |
+| `iconRight` | `ReactNode`                                                                             | An optional icon element rendered to the right of the button content.         | —           |
+| `as`        | `ElementType`                                                                           | The root element type for polymorphic rendering.                              | `"button"`  |
+| `children`  | `ReactNode`                                                                             | The content of the button.                                                    | —           |
 
 ## Examples
 
@@ -26,7 +26,7 @@ A versatile, polymorphic button component supporting multiple sizes, visual vari
 import { Button } from "@repo/vesper/button";
 
 // Basic usage
-<Button>Submit</Button>
+<Button>Submit</Button>;
 ```
 
 ```tsx

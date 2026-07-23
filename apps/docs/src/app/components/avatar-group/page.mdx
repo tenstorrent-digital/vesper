@@ -1,10 +1,10 @@
 import { AvatarGroup } from "@repo/vesper/avatar-group";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Avatar Group
 
-Displays a stacked row of avatars with an overflow indicator when more than three are provided. Useful for showing team members, collaborators, or participants at a glance. [View in Storybook]({`${storybookUrl}/avatar-group`})
+Displays a stacked row of avatars with an overflow indicator when more than three are provided. Useful for showing team members, collaborators, or participants at a glance. [View in Storybook]({`${STORYBOOK_URL}/avatar-group`})
 
 <AvatarGroup
   size="md"
@@ -18,11 +18,11 @@ Displays a stacked row of avatars with an overflow indicator when more than thre
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `size` | `"sm" \| "md" \| "lg"` | The size applied to all avatars in the group. | `"md"` |
-| `avatars` | `{ src: string \| undefined; alt?: string }[]` | The list of avatars to display. A maximum of 3 are shown, with an overflow indicator for additional items. | — |
-| `as` | `ElementType` | The root element type for polymorphic rendering. | `"div"` |
+| Prop      | Type                                           | Description                                                                                                | Default |
+| --------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------- |
+| `size`    | `"sm" \| "md" \| "lg"`                         | The size applied to all avatars in the group.                                                              | `"md"`  |
+| `avatars` | `{ src: string \| undefined; alt?: string }[]` | The list of avatars to display. A maximum of 3 are shown, with an overflow indicator for additional items. | —       |
+| `as`      | `ElementType`                                  | The root element type for polymorphic rendering.                                                           | `"div"` |
 
 ## Examples
 
@@ -35,7 +35,7 @@ import { AvatarGroup } from "@repo/vesper/avatar-group";
     { src: "/user1.png", alt: "Alice" },
     { src: "/user2.png", alt: "Bob" },
   ]}
-/>
+/>;
 ```
 
 ```tsx

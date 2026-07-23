@@ -1,46 +1,37 @@
-import { Menu } from "@repo/vesper/menu";
-import { Button } from "@repo/vesper/button";
+import { MenuDemo } from "./demo";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Menu
 
-A dropdown menu component that displays a list of actionable items when triggered. Supports icons, descriptions, selected state, locked items, and disabled items. Built on Radix UI's dropdown menu primitive. [View in Storybook]({`${storybookUrl}/menu`})
+A dropdown menu component that displays a list of actionable items when triggered. Supports icons, descriptions, selected state, locked items, and disabled items. Built on Radix UI's dropdown menu primitive. [View in Storybook]({`${STORYBOOK_URL}/menu`})
 
-<Menu
-  items={[
-    { text: "Edit", onSelect: () => {} },
-    { text: "Duplicate", onSelect: () => {} },
-    { text: "Delete", style: "danger", onSelect: () => {} },
-  ]}
->
-  <Button variant="subtle">Open Menu</Button>
-</Menu>
+<MenuDemo />
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `items` | `MenuItemProps[]` | The list of menu items to render. Each item has `text`, optional `description`, `icon`, `style`, and `onSelect`. | — |
-| `children` | `ReactElement` | The trigger element that opens the menu. | — |
-| `side` | `"top" \| "bottom" \| "left" \| "right"` | The preferred side to render the menu against. | `"bottom"` |
-| `sideOffset` | `number` | The distance in pixels from the trigger to the menu. | `8` |
-| `align` | `"start" \| "center" \| "end"` | The alignment of the menu relative to the trigger. | `"start"` |
-| `alignOffset` | `number` | An offset in pixels from the aligned edge of the trigger. | — |
-| `width` | `number` | The width of the menu dropdown in pixels. | `200` |
-| `open` | `boolean` | Controls the open state of the menu (controlled mode). | — |
-| `defaultOpen` | `boolean` | Whether the menu is open by default (uncontrolled mode). | `false` |
-| `onOpenChange` | `(open: boolean) => void` | Callback fired when the open state changes. | — |
+| Prop           | Type                                     | Description                                                                                                      | Default    |
+| -------------- | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------- |
+| `items`        | `MenuItemProps[]`                        | The list of menu items to render. Each item has `text`, optional `description`, `icon`, `style`, and `onSelect`. | —          |
+| `children`     | `ReactElement`                           | The trigger element that opens the menu.                                                                         | —          |
+| `side`         | `"top" \| "bottom" \| "left" \| "right"` | The preferred side to render the menu against.                                                                   | `"bottom"` |
+| `sideOffset`   | `number`                                 | The distance in pixels from the trigger to the menu.                                                             | `8`        |
+| `align`        | `"start" \| "center" \| "end"`           | The alignment of the menu relative to the trigger.                                                               | `"start"`  |
+| `alignOffset`  | `number`                                 | An offset in pixels from the aligned edge of the trigger.                                                        | —          |
+| `width`        | `number`                                 | The width of the menu dropdown in pixels.                                                                        | `200`      |
+| `open`         | `boolean`                                | Controls the open state of the menu (controlled mode).                                                           | —          |
+| `defaultOpen`  | `boolean`                                | Whether the menu is open by default (uncontrolled mode).                                                         | `false`    |
+| `onOpenChange` | `(open: boolean) => void`                | Callback fired when the open state changes.                                                                      | —          |
 
 ### MenuItemProps
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `text` | `string` | The text label displayed for the menu item. | — |
-| `description` | `string` | An optional secondary description displayed below the text label. | — |
-| `icon` | `ReactNode` | An optional icon element rendered to the left of the text. | — |
-| `style` | `"default" \| "danger" \| "locked" \| "selected" \| "disabled"` | The visual and behavioral style of the menu item. | `"default"` |
-| `onSelect` | `() => void` | Callback fired when the menu item is selected. | — |
+| Prop          | Type                                                            | Description                                                       | Default     |
+| ------------- | --------------------------------------------------------------- | ----------------------------------------------------------------- | ----------- |
+| `text`        | `string`                                                        | The text label displayed for the menu item.                       | —           |
+| `description` | `string`                                                        | An optional secondary description displayed below the text label. | —           |
+| `icon`        | `ReactNode`                                                     | An optional icon element rendered to the left of the text.        | —           |
+| `style`       | `"default" \| "danger" \| "locked" \| "selected" \| "disabled"` | The visual and behavioral style of the menu item.                 | `"default"` |
+| `onSelect`    | `() => void`                                                    | Callback fired when the menu item is selected.                    | —           |
 
 ## Examples
 
@@ -57,7 +48,7 @@ import { Button } from "@repo/vesper/button";
   ]}
 >
   <Button>Actions</Button>
-</Menu>
+</Menu>;
 ```
 
 ```tsx
@@ -67,12 +58,22 @@ import { Copy, Trash, Gear } from "@repo/vesper/icons";
 <Menu
   items={[
     { text: "Copy", icon: <Copy />, onSelect: handleCopy },
-    { text: "Settings", icon: <Gear />, description: "Manage preferences", onSelect: handleSettings },
-    { text: "Delete", icon: <Trash />, style: "danger", onSelect: handleDelete },
+    {
+      text: "Settings",
+      icon: <Gear />,
+      description: "Manage preferences",
+      onSelect: handleSettings,
+    },
+    {
+      text: "Delete",
+      icon: <Trash />,
+      style: "danger",
+      onSelect: handleDelete,
+    },
   ]}
 >
   <Button>Actions</Button>
-</Menu>
+</Menu>;
 ```
 
 ```tsx

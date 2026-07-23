@@ -1,10 +1,10 @@
 import { RadioGroup } from "@repo/vesper/radio-group";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Radio Group
 
-A group of mutually exclusive radio inputs with labels. Supports horizontal and vertical layouts, controlled and uncontrolled modes, and individual option disabling. [View in Storybook]({`${storybookUrl}/radio-group`})
+A group of mutually exclusive radio inputs with labels. Supports horizontal and vertical layouts, controlled and uncontrolled modes, and individual option disabling. [View in Storybook]({`${STORYBOOK_URL}/radio-group`})
 
 <RadioGroup
   name="demo-color"
@@ -18,17 +18,17 @@ A group of mutually exclusive radio inputs with labels. Supports horizontal and 
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `name` | `string` | The name attribute shared by all radio inputs, used for form submission. | — |
-| `options` | `RadioGroupItem[]` | The list of radio options. Each has `value`, `label`, optional `disabled` and `id`. | — |
-| `size` | `"sm" \| "md"` | The size of the radio inputs and labels. | `"md"` |
-| `orientation` | `"horizontal" \| "vertical"` | The layout direction of the radio options. | `"vertical"` |
-| `value` | `string` | The currently selected value (controlled mode). | — |
-| `defaultValue` | `string` | The initially selected value (uncontrolled mode). | — |
-| `onChange` | `(value: string) => void` | Callback fired when the selected value changes. | — |
-| `required` | `boolean` | When `true`, a selection is required for form validation. | `false` |
-| `disabled` | `boolean` | When `true`, disables all options. | `false` |
+| Prop           | Type                         | Description                                                                         | Default      |
+| -------------- | ---------------------------- | ----------------------------------------------------------------------------------- | ------------ |
+| `name`         | `string`                     | The name attribute shared by all radio inputs, used for form submission.            | —            |
+| `options`      | `RadioGroupItem[]`           | The list of radio options. Each has `value`, `label`, optional `disabled` and `id`. | —            |
+| `size`         | `"sm" \| "md"`               | The size of the radio inputs and labels.                                            | `"md"`       |
+| `orientation`  | `"horizontal" \| "vertical"` | The layout direction of the radio options.                                          | `"vertical"` |
+| `value`        | `string`                     | The currently selected value (controlled mode).                                     | —            |
+| `defaultValue` | `string`                     | The initially selected value (uncontrolled mode).                                   | —            |
+| `onChange`     | `(value: string) => void`    | Callback fired when the selected value changes.                                     | —            |
+| `required`     | `boolean`                    | When `true`, a selection is required for form validation.                           | `false`      |
+| `disabled`     | `boolean`                    | When `true`, disables all options.                                                  | `false`      |
 
 ## Examples
 
@@ -44,7 +44,7 @@ import { RadioGroup } from "@repo/vesper/radio-group";
     { value: "md", label: "Medium" },
     { value: "lg", label: "Large" },
   ]}
-/>
+/>;
 ```
 
 ```tsx
@@ -84,5 +84,5 @@ const [value, setValue] = useState("opt-a");
     { value: "opt-a", label: "Option A" },
     { value: "opt-b", label: "Option B" },
   ]}
-/>
+/>;
 ```

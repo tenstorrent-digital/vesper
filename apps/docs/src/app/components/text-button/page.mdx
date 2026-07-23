@@ -1,24 +1,24 @@
 import { TextButton } from "@repo/vesper/text-button";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Text Button
 
-A minimal, text-only button without background or border. Supports multiple color variants, sizes, and optional leading or trailing icons. Ideal for inline actions and links. [View in Storybook]({`${storybookUrl}/text-button`})
+A minimal, text-only button without background or border. Supports multiple color variants, sizes, and optional leading or trailing icons. Ideal for inline actions and links. [View in Storybook]({`${STORYBOOK_URL}/text-button`})
 
 <TextButton>Learn more</TextButton>
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `size` | `"sm" \| "md" \| "lg"` | The size of the text button. Affects font size. | `"lg"` |
-| `variant` | `"subtle" \| "contrast" \| "accent" \| "success" \| "warning" \| "danger" \| "info" \| "purple" \| "pink"` | The color variant of the text button. | `"accent"` |
-| `disabled` | `boolean` | When `true`, renders in a disabled state and prevents interaction. | `false` |
-| `iconLeft` | `ReactNode` | An optional icon element rendered to the left of the content. | — |
-| `iconRight` | `ReactNode` | An optional icon element rendered to the right of the content. | — |
-| `as` | `ElementType` | The root element type for polymorphic rendering. | `"button"` |
-| `children` | `ReactNode` | The text content of the button. | — |
+| Prop        | Type                                                                                                       | Description                                                        | Default    |
+| ----------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------- |
+| `size`      | `"sm" \| "md" \| "lg"`                                                                                     | The size of the text button. Affects font size.                    | `"lg"`     |
+| `variant`   | `"subtle" \| "contrast" \| "accent" \| "success" \| "warning" \| "danger" \| "info" \| "purple" \| "pink"` | The color variant of the text button.                              | `"accent"` |
+| `disabled`  | `boolean`                                                                                                  | When `true`, renders in a disabled state and prevents interaction. | `false`    |
+| `iconLeft`  | `ReactNode`                                                                                                | An optional icon element rendered to the left of the content.      | —          |
+| `iconRight` | `ReactNode`                                                                                                | An optional icon element rendered to the right of the content.     | —          |
+| `as`        | `ElementType`                                                                                              | The root element type for polymorphic rendering.                   | `"button"` |
+| `children`  | `ReactNode`                                                                                                | The text content of the button.                                    | —          |
 
 ## Examples
 
@@ -26,7 +26,7 @@ A minimal, text-only button without background or border. Supports multiple colo
 import { TextButton } from "@repo/vesper/text-button";
 
 // Basic usage
-<TextButton>Learn more</TextButton>
+<TextButton>Learn more</TextButton>;
 ```
 
 ```tsx

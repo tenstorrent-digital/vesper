@@ -1,5 +1,8 @@
 "use client";
 
+import Link from "next/link";
+import { type BundledLanguage, bundledLanguages } from "shiki/bundle/web";
+
 import { Accordion } from "@repo/vesper/accordion";
 import { Admonition } from "@repo/vesper/admonition";
 import { Avatar } from "@repo/vesper/avatar";
@@ -30,6 +33,8 @@ import { Toggle } from "@repo/vesper/toggle";
 import { Tooltip } from "@repo/vesper/tooltip";
 import { Typography } from "@repo/vesper/typography";
 
+import { convertPascalToKebabCase } from "@/lib/filesystem/utils";
+
 const Cell = ({
   name,
   children,
@@ -40,16 +45,18 @@ const Cell = ({
   return (
     <div className="component-grid-cell">
       <div className="component-grid-cell-preview">{children}</div>
-      <Typography variant="copy-sm" className="component-grid-cell-name">
-        {name}
-      </Typography>
+      <Link href={`/components/${convertPascalToKebabCase(name)}`}>
+        <Typography variant="copy-md-bold">{name}</Typography>
+      </Link>
     </div>
   );
 };
 
-export default function ComponentsPage() {
+const cssLang = (await bundledLanguages["css" as BundledLanguage]()).default;
+
+export default function Page() {
   return (
-    <div className="component-grid">
+    <div className="no-max-width component-grid">
       <div className="component-grid-header">
         <Typography variant="heading-lg" as="h1">
           Components
@@ -105,7 +112,16 @@ export default function ComponentsPage() {
         </Cell>
 
         <Cell name="CodeBlock">
-          <CodeBlock>{"const x = 42;"}</CodeBlock>
+          <CodeBlock lang={cssLang}>{`.prose {
+  --spacing: 1rem;
+  --content-width: 72ch;
+  --font-size: 1rem;
+  --gap: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}`}</CodeBlock>
         </Cell>
 
         <Cell name="IconButton">
@@ -144,7 +160,7 @@ export default function ComponentsPage() {
         </Cell>
 
         <Cell name="Skeleton">
-          <Skeleton shape="pill" className="h-6 w-24" />
+          <Skeleton className="h-6 w-24" />
         </Cell>
 
         <Cell name="Slider">

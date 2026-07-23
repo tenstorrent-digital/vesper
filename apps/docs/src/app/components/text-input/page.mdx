@@ -1,30 +1,30 @@
 import { TextInput } from "@repo/vesper/text-input";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Text Input
 
-A form input component supporting single-line text, multiline textarea, optional labels, validation messages, and leading icons. Built on native `<input>` and `<textarea>` elements for full form compatibility. [View in Storybook]({`${storybookUrl}/text-input`})
+A form input component supporting single-line text, multiline textarea, optional labels, validation messages, and leading icons. Built on native `<input>` and `<textarea>` elements for full form compatibility. [View in Storybook]({`${STORYBOOK_URL}/text-input`})
 
 <TextInput label="Email" placeholder="you@example.com" />
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `size` | `"sm" \| "md" \| "lg"` | The size of the text input. Affects padding and typography. | `"lg"` |
-| `variant` | `"default" \| "warning" \| "success" \| "error"` | The visual variant, which determines color scheme and message icon. | `"default"` |
-| `label` | `string` | An optional label displayed above the input. An asterisk is appended when `required` is `true`. | — |
-| `message` | `string` | An optional message displayed below the input, paired with a variant-specific icon. | — |
-| `multiline` | `boolean` | When `true`, renders a `<textarea>` instead of an `<input>`. | `false` |
-| `icon` | `ReactNode` | An optional icon rendered to the left of the input field (single-line only). | — |
-| `type` | `"text" \| "email" \| "password" \| "url" \| "tel" \| "search" \| "number" \| "date" \| "datetime-local" \| "week" \| "month" \| "time"` | The HTML input type. | `"text"` |
-| `inputRef` | `RefObject` | A ref forwarded to the underlying `<input>` or `<textarea>` element. | — |
-| `height` | `number` | The fixed height of the textarea in pixels (multiline only). | — |
-| `placeholder` | `string` | Placeholder text for the input. | `" "` |
-| `disabled` | `boolean` | When `true`, prevents interaction. | `false` |
-| `required` | `boolean` | When `true`, marks the input as required. | `false` |
-| `readOnly` | `boolean` | When `true`, makes the input read-only. | `false` |
+| Prop          | Type                                                                                                                                     | Description                                                                                     | Default     |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------- |
+| `size`        | `"sm" \| "md" \| "lg"`                                                                                                                   | The size of the text input. Affects padding and typography.                                     | `"lg"`      |
+| `variant`     | `"default" \| "warning" \| "success" \| "error"`                                                                                         | The visual variant, which determines color scheme and message icon.                             | `"default"` |
+| `label`       | `string`                                                                                                                                 | An optional label displayed above the input. An asterisk is appended when `required` is `true`. | —           |
+| `message`     | `string`                                                                                                                                 | An optional message displayed below the input, paired with a variant-specific icon.             | —           |
+| `multiline`   | `boolean`                                                                                                                                | When `true`, renders a `<textarea>` instead of an `<input>`.                                    | `false`     |
+| `icon`        | `ReactNode`                                                                                                                              | An optional icon rendered to the left of the input field (single-line only).                    | —           |
+| `type`        | `"text" \| "email" \| "password" \| "url" \| "tel" \| "search" \| "number" \| "date" \| "datetime-local" \| "week" \| "month" \| "time"` | The HTML input type.                                                                            | `"text"`    |
+| `inputRef`    | `RefObject`                                                                                                                              | A ref forwarded to the underlying `<input>` or `<textarea>` element.                            | —           |
+| `height`      | `number`                                                                                                                                 | The fixed height of the textarea in pixels (multiline only).                                    | —           |
+| `placeholder` | `string`                                                                                                                                 | Placeholder text for the input.                                                                 | `" "`       |
+| `disabled`    | `boolean`                                                                                                                                | When `true`, prevents interaction.                                                              | `false`     |
+| `required`    | `boolean`                                                                                                                                | When `true`, marks the input as required.                                                       | `false`     |
+| `readOnly`    | `boolean`                                                                                                                                | When `true`, makes the input read-only.                                                         | `false`     |
 
 ## Examples
 
@@ -32,7 +32,7 @@ A form input component supporting single-line text, multiline textarea, optional
 import { TextInput } from "@repo/vesper/text-input";
 
 // Basic usage
-<TextInput label="Name" placeholder="Enter your name" />
+<TextInput label="Name" placeholder="Enter your name" />;
 ```
 
 ```tsx
@@ -59,7 +59,7 @@ import { TextInput } from "@repo/vesper/text-input";
 // With icon
 import { Search } from "@repo/vesper/icons";
 
-<TextInput icon={<Search />} placeholder="Search..." />
+<TextInput icon={<Search />} placeholder="Search..." />;
 ```
 
 ```tsx

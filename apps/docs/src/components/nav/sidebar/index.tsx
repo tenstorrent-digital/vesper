@@ -7,9 +7,9 @@ const componentPages = fs
   .readdirSync("src/app/components")
   .filter((page) => !page.endsWith(".tsx"));
 
-export const Sidebar = () => {
+export const Sidebar = ({ className }: { className?: string }) => {
   return (
-    <nav id="sidebar" aria-label="Sidebar">
+    <nav id="sidebar" aria-label="Sidebar" className={className}>
       <Tree pages={componentPages} />
     </nav>
   );

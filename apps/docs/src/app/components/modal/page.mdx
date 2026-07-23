@@ -1,11 +1,11 @@
 import { Modal } from "@repo/vesper/modal";
 import { Button } from "@repo/vesper/button";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Modal
 
-A dialog overlay component for displaying focused content that requires user attention or interaction. Supports a title, description, action buttons, and optional form wrapping. Controlled via an imperative ref with `open()` and `close()` methods. [View in Storybook]({`${storybookUrl}/modal`})
+A dialog overlay component for displaying focused content that requires user attention or interaction. Supports a title, description, action buttons, and optional form wrapping. Controlled via an imperative ref with `open()` and `close()` methods. [View in Storybook]({`${STORYBOOK_URL}/modal`})
 
 <Modal
   title="Confirm Action"
@@ -20,18 +20,18 @@ A dialog overlay component for displaying focused content that requires user att
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `title` | `string` | The title text displayed in the modal header. Used for `aria-labelledby`. | — |
-| `description` | `string` | A description displayed below the title. Used for `aria-describedby`. | — |
-| `width` | `number \| string` | The width of the modal container. | `452` |
-| `maxHeight` | `number \| string` | The maximum height of the modal container. | `640` |
-| `buttons` | `ButtonProps[]` | An optional array of button props for action buttons. The last button defaults to `"primary"` variant; others default to `"tertiary"`. | — |
-| `buttonsAlignment` | `"start" \| "end" \| "fill" \| "between"` | Controls the horizontal alignment of the action buttons. | `"end"` |
-| `ref` | `RefObject<ModalRef>` | A ref exposing imperative `open()` and `close()` methods. | — |
-| `closeOnClickOutside` | `boolean` | When `true`, clicking the backdrop closes the modal. | `false` |
-| `form` | `FormProps` | When provided, wraps the modal content in a `<form>` element with the given form attributes. | — |
-| `children` | `ReactNode` | The content displayed inside the modal body. | — |
+| Prop                  | Type                                      | Description                                                                                                                            | Default |
+| --------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `title`               | `string`                                  | The title text displayed in the modal header. Used for `aria-labelledby`.                                                              | —       |
+| `description`         | `string`                                  | A description displayed below the title. Used for `aria-describedby`.                                                                  | —       |
+| `width`               | `number \| string`                        | The width of the modal container.                                                                                                      | `452`   |
+| `maxHeight`           | `number \| string`                        | The maximum height of the modal container.                                                                                             | `640`   |
+| `buttons`             | `ButtonProps[]`                           | An optional array of button props for action buttons. The last button defaults to `"primary"` variant; others default to `"tertiary"`. | —       |
+| `buttonsAlignment`    | `"start" \| "end" \| "fill" \| "between"` | Controls the horizontal alignment of the action buttons.                                                                               | `"end"` |
+| `ref`                 | `RefObject<ModalRef>`                     | A ref exposing imperative `open()` and `close()` methods.                                                                              | —       |
+| `closeOnClickOutside` | `boolean`                                 | When `true`, clicking the backdrop closes the modal.                                                                                   | `false` |
+| `form`                | `FormProps`                               | When provided, wraps the modal content in a `<form>` element with the given form attributes.                                           | —       |
+| `children`            | `ReactNode`                               | The content displayed inside the modal body.                                                                                           | —       |
 
 ## Examples
 
@@ -61,7 +61,11 @@ const modalRef = useRef(null);
   title="Delete Item"
   description="This action cannot be undone."
   buttons={[
-    { children: "Cancel", variant: "tertiary", onClick: () => modalRef.current?.close() },
+    {
+      children: "Cancel",
+      variant: "tertiary",
+      onClick: () => modalRef.current?.close(),
+    },
     { children: "Delete", variant: "danger" },
   ]}
   closeOnClickOutside

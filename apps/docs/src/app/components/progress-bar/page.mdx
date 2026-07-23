@@ -1,23 +1,23 @@
 import { ProgressBar } from "@repo/vesper/progress-bar";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Progress Bar
 
-A horizontal progress indicator that visualizes completion as a percentage. Supports a smooth default mode and a stepped mode that snaps to discrete intervals. [View in Storybook]({`${storybookUrl}/progress-bar`})
+A horizontal progress indicator that visualizes completion as a percentage. Supports a smooth default mode and a stepped mode that snaps to discrete intervals. [View in Storybook]({`${STORYBOOK_URL}/progress-bar`})
 
 <ProgressBar value={65} />
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `value` | `number` | The progress value from `0` to `100`. | — |
-| `size` | `"sm" \| "md" \| "lg"` | The rendered size of the progress bar. | `"md"` |
-| `variant` | `"default" \| "steps"` | `"default"` renders a smooth indicator. `"steps"` clamps the width to the nearest tick value. | `"default"` |
-| `steps` | `number` | The number of segments when variant is `"steps"`. Must be an integer greater than `0`. | `10` |
-| `stepRoundingStrategy` | `(n: number) => number` | Determines how to clamp progress to the nearest tick value. | `Math.round` |
-| `animated` | `boolean` | Whether to animate progress bar value changes. | `false` |
+| Prop                   | Type                    | Description                                                                                   | Default      |
+| ---------------------- | ----------------------- | --------------------------------------------------------------------------------------------- | ------------ |
+| `value`                | `number`                | The progress value from `0` to `100`.                                                         | —            |
+| `size`                 | `"sm" \| "md" \| "lg"`  | The rendered size of the progress bar.                                                        | `"md"`       |
+| `variant`              | `"default" \| "steps"`  | `"default"` renders a smooth indicator. `"steps"` clamps the width to the nearest tick value. | `"default"`  |
+| `steps`                | `number`                | The number of segments when variant is `"steps"`. Must be an integer greater than `0`.        | `10`         |
+| `stepRoundingStrategy` | `(n: number) => number` | Determines how to clamp progress to the nearest tick value.                                   | `Math.round` |
+| `animated`             | `boolean`               | Whether to animate progress bar value changes.                                                | `false`      |
 
 ## Examples
 
@@ -25,7 +25,7 @@ A horizontal progress indicator that visualizes completion as a percentage. Supp
 import { ProgressBar } from "@repo/vesper/progress-bar";
 
 // Basic usage
-<ProgressBar value={50} />
+<ProgressBar value={50} />;
 ```
 
 ```tsx
@@ -47,5 +47,10 @@ import { ProgressBar } from "@repo/vesper/progress-bar";
 
 ```tsx
 // Custom step rounding (always round up)
-<ProgressBar value={33} variant="steps" steps={5} stepRoundingStrategy={Math.ceil} />
+<ProgressBar
+  value={33}
+  variant="steps"
+  steps={5}
+  stepRoundingStrategy={Math.ceil}
+/>
 ```

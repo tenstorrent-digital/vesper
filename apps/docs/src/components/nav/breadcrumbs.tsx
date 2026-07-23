@@ -15,13 +15,13 @@ export const Breadcrumbs = () => {
       {paths.map((path, index) => (
         <Fragment key={index}>
           <Link href={`/${path}`}>
-            <Typography as="span" variant="heading-xs">
+            <Typography as="span" variant="copy-md-bold">
               {" "}
               {path}
             </Typography>
           </Link>
           {index !== paths.length - 1 && (
-            <Typography as="span" className="divider" variant="heading-xs">
+            <Typography as="span" className="divider" variant="copy-md-bold">
               →
             </Typography>
           )}

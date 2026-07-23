@@ -1,25 +1,25 @@
 import { CodeBlock } from "@repo/vesper/code-block";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Code Block
 
-A syntax-highlighted code block component powered by Shiki. Supports static code strings and streaming content, line numbers, copy-to-clipboard, and custom transformers. [View in Storybook]({`${storybookUrl}/code-block`})
+A syntax-highlighted code block component powered by Shiki. Supports static code strings and streaming content, line numbers, copy-to-clipboard, and custom transformers. [View in Storybook]({`${STORYBOOK_URL}/code-block`})
 
-<CodeBlock>
-{`const greeting = "Hello, world!";
+<CodeBlock className="w-full">
+  {`const greeting = "Hello, world!";
 console.log(greeting);`}
 </CodeBlock>
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `children` | `string \| () => ReadableStream<string> \| Promise<ReadableStream<string>>` | The code to render. Can be a string or a factory function returning a `ReadableStream` for streaming content. | `""` |
-| `lang` | `LanguageRegistration[] \| "text" \| "ansi"` | The language syntax for highlighting. Import grammar objects from `@shikijs/langs`. Use `"text"` for plain text or `"ansi"` for ANSI escape codes. | `"text"` |
-| `showLineNumbers` | `boolean` | Whether to show line numbers on the left-hand side. Not available when streaming. | `false` |
-| `transformers` | `ShikiTransformer[]` | An array of Shiki transformers to apply to the hast tree. Not applied to streamed code. | — |
-| `copyOnHover` | `boolean` | When `true`, hides the copy-to-clipboard button until the code block is hovered. | `false` |
+| Prop              | Type                                                                        | Description                                                                                                                                        | Default  |
+| ----------------- | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| `children`        | `string \| () => ReadableStream<string> \| Promise<ReadableStream<string>>` | The code to render. Can be a string or a factory function returning a `ReadableStream` for streaming content.                                      | `""`     |
+| `lang`            | `LanguageRegistration[] \| "text" \| "ansi"`                                | The language syntax for highlighting. Import grammar objects from `@shikijs/langs`. Use `"text"` for plain text or `"ansi"` for ANSI escape codes. | `"text"` |
+| `showLineNumbers` | `boolean`                                                                   | Whether to show line numbers on the left-hand side. Not available when streaming.                                                                  | `false`  |
+| `transformers`    | `ShikiTransformer[]`                                                        | An array of Shiki transformers to apply to the hast tree. Not applied to streamed code.                                                            | —        |
+| `copyOnHover`     | `boolean`                                                                   | When `true`, hides the copy-to-clipboard button until the code block is hovered.                                                                   | `false`  |
 
 ## Examples
 
@@ -27,9 +27,7 @@ console.log(greeting);`}
 import { CodeBlock } from "@repo/vesper/code-block";
 
 // Plain text
-<CodeBlock>
-  Hello, world!
-</CodeBlock>
+<CodeBlock>Hello, world!</CodeBlock>;
 ```
 
 ```tsx
@@ -39,7 +37,7 @@ import javascript from "@shikijs/langs/javascript";
 <CodeBlock lang={javascript}>
   {`const count = 42;
 console.log(count);`}
-</CodeBlock>
+</CodeBlock>;
 ```
 
 ```tsx
@@ -55,19 +53,15 @@ import typescript from "@shikijs/langs/typescript";
 function greet(user: User) {
   return \`Hello, \${user.name}!\`;
 }`}
-</CodeBlock>
+</CodeBlock>;
 ```
 
 ```tsx
 // Streaming content
-<CodeBlock lang={javascript}>
-  {() => getCodeStream()}
-</CodeBlock>
+<CodeBlock lang={javascript}>{() => getCodeStream()}</CodeBlock>
 ```
 
 ```tsx
 // ANSI output
-<CodeBlock lang="ansi">
-  {buildLogs}
-</CodeBlock>
+<CodeBlock lang="ansi">{buildLogs}</CodeBlock>
 ```

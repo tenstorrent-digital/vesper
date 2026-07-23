@@ -1,23 +1,23 @@
 import { Badge } from "@repo/vesper/badge";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Badge
 
-A small labeling component used to highlight status, categories, or metadata. Supports multiple color variants, sizes, and an optional leading icon. [View in Storybook]({`${storybookUrl}/badge`})
+A small labeling component used to highlight status, categories, or metadata. Supports multiple color variants, sizes, and an optional leading icon. [View in Storybook]({`${STORYBOOK_URL}/badge`})
 
 <Badge variant="accent">New</Badge>
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `size` | `"sm" \| "md" \| "lg"` | The size of the badge. Affects padding and typography. | `"lg"` |
-| `variant` | `"accent" \| "success" \| "warning" \| "danger" \| "info" \| "purple" \| "pink" \| "mint" \| "contrast"` | The color variant of the badge. | `"accent"` |
-| `subtle` | `boolean` | When `true`, renders the badge with a more subdued appearance. | `false` |
-| `icon` | `ReactNode` | An optional icon element rendered to the left of the badge text. | — |
-| `as` | `ElementType` | The root element type for polymorphic rendering. | `"div"` |
-| `children` | `ReactNode` | The text content of the badge. | — |
+| Prop       | Type                                                                                                     | Description                                                      | Default    |
+| ---------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ---------- |
+| `size`     | `"sm" \| "md" \| "lg"`                                                                                   | The size of the badge. Affects padding and typography.           | `"lg"`     |
+| `variant`  | `"accent" \| "success" \| "warning" \| "danger" \| "info" \| "purple" \| "pink" \| "mint" \| "contrast"` | The color variant of the badge.                                  | `"accent"` |
+| `subtle`   | `boolean`                                                                                                | When `true`, renders the badge with a more subdued appearance.   | `false`    |
+| `icon`     | `ReactNode`                                                                                              | An optional icon element rendered to the left of the badge text. | —          |
+| `as`       | `ElementType`                                                                                            | The root element type for polymorphic rendering.                 | `"div"`    |
+| `children` | `ReactNode`                                                                                              | The text content of the badge.                                   | —          |
 
 ## Examples
 
@@ -25,7 +25,7 @@ A small labeling component used to highlight status, categories, or metadata. Su
 import { Badge } from "@repo/vesper/badge";
 
 // Basic usage
-<Badge>Default</Badge>
+<Badge>Default</Badge>;
 ```
 
 ```tsx
@@ -45,12 +45,16 @@ import { Badge } from "@repo/vesper/badge";
 
 ```tsx
 // Subtle appearance
-<Badge variant="success" subtle>Completed</Badge>
+<Badge variant="success" subtle>
+  Completed
+</Badge>
 ```
 
 ```tsx
 // With icon
 import { Checkmark } from "@repo/vesper/icons";
 
-<Badge variant="success" icon={<Checkmark />}>Verified</Badge>
+<Badge variant="success" icon={<Checkmark />}>
+  Verified
+</Badge>;
 ```

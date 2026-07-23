@@ -1,10 +1,10 @@
 import { Tag } from "@repo/vesper/tag";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Tag
 
-A small label component for categorizing or annotating content. Supports a wide range of color variants, three sizes, and an optional leading icon. [View in Storybook]({`${storybookUrl}/tag`})
+A small label component for categorizing or annotating content. Supports a wide range of color variants, three sizes, and an optional leading icon. [View in Storybook]({`${STORYBOOK_URL}/tag`})
 
 <div style={{ display: "flex", gap: "8px" }}>
   <Tag>Default</Tag>
@@ -15,14 +15,14 @@ A small label component for categorizing or annotating content. Supports a wide 
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `size` | `"sm" \| "md" \| "lg"` | The size of the tag. Affects padding and font size. | `"lg"` |
-| `variant` | `"default" \| "contrast" \| "accent-bold" \| "accent-subtle" \| "danger-bold" \| "danger-subtle" \| "success-bold" \| "success-subtle" \| "info-bold" \| "info-subtle" \| "warning-bold" \| "warning-subtle"` | The color variant of the tag. | `"default"` |
-| `disabled` | `boolean` | When `true`, renders the tag in a disabled state and prevents interaction. | `false` |
-| `icon` | `ReactNode` | An optional icon element rendered to the left of the tag text. | — |
-| `as` | `ElementType` | The root element type for polymorphic rendering. | `"div"` |
-| `children` | `ReactNode` | The text content of the tag. | — |
+| Prop       | Type                                                                                                                                                                                                          | Description                                                                | Default     |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ----------- |
+| `size`     | `"sm" \| "md" \| "lg"`                                                                                                                                                                                        | The size of the tag. Affects padding and font size.                        | `"lg"`      |
+| `variant`  | `"default" \| "contrast" \| "accent-bold" \| "accent-subtle" \| "danger-bold" \| "danger-subtle" \| "success-bold" \| "success-subtle" \| "info-bold" \| "info-subtle" \| "warning-bold" \| "warning-subtle"` | The color variant of the tag.                                              | `"default"` |
+| `disabled` | `boolean`                                                                                                                                                                                                     | When `true`, renders the tag in a disabled state and prevents interaction. | `false`     |
+| `icon`     | `ReactNode`                                                                                                                                                                                                   | An optional icon element rendered to the left of the tag text.             | —           |
+| `as`       | `ElementType`                                                                                                                                                                                                 | The root element type for polymorphic rendering.                           | `"div"`     |
+| `children` | `ReactNode`                                                                                                                                                                                                   | The text content of the tag.                                               | —           |
 
 ## Examples
 
@@ -30,7 +30,7 @@ A small label component for categorizing or annotating content. Supports a wide 
 import { Tag } from "@repo/vesper/tag";
 
 // Basic usage
-<Tag>Label</Tag>
+<Tag>Label</Tag>;
 ```
 
 ```tsx
@@ -53,7 +53,9 @@ import { Tag } from "@repo/vesper/tag";
 // With icon
 import { Bolt } from "@repo/vesper/icons";
 
-<Tag icon={<Bolt />} variant="accent-bold">Performance</Tag>
+<Tag icon={<Bolt />} variant="accent-bold">
+  Performance
+</Tag>;
 ```
 
 ```tsx

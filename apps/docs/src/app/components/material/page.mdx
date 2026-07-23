@@ -1,23 +1,21 @@
 import { Material } from "@repo/vesper/material";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Material
 
-A surface component that provides visual depth and structure through different elevation and border styles. Supports both static and interactive variants, making it the foundational container for cards, panels, and interactive surfaces. [View in Storybook]({`${storybookUrl}/material`})
+A surface component that provides visual depth and structure through different elevation and border styles. Supports both static and interactive variants, making it the foundational container for cards, panels, and interactive surfaces. [View in Storybook]({`${STORYBOOK_URL}/material`})
 
-<Material style={{ padding: "24px" }}>
-  This is a material surface.
-</Material>
+<Material style={{ padding: "24px" }}>This is a material surface.</Material>
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `variant` | `"outlined" \| "outlined-strong" \| "raised" \| "floating" \| "modal" \| "inset" \| "inset-strong" \| "interactive"` | The visual style variant of the material surface. | `"outlined"` |
-| `state` | `"disabled" \| "active" \| "selected"` | The current interaction state. Only applicable when `variant` is `"interactive"`. | — |
-| `as` | `ElementType` | The root element type for polymorphic rendering. | `"div"` |
-| `children` | `ReactNode` | The content rendered inside the material surface. | — |
+| Prop       | Type                                                                                                                 | Description                                                                       | Default      |
+| ---------- | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------ |
+| `variant`  | `"outlined" \| "outlined-strong" \| "raised" \| "floating" \| "modal" \| "inset" \| "inset-strong" \| "interactive"` | The visual style variant of the material surface.                                 | `"outlined"` |
+| `state`    | `"disabled" \| "active" \| "selected"`                                                                               | The current interaction state. Only applicable when `variant` is `"interactive"`. | —            |
+| `as`       | `ElementType`                                                                                                        | The root element type for polymorphic rendering.                                  | `"div"`      |
+| `children` | `ReactNode`                                                                                                          | The content rendered inside the material surface.                                 | —            |
 
 ## Examples
 
@@ -25,7 +23,7 @@ A surface component that provides visual depth and structure through different e
 import { Material } from "@repo/vesper/material";
 
 // Default outlined surface
-<Material>Card content</Material>
+<Material>Card content</Material>;
 ```
 
 ```tsx

@@ -1,33 +1,31 @@
-import { Toasts, addToast } from "@repo/vesper/toast";
-import { Button } from "@repo/vesper/button";
+import { ToastDemo } from "./demo";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Toast
 
-A notification system for displaying temporary messages at the bottom of the screen. Toasts support multiple variants, optional action buttons, auto-dismiss timeouts, and keyboard navigation. Render the `Toasts` container once in your app and use `addToast()` to trigger notifications. [View in Storybook]({`${storybookUrl}/toast`})
+A notification system for displaying temporary messages at the bottom of the screen. Toasts support multiple variants, optional action buttons, auto-dismiss timeouts, and keyboard navigation. Render the `Toasts` container once in your app and use `addToast()` to trigger notifications. [View in Storybook]({`${STORYBOOK_URL}/toast`})
 
-<Button onClick={() => addToast({ content: "Hello from Vesper!" })}>Show Toast</Button>
-<Toasts />
+<ToastDemo />
 
 ## Options
 
 ### Toasts (Container)
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `ariaLabel` | `string` | The accessible label for the toast region. The keyboard shortcut is automatically appended. | `"Notifications"` |
-| `shortcut` | `string \| { key: string; alt?: boolean; ctrl?: boolean; shift?: boolean; meta?: boolean }` | A keyboard shortcut that moves focus to the oldest active toast. | `"F8"` |
-| `container` | `Element \| DocumentFragment` | The DOM element to portal the toast container into. | `document.body` |
+| Prop        | Type                                                                                        | Description                                                                                 | Default           |
+| ----------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------- |
+| `ariaLabel` | `string`                                                                                    | The accessible label for the toast region. The keyboard shortcut is automatically appended. | `"Notifications"` |
+| `shortcut`  | `string \| { key: string; alt?: boolean; ctrl?: boolean; shift?: boolean; meta?: boolean }` | A keyboard shortcut that moves focus to the oldest active toast.                            | `"F8"`            |
+| `container` | `Element \| DocumentFragment`                                                               | The DOM element to portal the toast container into.                                         | `document.body`   |
 
 ### addToast (Options)
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `content` | `ReactNode` | The message content displayed inside the toast. | — |
-| `variant` | `"default" \| "success" \| "warning" \| "danger" \| "loading"` | The visual variant of the toast, which determines its icon and color. | `"default"` |
-| `timeout` | `number \| false` | Duration in milliseconds before the toast auto-dismisses. Set to `false` to disable. | `false` |
-| `buttons` | `ToastButton[]` | An optional array of action buttons rendered below the toast content. Each has `content`, `handler`, optional `variant`, and `altText`. | `[]` |
+| Prop      | Type                                                           | Description                                                                                                                             | Default     |
+| --------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `content` | `ReactNode`                                                    | The message content displayed inside the toast.                                                                                         | —           |
+| `variant` | `"default" \| "success" \| "warning" \| "danger" \| "loading"` | The visual variant of the toast, which determines its icon and color.                                                                   | `"default"` |
+| `timeout` | `number \| false`                                              | Duration in milliseconds before the toast auto-dismisses. Set to `false` to disable.                                                    | `false`     |
+| `buttons` | `ToastButton[]`                                                | An optional array of action buttons rendered below the toast content. Each has `content`, `handler`, optional `variant`, and `altText`. | `[]`        |
 
 ## Examples
 
@@ -35,7 +33,7 @@ A notification system for displaying temporary messages at the bottom of the scr
 import { Toasts, addToast } from "@repo/vesper/toast";
 
 // Setup: render Toasts once at your app root
-<Toasts />
+<Toasts />;
 ```
 
 ```tsx
@@ -64,9 +62,7 @@ addToast({
 // With action buttons
 addToast({
   content: "Item deleted.",
-  buttons: [
-    { content: "Undo", handler: handleUndo },
-  ],
+  buttons: [{ content: "Undo", handler: handleUndo }],
   timeout: 8000,
 });
 ```

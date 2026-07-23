@@ -1,10 +1,10 @@
 import { StatusIndicator } from "@repo/vesper/status-indicator";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Status Indicator
 
-A compact status label with a colored dot that communicates the current state of a process or resource. Supports five states and an optional pulsing animation. [View in Storybook]({`${storybookUrl}/status-indicator`})
+A compact status label with a colored dot that communicates the current state of a process or resource. Supports five states and an optional pulsing animation. [View in Storybook]({`${STORYBOOK_URL}/status-indicator`})
 
 <div style={{ display: "flex", gap: "16px" }}>
   <StatusIndicator label="Ready" state="ready" />
@@ -16,13 +16,13 @@ A compact status label with a colored dot that communicates the current state of
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `label` | `string` | The text label displayed next to the status dot. | — |
-| `state` | `"queued" \| "progress" \| "error" \| "ready" \| "cancelled"` | The current status state, which determines the color of the indicator dot. | — |
-| `variant` | `"default" \| "badge"` | The visual style variant of the status indicator. | `"default"` |
-| `animated` | `boolean` | When `true`, applies a pulsing animation to the status dot. | `false` |
-| `as` | `ElementType` | The root element type for polymorphic rendering. | `"div"` |
+| Prop       | Type                                                          | Description                                                                | Default     |
+| ---------- | ------------------------------------------------------------- | -------------------------------------------------------------------------- | ----------- |
+| `label`    | `string`                                                      | The text label displayed next to the status dot.                           | —           |
+| `state`    | `"queued" \| "progress" \| "error" \| "ready" \| "cancelled"` | The current status state, which determines the color of the indicator dot. | —           |
+| `variant`  | `"default" \| "badge"`                                        | The visual style variant of the status indicator.                          | `"default"` |
+| `animated` | `boolean`                                                     | When `true`, applies a pulsing animation to the status dot.                | `false`     |
+| `as`       | `ElementType`                                                 | The root element type for polymorphic rendering.                           | `"div"`     |
 
 ## Examples
 
@@ -30,7 +30,7 @@ A compact status label with a colored dot that communicates the current state of
 import { StatusIndicator } from "@repo/vesper/status-indicator";
 
 // Basic usage
-<StatusIndicator label="Ready" state="ready" />
+<StatusIndicator label="Ready" state="ready" />;
 ```
 
 ```tsx

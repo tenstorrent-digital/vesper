@@ -1,20 +1,20 @@
 import { ShowMore } from "@repo/vesper/show-more";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Show More
 
-A toggle button that switches between "Show more" and "Show less" labels with a caret icon. Used to expand and collapse content sections. [View in Storybook]({`${storybookUrl}/show-more`})
+A toggle button that switches between "Show more" and "Show less" labels with a caret icon. Used to expand and collapse content sections. [View in Storybook]({`${STORYBOOK_URL}/show-more`})
 
 <ShowMore />
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `expanded` | `boolean` | Whether the content is currently expanded. Controls the button label and `aria-expanded`. | `false` |
-| `disabled` | `boolean` | When `true`, renders the button in a disabled state and prevents interaction. | `false` |
-| `onClick` | `MouseEventHandler<HTMLButtonElement>` | Callback fired when the show more/less button is clicked. | — |
+| Prop       | Type                                   | Description                                                                               | Default |
+| ---------- | -------------------------------------- | ----------------------------------------------------------------------------------------- | ------- |
+| `expanded` | `boolean`                              | Whether the content is currently expanded. Controls the button label and `aria-expanded`. | `false` |
+| `disabled` | `boolean`                              | When `true`, renders the button in a disabled state and prevents interaction.             | `false` |
+| `onClick`  | `MouseEventHandler<HTMLButtonElement>` | Callback fired when the show more/less button is clicked.                                 | —       |
 
 ## Examples
 
@@ -27,7 +27,7 @@ const [expanded, setExpanded] = useState(false);
 <div>
   {expanded && <p>Additional content revealed here.</p>}
   <ShowMore expanded={expanded} onClick={() => setExpanded(!expanded)} />
-</div>
+</div>;
 ```
 
 ```tsx

@@ -1,39 +1,51 @@
 import { Tabs } from "@repo/vesper/tabs";
 
-export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 # Tabs
 
-A tabbed interface component for organizing content into switchable panels. Supports primary and secondary visual styles, icons in tab triggers, and controlled or uncontrolled selection. [View in Storybook]({`${storybookUrl}/tabs`})
+A tabbed interface component for organizing content into switchable panels. Supports primary and secondary visual styles, icons in tab triggers, and controlled or uncontrolled selection. [View in Storybook]({`${STORYBOOK_URL}/tabs`})
 
 <Tabs
   defaultValue="overview"
   items={[
-    { label: "Overview", value: "overview", content: <p>Overview content goes here.</p> },
-    { label: "Settings", value: "settings", content: <p>Settings content goes here.</p> },
-    { label: "Activity", value: "activity", content: <p>Activity content goes here.</p> },
+    {
+      label: "Overview",
+      value: "overview",
+      content: <p>Overview content goes here.</p>,
+    },
+    {
+      label: "Settings",
+      value: "settings",
+      content: <p>Settings content goes here.</p>,
+    },
+    {
+      label: "Activity",
+      value: "activity",
+      content: <p>Activity content goes here.</p>,
+    },
   ]}
 />
 
 ## Options
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `variant` | `"primary" \| "secondary"` | The visual style variant of the tabs. | `"primary"` |
-| `items` | `TabItem[]` | The list of tab items. Each has `label`, `value`, optional `icon`, and `content`. | — |
-| `value` | `string` | The value for the selected tab (controlled mode). | — |
-| `defaultValue` | `string` | The value of the tab to select by default (uncontrolled mode). | — |
-| `onValueChange` | `(value: string) => void` | Callback fired when a new tab is selected. | — |
-| `activationMode` | `"automatic" \| "manual"` | Whether a tab is activated on focus (`automatic`) or on click (`manual`). | `"automatic"` |
+| Prop             | Type                       | Description                                                                       | Default       |
+| ---------------- | -------------------------- | --------------------------------------------------------------------------------- | ------------- |
+| `variant`        | `"primary" \| "secondary"` | The visual style variant of the tabs.                                             | `"primary"`   |
+| `items`          | `TabItem[]`                | The list of tab items. Each has `label`, `value`, optional `icon`, and `content`. | —             |
+| `value`          | `string`                   | The value for the selected tab (controlled mode).                                 | —             |
+| `defaultValue`   | `string`                   | The value of the tab to select by default (uncontrolled mode).                    | —             |
+| `onValueChange`  | `(value: string) => void`  | Callback fired when a new tab is selected.                                        | —             |
+| `activationMode` | `"automatic" \| "manual"`  | Whether a tab is activated on focus (`automatic`) or on click (`manual`).         | `"automatic"` |
 
 ### TabItem
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `label` | `string` | The text label displayed in the tab trigger. | — |
-| `value` | `string` | A unique value identifying this tab. | — |
-| `icon` | `ReactNode` | An optional icon element rendered before the label. | — |
-| `content` | `ReactNode` | The content rendered in the panel when this tab is active. | — |
+| Prop      | Type        | Description                                                | Default |
+| --------- | ----------- | ---------------------------------------------------------- | ------- |
+| `label`   | `string`    | The text label displayed in the tab trigger.               | —       |
+| `value`   | `string`    | A unique value identifying this tab.                       | —       |
+| `icon`    | `ReactNode` | An optional icon element rendered before the label.        | —       |
+| `content` | `ReactNode` | The content rendered in the panel when this tab is active. | —       |
 
 ## Examples
 
@@ -47,7 +59,7 @@ import { Tabs } from "@repo/vesper/tabs";
     { label: "Tab 1", value: "tab1", content: <p>First panel</p> },
     { label: "Tab 2", value: "tab2", content: <p>Second panel</p> },
   ]}
-/>
+/>;
 ```
 
 ```tsx
@@ -69,10 +81,20 @@ import { Gear, Globe } from "@repo/vesper/icons";
 <Tabs
   defaultValue="general"
   items={[
-    { label: "General", value: "general", icon: <Globe />, content: <p>General settings</p> },
-    { label: "Advanced", value: "advanced", icon: <Gear />, content: <p>Advanced settings</p> },
+    {
+      label: "General",
+      value: "general",
+      icon: <Globe />,
+      content: <p>General settings</p>,
+    },
+    {
+      label: "Advanced",
+      value: "advanced",
+      icon: <Gear />,
+      content: <p>Advanced settings</p>,
+    },
   ]}
-/>
+/>;
 ```
 
 ```tsx
@@ -86,5 +108,5 @@ const [tab, setTab] = useState("first");
     { label: "First", value: "first", content: <p>First</p> },
     { label: "Second", value: "second", content: <p>Second</p> },
   ]}
-/>
+/>;
 ```
