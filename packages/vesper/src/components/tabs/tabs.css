@@ -15,8 +15,8 @@
 }
 
 .vesper-tabs-trigger-icon {
-  width: 16px;
-  height: 16px;
+  width: 1rem;
+  height: 1rem;
 }
 
 .vesper-tabs-primary {
@@ -47,10 +47,9 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 2px;
-      background: var(--vesper-border-strong);
+      border-top: var(--vesper-stroke-strong) solid var(--vesper-border-strong);
       @media (forced-colors: active) {
-        background: CanvasText;
+        border-color: CanvasText;
       }
     }
   }
@@ -94,6 +93,6 @@
     }
   }
   .vesper-tabs-trigger-icon {
-    margin: -2px 0;
+    margin: calc(var(--vesper-spacing-half) * -1) 0;
   }
 }
