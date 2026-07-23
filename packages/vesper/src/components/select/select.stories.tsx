@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Server } from "@/components/icons/icons";
+import { Icon, ICON_KINDS, type IconKind } from "@/components/icons/icons";
 import {
   Select,
   SELECT_SIZES,
@@ -8,15 +8,15 @@ import {
 } from "@/components/select/select";
 
 function SelectStoryComponent({
-  showIcon,
+  icon,
   ...props
 }: Pick<SelectProps, "size" | "disabled" | "placeholder"> & {
-  showIcon: boolean;
+  icon?: IconKind;
 }) {
   return (
     <Select
       style={{ width: "min(calc(100vw - 4rem), 240px)" }}
-      icon={showIcon ? <Server /> : undefined}
+      icon={icon ? <Icon kind={icon} /> : undefined}
       options={[
         { value: "lions", label: "Lions" },
         { value: "tigers", label: "Tigers" },
@@ -32,10 +32,7 @@ const meta = {
   component: SelectStoryComponent,
   argTypes: {
     size: { control: "radio", options: SELECT_SIZES },
-    showIcon: {
-      description:
-        "Not a `Select` component prop; this control is used to easily toggle on/off showing an icon the storybook preview UI.",
-    },
+    icon: { control: "select", options: ICON_KINDS },
   },
 } satisfies Meta<typeof SelectStoryComponent>;
 
@@ -48,7 +45,6 @@ export const Playground: Story = {
     size: "lg",
     placeholder: "Select an option",
     disabled: false,
-    showIcon: false,
   },
 };
 Playground.storyName = "select";
