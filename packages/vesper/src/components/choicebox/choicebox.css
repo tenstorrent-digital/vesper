@@ -10,6 +10,8 @@
   justify-content: space-between;
   gap: var(--vesper-spacing-3);
   border-radius: var(--vesper-radius-1);
+  background: var(--vesper-background-primary);
+  padding: var(--vesper-spacing-3);
   border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
   &.vesper-choicebox-item-compact {
     padding-top: 6px;
