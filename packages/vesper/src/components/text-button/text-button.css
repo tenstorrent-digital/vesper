@@ -21,29 +21,29 @@
 }
 
 .vesper-text-button-lg {
-  height: 16px;
+  height: 1rem;
   font-size: 1rem;
   .vesper-text-button-icon {
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
   }
 }
 
 .vesper-text-button-md {
-  height: 14px;
+  height: 0.875rem;
   font-size: 0.875rem;
   .vesper-text-button-icon {
-    width: 14px;
-    height: 14px;
+    width: 0.875rem;
+    height: 0.875rem;
   }
 }
 
 .vesper-text-button-sm {
-  height: 12px;
+  height: 0.75rem;
   font-size: 0.75rem;
   .vesper-text-button-icon {
-    width: 12px;
-    height: 12px;
+    width: 0.75rem;
+    height: 0.75rem;
   }
 }
 
@@ -73,7 +73,8 @@
     color: var(--vesper-icon-accent);
   }
   &:hover {
-    border-bottom: var(--vesper-stroke-base) solid var(--vesper-border-accent-base);
+    border-bottom: var(--vesper-stroke-base) solid
+      var(--vesper-border-accent-base);
   }
 }
 
@@ -83,7 +84,8 @@
     color: var(--vesper-icon-error);
   }
   &:hover {
-    border-bottom: var(--vesper-stroke-base) solid var(--vesper-border-error-base);
+    border-bottom: var(--vesper-stroke-base) solid
+      var(--vesper-border-error-base);
   }
 }
 
@@ -93,7 +95,8 @@
     color: var(--vesper-icon-warning);
   }
   &:hover {
-    border-bottom: var(--vesper-stroke-base) solid var(--vesper-border-warning-base);
+    border-bottom: var(--vesper-stroke-base) solid
+      var(--vesper-border-warning-base);
   }
 }
 
@@ -103,7 +106,8 @@
     color: var(--vesper-icon-success);
   }
   &:hover {
-    border-bottom: var(--vesper-stroke-base) solid var(--vesper-border-success-base);
+    border-bottom: var(--vesper-stroke-base) solid
+      var(--vesper-border-success-base);
   }
 }
 
@@ -113,7 +117,8 @@
     color: var(--vesper-icon-info);
   }
   &:hover {
-    border-bottom: var(--vesper-stroke-base) solid var(--vesper-border-info-base);
+    border-bottom: var(--vesper-stroke-base) solid
+      var(--vesper-border-info-base);
   }
 }
 
@@ -123,7 +128,8 @@
     color: var(--vesper-icon-brand-purple);
   }
   &:hover {
-    border-bottom: var(--vesper-stroke-base) solid var(--vesper-border-brand-purple-base);
+    border-bottom: var(--vesper-stroke-base) solid
+      var(--vesper-border-brand-purple-base);
   }
 }
 
@@ -133,7 +139,8 @@
     color: var(--vesper-icon-brand-pink);
   }
   &:hover {
-    border-bottom: var(--vesper-stroke-base) solid var(--vesper-border-brand-pink-base);
+    border-bottom: var(--vesper-stroke-base) solid
+      var(--vesper-border-brand-pink-base);
   }
 }
 
