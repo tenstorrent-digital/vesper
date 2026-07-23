@@ -354,6 +354,11 @@
   --spacing-vesper-32: var(--vesper-spacing-32);
   --spacing-vesper-40: var(--vesper-spacing-40);
   --spacing-vesper-half: var(--vesper-spacing-half);
+  --spacing-vesper-micro: var(--vesper-spacing-micro);
+  --border-vesper-base: var(--vesper-stroke-base);
+  --border-vesper-strong: var(--vesper-stroke-strong);
+  --outline-width-vesper-base: var(--vesper-stroke-base);
+  --outline-width-vesper-strong: var(--vesper-stroke-strong);
   --radius-vesper-1: var(--vesper-radius-1);
   --radius-vesper-2: var(--vesper-radius-2);
   --radius-vesper-3: var(--vesper-radius-3);
