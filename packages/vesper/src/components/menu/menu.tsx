@@ -1,4 +1,4 @@
-import { type ReactElement, type ReactNode } from "react";
+import type { CSSProperties, ReactElement, ReactNode } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -53,7 +53,7 @@ export function Menu({
   side = "bottom",
   sideOffset = 8,
   align = "start",
-  alignOffset,
+  alignOffset = 0,
   ...props
 }: MenuProps) {
   return (
@@ -62,11 +62,15 @@ export function Menu({
       <DropdownMenuPortal>
         <DropdownMenuContent
           className="vesper-menu"
-          style={{ width }}
+          style={
+            {
+              width: `calc(${width} * (1rem / 16))`,
+              "--align-offset": alignOffset,
+              "--side-offset": sideOffset,
+            } as CSSProperties
+          }
           side={side}
-          sideOffset={sideOffset}
           align={align}
-          alignOffset={alignOffset}
         >
           {items.map((item, index) => (
             <MenuItem key={index} {...item} />
