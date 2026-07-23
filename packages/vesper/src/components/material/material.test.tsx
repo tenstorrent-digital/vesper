@@ -18,20 +18,16 @@ const NON_INTERACTIVE_VARIANTS = MATERIAL_VARIANTS.filter(
 );
 
 const MATERIAL_PERMUTATIONS: MaterialPermutation[] = [
-  ...NON_INTERACTIVE_VARIANTS.map(
-    (variant): MaterialPermutation => ({
-      variant,
-      label: variant,
-    }),
-  ),
+  ...NON_INTERACTIVE_VARIANTS.map((variant): MaterialPermutation => ({
+    variant,
+    label: variant,
+  })),
   { variant: "interactive", label: "interactive" },
-  ...INTERACTIVE_MATERIAL_STATES.map(
-    (state): MaterialPermutation => ({
-      variant: "interactive",
-      state,
-      label: `interactive, ${state}`,
-    }),
-  ),
+  ...INTERACTIVE_MATERIAL_STATES.map((state): MaterialPermutation => ({
+    variant: "interactive",
+    state,
+    label: `interactive, ${state}`,
+  })),
 ];
 
 afterEach(cleanup);

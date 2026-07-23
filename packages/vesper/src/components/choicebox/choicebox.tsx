@@ -69,8 +69,7 @@ export interface ChoiceboxMultiSelectProps extends ChoiceboxBaseProps {
 }
 
 export type ChoiceboxProps =
-  | ChoiceboxSingleSelectProps
-  | ChoiceboxMultiSelectProps;
+  ChoiceboxSingleSelectProps | ChoiceboxMultiSelectProps;
 
 export function Choicebox(props: ChoiceboxProps) {
   if (props.multiselect) return <ChoiceboxMultiSelect {...props} />;

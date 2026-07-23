@@ -1,4 +1,4 @@
-import { cleanup,render } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
@@ -27,16 +27,12 @@ describe("code [unit]", () => {
   CODE_VARIANTS.forEach((variant) => {
     test(`${variant} variant class`, () => {
       const { container } = render(<Code variant={variant}>snippet</Code>);
-      expect(container.firstElementChild).toHaveClass(
-        `vesper-code-${variant}`,
-      );
+      expect(container.firstElementChild).toHaveClass(`vesper-code-${variant}`);
     });
   });
 
   test("custom className is merged", () => {
-    const { container } = render(
-      <Code className="custom-class">snippet</Code>,
-    );
+    const { container } = render(<Code className="custom-class">snippet</Code>);
     expect(container.firstElementChild).toHaveClass("vesper-code");
     expect(container.firstElementChild).toHaveClass("custom-class");
   });
@@ -66,17 +62,13 @@ describe("code [unit]", () => {
 describe("code [snapshot]", () => {
   CODE_VARIANTS.forEach((variant) => {
     test(`variant: ${variant}`, () => {
-      const { container } = render(
-        <Code variant={variant}>const x = 1;</Code>,
-      );
+      const { container } = render(<Code variant={variant}>const x = 1;</Code>);
       expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   test("with custom className", () => {
-    const { container } = render(
-      <Code className="custom-class">snippet</Code>,
-    );
+    const { container } = render(<Code className="custom-class">snippet</Code>);
     expect(container.firstChild).toMatchSnapshot();
   });
 });
