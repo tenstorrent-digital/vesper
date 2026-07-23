@@ -21,17 +21,17 @@ import { trimChildren } from "@/lib/markdown/utils";
 
 const components = {
   h1: (props) => (
-    <Typography as="h1" variant="display-lg">
+    <Typography as="h1" variant="heading-2xl">
       {props.children}
     </Typography>
   ),
   h2: (props) => (
-    <Typography as="h2" variant="display-md">
+    <Typography as="h2" variant="heading-xl">
       {props.children}
     </Typography>
   ),
   h3: (props) => (
-    <Typography as="h3" variant="display-sm">
+    <Typography as="h3" variant="heading-lg">
       {props.children}
     </Typography>
   ),
