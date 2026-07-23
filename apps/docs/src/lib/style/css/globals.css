@@ -127,3 +127,32 @@ body {
     line-height: var(--base-line-height);
   }
 }
+
+table {
+  border-collapse: collapse;
+  border-radius: var(--vesper-radius-2);
+  overflow: hidden;
+
+  th {
+    text-align: left;
+    border-bottom: 1px solid var(--color-vesper-alpha-black-400);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-family: var(--font-inter-tight);
+    font-size: 0.75rem;
+    line-height: var(--vesper-leading-none);
+    letter-spacing: var(--vesper-tracking-wide);
+    font-weight: 700;
+  }
+
+  th,
+  td {
+    padding: var(--spacing);
+  }
+
+  tr {
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--color-vesper-alpha-black-50);
+    }
+  }
+}
