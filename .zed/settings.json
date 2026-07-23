@@ -52,6 +52,17 @@
           }
         }
       }
+    },
+    "mdx-analyzer": {
+      "initialization_options": {
+        // enable typescript support for Zed MDX
+        // https://github.com/srazzak/zed-mdx#typescript-configuration
+        // note: Zed MDX is not a built-in ext - search 'mdx' in
+        // zed's extensions panel to install
+        "typescript": {
+          "enabled": true
+        }
+      }
     }
   },
 
