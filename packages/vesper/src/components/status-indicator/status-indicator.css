@@ -12,8 +12,8 @@
 
 .vesper-status-indicator-dot {
   position: relative;
-  width: 10px;
-  height: 10px;
+  width: 0.625rem;
+  height: 0.625rem;
   &::before {
     content: "";
     position: absolute;
@@ -23,7 +23,7 @@
   &::after {
     content: "";
     position: absolute;
-    inset: 3px;
+    inset: 0.1875rem;
     border-radius: 50%;
   }
   &.vesper-status-indicator-dot-animated::before {
