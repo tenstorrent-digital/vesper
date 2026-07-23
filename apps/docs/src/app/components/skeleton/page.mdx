@@ -1,0 +1,61 @@
+import { Skeleton } from "@repo/vesper/skeleton";
+
+export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+
+# Skeleton
+
+A placeholder loading component that mimics the shape of content while it loads. Supports box, pill, and circle shapes with configurable dimensions. [View in Storybook]({`${storybookUrl}/skeleton`})
+
+<div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+  <Skeleton shape="circle" size={48} />
+  <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+    <Skeleton width={200} height={16} />
+    <Skeleton width={140} height={16} />
+  </div>
+</div>
+
+## Options
+
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `shape` | `"box" \| "pill" \| "circle"` | The shape of the skeleton placeholder. | `"box"` |
+| `size` | `number \| string` | Sets both width and height simultaneously. Overrides individual `width` and `height` props. | — |
+| `width` | `number \| string` | The width of the skeleton. | — |
+| `height` | `number \| string` | The height of the skeleton. | — |
+| `show` | `boolean` | When `true`, renders the skeleton overlay. When `false`, renders only the children without the skeleton. | `true` |
+| `children` | `ReactNode` | Optional content rendered behind the skeleton overlay. | — |
+
+## Examples
+
+```tsx
+import { Skeleton } from "@repo/vesper/skeleton";
+
+// Basic box
+<Skeleton width={200} height={20} />
+```
+
+```tsx
+// Circle avatar placeholder
+<Skeleton shape="circle" size={48} />
+```
+
+```tsx
+// Pill shape
+<Skeleton shape="pill" width={120} height={32} />
+```
+
+```tsx
+// Conditional loading
+<Skeleton show={isLoading} width={200} height={20}>
+  <span>Loaded content</span>
+</Skeleton>
+```
+
+```tsx
+// Card skeleton layout
+<div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+  <Skeleton width="100%" height={180} />
+  <Skeleton width="60%" height={20} />
+  <Skeleton width="80%" height={14} />
+</div>
+```

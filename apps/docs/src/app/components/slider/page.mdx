@@ -1,0 +1,62 @@
+import { Slider } from "@repo/vesper/slider";
+
+export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+
+# Slider
+
+A single-thumb slider for selecting a numeric value within a range. Built on top of the `Range` component, it provides a simplified API for single-value use cases. [View in Storybook]({`${storybookUrl}/slider`})
+
+<Slider defaultValue={50} />
+
+## Options
+
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `value` | `number` | The controlled value of the slider thumb. | — |
+| `defaultValue` | `number` | The initial thumb value (uncontrolled mode). | `min` |
+| `valueLabel` | `string` | A custom display label for the thumb. When unset, defaults to the active value. | — |
+| `showValueLabel` | `boolean` | When `true`, displays the value label above the thumb. | `false` |
+| `onValueChange` | `(value: number) => void` | Callback fired as the thumb value changes during interaction. | — |
+| `onValueCommit` | `(value: number) => void` | Callback fired when the thumb interaction is completed. | — |
+| `thumbAriaLabel` | `string` | An accessible `aria-label` for the thumb. | — |
+| `min` | `number` | The minimum allowed value. | `0` |
+| `max` | `number` | The maximum allowed value. | `100` |
+| `step` | `number` | The stepping interval between selectable values. | `1` |
+| `showTicks` | `boolean` | When `true`, renders tick marks along the track. | `false` |
+| `disabled` | `boolean` | When `true`, prevents interaction. | `false` |
+| `name` | `string` | The name attribute for form submission. | — |
+
+## Examples
+
+```tsx
+import { Slider } from "@repo/vesper/slider";
+
+// Basic usage
+<Slider defaultValue={50} />
+```
+
+```tsx
+// With value label
+<Slider defaultValue={30} showValueLabel />
+```
+
+```tsx
+// Custom range and step
+<Slider min={0} max={1000} step={100} defaultValue={500} />
+```
+
+```tsx
+// With ticks
+<Slider min={0} max={100} step={10} showTicks defaultValue={50} />
+```
+
+```tsx
+// Controlled
+const [volume, setVolume] = useState(75);
+
+<Slider
+  value={volume}
+  onValueChange={setVolume}
+  thumbAriaLabel="Volume"
+/>
+```

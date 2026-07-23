@@ -1,0 +1,58 @@
+import { Chip } from "@repo/vesper/chip";
+
+export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+
+# Chip
+
+A compact, interactive element used for filtering, tagging, or toggling selections. Supports selected and disabled states, optional leading and trailing icons, and polymorphic rendering. [View in Storybook]({`${storybookUrl}/chip`})
+
+<Chip>Filter</Chip>
+
+## Options
+
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `variant` | `"default" \| "contrast"` | The visual style variant of the chip. | `"default"` |
+| `iconLeft` | `ReactNode` | An optional icon element rendered to the left of the chip content. | — |
+| `iconRight` | `ReactNode` | An optional icon element rendered to the right of the chip content. | — |
+| `selected` | `boolean` | Whether the chip is currently selected. Reflected via `aria-pressed` when rendered as a button. | `false` |
+| `disabled` | `boolean` | When `true`, renders the chip in a disabled state and prevents interaction. | `false` |
+| `onChange` | `(selected: boolean) => void` | Callback fired when the chip is clicked. Receives the next selected state. | — |
+| `as` | `ElementType` | The root element type for polymorphic rendering. | `"button"` |
+| `children` | `ReactNode` | The content of the chip. | — |
+
+## Examples
+
+```tsx
+import { Chip } from "@repo/vesper/chip";
+
+// Basic usage
+<Chip>Label</Chip>
+```
+
+```tsx
+// Selected state
+<Chip selected>Active Filter</Chip>
+```
+
+```tsx
+// Contrast variant
+<Chip variant="contrast">Contrast</Chip>
+```
+
+```tsx
+// With icons
+import { Close, Gear } from "@repo/vesper/icons";
+
+<Chip iconLeft={<Gear />}>Settings</Chip>
+<Chip iconRight={<Close />} selected>Removable</Chip>
+```
+
+```tsx
+// Toggle behavior
+const [selected, setSelected] = useState(false);
+
+<Chip selected={selected} onChange={setSelected}>
+  Toggle me
+</Chip>
+```

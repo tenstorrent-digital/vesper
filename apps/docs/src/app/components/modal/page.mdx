@@ -1,0 +1,85 @@
+import { Modal } from "@repo/vesper/modal";
+import { Button } from "@repo/vesper/button";
+
+export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+
+# Modal
+
+A dialog overlay component for displaying focused content that requires user attention or interaction. Supports a title, description, action buttons, and optional form wrapping. Controlled via an imperative ref with `open()` and `close()` methods. [View in Storybook]({`${storybookUrl}/modal`})
+
+<Modal
+  title="Confirm Action"
+  description="Are you sure you want to proceed?"
+  buttons={[
+    { children: "Cancel", variant: "tertiary" },
+    { children: "Confirm" },
+  ]}
+>
+  Additional content can be placed here.
+</Modal>
+
+## Options
+
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `title` | `string` | The title text displayed in the modal header. Used for `aria-labelledby`. | — |
+| `description` | `string` | A description displayed below the title. Used for `aria-describedby`. | — |
+| `width` | `number \| string` | The width of the modal container. | `452` |
+| `maxHeight` | `number \| string` | The maximum height of the modal container. | `640` |
+| `buttons` | `ButtonProps[]` | An optional array of button props for action buttons. The last button defaults to `"primary"` variant; others default to `"tertiary"`. | — |
+| `buttonsAlignment` | `"start" \| "end" \| "fill" \| "between"` | Controls the horizontal alignment of the action buttons. | `"end"` |
+| `ref` | `RefObject<ModalRef>` | A ref exposing imperative `open()` and `close()` methods. | — |
+| `closeOnClickOutside` | `boolean` | When `true`, clicking the backdrop closes the modal. | `false` |
+| `form` | `FormProps` | When provided, wraps the modal content in a `<form>` element with the given form attributes. | — |
+| `children` | `ReactNode` | The content displayed inside the modal body. | — |
+
+## Examples
+
+```tsx
+import { Modal } from "@repo/vesper/modal";
+import { useRef } from "react";
+
+// Basic usage with imperative ref
+const modalRef = useRef(null);
+
+<Button onClick={() => modalRef.current?.open()}>Open Modal</Button>
+
+<Modal
+  ref={modalRef}
+  title="Welcome"
+  description="Thanks for signing up."
+  buttons={[{ children: "Get Started" }]}
+>
+  You can start exploring features right away.
+</Modal>
+```
+
+```tsx
+// Confirmation dialog
+<Modal
+  ref={modalRef}
+  title="Delete Item"
+  description="This action cannot be undone."
+  buttons={[
+    { children: "Cancel", variant: "tertiary", onClick: () => modalRef.current?.close() },
+    { children: "Delete", variant: "danger" },
+  ]}
+  closeOnClickOutside
+/>
+```
+
+```tsx
+// With form
+<Modal
+  ref={modalRef}
+  title="Create Project"
+  description="Enter the details for your new project."
+  form={{ onSubmit: handleSubmit }}
+  buttons={[
+    { children: "Cancel", variant: "tertiary" },
+    { children: "Create", type: "submit" },
+  ]}
+>
+  <TextInput label="Project name" name="name" required />
+</Modal>
+```

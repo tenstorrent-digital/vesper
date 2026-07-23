@@ -1,0 +1,48 @@
+import { Accordion } from "@repo/vesper/accordion";
+
+export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+
+# Accordion
+
+A collapsible content panel that toggles between expanded and collapsed states. Useful for organizing long-form content into manageable sections. [View in Storybook]({`${storybookUrl}/accordion`})
+
+<Accordion title="Click to expand">
+  This is the accordion content. It can contain any text or elements.
+</Accordion>
+
+## Options
+
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `title` | `string` | The title text displayed in the accordion trigger. | — |
+| `defaultOpen` | `boolean` | Whether the accordion is open by default (uncontrolled mode). | `false` |
+| `open` | `boolean` | Controls the open state of the accordion (controlled mode). | — |
+| `onOpenChange` | `(open: boolean) => void` | Callback fired when the open state changes. | — |
+| `children` | `ReactNode` | The content displayed when the accordion is expanded. | — |
+
+## Examples
+
+```tsx
+import { Accordion } from "@repo/vesper/accordion";
+
+// Basic usage
+<Accordion title="Section Title">
+  Content goes here.
+</Accordion>
+```
+
+```tsx
+// Default open
+<Accordion title="Already Open" defaultOpen>
+  This accordion starts expanded.
+</Accordion>
+```
+
+```tsx
+// Controlled
+const [open, setOpen] = useState(false);
+
+<Accordion title="Controlled" open={open} onOpenChange={setOpen}>
+  Controlled accordion content.
+</Accordion>
+```

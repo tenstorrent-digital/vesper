@@ -1,0 +1,80 @@
+import { Choicebox } from "@repo/vesper/choicebox";
+
+export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+
+# Choicebox
+
+A card-style selection component supporting both single-select (radio) and multi-select (checkbox) modes. Each option displays a label and optional description with a visual checkmark indicator. [View in Storybook]({`${storybookUrl}/choicebox`})
+
+<Choicebox
+  name="demo"
+  defaultValue="option-1"
+  options={[
+    { value: "option-1", label: "Option One", description: "First option" },
+    { value: "option-2", label: "Option Two", description: "Second option" },
+    { value: "option-3", label: "Option Three", description: "Third option" },
+  ]}
+/>
+
+## Options
+
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `name` | `string` | The name attribute shared by all inputs in the group, used for form submission. | — |
+| `options` | `ChoiceboxItem[]` | The list of options to render. Each has `value`, `label`, optional `description`, `disabled`, and `id`. | — |
+| `disabled` | `boolean` | When `true`, disables all options in the group. | `false` |
+| `multiselect` | `boolean` | When `true`, enables multi-select (checkbox) mode. Otherwise single-select (radio). | `false` |
+| `value` | `string` | The currently selected value (single-select, controlled). | — |
+| `defaultValue` | `string` | The initially selected value (single-select, uncontrolled). | — |
+| `values` | `string[]` | The currently selected values (multi-select, controlled). | — |
+| `defaultValues` | `string[]` | The initially selected values (multi-select, uncontrolled). | — |
+| `onChange` | `(value: string) => void \| (values: string[]) => void` | Callback fired when the selection changes. | — |
+| `required` | `boolean` | When `true`, a selection is required (single-select only). | `false` |
+| `min` | `number` | Minimum selections required (multi-select only). | `0` |
+| `max` | `number` | Maximum selections allowed (multi-select only). | `Infinity` |
+
+## Examples
+
+```tsx
+import { Choicebox } from "@repo/vesper/choicebox";
+
+// Single select
+<Choicebox
+  name="plan"
+  defaultValue="starter"
+  options={[
+    { value: "starter", label: "Starter", description: "For individuals" },
+    { value: "pro", label: "Pro", description: "For teams" },
+    { value: "enterprise", label: "Enterprise", description: "Custom solutions" },
+  ]}
+/>
+```
+
+```tsx
+// Multi-select
+<Choicebox
+  name="features"
+  multiselect
+  defaultValues={["dark-mode"]}
+  options={[
+    { value: "dark-mode", label: "Dark Mode" },
+    { value: "notifications", label: "Notifications" },
+    { value: "analytics", label: "Analytics" },
+  ]}
+/>
+```
+
+```tsx
+// Controlled single select
+const [value, setValue] = useState("a");
+
+<Choicebox
+  name="controlled"
+  value={value}
+  onChange={setValue}
+  options={[
+    { value: "a", label: "Option A" },
+    { value: "b", label: "Option B" },
+  ]}
+/>
+```

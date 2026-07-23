@@ -1,0 +1,90 @@
+import { Sheet } from "@repo/vesper/sheet";
+
+export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+
+# Sheet
+
+A slide-in panel that appears from the left or right edge of the viewport. Can operate as a modal dialog with a backdrop or as a popover that allows interaction with content behind it. Controlled via an imperative ref with `open()` and `close()` methods. [View in Storybook]({`${storybookUrl}/sheet`})
+
+<Sheet
+  title="Sheet Panel"
+  description="This is a slide-in panel."
+  buttons={[
+    { children: "Cancel", variant: "tertiary" },
+    { children: "Save" },
+  ]}
+>
+  Sheet content goes here.
+</Sheet>
+
+## Options
+
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `title` | `string` | The title text displayed in the sheet header. Used for `aria-labelledby`. | — |
+| `description` | `string` | A description displayed below the title. Used for `aria-describedby`. | — |
+| `side` | `"left" \| "right"` | The side of the viewport the sheet slides in from. | `"right"` |
+| `popover` | `boolean` | When `true`, renders as a popover without a backdrop, allowing interaction behind it. | `false` |
+| `buttons` | `ButtonProps[]` | An optional array of button props for action buttons. The last button defaults to `"contrast"` variant; others default to `"tertiary"`. | — |
+| `ref` | `RefObject<SheetRef>` | A ref exposing imperative `open()` and `close()` methods. | — |
+| `children` | `ReactNode` | The content displayed inside the sheet body. | — |
+
+## Examples
+
+```tsx
+import { Sheet } from "@repo/vesper/sheet";
+import { Button } from "@repo/vesper/button";
+import { useRef } from "react";
+
+// Basic usage
+const sheetRef = useRef(null);
+
+<Button onClick={() => sheetRef.current?.open()}>Open Sheet</Button>
+
+<Sheet
+  ref={sheetRef}
+  title="Settings"
+  description="Manage your preferences."
+>
+  <p>Sheet content goes here.</p>
+</Sheet>
+```
+
+```tsx
+// Left-side sheet
+<Sheet
+  ref={sheetRef}
+  title="Navigation"
+  description="Browse sections."
+  side="left"
+>
+  <nav>...</nav>
+</Sheet>
+```
+
+```tsx
+// Popover mode (no backdrop)
+<Sheet
+  ref={sheetRef}
+  title="Details"
+  description="Additional information."
+  popover
+>
+  <p>This sheet doesn't block interaction with the page behind it.</p>
+</Sheet>
+```
+
+```tsx
+// With action buttons
+<Sheet
+  ref={sheetRef}
+  title="Edit Profile"
+  description="Update your information."
+  buttons={[
+    { children: "Cancel", variant: "tertiary", onClick: () => sheetRef.current?.close() },
+    { children: "Save Changes", variant: "contrast" },
+  ]}
+>
+  <form>...</form>
+</Sheet>
+```

@@ -1,0 +1,45 @@
+import { IconButton } from "@repo/vesper/icon-button";
+import { Gear } from "@repo/vesper/icons";
+
+export const storybookUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/storybook";
+
+# Icon Button
+
+A button component that renders a single icon without text. Built on top of `Button`, it inherits all size and variant options while enforcing an icon-only layout. [View in Storybook]({`${storybookUrl}/icon-button`})
+
+<IconButton icon={<Gear />} aria-label="Settings" />
+
+## Options
+
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `icon` | `ReactNode` | The icon element to be rendered inside the button. | — |
+| `size` | `"xs" \| "sm" \| "md" \| "lg"` | The size of the button. Affects padding and icon size. | `"lg"` |
+| `variant` | `"contrast" \| "danger" \| "ghost" \| "primary" \| "subtle" \| "tertiary" \| "warning"` | The visual style variant of the button. | `"primary"` |
+| `disabled` | `boolean` | When `true`, renders the button in a disabled state and prevents interaction. | `false` |
+| `as` | `ElementType` | The root element type for polymorphic rendering. | `"button"` |
+
+## Examples
+
+```tsx
+import { IconButton } from "@repo/vesper/icon-button";
+import { Close, Gear, Trash } from "@repo/vesper/icons";
+
+// Basic usage
+<IconButton icon={<Gear />} aria-label="Settings" />
+```
+
+```tsx
+// Variants
+<IconButton icon={<Gear />} variant="primary" aria-label="Settings" />
+<IconButton icon={<Gear />} variant="ghost" aria-label="Settings" />
+<IconButton icon={<Trash />} variant="danger" aria-label="Delete" />
+```
+
+```tsx
+// Sizes
+<IconButton icon={<Close />} size="xs" aria-label="Close" />
+<IconButton icon={<Close />} size="sm" aria-label="Close" />
+<IconButton icon={<Close />} size="md" aria-label="Close" />
+<IconButton icon={<Close />} size="lg" aria-label="Close" />
+```
