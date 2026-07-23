@@ -52,10 +52,10 @@
         border-color: CanvasText;
       }
     }
-  }
-  @media (forced-colors: active) {
-    &:focus-visible {
-      outline: var(--vesper-stroke-strong) solid CanvasText;
+    @media (forced-colors: active) {
+      &:focus-visible {
+        outline: var(--vesper-stroke-strong) solid CanvasText;
+      }
     }
   }
   .vesper-tabs-trigger-icon {
