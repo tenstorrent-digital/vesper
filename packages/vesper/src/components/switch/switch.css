@@ -64,7 +64,7 @@
     box-shadow: var(--vesper-shadow-focus-ring);
     @media (forced-colors: active) {
       box-shadow: none;
-      outline: 1px solid CanvasText;
+      outline: var(--vesper-stroke-base) solid CanvasText;
       outline-offset: 1px;
     }
   }

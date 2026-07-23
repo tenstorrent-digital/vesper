@@ -55,7 +55,7 @@
   width: min(calc(100vw - var(--vesper-spacing-12)), 472px);
   background: var(--vesper-background-primary);
   padding: var(--vesper-spacing-6);
-  border: 1px solid var(--vesper-border-primary);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   border-radius: var(--vesper-radius-3);
   position: fixed;
   top: var(--vesper-spacing-6);

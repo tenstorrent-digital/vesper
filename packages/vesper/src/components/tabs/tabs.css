@@ -57,7 +57,7 @@
   }
   @media (forced-colors: active) {
     &:focus-visible {
-      outline: 2px solid CanvasText;
+      outline: var(--vesper-stroke-strong) solid CanvasText;
     }
   }
   .vesper-tabs-trigger-icon {
@@ -85,11 +85,11 @@
       }
     }
     @media (forced-colors: active) {
-      border: 1px solid CanvasText;
+      border: var(--vesper-stroke-base) solid CanvasText;
     }
     @media (forced-colors: active) {
       &:focus-visible {
-        outline: 1px solid CanvasText;
+        outline: var(--vesper-stroke-base) solid CanvasText;
         outline-offset: 1px;
       }
     }

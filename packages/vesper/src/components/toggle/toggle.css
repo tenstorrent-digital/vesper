@@ -3,7 +3,7 @@
   gap: var(--vesper-spacing-1);
   padding: var(--vesper-spacing-1);
   border-radius: var(--vesper-radius-2);
-  border: 1px solid var(--vesper-border-secondary);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
   background: var(--vesper-tint-inverse-400);
 }
 

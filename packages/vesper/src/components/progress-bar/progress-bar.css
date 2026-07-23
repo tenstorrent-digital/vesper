@@ -10,7 +10,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    border: 1px solid var(--vesper-border-primary);
+    border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   }
 }
 

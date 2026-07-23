@@ -2,7 +2,7 @@
   display: inline-flex;
   max-width: fit-content;
   background: var(--vesper-background-primary);
-  outline: 1px solid var(--vesper-border-primary);
+  outline: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   position: relative;
 }
 .vesper-theme-switcher-lg {
@@ -35,7 +35,7 @@
   aspect-ratio: 1;
   @media (forced-colors: active) {
     &:focus-visible {
-      outline: 2px solid CanvasText;
+      outline: var(--vesper-stroke-strong) solid CanvasText;
     }
   }
   @media not (forced-colors: active) {
@@ -50,7 +50,7 @@
   left: -1px;
   height: calc(100% + 2px);
   aspect-ratio: 1;
-  border: 1px solid var(--vesper-border-primary);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   transition: transform var(--vesper-transition-duration-fast) ease;
   pointer-events: none;
 }

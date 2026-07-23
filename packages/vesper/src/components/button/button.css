@@ -10,9 +10,9 @@
   letter-spacing: var(--vesper-tracking-normal);
   cursor: pointer;
   @media (forced-colors: active) {
-    border: 1px solid CanvasText;
+    border: var(--vesper-stroke-base) solid CanvasText;
     &:focus-visible {
-      outline: 2px solid CanvasText;
+      outline: var(--vesper-stroke-strong) solid CanvasText;
     }
   }
   @media not (forced-colors: active) {
@@ -97,7 +97,7 @@
   @media (forced-colors: active) {
     &:focus-visible {
       outline-offset: 1px;
-      outline-width: 1px;
+      outline-width: var(--vesper-stroke-base);
     }
     forced-color-adjust: none;
     color: Canvas;
@@ -144,7 +144,7 @@
 .vesper-button-tertiary {
   color: var(--vesper-text-primary);
   @media (forced-colors: none) {
-    border: 1px solid var(--vesper-border-secondary);
+    border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
   }
   background: var(--vesper-tint-inverse-100);
   &:hover {

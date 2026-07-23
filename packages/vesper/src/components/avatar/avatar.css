@@ -1,11 +1,11 @@
 .vesper-avatar {
   border-radius: 50%;
-  border: 1px solid var(--vesper-border-inverse-strong);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-inverse-strong);
   background: var(--vesper-stone-400);
   overflow: hidden;
   @media (forced-colors: active) {
     &:focus-visible {
-      outline: 2px solid CanvasText;
+      outline: var(--vesper-stroke-strong) solid CanvasText;
     }
   }
   @media not (forced-colors: active) {

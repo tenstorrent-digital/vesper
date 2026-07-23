@@ -9,7 +9,7 @@
 
 .vesper-checkbox-box {
   border-radius: var(--vesper-radius-half);
-  border: 1px solid var(--vesper-border-primary);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   position: relative;
 }
 
@@ -58,7 +58,7 @@
   }
   &:focus-visible + .vesper-checkbox-box {
     outline-offset: 1px;
-    outline: 1px solid var(--vesper-border-focus);
+    outline: var(--vesper-stroke-base) solid var(--vesper-border-focus);
     @media (forced-colors: active) {
       outline-color: CanvasText;
     }

@@ -3,7 +3,7 @@
   .vesper-button:first-child {
     width: 100%;
     position: relative;
-    border-width: 1px;
+    border-width: var(--vesper-stroke-base);
     border-style: solid;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -16,7 +16,7 @@
   }
   .vesper-button:last-child {
     position: relative;
-    border-width: 1px;
+    border-width: var(--vesper-stroke-base);
     border-style: solid;
     border-left-width: 0px;
     border-top-left-radius: 0;

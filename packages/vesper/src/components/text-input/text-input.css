@@ -22,18 +22,18 @@
 .vesper-text-input-field-wrapper {
   display: flex;
   align-items: center;
-  border: 1px solid var(--vesper-border-secondary);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
   background: var(--vesper-tint-neutral-100);
   &:has(.vesper-text-input-field:focus-visible),
   &:has(.vesper-text-input-icon:focus) {
-    border: 1px solid var(--vesper-border-strong);
+    border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
     box-shadow: var(--vesper-shadow-focus-ring);
     @media (forced-colors: active) {
-      outline: 2px solid CanvasText;
+      outline: var(--vesper-stroke-strong) solid CanvasText;
     }
   }
   &:has(.vesper-text-input-field:disabled) {
-    border: 1px solid var(--vesper-border-disabled);
+    border: var(--vesper-stroke-base) solid var(--vesper-border-disabled);
     background: var(--vesper-tint-neutral-200);
     .vesper-text-input-icon {
       color: var(--vesper-icon-disabled);
@@ -44,17 +44,17 @@
 
 .vesper-text-input-success {
   .vesper-text-input-field-wrapper {
-    border: 1px solid var(--vesper-border-success-base);
+    border: var(--vesper-stroke-base) solid var(--vesper-border-success-base);
   }
 }
 .vesper-text-input-warning {
   .vesper-text-input-field-wrapper {
-    border: 1px solid var(--vesper-border-warning-base);
+    border: var(--vesper-stroke-base) solid var(--vesper-border-warning-base);
   }
 }
 .vesper-text-input-error {
   .vesper-text-input-field-wrapper {
-    border: 1px solid var(--vesper-border-error-base);
+    border: var(--vesper-stroke-base) solid var(--vesper-border-error-base);
   }
 }
 
@@ -86,7 +86,7 @@
     &:focus-visible {
       box-shadow: var(--vesper-shadow-focus-ring);
       @media (forced-colors: active) {
-        outline: 2px solid CanvasText;
+        outline: var(--vesper-stroke-strong) solid CanvasText;
       }
     }
   }

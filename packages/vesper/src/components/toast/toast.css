@@ -20,7 +20,7 @@
   width: 100%;
   padding: var(--vesper-spacing-5);
   box-shadow: var(--vesper-shadow-200);
-  border: 1px solid var(--vesper-border-secondary);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
   background: var(--vesper-background-primary);
   border-radius: var(--vesper-radius-2);
   transition:
@@ -30,7 +30,7 @@
     background: Canvas;
     border-color: CanvasText;
     &:focus-visible {
-      outline: 2px solid CanvasText;
+      outline: var(--vesper-stroke-strong) solid CanvasText;
     }
   }
   @media not (forced-colors: active) {
@@ -136,7 +136,7 @@
   @media (forced-colors: active) {
     color: CanvasText;
     &:focus-visible {
-      outline: 2px solid CanvasText;
+      outline: var(--vesper-stroke-strong) solid CanvasText;
     }
   }
   @media not (forced-colors: active) {
