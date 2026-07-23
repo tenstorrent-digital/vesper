@@ -11,6 +11,7 @@
 @import "./tracking.css" layer(vesper);
 @import "./animation.css" layer(vesper);
 @import "./backgrounds.css" layer(vesper);
+@import "./strokes.css" layer(vesper);
 
 /* a11y */
 @import "./a11y.css" layer(vesper);
