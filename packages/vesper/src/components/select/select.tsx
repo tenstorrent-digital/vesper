@@ -77,6 +77,11 @@ export function Select(props: SelectProps) {
   const [innerRef, setInnerRef] = useState<HTMLButtonElement | null>(null);
   useImperativeHandle(ref, () => innerRef!);
 
+  /**
+   * dialogs render in their own stacking context above the document body,
+   * so select elements that are rendered inside dialogs must portal into
+   * the dialog element itself, or else they will render behind the dialog
+   */
   const container = innerRef?.closest("dialog") || document.body;
 
   return (
