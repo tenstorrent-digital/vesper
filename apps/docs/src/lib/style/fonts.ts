@@ -13,6 +13,6 @@ export const ibm_plex_mono = IBM_Plex_Mono({
   display: "swap",
   preload: true,
   weight: ["100", "200", "300", "400", "500", "600", "700"],
-  fallback: ["system-ui", "sans-serif"],
+  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
   variable: "--font-plex-mono",
 });
