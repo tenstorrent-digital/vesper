@@ -10,6 +10,22 @@
     background: CanvasText;
     color: Canvas;
   }
+  &[data-side="top"] {
+    transform: translateX(calc(var(--align-offset) * (1rem / 16)))
+      translateY(calc(-0.5rem - (var(--side-offset) * (1rem / 16))));
+  }
+  &[data-side="bottom"] {
+    transform: translateX(calc(var(--align-offset) * (1rem / 16)))
+      translateY(calc(0.5rem + (var(--side-offset) * (1rem / 16))));
+  }
+  &[data-side="left"] {
+    transform: translateY(calc(var(--align-offset) * (1rem / 16)))
+      translateX(calc(-0.5rem - (var(--side-offset) * (1rem / 16))));
+  }
+  &[data-side="right"] {
+    transform: translateY(calc(var(--align-offset) * (1rem / 16)))
+      translateX(calc(0.5rem + (var(--side-offset) * (1rem / 16))));
+  }
   &[data-side="top"] .vesper-tooltip-arrow {
     top: 100%;
   }
@@ -79,5 +95,8 @@
 
 .vesper-tooltip-arrow {
   position: absolute;
-  fill: var(--vesper-background-inverse-primary);
+  background: var(--vesper-background-inverse-primary);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  height: 0.5rem;
+  width: 0.875rem;
 }

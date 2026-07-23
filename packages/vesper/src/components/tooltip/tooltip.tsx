@@ -1,4 +1,9 @@
-import { Fragment, isValidElement, type ReactNode } from "react";
+import {
+  type CSSProperties,
+  Fragment,
+  isValidElement,
+  type ReactNode,
+} from "react";
 import {
   Tooltip as TooltipRoot,
   TooltipContent,
@@ -52,10 +57,8 @@ export function Tooltip({
   align = "center",
   alignOffset = 0,
   side = "top",
-  sideOffset: _sideOffset = 4,
+  sideOffset = 4,
 }: TooltipProps) {
-  const sideOffset = TOOLTIP_ARROW_HEIGHT + _sideOffset;
-
   if (!isValidTooltipChild(content) || !isValidTooltipChild(children)) {
     return children;
   }
@@ -78,15 +81,19 @@ export function Tooltip({
         <Typography
           variant="label-xs"
           className="vesper-tooltip"
-          style={{ maxWidth }}
+          style={
+            {
+              maxWidth,
+              "--side-offset": sideOffset,
+              "--align-offset": alignOffset,
+            } as CSSProperties
+          }
           as={TooltipContent}
           align={align}
-          alignOffset={alignOffset}
           side={side}
-          sideOffset={sideOffset}
         >
           {content}
-          <TooltipArrow />
+          <div className="vesper-tooltip-arrow" />
         </Typography>
       </TooltipRoot>
     </TooltipProvider>
@@ -99,22 +106,3 @@ export function Tooltip({
 const isValidTooltipChild = (node: ReactNode) => {
   return typeof node === "number" || (!!node && typeof node !== "boolean");
 };
-
-const TOOLTIP_ARROW_HEIGHT = 8;
-const TOOLTIP_ARROW_WIDTH = 14;
-
-function TooltipArrow() {
-  return (
-    <svg
-      width={TOOLTIP_ARROW_WIDTH}
-      height={TOOLTIP_ARROW_HEIGHT}
-      viewBox={`0 0 ${TOOLTIP_ARROW_WIDTH} ${TOOLTIP_ARROW_HEIGHT}`}
-      className="vesper-tooltip-arrow"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d={`M 0,0 L ${TOOLTIP_ARROW_WIDTH},0 L ${TOOLTIP_ARROW_WIDTH / 2},${TOOLTIP_ARROW_HEIGHT} z`}
-      />
-    </svg>
-  );
-}
