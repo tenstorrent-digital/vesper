@@ -9,7 +9,7 @@
 
   .vesper-icon-button {
     position: absolute;
-    top: min(calc(50% - 16px), var(--vesper-spacing-5));
+    top: min(calc(50% - 1rem), var(--vesper-spacing-5));
     right: var(--vesper-spacing-5);
   }
 
