@@ -67,7 +67,7 @@
   }
   &:focus-visible + .vesper-radio-group-item-indicator {
     outline: var(--vesper-stroke-base) solid var(--vesper-border-focus);
-    outline-offset: 1px;
+    outline-offset: var(--vesper-spacing-micro);
   }
 }
 

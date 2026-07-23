@@ -57,7 +57,7 @@
     }
   }
   &:focus-visible + .vesper-checkbox-box {
-    outline-offset: 1px;
+    outline-offset: var(--vesper-spacing-micro);
     outline: var(--vesper-stroke-base) solid var(--vesper-border-focus);
     @media (forced-colors: active) {
       outline-color: CanvasText;

@@ -90,7 +90,7 @@
     @media (forced-colors: active) {
       &:focus-visible {
         outline: var(--vesper-stroke-base) solid CanvasText;
-        outline-offset: 1px;
+        outline-offset: var(--vesper-spacing-micro);
       }
     }
   }

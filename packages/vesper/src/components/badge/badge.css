@@ -60,7 +60,7 @@
     color: Canvas;
     forced-color-adjust: none;
     &:focus-visible {
-      outline-offset: 1px;
+      outline-offset: var(--vesper-spacing-micro);
       outline-width: var(--vesper-stroke-base);
     }
   }

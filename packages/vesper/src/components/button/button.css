@@ -96,7 +96,7 @@
   }
   @media (forced-colors: active) {
     &:focus-visible {
-      outline-offset: 1px;
+      outline-offset: var(--vesper-spacing-micro);
       outline-width: var(--vesper-stroke-base);
     }
     forced-color-adjust: none;
