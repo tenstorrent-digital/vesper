@@ -1,4 +1,11 @@
-import type { ComponentProps, ReactNode } from "react";
+"use client";
+
+import {
+  type ComponentProps,
+  type ReactNode,
+  useImperativeHandle,
+  useState,
+} from "react";
 import {
   Select as SelectRoot,
   SelectContent,
@@ -63,8 +70,14 @@ export function Select(props: SelectProps) {
     required,
     form,
     "aria-label": ariaLabel = placeholder,
+    ref,
     ...rest
   } = props;
+
+  const [innerRef, setInnerRef] = useState<HTMLButtonElement | null>(null);
+  useImperativeHandle(ref, () => innerRef!);
+
+  const container = innerRef?.closest("dialog") || document.body;
 
   return (
     <SelectRoot
@@ -80,6 +93,7 @@ export function Select(props: SelectProps) {
         className={cn("vesper-select", `vesper-select-${size}`, className)}
         disabled={disabled}
         aria-label={ariaLabel}
+        ref={setInnerRef}
         {...rest}
       >
         {icon && <span className="vesper-select-icon">{icon}</span>}
@@ -91,7 +105,7 @@ export function Select(props: SelectProps) {
           <CaretUp className="vespers-select-state-indicator-open" />
         </span>
       </SelectTrigger>
-      <SelectPortal>
+      <SelectPortal container={container}>
         <SelectContent
           className="vesper-select-content"
           side="bottom"
