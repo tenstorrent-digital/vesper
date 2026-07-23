@@ -19,35 +19,35 @@
   }
   &[data-side="top"][data-align="center"] .vesper-tooltip-arrow,
   &[data-side="bottom"][data-align="center"] .vesper-tooltip-arrow {
-    left: calc(50% - 7px);
+    left: calc(50% - 0.4375rem);
   }
   &[data-side="top"][data-align="start"] .vesper-tooltip-arrow,
   &[data-side="bottom"][data-align="start"] .vesper-tooltip-arrow {
-    left: min(calc(50% - 7px), var(--vesper-spacing-4));
+    left: min(calc(50% - 0.4375rem), var(--vesper-spacing-4));
   }
   &[data-side="top"][data-align="end"] .vesper-tooltip-arrow,
   &[data-side="bottom"][data-align="end"] .vesper-tooltip-arrow {
-    right: min(calc(50% - 7px), var(--vesper-spacing-4));
+    right: min(calc(50% - 0.4375rem), var(--vesper-spacing-4));
   }
   &[data-side="left"] .vesper-tooltip-arrow {
     left: 100%;
-    transform: translateX(-3px) rotate(-90deg);
+    transform: translateX(-0.1875rem) rotate(-90deg);
   }
   &[data-side="right"] .vesper-tooltip-arrow {
     right: 100%;
-    transform: translateX(3px) rotate(90deg);
+    transform: translateX(0.1875rem) rotate(90deg);
   }
   &[data-side="right"][data-align="center"] .vesper-tooltip-arrow,
   &[data-side="left"][data-align="center"] .vesper-tooltip-arrow {
-    top: calc(50% - 4px);
+    top: calc(50% - 0.25rem);
   }
   &[data-side="right"][data-align="start"] .vesper-tooltip-arrow,
   &[data-side="left"][data-align="start"] .vesper-tooltip-arrow {
-    top: min(calc(50% - 4px), var(--vesper-spacing-3));
+    top: min(calc(50% - 0.25rem), var(--vesper-spacing-3));
   }
   &[data-side="right"][data-align="end"] .vesper-tooltip-arrow,
   &[data-side="left"][data-align="end"] .vesper-tooltip-arrow {
-    bottom: min(calc(50% - 4px), var(--vesper-spacing-3));
+    bottom: min(calc(50% - 0.25rem), var(--vesper-spacing-3));
   }
 
   &[data-state="closed"] {
