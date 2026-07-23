@@ -83,7 +83,7 @@ export function Tooltip({
           className="vesper-tooltip"
           style={
             {
-              maxWidth,
+              maxWidth: `calc(${maxWidth} * (1rem / 16))`,
               "--side-offset": sideOffset,
               "--align-offset": alignOffset,
             } as CSSProperties
