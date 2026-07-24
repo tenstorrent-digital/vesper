@@ -40,14 +40,43 @@ export interface SheetProps extends Omit<
   description: string;
   /** A ref that exposes imperative `open()` and `close()` methods for controlling the sheet. Can be obtained via the `useSheet` hook. */
   ref?: RefObject<SheetRef>;
-  /** The side of the viewport the sheet slides in from. Defaults to `"right"`. */
+  /** The side of the viewport the sheet slides in from. @default right */
   side?: SheetSide;
-  /** When `true`, renders the sheet as a popover instead of a modal dialog. Popovers do not render a backdrop, and allow interaction with the content behind them. Defaults to `false`. */
+  /** When `true`, renders the sheet as a popover instead of a modal dialog. Popovers do not render a backdrop, and allow interaction with the content behind them. @default false */
   popover?: boolean;
   /** An optional array of button props to render as action buttons at the bottom of the sheet. The last button defaults to `"contrast"` variant; all others default to `"tertiary"`. */
   buttons?: Omit<ButtonProps, "size" | "as">[];
 }
 
+/**
+ * A slide-in panel component for supplementary content, supporting both modal and popover modes.
+ *
+ * @param {string} props.title - The title text displayed in the sheet header
+ * @param {string} props.description - A description displayed below the title
+ * @param {SheetSide} [props.side] - (optional) The side of the viewport the sheet slides in from. @default right
+ * @param {boolean} [props.popover] - (optional) Render as a non-modal popover instead of a modal dialog. @default false
+ * @param {RefObject<SheetRef>} [props.ref] - (optional) A ref exposing imperative `open()` and `close()` methods
+ * @param {ButtonProps[]} [props.buttons] - (optional) Action buttons rendered at the bottom of the sheet
+ *
+ * You may also pass any additional props to the underlying `dialog` element
+ *
+ * @example
+ * const { ref, open, close } = useSheet();
+ *
+ * <Sheet ref={ref} title="Settings" description="Manage your preferences.">
+ *   <p>Sheet content here</p>
+ * </Sheet>
+ * <Button onClick={open}>Open Sheet</Button>
+ *
+ * @example
+ * <Sheet
+ *   title="Filters"
+ *   description="Apply filters"
+ *   side="left"
+ *   popover
+ *   buttons={[{ children: "Apply" }]}
+ * />
+ */
 export function Sheet(props: SheetProps) {
   const {
     className,
