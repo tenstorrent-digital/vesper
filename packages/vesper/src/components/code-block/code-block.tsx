@@ -56,7 +56,7 @@ export interface CodeBlockProps extends Omit<
    * */
   lang?: LanguageRegistration[] | "text" | "ansi";
   /**
-   * Whether or not to show line numbers on the left-hand side of the code block. Note that if you are streaming code, line numbers will not appear.
+   * Whether or not to show line numbers on the left-hand side of the code block. Note that if you are streaming code, line numbers will not appear. @default text
    *
    * @example
    * <CodeBlock showLineNumbers>
@@ -65,7 +65,7 @@ export interface CodeBlockProps extends Omit<
    */
   showLineNumbers?: boolean;
   /**
-   * An array of transformers to apply and manipulate the hast tree. For information on Shiki transformers, see [the shiki transformers guide](https://shiki.style/guide/transformers).
+   * An array of transformers to apply and manipulate the hast tree. For information on Shiki transformers, see [the shiki transformers guide](https://shiki.style/guide/transformers). @default false
    *
    * Transforms will not apply to streamed code.
    *
@@ -78,11 +78,34 @@ export interface CodeBlockProps extends Omit<
    */
   transformers?: ShikiTransformer[];
   /**
-   * hide the copy-to-clipboard button until CodeBlock is hovered
+   * Hide the copy-to-clipboard button until CodeBlock is hovered. @default false
    */
   copyOnHover?: boolean;
 }
 
+/**
+ * A syntax-highlighted code block with support for static code, streaming content, line numbers, and Shiki transformers.
+ *
+ * @param {string | (() => ReadableStream<string> | Promise<ReadableStream<string>>)} [props.children] - (optional) The code to render, either as a string or a stream factory
+ * @param {LanguageRegistration[] | "text" | "ansi"} [props.lang] - (optional) The language syntax for highlighting. @default text
+ * @param {boolean} [props.showLineNumbers] - (optional) Whether to display line numbers. Has no effect when rendering streamed code. @default false
+ * @param {ShikiTransformer[]} [props.transformers] - (optional) An array of Shiki transformers to apply to the hast tree. Has no effect when rendering streamed code
+ * @param {boolean} [props.copyOnHover] - (optional) Hide the copy button until the code block is hovered. @default false
+ *
+ * You may also pass any additional props to the underlying `div` element
+ *
+ * @example
+ * import javascript from "@shikijs/langs/javascript";
+ *
+ * <CodeBlock lang={javascript} showLineNumbers>
+ *   {`const greeting = "Hello, world!";\nconsole.log(greeting);`}
+ * </CodeBlock>
+ *
+ * @example
+ * <CodeBlock lang="ansi">
+ *   {buildLogs}
+ * </CodeBlock>
+ */
 export function CodeBlock(props: CodeBlockProps) {
   const {
     className,
