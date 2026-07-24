@@ -397,7 +397,7 @@ exports[`toast [snapshot] > variant: warning 1`] = `
 </div>
 `;
 
-exports[`toast [snapshot] > with buttons 1`] = `
+exports[`toast [snapshot] > with action 1`] = `
 <div
   class="vesper-toast-wrapper"
 >
@@ -412,24 +412,8 @@ exports[`toast [snapshot] > with buttons 1`] = `
       <span
         class="vesper-typography vesper-typography-copy-sm vesper-toast-children"
       >
-        Toast with buttons
+        Toast with action
       </span>
-      <button
-        aria-label="Dismiss"
-        class="vesper-toast-close-button"
-        type="button"
-      >
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
-            fill="currentColor"
-          />
-        </svg>
-      </button>
     </div>
     <div
       class="vesper-toast-buttons"
@@ -438,13 +422,13 @@ exports[`toast [snapshot] > with buttons 1`] = `
         class="vesper-button vesper-button-xs vesper-button-ghost"
         type="button"
       >
-        Cancel
+        Undo
       </button>
       <button
         class="vesper-button vesper-button-xs vesper-button-contrast"
         type="button"
       >
-        Confirm
+        Dismiss
       </button>
     </div>
   </div>

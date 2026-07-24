@@ -220,43 +220,93 @@ describe("toast [unit]", () => {
     });
   });
 
-  test("toast with buttons renders action buttons", async () => {
+  test("toast with action renders action and dismiss buttons", async () => {
     const handler = vi.fn();
 
     render(<Toasts />);
 
     addToast({
-      content: "With buttons",
-      buttons: [
-        { content: "Cancel", handler: () => {} },
-        { content: "Confirm", handler },
-      ],
+      content: "With action",
+      action: { content: "Undo", handler },
     });
     await waitForActiveToasts(1);
 
     const buttons = document.querySelectorAll(".vesper-toast-buttons button");
     expect(buttons).toHaveLength(2);
 
-    // last button defaults to "contrast" variant
-    expect(buttons[1]).toHaveClass("vesper-button-contrast");
-    // non-last button defaults to "ghost" variant
+    // action button is "ghost" variant
     expect(buttons[0]).toHaveClass("vesper-button-ghost");
+    expect(buttons[0]?.textContent).toContain("Undo");
 
-    fireEvent.click(buttons[1]!);
+    // dismiss button is "contrast" variant
+    expect(buttons[1]).toHaveClass("vesper-button-contrast");
+    expect(buttons[1]?.textContent).toContain("Dismiss");
+
+    fireEvent.click(buttons[0]!);
     expect(handler).toHaveBeenCalled();
   });
 
-  test("toast button with explicit variant", async () => {
+  test("toast with action does not show close button", async () => {
     render(<Toasts />);
 
     addToast({
-      content: "Custom variant button",
-      buttons: [{ content: "Danger", handler: () => {}, variant: "danger" }],
+      content: "No close button",
+      action: { content: "Undo", handler: () => {} },
     });
     await waitForActiveToasts(1);
 
-    const button = document.querySelector(".vesper-toast-buttons button");
-    expect(button).toHaveClass("vesper-button-danger");
+    const closeButton = document.querySelector(".vesper-toast-close-button");
+    expect(closeButton).toBeNull();
+  });
+
+  test("toast action dismiss button dismisses the toast", async () => {
+    render(<Toasts />);
+
+    addToast({
+      content: "Dismiss via action",
+      action: { content: "Undo", handler: () => {} },
+    });
+    await waitForActiveToasts(1);
+
+    const buttons = document.querySelectorAll(".vesper-toast-buttons button");
+    // click the dismiss button (second button)
+    fireEvent.click(buttons[1]!);
+
+    expect(document.querySelector(".vesper-toast")).toHaveAttribute(
+      "data-state",
+      "dismissed",
+    );
+
+    await waitFor(() => {
+      expect(document.querySelector(".vesper-toast")).toBeNull();
+    });
+  });
+
+  test("custom dismissText on close button", async () => {
+    render(<Toasts />);
+
+    addToast({
+      content: "Custom dismiss",
+      dismissText: "Close",
+    });
+    await waitForActiveToasts(1);
+
+    const closeButton = document.querySelector(".vesper-toast-close-button");
+    expect(closeButton).toHaveAttribute("aria-label", "Close");
+  });
+
+  test("custom dismissText with action", async () => {
+    render(<Toasts />);
+
+    addToast({
+      content: "Custom dismiss with action",
+      action: { content: "Undo", handler: () => {} },
+      dismissText: "Close",
+    });
+    await waitForActiveToasts(1);
+
+    const buttons = document.querySelectorAll(".vesper-toast-buttons button");
+    expect(buttons[1]?.textContent).toContain("Close");
   });
 
   test("each variant renders correct icon", async () => {
@@ -377,30 +427,22 @@ describe("toast [unit]", () => {
     expect(announcer).toHaveAttribute("role", "status");
   });
 
-  test("announcer includes button altText in announcement", async () => {
+  test("announcer includes action altText in announcement", async () => {
     render(<Toasts />);
 
     addToast({
       content: "File deleted",
-      buttons: [
-        {
-          content: "Undo",
-          altText: "Go to dashboard to undo",
-          handler: () => {},
-        },
-        {
-          content: "Dismiss",
-          handler: () => {},
-        },
-      ],
+      action: {
+        content: "Undo",
+        altText: "Go to dashboard to undo",
+        handler: () => {},
+      },
     });
     await waitForActiveToasts(1);
 
     const announcer = document.querySelector(".vesper-toast-announcer");
     expect(announcer?.textContent).toContain("File deleted");
     expect(announcer?.textContent).toContain("Go to dashboard to undo");
-    // buttons without altText should not contribute to announcement
-    expect(announcer?.textContent).not.toContain("Dismiss");
   });
 
   test("announcer clears when all toasts are removed", async () => {
@@ -599,15 +641,12 @@ describe("toast [snapshot]", () => {
     });
   });
 
-  test("with buttons", async () => {
+  test("with action", async () => {
     render(<Toasts />);
 
     addToast({
-      content: "Toast with buttons",
-      buttons: [
-        { content: "Cancel", handler: () => {} },
-        { content: "Confirm", handler: () => {} },
-      ],
+      content: "Toast with action",
+      action: { content: "Undo", handler: () => {} },
     });
     await waitForActiveToasts(1);
 
@@ -677,15 +716,12 @@ describe("toast [a11y]", () => {
       else test(label, testFn);
     });
 
-    test(`with buttons (${theme})`, async () => {
+    test(`with action (${theme})`, async () => {
       render(<Toasts />);
 
       addToast({
-        content: "Toast with buttons",
-        buttons: [
-          { content: "Cancel", handler: () => {} },
-          { content: "Confirm", handler: () => {} },
-        ],
+        content: "Toast with action",
+        action: { content: "Undo", handler: () => {} },
       });
       await waitForActiveToasts(1);
 
