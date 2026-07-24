@@ -13,7 +13,7 @@ function ToastStoryComponent({
   dismissAfterDelay,
   withAction,
   variant,
-}: Omit<ToastOptions, "buttons" | "timeout"> & {
+}: Omit<ToastOptions, "action" | "timeout"> & {
   withAction: boolean;
   dismissAfterDelay: boolean;
 }) {
