@@ -11,29 +11,33 @@ import "@/styles/test.css";
 
 const TABS_PERMUTATIONS: {
   name: string;
+  failsA11y: boolean;
   variant: TabsVariant;
   defaultValue?: string;
 }[] = [
-  { name: "primary, no value", variant: "primary", defaultValue: undefined },
-  { name: "primary, value", variant: "primary", defaultValue: "tab-1" },
   {
-    name: "secondary, no value",
-    variant: "secondary",
+    name: "primary, no value",
+    variant: "primary",
     defaultValue: undefined,
+    failsA11y: true,
   },
-  { name: "secondary, value", variant: "secondary", defaultValue: "tab-1" },
-];
-
-const TABS_A11Y_FAILING_PERMUTATIONS: {
-  name: string;
-  variant: TabsVariant;
-  defaultValue?: string;
-}[] = [
-  { name: "primary, no value", variant: "primary", defaultValue: undefined },
+  {
+    name: "primary, value",
+    variant: "primary",
+    defaultValue: "tab-1",
+    failsA11y: true,
+  },
   {
     name: "secondary, no value",
     variant: "secondary",
     defaultValue: undefined,
+    failsA11y: false,
+  },
+  {
+    name: "secondary, value",
+    variant: "secondary",
+    defaultValue: "tab-1",
+    failsA11y: false,
   },
 ];
 
@@ -234,12 +238,7 @@ describe("tabs [a11y]", () => {
     });
 
     TABS_PERMUTATIONS.forEach((permutation) => {
-      const { name, ...props } = permutation;
-
-      const failsA11y = TABS_A11Y_FAILING_PERMUTATIONS.some(
-        (p) =>
-          p.variant === props.variant && p.defaultValue === props.defaultValue,
-      );
+      const { name, failsA11y, ...props } = permutation;
 
       const testFn = async () => {
         const { container } = render(<TabsTestComponent {...props} />);

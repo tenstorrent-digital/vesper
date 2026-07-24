@@ -44,15 +44,15 @@
   @media (forced-colors: active) {
     &:focus-visible {
       &::before {
-        outline: 2px solid CanvasText;
+        outline: var(--vesper-stroke-strong) solid CanvasText;
       }
     }
   }
 }
 
 .vesper-accordion-trigger-icon {
-  width: 16px;
-  height: 16px;
+  width: 1rem;
+  height: 1rem;
   transition: transform var(--vesper-transition-duration-default) ease;
 }
 
@@ -79,7 +79,7 @@
 
 @keyframes vesper-accordion-open {
   0% {
-    height: 0px;
+    height: 0rem;
     opacity: 0;
   }
   100% {
@@ -96,7 +96,7 @@
     opacity: 0;
   }
   100% {
-    height: 0px;
+    height: 0rem;
     opacity: 0;
   }
 }

@@ -5,10 +5,10 @@
 .vesper-code-default {
   background: var(--vesper-tint-neutral-100);
   color: var(--vesper-text-primary);
-  border: 1px solid var(--vesper-border-tertiary);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
 }
 .vesper-code-contrast {
   background: var(--vesper-background-inverse-primary);
   color: var(--vesper-text-inverse-primary);
-  border: 1px solid var(--vesper-border-strong);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
 }

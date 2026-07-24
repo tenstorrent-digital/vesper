@@ -1,9 +1,9 @@
 :root {
-  --vesper-radius-1: 4px;
-  --vesper-radius-2: 8px;
-  --vesper-radius-3: 12px;
-  --vesper-radius-4: 16px;
-  --vesper-radius-6: 24px;
-  --vesper-radius-7: 28px;
-  --vesper-radius-half: 2px;
+  --vesper-radius-1: 0.25rem;
+  --vesper-radius-2: 0.5rem;
+  --vesper-radius-3: 0.75rem;
+  --vesper-radius-4: 1rem;
+  --vesper-radius-6: 1.5rem;
+  --vesper-radius-7: 1.75rem;
+  --vesper-radius-half: 0.125rem;
 }

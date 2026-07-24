@@ -21,7 +21,7 @@
 
 .vesper-radio-group-item-indicator {
   border-radius: 50%;
-  border: 1px solid var(--vesper-border-primary);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,12 +33,12 @@
   }
 }
 .vesper-radio-group-item-sm .vesper-radio-group-item-indicator {
-  width: 12px;
-  height: 12px;
+  width: 0.75rem;
+  height: 0.75rem;
 }
 .vesper-radio-group-item-md .vesper-radio-group-item-indicator {
-  width: 16px;
-  height: 16px;
+  width: 1rem;
+  height: 1rem;
 }
 
 .vesper-radio-group-item-label {
@@ -66,8 +66,8 @@
     }
   }
   &:focus-visible + .vesper-radio-group-item-indicator {
-    outline: 1px solid var(--vesper-border-focus);
-    outline-offset: 1px;
+    outline: var(--vesper-stroke-base) solid var(--vesper-border-focus);
+    outline-offset: var(--vesper-spacing-micro);
   }
 }
 

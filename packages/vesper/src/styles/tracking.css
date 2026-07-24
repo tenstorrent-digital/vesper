@@ -1,9 +1,9 @@
 :root {
-  --vesper-tracking-tightest: -0.75px;
-  --vesper-tracking-tighter: -0.5px;
-  --vesper-tracking-tight: -0.25px;
-  --vesper-tracking-normal: 0px;
-  --vesper-tracking-wide: 0.25px;
-  --vesper-tracking-wider: 0.5px;
-  --vesper-tracking-widest: 0.75px;
+  --vesper-tracking-tightest: calc(-100% * (0.75 / 16));
+  --vesper-tracking-tighter: calc(-100% * (0.5 / 16));
+  --vesper-tracking-tight: calc(-100% * (0.25 / 16));
+  --vesper-tracking-normal: 0;
+  --vesper-tracking-wide: calc(100% * (0.25 / 16));
+  --vesper-tracking-wider: calc(100% * (0.5 / 16));
+  --vesper-tracking-widest: calc(100% * (0.75 / 16));
 }

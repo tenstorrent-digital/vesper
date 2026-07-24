@@ -1,11 +1,11 @@
 .vesper-avatar {
   border-radius: 50%;
-  border: 1px solid var(--vesper-border-inverse-strong);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-inverse-strong);
   background: var(--vesper-stone-400);
   overflow: hidden;
   @media (forced-colors: active) {
     &:focus-visible {
-      outline: 2px solid CanvasText;
+      outline: var(--vesper-stroke-strong) solid CanvasText;
     }
   }
   @media not (forced-colors: active) {
@@ -16,18 +16,18 @@
 }
 
 .vesper-avatar-sm {
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .vesper-avatar-md {
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
 }
 
 .vesper-avatar-lg {
-  width: 48px;
-  height: 48px;
+  width: 3rem;
+  height: 3rem;
 }
 
 .vesper-avatar-image {

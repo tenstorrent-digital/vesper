@@ -1,9 +1,9 @@
 .vesper-avatar-group {
   display: flex;
-  border-radius: 32px;
+  border-radius: 2rem;
   @media (forced-colors: active) {
     &:focus-visible {
-      outline: 2px solid CanvasText;
+      outline: var(--vesper-stroke-strong) solid CanvasText;
     }
   }
   @media not (forced-colors: active) {
@@ -12,13 +12,13 @@
     }
   }
   .vesper-avatar:not(:first-child) {
-    margin-left: -6px;
+    margin-left: -0.375rem;
   }
   .vesper-avatar-md:not(:first-child) {
-    margin-left: -10px;
+    margin-left: -0.625rem;
   }
   .vesper-avatar-lg:not(:first-child) {
-    margin-left: -14px;
+    margin-left: -0.875rem;
   }
   .vesper-avatar-group-overflow {
     display: flex;

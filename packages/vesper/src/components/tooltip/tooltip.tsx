@@ -1,3 +1,5 @@
+"use client";
+
 import { Fragment, isValidElement, type ReactNode } from "react";
 import {
   Tooltip as TooltipRoot,
@@ -7,6 +9,8 @@ import {
 } from "@radix-ui/react-tooltip";
 
 import { Typography } from "@/components/typography/typography";
+
+import { useBaseRemSize } from "@/utils/useBaseRemSize";
 
 export const TOOLTIP_SIDES = ["top", "right", "bottom", "left"] as const;
 
@@ -53,10 +57,10 @@ export function Tooltip(props: TooltipProps) {
     align = "center",
     alignOffset = 0,
     side = "top",
-    sideOffset: _sideOffset = 4,
+    sideOffset = 4,
   } = props;
 
-  const sideOffset = TOOLTIP_ARROW_HEIGHT + _sideOffset;
+  const baseRemSize = useBaseRemSize();
 
   if (!isValidTooltipChild(content) || !isValidTooltipChild(children)) {
     return children;
@@ -80,15 +84,15 @@ export function Tooltip(props: TooltipProps) {
         <Typography
           variant="label-xs"
           className="vesper-tooltip"
-          style={{ maxWidth }}
+          style={{ maxWidth: `calc(${maxWidth} * (1rem / 16))` }}
           as={TooltipContent}
           align={align}
-          alignOffset={alignOffset}
+          alignOffset={alignOffset * (baseRemSize / 16)}
           side={side}
-          sideOffset={sideOffset}
+          sideOffset={baseRemSize / 2 + sideOffset * (baseRemSize / 16)}
         >
           {content}
-          <TooltipArrow />
+          <div className="vesper-tooltip-arrow" />
         </Typography>
       </TooltipRoot>
     </TooltipProvider>
@@ -101,22 +105,3 @@ export function Tooltip(props: TooltipProps) {
 const isValidTooltipChild = (node: ReactNode) => {
   return typeof node === "number" || (!!node && typeof node !== "boolean");
 };
-
-const TOOLTIP_ARROW_HEIGHT = 8;
-const TOOLTIP_ARROW_WIDTH = 14;
-
-function TooltipArrow() {
-  return (
-    <svg
-      width={TOOLTIP_ARROW_WIDTH}
-      height={TOOLTIP_ARROW_HEIGHT}
-      viewBox={`0 0 ${TOOLTIP_ARROW_WIDTH} ${TOOLTIP_ARROW_HEIGHT}`}
-      className="vesper-tooltip-arrow"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d={`M 0,0 L ${TOOLTIP_ARROW_WIDTH},0 L ${TOOLTIP_ARROW_WIDTH / 2},${TOOLTIP_ARROW_HEIGHT} z`}
-      />
-    </svg>
-  );
-}

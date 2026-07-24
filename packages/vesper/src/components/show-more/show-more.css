@@ -6,7 +6,6 @@
   &::after {
     content: "";
     flex: 1;
-    height: 1px;
-    background-color: var(--vesper-border-tertiary);
+    border-bottom: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
   }
 }

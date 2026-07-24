@@ -8,7 +8,7 @@ exports[`modal [snapshot] > custom width and maxHeight 1`] = `
 >
   <div
     class="vesper-modal-container"
-    style="width: 600px; max-height: min(calc(100vh - var(--vesper-spacing-16)), 800px);"
+    style="width: calc(37.5rem); max-height: min(calc(100vh - var(--vesper-spacing-16)), calc(800 * (1rem / 16)));"
   >
     <div
       class="vesper-modal-header"
@@ -59,7 +59,7 @@ exports[`modal [snapshot] > default 1`] = `
 >
   <div
     class="vesper-modal-container"
-    style="width: 452px; max-height: min(calc(100vh - var(--vesper-spacing-16)), 640px);"
+    style="width: calc(28.25rem); max-height: min(calc(100vh - var(--vesper-spacing-16)), calc(640 * (1rem / 16)));"
   >
     <div
       class="vesper-modal-header"
@@ -110,7 +110,7 @@ exports[`modal [snapshot] > with buttons (between alignment) 1`] = `
 >
   <div
     class="vesper-modal-container"
-    style="width: 452px; max-height: min(calc(100vh - var(--vesper-spacing-16)), 640px);"
+    style="width: calc(28.25rem); max-height: min(calc(100vh - var(--vesper-spacing-16)), calc(640 * (1rem / 16)));"
   >
     <div
       class="vesper-modal-header"
@@ -175,7 +175,7 @@ exports[`modal [snapshot] > with buttons (end alignment) 1`] = `
 >
   <div
     class="vesper-modal-container"
-    style="width: 452px; max-height: min(calc(100vh - var(--vesper-spacing-16)), 640px);"
+    style="width: calc(28.25rem); max-height: min(calc(100vh - var(--vesper-spacing-16)), calc(640 * (1rem / 16)));"
   >
     <div
       class="vesper-modal-header"
@@ -240,7 +240,7 @@ exports[`modal [snapshot] > with buttons (fill alignment) 1`] = `
 >
   <div
     class="vesper-modal-container"
-    style="width: 452px; max-height: min(calc(100vh - var(--vesper-spacing-16)), 640px);"
+    style="width: calc(28.25rem); max-height: min(calc(100vh - var(--vesper-spacing-16)), calc(640 * (1rem / 16)));"
   >
     <div
       class="vesper-modal-header"
@@ -305,7 +305,7 @@ exports[`modal [snapshot] > with buttons (start alignment) 1`] = `
 >
   <div
     class="vesper-modal-container"
-    style="width: 452px; max-height: min(calc(100vh - var(--vesper-spacing-16)), 640px);"
+    style="width: calc(28.25rem); max-height: min(calc(100vh - var(--vesper-spacing-16)), calc(640 * (1rem / 16)));"
   >
     <div
       class="vesper-modal-header"
@@ -370,7 +370,7 @@ exports[`modal [snapshot] > with children 1`] = `
 >
   <div
     class="vesper-modal-container"
-    style="width: 452px; max-height: min(calc(100vh - var(--vesper-spacing-16)), 640px);"
+    style="width: calc(28.25rem); max-height: min(calc(100vh - var(--vesper-spacing-16)), calc(640 * (1rem / 16)));"
   >
     <div
       class="vesper-modal-header"
@@ -428,7 +428,7 @@ exports[`modal [snapshot] > with form 1`] = `
     class="vesper-modal-container"
     id="modal-form"
     method="post"
-    style="width: 452px; max-height: min(calc(100vh - var(--vesper-spacing-16)), 640px);"
+    style="width: calc(28.25rem); max-height: min(calc(100vh - var(--vesper-spacing-16)), calc(640 * (1rem / 16)));"
   >
     <div
       class="vesper-modal-header"
