@@ -22,7 +22,7 @@ export type ChoiceboxItem = {
   label: string;
   /** An optional secondary description displayed below the label. */
   description?: string;
-  /** When `true`, prevents this option from being selected. */
+  /** When `true`, prevents this option from being selected. @default false */
   disabled?: boolean;
   /** An optional HTML `id` attribute applied to the underlying input element. */
   id?: string;
@@ -36,14 +36,14 @@ interface ChoiceboxBaseProps extends Omit<
   name: string;
   /** The list of options to render. */
   options: ChoiceboxItem[];
-  /** When `true`, disables all options in the group, preventing interaction. */
+  /** When `true`, disables all options in the group, preventing interaction. @default false */
   disabled?: boolean;
 }
 
 export interface ChoiceboxSingleSelectProps extends ChoiceboxBaseProps {
   /** When `false` or omitted, the choicebox operates in single-select (radio) mode. */
   multiselect?: false;
-  /** When `true`, a selection is required for form validation. */
+  /** When `true`, a selection is required for form validation. @default false */
   required?: boolean;
   /** The currently selected value (controlled mode). */
   value?: string;
@@ -62,9 +62,9 @@ export interface ChoiceboxMultiSelectProps extends ChoiceboxBaseProps {
   defaultValues?: string[];
   /** Callback fired when the selected values change. Receives the full array of currently selected values. */
   onChange?(values: string[]): void;
-  /** The minimum number of selections required for form validation. Defaults to `0`. */
+  /** The minimum number of selections required for form validation. @default 0 */
   min?: number;
-  /** The maximum number of selections allowed for form validation. Defaults to `Infinity`. */
+  /** The maximum number of selections allowed for form validation. @default Infinity */
   max?: number;
 }
 
@@ -72,6 +72,43 @@ export type ChoiceboxProps =
   | ChoiceboxSingleSelectProps
   | ChoiceboxMultiSelectProps;
 
+/**
+ * A selection group component that supports both single-select (radio) and multi-select (checkbox) modes with card-style options.
+ *
+ * @param {string} props.name - The name attribute shared by all inputs, used for form submission
+ * @param {ChoiceboxItem[]} props.options - The list of options to render
+ * @param {boolean} [props.multiselect] - (optional) When `true`, enables multi-select (checkbox) mode. @default false
+ * @param {boolean} [props.disabled] - (optional) Disables all options in the group. @default false
+ * @param {string} [props.value] - (optional) The currently selected value (single-select, controlled)
+ * @param {string} [props.defaultValue] - (optional) The initially selected value (single-select, uncontrolled)
+ * @param {(value: string) => void} [props.onChange] - (optional) Callback fired on selection change (single-select)
+ * @param {string[]} [props.values] - (optional) The currently selected values (multi-select, controlled)
+ * @param {(values: string[]) => void} [props.onChange] - (optional) Callback fired with all selected values (multi-select)
+ *
+ * @example
+ * <Choicebox
+ *   name="plan"
+ *   options={[
+ *     { value: "free", label: "Free", description: "Basic features" },
+ *     { value: "pro", label: "Pro", description: "Advanced features" },
+ *   ]}
+ *   value={selectedPlan}
+ *   onChange={setSelectedPlan}
+ * />
+ *
+ * @example
+ * <Choicebox
+ *   multiselect
+ *   name="features"
+ *   options={[
+ *     { value: "dark-mode", label: "Dark Mode" },
+ *     { value: "notifications", label: "Notifications" },
+ *   ]}
+ *   min={1}
+ *   max={3}
+ *   onChange={(values) => console.log(values)}
+ * />
+ */
 export function Choicebox(props: ChoiceboxProps) {
   if (props.multiselect) return <ChoiceboxMultiSelect {...props} />;
   return <ChoiceboxSingleSelect {...props} />;
