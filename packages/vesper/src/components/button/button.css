@@ -20,6 +20,8 @@
       box-shadow: var(--vesper-shadow-focus-ring);
     }
   }
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
 }
 
 .vesper-button-lg {
