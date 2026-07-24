@@ -24,7 +24,13 @@ export { TOAST_VARIANTS, type ToastOptions } from "./store";
 export const { addToast } = store;
 
 function Toast({
-  options: { content, buttons = [], timeout = false, variant = "default" },
+  options: {
+    content,
+    action,
+    timeout = false,
+    variant = "default",
+    dismissText = "Dismiss",
+  },
   state,
   id,
 }: ToastData) {
@@ -42,10 +48,9 @@ function Toast({
         ".vesper-toast-children",
       )?.innerText;
 
-      const announcement = [
-        contentText,
-        ...buttons.map((button) => button.altText).filter(Boolean),
-      ].join(". ");
+      const announcement = [contentText, action?.altText]
+        .filter(Boolean)
+        .join(". ");
       store.setAnnouncement(announcement);
     };
     updateAnnouncement();
@@ -57,7 +62,7 @@ function Toast({
       subtree: true,
     });
     return () => observer.disconnect();
-  }, [state, buttons]);
+  }, [state, action]);
 
   const [hasFocus, setHasFocus] = useState(false);
   const [hasPointer, setHasPointer] = useState(false);
@@ -159,37 +164,35 @@ function Toast({
           >
             {content}
           </Typography>
-          <button
-            type="button"
-            aria-label="Dismiss"
-            className="vesper-toast-close-button"
-            onClick={() => store.dismissToast(id)}
-          >
-            <Close aria-hidden />
-          </button>
+          {!action && (
+            <button
+              type="button"
+              aria-label={dismissText}
+              className="vesper-toast-close-button"
+              onClick={() => store.dismissToast(id)}
+            >
+              <Close aria-hidden />
+            </button>
+          )}
         </div>
-        {!!buttons?.length && (
+        {action && (
           <div className="vesper-toast-buttons">
-            {buttons.map(({ content, handler, variant }, index) => {
-              const renderedVariant =
-                variant ||
-                (index === buttons.length - 1 ? "contrast" : "ghost");
-
-              return (
-                <Button
-                  key={index}
-                  size="xs"
-                  type="button"
-                  variant={renderedVariant}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handler();
-                  }}
-                >
-                  {content}
-                </Button>
-              );
-            })}
+            <Button
+              size="xs"
+              type="button"
+              variant="ghost"
+              onClick={() => store.dismissToast(id)}
+            >
+              {dismissText}
+            </Button>
+            <Button
+              size="xs"
+              type="button"
+              variant="contrast"
+              onClick={action.handler}
+            >
+              {action.content}
+            </Button>
           </div>
         )}
       </div>

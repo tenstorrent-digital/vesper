@@ -24,7 +24,7 @@
   background: var(--vesper-background-primary);
   border-radius: var(--vesper-radius-2);
   transition:
-    background var(--vesper-transition-duration-fast) ease,
+    background-color var(--vesper-transition-duration-fast) ease,
     border-color var(--vesper-transition-duration-fast) ease;
   @media (forced-colors: active) {
     background: Canvas;

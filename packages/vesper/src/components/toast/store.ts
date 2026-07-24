@@ -2,8 +2,6 @@
 
 import { type ReactNode, useSyncExternalStore } from "react";
 
-import { type ButtonVariant } from "@/components/button/button";
-
 import { generateId } from "@/utils/generateId";
 
 export const TOAST_VARIANTS = [
@@ -16,14 +14,14 @@ export const TOAST_VARIANTS = [
 
 export interface ToastOptions {
   content: ReactNode;
-  buttons?: {
-    variant?: ButtonVariant;
+  action?: {
     handler: () => void;
     content: ReactNode;
     altText?: string;
-  }[];
+  };
   timeout?: number | false;
   variant?: ToastVariant;
+  dismissText?: string;
 }
 
 export type ToastState = "entering" | "active" | "dismissed";
@@ -71,14 +69,9 @@ class ToastsStore {
    *   timeout: 5000,
    * })
    * */
-  addToast = ({
-    content,
-    buttons = [],
-    timeout = false,
-    variant = "default",
-  }: ToastOptions) => {
+  addToast = (options: ToastOptions) => {
     const toast: ToastData = {
-      options: { content, buttons, timeout, variant },
+      options,
       id: generateId(),
       state: "entering",
     };
