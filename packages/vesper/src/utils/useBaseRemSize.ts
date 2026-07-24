@@ -54,6 +54,13 @@ class BaseRemSizeObserver {
   };
 }
 
+/**
+ * Returns the document's base rem size in pixels.
+ *
+ * @example
+ * const baseRemSize = useBaseRemSize()
+ * console.log(baseRemSize) // 16
+ */
 export function useBaseRemSize() {
   return useSyncExternalStore(
     BaseRemSizeObserver.subscribe,
