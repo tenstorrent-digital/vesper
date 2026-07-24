@@ -422,13 +422,13 @@ exports[`toast [snapshot] > with action 1`] = `
         class="vesper-button vesper-button-xs vesper-button-ghost"
         type="button"
       >
-        Undo
+        Dismiss
       </button>
       <button
         class="vesper-button vesper-button-xs vesper-button-contrast"
         type="button"
       >
-        Dismiss
+        Undo
       </button>
     </div>
   </div>

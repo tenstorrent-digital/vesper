@@ -181,17 +181,17 @@ function Toast({
               size="xs"
               type="button"
               variant="ghost"
-              onClick={action.handler}
+              onClick={() => store.dismissToast(id)}
             >
-              {action.content}
+              {dismissText}
             </Button>
             <Button
               size="xs"
               type="button"
               variant="contrast"
-              onClick={() => store.dismissToast(id)}
+              onClick={action.handler}
             >
-              {dismissText}
+              {action.content}
             </Button>
           </div>
         )}

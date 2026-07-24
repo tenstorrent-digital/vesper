@@ -234,15 +234,15 @@ describe("toast [unit]", () => {
     const buttons = document.querySelectorAll(".vesper-toast-buttons button");
     expect(buttons).toHaveLength(2);
 
-    // action button is "ghost" variant
+    // dismiss button is "ghost" variant
     expect(buttons[0]).toHaveClass("vesper-button-ghost");
-    expect(buttons[0]?.textContent).toContain("Undo");
+    expect(buttons[0]?.textContent).toContain("Dismiss");
 
-    // dismiss button is "contrast" variant
+    // action button is "contrast" variant
     expect(buttons[1]).toHaveClass("vesper-button-contrast");
-    expect(buttons[1]?.textContent).toContain("Dismiss");
+    expect(buttons[1]?.textContent).toContain("Undo");
 
-    fireEvent.click(buttons[0]!);
+    fireEvent.click(buttons[1]!);
     expect(handler).toHaveBeenCalled();
   });
 
@@ -269,8 +269,8 @@ describe("toast [unit]", () => {
     await waitForActiveToasts(1);
 
     const buttons = document.querySelectorAll(".vesper-toast-buttons button");
-    // click the dismiss button (second button)
-    fireEvent.click(buttons[1]!);
+    // click the dismiss button (first button)
+    fireEvent.click(buttons[0]!);
 
     expect(document.querySelector(".vesper-toast")).toHaveAttribute(
       "data-state",
@@ -306,7 +306,7 @@ describe("toast [unit]", () => {
     await waitForActiveToasts(1);
 
     const buttons = document.querySelectorAll(".vesper-toast-buttons button");
-    expect(buttons[1]?.textContent).toContain("Close");
+    expect(buttons[0]?.textContent).toContain("Close");
   });
 
   test("each variant renders correct icon", async () => {
