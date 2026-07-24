@@ -23,6 +23,8 @@ export type AvatarGroupProps<E extends ElementType = "div"> = Polymorphic<
  * @param {AvatarSize} [props.size] - (optional) The size applied to all avatars. @default md
  * @param {React.ElementType} [props.as] - (optional) Element type to render. @default div
  *
+ * You may also pass any additional props to the underlying element.
+ *
  * @example
  * <AvatarGroup
  *   avatars={[

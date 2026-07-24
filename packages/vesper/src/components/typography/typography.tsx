@@ -58,7 +58,7 @@ export type TypographyProps<E extends ElementType = "p"> = Polymorphic<
  * @param {TypographyVariant} [props.variant] - (optional) Text style variant to apply. See {@link TYPOGRAPHY_VARIANTS} for available options. Default: `copy-sm`
  * @param {string} [props.className] - (optional) Additional CSS `class` names to apply
  *
- * You may also pass any additional props to the underlying React element
+ * You may also pass any additional props to the underlying element
  *
  * @example
  * <Typography variant="heading-lg" as="h1">

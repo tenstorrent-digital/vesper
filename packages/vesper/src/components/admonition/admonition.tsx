@@ -69,6 +69,8 @@ const ADMONITION_TYPOGRAPHY_VARIANTS: {
  * @param {ButtonProps} [props.cta] - (optional) Props for an action button rendered alongside the content
  * @param {React.ElementType} [props.as] - (optional) Element type to render. @default div
  *
+ * You may also pass any additional props to the underlying element.
+ *
  * @example
  * <Admonition variant="warning">
  *   Your session will expire in 5 minutes.

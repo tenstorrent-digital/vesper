@@ -50,6 +50,8 @@ export type TagProps<E extends ElementType = "div"> = Polymorphic<
  * @param {ReactNode} [props.icon] - (optional) An icon element rendered to the left of the tag text
  * @param {React.ElementType} [props.as] - (optional) Element type to render. @default div
  *
+ * You may also pass any additional props to the underlying element.
+ *
  * @example
  * <Tag variant="success-bold">Active</Tag>
  *

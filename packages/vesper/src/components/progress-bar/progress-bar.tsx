@@ -35,7 +35,7 @@ export interface ProgressBarProps extends ComponentProps<"div"> {
  * @param {number} [props.steps] - (optional) Number of segments when variant is `"steps"`. @default 10
  * @param {boolean} [props.animated] - (optional) Whether to animate progress changes. @default false
  *
- * You may also pass any additional props to the underlying `div` element
+ * You may also pass any additional props to the underlying `div` element.
  *
  * @example
  * <ProgressBar value={75} />

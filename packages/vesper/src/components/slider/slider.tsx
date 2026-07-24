@@ -44,6 +44,8 @@ interface SliderProps extends Omit<
  * @param {boolean} [props.showValueLabel] - (optional) Whether to display the value label above the thumb. @default false
  * @param {boolean} [props.showTicks] - (optional) Whether to render tick marks at each step interval. @default false
  *
+ * You may also pass any additional props to the underlying `div` element.
+ *
  * @example
  * <Slider
  *   min={0}

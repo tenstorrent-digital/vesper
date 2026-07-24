@@ -64,7 +64,7 @@ const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
  * @param {(value: string) => void} [props.onValueChange] - (optional) Callback fired when the selected value changes
  * @param {boolean} [props.disabled] - (optional) Disables all toggle options. @default false
  *
- * You may also pass any additional props to the underlying `div` element
+ * You may also pass any additional props to the underlying `div` element.
  *
  * @example
  * <Toggle

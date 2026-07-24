@@ -71,7 +71,7 @@ export interface SplitButtonProps extends Omit<
  * @param {boolean} [props.disabled] - (optional) Disables both the action button and the menu toggle. @default false
  * @param {string} [props.menuButtonAriaLabel] - (optional) Accessible label for the menu toggle. @default Toggle menu
  *
- * You may also pass any additional props to the underlying `div` element
+ * You may also pass any additional props to the underlying `div` element.
  *
  * @example
  * <SplitButton

@@ -51,7 +51,7 @@ export interface CodeBlockProps extends Omit<
  * @param {ShikiTransformer[]} [props.transformers] - (optional) An array of Shiki transformers to apply to the hast tree. Has no effect when rendering streamed code
  * @param {boolean} [props.copyOnHover] - (optional) Hide the copy button until the code block is hovered. @default false
  *
- * You may also pass any additional props to the underlying `div` element
+ * You may also pass any additional props to the underlying `div` element.
  *
  * @example
  * import javascript from "@shikijs/langs/javascript";

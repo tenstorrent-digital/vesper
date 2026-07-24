@@ -165,7 +165,7 @@ const CLEAR_BUTTON_DISABLED_TYPES = [
  * @param {string} [props.type] - (optional) The HTML input type. @default text
  * @param {string} [props.placeholder] - (optional) Placeholder text for the input
  *
- * You may also pass any additional props to the underlying `div` wrapper or input/textarea element
+ * You may also pass any additional props to the underlying `div` wrapper or input/textarea element.
  *
  * @example
  * <TextInput label="Email" name="email" type="email" required />

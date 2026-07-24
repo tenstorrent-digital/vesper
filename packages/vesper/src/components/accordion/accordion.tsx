@@ -29,7 +29,7 @@ export interface AccordionProps extends ComponentProps<"div"> {
  * @param {boolean} [props.open] - (optional) Controls the open state (controlled)
  * @param {(open: boolean) => void} [props.onOpenChange] - (optional) Callback fired when the open state changes
  *
- * You may also pass any additional props to the underlying `div` element
+ * You may also pass any additional props to the underlying `div` element.
  *
  * @example
  * <Accordion title="FAQ">

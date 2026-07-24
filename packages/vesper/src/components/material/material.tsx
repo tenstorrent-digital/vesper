@@ -56,6 +56,8 @@ export type MaterialProps<E extends ElementType = "div"> = Polymorphic<
  * @param {InteractiveMaterialState} [props.state] - (optional) The interaction state, only applicable when `variant` is `"interactive"`
  * @param {React.ElementType} [props.as] - (optional) Element type to render. @default div
  *
+ * You may also pass any additional props to the underlying element.
+ *
  * @example
  * <Material variant="raised">
  *   <p>Elevated card content</p>

@@ -91,7 +91,7 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
  * @param {boolean} [props.required] - (optional) Marks the checkbox as required for form validation. @default false
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  *
- * You may also pass any additional props to the underlying `label` element
+ * You may also pass any additional props to the underlying `label` element.
  *
  * @example
  * <Checkbox label="Accept terms" name="terms" required />

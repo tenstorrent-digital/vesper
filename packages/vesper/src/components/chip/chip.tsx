@@ -42,6 +42,8 @@ export type ChipProps<E extends ElementType = "button"> = Polymorphic<
  * @param {(selected: boolean) => void} [props.onChange] - (optional) Callback fired with the next selected state when clicked
  * @param {React.ElementType} [props.as] - (optional) Element type to render. @default button
  *
+ * You may also pass any additional props to the underlying element.
+ *
  * @example
  * <Chip selected={isActive} onChange={setIsActive}>
  *   Filter
