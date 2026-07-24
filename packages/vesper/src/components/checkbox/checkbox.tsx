@@ -66,9 +66,9 @@ export interface CheckboxProps
     Pick<ComponentProps<"input">, ForwardedPropTypes> {
   /** The text label displayed next to the checkbox. An asterisk is appended when `required` is true. */
   label: string;
-  /** When true, renders the checkbox in an indeterminate (mixed) state, displaying a dash icon instead of a checkmark. */
+  /** When true, renders the checkbox in an indeterminate (mixed) state, displaying a dash icon instead of a checkmark. @default false */
   indeterminate?: boolean;
-  /** The size of the checkbox and its label. Defaults to `"md"`. */
+  /** The size of the checkbox and its label. @default md */
   size?: CheckboxSize;
   /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
   inputRef?: RefObject<HTMLInputElement | null>;
@@ -79,6 +79,31 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
   md: "label-lg",
 };
 
+/**
+ * A form-ready checkbox input with a label, supporting controlled and uncontrolled usage as well as indeterminate state.
+ *
+ * @param {string} props.label - The text label displayed next to the checkbox
+ * @param {CheckboxSize} [props.size] - (optional) The size of the checkbox and its label. @default md
+ * @param {boolean} [props.indeterminate] - (optional) Renders the checkbox in an indeterminate (mixed) state. @default false
+ * @param {boolean} [props.checked] - (optional) The controlled checked state
+ * @param {boolean} [props.defaultChecked] - (optional) The initial checked state (uncontrolled)
+ * @param {boolean} [props.disabled] - (optional) Prevents interaction. @default false
+ * @param {boolean} [props.required] - (optional) Marks the checkbox as required for form validation. @default false
+ * @param {string} [props.name] - (optional) Form field name submitted with form data
+ *
+ * You may also pass any additional props to the underlying `label` element
+ *
+ * @example
+ * <Checkbox label="Accept terms" name="terms" required />
+ *
+ * @example
+ * <Checkbox
+ *   label="Select all"
+ *   indeterminate={someChecked && !allChecked}
+ *   checked={allChecked}
+ *   onChange={(e) => toggleAll(e.target.checked)}
+ * />
+ */
 export function Checkbox(props: CheckboxProps) {
   const {
     // component-specific props
