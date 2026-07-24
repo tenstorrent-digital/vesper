@@ -184,11 +184,16 @@ export function Modal(props: ModalProps) {
     </>
   );
 
+  const computedMaxHeight =
+    typeof maxHeight === "number"
+      ? `calc(${maxHeight} * (1rem / 16))`
+      : maxHeight;
+
   const containerProps = {
     className: "vesper-modal-container",
     style: {
-      width,
-      maxHeight: `min(calc(100vh - var(--vesper-spacing-16)), ${typeof maxHeight === "number" ? maxHeight + "px" : maxHeight})`,
+      width: `calc(${width} * (1rem / 16))`,
+      maxHeight: `min(calc(100vh - var(--vesper-spacing-16)), ${computedMaxHeight})`,
     },
   };
 
