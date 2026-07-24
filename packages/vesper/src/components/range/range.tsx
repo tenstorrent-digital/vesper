@@ -24,30 +24,64 @@ export interface RangeProps extends Omit<
   thumbAriaLabels?: string[];
   /** When `true`, displays the value labels above each thumb. */
   showValueLabels?: boolean;
-  /** The initial thumb values (uncontrolled mode). Defaults to `[min, max]` */
+  /** The initial thumb values (uncontrolled mode). @default [min, max] */
   defaultValues?: number[];
   /** Callback fired as thumb values change during interaction. Receives the full array of current values. */
   onValuesChange?(value: number[]): void;
   /** Callback fired when a thumb interaction is completed (e.g., on pointer up). Receives the final array of values. */
   onValuesCommit?(value: number[]): void;
-  /** When `true`, renders tick marks along the track at each step interval. */
+  /** When `true`, renders tick marks along the track at each step interval. @default false */
   showTicks?: boolean;
   /** The name attribute applied to the underlying hidden input, used for form submission. */
   name?: string;
-  /** When true, prevents interaction. */
+  /** When true, prevents interaction. @default false */
   disabled?: boolean;
-  /** The minimum allowed value. Defaults to `0`. */
+  /** The minimum allowed value. @default 0 */
   min?: number;
-  /** The maximum allowed value. Defaults to `100`. */
+  /** The maximum allowed value. @default 100 */
   max?: number;
-  /** The stepping interval between selectable values. Defaults to `1`. */
+  /** The stepping interval between selectable values. @default 1 */
   step?: number;
-  /** The minimum number of steps required between thumbs, preventing them from overlapping. Defaults to `1`. */
+  /** The minimum number of steps required between thumbs, preventing them from overlapping. @default 1 */
   minStepsBetweenThumbs?: number;
   /** The `id` of the `<form>` element this input belongs to, allowing association with a form outside the input's DOM hierarchy. */
   form?: string;
 }
 
+/**
+ * A dual-thumb range slider for selecting a numeric range between a minimum and maximum value.
+ *
+ * @param {number[]} [props.values] - (optional) The controlled values of the range thumbs
+ * @param {number[]} [props.defaultValues] - (optional) The initial thumb values (uncontrolled). @default [min, max]
+ * @param {(value: number[]) => void} [props.onValuesChange] - (optional) Callback fired as thumb values change during interaction
+ * @param {(value: number[]) => void} [props.onValuesCommit] - (optional) Callback fired when thumb interaction is completed
+ * @param {number} [props.min] - (optional) The minimum allowed value. @default 0
+ * @param {number} [props.max] - (optional) The maximum allowed value. @default 100
+ * @param {number} [props.step] - (optional) The stepping interval. @default 1
+ * @param {boolean} [props.showTicks] - (optional) Whether to render tick marks at each step interval. @default false
+ * @param {boolean} [props.showValueLabels] - (optional) Whether to display value labels above each thumb
+ *
+ * You may also pass any additional props to the underlying `div` element
+ *
+ * @example
+ * <Range
+ *   min={0}
+ *   max={100}
+ *   defaultValues={[20, 80]}
+ *   onValuesCommit={(values) => console.log(values)}
+ * />
+ *
+ * @example
+ * <Range
+ *   min={0}
+ *   max={50}
+ *   step={5}
+ *   showTicks
+ *   showValueLabels
+ *   values={range}
+ *   onValuesChange={setRange}
+ * />
+ */
 export function Range(props: RangeProps) {
   const {
     className,
@@ -56,7 +90,7 @@ export function Range(props: RangeProps) {
     valueLabels,
     onValuesChange,
     onValuesCommit,
-    showTicks,
+    showTicks = false,
     showValueLabels,
     minStepsBetweenThumbs = 1,
     min = 0,
