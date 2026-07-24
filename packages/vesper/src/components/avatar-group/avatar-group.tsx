@@ -7,7 +7,7 @@ import type { Polymorphic } from "@/utils/polymorphic";
 
 export type AvatarGroupProps<E extends ElementType = "div"> = Polymorphic<
   {
-    /** The size applied to all avatars in the group. Defaults to `"md"`. */
+    /** The size applied to all avatars in the group. @default md */
     size?: AvatarSize;
     /** The list of avatars to display. A maximum of 3 avatars are shown, with an overflow indicator for additional items. */
     avatars: { src: string | undefined; alt?: string }[];
@@ -16,6 +16,26 @@ export type AvatarGroupProps<E extends ElementType = "div"> = Polymorphic<
   "children"
 >;
 
+/**
+ * A polymorphic component that displays a row of avatars with an overflow indicator for groups larger than three.
+ *
+ * @param {AvatarGroupProps["avatars"]} props.avatars - The list of avatars to display (max 3 shown, with overflow count)
+ * @param {AvatarSize} [props.size] - (optional) The size applied to all avatars. @default md
+ * @param {React.ElementType} [props.as] - (optional) Element type to render. @default div
+ *
+ * @example
+ * <AvatarGroup
+ *   avatars={[
+ *     { src: "/avatar1.png", alt: "Alice" },
+ *     { src: "/avatar2.png", alt: "Bob" },
+ *     { src: "/avatar3.png", alt: "Charlie" },
+ *     { src: "/avatar4.png", alt: "Dana" },
+ *   ]}
+ * />
+ *
+ * @example
+ * <AvatarGroup size="lg" avatars={teamMembers} />
+ */
 export function AvatarGroup<E extends ElementType = "div">(
   props: AvatarGroupProps<E>,
 ) {
