@@ -16,14 +16,15 @@ export const TOAST_VARIANTS = [
 
 export interface ToastOptions {
   content: ReactNode;
-  buttons?: {
+  action?: {
     variant?: ButtonVariant;
     handler: () => void;
     content: ReactNode;
     altText?: string;
-  }[];
+  };
   timeout?: number | false;
   variant?: ToastVariant;
+  dismissText?: string;
 }
 
 export type ToastState = "entering" | "active" | "dismissed";
@@ -71,14 +72,9 @@ class ToastsStore {
    *   timeout: 5000,
    * })
    * */
-  addToast = ({
-    content,
-    buttons = [],
-    timeout = false,
-    variant = "default",
-  }: ToastOptions) => {
+  addToast = (options: ToastOptions) => {
     const toast: ToastData = {
-      options: { content, buttons, timeout, variant },
+      options,
       id: generateId(),
       state: "entering",
     };

@@ -11,10 +11,10 @@ import {
 function ToastStoryComponent({
   content,
   dismissAfterDelay,
-  withButtons,
+  withAction,
   variant,
 }: Omit<ToastOptions, "buttons" | "timeout"> & {
-  withButtons: boolean;
+  withAction: boolean;
   dismissAfterDelay: boolean;
 }) {
   return (
@@ -25,19 +25,13 @@ function ToastStoryComponent({
           const toast = addToast({
             content,
             timeout: dismissAfterDelay ? 5000 : false,
-            buttons: withButtons
-              ? [
-                  {
-                    altText: "Go to dashboard to undo",
-                    content: "Undo",
-                    handler: () => toast.dismiss(),
-                  },
-                  {
-                    content: "Dismiss",
-                    handler: () => toast.dismiss(),
-                  },
-                ]
-              : [],
+            action: withAction
+              ? {
+                  altText: "Go to dashboard to undo",
+                  content: "Undo",
+                  handler: () => toast.dismiss(),
+                }
+              : undefined,
             variant,
           });
         }}
@@ -53,7 +47,7 @@ const meta = {
   component: ToastStoryComponent,
   argTypes: {
     variant: { options: TOAST_VARIANTS, control: "select" },
-    withButtons: {
+    withAction: {
       description:
         "Not a `Toast` component prop; this control is used to easily toggle on/off buttons in the storybook preview UI.",
     },
@@ -73,7 +67,7 @@ export const Playground: Story = {
     variant: "default",
     content:
       "Don't be afraid to make decisions. Put your feelings into it, your heart, it's your world. You are just a whisper floating across a mountain.",
-    withButtons: false,
+    withAction: false,
     dismissAfterDelay: true,
   },
 };
