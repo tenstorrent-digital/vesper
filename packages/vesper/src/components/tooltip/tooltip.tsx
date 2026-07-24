@@ -1,9 +1,6 @@
-import {
-  type CSSProperties,
-  Fragment,
-  isValidElement,
-  type ReactNode,
-} from "react";
+"use client";
+
+import { Fragment, isValidElement, type ReactNode } from "react";
 import {
   Tooltip as TooltipRoot,
   TooltipContent,
@@ -12,6 +9,8 @@ import {
 } from "@radix-ui/react-tooltip";
 
 import { Typography } from "@/components/typography/typography";
+
+import { useBaseRemSize } from "@/utils/useBaseRemSize";
 
 export const TOOLTIP_SIDES = ["top", "right", "bottom", "left"] as const;
 
@@ -61,6 +60,8 @@ export function Tooltip(props: TooltipProps) {
     sideOffset = 4,
   } = props;
 
+  const baseRemSize = useBaseRemSize();
+
   if (!isValidTooltipChild(content) || !isValidTooltipChild(children)) {
     return children;
   }
@@ -83,16 +84,12 @@ export function Tooltip(props: TooltipProps) {
         <Typography
           variant="label-xs"
           className="vesper-tooltip"
-          style={
-            {
-              maxWidth: `calc(${maxWidth} * (1rem / 16))`,
-              "--side-offset": sideOffset,
-              "--align-offset": alignOffset,
-            } as CSSProperties
-          }
+          style={{ maxWidth: `calc(${maxWidth} * (1rem / 16))` }}
           as={TooltipContent}
           align={align}
+          alignOffset={alignOffset * (baseRemSize / 16)}
           side={side}
+          sideOffset={baseRemSize / 2 + sideOffset * (baseRemSize / 16)}
         >
           {content}
           <div className="vesper-tooltip-arrow" />

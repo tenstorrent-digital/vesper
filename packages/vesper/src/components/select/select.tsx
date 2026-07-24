@@ -24,6 +24,7 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import { useBaseRemSize } from "@/utils/useBaseRemSize";
 
 export const SELECT_SIZES = ["sm", "md", "lg"] as const;
 
@@ -136,6 +137,8 @@ export function Select(props: SelectProps) {
    */
   const container = innerRef?.closest("dialog") || document.body;
 
+  const baseRemSize = useBaseRemSize();
+
   return (
     <SelectRoot
       value={value}
@@ -168,6 +171,7 @@ export function Select(props: SelectProps) {
           side="bottom"
           align="start"
           position="popper"
+          sideOffset={12 * (baseRemSize / 16)}
         >
           <SelectViewport className="vesper-select-viewport">
             {options.map((o) => (

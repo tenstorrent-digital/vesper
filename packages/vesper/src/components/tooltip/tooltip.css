@@ -10,22 +10,6 @@
     background: CanvasText;
     color: Canvas;
   }
-  &[data-side="top"] {
-    transform: translateX(calc(var(--align-offset) * (1rem / 16)))
-      translateY(calc(-0.5rem - (var(--side-offset) * (1rem / 16))));
-  }
-  &[data-side="bottom"] {
-    transform: translateX(calc(var(--align-offset) * (1rem / 16)))
-      translateY(calc(0.5rem + (var(--side-offset) * (1rem / 16))));
-  }
-  &[data-side="left"] {
-    transform: translateY(calc(var(--align-offset) * (1rem / 16)))
-      translateX(calc(-0.5rem - (var(--side-offset) * (1rem / 16))));
-  }
-  &[data-side="right"] {
-    transform: translateY(calc(var(--align-offset) * (1rem / 16)))
-      translateX(calc(0.5rem + (var(--side-offset) * (1rem / 16))));
-  }
   &[data-side="top"] .vesper-tooltip-arrow {
     top: 100%;
   }

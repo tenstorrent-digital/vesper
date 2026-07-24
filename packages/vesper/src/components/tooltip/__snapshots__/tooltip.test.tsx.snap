@@ -20,7 +20,7 @@ exports[`tooltip [snapshot] > open 1`] = `
   data-state="instant-open"
   id="radix-_r_a_"
   role="tooltip"
-  style="max-width: calc(15rem); --side-offset: 4; --align-offset: 0; --radix-tooltip-content-transform-origin: var(--radix-popper-transform-origin); --radix-tooltip-content-available-width: var(--radix-popper-available-width); --radix-tooltip-content-available-height: var(--radix-popper-available-height); --radix-tooltip-trigger-width: var(--radix-popper-anchor-width); --radix-tooltip-trigger-height: var(--radix-popper-anchor-height); animation: auto ease 0s 1 normal none running none;"
+  style="max-width: calc(15rem); --radix-tooltip-content-transform-origin: var(--radix-popper-transform-origin); --radix-tooltip-content-available-width: var(--radix-popper-available-width); --radix-tooltip-content-available-height: var(--radix-popper-available-height); --radix-tooltip-trigger-width: var(--radix-popper-anchor-width); --radix-tooltip-trigger-height: var(--radix-popper-anchor-height); animation: auto ease 0s 1 normal none running none;"
 >
   Tooltip text
   <div

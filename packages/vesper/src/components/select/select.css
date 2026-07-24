@@ -93,7 +93,6 @@
   background: var(--vesper-background-primary);
   box-shadow: var(--vesper-shadow-200);
   color: var(--vesper-text-primary);
-  transform: translateY(calc(12 * (1rem / 16)));
 }
 
 .vesper-select-viewport {
