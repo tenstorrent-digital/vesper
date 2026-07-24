@@ -36,7 +36,7 @@ export interface ToggleProps extends Omit<
 > {
   /** The list of toggle options to render. Each option can display either text or an icon. */
   options: ToggleOption[];
-  /** The size of the toggle and its options. Affects padding and typography. Defaults to `"lg"`. */
+  /** The size of the toggle and its options. Affects padding and typography. @default lg */
   size?: ToggleSize;
   /** The currently selected value (controlled mode). */
   value?: string;
@@ -44,7 +44,7 @@ export interface ToggleProps extends Omit<
   defaultValue?: string;
   /** Callback fired when the selected value changes. Receives the newly selected value. */
   onValueChange?(value: string): void;
-  /** When `true`, disables all toggle options, preventing interaction. */
+  /** When `true`, disables all toggle options, preventing interaction. @default false */
   disabled?: boolean;
 }
 
@@ -54,6 +54,39 @@ const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
   lg: "label-lg",
 };
 
+/**
+ * A segmented control component for selecting one option from a group of text or icon options.
+ *
+ * @param {ToggleOption[]} props.options - The list of toggle options to render
+ * @param {ToggleSize} [props.size] - (optional) The size of the toggle. @default lg
+ * @param {string} [props.value] - (optional) The currently selected value (controlled)
+ * @param {string} [props.defaultValue] - (optional) The initially selected value (uncontrolled)
+ * @param {(value: string) => void} [props.onValueChange] - (optional) Callback fired when the selected value changes
+ * @param {boolean} [props.disabled] - (optional) Disables all toggle options. @default false
+ *
+ * You may also pass any additional props to the underlying `div` element
+ *
+ * @example
+ * <Toggle
+ *   options={[
+ *     { value: "grid", icon: <Grid />, ariaLabel: "Grid view" },
+ *     { value: "list", icon: <List />, ariaLabel: "List view" },
+ *   ]}
+ *   value={view}
+ *   onValueChange={setView}
+ * />
+ *
+ * @example
+ * <Toggle
+ *   size="sm"
+ *   options={[
+ *     { value: "day", text: "Day" },
+ *     { value: "week", text: "Week" },
+ *     { value: "month", text: "Month" },
+ *   ]}
+ *   defaultValue="week"
+ * />
+ */
 export function Toggle(props: ToggleProps) {
   const { options, className, size = "lg", ...rest } = props;
 
