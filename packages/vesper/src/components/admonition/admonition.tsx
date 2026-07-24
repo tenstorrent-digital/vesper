@@ -35,11 +35,11 @@ export type AdmonitionProps<
   C extends ElementType = "button",
 > = Polymorphic<
   {
-    /** The size of the admonition. Affects padding and typography. Defaults to `"sm"`. */
+    /** The size of the admonition. Affects padding and typography. @default sm */
     size?: AdmonitionSize;
-    /** The visual variant of the admonition, which determines its color scheme and icon. Default to `"info"`. */
+    /** The visual variant of the admonition, which determines its color scheme and icon. @default info */
     variant?: AdmonitionVariant;
-    /** When `true`, renders the admonition with a more subdued, subtle appearance. */
+    /** When `true`, renders the admonition with a more subdued, subtle appearance. @default false */
     subtle?: boolean;
     /**
      * Props passed to the optional call-to-action button rendered alongside the admonition content.
@@ -47,7 +47,7 @@ export type AdmonitionProps<
      * The presence of this prop will render a small contrast-themed button to the right of the admonition content.
      */
     cta?: Omit<ButtonProps<C>, "size" | "variant" | "as">;
-    /** Sets the `ElementType` the cta will render as. Defaults to `"button"`. */
+    /** Sets the `ElementType` the cta will render as. @default button */
     ctaAs?: C;
   },
   E
@@ -60,6 +60,29 @@ const ADMONITION_TYPOGRAPHY_VARIANTS: {
   sm: "copy-xs",
 };
 
+/**
+ * A polymorphic callout component for displaying informational, success, warning, or error messages with an optional call-to-action button.
+ *
+ * @param {AdmonitionVariant} [props.variant] - (optional) The visual variant determining color and icon. @default info
+ * @param {AdmonitionSize} [props.size] - (optional) The size of the admonition. @default sm
+ * @param {boolean} [props.subtle] - (optional) Renders the admonition with a more subdued appearance
+ * @param {ButtonProps} [props.cta] - (optional) Props for an action button rendered alongside the content
+ * @param {React.ElementType} [props.as] - (optional) Element type to render. @default div
+ *
+ * @example
+ * <Admonition variant="warning">
+ *   Your session will expire in 5 minutes.
+ * </Admonition>
+ *
+ * @example
+ * <Admonition
+ *   variant="danger"
+ *   size="md"
+ *   cta={{ children: "Retry", onClick: handleRetry }}
+ * >
+ *   Failed to save changes.
+ * </Admonition>
+ */
 export function Admonition<
   E extends ElementType = "div",
   C extends ElementType = "button",
