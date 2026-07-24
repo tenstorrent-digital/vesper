@@ -66,7 +66,7 @@ export interface SwitchProps
     Pick<ComponentProps<"input">, ForwardedPropTypes> {
   /** The text label displayed next to the switch. An asterisk is appended when `required` is `true`. */
   label?: string;
-  /** The size of the switch and its label. Defaults to `"md"`. */
+  /** The size of the switch and its label. @default md */
   size?: SwitchSize;
   /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
   inputRef?: RefObject<HTMLInputElement | null>;
@@ -77,6 +77,29 @@ const SWITCH_TYPOGRAPHY: { [S in SwitchSize]: TypographyVariant } = {
   md: "label-lg",
 };
 
+/**
+ * A form-ready toggle switch input with an optional label, supporting controlled and uncontrolled usage.
+ *
+ * @param {string} [props.label] - (optional) The text label displayed next to the switch
+ * @param {SwitchSize} [props.size] - (optional) The size of the switch and its label. @default md
+ * @param {boolean} [props.checked] - (optional) The controlled checked state
+ * @param {boolean} [props.defaultChecked] - (optional) The initial checked state (uncontrolled)
+ * @param {boolean} [props.disabled] - (optional) Prevents interaction. @default false
+ * @param {boolean} [props.required] - (optional) Marks the switch as required for form validation. @default false
+ * @param {string} [props.name] - (optional) Form field name submitted with form data
+ *
+ * You may also pass any additional props to the underlying `label` element
+ *
+ * @example
+ * <Switch label="Enable notifications" name="notifications" />
+ *
+ * @example
+ * <Switch
+ *   label="Dark mode"
+ *   checked={darkMode}
+ *   onChange={(e) => setDarkMode(e.target.checked)}
+ * />
+ */
 export function Switch(props: SwitchProps) {
   const {
     // component-specific props
