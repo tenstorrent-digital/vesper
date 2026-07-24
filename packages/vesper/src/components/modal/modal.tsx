@@ -192,7 +192,7 @@ export function Modal(props: ModalProps) {
   const containerProps = {
     className: "vesper-modal-container",
     style: {
-      width: `calc(${width} * (1rem / 16))`,
+      width: typeof width === "number" ? `calc(${width} * (1rem / 16))` : width,
       maxHeight: `min(calc(100vh - var(--vesper-spacing-16)), ${computedMaxHeight})`,
     },
   };
