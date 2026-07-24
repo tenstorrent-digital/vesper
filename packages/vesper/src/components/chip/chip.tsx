@@ -62,7 +62,7 @@ export function Chip<E extends ElementType = "button">(props: ChipProps<E>) {
     iconLeft,
     iconRight,
     className,
-    selected = false,
+    selected,
     disabled = false,
     onChange,
     onClick,
