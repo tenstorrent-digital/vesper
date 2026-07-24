@@ -85,3 +85,20 @@ Github Pull Requests
 - `git checkout .` - destroys uncommitted changes
 - `git clean -fd` - deletes untracked files
 - `git stash` - stashes ALL changes including other agents' work
+
+## Documenting components
+
+When writing JSDoc comments for component props interfaces:
+- Keep the component description itself brief (one sentence should suffice).
+- For props with default values, append the param description with `@default VALUE`.
+
+When writing JSDoc comments for React component functions:
+- Keep the component description itself brief (one sentence should suffice).
+- Underneath the component description, list out the most relevant component props with a description and default value (if any).
+- For optional props, use the syntax: `@param {TYPE} [props.PROP_NAME] - (optional) DESCRIPTION`.
+- For required props, use the syntax: `@param {TYPE} props.PROP_NAME - DESCRIPTION`.
+- For props with default values, append the param description with `@default VALUE`.
+- If props can be forwarded to underlying elements, please call this out after listing the relevant props.
+- Finally, document some simple examples using `@example` syntax.
+
+For full examples of how this formatting might look like, please refer to existing JSDoc comments for exported components and their props in `packages/vesper/src/components/*.tsx`
