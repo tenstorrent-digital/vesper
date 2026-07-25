@@ -38,20 +38,18 @@ export function Snippet(props: SnippetProps) {
   const { className, children = "", variant = "default", ...rest } = props;
 
   return (
-    <Typography
-      as="div"
-      variant="copy-xs-mono"
+    <div
       className={cn("vesper-snippet", `vesper-snippet-${variant}`, className)}
       {...rest}
     >
       <pre>
-        <code>
+        <Typography as="code" variant="copy-xs-mono">
           {children.split("\n").map((line, index) => (
             <span key={index} className="line">
               {line}
             </span>
           ))}
-        </code>
+        </Typography>
       </pre>
       <IconButton
         variant={variant === "default" ? "ghost" : "contrast"}
@@ -61,6 +59,6 @@ export function Snippet(props: SnippetProps) {
         type="button"
         onClick={() => navigator.clipboard.writeText(children)}
       />
-    </Typography>
+    </div>
   );
 }
