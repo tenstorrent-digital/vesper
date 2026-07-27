@@ -9,6 +9,9 @@ export interface {{ name }}Props extends ComponentProps<'{{ element }}'> {}
  *
  * @param {ParamType} [props.optionalParam] - (optional) The prop description. @default value
  * @param {ParamType} props.requiredParam - The prop description
+ *
+ * @example
+ * <{{ name }} />
  */
 export function {{ name }}({ className, ...props }: {{ name }}Props) {
   return <{{ element }} className={cn("vesper-{{ kebabCase name }}", className)} {...props} />;
