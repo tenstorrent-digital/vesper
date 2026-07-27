@@ -15,7 +15,7 @@ function SelectStoryComponent({
 }) {
   return (
     <Select
-      style={{ width: "min(calc(100vw - 4rem), 240px)" }}
+      style={{ width: "min(calc(100vw - 4rem), 15rem)" }}
       icon={icon ? <Icon kind={icon} /> : undefined}
       options={[
         { value: "lions", label: "Lions" },

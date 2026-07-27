@@ -1,5 +1,5 @@
 .vesper-chip {
-  height: 28px;
+  height: 1.75rem;
   display: inline-flex;
   align-items: center;
   gap: var(--vesper-spacing-1);
@@ -7,9 +7,9 @@
   padding: 0 var(--vesper-spacing-2);
   cursor: pointer;
   @media (forced-colors: active) {
-    border: 1px solid CanvasText;
+    border: var(--vesper-stroke-base) solid CanvasText;
     &:focus-visible {
-      outline: 2px solid CanvasText;
+      outline: var(--vesper-stroke-strong) solid CanvasText;
     }
   }
   @media not (forced-colors: active) {
@@ -21,34 +21,34 @@
 
 .vesper-chip-default {
   color: var(--vesper-text-primary);
-  border: 1px solid var(--vesper-border-primary);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   background: var(--vesper-tint-inverse-200);
   &.vesper-chip-selected {
     color: var(--vesper-text-inverse-primary);
     background: var(--vesper-background-inverse-primary);
-    border: 1px solid var(--vesper-border-strong);
+    border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
     @media (forced-colors: active) {
       background: CanvasText;
-      border: 1px solid CanvasText;
+      border: var(--vesper-stroke-base) solid CanvasText;
       color: Canvas;
       forced-color-adjust: none;
     }
   }
   &:hover {
-    border: 1px solid var(--vesper-border-strong);
+    border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
   }
 }
 
 .vesper-chip-contrast {
   color: var(--vesper-text-inverse-primary);
-  border: 1px solid var(--vesper-border-strong);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
   background: var(--vesper-background-inverse-primary);
   &.vesper-chip-selected {
     color: var(--vesper-text-primary);
     background: var(--vesper-background-primary);
     @media (forced-colors: active) {
       background: Canvas;
-      border: 1px solid CanvasText;
+      border: var(--vesper-stroke-base) solid CanvasText;
       color: CanvasText;
       forced-color-adjust: none;
     }
@@ -61,8 +61,8 @@
     color: Canvas;
     forced-color-adjust: none;
     &:focus-visible {
-      outline-offset: 1px;
-      outline-width: 1px;
+      outline-offset: var(--vesper-spacing-micro);
+      outline-width: var(--vesper-stroke-base);
     }
   }
 }
@@ -71,7 +71,7 @@
   pointer-events: none;
   color: var(--vesper-text-disabled);
   background: var(--vesper-background-disabled);
-  border: 1px solid var(--vesper-border-disabled);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-disabled);
   .vesper-chip-icon {
     color: var(--vesper-icon-disabled);
   }
@@ -81,6 +81,6 @@
 }
 
 .vesper-chip-icon {
-  width: 14px;
-  height: 14px;
+  width: 0.875rem;
+  height: 0.875rem;
 }

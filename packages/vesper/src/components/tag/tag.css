@@ -3,36 +3,40 @@
   align-items: center;
 }
 
+.vesper-tag-icon {
+  display: flex;
+}
+
 .vesper-tag-sm {
-  height: 20px;
+  height: 1.25rem;
   gap: var(--vesper-spacing-half);
   padding: 0 var(--vesper-spacing-1);
   border-radius: var(--vesper-radius-half);
   .vesper-tag-icon {
-    width: 12px;
-    height: 12px;
+    width: 0.75rem;
+    height: 0.75rem;
   }
 }
 
 .vesper-tag-md {
-  height: 24px;
+  height: 1.5rem;
   gap: var(--vesper-spacing-1);
   padding: 0 var(--vesper-spacing-2);
   border-radius: var(--vesper-radius-1);
   .vesper-tag-icon {
-    width: 14px;
-    height: 14px;
+    width: 0.875rem;
+    height: 0.875rem;
   }
 }
 
 .vesper-tag-lg {
-  height: 28px;
+  height: 1.75rem;
   gap: var(--vesper-spacing-1);
   padding: 0 var(--vesper-spacing-2);
   border-radius: var(--vesper-radius-1);
   .vesper-tag-icon {
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
   }
 }
 

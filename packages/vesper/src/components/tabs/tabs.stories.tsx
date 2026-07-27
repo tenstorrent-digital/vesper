@@ -24,7 +24,7 @@ const TabsStoryComponent = ({
   return (
     <Tabs
       variant={variant}
-      defaultValue="tab-1"
+      // defaultValue="tab-1"
       items={[
         {
           value: "tab-1",

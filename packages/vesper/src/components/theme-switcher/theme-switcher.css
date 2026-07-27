@@ -2,14 +2,14 @@
   display: inline-flex;
   max-width: fit-content;
   background: var(--vesper-background-primary);
-  outline: 1px solid var(--vesper-border-primary);
+  outline: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   position: relative;
 }
 .vesper-theme-switcher-lg {
-  height: 32px;
+  height: 2rem;
   border-radius: var(--vesper-radius-2);
   .vesper-theme-switcher-button {
-    padding: 6px;
+    padding: 0.375rem;
     border-radius: var(--vesper-radius-2);
   }
   .vesper-theme-switcher-indicator {
@@ -17,10 +17,10 @@
   }
 }
 .vesper-theme-switcher-sm {
-  height: 24px;
+  height: 1.5rem;
   border-radius: var(--vesper-radius-1);
   .vesper-theme-switcher-button {
-    padding: 5px;
+    padding: 0.3125rem;
     border-radius: var(--vesper-radius-1);
   }
   .vesper-theme-switcher-indicator {
@@ -35,7 +35,7 @@
   aspect-ratio: 1;
   @media (forced-colors: active) {
     &:focus-visible {
-      outline: 2px solid CanvasText;
+      outline: var(--vesper-stroke-strong) solid CanvasText;
     }
   }
   @media not (forced-colors: active) {
@@ -46,17 +46,17 @@
 }
 .vesper-theme-switcher-indicator {
   position: absolute;
-  top: -1px;
-  left: -1px;
-  height: calc(100% + 2px);
+  top: calc(var(--vesper-spacing-micro) * -1);
+  left: calc(var(--vesper-spacing-micro) * -1);
+  height: calc(100% + var(--vesper-spacing-half));
   aspect-ratio: 1;
-  border: 1px solid var(--vesper-border-primary);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   transition: transform var(--vesper-transition-duration-fast) ease;
   pointer-events: none;
 }
 html[data-vesper-theme="system"] {
   .vesper-theme-switcher-indicator {
-    transform: translateX(0px);
+    transform: translateX(0rem);
   }
   .vesper-theme-switcher-button-system {
     color: var(--vesper-icon-primary);
@@ -64,7 +64,7 @@ html[data-vesper-theme="system"] {
 }
 html[data-vesper-theme="light"] {
   .vesper-theme-switcher-indicator {
-    transform: translateX(calc(100% - 2px));
+    transform: translateX(calc(100% - var(--vesper-spacing-half)));
   }
   .vesper-theme-switcher-button-light {
     color: var(--vesper-icon-primary);
@@ -72,7 +72,7 @@ html[data-vesper-theme="light"] {
 }
 html[data-vesper-theme="dark"] {
   .vesper-theme-switcher-indicator {
-    transform: translateX(calc(200% - 4px));
+    transform: translateX(calc(200% - var(--vesper-spacing-1)));
   }
   .vesper-theme-switcher-button-dark {
     color: var(--vesper-icon-primary);

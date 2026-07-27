@@ -42,7 +42,7 @@
   }
   &[open] {
     opacity: 1;
-    transform: translateY(0px);
+    transform: translateY(0rem);
     &::before {
       background: var(--vesper-scrim-contrast-base);
     }
@@ -60,13 +60,14 @@
   position: relative;
   background: var(--vesper-background-primary);
   border-radius: var(--vesper-radius-3);
-  border: 1px solid var(--vesper-border-primary);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   box-shadow: var(--vesper-shadow-300);
   max-width: calc(100vw - var(--vesper-spacing-16));
   display: flex;
   flex-direction: column;
   gap: var(--vesper-spacing-6);
   padding-bottom: var(--vesper-spacing-6);
+  overflow: hidden;
 }
 
 .vesper-modal-header {

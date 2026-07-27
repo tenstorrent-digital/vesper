@@ -1,4 +1,6 @@
-import { type ReactElement, type ReactNode } from "react";
+"use client";
+
+import type { ReactElement, ReactNode } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,6 +11,8 @@ import {
 
 import { Checkmark, Lock } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
+
+import { useBaseRemSize } from "@/utils/useBaseRemSize";
 
 export type MenuItemProps = {
   /** The text label displayed for the menu item. */
@@ -54,9 +58,11 @@ export function Menu(props: MenuProps) {
     side = "bottom",
     sideOffset = 8,
     align = "start",
-    alignOffset,
+    alignOffset = 0,
     ...rest
   } = props;
+
+  const baseRemSize = useBaseRemSize();
 
   return (
     <DropdownMenu {...rest}>
@@ -64,11 +70,11 @@ export function Menu(props: MenuProps) {
       <DropdownMenuPortal>
         <DropdownMenuContent
           className="vesper-menu"
-          style={{ width }}
+          style={{ width: `calc(${width} * (1rem / 16))` }}
           side={side}
-          sideOffset={sideOffset}
+          sideOffset={sideOffset * (baseRemSize / 16)}
           align={align}
-          alignOffset={alignOffset}
+          alignOffset={alignOffset * (baseRemSize / 16)}
         >
           {items.map((item, index) => (
             <MenuItem key={index} {...item} />

@@ -2,7 +2,7 @@
   color: var(--vesper-text-primary);
   display: flex;
   align-items: center;
-  border: 1px solid var(--vesper-border-primary);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   background: var(--vesper-tint-neutral-100);
   &:not(:disabled) {
     cursor: pointer;
@@ -27,7 +27,7 @@
     border-color: var(--vesper-border-strong);
     box-shadow: var(--vesper-shadow-focus-ring);
     @media (forced-colors: active) {
-      outline: 2px solid CanvasText;
+      outline: var(--vesper-stroke-strong) solid CanvasText;
     }
     @media not (forced-colors: active) {
       box-shadow: var(--vesper-shadow-focus-ring);
@@ -89,7 +89,7 @@
 .vesper-select-content {
   min-width: var(--radix-select-trigger-width);
   border-radius: var(--vesper-radius-3);
-  border: 1px solid var(--vesper-border-tertiary);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
   background: var(--vesper-background-primary);
   box-shadow: var(--vesper-shadow-200);
   color: var(--vesper-text-primary);

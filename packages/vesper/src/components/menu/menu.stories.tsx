@@ -1,13 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { Button } from "@/components/button/button";
 import { Blackhole, Globe, Tenstorrent } from "@/components/icons/icons";
 import { Menu } from "@/components/menu/menu";
-import { TextButton } from "@/components/text-button/text-button";
 
 const meta = {
   component: Menu,
   argTypes: {
     items: { table: { disable: true } },
+    defaultOpen: { table: { disable: true } },
+    children: { table: { disable: true } },
+    open: { table: { disable: true } },
+    onOpenChange: { table: { disable: true } },
   },
 } satisfies Meta<typeof Menu>;
 
@@ -53,13 +57,16 @@ export const Playground: Story = {
       },
     ],
     width: 200,
-    defaultOpen: true,
+    sideOffset: 8,
+    side: "bottom",
+    align: "start",
+    alignOffset: 0,
   },
   render: (props) => (
-    <Menu {...props}>
-      <TextButton size="lg" variant="contrast">
-        click me
-      </TextButton>
+    <Menu {...props} open>
+      <Button size="lg" variant="contrast">
+        menu trigger
+      </Button>
     </Menu>
   ),
 };

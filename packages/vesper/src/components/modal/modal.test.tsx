@@ -125,8 +125,10 @@ describe("modal [unit]", () => {
     const { container } = render(
       <Modal title={TITLE} description={DESCRIPTION} width={600} />,
     );
-    const modalContainer = container.querySelector(".vesper-modal-container");
-    expect(modalContainer).toHaveStyle("width: 600px");
+    const modalContainer = container.querySelector(
+      ".vesper-modal-container",
+    ) as HTMLElement;
+    expect(modalContainer.style.width).toBe("calc(37.5rem)");
   });
 
   test("custom width is applied (string)", () => {
@@ -143,8 +145,10 @@ describe("modal [unit]", () => {
     const { container } = render(
       <Modal title={TITLE} description={DESCRIPTION} />,
     );
-    const modalContainer = container.querySelector(".vesper-modal-container");
-    expect(modalContainer).toHaveStyle("width: 452px");
+    const modalContainer = container.querySelector(
+      ".vesper-modal-container",
+    ) as HTMLElement;
+    expect(modalContainer.style.width).toBe("calc(28.25rem)");
   });
 
   test("custom maxHeight is applied (number)", () => {
@@ -155,7 +159,7 @@ describe("modal [unit]", () => {
       ".vesper-modal-container",
     ) as HTMLElement;
     expect(modalContainer.style.maxHeight).toBe(
-      "min(calc(100vh - var(--vesper-spacing-16)), 800px)",
+      "min(calc(100vh - var(--vesper-spacing-16)), calc(800 * (1rem / 16)))",
     );
   });
 

@@ -4,7 +4,7 @@
   padding: var(--vesper-spacing-2) var(--vesper-spacing-3);
   align-items: center;
   gap: var(--vesper-spacing-16);
-  border: 1px solid var(--vesper-border-tertiary);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
   border-radius: var(--vesper-radius-1);
   pre {
     margin: 0;

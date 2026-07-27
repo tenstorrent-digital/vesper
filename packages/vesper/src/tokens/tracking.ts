@@ -1,9 +1,0 @@
-export const tracking = {
-  tightest: "-0.75px",
-  tighter: "-0.5px",
-  tight: "-0.25px",
-  normal: "0px",
-  wide: "0.25px",
-  wider: "0.5px",
-  widest: "0.75px",
-};
