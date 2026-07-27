@@ -1,8 +1,5 @@
 import type { ComponentProps } from "react";
-import {
-  type LanguageRegistration,
-  type ShikiTransformer,
-} from "@shikijs/core";
+import type { LanguageRegistration } from "@shikijs/core";
 
 import { cn } from "@/utils/cn";
 
