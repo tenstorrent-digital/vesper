@@ -28,7 +28,7 @@ export interface CodeBlockProps extends Omit<
    * @see https://shiki.style/languages for a list of available languages along with their `id`s
    * */
   lang?: LanguageRegistration[] | "text" | "ansi";
-  /** Whether or not to show line numbers on the left-hand side of the code block. @default text */
+  /** Whether or not to show line numbers on the left-hand side of the code block. @default false */
   showLineNumbers?: boolean;
   /** Hide the copy-to-clipboard button until CodeBlock is hovered. @default false */
   copyOnHover?: boolean;
