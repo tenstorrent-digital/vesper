@@ -47,7 +47,10 @@ const BADGE_TYPOGRAPHY_VARIANTS: { [S in BadgeSize]: TypographyVariant } = {
 };
 
 /**
- * A polymorphic badge component for highlighting status, categories, or counts with color variants and optional icons.
+ * A polymorphic badge component for describing the content it sits next to (e.g. plan tier, environment, role) with color variants and optional icons. Unlike Tag (which categorizes content) and Chip (which displays on/off states), Badges provide contextual metadata about adjacent content.
+ *
+ * @see packages/vesper/src/components/chip/chip.tsx
+ * @see packages/vesper/src/components/tag/tag.tsx
  *
  * @param {BadgeSize} [props.size] - (optional) The size of the badge. @default lg
  * @param {BadgeVariant} [props.variant] - (optional) The color variant of the badge. @default accent

@@ -32,7 +32,10 @@ export type ChipProps<E extends ElementType = "button"> = Polymorphic<
 >;
 
 /**
- * A polymorphic selectable chip component for filtering or toggling categories, supporting icons and click callbacks.
+ * A polymorphic selectable chip component for displaying on/off states in UI panels and forms, supporting icons and click callbacks. Unlike Tag (which categorizes content) and Badge (which describes adjacent content), Chips represent toggleable selections.
+ *
+ * @see packages/vesper/src/components/badge/badge.tsx
+ * @see packages/vesper/src/components/tag/tag.tsx
  *
  * @param {ChipVariant} [props.variant] - (optional) The visual style variant. @default default
  * @param {boolean} [props.selected] - (optional) Whether the chip is currently selected @default false
