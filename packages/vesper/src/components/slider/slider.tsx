@@ -21,7 +21,7 @@ interface SliderProps extends Omit<
   valueLabel?: string;
   /** When `true`, displays the value label above the thumb. */
   showValueLabel?: boolean;
-  /** The initial thumb value (uncontrolled mode). Defaults to `min` */
+  /** The initial thumb value (uncontrolled mode). @default props.min */
   defaultValue?: number;
   /** Callback fired as the thumb value changes during interaction. Receives the current value. */
   onValueChange?(value: number): void;
@@ -31,6 +31,40 @@ interface SliderProps extends Omit<
   thumbAriaLabel?: string;
 }
 
+/**
+ * A single-thumb slider for selecting a numeric value within a range.
+ *
+ * @param {number} [props.value] - (optional) The controlled value of the slider thumb
+ * @param {number} [props.defaultValue] - (optional) The initial thumb value (uncontrolled). @default props.min
+ * @param {(value: number) => void} [props.onValueChange] - (optional) Callback fired as the thumb value changes during interaction
+ * @param {(value: number) => void} [props.onValueCommit] - (optional) Callback fired when thumb interaction is completed
+ * @param {number} [props.min] - (optional) The minimum allowed value. @default 0
+ * @param {number} [props.max] - (optional) The maximum allowed value. @default 100
+ * @param {number} [props.step] - (optional) The stepping interval. @default 1
+ * @param {boolean} [props.showValueLabel] - (optional) Whether to display the value label above the thumb. @default false
+ * @param {boolean} [props.showTicks] - (optional) Whether to render tick marks at each step interval. @default false
+ *
+ * You may also pass any additional props to the underlying `div` element
+ *
+ * @example
+ * <Slider
+ *   min={0}
+ *   max={100}
+ *   defaultValue={50}
+ *   onValueCommit={(value) => console.log(value)}
+ * />
+ *
+ * @example
+ * <Slider
+ *   min={0}
+ *   max={10}
+ *   step={1}
+ *   showTicks
+ *   showValueLabel
+ *   value={volume}
+ *   onValueChange={setVolume}
+ * />
+ */
 export function Slider(props: SliderProps) {
   const {
     value,

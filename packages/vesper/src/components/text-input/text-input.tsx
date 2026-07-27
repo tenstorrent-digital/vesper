@@ -88,9 +88,9 @@ type ForwardedPropTypes =
 type InputOnlyPropTypes = "min" | "max" | "multiple" | "pattern" | "list";
 
 interface TextInputBaseProps {
-  /** The size of the text input. Affects padding and typography. Defaults to `"lg"`. */
+  /** The size of the text input. Affects padding and typography. @default lg */
   size?: TextInputSize;
-  /** The visual variant of the text input, which determines its color scheme and message icon. Defaults to `"default"`. */
+  /** The visual variant of the text input, which determines its color scheme and message icon. @default default */
   variant?: TextInputVariant;
   /** An optional message displayed below the input, paired with a variant-specific icon. Also linked to the input via `aria-describedby`. */
   message?: string;
@@ -114,14 +114,14 @@ export type MultiLineTextInputProps = TextInputBaseProps &
 export type SingleLineTextInputProps = TextInputBaseProps &
   Omit<ComponentProps<"div">, ForwardedPropTypes> &
   Pick<ComponentProps<"input">, ForwardedPropTypes | InputOnlyPropTypes> & {
-    /** When false or omitted, renders a single-line `<input>` element. */
+    /** When false or omitted, renders a single-line `<input>` element. @default false */
     multiline?: false;
     /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
     inputRef?: RefObject<HTMLInputElement | null>;
     height?: never;
     /** An optional icon element rendered to the left of the input field. */
     icon?: ReactNode;
-    /** The HTML input type. Determines the browser's native input behavior and keyboard. Defaults to `"text"`. */
+    /** The HTML input type. Determines the browser's native input behavior and keyboard. @default text */
     type?:
       | "text"
       | "email"
@@ -153,6 +153,35 @@ const CLEAR_BUTTON_DISABLED_TYPES = [
   "time",
 ];
 
+/**
+ * A form-ready text input component supporting single-line and multiline modes with labels, icons, validation messages, and variants.
+ *
+ * @param {TextInputSize} [props.size] - (optional) The size of the text input. @default lg
+ * @param {TextInputVariant} [props.variant] - (optional) The visual variant determining color scheme and message icon. @default default
+ * @param {string} [props.label] - (optional) A label displayed above the input
+ * @param {string} [props.message] - (optional) A message displayed below the input with a variant-specific icon
+ * @param {boolean} [props.multiline] - (optional) When `true`, renders a `<textarea>` instead of an `<input>`. @default false
+ * @param {ReactNode} [props.icon] - (optional) An icon rendered to the left of the input field (single-line only)
+ * @param {string} [props.type] - (optional) The HTML input type. @default text
+ * @param {string} [props.placeholder] - (optional) Placeholder text for the input
+ *
+ * You may also pass any additional props to the underlying `div` wrapper or input/textarea element
+ *
+ * @example
+ * <TextInput label="Email" name="email" type="email" required />
+ *
+ * @example
+ * <TextInput
+ *   variant="error"
+ *   message="This field is required"
+ *   label="Username"
+ *   value={username}
+ *   onChange={(e) => setUsername(e.target.value)}
+ * />
+ *
+ * @example
+ * <TextInput multiline label="Bio" height={120} maxLength={500} />
+ */
 export function TextInput(props: TextInputProps) {
   const {
     // component-specific props

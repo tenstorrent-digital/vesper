@@ -20,7 +20,7 @@ export type RadioGroupItem = {
   value: string;
   /** The text label displayed next to the radio input. */
   label: string;
-  /** When true, prevents this individual option from being selected. */
+  /** When true, prevents this individual option from being selected. @default false */
   disabled?: boolean;
   /** An optional HTML `id` attribute applied to the underlying radio input element. */
   id?: string;
@@ -30,11 +30,11 @@ export interface RadioGroupProps extends Omit<
   ComponentProps<"fieldset">,
   "children" | "onChange" | "defaultValue"
 > {
-  /** The size of the radio inputs and their labels. Default to `"md"`. */
+  /** The size of the radio inputs and their labels. @default md */
   size?: RadioSize;
-  /** The layout direction of the radio options. Default to `"vertical"`. */
+  /** The layout direction of the radio options. @default vertical */
   orientation?: RadioGroupOrientation;
-  /** When `true`, a selection is required for form validation. */
+  /** When `true`, a selection is required for form validation. @default false */
   required?: boolean;
   /** The list of radio options to render. */
   options: RadioGroupItem[];
@@ -53,6 +53,41 @@ const RADIO_GROUP_ITEM_TYPOGRAPHY: { [S in RadioSize]: TypographyVariant } = {
   md: "label-lg",
 };
 
+/**
+ * A form-ready radio group component for single-value selection from a list of options.
+ *
+ * @param {string} props.name - The name attribute shared by all radio inputs, used for form submission
+ * @param {RadioGroupItem[]} props.options - The list of radio options to render
+ * @param {RadioSize} [props.size] - (optional) The size of the radio inputs and labels. Default: `"md"`
+ * @param {RadioGroupOrientation} [props.orientation] - (optional) The layout direction of the options. Default: `"vertical"`
+ * @param {string} [props.value] - (optional) The currently selected value (controlled)
+ * @param {string} [props.defaultValue] - (optional) The initially selected value (uncontrolled)
+ * @param {(value: string) => void} [props.onChange] - (optional) Callback fired when the selected value changes
+ * @param {boolean} [props.required] - (optional) Marks a selection as required for form validation. @default false
+ *
+ * You may also pass any additional props to the underlying `fieldset` element
+ *
+ * @example
+ * <RadioGroup
+ *   name="color"
+ *   options={[
+ *     { value: "red", label: "Red" },
+ *     { value: "blue", label: "Blue" },
+ *     { value: "green", label: "Green" },
+ *   ]}
+ *   value={color}
+ *   onChange={setColor}
+ * />
+ *
+ * @example
+ * <RadioGroup
+ *   name="size"
+ *   size="sm"
+ *   orientation="horizontal"
+ *   options={sizeOptions}
+ *   defaultValue="md"
+ * />
+ */
 export function RadioGroup(props: RadioGroupProps) {
   const {
     size = "md",

@@ -22,11 +22,11 @@ export type ButtonSize = (typeof BUTTON_SIZES)[number];
 
 export type ButtonProps<E extends ElementType = "button"> = Polymorphic<
   {
-    /** The size of the button. Affects padding and font size. @default "lg" */
+    /** The size of the button. Affects padding and font size. @default lg */
     size?: ButtonSize;
-    /** The visual style variant of the button. @default "primary" */
+    /** The visual style variant of the button. @default primary */
     variant?: ButtonVariant;
-    /** When true, renders the button in a disabled state and prevents interaction. */
+    /** When true, renders the button in a disabled state and prevents interaction. @default false */
     disabled?: boolean;
     /** An optional icon element rendered to the left of the button content. */
     iconLeft?: ReactNode;
@@ -36,6 +36,37 @@ export type ButtonProps<E extends ElementType = "button"> = Polymorphic<
   E
 >;
 
+/**
+ * A polymorphic button component with multiple size and style variants, supporting optional leading and trailing icons.
+ *
+ * Unlike `TextButton` (which renders text without a background fill or outline), `IconButton` (which displays a single icon without text), and `SplitButton` (which pairs a primary action with a dropdown menu), `Button` is the standard interactive control for triggering actions.
+ *
+ * @see packages/vesper/src/components/icon-button/icon-button.tsx
+ * @see packages/vesper/src/components/split-button/split-button.tsx
+ * @see packages/vesper/src/components/text-/text-button.tsx
+ *
+ * @param {ButtonSize} [props.size] - (optional) The size of the button. @default lg
+ * @param {ButtonVariant} [props.variant] - (optional) The visual style variant. @default primary
+ * @param {boolean} [props.disabled] - (optional) Renders the button in a disabled state. @default false
+ * @param {ReactNode} [props.iconLeft] - (optional) An icon rendered to the left of the button content
+ * @param {ReactNode} [props.iconRight] - (optional) An icon rendered to the right of the button content
+ * @param {React.ElementType} [props.as] - (optional) Element type to render. @default button
+ *
+ * You may also pass any additional props to the underlying element
+ *
+ * @example
+ * <Button onClick={handleClick}>Submit</Button>
+ *
+ * @example
+ * <Button variant="danger" size="sm" iconLeft={<Trash />}>
+ *   Delete
+ * </Button>
+ *
+ * @example
+ * <Button as="a" href="/docs" variant="ghost">
+ *   Documentation
+ * </Button>
+ */
 export function Button<E extends ElementType = "button">(
   props: ButtonProps<E>,
 ) {

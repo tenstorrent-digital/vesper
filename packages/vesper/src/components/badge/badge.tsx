@@ -28,11 +28,11 @@ export type BadgeVariant = (typeof BADGE_VARIANTS)[number];
 
 export type BadgeProps<E extends ElementType = "div"> = Polymorphic<
   {
-    /** The size of the badge. Affects padding and typography. Defaults to `"lg"`. */
+    /** The size of the badge. Affects padding and typography. @default lg */
     size?: BadgeSize;
-    /** The color variant of the badge. Defaults to `"accent"`. */
+    /** The color variant of the badge. @default accent */
     variant?: BadgeVariant;
-    /** When true, renders the badge with a more subdued, subtle appearance. */
+    /** When true, renders the badge with a more subdued, subtle appearance. @default false */
     subtle?: boolean;
     /** An optional icon element rendered to the left of the badge text. */
     icon?: ReactNode;
@@ -46,6 +46,30 @@ const BADGE_TYPOGRAPHY_VARIANTS: { [S in BadgeSize]: TypographyVariant } = {
   sm: "label-xs",
 };
 
+/**
+ * A polymorphic badge component for describing the content it sits next to (e.g. plan tier, environment, role) with color variants and optional icons.
+ *
+ * Unlike `Tag` (which categorizes content) and `Chip` (which displays on/off states), `Badges` provide contextual metadata about adjacent content.
+ *
+ * @see packages/vesper/src/components/chip/chip.tsx
+ * @see packages/vesper/src/components/tag/tag.tsx
+ *
+ * @param {BadgeSize} [props.size] - (optional) The size of the badge. @default lg
+ * @param {BadgeVariant} [props.variant] - (optional) The color variant of the badge. @default accent
+ * @param {boolean} [props.subtle] - (optional) Renders the badge with a more subdued appearance. @default false
+ * @param {ReactNode} [props.icon] - (optional) An icon element rendered to the left of the badge text
+ * @param {React.ElementType} [props.as] - (optional) Element type to render. @default div
+ *
+ * You may also pass any additional props to the underlying element
+ *
+ * @example
+ * <Badge variant="success">Active</Badge>
+ *
+ * @example
+ * <Badge size="sm" variant="danger" icon={<ErrorSolid />} subtle>
+ *   3 errors
+ * </Badge>
+ */
 export function Badge<E extends ElementType = "div">(props: BadgeProps<E>) {
   const {
     as: Component = "div",
