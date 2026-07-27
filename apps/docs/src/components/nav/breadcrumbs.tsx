@@ -14,9 +14,8 @@ export const Breadcrumbs = () => {
     <div id="breadcrumbs" aria-label="Breadcrumbs">
       {paths.map((path, index) => (
         <Fragment key={index}>
-          <Link href={`/${path}`}>
+          <Link href={`/${paths.slice(0, index + 1).join("/")}`}>
             <Typography as="span" variant="copy-md-bold">
-              {" "}
               {path}
             </Typography>
           </Link>

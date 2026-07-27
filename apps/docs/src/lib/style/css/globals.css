@@ -93,17 +93,35 @@ nav#nav {
   .nav-left {
     #home {
       @media (min-width: 768px) {
+        /*
+          reserve the sidebar's width so `#breadcrumbs` optically aligns with
+          the content column.
+          `12rem` is the full sidebar width: it is `box-sizing: border-box`,
+          so its own padding is already included.
+        */
         width: calc(
-          12rem /* min width of sidebar */ + calc(calc(var(--spacing) * 4))
-            /* the sidebar itself */ + calc(calc(var(--spacing) * 2))
-            /* prose padding */ - var(--spacing) /* gap in `.nav-left` */
+          12rem /* width of sidebar */ + var(--spacing) /* prose padding */ -
+            var(--spacing) /* padding in `nav#nav` */ - var(--spacing)
+            /* gap in `.nav-left` */
         );
+        /*
+          without this, `#home` is shrunk by an amount proportional to the
+          width of the current breadcrumb trail, so the breadcrumbs shift
+          horizontally on every navigation
+        */
+        flex-shrink: 0;
       }
     }
   }
 
   #breadcrumbs {
-    width: 100%;
+    /*
+      must not be `100%`: `.nav-left` is sized by its content, so a percentage
+      width resolves against a width it also contributes to, overflowing
+      `.nav-left` and forcing `#home` to shrink
+    */
+    width: auto;
+    min-width: 0;
     padding: var(--spacing) 0;
     display: flex;
     gap: var(--spacing);
