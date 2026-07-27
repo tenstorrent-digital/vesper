@@ -57,6 +57,11 @@ const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
 /**
  * A segmented control component for selecting one option from a group of text or icon options.
  *
+ * Unlike `Checkbox` (which handles individual boolean selections and indeterminate state) and `Switch` (which presents a binary on/off toggle as a sliding pill), `Toggle` allows selecting one value from a set of mutually exclusive options.
+ *
+ * @see packages/vesper/src/components/checkbox/checkbox.tsx
+ * @see packages/vesper/src/components/switch/switch.tsx
+ *
  * @param {ToggleOption[]} props.options - The list of toggle options to render
  * @param {ToggleSize} [props.size] - (optional) The size of the toggle. @default lg
  * @param {string} [props.value] - (optional) The currently selected value (controlled)
