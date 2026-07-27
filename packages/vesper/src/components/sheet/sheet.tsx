@@ -51,6 +51,10 @@ export interface SheetProps extends Omit<
 /**
  * A slide-in panel component for supplementary content, supporting both modal and popover modes.
  *
+ * Unlike `Modal`, which is meant to always block user interaction with underlying content, `Sheet` can be configured to allow the user to continue to interact with the rest of the page.
+ *
+ * @see packages/vesper/src/components/modal/modal.tsx
+ *
  * @param {string} props.title - The title text displayed in the sheet header
  * @param {string} props.description - A description displayed below the title
  * @param {SheetSide} [props.side] - (optional) The side of the viewport the sheet slides in from. @default right

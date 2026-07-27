@@ -80,6 +80,10 @@ export interface ModalProps extends Omit<
 /**
  * A dialog overlay component for focused user interactions, supporting forms, custom widths, and action buttons.
  *
+ * Unlike `Sheet`, which can be configured to allow the user to continue to interact with the rest of the page, `Modal` is meant to always block user interaction with underlying content.
+ *
+ * @see packages/vesper/src/components/sheet/sheet.tsx
+ *
  * @param {string} props.title - The title text displayed in the modal header
  * @param {string} props.description - A description displayed below the title
  * @param {number | string} [props.width] - (optional) The width of the modal container. @default 452
