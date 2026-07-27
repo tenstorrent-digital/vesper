@@ -155,10 +155,6 @@
       "types": "./dist/components/icons/icons.d.ts",
       "import": "./dist/components/icons/icons.js"
     },
-    "./tokens": {
-      "types": "./dist/tokens/index.d.ts",
-      "import": "./dist/tokens/index.js"
-    },
     "./styles.css": "./dist/styles/styles.css",
     "./tailwind.css": "./dist/styles/tailwind.css"
   },
