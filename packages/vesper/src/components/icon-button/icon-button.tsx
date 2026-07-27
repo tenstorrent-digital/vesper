@@ -28,6 +28,12 @@ export type IconButtonProps<E extends ElementType = "button"> = Polymorphic<
 /**
  * A polymorphic icon-only button component that wraps the Button with a single icon and no text content.
  *
+ * Unlike `Button` (which displays text with optional icons), `TextButton` (which renders as a minimal text-styled control), and `SplitButton` (which pairs a primary action with a dropdown menu), `IconButton` only renders an icon on a filled or outlined background.
+ *
+ * @see packages/vesper/src/components/button/button.tsx
+ * @see packages/vesper/src/components/text-button/text-button.tsx
+ * @see packages/vesper/src/components/split-button/split-button.tsx
+ *
  * @param {ReactNode} props.icon - The icon element rendered inside the button
  * @param {ButtonSize} [props.size] - (optional) The size of the button. @default lg
  * @param {ButtonVariant} [props.variant] - (optional) The visual style variant. @default primary

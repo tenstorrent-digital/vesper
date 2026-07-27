@@ -39,7 +39,13 @@ export type TextButtonProps<E extends ElementType = "button"> = Polymorphic<
 >;
 
 /**
- * A polymorphic text-only button component with color variants and optional leading/trailing icons.
+ * A polymorphic text-only button component with color variants and optional leading/trailing icons, rendered without a background.
+ *
+ * Unlike `Button` (which renders with a filled or outlined background), `IconButton` (which displays a single icon without text), and `SplitButton` (which pairs a primary action with a dropdown menu), `TextButton` provides a minimal, text-styled control.
+ *
+ * @see packages/vesper/src/components/button/button.tsx
+ * @see packages/vesper/src/components/icon-button/icon-button.tsx
+ * @see packages/vesper/src/components/split-button/split-button.tsx
  *
  * @param {TextButtonSize} [props.size] - (optional) The size of the text button. @default lg
  * @param {TextButtonVariant} [props.variant] - (optional) The color variant. @default accent
