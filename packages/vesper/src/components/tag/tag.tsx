@@ -42,7 +42,9 @@ export type TagProps<E extends ElementType = "div"> = Polymorphic<
 >;
 
 /**
- * A polymorphic label component for categorizing content with color variants and optional icons. Unlike Badge (which describes adjacent content like plan tiers or roles) and Chip (which displays on/off states), Tags are used to classify and organize content into categories.
+ * A polymorphic label component for categorizing content with color variants and optional icons.
+ *
+ * Unlike `Badge` (which describes adjacent content like plan tiers or roles) and `Chip` (which displays on/off states), `Tags` are used to classify and organize content into categories.
  *
  * @see packages/vesper/src/components/badge/badge.tsx
  * @see packages/vesper/src/components/chip/chip.tsx
