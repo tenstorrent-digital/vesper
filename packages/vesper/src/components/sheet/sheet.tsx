@@ -58,7 +58,7 @@ export interface SheetProps extends Omit<
  * @param {RefObject<SheetRef>} [props.ref] - (optional) A ref exposing imperative `open()` and `close()` methods
  * @param {ButtonProps[]} [props.buttons] - (optional) Action buttons rendered at the bottom of the sheet
  *
- * You may also pass any additional props to the underlying `dialog` element.
+ * You may also pass any additional props to the underlying `dialog` element
  *
  * @example
  * const { ref, open, close } = useSheet();

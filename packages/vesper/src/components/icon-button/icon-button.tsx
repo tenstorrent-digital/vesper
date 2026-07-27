@@ -34,7 +34,7 @@ export type IconButtonProps<E extends ElementType = "button"> = Polymorphic<
  * @param {boolean} [props.disabled] - (optional) Renders the button in a disabled state. @default false
  * @param {React.ElementType} [props.as] - (optional) Element type to render. @default button
  *
- * You may also pass any additional props to the underlying element.
+ * You may also pass any additional props to the underlying element
  *
  * @example
  * <IconButton icon={<Close />} aria-label="Close" onClick={handleClose} />

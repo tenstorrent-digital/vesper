@@ -59,7 +59,7 @@ const TRIGGER_TYPOGRAPHY: { [V in TabsVariant]: TypographyVariant } = {
  * @param {(value: string) => void} [props.onValueChange] - (optional) Callback fired when a new tab is selected
  * @param {"automatic" | "manual"} [props.activationMode] - (optional) Tab activation mode. @default automatic
  *
- * You may also pass any additional props to the underlying `div` element.
+ * You may also pass any additional props to the underlying `div` element
  *
  * @example
  * <Tabs

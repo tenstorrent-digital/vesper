@@ -83,7 +83,7 @@ const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
  * @param {boolean} [props.required] - (optional) Marks the select as required for form validation
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  *
- * You may also pass any additional props to the underlying `button` element.
+ * You may also pass any additional props to the underlying `button` element
  *
  * @example
  * <Select

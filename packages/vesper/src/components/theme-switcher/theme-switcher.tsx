@@ -26,7 +26,7 @@ const setTheme = (theme: VesperTheme) =>
  *
  * @param {ThemeSwitcherSize} [props.size] - (optional) The size of the theme switcher. @default lg
  *
- * You may also pass any additional props to the underlying `div` element.
+ * You may also pass any additional props to the underlying `div` element
  *
  * @example
  * <ThemeSwitcher />

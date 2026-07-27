@@ -61,7 +61,7 @@ export interface RangeProps extends Omit<
  * @param {boolean} [props.showTicks] - (optional) Whether to render tick marks at each step interval. @default false
  * @param {boolean} [props.showValueLabels] - (optional) Whether to display value labels above each thumb
  *
- * You may also pass any additional props to the underlying `div` element.
+ * You may also pass any additional props to the underlying `div` element
  *
  * @example
  * <Range

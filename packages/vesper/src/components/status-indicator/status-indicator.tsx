@@ -44,7 +44,7 @@ export type StatusIndicatorProps<E extends ElementType = "div"> = Polymorphic<
  * @param {boolean} [props.animated] - (optional) When `true`, applies a pulsing animation to the dot. @default false
  * @param {React.ElementType} [props.as] - (optional) Element type to render. @default div
  *
- * You may also pass any additional props to the underlying element.
+ * You may also pass any additional props to the underlying element
  *
  * @example
  * <StatusIndicator label="Running" state="progress" animated />

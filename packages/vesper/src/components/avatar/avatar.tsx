@@ -28,7 +28,7 @@ export type AvatarProps<E extends ElementType = "div"> = Polymorphic<
  * @param {string} [props.alt] - (optional) The alt text for the avatar image.
  * @param {React.ElementType} [props.as] - (optional) Element type to render. @default div
  *
- * You may also pass any additional props to the underlying element.
+ * You may also pass any additional props to the underlying element
  *
  * @example
  * <Avatar src="/profile.png" alt="Jane Doe" />

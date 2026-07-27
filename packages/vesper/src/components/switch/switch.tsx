@@ -88,7 +88,7 @@ const SWITCH_TYPOGRAPHY: { [S in SwitchSize]: TypographyVariant } = {
  * @param {boolean} [props.required] - (optional) Marks the switch as required for form validation. @default false
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  *
- * You may also pass any additional props to the underlying `label` element.
+ * You may also pass any additional props to the underlying `label` element
  *
  * @example
  * <Switch label="Enable notifications" name="notifications" />

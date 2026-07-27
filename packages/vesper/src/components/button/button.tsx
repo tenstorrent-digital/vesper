@@ -46,7 +46,7 @@ export type ButtonProps<E extends ElementType = "button"> = Polymorphic<
  * @param {ReactNode} [props.iconRight] - (optional) An icon rendered to the right of the button content
  * @param {React.ElementType} [props.as] - (optional) Element type to render. @default button
  *
- * You may also pass any additional props to the underlying element.
+ * You may also pass any additional props to the underlying element
  *
  * @example
  * <Button onClick={handleClick}>Submit</Button>

@@ -28,7 +28,7 @@ export interface SkeletonProps extends ComponentProps<"div"> {
  * @param {number | string} [props.height] - (optional) The height of the skeleton
  * @param {boolean} [props.show] - (optional) Whether to render the skeleton overlay. @default true
  *
- * You may also pass any additional props to the underlying `div` element.
+ * You may also pass any additional props to the underlying `div` element
  *
  * @example
  * <Skeleton width={200} height={20} />

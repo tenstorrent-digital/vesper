@@ -90,7 +90,7 @@ export interface ModalProps extends Omit<
  * @param {boolean} [props.closeOnClickOutside] - (optional) Whether clicking the backdrop closes the modal. @default false
  * @param {object} [props.form] - (optional) Form attributes to wrap the modal content in a `<form>` element
  *
- * You may also pass any additional props to the underlying `dialog` element.
+ * You may also pass any additional props to the underlying `dialog` element
  *
  * @example
  * const { ref, open, close } = useModal();

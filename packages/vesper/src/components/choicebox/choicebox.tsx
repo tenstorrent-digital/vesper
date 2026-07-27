@@ -85,7 +85,7 @@ export type ChoiceboxProps =
  * @param {string[]} [props.values] - (optional) The currently selected values (multi-select, controlled)
  * @param {(values: string[]) => void} [props.onChange] - (optional) Callback fired with all selected values (multi-select)
  *
- * You may also pass any additional props to the underlying `fieldset` element.
+ * You may also pass any additional props to the underlying `fieldset` element
 
  * @example
  * <Choicebox

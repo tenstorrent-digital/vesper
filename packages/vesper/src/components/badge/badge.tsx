@@ -55,7 +55,7 @@ const BADGE_TYPOGRAPHY_VARIANTS: { [S in BadgeSize]: TypographyVariant } = {
  * @param {ReactNode} [props.icon] - (optional) An icon element rendered to the left of the badge text
  * @param {React.ElementType} [props.as] - (optional) Element type to render. @default div
  *
- * You may also pass any additional props to the underlying element.
+ * You may also pass any additional props to the underlying element
  *
  * @example
  * <Badge variant="success">Active</Badge>

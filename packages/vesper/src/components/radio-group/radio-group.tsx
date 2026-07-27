@@ -65,7 +65,7 @@ const RADIO_GROUP_ITEM_TYPOGRAPHY: { [S in RadioSize]: TypographyVariant } = {
  * @param {(value: string) => void} [props.onChange] - (optional) Callback fired when the selected value changes
  * @param {boolean} [props.required] - (optional) Marks a selection as required for form validation. @default false
  *
- * You may also pass any additional props to the underlying `fieldset` element.
+ * You may also pass any additional props to the underlying `fieldset` element
  *
  * @example
  * <RadioGroup
