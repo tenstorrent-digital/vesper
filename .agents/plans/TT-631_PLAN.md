@@ -88,7 +88,7 @@ Also add publish-facing metadata now (harmless while private, one less thing in 
 ```jsonc
 {
   "description": "Vesper — Tenstorrent's React design system.",
-  "license": "Apache-2.0", // confirm against packages/vesper/LICENSE
+  "license": "MIT", // confirmed against packages/vesper/LICENSE
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tenstorrent-digital/vesper.git",
@@ -130,6 +130,13 @@ yarn dev:docs                # smoke-test the docs site renders
 ```
 
 **5. Non-obvious follow-ups:**
+
+- **ESLint import grouping.** `packages/eslint-config/base.js` has an explicit `simple-import-sort` group for
+  monorepo-internal packages: `["^(@repo)(/.*|$)"]`. After the rename, vesper imports fall into the generic
+  third-party group, and `eslint --fix` reshuffles imports in every docs file that imports it. Widen the group
+  to `["^(@repo|@tenstorrent)(/.*|$)"]` so the existing convention (and the diff) is preserved.
+- `turbo.jsonc` needs a `prettier --write` pass afterwards — the longer package name pushes `dev:docs.with`
+  past the print width.
 
 - Turbo cache: local `.turbo` entries are keyed by package name; expect full rebuilds after the rename. No action needed.
 - Check the Vercel (or other host) project for `apps/docs`: any build command / ignored-build-step /

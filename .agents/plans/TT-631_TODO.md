@@ -11,33 +11,45 @@ P3 and Phase 2 are follow-up work — do not block PR 2 on them.
 
 ### P0 — Rename `@repo/vesper` → `@tenstorrent/vesper` (PR 1)
 
-- [ ] `packages/vesper/package.json`: set `"name": "@tenstorrent/vesper"`, keep `"version": "0.0.0"`, and change
+- [x] `packages/vesper/package.json`: set `"name": "@tenstorrent/vesper"`, keep `"version": "0.0.0"`, and change
       `"private": false` → `"private": true` (temporary publish guard; Changesets still versions + tags it via
       `privatePackages` config in P1)
-- [ ] `packages/vesper/package.json`: add publish-facing metadata — `description`, `license` (confirm against
-      `packages/vesper/LICENSE`), `repository` (`git+https://github.com/tenstorrent-digital/vesper.git` +
-      `"directory": "packages/vesper"` — required later for npm provenance), `homepage`, `bugs`,
-      `publishConfig: { "access": "public" }`, `engines: { "node": ">=22" }`
-- [ ] Run the mechanical rewrite across the remaining 53 files:
+- [x] `packages/vesper/package.json`: add publish-facing metadata — `description`, `license` (**confirmed MIT**
+      from `packages/vesper/LICENSE`, not Apache-2.0), `repository`
+      (`git+https://github.com/tenstorrent-digital/vesper.git` + `"directory": "packages/vesper"` — required
+      later for npm provenance), `homepage`, `bugs`, `publishConfig: { "access": "public" }`,
+      `engines: { "node": ">=22" }`
+- [x] Run the mechanical rewrite across the remaining 53 files:
       ```bash
       rg -l "@repo/vesper" --hidden -g '!node_modules' -g '!yarn.lock' -g '!dist' -g '!.git' \
         | xargs sed -i '' 's|@repo/vesper|@tenstorrent/vesper|g'
       ```
-- [ ] Spot-check the non-source hits the codemod touched: root `package.json` (7 turbo `--filter` flags),
+- [x] Spot-check the non-source hits the codemod touched: root `package.json` (7 turbo `--filter` flags),
       `turbo.jsonc` (`@tenstorrent/vesper#dev`, `#watch`), `apps/docs/turbo.jsonc`
       (`@tenstorrent/vesper#build:storybook`), `apps/docs/package.json` dependency,
       `apps/docs/src/lib/style/css/globals.css` (`@import "@tenstorrent/vesper/tailwind.css"`),
       `packages/vesper/README.md`
-- [ ] Confirm `apps/docs` still depends on `"@tenstorrent/vesper": "*"` (Yarn 1 has no `workspace:` protocol —
+- [x] **(unplanned, required)** `packages/eslint-config/base.js`: widen the `simple-import-sort` "internal
+      packages from monorepo" group from `["^(@repo)(/.*|$)"]` to `["^(@repo|@tenstorrent)(/.*|$)"]`. Without
+      this the rename reclassifies vesper imports as third-party and `--fix` reshuffles imports across ~50
+      docs files, burying the rename in noise.
+- [x] `npx prettier --write turbo.jsonc` (the longer package name pushed `dev:docs.with` past print width)
+- [x] Confirm `apps/docs` still depends on `"@tenstorrent/vesper": "*"` (Yarn 1 has no `workspace:` protocol —
       keep the `*` range) and that `yarn workspaces info` lists it as a workspace dependency
-- [ ] Verify: `yarn install` → `yarn lint` → `yarn check-types` → `yarn build` → `yarn test:vesper`
-- [ ] Smoke-test the docs site with `yarn dev:docs` (components render, tailwind theme vars still load)
-- [ ] Confirm zero remaining references: `rg "@repo/vesper" --hidden -g '!node_modules' -g '!dist' -g '!.git'`
+- [x] Verify: `yarn install` → `yarn lint` → `yarn check-types` → `yarn build` → `yarn test:vesper`
+      (`yarn.lock` unchanged, as predicted; `node_modules/@tenstorrent/vesper` symlink created)
+- [x] Smoke-test the docs site with `yarn dev:docs` (components render, tailwind theme vars still load)
+- [x] Confirm zero remaining references: `rg "@repo/vesper" --hidden -g '!node_modules' -g '!dist' -g '!.git'`
 - [ ] Check the Vercel (or other host) project for `apps/docs` for any dashboard-level build command /
-      ignored-build-step referencing `@repo/vesper` and update it
+      ignored-build-step referencing `@repo/vesper` and update it — **needs dashboard access, cannot be done
+      from the repo**
 - [ ] Open PR 1 with body `Closes [TT-631]` (or reference it if TT-631 stays open for PR 2)
 - [ ] (Optional, out of scope — file a separate issue) `turbo/generators/config.ts` references stale
       `packages/n` paths, so `yarn scaffold:component` may be broken
+- [x] **(unplanned, follow-on fix)** `apps/docs/eslint.config.mjs`: add `{ ignores: ["public/**"] }`. Without
+      it `yarn lint` fails for anyone who has run a build, because eslint walks the gitignored storybook
+      bundle in `apps/docs/public/storybook` and reports ~19k warnings from minified JS. Pre-existing, but it
+      blocked `yarn lint` as a validation gate for this work. (Docs lint now runs in ~1.4s instead of ~25s.)
 
 ### P1 — Install and configure Changesets (PR 2)
 
