@@ -1,8 +1,5 @@
 import type { ComponentProps } from "react";
-import {
-  type LanguageRegistration,
-  type ShikiTransformer,
-} from "@shikijs/core";
+import type { LanguageRegistration } from "@shikijs/core";
 
 import { cn } from "@/utils/cn";
 
@@ -32,14 +29,8 @@ export interface CodeBlockProps extends Omit<
    * @see https://shiki.style/languages for a list of available languages along with their `id`s
    * */
   lang?: LanguageRegistration[] | "text" | "ansi";
-  /** Whether or not to show line numbers on the left-hand side of the code block. Note that if you are streaming code, line numbers will not appear. @default text */
+  /** Whether or not to show line numbers on the left-hand side of the code block. @default false */
   showLineNumbers?: boolean;
-  /**
-   * An array of transformers to apply and manipulate the hast tree. For information on Shiki transformers, see [the shiki transformers guide](https://shiki.style/guide/transformers). @default false
-   *
-   * Transforms will not apply to streamed code.
-   */
-  transformers?: ShikiTransformer[];
   /** Hide the copy-to-clipboard button until CodeBlock is hovered. @default false */
   copyOnHover?: boolean;
 }
@@ -73,7 +64,6 @@ export function CodeBlock(props: CodeBlockProps) {
     children: code = "",
     lang = "text",
     showLineNumbers = false,
-    transformers,
     copyOnHover = false,
     ...rest
   } = props;
@@ -86,6 +76,7 @@ export function CodeBlock(props: CodeBlockProps) {
         className={className}
         lang={lang}
         copyOnHover={copyOnHover}
+        showLineNumbers={showLineNumbers}
         {...rest}
       >
         {code}
@@ -100,7 +91,7 @@ export function CodeBlock(props: CodeBlockProps) {
       {...rest}
     >
       <CodeBlockPreWrapper data-line-numbers={showLineNumbers}>
-        {codeToJsx(code, lang, transformers)}
+        {codeToJsx(code, lang)}
       </CodeBlockPreWrapper>
       <CopyToClipboardButton />
     </div>
