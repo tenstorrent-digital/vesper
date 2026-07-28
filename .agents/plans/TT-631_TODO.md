@@ -64,7 +64,8 @@ P3 and Phase 2 are follow-up work — do not block PR 2 on them.
 - [x] Add root `package.json` scripts: `changeset`, `changeset:status`
       (`changeset status --since=origin/main`), `changeset:version`
       (`changeset version && prettier --write "**/CHANGELOG.md" ".changeset/*.md"`), `changeset:release`
-      (`changeset publish`)
+      (`changeset publish` — a verified no-op while the package is private; kept as the placeholder that
+      Phase 2 expands into the real publish command)
 - [x] Verify the `ignore` list behaves: `changeset status --since=<ref>` passes for docs-only and
       plans-only ranges, and fails for a range containing `packages/vesper` changes
 - [x] Sanity-check locally: scratch `changeset version` run produced `0.1.0`, generated
@@ -75,44 +76,52 @@ P3 and Phase 2 are follow-up work — do not block PR 2 on them.
 - [x] Add the real first changeset: `.changeset/tenstorrent-scope-rename.md` — `@tenstorrent/vesper`,
       **minor**, describing the rename (0.x policy: minor = breaking, patch = feature/fix; first release
       lands `0.1.0`)
-- [x] **Finding (document in P2 CONTRIBUTING):** `changeset status --since=<ref>` only sees changeset files
+- [x] **Finding (documented in `AGENTS.md`):** `changeset status --since=<ref>` only sees changeset files
       that git **tracks** — it runs `git diff --name-only <divergedAt>`, which excludes untracked files. An
       unstaged new changeset appears missing. Always `git add` the changeset. Non-issue in CI (the file is
       committed on the PR branch), but confusing locally.
 
 ### P2 — Workflows and enforcement (PR 2)
 
-- [ ] Create `.github/workflows/release.yml` per the plan: `on: push: branches: [main]` + `workflow_dispatch`,
-      `permissions: { contents: write, pull-requests: write }`, checkout `fetch-depth: 0`, Node 24 + yarn cache,
-      `yarn install --frozen-lockfile`, then `changesets/action@v1` with `version: yarn changeset:version`,
-      `publish: yarn changeset:release`, `GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}`
-- [ ] Create `.github/workflows/changeset-check.yml` per the plan: `on: pull_request` (types include
-      `labeled`/`unlabeled`), job `if` skips `changeset-release/main` and the `skip-changeset` label,
-      checkout `fetch-depth: 0`, explicit `git fetch origin ${{ github.base_ref }}`, then
-      `yarn changeset status --since=origin/${{ github.base_ref }}`
-- [ ] Create the `skip-changeset` label in the repo (`gh label create skip-changeset --description "PR
-      intentionally ships no user-facing change"`)
+- [x] Create `.github/workflows/release.yml`: `on: push: branches: [main]` + `workflow_dispatch`,
+      `permissions: { contents: write, pull-requests: write }`, checkout `fetch-depth: 0` + `fetch-tags: true`,
+      Node 24 + yarn cache, `yarn install --frozen-lockfile`, `changesets/action@v1` with
+      `version: yarn changeset:version` (**no `publish` input**), then an explicit "Tag release" step
+- [x] **Design correction (found by testing):** `privatePackages.tag` is now `false`, and the workflow tags
+      `@tenstorrent/vesper` itself. With `tag: true`, `changeset publish` tagged **every** private workspace
+      — `docs@0.1.0`, `@repo/eslint-config@0.0.0`, `@repo/typescript-config@0.0.0` — because `ignore` is not
+      applied to tagging. `changeset:release` is kept but left unwired — it publishes and tags nothing today.
+- [x] Create `.github/workflows/changeset-check.yml`: `on: pull_request` (types include
+      `labeled`/`unlabeled`), `permissions: { contents: read }`, job `if` skips `changeset-release/main` and
+      the `skip-changeset` label, checkout `fetch-depth: 0`, explicit `git fetch origin <base>`, then
+      `yarn changeset status --since=origin/${{ github.base_ref }}`. Job is named **`changeset-required`** so
+      the required-status-check name is unambiguous (the existing test job reports as `run`).
+- [ ] Create the `skip-changeset` label — **the team is doing this themselves**
 - [ ] Repo settings → Actions → General: enable **Allow GitHub Actions to create and approve pull requests**
-      and set workflow permissions to **Read and write** (both required before the first release run)
-- [ ] Add `CONTRIBUTING.md` (or a `## Releases` section): when a changeset is required, `yarn changeset`,
-      patch/minor under 0.x, `yarn changeset --empty` and the `skip-changeset` label as escape hatches, what
-      the "Version Packages" PR is, an explicit note that **nothing publishes to npm yet**, and the
-      "`git add` your changeset" gotcha from P1
-- [ ] Add a short "Changesets" section to `AGENTS.md` so agents add a changeset when they touch
-      `packages/vesper`
+      (verified `can_approve_pull_request_reviews: false` — this is the one hard blocker). Leave workflow
+      permissions on **read**; both workflows request what they need explicitly.
+- [x] ~~Add `CONTRIBUTING.md`~~ — **dropped by decision**; the team will write one later. The essential
+      contributor guidance (when a changeset is required, 0.x bump policy, `yarn changeset --empty` and the
+      `skip-changeset` label, the Version PR flow, the "`git add` your changeset" gotcha, and that nothing
+      publishes to npm yet) lives in the `AGENTS.md` section instead. Fold it into `CONTRIBUTING.md` when that
+      file is created.
+- [x] Add a `## Changesets and Releases` section to `AGENTS.md` — currently the single source of truth for the
+      release workflow, since `CONTRIBUTING.md` is deferred
 - [ ] Open PR 2 (it contains the first changeset, so it exercises the whole pipeline on merge)
 - [ ] After merging PR 2: confirm the **"Version Packages"** PR opens automatically
 - [ ] Merge the Version PR and confirm: `packages/vesper/package.json` → `0.1.0`,
       `packages/vesper/CHANGELOG.md` written, changeset file deleted, git tag `@tenstorrent/vesper@0.1.0`
-      pushed, and the release job log shows **no npm publish** (private package skipped)
-- [ ] Branch protection on `main`: add `Changeset Check / changeset` to required status checks (alongside the
-      existing Vesper test job) and require branches to be up to date
+      pushed **and no other package tagged**, and no npm publish attempted
+- [ ] ~~Branch protection: add `changeset-required` to required status checks~~ — **deferred by decision**: the
+      `main` ruleset stays in `evaluate` mode, so the gate is advisory (visible red X, does not block merge).
+      When switching to `active`, decide how Version PRs get merged (admin bypass — option (a) — or a GitHub
+      App token), since they receive no check runs at all.
 - [ ] Verify the gate works end-to-end: a PR touching `packages/vesper` without a changeset **fails**; adding a
       changeset (or the `skip-changeset` label) makes it pass
 - [ ] (Optional) Install the [changeset-bot](https://github.com/apps/changeset-bot) GitHub App for PR comments
-      — UX sugar only, the CI job is the actual gate
+      — UX sugar only, and more valuable while the CI gate is advisory rather than blocking
 - [ ] (Optional) Add a `gh release create` step to `release.yml` so interim tags get GitHub Releases
-      (`changesets/action` only auto-creates releases for packages published to npm)
+      (`changesets/action` only auto-creates releases off a `publish` run, which we don't do yet)
 - [ ] Known limitation to note in the PR description: PRs created with the default `GITHUB_TOKEN` do not
       trigger other workflows, so CI will not run on the Version PR. Swap to `actions/create-github-app-token`
       later if we want checks there.
@@ -156,7 +165,7 @@ P3 and Phase 2 are follow-up work — do not block PR 2 on them.
 - [ ] Validate the tarball: `yarn build:vesper`, then in `packages/vesper` run `npm pack --dry-run`,
       `npx publint`, `npx @arethetypeswrong/cli --pack .`
 - [ ] Decide whether the first public release is `0.x` or `1.0.0`; if `1.0.0`, update the versioning policy in
-      `CONTRIBUTING.md`
+      `AGENTS.md` (and `CONTRIBUTING.md`, if it exists by then)
 
 ### 2.4 Changesets config (`.changeset/config.json`)
 
@@ -164,7 +173,10 @@ P3 and Phase 2 are follow-up work — do not block PR 2 on them.
       `["@changesets/changelog-github", { "repo": "tenstorrent-digital/vesper" }]`
 - [ ] `access: "restricted"` → `"public"`
 - [ ] `privatePackages` → `{ "version": false, "tag": false }` (vesper is no longer private; the other three
-      workspaces stay excluded via `ignore`)
+      workspaces stay excluded via `ignore`). Keep `tag: false` — it only applies to private packages and
+      would tag `docs` and the config packages.
+- [ ] Expand the `changeset:release` script to build first and **delete the hand-rolled "Tag release" step**
+      from `release.yml` — `changeset publish` tags correctly once the package really publishes
 
 ### 2.5 Release workflow (`.github/workflows/release.yml`)
 
@@ -173,8 +185,11 @@ P3 and Phase 2 are follow-up work — do not block PR 2 on them.
 - [ ] Add `registry-url: "https://registry.npmjs.org"` to the `actions/setup-node` step
 - [ ] Add `NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}` and `NPM_CONFIG_PROVENANCE: true` to the
       `changesets/action` env
+- [ ] Add the `publish: yarn changeset:release` input to `changesets/action` (the script already exists; it is
+      a no-op until the package goes public)
 - [ ] Change `changeset:release` to build first:
       `turbo run build --filter=@tenstorrent/vesper && changeset publish`
+- [ ] Remove the hand-rolled "Tag release" step (superseded by `changeset publish`)
 - [ ] Remove any interim `gh release create` step (`changesets/action` now creates GitHub Releases itself)
 
 ### 2.6 npm provenance
