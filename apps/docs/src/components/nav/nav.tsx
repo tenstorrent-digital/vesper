@@ -27,17 +27,18 @@ export const Nav = () => {
         <Breadcrumbs />
       </div>
       <div className="nav-group">
-        <Link
+        <Button
+          as="a"
           href={
             process.env.NODE_ENV === "development"
               ? "http://localhost:3000"
               : "/storybook"
           }
+          variant="tertiary"
+          size="sm"
         >
-          <Button variant="tertiary" size="sm">
-            Playground
-          </Button>
-        </Link>
+          Playground
+        </Button>
       </div>
     </nav>
   );
