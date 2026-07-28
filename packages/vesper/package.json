@@ -1,7 +1,25 @@
 {
-  "name": "@repo/vesper",
+  "name": "@tenstorrent/vesper",
   "version": "0.0.0",
-  "private": false,
+  "description": "Vesper — Tenstorrent's React design system.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tenstorrent-digital/vesper.git",
+    "directory": "packages/vesper"
+  },
+  "homepage": "https://github.com/tenstorrent-digital/vesper#readme",
+  "bugs": {
+    "url": "https://github.com/tenstorrent-digital/vesper/issues"
+  },
+  "//private": "temporary publish guard: the @tenstorrent npm scope does not exist yet. Changesets still versions and tags this package via privatePackages in .changeset/config.json. Flip to false when we are ready to publish.",
+  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22"
+  },
   "type": "module",
   "files": [
     "dist"

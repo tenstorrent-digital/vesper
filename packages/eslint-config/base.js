@@ -41,7 +41,9 @@ export default [
             ["^react", "^@?\\w"],
 
             // internal packages from monorepo
-            ["^(@repo)(/.*|$)"],
+            // note: `@tenstorrent/vesper` is developed here but published to npm, so it is
+            // grouped with monorepo packages rather than treated as a third-party import
+            ["^(@repo|@tenstorrent)(/.*|$)"],
 
             // imports from named paths in tsconfig.json (in order)
             ["^(@/components)(/.*|$)"],

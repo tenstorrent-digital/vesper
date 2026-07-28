@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { Typography } from "@repo/vesper/typography";
+import { Typography } from "@tenstorrent/vesper/typography";
 
 import { convertKebabToTitleCase } from "@/lib/filesystem/utils";
 

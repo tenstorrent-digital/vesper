@@ -3,7 +3,7 @@
   - `source("../../..")` tells Tailwind where to scan class names to watch
 */
 @import "tailwindcss" source("../../..");
-@import "@repo/vesper/tailwind.css";
+@import "@tenstorrent/vesper/tailwind.css";
 
 /* tailwind theme for docs */
 @theme {
