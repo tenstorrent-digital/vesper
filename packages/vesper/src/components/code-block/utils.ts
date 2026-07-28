@@ -1,5 +1,5 @@
 import * as jsxRuntime from "react/jsx-runtime";
-import { createHighlighterCoreSync, ShikiTransformer } from "@shikijs/core";
+import { createHighlighterCoreSync } from "@shikijs/core";
 import { createJavaScriptRegexEngine } from "@shikijs/engine-javascript";
 import { CodeToTokenTransformStream } from "@shikijs/stream";
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
@@ -25,16 +25,11 @@ export function handleLanguageRegistration(lang: CodeBlockProps["lang"]) {
   }
 }
 
-export function codeToJsx(
-  code: string,
-  lang: CodeBlockProps["lang"],
-  transformers?: ShikiTransformer[],
-) {
+export function codeToJsx(code: string, lang: CodeBlockProps["lang"]) {
   return toJsxRuntime(
     highlighter.codeToHast(code, {
       lang: getLangName(lang),
       theme: "vesper",
-      transformers,
       tabindex: false,
     }),
     jsxRuntime,

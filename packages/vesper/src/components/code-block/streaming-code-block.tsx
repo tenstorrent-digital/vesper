@@ -15,8 +15,9 @@ export function StreamingCodeBlock({
   children: code,
   lang = "text",
   copyOnHover = false,
+  showLineNumbers,
   ...props
-}: Omit<CodeBlockProps, "children" | "showLineNumbers" | "transformers"> & {
+}: Omit<CodeBlockProps, "children" | "transformers"> & {
   children: () => ReadableStream<string> | Promise<ReadableStream<string>>;
 }) {
   handleLanguageRegistration(lang);
@@ -55,7 +56,7 @@ export function StreamingCodeBlock({
       data-copy-on-hover={copyOnHover}
       {...props}
     >
-      <CodeBlockPreWrapper ref={ref} data-line-numbers>
+      <CodeBlockPreWrapper ref={ref} data-line-numbers={showLineNumbers}>
         <TokenStreamRenderer code={code} lang={lang} />
       </CodeBlockPreWrapper>
       <CopyToClipboardButton />
@@ -128,15 +129,32 @@ function TokenStreamRenderer({
   return (
     <pre className="shiki vesper shiki-stream">
       <code>
-        {tokens.map((token) => (
-          <span
-            key={getKey(token)}
-            style={token.htmlStyle || getTokenStyleObject(token)}
-          >
-            {token.content}
+        {tokensToLines(tokens).map((line, index) => (
+          <span key={index} className="line">
+            {line.map((token) => (
+              <span
+                key={getKey(token)}
+                style={token.htmlStyle || getTokenStyleObject(token)}
+              >
+                {token.content}
+              </span>
+            ))}
           </span>
         ))}
       </code>
     </pre>
   );
 }
+
+const tokensToLines = (tokens: ThemedToken[]) =>
+  tokens.reduce(
+    (lines, token) => {
+      if (token.content === "\n") {
+        lines.push([]);
+        return lines;
+      }
+      lines[lines.length - 1]!.push(token);
+      return lines;
+    },
+    [[]] as ThemedToken[][],
+  );
