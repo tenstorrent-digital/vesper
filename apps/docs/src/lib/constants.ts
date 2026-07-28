@@ -17,9 +17,20 @@ export const BASE_URL: string =
         `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL || "vesper-docs.vercel.app"}`;
 
 /**
+ * port Storybook runs on in @repo/vesper in dev
+ *
+ * must match the port in `@repo/vesper`'s `dev` script, which runs storybook
+ * with `--exact-port` so a port clash fails loudly instead of silently
+ * relocating and breaking this rewrite
+ *
+ * (should figure out how to set this across the monorepo later)
+ */
+export const STORYBOOK_PORT = 3000;
+
+/**
  * the URL of the Storybook instance from @repo/vesper
  */
 export const STORYBOOK_URL =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:3000"
+    ? `http://localhost:${STORYBOOK_PORT}`
     : `${BASE_URL}/storybook`;

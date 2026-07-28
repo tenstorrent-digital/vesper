@@ -5,9 +5,9 @@
     "build": "turbo run build",
     "build:vesper": "turbo run build --filter=@repo/vesper",
     "build:docs": "turbo run build --filter=docs",
-    "dev": "turbo run dev watch",
-    "dev:vesper": "turbo run dev:vesper",
-    "dev:docs": "turbo run dev:docs",
+    "dev": "turbo run dev",
+    "dev:vesper": "turbo run dev --filter=@repo/vesper",
+    "dev:docs": "turbo run dev --filter=docs",
     "build:storybook": "turbo run build:storybook --filter=@repo/vesper",
     "test:vesper": "turbo run test --filter=@repo/vesper",
     "test:vesper:update": "turbo run test:update --filter=@repo/vesper",
@@ -22,6 +22,7 @@
     "agent:skills:add": "DISABLE_TELEMETRY=true npx skills add --yes --agent pi claude-code codex --",
     "agent:skills:remove": "DISABLE_TELEMETRY=true npx skills remove --yes --agent '*'",
     "agent:skills:update": "DISABLE_TELEMETRY=true npx skills update --yes --project",
+    "clean": "turbo run clean && rimraf --glob .turbo '{apps,packages}/*/.turbo'",
     "clean-install": "yarn workspaces run rimraf node_modules && yarn rimraf node_modules && rm -f yarn.lock && yarn cache clean && yarn"
   },
   "devDependencies": {
