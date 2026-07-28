@@ -53,25 +53,32 @@ P3 and Phase 2 are follow-up work — do not block PR 2 on them.
 
 ### P1 — Install and configure Changesets (PR 2)
 
-- [ ] Install at the root: `yarn add -D -W @changesets/cli` (Yarn 1 requires `-W` for root deps)
-- [ ] Run `npx changeset init` (creates `.changeset/config.json` + `.changeset/README.md`)
-- [ ] Replace `.changeset/config.json` with the interim config from the plan:
+- [x] Install at the root: `yarn add -D -W @changesets/cli` (Yarn 1 requires `-W` for root deps)
+- [x] Run `npx changeset init` (creates `.changeset/config.json` + `.changeset/README.md`)
+- [x] Replace `.changeset/config.json` with the interim config from the plan:
       `changelog: "@changesets/cli/changelog"`, `commit: false`, `access: "restricted"`,
       `baseBranch: "main"`, `updateInternalDependencies: "patch"`,
       `ignore: ["docs", "@repo/eslint-config", "@repo/typescript-config"]`,
       `privatePackages: { "version": true, "tag": true }` ← the key setting that gives us versions +
       changelogs + git tags with **no npm publish**
-- [ ] Add root `package.json` scripts: `changeset`, `changeset:status`
+- [x] Add root `package.json` scripts: `changeset`, `changeset:status`
       (`changeset status --since=origin/main`), `changeset:version`
       (`changeset version && prettier --write "**/CHANGELOG.md" ".changeset/*.md"`), `changeset:release`
       (`changeset publish`)
-- [ ] Sanity-check locally: `yarn changeset status` runs clean, and a scratch `yarn changeset` +
-      `yarn changeset:version` produces `packages/vesper/CHANGELOG.md` and bumps to `0.1.0` (revert the scratch
-      run before committing)
-- [ ] Confirm generated changelogs pass `yarn format` / prettier (adjust `.prettierignore` if the
-      `changeset:version` prettier step proves insufficient)
-- [ ] Add the real first changeset: `yarn changeset` → `@tenstorrent/vesper`, **minor**, describing the rename
-      (0.x policy: minor = breaking, patch = feature/fix; first release lands `0.1.0`)
+- [x] Verify the `ignore` list behaves: `changeset status --since=<ref>` passes for docs-only and
+      plans-only ranges, and fails for a range containing `packages/vesper` changes
+- [x] Sanity-check locally: scratch `changeset version` run produced `0.1.0`, generated
+      `packages/vesper/CHANGELOG.md`, consumed the changeset file, and left `apps/docs/package.json`
+      untouched (the `"*"` range needs no rewrite, as predicted). Scratch state restored.
+- [x] Confirm generated changelogs pass prettier (the `changeset:version` prettier step reports the
+      generated `CHANGELOG.md` as already-formatted — no `.prettierignore` change needed)
+- [x] Add the real first changeset: `.changeset/tenstorrent-scope-rename.md` — `@tenstorrent/vesper`,
+      **minor**, describing the rename (0.x policy: minor = breaking, patch = feature/fix; first release
+      lands `0.1.0`)
+- [x] **Finding (document in P2 CONTRIBUTING):** `changeset status --since=<ref>` only sees changeset files
+      that git **tracks** — it runs `git diff --name-only <divergedAt>`, which excludes untracked files. An
+      unstaged new changeset appears missing. Always `git add` the changeset. Non-issue in CI (the file is
+      committed on the PR branch), but confusing locally.
 
 ### P2 — Workflows and enforcement (PR 2)
 
@@ -89,7 +96,8 @@ P3 and Phase 2 are follow-up work — do not block PR 2 on them.
       and set workflow permissions to **Read and write** (both required before the first release run)
 - [ ] Add `CONTRIBUTING.md` (or a `## Releases` section): when a changeset is required, `yarn changeset`,
       patch/minor under 0.x, `yarn changeset --empty` and the `skip-changeset` label as escape hatches, what
-      the "Version Packages" PR is, and an explicit note that **nothing publishes to npm yet**
+      the "Version Packages" PR is, an explicit note that **nothing publishes to npm yet**, and the
+      "`git add` your changeset" gotcha from P1
 - [ ] Add a short "Changesets" section to `AGENTS.md` so agents add a changeset when they touch
       `packages/vesper`
 - [ ] Open PR 2 (it contains the first changeset, so it exercises the whole pipeline on merge)
