@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 import { Typography } from "@repo/vesper/typography";
 
-import { convertKebabToPascalCase } from "@/lib/filesystem/utils";
+import { convertKebabToTitleCase } from "@/lib/filesystem/utils";
 
 export const Tree = ({ pages }: { pages: string[] }) => {
   const pathname = usePathname();
@@ -20,7 +20,7 @@ export const Tree = ({ pages }: { pages: string[] }) => {
           key={page}
           variant="heading-xs"
         >
-          {convertKebabToPascalCase(page)}
+          {convertKebabToTitleCase(page)}
         </Typography>
       ))}
     </>
