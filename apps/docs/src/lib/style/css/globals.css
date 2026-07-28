@@ -4,6 +4,7 @@
 */
 @import "tailwindcss" source("../../..");
 @import "@repo/vesper/tailwind.css";
+@import "@repo/vesper/styles.css";
 
 /* tailwind theme for docs */
 @theme {
@@ -296,7 +297,7 @@ table {
 
     .component-grid-subtitle {
       margin-top: calc(var(--spacing) * 2);
-      color: var(--vesper-text-subtle);
+      color: var(--vesper-text-secondary);
     }
   }
 
