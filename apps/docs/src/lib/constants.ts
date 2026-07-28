@@ -14,7 +14,7 @@ export const BASE_URL: string =
       process.env.VERCEL_ENV === "preview"
       ? `https://${process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL || "vesper-docs.vercel.app"}`
       : // otherwise, use production
-        "vesper-docs.vercel.app";
+        `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL || "vesper-docs.vercel.app"}`;
 
 /**
  * the URL of the Storybook instance from @repo/vesper
