@@ -2,10 +2,12 @@
 
 exports[`snippet [snapshot] > empty content 1`] = `
 <div
-  class="vesper-typography vesper-typography-copy-xs-mono vesper-snippet vesper-snippet-default"
+  class="vesper-snippet vesper-snippet-default"
 >
   <pre>
-    <code>
+    <code
+      class="vesper-typography vesper-typography-copy-xs-mono"
+    >
       <span
         class="line"
       />
@@ -35,10 +37,12 @@ exports[`snippet [snapshot] > empty content 1`] = `
 
 exports[`snippet [snapshot] > multi-line content 1`] = `
 <div
-  class="vesper-typography vesper-typography-copy-xs-mono vesper-snippet vesper-snippet-default"
+  class="vesper-snippet vesper-snippet-default"
 >
   <pre>
-    <code>
+    <code
+      class="vesper-typography vesper-typography-copy-xs-mono"
+    >
       <span
         class="line"
       >
@@ -75,10 +79,12 @@ exports[`snippet [snapshot] > multi-line content 1`] = `
 
 exports[`snippet [snapshot] > variant: contrast 1`] = `
 <div
-  class="vesper-typography vesper-typography-copy-xs-mono vesper-snippet vesper-snippet-contrast"
+  class="vesper-snippet vesper-snippet-contrast"
 >
   <pre>
-    <code>
+    <code
+      class="vesper-typography vesper-typography-copy-xs-mono"
+    >
       <span
         class="line"
       >
@@ -110,10 +116,12 @@ exports[`snippet [snapshot] > variant: contrast 1`] = `
 
 exports[`snippet [snapshot] > variant: default 1`] = `
 <div
-  class="vesper-typography vesper-typography-copy-xs-mono vesper-snippet vesper-snippet-default"
+  class="vesper-snippet vesper-snippet-default"
 >
   <pre>
-    <code>
+    <code
+      class="vesper-typography vesper-typography-copy-xs-mono"
+    >
       <span
         class="line"
       >

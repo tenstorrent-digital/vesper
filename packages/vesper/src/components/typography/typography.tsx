@@ -47,6 +47,29 @@ export type TypographyProps<E extends ElementType = "p"> = Polymorphic<
   E
 >;
 
+/**
+ * A polymorphic component for rendering text with consistent typographic styles. It applies a predefined set of font size, weight, line height, and font family based on the selected `variant`, with options for:
+ * - `display-*`
+ * - `heading-*`
+ * - `label-*`
+ * - `copy-*`
+ *
+ * @param {React.ElementType} [props.as] - (optional) Element type to render. Default: `p`
+ * @param {TypographyVariant} [props.variant] - (optional) Text style variant to apply. See {@link TYPOGRAPHY_VARIANTS} for available options. Default: `copy-sm`
+ * @param {string} [props.className] - (optional) Additional CSS `class` names to apply
+ *
+ * You may also pass any additional props to the underlying element
+ *
+ * @example
+ * <Typography variant="heading-lg" as="h1">
+ *   Welcome to Vesper
+ * </Typography>
+ *
+ * @example
+ * <Typography variant="copy-md">
+ *   This is a paragraph of body text.
+ * </Typography>
+ */
 export function Typography<E extends ElementType = "p">(
   props: TypographyProps<E>,
 ) {

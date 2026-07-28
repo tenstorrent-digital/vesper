@@ -21,6 +21,26 @@ export interface AccordionProps extends ComponentProps<"div"> {
   title: string;
 }
 
+/**
+ * A collapsible content section with a trigger that toggles visibility of its children.
+ *
+ * @param {string} props.title - The title text displayed in the accordion trigger
+ * @param {boolean} [props.defaultOpen] - (optional) Whether the accordion is open by default (uncontrolled)
+ * @param {boolean} [props.open] - (optional) Controls the open state (controlled)
+ * @param {(open: boolean) => void} [props.onOpenChange] - (optional) Callback fired when the open state changes
+ *
+ * You may also pass any additional props to the underlying `div` element
+ *
+ * @example
+ * <Accordion title="FAQ">
+ *   <p>Answer to the question goes here.</p>
+ * </Accordion>
+ *
+ * @example
+ * <Accordion title="Advanced" open={isOpen} onOpenChange={setIsOpen}>
+ *   <p>Controlled accordion content.</p>
+ * </Accordion>
+ */
 export function Accordion(props: AccordionProps) {
   const {
     defaultOpen,

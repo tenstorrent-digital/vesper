@@ -14,18 +14,35 @@ export type ProgressBarVariant = (typeof PROGRESS_BAR_VARIANTS)[number];
 export interface ProgressBarProps extends ComponentProps<"div"> {
   /** Value from `0` to `100`. */
   value: number;
-  /** The rendered size of the progress bar. Defaults to `"md"`. */
+  /** The rendered size of the progress bar. @default md */
   size?: ProgressBarSize;
-  /** The `default` variant will render the progress bar indicator width as a true percentage representation of `value / 100`. The `steps` variant will clamp the width of the progress bar indicator to the nearest rounded tick value. */
+  /** The `default` variant will render the progress bar indicator width as a true percentage representation of `value / 100`. The `steps` variant will clamp the width of the progress bar indicator to the nearest rounded tick value. @default default */
   variant?: ProgressBarVariant;
-  /** The number of segments to split up the progress bar into when variant is `steps`. Must be an integer greater than `0`. */
+  /** The number of segments to split up the progress bar into when variant is `steps`. Must be an integer greater than `0`. @default 10 */
   steps?: number;
-  /** Determines how to clamp the width of the progress bar to the nearest tick value. Defaults to `Math.round`. */
+  /** Determines how to clamp the width of the progress bar to the nearest tick value. @default Math.round */
   stepRoundingStrategy?: (n: number) => number;
-  /** Whether to animate progress bar value changes. */
+  /** Whether to animate progress bar value changes. @default false */
   animated?: boolean;
 }
 
+/**
+ * A progress bar component that visualizes completion percentage, with support for stepped segments and animations.
+ *
+ * @param {number} props.value - The progress value from `0` to `100`
+ * @param {ProgressBarSize} [props.size] - (optional) The rendered size of the progress bar. @default md
+ * @param {ProgressBarVariant} [props.variant] - (optional) The display variant; `"steps"` clamps to tick intervals. @default default
+ * @param {number} [props.steps] - (optional) Number of segments when variant is `"steps"`. @default 10
+ * @param {boolean} [props.animated] - (optional) Whether to animate progress changes. @default false
+ *
+ * You may also pass any additional props to the underlying `div` element
+ *
+ * @example
+ * <ProgressBar value={75} />
+ *
+ * @example
+ * <ProgressBar value={60} variant="steps" steps={5} animated />
+ */
 export function ProgressBar(props: ProgressBarProps) {
   const {
     value,

@@ -20,68 +20,52 @@ export interface CodeBlockProps extends Omit<
    * A factory is used instead of a raw `ReadableStream` because streams are single-use — once piped they are locked and cannot be re-read. Passing a factory allows the component to create a fresh stream whenever it needs one (e.g. on React Strict Mode remounts or language changes).
    *
    * The factory may be asynchronous, returning a `Promise<ReadableStream<string>>`, which is useful when the stream source itself requires an async setup step (e.g. making a network request).
-   *
-   * @example
-   * <CodeBlock>
-   *   const count = 0
-   * </CodeBlock>
-   *
-   * @example
-   * <CodeBlock lang={typescript}>
-   *   {() => getCodeStream()}
-   * </CodeBlock>
    */
   children?:
     string | (() => ReadableStream<string> | Promise<ReadableStream<string>>);
   /**
    * The language syntax of the supplied code. Omitting this prop will render supplied code as plain text with no syntax highlighting.
-
-   * For plaintext and ansi you do not need to supply your own grammars; they are baked into shiki and can be passed in as strings. Other language grammars should be provided as plain objects, most of which can be imported from the `@shikijs/langs` library.
    *
-   * @example
-   * // importing language grammar from @shikijs/langs
-   * import javascript from "@shikijs/langs/javascript";
+   * For `plaintext` and `ansi` you do not need to supply your own grammars; they are baked into shiki and can be passed in as strings. Other language grammars should be provided as plain objects, most of which can be imported from the `@shikijs/langs` library.
    *
-   * <CodeBlock lang={javascript}>
-   *   const count = 0
-   * </CodeBlock>
-   *
-   * @example
-   * // rendering ansi
-   *
-   * <CodeBlock lang="ansi">
-   *   {buildLogs}
-   * </CodeBlock>
+   * @see https://shiki.style/languages for a list of available languages along with their `id`s
    * */
   lang?: LanguageRegistration[] | "text" | "ansi";
-  /**
-   * Whether or not to show line numbers on the left-hand side of the code block. Note that if you are streaming code, line numbers will not appear.
-   *
-   * @example
-   * <CodeBlock showLineNumbers>
-   *   const count = 0
-   * </CodeBlock>
-   */
+  /** Whether or not to show line numbers on the left-hand side of the code block. Note that if you are streaming code, line numbers will not appear. @default text */
   showLineNumbers?: boolean;
   /**
-   * An array of transformers to apply and manipulate the hast tree. For information on Shiki transformers, see [the shiki transformers guide](https://shiki.style/guide/transformers).
+   * An array of transformers to apply and manipulate the hast tree. For information on Shiki transformers, see [the shiki transformers guide](https://shiki.style/guide/transformers). @default false
    *
    * Transforms will not apply to streamed code.
-   *
-   * @example
-   * import { transformerNotationDiff } from '@shikijs/transformers'
-   *
-   * <CodeBlock transformers={[transformerNotationDiff()]}>
-   *   const count = 0
-   * </CodeBlock>
    */
   transformers?: ShikiTransformer[];
-  /**
-   * hide the copy-to-clipboard button until CodeBlock is hovered
-   */
+  /** Hide the copy-to-clipboard button until CodeBlock is hovered. @default false */
   copyOnHover?: boolean;
 }
 
+/**
+ * A syntax-highlighted code block with support for static code, streaming content, line numbers, and Shiki transformers.
+ *
+ * @param {string | (() => ReadableStream<string> | Promise<ReadableStream<string>>)} [props.children] - (optional) The code to render, either as a string or a stream factory
+ * @param {LanguageRegistration[] | "text" | "ansi"} [props.lang] - (optional) The language syntax for highlighting. @default text
+ * @param {boolean} [props.showLineNumbers] - (optional) Whether to display line numbers. Has no effect when rendering streamed code. @default false
+ * @param {ShikiTransformer[]} [props.transformers] - (optional) An array of Shiki transformers to apply to the hast tree. Has no effect when rendering streamed code
+ * @param {boolean} [props.copyOnHover] - (optional) Hide the copy button until the code block is hovered. @default false
+ *
+ * You may also pass any additional props to the underlying `div` element
+ *
+ * @example
+ * import javascript from "@shikijs/langs/javascript";
+ *
+ * <CodeBlock lang={javascript} showLineNumbers>
+ *   {`const greeting = "Hello, world!";\nconsole.log(greeting);`}
+ * </CodeBlock>
+ *
+ * @example
+ * <CodeBlock lang="ansi">
+ *   {buildLogs}
+ * </CodeBlock>
+ */
 export function CodeBlock(props: CodeBlockProps) {
   const {
     className,

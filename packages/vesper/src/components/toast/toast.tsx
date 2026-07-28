@@ -234,6 +234,19 @@ export interface ToastsProps {
   container?: Element | DocumentFragment;
 }
 
+/**
+ * A toast notification container that renders and manages active toasts with keyboard navigation and screen-reader announcements.
+ *
+ * @param {string} [props.ariaLabel] - (optional) The accessible label for the toast region. @default Notifications`
+ * @param {ToastsShortcut} [props.shortcut] - (optional) Keyboard shortcut that moves focus to the oldest active toast. @default F8`
+ * @param {Element | DocumentFragment} [props.container] - (optional) The DOM element to portal toasts into. @default document.body
+ *
+ * @example
+ * <Toasts />
+ *
+ * @example
+ * <Toasts shortcut={{ key: "t", ctrl: true }} ariaLabel="Alerts" />
+ */
 export function Toasts(props: ToastsProps) {
   const { ariaLabel = "Notifications", shortcut = "F8", container } = props;
 

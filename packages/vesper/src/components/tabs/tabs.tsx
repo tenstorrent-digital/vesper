@@ -21,7 +21,7 @@ export interface TabsProps extends Omit<
   ComponentProps<"div">,
   "children" | "dir"
 > {
-  /** The visual style variant of the tabs. Defaults to `"primary"`. */
+  /** The visual style variant of the tabs. @default primary */
   variant?: TabsVariant;
   /** The list of tab items to render. Each item defines a tab trigger and its associated content panel. */
   items: {
@@ -40,7 +40,7 @@ export interface TabsProps extends Omit<
   defaultValue?: string;
   /** Callback fired when when a new tab is selected */
   onValueChange?: (value: string) => void;
-  /** Whether a tab is activated automatically (when receiving focus) or manually (when clicked). Defaults to `"automatic"`. */
+  /** Whether a tab is activated automatically (when receiving focus) or manually (when clicked). @default automatic */
   activationMode?: "automatic" | "manual";
 }
 
@@ -49,6 +49,38 @@ const TRIGGER_TYPOGRAPHY: { [V in TabsVariant]: TypographyVariant } = {
   secondary: "label-sm",
 };
 
+/**
+ * A tabbed interface component for organizing content into switchable panels.
+ *
+ * @param {TabsProps["items"]} props.items - The list of tab items defining triggers and content panels
+ * @param {TabsVariant} [props.variant] - (optional) The visual style variant of the tabs. @default primary
+ * @param {string} [props.value] - (optional) The selected tab value (controlled)
+ * @param {string} [props.defaultValue] - (optional) The tab to select by default (uncontrolled)
+ * @param {(value: string) => void} [props.onValueChange] - (optional) Callback fired when a new tab is selected
+ * @param {"automatic" | "manual"} [props.activationMode] - (optional) Tab activation mode. @default automatic
+ *
+ * You may also pass any additional props to the underlying `div` element
+ *
+ * @example
+ * <Tabs
+ *   items={[
+ *     { value: "overview", label: "Overview", content: <Overview /> },
+ *     { value: "settings", label: "Settings", content: <Settings /> },
+ *   ]}
+ *   defaultValue="overview"
+ * />
+ *
+ * @example
+ * <Tabs
+ *   variant="secondary"
+ *   items={[
+ *     { value: "code", label: "Code", icon: <Document />, content: <CodePanel /> },
+ *     { value: "preview", label: "Preview", content: <PreviewPanel /> },
+ *   ]}
+ *   value={activeTab}
+ *   onValueChange={setActiveTab}
+ * />
+ */
 export function Tabs(props: TabsProps) {
   const { items, className, variant = "primary", ...rest } = props;
 

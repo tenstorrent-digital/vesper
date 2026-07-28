@@ -16,13 +16,26 @@ export interface ThemeSwitcherProps extends Omit<
   ComponentProps<"div">,
   "children"
 > {
-  /** The size of the theme switcher. Defaults to `"lg"`. */
+  /** The size of the theme switcher. @default lg */
   size?: ThemeSwitcherSize;
 }
 
 const setTheme = (theme: VesperTheme) =>
   document.documentElement.setAttribute("data-vesper-theme", theme);
 
+/**
+ * A three-way toggle for switching between system, light, and dark color themes by setting the `data-vesper-theme` attribute on the document root.
+ *
+ * @param {ThemeSwitcherSize} [props.size] - (optional) The size of the theme switcher. @default lg
+ *
+ * You may also pass any additional props to the underlying `div` element
+ *
+ * @example
+ * <ThemeSwitcher />
+ *
+ * @example
+ * <ThemeSwitcher size="sm" />
+ */
 export function ThemeSwitcher(props: ThemeSwitcherProps) {
   const { className, size = "lg", ...rest } = props;
 
