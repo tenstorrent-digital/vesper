@@ -45,9 +45,13 @@ const Cell = ({
   return (
     <div className="component-grid-cell">
       <div className="component-grid-cell-preview">{children}</div>
-      <Link href={`/components/${convertPascalToKebabCase(name)}`}>
-        <Typography variant="copy-md-bold">{name}</Typography>
-      </Link>
+      <Typography
+        as={Link}
+        href={`/components/${convertPascalToKebabCase(name)}`}
+        variant="copy-md-bold"
+      >
+        {name}
+      </Typography>
     </div>
   );
 };

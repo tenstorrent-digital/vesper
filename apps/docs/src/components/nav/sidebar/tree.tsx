@@ -13,15 +13,15 @@ export const Tree = ({ pages }: { pages: string[] }) => {
   return (
     <>
       {pages.map((page) => (
-        <Link
+        <Typography
+          as={Link}
           href={`/components/${page}`}
           data-active={pathname.split("/").pop() === page || undefined}
           key={page}
+          variant="heading-xs"
         >
-          <Typography variant="heading-xs">
-            {convertKebabToPascalCase(page)}
-          </Typography>
-        </Link>
+          {convertKebabToPascalCase(page)}
+        </Typography>
       ))}
     </>
   );

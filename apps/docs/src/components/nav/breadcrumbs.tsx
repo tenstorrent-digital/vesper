@@ -14,11 +14,13 @@ export const Breadcrumbs = () => {
     <div id="breadcrumbs" aria-label="Breadcrumbs">
       {paths.map((path, index) => (
         <Fragment key={index}>
-          <Link href={`/${paths.slice(0, index + 1).join("/")}`}>
-            <Typography as="span" variant="copy-md-bold">
-              {path}
-            </Typography>
-          </Link>
+          <Typography
+            as={Link}
+            href={`/${paths.slice(0, index + 1).join("/")}`}
+            variant="copy-md-bold"
+          >
+            {path}
+          </Typography>
           {index !== paths.length - 1 && (
             <Typography as="span" className="divider" variant="copy-md-bold">
               →

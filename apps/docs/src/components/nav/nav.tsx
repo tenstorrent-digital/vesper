@@ -9,11 +9,9 @@ export const Nav = () => {
   return (
     <nav id="nav" aria-label="Main Navigation">
       <div className="nav-group nav-left">
-        <Link href="/" id="home">
-          <Typography as="span" variant="heading-sm">
-            Vesper
-          </Typography>
-        </Link>
+        <Typography as={Link} href="/" id="home" variant="heading-sm">
+          Vesper
+        </Typography>
         <Breadcrumbs />
       </div>
       <div className="nav-group">
