@@ -17,6 +17,10 @@
     "format": "turbo run format format:root --",
     "format:root": "prettier --write .",
     "check-types": "turbo run check-types",
+    "changeset": "changeset",
+    "changeset:status": "changeset status --since=origin/main",
+    "changeset:version": "changeset version && prettier --write \"**/CHANGELOG.md\" \".changeset/*.md\"",
+    "changeset:release": "changeset publish",
     "generate:icons": "turbo run generate:icons --filter=@tenstorrent/vesper",
     "scaffold:component": "yarn workspace @tenstorrent/vesper scaffold:component",
     "agent:skills:add": "DISABLE_TELEMETRY=true npx skills add --yes --agent pi claude-code codex --",
@@ -26,6 +30,7 @@
     "clean-install": "yarn workspaces run rimraf node_modules && yarn rimraf node_modules && rm -f yarn.lock && yarn cache clean && yarn"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.31.1",
     "@turbo/gen": "^2.9.14",
     "prettier": "^3.7.4",
     "rimraf": "^6.1.3",
