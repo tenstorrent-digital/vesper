@@ -1,5 +1,3 @@
-"use client";
-
 import {
   type ComponentProps,
   type ReactNode,
@@ -139,9 +137,7 @@ export function Select(props: SelectProps) {
    * radix uses its own default portal target, avoiding a "document is not
    * defined" error during SSG
    */
-  const container = innerRef
-    ? innerRef.closest("dialog") || document.body
-    : undefined;
+  const container = innerRef?.closest("dialog") || undefined;
 
   const baseRemSize = useBaseRemSize();
 
