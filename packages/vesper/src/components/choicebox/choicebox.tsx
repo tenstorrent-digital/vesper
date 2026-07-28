@@ -69,8 +69,7 @@ export interface ChoiceboxMultiSelectProps extends ChoiceboxBaseProps {
 }
 
 export type ChoiceboxProps =
-  | ChoiceboxSingleSelectProps
-  | ChoiceboxMultiSelectProps;
+  ChoiceboxSingleSelectProps | ChoiceboxMultiSelectProps;
 
 /**
  * A selection group component that supports both single-select (radio) and multi-select (checkbox) modes with card-style options.

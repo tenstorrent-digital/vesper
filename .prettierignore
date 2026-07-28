@@ -6,3 +6,6 @@
 
 # ignore turbo generator templates
 turbo/generators/**/*.hbs
+
+# docs app public folder
+apps/docs/public

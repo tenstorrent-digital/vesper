@@ -1,0 +1,44 @@
+import { Avatar } from "@repo/vesper/avatar";
+
+import { STORYBOOK_URL } from "@/lib/constants";
+
+# Avatar
+
+A circular image component for representing users or entities. Renders an image when a `src` is provided, or an empty placeholder when omitted. [View in Storybook]({`${STORYBOOK_URL}/avatar`})
+
+<Avatar size="lg" src="https://i.pravatar.cc/128" alt="User avatar" />
+
+## Options
+
+| Prop   | Type                   | Description                                                               | Default |
+| ------ | ---------------------- | ------------------------------------------------------------------------- | ------- |
+| `size` | `"sm" \| "md" \| "lg"` | The size of the avatar.                                                   | `"md"`  |
+| `src`  | `string`               | The image source URL. When not provided, renders as an empty placeholder. | —       |
+| `alt`  | `string`               | The alt text for the avatar image.                                        | `""`    |
+| `as`   | `ElementType`          | The root element type for polymorphic rendering.                          | `"div"` |
+
+## Examples
+
+```tsx
+import { Avatar } from "@repo/vesper/avatar";
+
+// Basic usage
+<Avatar src="/avatar.png" alt="Jane Doe" />;
+```
+
+```tsx
+// Different sizes
+<Avatar size="sm" src="/avatar.png" alt="Small" />
+<Avatar size="md" src="/avatar.png" alt="Medium" />
+<Avatar size="lg" src="/avatar.png" alt="Large" />
+```
+
+```tsx
+// Placeholder (no image)
+<Avatar size="md" />
+```
+
+```tsx
+// Rendered as a link
+<Avatar as="a" href="/profile" src="/avatar.png" alt="Profile" />
+```

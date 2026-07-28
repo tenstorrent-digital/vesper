@@ -1,0 +1,57 @@
+import { Switch } from "@repo/vesper/switch";
+
+import { STORYBOOK_URL } from "@/lib/constants";
+
+# Switch
+
+A toggle switch input with an optional label. Uses the native `switch` ARIA role for binary on/off states, with no indeterminate state. Supports controlled and uncontrolled modes. [View in Storybook]({`${STORYBOOK_URL}/switch`})
+
+<Switch label="Enable notifications" />
+
+## Options
+
+| Prop             | Type                                   | Description                                                                                     | Default |
+| ---------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------- | ------- |
+| `label`          | `string`                               | The text label displayed next to the switch. An asterisk is appended when `required` is `true`. | —       |
+| `size`           | `"sm" \| "md"`                         | The size of the switch and its label.                                                           | `"md"`  |
+| `inputRef`       | `RefObject<HTMLInputElement \| null>`  | A ref forwarded to the underlying `<input>` element.                                            | —       |
+| `checked`        | `boolean`                              | Controls the checked state (controlled mode).                                                   | —       |
+| `defaultChecked` | `boolean`                              | The initial checked state (uncontrolled mode).                                                  | `false` |
+| `disabled`       | `boolean`                              | When `true`, prevents interaction.                                                              | `false` |
+| `required`       | `boolean`                              | When `true`, marks the input as required and appends an asterisk to the label.                  | `false` |
+| `onChange`       | `ChangeEventHandler<HTMLInputElement>` | Callback fired when the switch is toggled.                                                      | —       |
+
+## Examples
+
+```tsx
+import { Switch } from "@repo/vesper/switch";
+
+// Basic usage
+<Switch label="Dark mode" />;
+```
+
+```tsx
+// Default checked
+<Switch label="Auto-save" defaultChecked />
+```
+
+```tsx
+// Small size
+<Switch label="Compact" size="sm" />
+```
+
+```tsx
+// Required
+<Switch label="Accept terms" required />
+```
+
+```tsx
+// Controlled
+const [enabled, setEnabled] = useState(false);
+
+<Switch
+  label="Feature flag"
+  checked={enabled}
+  onChange={(e) => setEnabled(e.target.checked)}
+/>;
+```

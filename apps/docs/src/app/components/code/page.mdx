@@ -1,0 +1,34 @@
+import { Code } from "@repo/vesper/code";
+
+import { STORYBOOK_URL } from "@/lib/constants";
+
+# Code
+
+An inline code component for displaying short code snippets or technical terms within running text. Renders as a styled `<code>` element with monospace typography. [View in Storybook]({`${STORYBOOK_URL}/code`})
+
+Use the <Code>Code</Code> component to highlight inline code.
+
+## Options
+
+| Prop       | Type                      | Description                         | Default     |
+| ---------- | ------------------------- | ----------------------------------- | ----------- |
+| `variant`  | `"default" \| "contrast"` | The visual style variant to render. | `"default"` |
+| `children` | `ReactNode`               | The inline code content.            | —           |
+
+## Examples
+
+```tsx
+import { Code } from "@repo/vesper/code";
+
+// Basic usage
+<p>
+  Run <Code>yarn install</Code> to get started.
+</p>;
+```
+
+```tsx
+// Contrast variant
+<p>
+  Set the <Code variant="contrast">NODE_ENV</Code> variable.
+</p>
+```

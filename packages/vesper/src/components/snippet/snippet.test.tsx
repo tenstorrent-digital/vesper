@@ -1,4 +1,4 @@
-import { cleanup,render } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
@@ -85,17 +85,13 @@ describe("snippet [unit]", () => {
   });
 
   test("copy button uses ghost variant for default snippet", () => {
-    const { container } = render(
-      <Snippet variant="default">code</Snippet>,
-    );
+    const { container } = render(<Snippet variant="default">code</Snippet>);
     const button = container.querySelector("button");
     expect(button).toHaveClass("vesper-button-ghost");
   });
 
   test("copy button uses contrast variant for contrast snippet", () => {
-    const { container } = render(
-      <Snippet variant="contrast">code</Snippet>,
-    );
+    const { container } = render(<Snippet variant="contrast">code</Snippet>);
     const button = container.querySelector("button");
     expect(button).toHaveClass("vesper-button-contrast");
   });

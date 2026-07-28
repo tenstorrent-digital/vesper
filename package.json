@@ -4,6 +4,7 @@
   "scripts": {
     "build": "turbo run build",
     "build:vesper": "turbo run build --filter=@repo/vesper",
+    "build:docs": "turbo run build --filter=docs",
     "dev": "turbo run dev watch",
     "dev:vesper": "turbo run dev:vesper",
     "dev:docs": "turbo run dev:docs",

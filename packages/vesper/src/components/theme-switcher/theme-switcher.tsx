@@ -1,3 +1,5 @@
+"use client";
+
 import { type ComponentProps } from "react";
 
 import { ModeDark, ModeLight, ModeSystem } from "@/components/icons/icons";

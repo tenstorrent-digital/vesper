@@ -12,9 +12,11 @@ import {
 import "@/styles/test.css";
 
 const PROGRESS_BAR_PERMUTATIONS = PROGRESS_BAR_VARIANTS.flatMap((variant) =>
-  PROGRESS_BAR_SIZES.flatMap(
-    (size): ProgressBarProps => ({ size, variant, value: 23 }),
-  ),
+  PROGRESS_BAR_SIZES.flatMap((size): ProgressBarProps => ({
+    size,
+    variant,
+    value: 23,
+  })),
 );
 
 afterEach(cleanup);

@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import Image, { ImageProps } from "next/image";
+import Link from "next/link";
 import {
   type BundledLanguage,
   bundledLanguages,
@@ -20,17 +21,17 @@ import { trimChildren } from "@/lib/markdown/utils";
 
 const components = {
   h1: (props) => (
-    <Typography as="h1" variant="display-lg">
+    <Typography as="h1" variant="heading-2xl">
       {props.children}
     </Typography>
   ),
   h2: (props) => (
-    <Typography as="h2" variant="display-md">
+    <Typography as="h2" variant="heading-xl">
       {props.children}
     </Typography>
   ),
   h3: (props) => (
-    <Typography as="h3" variant="display-sm">
+    <Typography as="h3" variant="heading-lg">
       {props.children}
     </Typography>
   ),
@@ -59,6 +60,15 @@ const components = {
       {props.children}
     </Typography>
   ),
+  a: (props) => (
+    <Link
+      target={props.href.startsWith("http") ? "_blank" : undefined}
+      rel={props.href.startsWith("http") ? "noopener noreferrer" : undefined}
+      href={props.href}
+    >
+      {props.children}
+    </Link>
+  ),
   code: (props) => <Code>{props.children}</Code>,
   blockquote: (props) => (
     <Admonition size="sm">{trimChildren(props.children)}</Admonition>
@@ -82,7 +92,7 @@ const components = {
     }
 
     return (
-      <CodeBlock lang={resolvedLang} copyOnHover>
+      <CodeBlock className="max-w-full" lang={resolvedLang} copyOnHover>
         {code}
       </CodeBlock>
     );

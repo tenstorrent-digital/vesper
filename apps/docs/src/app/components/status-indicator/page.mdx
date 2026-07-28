@@ -1,0 +1,53 @@
+import { StatusIndicator } from "@repo/vesper/status-indicator";
+
+import { STORYBOOK_URL } from "@/lib/constants";
+
+# Status Indicator
+
+A compact status label with a colored dot that communicates the current state of a process or resource. Supports five states and an optional pulsing animation. [View in Storybook]({`${STORYBOOK_URL}/status-indicator`})
+
+<div style={{ display: "flex", gap: "16px" }}>
+  <StatusIndicator label="Ready" state="ready" />
+  <StatusIndicator label="In Progress" state="progress" animated />
+  <StatusIndicator label="Queued" state="queued" />
+  <StatusIndicator label="Error" state="error" />
+  <StatusIndicator label="Cancelled" state="cancelled" />
+</div>
+
+## Options
+
+| Prop       | Type                                                          | Description                                                                | Default     |
+| ---------- | ------------------------------------------------------------- | -------------------------------------------------------------------------- | ----------- |
+| `label`    | `string`                                                      | The text label displayed next to the status dot.                           | —           |
+| `state`    | `"queued" \| "progress" \| "error" \| "ready" \| "cancelled"` | The current status state, which determines the color of the indicator dot. | —           |
+| `variant`  | `"default" \| "badge"`                                        | The visual style variant of the status indicator.                          | `"default"` |
+| `animated` | `boolean`                                                     | When `true`, applies a pulsing animation to the status dot.                | `false`     |
+| `as`       | `ElementType`                                                 | The root element type for polymorphic rendering.                           | `"div"`     |
+
+## Examples
+
+```tsx
+import { StatusIndicator } from "@repo/vesper/status-indicator";
+
+// Basic usage
+<StatusIndicator label="Ready" state="ready" />;
+```
+
+```tsx
+// All states
+<StatusIndicator label="Queued" state="queued" />
+<StatusIndicator label="In Progress" state="progress" />
+<StatusIndicator label="Ready" state="ready" />
+<StatusIndicator label="Error" state="error" />
+<StatusIndicator label="Cancelled" state="cancelled" />
+```
+
+```tsx
+// Animated progress
+<StatusIndicator label="Processing..." state="progress" animated />
+```
+
+```tsx
+// Badge variant
+<StatusIndicator label="Online" state="ready" variant="badge" />
+```

@@ -134,8 +134,14 @@ export function Select(props: SelectProps) {
    * dialogs render in their own stacking context above the document body,
    * so select elements that are rendered inside dialogs must portal into
    * the dialog element itself, or else they will render behind the dialog
+   *
+   * when innerRef is null (if SSR or before mount), we pass `undefined` so
+   * radix uses its own default portal target, avoiding a "document is not
+   * defined" error during SSG
    */
-  const container = innerRef?.closest("dialog") || document.body;
+  const container = innerRef
+    ? innerRef.closest("dialog") || document.body
+    : undefined;
 
   const baseRemSize = useBaseRemSize();
 

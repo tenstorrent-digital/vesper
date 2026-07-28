@@ -1,3 +1,5 @@
+"use client";
+
 import { type ComponentProps } from "react";
 
 import { IconButton } from "@/components/icon-button/icon-button";

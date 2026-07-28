@@ -218,7 +218,13 @@ describe("text-button [unit]", () => {
       const onKeyDown = vi.fn();
       const onKeyUp = vi.fn();
       const result = render(
-        <TextButton as="a" href="/link" disabled onKeyDown={onKeyDown} onKeyUp={onKeyUp}>
+        <TextButton
+          as="a"
+          href="/link"
+          disabled
+          onKeyDown={onKeyDown}
+          onKeyUp={onKeyUp}
+        >
           Disabled Link
         </TextButton>,
       );
