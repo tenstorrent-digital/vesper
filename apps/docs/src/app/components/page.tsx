@@ -33,7 +33,10 @@ import { Toggle } from "@repo/vesper/toggle";
 import { Tooltip } from "@repo/vesper/tooltip";
 import { Typography } from "@repo/vesper/typography";
 
-import { convertPascalToKebabCase } from "@/lib/filesystem/utils";
+import {
+  convertPascalToKebabCase,
+  convertPascalToTitleCase,
+} from "@/lib/filesystem/utils";
 
 const Cell = ({
   name,
@@ -45,9 +48,13 @@ const Cell = ({
   return (
     <div className="component-grid-cell">
       <div className="component-grid-cell-preview">{children}</div>
-      <Link href={`/components/${convertPascalToKebabCase(name)}`}>
-        <Typography variant="copy-md-bold">{name}</Typography>
-      </Link>
+      <Typography
+        as={Link}
+        href={`/components/${convertPascalToKebabCase(name)}`}
+        variant="copy-md-bold"
+      >
+        {convertPascalToTitleCase(name)}
+      </Typography>
     </div>
   );
 };

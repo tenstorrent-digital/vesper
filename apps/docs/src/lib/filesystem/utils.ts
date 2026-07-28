@@ -1,7 +1,7 @@
 /**
- * given a kebab case filename (from node:fs), returns the component name
+ * given a kebab case filename (from node:fs), returns the component name in Title Case
  */
-export const convertKebabToPascalCase = (name: string) => {
+export const convertKebabToTitleCase = (name: string) => {
   const words = name.split("-");
   const pascalCase = words.map((word) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
@@ -10,12 +10,24 @@ export const convertKebabToPascalCase = (name: string) => {
 };
 
 /**
+ * given a PascalCase component name, returns the name in Title Case
+ */
+export const convertPascalToTitleCase = (name: string) => {
+  return name
+    .replace(/([a-z0-9])([A-Z])/g, "$1 $2") // avatarGroup -> avatar Group
+    .replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2") // HTTPServer -> HTTP Server
+    .replace(/[\s_]+/g, " "); // "Avatar Group" -> "Avatar Group"
+};
+
+/**
  * given a componentName in PascalCase, returns the kebab case filename
  */
 export const convertPascalToKebabCase = (name: string) => {
-  const words = name.split(" ");
-  const kebabCase = words.map((word) => {
-    return word.charAt(0).toLowerCase() + word.slice(1);
-  });
-  return kebabCase.join("-"); // re-add hyphen
+  return name
+    .trim()
+    .replace(/([a-z0-9])([A-Z])/g, "$1-$2") // avatarGroup -> avatar-Group
+    .replace(/([A-Z]+)([A-Z][a-z])/g, "$1-$2") // HTTPServer -> HTTP-Server
+    .replace(/[\s_]+/g, "-") // "Avatar Group" -> "Avatar-Group"
+    .replace(/-+/g, "-") // collapse repeated hyphens
+    .toLowerCase();
 };

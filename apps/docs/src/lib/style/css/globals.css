@@ -75,7 +75,7 @@ nav#nav {
   grid-area: nav;
   width: 100%;
   padding: var(--spacing);
-  border-bottom: 1px solid var(--color-vesper-alpha-black-50);
+  border-bottom: 1px solid var(--vesper-alpha-black-50);
 
   display: flex;
   align-items: center;
@@ -137,7 +137,6 @@ nav#sidebar {
   grid-area: sidebar;
   width: 100%;
   min-width: fit-content;
-  width: 100%;
   padding: calc(var(--spacing));
   display: flex;
   flex-direction: column;
@@ -150,10 +149,10 @@ nav#sidebar {
     ); /* so hover can take up adjacent space */
     border-radius: calc(var(--spacing) / 2);
     &:hover {
-      background-color: var(--color-vesper-alpha-black-50);
+      background-color: var(--vesper-alpha-black-50);
     }
     &[data-active] {
-      background-color: var(--color-vesper-alpha-black-100);
+      background-color: var(--vesper-alpha-black-100);
     }
   }
 
@@ -263,7 +262,7 @@ table {
 
   th {
     text-align: left;
-    border-bottom: 1px solid var(--color-vesper-alpha-black-400);
+    border-bottom: 1px solid var(--vesper-alpha-black-400);
     text-transform: uppercase;
     font-size: 0.75rem;
     font-family: var(--font-inter-tight);
@@ -280,7 +279,7 @@ table {
 
   tr {
     &:not(:last-child) {
-      border-bottom: 1px solid var(--color-vesper-alpha-black-50);
+      border-bottom: 1px solid var(--vesper-alpha-black-50);
     }
   }
 }
@@ -297,7 +296,7 @@ table {
 
     .component-grid-subtitle {
       margin-top: calc(var(--spacing) * 2);
-      color: var(--vesper-text-subtle);
+      color: var(--vesper-text-secondary);
     }
   }
 
@@ -326,7 +325,7 @@ table {
     gap: calc(var(--spacing) * 3);
     padding: calc(var(--spacing) * 2);
     border-radius: var(--vesper-radius-2);
-    border: 1px solid var(--color-vesper-alpha-black-50);
+    border: 1px solid var(--vesper-alpha-black-50);
     overflow: hidden;
     min-width: 0;
 

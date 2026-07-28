@@ -5,6 +5,7 @@ import {
   mkdirSync,
   readdirSync,
   readFileSync,
+  renameSync,
   rmSync,
   writeFileSync,
 } from "node:fs";
@@ -69,9 +70,41 @@ const removeEmptyDirectories = (currentDir: string) => {
   }
 };
 
+/**
+ * write `contents` to `destinationPath` only if it differs from what is
+ * already on disk
+ *
+ * @returns whether the file was actually written
+ */
+const writeIfChanged = (destinationPath: string, contents: Buffer): boolean => {
+  if (
+    existsSync(destinationPath) &&
+    readFileSync(destinationPath).equals(contents)
+  ) {
+    return false;
+  }
+
+  mkdirSync(path.dirname(destinationPath), { recursive: true });
+
+  /*
+    write + rename so consumers never observe a partially written file
+    (`rename` is atomic within the same directory)
+  */
+  const temporaryPath = path.join(
+    path.dirname(destinationPath),
+    `.${path.basename(destinationPath)}.tmp`,
+  );
+
+  writeFileSync(temporaryPath, contents);
+  renameSync(temporaryPath, destinationPath);
+
+  return true;
+};
+
 export const syncCSS = async () => {
   const sourceCssFiles = new Set(getCSSFiles(srcRoot));
   const distCssFiles = new Set(getCSSFiles(distRoot));
+  const changed: string[] = [];
 
   for (const relativePath of sourceCssFiles) {
     const sourcePath = path.join(srcRoot, relativePath);
@@ -85,8 +118,9 @@ export const syncCSS = async () => {
       targets,
     });
 
-    mkdirSync(path.dirname(destinationPath), { recursive: true });
-    writeFileSync(destinationPath, result.code);
+    if (writeIfChanged(destinationPath, Buffer.from(result.code))) {
+      changed.push(relativePath);
+    }
   }
 
   for (const relativePath of distCssFiles) {
@@ -95,7 +129,10 @@ export const syncCSS = async () => {
     }
 
     rmSync(path.join(distRoot, relativePath), { force: true });
+    changed.push(relativePath);
   }
 
   removeEmptyDirectories(distRoot);
+
+  return changed;
 };

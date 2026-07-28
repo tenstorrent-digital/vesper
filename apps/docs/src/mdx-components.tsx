@@ -63,6 +63,7 @@ const components = {
   a: (props) => (
     <Link
       target={props.href.startsWith("http") ? "_blank" : undefined}
+      rel={props.href.startsWith("http") ? "noopener noreferrer" : undefined}
       href={props.href}
     >
       {props.children}

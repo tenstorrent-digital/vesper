@@ -3,6 +3,19 @@
   "ui": "tui",
   "globalEnv": ["NODE_ENV"],
   "tasks": {
+    /**
+     * no-op task — no package defines a `transit` script
+     *
+     * tasks that read a dependency's *source* but do not consume its build
+     * *output* should depend on `transit` rather than `^<task>`: the hash still
+     * threads through the package graph (so caches invalidate correctly when a
+     * dependency changes) without forcing the tasks to run one after another
+     *
+     * see: https://turborepo.dev/docs/core-concepts/package-and-task-graph#transit-nodes
+     */
+    "transit": {
+      "dependsOn": ["^transit"]
+    },
     "build": {
       "dependsOn": ["^build"],
       "env": ["NEXT_PUBLIC_*", "NEXT_RUNTIME", "VERCEL_*"],
@@ -15,29 +28,35 @@
       "outputs": ["../../apps/docs/public/storybook/**"]
     },
     "check-types": {
-      "dependsOn": ["^build", "^check-types"]
+      // NOT a transit node: `docs` resolves `@repo/vesper` subpaths to
+      // declaration files under `dist`, so this is a real build-output
+      // dependency and `tsc` cannot run until vesper has been built
+      "dependsOn": ["^build"]
     },
     "dev": {
+      // ensure workspace deps are built (turbo restores `dist` from cache) so
+      // we never boot against a missing or half-written `dist`
+      "dependsOn": ["^build"],
       "cache": false,
       "persistent": true
     },
     "watch": {
+      // depends on `build` because `dev` above pulls `^build` into the dev graph
+      // (otherwise concurrent writes write over each other)
+      "dependsOn": ["build"],
       "cache": false,
       "persistent": true
     },
-    "test": {},
-    "test:update": {},
+    "clean": {
+      "cache": false
+    },
+    "test": {
+      "dependsOn": ["transit"]
+    },
+    "test:update": {
+      "dependsOn": ["transit"]
+    },
     "test:watch": {
-      "persistent": true
-    },
-    "dev:vesper": {
-      "with": ["@repo/vesper#dev"],
-      "cache": false,
-      "persistent": true
-    },
-    "dev:docs": {
-      "with": ["docs#dev", "@repo/vesper#dev", "@repo/vesper#watch"],
-      "cache": false,
       "persistent": true
     },
     "generate:icons": {
@@ -48,14 +67,16 @@
       "outputs": ["$TURBO_ROOT$/packages/vesper/src/components/Icon/**"]
     },
     "lint": {
-      "dependsOn": ["^lint"]
+      // eslint is not type-aware here (no `parserOptions.project`), so it
+      // never needs a dependency's built output - only its hash
+      "dependsOn": ["transit"]
     },
     "lint:fix": {
-      "dependsOn": ["^lint:fix"],
+      "dependsOn": ["transit"],
       "cache": false
     },
     "format": {
-      "dependsOn": ["^format"],
+      "dependsOn": ["transit"],
       "cache": false
     },
     "//#format:root": {
