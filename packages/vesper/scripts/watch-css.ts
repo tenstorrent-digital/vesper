@@ -3,8 +3,8 @@ import path from "node:path";
 
 import { srcRoot, syncCSS } from "./sync-css";
 
-await syncCSS();
-console.log(`[watch-css] synced css from ${srcRoot}`);
+const initial = await syncCSS();
+console.log(`[watch-css] synced ${initial.length} css file(s) from ${srcRoot}`);
 
 let timeout: NodeJS.Timeout | undefined;
 const scheduleSync = (event: string, filePath: string) => {
@@ -13,9 +13,19 @@ const scheduleSync = (event: string, filePath: string) => {
   }
 
   timeout = setTimeout(async () => {
-    await syncCSS();
+    const changed = await syncCSS();
+
+    /**
+     * `syncCSS` only writes files whose output actually changed, so an empty
+     * list means the edit was cosmetic (whitespace, comments) and nothing
+     * downstream needs to be invalidated
+     */
+    if (changed.length === 0) {
+      return;
+    }
+
     console.log(
-      `[watch-css] synced side-effect files after ${event}: ${path.relative(srcRoot, filePath)}`,
+      `[watch-css] synced ${changed.length} css file(s) after ${event}: ${path.relative(srcRoot, filePath)}`,
     );
   }, 50);
 };

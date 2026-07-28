@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 
-const STORYBOOK_URL = "http://localhost:3000";
+import { STORYBOOK_URL } from "@/lib/constants";
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
