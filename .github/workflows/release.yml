@@ -1,0 +1,87 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+  # Empty `workflow_dispatch` allows this workflow to be run manually from the Actions tab:
+  workflow_dispatch:
+
+# Never cancel a release mid-flight: a cancelled run can leave tags pushed without a
+# matching version commit (or vice versa).
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write # commit version bumps, push git tags
+  pull-requests: write # open and update the "Version Packages" PR
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          # changesets needs full history to diff against the base branch
+          fetch-depth: 0
+          # needed by the tag step below to tell an existing release from a new one
+          fetch-tags: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          cache: "yarn"
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      # This action does one of two things, depending on whether unreleased changesets
+      # exist on `main`:
+      #
+      # 1. changesets present -> opens/updates a "Version Packages" PR containing the
+      #    version bump, the generated CHANGELOG.md, and the deleted changeset files.
+      # 2. no changesets left (i.e. that PR was just merged) -> nothing to do here; the
+      #    version commit is already on `main` and the tag step below picks it up.
+      #
+      # No `publish` input is passed on purpose. `@tenstorrent/vesper` is `"private": true`
+      # until we own the npm scope, so the `changeset:release` script (which that input
+      # would run) publishes and tags nothing. Phase 2 expands that script to build first
+      # and wires it up here. See `.agents/plans/TT-631_PLAN.md`.
+      - name: Create Release PR
+        uses: changesets/action@v1
+        with:
+          version: yarn changeset:version
+          commit: "version packages"
+          title: "Version Packages"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # We tag by hand rather than via `changeset publish` + `privatePackages.tag: true`,
+      # because that combination tags *every* private workspace in the repo
+      # (`docs@0.1.0`, `@repo/eslint-config@0.0.0`, ...) - the `ignore` list in
+      # `.changeset/config.json` is not applied to tagging. Here we tag only the package we
+      # actually release.
+      #
+      # Idempotent: a no-op on every push except the one that merges a Version PR.
+      - name: Tag release
+        run: |
+          version=$(node -p "require('./packages/vesper/package.json').version")
+          tag="@tenstorrent/vesper@${version}"
+
+          if [ "$version" = "0.0.0" ]; then
+            echo "version is still 0.0.0, nothing has been released yet"
+            exit 0
+          fi
+
+          if git rev-parse -q --verify "refs/tags/${tag}" >/dev/null; then
+            echo "${tag} already exists, nothing to do"
+            exit 0
+          fi
+
+          echo "creating ${tag}"
+          git tag "${tag}"
+          git push origin "${tag}"

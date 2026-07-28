@@ -1,0 +1,55 @@
+name: Changeset Check
+
+on:
+  pull_request:
+    branches: [main]
+    # `labeled`/`unlabeled` so that applying the `skip-changeset` label re-runs this check
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  changeset:
+    # The name a required status check would be configured against. Keep it explicit:
+    # without it the check reports as the job id, which is easy to confuse with other
+    # workflows' jobs.
+    name: changeset-required
+
+    # Skip the bot's own "Version Packages" PR, and allow an explicit opt-out label for
+    # changes that genuinely ship nothing user-facing.
+    if: >-
+      github.head_ref != 'changeset-release/main' &&
+      !contains(github.event.pull_request.labels.*.name, 'skip-changeset')
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          # `changeset status --since` runs `git merge-base <ref> HEAD`, so it needs full
+          # history for both branches
+          fetch-depth: 0
+
+      - name: Fetch base branch
+        run: git fetch origin +refs/heads/${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          cache: "yarn"
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      # Fails when a released package changed without a covering changeset. Packages in
+      # the `ignore` list in `.changeset/config.json` (docs, eslint-config,
+      # typescript-config) are never considered, so docs-only PRs pass automatically.
+      - name: Verify a changeset exists for changed packages
+        run: yarn changeset status --since=origin/${{ github.base_ref }}
