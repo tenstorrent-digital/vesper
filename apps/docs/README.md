@@ -8,7 +8,6 @@
 
 ```bash
 yarn dev        # docs + storybook + the @repo/vesper watcher
-yarn dev:docs   # same as `yarn dev`, scoped to the docs app
 ```
 
 | Service                    | URL                                                         |
