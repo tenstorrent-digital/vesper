@@ -4,7 +4,6 @@
 */
 @import "tailwindcss" source("../../..");
 @import "@repo/vesper/tailwind.css";
-@import "@repo/vesper/styles.css";
 
 /* tailwind theme for docs */
 @theme {
