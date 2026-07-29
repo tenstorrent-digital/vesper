@@ -17,9 +17,9 @@ export const BASE_URL: string =
         `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL || "vesper-docs.vercel.app"}`;
 
 /**
- * port Storybook runs on in @repo/vesper in dev
+ * port Storybook runs on in @tenstorrent/vesper in dev
  *
- * must match the port in `@repo/vesper`'s `dev` script, which runs storybook
+ * must match the port in `@tenstorrent/vesper`'s `dev` script, which runs storybook
  * with `--exact-port` so a port clash fails loudly instead of silently
  * relocating and breaking this rewrite
  *
@@ -28,7 +28,7 @@ export const BASE_URL: string =
 export const STORYBOOK_PORT = 3000;
 
 /**
- * the URL of the Storybook instance from @repo/vesper
+ * the URL of the Storybook instance from @tenstorrent/vesper
  */
 export const STORYBOOK_URL =
   process.env.NODE_ENV === "development"

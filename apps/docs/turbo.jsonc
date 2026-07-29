@@ -3,7 +3,7 @@
   "extends": ["//"],
   "tasks": {
     "build": {
-      "dependsOn": ["^build", "@repo/vesper#build:storybook"],
+      "dependsOn": ["^build", "@tenstorrent/vesper#build:storybook"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
@@ -17,17 +17,17 @@
       /**
        * and then we also need:
        *
-       * (1) `@repo/vesper#watch`
+       * (1) `@tenstorrent/vesper#watch`
        *
        * recompiles `packages/vesper/src` into `dist`,
        * which is what the docs app actually imports
        *
-       * (2) `@repo/vesper#dev`
+       * (2) `@tenstorrent/vesper#dev`
        *
        * storybook on localhost:3000, proxied at `/storybook`
        * in dev by `apps/docs/src/proxy.ts`
        */
-      "with": ["@repo/vesper#watch", "@repo/vesper#dev"],
+      "with": ["@tenstorrent/vesper#watch", "@tenstorrent/vesper#dev"],
       "cache": false,
       "persistent": true
     }

@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@repo/vesper/button";
-import { Menu } from "@repo/vesper/menu";
+import { Button } from "@tenstorrent/vesper/button";
+import { Menu } from "@tenstorrent/vesper/menu";
 
 export function MenuDemo() {
   return (

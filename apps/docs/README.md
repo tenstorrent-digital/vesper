@@ -7,7 +7,7 @@
 > Do not run these commands from this folder. Run everything from the **monorepo root** instead.
 
 ```bash
-yarn dev        # docs + storybook + the @repo/vesper watcher
+yarn dev        # docs + storybook + the @tenstorrent/vesper watcher
 ```
 
 | Service                    | URL                                                         |
@@ -18,9 +18,9 @@ yarn dev        # docs + storybook + the @repo/vesper watcher
 
 ### Notes
 
-The docs app imports `@repo/vesper` from its **built output** (`packages/vesper/dist`), not
+The docs app imports `@tenstorrent/vesper` from its **built output** (`packages/vesper/dist`), not
 its source. `yarn dev` therefore builds the package first, then keeps it in sync with the
-`@repo/vesper#watch` task, so edits under `packages/vesper/src` show up here automatically.
+`@tenstorrent/vesper#watch` task, so edits under `packages/vesper/src` show up here automatically.
 
 Storybook runs with `--exact-port`, so a process already sitting on port 3000 fails the task
 instead of silently relocating and breaking the `/storybook` rewrite in
@@ -29,7 +29,7 @@ instead of silently relocating and breaking the `/storybook` rewrite in
 ### Turbopack caching
 
 Turbopack's persistent dev cache is disabled for this app in
-[`next.config.ts`](./next.config.ts) because `@repo/vesper` is compiled by a separate watcher and its output changes are outside the Next dev server's lifecycle.
+[`next.config.ts`](./next.config.ts) because `@tenstorrent/vesper` is compiled by a separate watcher and its output changes are outside the Next dev server's lifecycle.
 
 To clean the (whole monorepo's) cache and start fresh you can run:
 

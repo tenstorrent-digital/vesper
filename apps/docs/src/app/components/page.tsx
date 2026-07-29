@@ -3,35 +3,35 @@
 import Link from "next/link";
 import { type BundledLanguage, bundledLanguages } from "shiki/bundle/web";
 
-import { Accordion } from "@repo/vesper/accordion";
-import { Admonition } from "@repo/vesper/admonition";
-import { Avatar } from "@repo/vesper/avatar";
-import { AvatarGroup } from "@repo/vesper/avatar-group";
-import { Badge } from "@repo/vesper/badge";
-import { Button } from "@repo/vesper/button";
-import { Checkbox } from "@repo/vesper/checkbox";
-import { Chip } from "@repo/vesper/chip";
-import { Code } from "@repo/vesper/code";
-import { CodeBlock } from "@repo/vesper/code-block";
-import { IconButton } from "@repo/vesper/icon-button";
-import { ProgressBar } from "@repo/vesper/progress-bar";
-import { RadioGroup } from "@repo/vesper/radio-group";
-import { Select } from "@repo/vesper/select";
-import { ShowMore } from "@repo/vesper/show-more";
-import { Skeleton } from "@repo/vesper/skeleton";
-import { Slider } from "@repo/vesper/slider";
-import { Snippet } from "@repo/vesper/snippet";
-import { SplitButton } from "@repo/vesper/split-button";
-import { StatusIndicator } from "@repo/vesper/status-indicator";
-import { Switch } from "@repo/vesper/switch";
-import { Tabs } from "@repo/vesper/tabs";
-import { Tag } from "@repo/vesper/tag";
-import { TextButton } from "@repo/vesper/text-button";
-import { TextInput } from "@repo/vesper/text-input";
-import { ThemeSwitcher } from "@repo/vesper/theme-switcher";
-import { Toggle } from "@repo/vesper/toggle";
-import { Tooltip } from "@repo/vesper/tooltip";
-import { Typography } from "@repo/vesper/typography";
+import { Accordion } from "@tenstorrent/vesper/accordion";
+import { Admonition } from "@tenstorrent/vesper/admonition";
+import { Avatar } from "@tenstorrent/vesper/avatar";
+import { AvatarGroup } from "@tenstorrent/vesper/avatar-group";
+import { Badge } from "@tenstorrent/vesper/badge";
+import { Button } from "@tenstorrent/vesper/button";
+import { Checkbox } from "@tenstorrent/vesper/checkbox";
+import { Chip } from "@tenstorrent/vesper/chip";
+import { Code } from "@tenstorrent/vesper/code";
+import { CodeBlock } from "@tenstorrent/vesper/code-block";
+import { IconButton } from "@tenstorrent/vesper/icon-button";
+import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
+import { RadioGroup } from "@tenstorrent/vesper/radio-group";
+import { Select } from "@tenstorrent/vesper/select";
+import { ShowMore } from "@tenstorrent/vesper/show-more";
+import { Skeleton } from "@tenstorrent/vesper/skeleton";
+import { Slider } from "@tenstorrent/vesper/slider";
+import { Snippet } from "@tenstorrent/vesper/snippet";
+import { SplitButton } from "@tenstorrent/vesper/split-button";
+import { StatusIndicator } from "@tenstorrent/vesper/status-indicator";
+import { Switch } from "@tenstorrent/vesper/switch";
+import { Tabs } from "@tenstorrent/vesper/tabs";
+import { Tag } from "@tenstorrent/vesper/tag";
+import { TextButton } from "@tenstorrent/vesper/text-button";
+import { TextInput } from "@tenstorrent/vesper/text-input";
+import { ThemeSwitcher } from "@tenstorrent/vesper/theme-switcher";
+import { Toggle } from "@tenstorrent/vesper/toggle";
+import { Tooltip } from "@tenstorrent/vesper/tooltip";
+import { Typography } from "@tenstorrent/vesper/typography";
 
 import {
   convertPascalToKebabCase,
@@ -175,7 +175,7 @@ export default function Page() {
         </Cell>
 
         <Cell name="Snippet">
-          <Snippet>yarn add @repo/vesper</Snippet>
+          <Snippet>yarn add @tenstorrent/vesper</Snippet>
         </Cell>
 
         <Cell name="SplitButton">

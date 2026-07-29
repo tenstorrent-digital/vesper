@@ -11,33 +11,55 @@ P3 and Phase 2 are follow-up work — do not block PR 2 on them.
 
 ### P0 — Rename `@repo/vesper` → `@tenstorrent/vesper` (PR 1)
 
-- [ ] `packages/vesper/package.json`: set `"name": "@tenstorrent/vesper"`, keep `"version": "0.0.0"`, and change
+- [x] `packages/vesper/package.json`: set `"name": "@tenstorrent/vesper"`, keep `"version": "0.0.0"`, and change
       `"private": false` → `"private": true` (temporary publish guard; Changesets still versions + tags it via
       `privatePackages` config in P1)
-- [ ] `packages/vesper/package.json`: add publish-facing metadata — `description`, `license` (confirm against
+- [x] `packages/vesper/package.json`: add publish-facing metadata — `description`, `license` (confirm against
       `packages/vesper/LICENSE`), `repository` (`git+https://github.com/tenstorrent-digital/vesper.git` +
       `"directory": "packages/vesper"` — required later for npm provenance), `homepage`, `bugs`,
       `publishConfig: { "access": "public" }`, `engines: { "node": ">=22" }`
-- [ ] Run the mechanical rewrite across the remaining 53 files:
+      <br>**Note:** both `LICENSE` files are **MIT** (Copyright 2026 Tenstorrent Inc.), not Apache-2.0 as the
+      plan guessed — used `"license": "MIT"`.
+- [x] Run the mechanical rewrite across the remaining 53 files:
       ```bash
       rg -l "@repo/vesper" --hidden -g '!node_modules' -g '!yarn.lock' -g '!dist' -g '!.git' \
-        | xargs sed -i '' 's|@repo/vesper|@tenstorrent/vesper|g'
+        -g '!.agents/plans/**' | xargs sed -i '' 's|@repo/vesper|@tenstorrent/vesper|g'
       ```
-- [ ] Spot-check the non-source hits the codemod touched: root `package.json` (7 turbo `--filter` flags),
+      **Note:** added `-g '!.agents/plans/**'` — the plan's original command would have rewritten these plan
+      and TODO files, turning e.g. "rename `@repo/vesper` → `@tenstorrent/vesper`" into a no-op sentence.
+      Actual scope was 57 files (not 53): the plan missed `apps/docs/README.md`,
+      `apps/docs/eslint.config.mjs`, `apps/docs/next.config.ts` and a `turbo.jsonc` comment.
+- [x] Spot-check the non-source hits the codemod touched: root `package.json` (7 turbo `--filter` flags),
       `turbo.jsonc` (`@tenstorrent/vesper#dev`, `#watch`), `apps/docs/turbo.jsonc`
       (`@tenstorrent/vesper#build:storybook`), `apps/docs/package.json` dependency,
       `apps/docs/src/lib/style/css/globals.css` (`@import "@tenstorrent/vesper/tailwind.css"`),
       `packages/vesper/README.md`
-- [ ] Confirm `apps/docs` still depends on `"@tenstorrent/vesper": "*"` (Yarn 1 has no `workspace:` protocol —
+- [x] Confirm `apps/docs` still depends on `"@tenstorrent/vesper": "*"` (Yarn 1 has no `workspace:` protocol —
       keep the `*` range) and that `yarn workspaces info` lists it as a workspace dependency
-- [ ] Verify: `yarn install` → `yarn lint` → `yarn check-types` → `yarn build` → `yarn test:vesper`
-- [ ] Smoke-test the docs site with `yarn dev:docs` (components render, tailwind theme vars still load)
-- [ ] Confirm zero remaining references: `rg "@repo/vesper" --hidden -g '!node_modules' -g '!dist' -g '!.git'`
+      <br>Confirmed: `docs -> @tenstorrent/vesper`, `node_modules/@tenstorrent/vesper -> ../../packages/vesper`,
+      no mismatched workspace deps. Also re-sorted the dep alphabetically after `@tailwindcss/postcss`.
+- [x] Verify: `yarn install` → `yarn lint` → `yarn check-types` → `yarn build` → `yarn test:vesper`
+      <br>All pass. `yarn lint` initially failed with 5 `simple-import-sort/imports` warnings because the new
+      scope sorts differently; fixed via `yarn lint:fix` + `yarn workspace docs run eslint --fix`
+      (`apps/docs` has no `lint:fix` script — see follow-up below).
+- [x] Smoke-test the docs site with `yarn dev:docs` (components render, tailwind theme vars still load)
+      <br>`/components/button` returns 200; rendered HTML contains `vesper-typography` classes and the served
+      CSS bundle contains `--vesper-*` theme vars, so the `tailwind.css` subpath import resolves.
+- [x] Confirm zero remaining references: `rg "@repo/vesper" --hidden -g '!node_modules' -g '!dist' -g '!.git'`
+      <br>Zero outside `.agents/plans/**`, where they are deliberately preserved as historical context.
 - [ ] Check the Vercel (or other host) project for `apps/docs` for any dashboard-level build command /
       ignored-build-step referencing `@repo/vesper` and update it
+      <br>**Needs a human:** no `vercel.json`/`netlify.toml` exists in-repo, so any such reference is
+      dashboard-only. `.github/workflows/vesper-tests.yml` needs no change (it calls `yarn test:vesper`, which
+      routes through the updated root filter, and its path filters are directory-based).
 - [ ] Open PR 1 with body `Closes [TT-631]` (or reference it if TT-631 stays open for PR 2)
 - [ ] (Optional, out of scope — file a separate issue) `turbo/generators/config.ts` references stale
       `packages/n` paths, so `yarn scaffold:component` may be broken
+- [ ] (Optional, out of scope — noticed during P0) `apps/docs` has no `lint:fix` script, unlike
+      `packages/vesper`, so `yarn lint:fix` at the root silently skips the docs app
+- [ ] (Optional, out of scope — noticed during P0) Pre-existing formatting drift: `yarn format` reformats
+      `AGENTS.md`, `apps/docs/tsconfig.json` and `packages/vesper/src/styles/shadows.css`. Reverted here to
+      keep PR 1 mechanical; worth a standalone formatting commit.
 
 ### P1 — Install and configure Changesets (PR 2)
 
