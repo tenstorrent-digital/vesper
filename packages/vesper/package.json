@@ -1,7 +1,24 @@
 {
-  "name": "@repo/vesper",
+  "name": "@tenstorrent/vesper",
   "version": "0.0.0",
-  "private": false,
+  "private": true,
+  "description": "React component library for the Vesper design system",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tenstorrent-digital/vesper.git",
+    "directory": "packages/vesper"
+  },
+  "homepage": "https://github.com/tenstorrent-digital/vesper#readme",
+  "bugs": {
+    "url": "https://github.com/tenstorrent-digital/vesper/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22"
+  },
   "type": "module",
   "files": [
     "dist"

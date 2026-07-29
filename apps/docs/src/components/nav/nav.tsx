@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { Button } from "@repo/vesper/button";
-import { Typography } from "@repo/vesper/typography";
+import { Button } from "@tenstorrent/vesper/button";
+import { Typography } from "@tenstorrent/vesper/typography";
 
 import { Breadcrumbs } from "./breadcrumbs";
 

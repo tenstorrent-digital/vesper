@@ -41,7 +41,7 @@ export default [
             ["^react", "^@?\\w"],
 
             // internal packages from monorepo
-            ["^(@repo)(/.*|$)"],
+            ["^(@repo|@tenstorrent)(/.*|$)"],
 
             // imports from named paths in tsconfig.json (in order)
             ["^(@/components)(/.*|$)"],
