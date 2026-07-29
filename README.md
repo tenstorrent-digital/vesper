@@ -43,7 +43,7 @@ flowchart LR
     end
 
     subgraph Registry["Package Registry"]
-        RegistryPkg["@tenstorrent/vesper<br/><i>private, scoped to tenstorrent org</i>"]
+        RegistryPkg["@tenstorrent/vesper<br/><i>public, scoped to tenstorrent org</i>"]
     end
 
     subgraph Consumer["End User"]
@@ -102,19 +102,23 @@ packages/
 
 The vesper package in the monorepo is what ultimately gets published to the package registry. It contains tokens, styles, agent skills, and components in the design system.
 
-Initially vesper will start as a private package which will be scoped to the Tenstorrent GitHub organization. Once the package has stabilized and we have established a practise for authoring changelogs and publishing tags/releases then there is potential to release vesper publicly. [**End Users**](#end-user) install the vesper package from the registry.
+Vesper is set up to publish publicly under the Tenstorrent scope (`publishConfig.access` is `public`), but **it is not published yet** — we do not own the `@tenstorrent` scope on npm. Until that is sorted out, releases stop short of the registry: the release workflow versions the package, opens a "Version Packages" PR, and pushes git tags and GitHub Releases, without publishing anything. See [PUBLISHING.md](./PUBLISHING.md) for how releases work today and what has to change to publish for real. [**End Users**](#end-user) install the vesper package from the registry.
 
 #### Regarding organization-scoped packages
 
-We will need to coordinate with the Tenstorrent org owner to set up an npm account for the Tenstorrent organization so we can publish to npm with access restricted to the Tenstorrent org.
+We will need to coordinate with the Tenstorrent org owner to set up an npm account for the Tenstorrent organization so we can publish under the `@tenstorrent` scope.
 
-Once the package is published privately under the tenstorrent scope, we will also need to manage team access in npm for that org so developers in those teams can install the package.
-
-[npm documentation reference](https://docs.npmjs.com/managing-team-access-to-organization-packages)
+Because the package publishes with public access, the scope only namespaces it — no npm team membership is needed to install.
 
 ### End User
 
-Developers being able to auth into npm using SSO is an essential part of installing an organization-scoped npm package.
+Once vesper is published with public access, installing it requires no npm authentication:
+
+```bash
+npm install @tenstorrent/vesper
+```
+
+If we ever switch to publishing with restricted access, installs would instead require org membership, and being able to auth into npm using SSO becomes an essential part of installing the package:
 
 1. User gets access to npm org via admin invite to org team
 2. User authenticates locally via npm login or auth token in .npmrc (auth tokens can be used in CI environments as well)
@@ -125,16 +129,17 @@ npm login
 npm install @tenstorrent/vesper
 ```
 
-Once the vesper package has been installed, users can import skills, tokens, core functionality, and framework-specific components freely:
+Once the vesper package has been installed, users can import components and styles freely:
 
 ```js
-import { TextInput, Accordion } from "@tenstorrent/vesper/react";
-import { COLORS } from "@tenstorrent/vesper/tokens";
+import { Button } from "@tenstorrent/vesper/button";
+import { Accordion } from "@tenstorrent/vesper/accordion";
+import "@tenstorrent/vesper/styles.css";
 ```
 
 #### Usage in CI Environments
 
-For projects that require installing the package in CI environments, an auth token can be used. The token must have read access for installs, and/or publish access for publishing. For example:
+A public package needs no credentials to install. If we publish with restricted access instead, projects installing the package in CI need an auth token. The token must have read access for installs, and/or publish access for publishing. For example:
 
 ```yaml
 - run: npm ci
