@@ -4,7 +4,9 @@ on:
   push:
     branches: [main]
 
-  # Empty `workflow_dispatch` allows this workflow to be run manually from the Actions tab:
+  # Empty `workflow_dispatch` allows this workflow to be run manually from the
+  # Actions tab. The Actions tab always offers a ref picker, so runs are pinned
+  # to `main` by the "Verify Release Ref" guard below:
   workflow_dispatch:
 
 concurrency:
@@ -25,6 +27,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # `workflow_dispatch` runs can be started from any ref, and this job holds
+      # `contents: write`, so an unguarded manual run from a feature branch or
+      # tag could version, tag and release unmerged code. Fail before anything
+      # is checked out or published. `push` runs are already limited to `main`
+      # by the trigger.
+      - name: Verify Release Ref
+        if: github.ref != 'refs/heads/main'
+        # `github.ref` is interpolated via `env` rather than inline, so a
+        # crafted ref name cannot inject shell commands into this step.
+        env:
+          RELEASE_REF: ${{ github.ref }}
+        run: |
+          echo "::error::Release must run from refs/heads/main, but this run targets ${RELEASE_REF}."
+          exit 1
+
       - name: Checkout
         uses: actions/checkout@v5
         with:
