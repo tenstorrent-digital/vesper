@@ -197,9 +197,7 @@ if [ -n "$patch_files" ]; then
   # show a message if there are partially staged files with unstaged changes
   # so the user can stage the formatting fixes without committing the unstaged changes
   patch_note="
-${yellow}Warning${reset} You have partially staged files that also have unstaged
-changes, use ${magenta}git add --patch${reset} to avoid accidentally committing
-those unstaged changes
+${yellow}Warning${reset} You have partially staged files that also have unstaged changes, use ${magenta}git add --patch${reset} to avoid accidentally committing those unstaged changes
 "
 fi
 
