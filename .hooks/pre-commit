@@ -1,0 +1,219 @@
+#!/bin/sh
+
+# git pre-commit hook
+
+# formatting check
+#
+# checks that staged files are formatted with prettier (see .prettierrc.ts) by
+# running `yarn format:check` from the monorepo root on the staged files
+#
+# if any staged file is not formatted, the commit is blocked, the offending
+# files are listed, and a command that formats + stages those files is printed
+# (and copied to the clipboard when a clipboard utility is available)
+#
+# install:
+#
+#   # set hooks path to .hooks directory
+#   git config core.hooksPath .hooks
+#
+# or:
+#
+#   # copy to git hooks directory
+#   cp .hooks/pre-commit .git/hooks/pre-commit
+#   # make executable
+#   chmod +x .git/hooks/pre-commit
+#
+# to bypass our pre-commit hook, run commit with the `--no-verify` flag:
+#
+#   git commit --no-verify
+#
+# note: prettier reads files from the working tree, not from the index, so
+# partially staged files are checked in their working tree state
+
+set -u
+
+repo_root=$(git rev-parse --show-toplevel) || exit 1
+cd "$repo_root" || exit 1
+
+in_list() {
+  [ -n "$2" ] || return 1
+  printf '%s\n' "$2" | grep -Fxq -- "$1"
+}
+
+# get git status
+status=$(git status --porcelain -z | tr '\0' '\n')
+
+# staged files: (A)dded, (C)opied, (M)odified, (R)enamed
+staged=$(git -c core.quotePath=false diff --cached --name-only --diff-filter=ACMR)
+[ -n "$staged" ] || exit 0
+
+# get staged files that were deleted from the working tree (e.g. `AD`, `MD`)
+# so we can filter them out of the staged files to check
+deleted=$(printf '%s\n' "$status" | sed -n 's/^[MARC]D //p')
+
+# get files that are partially staged AND modified
+partially_staged=$(printf '%s\n' "$status" | sed -n 's/^[MARC][MD] //p')
+
+# if there are deleted files, filter them out of the staged files
+# so we only check the staged files that are still present in the working tree
+if [ -n "$deleted" ]; then
+  checkable=""
+  while IFS= read -r file; do
+    [ -n "$file" ] || continue
+    in_list "$file" "$deleted" || checkable="${checkable}${file}
+"
+  done <<EOF
+$staged
+EOF
+  staged=$checkable
+  [ -n "$staged" ] || exit 0
+fi
+
+# split on newlines only (filenames may contain spaces) and disable globbing
+IFS='
+'
+set -f
+# shellcheck disable=SC2086
+set -- $staged
+set +f
+unset IFS
+
+output=$(yarn --silent format:check "$@" 2>&1)
+[ $? -eq 0 ] && exit 0
+
+# prettier reports unformatted files as `[warn] <file>` lines, followed by a
+# `[warn] Code style issues found…` summary line that we filter out
+unformatted=$(
+  printf '%s\n' "$output" |
+    sed -n 's/.*\[warn\] //p' |
+    grep -v '^Code style issues found'
+)
+
+# the check failed for some other reason (e.g. a prettier config error):
+# surface the raw output and block the commit
+if [ -z "$unformatted" ]; then
+  printf '%s\n' "$output" >&2
+  exit 1
+fi
+
+# single quote a path only when it contains characters that need escaping
+quote_path() {
+  case $1 in
+  *[!A-Za-z0-9._/-]*) printf "'%s'" "$(printf '%s' "$1" | sed "s/'/'\\\\''/g")" ;;
+  *) printf '%s' "$1" ;;
+  esac
+}
+
+# space separated, shell quoted arguments for the files in a newline list
+quote_list() {
+  args=""
+  while IFS= read -r file; do
+    [ -n "$file" ] || continue
+    args="$args $(quote_path "$file")"
+  done <<EOF
+$1
+EOF
+  printf '%s' "$args"
+}
+
+# unformatted files that have unstaged changes that will need to be staged with `git add --patch`
+patch_files=""
+add_files=""
+while IFS= read -r file; do
+  [ -n "$file" ] || continue
+  if in_list "$file" "$partially_staged"; then
+    patch_files="${patch_files}${file}
+"
+  else
+    add_files="${add_files}${file}
+"
+  fi
+done <<EOF
+$unformatted
+EOF
+
+# colors (disabled when stderr is not a terminal, or when NO_COLOR is set)
+if [ -t 2 ] && [ -z "${NO_COLOR:-}" ]; then
+  red=$(printf '\033[31m')
+  yellow=$(printf '\033[33m')
+  green=$(printf '\033[92m')
+  magenta=$(printf '\033[95m')
+  dim=$(printf '\033[2m')
+  reset=$(printf '\033[0m')
+else
+  red="" yellow="" green="" magenta="" dim="" reset=""
+fi
+
+command="${green}yarn format$(quote_list "$unformatted")${reset}"
+[ -n "$add_files" ] && command="$command ${green}&& git add${reset}${green}$(quote_list "$add_files")${reset}"
+[ -n "$patch_files" ] && command="$command ${green}&& git add ${magenta}--patch${reset}${green}$(quote_list "$patch_files")${reset}"
+
+# the command above is colored for display, so the color escapes are stripped
+# before it is copied — deriving the plain text from the same string keeps what
+# is pasted identical to what is shown
+#
+# NOTE: the escape character is matched through a variable because `\033` in a
+# sed pattern is a GNU extension that BSD sed (macOS) silently leaves alone
+esc=$(printf '\033')
+plain_command=$(printf '%s' "$command" | sed "s/${esc}\[[0-9;]*m//g")
+
+# copy the fix command to the clipboard, when possible
+copied=""
+if command -v pbcopy >/dev/null 2>&1; then
+  printf '%s' "$plain_command" | pbcopy && copied="yes"
+elif command -v wl-copy >/dev/null 2>&1; then
+  printf '%s' "$plain_command" | wl-copy && copied="yes"
+elif command -v xclip >/dev/null 2>&1; then
+  printf '%s' "$plain_command" | xclip -selection clipboard && copied="yes"
+elif command -v xsel >/dev/null 2>&1; then
+  printf '%s' "$plain_command" | xsel --clipboard --input && copied="yes"
+elif command -v clip.exe >/dev/null 2>&1; then
+  printf '%s' "$plain_command" | clip.exe && copied="yes"
+fi
+
+if [ -n "$copied" ]; then
+  clipboard_note="(✓ copied to clipboard)"
+else
+  clipboard_note=""
+fi
+
+# unformatted files
+file_list=$(
+  while IFS= read -r file; do
+    [ -n "$file" ] || continue
+    if in_list "$file" "$patch_files"; then
+      # mark partially staged files
+      printf -- '- %s %s\n' "$yellow$file$reset" "$dim(partially staged)$reset"
+    else
+      printf -- '- %s\n' "$yellow$file$reset"
+    fi
+  done <<EOF
+$unformatted
+EOF
+)
+
+patch_note=""
+if [ -n "$patch_files" ]; then
+  # show a message if there are partially staged files with unstaged changes
+  # so the user can stage the formatting fixes without committing the unstaged changes
+  patch_note="
+${yellow}Warning${reset} You have partially staged files that also have unstaged changes, use ${magenta}git add --patch${reset} to avoid accidentally committing those unstaged changes
+"
+fi
+
+message="
+${red}Error ${reset}The following files were staged but were not formatted:
+
+${file_list}${reset}
+
+Please run the following command to format these files and stage the changes:
+
+    ${dim}\$ ${reset}${command} ${dim}
+
+    ${clipboard_note}
+${patch_note}
+${dim}Bypass this pre-commit check by adding --no-verify to your commit${reset}"
+
+printf '%s\n' "$message" >&2
+
+exit 1

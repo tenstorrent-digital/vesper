@@ -99,10 +99,12 @@ Github Pull Requests
 ## Documenting components
 
 When writing JSDoc comments for component props interfaces:
+
 - Keep the component description itself brief (one sentence should suffice).
 - For props with default values, append the param description with `@default VALUE`.
 
 When writing JSDoc comments for React component functions:
+
 - Keep the component description itself brief (one sentence should suffice).
 - Underneath the component description, list out the most relevant component props with a description and default value (if any).
 - For optional props, use the syntax: `@param {TYPE} [props.PROP_NAME] - (optional) DESCRIPTION`.

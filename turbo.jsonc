@@ -79,9 +79,25 @@
       "dependsOn": ["transit"],
       "cache": false
     },
+    "format:check": {
+      "dependsOn": ["transit"],
+      "cache": false
+    },
     "//#format:root": {
       // root task to allow running `format` from root
       // see: https://turborepo.dev/docs/crafting-your-repository/configuring-tasks#registering-root-tasks
+      //
+      // accepts optional file arguments (`yarn format <files>`), and formats
+      // every file in the repository when no arguments are passed
+      "cache": false
+    },
+    "//#format:check:root": {
+      // root task to allow running `format:check` from root
+      //
+      // accepts optional file arguments (`yarn format:check <files>`), and
+      // checks every file in the repository when no arguments are passed
+      //
+      // used by the pre-commit formatting hook (see `.hooks/pre-commit`)
       "cache": false
     }
   }
