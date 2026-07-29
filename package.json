@@ -26,7 +26,8 @@
     "agent:skills:remove": "DISABLE_TELEMETRY=true npx skills remove --yes --agent '*'",
     "agent:skills:update": "DISABLE_TELEMETRY=true npx skills update --yes --project",
     "clean": "turbo run clean && rimraf --glob .turbo '{apps,packages}/*/.turbo'",
-    "clean-install": "yarn workspaces run rimraf node_modules && yarn rimraf node_modules && rm -f yarn.lock && yarn cache clean && yarn"
+    "clean-install": "yarn workspaces run rimraf node_modules && yarn rimraf node_modules && rm -f yarn.lock && yarn cache clean && yarn",
+    "changeset": "changeset"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.1",
