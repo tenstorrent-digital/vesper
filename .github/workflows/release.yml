@@ -1,0 +1,68 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+  # Empty `workflow_dispatch` allows this workflow to be run manually from the Actions tab:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # never cancel a release run: cancelling mid-flight can leave the version PR
+  # branch or the pushed git tags in a half-updated state
+  cancel-in-progress: false
+
+permissions:
+  # push the `changeset-release/main` branch, version commits and git tags
+  contents: write
+  # open/update the "Version Packages" pull request
+  pull-requests: write
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          # changesets reads git history to work out what changed since the last
+          # release, so the default shallow clone is not enough
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          cache: "yarn"
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      # Two modes, decided by the action based on whether `.changeset/*.md` files
+      # are present on `main`:
+      #
+      # 1. changesets present -> run `version` and open/update the "Version
+      #    Packages" PR (bumped versions + generated changelogs).
+      # 2. no changesets (ie. the "Version Packages" PR was just merged) -> run
+      #    `publish`, which here only creates and pushes git tags plus GitHub
+      #    releases.
+      #
+      # NOTE: `publish` is deliberately NOT `changeset publish`. We do not own
+      # the `@tenstorrent` npm scope yet, so nothing in this workflow talks to
+      # the npm registry: `changeset tag` is purely local git plumbing, no
+      # NPM_TOKEN is provided, and npm provenance (`id-token: write`) is
+      # intentionally not requested. To publish for real later, swap
+      # `changeset:tag` for a `changeset publish` script, add the token/OIDC
+      # permissions, and delete this note.
+      - name: Create Version PR or Tag Release
+        # SHA-pinned: `@v1` is a moving branch, and this step runs with write
+        # access to the repo. Bump deliberately (see the v1 branch for updates).
+        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
+        with:
+          version: yarn changeset:version
+          publish: yarn changeset:tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
