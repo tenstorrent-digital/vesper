@@ -3,5 +3,5 @@
 import { ReactNode } from "react";
 
 export const Prose = ({ children }: { children: ReactNode }) => {
-  return <section className="prose">{children}</section>;
+  return <div className="prose">{children}</div>;
 };
