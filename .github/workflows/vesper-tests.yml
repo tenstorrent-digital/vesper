@@ -22,7 +22,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  tests:
+  run:
+    name: Vesper Tests
     runs-on: ubuntu-latest
 
     steps:
