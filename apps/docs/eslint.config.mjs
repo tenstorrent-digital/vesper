@@ -8,7 +8,7 @@ export default [
 
   /**
    * ignore `public/storybook` (the built storybook bundle) copied in
-   * by `@repo/vesper#build:storybook`
+   * by `@tenstorrent/vesper#build:storybook`
    */
   globalIgnores(["public/storybook/**"]),
 ];

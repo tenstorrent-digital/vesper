@@ -1,6 +1,6 @@
 "use client";
 
-import { SplitButton } from "@repo/vesper/split-button";
+import { SplitButton } from "@tenstorrent/vesper/split-button";
 
 export function SplitButtonDemo() {
   return (

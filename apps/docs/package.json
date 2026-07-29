@@ -1,5 +1,6 @@
 {
   "name": "docs",
+  "description": "Documentation website for the Vesper design system",
   "version": "0.1.0",
   "type": "module",
   "private": true,
@@ -17,8 +18,8 @@
     "@next/mdx": "^16.2.10",
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "@repo/vesper": "*",
     "@tailwindcss/postcss": "^4.3.0",
+    "@tenstorrent/vesper": "*",
     "next": "^16.2.10",
     "postcss": "^8.5.15",
     "react": "^19.2.7",

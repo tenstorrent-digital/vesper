@@ -7,10 +7,10 @@ import {
   type LanguageRegistration,
 } from "shiki/bundle/web";
 
-import { Admonition } from "@repo/vesper/admonition";
-import { Code } from "@repo/vesper/code";
-import { CodeBlock } from "@repo/vesper/code-block";
-import { Typography } from "@repo/vesper/typography";
+import { Admonition } from "@tenstorrent/vesper/admonition";
+import { Code } from "@tenstorrent/vesper/code";
+import { CodeBlock } from "@tenstorrent/vesper/code-block";
+import { Typography } from "@tenstorrent/vesper/typography";
 
 import { trimChildren } from "@/lib/markdown/utils";
 

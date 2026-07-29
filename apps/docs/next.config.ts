@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
   /**
    * pin the workspace root so next's turbopack (not from the monorepo) can
    * resolve `packages/vesper` via the symlink from turbo in monorepo with
-   * `node_modules/@repo/vesper`
+   * `node_modules/@tenstorrent/vesper`
    *
    * (without this, next infers the root from the nearest lockfile)
    */
@@ -20,8 +20,8 @@ const nextConfig: NextConfig = {
 
   experimental: {
     /**
-     * since we import components from `@repo/vesper` with turbo, and
-     * `@repo/vesper` is compiled into `dist` by a separate watcher,
+     * since we import components from `@tenstorrent/vesper` with turbo, and
+     * `@tenstorrent/vesper` is compiled into `dist` by a separate watcher,
      * we want to use turbo's cache in development
      *
      * without this, if the app is shut down or restarted from turbo (ctrl-c)

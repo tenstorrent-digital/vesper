@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@repo/vesper/button";
-import { addToast, Toasts } from "@repo/vesper/toast";
+import { Button } from "@tenstorrent/vesper/button";
+import { addToast, Toasts } from "@tenstorrent/vesper/toast";
 
 export function ToastDemo() {
   return (

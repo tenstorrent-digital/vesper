@@ -1,14 +1,14 @@
-# @repo/vesper
+# @tenstorrent/vesper
 
 Vesper is a design-system package that publishes a small set of foundational entrypoints today and is expected to grow to include additional component surfaces over time.
 
 Current published entrypoints include:
 
-- `@repo/vesper/styles.css` — global CSS token and component style imports
-- `@repo/vesper/tokens` — token values as ESM exports
-- `@repo/vesper/tailwind.css` — theme variables for first-class tailwind v4 integration support
-- component entrypoints such as `@repo/vesper/Icon`, `@repo/vesper/Typography`, etc.
-- tree-shakeable component barrels such as `@repo/vesper/icons`
+- `@tenstorrent/vesper/styles.css` — global CSS token and component style imports
+- `@tenstorrent/vesper/tokens` — token values as ESM exports
+- `@tenstorrent/vesper/tailwind.css` — theme variables for first-class tailwind v4 integration support
+- component entrypoints such as `@tenstorrent/vesper/Icon`, `@tenstorrent/vesper/Typography`, etc.
+- tree-shakeable component barrels such as `@tenstorrent/vesper/icons`
 
 ## Development workflow
 
@@ -34,7 +34,7 @@ We use [Storybook](https://storybook.js.org) for component development. From the
 
 Storybook reads directly from `src`, so it needs no build step. It runs with `--exact-port`, so if something is already using port 3000 the task fails loudly rather than moving to another port — `apps/docs` proxies `/storybook` to that exact port in development.
 
-Storybook is intended for local package development only. Workspaces that make use of the vesper package, such as `apps/docs`, should consume `@repo/vesper` from its built output.
+Storybook is intended for local package development only. Workspaces that make use of the vesper package, such as `apps/docs`, should consume `@tenstorrent/vesper` from its built output.
 
 ### Creating new components
 
@@ -85,8 +85,8 @@ yarn generate:icons
 This updates the generated files in `src/components/icon/`, including:
 
 - individual icon components
-- the registry used by `@repo/vesper/icon`
-- the tree-shakeable barrel used by `@repo/vesper/icons`
+- the registry used by `@tenstorrent/vesper/icon`
+- the tree-shakeable barrel used by `@tenstorrent/vesper/icons`
 
 ## Building
 
