@@ -5,12 +5,21 @@ on:
     branches:
       - main
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   check-changeset:
+    name: Changeset Check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          # `changeset status --since=origin/main` runs `git merge-base origin/main HEAD`,
+          # which requires full history rather than the default shallow clone.
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
