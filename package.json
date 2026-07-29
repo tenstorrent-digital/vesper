@@ -1,5 +1,6 @@
 {
   "name": "vesper",
+  "description": "Monorepo for the Vesper design system",
   "private": true,
   "scripts": {
     "build": "turbo run build",
