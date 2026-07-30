@@ -26,7 +26,11 @@ export const Tree = ({
   return (
     <div className="sidebar-group">
       {folder && (
-        <Typography as="span" className="sidebar-group-label" variant="copy-xs">
+        <Typography
+          as="span"
+          className="sidebar-group-label"
+          variant="label-xs-mono"
+        >
           {convertKebabToTitleCase(folder)}
         </Typography>
       )}

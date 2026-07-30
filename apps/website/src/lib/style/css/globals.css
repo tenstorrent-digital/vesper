@@ -120,6 +120,7 @@ nav#nav {
       width resolves against a width it also contributes to, overflowing
       `.nav-left` and forcing `#home` to shrink
     */
+    height: 3rem;
     width: auto;
     min-width: 0;
     padding: var(--spacing) 0;
@@ -151,15 +152,12 @@ nav#sidebar {
   .sidebar-group-label {
     padding: calc(var(--spacing) / 2);
     text-transform: uppercase;
-    letter-spacing: var(--vesper-tracking-wide);
-    color: var(--vesper-stone-600);
+    color: var(--color-vesper-alpha-black-600);
   }
 
   a {
     padding: calc(var(--spacing) / 2);
-    margin: calc(
-      var(--spacing) / 8 * -1
-    ); /* so hover can take up adjacent space */
+    margin: calc(var(--spacing) / 8 * -1) 0; /* so hover can take up adjacent space */
     border-radius: calc(var(--spacing) / 2);
     &:hover {
       background-color: var(--vesper-alpha-black-50);
