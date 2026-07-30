@@ -37,7 +37,7 @@ describe("toggle [unit]", () => {
       />,
     );
     expect(container.firstChild).toHaveClass("vesper-toggle");
-    expect(container.firstChild).toHaveClass("vesper-toggle-lg");
+    expect(container.firstChild).toHaveClass("vesper-toggle-md");
     expect(container.firstChild).toHaveClass("custom-class");
   });
 

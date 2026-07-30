@@ -36,7 +36,7 @@ export interface ToggleProps extends Omit<
 > {
   /** The list of toggle options to render. Each option can display either text or an icon. */
   options: ToggleOption[];
-  /** The size of the toggle and its options. Affects padding and typography. @default lg */
+  /** The size of the toggle and its options. Affects padding and typography. @default md */
   size?: ToggleSize;
   /** The currently selected value (controlled mode). */
   value?: string;
@@ -63,7 +63,7 @@ const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
  * @see packages/vesper/src/components/switch/switch.tsx
  *
  * @param {ToggleOption[]} props.options - The list of toggle options to render
- * @param {ToggleSize} [props.size] - (optional) The size of the toggle. @default lg
+ * @param {ToggleSize} [props.size] - (optional) The size of the toggle. @default md
  * @param {string} [props.value] - (optional) The currently selected value (controlled)
  * @param {string} [props.defaultValue] - (optional) The initially selected value (uncontrolled)
  * @param {(value: string) => void} [props.onValueChange] - (optional) Callback fired when the selected value changes
@@ -93,7 +93,7 @@ const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
  * />
  */
 export function Toggle(props: ToggleProps) {
-  const { options, className, size = "lg", ...rest } = props;
+  const { options, className, size = "md", ...rest } = props;
 
   return (
     <ToggleGroup

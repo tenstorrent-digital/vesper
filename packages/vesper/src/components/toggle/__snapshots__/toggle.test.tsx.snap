@@ -2,7 +2,7 @@
 
 exports[`toggle [snapshot] > icon options 1`] = `
 <div
-  class="vesper-toggle vesper-toggle-lg"
+  class="vesper-toggle vesper-toggle-md"
   dir="ltr"
   role="radiogroup"
   style="outline: none;"
@@ -11,7 +11,7 @@ exports[`toggle [snapshot] > icon options 1`] = `
   <button
     aria-checked="false"
     aria-label="aria-label A"
-    class="vesper-typography vesper-typography-label-lg vesper-toggle-item"
+    class="vesper-typography vesper-typography-label-sm vesper-toggle-item"
     data-radix-collection-item=""
     data-state="off"
     role="radio"
@@ -37,7 +37,7 @@ exports[`toggle [snapshot] > icon options 1`] = `
   <button
     aria-checked="false"
     aria-label="aria-label B"
-    class="vesper-typography vesper-typography-label-lg vesper-toggle-item"
+    class="vesper-typography vesper-typography-label-sm vesper-toggle-item"
     data-radix-collection-item=""
     data-state="off"
     role="radio"
@@ -71,7 +71,7 @@ exports[`toggle [snapshot] > icon options 1`] = `
 
 exports[`toggle [snapshot] > mixed options 1`] = `
 <div
-  class="vesper-toggle vesper-toggle-lg"
+  class="vesper-toggle vesper-toggle-md"
   dir="ltr"
   role="radiogroup"
   style="outline: none;"
@@ -80,7 +80,7 @@ exports[`toggle [snapshot] > mixed options 1`] = `
   <button
     aria-checked="false"
     aria-label="aria-label A"
-    class="vesper-typography vesper-typography-label-lg vesper-toggle-item"
+    class="vesper-typography vesper-typography-label-sm vesper-toggle-item"
     data-radix-collection-item=""
     data-state="off"
     role="radio"
@@ -92,7 +92,7 @@ exports[`toggle [snapshot] > mixed options 1`] = `
   <button
     aria-checked="false"
     aria-label="aria-label B"
-    class="vesper-typography vesper-typography-label-lg vesper-toggle-item"
+    class="vesper-typography vesper-typography-label-sm vesper-toggle-item"
     data-radix-collection-item=""
     data-state="off"
     role="radio"
@@ -126,7 +126,7 @@ exports[`toggle [snapshot] > mixed options 1`] = `
 
 exports[`toggle [snapshot] > text options 1`] = `
 <div
-  class="vesper-toggle vesper-toggle-lg"
+  class="vesper-toggle vesper-toggle-md"
   dir="ltr"
   role="radiogroup"
   style="outline: none;"
@@ -135,7 +135,7 @@ exports[`toggle [snapshot] > text options 1`] = `
   <button
     aria-checked="false"
     aria-label="aria-label A"
-    class="vesper-typography vesper-typography-label-lg vesper-toggle-item"
+    class="vesper-typography vesper-typography-label-sm vesper-toggle-item"
     data-radix-collection-item=""
     data-state="off"
     role="radio"
@@ -147,7 +147,7 @@ exports[`toggle [snapshot] > text options 1`] = `
   <button
     aria-checked="false"
     aria-label="aria-label B"
-    class="vesper-typography vesper-typography-label-lg vesper-toggle-item"
+    class="vesper-typography vesper-typography-label-sm vesper-toggle-item"
     data-radix-collection-item=""
     data-state="off"
     role="radio"
