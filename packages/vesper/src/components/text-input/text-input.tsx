@@ -88,7 +88,7 @@ type ForwardedPropTypes =
 type InputOnlyPropTypes = "min" | "max" | "multiple" | "pattern" | "list";
 
 interface TextInputBaseProps {
-  /** The size of the text input. Affects padding and typography. @default lg */
+  /** The size of the text input. Affects padding and typography. @default md */
   size?: TextInputSize;
   /** The visual variant of the text input, which determines its color scheme and message icon. @default default */
   variant?: TextInputVariant;
@@ -156,7 +156,7 @@ const CLEAR_BUTTON_DISABLED_TYPES = [
 /**
  * A form-ready text input component supporting single-line and multiline modes with labels, icons, validation messages, and variants.
  *
- * @param {TextInputSize} [props.size] - (optional) The size of the text input. @default lg
+ * @param {TextInputSize} [props.size] - (optional) The size of the text input. @default md
  * @param {TextInputVariant} [props.variant] - (optional) The visual variant determining color scheme and message icon. @default default
  * @param {string} [props.label] - (optional) A label displayed above the input
  * @param {string} [props.message] - (optional) A message displayed below the input with a variant-specific icon
@@ -192,7 +192,7 @@ export function TextInput(props: TextInputProps) {
     label,
     type = "text",
     variant = "default",
-    size = "lg",
+    size = "md",
     // props that may only get forwarded to an input element
     min,
     max,
