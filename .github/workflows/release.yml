@@ -1,10 +1,10 @@
 name: Release
 
-# Intentionally no `workflow_dispatch`: a manual run from any ref could
-# version, tag, and release unmerged code with this workflow's `contents: write`
 on:
   push:
     branches: [main]
+    # no `workflow_dispatch` for running from UI
+    # a manual run from any ref could version, tag, and release unmerged code
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
