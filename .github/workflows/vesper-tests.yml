@@ -13,6 +13,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   run:
     name: Vesper Tests
@@ -21,6 +24,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          # This workflow runs untrusted PR code (`yarn install`, Playwright
+          # browser installs, the test suite). Don't leave the token in
+          # `.git/config` where those steps could read it.
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v5

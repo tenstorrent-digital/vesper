@@ -9,6 +9,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   check-changeset:
     name: Changeset Check
@@ -20,6 +23,9 @@ jobs:
           # `changeset status --since=origin/main` runs `git merge-base origin/main HEAD`,
           # which requires full history rather than the default shallow clone.
           fetch-depth: 0
+          # This workflow runs untrusted PR code (`yarn install`, `changeset status`).
+          # Don't leave the token in `.git/config` where those steps could read it.
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
