@@ -1,4 +1,4 @@
-# docs
+# website
 
 ## Development
 

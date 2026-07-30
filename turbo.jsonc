@@ -25,7 +25,7 @@
     "build:storybook": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", "storybook/**"],
-      "outputs": ["../../apps/docs/public/storybook/**"]
+      "outputs": ["$TURBO_ROOT$/apps/website/public/storybook/**"]
     },
     "check-types": {
       // NOT a transit node: `docs` resolves `@tenstorrent/vesper` subpaths to

@@ -10,7 +10,7 @@ interface DocModule {
 /**
  * compiles and loads a single document from the monorepo root `docs/` folder
  *
- * @see [`getDoc`](apps/docs/src/lib/filesystem/docs/index.ts) - for getting the `slug` and `ext`
+ * @see [`getDoc`](apps/website/src/lib/filesystem/docs/index.ts) - for getting the `slug` and `ext`
  *
  * @param slug the document's slug, eg. `["components", "accordion"]`
  * @param ext the document's extension, eg. `mdx`

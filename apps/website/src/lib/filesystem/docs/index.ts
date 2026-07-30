@@ -3,7 +3,7 @@ import path from "node:path";
 import { parse } from "yaml";
 
 export const DOCS_DIR = path.join(
-  process.cwd(), // `apps/docs/`
+  process.cwd(), // `apps/website/`
   "..",
   "..",
   "docs",
@@ -112,7 +112,7 @@ export const docs: DocEntry[] = docEntries(DOCS_DIR).sort(docSortOrder);
  * @example
  * const accordionDoc = getDoc(["components", "accordion"]);
  *
- * @see [`loadDoc`](apps/docs/src/lib/filesystem/docs/load.ts) - for _loading_ the doc
+ * @see [`loadDoc`](apps/website/src/lib/filesystem/docs/load.ts) - for _loading_ the doc
  */
 export const getDoc = (slug: string[]): DocEntry | undefined =>
   docs.find((doc) => doc.href === `/${slug.join("/")}`);

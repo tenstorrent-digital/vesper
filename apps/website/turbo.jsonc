@@ -29,7 +29,7 @@
        * (2) `@tenstorrent/vesper#dev`
        *
        * storybook on localhost:3000, proxied at `/storybook`
-       * in dev by `apps/docs/src/proxy.ts`
+       * in dev by `apps/website/src/proxy.ts`
        */
       "with": ["@tenstorrent/vesper#watch", "@tenstorrent/vesper#dev"],
       "cache": false,

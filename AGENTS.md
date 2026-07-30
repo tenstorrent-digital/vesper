@@ -12,7 +12,8 @@ Monorepo for Vesper, a design system React component library, with apps and shar
 ### Layout and Apps
 
 - `packages/vesper/` - Design system components
-- `apps/docs/` — Design system documentation frontend
+- `apps/website/` — Design system documentation frontend
+- `docs/` — Design system documentation source (`.md`/`.mdx`)
 - `packages/eslint-config/` — Shared ESLint configurations
 - `packages/typescript-config/` — Shared TypeScript configurations
 
@@ -63,7 +64,7 @@ yarn install
 The Package Management, Commands, and Setup rules above describe how **you** install packages and run commands in this monorepo. They are not content rules for documentation.
 
 - Do not apply them to `.md` or `.mdx` files
-- Leave package manager commands written in documentation (prose, code blocks, examples, and component demos) exactly as authored — eg. `npm install @repo/vesper` in `apps/docs` is intentional
+- Leave package manager commands written in documentation (prose, code blocks, examples, and component demos) exactly as authored — eg. `npm install @repo/vesper` in `docs/` is intentional
 - Only change package manager commands in documentation when explicitly asked to
 
 ## Testing and Quality

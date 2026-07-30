@@ -63,7 +63,7 @@ const withMDX = createMDX({
       /**
        * add support for accessing frontmatter from md/mdx
        *
-       * @see type definitions: apps/docs/src/types/mdx.d.ts
+       * @see type definitions: apps/website/src/types/mdx.d.ts
        * @see (extremely light) documentation: https://nextjs.org/docs/app/guides/mdx#frontmatter
        */
       "remark-frontmatter",

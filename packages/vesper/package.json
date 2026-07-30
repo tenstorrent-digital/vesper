@@ -189,7 +189,7 @@
     "watch": "concurrently --kill-others-on-fail --names tsc,alias,css --prefix-colors auto \"yarn watch:tsc\" \"yarn watch:alias\" \"yarn watch:css\"",
     "dev": "storybook dev -p 3000 -c storybook --ci --exact-port",
     "clean": "rimraf dist",
-    "build:storybook": "storybook build -c storybook -o ../../apps/docs/public/storybook",
+    "build:storybook": "storybook build -c storybook -o ../../apps/website/public/storybook",
     "lint": "eslint --max-warnings 0",
     "lint:fix": "eslint --fix",
     "scaffold:component": "turbo gen vesper-component",

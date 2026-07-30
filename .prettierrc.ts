@@ -32,7 +32,7 @@ const config: Config = {
      * use the tailwindcss plugin for the docs app
      */
     {
-      files: ["apps/docs/**"],
+      files: ["apps/website/**"],
       options: {
         plugins: ["prettier-plugin-tailwindcss"],
         tailwindFunctions: ["clsx", "cn"],

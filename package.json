@@ -5,10 +5,10 @@
   "scripts": {
     "build": "turbo run build",
     "build:vesper": "turbo run build --filter=@tenstorrent/vesper",
-    "build:docs": "turbo run build --filter=docs",
+    "build:website": "turbo run build --filter=website",
     "dev": "turbo run dev",
     "dev:vesper": "turbo run dev --filter=@tenstorrent/vesper",
-    "dev:docs": "turbo run dev --filter=docs",
+    "dev:website": "turbo run dev --filter=website",
     "build:storybook": "turbo run build:storybook --filter=@tenstorrent/vesper",
     "test:vesper": "turbo run test --filter=@tenstorrent/vesper",
     "test:vesper:update": "turbo run test:update --filter=@tenstorrent/vesper",

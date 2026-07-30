@@ -32,9 +32,9 @@ Generated source lives in `src/`, while publishable artifacts live in `dist/`.
 
 We use [Storybook](https://storybook.js.org) for component development. From the monorepo root, `yarn dev:vesper` starts the storybook dev server on [localhost:3000](http://localhost:3000).
 
-Storybook reads directly from `src`, so it needs no build step. It runs with `--exact-port`, so if something is already using port 3000 the task fails loudly rather than moving to another port — `apps/docs` proxies `/storybook` to that exact port in development.
+Storybook reads directly from `src`, so it needs no build step. It runs with `--exact-port`, so if something is already using port 3000 the task fails loudly rather than moving to another port — `apps/website` proxies `/storybook` to that exact port in development.
 
-Storybook is intended for local package development only. Workspaces that make use of the vesper package, such as `apps/docs`, should consume `@tenstorrent/vesper` from its built output.
+Storybook is intended for local package development only. Workspaces that make use of the vesper package, such as `apps/website`, should consume `@tenstorrent/vesper` from its built output.
 
 ### Creating new components
 
