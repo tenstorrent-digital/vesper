@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import {
   cleanup,
   fireEvent,
@@ -185,6 +186,37 @@ describe("menu [unit]", () => {
     (document.querySelector(".vesper-menu-item") as HTMLElement).click();
     expect(onSelect).not.toHaveBeenCalled();
     expect(document.querySelector(".vesper-menu")).not.toBeNull();
+  });
+
+  test("nullable children do not render menu", () => {
+    const result = render(<Menu items={MENU_ITEMS} open />);
+
+    expect(result.container.innerHTML).toBe("");
+    expect(document.querySelector(".vesper-menu")).toBeNull();
+  });
+
+  test("fragment children do not render menu", () => {
+    const result = render(
+      <Menu items={MENU_ITEMS} open>
+        <>
+          <TextButton>trigger</TextButton>
+        </>
+      </Menu>,
+    );
+
+    expect(within(result.container).getByRole("button")).not.toBeNull();
+    expect(document.querySelector(".vesper-menu")).toBeNull();
+  });
+
+  test("non-element children do not render menu", () => {
+    const result = render(
+      <Menu items={MENU_ITEMS} open>
+        plain text trigger
+      </Menu>,
+    );
+
+    expect(result.container.innerHTML).toBe("plain text trigger");
+    expect(document.querySelector(".vesper-menu")).toBeNull();
   });
 
   (["default", "danger", "locked", "selected", "disabled"] as const).forEach(
