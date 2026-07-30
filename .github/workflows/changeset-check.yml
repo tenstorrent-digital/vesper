@@ -1,0 +1,41 @@
+name: Changeset Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  # Key by PR number, not `head_ref`: that's only the branch name, so same-named
+  # branches from different forks would share a group and cancel each other.
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check-changeset:
+    name: Changeset Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          # `changeset status --since=origin/main` runs `git merge-base`, which
+          # needs full history rather than the default shallow clone.
+          fetch-depth: 0
+          # Runs untrusted PR code, so keep the token out of `.git/config`.
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          cache: "yarn"
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Check for Changeset
+        run: yarn changeset status --since=origin/main

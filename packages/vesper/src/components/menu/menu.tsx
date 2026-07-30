@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactElement, ReactNode } from "react";
+import type { ReactNode } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,6 +12,7 @@ import {
 import { Checkmark, Lock } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 
+import { isSingleReactElement } from "@/utils/isSingleReactElement";
 import { useBaseRemSize } from "@/utils/useBaseRemSize";
 
 export type MenuItemProps = {
@@ -37,7 +38,7 @@ export interface MenuProps {
   /** An offset in pixels from the aligned edge of the trigger. @default 0 */
   alignOffset?: number;
   /** The trigger element that opens the menu. */
-  children?: ReactElement;
+  children?: ReactNode;
   /** Controls the open state of the menu (controlled mode). */
   open?: boolean;
   /** Whether the menu is open by default (uncontrolled mode). */
@@ -95,6 +96,10 @@ export function Menu(props: MenuProps) {
   } = props;
 
   const baseRemSize = useBaseRemSize();
+
+  if (!isSingleReactElement(children)) {
+    return children;
+  }
 
   return (
     <DropdownMenu {...rest}>

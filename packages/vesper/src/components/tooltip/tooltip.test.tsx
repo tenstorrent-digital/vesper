@@ -111,10 +111,29 @@ describe("tooltip [unit]", () => {
     });
   });
 
-  test("empty tooltip content", () => {
+  test("nullable children", () => {
+    const result = render(<Tooltip open content="Tooltip text" />);
+
+    expect(result.container.querySelector(".vesper-tooltip")).toBeNull();
+  });
+
+  test("non-element children do not render tooltip", () => {
     const result = render(
-      <Tooltip open content="">
-        <Typography>trigger</Typography>
+      <Tooltip open content="Tooltip text">
+        plain text trigger
+      </Tooltip>,
+    );
+
+    expect(result.container.querySelector(".vesper-tooltip")).toBeNull();
+    expect(result.container.innerHTML).toBe("plain text trigger");
+  });
+
+  test("fragment children do not render tooltip", () => {
+    const result = render(
+      <Tooltip open content="Tooltip text">
+        <>
+          <Typography>trigger</Typography>
+        </>
       </Tooltip>,
     );
 
@@ -122,22 +141,16 @@ describe("tooltip [unit]", () => {
     expect(result.container.textContent).toBe("trigger");
   });
 
-  test("nullable children", () => {
-    const result = render(<Tooltip open content="Tooltip text" />);
-
-    expect(result.container.innerHTML).toBe("");
-  });
-
-  test("non-element children", () => {
+  test("multiple children do not render tooltip", () => {
     const result = render(
       <Tooltip open content="Tooltip text">
-        plain text trigger
+        <Typography>first</Typography>
+        <Typography>second</Typography>
       </Tooltip>,
     );
 
-    const span = result.container.querySelector("span");
-    expect(span).not.toBeNull();
-    expect(span?.textContent).toBe("plain text trigger");
+    expect(result.container.querySelector(".vesper-tooltip")).toBeNull();
+    expect(result.container.textContent).toBe("firstsecond");
   });
 
   test("defaultOpen prop", () => {
