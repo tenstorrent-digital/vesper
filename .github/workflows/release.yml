@@ -1,0 +1,74 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+    # no `workflow_dispatch` for running from UI
+    # a manual run from any ref could version, tag, and release unmerged code
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # Cancelling mid-flight can leave the version PR branch
+  # or the pushed git tags in a half-updated state
+  cancel-in-progress: false
+
+permissions:
+  # push the `changeset-release/main` branch, version commits and git tags
+  contents: write
+  # open/update the "Version Packages" pull request
+  pull-requests: write
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          # changesets reads git history, so the default shallow clone isn't enough
+          fetch-depth: 0
+          # Keeps the write-scoped token out of `.git/config`, where dependency
+          # install scripts could reuse it. Safe because `commitMode: github-api`
+          # below means the action never runs `git push`.
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          cache: "yarn"
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      # Two modes, picked by the action based on whether `.changeset/*.md` files
+      # exist on `main`:
+      #
+      # 1. changesets present -> `version`: open/update the "Version Packages" PR
+      #    with bumped versions and generated changelogs.
+      # 2. none present (ie. "Version Packages" PR was just merged) -> `publish`, which here
+      #    only creates git tags and GitHub releases.
+      #
+      # NOTE: `publish` is deliberately NOT `changeset publish`. We don't own the `@tenstorrent`
+      # npm scope yet, so nothing here talks to the registry. `changeset tag` is local
+      # git plumbing, no NPM_TOKEN is provided, and provenance is intentionally not requested.
+      # To publish for real, swap `changeset tag` for a `changeset publish` script, add the
+      # token/OIDC permissions, and delete this note.
+      - name: Create Version PR or Tag Release
+        # Pinning third-party actions to a specific SHA is recommended by GitHub Actions secure use reference:
+        # https://docs.github.com/en/actions/reference/security/secure-use#using-third-party-actions
+        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
+        with:
+          # These are split on whitespace and exec'd directly by the action (no shell),
+          # so they can't be chained. `changeset version` already formats the generated
+          # CHANGELOG.md files with prettier using this repo's prettier config.
+          version: yarn changeset version
+          publish: yarn changeset tag
+          # Commits, branch and tags go through the GitHub API instead of the git
+          # CLI, so no credential is needed on disk (see `persist-credentials` above).
+          # Also signs them with GitHub's GPG key, attributed to `github-actions[bot]`.
+          commitMode: github-api
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

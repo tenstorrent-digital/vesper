@@ -10,8 +10,14 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  # Key PR runs by number, not `head_ref`: that's only the branch name, so
+  # same-named branches from different forks would cancel each other. `push` and
+  # `workflow_dispatch` runs have no PR number and fall back to `github.ref`.
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   run:
@@ -21,6 +27,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          # Runs untrusted PR code, so keep the token out of `.git/config`.
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
