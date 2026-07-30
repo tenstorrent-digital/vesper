@@ -10,11 +10,9 @@ on:
   workflow_dispatch:
 
 concurrency:
-  # Key PR runs by PR number, not `github.head_ref`. `head_ref` is only the
-  # source branch name, so identically-named branches from different forks (eg.
-  # two `patch-1` PRs) would share a group and cancel each other's runs.
-  # `push` and `workflow_dispatch` runs have no PR number, so they fall back to
-  # `github.ref` (ie. `refs/heads/main`).
+  # Key PR runs by number, not `head_ref`: that's only the branch name, so
+  # same-named branches from different forks would cancel each other. `push` and
+  # `workflow_dispatch` runs have no PR number and fall back to `github.ref`.
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
@@ -30,9 +28,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         with:
-          # This workflow runs untrusted PR code (`yarn install`, Playwright
-          # browser installs, the test suite). Don't leave the token in
-          # `.git/config` where those steps could read it.
+          # Runs untrusted PR code, so keep the token out of `.git/config`.
           persist-credentials: false
 
       - name: Setup Node.js

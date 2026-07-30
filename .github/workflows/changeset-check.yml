@@ -6,12 +6,9 @@ on:
       - main
 
 concurrency:
-  # Key by PR number, not `github.head_ref`. `head_ref` is only the source
-  # branch name, so identically-named branches from different forks (eg. two
-  # `patch-1` PRs) would share a group and cancel each other's checks.
-  # The `github.ref` fallback only matters if a non-`pull_request` trigger is
-  # added later, where `pull_request.number` would be empty.
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  # Key by PR number, not `head_ref`: that's only the branch name, so same-named
+  # branches from different forks would share a group and cancel each other.
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 permissions:
@@ -25,11 +22,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         with:
-          # `changeset status --since=origin/main` runs `git merge-base origin/main HEAD`,
-          # which requires full history rather than the default shallow clone.
+          # `changeset status --since=origin/main` runs `git merge-base`, which
+          # needs full history rather than the default shallow clone.
           fetch-depth: 0
-          # This workflow runs untrusted PR code (`yarn install`, `changeset status`).
-          # Don't leave the token in `.git/config` where those steps could read it.
+          # Runs untrusted PR code, so keep the token out of `.git/config`.
           persist-credentials: false
 
       - name: Setup Node.js
