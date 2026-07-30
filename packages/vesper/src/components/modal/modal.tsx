@@ -211,7 +211,9 @@ export function Modal(props: ModalProps) {
               button.variant ||
               (index === buttons.length - 1 ? "primary" : "tertiary");
 
-            return <Button key={index} {...button} variant={variant} />;
+            return (
+              <Button key={index} {...button} size="lg" variant={variant} />
+            );
           })}
         </div>
       )}
