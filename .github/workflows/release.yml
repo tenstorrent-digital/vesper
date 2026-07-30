@@ -48,6 +48,13 @@ jobs:
           # changesets reads git history to work out what changed since the last
           # release, so the default shallow clone is not enough
           fetch-depth: 0
+          # `yarn install` runs untrusted dependency lifecycle scripts before
+          # the release step. By default actions/checkout leaves the repo token
+          # in `.git/config`, where any such script could reuse it with this
+          # job's `contents: write` / `pull-requests: write` scope. Dropping it
+          # is safe because `commitMode: github-api` below means the action
+          # never shells out to `git push`.
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
@@ -81,5 +88,13 @@ jobs:
         with:
           version: yarn changeset:version
           publish: yarn changeset:tag
+          # Write the version commit, the branch and the tags through the GitHub
+          # API rather than the git CLI, so no credential has to be left on disk
+          # (see `persist-credentials: false` above). In this mode the action
+          # creates tags with `POST /git/refs`, commits via the API, and
+          # `setupGitUser` / local branch preparation become no-ops. Commits and
+          # tags are additionally signed with GitHub's GPG key and attributed to
+          # the GITHUB_TOKEN owner (`github-actions[bot]`).
+          commitMode: github-api
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
