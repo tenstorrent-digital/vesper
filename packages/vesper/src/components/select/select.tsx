@@ -43,9 +43,9 @@ export interface SelectProps extends Omit<
 > {
   /** An optional icon rendered at the leading edge of the select trigger. */
   icon?: ReactNode;
-  /** The size variant of the select trigger. Affects padding, height, and typography. Defaults to `"lg"` */
+  /** The size variant of the select trigger. Affects padding, height, and typography. @default md */
   size?: SelectSize;
-  /** Placeholder text shown in the trigger when no value is selected. Defaults to `"Select an option` */
+  /** Placeholder text shown in the trigger when no value is selected. @default Select an option */
   placeholder?: string;
   /** The list of selectable options displayed in the dropdown */
   options: SelectItem[];
@@ -74,8 +74,8 @@ const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
  * - Automatic portal handling for use inside dialogs
  *
  * @param {SelectItem[]} props.options - The list of selectable options displayed in the dropdown. See {@link SelectItem} for the shape of each option
- * @param {SelectSize} [props.size] - (optional) Size variant of the select trigger. Affects padding, height, and typography. Default: `"lg"`
- * @param {string} [props.placeholder] - (optional) Placeholder text shown when no value is selected. Default: `"Select an option"`
+ * @param {SelectSize} [props.size] - (optional) Size variant of the select trigger. Affects padding, height, and typography. @default md
+ * @param {string} [props.placeholder] - (optional) Placeholder text shown when no value is selected. @default Select an option
  * @param {ReactNode} [props.icon] - (optional) An icon rendered at the leading edge of the select trigger
  * @param {string} [props.value] - (optional) The currently selected value for controlled usage
  * @param {string} [props.defaultValue] - (optional) The initial selected value for uncontrolled usage
@@ -117,7 +117,7 @@ export function Select(props: SelectProps) {
     value,
     defaultValue,
     onValueChange,
-    size = "lg",
+    size = "md",
     icon,
     name,
     required,

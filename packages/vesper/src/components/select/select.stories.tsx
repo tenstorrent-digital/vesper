@@ -42,7 +42,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
   args: {
-    size: "lg",
+    size: "md",
     placeholder: "Select an option",
     disabled: false,
   },

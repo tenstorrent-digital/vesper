@@ -79,10 +79,10 @@ describe("select [unit]", () => {
     expect(trigger.textContent).toContain("Choose one");
   });
 
-  test("defaults to lg size", () => {
+  test("defaults to md size", () => {
     const { container } = render(<Select options={OPTIONS} />);
     const trigger = container.querySelector(".vesper-select");
-    expect(trigger).toHaveClass("vesper-select-lg");
+    expect(trigger).toHaveClass("vesper-select-md");
   });
 
   SELECT_SIZES.forEach((size) => {
@@ -99,7 +99,7 @@ describe("select [unit]", () => {
     );
     const trigger = container.querySelector(".vesper-select");
     expect(trigger).toHaveClass("vesper-select");
-    expect(trigger).toHaveClass("vesper-select-lg");
+    expect(trigger).toHaveClass("vesper-select-md");
     expect(trigger).toHaveClass("custom-class");
   });
 
