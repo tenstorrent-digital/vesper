@@ -68,6 +68,16 @@ const withMDX = createMDX({
        */
       "remark-frontmatter",
       "remark-mdx-frontmatter",
+
+      /**
+       * rewrites relative links between documents in `docs/**` to their routes,
+       * so a link resolves both on GitHub and on the website
+       *
+       * must be an absolute path: `@next/mdx` resolves plugin strings with
+       * `require.resolve` from inside its own loader, so a project-relative
+       * path resolves against `node_modules/@next/mdx` and is not found
+       */
+      path.join(appRoot, "src/lib/mdx/remark-doc-links.mjs"),
     ],
   },
 });
