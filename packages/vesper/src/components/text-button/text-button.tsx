@@ -24,7 +24,7 @@ export type TextButtonVariant = (typeof TEXT_BUTTON_VARIANTS)[number];
 
 export type TextButtonProps<E extends ElementType = "button"> = Polymorphic<
   {
-    /** The size of the text button. Affects font size. @default lg */
+    /** The size of the text button. Affects font size. @default md */
     size?: TextButtonSize;
     /** The color variant of the text button. @default accent */
     variant?: TextButtonVariant;
@@ -47,7 +47,7 @@ export type TextButtonProps<E extends ElementType = "button"> = Polymorphic<
  * @see packages/vesper/src/components/icon-button/icon-button.tsx
  * @see packages/vesper/src/components/split-button/split-button.tsx
  *
- * @param {TextButtonSize} [props.size] - (optional) The size of the text button. @default lg
+ * @param {TextButtonSize} [props.size] - (optional) The size of the text button. @default md
  * @param {TextButtonVariant} [props.variant] - (optional) The color variant. @default accent
  * @param {boolean} [props.disabled] - (optional) Renders the button in a disabled state. @default false
  * @param {ReactNode} [props.iconLeft] - (optional) An icon rendered to the left of the content
@@ -67,7 +67,7 @@ export type TextButtonProps<E extends ElementType = "button"> = Polymorphic<
 export function TextButton<E extends ElementType>(props: TextButtonProps<E>) {
   const {
     as: Component = "button",
-    size = "lg",
+    size = "md",
     variant = "accent",
     iconLeft,
     iconRight,
