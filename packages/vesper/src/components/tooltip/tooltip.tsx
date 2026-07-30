@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, isValidElement, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import {
   Tooltip as TooltipRoot,
   TooltipContent,
@@ -10,6 +10,7 @@ import {
 
 import { Typography } from "@/components/typography/typography";
 
+import { isSingleReactElement } from "@/utils/isSingleReactElement";
 import { useBaseRemSize } from "@/utils/useBaseRemSize";
 
 export const TOOLTIP_SIDES = ["top", "right", "bottom", "left"] as const;
@@ -21,7 +22,7 @@ export type TooltipSide = (typeof TOOLTIP_SIDES)[number];
 export type TooltipAlign = (typeof TOOLTIP_ALIGNMENTS)[number];
 
 export interface TooltipProps {
-  /** The content displayed inside the tooltip popup. If the content is falsy (null, undefined, empty string, or boolean), the tooltip will not render. */
+  /** The content displayed inside the tooltip popup. */
   content: ReactNode;
   /** The preferred side of the trigger to render the tooltip against. @default top */
   side?: TooltipSide;
@@ -85,7 +86,7 @@ export function Tooltip(props: TooltipProps) {
 
   const baseRemSize = useBaseRemSize();
 
-  if (!isValidTooltipChild(content) || !isValidTooltipChild(children)) {
+  if (!isSingleReactElement(children)) {
     return children;
   }
 
@@ -97,13 +98,7 @@ export function Tooltip(props: TooltipProps) {
         onOpenChange={onOpenChange}
         open={open}
       >
-        <TooltipTrigger asChild>
-          {isValidElement(children) && children.type !== Fragment ? (
-            children
-          ) : (
-            <span>{children}</span>
-          )}
-        </TooltipTrigger>
+        <TooltipTrigger asChild>{children}</TooltipTrigger>
         <Typography
           variant="label-xs"
           className="vesper-tooltip"
@@ -121,10 +116,3 @@ export function Tooltip(props: TooltipProps) {
     </TooltipProvider>
   );
 }
-
-/**
- * Checks to see if a `ReactNode` can be rendered with a `Tooltip`. Valid nodes must be numeric or non-empty string values, OR they must be non-nullable and non-boolean values
- * */
-const isValidTooltipChild = (node: ReactNode) => {
-  return typeof node === "number" || (!!node && typeof node !== "boolean");
-};
