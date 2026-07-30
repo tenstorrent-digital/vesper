@@ -1,11 +1,10 @@
 name: Release
 
+# Intentionally no `workflow_dispatch`: a manual run from any ref could
+# version, tag, and release unmerged code with this workflow's `contents: write`
 on:
   push:
     branches: [main]
-
-  # Allows manual runs from the Actions tab
-  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -25,16 +24,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # A manual run from any ref could otherwise version, tag, and release
-      # unmerged code with this job's `contents: write`
-      - name: Verify Release Ref
-        if: github.ref != 'refs/heads/main'
-        env:
-          RELEASE_REF: ${{ github.ref }}
-        run: |
-          echo "::error::Release must run from refs/heads/main, but this run targets ${RELEASE_REF}."
-          exit 1
-
       - name: Checkout
         uses: actions/checkout@v5
         with:
