@@ -3,8 +3,8 @@
  *
  * NOTE: components needing non-serializable props (event handlers, refs, state)
  * can NOT be used in `docs/` directly since documents are rendered from a server
- * component - later, these can be added as demo pages or components here in
- * `apps/docs/`
+ * component - those live in `@/demos` as client components then are exposed to
+ * documents below
  */
 
 import type { MDXComponents } from "mdx/types";
@@ -59,6 +59,12 @@ import { Tooltip } from "@tenstorrent/vesper/tooltip";
 import { Typography } from "@tenstorrent/vesper/typography";
 
 import { trimChildren } from "@/lib/markdown/utils";
+
+// named demos for components w non-serializable props (event handlers,
+// refs, state) that are used inside `docs/` documents
+import { MenuDemo } from "@/demos/menu";
+import { SplitButtonDemo } from "@/demos/split-button";
+import { ToastDemo } from "@/demos/toast";
 
 const components = {
   h1: (props) => (
@@ -193,6 +199,11 @@ const components = {
   Info,
   Search,
   Tenstorrent,
+
+  // demos
+  MenuDemo,
+  SplitButtonDemo,
+  ToastDemo,
 } satisfies MDXComponents;
 
 export function useMDXComponents(): MDXComponents {

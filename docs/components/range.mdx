@@ -1,0 +1,61 @@
+---
+title: Range
+description: A dual-thumb range slider for selecting a range of values between a minimum and maximum.
+---
+
+# Range
+
+A dual-thumb range slider for selecting a range of values between a minimum and maximum. Supports tick marks, value labels, custom step sizes, and accessible thumb labels.
+
+<Range defaultValues={[25, 75]} />
+
+## Options
+
+| Prop                    | Type                         | Description                                                                      | Default      |
+| ----------------------- | ---------------------------- | -------------------------------------------------------------------------------- | ------------ |
+| `values`                | `number[]`                   | The controlled values of the range thumbs.                                       | —            |
+| `defaultValues`         | `number[]`                   | The initial thumb values (uncontrolled mode).                                    | `[min, max]` |
+| `valueLabels`           | `string[]`                   | Custom display labels for each thumb. When unset, defaults to the active values. | —            |
+| `thumbAriaLabels`       | `string[]`                   | Accessible `aria-label` attributes for each thumb.                               | —            |
+| `showValueLabels`       | `boolean`                    | When `true`, displays the value labels above each thumb.                         | `false`      |
+| `onValuesChange`        | `(values: number[]) => void` | Callback fired as thumb values change during interaction.                        | —            |
+| `onValuesCommit`        | `(values: number[]) => void` | Callback fired when a thumb interaction is completed.                            | —            |
+| `showTicks`             | `boolean`                    | When `true`, renders tick marks along the track at each step interval.           | `false`      |
+| `min`                   | `number`                     | The minimum allowed value.                                                       | `0`          |
+| `max`                   | `number`                     | The maximum allowed value.                                                       | `100`        |
+| `step`                  | `number`                     | The stepping interval between selectable values.                                 | `1`          |
+| `minStepsBetweenThumbs` | `number`                     | Minimum number of steps required between thumbs.                                 | `1`          |
+| `disabled`              | `boolean`                    | When `true`, prevents interaction.                                               | `false`      |
+| `name`                  | `string`                     | The name attribute for form submission.                                          | —            |
+| `form`                  | `string`                     | The `id` of the associated `<form>` element.                                     | —            |
+
+## Examples
+
+```tsx
+import { Range } from "@tenstorrent/vesper/range";
+
+// Basic usage
+<Range defaultValues={[20, 80]} />;
+```
+
+```tsx
+// With value labels
+<Range defaultValues={[30, 70]} showValueLabels />
+```
+
+```tsx
+// With ticks
+<Range defaultValues={[0, 100]} step={10} showTicks />
+```
+
+```tsx
+// Custom range
+<Range min={0} max={1000} step={50} defaultValues={[200, 800]} />
+```
+
+```tsx
+// Controlled
+const [values, setValues] = useState([25, 75]);
+
+<Range values={values} onValuesChange={setValues} />;
+```

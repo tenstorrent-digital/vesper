@@ -1,11 +1,16 @@
-import fs from "node:fs";
+import { getDocsInFolder } from "@/lib/filesystem/docs";
 
 import { Tree } from "./tree";
 
-// get all folders in /components
-const componentPages = fs
-  .readdirSync("src/app/components")
-  .filter((page) => !page.endsWith(".tsx"));
+/**
+ * get documents from `docs/components/`
+ */
+const componentPages = getDocsInFolder("components").map(
+  ({ href, frontmatter }) => ({
+    href,
+    title: frontmatter.title,
+  }),
+);
 
 export const Sidebar = ({ className }: { className?: string }) => {
   return (

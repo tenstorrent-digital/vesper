@@ -7,20 +7,26 @@ import { Typography } from "@tenstorrent/vesper/typography";
 
 import { convertKebabToTitleCase } from "@/lib/filesystem/utils";
 
-export const Tree = ({ pages }: { pages: string[] }) => {
+export interface TreePage {
+  href: string;
+  /** falls back to the slug when a document has no frontmatter title */
+  title?: string;
+}
+
+export const Tree = ({ pages }: { pages: TreePage[] }) => {
   const pathname = usePathname();
 
   return (
     <>
-      {pages.map((page) => (
+      {pages.map(({ href, title }) => (
         <Typography
           as={Link}
-          href={`/components/${page}`}
-          data-active={pathname.split("/").pop() === page || undefined}
-          key={page}
+          href={href}
+          data-active={pathname === href || undefined}
+          key={href}
           variant="heading-xs"
         >
-          {convertKebabToTitleCase(page)}
+          {title ?? convertKebabToTitleCase(href.split("/").pop() ?? "")}
         </Typography>
       ))}
     </>

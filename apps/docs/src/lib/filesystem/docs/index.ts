@@ -123,7 +123,7 @@ export const getDoc = (slug: string[]): DocEntry | undefined =>
  * @param {string} folder - folder name from `docs/`
  *
  * @example
- * const componentsDocs = getDocsIn("components");
+ * const componentsDocs = getDocsInFolder("components");
  */
-export const getDocsIn = (folder: string): DocEntry[] =>
+export const getDocsInFolder = (folder: string): DocEntry[] =>
   docs.filter((doc) => doc.slug.length === 2 && doc.slug[0] === folder);

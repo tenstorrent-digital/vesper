@@ -1,0 +1,51 @@
+---
+title: Material
+description: A surface component that provides visual depth and structure through different elevation and border styles.
+---
+
+# Material
+
+A surface component that provides visual depth and structure through different elevation and border styles. Supports both static and interactive variants, making it the foundational container for cards, panels, and interactive surfaces.
+
+<Material style={{ padding: "24px" }}>This is a material surface.</Material>
+
+## Options
+
+| Prop       | Type                                                                                                                 | Description                                                                       | Default      |
+| ---------- | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------ |
+| `variant`  | `"outlined" \| "outlined-strong" \| "raised" \| "floating" \| "modal" \| "inset" \| "inset-strong" \| "interactive"` | The visual style variant of the material surface.                                 | `"outlined"` |
+| `state`    | `"disabled" \| "active" \| "selected"`                                                                               | The current interaction state. Only applicable when `variant` is `"interactive"`. | —            |
+| `as`       | `ElementType`                                                                                                        | The root element type for polymorphic rendering.                                  | `"div"`      |
+| `children` | `ReactNode`                                                                                                          | The content rendered inside the material surface.                                 | —            |
+
+## Examples
+
+```tsx
+import { Material } from "@tenstorrent/vesper/material";
+
+// Default outlined surface
+<Material>Card content</Material>;
+```
+
+```tsx
+// Different surface variants
+<Material variant="raised">Raised surface</Material>
+<Material variant="floating">Floating surface</Material>
+<Material variant="inset">Inset surface</Material>
+<Material variant="modal">Modal surface</Material>
+```
+
+```tsx
+// Interactive variant with states
+<Material variant="interactive">Default interactive</Material>
+<Material variant="interactive" state="active">Active</Material>
+<Material variant="interactive" state="selected">Selected</Material>
+<Material variant="interactive" state="disabled">Disabled</Material>
+```
+
+```tsx
+// Rendered as a button
+<Material as="button" variant="interactive" onClick={handleClick}>
+  Clickable surface
+</Material>
+```
