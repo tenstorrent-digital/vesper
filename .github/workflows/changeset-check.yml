@@ -6,7 +6,12 @@ on:
       - main
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  # Key by PR number, not `github.head_ref`. `head_ref` is only the source
+  # branch name, so identically-named branches from different forks (eg. two
+  # `patch-1` PRs) would share a group and cancel each other's checks.
+  # The `github.ref` fallback only matters if a non-`pull_request` trigger is
+  # added later, where `pull_request.number` would be empty.
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 permissions:
