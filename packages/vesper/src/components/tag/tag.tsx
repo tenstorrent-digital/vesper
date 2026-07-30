@@ -29,7 +29,7 @@ export type TagVariant = (typeof TAG_VARIANTS)[number];
 
 export type TagProps<E extends ElementType = "div"> = Polymorphic<
   {
-    /** The size of the tag. Affects padding and font size. @default lg */
+    /** The size of the tag. Affects padding and font size. @default md */
     size?: TagSize;
     /** The color variant of the tag. @defaults default */
     variant?: TagVariant;
@@ -49,7 +49,7 @@ export type TagProps<E extends ElementType = "div"> = Polymorphic<
  * @see packages/vesper/src/components/badge/badge.tsx
  * @see packages/vesper/src/components/chip/chip.tsx
  *
- * @param {TagSize} [props.size] - (optional) The size of the tag. @default lg
+ * @param {TagSize} [props.size] - (optional) The size of the tag. @default md
  * @param {TagVariant} [props.variant] - (optional) The color variant of the tag. @default default
  * @param {boolean} [props.disabled] - (optional) Renders the tag in a disabled state
  * @param {ReactNode} [props.icon] - (optional) An icon element rendered to the left of the tag text
@@ -69,7 +69,7 @@ export function Tag<E extends ElementType = "div">(props: TagProps<E>) {
   const {
     as: Component = "div",
     className,
-    size = "lg",
+    size = "md",
     variant = "default",
     disabled,
     icon,
