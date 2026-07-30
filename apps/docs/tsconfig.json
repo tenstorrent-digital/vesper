@@ -8,7 +8,8 @@
     ],
     "strictNullChecks": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@docs/*": ["../../docs/*"] // monorepo docs
     }
   },
   "include": [

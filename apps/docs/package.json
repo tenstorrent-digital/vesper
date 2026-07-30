@@ -10,6 +10,7 @@
     "start": "next start",
     "clean": "rimraf .next",
     "lint": "eslint --max-warnings 0",
+    "lint:fix": "eslint --fix",
     "check-types": "next typegen && tsc --noEmit"
   },
   "dependencies": {
@@ -28,7 +29,8 @@
     "remark-gfm": "^4.0.1",
     "remark-mdx-frontmatter": "^5.2.0",
     "shiki": "^4.3.1",
-    "tailwindcss": "^4.3.0"
+    "tailwindcss": "^4.3.0",
+    "yaml": "^2.9.0"
   },
   "devDependencies": {
     "@types/mdx": "^2.0.14",

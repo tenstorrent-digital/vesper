@@ -4,7 +4,11 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build", "@tenstorrent/vesper#build:storybook"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env*",
+        "$TURBO_ROOT$/docs/**" // monorepo docs
+      ],
       "outputs": [".next/**", "!.next/cache/**"]
     },
 

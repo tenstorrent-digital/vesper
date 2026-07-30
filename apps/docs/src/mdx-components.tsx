@@ -1,3 +1,12 @@
+/**
+ * components available to every MD/MDX file in the `docs/` folder
+ *
+ * NOTE: components needing non-serializable props (event handlers, refs, state)
+ * can NOT be used in `docs/` directly since documents are rendered from a server
+ * component - later, these can be added as demo pages or components here in
+ * `apps/docs/`
+ */
+
 import type { MDXComponents } from "mdx/types";
 import Image, { ImageProps } from "next/image";
 import Link from "next/link";
@@ -7,17 +16,49 @@ import {
   type LanguageRegistration,
 } from "shiki/bundle/web";
 
+import { Accordion } from "@tenstorrent/vesper/accordion";
 import { Admonition } from "@tenstorrent/vesper/admonition";
+import { Avatar } from "@tenstorrent/vesper/avatar";
+import { AvatarGroup } from "@tenstorrent/vesper/avatar-group";
+import { Badge } from "@tenstorrent/vesper/badge";
+import { Button } from "@tenstorrent/vesper/button";
+import { Checkbox } from "@tenstorrent/vesper/checkbox";
+import { Chip } from "@tenstorrent/vesper/chip";
+import { Choicebox } from "@tenstorrent/vesper/choicebox";
 import { Code } from "@tenstorrent/vesper/code";
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
+import { IconButton } from "@tenstorrent/vesper/icon-button";
+import {
+  Add,
+  Gear,
+  Globe,
+  Info,
+  Search,
+  Tenstorrent,
+} from "@tenstorrent/vesper/icons";
+import { Material } from "@tenstorrent/vesper/material";
+import { Modal } from "@tenstorrent/vesper/modal";
+import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
+import { RadioGroup } from "@tenstorrent/vesper/radio-group";
+import { Range } from "@tenstorrent/vesper/range";
+import { Select } from "@tenstorrent/vesper/select";
+import { Sheet } from "@tenstorrent/vesper/sheet";
+import { ShowMore } from "@tenstorrent/vesper/show-more";
+import { Skeleton } from "@tenstorrent/vesper/skeleton";
+import { Slider } from "@tenstorrent/vesper/slider";
+import { Snippet } from "@tenstorrent/vesper/snippet";
+import { StatusIndicator } from "@tenstorrent/vesper/status-indicator";
+import { Switch } from "@tenstorrent/vesper/switch";
+import { Tabs } from "@tenstorrent/vesper/tabs";
+import { Tag } from "@tenstorrent/vesper/tag";
+import { TextButton } from "@tenstorrent/vesper/text-button";
+import { TextInput } from "@tenstorrent/vesper/text-input";
+import { ThemeSwitcher } from "@tenstorrent/vesper/theme-switcher";
+import { Toggle } from "@tenstorrent/vesper/toggle";
+import { Tooltip } from "@tenstorrent/vesper/tooltip";
 import { Typography } from "@tenstorrent/vesper/typography";
 
 import { trimChildren } from "@/lib/markdown/utils";
-
-// This file allows you to provide custom React components
-// to be used in MDX files. You can import and use any
-// React component you want, including inline styles,
-// components from other libraries, and more.
 
 const components = {
   h1: (props) => (
@@ -109,6 +150,49 @@ const components = {
       {props.children}
     </Typography>
   ),
+
+  // components below can be used in any `docs/**/*.mdx` file without an import
+  Accordion,
+  Admonition,
+  Avatar,
+  AvatarGroup,
+  Badge,
+  Button,
+  Checkbox,
+  Chip,
+  Choicebox,
+  Code,
+  CodeBlock,
+  IconButton,
+  Material,
+  Modal,
+  ProgressBar,
+  RadioGroup,
+  Range,
+  Select,
+  Sheet,
+  ShowMore,
+  Skeleton,
+  Slider,
+  Snippet,
+  StatusIndicator,
+  Switch,
+  Tabs,
+  Tag,
+  TextButton,
+  TextInput,
+  ThemeSwitcher,
+  Toggle,
+  Tooltip,
+  Typography,
+
+  // icons will need to be added here too if we want to use them directly
+  Add,
+  Gear,
+  Globe,
+  Info,
+  Search,
+  Tenstorrent,
 } satisfies MDXComponents;
 
 export function useMDXComponents(): MDXComponents {
