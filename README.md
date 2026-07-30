@@ -28,7 +28,7 @@ yarn dev:docs    # documentation website (http://localhost:3001)
 
 ## Generating new components
 
-If you need to create a new component in the `vesper` package, the quickest way to scaffold all the necessary code is to run `yarn scaffold:component` from the monorepo root, or from within the `vesper` package directory.
+If you need to create a new component in the `vesper` package, the quickest way to scaffold all the necessary code is to run `yarn scaffold:component` from the monorepo root.
 
 The `scaffold:component` script will prompt you for two things:
 
