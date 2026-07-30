@@ -23,9 +23,8 @@ yarn install
 yarn dev         # run the docs and the vesper package in dev mode
 yarn dev:vesper  # Storybook for the component library (http://localhost:3000)
 yarn dev:docs    # documentation website (http://localhost:3001)
+                 # (note: builds @packages/vesper)
 ```
-
-The docs site consumes the built output of the `vesper` package, so Turbo will build it before starting the docs dev server.
 
 ## Generating new components
 
