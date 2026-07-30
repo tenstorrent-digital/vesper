@@ -1,21 +1,27 @@
-import { getDocsInFolder } from "@/lib/filesystem/docs";
+import { getDocTree } from "@/lib/filesystem/docs";
 
 import { Tree } from "./tree";
 
 /**
- * get documents from `docs/components/`
+ * every document in `docs/`, grouped by folder
+ *
+ * read from the doc index rather than from the route folders, so adding a
+ * document to `docs/` is all it takes to get a sidebar entry
  */
-const componentPages = getDocsInFolder("components").map(
-  ({ href, frontmatter }) => ({
+const groups = getDocTree().map(({ folder, docs }) => ({
+  folder,
+  pages: docs.map(({ href, frontmatter }) => ({
     href,
     title: frontmatter.title,
-  }),
-);
+  })),
+}));
 
 export const Sidebar = ({ className }: { className?: string }) => {
   return (
     <nav id="sidebar" aria-label="Sidebar" className={className}>
-      <Tree pages={componentPages} />
+      {groups.map(({ folder, pages }) => (
+        <Tree key={folder ?? "root"} folder={folder} pages={pages} />
+      ))}
     </nav>
   );
 };

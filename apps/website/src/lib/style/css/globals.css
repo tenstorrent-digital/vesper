@@ -140,7 +140,20 @@ nav#sidebar {
   padding: calc(var(--spacing));
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: calc(var(--spacing));
+
+  .sidebar-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .sidebar-group-label {
+    padding: calc(var(--spacing) / 2);
+    text-transform: uppercase;
+    letter-spacing: var(--vesper-tracking-wide);
+    color: var(--vesper-stone-600);
+  }
 
   a {
     padding: calc(var(--spacing) / 2);

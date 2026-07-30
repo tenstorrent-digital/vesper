@@ -13,11 +13,24 @@ export interface TreePage {
   title?: string;
 }
 
-export const Tree = ({ pages }: { pages: TreePage[] }) => {
+export const Tree = ({
+  folder,
+  pages,
+}: {
+  /** the folder these pages came from, rendered as a group label */
+  folder?: string;
+  pages: TreePage[];
+}) => {
   const pathname = usePathname();
 
   return (
-    <>
+    <div className="sidebar-group">
+      {folder && (
+        <Typography as="span" className="sidebar-group-label" variant="copy-xs">
+          {convertKebabToTitleCase(folder)}
+        </Typography>
+      )}
+
       {pages.map(({ href, title }) => (
         <Typography
           as={Link}
@@ -29,6 +42,6 @@ export const Tree = ({ pages }: { pages: TreePage[] }) => {
           {title ?? convertKebabToTitleCase(href.split("/").pop() ?? "")}
         </Typography>
       ))}
-    </>
+    </div>
   );
 };

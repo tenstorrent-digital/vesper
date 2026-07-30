@@ -130,3 +130,38 @@ export const getDoc = (slug: string[]): DocEntry | undefined =>
  */
 export const getDocsInFolder = (folder: string): DocEntry[] =>
   docs.filter((doc) => doc.slug.length === 2 && doc.slug[0] === folder);
+
+export interface DocGroup {
+  /** the folder these docs came from, or `undefined` for top-level docs */
+  folder?: string;
+  docs: DocEntry[];
+}
+
+/**
+ * get every doc in `docs/`, grouped by folder for navigation
+ *
+ * top-level docs come first, then each folder alphabetically
+ *
+ * docs inside a group are sorted by frontmatter `order` first, then
+ * alphabetical
+ *
+ * @example
+ * const tree = getDocTree();
+ * // [{ docs: [getting-started] }, { folder: "components", docs: [...] }]
+ */
+export const getDocTree = (): DocGroup[] => {
+  const groups = new Map<string, DocEntry[]>();
+
+  docs.forEach((doc) => {
+    // only the first segment groups a doc — `docs/a/b/c.mdx` groups under `a`
+    const folder = doc.slug.length > 1 ? doc.slug[0]! : "";
+    groups.set(folder, [...(groups.get(folder) ?? []), doc]);
+  });
+
+  return (
+    [...groups.entries()]
+      // sort top-level docs first, then folders alphabetically
+      .sort(([a], [b]) => (a === "" ? -1 : b === "" ? 1 : a.localeCompare(b)))
+      .map(([folder, docs]) => ({ folder: folder || undefined, docs }))
+  );
+};
