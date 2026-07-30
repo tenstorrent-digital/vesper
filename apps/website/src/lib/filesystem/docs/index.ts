@@ -75,6 +75,9 @@ const docEntries = (dir: string, segments: string[] = []): DocEntry[] =>
     const [, name, ext] = /^(.*)\.(mdx?)$/.exec(entry.name) ?? [];
     if (!name || !ext) return [];
 
+    // `README.md` documents the `docs/` folder itself on GitHub - it is not a page
+    if (name.toLowerCase() === "readme") return [];
+
     const slug = [...segments, name];
 
     return [
