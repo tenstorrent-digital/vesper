@@ -13,8 +13,13 @@ import "@/styles/test.css";
 
 export const SWITCH_PERMUTATIONS = SWITCH_SIZES.flatMap(
   (size): (SwitchProps & { name: string })[] => [
-    { name: `${size}`, size },
-    { name: `${size}, disabled`, size, disabled: true },
+    { name: `${size}`, size, ["aria-label"]: "Label" },
+    {
+      name: `${size}, disabled`,
+      size,
+      disabled: true,
+      ["aria-label"]: "Label",
+    },
     { name: `${size}, with label`, size, label: "Label" },
     {
       name: `${size}, disabled, with label`,
@@ -248,11 +253,9 @@ describe("switch [a11y]", () => {
 
     SWITCH_PERMUTATIONS.forEach(({ name, ...props }) => {
       test(`wcag2aaa (${name}, ${theme})`, async () => {
-        const { container } = render(<Switch {...props} />);
+        const result = render(<Switch {...props} />);
 
-        expect(
-          await axe.run(container, { runOnly: "wcag2aaa" }),
-        ).toHaveNoViolations();
+        expect(await axe.run(result.container)).toHaveNoViolations();
       });
     });
   });
