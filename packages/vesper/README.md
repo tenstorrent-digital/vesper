@@ -54,6 +54,10 @@ When all prompts have been answered, turbo will generate a new folder for the co
 
 The scaffold command will also update `src/styles/index.css` to import the new css file, as well as modify the exports map in `package.json`. Note that the exports map points to built files in the `dist` folder so the package will need to be rebuilt via `yarn build` before the new exports can be used externally.
 
+#### Documentation
+
+Components are documented in `docs/` (from the monorepo root). You can scaffold a new docs page for an existing component by running `yarn scaffold:documentation`, which will open an interactive prompt to generate a docs page.
+
 ### Testing components
 
 Scaffolding a component from the command line will create a `.test.tsx` file in the component folder. We use [vitest](https://vitest.dev/) with `playwright` and `axe` for in-browser unit, snapshot, and a11y testing. The scaffolded test file contains three describe blocks:
