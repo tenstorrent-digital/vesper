@@ -10,21 +10,59 @@
  * - [Getting Started](../getting-started.mdx#installation) -> /getting-started#installation
  */
 
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+/**
+ * monorepo root `docs/` folder
+ *
+ * resolved from this file (`apps/website/src/lib/mdx/`) rather than `cwd` so
+ * the plugin works no matter where the build is run from
+ */
+const DOCS_DIR = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "../../../../..",
+  "docs",
+);
+
+/**
+ * get a document's own path segments, relative to `docs/`
+ *
+ * - `docs/getting-started.mdx` -> ["getting-started"]
+ * - `docs/components/accordion.mdx` -> ["components", "accordion"]
+ * - `docs/guides/react/forms.mdx` -> ["guides", "react", "forms"]
+ *
+ * returns `null` for files outside `docs/` (eg. `src/app/page.mdx`), which
+ * have no doc route to resolve relative links against
+ */
+const documentSlug = (filePath) => {
+  if (!filePath) return null;
+
+  const relativePath = path.relative(DOCS_DIR, filePath);
+  if (!relativePath || relativePath.startsWith("..")) return null;
+
+  return relativePath.replace(/\.mdx?$/, "").split(/[\\/]/);
+};
+
 /** only rewrite relative links that point at a document */
 const isRelativeDoc = (url) =>
   /^\.{1,2}\//.test(url) && /\.mdx?($|[#?])/.test(url);
 
 /**
- * rewrites relative links between documents in the monorepo root `docs/` folder
+ * rewrite a doc's relative links between documents in the monorepo root `docs/` folder
  *
  * - `./theming.mdx` -> `/theming`
  * - `../components/button.mdx#props` -> `/components/button#props`
  */
-const resolveDocUrl = (url, documentSlug) => {
-  const [path, hash = ""] = url.split(/(?=[#?])/, 2);
+const resolveDocUrl = (url, slug) => {
+  // split the url into path and hash/query (if any)
+  const splitAt = url.search(/[#?]/);
+  // url path is before the splitAt
+  const [urlPath, hash] =
+    splitAt === -1 ? [url, ""] : [url.slice(0, splitAt), url.slice(splitAt)];
 
-  const segments = documentSlug.slice(0, -1); // the document's own folder
-  path.split("/").forEach((segment) => {
+  const segments = slug.slice(0, -1); // the document's own folder
+  urlPath.split("/").forEach((segment) => {
     if (segment === "." || segment === "") return; // skip current/parent folder segments
     if (segment === "..") {
       // go up a level for parent folder segments
@@ -32,11 +70,12 @@ const resolveDocUrl = (url, documentSlug) => {
     } else segments.push(segment.replace(/\.mdx?$/, ""));
   });
 
+  // then we can return the resolved path and add the hash/queries back
   return `/${segments.join("/")}${hash}`;
 };
 
 /**
- * visits all links in the MD/MDX and rewrites relative doc links
+ * visit all links in the MD/MDX and rewrites relative doc links
  */
 const visitLinks = (node, visit) => {
   if (node.type === "link") visit(node);
@@ -45,17 +84,14 @@ const visitLinks = (node, visit) => {
 
 export default function remarkDocLinks() {
   return (tree, file) => {
-    // `docs/components/accordion.mdx` -> ["components", "accordion"]
-    const documentSlug = (file.path ?? "")
-      .split(/[\\/]/)
-      .slice(-2)
-      .join("/")
-      .replace(/\.mdx?$/, "")
-      .split("/");
+    const slug = documentSlug(file.path);
+
+    // leave links in documents outside `docs/` alone
+    if (!slug) return;
 
     visitLinks(tree, (node) => {
       if (isRelativeDoc(node.url)) {
-        node.url = resolveDocUrl(node.url, documentSlug);
+        node.url = resolveDocUrl(node.url, slug);
       }
     });
   };
