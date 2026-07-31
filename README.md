@@ -26,24 +26,6 @@ yarn dev:docs    # documentation website (http://localhost:3001)
                  # (note: builds @packages/vesper)
 ```
 
-## Generating new components
-
-If you need to create a new component in the `vesper` package, the quickest way to scaffold all the necessary code is to run `yarn scaffold:component` from the monorepo root.
-
-The `scaffold:component` script will prompt you for two things:
-
-1. The name of the component (required). The name should be written in PascalCase.
-2. The root element of the component (optional). If you decide to specify the root element, it should be an intrinsic html element like div, input, h1, etc.
-
-When all prompts have been answered, turbo will generate a new folder for the component containing:
-
-1. `{component-name}.tsx` - the component file
-2. `{component-name}.css` - the component css
-3. `{component-name}.test.tsx` - test file for the component
-4. `{component-name}.stories.tsx` - storybook file for the component
-
-The scaffold command will also update `src/styles/styles.css` to import the new css file, as well as modify the exports map in `package.json`.
-
 ## Building apps/packages
 
 ```sh
