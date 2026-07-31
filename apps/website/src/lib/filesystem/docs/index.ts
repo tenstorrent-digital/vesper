@@ -120,17 +120,6 @@ export const docs: DocEntry[] = docEntries(DOCS_DIR).sort(docSortOrder);
 export const getDoc = (slug: string[]): DocEntry | undefined =>
   docs.find((doc) => doc.href === `/${slug.join("/")}`);
 
-/**
- * get docs directly inside a given folder from `docs/`
- *
- * @param {string} folder - folder name from `docs/`
- *
- * @example
- * const componentsDocs = getDocsInFolder("components");
- */
-export const getDocsInFolder = (folder: string): DocEntry[] =>
-  docs.filter((doc) => doc.slug.length === 2 && doc.slug[0] === folder);
-
 export interface DocGroup {
   /** the folder these docs came from, or `undefined` for top-level docs */
   folder?: string;
