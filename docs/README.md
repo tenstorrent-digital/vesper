@@ -49,7 +49,7 @@ Vesper components can be used **without importing them**. Components are provide
 
 ## Links
 
-Links resolve to other documents by relative path he path resolves on GitHub (it points at the real file) and is rewritten to the document's route when the site is built:
+Links resolve to other documents by relative path the path resolves on GitHub (it points at the real file) and is rewritten to the document's route when the site is built:
 
 | In `docs/`                                  | On `@apps/website`        |
 | ------------------------------------------- | ------------------------- |
