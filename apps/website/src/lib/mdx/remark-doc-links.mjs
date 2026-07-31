@@ -66,6 +66,7 @@ const resolveDocUrl = (url, slug) => {
     if (segment === "." || segment === "") return; // skip current/parent folder segments
     if (segment === "..") {
       // go up a level for parent folder segments
+      if (segments.length === 0) return null;
       segments.pop();
     } else segments.push(segment.replace(/\.mdx?$/, ""));
   });
@@ -91,7 +92,8 @@ export default function remarkDocLinks() {
 
     visitLinks(tree, (node) => {
       if (isRelativeDoc(node.url)) {
-        node.url = resolveDocUrl(node.url, slug);
+        const resolvedUrl = resolveDocUrl(node.url, slug);
+        if (resolvedUrl) node.url = resolvedUrl;
       }
     });
   };
