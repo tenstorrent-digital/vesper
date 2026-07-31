@@ -1,0 +1,39 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build", "@tenstorrent/vesper#build:storybook"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env*",
+        "$TURBO_ROOT$/docs/**" // monorepo docs
+      ],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+
+    "dev": {
+      /**
+       * running `build` here is required so `packages/vesper/src`
+       * is built into `dist` so we can use them here
+       */
+      "dependsOn": ["^build"],
+      /**
+       * and then we also need:
+       *
+       * (1) `@tenstorrent/vesper#watch`
+       *
+       * recompiles `packages/vesper/src` into `dist`,
+       * which is what the docs app actually imports
+       *
+       * (2) `@tenstorrent/vesper#dev`
+       *
+       * storybook on localhost:5173, proxied at `/storybook`
+       * in dev by `apps/website/src/proxy.ts`
+       */
+      "with": ["@tenstorrent/vesper#watch", "@tenstorrent/vesper#dev"],
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

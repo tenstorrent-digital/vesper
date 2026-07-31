@@ -8,4 +8,4 @@
 turbo/generators/**/*.hbs
 
 # docs app public folder
-apps/docs/public
+apps/website/public

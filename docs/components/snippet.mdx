@@ -1,0 +1,38 @@
+---
+title: Snippet
+description: A compact code display component with a built-in copy-to-clipboard button.
+---
+
+# Snippet
+
+A compact code display component with a built-in copy-to-clipboard button. Ideal for displaying short commands, installation instructions, or single-line code snippets.
+
+<Snippet>yarn add @tenstorrent/vesper</Snippet>
+
+## Options
+
+| Prop       | Type                      | Description                                                                                               | Default     |
+| ---------- | ------------------------- | --------------------------------------------------------------------------------------------------------- | ----------- |
+| `children` | `string`                  | The code text to display. Also used as the value copied to the clipboard when the copy button is clicked. | `""`        |
+| `variant`  | `"default" \| "contrast"` | The visual style variant of the snippet.                                                                  | `"default"` |
+
+## Examples
+
+```tsx
+import { Snippet } from "@tenstorrent/vesper/snippet";
+
+// Basic usage
+<Snippet>npm install @tenstorrent/vesper</Snippet>;
+```
+
+```tsx
+// Contrast variant
+<Snippet variant="contrast">curl https://api.example.com/data</Snippet>
+```
+
+```tsx
+// Multi-line
+<Snippet>{`cd my-project
+yarn install
+yarn dev`}</Snippet>
+```

@@ -1,0 +1,89 @@
+---
+title: Radio Group
+description: A group of mutually exclusive radio inputs with labels.
+---
+
+# Radio Group
+
+A group of mutually exclusive radio inputs with labels. Supports horizontal and vertical layouts, controlled and uncontrolled modes, and individual option disabling.
+
+<RadioGroup
+  name="demo-color"
+  defaultValue="blue"
+  options={[
+    { value: "red", label: "Red" },
+    { value: "blue", label: "Blue" },
+    { value: "green", label: "Green" },
+  ]}
+/>
+
+## Options
+
+| Prop           | Type                         | Description                                                                         | Default      |
+| -------------- | ---------------------------- | ----------------------------------------------------------------------------------- | ------------ |
+| `name`         | `string`                     | The name attribute shared by all radio inputs, used for form submission.            | —            |
+| `options`      | `RadioGroupItem[]`           | The list of radio options. Each has `value`, `label`, optional `disabled` and `id`. | —            |
+| `size`         | `"sm" \| "md"`               | The size of the radio inputs and labels.                                            | `"md"`       |
+| `orientation`  | `"horizontal" \| "vertical"` | The layout direction of the radio options.                                          | `"vertical"` |
+| `value`        | `string`                     | The currently selected value (controlled mode).                                     | —            |
+| `defaultValue` | `string`                     | The initially selected value (uncontrolled mode).                                   | —            |
+| `onChange`     | `(value: string) => void`    | Callback fired when the selected value changes.                                     | —            |
+| `required`     | `boolean`                    | When `true`, a selection is required for form validation.                           | `false`      |
+| `disabled`     | `boolean`                    | When `true`, disables all options.                                                  | `false`      |
+
+## Examples
+
+```tsx
+import { RadioGroup } from "@tenstorrent/vesper/radio-group";
+
+// Basic usage
+<RadioGroup
+  name="size"
+  defaultValue="md"
+  options={[
+    { value: "sm", label: "Small" },
+    { value: "md", label: "Medium" },
+    { value: "lg", label: "Large" },
+  ]}
+/>;
+```
+
+```tsx
+// Horizontal layout
+<RadioGroup
+  name="alignment"
+  orientation="horizontal"
+  options={[
+    { value: "left", label: "Left" },
+    { value: "center", label: "Center" },
+    { value: "right", label: "Right" },
+  ]}
+/>
+```
+
+```tsx
+// With disabled option
+<RadioGroup
+  name="plan"
+  options={[
+    { value: "free", label: "Free" },
+    { value: "pro", label: "Pro" },
+    { value: "enterprise", label: "Enterprise", disabled: true },
+  ]}
+/>
+```
+
+```tsx
+// Controlled
+const [value, setValue] = useState("opt-a");
+
+<RadioGroup
+  name="controlled"
+  value={value}
+  onChange={setValue}
+  options={[
+    { value: "opt-a", label: "Option A" },
+    { value: "opt-b", label: "Option B" },
+  ]}
+/>;
+```

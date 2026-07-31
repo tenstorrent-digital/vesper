@@ -1,0 +1,88 @@
+---
+title: Select
+description: A form-ready dropdown select component supporting controlled and uncontrolled usage.
+---
+
+# Select
+
+A form-ready dropdown select component supporting controlled and uncontrolled usage. Includes three size variants, an optional leading icon, and automatic portal handling for use inside dialogs.
+
+<Select
+  placeholder="Select a fruit"
+  options={[
+    { value: "apple", label: "Apple" },
+    { value: "banana", label: "Banana" },
+    { value: "cherry", label: "Cherry" },
+  ]}
+/>
+
+## Options
+
+| Prop            | Type                      | Description                                                                           | Default              |
+| --------------- | ------------------------- | ------------------------------------------------------------------------------------- | -------------------- |
+| `options`       | `SelectItem[]`            | The list of selectable options. Each has `value` (unique) and `label` (display text). | —                    |
+| `size`          | `"sm" \| "md" \| "lg"`    | The size variant of the select trigger.                                               | `"lg"`               |
+| `placeholder`   | `string`                  | Placeholder text shown when no value is selected.                                     | `"Select an option"` |
+| `icon`          | `ReactNode`               | An optional icon rendered at the leading edge of the trigger.                         | —                    |
+| `value`         | `string`                  | The currently selected value (controlled mode).                                       | —                    |
+| `defaultValue`  | `string`                  | The initial selected value (uncontrolled mode).                                       | —                    |
+| `onValueChange` | `(value: string) => void` | Callback invoked when the selection changes.                                          | —                    |
+| `required`      | `boolean`                 | When `true`, marks the select as required for form validation.                        | `false`              |
+| `form`          | `string`                  | Associates the select with a `<form>` element by its `id`.                            | —                    |
+| `disabled`      | `boolean`                 | When `true`, prevents interaction.                                                    | `false`              |
+
+## Examples
+
+```tsx
+import { Select } from "@tenstorrent/vesper/select";
+
+// Basic usage
+<Select
+  options={[
+    { value: "sm", label: "Small" },
+    { value: "md", label: "Medium" },
+    { value: "lg", label: "Large" },
+  ]}
+/>;
+```
+
+```tsx
+// With default value
+<Select
+  defaultValue="md"
+  options={[
+    { value: "sm", label: "Small" },
+    { value: "md", label: "Medium" },
+    { value: "lg", label: "Large" },
+  ]}
+/>
+```
+
+```tsx
+// With icon
+import { Globe } from "@tenstorrent/vesper/icons";
+
+<Select
+  icon={<Globe />}
+  placeholder="Select a region"
+  options={[
+    { value: "us", label: "United States" },
+    { value: "eu", label: "Europe" },
+    { value: "ap", label: "Asia Pacific" },
+  ]}
+/>;
+```
+
+```tsx
+// Controlled
+const [value, setValue] = useState("");
+
+<Select
+  value={value}
+  onValueChange={setValue}
+  options={[
+    { value: "a", label: "Option A" },
+    { value: "b", label: "Option B" },
+  ]}
+/>;
+```

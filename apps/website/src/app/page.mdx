@@ -1,3 +1,34 @@
+import { Button } from "@tenstorrent/vesper/button";
+
+# Vesper
+
+> Vesper is a design system React component library, with apps and shared packages for development and documentation
+>
+> Vesper is a design system React component library, with apps and shared packages for development and documentation
+
+### Links
+
+- [Getting Started](/getting-started)
+- [Components](/components)
+- [Storybook Playground](/storybook)
+
+<Button variant="tertiary">Test</Button>
+
+---
+
+## Usage (test)
+
+If you're using Tailwind, import `@tenstorrent/vesper/tailwind.css` into your Tailwind config:
+
+```css
+@import "tailwindcss";
+
+/* import vesper's tailwind theme and utils */
+@import "@tenstorrent/vesper/tailwind.css";
+```
+
+---
+
 # @tenstorrent/vesper
 
 Vesper is a design-system package that publishes a small set of foundational entrypoints today and is expected to grow to include additional component surfaces over time.
@@ -53,10 +84,6 @@ When all prompts have been answered, turbo will generate a new folder for the co
 4. `{component-name}.stories.tsx` - storybook file for the component
 
 The scaffold command will also update `src/styles/index.css` to import the new css file, as well as modify the exports map in `package.json`. Note that the exports map points to built files in the `dist` folder so the package will need to be rebuilt via `yarn build` before the new exports can be used externally.
-
-#### Documentation
-
-Components are documented in `docs/` (from the monorepo root). You can scaffold a new docs page for an existing component by running `yarn scaffold:documentation`, which will open an interactive prompt to generate a docs page.
 
 ### Testing components
 

@@ -1,0 +1,64 @@
+---
+title: Checkbox
+description: A form checkbox input with a label, supporting checked, unchecked, and indeterminate states.
+---
+
+# Checkbox
+
+A form checkbox input with a label, supporting checked, unchecked, and indeterminate states. Built on a native `<input type="checkbox">` for full form compatibility and accessibility.
+
+<Checkbox label="Accept terms and conditions" />
+
+## Options
+
+| Prop             | Type                                   | Description                                                                                       | Default |
+| ---------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------- | ------- |
+| `label`          | `string`                               | The text label displayed next to the checkbox. An asterisk is appended when `required` is `true`. | —       |
+| `size`           | `"sm" \| "md"`                         | The size of the checkbox and its label.                                                           | `"md"`  |
+| `indeterminate`  | `boolean`                              | When `true`, renders the checkbox in an indeterminate (mixed) state with a dash icon.             | `false` |
+| `inputRef`       | `RefObject<HTMLInputElement \| null>`  | A ref forwarded to the underlying `<input>` element.                                              | —       |
+| `checked`        | `boolean`                              | Controls the checked state (controlled mode).                                                     | —       |
+| `defaultChecked` | `boolean`                              | The initial checked state (uncontrolled mode).                                                    | —       |
+| `disabled`       | `boolean`                              | When `true`, prevents interaction.                                                                | `false` |
+| `required`       | `boolean`                              | When `true`, marks the input as required and appends an asterisk to the label.                    | `false` |
+| `onChange`       | `ChangeEventHandler<HTMLInputElement>` | Callback fired when the checked state changes.                                                    | —       |
+
+## Examples
+
+```tsx
+import { Checkbox } from "@tenstorrent/vesper/checkbox";
+
+// Basic usage
+<Checkbox label="Remember me" />;
+```
+
+```tsx
+// Default checked
+<Checkbox label="Subscribe to newsletter" defaultChecked />
+```
+
+```tsx
+// Indeterminate state
+<Checkbox label="Select all" indeterminate />
+```
+
+```tsx
+// Required
+<Checkbox label="I agree to the terms" required />
+```
+
+```tsx
+// Small size
+<Checkbox label="Compact checkbox" size="sm" />
+```
+
+```tsx
+// Controlled
+const [checked, setChecked] = useState(false);
+
+<Checkbox
+  label="Controlled"
+  checked={checked}
+  onChange={(e) => setChecked(e.target.checked)}
+/>;
+```
