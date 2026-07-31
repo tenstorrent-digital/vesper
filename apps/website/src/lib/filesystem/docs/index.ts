@@ -94,7 +94,7 @@ const docSortOrder = (a: DocEntry, b: DocEntry) => {
   const [x, y] = [a.frontmatter.order, b.frontmatter.order];
 
   // sort by `order` (if avail)
-  if (x !== undefined && y !== undefined) return x - y;
+  if (x !== undefined && y !== undefined && x !== y) return x - y;
   if (x !== undefined) return -1;
   if (y !== undefined) return 1;
 
