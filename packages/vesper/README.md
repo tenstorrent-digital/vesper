@@ -91,3 +91,9 @@ Those steps perform the following work in order:
 3. `yarn build:css` copies every css file under `src/` into the matching location under `dist/`
 
 The result is a `dist/` directory that matches the package's export map and is ready for local consumption or publishing.
+
+## Releasing
+
+Releasing the `@tenstorrent/vesper` package happens through CI via [the release GitHub workflow](../../.github/workflows/release.yml). We use [changesets](https://changesets.dev) to automate changelog generation, package version incrementing, and publishing to the npm registry.
+
+When there are changesets present in this monorepo, there will be a `Version Packages` PR open on the vesper github Pull Requests tab. When merged, this PR aggregates the changeset notes, buckets them into categories (patch/minor/major), appends them to the changelog, clears existing changesets, and publishes the `@tenstorrent/vesper` package to npm. When new changesets are added, a new `Version Pacakges` PR automatically opens again.
