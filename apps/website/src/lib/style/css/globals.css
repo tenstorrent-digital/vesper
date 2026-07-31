@@ -27,8 +27,8 @@
 
     these variables also include fallback fonts: system-ui, sans-serif
 
-    @see: @apps/docs/src/lib/style/fonts.ts
-    @see: @apps/docs/src/app/layout.tsx
+    @see: @apps/website/src/lib/style/fonts.ts
+    @see: @apps/website/src/app/layout.tsx
   */
 
   color-scheme: light dark;

@@ -20,10 +20,10 @@ yarn install
 ## Starting the development servers
 
 ```sh
-yarn dev         # run the docs and the vesper package in dev mode
-yarn dev:vesper  # Storybook for the component library (http://localhost:3000)
-yarn dev:docs    # documentation website (http://localhost:3001)
-                 # (note: builds @packages/vesper)
+yarn dev            # run the docs and the vesper package in dev mode
+yarn dev:vesper     # Storybook for the component library (http://localhost:3000)
+yarn dev:website    # documentation website (http://localhost:3001)
+                    #   (note: builds @packages/vesper)
 ```
 
 ## Generating new components
@@ -47,10 +47,10 @@ The scaffold command will also update `src/styles/styles.css` to import the new 
 ## Building apps/packages
 
 ```sh
-yarn build           # build all apps and packages
-yarn build:vesper    # build the component library only
-yarn build:docs      # build the documentation website only
-yarn build:storybook # build Storybook into apps/docs/public/storybook
+yarn build            # build all apps and packages
+yarn build:vesper     # build the component library only
+yarn build:website    # build the documentation website only
+yarn build:storybook  # build Storybook into apps/website/public/storybook
 ```
 
 You usually don't need to build anything yourself locally.
