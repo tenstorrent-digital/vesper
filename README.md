@@ -21,8 +21,8 @@ yarn install
 
 ```sh
 yarn dev            # run the docs and the vesper package in dev mode
-yarn dev:vesper     # Storybook for the component library (http://localhost:3000)
-yarn dev:website    # documentation website (http://localhost:3001)
+yarn dev:vesper     # Storybook for the component library (http://localhost:5173)
+yarn dev:website    # documentation website (http://localhost:3000)
                     #   (note: builds @packages/vesper)
 ```
 

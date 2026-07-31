@@ -284,7 +284,7 @@ export const SAMPLE_CODE_JSON = `{
     "node": ">=20.0.0"
   },
   "config": {
-    "port": 3000,
+    "port": 5173,
     "debug": false,
     "verbose": true,
     "timeout": null,

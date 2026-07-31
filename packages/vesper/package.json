@@ -186,7 +186,7 @@
     "watch:alias": "tsc-alias -p tsconfig.build.json -w --resolve-full-paths --resolve-full-extension .js",
     "watch:css": "tsx scripts/watch-css.ts",
     "watch": "concurrently --kill-others-on-fail --names tsc,alias,css --prefix-colors auto \"yarn watch:tsc\" \"yarn watch:alias\" \"yarn watch:css\"",
-    "dev": "storybook dev -p 3000 -c storybook --ci --exact-port",
+    "dev": "storybook dev -p 5173 -c storybook --ci --exact-port",
     "clean": "rimraf dist",
     "build:storybook": "storybook build -c storybook -o ../../apps/website/public/storybook",
     "lint": "eslint --max-warnings 0",

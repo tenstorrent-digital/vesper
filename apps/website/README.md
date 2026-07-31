@@ -12,9 +12,9 @@ yarn dev        # docs + storybook + the @tenstorrent/vesper watcher
 
 | Service                    | URL                                                         |
 | -------------------------- | ----------------------------------------------------------- |
-| Docs site                  | [localhost:3001](http://localhost:3001)                     |
-| Storybook                  | [localhost:3000](http://localhost:3000)                     |
-| Storybook (proxied in dev) | [localhost:3001/storybook](http://localhost:3001/storybook) |
+| Docs site                  | [localhost:3000](http://localhost:3000)                     |
+| Storybook                  | [localhost:5173](http://localhost:5173)                     |
+| Storybook (proxied in dev) | [localhost:3000/storybook](http://localhost:3000/storybook) |
 
 ### Notes
 
@@ -22,7 +22,7 @@ The docs app imports `@tenstorrent/vesper` from its **built output** (`packages/
 its source. `yarn dev` therefore builds the package first, then keeps it in sync with the
 `@tenstorrent/vesper#watch` task, so edits under `packages/vesper/src` show up here automatically.
 
-Storybook runs with `--exact-port`, so a process already sitting on port 3000 fails the task
+Storybook runs with `--exact-port`, so a process already sitting on port 5173 fails the task
 instead of silently relocating and breaking the `/storybook` rewrite in
 [`src/proxy.ts`](./src/proxy.ts).
 

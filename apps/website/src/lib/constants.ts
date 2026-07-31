@@ -2,14 +2,14 @@
  * base URL for the current environment
  *
  * resolves based on the deployment environment:
- * - development: http://localhost:3001
+ * - development: http://localhost:3000
  * - preview: https://{branch-url}
  * - production: https://vesper-docs.vercel.app (for now)
  */
 export const BASE_URL: string =
   // development
   process.env.NODE_ENV === "development"
-    ? "http://localhost:3001"
+    ? "http://localhost:3000"
     : // preview
       process.env.VERCEL_ENV === "preview"
       ? `https://${process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL || "vesper-docs.vercel.app"}`
@@ -25,7 +25,7 @@ export const BASE_URL: string =
  *
  * (should figure out how to set this across the monorepo later)
  */
-export const STORYBOOK_PORT = 3000;
+export const STORYBOOK_PORT = 5173;
 
 /**
  * the URL of the Storybook instance from @tenstorrent/vesper
