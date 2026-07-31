@@ -13,11 +13,7 @@ Documents in `docs/` map directly to pages on the documentation site in `@apps/w
 
 > [!IMPORTANT]
 >
-> Page routes inside `apps/website/src/app` (like `/components`) will take precedence over any files in `docs/`.
-
-> [!INFO]
->
-> (This `README.md` is ignored by the website.)
+> Page routes inside `apps/website/src/app` (like `/components`) will take precedence over any files in `docs/`
 
 ## Frontmatter
 
