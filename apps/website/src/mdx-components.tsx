@@ -8,7 +8,7 @@
  */
 
 import type { MDXComponents } from "mdx/types";
-import Image, { ImageProps } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import {
   type BundledLanguage,
@@ -144,11 +144,28 @@ const components = {
       </CodeBlock>
     );
   },
-  img: (props) => (
+  img: ({ src, alt, width, height, ...props }) => (
     <Image
+      src={src ?? ""}
+      alt={alt ?? ""}
+      /**
+       * Note - markdown images (`![alt](src)`) can't declare dimensions, but
+       * `next/image` requires width and height
+       *
+       * for now, falling back to `0` alongside `sizes` allows next/image to
+       * render images, but they are full width
+       *
+       * we will need to think through a better implementation here later that supports
+       * both:
+       *
+       * 1. relative image _files_ (either in inside `docs/assets/**` or similar)
+       * 2. relative image _urls_
+       */
+      width={Number(width) || 0}
+      height={Number(height) || 0}
       sizes="100vw"
-      className="h-auto w-auto max-w-full"
-      {...(props as ImageProps)}
+      className="h-auto w-full max-w-full"
+      {...props}
     />
   ),
   li: (props) => (
