@@ -6,6 +6,18 @@
   "linked": [],
   "access": "restricted",
   "baseBranch": "main",
+  "changedFilePatterns": [
+    "**",
+    "!**/*.test.ts",
+    "!**/*.test.tsx",
+    "!**/__snapshots__/**",
+    "!vitest.*",
+    "!tsconfig.test.json",
+    "!**/*.stories.tsx",
+    "!storybook/**",
+    "!tsconfig.storybook.json",
+    "!eslint.config.mjs"
+  ],
   "updateInternalDependencies": "patch",
   "ignore": [],
   "privatePackages": { "version": false, "tag": false }
