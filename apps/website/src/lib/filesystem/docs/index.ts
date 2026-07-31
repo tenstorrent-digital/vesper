@@ -95,8 +95,8 @@ const docSortOrder = (a: DocEntry, b: DocEntry) => {
 
   // sort by `order` (if avail)
   if (x !== undefined && y !== undefined && x !== y) return x - y;
-  if (x !== undefined) return -1;
-  if (y !== undefined) return 1;
+  if (x !== undefined && y === undefined) return -1;
+  if (y !== undefined && x === undefined) return 1;
 
   // then by title
   return a.href.localeCompare(b.href);
