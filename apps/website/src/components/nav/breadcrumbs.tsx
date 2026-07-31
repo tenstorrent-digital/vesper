@@ -19,7 +19,12 @@ export const Breadcrumbs = ({ titles }: { titles: Record<string, string> }) => {
 
         return (
           <Fragment key={href}>
-            <Typography as={Link} href={href} variant="copy-md-bold">
+            <Typography
+              as={Link}
+              href={href}
+              aria-current={index === paths.length - 1 ? "page" : undefined}
+              variant="copy-md-bold"
+            >
               {/* a document's own title otherwise the slug for the app route (ex: `/components`) */}
               {titles[href] ?? convertKebabToTitleCase(path)}
             </Typography>

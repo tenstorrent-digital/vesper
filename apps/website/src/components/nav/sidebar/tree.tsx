@@ -40,6 +40,7 @@ export const Tree = ({
           as={Link}
           href={href}
           data-active={pathname === href || undefined}
+          aria-current={pathname === href ? "page" : undefined}
           key={href}
           variant="heading-xs"
         >
