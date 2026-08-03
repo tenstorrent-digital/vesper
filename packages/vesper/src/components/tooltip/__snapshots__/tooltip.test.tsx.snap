@@ -3,7 +3,7 @@
 exports[`tooltip [snapshot] > closed 1`] = `
 <div>
   <p
-    class="vesper-typography vesper-typography-copy-sm"
+    class="vesper-typography vesper-typography-copy-md"
     data-state="closed"
     style="color: var(--vesper-stone-900);"
   >

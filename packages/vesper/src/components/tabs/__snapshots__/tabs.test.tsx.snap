@@ -151,7 +151,7 @@ exports[`tabs [snapshot] > primary, value 1`] = `
   </div>
   <p
     aria-labelledby="radix-_r_1a_-trigger-tab-1"
-    class="vesper-typography vesper-typography-copy-sm"
+    class="vesper-typography vesper-typography-copy-md"
     data-orientation="horizontal"
     data-state="active"
     data-testid="tab-1-content"
@@ -316,7 +316,7 @@ exports[`tabs [snapshot] > secondary, value 1`] = `
   </div>
   <p
     aria-labelledby="radix-_r_1i_-trigger-tab-1"
-    class="vesper-typography vesper-typography-copy-sm"
+    class="vesper-typography vesper-typography-copy-md"
     data-orientation="horizontal"
     data-state="active"
     data-testid="tab-1-content"

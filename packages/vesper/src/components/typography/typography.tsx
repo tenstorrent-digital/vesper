@@ -41,7 +41,7 @@ export type TypographyVariant = (typeof TYPOGRAPHY_VARIANTS)[number];
 
 export type TypographyProps<E extends ElementType = "p"> = Polymorphic<
   {
-    /** The typographic style variant to apply, controlling font size, weight, line height, and font family. Defaults to `"copy-sm"`. */
+    /** The typographic style variant to apply, controlling font size, weight, line height, and font family. @default copy-md. */
     variant?: TypographyVariant;
   },
   E
@@ -54,8 +54,8 @@ export type TypographyProps<E extends ElementType = "p"> = Polymorphic<
  * - `label-*`
  * - `copy-*`
  *
- * @param {React.ElementType} [props.as] - (optional) Element type to render. Default: `p`
- * @param {TypographyVariant} [props.variant] - (optional) Text style variant to apply. See {@link TYPOGRAPHY_VARIANTS} for available options. Default: `copy-sm`
+ * @param {React.ElementType} [props.as] - (optional) Element type to render. @default p
+ * @param {TypographyVariant} [props.variant] - (optional) Text style variant to apply. See {@link TYPOGRAPHY_VARIANTS} for available options. @default copy-md
  * @param {string} [props.className] - (optional) Additional CSS `class` names to apply
  *
  * You may also pass any additional props to the underlying element
@@ -76,7 +76,7 @@ export function Typography<E extends ElementType = "p">(
   const {
     as: Component = "p",
     className,
-    variant = "copy-sm",
+    variant = "copy-md",
     ...rest
   } = props;
 
