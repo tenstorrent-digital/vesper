@@ -63,8 +63,6 @@ To use a custom font, you can simply load your custom font into your app (using 
 }
 ```
 
-For more information on css font variables, see [font tokens](#font-tokens).
-
 ## General usage
 
 Once you have installed the package and imported the styles, you can start importing and using components like so:
