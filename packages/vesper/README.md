@@ -523,3 +523,39 @@ Shadow tokens are registered in tailwind's `--shadow-*` namespace, so they are a
 <div className="shadow-vesper-inset-100" />;
 <button className="focus-visible:shadow-vesper-focus-ring" />;
 ```
+
+### Spacing tokens
+
+| CSS variable             | Value       |
+| ------------------------ | ----------- |
+| `--vesper-spacing-0`     | `0rem`      |
+| `--vesper-spacing-micro` | `0.0625rem` |
+| `--vesper-spacing-half`  | `0.125rem`  |
+| `--vesper-spacing-1`     | `0.25rem`   |
+| `--vesper-spacing-2`     | `0.5rem`    |
+| `--vesper-spacing-3`     | `0.75rem`   |
+| `--vesper-spacing-4`     | `1rem`      |
+| `--vesper-spacing-5`     | `1.25rem`   |
+| `--vesper-spacing-6`     | `1.5rem`    |
+| `--vesper-spacing-8`     | `2rem`      |
+| `--vesper-spacing-10`    | `2.5rem`    |
+| `--vesper-spacing-12`    | `3rem`      |
+| `--vesper-spacing-14`    | `3.5rem`    |
+| `--vesper-spacing-16`    | `4rem`      |
+| `--vesper-spacing-20`    | `5rem`      |
+| `--vesper-spacing-24`    | `6rem`      |
+| `--vesper-spacing-28`    | `7rem`      |
+| `--vesper-spacing-32`    | `8rem`      |
+| `--vesper-spacing-40`    | `10rem`     |
+
+`--vesper-spacing-*` units are based on increments of `0.25rem`. So when the root font size is `16px`, `--vesper-spacing-1` would be `4px`, `--vesper-spacing-2` would be `8px`, `--vesper-spacing-3` would be `12px`, etc.
+
+#### Usage in tailwind apps
+
+Spacing tokens are registered in tailwind's `--spacing-*` namespace as `--spacing-vesper-*`, so they work with every spacing-based utility — padding, margin, width, height, gap, inset, translate, and so on:
+
+```tsx
+<div className="p-vesper-4 gap-vesper-2" />;
+<div className="mt-vesper-8 px-vesper-3" />;
+<div className="size-vesper-10 top-vesper-2" />;
+```
