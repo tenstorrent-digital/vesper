@@ -170,8 +170,8 @@ Every component should have a corresponding documentation file in `docs/componen
 
 For more information on the docs folder and how our documentation files map to routes on the vesper documentation website, take a look at [the docs README.md file](docs/README.md).
 
-## Releasing vesper
+## Releasing & publishing `@tenstorrent/vesper`
 
-Releasing the `@tenstorrent/vesper` package happens through CI via [the release GitHub workflow](.github/workflows/release.yml). We use [changesets](https://changesets.dev) to automate changelog generation, package version incrementing, and publishing to the npm registry.
+Publishing the `@tenstorrent/vesper` package happens through CI via [the release GitHub workflow](.github/workflows/release.yml). We use [changesets](https://changesets.dev) to automate changelog generation, package version incrementing, and publishing to the npm registry.
 
 When there are changesets present on the `main` branch of this monorepo, there will be a `Version Packages` PR open on the vesper repository's Pull Requests tab on GitHub. When merged, this PR aggregates the changeset notes, buckets them into categories (patch/minor/major), appends them to the changelog, clears existing changesets, and publishes the `@tenstorrent/vesper` package to npm. When new changesets are added, a new `Version Pacakges` PR automatically opens again.
