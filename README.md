@@ -144,9 +144,9 @@ yarn test:vesper -- -u src/components/menu/menu.test.tsx
 
 Scaffolding a component from the command line will create a `.test.tsx` file in the component folder. We use [vitest](https://vitest.dev/) with `playwright` and `axe` for in-browser unit, snapshot, and a11y testing. The scaffolded test file contains three describe blocks:
 
-1. `component-name [unit]` - this block should be used for writing unit tests related to prop behavior. Use this block to assert that CSS classes are being applied correctly, event handlers are firing as expected, polymorphism is working as intended, etc.
-2. `component-name [snapshot]` - this block should be used for writing snapshot tests. Many of our components have dozens of permutations, so we can use this describe block to create snapshots of them all so if something changes unexpectedly we get warned about it.
-3. `component-name [a11y]` - this block should be used for asserting that all component permutations comply with WCAG 2 AAA standards. We use `axe` to confirm that all permutations for the component have no violations in both light and dark mode. Please note that currently we mark failing accessibility tests as `todo` – the vast majority of these `todo`-marked tests fail due to insufficient color contrast ratios, which depend on updates from the design team to fix.
+1. `component-name [unit]` - This block should be used for writing unit tests related to prop behavior. Use this block to assert that CSS classes are being applied correctly, event handlers are firing as expected, polymorphism is working as intended, etc.
+2. `component-name [snapshot]` - This block should be used for writing snapshot tests. Many of our components have dozens of permutations, so we can use this describe block to create snapshots of them all so if something changes unexpectedly we get warned about it.
+3. `component-name [a11y]` - This block should be used for running the configured accessibility checks for the covered component permutations. We use `axe` to confirm that all permutations for the component have no violations in both light and dark mode. Please note that currently we mark failing accessibility tests as `todo` – the vast majority of these `todo`-marked tests fail due to insufficient color contrast ratios, which depend on updates from the design team to fix.
 
 ### Regenerating icon components
 
@@ -174,4 +174,4 @@ For more information on the docs folder and how our documentation files map to r
 
 Publishing the `@tenstorrent/vesper` package happens through CI via [the release GitHub workflow](.github/workflows/release.yml). We use [changesets](https://changesets.dev) to automate changelog generation, package version incrementing, and publishing to the npm registry.
 
-When there are changesets present on the `main` branch of this monorepo, there will be a `Version Packages` PR open on the vesper repository's Pull Requests tab on GitHub. When merged, this PR aggregates the changeset notes, buckets them into categories (patch/minor/major), appends them to the changelog, clears existing changesets, and publishes the `@tenstorrent/vesper` package to npm. When new changesets are added, a new `Version Pacakges` PR automatically opens again.
+When there are changesets present on the `main` branch of this monorepo, there will be a `Version Packages` PR open on the vesper repository's Pull Requests tab on GitHub. When merged, this PR aggregates the changeset notes, buckets them into categories (patch/minor/major), appends them to the changelog, clears existing changesets, and publishes the `@tenstorrent/vesper` package to npm. When new changesets are added, a new `Version Packages` PR automatically opens again.

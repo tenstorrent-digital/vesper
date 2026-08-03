@@ -439,7 +439,7 @@ Font tokens are registered in tailwind's `--font-*` namespace, so they are avail
 
 ### Leading tokens
 
-Leading (line height) tokens are percentage based, so they scale with the element's font size.
+Leading (line height) tokens are percentage-based, so they scale with the element's font size.
 
 | CSS variable               | Value  |
 | -------------------------- | ------ |
