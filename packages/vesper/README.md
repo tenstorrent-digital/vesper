@@ -105,7 +105,7 @@ Or you can use them as inline styles in JSX:
 
 Color tokens are split into **primitive** tokens (raw palette values) and **semantic** tokens (aliases of primitive tokens, intended for day-to-day usage). For example, the semantic token `--vesper-background-primary` aliases the primitive `--vesper-stone-0` color token. Prefer semantic tokens wherever possible, since they automatically resolve to the correct primitive for the active theme.
 
-#### Primitive colors tokens
+#### Primitive color tokens
 
 | CSS variable                  | Light mode value            | Dark mode value              |
 | ----------------------------- | --------------------------- | ---------------------------- |
