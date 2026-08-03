@@ -479,3 +479,25 @@ Tracking tokens are registered in tailwind's `--tracking-*` namespace, so they a
 <h1 className="tracking-vesper-tight" />;
 <span className="tracking-vesper-wide" />;
 ```
+
+### Radius tokens
+
+| CSS variable           | Value      |
+| ---------------------- | ---------- |
+| `--vesper-radius-half` | `0.125rem` |
+| `--vesper-radius-1`    | `0.25rem`  |
+| `--vesper-radius-2`    | `0.5rem`   |
+| `--vesper-radius-3`    | `0.75rem`  |
+| `--vesper-radius-4`    | `1rem`     |
+| `--vesper-radius-6`    | `1.5rem`   |
+| `--vesper-radius-7`    | `1.75rem`  |
+
+#### Usage in tailwind apps
+
+Radius tokens are registered in tailwind's `--radius-*` namespace, so they work with every `border-radius` utility, including the side- and corner-specific ones:
+
+```tsx
+<div className="rounded-vesper-2" />;
+<div className="rounded-t-vesper-4" />;
+<div className="rounded-bl-vesper-half" />;
+```
