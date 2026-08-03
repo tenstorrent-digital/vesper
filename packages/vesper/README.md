@@ -463,15 +463,15 @@ Leading tokens are registered in tailwind's `--leading-*` namespace, so they are
 
 Tracking (letter spacing) tokens are also relative to the element's font size. The values below are expressed as a percentage of the font size — for example, `--vesper-tracking-tight` resolves to `-0.25px` at a `16px` font size.
 
-| CSS variable                 | Value                       | Equivalent at `16px` font size |
-| ---------------------------- | --------------------------- | ------------------------------ |
-| `--vesper-tracking-tightest` | `calc(-100% * (0.75 / 16))` | `-0.75px`                      |
-| `--vesper-tracking-tighter`  | `calc(-100% * (0.5 / 16))`  | `-0.5px`                       |
-| `--vesper-tracking-tight`    | `calc(-100% * (0.25 / 16))` | `-0.25px`                      |
-| `--vesper-tracking-normal`   | `0`                         | `0px`                          |
-| `--vesper-tracking-wide`     | `calc(100% * (0.25 / 16))`  | `0.25px`                       |
-| `--vesper-tracking-wider`    | `calc(100% * (0.5 / 16))`   | `0.5px`                        |
-| `--vesper-tracking-widest`   | `calc(100% * (0.75 / 16))`  | `0.75px`                       |
+| CSS variable                 | Value                       | Equivalent at `16px` root font size |
+| ---------------------------- | --------------------------- | ----------------------------------- |
+| `--vesper-tracking-tightest` | `calc(-100% * (0.75 / 16))` | `-0.75px`                           |
+| `--vesper-tracking-tighter`  | `calc(-100% * (0.5 / 16))`  | `-0.5px`                            |
+| `--vesper-tracking-tight`    | `calc(-100% * (0.25 / 16))` | `-0.25px`                           |
+| `--vesper-tracking-normal`   | `0`                         | `0px`                               |
+| `--vesper-tracking-wide`     | `calc(100% * (0.25 / 16))`  | `0.25px`                            |
+| `--vesper-tracking-wider`    | `calc(100% * (0.5 / 16))`   | `0.5px`                             |
+| `--vesper-tracking-widest`   | `calc(100% * (0.75 / 16))`  | `0.75px`                            |
 
 #### Usage with tailwind
 
@@ -484,15 +484,15 @@ Tracking tokens are registered in tailwind's `--tracking-*` namespace, so they a
 
 ### Radius tokens
 
-| CSS variable           | Value      |
-| ---------------------- | ---------- |
-| `--vesper-radius-half` | `0.125rem` |
-| `--vesper-radius-1`    | `0.25rem`  |
-| `--vesper-radius-2`    | `0.5rem`   |
-| `--vesper-radius-3`    | `0.75rem`  |
-| `--vesper-radius-4`    | `1rem`     |
-| `--vesper-radius-6`    | `1.5rem`   |
-| `--vesper-radius-7`    | `1.75rem`  |
+| CSS variable           | Value      | Equivalent at `16px` root font size |
+| ---------------------- | ---------- | ----------------------------------- |
+| `--vesper-radius-half` | `0.125rem` | `2px`                               |
+| `--vesper-radius-1`    | `0.25rem`  | `4px`                               |
+| `--vesper-radius-2`    | `0.5rem`   | `8px`                               |
+| `--vesper-radius-3`    | `0.75rem`  | `12px`                              |
+| `--vesper-radius-4`    | `1rem`     | `16px`                              |
+| `--vesper-radius-6`    | `1.5rem`   | `24px`                              |
+| `--vesper-radius-7`    | `1.75rem`  | `28px`                              |
 
 #### Usage with tailwind
 
@@ -528,29 +528,27 @@ Shadow tokens are registered in tailwind's `--shadow-*` namespace, so they are a
 
 ### Spacing tokens
 
-| CSS variable             | Value       |
-| ------------------------ | ----------- |
-| `--vesper-spacing-0`     | `0rem`      |
-| `--vesper-spacing-micro` | `0.0625rem` |
-| `--vesper-spacing-half`  | `0.125rem`  |
-| `--vesper-spacing-1`     | `0.25rem`   |
-| `--vesper-spacing-2`     | `0.5rem`    |
-| `--vesper-spacing-3`     | `0.75rem`   |
-| `--vesper-spacing-4`     | `1rem`      |
-| `--vesper-spacing-5`     | `1.25rem`   |
-| `--vesper-spacing-6`     | `1.5rem`    |
-| `--vesper-spacing-8`     | `2rem`      |
-| `--vesper-spacing-10`    | `2.5rem`    |
-| `--vesper-spacing-12`    | `3rem`      |
-| `--vesper-spacing-14`    | `3.5rem`    |
-| `--vesper-spacing-16`    | `4rem`      |
-| `--vesper-spacing-20`    | `5rem`      |
-| `--vesper-spacing-24`    | `6rem`      |
-| `--vesper-spacing-28`    | `7rem`      |
-| `--vesper-spacing-32`    | `8rem`      |
-| `--vesper-spacing-40`    | `10rem`     |
-
-`--vesper-spacing-*` units are based on increments of `0.25rem`. So when the root font size is `16px`, `--vesper-spacing-1` would be `4px`, `--vesper-spacing-2` would be `8px`, `--vesper-spacing-3` would be `12px`, etc.
+| CSS variable             | Value       | Equivalent at `16px` root font size |
+| ------------------------ | ----------- | ----------------------------------- |
+| `--vesper-spacing-0`     | `0rem`      | `0px`                               |
+| `--vesper-spacing-micro` | `0.0625rem` | `1px`                               |
+| `--vesper-spacing-half`  | `0.125rem`  | `2px`                               |
+| `--vesper-spacing-1`     | `0.25rem`   | `4px`                               |
+| `--vesper-spacing-2`     | `0.5rem`    | `8px`                               |
+| `--vesper-spacing-3`     | `0.75rem`   | `12px`                              |
+| `--vesper-spacing-4`     | `1rem`      | `16px`                              |
+| `--vesper-spacing-5`     | `1.25rem`   | `20px`                              |
+| `--vesper-spacing-6`     | `1.5rem`    | `24px`                              |
+| `--vesper-spacing-8`     | `2rem`      | `32px`                              |
+| `--vesper-spacing-10`    | `2.5rem`    | `40px`                              |
+| `--vesper-spacing-12`    | `3rem`      | `48px`                              |
+| `--vesper-spacing-14`    | `3.5rem`    | `56px`                              |
+| `--vesper-spacing-16`    | `4rem`      | `64px`                              |
+| `--vesper-spacing-20`    | `5rem`      | `80px`                              |
+| `--vesper-spacing-24`    | `6rem`      | `96px`                              |
+| `--vesper-spacing-28`    | `7rem`      | `112px`                             |
+| `--vesper-spacing-32`    | `8rem`      | `128px`                             |
+| `--vesper-spacing-40`    | `10rem`     | `160px`                             |
 
 #### Usage with tailwind
 
