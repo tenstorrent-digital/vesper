@@ -434,3 +434,25 @@ Font tokens are registered in tailwind's `--font-*` namespace, so they are avail
 <p className="font-vesper-sans" />;
 <code className="font-vesper-mono" />;
 ```
+
+### Leading tokens
+
+Leading (line height) tokens are percentage based, so they scale with the element's font size.
+
+| CSS variable               | Value  |
+| -------------------------- | ------ |
+| `--vesper-leading-none`    | `100%` |
+| `--vesper-leading-tight`   | `110%` |
+| `--vesper-leading-snug`    | `120%` |
+| `--vesper-leading-normal`  | `140%` |
+| `--vesper-leading-relaxed` | `150%` |
+| `--vesper-leading-loose`   | `175%` |
+
+#### Usage in tailwind apps
+
+Leading tokens are registered in tailwind's `--leading-*` namespace, so they are available as `line-height` utilities:
+
+```tsx
+<p className="leading-vesper-normal" />;
+<p className="leading-vesper-loose" />;
+```
