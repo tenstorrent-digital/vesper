@@ -456,3 +456,26 @@ Leading tokens are registered in tailwind's `--leading-*` namespace, so they are
 <p className="leading-vesper-normal" />;
 <p className="leading-vesper-loose" />;
 ```
+
+### Tracking tokens
+
+Tracking (letter spacing) tokens are also relative to the element's font size. The values below are expressed as a percentage of the font size — for example, `--vesper-tracking-tight` resolves to `-0.25px` at a `16px` font size.
+
+| CSS variable                 | Value                       | Equivalent at `16px` font size |
+| ---------------------------- | --------------------------- | ------------------------------ |
+| `--vesper-tracking-tightest` | `calc(-100% * (0.75 / 16))` | `-0.75px`                      |
+| `--vesper-tracking-tighter`  | `calc(-100% * (0.5 / 16))`  | `-0.5px`                       |
+| `--vesper-tracking-tight`    | `calc(-100% * (0.25 / 16))` | `-0.25px`                      |
+| `--vesper-tracking-normal`   | `0`                         | `0px`                          |
+| `--vesper-tracking-wide`     | `calc(100% * (0.25 / 16))`  | `0.25px`                       |
+| `--vesper-tracking-wider`    | `calc(100% * (0.5 / 16))`   | `0.5px`                        |
+| `--vesper-tracking-widest`   | `calc(100% * (0.75 / 16))`  | `0.75px`                       |
+
+#### Usage in tailwind apps
+
+Tracking tokens are registered in tailwind's `--tracking-*` namespace, so they are available as `letter-spacing` utilities:
+
+```tsx
+<h1 className="tracking-vesper-tight" />;
+<span className="tracking-vesper-wide" />;
+```
