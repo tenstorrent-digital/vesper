@@ -407,7 +407,7 @@ Color tokens are split into **primitive** tokens (raw palette values) and **sema
 | `--vesper-tint-inverse-300`               | `--vesper-alpha-inverse-700`  |
 | `--vesper-tint-inverse-400`               | `--vesper-alpha-inverse-800`  |
 
-#### Usage in tailwind apps
+#### Usage with tailwind
 
 If you imported `@tenstorrent/vesper/tailwind.css` into your css file where you set up tailwind, these color tokens are available for use in tailwind's utility classes. Every color token (primitive and semantic) is registered in tailwind's `--color-*` namespace as `--color-vesper-*`, so any tailwind utility that accepts a color works: `bg-*`, `text-*`, `border-*`, `outline-*`, `ring-*`, `fill-*`, `stroke-*`, `divide-*`, `shadow-*`, `accent-*`, and so on.
 
@@ -428,7 +428,7 @@ For example:
 
 For custom font usage, see [using custom fonts](#using-custom-fonts)
 
-#### Usage in tailwind apps
+#### Usage with tailwind
 
 Font tokens are registered in tailwind's `--font-*` namespace, so they are available as `font-family` utilities:
 
@@ -450,7 +450,7 @@ Leading (line height) tokens are percentage-based, so they scale with the elemen
 | `--vesper-leading-relaxed` | `150%` |
 | `--vesper-leading-loose`   | `175%` |
 
-#### Usage in tailwind apps
+#### Usage with tailwind
 
 Leading tokens are registered in tailwind's `--leading-*` namespace, so they are available as `line-height` utilities:
 
@@ -473,7 +473,7 @@ Tracking (letter spacing) tokens are also relative to the element's font size. T
 | `--vesper-tracking-wider`    | `calc(100% * (0.5 / 16))`   | `0.5px`                        |
 | `--vesper-tracking-widest`   | `calc(100% * (0.75 / 16))`  | `0.75px`                       |
 
-#### Usage in tailwind apps
+#### Usage with tailwind
 
 Tracking tokens are registered in tailwind's `--tracking-*` namespace, so they are available as `letter-spacing` utilities:
 
@@ -494,7 +494,7 @@ Tracking tokens are registered in tailwind's `--tracking-*` namespace, so they a
 | `--vesper-radius-6`    | `1.5rem`   |
 | `--vesper-radius-7`    | `1.75rem`  |
 
-#### Usage in tailwind apps
+#### Usage with tailwind
 
 Radius tokens are registered in tailwind's `--radius-*` namespace, so they work with every `border-radius` utility, including the side- and corner-specific ones:
 
@@ -516,7 +516,7 @@ Radius tokens are registered in tailwind's `--radius-*` namespace, so they work 
 | `--vesper-shadow-inset-200`  | `0 0.125rem 0.75rem 0 var(--vesper-tint-contrast-200) inset`   |
 | `--vesper-shadow-focus-ring` | `0 0 0 0.1875rem var(--vesper-border-focus)`                   |
 
-#### Usage in tailwind apps
+#### Usage with tailwind
 
 Shadow tokens are registered in tailwind's `--shadow-*` namespace, so they are available as `box-shadow` utilities. Note that the inset tokens already include the `inset` keyword in their value, so they are also applied with `shadow-*` (not `inset-shadow-*`):
 
@@ -552,7 +552,7 @@ Shadow tokens are registered in tailwind's `--shadow-*` namespace, so they are a
 
 `--vesper-spacing-*` units are based on increments of `0.25rem`. So when the root font size is `16px`, `--vesper-spacing-1` would be `4px`, `--vesper-spacing-2` would be `8px`, `--vesper-spacing-3` would be `12px`, etc.
 
-#### Usage in tailwind apps
+#### Usage with tailwind
 
 Spacing tokens are registered in tailwind's `--spacing-*` namespace as `--spacing-vesper-*`, so they work with every spacing-based utility — padding, margin, width, height, gap, inset, translate, and so on:
 
@@ -576,7 +576,7 @@ Use them anywhere a duration is expected so that your app's motion stays in step
 transition: background-color var(--vesper-transition-duration-fast) ease-in-out;
 ```
 
-#### Usage in tailwind apps
+#### Usage with tailwind
 
 Animation tokens are registered in tailwind's `--transition-duration-*` namespace, so they are available through the `duration-*` utilities:
 
@@ -602,7 +602,7 @@ Since the dot pattern tokens are `background` shorthand values, assign them to t
 background: var(--vesper-bg-dot-pattern-secondary);
 ```
 
-#### Usage in tailwind apps
+#### Usage with tailwind
 
 Background tokens are exposed as custom tailwind utilities rather than theme values:
 
@@ -635,7 +635,7 @@ border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
 outline: var(--vesper-stroke-strong) solid var(--vesper-border-focus);
 ```
 
-#### Usage in tailwind apps
+#### Usage with tailwind
 
 Stroke tokens are registered in tailwind's `--outline-width-*` and `--border-width-*` namespaces, so they are available as `outline-width` and `border-width` utilities:
 
