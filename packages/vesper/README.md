@@ -589,12 +589,12 @@ Animation tokens are registered in tailwind's `--transition-duration-*` namespac
 
 Background tokens provide Vesper's dot pattern as ready-to-use `background` shorthand values.
 
-| CSS variable                        | Value                                                                                 |
-| ----------------------------------- | ------------------------------------------------------------------------------------- |
-| `--vesper-bg-dot-pattern-primary`   | `var(--vesper-image-dot) repeat top var(--vesper-background-primary)`                 |
-| `--vesper-bg-dot-pattern-secondary` | `var(--vesper-image-dot) repeat top var(--vesper-background-secondary)`               |
-| `--vesper-bg-dot-pattern-tertiary`  | `var(--vesper-image-dot) repeat top var(--vesper-background-tertiary)`                |
-| `--vesper-bg-dot-pattern-inverse`   | `var(--vesper-image-dot-inverse) repeat top var(--vesper-background-inverse-primary)` |
+| CSS variable                        | Light mode value              | Dark mode value               |
+| ----------------------------------- | ----------------------------- | ----------------------------- |
+| `--vesper-bg-dot-pattern-primary`   | `url(...) repeat top #f1f8f8` | `url(...) repeat top #071614` |
+| `--vesper-bg-dot-pattern-secondary` | `url(...) repeat top #e5f2f1` | `url(...) repeat top #0f1d1b` |
+| `--vesper-bg-dot-pattern-tertiary`  | `url(...) repeat top #d8eae8` | `url(...) repeat top #172624` |
+| `--vesper-bg-dot-pattern-inverse`   | `url(...) repeat top #092221` | `url(...) repeat top #e7f0ee` |
 
 Since the dot pattern tokens are `background` shorthand values, assign them to the `background` property rather than `background-image` or `background-color`:
 
