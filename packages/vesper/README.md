@@ -16,6 +16,8 @@ Since `@tenstorrent/vesper` is a React package, you will also need to have `reac
 
 ## Getting started
 
+### Importing library styles
+
 Prior to using any components, you will need to import the library styles from `@tenstorrent/vesper/styles.css` somewhere at the top-level of your application. For example, in a `Next.js` application, you may import them in your app's root `layout.tsx` file:
 
 ```
@@ -35,6 +37,18 @@ You should import Vesper's tailwind styles **after** importing `tailwindcss` in 
 ```
 
 If you import Vesper's tailwind styles before tailwind's styles, the order of tailwind's internal css layers will get mangled.
+
+### Setting up fonts
+
+Vesper components are styled using two fonts, `Inter Tight` and `IBM Plex Mono`. The fonts themselves are **not** bundled with the package, only the font stacks are. If you want Vesper's components to render in `Inter Tight` and `IBM Plex Mono`, you need to load those fonts in your app (for example with `next/font/google` if developing a `Next.js` application, a `@font-face` rule, or a `<link>` to Google Fonts). If they aren't loaded, the fallbacks in each stack are used.
+
+The easiest way to do this is to embed the corresponding Google Fonts code into the `<head>` of your html:
+
+```
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter+Tight:wght@100..900&display=swap" rel="stylesheet">
+```
 
 ## General usage
 
