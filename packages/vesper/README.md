@@ -24,6 +24,8 @@ Prior to using any components, you will need to import the library styles from `
 import "@tenstorrent/vesper/styles.css"
 ```
 
+This makes the Vesper library's component styles and css tokens globally available in your application. For more information on usage of Vesper's css tokens, see [CSS token usage](#css-token-usage).
+
 If you are using [tailwind](https://tailwindcss.com) to style your app, we supply a tailwind-specific file you can import instead. This has two advantages:
 
 1. Vesper's component styles get injected into tailwind's `components` layer, which lets tailwind utility classes override vesper css classes.
