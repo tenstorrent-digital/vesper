@@ -618,3 +618,26 @@ Both the default and inverse dot patterns also accept any Vesper color token as 
 <div className="bg-vesper-dot-pattern-background-brand-purple-base" />;
 <div className="bg-vesper-dot-pattern-inverse-stone-500" />;
 ```
+
+### Stroke tokens
+
+Stroke tokens define the border and outline widths used throughout Vesper.
+
+| CSS variable             | Value                                         |
+| ------------------------ | --------------------------------------------- |
+| `--vesper-stroke-base`   | `0.0625rem` (1px when base font-size is 16px) |
+| `--vesper-stroke-strong` | `0.125rem` (2px when base font-size is 16px)  |
+
+```css
+border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
+outline: var(--vesper-stroke-strong) solid var(--vesper-border-focus);
+```
+
+#### Usage in tailwind apps
+
+Stroke tokens are registered in tailwind's `--outline-width-*` and `--border-width-*` namespaces, so they are available as `outline-width` and `border-width` utilities:
+
+```tsx
+<div className="outline-vesper-base outline-vesper-border-focus" />;
+<div className="border-vesper-strong" />;
+```
