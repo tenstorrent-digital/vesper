@@ -501,3 +501,25 @@ Radius tokens are registered in tailwind's `--radius-*` namespace, so they work 
 <div className="rounded-t-vesper-4" />;
 <div className="rounded-bl-vesper-half" />;
 ```
+
+### Shadow tokens
+
+| CSS variable                 | Value                                                          |
+| ---------------------------- | -------------------------------------------------------------- |
+| `--vesper-shadow-100`        | `0 0.125rem 0.375rem 0.0625rem rgba(9, 34, 33, 0.1)`           |
+| `--vesper-shadow-200`        | `0 0.25rem 0.75rem 0 rgba(9, 34, 33, 0.1)`                     |
+| `--vesper-shadow-300`        | `0 0.75rem 2rem 0 rgba(9, 34, 33, 0.15)`                       |
+| `--vesper-shadow-400`        | `0 1.5rem 4rem 0 rgba(9, 34, 33, 0.2)`                         |
+| `--vesper-shadow-inset-100`  | `0 0.125rem 0.375rem 0 var(--vesper-alpha-contrast-100) inset` |
+| `--vesper-shadow-inset-200`  | `0 0.125rem 0.75rem 0 var(--vesper-tint-contrast-200) inset`   |
+| `--vesper-shadow-focus-ring` | `0 0 0 0.1875rem var(--vesper-border-focus)`                   |
+
+#### Usage in tailwind apps
+
+Shadow tokens are registered in tailwind's `--shadow-*` namespace, so they are available as `box-shadow` utilities. Note that the inset tokens already include the `inset` keyword in their value, so they are also applied with `shadow-*` (not `inset-shadow-*`):
+
+```tsx
+<div className="shadow-vesper-200" />;
+<div className="shadow-vesper-inset-100" />;
+<button className="focus-visible:shadow-vesper-focus-ring" />;
+```
