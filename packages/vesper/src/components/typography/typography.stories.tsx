@@ -14,7 +14,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
-  args: { variant: "copy-sm", children: "Typography" },
+  args: { variant: "copy-md", children: "Typography" },
   render: (props) => (
     <Typography style={{ color: "var(--vesper-stone-900)" }} {...props} />
   ),
