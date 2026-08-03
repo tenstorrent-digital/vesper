@@ -57,7 +57,7 @@ export const Playground: Story = {
         onSelect() {},
       },
     ],
-    size: "lg",
+    size: "md",
     variant: "subtle",
     children: "Button text",
     menuWidth: 200,

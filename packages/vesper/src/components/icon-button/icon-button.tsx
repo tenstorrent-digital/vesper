@@ -12,7 +12,7 @@ import type { Polymorphic } from "@/utils/polymorphic";
 
 export type IconButtonProps<E extends ElementType = "button"> = Polymorphic<
   {
-    /** The size of the button. Affects padding and font size. @default lg */
+    /** The size of the button. Affects padding and font size. @default md */
     size?: ButtonSize;
     /** The visual style variant of the button. @default primary */
     variant?: ButtonVariant;
@@ -35,7 +35,7 @@ export type IconButtonProps<E extends ElementType = "button"> = Polymorphic<
  * @see packages/vesper/src/components/split-button/split-button.tsx
  *
  * @param {ReactNode} props.icon - The icon element rendered inside the button
- * @param {ButtonSize} [props.size] - (optional) The size of the button. @default lg
+ * @param {ButtonSize} [props.size] - (optional) The size of the button. @default md
  * @param {ButtonVariant} [props.variant] - (optional) The visual style variant. @default primary
  * @param {boolean} [props.disabled] - (optional) Renders the button in a disabled state. @default false
  * @param {React.ElementType} [props.as] - (optional) Element type to render. @default button

@@ -41,5 +41,5 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Playground: Story = { args: { type: "text", size: "lg" } };
+export const Playground: Story = { args: { type: "text", size: "md" } };
 Playground.storyName = "toggle";

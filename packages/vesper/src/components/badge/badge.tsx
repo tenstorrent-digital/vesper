@@ -28,7 +28,7 @@ export type BadgeVariant = (typeof BADGE_VARIANTS)[number];
 
 export type BadgeProps<E extends ElementType = "div"> = Polymorphic<
   {
-    /** The size of the badge. Affects padding and typography. @default lg */
+    /** The size of the badge. Affects padding and typography. @default md */
     size?: BadgeSize;
     /** The color variant of the badge. @default accent */
     variant?: BadgeVariant;
@@ -54,7 +54,7 @@ const BADGE_TYPOGRAPHY_VARIANTS: { [S in BadgeSize]: TypographyVariant } = {
  * @see packages/vesper/src/components/chip/chip.tsx
  * @see packages/vesper/src/components/tag/tag.tsx
  *
- * @param {BadgeSize} [props.size] - (optional) The size of the badge. @default lg
+ * @param {BadgeSize} [props.size] - (optional) The size of the badge. @default md
  * @param {BadgeVariant} [props.variant] - (optional) The color variant of the badge. @default accent
  * @param {boolean} [props.subtle] - (optional) Renders the badge with a more subdued appearance. @default false
  * @param {ReactNode} [props.icon] - (optional) An icon element rendered to the left of the badge text
@@ -74,7 +74,7 @@ export function Badge<E extends ElementType = "div">(props: BadgeProps<E>) {
   const {
     as: Component = "div",
     className,
-    size = "lg",
+    size = "md",
     variant = "accent",
     subtle,
     icon,

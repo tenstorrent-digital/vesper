@@ -31,7 +31,7 @@ export interface SplitButtonProps extends Omit<
   ComponentProps<"div">,
   "onClick"
 > {
-  /** The size of the split button, applied to both the action button and the menu toggle. @default lg */
+  /** The size of the split button, applied to both the action button and the menu toggle. @default md */
   size?: SplitButtonSize;
   /** The visual style variant, applied to both the action button and the menu toggle. @default contrast */
   variant?: SplitButtonVariant;
@@ -71,7 +71,7 @@ export interface SplitButtonProps extends Omit<
  * @see packages/vesper/src/components/icon-button/icon-button.tsx
  *
  * @param {MenuItemProps[]} props.menuItems - The list of menu items rendered in the dropdown
- * @param {SplitButtonSize} [props.size] - (optional) The size of the split button. @default lg
+ * @param {SplitButtonSize} [props.size] - (optional) The size of the split button. @default md
  * @param {SplitButtonVariant} [props.variant] - (optional) The visual style variant. @default contrast
  * @param {MouseEventHandler<HTMLButtonElement>} [props.onClick] - (optional) Callback fired when the primary action button is clicked
  * @param {boolean} [props.disabled] - (optional) Disables both the action button and the menu toggle. @default false
@@ -103,7 +103,7 @@ export interface SplitButtonProps extends Omit<
  */
 export function SplitButton(props: SplitButtonProps) {
   const {
-    size = "lg",
+    size = "md",
     variant = "contrast",
     children,
     className,

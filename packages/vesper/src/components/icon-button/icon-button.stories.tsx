@@ -19,7 +19,7 @@ export const Playground: Story = {
   args: {
     variant: "primary",
     icon: "tenstorrent",
-    size: "lg",
+    size: "md",
     disabled: false,
   },
   render: ({ icon = "tenstorrent", ...props }) => (

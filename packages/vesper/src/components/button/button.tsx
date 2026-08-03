@@ -22,7 +22,7 @@ export type ButtonSize = (typeof BUTTON_SIZES)[number];
 
 export type ButtonProps<E extends ElementType = "button"> = Polymorphic<
   {
-    /** The size of the button. Affects padding and font size. @default lg */
+    /** The size of the button. Affects padding and font size. @default md */
     size?: ButtonSize;
     /** The visual style variant of the button. @default primary */
     variant?: ButtonVariant;
@@ -45,7 +45,7 @@ export type ButtonProps<E extends ElementType = "button"> = Polymorphic<
  * @see packages/vesper/src/components/split-button/split-button.tsx
  * @see packages/vesper/src/components/text-/text-button.tsx
  *
- * @param {ButtonSize} [props.size] - (optional) The size of the button. @default lg
+ * @param {ButtonSize} [props.size] - (optional) The size of the button. @default md
  * @param {ButtonVariant} [props.variant] - (optional) The visual style variant. @default primary
  * @param {boolean} [props.disabled] - (optional) Renders the button in a disabled state. @default false
  * @param {ReactNode} [props.iconLeft] - (optional) An icon rendered to the left of the button content
@@ -72,7 +72,7 @@ export function Button<E extends ElementType = "button">(
 ) {
   const {
     as: Component = "button",
-    size = "lg",
+    size = "md",
     variant = "primary",
     iconLeft,
     iconRight,

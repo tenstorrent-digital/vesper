@@ -19,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   args: {
     variant: "primary",
-    size: "lg",
+    size: "md",
     children: "Explore",
     disabled: false,
     iconLeft: false,
