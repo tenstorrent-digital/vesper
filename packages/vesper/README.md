@@ -640,6 +640,6 @@ outline: var(--vesper-stroke-strong) solid var(--vesper-border-focus);
 Stroke tokens are registered in tailwind's `--outline-width-*` and `--border-width-*` namespaces, so they are available as `outline-width` and `border-width` utilities:
 
 ```tsx
-<div className="outline-vesper-base outline-vesper-border-focus" />;
+<div className="outline-vesper-base" />;
 <div className="border-vesper-strong" />;
 ```
