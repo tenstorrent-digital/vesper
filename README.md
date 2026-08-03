@@ -102,8 +102,6 @@ git commit --no-verify
 
 ## Developing `@tenstorrent/vesper`
 
-Most day-to-day work when developing on top of the vesper package involves either creating new components, or updating existing components.
-
 ### Creating new components
 
 If you need to create a new component in the `vesper` package, the quickest way to scaffold all the necessary code is to run `yarn scaffold:component` from the monorepo root.
