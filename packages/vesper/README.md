@@ -26,19 +26,19 @@ import "@tenstorrent/vesper/styles.css"
 
 This makes the Vesper library's component styles and css tokens globally available in your application. For more information on usage of Vesper's css tokens, see [CSS token usage](#css-token-usage).
 
-If you are using [tailwind](https://tailwindcss.com) to style your app, we supply a tailwind-specific file you can import instead. This has two advantages:
+If you are using [Tailwind](https://tailwindcss.com) to style your app, we supply a Tailwind-specific file you can import instead. This has two advantages:
 
-1. Vesper's component styles get injected into tailwind's `components` layer, which lets tailwind utility classes override vesper css classes.
-2. Vesper's css tokens get injected into the tailwind `@theme` so you can use them in tailwind utility classes, like `bg-vesper-purple-300`, for example.
+1. Vesper's component styles get injected into Tailwind's `components` layer, which lets Tailwind utility classes override vesper css classes.
+2. Vesper's css tokens get injected into the Tailwind `@theme` so you can use them in Tailwind utility classes, like `bg-vesper-purple-300`, for example.
 
-You should import Vesper's tailwind styles **after** importing `tailwindcss` in your css file, like so:
+You should import Vesper's Tailwind styles **after** importing `tailwindcss` in your css file, like so:
 
 ```css
 @import "tailwindcss";
-@import "@tenstorrent/vesper/tailwind.css";
+@import "@tenstorrent/vesper/Tailwind.css";
 ```
 
-If you import Vesper's tailwind styles before tailwind's styles, the order of tailwind's internal css layers will get mangled.
+If you import Vesper's Tailwind styles before Tailwind's styles, the order of Tailwind's internal css layers will get mangled.
 
 ### Setting up fonts
 
