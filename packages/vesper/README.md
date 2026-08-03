@@ -61,6 +61,8 @@ To use a custom font, you can simply load your custom font into your app (using 
 }
 ```
 
+For more information on css font variables, see [font tokens](#font-tokens).
+
 ## General usage
 
 Once you have installed the package and imported the styles, you can start importing and using components like so:
@@ -413,4 +415,22 @@ For example:
 <div className="bg-vesper-stone-500" />;
 <div className="border-vesper-border-secondary" />;
 <div className="text-vesper-icon-primary" />;
+```
+
+### Font tokens
+
+| CSS variable         | Value                                  |
+| -------------------- | -------------------------------------- |
+| `--vesper-font-sans` | `"Inter Tight", system-ui, sans-serif` |
+| `--vesper-font-mono` | `"IBM Plex Mono", monospace`           |
+
+For custom font usage, see [using custom fonts](#using-custom-fonts)
+
+#### Usage in tailwind apps
+
+Font tokens are registered in tailwind's `--font-*` namespace, so they are available as `font-family` utilities:
+
+```tsx
+<p className="font-vesper-sans" />;
+<code className="font-vesper-mono" />;
 ```
