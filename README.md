@@ -150,7 +150,7 @@ Each component's test file contains three describe blocks:
 
 1. `component-name [unit]` - This block should be used for writing unit tests related to prop behavior. Use this block to assert that CSS classes are being applied correctly, event handlers are firing as expected, polymorphism is working as intended, etc.
 2. `component-name [snapshot]` - This block should be used for writing snapshot tests. Many of our components have dozens of permutations, so we can use this describe block to create snapshots of them all so if something changes unexpectedly we get warned about it.
-3. 3. `component-name [a11y]` - This block should be used for running the configured accessibility checks for the covered component permutations. We use `axe` to test that all permutations for each component pass [WCAG 2.2 AA](https://www.w3.org/TR/WCAG22/) for both light and dark mode.
+3. `component-name [a11y]` - This block should be used for running the configured accessibility checks for the covered component permutations. We use `axe` to test that all permutations for each component pass [WCAG 2.2 AA](https://www.w3.org/TR/WCAG22/) for both light and dark mode.
 
 > [!NOTE]
 >
