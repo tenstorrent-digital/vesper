@@ -120,7 +120,7 @@ When all prompts have been answered, turbo will generate a new folder in `packag
 3. `{component-name}.test.tsx` - test file for the component
 4. `{component-name}.stories.tsx` - storybook file for the component
 
-The scaffold command will also update `packages/vesper/src/styles/styles.css` to import the new css file, as well as modify the exports map in `package.json`.
+The scaffold command will also update `packages/vesper/src/styles/styles.css` to import the new css file, as well as modify the exports map in `packages/vesper/package.json`.
 
 ### Updating existing components
 
@@ -158,7 +158,7 @@ When files in `assets/icons/` change, regenerate the icon source:
 yarn generate:icons
 ```
 
-This updates the generated files in `src/components/icon/`, including:
+This updates the generated files in `src/components/icons/`, including:
 
 - individual icon components
 - the registry used by `@tenstorrent/vesper/icon`
