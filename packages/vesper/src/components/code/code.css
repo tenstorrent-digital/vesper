@@ -1,6 +1,7 @@
 .vesper-code {
   padding: var(--vesper-spacing-half) var(--vesper-spacing-1);
   border-radius: var(--vesper-radius-1);
+  font-size: 0.8125em;
 }
 .vesper-code-default {
   background: var(--vesper-tint-neutral-100);
