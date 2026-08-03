@@ -366,17 +366,17 @@ Leading tokens are registered in tailwind's `--leading-*` namespace, so they are
 
 ## Tracking tokens
 
-Tracking (letter spacing) tokens are also relative to the element's font size. The values below are expressed as a percentage of the font size — for example, `--vesper-tracking-tight` resolves to `-0.25px` at a `16px` font size.
+Tracking (letter spacing) tokens are also relative to the element's font size. The values below are expressed in `em`, so they scale with the font size — for example, `--vesper-tracking-tight` resolves to `-0.25px` at a `16px` font size.
 
-| CSS variable                 | Value                       | Equivalent at `16px` root font size |
-| ---------------------------- | --------------------------- | ----------------------------------- |
-| `--vesper-tracking-tightest` | `calc(-100% * (0.75 / 16))` | `-0.75px`                           |
-| `--vesper-tracking-tighter`  | `calc(-100% * (0.5 / 16))`  | `-0.5px`                            |
-| `--vesper-tracking-tight`    | `calc(-100% * (0.25 / 16))` | `-0.25px`                           |
-| `--vesper-tracking-normal`   | `0`                         | `0px`                               |
-| `--vesper-tracking-wide`     | `calc(100% * (0.25 / 16))`  | `0.25px`                            |
-| `--vesper-tracking-wider`    | `calc(100% * (0.5 / 16))`   | `0.5px`                             |
-| `--vesper-tracking-widest`   | `calc(100% * (0.75 / 16))`  | `0.75px`                            |
+| CSS variable                 | Value         | Equivalent at `16px` font size |
+| ---------------------------- | ------------- | ------------------------------ |
+| `--vesper-tracking-tightest` | `-0.046875em` | `-0.75px`                      |
+| `--vesper-tracking-tighter`  | `-0.03125em`  | `-0.5px`                       |
+| `--vesper-tracking-tight`    | `-0.015625em` | `-0.25px`                      |
+| `--vesper-tracking-normal`   | `0em`         | `0px`                          |
+| `--vesper-tracking-wide`     | `0.015625em`  | `0.25px`                       |
+| `--vesper-tracking-wider`    | `0.03125em`   | `0.5px`                        |
+| `--vesper-tracking-widest`   | `0.046875em`  | `0.75px`                       |
 
 ### Usage with tailwind
 
