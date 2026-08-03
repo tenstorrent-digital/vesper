@@ -113,7 +113,7 @@ yarn scaffold:component
 You will be prompted for:
 
 1. The name of the component (required)
-2. The root element of the component (optional). Should be an intrinsic html element like div, input, h1, etc. Specifying the root element will set up the newly scaffolded component's props to extend the attributes of the underlying element.
+2. The root element of the component (optional). The root element should be an intrinsic HTML element like div, input, h1, etc. Specifying the root element will set up the newly scaffolded component's props to extend the attributes of the underlying element.
 
 When all prompts have been answered, turbo will generate a new folder in `packages/vesper/src/components` containing:
 
@@ -144,7 +144,7 @@ yarn test:vesper -- -u src/components/menu/menu.test.tsx
 
 ### Tests
 
-We use [vitest](https://vitest.dev/) with `playwright` and `axe` for in-browser unit, snapshot, and a11y testing, respectively.
+We use [vitest](https://vitest.dev/) with `playwright` and `axe` for in-browser unit, snapshot, and a11y testing.
 
 Each component's test file contains three describe blocks:
 
