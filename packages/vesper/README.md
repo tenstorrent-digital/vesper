@@ -50,6 +50,17 @@ The easiest way to do this is to embed the corresponding Google Fonts code into 
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter+Tight:wght@100..900&display=swap" rel="stylesheet">
 ```
 
+#### Using custom fonts
+
+To use a custom font, you can simply load your custom font into your app (using `next/font/google`, `@font-face`, `<link>`, etc.) and override vesper's font css variables with your own provided font stack. For example, if you wanted to use `Roboto` instead of `Inter Tight` for `--vesper-font-sans`, you would do this:
+
+```css
+/* somewhere in your application's css */
+:root {
+  --vesper-font-sans: "Roboto", system-ui, sans-serif;
+}
+```
+
 ## General usage
 
 Once you have installed the package and imported the styles, you can start importing and using components like so:
