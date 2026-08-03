@@ -582,3 +582,39 @@ Animation tokens are registered in tailwind's `--transition-duration-*` namespac
 <div className="transition-colors duration-vesper-fast" />;
 <div className="transition-transform duration-vesper-slow" />;
 ```
+
+### Background tokens
+
+Background tokens provide Vesper's dot pattern as ready-to-use `background` shorthand values.
+
+| CSS variable                        | Value                                                                                 |
+| ----------------------------------- | ------------------------------------------------------------------------------------- |
+| `--vesper-bg-dot-pattern-primary`   | `var(--vesper-image-dot) repeat top var(--vesper-background-primary)`                 |
+| `--vesper-bg-dot-pattern-secondary` | `var(--vesper-image-dot) repeat top var(--vesper-background-secondary)`               |
+| `--vesper-bg-dot-pattern-tertiary`  | `var(--vesper-image-dot) repeat top var(--vesper-background-tertiary)`                |
+| `--vesper-bg-dot-pattern-inverse`   | `var(--vesper-image-dot-inverse) repeat top var(--vesper-background-inverse-primary)` |
+
+Since the dot pattern tokens are `background` shorthand values, assign them to the `background` property rather than `background-image` or `background-color`:
+
+```css
+background: var(--vesper-bg-dot-pattern-secondary);
+```
+
+#### Usage in tailwind apps
+
+Background tokens are exposed as custom tailwind utilities rather than theme values:
+
+```tsx
+<div className="bg-vesper-dot-pattern-primary" />;
+<div className="bg-vesper-dot-pattern-secondary" />;
+<div className="bg-vesper-dot-pattern-tertiary" />;
+<div className="bg-vesper-dot-pattern-inverse" />;
+```
+
+Both the default and inverse dot patterns also accept any Vesper color token as a background color, using the token name without the `vesper-` prefix:
+
+```tsx
+<div className="bg-vesper-dot-pattern-teal-200" />;
+<div className="bg-vesper-dot-pattern-background-brand-purple-base" />;
+<div className="bg-vesper-dot-pattern-inverse-stone-500" />;
+```
