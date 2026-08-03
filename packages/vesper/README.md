@@ -559,3 +559,26 @@ Spacing tokens are registered in tailwind's `--spacing-*` namespace as `--spacin
 <div className="mt-vesper-8 px-vesper-3" />;
 <div className="size-vesper-10 top-vesper-2" />;
 ```
+
+### Animation tokens
+
+| CSS variable                           | Value  |
+| -------------------------------------- | ------ |
+| `--vesper-transition-duration-fast`    | `0.2s` |
+| `--vesper-transition-duration-default` | `0.3s` |
+| `--vesper-transition-duration-slow`    | `0.6s` |
+
+Use them anywhere a duration is expected so that your app's motion stays in step with Vesper's components:
+
+```css
+transition: background-color var(--vesper-transition-duration-fast) ease-in-out;
+```
+
+#### Usage in tailwind apps
+
+Animation tokens are registered in tailwind's `--transition-duration-*` namespace, so they are available through the `duration-*` utilities:
+
+```tsx
+<div className="transition-colors duration-vesper-fast" />;
+<div className="transition-transform duration-vesper-slow" />;
+```
