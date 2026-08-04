@@ -57,8 +57,6 @@ to setup Vesper"
 - [CSS token usage](#css-token-usage)
 
 </details>
-<br />
-<br />
 
 ## Installing
 
