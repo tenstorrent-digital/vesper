@@ -1,149 +1,164 @@
-# @tenstorrent/vesper
+# Vesper
 
-Vesper is a design-system package that publishes a small set of foundational entrypoints today and is expected to grow to include additional component surfaces over time.
+React component library for the Vesper design system
 
-Current published entrypoints include:
+<br />
 
-- `@tenstorrent/vesper/styles.css` — global CSS token and component style imports
-- `@tenstorrent/vesper/tokens` — token values as ESM exports
-- `@tenstorrent/vesper/tailwind.css` — theme variables for first-class tailwind v4 integration support
-- component entrypoints such as `@tenstorrent/vesper/Icon`, `@tenstorrent/vesper/Typography`, etc.
-- tree-shakeable component barrels such as `@tenstorrent/vesper/icons`
-
-## Development workflow
-
-Most day-to-day work in this package falls into one of two categories:
-
-1. Updating source assets
-2. Creating new components
-3. Building the package for local consumption or publishing
-
-Typical flow:
-
-1. Update source assets or component source files
-2. Run the appropriate `generate:*` command when asset-derived source needs to be refreshed
-3. Review the generated files in `src/`
-4. Run type checks / lint if needed
-5. Run `yarn dev` while iterating locally, or `yarn build` when you want a clean publishable output in `dist/`
-
-Generated source lives in `src/`, while publishable artifacts live in `dist/`.
-
-## Component development
-
-We use [Storybook](https://storybook.js.org) for component development. From the monorepo root, `yarn dev:vesper` starts the storybook dev server on [localhost:5173](http://localhost:5173).
-
-Storybook reads directly from `src`, so it needs no build step. It runs with `--exact-port`, so if something is already using port 5173 the task fails loudly rather than moving to another port — `apps/website` proxies `/storybook` to that exact port in development.
-
-Storybook is intended for local package development only. Workspaces that make use of the vesper package, such as `apps/website`, should consume `@tenstorrent/vesper` from its built output.
-
-### Creating new components
-
-Creating a new component can be done by running the command `yarn scaffold:component` from within the `packages/vesper` directory, or from the project root.
-
-The `scaffold:component` script will prompt you for two things:
-
-1. The name of the component (required). The name should be written in PascalCase.
-2. The root element of the component (optional). If you decide to specify the root element, it should be an intrinsic html element like div, input, h1, etc.
-
-When all prompts have been answered, turbo will generate a new folder for the component containing:
-
-1. `{component-name}.tsx` - the component file
-2. `{component-name}.css` - the component css
-3. `{component-name}.test.tsx` - test file for the component
-4. `{component-name}.stories.tsx` - storybook file for the component
-
-The scaffold command will also update `src/styles/index.css` to import the new css file, as well as modify the exports map in `package.json`. Note that the exports map points to built files in the `dist` folder so the package will need to be rebuilt via `yarn build` before the new exports can be used externally.
-
-#### Documentation
-
-Components are documented in `docs/` (from the monorepo root). You can scaffold a new docs page for an existing component by running `yarn scaffold:documentation`, which will open an interactive prompt to generate a docs page.
-
-### Testing components
-
-Scaffolding a component from the command line will create a `.test.tsx` file in the component folder. We use [vitest](https://vitest.dev/) with `playwright` and `axe` for in-browser unit, snapshot, and a11y testing. The scaffolded test file contains three describe blocks:
-
-1. `component-name [unit]` - this describe block should be used for writing unit tests related to prop behavior. Use this block to assert that CSS classes are being applied correctly, event handlers are firing as expected, and polymorphism is working as intended.
-2. `component-name [snapshot]` - this describe block should be used for writing snapshot tests. Many of our components have dozens of permutations, so we can use this describe block to create snapshots of them all so if something changes unexpectedly we get warned about it.
-3. `component-name [a11y]` - this describe block should be used for asserting that all component permutations comply with WCAG 2 AAA standards. We use `axe` to confirm that all permutations for the component have no violations in both light and dark mode.
-
-#### Updating snapshots
-
-If a component's structure changes, we will need to update its snapshot tests. You can update snapshot tests across all test suites by running `yarn test:vesper:update` from the monorepo root, or `yarn test:update` from within the `vesper` package.
-
-To update a specific test suite you can also supply a glob pattern to match whatever tests you would like to update the snapshots for:
+<table><thead>
+  <tr>
+    <th align="center">🫂</th>
+    <th>✨</th>
+  </tr></thead>
+<tbody>
+<tr>
+<td>
 
 ```sh
-yarn test -- -u src/components/menu/menu.test.tsx
+npm install @tenstorrent/vesper
+
+# install peer deps (skip if these are already installed)
+npm install --save-peer react@^19.0.0 react-dom@^19.0.0
 ```
 
-### Regenerating icon components
+```tsx
+import "@tenstorrent/vesper/styles.css";
 
-Icon assets can be exported as SVGs from [the UI Icon Library Figma File](https://www.figma.com/design/U8rXyED2u4SLkvUggDJ4VU/UI-Icon-Library?node-id=0-1&p=f&t=A4w3uadySYXLNGuU-11).
+import { Button, Typography } from "@tenstorrent/vesper";
 
-When files in `assets/icons/` change, regenerate the icon source:
+export default function App() {
+  return (
+    <div>
+      <Typography as="h1" variant="heading-2xl">
+        Inference
+      </Typography>
+      <Button>Buy Now</Button>
+    </div>
+  );
+}
+```
+
+</td>
+<td>
+
+```
+"Please follow the instructions at
+vesper.tenstorrent.com/agent-install.md
+to setup Vesper"
+```
+
+</td>
+</tr>
+</tbody>
+</table>
+
+<details>
+<summary><h3>Table of Contents</h3></summary>
+
+- [Install](#install)
+  - [Import styles](#import-styles)
+  - [Fonts](#fonts)
+    - [Using custom fonts](#using-custom-fonts)
+- [Usage](#usage)
+  - [CSS tokens](#css-tokens)
+
+</details>
+
+## Install
+
+You can install the `@tenstorrent/vesper` package from the npm registry using your package manager of choice:
 
 ```sh
-yarn generate:icons
+yarn add @tenstorrent/vesper
+npm install @tenstorrent/vesper
+pnpm add @tenstorrent/vesper
 ```
 
-This updates the generated files in `src/components/icon/`, including:
-
-- individual icon components
-- the registry used by `@tenstorrent/vesper/icon`
-- the tree-shakeable barrel used by `@tenstorrent/vesper/icons`
-
-## Building
-
-Build the package with:
+Since `@tenstorrent/vesper` is a React package, you will also need to have `react@^19.0.0` and `react-dom@^19.0.0` installed, as they are peer dependencies.
 
 ```sh
-yarn build
+# install peer deps (skip if these are already installed)
+npm install --save-peer react@^19.0.0 react-dom@^19.0.0
 ```
 
-`yarn build` produces a clean publishable package in `dist/`.
+### Import styles
 
-It orchestrates a few smaller scripts:
+Prior to using any components, you will need to import the library styles from `@tenstorrent/vesper/styles.css` somewhere at the top-level of your application. For example, in a `Next.js` application, you may import them in your app's root `layout.tsx` file:
 
-- `yarn build:tsc`
-- `yarn build:alias`
-- `yarn build:css`
+```tsx
+import "@tenstorrent/vesper/styles.css"
+```
 
-Those steps perform the following work in order:
+This makes the Vesper library's component styles and css tokens globally available in your application. For more information on usage of Vesper's css tokens, see [CSS token usage](#css-token-usage).
 
-1. `yarn build:tsc` compiles source files to ESM plus declarations
-2. `yarn build:alias` rewrites emitted import specifiers to relative ESM-compatible paths with `.js` extensions
-3. `yarn build:css` copies every side-effectful file file under `src/` into the matching location under `dist/`
+If you are using [Tailwind](https://tailwindcss.com) to style your app, we supply a Tailwind-specific file you can import instead. This has two advantages:
 
-The result is a `dist/` directory that matches the package's export map and is ready for local consumption or publishing.
+1. Vesper's component styles get injected into Tailwind's `components` layer, which lets Tailwind utility classes override vesper css classes.
+2. Vesper's css tokens get injected into the Tailwind `@theme` so you can use them in Tailwind utility classes, like `bg-vesper-purple-300`, for example.
 
-## Why the build is structured this way
+You should import Vesper's Tailwind styles **after** importing `tailwindcss` in your css file, like so:
 
-The build pipeline is designed around a few goals:
+```css
+@import "tailwindcss";
+@import "@tenstorrent/vesper/tailwind.css";
+```
 
-### 1. Publish ESM that is easy for consumers to tree-shake
+If you import Vesper's Tailwind styles before importing `tailwindcss`, the order of Tailwind's internal css layers will get mangled.
 
-The package is emitted as ESM and exported from `dist/`. Public entrypoints are intended to support both ergonomic convenience APIs and more tree-shakeable surfaces, so consumers can opt into smaller bundles without much extra work.
+### Fonts
 
-Some convenience entrypoints may trade bundle efficiency for usability, while barrel-style or more granular component exports are intended to be friendlier to downstream tree shaking.
+Vesper components are styled using two fonts, `Inter Tight` and `IBM Plex Mono`. The fonts themselves are **not** bundled with the package, only the font stacks are. If you want Vesper's components to render in `Inter Tight` and `IBM Plex Mono`, you need to load those fonts in your app (for example with `next/font/google` if developing a `Next.js` application, a `@font-face` rule, or a `<link>` to Google Fonts). If they aren't loaded, the fallbacks in each stack are used.
 
-### 2. Preserve module boundaries
+The easiest way to do this is to embed the corresponding Google Fonts code into the `<head>` of your html:
 
-`tsc` preserves module boundaries by compiling source files into matching files in `dist/` instead of collapsing the package into a single bundle. That keeps the published output simple and gives downstream bundlers a better chance to eliminate unused component modules.
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Inter+Tight:wght@100..900&display=swap" rel="stylesheet">
+```
 
-### 3. Treat CSS as side effects, but JS as side-effect free
+### Using custom fonts
 
-`styles.css` is intentionally imported for side effects, so CSS files are preserved and copied into `dist`. JS modules are otherwise structured so bundlers can eliminate unused exports.
+To use a custom font, you can simply load your custom font into your app (using `next/font/google`, `@font-face`, `<link>`, etc.) and override vesper's font css variables with your own provided font stack. For example, if you wanted to use `Roboto` instead of `Inter Tight` for `--vesper-font-sans`, you would do this:
 
-### 4. Keep build-specific TS behavior isolated
+```css
+/* somewhere in your application's css */
+:root {
+  --vesper-font-sans: "Roboto", system-ui, sans-serif;
+}
+```
 
-The package uses a single `tsconfig.json` for both type-checking and build output. Build orchestration stays minimal: clean `dist/`, run `tsc`, rewrite emitted import specifiers with `tsc-alias`, then mirror side-effectful files into matching paths under `dist/`.
+## Usage
 
-### 5. Keep the published shape explicit
+Once you have installed the package and imported the styles, you can start importing and using components like so:
 
-`package.json` exports point directly at built files in `dist/`, so the package contract is clear and stable for both local consumers and npm consumers.
+```tsx
+import { Accordion } from "@tenstorrent/vesper/accordion";
 
-## Notes
+<Accordion title="Click me to reveal some hidden content">
+  The hidden content
+</Accordion>;
+```
 
-- `src/` contains authored and generated source files
-- `dist/` contains publishable build output
-- generated icon component files in `src/` should be updated by scripts, not by hand
+### CSS tokens
+
+Importing the library's styles also exposes Vesper's underlying css tokens for usage in your application.
+
+For example, you could use them in a css file like so:
+
+```css
+color: var(--vesper-text-primary);
+border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
+background-color: var(--vesper-background-tertiary);
+```
+
+Or you can use them as inline styles in JSX:
+
+```tsx
+<div
+  style={{
+    color: "var(--vesper-text-primary)",
+    border: "var(--vesper-stroke-base) solid var(--vesper-border-secondary)",
+    backgroundColor: "var(--vesper-background-tertiary)",
+  }}
+/>
+```

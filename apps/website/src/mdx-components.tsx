@@ -58,6 +58,9 @@ import { Toggle } from "@tenstorrent/vesper/toggle";
 import { Tooltip } from "@tenstorrent/vesper/tooltip";
 import { Typography } from "@tenstorrent/vesper/typography";
 
+// docs-only components (not part of the design system)
+import { ColorChip } from "@/components/color-chip";
+
 import { trimChildren } from "@/lib/markdown/utils";
 
 // named demos for components w non-serializable props (event handlers,
@@ -208,6 +211,9 @@ const components = {
   Toggle,
   Tooltip,
   Typography,
+
+  // docs-only components
+  ColorChip,
 
   // icons will need to be added here too if we want to use them directly
   Add,
