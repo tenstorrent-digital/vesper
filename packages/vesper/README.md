@@ -54,16 +54,16 @@ to setup Vesper"
 <details>
 <summary><h3>Table of Contents</h3></summary>
 
-- [Installing](#installing)
-- [Importing library styles](#importing-library-styles)
-- [Setting up fonts](#setting-up-fonts)
+- [Install](#install)
+- [Import styles](#import-styles)
+- [Fonts](#fonts)
 - [Using custom fonts](#using-custom-fonts)
-- [General usage](#general-usage)
-- [CSS token usage](#css-token-usage)
+- [Usage](#usage)
+- [CSS tokens](#css-tokens)
 
 </details>
 
-## Installing
+## Install
 
 You can install the `@tenstorrent/vesper` package from the npm registry using your package manager of choice:
 
@@ -80,7 +80,7 @@ Since `@tenstorrent/vesper` is a React package, you will also need to have `reac
 npm install --save-peer react@^19.0.0 react-dom@^19.0.0
 ```
 
-## Importing library styles
+### Import styles
 
 Prior to using any components, you will need to import the library styles from `@tenstorrent/vesper/styles.css` somewhere at the top-level of your application. For example, in a `Next.js` application, you may import them in your app's root `layout.tsx` file:
 
@@ -104,7 +104,7 @@ You should import Vesper's Tailwind styles **after** importing `tailwindcss` in 
 
 If you import Vesper's Tailwind styles before importing `tailwindcss`, the order of Tailwind's internal css layers will get mangled.
 
-## Setting up fonts
+### Fonts
 
 Vesper components are styled using two fonts, `Inter Tight` and `IBM Plex Mono`. The fonts themselves are **not** bundled with the package, only the font stacks are. If you want Vesper's components to render in `Inter Tight` and `IBM Plex Mono`, you need to load those fonts in your app (for example with `next/font/google` if developing a `Next.js` application, a `@font-face` rule, or a `<link>` to Google Fonts). If they aren't loaded, the fallbacks in each stack are used.
 
@@ -127,7 +127,7 @@ To use a custom font, you can simply load your custom font into your app (using 
 }
 ```
 
-## General usage
+## Usage
 
 Once you have installed the package and imported the styles, you can start importing and using components like so:
 
@@ -139,7 +139,7 @@ import { Accordion } from "@tenstorrent/vesper/accordion";
 </Accordion>;
 ```
 
-## CSS token usage
+### CSS tokens
 
 Importing the library's styles also exposes Vesper's underlying css tokens for usage in your application.
 
