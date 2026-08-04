@@ -3,7 +3,6 @@
 React component library for the Vesper design system
 
 <br />
-<br />
 
 <table><thead>
   <tr>
