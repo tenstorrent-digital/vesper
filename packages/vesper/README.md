@@ -84,7 +84,7 @@ npm install --save-peer react@^19.0.0 react-dom@^19.0.0
 
 Prior to using any components, you will need to import the library styles from `@tenstorrent/vesper/styles.css` somewhere at the top-level of your application. For example, in a `Next.js` application, you may import them in your app's root `layout.tsx` file:
 
-```
+```tsx
 import "@tenstorrent/vesper/styles.css"
 ```
 
@@ -110,7 +110,7 @@ Vesper components are styled using two fonts, `Inter Tight` and `IBM Plex Mono`.
 
 The easiest way to do this is to embed the corresponding Google Fonts code into the `<head>` of your html:
 
-```
+```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Inter+Tight:wght@100..900&display=swap" rel="stylesheet">
