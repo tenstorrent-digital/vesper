@@ -1,6 +1,8 @@
-# @tenstorrent/vesper
+# Vesper
 
 React component library for the Vesper design system
+
+---
 
 <table><thead>
   <tr>
