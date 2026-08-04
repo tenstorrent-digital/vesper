@@ -5,6 +5,12 @@ on:
     branches: [main]
   push:
     branches: [main]
+    # The vouch workflows push `.github/VOUCHED.td` to `main` using a GitHub App
+    # token, which (unlike `GITHUB_TOKEN`) does trigger workflows. That commit
+    # can't affect tests, so don't spend a run on it. Only applies to `push`;
+    # pull request runs are unaffected, so the required check still gates PRs.
+    paths-ignore:
+      - ".github/VOUCHED.td"
 
   # Empty `workflow_dispatch` allows this workflow to be run manually from the Actions tab:
   workflow_dispatch:

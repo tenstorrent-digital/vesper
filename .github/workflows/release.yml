@@ -3,6 +3,11 @@ name: Release
 on:
   push:
     branches: [main]
+    # The vouch workflows push `.github/VOUCHED.td` to `main` using a GitHub App
+    # token, which (unlike `GITHUB_TOKEN`) does trigger workflows. Those commits
+    # never carry a changeset, so skip them instead of starting a release run.
+    paths-ignore:
+      - ".github/VOUCHED.td"
     # no `workflow_dispatch` for running from UI
     # a manual run from any ref could version, tag, and release unmerged code
 
