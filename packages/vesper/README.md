@@ -55,11 +55,11 @@ to setup Vesper"
 <summary><h3>Table of Contents</h3></summary>
 
 - [Install](#install)
-- [Import styles](#import-styles)
-- [Fonts](#fonts)
-- [Using custom fonts](#using-custom-fonts)
+  - [Import styles](#import-styles)
+  - [Fonts](#fonts)
+    - [Using custom fonts](#using-custom-fonts)
 - [Usage](#usage)
-- [CSS tokens](#css-tokens)
+  - [CSS tokens](#css-tokens)
 
 </details>
 
