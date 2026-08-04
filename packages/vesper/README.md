@@ -15,6 +15,9 @@ React component library for the Vesper design system
 
 ```sh
 npm install @tenstorrent/vesper
+
+# install peer deps (skip if these are already installed)
+npm install --save-peer react@^19.0.0 react-dom@^19.0.0
 ```
 
 ```tsx
@@ -71,6 +74,11 @@ pnpm add @tenstorrent/vesper
 ```
 
 Since `@tenstorrent/vesper` is a React package, you will also need to have `react@^19.0.0` and `react-dom@^19.0.0` installed, as they are peer dependencies.
+
+```sh
+# install peer deps (skip if these are already installed)
+npm install --save-peer react@^19.0.0 react-dom@^19.0.0
+```
 
 ## Importing library styles
 
