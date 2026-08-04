@@ -4,21 +4,52 @@ description: Install Vesper and set it up in a React application.
 order: 1
 ---
 
-# Getting Started
+# Getting started
 
-Vesper is a React component library for the Tenstorrent design system.
+## Installing
 
-## Installation (example)
+You can install the `@tenstorrent/vesper` package from the npm registry using your package manager of choice:
 
 ```sh
+yarn add @tenstorrent/vesper
 npm install @tenstorrent/vesper
+pnpm add @tenstorrent/vesper
 ```
 
-## Installation (example with `<Snippet>`)
+Since `@tenstorrent/vesper` is a React package, you will also need to have `react@^19.0.0` and `react-dom@^19.0.0` installed, as they are peer dependencies.
 
-<Snippet>npm install @tenstorrent/vesper</Snippet>
+## Importing library styles
 
-## Next steps
+Prior to using any components, you will need to import the library styles from `@tenstorrent/vesper/styles.css` somewhere at the top-level of your application. For example, in a `Next.js` application, you may import them in your app's root `layout.tsx` file:
 
-- Browse every component in the [component library](/components)
-- Try components interactively in [Storybook](/storybook)
+```
+import "@tenstorrent/vesper/styles.css"
+```
+
+This makes the Vesper library's component styles and css tokens globally available in your application. For more information on usage of Vesper's css tokens, see [CSS token usage](#css-token-usage).
+
+If you are using [Tailwind](https://tailwindcss.com) to style your app, we supply a Tailwind-specific file you can import instead. This has two advantages:
+
+1. Vesper's component styles get injected into Tailwind's `components` layer, which lets Tailwind utility classes override vesper css classes.
+2. Vesper's css tokens get injected into the Tailwind `@theme` so you can use them in Tailwind utility classes, like `bg-vesper-purple-300`, for example.
+
+You should import Vesper's Tailwind styles **after** importing `tailwindcss` in your css file, like so:
+
+```css
+@import "tailwindcss";
+@import "@tenstorrent/vesper/tailwind.css";
+```
+
+If you import Vesper's Tailwind styles before importing `tailwindcss`, the order of Tailwind's internal css layers will get mangled.
+
+## Setting up fonts
+
+Vesper components are styled using two fonts, `Inter Tight` and `IBM Plex Mono`. The fonts themselves are **not** bundled with the package, only the font stacks are. If you want Vesper's components to render in `Inter Tight` and `IBM Plex Mono`, you need to load those fonts in your app (for example with `next/font/google` if developing a `Next.js` application, a `@font-face` rule, or a `<link>` to Google Fonts). If they aren't loaded, the fallbacks in each stack are used.
+
+The easiest way to do this is to embed the corresponding Google Fonts code into the `<head>` of your html:
+
+```
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Inter+Tight:wght@100..900&display=swap" rel="stylesheet">
+```
