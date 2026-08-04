@@ -8,7 +8,7 @@ order: 2
 
 Vesper is built on top of a set of design tokens corresponding to color, spacing, radius, leading, tracking, shadow, stroke, and background. These tokens are exposed in your app as CSS variables when you [import the component styles](./getting-started.mdx#importing-library-styles), and can also be used in Tailwind utilities.
 
-## Color tokens
+## Colors
 
 Color tokens are split into _primitive_ and _semantic_ tokens.
 
@@ -334,7 +334,7 @@ For example:
 <div className="text-vesper-icon-primary" />;
 ```
 
-## Font tokens
+## Fonts
 
 | CSS variable         | Value                                  |
 | -------------------- | -------------------------------------- |
@@ -350,7 +350,7 @@ Font tokens are registered in Tailwind's `--font-*` namespace, so they are avail
 <code className="font-vesper-mono" />;
 ```
 
-## Leading tokens
+## Leading
 
 Leading (line height) tokens are percentage-based, so they scale with the element's font size.
 
@@ -372,7 +372,7 @@ Leading tokens are registered in Tailwind's `--leading-*` namespace, so they are
 <p className="leading-vesper-loose" />;
 ```
 
-## Tracking tokens
+## Tracking
 
 Tracking (letter spacing) tokens are also relative to the element's font size. The values below are expressed in `em`, so they scale with the font size — for example, `--vesper-tracking-tight` resolves to `-0.25px` at a `16px` font size.
 
@@ -395,7 +395,7 @@ Tracking tokens are registered in Tailwind's `--tracking-*` namespace, so they a
 <span className="tracking-vesper-wide" />;
 ```
 
-## Radius tokens
+## Radius
 
 | CSS variable           | Value      | Equivalent at `16px` root font size |
 | ---------------------- | ---------- | ----------------------------------- |
@@ -417,7 +417,7 @@ Radius tokens are registered in Tailwind's `--radius-*` namespace, so they work 
 <div className="rounded-bl-vesper-half" />;
 ```
 
-## Shadow tokens
+## Shadows
 
 | CSS variable                 | Value                                                          |
 | ---------------------------- | -------------------------------------------------------------- |
@@ -439,7 +439,7 @@ Shadow tokens are registered in Tailwind's `--shadow-*` namespace, so they are a
 <button className="focus-visible:shadow-vesper-focus-ring" />;
 ```
 
-## Spacing tokens
+## Spacing
 
 | CSS variable             | Value       | Equivalent at `16px` root font size |
 | ------------------------ | ----------- | ----------------------------------- |
@@ -473,7 +473,7 @@ Spacing tokens are registered in Tailwind's `--spacing-*` namespace as `--spacin
 <div className="size-vesper-10 top-vesper-2" />;
 ```
 
-## Animation tokens
+## Animations
 
 | CSS variable                           | Value  |
 | -------------------------------------- | ------ |
@@ -496,7 +496,7 @@ Animation tokens are registered in Tailwind's `--transition-duration-*` namespac
 <div className="transition-transform duration-vesper-slow" />;
 ```
 
-## Background tokens
+## Backgrounds
 
 Background tokens provide Vesper's dot pattern as ready-to-use `background` shorthand values.
 
@@ -532,7 +532,7 @@ Both the default and inverse dot patterns also accept any Vesper color token as 
 <div className="bg-vesper-dot-pattern-inverse-stone-500" />;
 ```
 
-## Stroke tokens
+## Strokes
 
 Stroke tokens define the border and outline widths used throughout Vesper.
 
