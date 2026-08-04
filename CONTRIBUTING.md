@@ -1,5 +1,23 @@
 # Contributing to Vesper
 
+As Vesper is an open-source project, we welcome outside contributions. This document is meant to guide outside contributors who wish to participate in Vesper's development.
+
+## Baseline requirements
+
+**The most important rule for contributing to Vesper is that you must understand your code.** If you cannot explain the changes you have made on your own without the use of AI tools, then we cannot accept your contribution.
+
+Using AI tools to contribute to and gain understanding of the codebase is encouraged, but submitting agent-generated code without understanding it yourself is not.
+
+## Vouching/denouncement system
+
+We use a vouching system to establish trust amongst contributors. If you have not been vouched for, you cannot contribute, and your pull requests will automatically be closed. If you have not been vouched and wish to contribute, please do the following:
+
+1. Open a discussion in the "Vouch Request" category describing what you want to change and why. Please keep it brief and describe it using your own words. Do not have an AI write it.
+2. If approved, a Vesper admin will comment `!vouch`
+3. Once approved, you will be able to submit PRs
+
+If you repeatedly submit low-quality contributions or otherwise do not respect the rules outlined in this document, you will be **denounced.** This adds your username to a public list of users that have not respected the contribution guidelines. If you are denounced, all future interactions with the Vesper project will be automatically closed by bots.
+
 ## AI Usage Policy
 
 > [!NOTE]
