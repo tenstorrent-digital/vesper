@@ -35,10 +35,10 @@ You should import Vesper's Tailwind styles **after** importing `tailwindcss` in 
 
 ```css
 @import "tailwindcss";
-@import "@tenstorrent/vesper/Tailwind.css";
+@import "@tenstorrent/vesper/tailwind.css";
 ```
 
-If you import Vesper's Tailwind styles before Tailwind's styles, the order of Tailwind's internal css layers will get mangled.
+If you import Vesper's Tailwind styles before importing `tailwindcss`, the order of Tailwind's internal css layers will get mangled.
 
 ### Setting up fonts
 
