@@ -11,7 +11,7 @@ afterEach(cleanup);
 
 describe("tooltip [unit]", () => {
   test("no interaction", () => {
-    const result = render(
+    render(
       <Tooltip content="Tooltip text">
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
           tooltip trigger
@@ -19,8 +19,7 @@ describe("tooltip [unit]", () => {
       </Tooltip>,
     );
 
-    const tooltip = result.container.querySelector(".vesper-tooltip");
-    expect(tooltip).toBeNull();
+    expect(document.querySelector(".vesper-tooltip")).toBeNull();
   });
 
   test("with interaction", async () => {
@@ -45,12 +44,11 @@ describe("tooltip [unit]", () => {
       expect(handleOpenChange).toHaveBeenCalledWith(true);
     });
 
-    const tooltip = result.container.querySelector(".vesper-tooltip");
-    expect(tooltip).not.toBeNull();
+    expect(document.querySelector(".vesper-tooltip")).not.toBeNull();
   });
 
   test("side prop", async () => {
-    const result = render(
+    render(
       <Tooltip open side="left" content="Tooltip text">
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
           tooltip trigger
@@ -58,12 +56,12 @@ describe("tooltip [unit]", () => {
       </Tooltip>,
     );
 
-    const tooltip = result.container.querySelector(".vesper-tooltip");
+    const tooltip = document.querySelector(".vesper-tooltip");
     expect(tooltip).toHaveAttribute("data-side", "left");
   });
 
   test("alignment prop", async () => {
-    const result = render(
+    render(
       <Tooltip open align="end" content="Tooltip text">
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
           tooltip trigger
@@ -71,12 +69,12 @@ describe("tooltip [unit]", () => {
       </Tooltip>,
     );
 
-    const tooltip = result.container.querySelector(".vesper-tooltip");
+    const tooltip = document.querySelector(".vesper-tooltip");
     expect(tooltip).toHaveAttribute("data-align", "end");
   });
 
   test("custom max width", async () => {
-    const result = render(
+    render(
       <Tooltip open maxWidth={360} content="Tooltip text">
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
           tooltip trigger
@@ -84,7 +82,7 @@ describe("tooltip [unit]", () => {
       </Tooltip>,
     );
 
-    const tooltip = result.container.querySelector(".vesper-tooltip");
+    const tooltip = document.querySelector(".vesper-tooltip");
     expect(tooltip).toHaveStyle("max-width: 360px;");
   });
 
@@ -111,61 +109,31 @@ describe("tooltip [unit]", () => {
     });
   });
 
-  test("nullable children", () => {
-    const result = render(<Tooltip open content="Tooltip text" />);
-
-    expect(result.container.querySelector(".vesper-tooltip")).toBeNull();
-  });
-
-  test("non-element children do not render tooltip", () => {
+  test("children render inside a span trigger", () => {
     const result = render(
       <Tooltip open content="Tooltip text">
-        plain text trigger
+        <Typography>trigger</Typography>
       </Tooltip>,
     );
 
-    expect(result.container.querySelector(".vesper-tooltip")).toBeNull();
-    expect(result.container.innerHTML).toBe("plain text trigger");
-  });
-
-  test("fragment children do not render tooltip", () => {
-    const result = render(
-      <Tooltip open content="Tooltip text">
-        <>
-          <Typography>trigger</Typography>
-        </>
-      </Tooltip>,
-    );
-
-    expect(result.container.querySelector(".vesper-tooltip")).toBeNull();
-    expect(result.container.textContent).toBe("trigger");
-  });
-
-  test("multiple children do not render tooltip", () => {
-    const result = render(
-      <Tooltip open content="Tooltip text">
-        <Typography>first</Typography>
-        <Typography>second</Typography>
-      </Tooltip>,
-    );
-
-    expect(result.container.querySelector(".vesper-tooltip")).toBeNull();
-    expect(result.container.textContent).toBe("firstsecond");
+    const trigger = result.container.firstElementChild!;
+    expect(trigger.tagName).toBe("SPAN");
+    expect(trigger).toHaveAttribute("data-state", "instant-open");
+    expect(trigger.textContent).toBe("trigger");
   });
 
   test("defaultOpen prop", () => {
-    const result = render(
+    render(
       <Tooltip defaultOpen content="Tooltip text">
         <Typography>trigger</Typography>
       </Tooltip>,
     );
 
-    const tooltip = result.container.querySelector(".vesper-tooltip");
-    expect(tooltip).not.toBeNull();
+    expect(document.querySelector(".vesper-tooltip")).not.toBeNull();
   });
 
   test("renders non-string content", () => {
-    const result = render(
+    render(
       <Tooltip
         open
         content={
@@ -178,7 +146,7 @@ describe("tooltip [unit]", () => {
       </Tooltip>,
     );
 
-    const tooltip = result.container.querySelector(".vesper-tooltip");
+    const tooltip = document.querySelector(".vesper-tooltip");
     expect(tooltip).not.toBeNull();
 
     const kbd = tooltip?.querySelector("kbd");
@@ -212,11 +180,50 @@ describe("tooltip [unit]", () => {
       expect(handleOpenChange).toHaveBeenCalledWith(false);
     });
   });
+
+  test("portals tooltip content into document.body", async () => {
+    render(
+      <Tooltip open content="Tooltip text">
+        <Typography>trigger</Typography>
+      </Tooltip>,
+    );
+
+    await waitFor(() => {
+      expect(document.querySelector(".vesper-tooltip")).not.toBeNull();
+    });
+
+    const tooltip = document.querySelector(".vesper-tooltip")!;
+    expect(tooltip.closest("dialog")).toBeNull();
+    expect(document.body.contains(tooltip)).toBe(true);
+  });
+
+  test("portals into the closest dialog ancestor", async () => {
+    const result = render(
+      <dialog open data-testid="dialog">
+        <div>
+          <div>
+            <Tooltip open content="Tooltip text">
+              <Typography>trigger</Typography>
+            </Tooltip>
+          </div>
+        </div>
+      </dialog>,
+    );
+
+    const dialog = result.getByTestId("dialog");
+
+    await waitFor(() => {
+      expect(dialog.querySelector(".vesper-tooltip")).not.toBeNull();
+    });
+
+    const tooltip = document.querySelector(".vesper-tooltip")!;
+    expect(dialog.contains(tooltip)).toBe(true);
+  });
 });
 
 describe("tooltip [snapshot]", () => {
   test("open", async () => {
-    const result = render(
+    render(
       <Tooltip open content="Tooltip text">
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
           tooltip trigger
@@ -224,7 +231,7 @@ describe("tooltip [snapshot]", () => {
       </Tooltip>,
     );
 
-    expect(result.container.querySelector(".vesper-tooltip")).toMatchSnapshot();
+    expect(document.querySelector(".vesper-tooltip")).toMatchSnapshot();
   });
 
   test("closed", async () => {
@@ -261,7 +268,21 @@ describe("tooltip [a11y]", () => {
         </Tooltip>,
       );
 
-      expect(await axe.run(result.container)).toHaveNoViolations();
+      await waitFor(() => {
+        expect(document.querySelector(".vesper-tooltip")).not.toBeNull();
+      });
+
+      // the tooltip content is portaled outside of the render container, so
+      // a11y is checked at the document level
+      //
+      // the page-level `region` rule is disabled here: it flags content that
+      // isn't contained by a landmark, which is an artifact of rendering a
+      // component in isolation rather than a tooltip accessibility issue
+      expect(
+        await axe.run(result.container.ownerDocument, {
+          rules: { region: { enabled: false } },
+        }),
+      ).toHaveNoViolations();
     });
   });
 });

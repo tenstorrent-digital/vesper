@@ -1,16 +1,16 @@
 "use client";
 
-import { type ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 import {
   Tooltip as TooltipRoot,
   TooltipContent,
+  TooltipPortal,
   TooltipProvider,
   TooltipTrigger,
 } from "@radix-ui/react-tooltip";
 
 import { Typography } from "@/components/typography/typography";
 
-import { isSingleReactElement } from "@/utils/isSingleReactElement";
 import { useBaseRemSize } from "@/utils/useBaseRemSize";
 
 export const TOOLTIP_SIDES = ["top", "right", "bottom", "left"] as const;
@@ -84,11 +84,16 @@ export function Tooltip(props: TooltipProps) {
     sideOffset = 4,
   } = props;
 
+  const [ref, setRef] = useState<HTMLSpanElement | null>(null);
+
   const baseRemSize = useBaseRemSize();
 
-  if (!isSingleReactElement(children)) {
-    return children;
-  }
+  /**
+   * dialogs render in their own stacking context above the document body,
+   * so select elements that are rendered inside dialogs must portal into
+   * the dialog element itself, or else they will render behind the dialog
+   */
+  const container = ref?.closest("dialog");
 
   return (
     <TooltipProvider>
@@ -98,20 +103,24 @@ export function Tooltip(props: TooltipProps) {
         onOpenChange={onOpenChange}
         open={open}
       >
-        <TooltipTrigger asChild>{children}</TooltipTrigger>
-        <Typography
-          variant="label-xs"
-          className="vesper-tooltip"
-          style={{ maxWidth: `calc(${maxWidth} * (1rem / 16))` }}
-          as={TooltipContent}
-          align={align}
-          alignOffset={alignOffset * (baseRemSize / 16)}
-          side={side}
-          sideOffset={baseRemSize / 2 + sideOffset * (baseRemSize / 16)}
-        >
-          {content}
-          <div className="vesper-tooltip-arrow" />
-        </Typography>
+        <TooltipTrigger asChild>
+          <span ref={setRef}>{children}</span>
+        </TooltipTrigger>
+        <TooltipPortal container={container}>
+          <Typography
+            variant="label-xs"
+            className="vesper-tooltip"
+            style={{ maxWidth: `calc(${maxWidth} * (1rem / 16))` }}
+            as={TooltipContent}
+            align={align}
+            alignOffset={alignOffset * (baseRemSize / 16)}
+            side={side}
+            sideOffset={baseRemSize / 2 + sideOffset * (baseRemSize / 16)}
+          >
+            {content}
+            <div className="vesper-tooltip-arrow" />
+          </Typography>
+        </TooltipPortal>
       </TooltipRoot>
     </TooltipProvider>
   );
