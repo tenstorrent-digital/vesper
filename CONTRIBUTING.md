@@ -18,6 +18,17 @@ We use a vouching system to establish trust amongst contributors. If you have no
 
 If you repeatedly submit low-quality contributions or otherwise do not respect the rules outlined in this document, you will be **denounced.** This adds your username to a public list of users that have not respected the contribution guidelines. If you are denounced, all future interactions with the Vesper project will be automatically closed by bots.
 
+## Opening an issue
+
+Typically issues will fall into one of two categories, both of which have issue templates:
+
+1. **Bug Report** – Use this template to report a problem when using the `@tenstorrent/vesper` package itself. Issues related to css styling, rendering bugs, component prop behavior, etc. should use this template. You should _not_ use this template when opening an issue related to developing Vesper.
+2. **Development Issue** – Use this template to report an issue when developing Vesper. Issues around tooling, mismatched dependencies, turbo, etc. are all considered development issues and not bug reports. You should _not_ use this template when opening an issue related to usage of the `@tenstorrent/vesper` package.
+
+## Submitting a PR
+
+As mentioned in [the vouching and denouncement system section](#vouchingdenouncement-system), you will not be able to submit a PR until you are vouched for. Once you have been approved by a Vesper admin, you will be able to submit PRs.
+
 ## AI Usage Policy
 
 > [!NOTE]
