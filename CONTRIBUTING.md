@@ -38,9 +38,31 @@ As mentioned in [the vouching and denouncement system section](#vouchingdenounce
 
 When submitting a PR, it is imperative that **you must understand the code you are submitting.** Low-quality contributions that are obviously AI-generated and not understood by the contributor will not be accepted and you may be denounced. AI-assisted contributions are welcome, but having a human-in-the-loop to edit and refine AI output is crucial. If you cannot explain and document the changes you are submitting without the help of an LLM, we cannot accept your contribution.
 
-It's highly preferred that you first [open an issue](#opening-an-issue), or reference an existing one in your PR.
+Prior to submitting a PR, it's highly preferred that you first [open an issue](#opening-an-issue), unless you are referencing an existing one in your PRs description.
 
 For information on developing Vesper locally, as well as what is expected when making changes to the `@tenstorrent/vesper` package, please refer to the [README.md](README.md) in the root of this monorepo.
+
+### Generating a changeset
+
+Vesper uses [changesets](https://changesets.dev) to manage git tags, releases, changelogs, and publishing the `@tenstorrent/vesper` package to the npm registry. Whenever you make a contribution that impacts end-users who install Vesper, you _must_ generate a changeset or your PR will not pass checks and cannot be merged.
+
+You can generate a changeset by running the following command:
+
+```sh
+yarn changeset
+```
+
+You will be asked to provide what kind of change you are making (patch, minor, or major), as well as a message describing the change. When you confirm the kind of change and the changeset message, a changeset file will be generated for you, which you should commit.
+
+You can use these guidelines to determine which kind of change your contribution merits:
+
+- `patch` – bug fixes and small tweaks that do not add new features, and do not change the behavior of an exported module for end users.
+- `minor` – features that introduce new behavior or APIs, but are backwards-compatible and do not break existing implementations of exported modules.
+- `major` – large changes or redesigns that introduce breaking changes to existing component implementations, and requires code updates prior to upgrading.
+
+### Code review
+
+Prior to merging your PR, the code changes must undergo review. PRs require approvals from two contributors with write access, at least one of which must be a Vesper admin. In addition to two approvals, all checks must pass.
 
 ## AI Usage Policy
 
