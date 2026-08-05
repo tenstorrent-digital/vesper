@@ -30,7 +30,7 @@ Typically issues will fall into one of three categories, each of which have issu
 >
 > Vesper implements a design system that is owned by the Tenstorrent design team. Requests for **visual/design changes** (colors, spacing, typography, iconography, motion, or new visual variants) and requests for **new components** cannot be resolved in this repository, and so are out of scope for the Feature Request template.
 >
-> If you'd like to propose one of these, please open a [discussion](https://github.com/tenstorrent-digital/vesper/discussions) instead. A maintainer must bring the request upstream to the design team first. Only once it has been approved and specified there can it be implemented here.
+> If you'd like to propose a design change, please open a [discussion](https://github.com/tenstorrent-digital/vesper/discussions) instead. A maintainer must bring the request upstream to the design team first.
 
 ## Submitting a PR
 
