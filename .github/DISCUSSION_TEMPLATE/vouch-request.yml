@@ -7,6 +7,7 @@ body:
         >
         > Keep your request brief and write it in your own words. Do not have an AI write it for you. A Vesper admin will comment `!vouch` if your request is approved, after which you can submit pull requests.
   - type: textarea
+    id: what
     attributes:
       label: What do you want to change?
       description: |
@@ -16,6 +17,7 @@ body:
     validations:
       required: true
   - type: textarea
+    id: why
     attributes:
       label: Why do you want to make this change?
       description: |
@@ -25,6 +27,7 @@ body:
     validations:
       required: true
   - type: checkboxes
+    id: acknowledgements
     attributes:
       label: "I acknowledge that:"
       options:
