@@ -95,7 +95,7 @@ export function Menu(props: MenuProps) {
     ...rest
   } = props;
 
-  const [ref, setRef] = useState<HTMLButtonElement | null>(null);
+  const [ref, setRef] = useState<Element | null>(null);
 
   const baseRemSize = useBaseRemSize();
 
