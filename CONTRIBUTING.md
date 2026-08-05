@@ -62,7 +62,7 @@ You can use these guidelines to determine which kind of change your contribution
 
 ### Code review
 
-Prior to merging your PR, the code changes must undergo review. PRs require approvals from two contributors with write access, at least one of which must be a Vesper admin. In addition to two approvals, all checks must pass.
+Prior to merging your PR, any code changes you made must be reviewed. PRs require approvals from two contributors with write access, at least one of which must be a Vesper admin. All checks must also pass.
 
 ## AI Usage Policy
 
