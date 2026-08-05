@@ -38,6 +38,8 @@ As mentioned in [the vouching and denouncement system section](#vouchingdenounce
 
 When submitting a PR, it is imperative that **you must understand the code you are submitting.** Low-quality contributions that are obviously AI-generated and not understood by the contributor will not be accepted and you may be denounced. AI-assisted contributions are welcome, but having a human-in-the-loop to edit and refine AI output is crucial. If you cannot explain and document the changes you are submitting without the help of an LLM, we cannot accept your contribution.
 
+It's highly preferred that you first [open an issue](#opening-an-issue), or reference an existing one in your PR.
+
 For information on developing Vesper locally, as well as what is expected when making changes to the `@tenstorrent/vesper` package, please refer to the [README.md](README.md) in the root of this monorepo.
 
 ## AI Usage Policy
