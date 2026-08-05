@@ -11,6 +11,7 @@ import {
 
 import { Typography } from "@/components/typography/typography";
 
+import { isSingleReactElement } from "@/utils/isSingleReactElement";
 import { useBaseRemSize } from "@/utils/useBaseRemSize";
 
 export const TOOLTIP_SIDES = ["top", "right", "bottom", "left"] as const;
@@ -84,16 +85,20 @@ export function Tooltip(props: TooltipProps) {
     sideOffset = 4,
   } = props;
 
-  const [ref, setRef] = useState<HTMLSpanElement | null>(null);
+  const [ref, setRef] = useState<HTMLButtonElement | null>(null);
 
   const baseRemSize = useBaseRemSize();
 
   /**
    * dialogs render in their own stacking context above the document body,
-   * so select elements that are rendered inside dialogs must portal into
-   * the dialog element itself, or else they will render behind the dialog
+   * so tooltips that are rendered inside dialogs must portal into the dialog
+   * element itself, or else they will render behind the dialog
    */
   const container = ref?.closest("dialog");
+
+  if (!isSingleReactElement(children)) {
+    return children;
+  }
 
   return (
     <TooltipProvider>
@@ -103,8 +108,8 @@ export function Tooltip(props: TooltipProps) {
         onOpenChange={onOpenChange}
         open={open}
       >
-        <TooltipTrigger asChild>
-          <span ref={setRef}>{children}</span>
+        <TooltipTrigger asChild ref={setRef}>
+          {children}
         </TooltipTrigger>
         <TooltipPortal container={container}>
           <Typography
