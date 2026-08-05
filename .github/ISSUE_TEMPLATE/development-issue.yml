@@ -1,6 +1,7 @@
 name: Development Issue
 description: Report a problem with the Vesper development environment — dev server, Storybook, dependencies, or tooling.
 title: "[Dev]: "
+labels: ["tooling"]
 body:
   - type: markdown
     attributes:
