@@ -9,6 +9,8 @@ https://github.com/tenstorrent-digital/vesper/blob/main/CONTRIBUTING.md
 
 <!--
 What does this PR change, and why? Write this in your own words.
+
+Please also select a label that applies best to the changes in this PR
 -->
 
 ## Related issue
@@ -17,14 +19,6 @@ What does this PR change, and why? Write this in your own words.
 Link the issue this PR addresses, e.g. `Closes #123`.
 -->
 
-## Type of change
-
-- [ ] Bug fix (`@tenstorrent/vesper`)
-- [ ] New behavior or API for an existing component
-- [ ] Documentation
-- [ ] Tooling, CI, or repo configuration
-- [ ] Other (please describe above)
-
 ## Changeset
 
 <!--
@@ -32,8 +26,9 @@ Any change that impacts end-users who install `@tenstorrent/vesper` must include
 a changeset, or the Changeset Check will fail and this PR cannot be merged.
 -->
 
-- [ ] I have generated a changeset with `yarn changeset` and committed it
-- [ ] End-users of `@tenstorrent/vesper` are unaffected, so no changeset is needed
+- [ ] I have either:
+  - Generated a changeset with `yarn changeset` and committed it, or
+  - Omitted a changedset because end-users of `@tenstorrent/vesper` are unaffected
 
 ## AI usage disclosure
 
