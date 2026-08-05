@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -95,7 +95,16 @@ export function Menu(props: MenuProps) {
     ...rest
   } = props;
 
+  const [ref, setRef] = useState<HTMLButtonElement | null>(null);
+
   const baseRemSize = useBaseRemSize();
+
+  /**
+   * dialogs render in their own stacking context above the document body,
+   * so menus that are rendered inside dialogs must portal into the dialog
+   * element itself, or else they will render behind the dialog
+   */
+  const container = ref?.closest("dialog");
 
   if (!isSingleReactElement(children)) {
     return children;
@@ -103,8 +112,10 @@ export function Menu(props: MenuProps) {
 
   return (
     <DropdownMenu {...rest}>
-      <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
-      <DropdownMenuPortal>
+      <DropdownMenuTrigger asChild ref={setRef}>
+        {children}
+      </DropdownMenuTrigger>
+      <DropdownMenuPortal container={container}>
         <DropdownMenuContent
           className="vesper-menu"
           style={{ width: `calc(${width} * (1rem / 16))` }}
