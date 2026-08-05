@@ -1,0 +1,107 @@
+name: Feature Request
+description: Propose a behavior or API change to an existing Vesper component.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to propose a new feature!
+
+        Please search the [existing issues](https://github.com/tenstorrent-digital/vesper/issues?q=is%3Aissue) prior to opening a new request here. If your issue already exists you can
+        add to the discussion there.
+
+        > [!IMPORTANT]
+        > This form is for the `@tenstorrent/vesper` package only, and is limited to **component behavior and API changes** — new props, new variants of existing props, event handling, accessibility behavior, ref forwarding, exported types, and similar.
+        >
+        > **Design changes and requests for new components are out of scope.** Vesper implements a design system that is owned by the Tenstorrent design team, so those requests can't be resolved in this repository. A maintainer must bring them upstream to the design team first, and only once they are approved can they be implemented. If your request falls into that category, please open a [discussion](https://github.com/tenstorrent-digital/vesper/discussions) instead.
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: "Scope check"
+      description: |
+        Please confirm your request is in scope for this form.
+      options:
+        - label: >-
+            This request is about an existing `@tenstorrent/vesper` component's behavior or API,
+            not about a new component.
+          required: true
+        - label: >-
+            This request does not ask for a change to the visual design (colors, spacing, typography,
+            iconography, motion, or new visual variants), which must be raised with the design team first.
+          required: true
+  - type: input
+    id: component
+    attributes:
+      label: Module
+      description: |
+        The component(s) or module(s) this request applies to.
+      placeholder: "Tooltip"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: |
+        What are you trying to do, and what is preventing you from doing it with the component as it exists today?
+      placeholder: |
+        `Tooltip` always closes when the pointer leaves the trigger, so I can't build a tooltip whose
+        content includes a link that the user needs to move the pointer onto and click.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: |
+        The behavior or API change you'd like to see.
+      placeholder: |
+        Add an `interactive` prop to `Tooltip`:
+
+        - `interactive?: boolean` — when `true`, the tooltip stays open while the pointer is over its
+          content, and closes on pointer leave of both trigger and content. Defaults to `false`.
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example usage
+      description: |
+        A short code sample showing how the component would be used with your proposed change.
+      placeholder: |
+        <Tooltip interactive content={<>See the <a href="/docs">docs</a>.</>}>
+          <Button>Help</Button>
+        </Tooltip>
+      render: tsx
+    validations:
+      required: false
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: |
+        Any workarounds you've tried, and why they aren't sufficient. If you believe this can't be solved in userland, explain why.
+      placeholder: |
+        I tried controlling the tooltip's open state myself, but the component closes on pointer leave internally, so the controlled value is overridden.
+    validations:
+      required: true
+  - type: textarea
+    id: breaking
+    attributes:
+      label: Backwards compatibility
+      description: |
+        Would this change the behavior of existing usage? If so, describe what would break and whether the change could be made opt-in instead.
+      placeholder: |
+        No breaking changes; the new prop defaults to `false`, which preserves the current behavior.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Vesper version
+      description: |
+        The version of `@tenstorrent/vesper` you are using. You can find this in your `package.json`.
+      placeholder: "0.1.0"
+    validations:
+      required: true
