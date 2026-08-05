@@ -28,7 +28,7 @@ a changeset, or the Changeset Check will fail and this PR cannot be merged.
 
 - [ ] I have either:
   - Generated a changeset with `yarn changeset` and committed it, or
-  - Omitted a changedset because end-users of `@tenstorrent/vesper` are unaffected
+  - Omitted a changeset because end-users of `@tenstorrent/vesper` are unaffected
 
 ## AI usage disclosure
 
