@@ -18,4 +18,5 @@
 # edit it by hand through a normal pull request.
 #
 # See CONTRIBUTING.md and https://github.com/mitchellh/vouch for details.
+-mwvd
 simonsteer
