@@ -38,5 +38,5 @@ All AI usage in any form must be disclosed. State the tool you used
 AI-assisted. If you did not use AI at all, say so.
 
 See the AI Usage Policy:
-https://github.com/tenstorrent-digital/vesper/blob/main/CONTRIBUTING.md#ai-usage-policy
+https://github.com/tenstorrent-digital/vesper/blob/main/AI_POLICY.md
 -->

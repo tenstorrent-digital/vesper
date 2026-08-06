@@ -38,7 +38,7 @@ body:
           required: true
         - label: >-
             I have read and agree to follow the
-            [AI Usage Policy](https://github.com/tenstorrent-digital/vesper/blob/main/CONTRIBUTING.md#ai-usage-policy).
+            [AI Usage Policy](https://github.com/tenstorrent-digital/vesper/blob/main/AI_POLICY.md).
           required: true
         - label: >-
             I understand my code, and can explain my changes without the use of AI tools.
