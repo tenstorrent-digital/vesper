@@ -435,6 +435,43 @@ describe("select [unit]", () => {
     const content = document.querySelector(".vesper-select-content")!;
     expect(dialog.contains(content)).toBe(true);
   });
+
+  test("portals into the container prop", async () => {
+    const container = document.createElement("div");
+    document.body.append(container);
+
+    const result = render(<Select options={OPTIONS} container={container} />);
+    const trigger = result.getByRole("combobox");
+
+    await userEvent.click(trigger);
+    await waitFor(() => {
+      expect(container.querySelector(".vesper-select-content")).not.toBeNull();
+    });
+
+    container.remove();
+  });
+
+  test("container prop takes precedence over the closest dialog ancestor", async () => {
+    const container = document.createElement("div");
+    document.body.append(container);
+
+    const result = render(
+      <dialog open data-testid="dialog">
+        <Select options={OPTIONS} container={container} />
+      </dialog>,
+    );
+    const trigger = result.getByRole("combobox");
+
+    await userEvent.click(trigger);
+    await waitFor(() => {
+      expect(container.querySelector(".vesper-select-content")).not.toBeNull();
+    });
+
+    const dialog = result.getByTestId("dialog");
+    expect(dialog.querySelector(".vesper-select-content")).toBeNull();
+
+    container.remove();
+  });
 });
 
 describe("select [snapshot]", () => {

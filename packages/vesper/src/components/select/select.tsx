@@ -24,6 +24,10 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import {
+  getPortalContainer,
+  type PortalContainer,
+} from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/useBaseRemSize";
 
 export const SELECT_SIZES = ["sm", "md", "lg"] as const;
@@ -59,6 +63,8 @@ export interface SelectProps extends Omit<
   required?: boolean;
   /** Associates the select with a `<form>` element by its `id`, allowing submission from outside the form */
   form?: string;
+  /** Specify the element or document fragment to portal the dropdown into */
+  container?: PortalContainer;
 }
 
 const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
@@ -81,6 +87,7 @@ const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
  * @param {string} [props.defaultValue] - (optional) The initial selected value for uncontrolled usage
  * @param {(value: string) => void} [props.onValueChange] - (optional) Callback invoked with the new value whenever the selection changes
  * @param {boolean} [props.required] - (optional) Marks the select as required for form validation
+ * @param {Element | DocumentFragment} [props.container] - (optional) Specify the element or document fragment to portal the dropdown into
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  *
  * You may also pass any additional props to the underlying `button` element
@@ -122,6 +129,7 @@ export function Select(props: SelectProps) {
     name,
     required,
     form,
+    container,
     "aria-label": ariaLabel = placeholder,
     ref,
     ...rest
@@ -130,18 +138,7 @@ export function Select(props: SelectProps) {
   const [innerRef, setInnerRef] = useState<HTMLButtonElement | null>(null);
   useImperativeHandle(ref, () => innerRef!);
 
-  /**
-   * dialogs render in their own stacking context above the document body,
-   * so select elements that are rendered inside dialogs must portal into
-   * the dialog element itself, or else they will render behind the dialog
-   *
-   * when innerRef is null (if SSR or before mount), we pass `undefined` so
-   * radix uses its own default portal target, avoiding a "document is not
-   * defined" error during SSG
-   */
-  const container = innerRef
-    ? innerRef.closest("dialog") || document.body
-    : undefined;
+  const portalContainer = getPortalContainer(container, innerRef);
 
   const baseRemSize = useBaseRemSize();
 
@@ -171,7 +168,7 @@ export function Select(props: SelectProps) {
           <CaretUp className="vespers-select-state-indicator-open" />
         </span>
       </SelectTrigger>
-      <SelectPortal container={container}>
+      <SelectPortal container={portalContainer}>
         <SelectContent
           className="vesper-select-content"
           side="bottom"

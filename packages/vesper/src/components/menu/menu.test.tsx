@@ -218,6 +218,84 @@ describe("menu [unit]", () => {
     expect(document.querySelector(".vesper-menu")).toBeNull();
   });
 
+  test("portals menu content into document.body", async () => {
+    render(
+      <Menu items={MENU_ITEMS} defaultOpen>
+        <TextButton>trigger</TextButton>
+      </Menu>,
+    );
+
+    await waitFor(() =>
+      expect(document.querySelector(".vesper-menu")).not.toBeNull(),
+    );
+
+    const content = document.querySelector(".vesper-menu")!;
+    expect(content.closest("dialog")).toBeNull();
+    expect(document.body.contains(content)).toBe(true);
+  });
+
+  test("portals into the closest dialog ancestor", async () => {
+    const result = render(
+      <dialog open data-testid="dialog">
+        <div>
+          <div>
+            <Menu items={MENU_ITEMS} defaultOpen>
+              <TextButton>trigger</TextButton>
+            </Menu>
+          </div>
+        </div>
+      </dialog>,
+    );
+
+    const dialog = result.getByTestId("dialog");
+
+    await waitFor(() =>
+      expect(dialog.querySelector(".vesper-menu")).not.toBeNull(),
+    );
+
+    const content = document.querySelector(".vesper-menu")!;
+    expect(dialog.contains(content)).toBe(true);
+  });
+
+  test("portals into the container prop", async () => {
+    const container = document.createElement("div");
+    document.body.append(container);
+
+    render(
+      <Menu items={MENU_ITEMS} defaultOpen container={container}>
+        <TextButton>trigger</TextButton>
+      </Menu>,
+    );
+
+    await waitFor(() =>
+      expect(container.querySelector(".vesper-menu")).not.toBeNull(),
+    );
+
+    container.remove();
+  });
+
+  test("container prop takes precedence over the closest dialog ancestor", async () => {
+    const container = document.createElement("div");
+    document.body.append(container);
+
+    const result = render(
+      <dialog open data-testid="dialog">
+        <Menu items={MENU_ITEMS} defaultOpen container={container}>
+          <TextButton>trigger</TextButton>
+        </Menu>
+      </dialog>,
+    );
+
+    await waitFor(() =>
+      expect(container.querySelector(".vesper-menu")).not.toBeNull(),
+    );
+
+    const dialog = result.getByTestId("dialog");
+    expect(dialog.querySelector(".vesper-menu")).toBeNull();
+
+    container.remove();
+  });
+
   (["default", "danger", "locked", "selected", "disabled"] as const).forEach(
     (style) => {
       test(`menu item ${style} class`, async () => {

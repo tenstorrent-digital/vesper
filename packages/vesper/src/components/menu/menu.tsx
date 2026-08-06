@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,6 +12,10 @@ import {
 import { Checkmark, Lock } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 
+import {
+  getPortalContainer,
+  type PortalContainer,
+} from "@/utils/getPortalContainer";
 import { isSingleReactElement } from "@/utils/isSingleReactElement";
 import { useBaseRemSize } from "@/utils/useBaseRemSize";
 
@@ -49,6 +53,8 @@ export interface MenuProps {
   items: MenuItemProps[];
   /** The width of the menu dropdown in pixels. @default 200 */
   width?: number;
+  /** Specify the element or document fragment to portal the menu into */
+  container?: PortalContainer;
 }
 
 /**
@@ -60,6 +66,7 @@ export interface MenuProps {
  * @param {"top" | "bottom" | "left" | "right"} [props.side] - (optional) The preferred side of the trigger. @default bottom
  * @param {number} [props.sideOffset] - (optional) Distance in pixels from the trigger. @default 8
  * @param {"start" | "center" | "end"} [props.align] - (optional) Alignment relative to the trigger. @default start
+ * @param {Element | DocumentFragment} [props.container] - (optional) Specify the element or document fragment to portal the menu into
  * @param {boolean} [props.open] - (optional) Controls the open state (controlled)
  * @param {(open: boolean) => void} [props.onOpenChange] - (optional) Callback fired when the open state changes
  *
@@ -92,10 +99,15 @@ export function Menu(props: MenuProps) {
     sideOffset = 8,
     align = "start",
     alignOffset = 0,
+    container,
     ...rest
   } = props;
 
+  const [ref, setRef] = useState<Element | null>(null);
+
   const baseRemSize = useBaseRemSize();
+
+  const portalContainer = getPortalContainer(container, ref);
 
   if (!isSingleReactElement(children)) {
     return children;
@@ -103,8 +115,10 @@ export function Menu(props: MenuProps) {
 
   return (
     <DropdownMenu {...rest}>
-      <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
-      <DropdownMenuPortal>
+      <DropdownMenuTrigger asChild ref={setRef}>
+        {children}
+      </DropdownMenuTrigger>
+      <DropdownMenuPortal container={portalContainer}>
         <DropdownMenuContent
           className="vesper-menu"
           style={{ width: `calc(${width} * (1rem / 16))` }}

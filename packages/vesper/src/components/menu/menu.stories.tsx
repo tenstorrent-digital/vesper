@@ -12,6 +12,7 @@ const meta = {
     children: { table: { disable: true } },
     open: { table: { disable: true } },
     onOpenChange: { table: { disable: true } },
+    container: { table: { disable: true } },
   },
 } satisfies Meta<typeof Menu>;
 

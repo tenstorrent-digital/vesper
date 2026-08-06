@@ -1,15 +1,20 @@
 "use client";
 
-import { type ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 import {
   Tooltip as TooltipRoot,
   TooltipContent,
+  TooltipPortal,
   TooltipProvider,
   TooltipTrigger,
 } from "@radix-ui/react-tooltip";
 
 import { Typography } from "@/components/typography/typography";
 
+import {
+  getPortalContainer,
+  type PortalContainer,
+} from "@/utils/getPortalContainer";
 import { isSingleReactElement } from "@/utils/isSingleReactElement";
 import { useBaseRemSize } from "@/utils/useBaseRemSize";
 
@@ -44,6 +49,8 @@ export interface TooltipProps {
   children?: ReactNode;
   /** The maximum width of the tooltip in pixels. Content will wrap if it exceeds this width. @default 240 */
   maxWidth?: number;
+  /** Specify the element or document fragment to portal the tooltip into */
+  container?: PortalContainer;
 }
 
 /**
@@ -56,6 +63,7 @@ export interface TooltipProps {
  * @param {TooltipAlign} [props.align] - (optional) Alignment relative to the trigger. @default center
  * @param {number} [props.delayDuration] - (optional) Delay in milliseconds before showing. @default 500
  * @param {number} [props.maxWidth] - (optional) Maximum width of the tooltip in pixels. @default 240
+ * @param {Element | DocumentFragment} [props.container] - (optional) Specify the element or document fragment to portal the tooltip into
  * @param {boolean} [props.open] - (optional) Controls the open state (controlled)
  * @param {(value: boolean) => void} [props.onOpenChange] - (optional) Callback fired when open state changes
  *
@@ -82,9 +90,14 @@ export function Tooltip(props: TooltipProps) {
     alignOffset = 0,
     side = "top",
     sideOffset = 4,
+    container,
   } = props;
 
+  const [ref, setRef] = useState<Element | null>(null);
+
   const baseRemSize = useBaseRemSize();
+
+  const portalContainer = getPortalContainer(container, ref);
 
   if (!isSingleReactElement(children)) {
     return children;
@@ -98,20 +111,24 @@ export function Tooltip(props: TooltipProps) {
         onOpenChange={onOpenChange}
         open={open}
       >
-        <TooltipTrigger asChild>{children}</TooltipTrigger>
-        <Typography
-          variant="label-xs"
-          className="vesper-tooltip"
-          style={{ maxWidth: `calc(${maxWidth} * (1rem / 16))` }}
-          as={TooltipContent}
-          align={align}
-          alignOffset={alignOffset * (baseRemSize / 16)}
-          side={side}
-          sideOffset={baseRemSize / 2 + sideOffset * (baseRemSize / 16)}
-        >
-          {content}
-          <div className="vesper-tooltip-arrow" />
-        </Typography>
+        <TooltipTrigger asChild ref={setRef}>
+          {children}
+        </TooltipTrigger>
+        <TooltipPortal container={portalContainer}>
+          <Typography
+            variant="label-xs"
+            className="vesper-tooltip"
+            style={{ maxWidth: `calc(${maxWidth} * (1rem / 16))` }}
+            as={TooltipContent}
+            align={align}
+            alignOffset={alignOffset * (baseRemSize / 16)}
+            side={side}
+            sideOffset={baseRemSize / 2 + sideOffset * (baseRemSize / 16)}
+          >
+            {content}
+            <div className="vesper-tooltip-arrow" />
+          </Typography>
+        </TooltipPortal>
       </TooltipRoot>
     </TooltipProvider>
   );
