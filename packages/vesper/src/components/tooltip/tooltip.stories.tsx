@@ -11,6 +11,7 @@ const meta = {
     defaultOpen: { table: { disable: true } },
     onOpenChange: { table: { disable: true } },
     children: { table: { disable: true } },
+    container: { table: { disable: true } },
   },
 } satisfies Meta<typeof Tooltip>;
 

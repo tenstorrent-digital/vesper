@@ -248,6 +248,46 @@ describe("tooltip [unit]", () => {
     const tooltip = document.querySelector(".vesper-tooltip")!;
     expect(dialog.contains(tooltip)).toBe(true);
   });
+
+  test("portals into the container prop", async () => {
+    const container = document.createElement("div");
+    container.setAttribute("data-testid", "container");
+    document.body.append(container);
+
+    render(
+      <Tooltip open container={container} content="Tooltip text">
+        <Typography>trigger</Typography>
+      </Tooltip>,
+    );
+
+    await waitFor(() => {
+      expect(container.querySelector(".vesper-tooltip")).not.toBeNull();
+    });
+
+    container.remove();
+  });
+
+  test("container prop takes precedence over the closest dialog ancestor", async () => {
+    const container = document.createElement("div");
+    document.body.append(container);
+
+    const result = render(
+      <dialog open data-testid="dialog">
+        <Tooltip open container={container} content="Tooltip text">
+          <Typography>trigger</Typography>
+        </Tooltip>
+      </dialog>,
+    );
+
+    await waitFor(() => {
+      expect(container.querySelector(".vesper-tooltip")).not.toBeNull();
+    });
+
+    const dialog = result.getByTestId("dialog");
+    expect(dialog.querySelector(".vesper-tooltip")).toBeNull();
+
+    container.remove();
+  });
 });
 
 describe("tooltip [snapshot]", () => {
