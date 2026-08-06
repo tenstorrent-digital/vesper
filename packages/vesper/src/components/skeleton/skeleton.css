@@ -22,6 +22,11 @@
     );
     animation: vesper-skeleton-shimmer 1.2s linear infinite;
   }
+  @media (prefers-reduced-motion) {
+    &::after {
+      display: none;
+    }
+  }
 }
 
 .vesper-skeleton-box {
