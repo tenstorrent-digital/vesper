@@ -1,0 +1,77 @@
+name: Vouch - Manage by Issue
+
+on:
+  issue_comment:
+    types: [created]
+
+concurrency:
+  # Shared with `vouch-manage-by-discussion.yml`
+  # Both workflows commit to `.github/VOUCHED.td` on `main`, so they must not run at the same time.
+  # Cancelling mid-flight could drop a vouch, so queue instead.
+  group: vouch-manage
+  cancel-in-progress: false
+
+# The GitHub App token minted below carries its own permissions, so the
+# workflow's own `GITHUB_TOKEN` needs none.
+permissions: {}
+
+jobs:
+  manage:
+    name: Manage Vouch List
+    runs-on: ubuntu-latest
+
+    # Cheap pre-filter so the action only spins up for comments that could be a
+    # command. The action still does the real parsing and permission check.
+    if: >-
+      contains(github.event.comment.body, '!vouch') ||
+      contains(github.event.comment.body, '!denounce') ||
+      contains(github.event.comment.body, '!unvouch')
+
+    steps:
+      # `main` is protected by the "Protect Main" ruleset, which blocks direct
+      # pushes for everyone. The default `GITHUB_TOKEN` cannot be added to a
+      # ruleset bypass list, but a GitHub App can, so mint an app token here.
+      - name: Create GitHub App Token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.VOUCH_APP_ID }}
+          private-key: ${{ secrets.VOUCH_APP_PRIVATE_KEY }}
+
+      # The action commits and pushes with the checkout's credentials, so
+      # `persist-credentials` must stay at its default of `true`, and the app
+      # token must be the credential that gets persisted.
+      #
+      # `issue_comment` runs in the context of the default branch even when the
+      # comment is on a pull request, so this checks out `main`.
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+
+      # `issue_comment` fires for comments on both issues and pull requests,
+      # which lets an admin denounce a repeat offender directly on the offending
+      # pull request. Vouching itself is documented as a discussion flow (see
+      # "Vouch - Manage by Discussion"), but works here too.
+      #
+      # Pinning third-party actions to a specific SHA is recommended by GitHub Actions secure use reference:
+      # https://docs.github.com/en/actions/reference/security/secure-use#using-third-party-actions
+      - name: Apply Vouch Command
+        uses: mitchellh/vouch/action/manage-by-issue@d66fa29a64600490892131ad87597c30c91fcac4 # v1.5.0
+        with:
+          issue-id: ${{ github.event.issue.number }}
+          comment-id: ${{ github.event.comment.id }}
+          # `!` prefixed so ordinary prose about vouching doesn't trigger a run.
+          # `!denounce @user` and a trailing reason are also supported.
+          vouch-keyword: "!vouch"
+          denounce-keyword: "!denounce"
+          unvouch-keyword: "!unvouch"
+          # The action's default allows `write` and `triage`, but we only want admins/maintainers to be able to vouch
+          roles: admin,maintain
+          # Commit straight to `main`, which relies on the app being a bypass
+          # actor on the "Protect Main" ruleset. Opening a pull request instead
+          # (`pull-request: true`) would stall: a VOUCHED.td-only PR can never
+          # pass the required `Changeset Check`, which fails without a changeset.
+          pull-request: "false"
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}

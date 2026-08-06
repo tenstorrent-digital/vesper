@@ -1,0 +1,73 @@
+name: Bug Report
+description: Report a problem with a Vesper component.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file an issue!
+
+        Please search the [existing issues](https://github.com/tenstorrent-digital/vesper/issues?q=is%3Aissue) first — if you find a match, add your details to that thread instead of opening a new one.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: |
+        A clear description of the problem. Include the component(s) involved, and add screenshots or a screen recording if they help explain the issue.
+      placeholder: |
+        When a `Tooltip` is rendered inside a `Modal`, the tooltip content appears behind the modal overlay.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What you expected to happen.
+      placeholder: |
+        The tooltip renders above the modal overlay and is fully visible.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What actually happened instead.
+      placeholder: |
+        The tooltip is clipped by the modal overlay, so only part of it is readable.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: |
+        Step-by-step instructions to reproduce the issue. A link to a minimal reproduction (StackBlitz, CodeSandbox, or a small repo) is the fastest way to get this fixed.
+      placeholder: |
+        1. Render a `<Modal>` with a `<Tooltip>` inside its body.
+        2. Open the modal.
+        3. Hover the tooltip trigger.
+        4. Observe that the tooltip appears behind the overlay.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Vesper version
+      description: |
+        The version of `@tenstorrent/vesper` you are using. You can find this in your `package.json`.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: |
+        OS, browser, and React version.
+      placeholder: |
+        - OS: macOS 15.5
+        - Browser: Chrome 138
+        - React: 19.1.0
+    validations:
+      required: true
