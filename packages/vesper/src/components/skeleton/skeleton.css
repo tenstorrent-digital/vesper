@@ -22,7 +22,7 @@
     );
     animation: vesper-skeleton-shimmer 1.2s linear infinite;
   }
-  @media (prefers-reduced-motion) {
+  @media (prefers-reduced-motion: reduce) {
     &::after {
       display: none;
     }

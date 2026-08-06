@@ -4,7 +4,7 @@
   --vesper-transition-duration-slow: 0.6s;
 }
 
-@media (prefers-reduced-motion) {
+@media (prefers-reduced-motion: reduce) {
   :root {
     --vesper-transition-duration-fast: 0s !important;
     --vesper-transition-duration-default: 0s !important;
