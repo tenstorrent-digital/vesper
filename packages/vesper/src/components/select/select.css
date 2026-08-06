@@ -22,7 +22,7 @@
       color: var(--vesper-icon-disabled);
     }
   }
-  &[data-state="open"],
+  &.vesper-select-open,
   &:focus-visible {
     border-color: var(--vesper-border-strong);
     box-shadow: var(--vesper-shadow-focus-ring);

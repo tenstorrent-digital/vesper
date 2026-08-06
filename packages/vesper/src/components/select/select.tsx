@@ -134,7 +134,7 @@ export function Select(props: SelectProps) {
     ref,
     ...rest
   } = props;
-
+  const [isOpen, setIsOpen] = useState(false);
   const [innerRef, setInnerRef] = useState<HTMLButtonElement | null>(null);
   useImperativeHandle(ref, () => innerRef!);
 
@@ -151,9 +151,18 @@ export function Select(props: SelectProps) {
       name={name}
       required={required}
       form={form}
+      onOpenChange={(open) => {
+        if (!open) setTimeout(() => setIsOpen(false));
+        else setIsOpen(true);
+      }}
     >
       <SelectTrigger
-        className={cn("vesper-select", `vesper-select-${size}`, className)}
+        className={cn(
+          "vesper-select",
+          `vesper-select-${size}`,
+          isOpen && "vesper-select-open",
+          className,
+        )}
         disabled={disabled}
         aria-label={ariaLabel}
         ref={setInnerRef}
