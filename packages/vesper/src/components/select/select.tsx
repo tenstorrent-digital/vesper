@@ -3,7 +3,10 @@
 import {
   type ComponentProps,
   type ReactNode,
+  useCallback,
+  useEffect,
   useImperativeHandle,
+  useRef,
   useState,
 } from "react";
 import {
@@ -138,6 +141,17 @@ export function Select(props: SelectProps) {
   const [innerRef, setInnerRef] = useState<HTMLButtonElement | null>(null);
   useImperativeHandle(ref, () => innerRef!);
 
+  const closeTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const clearCloseTimeout = useCallback(() => {
+    if (closeTimeout.current !== null) {
+      clearTimeout(closeTimeout.current);
+      closeTimeout.current = null;
+    }
+  }, []);
+
+  useEffect(() => clearCloseTimeout, [clearCloseTimeout]);
+
   const portalContainer = getPortalContainer(container, innerRef);
 
   const baseRemSize = useBaseRemSize();
@@ -152,8 +166,14 @@ export function Select(props: SelectProps) {
       required={required}
       form={form}
       onOpenChange={(open) => {
-        if (!open) setTimeout(() => setIsOpen(false));
-        else setIsOpen(true);
+        clearCloseTimeout();
+        if (open) setIsOpen(true);
+        else {
+          closeTimeout.current = setTimeout(() => {
+            closeTimeout.current = null;
+            setIsOpen(false);
+          });
+        }
       }}
     >
       <SelectTrigger
