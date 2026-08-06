@@ -18,7 +18,7 @@
     aspect-ratio: 1;
     border-radius: 50%;
     height: 100%;
-    transition: transform 0.2s ease;
+    transition: transform var(--vesper-transition-duration-fast) ease;
   }
   @media (forced-colors: active) {
     background: CanvasText;
@@ -46,7 +46,7 @@
   white-space: nowrap;
   border: 0;
   &:not(:disabled) + .vesper-switch-pill {
-    transition: background 0.2s ease;
+    transition: background var(--vesper-transition-duration-fast) ease;
     &::after {
       box-shadow: var(--vesper-shadow-100);
     }
