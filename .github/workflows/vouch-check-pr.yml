@@ -1,0 +1,50 @@
+name: Vouch - Check PR
+
+# `pull_request_target` checks out the base branch (trusted code from `main`), not the PR head.
+# That's what we want: the only reason to check out at all is to read the response template below.
+on:
+  pull_request_target:
+    types: [opened, reopened]
+
+concurrency:
+  # Key by PR number, not `head_ref`: that's only the branch name, so same-named
+  # branches from different forks would share a group and cancel each other.
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  # read `.github/VOUCHED.td`
+  contents: read
+  # comment on and close pull requests from unvouched or denounced authors
+  pull-requests: write
+
+jobs:
+  check:
+    name: Check PR Author
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          # The template is the only file needed, so skip the rest of the repo.
+          sparse-checkout: .github
+          # Nothing here pushes, so keep the token out of `.git/config`.
+          persist-credentials: false
+
+      # Bots and collaborators with write access are always allowed. Denounced
+      # users are always blocked. `require-vouch` defaults to true, so unvouched
+      # users are blocked too, per CONTRIBUTING.md.
+      #
+      # Pinning third-party actions to a specific SHA is recommended by GitHub Actions secure use reference:
+      # https://docs.github.com/en/actions/reference/security/secure-use#using-third-party-actions
+      - name: Check Vouch Status
+        uses: mitchellh/vouch/action/check-pr@d66fa29a64600490892131ad87597c30c91fcac4 # v1.5.0
+        with:
+          pr-number: ${{ github.event.pull_request.number }}
+          auto-close: true
+          # Only used for unvouched authors. Denounced authors get a fixed
+          # message from the action instead.
+          template-file: .github/pr-unvouched-message
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

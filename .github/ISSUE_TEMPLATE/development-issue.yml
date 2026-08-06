@@ -1,0 +1,70 @@
+name: Development Issue
+description: Report a problem with the Vesper development environment — dev server, Storybook, dependencies, or tooling.
+title: "[Dev]: "
+labels: ["tooling"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This form is for problems encountered while **working on Vesper itself**. If you encounter a bug while using a Vesper component in your own app, please use the Bug Report form instead.
+
+        Before filing, it's worth confirming your toolchain matches the repo: this project pins **Node v24.13.1** (see `.nvmrc`) and **Yarn 1.22.22** (Yarn Classic).
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: |
+        What you were trying to do, and what went wrong. Mention the affected workspace if you know it (`@tenstorrent/vesper`, `website`, `@repo/eslint-config`, `@repo/typescript-config`, or the monorepo root).
+      placeholder: |
+        Running the Storybook dev server fails to start. It exits immediately after resolving the config in `packages/vesper/storybook`.
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Error output
+      description: |
+        The full terminal output, including the stack trace if there is one. If there was no output at all, say so.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: |
+        How to reproduce this from a fresh clone, and whether it happens consistently.
+      placeholder: |
+        1. `nvm use` to match `.nvmrc`.
+        2. `yarn install --frozen-lockfile`
+        3. `yarn dev:vesper`
+        4. Observe the server exit before the port is bound.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: |
+        Run `node -v && yarn -v` and paste the output, along with your OS.
+      placeholder: |
+        - Node: v24.13.1
+        - Yarn: 1.22.22
+        - OS: macOS 15.5
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: troubleshooting
+    attributes:
+      label: Troubleshooting already tried
+      description: |
+        What did you already try to troubleshoot the issue?
+      placeholder: |
+        1. My Node version matches `.nvmrc`
+        2. I'm using Yarn 1.x (`yarn --version`)
+        3. I reinstalled dependencies (`yarn install --frozen-lockfile`)
+        4. I tried a clean install (`yarn clean-install`)
+        5. I cleared build output and caches (`yarn clean`)
+    validations:
+      required: true

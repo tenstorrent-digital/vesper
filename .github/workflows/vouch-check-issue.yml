@@ -1,0 +1,39 @@
+name: Vouch - Check Issue
+
+on:
+  issues:
+    types: [opened, reopened]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+permissions:
+  # read `.github/VOUCHED.td`
+  contents: read
+  # comment on and close issues from denounced authors
+  issues: write
+
+jobs:
+  check:
+    name: Check Issue Author
+    runs-on: ubuntu-latest
+
+    steps:
+      # No checkout step: `require-vouch: false` means only denounced users are
+      # closed, and the action posts its own fixed message for them rather than
+      # rendering a template from the repo.
+      #
+      # Pinning third-party actions to a specific SHA is recommended by GitHub Actions secure use reference:
+      # https://docs.github.com/en/actions/reference/security/secure-use#using-third-party-actions
+      - name: Check Vouch Status
+        uses: mitchellh/vouch/action/check-issue@d66fa29a64600490892131ad87597c30c91fcac4 # v1.5.0
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          # CONTRIBUTING.md only requires a vouch to open pull requests, so anyone may open an issue.
+          # Denounced users are still blocked, since all of their interactions are closed automatically.
+          require-vouch: false
+          auto-close: true
+          auto-lock: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
