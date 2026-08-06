@@ -173,8 +173,8 @@ export function Select(props: SelectProps) {
           <SelectValue placeholder={placeholder} />
         </Typography>
         <span className="vesper-select-state-indicator">
-          <CaretDown className="vespers-select-state-indicator-closed" />
-          <CaretUp className="vespers-select-state-indicator-open" />
+          <CaretDown className="vesper-select-state-indicator-closed" />
+          <CaretUp className="vesper-select-state-indicator-open" />
         </span>
       </SelectTrigger>
       <SelectPortal container={portalContainer}>

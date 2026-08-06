@@ -7,10 +7,10 @@
   &:not(:disabled) {
     cursor: pointer;
   }
-  &[data-state="open"] .vespers-select-state-indicator-closed {
+  &[data-state="open"] .vesper-select-state-indicator-closed {
     display: none;
   }
-  &[data-state="closed"] .vespers-select-state-indicator-open {
+  &[data-state="closed"] .vesper-select-state-indicator-open {
     display: none;
   }
   &:disabled {
