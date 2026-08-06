@@ -8,9 +8,10 @@
   --vesper-transition-duration-slow: 0s !important;
 }
 
-*,
-*::before,
-*::after {
-  animation-duration: 0 !important;
-  transition-duration: 0 !important;
+:where([class*="vesper-"]),
+:where([class*="vesper-"])::before,
+:where([class*="vesper-"])::after,
+:where([class*="vesper-"])::backdrop {
+  animation-duration: 0s !important;
+  transition-duration: 0s !important;
 }
