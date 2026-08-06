@@ -472,6 +472,37 @@ describe("select [unit]", () => {
 
     container.remove();
   });
+
+  test("trigger keeps the open class when reopened before the deferred close runs", async () => {
+    const result = render(<Select options={OPTIONS} />);
+    const trigger = result.getByRole("combobox");
+
+    fireEvent.pointerDown(trigger);
+    fireEvent.click(trigger);
+    await waitFor(() => {
+      expect(trigger).toHaveAttribute("data-state", "open");
+    });
+    expect(trigger).toHaveClass("vesper-select-open");
+
+    // Close and reopen within the same synchronous turn, so the reopen lands
+    // before the deferred close scheduled by onOpenChange can fire.
+    fireEvent.keyDown(document.activeElement ?? document.body, {
+      key: "Escape",
+    });
+    fireEvent.pointerDown(trigger);
+    fireEvent.click(trigger);
+
+    await waitFor(() => {
+      expect(trigger).toHaveAttribute("data-state", "open");
+    });
+
+    // Give the stale timer more than enough time to fire if it was never
+    // cancelled; the focus ring class must survive it.
+    await new Promise((r) => setTimeout(r, 50));
+
+    expect(trigger).toHaveAttribute("data-state", "open");
+    expect(trigger).toHaveClass("vesper-select-open");
+  });
 });
 
 describe("select [snapshot]", () => {
