@@ -10,8 +10,8 @@ exports[`code-block [snapshot] > default (no props) 1`] = `
     data-line-numbers="false"
   >
     <pre
-      class="shiki vesper"
-      style="background-color: transparent; color: var(--vesper-stone-800);"
+      class="shiki shiki-themes night-owl-light night-owl"
+      style="background-color: rgb(251, 251, 251); --shiki-dark-bg: #011627; color: rgb(64, 63, 83); --shiki-dark: #d6deeb;"
     >
       <code>
         <span
@@ -54,8 +54,8 @@ exports[`code-block [snapshot] > with custom className 1`] = `
     data-line-numbers="false"
   >
     <pre
-      class="shiki vesper"
-      style="background-color: transparent; color: var(--vesper-stone-800);"
+      class="shiki shiki-themes night-owl-light night-owl"
+      style="background-color: rgb(251, 251, 251); --shiki-dark-bg: #011627; color: rgb(64, 63, 83); --shiki-dark: #d6deeb;"
     >
       <code>
         <span
@@ -100,8 +100,8 @@ exports[`code-block [snapshot] > with multi-line content 1`] = `
     data-line-numbers="false"
   >
     <pre
-      class="shiki vesper"
-      style="background-color: transparent; color: var(--vesper-stone-800);"
+      class="shiki shiki-themes night-owl-light night-owl"
+      style="background-color: rgb(251, 251, 251); --shiki-dark-bg: #011627; color: rgb(64, 63, 83); --shiki-dark: #d6deeb;"
     >
       <code>
         <span
@@ -155,8 +155,8 @@ exports[`code-block [snapshot] > with showLineNumbers 1`] = `
     data-line-numbers="true"
   >
     <pre
-      class="shiki vesper"
-      style="background-color: transparent; color: var(--vesper-stone-800);"
+      class="shiki shiki-themes night-owl-light night-owl"
+      style="background-color: rgb(251, 251, 251); --shiki-dark-bg: #011627; color: rgb(64, 63, 83); --shiki-dark: #d6deeb;"
     >
       <code>
         <span
@@ -201,8 +201,8 @@ exports[`code-block [snapshot] > with string children 1`] = `
     data-line-numbers="false"
   >
     <pre
-      class="shiki vesper"
-      style="background-color: transparent; color: var(--vesper-stone-800);"
+      class="shiki shiki-themes night-owl-light night-owl"
+      style="background-color: rgb(251, 251, 251); --shiki-dark-bg: #011627; color: rgb(64, 63, 83); --shiki-dark: #d6deeb;"
     >
       <code>
         <span
