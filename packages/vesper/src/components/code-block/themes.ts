@@ -1518,7 +1518,7 @@ export const light: ThemeRegistration = {
     {
       scope: ["string.quoted", "variable.other.readwrite.js"],
       settings: {
-        foreground: "var(--vesper-red-400)",
+        foreground: "var(--vesper-red-500)",
       },
     },
     {
@@ -1990,7 +1990,7 @@ export const light: ThemeRegistration = {
     {
       scope: "invalid.illegal",
       settings: {
-        foreground: "var(--vesper-red-400)",
+        foreground: "var(--vesper-red-500)",
       },
     },
     {
@@ -2014,7 +2014,7 @@ export const light: ThemeRegistration = {
     {
       scope: "variable.interpolation",
       settings: {
-        foreground: "var(--vesper-red-400)",
+        foreground: "var(--vesper-red-500)",
       },
     },
     {
@@ -2136,7 +2136,7 @@ export const light: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "",
-        foreground: "var(--vesper-red-400)",
+        foreground: "var(--vesper-red-500)",
       },
     },
     {
@@ -2445,7 +2445,7 @@ export const light: ThemeRegistration = {
     {
       scope: ["entity.name.type.class.ruby"],
       settings: {
-        foreground: "var(--vesper-red-400)",
+        foreground: "var(--vesper-red-500)",
       },
     },
     {
