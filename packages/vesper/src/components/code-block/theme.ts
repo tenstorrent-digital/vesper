@@ -1502,15 +1502,6 @@ export const theme: ThemeRegistration = {
         "source.css.sass meta.at-rule variable",
       ],
       settings: {
-        foreground: "var(--vesper-sky-800)",
-      },
-    },
-    {
-      scope: [
-        "source.css.scss meta.at-rule variable",
-        "source.css.sass meta.at-rule variable",
-      ],
-      settings: {
         foreground: "var(--vesper-stone-800)",
       },
     },
