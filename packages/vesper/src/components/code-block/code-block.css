@@ -86,3 +86,29 @@
     }
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-vesper-theme="light"]) .vesper-code-block {
+    .shiki,
+    .shiki span {
+      color: var(--shiki-dark) !important;
+      background-color: var(--shiki-dark-bg, transparent) !important;
+      font-style: var(--shiki-dark-font-style, normal) !important;
+      font-weight: var(--shiki-dark-font-weight, normal) !important;
+      text-decoration: var(--shiki-dark-text-decoration, none) !important;
+    }
+  }
+}
+
+html[data-vesper-theme="dark"] {
+  .vesper-code-block {
+    .shiki,
+    .shiki span {
+      color: var(--shiki-dark) !important;
+      background-color: var(--shiki-dark-bg, transparent) !important;
+      font-style: var(--shiki-dark-font-style, normal) !important;
+      font-weight: var(--shiki-dark-font-weight, normal) !important;
+      text-decoration: var(--shiki-dark-text-decoration, none) !important;
+    }
+  }
+}

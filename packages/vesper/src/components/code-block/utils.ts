@@ -5,7 +5,7 @@ import { CodeToTokenTransformStream } from "@shikijs/stream";
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 
 import type { CodeBlockProps } from "./code-block";
-import { theme } from "./theme";
+import { dark, light } from "./themes";
 
 export const getLangName = (lang: CodeBlockProps["lang"]) =>
   typeof lang === "string" ? lang : lang?.[0]?.name || "text";
@@ -13,7 +13,7 @@ export const getLangName = (lang: CodeBlockProps["lang"]) =>
 const highlighter = createHighlighterCoreSync({
   langs: [],
   engine: createJavaScriptRegexEngine({ forgiving: true }),
-  themes: [theme],
+  themes: [light, dark],
 });
 
 export function handleLanguageRegistration(lang: CodeBlockProps["lang"]) {
@@ -29,7 +29,10 @@ export function codeToJsx(code: string, lang: CodeBlockProps["lang"]) {
   return toJsxRuntime(
     highlighter.codeToHast(code, {
       lang: getLangName(lang),
-      theme: "vesper",
+      themes: {
+        light,
+        dark,
+      },
       tabindex: false,
     }),
     jsxRuntime,
@@ -40,7 +43,10 @@ export function codeToTokenStream(lang: CodeBlockProps["lang"]) {
   return new CodeToTokenTransformStream({
     highlighter,
     lang: getLangName(lang),
-    theme: "vesper",
+    themes: {
+      light,
+      dark,
+    },
     allowRecalls: true,
   });
 }
