@@ -3,11 +3,13 @@ import { ThemeRegistration } from "@shikijs/core";
 /**
  * Night Owl TextMate theme
  * https://github.com/shikijs/textmate-grammars-themes/blob/main/packages/tm-themes/themes/night-owl.json
+ *
+ * Source colors are remapped to the closest Vesper dark mode palette tokens
  */
 export const dark: ThemeRegistration = {
   colors: {
     "editor.background": "transparent",
-    "editor.foreground": "#d6deeb",
+    "editor.foreground": "var(--vesper-stone-800)",
   },
   name: "night-owl",
   tokenColors: [
@@ -20,59 +22,59 @@ export const dark: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "italic",
-        foreground: "#a2bffc",
+        foreground: "var(--vesper-purple-800)",
       },
     },
     {
       scope: "markup.deleted.diff",
       settings: {
         fontStyle: "italic",
-        foreground: "#EF535090",
+        foreground: "var(--vesper-red-400)",
       },
     },
     {
       scope: "markup.inserted.diff",
       settings: {
         fontStyle: "italic",
-        foreground: "#c5e478ff",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       settings: {
         background: "transparent",
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: ["comment", "punctuation.definition.comment"],
       settings: {
         fontStyle: "italic",
-        foreground: "#637777",
+        foreground: "var(--vesper-stone-600)",
       },
     },
     {
       scope: "string",
       settings: {
-        foreground: "#ecc48d",
+        foreground: "var(--vesper-amber-700)",
       },
     },
     {
       scope: ["string.quoted", "variable.other.readwrite.js"],
       settings: {
-        foreground: "#ecc48d",
+        foreground: "var(--vesper-amber-700)",
       },
     },
     {
       scope: "support.constant.math",
       settings: {
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       scope: ["constant.numeric", "constant.character.numeric"],
       settings: {
         fontStyle: "",
-        foreground: "#F78C6C",
+        foreground: "var(--vesper-red-700)",
       },
     },
     {
@@ -82,44 +84,44 @@ export const dark: ThemeRegistration = {
         "variable.other.constant",
       ],
       settings: {
-        foreground: "#82AAFF",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: ["constant.character", "constant.other"],
       settings: {
-        foreground: "#82AAFF",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: "constant.character.escape",
       settings: {
-        foreground: "#F78C6C",
+        foreground: "var(--vesper-red-700)",
       },
     },
     {
       scope: ["string.regexp", "string.regexp keyword.other"],
       settings: {
-        foreground: "#5ca7e4",
+        foreground: "var(--vesper-sky-700)",
       },
     },
     {
       scope: "meta.function punctuation.separator.comma",
       settings: {
-        foreground: "#5f7e97",
+        foreground: "var(--vesper-stone-600)",
       },
     },
     {
       scope: "variable",
       settings: {
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       scope: ["punctuation.accessor", "keyword"],
       settings: {
         fontStyle: "italic",
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
@@ -133,13 +135,13 @@ export const dark: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "italic",
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
       scope: "storage.type",
       settings: {
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
@@ -151,26 +153,26 @@ export const dark: ThemeRegistration = {
     {
       scope: ["entity.name.class", "meta.class entity.name.type.class"],
       settings: {
-        foreground: "#ffcb8b",
+        foreground: "var(--vesper-amber-800)",
       },
     },
     {
       scope: "entity.other.inherited-class",
       settings: {
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       scope: "entity.name.function",
       settings: {
         fontStyle: "italic",
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
       scope: ["punctuation.definition.tag", "meta.tag"],
       settings: {
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
@@ -188,164 +190,164 @@ export const dark: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "",
-        foreground: "#caece6",
+        foreground: "var(--vesper-mint-900)",
       },
     },
     {
       scope: "entity.other.attribute-name",
       settings: {
         fontStyle: "italic",
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       scope: "entity.name.tag.custom",
       settings: {
-        foreground: "#f78c6c",
+        foreground: "var(--vesper-red-700)",
       },
     },
     {
       scope: ["support.function", "support.constant"],
       settings: {
-        foreground: "#82AAFF",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: "support.constant.meta.property-value",
       settings: {
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: ["support.type", "support.class"],
       settings: {
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       scope: "support.variable.dom",
       settings: {
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       scope: "invalid",
       settings: {
-        background: "#ff2c83",
-        foreground: "#ffffff",
+        background: "var(--vesper-pink-600)",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: "invalid.deprecated",
       settings: {
-        background: "#d3423e",
-        foreground: "#ffffff",
+        background: "var(--vesper-red-500)",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: "keyword.operator",
       settings: {
         fontStyle: "",
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: "keyword.operator.relational",
       settings: {
         fontStyle: "italic",
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
       scope: "keyword.operator.assignment",
       settings: {
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
       scope: "keyword.operator.arithmetic",
       settings: {
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
       scope: "keyword.operator.bitwise",
       settings: {
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
       scope: "keyword.operator.increment",
       settings: {
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
       scope: "keyword.operator.ternary",
       settings: {
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
       scope: "comment.line.double-slash",
       settings: {
-        foreground: "#637777",
+        foreground: "var(--vesper-stone-600)",
       },
     },
     {
       scope: "object",
       settings: {
-        foreground: "#cdebf7",
+        foreground: "var(--vesper-teal-900)",
       },
     },
     {
       scope: "constant.language.null",
       settings: {
-        foreground: "#ff5874",
+        foreground: "var(--vesper-red-600)",
       },
     },
     {
       scope: "meta.brace",
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "meta.delimiter.period",
       settings: {
         fontStyle: "italic",
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
       scope: "punctuation.definition.string",
       settings: {
-        foreground: "#d9f5dd",
+        foreground: "var(--vesper-green-900)",
       },
     },
     {
       scope: "punctuation.definition.string.begin.markdown",
       settings: {
-        foreground: "#ff5874",
+        foreground: "var(--vesper-red-600)",
       },
     },
     {
       scope: "constant.language.boolean",
       settings: {
-        foreground: "#ff5874",
+        foreground: "var(--vesper-red-600)",
       },
     },
     {
       scope: "object.comma",
       settings: {
-        foreground: "#ffffff",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: "variable.parameter.function",
       settings: {
         fontStyle: "",
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
@@ -357,76 +359,76 @@ export const dark: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "",
-        foreground: "#80CBC4",
+        foreground: "var(--vesper-mint-600)",
       },
     },
     {
       scope: "meta.property-list entity.name.tag.reference",
       settings: {
-        foreground: "#57eaf1",
+        foreground: "var(--vesper-teal-800)",
       },
     },
     {
       scope: "constant.other.color.rgb-value punctuation.definition.constant",
       settings: {
-        foreground: "#F78C6C",
+        foreground: "var(--vesper-red-700)",
       },
     },
     {
       scope: "constant.other.color",
       settings: {
-        foreground: "#FFEB95",
+        foreground: "var(--vesper-yellow-900)",
       },
     },
     {
       scope: "keyword.other.unit",
       settings: {
-        foreground: "#FFEB95",
+        foreground: "var(--vesper-yellow-900)",
       },
     },
     {
       scope: "meta.selector",
       settings: {
         fontStyle: "italic",
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
       scope: "entity.other.attribute-name.id",
       settings: {
-        foreground: "#FAD430",
+        foreground: "var(--vesper-yellow-700)",
       },
     },
     {
       scope: "meta.property-name",
       settings: {
-        foreground: "#80CBC4",
+        foreground: "var(--vesper-mint-600)",
       },
     },
     {
       scope: ["entity.name.tag.doctype", "meta.tag.sgml.doctype"],
       settings: {
         fontStyle: "italic",
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
       scope: "punctuation.definition.parameters",
       settings: {
-        foreground: "#d9f5dd",
+        foreground: "var(--vesper-green-900)",
       },
     },
     {
       scope: "keyword.control.operator",
       settings: {
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: "keyword.operator.logical",
       settings: {
         fontStyle: "",
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
@@ -438,14 +440,14 @@ export const dark: ThemeRegistration = {
         "variable.other.property",
       ],
       settings: {
-        foreground: "#baebe2",
+        foreground: "var(--vesper-mint-900)",
       },
     },
     {
       scope: ["variable.other.object.property"],
       settings: {
         fontStyle: "italic",
-        foreground: "#faf39f",
+        foreground: "var(--vesper-yellow-900)",
       },
     },
     {
@@ -458,14 +460,14 @@ export const dark: ThemeRegistration = {
       scope: ["entity.name.function"],
       settings: {
         fontStyle: "italic",
-        foreground: "#82AAFF",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: ["variable.language.this.js"],
       settings: {
         fontStyle: "italic",
-        foreground: "#41eec6",
+        foreground: "var(--vesper-green-700)",
       },
     },
     {
@@ -492,7 +494,7 @@ export const dark: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "italic",
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
@@ -504,7 +506,7 @@ export const dark: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "",
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
@@ -516,70 +518,70 @@ export const dark: ThemeRegistration = {
         "keyword.control",
       ],
       settings: {
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: "support.function",
       settings: {
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       scope: "invalid.broken",
       settings: {
-        background: "#F78C6C",
-        foreground: "#020e14",
+        background: "var(--vesper-red-700)",
+        foreground: "var(--vesper-stone-0)",
       },
     },
     {
       scope: "invalid.unimplemented",
       settings: {
-        background: "#8BD649",
-        foreground: "#ffffff",
+        background: "var(--vesper-green-600)",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: "invalid.illegal",
       settings: {
-        background: "#ec5f67",
-        foreground: "#ffffff",
+        background: "var(--vesper-red-600)",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: "variable.language",
       settings: {
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: "support.variable.property",
       settings: {
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: "variable.function",
       settings: {
-        foreground: "#82AAFF",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: "variable.interpolation",
       settings: {
-        foreground: "#ec5f67",
+        foreground: "var(--vesper-red-600)",
       },
     },
     {
       scope: "meta.function-call",
       settings: {
-        foreground: "#82AAFF",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: "punctuation.section.embedded",
       settings: {
-        foreground: "#d3423e",
+        foreground: "var(--vesper-red-500)",
       },
     },
     {
@@ -591,7 +593,7 @@ export const dark: ThemeRegistration = {
         "meta.array",
       ],
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
@@ -602,88 +604,88 @@ export const dark: ThemeRegistration = {
         "punctuation.definition.list",
       ],
       settings: {
-        foreground: "#d9f5dd",
+        foreground: "var(--vesper-green-900)",
       },
     },
     {
       scope: "string.template meta.template.expression",
       settings: {
-        foreground: "#d3423e",
+        foreground: "var(--vesper-red-500)",
       },
     },
     {
       scope: "string.template punctuation.definition.string",
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "italic",
       settings: {
         fontStyle: "italic",
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
       scope: "bold",
       settings: {
         fontStyle: "bold",
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       scope: "quote",
       settings: {
         fontStyle: "italic",
-        foreground: "#697098",
+        foreground: "var(--vesper-stone-600)",
       },
     },
     {
       scope: "raw",
       settings: {
-        foreground: "#80CBC4",
+        foreground: "var(--vesper-mint-600)",
       },
     },
     {
       scope: "variable.assignment.coffee",
       settings: {
-        foreground: "#31e1eb",
+        foreground: "var(--vesper-teal-800)",
       },
     },
     {
       scope: "variable.parameter.function.coffee",
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "variable.assignment.coffee",
       settings: {
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: "variable.other.readwrite.cs",
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: ["entity.name.type.class.cs", "storage.type.cs"],
       settings: {
-        foreground: "#ffcb8b",
+        foreground: "var(--vesper-amber-800)",
       },
     },
     {
       scope: "entity.name.type.namespace.cs",
       settings: {
-        foreground: "#B2CCD6",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "string.unquoted.preprocessor.message.cs",
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
@@ -694,19 +696,19 @@ export const dark: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "bold",
-        foreground: "#ffcb8b",
+        foreground: "var(--vesper-amber-800)",
       },
     },
     {
       scope: "variable.other.object.cs",
       settings: {
-        foreground: "#B2CCD6",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "entity.name.type.enum.cs",
       settings: {
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
@@ -715,13 +717,13 @@ export const dark: ThemeRegistration = {
         "string.interpolated.double.dart",
       ],
       settings: {
-        foreground: "#FFCB8B",
+        foreground: "var(--vesper-amber-800)",
       },
     },
     {
       scope: "support.class.dart",
       settings: {
-        foreground: "#FFCB8B",
+        foreground: "var(--vesper-amber-800)",
       },
     },
     {
@@ -733,7 +735,7 @@ export const dark: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "",
-        foreground: "#ff6363",
+        foreground: "var(--vesper-red-700)",
       },
     },
     {
@@ -744,13 +746,13 @@ export const dark: ThemeRegistration = {
         "entity.name.tag.wildcard.sass",
       ],
       settings: {
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: "keyword.other.unit.css",
       settings: {
-        foreground: "#FFEB95",
+        foreground: "var(--vesper-yellow-900)",
       },
     },
     {
@@ -759,7 +761,7 @@ export const dark: ThemeRegistration = {
         "variable.other.readwrite.js",
       ],
       settings: {
-        foreground: "#F78C6C",
+        foreground: "var(--vesper-red-700)",
       },
     },
     {
@@ -768,13 +770,13 @@ export const dark: ThemeRegistration = {
         "source.elixir meta.module.elixir entity.name.class.elixir",
       ],
       settings: {
-        foreground: "#82AAFF",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: "source.elixir entity.name.function",
       settings: {
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
@@ -783,13 +785,13 @@ export const dark: ThemeRegistration = {
         "source.elixir constant.other.keywords.elixir",
       ],
       settings: {
-        foreground: "#82AAFF",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: "source.elixir punctuation.definition.string",
       settings: {
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
@@ -798,26 +800,26 @@ export const dark: ThemeRegistration = {
         "source.elixir variable.other.readwrite.module.elixir punctuation.definition.variable.elixir",
       ],
       settings: {
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       scope: "source.elixir .punctuation.binary.elixir",
       settings: {
         fontStyle: "italic",
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
       scope: "constant.keyword.clojure",
       settings: {
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: "source.go meta.function-call.go",
       settings: {
-        foreground: "#DDDDDD",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
@@ -836,7 +838,7 @@ export const dark: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "italic",
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
@@ -845,92 +847,92 @@ export const dark: ThemeRegistration = {
         "source.go constant.other.placeholder.go",
       ],
       settings: {
-        foreground: "#ff5874",
+        foreground: "var(--vesper-red-600)",
       },
     },
     {
       scope: ["entity.name.function.preprocessor.cpp", "entity.scope.name.cpp"],
       settings: {
-        foreground: "#7fdbcaff",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: ["meta.namespace-block.cpp"],
       settings: {
-        foreground: "#e0dec6",
+        foreground: "var(--vesper-amber-900)",
       },
     },
     {
       scope: ["storage.type.language.primitive.cpp"],
       settings: {
-        foreground: "#ff5874",
+        foreground: "var(--vesper-red-600)",
       },
     },
     {
       scope: ["meta.preprocessor.macro.cpp"],
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: ["variable.parameter"],
       settings: {
-        foreground: "#ffcb8b",
+        foreground: "var(--vesper-amber-800)",
       },
     },
     {
       scope: ["variable.other.readwrite.powershell"],
       settings: {
-        foreground: "#82AAFF",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: ["support.function.powershell"],
       settings: {
-        foreground: "#7fdbcaff",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: "entity.other.attribute-name.id.html",
       settings: {
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       scope: "punctuation.definition.tag.html",
       settings: {
-        foreground: "#6ae9f0",
+        foreground: "var(--vesper-teal-800)",
       },
     },
     {
       scope: "meta.tag.sgml.doctype.html",
       settings: {
         fontStyle: "italic",
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
       scope: "meta.class entity.name.type.class.js",
       settings: {
-        foreground: "#ffcb8b",
+        foreground: "var(--vesper-amber-800)",
       },
     },
     {
       scope: "meta.method.declaration storage.type.js",
       settings: {
-        foreground: "#82AAFF",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: "terminator.js",
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "meta.js punctuation.definition.js",
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
@@ -939,13 +941,13 @@ export const dark: ThemeRegistration = {
         "entity.name.type.instance.phpdoc",
       ],
       settings: {
-        foreground: "#5f7e97",
+        foreground: "var(--vesper-stone-600)",
       },
     },
     {
       scope: ["variable.other.jsdoc", "variable.other.phpdoc"],
       settings: {
-        foreground: "#78ccf0",
+        foreground: "var(--vesper-teal-700)",
       },
     },
     {
@@ -956,13 +958,13 @@ export const dark: ThemeRegistration = {
         "meta.export.js variable.other",
       ],
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "variable.parameter.function.js",
       settings: {
-        foreground: "#7986E7",
+        foreground: "var(--vesper-purple-600)",
       },
     },
     {
@@ -973,107 +975,107 @@ export const dark: ThemeRegistration = {
         "variable.object.property.jsx",
       ],
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: ["variable.js", "variable.other.js"],
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: ["entity.name.type.js", "entity.name.type.module.js"],
       settings: {
         fontStyle: "",
-        foreground: "#ffcb8b",
+        foreground: "var(--vesper-amber-800)",
       },
     },
     {
       scope: "support.class.js",
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "support.type.property-name.json",
       settings: {
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: "support.constant.json",
       settings: {
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       scope: "meta.structure.dictionary.value.json string.quoted.double",
       settings: {
-        foreground: "#c789d6",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
       scope: "string.quoted.double.json punctuation.definition.string.json",
       settings: {
-        foreground: "#80CBC4",
+        foreground: "var(--vesper-mint-600)",
       },
     },
     {
       scope:
         "meta.structure.dictionary.json meta.structure.dictionary.value constant.language",
       settings: {
-        foreground: "#ff5874",
+        foreground: "var(--vesper-red-600)",
       },
     },
     {
       scope: "variable.other.object.js",
       settings: {
         fontStyle: "italic",
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: ["variable.other.ruby"],
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: ["entity.name.type.class.ruby"],
       settings: {
-        foreground: "#ecc48d",
+        foreground: "var(--vesper-amber-700)",
       },
     },
     {
       scope: "constant.language.symbol.hashkey.ruby",
       settings: {
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: "constant.language.symbol.ruby",
       settings: {
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: "entity.name.tag.less",
       settings: {
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: "keyword.other.unit.css",
       settings: {
-        foreground: "#FFEB95",
+        foreground: "var(--vesper-yellow-900)",
       },
     },
     {
       scope:
         "meta.attribute-selector.less entity.other.attribute-name.attribute",
       settings: {
-        foreground: "#F78C6C",
+        foreground: "var(--vesper-red-700)",
       },
     },
     {
@@ -1083,40 +1085,40 @@ export const dark: ThemeRegistration = {
         "markup.heading.setext.2",
       ],
       settings: {
-        foreground: "#82b1ff",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: "markup.italic",
       settings: {
         fontStyle: "italic",
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
       scope: "markup.bold",
       settings: {
         fontStyle: "bold",
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       scope: "markup.quote",
       settings: {
         fontStyle: "italic",
-        foreground: "#697098",
+        foreground: "var(--vesper-stone-600)",
       },
     },
     {
       scope: "markup.inline.raw",
       settings: {
-        foreground: "#80CBC4",
+        foreground: "var(--vesper-mint-600)",
       },
     },
     {
       scope: ["markup.underline.link", "markup.underline.link.image"],
       settings: {
-        foreground: "#ff869a",
+        foreground: "var(--vesper-pink-700)",
       },
     },
     {
@@ -1125,7 +1127,7 @@ export const dark: ThemeRegistration = {
         "string.other.link.description.markdown",
       ],
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
@@ -1136,61 +1138,61 @@ export const dark: ThemeRegistration = {
         "meta.link.inline.markdown punctuation.definition.string",
       ],
       settings: {
-        foreground: "#82b1ff",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: ["punctuation.definition.metadata.markdown"],
       settings: {
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: ["beginning.punctuation.definition.list.markdown"],
       settings: {
-        foreground: "#82b1ff",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: "markup.inline.raw.string.markdown",
       settings: {
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       scope: ["variable.other.php", "variable.other.property.php"],
       settings: {
-        foreground: "#bec5d4",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "support.class.php",
       settings: {
-        foreground: "#ffcb8b",
+        foreground: "var(--vesper-amber-800)",
       },
     },
     {
       scope: "meta.function-call.php punctuation",
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "variable.other.global.php",
       settings: {
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       scope: "variable.other.global.php punctuation.definition.variable",
       settings: {
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       scope: "constant.language.python",
       settings: {
-        foreground: "#ff5874",
+        foreground: "var(--vesper-red-600)",
       },
     },
     {
@@ -1199,38 +1201,38 @@ export const dark: ThemeRegistration = {
         "meta.function-call.arguments.python",
       ],
       settings: {
-        foreground: "#82AAFF",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: ["meta.function-call.python", "meta.function-call.generic.python"],
       settings: {
-        foreground: "#B2CCD6",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "punctuation.python",
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "entity.name.function.decorator.python",
       settings: {
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
       scope: "source.python variable.language.special",
       settings: {
-        foreground: "#8EACE3",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: "keyword.control",
       settings: {
         fontStyle: "italic",
-        foreground: "#c792ea",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
@@ -1241,7 +1243,7 @@ export const dark: ThemeRegistration = {
         "variable.parameter.url.sass",
       ],
       settings: {
-        foreground: "#c5e478",
+        foreground: "var(--vesper-yellow-800)",
       },
     },
     {
@@ -1250,7 +1252,7 @@ export const dark: ThemeRegistration = {
         "source.css.sass meta.at-rule variable",
       ],
       settings: {
-        foreground: "#82AAFF",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
@@ -1259,7 +1261,7 @@ export const dark: ThemeRegistration = {
         "source.css.sass meta.at-rule variable",
       ],
       settings: {
-        foreground: "#bec5d4",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
@@ -1268,19 +1270,19 @@ export const dark: ThemeRegistration = {
         "meta.attribute-selector.sass entity.other.attribute-name.attribute",
       ],
       settings: {
-        foreground: "#F78C6C",
+        foreground: "var(--vesper-red-700)",
       },
     },
     {
       scope: ["entity.name.tag.scss", "entity.name.tag.sass"],
       settings: {
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: ["keyword.other.unit.scss", "keyword.other.unit.sass"],
       settings: {
-        foreground: "#FFEB95",
+        foreground: "var(--vesper-yellow-900)",
       },
     },
     {
@@ -1299,19 +1301,19 @@ export const dark: ThemeRegistration = {
         "variable.ts",
       ],
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: ["entity.name.type.ts", "entity.name.type.tsx"],
       settings: {
-        foreground: "#ffcb8b",
+        foreground: "var(--vesper-amber-800)",
       },
     },
     {
       scope: ["support.class.node.ts", "support.class.node.tsx"],
       settings: {
-        foreground: "#82AAFF",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
@@ -1320,7 +1322,7 @@ export const dark: ThemeRegistration = {
         "meta.type.parameters.tsx entity.name.type",
       ],
       settings: {
-        foreground: "#5f7e97",
+        foreground: "var(--vesper-stone-600)",
       },
     },
     {
@@ -1331,7 +1333,7 @@ export const dark: ThemeRegistration = {
         "meta.export.tsx punctuation.definition.block",
       ],
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
@@ -1340,32 +1342,32 @@ export const dark: ThemeRegistration = {
         "meta.decorator punctuation.decorator.tsx",
       ],
       settings: {
-        foreground: "#82AAFF",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: "meta.tag.js meta.jsx.children.tsx",
       settings: {
-        foreground: "#82AAFF",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: "entity.name.tag.yaml",
       settings: {
-        foreground: "#7fdbca",
+        foreground: "var(--vesper-mint-700)",
       },
     },
     {
       scope: ["variable.other.readwrite.js", "variable.parameter"],
       settings: {
-        foreground: "#d7dbe0",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: ["support.class.component.js", "support.class.component.tsx"],
       settings: {
         fontStyle: "",
-        foreground: "#f78c6c",
+        foreground: "var(--vesper-red-700)",
       },
     },
     {
@@ -1375,19 +1377,19 @@ export const dark: ThemeRegistration = {
         "meta.jsx.children.tsx",
       ],
       settings: {
-        foreground: "#d6deeb",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "meta.class entity.name.type.class.tsx",
       settings: {
-        foreground: "#ffcb8b",
+        foreground: "var(--vesper-amber-800)",
       },
     },
     {
       scope: ["entity.name.type.tsx", "entity.name.type.module.tsx"],
       settings: {
-        foreground: "#ffcb8b",
+        foreground: "var(--vesper-amber-800)",
       },
     },
     {
@@ -1396,7 +1398,7 @@ export const dark: ThemeRegistration = {
         "meta.class.tsx meta.var.expr.tsx storage.type.tsx",
       ],
       settings: {
-        foreground: "#C792EA",
+        foreground: "var(--vesper-purple-700)",
       },
     },
     {
@@ -1405,19 +1407,19 @@ export const dark: ThemeRegistration = {
         "meta.method.declaration storage.type.tsx",
       ],
       settings: {
-        foreground: "#82AAFF",
+        foreground: "var(--vesper-sky-800)",
       },
     },
     {
       scope: "markup.deleted",
       settings: {
-        foreground: "#ff0000",
+        foreground: "var(--vesper-red-600)",
       },
     },
     {
       scope: "markup.inserted",
       settings: {
-        foreground: "#036A07",
+        foreground: "var(--vesper-green-300)",
       },
     },
     {
@@ -1459,11 +1461,13 @@ export const dark: ThemeRegistration = {
 /**
  * Night Owl Light TextMate theme
  * https://github.com/shikijs/textmate-grammars-themes/blob/main/packages/tm-themes/themes/night-owl-light.json
+ *
+ * Source colors are remapped to the closest Vesper light mode palette tokens:
  */
 export const light: ThemeRegistration = {
   colors: {
     "editor.background": "transparent",
-    "editor.foreground": "#403f53",
+    "editor.foreground": "var(--vesper-stone-800)",
   },
   name: "night-owl-light",
   tokenColors: [
@@ -1476,58 +1480,58 @@ export const light: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "italic",
-        foreground: "#a2bffc",
+        foreground: "var(--vesper-purple-200)",
       },
     },
     {
       scope: "markup.deleted.diff",
       settings: {
         fontStyle: "italic",
-        foreground: "#EF535090",
+        foreground: "var(--vesper-red-300)",
       },
     },
     {
       scope: "markup.inserted.diff",
       settings: {
         fontStyle: "italic",
-        foreground: "#4876d6ff",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: ["comment", "punctuation.definition.comment"],
       settings: {
         fontStyle: "italic",
-        foreground: "#989fb1",
+        foreground: "var(--vesper-stone-500)",
       },
     },
     {
       scope: "string",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: ["string.quoted", "variable.other.readwrite.js"],
       settings: {
-        foreground: "#c96765",
+        foreground: "var(--vesper-red-400)",
       },
     },
     {
       scope: "support.constant.math",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: ["constant.numeric", "constant.character.numeric"],
       settings: {
         fontStyle: "",
-        foreground: "#aa0982",
+        foreground: "var(--vesper-pink-600)",
       },
     },
     {
@@ -1537,44 +1541,44 @@ export const light: ThemeRegistration = {
         "variable.other.constant",
       ],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: ["constant.character", "constant.other"],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "constant.character.escape",
       settings: {
-        foreground: "#aa0982",
+        foreground: "var(--vesper-pink-600)",
       },
     },
     {
       scope: ["string.regexp", "string.regexp keyword.other"],
       settings: {
-        foreground: "#5ca7e4",
+        foreground: "var(--vesper-sky-400)",
       },
     },
     {
       scope: "meta.function punctuation.separator.comma",
       settings: {
-        foreground: "#5f7e97",
+        foreground: "var(--vesper-stone-600)",
       },
     },
     {
       scope: "variable",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: ["punctuation.accessor", "keyword"],
       settings: {
         fontStyle: "italic",
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
@@ -1588,13 +1592,13 @@ export const light: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "italic",
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: "storage.type",
       settings: {
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
@@ -1606,26 +1610,26 @@ export const light: ThemeRegistration = {
     {
       scope: ["entity.name.class", "meta.class entity.name.type.class"],
       settings: {
-        foreground: "#111111",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: "entity.other.inherited-class",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "entity.name.function",
       settings: {
         fontStyle: "italic",
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: ["punctuation.definition.tag", "meta.tag"],
       settings: {
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
@@ -1643,162 +1647,162 @@ export const light: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "",
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: "entity.other.attribute-name",
       settings: {
         fontStyle: "italic",
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "entity.name.tag.custom",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: ["support.function", "support.constant"],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "support.constant.meta.property-value",
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: ["support.type", "support.class"],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "support.variable.dom",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "invalid",
       settings: {
-        foreground: "#ff2c83",
+        foreground: "var(--vesper-pink-400)",
       },
     },
     {
       scope: "invalid.deprecated",
       settings: {
-        foreground: "#d3423e",
+        foreground: "var(--vesper-red-500)",
       },
     },
     {
       scope: "keyword.operator",
       settings: {
         fontStyle: "",
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "keyword.operator.relational",
       settings: {
         fontStyle: "italic",
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: "keyword.operator.assignment",
       settings: {
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: "keyword.operator.arithmetic",
       settings: {
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: "keyword.operator.bitwise",
       settings: {
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: "keyword.operator.increment",
       settings: {
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: "keyword.operator.ternary",
       settings: {
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: "comment.line.double-slash",
       settings: {
-        foreground: "#939dbb",
+        foreground: "var(--vesper-stone-500)",
       },
     },
     {
       scope: "object",
       settings: {
-        foreground: "#cdebf7",
+        foreground: "var(--vesper-teal-100)",
       },
     },
     {
       scope: "constant.language.null",
       settings: {
-        foreground: "#bc5454",
+        foreground: "var(--vesper-red-600)",
       },
     },
     {
       scope: "meta.brace",
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "meta.delimiter.period",
       settings: {
         fontStyle: "italic",
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: "punctuation.definition.string",
       settings: {
-        foreground: "#111111",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: "punctuation.definition.string.begin.markdown",
       settings: {
-        foreground: "#bc5454",
+        foreground: "var(--vesper-red-600)",
       },
     },
     {
       scope: "constant.language.boolean",
       settings: {
-        foreground: "#bc5454",
+        foreground: "var(--vesper-red-600)",
       },
     },
     {
       scope: "object.comma",
       settings: {
-        foreground: "#ffffff",
+        foreground: "var(--vesper-stone-0)",
       },
     },
     {
       scope: "variable.parameter.function",
       settings: {
         fontStyle: "",
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
@@ -1810,76 +1814,76 @@ export const light: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "",
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "meta.property-list entity.name.tag.reference",
       settings: {
-        foreground: "#57eaf1",
+        foreground: "var(--vesper-teal-300)",
       },
     },
     {
       scope: "constant.other.color.rgb-value punctuation.definition.constant",
       settings: {
-        foreground: "#aa0982",
+        foreground: "var(--vesper-pink-600)",
       },
     },
     {
       scope: "constant.other.color",
       settings: {
-        foreground: "#aa0982",
+        foreground: "var(--vesper-pink-600)",
       },
     },
     {
       scope: "keyword.other.unit",
       settings: {
-        foreground: "#aa0982",
+        foreground: "var(--vesper-pink-600)",
       },
     },
     {
       scope: "meta.selector",
       settings: {
         fontStyle: "italic",
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: "entity.other.attribute-name.id",
       settings: {
-        foreground: "#aa0982",
+        foreground: "var(--vesper-pink-600)",
       },
     },
     {
       scope: "meta.property-name",
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: ["entity.name.tag.doctype", "meta.tag.sgml.doctype"],
       settings: {
         fontStyle: "italic",
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: "punctuation.definition.parameters",
       settings: {
-        foreground: "#111111",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: "keyword.control.operator",
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "keyword.operator.logical",
       settings: {
         fontStyle: "",
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
@@ -1891,14 +1895,14 @@ export const light: ThemeRegistration = {
         "variable.other.property",
       ],
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: ["variable.other.object.property"],
       settings: {
         fontStyle: "italic",
-        foreground: "#111111",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
@@ -1911,7 +1915,7 @@ export const light: ThemeRegistration = {
       scope: ["entity.name.function"],
       settings: {
         fontStyle: "italic",
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
@@ -1938,7 +1942,7 @@ export const light: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "italic",
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
@@ -1950,7 +1954,7 @@ export const light: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "",
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
@@ -1962,67 +1966,67 @@ export const light: ThemeRegistration = {
         "keyword.control",
       ],
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "support.function",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "invalid.broken",
       settings: {
-        foreground: "#aa0982",
+        foreground: "var(--vesper-pink-600)",
       },
     },
     {
       scope: "invalid.unimplemented",
       settings: {
-        foreground: "#8BD649",
+        foreground: "var(--vesper-green-300)",
       },
     },
     {
       scope: "invalid.illegal",
       settings: {
-        foreground: "#c96765",
+        foreground: "var(--vesper-red-400)",
       },
     },
     {
       scope: "variable.language",
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "support.variable.property",
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "variable.function",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "variable.interpolation",
       settings: {
-        foreground: "#ec5f67",
+        foreground: "var(--vesper-red-400)",
       },
     },
     {
       scope: "meta.function-call",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "punctuation.section.embedded",
       settings: {
-        foreground: "#d3423e",
+        foreground: "var(--vesper-red-500)",
       },
     },
     {
@@ -2034,7 +2038,7 @@ export const light: ThemeRegistration = {
         "meta.array",
       ],
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
@@ -2045,82 +2049,82 @@ export const light: ThemeRegistration = {
         "punctuation.definition.list",
       ],
       settings: {
-        foreground: "#111111",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: "string.template meta.template.expression",
       settings: {
-        foreground: "#d3423e",
+        foreground: "var(--vesper-red-500)",
       },
     },
     {
       scope: "string.template punctuation.definition.string",
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "italic",
       settings: {
         fontStyle: "italic",
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: "bold",
       settings: {
         fontStyle: "bold",
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "quote",
       settings: {
         fontStyle: "italic",
-        foreground: "#697098",
+        foreground: "var(--vesper-stone-600)",
       },
     },
     {
       scope: "raw",
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "variable.assignment.coffee",
       settings: {
-        foreground: "#31e1eb",
+        foreground: "var(--vesper-teal-300)",
       },
     },
     {
       scope: "variable.parameter.function.coffee",
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "variable.assignment.coffee",
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "variable.other.readwrite.cs",
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: ["entity.name.type.class.cs", "storage.type.cs"],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "entity.name.type.namespace.cs",
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
@@ -2132,7 +2136,7 @@ export const light: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "",
-        foreground: "#c96765",
+        foreground: "var(--vesper-red-400)",
       },
     },
     {
@@ -2143,13 +2147,13 @@ export const light: ThemeRegistration = {
         "entity.name.tag.wildcard.sass",
       ],
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "keyword.other.unit.css",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
@@ -2158,7 +2162,7 @@ export const light: ThemeRegistration = {
         "variable.other.readwrite.js",
       ],
       settings: {
-        foreground: "#aa0982",
+        foreground: "var(--vesper-pink-600)",
       },
     },
     {
@@ -2167,13 +2171,13 @@ export const light: ThemeRegistration = {
         "source.elixir meta.module.elixir entity.name.class.elixir",
       ],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "source.elixir entity.name.function",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
@@ -2182,13 +2186,13 @@ export const light: ThemeRegistration = {
         "source.elixir constant.other.keywords.elixir",
       ],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "source.elixir punctuation.definition.string",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
@@ -2197,26 +2201,26 @@ export const light: ThemeRegistration = {
         "source.elixir variable.other.readwrite.module.elixir punctuation.definition.variable.elixir",
       ],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "source.elixir .punctuation.binary.elixir",
       settings: {
         fontStyle: "italic",
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: "constant.keyword.clojure",
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "source.go meta.function-call.go",
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
@@ -2235,7 +2239,7 @@ export const light: ThemeRegistration = {
       ],
       settings: {
         fontStyle: "italic",
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
@@ -2244,92 +2248,92 @@ export const light: ThemeRegistration = {
         "source.go constant.other.placeholder.go",
       ],
       settings: {
-        foreground: "#bc5454",
+        foreground: "var(--vesper-red-600)",
       },
     },
     {
       scope: ["entity.name.function.preprocessor.cpp", "entity.scope.name.cpp"],
       settings: {
-        foreground: "#0c969bff",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: ["meta.namespace-block.cpp"],
       settings: {
-        foreground: "#111111",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: ["storage.type.language.primitive.cpp"],
       settings: {
-        foreground: "#bc5454",
+        foreground: "var(--vesper-red-600)",
       },
     },
     {
       scope: ["meta.preprocessor.macro.cpp"],
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: ["variable.parameter"],
       settings: {
-        foreground: "#111111",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: ["variable.other.readwrite.powershell"],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: ["support.function.powershell"],
       settings: {
-        foreground: "#0c969bff",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "entity.other.attribute-name.id.html",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "punctuation.definition.tag.html",
       settings: {
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: "meta.tag.sgml.doctype.html",
       settings: {
         fontStyle: "italic",
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: "meta.class entity.name.type.class.js",
       settings: {
-        foreground: "#111111",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: "meta.method.declaration storage.type.js",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "terminator.js",
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "meta.js punctuation.definition.js",
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
@@ -2338,13 +2342,13 @@ export const light: ThemeRegistration = {
         "entity.name.type.instance.phpdoc",
       ],
       settings: {
-        foreground: "#5f7e97",
+        foreground: "var(--vesper-stone-600)",
       },
     },
     {
       scope: ["variable.other.jsdoc", "variable.other.phpdoc"],
       settings: {
-        foreground: "#78ccf0",
+        foreground: "var(--vesper-teal-300)",
       },
     },
     {
@@ -2355,13 +2359,13 @@ export const light: ThemeRegistration = {
         "meta.export.js variable.other",
       ],
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "variable.parameter.function.js",
       settings: {
-        foreground: "#7986E7",
+        foreground: "var(--vesper-purple-400)",
       },
     },
     {
@@ -2372,107 +2376,107 @@ export const light: ThemeRegistration = {
         "variable.object.property.jsx",
       ],
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: ["variable.js", "variable.other.js"],
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: ["entity.name.type.js", "entity.name.type.module.js"],
       settings: {
         fontStyle: "",
-        foreground: "#111111",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: "support.class.js",
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "support.type.property-name.json",
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "support.constant.json",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "meta.structure.dictionary.value.json string.quoted.double",
       settings: {
-        foreground: "#c789d6",
+        foreground: "var(--vesper-purple-300)",
       },
     },
     {
       scope: "string.quoted.double.json punctuation.definition.string.json",
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope:
         "meta.structure.dictionary.json meta.structure.dictionary.value constant.language",
       settings: {
-        foreground: "#bc5454",
+        foreground: "var(--vesper-red-600)",
       },
     },
     {
       scope: "variable.other.object.js",
       settings: {
         fontStyle: "italic",
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: ["variable.other.ruby"],
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: ["entity.name.type.class.ruby"],
       settings: {
-        foreground: "#c96765",
+        foreground: "var(--vesper-red-400)",
       },
     },
     {
       scope: "constant.language.symbol.hashkey.ruby",
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "constant.language.symbol.ruby",
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "entity.name.tag.less",
       settings: {
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: "keyword.other.unit.css",
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope:
         "meta.attribute-selector.less entity.other.attribute-name.attribute",
       settings: {
-        foreground: "#aa0982",
+        foreground: "var(--vesper-pink-600)",
       },
     },
     {
@@ -2482,40 +2486,40 @@ export const light: ThemeRegistration = {
         "markup.heading.setext.2",
       ],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "markup.italic",
       settings: {
         fontStyle: "italic",
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
       scope: "markup.bold",
       settings: {
         fontStyle: "bold",
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "markup.quote",
       settings: {
         fontStyle: "italic",
-        foreground: "#697098",
+        foreground: "var(--vesper-stone-600)",
       },
     },
     {
       scope: "markup.inline.raw",
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: ["markup.underline.link", "markup.underline.link.image"],
       settings: {
-        foreground: "#ff869a",
+        foreground: "var(--vesper-pink-300)",
       },
     },
     {
@@ -2524,7 +2528,7 @@ export const light: ThemeRegistration = {
         "string.other.link.description.markdown",
       ],
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
@@ -2535,61 +2539,61 @@ export const light: ThemeRegistration = {
         "meta.link.inline.markdown punctuation.definition.string",
       ],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: ["punctuation.definition.metadata.markdown"],
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: ["beginning.punctuation.definition.list.markdown"],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "markup.inline.raw.string.markdown",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: ["variable.other.php", "variable.other.property.php"],
       settings: {
-        foreground: "#111111",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: "support.class.php",
       settings: {
-        foreground: "#111111",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: "meta.function-call.php punctuation",
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "variable.other.global.php",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "variable.other.global.php punctuation.definition.variable",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "constant.language.python",
       settings: {
-        foreground: "#bc5454",
+        foreground: "var(--vesper-red-600)",
       },
     },
     {
@@ -2598,38 +2602,38 @@ export const light: ThemeRegistration = {
         "meta.function-call.arguments.python",
       ],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: ["meta.function-call.python", "meta.function-call.generic.python"],
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: "punctuation.python",
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "entity.name.function.decorator.python",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "source.python variable.language.special",
       settings: {
-        foreground: "#aa0982",
+        foreground: "var(--vesper-pink-600)",
       },
     },
     {
       scope: "keyword.control",
       settings: {
         fontStyle: "italic",
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
@@ -2640,7 +2644,7 @@ export const light: ThemeRegistration = {
         "variable.parameter.url.sass",
       ],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
@@ -2649,7 +2653,7 @@ export const light: ThemeRegistration = {
         "source.css.sass meta.at-rule variable",
       ],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
@@ -2658,7 +2662,7 @@ export const light: ThemeRegistration = {
         "source.css.sass meta.at-rule variable",
       ],
       settings: {
-        foreground: "#111111",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
@@ -2667,19 +2671,19 @@ export const light: ThemeRegistration = {
         "meta.attribute-selector.sass entity.other.attribute-name.attribute",
       ],
       settings: {
-        foreground: "#aa0982",
+        foreground: "var(--vesper-pink-600)",
       },
     },
     {
       scope: ["entity.name.tag.scss", "entity.name.tag.sass"],
       settings: {
-        foreground: "#0c969b",
+        foreground: "var(--vesper-teal-600)",
       },
     },
     {
       scope: ["keyword.other.unit.scss", "keyword.other.unit.sass"],
       settings: {
-        foreground: "#994cc3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
@@ -2698,19 +2702,19 @@ export const light: ThemeRegistration = {
         "variable.ts",
       ],
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: ["entity.name.type.ts", "entity.name.type.tsx"],
       settings: {
-        foreground: "#111111",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: ["support.class.node.ts", "support.class.node.tsx"],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
@@ -2719,7 +2723,7 @@ export const light: ThemeRegistration = {
         "meta.type.parameters.tsx entity.name.type",
       ],
       settings: {
-        foreground: "#5f7e97",
+        foreground: "var(--vesper-stone-600)",
       },
     },
     {
@@ -2730,7 +2734,7 @@ export const light: ThemeRegistration = {
         "meta.export.tsx punctuation.definition.block",
       ],
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
@@ -2739,32 +2743,32 @@ export const light: ThemeRegistration = {
         "meta.decorator punctuation.decorator.tsx",
       ],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "meta.tag.js meta.jsx.children.tsx",
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
       scope: "entity.name.tag.yaml",
       settings: {
-        foreground: "#111111",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: ["variable.other.readwrite.js", "variable.parameter"],
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: ["support.class.component.js", "support.class.component.tsx"],
       settings: {
         fontStyle: "",
-        foreground: "#aa0982",
+        foreground: "var(--vesper-pink-600)",
       },
     },
     {
@@ -2774,19 +2778,19 @@ export const light: ThemeRegistration = {
         "meta.jsx.children.tsx",
       ],
       settings: {
-        foreground: "#403f53",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
       scope: "meta.class entity.name.type.class.tsx",
       settings: {
-        foreground: "#111111",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
       scope: ["entity.name.type.tsx", "entity.name.type.module.tsx"],
       settings: {
-        foreground: "#111111",
+        foreground: "var(--vesper-stone-900)",
       },
     },
     {
@@ -2795,7 +2799,7 @@ export const light: ThemeRegistration = {
         "meta.class.tsx meta.var.expr.tsx storage.type.tsx",
       ],
       settings: {
-        foreground: "#994CC3",
+        foreground: "var(--vesper-purple-500)",
       },
     },
     {
@@ -2804,7 +2808,7 @@ export const light: ThemeRegistration = {
         "meta.method.declaration storage.type.tsx",
       ],
       settings: {
-        foreground: "#4876d6",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
