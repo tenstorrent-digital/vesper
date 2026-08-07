@@ -22,25 +22,25 @@
 /* Display styles */
 
 .vesper-typography-display-lg {
-  font-family: var(--vesper-font-mono);
-  font-size: 4rem;
+  font-family: var(--vesper-font-sans);
+  font-size: 4.5rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-tighter);
   text-wrap: pretty;
 }
 
 .vesper-typography-display-md {
-  font-family: var(--vesper-font-mono);
-  font-size: 3rem;
+  font-family: var(--vesper-font-sans);
+  font-size: 4rem;
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-tighter);
   text-wrap: pretty;
 }
 
 .vesper-typography-display-sm {
-  font-family: var(--vesper-font-mono);
-  font-size: 2.5rem;
-  line-height: var(--vesper-leading-tight);
+  font-family: var(--vesper-font-sans);
+  font-size: 3.5rem;
+  line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-tighter);
   text-wrap: pretty;
 }
