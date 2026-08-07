@@ -88,7 +88,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .vesper-code-block {
+  html:not([data-vesper-theme="light"]) .vesper-code-block {
     .shiki,
     .shiki span {
       color: var(--shiki-dark) !important;
