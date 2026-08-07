@@ -6,7 +6,7 @@ import { ThemeRegistration } from "@shikijs/core";
  */
 export const dark: ThemeRegistration = {
   colors: {
-    "editor.background": "#011627",
+    "editor.background": "transparent",
     "editor.foreground": "#d6deeb",
   },
   name: "night-owl",
@@ -39,7 +39,7 @@ export const dark: ThemeRegistration = {
     },
     {
       settings: {
-        background: "#011627",
+        background: "transparent",
         foreground: "#d6deeb",
       },
     },
@@ -1462,7 +1462,7 @@ export const dark: ThemeRegistration = {
  */
 export const light: ThemeRegistration = {
   colors: {
-    "editor.background": "#FBFBFB",
+    "editor.background": "transparent",
     "editor.foreground": "#403f53",
   },
   name: "night-owl-light",
