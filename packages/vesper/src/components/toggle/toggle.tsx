@@ -1,5 +1,14 @@
-import type { ComponentProps, ReactNode } from "react";
-import { ToggleGroup, ToggleGroupItem } from "@radix-ui/react-toggle-group";
+"use client";
+
+import {
+  type ComponentProps,
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from "react";
 
 import {
   Typography,
@@ -43,9 +52,13 @@ export interface ToggleProps extends Omit<
   /** The initially selected value (uncontrolled mode). */
   defaultValue?: string;
   /** Callback fired when the selected value changes. Receives the newly selected value. */
-  onValueChange?(value: string): void;
+  onValueChange?(value: string | undefined): void;
   /** When `true`, disables all toggle options, preventing interaction. @default false */
   disabled?: boolean;
+  /** The name of the underlying select, used as the field name when submitted with form data. */
+  name?: string;
+  /** When `true`, makes the underlying input required when rendered inside of a form. @default false */
+  required?: boolean;
 }
 
 const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
@@ -66,8 +79,10 @@ const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
  * @param {ToggleSize} [props.size] - (optional) The size of the toggle. @default md
  * @param {string} [props.value] - (optional) The currently selected value (controlled)
  * @param {string} [props.defaultValue] - (optional) The initially selected value (uncontrolled)
- * @param {(value: string) => void} [props.onValueChange] - (optional) Callback fired when the selected value changes
+ * @param {(value: string | undefined) => void} [props.onValueChange] - (optional) Callback fired when the selected value changes. Receives `undefined` when the active option is deselected
  * @param {boolean} [props.disabled] - (optional) Disables all toggle options. @default false
+ * @param {string} [props.name] - (optional) Form field name submitted with form data
+ * @param {boolean} [props.required] - (optional) Marks the toggle as required for form validation. @default false
  *
  * You may also pass any additional props to the underlying `div` element
  *
@@ -93,22 +108,100 @@ const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
  * />
  */
 export function Toggle(props: ToggleProps) {
-  const { options, className, size = "md", ...rest } = props;
+  const {
+    options,
+    className,
+    size = "md",
+    value,
+    defaultValue,
+    onValueChange,
+    id,
+    name,
+    required,
+    disabled,
+    ...rest
+  } = props;
+
+  /**
+   * whether the toggle is controlled is latched on the first render: `value`
+   * legitimately becomes `undefined` when the active option is deselected, so
+   * it can't be used to derive controlled-ness on subsequent renders
+   */
+  const isControlled = useRef(value !== undefined).current;
+  const [innerValue, setInnerValue] = useState(value || defaultValue);
+
+  useEffect(() => {
+    if (defaultValue) return;
+    setInnerValue(value);
+  }, [defaultValue, value]);
+
+  const handleChangeValue = useCallback(
+    (nextValue: string | undefined) => {
+      if (!isControlled) {
+        setInnerValue(nextValue);
+      }
+      onValueChange?.(nextValue);
+    },
+    [isControlled, onValueChange],
+  );
+
+  const innerId = useId();
+  const resolvedId = id || innerId;
 
   return (
-    <ToggleGroup
-      type="single"
-      className={cn("vesper-toggle", `vesper-toggle-${size}`, className)}
+    <div
+      className={cn(
+        "vesper-toggle",
+        `vesper-toggle-${size}`,
+        disabled && "vesper-toggle-disabled",
+        className,
+      )}
       {...rest}
     >
+      <select
+        tabIndex={-1}
+        id={resolvedId}
+        name={name}
+        required={required}
+        disabled={disabled}
+        className="vesper-toggle-select"
+        onChange={(event) => handleChangeValue(event.target.value || undefined)}
+        value={innerValue ?? ""}
+      >
+        {/**
+         * an empty placeholder label option must come first so that the select
+         * can represent "no selection" without falling back to the first
+         * option, and so that `required` can fail form validation
+         */}
+        <option value="" />
+        {options.map((option) => (
+          <option
+            key={option.value}
+            value={option.value}
+            aria-label={option.ariaLabel}
+          >
+            {"text" in option ? option.text : option.ariaLabel}
+          </option>
+        ))}
+      </select>
       {options.map((option) => (
         <Typography
+          as="button"
+          type="button"
+          disabled={disabled}
+          aria-controls={resolvedId}
           variant={TOGGLE_TYPOGRAPHY[size]}
-          as={ToggleGroupItem}
           key={option.value}
-          className="vesper-toggle-item"
-          value={option.value}
+          className={cn(
+            "vesper-toggle-item",
+            innerValue === option.value && `vesper-toggle-item-active`,
+          )}
           aria-label={option.ariaLabel}
+          onClick={() =>
+            handleChangeValue(
+              innerValue === option.value ? undefined : option.value,
+            )
+          }
         >
           {"text" in option ? (
             option.text
@@ -117,6 +210,6 @@ export function Toggle(props: ToggleProps) {
           )}
         </Typography>
       ))}
-    </ToggleGroup>
+    </div>
   );
 }
