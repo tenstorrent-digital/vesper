@@ -18,6 +18,19 @@ jobs:
   check-changeset:
     name: Changeset Check
     runs-on: ubuntu-latest
+
+    # The "Version Packages" PR opened by `release.yml` consumes every
+    # `.changeset/*.md` file, so `changeset status` fails on it by design.
+    # Skip the job there: a job skipped by an `if` still reports a check run,
+    # and a `skipped` conclusion satisfies required status checks.
+    #
+    # `changeset-release/main` is the default branch name of `changesets/action`
+    # (`changeset-release/<base branch>`), and the head repo check means a fork
+    # can't dodge the check by naming its branch the same thing.
+    if: >-
+      github.event.pull_request.head.repo.full_name != github.repository ||
+      github.head_ref != 'changeset-release/main'
+
     steps:
       - name: Checkout
         uses: actions/checkout@v5
