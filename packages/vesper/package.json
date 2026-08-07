@@ -244,7 +244,6 @@
     "@radix-ui/react-select": "^2.3.4",
     "@radix-ui/react-slider": "^1.4.1",
     "@radix-ui/react-tabs": "^1.1.15",
-    "@radix-ui/react-toggle-group": "^1.1.13",
     "@radix-ui/react-tooltip": "^1.2.10",
     "@shikijs/core": "^4.3.1",
     "@shikijs/engine-javascript": "^4.3.1",
