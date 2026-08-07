@@ -80,7 +80,7 @@ const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
  * @param {ToggleSize} [props.size] - (optional) The size of the toggle. @default md
  * @param {string} [props.value] - (optional) The currently selected value (controlled)
  * @param {string} [props.defaultValue] - (optional) The initially selected value (uncontrolled)
- * @param {(value: string | undefined) => void} [props.onValueChange] - (optional) Callback fired when the selected value changes. Receives `undefined` when the active option is deselected
+ * @param {(value: string | undefined) => void} [props.onValueChange] - (optional) Callback fired when the selected value changes
  * @param {boolean} [props.disabled] - (optional) Disables all toggle options. @default false
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  * @param {boolean} [props.required] - (optional) Marks the toggle as required for form validation. @default false
