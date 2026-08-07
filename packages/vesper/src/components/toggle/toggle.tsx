@@ -6,7 +6,6 @@ import {
   type ReactNode,
   useCallback,
   useEffect,
-  useId,
   useImperativeHandle,
   useRef,
   useState,
@@ -86,7 +85,7 @@ const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  * @param {boolean} [props.required] - (optional) Marks the toggle as required for form validation. @default false
  *
- * While an option is focused, `ArrowLeft`/`ArrowRight` move focus between options, looping around at either end of the list.
+ * While an option is focused, `ArrowLeft`/`ArrowRight` move focus between options, looping around at either end of the list. The group exposes a single tab stop (roving tabindex): `Tab` moves focus to the selected option, or to the first option when nothing is selected.
  *
  * You may also pass any additional props to the underlying `div` element
  *
@@ -185,9 +184,24 @@ export function Toggle(props: ToggleProps) {
     [],
   );
 
+  const [focusedValue, setFocusedValue] = useState<string | undefined>(
+    undefined,
+  );
+  const focusedIndex = options.findIndex((o) => o.value === focusedValue);
+  const selectedIndex = options.findIndex((o) => o.value === innerValue);
+
+  /**
+   * roving tabindex: the group only ever exposes a single tab stop, which
+   * follows focus within the group, falling back to the selected option and
+   * finally to the first option when nothing is selected
+   */
+  const tabbableIndex =
+    [focusedIndex, selectedIndex].find((i) => i !== -1) ?? 0;
+
   return (
     <div
       ref={innerRef}
+      role="radiogroup"
       className={cn(
         "vesper-toggle",
         `vesper-toggle-${size}`,
@@ -195,6 +209,10 @@ export function Toggle(props: ToggleProps) {
         className,
       )}
       onKeyDown={handleKeyDown}
+      onBlur={(e) => {
+        setFocusedValue(undefined);
+        rest.onBlur?.(e);
+      }}
       {...rest}
     >
       <select
@@ -218,7 +236,7 @@ export function Toggle(props: ToggleProps) {
           <option key={option.value} value={option.value} />
         ))}
       </select>
-      {options.map((option) => {
+      {options.map((option, index) => {
         const isSelected = innerValue === option.value;
 
         return (
@@ -227,6 +245,7 @@ export function Toggle(props: ToggleProps) {
             type="button"
             aria-checked={isSelected}
             role="radio"
+            tabIndex={index === tabbableIndex ? 0 : -1}
             disabled={disabled}
             variant={TOGGLE_TYPOGRAPHY[size]}
             key={option.value}
@@ -235,6 +254,7 @@ export function Toggle(props: ToggleProps) {
               isSelected && "vesper-toggle-item-active",
             )}
             aria-label={option.ariaLabel}
+            onFocus={() => setFocusedValue(option.value)}
             onClick={() =>
               handleChangeValue(isSelected ? undefined : option.value)
             }
