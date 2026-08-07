@@ -56,6 +56,47 @@ describe("toggle [unit]", () => {
     expect(container.firstChild).toHaveAttribute("aria-label", "toggle group");
   });
 
+  test("roving tabindex exposes a single tab stop", async () => {
+    const result = render(
+      <Toggle
+        defaultValue="option-b"
+        options={[
+          { text: "Option A", value: "option-a", ariaLabel: "Option A" },
+          { text: "Option B", value: "option-b", ariaLabel: "Option B" },
+          { text: "Option C", value: "option-c", ariaLabel: "Option C" },
+        ]}
+      />,
+    );
+    const items = result.getAllByRole("radio");
+
+    // the selected option is the only tab stop
+    expect(items[0]).toHaveAttribute("tabindex", "-1");
+    expect(items[1]).toHaveAttribute("tabindex", "0");
+    expect(items[2]).toHaveAttribute("tabindex", "-1");
+
+    // the tab stop follows focus within the group
+    items[1]!.focus();
+    await userEvent.keyboard("{ArrowRight}");
+    expect(items[2]).toHaveFocus();
+    expect(items[0]).toHaveAttribute("tabindex", "-1");
+    expect(items[1]).toHaveAttribute("tabindex", "-1");
+    expect(items[2]).toHaveAttribute("tabindex", "0");
+  });
+
+  test("first option is the tab stop when nothing is selected", () => {
+    const result = render(
+      <Toggle
+        options={[
+          { text: "Option A", value: "option-a", ariaLabel: "Option A" },
+          { text: "Option B", value: "option-b", ariaLabel: "Option B" },
+        ]}
+      />,
+    );
+    const items = result.getAllByRole("radio");
+    expect(items[0]).toHaveAttribute("tabindex", "0");
+    expect(items[1]).toHaveAttribute("tabindex", "-1");
+  });
+
   test("aria-label is applied to toggle items", () => {
     const result = render(
       <Toggle
@@ -118,12 +159,12 @@ describe("toggle [unit]", () => {
     const items = result.getAllByRole("radio");
 
     await userEvent.click(items[0]!);
-    expect(items[0]).toHaveAttribute("data-state", "on");
-    expect(items[1]).toHaveAttribute("data-state", "off");
+    expect(items[0]).toHaveAttribute("aria-checked", "true");
+    expect(items[1]).toHaveAttribute("aria-checked", "false");
 
     await userEvent.click(items[1]!);
-    expect(items[0]).toHaveAttribute("data-state", "off");
-    expect(items[1]).toHaveAttribute("data-state", "on");
+    expect(items[0]).toHaveAttribute("aria-checked", "false");
+    expect(items[1]).toHaveAttribute("aria-checked", "true");
   });
 
   test("onValueChange callback", async () => {
@@ -154,8 +195,8 @@ describe("toggle [unit]", () => {
       />,
     );
     const items = result.getAllByRole("radio");
-    expect(items[0]).toHaveAttribute("data-state", "off");
-    expect(items[1]).toHaveAttribute("data-state", "on");
+    expect(items[0]).toHaveAttribute("aria-checked", "false");
+    expect(items[1]).toHaveAttribute("aria-checked", "true");
   });
 
   test("keyboard navigation with ArrowRight", async () => {
@@ -243,7 +284,7 @@ describe("toggle [unit]", () => {
     expect(items[1]).toHaveFocus();
 
     await userEvent.keyboard("{Enter}");
-    expect(items[1]).toHaveAttribute("data-state", "on");
+    expect(items[1]).toHaveAttribute("aria-checked", "true");
     expect(onValueChange).toHaveBeenCalledWith("option-b");
   });
 });
