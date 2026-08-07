@@ -7,10 +7,10 @@
   &:not(:disabled) {
     cursor: pointer;
   }
-  &[data-state="open"] .vespers-select-state-indicator-closed {
+  &[data-state="open"] .vesper-select-state-indicator-closed {
     display: none;
   }
-  &[data-state="closed"] .vespers-select-state-indicator-open {
+  &[data-state="closed"] .vesper-select-state-indicator-open {
     display: none;
   }
   &:disabled {
@@ -22,7 +22,7 @@
       color: var(--vesper-icon-disabled);
     }
   }
-  &[data-state="open"],
+  &.vesper-select-open,
   &:focus-visible {
     border-color: var(--vesper-border-strong);
     box-shadow: var(--vesper-shadow-focus-ring);
