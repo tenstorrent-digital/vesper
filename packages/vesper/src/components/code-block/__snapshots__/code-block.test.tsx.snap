@@ -11,7 +11,7 @@ exports[`code-block [snapshot] > default (no props) 1`] = `
   >
     <pre
       class="shiki vesper"
-      style="background-color: transparent; color: var(--vesper-stone-800);"
+      style="background-color: var(--vesper-transparent); color: var(--vesper-sky-900);"
     >
       <code>
         <span
@@ -55,7 +55,7 @@ exports[`code-block [snapshot] > with custom className 1`] = `
   >
     <pre
       class="shiki vesper"
-      style="background-color: transparent; color: var(--vesper-stone-800);"
+      style="background-color: var(--vesper-transparent); color: var(--vesper-sky-900);"
     >
       <code>
         <span
@@ -101,7 +101,7 @@ exports[`code-block [snapshot] > with multi-line content 1`] = `
   >
     <pre
       class="shiki vesper"
-      style="background-color: transparent; color: var(--vesper-stone-800);"
+      style="background-color: var(--vesper-transparent); color: var(--vesper-sky-900);"
     >
       <code>
         <span
@@ -156,7 +156,7 @@ exports[`code-block [snapshot] > with showLineNumbers 1`] = `
   >
     <pre
       class="shiki vesper"
-      style="background-color: transparent; color: var(--vesper-stone-800);"
+      style="background-color: var(--vesper-transparent); color: var(--vesper-sky-900);"
     >
       <code>
         <span
@@ -202,7 +202,7 @@ exports[`code-block [snapshot] > with string children 1`] = `
   >
     <pre
       class="shiki vesper"
-      style="background-color: transparent; color: var(--vesper-stone-800);"
+      style="background-color: var(--vesper-transparent); color: var(--vesper-sky-900);"
     >
       <code>
         <span
