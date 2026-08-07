@@ -1660,7 +1660,7 @@ export const theme: ThemeRegistration = {
     {
       scope: "markup.inserted",
       settings: {
-        foreground: "var(--vesper-green-300)",
+        foreground: "var(--vesper-green-800)",
       },
     },
     {
