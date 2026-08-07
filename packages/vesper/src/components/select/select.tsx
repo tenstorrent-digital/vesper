@@ -3,7 +3,10 @@
 import {
   type ComponentProps,
   type ReactNode,
+  useCallback,
+  useEffect,
   useImperativeHandle,
+  useRef,
   useState,
 } from "react";
 import {
@@ -134,9 +137,20 @@ export function Select(props: SelectProps) {
     ref,
     ...rest
   } = props;
-
+  const [isOpen, setIsOpen] = useState(false);
   const [innerRef, setInnerRef] = useState<HTMLButtonElement | null>(null);
   useImperativeHandle(ref, () => innerRef!);
+
+  const closeTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const clearCloseTimeout = useCallback(() => {
+    if (closeTimeout.current !== null) {
+      clearTimeout(closeTimeout.current);
+      closeTimeout.current = null;
+    }
+  }, []);
+
+  useEffect(() => clearCloseTimeout, [clearCloseTimeout]);
 
   const portalContainer = getPortalContainer(container, innerRef);
 
@@ -151,9 +165,24 @@ export function Select(props: SelectProps) {
       name={name}
       required={required}
       form={form}
+      onOpenChange={(open) => {
+        clearCloseTimeout();
+        if (open) setIsOpen(true);
+        else {
+          closeTimeout.current = setTimeout(() => {
+            closeTimeout.current = null;
+            setIsOpen(false);
+          });
+        }
+      }}
     >
       <SelectTrigger
-        className={cn("vesper-select", `vesper-select-${size}`, className)}
+        className={cn(
+          "vesper-select",
+          `vesper-select-${size}`,
+          isOpen && "vesper-select-open",
+          className,
+        )}
         disabled={disabled}
         aria-label={ariaLabel}
         ref={setInnerRef}
@@ -164,8 +193,8 @@ export function Select(props: SelectProps) {
           <SelectValue placeholder={placeholder} />
         </Typography>
         <span className="vesper-select-state-indicator">
-          <CaretDown className="vespers-select-state-indicator-closed" />
-          <CaretUp className="vespers-select-state-indicator-open" />
+          <CaretDown className="vesper-select-state-indicator-closed" />
+          <CaretUp className="vesper-select-state-indicator-open" />
         </span>
       </SelectTrigger>
       <SelectPortal container={portalContainer}>
