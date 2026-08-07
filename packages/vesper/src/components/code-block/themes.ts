@@ -1419,7 +1419,7 @@ export const dark: ThemeRegistration = {
     {
       scope: "markup.inserted",
       settings: {
-        foreground: "var(--vesper-green-300)",
+        foreground: "var(--vesper-green-800)",
       },
     },
     {
@@ -1752,7 +1752,7 @@ export const light: ThemeRegistration = {
     {
       scope: "object",
       settings: {
-        foreground: "var(--vesper-teal-100)",
+        foreground: "var(--vesper-sky-500)",
       },
     },
     {
@@ -1795,7 +1795,7 @@ export const light: ThemeRegistration = {
     {
       scope: "object.comma",
       settings: {
-        foreground: "var(--vesper-stone-0)",
+        foreground: "var(--vesper-stone-800)",
       },
     },
     {
