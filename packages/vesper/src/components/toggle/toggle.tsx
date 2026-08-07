@@ -2,10 +2,12 @@
 
 import {
   type ComponentProps,
+  type KeyboardEventHandler,
   type ReactNode,
   useCallback,
   useEffect,
   useId,
+  useImperativeHandle,
   useRef,
   useState,
 } from "react";
@@ -84,6 +86,8 @@ const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  * @param {boolean} [props.required] - (optional) Marks the toggle as required for form validation. @default false
  *
+ * While an option is focused, `ArrowLeft`/`ArrowRight` move focus between options, looping around at either end of the list.
+ *
  * You may also pass any additional props to the underlying `div` element
  *
  * @example
@@ -119,8 +123,12 @@ export function Toggle(props: ToggleProps) {
     name,
     required,
     disabled,
+    ref,
     ...rest
   } = props;
+
+  const innerRef = useRef<HTMLDivElement>(null);
+  useImperativeHandle(ref, () => innerRef.current!);
 
   /**
    * whether the toggle is controlled is latched on the first render: `value`
@@ -145,22 +153,54 @@ export function Toggle(props: ToggleProps) {
     [isControlled, onValueChange],
   );
 
-  const innerId = useId();
-  const resolvedId = id || innerId;
+  /**
+   * Mimic the keyboard accessibility of a group of radio inputs
+   * - ArrowRight moves focus forwards to the next option
+   * - ArrowLeft moves focus back to the previous option
+   * - disabled options are skipped
+   * - moving forwards/back at the last/first option loops around
+   */
+  const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = useCallback(
+    (e) => {
+      if (!["ArrowLeft", "ArrowRight"].includes(e.key)) return;
+
+      const items = Array.from(
+        innerRef.current!.querySelectorAll<HTMLButtonElement>(
+          ".vesper-toggle-item:not(:disabled)",
+        ),
+      );
+
+      const currentIndex = items.indexOf(e.target as HTMLButtonElement);
+      if (currentIndex === -1) return;
+
+      e.preventDefault();
+
+      const direction = e.key === "ArrowRight" ? 1 : -1;
+
+      const nextIndex =
+        (currentIndex + direction + items.length) % items.length;
+
+      items[nextIndex]?.focus();
+    },
+    [],
+  );
 
   return (
     <div
+      ref={innerRef}
       className={cn(
         "vesper-toggle",
         `vesper-toggle-${size}`,
         disabled && "vesper-toggle-disabled",
         className,
       )}
+      onKeyDown={handleKeyDown}
       {...rest}
     >
       <select
+        aria-hidden
         tabIndex={-1}
-        id={resolvedId}
+        id={id}
         name={name}
         required={required}
         disabled={disabled}
@@ -175,41 +215,38 @@ export function Toggle(props: ToggleProps) {
          */}
         <option value="" />
         {options.map((option) => (
-          <option
-            key={option.value}
-            value={option.value}
-            aria-label={option.ariaLabel}
-          >
-            {"text" in option ? option.text : option.ariaLabel}
-          </option>
+          <option key={option.value} value={option.value} />
         ))}
       </select>
-      {options.map((option) => (
-        <Typography
-          as="button"
-          type="button"
-          disabled={disabled}
-          aria-controls={resolvedId}
-          variant={TOGGLE_TYPOGRAPHY[size]}
-          key={option.value}
-          className={cn(
-            "vesper-toggle-item",
-            innerValue === option.value && `vesper-toggle-item-active`,
-          )}
-          aria-label={option.ariaLabel}
-          onClick={() =>
-            handleChangeValue(
-              innerValue === option.value ? undefined : option.value,
-            )
-          }
-        >
-          {"text" in option ? (
-            option.text
-          ) : (
-            <span className="vesper-toggle-icon">{option.icon}</span>
-          )}
-        </Typography>
-      ))}
+      {options.map((option) => {
+        const isSelected = innerValue === option.value;
+
+        return (
+          <Typography
+            as="button"
+            type="button"
+            aria-checked={isSelected}
+            role="radio"
+            disabled={disabled}
+            variant={TOGGLE_TYPOGRAPHY[size]}
+            key={option.value}
+            className={cn(
+              "vesper-toggle-item",
+              isSelected && "vesper-toggle-item-active",
+            )}
+            aria-label={option.ariaLabel}
+            onClick={() =>
+              handleChangeValue(isSelected ? undefined : option.value)
+            }
+          >
+            {"text" in option ? (
+              option.text
+            ) : (
+              <span className="vesper-toggle-icon">{option.icon}</span>
+            )}
+          </Typography>
+        );
+      })}
     </div>
   );
 }
