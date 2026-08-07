@@ -13,9 +13,6 @@
 @import "./backgrounds.css" layer(vesper);
 @import "./strokes.css" layer(vesper);
 
-/* a11y */
-@import "./a11y.css" layer(vesper);
-
 /* typography */
 @import "../components/typography/typography.css" layer(vesper);
 
