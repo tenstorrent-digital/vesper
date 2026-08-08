@@ -2,7 +2,8 @@
 
 import {
   type ComponentProps,
-  type KeyboardEventHandler,
+  FocusEvent,
+  KeyboardEvent,
   type ReactNode,
   useCallback,
   useEffect,
@@ -53,7 +54,7 @@ export interface ToggleProps extends Omit<
   /** The initially selected value (uncontrolled mode). */
   defaultValue?: string;
   /** Callback fired when the selected value changes. Receives the newly selected value. */
-  onValueChange?(value: string | undefined): void;
+  onValueChange?(value: string): void;
   /** When `true`, disables all toggle options, preventing interaction. @default false */
   disabled?: boolean;
   /** The name of the underlying select, used as the field name when submitted with form data. */
@@ -80,7 +81,7 @@ const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
  * @param {ToggleSize} [props.size] - (optional) The size of the toggle. @default md
  * @param {string} [props.value] - (optional) The currently selected value (controlled)
  * @param {string} [props.defaultValue] - (optional) The initially selected value (uncontrolled)
- * @param {(value: string | undefined) => void} [props.onValueChange] - (optional) Callback fired when the selected value changes
+ * @param {(value: string) => void} [props.onValueChange] - (optional) Callback fired when the selected value changes
  * @param {boolean} [props.disabled] - (optional) Disables all toggle options. @default false
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  * @param {boolean} [props.required] - (optional) Marks the toggle as required for form validation. @default false
@@ -123,6 +124,8 @@ export function Toggle(props: ToggleProps) {
     required,
     disabled,
     ref,
+    onBlur,
+    onKeyDown,
     ...rest
   } = props;
 
@@ -134,23 +137,33 @@ export function Toggle(props: ToggleProps) {
    * legitimately becomes `undefined` when the active option is deselected, so
    * it can't be used to derive controlled-ness on subsequent renders
    */
-  const isControlled = useRef(value !== undefined).current;
-  const [innerValue, setInnerValue] = useState(value || defaultValue);
+  const isControlled = useRef(value !== undefined);
+  const [innerValue, setInnerValue] = useState(value ?? defaultValue);
 
   useEffect(() => {
-    if (defaultValue) return;
+    if (!isControlled.current) return;
     setInnerValue(value);
-  }, [defaultValue, value]);
+  }, [value]);
 
   const handleChangeValue = useCallback(
-    (nextValue: string | undefined) => {
-      if (!isControlled) {
-        setInnerValue(nextValue);
-      }
+    (nextValue: string) => {
+      setInnerValue(nextValue);
       onValueChange?.(nextValue);
     },
-    [isControlled, onValueChange],
+    [onValueChange],
   );
+
+  // update inner value when parent form resets
+  useEffect(() => {
+    const form = innerRef.current?.closest("form");
+    if (!form) return;
+
+    const handleReset = () => {
+      handleChangeValue(defaultValue ?? "");
+    };
+    form.addEventListener("reset", handleReset);
+    return () => form.removeEventListener("reset", handleReset);
+  }, [defaultValue, handleChangeValue]);
 
   /**
    * Mimic the keyboard accessibility of a group of radio inputs
@@ -159,9 +172,18 @@ export function Toggle(props: ToggleProps) {
    * - disabled options are skipped
    * - moving forwards/back at the last/first option loops around
    */
-  const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = useCallback(
-    (e) => {
-      if (!["ArrowLeft", "ArrowRight"].includes(e.key)) return;
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent<HTMLDivElement>) => {
+      onKeyDown?.(e);
+      if (
+        e.defaultPrevented ||
+        (e.key !== "ArrowLeft" &&
+          e.key !== "ArrowRight" &&
+          e.key !== "ArrowUp" &&
+          e.key !== "ArrowDown")
+      ) {
+        return;
+      }
 
       const items = Array.from(
         innerRef.current!.querySelectorAll<HTMLButtonElement>(
@@ -174,14 +196,23 @@ export function Toggle(props: ToggleProps) {
 
       e.preventDefault();
 
-      const direction = e.key === "ArrowRight" ? 1 : -1;
+      const direction =
+        e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : -1;
 
       const nextIndex =
         (currentIndex + direction + items.length) % items.length;
 
       items[nextIndex]?.focus();
     },
-    [],
+    [onKeyDown],
+  );
+
+  const handleBlur = useCallback(
+    (e: FocusEvent<HTMLDivElement>) => {
+      onBlur?.(e);
+      setFocusedValue(undefined);
+    },
+    [onBlur],
   );
 
   const [focusedValue, setFocusedValue] = useState<string | undefined>(
@@ -202,6 +233,7 @@ export function Toggle(props: ToggleProps) {
     <div
       ref={innerRef}
       role="radiogroup"
+      aria-required={required}
       className={cn(
         "vesper-toggle",
         `vesper-toggle-${size}`,
@@ -209,10 +241,7 @@ export function Toggle(props: ToggleProps) {
         className,
       )}
       onKeyDown={handleKeyDown}
-      onBlur={(e) => {
-        setFocusedValue(undefined);
-        rest.onBlur?.(e);
-      }}
+      onBlur={handleBlur}
       {...rest}
     >
       <select
@@ -223,7 +252,7 @@ export function Toggle(props: ToggleProps) {
         required={required}
         disabled={disabled}
         className="vesper-toggle-select"
-        onChange={(event) => handleChangeValue(event.target.value || undefined)}
+        onChange={(event) => handleChangeValue(event.target.value)}
         value={innerValue ?? ""}
       >
         {/**
@@ -255,9 +284,7 @@ export function Toggle(props: ToggleProps) {
             )}
             aria-label={option.ariaLabel}
             onFocus={() => setFocusedValue(option.value)}
-            onClick={() =>
-              handleChangeValue(isSelected ? undefined : option.value)
-            }
+            onClick={() => handleChangeValue(isSelected ? "" : option.value)}
           >
             {"text" in option ? (
               option.text
