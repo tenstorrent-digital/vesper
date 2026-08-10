@@ -1,5 +1,51 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`toggle [snapshot] > disabled 1`] = `
+<div
+  class="vesper-toggle vesper-toggle-md vesper-toggle-disabled"
+  role="radiogroup"
+>
+  <select
+    aria-hidden="true"
+    class="vesper-toggle-select"
+    disabled=""
+    tabindex="-1"
+  >
+    <option
+      value=""
+    />
+    <option
+      value="option-a"
+    />
+    <option
+      value="option-b"
+    />
+  </select>
+  <button
+    aria-checked="true"
+    aria-label="aria-label A"
+    class="vesper-typography vesper-typography-label-sm vesper-toggle-item vesper-toggle-item-active"
+    disabled=""
+    role="radio"
+    tabindex="0"
+    type="button"
+  >
+    Option A
+  </button>
+  <button
+    aria-checked="false"
+    aria-label="aria-label B"
+    class="vesper-typography vesper-typography-label-sm vesper-toggle-item"
+    disabled=""
+    role="radio"
+    tabindex="-1"
+    type="button"
+  >
+    Option B
+  </button>
+</div>
+`;
+
 exports[`toggle [snapshot] > icon options 1`] = `
 <div
   class="vesper-toggle vesper-toggle-md"

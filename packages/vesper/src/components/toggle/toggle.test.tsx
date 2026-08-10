@@ -1,4 +1,5 @@
-import { cleanup, render } from "@testing-library/react";
+import { createRef, type KeyboardEvent } from "react";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
@@ -199,7 +200,7 @@ describe("toggle [unit]", () => {
     expect(items[1]).toHaveAttribute("aria-checked", "true");
   });
 
-  test("keyboard navigation with ArrowRight", async () => {
+  test("keyboard navigation with ArrowRight and ArrowLeft", async () => {
     const result = render(
       <Toggle
         defaultValue="option-a"
@@ -218,14 +219,14 @@ describe("toggle [unit]", () => {
     await userEvent.keyboard("{ArrowRight}");
     expect(items[1]).toHaveFocus();
 
-    await userEvent.keyboard("{ArrowRight}");
-    expect(items[2]).toHaveFocus();
+    await userEvent.keyboard("{ArrowLeft}");
+    expect(items[0]).toHaveFocus();
   });
 
-  test("keyboard navigation with ArrowLeft", async () => {
+  test("keyboard navigation with ArrowDown and ArrowUp", async () => {
     const result = render(
       <Toggle
-        defaultValue="option-c"
+        defaultValue="option-a"
         options={[
           { text: "Option A", value: "option-a", ariaLabel: "Option A" },
           { text: "Option B", value: "option-b", ariaLabel: "Option B" },
@@ -236,12 +237,12 @@ describe("toggle [unit]", () => {
     const items = result.getAllByRole("radio");
 
     await userEvent.tab();
-    expect(items[2]).toHaveFocus();
+    expect(items[0]).toHaveFocus();
 
-    await userEvent.keyboard("{ArrowLeft}");
+    await userEvent.keyboard("{ArrowDown}");
     expect(items[1]).toHaveFocus();
 
-    await userEvent.keyboard("{ArrowLeft}");
+    await userEvent.keyboard("{ArrowUp}");
     expect(items[0]).toHaveFocus();
   });
 
@@ -286,6 +287,115 @@ describe("toggle [unit]", () => {
     await userEvent.keyboard("{Enter}");
     expect(items[1]).toHaveAttribute("aria-checked", "true");
     expect(onValueChange).toHaveBeenCalledWith("option-b");
+  });
+
+  test("ref exposes the toggle group element", () => {
+    const ref = createRef<HTMLDivElement>();
+    const { container } = render(
+      <Toggle
+        ref={ref}
+        options={[
+          { text: "Option A", value: "option-a" },
+          { text: "Option B", value: "option-b" },
+        ]}
+      />,
+    );
+    expect(ref.current).toBe(container.firstChild);
+  });
+
+  test("clicking the selected option deselects it", async () => {
+    const onValueChange = vi.fn();
+    const result = render(
+      <Toggle
+        defaultValue="option-a"
+        onValueChange={onValueChange}
+        options={[
+          { text: "Option A", value: "option-a", ariaLabel: "Option A" },
+          { text: "Option B", value: "option-b", ariaLabel: "Option B" },
+        ]}
+      />,
+    );
+    const items = result.getAllByRole("radio");
+
+    await userEvent.click(items[0]!);
+    expect(items[0]).toHaveAttribute("aria-checked", "false");
+    expect(onValueChange).toHaveBeenCalledWith("");
+  });
+
+  test("selection follows the value prop", () => {
+    const options = [
+      { text: "Option A", value: "option-a" },
+      { text: "Option B", value: "option-b" },
+    ];
+    const result = render(<Toggle value="option-a" options={options} />);
+    const items = result.getAllByRole("radio");
+    expect(items[0]).toHaveAttribute("aria-checked", "true");
+
+    result.rerender(<Toggle value="option-b" options={options} />);
+    expect(items[0]).toHaveAttribute("aria-checked", "false");
+    expect(items[1]).toHaveAttribute("aria-checked", "true");
+  });
+
+  test("disabled toggle", () => {
+    const { container } = render(
+      <Toggle
+        disabled
+        options={[
+          { text: "Option A", value: "option-a" },
+          { text: "Option B", value: "option-b" },
+        ]}
+      />,
+    );
+    expect(container.firstChild).toHaveClass("vesper-toggle-disabled");
+    expect(container.querySelector("select")).toBeDisabled();
+    container.querySelectorAll("button").forEach((item) => {
+      expect(item).toBeDisabled();
+    });
+  });
+
+  test("selected value is submitted with form data", async () => {
+    const result = render(
+      <form>
+        <Toggle
+          name="toggle-name"
+          options={[
+            { text: "Option A", value: "option-a", ariaLabel: "Option A" },
+            { text: "Option B", value: "option-b", ariaLabel: "Option B" },
+          ]}
+        />
+      </form>,
+    );
+    const form = result.container.querySelector("form")!;
+    expect(new FormData(form).get("toggle-name")).toBe("");
+
+    await userEvent.click(result.getAllByRole("radio")[1]!);
+    expect(new FormData(form).get("toggle-name")).toBe("option-b");
+  });
+
+  test("resetting the parent form restores the defaultValue", async () => {
+    const onValueChange = vi.fn();
+    const result = render(
+      <form>
+        <Toggle
+          name="toggle-name"
+          defaultValue="option-a"
+          onValueChange={onValueChange}
+          options={[
+            { text: "Option A", value: "option-a", ariaLabel: "Option A" },
+            { text: "Option B", value: "option-b", ariaLabel: "Option B" },
+          ]}
+        />
+      </form>,
+    );
+    const items = result.getAllByRole("radio");
+
+    await userEvent.click(items[1]!);
+    expect(items[1]).toHaveAttribute("aria-checked", "true");
+
+    fireEvent.reset(result.container.querySelector("form")!);
+    expect(items[0]).toHaveAttribute("aria-checked", "true");
+    expect(items[1]).toHaveAttribute("aria-checked", "false");
+    expect(onValueChange).toHaveBeenLastCalledWith("option-a");
   });
 });
 
@@ -333,6 +443,20 @@ describe("toggle [snapshot]", () => {
     );
     expect(container.firstChild).toMatchSnapshot();
   });
+
+  test("disabled", async () => {
+    const { container } = render(
+      <Toggle
+        disabled
+        defaultValue="option-a"
+        options={[
+          { text: "Option A", value: "option-a", ariaLabel: "aria-label A" },
+          { text: "Option B", value: "option-b", ariaLabel: "aria-label B" },
+        ]}
+      />,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
 });
 
 describe("toggle [a11y]", () => {
@@ -365,6 +489,24 @@ describe("toggle [a11y]", () => {
     test(`a11y (icons, ${theme})`, async () => {
       const { container } = render(
         <Toggle
+          options={[
+            { icon: <Globe />, value: "option-a", ariaLabel: "aria-label A" },
+            {
+              icon: <Tenstorrent />,
+              value: "option-b",
+              ariaLabel: "aria-label B",
+            },
+          ]}
+        />,
+      );
+
+      expect(await axe.run(container)).toHaveNoViolations();
+    });
+
+    test(`a11y (icons, disabled, ${theme})`, async () => {
+      const { container } = render(
+        <Toggle
+          disabled
           options={[
             { icon: <Globe />, value: "option-a", ariaLabel: "aria-label A" },
             {

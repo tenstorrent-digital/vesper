@@ -2,7 +2,6 @@
 
 import {
   type ComponentProps,
-  FocusEvent,
   KeyboardEvent,
   type ReactNode,
   useCallback,
