@@ -9,16 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
-import {
-  Select as SelectRoot,
-  SelectContent,
-  SelectItem,
-  SelectItemText,
-  SelectPortal,
-  SelectTrigger,
-  SelectValue,
-  SelectViewport,
-} from "@radix-ui/react-select";
+import { Select as BaseSelect } from "@base-ui/react/select";
 
 import { CaretDown, CaretUp, Checkmark } from "@/components/icons/icons";
 import {
@@ -137,52 +128,29 @@ export function Select(props: SelectProps) {
     ref,
     ...rest
   } = props;
-  const [isOpen, setIsOpen] = useState(false);
+
   const [innerRef, setInnerRef] = useState<HTMLButtonElement | null>(null);
   useImperativeHandle(ref, () => innerRef!);
-
-  const closeTimeout = useRef<NodeJS.Timeout | null>(null);
-
-  const clearCloseTimeout = useCallback(() => {
-    if (closeTimeout.current !== null) {
-      clearTimeout(closeTimeout.current);
-      closeTimeout.current = null;
-    }
-  }, []);
-
-  useEffect(() => clearCloseTimeout, [clearCloseTimeout]);
 
   const portalContainer = getPortalContainer(container, innerRef);
 
   const baseRemSize = useBaseRemSize();
 
   return (
-    <SelectRoot
+    <BaseSelect.Root
+      items={options}
       value={value}
       defaultValue={defaultValue}
-      onValueChange={onValueChange}
+      onValueChange={(next) => {
+        if (next !== null) onValueChange?.(next);
+      }}
       disabled={disabled}
       name={name}
       required={required}
       form={form}
-      onOpenChange={(open) => {
-        clearCloseTimeout();
-        if (open) setIsOpen(true);
-        else {
-          closeTimeout.current = setTimeout(() => {
-            closeTimeout.current = null;
-            setIsOpen(false);
-          });
-        }
-      }}
     >
-      <SelectTrigger
-        className={cn(
-          "vesper-select",
-          `vesper-select-${size}`,
-          isOpen && "vesper-select-open",
-          className,
-        )}
+      <BaseSelect.Trigger
+        className={cn("vesper-select", `vesper-select-${size}`, className)}
         disabled={disabled}
         aria-label={ariaLabel}
         ref={setInnerRef}
@@ -190,39 +158,42 @@ export function Select(props: SelectProps) {
       >
         {icon && <span className="vesper-select-icon">{icon}</span>}
         <Typography as="span" variant={SELECT_TRIGGER_TYPOGRAPHY[size]}>
-          <SelectValue placeholder={placeholder} />
+          <BaseSelect.Value placeholder={placeholder} />
         </Typography>
         <span className="vesper-select-state-indicator">
           <CaretDown className="vesper-select-state-indicator-closed" />
           <CaretUp className="vesper-select-state-indicator-open" />
         </span>
-      </SelectTrigger>
-      <SelectPortal container={portalContainer}>
-        <SelectContent
-          className="vesper-select-content"
+      </BaseSelect.Trigger>
+      <BaseSelect.Portal container={portalContainer}>
+        <BaseSelect.Positioner
           side="bottom"
           align="start"
-          position="popper"
+          alignItemWithTrigger={false}
           sideOffset={12 * (baseRemSize / 16)}
         >
-          <SelectViewport className="vesper-select-viewport">
-            {options.map((o) => (
-              <SelectItem
-                key={o.value}
-                value={o.value}
-                className="vesper-select-item"
-              >
-                <Typography variant="label-md">
-                  <SelectItemText>{o.label}</SelectItemText>
-                </Typography>
-                <span className="vesper-select-item-checkmark">
-                  <Checkmark />
-                </span>
-              </SelectItem>
-            ))}
-          </SelectViewport>
-        </SelectContent>
-      </SelectPortal>
-    </SelectRoot>
+          <BaseSelect.Popup className="vesper-select-content">
+            <BaseSelect.List className="vesper-select-viewport">
+              {options.map((o) => (
+                <BaseSelect.Item
+                  key={o.value}
+                  value={o.value}
+                  className="vesper-select-item"
+                >
+                  <Typography variant="label-md">
+                    <BaseSelect.ItemText render={<span />}>
+                      {o.label}
+                    </BaseSelect.ItemText>
+                  </Typography>
+                  <BaseSelect.ItemIndicator className="vesper-select-item-checkmark">
+                    <Checkmark />
+                  </BaseSelect.ItemIndicator>
+                </BaseSelect.Item>
+              ))}
+            </BaseSelect.List>
+          </BaseSelect.Popup>
+        </BaseSelect.Positioner>
+      </BaseSelect.Portal>
+    </BaseSelect.Root>
   );
 }
