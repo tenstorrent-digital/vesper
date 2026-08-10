@@ -1,9 +1,5 @@
 import type { ComponentProps } from "react";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@radix-ui/react-collapsible";
+import { Collapsible } from "@base-ui/react/collapsible";
 
 import { CaretRight } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
@@ -53,7 +49,7 @@ export function Accordion(props: AccordionProps) {
   } = props;
 
   return (
-    <Collapsible
+    <Collapsible.Root
       defaultOpen={defaultOpen}
       open={open}
       onOpenChange={onOpenChange}
@@ -61,22 +57,22 @@ export function Accordion(props: AccordionProps) {
       {...rest}
     >
       <Typography
-        as={CollapsibleTrigger}
+        as={Collapsible.Trigger}
         variant="label-md-bold"
         className="vesper-accordion-trigger"
       >
         <span>{title}</span>
         <CaretRight className="vesper-accordion-trigger-icon" />
       </Typography>
-      <CollapsibleContent className="vesper-accordion-content">
+      <Collapsible.Panel className="vesper-accordion-panel">
         <Typography
           variant="copy-sm"
           as="div"
-          className="vesper-accordion-content-children"
+          className="vesper-accordion-children"
         >
           {children}
         </Typography>
-      </CollapsibleContent>
-    </Collapsible>
+      </Collapsible.Panel>
+    </Collapsible.Root>
   );
 }
