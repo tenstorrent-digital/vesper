@@ -17,16 +17,16 @@ A single-select toggle group that allows the user to choose one option from a se
 
 ## Options
 
-| Prop            | Type                                   | Description                                                                                           | Default |
-| --------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------- |
-| `options`       | `ToggleOption[]`                       | The list of toggle options. Each has `value` and either `text` or `icon` (with required `ariaLabel`). | —       |
-| `size`          | `"sm" \| "md" \| "lg"`                 | The size of the toggle and its options.                                                               | `"md"`  |
-| `value`         | `string`                               | The currently selected value (controlled mode).                                                       | —       |
-| `defaultValue`  | `string`                               | The initially selected value (uncontrolled mode).                                                     | —       |
-| `onValueChange` | `(value: string \| undefined) => void` | Callback fired when the selected value changes.                                                       | —       |
-| `disabled`      | `boolean`                              | When `true`, disables all toggle options.                                                             | `false` |
-| `name`          | `string`                               | The name of the underlying select, used as the field name when submitted with form data.              | —       |
-| `required`      | `boolean`                              | When `true`, makes the underlying input required when rendered inside of a form.                      | `false` |
+| Prop            | Type                      | Description                                                                                           | Default |
+| --------------- | ------------------------- | ----------------------------------------------------------------------------------------------------- | ------- |
+| `options`       | `ToggleOption[]`          | The list of toggle options. Each has `value` and either `text` or `icon` (with required `ariaLabel`). | —       |
+| `size`          | `"sm" \| "md" \| "lg"`    | The size of the toggle and its options.                                                               | `"md"`  |
+| `value`         | `string`                  | The currently selected value (controlled mode).                                                       | —       |
+| `defaultValue`  | `string`                  | The initially selected value (uncontrolled mode).                                                     | —       |
+| `onValueChange` | `(value: string) => void` | Callback fired when the selected value changes.                                                       | —       |
+| `disabled`      | `boolean`                 | When `true`, disables all toggle options.                                                             | `false` |
+| `name`          | `string`                  | The name of the underlying select, used as the field name when submitted with form data.              | —       |
+| `required`      | `boolean`                 | When `true`, makes the underlying input required when rendered inside of a form.                      | `false` |
 
 ### ToggleOption
 
