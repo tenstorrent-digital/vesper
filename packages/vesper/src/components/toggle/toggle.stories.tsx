@@ -10,11 +10,13 @@ import {
 const ToggleStoryComponent = ({
   size = "lg",
   type,
-}: Pick<ToggleProps, "size"> & {
+  disabled,
+}: Pick<ToggleProps, "size" | "disabled"> & {
   type: "icons" | "text";
 }) => (
   <Toggle
     size={size}
+    disabled={disabled}
     options={
       type === "text"
         ? [
@@ -41,5 +43,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Playground: Story = { args: { type: "text", size: "md" } };
+export const Playground: Story = {
+  args: { type: "text", size: "md", disabled: false },
+};
 Playground.storyName = "toggle";
