@@ -1,5 +1,4 @@
 import type { ComponentProps } from "react";
-import { Progress, ProgressIndicator } from "@radix-ui/react-progress";
 
 import { cn } from "@/utils/cn";
 
@@ -52,20 +51,26 @@ export function ProgressBar(props: ProgressBarProps) {
     size = "md",
     stepRoundingStrategy,
     animated = false,
+    "aria-label": ariaLabel = "Progress",
     ...rest
   } = props;
 
   const progress = Math.min(Math.max(value, 0), 100);
 
   return (
-    <Progress
+    <div
+      aria-label={ariaLabel}
       className={cn(
         "vesper-progress-bar",
         `vesper-progress-bar-${size}`,
         animated && "vesper-progress-bar-animated",
         className,
       )}
-      value={progress}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={progress}
+      role="progressbar"
+      aria-valuetext={`${progress}%`}
       {...rest}
     >
       {variant === "default" && (
@@ -78,13 +83,13 @@ export function ProgressBar(props: ProgressBarProps) {
           stepRoundingStrategy={stepRoundingStrategy}
         />
       )}
-    </Progress>
+    </div>
   );
 }
 
 function ProgressBarIndicatorDefault({ value }: { value: number }) {
   return (
-    <ProgressIndicator
+    <div
       className="vesper-progress-bar-indicator"
       style={{ width: `${value}%` }}
     />
@@ -107,10 +112,7 @@ function ProgressBarIndicatorSteps({
 
   return (
     <>
-      <ProgressIndicator
-        className="vesper-progress-bar-indicator"
-        style={{ width }}
-      />
+      <div className="vesper-progress-bar-indicator" style={{ width }} />
       {Array.from({ length: totalSteps - 1 }).map((_, index) => (
         <span
           key={index}
