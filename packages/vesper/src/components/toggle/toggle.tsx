@@ -131,18 +131,11 @@ export function Toggle(props: ToggleProps) {
   const innerRef = useRef<HTMLDivElement>(null);
   useImperativeHandle(ref, () => innerRef.current!);
 
-  /**
-   * whether the toggle is controlled is latched on the first render: `value`
-   * legitimately becomes `undefined` when the active option is deselected, so
-   * it can't be used to derive controlled-ness on subsequent renders
-   */
-  const isControlled = useRef(value !== undefined);
   const [innerValue, setInnerValue] = useState(value ?? defaultValue);
-
   useEffect(() => {
-    if (!isControlled.current) return;
+    if (value === innerValue) return;
     setInnerValue(value);
-  }, [value]);
+  }, [innerValue, value]);
 
   const handleChangeValue = useCallback(
     (nextValue: string) => {
