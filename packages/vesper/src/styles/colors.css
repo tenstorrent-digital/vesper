@@ -145,6 +145,30 @@
   --vesper-alpha-inverse-700: rgba(7, 22, 20, 0.7);
   --vesper-alpha-inverse-800: rgba(7, 22, 20, 0.8);
   --vesper-alpha-inverse-900: rgba(7, 22, 20, 0.9);
+
+  /* alpha black/white colors (these don't change between themes) */
+  --vesper-alpha-black-0: transparent;
+  --vesper-alpha-black-50: rgba(7, 22, 20, 0.05);
+  --vesper-alpha-black-100: rgba(7, 22, 20, 0.1);
+  --vesper-alpha-black-200: rgba(7, 22, 20, 0.2);
+  --vesper-alpha-black-300: rgba(7, 22, 20, 0.3);
+  --vesper-alpha-black-400: rgba(7, 22, 20, 0.4);
+  --vesper-alpha-black-500: rgba(7, 22, 20, 0.5);
+  --vesper-alpha-black-600: rgba(7, 22, 20, 0.6);
+  --vesper-alpha-black-700: rgba(7, 22, 20, 0.7);
+  --vesper-alpha-black-800: rgba(7, 22, 20, 0.8);
+  --vesper-alpha-black-900: rgba(7, 22, 20, 0.9);
+  --vesper-alpha-white-0: transparent;
+  --vesper-alpha-white-50: rgba(241, 248, 248, 0.05);
+  --vesper-alpha-white-100: rgba(241, 248, 248, 0.1);
+  --vesper-alpha-white-200: rgba(241, 248, 248, 0.2);
+  --vesper-alpha-white-300: rgba(241, 248, 248, 0.3);
+  --vesper-alpha-white-400: rgba(241, 248, 248, 0.4);
+  --vesper-alpha-white-500: rgba(241, 248, 248, 0.5);
+  --vesper-alpha-white-600: rgba(241, 248, 248, 0.6);
+  --vesper-alpha-white-700: rgba(241, 248, 248, 0.7);
+  --vesper-alpha-white-800: rgba(241, 248, 248, 0.8);
+  --vesper-alpha-white-900: rgba(241, 248, 248, 0.9);
 }
 
 @media (prefers-color-scheme: light) {
@@ -295,28 +319,6 @@
     --vesper-alpha-inverse-700: rgba(241, 248, 248, 0.7);
     --vesper-alpha-inverse-800: rgba(241, 248, 248, 0.8);
     --vesper-alpha-inverse-900: rgba(241, 248, 248, 0.9);
-    --vesper-alpha-black-0: transparent;
-    --vesper-alpha-black-50: rgba(7, 22, 20, 0.05);
-    --vesper-alpha-black-100: rgba(7, 22, 20, 0.1);
-    --vesper-alpha-black-200: rgba(7, 22, 20, 0.2);
-    --vesper-alpha-black-300: rgba(7, 22, 20, 0.3);
-    --vesper-alpha-black-400: rgba(7, 22, 20, 0.4);
-    --vesper-alpha-black-500: rgba(7, 22, 20, 0.5);
-    --vesper-alpha-black-600: rgba(7, 22, 20, 0.6);
-    --vesper-alpha-black-700: rgba(7, 22, 20, 0.7);
-    --vesper-alpha-black-800: rgba(7, 22, 20, 0.8);
-    --vesper-alpha-black-900: rgba(7, 22, 20, 0.9);
-    --vesper-alpha-white-0: transparent;
-    --vesper-alpha-white-50: rgba(241, 248, 248, 0.05);
-    --vesper-alpha-white-100: rgba(241, 248, 248, 0.1);
-    --vesper-alpha-white-200: rgba(241, 248, 248, 0.2);
-    --vesper-alpha-white-300: rgba(241, 248, 248, 0.3);
-    --vesper-alpha-white-400: rgba(241, 248, 248, 0.4);
-    --vesper-alpha-white-500: rgba(241, 248, 248, 0.5);
-    --vesper-alpha-white-600: rgba(241, 248, 248, 0.6);
-    --vesper-alpha-white-700: rgba(241, 248, 248, 0.7);
-    --vesper-alpha-white-800: rgba(241, 248, 248, 0.8);
-    --vesper-alpha-white-900: rgba(241, 248, 248, 0.9);
   }
 }
 
