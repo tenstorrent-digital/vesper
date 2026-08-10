@@ -86,19 +86,3 @@ const [view, setView] = useState("list");
   ]}
 />;
 ```
-
-```tsx
-// In a form
-// `name` and `required` apply to a hidden select that participates in form
-// submission and validation
-<form>
-  <Toggle
-    name="billing"
-    required
-    options={[
-      { value: "monthly", text: "Monthly" },
-      { value: "yearly", text: "Yearly" },
-    ]}
-  />
-</form>
-```
