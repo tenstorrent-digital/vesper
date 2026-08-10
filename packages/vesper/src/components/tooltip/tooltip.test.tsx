@@ -38,7 +38,7 @@ describe("tooltip [unit]", () => {
     );
 
     const trigger = result.container.firstChild as HTMLElement;
-    fireEvent.pointerMove(trigger);
+    fireEvent.mouseEnter(trigger);
 
     await waitFor(() => {
       expect(handleOpenChange).toHaveBeenCalledWith(true);
@@ -102,7 +102,7 @@ describe("tooltip [unit]", () => {
     );
 
     const trigger = result.container.firstChild as HTMLElement;
-    fireEvent.pointerMove(trigger);
+    fireEvent.mouseEnter(trigger);
 
     await waitFor(() => {
       expect(handleOpenChange).toHaveBeenCalledWith(true);
@@ -197,7 +197,7 @@ describe("tooltip [unit]", () => {
     );
 
     const trigger = result.container.firstChild as HTMLElement;
-    fireEvent.pointerMove(trigger);
+    fireEvent.mouseEnter(trigger);
 
     await waitFor(() => {
       expect(handleOpenChange).toHaveBeenCalledWith(true);

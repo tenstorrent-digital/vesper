@@ -4,7 +4,8 @@ exports[`tooltip [snapshot] > closed 1`] = `
 <div>
   <p
     class="vesper-typography vesper-typography-copy-md"
-    data-state="closed"
+    data-base-ui-tooltip-trigger=""
+    id="base-ui-_r_1a_"
     style="color: var(--vesper-stone-900);"
   >
     tooltip trigger
@@ -16,11 +17,11 @@ exports[`tooltip [snapshot] > open 1`] = `
 <div
   class="vesper-typography vesper-typography-label-xs vesper-tooltip"
   data-align="center"
+  data-base-ui-focusable=""
+  data-open=""
   data-side="top"
-  data-state="instant-open"
-  id="radix-_r_d_"
-  role="tooltip"
-  style="max-width: calc(15rem); --radix-tooltip-content-transform-origin: var(--radix-popper-transform-origin); --radix-tooltip-content-available-width: var(--radix-popper-available-width); --radix-tooltip-content-available-height: var(--radix-popper-available-height); --radix-tooltip-trigger-width: var(--radix-popper-anchor-width); --radix-tooltip-trigger-height: var(--radix-popper-anchor-height); animation: auto ease 0s 1 normal none running none;"
+  style="max-width: calc(15rem);"
+  tabindex="-1"
 >
   Tooltip text
   <div

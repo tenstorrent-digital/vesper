@@ -101,7 +101,7 @@ export function Tooltip(props: TooltipProps) {
     <BaseTooltip.Provider>
       <BaseTooltip.Root
         defaultOpen={defaultOpen}
-        onOpenChange={onOpenChange}
+        onOpenChange={(value) => onOpenChange?.(value)}
         open={open}
       >
         <BaseTooltip.Trigger
