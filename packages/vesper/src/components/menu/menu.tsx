@@ -49,7 +49,7 @@ export interface MenuProps {
   width?: number;
   /** Specify the element or document fragment to portal the menu into */
   container?: PortalContainer;
-  /** Specify the element to anchor the menu against. Default behavior anchors the menu to the triggering element */
+  /** Specify the element to anchor the menu against. @default trigger element */
   anchor?: HTMLElement | RefObject<HTMLElement | null>;
 }
 
