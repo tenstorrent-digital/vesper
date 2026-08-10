@@ -45,16 +45,19 @@ const TabsTestComponent = ({
   variant,
   defaultValue,
   onValueChange,
+  activationMode,
 }: {
   variant?: TabsVariant;
   defaultValue?: string;
   onValueChange?(value: string): void;
+  activationMode?: "automatic" | "manual";
 }) => (
   <Tabs
     data-testid="tabs"
     variant={variant}
     defaultValue={defaultValue}
     onValueChange={onValueChange}
+    activationMode={activationMode}
     items={[
       {
         value: "tab-1",
@@ -118,7 +121,7 @@ describe("tabs [unit]", () => {
     const result = render(<TabsTestComponent />);
 
     const tab1Content = result.queryByTestId("tab-1-content");
-    expect(tab1Content).toBeNull();
+    expect(tab1Content).not.toBeNull();
 
     const tab2Content = result.queryByTestId("tab-2-content");
     expect(tab2Content).toBeNull();
@@ -193,8 +196,10 @@ describe("tabs [unit]", () => {
     expect(onValueChange).toHaveBeenCalledWith("tab-2");
   });
 
-  test("keyboard navigation", async () => {
-    const result = render(<TabsTestComponent defaultValue="tab-1" />);
+  test("keyboard navigation with automatic activation", async () => {
+    const result = render(
+      <TabsTestComponent activationMode="automatic" defaultValue="tab-1" />,
+    );
 
     const [tab1] = result.getAllByRole("tab");
     await userEvent.click(tab1!);
