@@ -13,20 +13,20 @@ A popup overlay that displays additional information when hovering over or focus
 
 ## Options
 
-| Prop            | Type                                     | Description                                                                               | Default    |
-| --------------- | ---------------------------------------- | ----------------------------------------------------------------------------------------- | ---------- |
-| `content`       | `ReactNode`                              | The content displayed inside the tooltip popup.                                           | —          |
-| `side`          | `"top" \| "right" \| "bottom" \| "left"` | The preferred side to render the tooltip against.                                         | `"top"`    |
-| `sideOffset`    | `number`                                 | The distance in pixels from the trigger to the tooltip (in addition to the arrow height). | `4`        |
-| `align`         | `"center" \| "start" \| "end"`           | The alignment of the tooltip relative to the trigger.                                     | `"center"` |
-| `alignOffset`   | `number`                                 | An offset in pixels from the aligned edge.                                                | `0`        |
-| `open`          | `boolean`                                | Controls the open state of the tooltip (controlled mode).                                 | —          |
-| `onOpenChange`  | `(value: boolean) => void`               | Callback fired when the open state changes.                                               | —          |
-| `delayDuration` | `number`                                 | Duration in milliseconds to wait before showing the tooltip.                              | `500`      |
-| `defaultOpen`   | `boolean`                                | Whether the tooltip is open by default (uncontrolled mode).                               | `false`    |
-| `maxWidth`      | `number`                                 | The maximum width of the tooltip in pixels. Content wraps if exceeded.                    | `240`      |
-| `container`     | `Element \| DocumentFragment \| null`    | Specify the element or document fragment to portal the tooltip into.                      | –          |
-| `children`      | `ReactNode`                              | The trigger element that the tooltip is attached to.                                      | —          |
+| Prop            | Type                                                                                | Description                                                                               | Default    |
+| --------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ---------- |
+| `content`       | `ReactNode`                                                                         | The content displayed inside the tooltip popup.                                           | —          |
+| `side`          | `"top" \| "right" \| "bottom" \| "left"`                                            | The preferred side to render the tooltip against.                                         | `"top"`    |
+| `sideOffset`    | `number`                                                                            | The distance in pixels from the trigger to the tooltip (in addition to the arrow height). | `4`        |
+| `align`         | `"center" \| "start" \| "end"`                                                      | The alignment of the tooltip relative to the trigger.                                     | `"center"` |
+| `alignOffset`   | `number`                                                                            | An offset in pixels from the aligned edge.                                                | `0`        |
+| `open`          | `boolean`                                                                           | Controls the open state of the tooltip (controlled mode).                                 | —          |
+| `onOpenChange`  | `(value: boolean) => void`                                                          | Callback fired when the open state changes.                                               | —          |
+| `delayDuration` | `number`                                                                            | Duration in milliseconds to wait before showing the tooltip.                              | `500`      |
+| `defaultOpen`   | `boolean`                                                                           | Whether the tooltip is open by default (uncontrolled mode).                               | `false`    |
+| `maxWidth`      | `number`                                                                            | The maximum width of the tooltip in pixels. Content wraps if exceeded.                    | `240`      |
+| `container`     | `HTMLElement \| ShadowRoot \| null \| RefObject<HTMLElement \| ShadowRoot \| null>` | Specify the element or document fragment to portal the tooltip into.                      | –          |
+| `children`      | `ReactNode`                                                                         | The trigger element that the tooltip is attached to.                                      | —          |
 
 ## Examples
 

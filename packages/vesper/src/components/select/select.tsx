@@ -81,7 +81,7 @@ const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
  * @param {string} [props.defaultValue] - (optional) The initial selected value for uncontrolled usage
  * @param {(value: string) => void} [props.onValueChange] - (optional) Callback invoked with the new value whenever the selection changes
  * @param {boolean} [props.required] - (optional) Marks the select as required for form validation
- * @param {Element | DocumentFragment} [props.container] - (optional) Specify the element or document fragment to portal the dropdown into
+ * @param {PortalContainer} [props.container] - (optional) Specify the element or document fragment to portal the dropdown into
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  *
  * You may also pass any additional props to the underlying `button` element
