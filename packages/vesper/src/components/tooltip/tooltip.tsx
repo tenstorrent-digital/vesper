@@ -1,13 +1,7 @@
 "use client";
 
 import { type ReactNode, useState } from "react";
-import {
-  Tooltip as TooltipRoot,
-  TooltipContent,
-  TooltipPortal,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@radix-ui/react-tooltip";
+import { Tooltip as BaseTooltip } from "@base-ui/react/tooltip";
 
 import { Typography } from "@/components/typography/typography";
 
@@ -104,32 +98,36 @@ export function Tooltip(props: TooltipProps) {
   }
 
   return (
-    <TooltipProvider>
-      <TooltipRoot
+    <BaseTooltip.Provider>
+      <BaseTooltip.Root
         defaultOpen={defaultOpen}
-        delayDuration={delayDuration}
         onOpenChange={onOpenChange}
         open={open}
       >
-        <TooltipTrigger asChild ref={setRef}>
-          {children}
-        </TooltipTrigger>
-        <TooltipPortal container={portalContainer}>
-          <Typography
-            variant="label-xs"
-            className="vesper-tooltip"
-            style={{ maxWidth: `calc(${maxWidth} * (1rem / 16))` }}
-            as={TooltipContent}
+        <BaseTooltip.Trigger
+          delay={delayDuration}
+          render={children}
+          ref={setRef}
+        />
+        <BaseTooltip.Portal container={portalContainer}>
+          <BaseTooltip.Positioner
             align={align}
             alignOffset={alignOffset * (baseRemSize / 16)}
             side={side}
             sideOffset={baseRemSize / 2 + sideOffset * (baseRemSize / 16)}
           >
-            {content}
-            <div className="vesper-tooltip-arrow" />
-          </Typography>
-        </TooltipPortal>
-      </TooltipRoot>
-    </TooltipProvider>
+            <Typography
+              variant="label-xs"
+              className="vesper-tooltip"
+              style={{ maxWidth: `calc(${maxWidth} * (1rem / 16))` }}
+              as={BaseTooltip.Popup}
+            >
+              {content}
+              <div className="vesper-tooltip-arrow" />
+            </Typography>
+          </BaseTooltip.Positioner>
+        </BaseTooltip.Portal>
+      </BaseTooltip.Root>
+    </BaseTooltip.Provider>
   );
 }
