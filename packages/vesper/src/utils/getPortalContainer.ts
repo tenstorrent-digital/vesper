@@ -4,7 +4,7 @@
  * `null` is accepted so that container state from a ref callback can be passed
  * through directly, and is treated the same as omitting the container.
  */
-export type PortalContainer = Element | DocumentFragment | null;
+export type PortalContainer = HTMLElement | ShadowRoot | null;
 
 /**
  * Resolves the container that portalled content should be rendered into.
@@ -26,6 +26,6 @@ export type PortalContainer = Element | DocumentFragment | null;
 export function getPortalContainer(
   container: PortalContainer | undefined,
   trigger: Element | null | undefined,
-): Element | DocumentFragment | undefined {
+): PortalContainer | undefined {
   return container ?? trigger?.closest("dialog") ?? undefined;
 }
