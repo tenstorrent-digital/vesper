@@ -46,8 +46,8 @@
 @import "../components/avatar-group/avatar-group.css" layer(vesper);
 @import "../components/avatar/avatar.css" layer(vesper);
 @import "../components/progress-bar/progress-bar.css" layer(vesper);
-@import "../components/split-button/split-button.css" layer(vesper);
 @import "../components/text-button/text-button.css" layer(vesper);
 @import "../components/button/button.css" layer(vesper);
 @import "../components/icon-button/icon-button.css" layer(vesper);
 @import "../components/menu/menu.css" layer(vesper);
+@import "../components/split-button/split-button.css" layer(vesper);
