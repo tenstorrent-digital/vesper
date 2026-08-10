@@ -135,7 +135,8 @@ export function Toggle(props: ToggleProps) {
   useEffect(() => {
     if (value === innerValue) return;
     setInnerValue(value);
-  }, [innerValue, value]);
+    // eslint-disable-next-line
+  }, [value]);
 
   const handleChangeValue = useCallback(
     (nextValue: string) => {
