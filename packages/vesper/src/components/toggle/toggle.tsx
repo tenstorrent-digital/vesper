@@ -132,9 +132,16 @@ export function Toggle(props: ToggleProps) {
   useImperativeHandle(ref, () => innerRef.current!);
 
   const [innerValue, setInnerValue] = useState(value ?? defaultValue);
+
+  const initial = useRef(true);
   useEffect(() => {
-    if (value === innerValue) return;
-    setInnerValue(value);
+    if (initial.current) {
+      initial.current = false;
+      return;
+    }
+    if (value !== innerValue) {
+      setInnerValue(value);
+    }
     // eslint-disable-next-line
   }, [value]);
 
