@@ -66,12 +66,12 @@ export function ProgressBar(props: ProgressBarProps) {
         animated && "vesper-progress-bar-animated",
         className,
       )}
+      {...rest}
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuenow={progress}
       role="progressbar"
       aria-valuetext={`${progress}%`}
-      {...rest}
     >
       {variant === "default" && (
         <ProgressBarIndicatorDefault value={progress} />
