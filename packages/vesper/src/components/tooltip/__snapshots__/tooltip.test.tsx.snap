@@ -5,7 +5,7 @@ exports[`tooltip [snapshot] > closed 1`] = `
   <p
     class="vesper-typography vesper-typography-copy-md"
     data-base-ui-tooltip-trigger=""
-    id="base-ui-_r_2l_"
+    id="base-ui-_r_29_"
     style="color: var(--vesper-stone-900);"
   >
     tooltip trigger
@@ -20,7 +20,7 @@ exports[`tooltip [snapshot] > open 1`] = `
   data-base-ui-focusable=""
   data-open=""
   data-side="top"
-  id="vesper-tooltip-_r_2f_"
+  id="vesper-tooltip-_r_23_"
   role="tooltip"
   style="max-width: calc(15rem);"
   tabindex="-1"
