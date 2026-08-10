@@ -84,7 +84,7 @@ export function Tabs(props: TabsProps) {
     items,
     className,
     variant = "primary",
-    activationMode = "manual",
+    activationMode = "automatic",
     onValueChange,
     ...rest
   } = props;
