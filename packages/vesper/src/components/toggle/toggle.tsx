@@ -124,7 +124,6 @@ export function Toggle(props: ToggleProps) {
     required,
     disabled,
     ref,
-    onBlur,
     onKeyDown,
     ...rest
   } = props;
@@ -207,14 +206,6 @@ export function Toggle(props: ToggleProps) {
     [onKeyDown],
   );
 
-  const handleBlur = useCallback(
-    (e: FocusEvent<HTMLDivElement>) => {
-      onBlur?.(e);
-      setFocusedValue(undefined);
-    },
-    [onBlur],
-  );
-
   const [focusedValue, setFocusedValue] = useState<string | undefined>(
     undefined,
   );
@@ -241,7 +232,6 @@ export function Toggle(props: ToggleProps) {
         className,
       )}
       onKeyDown={handleKeyDown}
-      onBlur={handleBlur}
       {...rest}
     >
       <select
