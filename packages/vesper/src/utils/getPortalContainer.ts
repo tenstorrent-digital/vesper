@@ -1,10 +1,13 @@
+import { RefObject } from "react";
+
 /**
- * An element or document fragment that portalled content can be rendered into.
+ * An element or shadow root that portalled content can be rendered into.
  *
  * `null` is accepted so that container state from a ref callback can be passed
  * through directly, and is treated the same as omitting the container.
  */
-export type PortalContainer = HTMLElement | ShadowRoot | null;
+export type PortalContainer =
+  HTMLElement | ShadowRoot | null | RefObject<HTMLElement | ShadowRoot | null>;
 
 /**
  * Resolves the container that portalled content should be rendered into.
