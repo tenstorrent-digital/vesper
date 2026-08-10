@@ -17,14 +17,14 @@ describe("accordion [unit]", () => {
     const result = render(
       <Accordion title={TITLE} defaultOpen={false}>
         {CHILDREN}
-      </Accordion>
+      </Accordion>,
     );
 
     within(result.container).getByRole("button").click();
     await waitFor(() =>
       expect(
-        result.container.querySelector(".vesper-accordion-children")
-      ).not.toBeNull()
+        result.container.querySelector(".vesper-accordion-children"),
+      ).not.toBeNull(),
     );
   });
 
@@ -32,14 +32,14 @@ describe("accordion [unit]", () => {
     const result = render(
       <Accordion title={TITLE} defaultOpen>
         {CHILDREN}
-      </Accordion>
+      </Accordion>,
     );
 
     within(result.container).getByRole("button").click();
     await waitFor(() =>
       expect(
-        result.container.querySelector(".vesper-accordion-children")
-      ).toBeNull()
+        result.container.querySelector(".vesper-accordion-children"),
+      ).toBeNull(),
     );
   });
 
@@ -47,7 +47,7 @@ describe("accordion [unit]", () => {
     const result = render(
       <Accordion title={TITLE} className="custom-class">
         {CHILDREN}
-      </Accordion>
+      </Accordion>,
     );
 
     const el = result.container.firstChild;
@@ -62,7 +62,7 @@ describe("accordion [snapshot]", () => {
     const result = render(
       <Accordion title={TITLE} open={false}>
         <div style={{ height: 200 }} />
-      </Accordion>
+      </Accordion>,
     );
 
     expect(result.container.firstChild).toMatchSnapshot();
@@ -73,7 +73,7 @@ describe("accordion [snapshot]", () => {
     const result = render(
       <Accordion title={TITLE} open>
         <div style={{ height: 200 }} />
-      </Accordion>
+      </Accordion>,
     );
 
     expect(result.container.firstChild).toMatchSnapshot();
@@ -109,14 +109,14 @@ describe("accordion [a11y]", () => {
         const result = render(
           <Accordion title={TITLE} open={open}>
             {CHILDREN}
-          </Accordion>
+          </Accordion>,
         );
 
         expect(await axe.run(result.container)).toHaveNoViolations();
       };
 
       const failsA11y = ACCORDION_A11Y_FAILING_PERMUTATIONS.some(
-        (p) => p.open === open && p.theme === theme
+        (p) => p.open === open && p.theme === theme,
       );
 
       if (failsA11y) test.todo(label, testFn);
