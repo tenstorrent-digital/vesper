@@ -1,3 +1,5 @@
+"use client";
+
 import { ComponentProps, ReactNode } from "react";
 import { Tabs as BaseTabs } from "@base-ui/react/tabs";
 
