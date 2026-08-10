@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode, useState } from "react";
+import { type ReactNode, RefObject, useState } from "react";
 import { Menu as DropdownMenu } from "@base-ui/react/menu";
 
 import { Checkmark, Lock } from "@/components/icons/icons";
@@ -49,6 +49,8 @@ export interface MenuProps {
   width?: number;
   /** Specify the element or document fragment to portal the menu into */
   container?: PortalContainer;
+  /** Specify the element to anchor the menu against. Default behavior anchors the menu to the triggering element */
+  anchor?: HTMLElement | RefObject<HTMLElement | null>;
 }
 
 /**
@@ -94,6 +96,7 @@ export function Menu(props: MenuProps) {
     align = "start",
     alignOffset = 0,
     container,
+    anchor,
     ...rest
   } = props;
 
@@ -112,6 +115,7 @@ export function Menu(props: MenuProps) {
       <DropdownMenu.Trigger render={children} ref={setRef} />
       <DropdownMenu.Portal container={portalContainer}>
         <DropdownMenu.Positioner
+          anchor={anchor}
           side={side}
           sideOffset={sideOffset * (baseRemSize / 16)}
           align={align}
