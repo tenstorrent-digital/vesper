@@ -57,11 +57,9 @@
   border-radius: var(--vesper-radius-1);
   display: inline-flex;
   align-items: center;
-  &:not(.vesper-toggle-item-active) {
-    color: var(--vesper-text-secondary);
-    &:hover {
-      background: var(--vesper-tint-neutral-200);
-    }
+  color: var(--vesper-text-secondary);
+  &:hover {
+    background: var(--vesper-tint-neutral-200);
   }
   &.vesper-toggle-item-active {
     background: var(--vesper-tint-neutral-400);
