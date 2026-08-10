@@ -146,7 +146,7 @@ function MenuItem({
     <DropdownMenu.Item
       disabled={style === "disabled" || style === "locked"}
       className={`vesper-menu-item vesper-menu-item-${style}`}
-      onClick={onSelect}
+      onClick={() => onSelect()}
       label={text}
     >
       {icon && <div className="vesper-menu-item-left-icon">{icon}</div>}
