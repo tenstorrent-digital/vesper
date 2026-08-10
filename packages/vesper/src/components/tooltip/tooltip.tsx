@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useId, useState } from "react";
 import { Tooltip as BaseTooltip } from "@base-ui/react/tooltip";
 
 import { Typography } from "@/components/typography/typography";
@@ -89,6 +89,14 @@ export function Tooltip(props: TooltipProps) {
 
   const [ref, setRef] = useState<Element | null>(null);
 
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(
+    defaultOpen ?? false,
+  );
+  const isOpen = open ?? uncontrolledOpen;
+
+  const id = useId();
+  const popupId = `vesper-tooltip-${id}`;
+
   const baseRemSize = useBaseRemSize();
 
   const portalContainer = getPortalContainer(container, ref);
@@ -101,10 +109,14 @@ export function Tooltip(props: TooltipProps) {
     <BaseTooltip.Provider>
       <BaseTooltip.Root
         defaultOpen={defaultOpen}
-        onOpenChange={(value) => onOpenChange?.(value)}
+        onOpenChange={(value) => {
+          setUncontrolledOpen(value);
+          onOpenChange?.(value);
+        }}
         open={open}
       >
         <BaseTooltip.Trigger
+          aria-describedby={isOpen ? popupId : undefined}
           delay={delayDuration}
           render={children}
           ref={setRef}
@@ -121,6 +133,8 @@ export function Tooltip(props: TooltipProps) {
               className="vesper-tooltip"
               style={{ maxWidth: `calc(${maxWidth} * (1rem / 16))` }}
               as={BaseTooltip.Popup}
+              id={popupId}
+              role="tooltip"
             >
               {content}
               <div className="vesper-tooltip-arrow" />
