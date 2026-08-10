@@ -2,6 +2,7 @@
 
 import {
   type ComponentProps,
+  FocusEvent,
   KeyboardEvent,
   type ReactNode,
   useCallback,
@@ -124,6 +125,7 @@ export function Toggle(props: ToggleProps) {
     disabled,
     ref,
     onKeyDown,
+    onBlur,
     ...rest
   } = props;
 
@@ -206,6 +208,14 @@ export function Toggle(props: ToggleProps) {
     [onKeyDown],
   );
 
+  const handleBlur = useCallback(
+    (e: FocusEvent<HTMLDivElement>) => {
+      onBlur?.(e);
+      setFocusedValue(undefined);
+    },
+    [onBlur],
+  );
+
   const [focusedValue, setFocusedValue] = useState<string | undefined>(
     undefined,
   );
@@ -232,6 +242,7 @@ export function Toggle(props: ToggleProps) {
         className,
       )}
       onKeyDown={handleKeyDown}
+      onBlur={handleBlur}
       {...rest}
     >
       <select
