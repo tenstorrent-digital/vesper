@@ -54,15 +54,17 @@ const MENU_ITEMS: MenuItemProps[] = [
 afterEach(cleanup);
 
 describe("menu [unit]", () => {
-  test("clicking trigger when closed", () => {
+  test("clicking trigger when closed", async () => {
     const result = render(
       <Menu items={MENU_ITEMS} defaultOpen={false}>
         <TextButton>trigger</TextButton>
       </Menu>,
     );
 
-    fireEvent.pointerDown(within(result.container).getByRole("button"));
-    expect(document.querySelector(".vesper-menu")).not.toBeNull();
+    await userEvent.click(within(result.container).getByRole("button"));
+    await waitFor(() =>
+      expect(document.querySelector(".vesper-menu")).not.toBeNull(),
+    );
   });
 
   test("clicking non-disabled menu item", async () => {

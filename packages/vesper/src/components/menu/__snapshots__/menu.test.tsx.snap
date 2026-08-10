@@ -4,24 +4,22 @@ exports[`menu [snapshot] > closed 1`] = `null`;
 
 exports[`menu [snapshot] > open 1`] = `
 <div
-  aria-labelledby="radix-_r_2p_"
+  aria-labelledby="base-ui-_r_53_"
   aria-orientation="vertical"
   class="vesper-menu"
   data-align="start"
-  data-orientation="vertical"
-  data-radix-menu-content=""
+  data-base-ui-focusable=""
+  data-open=""
+  data-rootownerid="_r_50_"
   data-side="bottom"
-  data-state="open"
-  dir="ltr"
-  id="radix-_r_2q_"
+  id="_r_51_"
   role="menu"
-  style="outline: none; width: calc(12.5rem); --radix-dropdown-menu-content-transform-origin: var(--radix-popper-transform-origin); --radix-dropdown-menu-content-available-width: var(--radix-popper-available-width); --radix-dropdown-menu-content-available-height: var(--radix-popper-available-height); --radix-dropdown-menu-trigger-width: var(--radix-popper-anchor-width); --radix-dropdown-menu-trigger-height: var(--radix-popper-anchor-height); pointer-events: auto;"
+  style="width: calc(12.5rem);"
   tabindex="-1"
 >
   <div
     class="vesper-menu-item vesper-menu-item-default"
-    data-orientation="vertical"
-    data-radix-collection-item=""
+    id="base-ui-_r_56_"
     role="menuitem"
     tabindex="-1"
   >
@@ -63,8 +61,7 @@ exports[`menu [snapshot] > open 1`] = `
   </div>
   <div
     class="vesper-menu-item vesper-menu-item-selected"
-    data-orientation="vertical"
-    data-radix-collection-item=""
+    id="base-ui-_r_57_"
     role="menuitem"
     tabindex="-1"
   >
@@ -110,8 +107,7 @@ exports[`menu [snapshot] > open 1`] = `
   </div>
   <div
     class="vesper-menu-item vesper-menu-item-danger"
-    data-orientation="vertical"
-    data-radix-collection-item=""
+    id="base-ui-_r_58_"
     role="menuitem"
     tabindex="-1"
   >
@@ -149,8 +145,7 @@ exports[`menu [snapshot] > open 1`] = `
     aria-disabled="true"
     class="vesper-menu-item vesper-menu-item-locked"
     data-disabled=""
-    data-orientation="vertical"
-    data-radix-collection-item=""
+    id="base-ui-_r_59_"
     role="menuitem"
     tabindex="-1"
   >
@@ -189,8 +184,7 @@ exports[`menu [snapshot] > open 1`] = `
     aria-disabled="true"
     class="vesper-menu-item vesper-menu-item-disabled"
     data-disabled=""
-    data-orientation="vertical"
-    data-radix-collection-item=""
+    id="base-ui-_r_5a_"
     role="menuitem"
     tabindex="-1"
   >
