@@ -23,17 +23,17 @@ const TEXT_BUTTON_PERMUTATIONS: TextButtonProps[] =
 const TEXT_BUTTON_A11Y_FAILING_PERMUTATIONS: (TextButtonProps & {
   theme: string;
 })[] = [
-  ...TEXT_BUTTON_SIZES.flatMap((size) => [
+  // lg text buttons render as large text, which passes wcag2aaa at a lower
+  // contrast ratio than sm and md text buttons
+  ...(["sm", "md"] as const).flatMap((size) => [
+    { size, variant: "subtle" as const, disabled: false, theme: "light" },
     { size, variant: "accent" as const, disabled: false, theme: "light" },
     { size, variant: "success" as const, disabled: false, theme: "light" },
     { size, variant: "warning" as const, disabled: false, theme: "light" },
-    { size, variant: "danger" as const, disabled: false, theme: "light" },
-    { size, variant: "subtle" as const, disabled: false, theme: "light" },
-    { size, variant: "pink" as const, disabled: false, theme: "light" },
+    { size, variant: "info" as const, disabled: false, theme: "light" },
     { size, variant: "subtle" as const, disabled: false, theme: "dark" },
     { size, variant: "danger" as const, disabled: false, theme: "dark" },
     { size, variant: "info" as const, disabled: false, theme: "dark" },
-    { size, variant: "purple" as const, disabled: false, theme: "dark" },
     { size, variant: "pink" as const, disabled: false, theme: "dark" },
   ]),
 ];

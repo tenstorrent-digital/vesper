@@ -11,7 +11,6 @@ import "@/styles/test.css";
 
 const TABS_PERMUTATIONS: {
   name: string;
-  failsA11y: boolean;
   variant: TabsVariant;
   defaultValue?: string;
 }[] = [
@@ -19,25 +18,21 @@ const TABS_PERMUTATIONS: {
     name: "primary, no value",
     variant: "primary",
     defaultValue: undefined,
-    failsA11y: true,
   },
   {
     name: "primary, value",
     variant: "primary",
     defaultValue: "tab-1",
-    failsA11y: true,
   },
   {
     name: "secondary, no value",
     variant: "secondary",
     defaultValue: undefined,
-    failsA11y: false,
   },
   {
     name: "secondary, value",
     variant: "secondary",
     defaultValue: "tab-1",
-    failsA11y: false,
   },
 ];
 
@@ -238,15 +233,12 @@ describe("tabs [a11y]", () => {
     });
 
     TABS_PERMUTATIONS.forEach((permutation) => {
-      const { name, failsA11y, ...props } = permutation;
+      const { name, ...props } = permutation;
 
-      const testFn = async () => {
+      test(`a11y (${name})`, async () => {
         const { container } = render(<TabsTestComponent {...props} />);
         expect(await axe.run(container)).toHaveNoViolations();
-      };
-
-      if (failsA11y) test.todo(`a11y (${name})`, testFn);
-      else test(`a11y (${name})`, testFn);
+      });
     });
   });
 });
