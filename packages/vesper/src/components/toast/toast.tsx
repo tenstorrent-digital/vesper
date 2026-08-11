@@ -230,7 +230,7 @@ export interface ToastsProps {
   ariaLabel?: string;
   /** A keyboard shortcut that moves focus to the oldest active toast. Accepts a key name string or an object specifying modifier keys. Defaults to `"F8"`. */
   shortcut?: ToastsShortcut;
-  /** The DOM element or document fragment to portal the toast container into. Defaults to the `document.body`. */
+  /** The DOM element or shadow root to portal the toast container into. Defaults to the `document.body`. */
   container?: Element | DocumentFragment;
 }
 

@@ -2,21 +2,21 @@
 
 exports[`select [snapshot] > lg 1`] = `
 <button
-  aria-autocomplete="none"
   aria-expanded="false"
+  aria-haspopup="listbox"
   aria-label="Select an option"
   class="vesper-select vesper-select-lg"
   data-placeholder=""
-  data-state="closed"
-  dir="ltr"
+  id="base-ui-_r_50_"
   role="combobox"
+  tabindex="0"
   type="button"
 >
   <span
     class="vesper-typography vesper-typography-copy-md"
   >
     <span
-      style="pointer-events: none;"
+      data-placeholder=""
     >
       Select an option
     </span>
@@ -50,23 +50,23 @@ exports[`select [snapshot] > lg 1`] = `
 
 exports[`select [snapshot] > lg, disabled 1`] = `
 <button
-  aria-autocomplete="none"
   aria-expanded="false"
+  aria-haspopup="listbox"
   aria-label="Select an option"
   class="vesper-select vesper-select-lg"
   data-disabled=""
   data-placeholder=""
-  data-state="closed"
-  dir="ltr"
   disabled=""
+  id="base-ui-_r_53_"
   role="combobox"
+  tabindex="-1"
   type="button"
 >
   <span
     class="vesper-typography vesper-typography-copy-md"
   >
     <span
-      style="pointer-events: none;"
+      data-placeholder=""
     >
       Select an option
     </span>
@@ -100,14 +100,14 @@ exports[`select [snapshot] > lg, disabled 1`] = `
 
 exports[`select [snapshot] > lg, with icon 1`] = `
 <button
-  aria-autocomplete="none"
   aria-expanded="false"
+  aria-haspopup="listbox"
   aria-label="Select an option"
   class="vesper-select vesper-select-lg"
   data-placeholder=""
-  data-state="closed"
-  dir="ltr"
+  id="base-ui-_r_56_"
   role="combobox"
+  tabindex="0"
   type="button"
 >
   <span
@@ -165,7 +165,7 @@ exports[`select [snapshot] > lg, with icon 1`] = `
     class="vesper-typography vesper-typography-copy-md"
   >
     <span
-      style="pointer-events: none;"
+      data-placeholder=""
     >
       Select an option
     </span>
@@ -199,16 +199,16 @@ exports[`select [snapshot] > lg, with icon 1`] = `
 
 exports[`select [snapshot] > lg, with icon, disabled 1`] = `
 <button
-  aria-autocomplete="none"
   aria-expanded="false"
+  aria-haspopup="listbox"
   aria-label="Select an option"
   class="vesper-select vesper-select-lg"
   data-disabled=""
   data-placeholder=""
-  data-state="closed"
-  dir="ltr"
   disabled=""
+  id="base-ui-_r_5c_"
   role="combobox"
+  tabindex="-1"
   type="button"
 >
   <span
@@ -266,7 +266,7 @@ exports[`select [snapshot] > lg, with icon, disabled 1`] = `
     class="vesper-typography vesper-typography-copy-md"
   >
     <span
-      style="pointer-events: none;"
+      data-placeholder=""
     >
       Select an option
     </span>
@@ -300,21 +300,19 @@ exports[`select [snapshot] > lg, with icon, disabled 1`] = `
 
 exports[`select [snapshot] > lg, with value 1`] = `
 <button
-  aria-autocomplete="none"
   aria-expanded="false"
+  aria-haspopup="listbox"
   aria-label="Select an option"
   class="vesper-select vesper-select-lg"
-  data-state="closed"
-  dir="ltr"
+  id="base-ui-_r_59_"
   role="combobox"
+  tabindex="0"
   type="button"
 >
   <span
     class="vesper-typography vesper-typography-copy-md"
   >
-    <span
-      style="pointer-events: none;"
-    >
+    <span>
       Tigers
     </span>
   </span>
@@ -347,21 +345,21 @@ exports[`select [snapshot] > lg, with value 1`] = `
 
 exports[`select [snapshot] > md 1`] = `
 <button
-  aria-autocomplete="none"
   aria-expanded="false"
+  aria-haspopup="listbox"
   aria-label="Select an option"
   class="vesper-select vesper-select-md"
   data-placeholder=""
-  data-state="closed"
-  dir="ltr"
+  id="base-ui-_r_4h_"
   role="combobox"
+  tabindex="0"
   type="button"
 >
   <span
     class="vesper-typography vesper-typography-copy-sm"
   >
     <span
-      style="pointer-events: none;"
+      data-placeholder=""
     >
       Select an option
     </span>
@@ -395,23 +393,23 @@ exports[`select [snapshot] > md 1`] = `
 
 exports[`select [snapshot] > md, disabled 1`] = `
 <button
-  aria-autocomplete="none"
   aria-expanded="false"
+  aria-haspopup="listbox"
   aria-label="Select an option"
   class="vesper-select vesper-select-md"
   data-disabled=""
   data-placeholder=""
-  data-state="closed"
-  dir="ltr"
   disabled=""
+  id="base-ui-_r_4k_"
   role="combobox"
+  tabindex="-1"
   type="button"
 >
   <span
     class="vesper-typography vesper-typography-copy-sm"
   >
     <span
-      style="pointer-events: none;"
+      data-placeholder=""
     >
       Select an option
     </span>
@@ -445,14 +443,14 @@ exports[`select [snapshot] > md, disabled 1`] = `
 
 exports[`select [snapshot] > md, with icon 1`] = `
 <button
-  aria-autocomplete="none"
   aria-expanded="false"
+  aria-haspopup="listbox"
   aria-label="Select an option"
   class="vesper-select vesper-select-md"
   data-placeholder=""
-  data-state="closed"
-  dir="ltr"
+  id="base-ui-_r_4n_"
   role="combobox"
+  tabindex="0"
   type="button"
 >
   <span
@@ -510,7 +508,7 @@ exports[`select [snapshot] > md, with icon 1`] = `
     class="vesper-typography vesper-typography-copy-sm"
   >
     <span
-      style="pointer-events: none;"
+      data-placeholder=""
     >
       Select an option
     </span>
@@ -544,16 +542,16 @@ exports[`select [snapshot] > md, with icon 1`] = `
 
 exports[`select [snapshot] > md, with icon, disabled 1`] = `
 <button
-  aria-autocomplete="none"
   aria-expanded="false"
+  aria-haspopup="listbox"
   aria-label="Select an option"
   class="vesper-select vesper-select-md"
   data-disabled=""
   data-placeholder=""
-  data-state="closed"
-  dir="ltr"
   disabled=""
+  id="base-ui-_r_4t_"
   role="combobox"
+  tabindex="-1"
   type="button"
 >
   <span
@@ -611,7 +609,7 @@ exports[`select [snapshot] > md, with icon, disabled 1`] = `
     class="vesper-typography vesper-typography-copy-sm"
   >
     <span
-      style="pointer-events: none;"
+      data-placeholder=""
     >
       Select an option
     </span>
@@ -645,21 +643,19 @@ exports[`select [snapshot] > md, with icon, disabled 1`] = `
 
 exports[`select [snapshot] > md, with value 1`] = `
 <button
-  aria-autocomplete="none"
   aria-expanded="false"
+  aria-haspopup="listbox"
   aria-label="Select an option"
   class="vesper-select vesper-select-md"
-  data-state="closed"
-  dir="ltr"
+  id="base-ui-_r_4q_"
   role="combobox"
+  tabindex="0"
   type="button"
 >
   <span
     class="vesper-typography vesper-typography-copy-sm"
   >
-    <span
-      style="pointer-events: none;"
-    >
+    <span>
       Tigers
     </span>
   </span>
@@ -692,21 +688,21 @@ exports[`select [snapshot] > md, with value 1`] = `
 
 exports[`select [snapshot] > sm 1`] = `
 <button
-  aria-autocomplete="none"
   aria-expanded="false"
+  aria-haspopup="listbox"
   aria-label="Select an option"
   class="vesper-select vesper-select-sm"
   data-placeholder=""
-  data-state="closed"
-  dir="ltr"
+  id="base-ui-_r_42_"
   role="combobox"
+  tabindex="0"
   type="button"
 >
   <span
     class="vesper-typography vesper-typography-copy-xs"
   >
     <span
-      style="pointer-events: none;"
+      data-placeholder=""
     >
       Select an option
     </span>
@@ -740,23 +736,23 @@ exports[`select [snapshot] > sm 1`] = `
 
 exports[`select [snapshot] > sm, disabled 1`] = `
 <button
-  aria-autocomplete="none"
   aria-expanded="false"
+  aria-haspopup="listbox"
   aria-label="Select an option"
   class="vesper-select vesper-select-sm"
   data-disabled=""
   data-placeholder=""
-  data-state="closed"
-  dir="ltr"
   disabled=""
+  id="base-ui-_r_45_"
   role="combobox"
+  tabindex="-1"
   type="button"
 >
   <span
     class="vesper-typography vesper-typography-copy-xs"
   >
     <span
-      style="pointer-events: none;"
+      data-placeholder=""
     >
       Select an option
     </span>
@@ -790,14 +786,14 @@ exports[`select [snapshot] > sm, disabled 1`] = `
 
 exports[`select [snapshot] > sm, with icon 1`] = `
 <button
-  aria-autocomplete="none"
   aria-expanded="false"
+  aria-haspopup="listbox"
   aria-label="Select an option"
   class="vesper-select vesper-select-sm"
   data-placeholder=""
-  data-state="closed"
-  dir="ltr"
+  id="base-ui-_r_48_"
   role="combobox"
+  tabindex="0"
   type="button"
 >
   <span
@@ -855,7 +851,7 @@ exports[`select [snapshot] > sm, with icon 1`] = `
     class="vesper-typography vesper-typography-copy-xs"
   >
     <span
-      style="pointer-events: none;"
+      data-placeholder=""
     >
       Select an option
     </span>
@@ -889,16 +885,16 @@ exports[`select [snapshot] > sm, with icon 1`] = `
 
 exports[`select [snapshot] > sm, with icon, disabled 1`] = `
 <button
-  aria-autocomplete="none"
   aria-expanded="false"
+  aria-haspopup="listbox"
   aria-label="Select an option"
   class="vesper-select vesper-select-sm"
   data-disabled=""
   data-placeholder=""
-  data-state="closed"
-  dir="ltr"
   disabled=""
+  id="base-ui-_r_4e_"
   role="combobox"
+  tabindex="-1"
   type="button"
 >
   <span
@@ -956,7 +952,7 @@ exports[`select [snapshot] > sm, with icon, disabled 1`] = `
     class="vesper-typography vesper-typography-copy-xs"
   >
     <span
-      style="pointer-events: none;"
+      data-placeholder=""
     >
       Select an option
     </span>
@@ -990,21 +986,19 @@ exports[`select [snapshot] > sm, with icon, disabled 1`] = `
 
 exports[`select [snapshot] > sm, with value 1`] = `
 <button
-  aria-autocomplete="none"
   aria-expanded="false"
+  aria-haspopup="listbox"
   aria-label="Select an option"
   class="vesper-select vesper-select-sm"
-  data-state="closed"
-  dir="ltr"
+  id="base-ui-_r_4b_"
   role="combobox"
+  tabindex="0"
   type="button"
 >
   <span
     class="vesper-typography vesper-typography-copy-xs"
   >
-    <span
-      style="pointer-events: none;"
-    >
+    <span>
       Tigers
     </span>
   </span>

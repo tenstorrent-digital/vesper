@@ -135,7 +135,7 @@ describe("select [unit]", () => {
 
     fireEvent.pointerDown(trigger);
     fireEvent.click(trigger);
-    expect(trigger).toHaveAttribute("data-state", "closed");
+    expect(trigger).not.toHaveAttribute("data-popup-open");
   });
 
   test("Placeholder defaults to 'Select an option'", () => {
@@ -191,7 +191,7 @@ describe("select [unit]", () => {
 
     await userEvent.click(trigger);
     await waitFor(() => {
-      expect(trigger).toHaveAttribute("data-state", "open");
+      expect(trigger).toHaveAttribute("data-popup-open");
     });
 
     const content = document.querySelector(".vesper-select-content");
@@ -246,7 +246,7 @@ describe("select [unit]", () => {
     await userEvent.click(items[0]!);
 
     await waitFor(() => {
-      expect(trigger).toHaveAttribute("data-state", "closed");
+      expect(trigger).not.toHaveAttribute("data-popup-open");
     });
   });
 
@@ -281,7 +281,7 @@ describe("select [unit]", () => {
 
     const items = document.querySelectorAll(".vesper-select-item");
     const selectedItem = items[1]!;
-    expect(selectedItem).toHaveAttribute("data-state", "checked");
+    expect(selectedItem).toHaveAttribute("data-selected");
   });
 
   test("unselected options do not show checkmark", async () => {
@@ -294,9 +294,9 @@ describe("select [unit]", () => {
     });
 
     const items = document.querySelectorAll(".vesper-select-item");
-    expect(items[0]).toHaveAttribute("data-state", "unchecked");
-    expect(items[2]).toHaveAttribute("data-state", "unchecked");
-    expect(items[3]).toHaveAttribute("data-state", "unchecked");
+    expect(items[0]).not.toHaveAttribute("data-selected");
+    expect(items[2]).not.toHaveAttribute("data-selected");
+    expect(items[3]).not.toHaveAttribute("data-selected");
   });
 
   test("keyboard open with Enter", async () => {
@@ -306,7 +306,7 @@ describe("select [unit]", () => {
     trigger.focus();
     await userEvent.keyboard("{Enter}");
     await waitFor(() => {
-      expect(trigger).toHaveAttribute("data-state", "open");
+      expect(trigger).toHaveAttribute("data-popup-open");
     });
   });
 
@@ -317,7 +317,7 @@ describe("select [unit]", () => {
     trigger.focus();
     await userEvent.keyboard(" ");
     await waitFor(() => {
-      expect(trigger).toHaveAttribute("data-state", "open");
+      expect(trigger).toHaveAttribute("data-popup-open");
     });
   });
 
@@ -327,12 +327,12 @@ describe("select [unit]", () => {
 
     await userEvent.click(trigger);
     await waitFor(() => {
-      expect(trigger).toHaveAttribute("data-state", "open");
+      expect(trigger).toHaveAttribute("data-popup-open");
     });
 
     await userEvent.keyboard("{Escape}");
     await waitFor(() => {
-      expect(trigger).toHaveAttribute("data-state", "closed");
+      expect(trigger).not.toHaveAttribute("data-popup-open");
     });
   });
 
@@ -377,9 +377,9 @@ describe("select [unit]", () => {
       </form>,
     );
 
-    // Radix Select renders a hidden select when rendered inside a form
-    const hiddenSelect = container.querySelector("select");
-    expect(hiddenSelect).toHaveAttribute("required");
+    // Base UI Select renders a hidden input to carry the value in form data
+    const hiddenInput = container.querySelector("input");
+    expect(hiddenInput).toHaveAttribute("required");
   });
 
   test("renders with name prop inside of forms", () => {
@@ -389,15 +389,15 @@ describe("select [unit]", () => {
       </form>,
     );
 
-    // Radix Select renders a hidden select when rendered inside a form
-    const hiddenSelect = container.querySelector("select");
-    expect(hiddenSelect).toHaveAttribute("name", "animal");
+    // Base UI Select renders a hidden input to carry the value in form data
+    const hiddenInput = container.querySelector("input");
+    expect(hiddenInput).toHaveAttribute("name", "animal");
   });
 
-  test("trigger has correct data-state when closed", () => {
+  test("trigger is not marked as open when closed", () => {
     const result = render(<Select options={OPTIONS} />);
     const trigger = result.getByRole("combobox");
-    expect(trigger).toHaveAttribute("data-state", "closed");
+    expect(trigger).not.toHaveAttribute("data-popup-open");
   });
 
   test("portals menu content into document.body", async () => {
@@ -471,37 +471,6 @@ describe("select [unit]", () => {
     expect(dialog.querySelector(".vesper-select-content")).toBeNull();
 
     container.remove();
-  });
-
-  test("trigger keeps the open class when reopened before the deferred close runs", async () => {
-    const result = render(<Select options={OPTIONS} />);
-    const trigger = result.getByRole("combobox");
-
-    fireEvent.pointerDown(trigger);
-    fireEvent.click(trigger);
-    await waitFor(() => {
-      expect(trigger).toHaveAttribute("data-state", "open");
-    });
-    expect(trigger).toHaveClass("vesper-select-open");
-
-    // Close and reopen within the same synchronous turn, so the reopen lands
-    // before the deferred close scheduled by onOpenChange can fire.
-    fireEvent.keyDown(document.activeElement ?? document.body, {
-      key: "Escape",
-    });
-    fireEvent.pointerDown(trigger);
-    fireEvent.click(trigger);
-
-    await waitFor(() => {
-      expect(trigger).toHaveAttribute("data-state", "open");
-    });
-
-    // Give the stale timer more than enough time to fire if it was never
-    // cancelled; the focus ring class must survive it.
-    await new Promise((r) => setTimeout(r, 50));
-
-    expect(trigger).toHaveAttribute("data-state", "open");
-    expect(trigger).toHaveClass("vesper-select-open");
   });
 });
 

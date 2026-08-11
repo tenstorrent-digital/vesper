@@ -3,12 +3,13 @@
 exports[`accordion [snapshot] > closed 1`] = `
 <div
   class="vesper-accordion"
-  data-state="closed"
+  data-closed=""
 >
   <button
+    aria-disabled="false"
     aria-expanded="false"
     class="vesper-typography vesper-typography-label-md-bold vesper-accordion-trigger"
-    data-state="closed"
+    tabindex="0"
     type="button"
   >
     <span>
@@ -25,26 +26,21 @@ exports[`accordion [snapshot] > closed 1`] = `
       />
     </svg>
   </button>
-  <div
-    class="vesper-accordion-content"
-    data-state="closed"
-    hidden=""
-    id="radix-_r_3_"
-    style=""
-  />
 </div>
 `;
 
 exports[`accordion [snapshot] > open 1`] = `
 <div
   class="vesper-accordion"
-  data-state="open"
+  data-open=""
 >
   <button
-    aria-controls="radix-_r_4_"
+    aria-controls="base-ui-_r_4_"
+    aria-disabled="false"
     aria-expanded="true"
     class="vesper-typography vesper-typography-label-md-bold vesper-accordion-trigger"
-    data-state="open"
+    data-panel-open=""
+    tabindex="0"
     type="button"
   >
     <span>
@@ -62,13 +58,13 @@ exports[`accordion [snapshot] > open 1`] = `
     </svg>
   </button>
   <div
-    class="vesper-accordion-content"
-    data-state="open"
-    id="radix-_r_4_"
-    style="transition-duration: 0s; animation-name: none; --radix-collapsible-content-height: 208px; --radix-collapsible-content-width: 390px;"
+    class="vesper-accordion-panel"
+    data-open=""
+    id="base-ui-_r_4_"
+    style="--collapsible-panel-height: auto; --collapsible-panel-width: auto; animation-name: none;"
   >
     <div
-      class="vesper-typography vesper-typography-copy-sm vesper-accordion-content-children"
+      class="vesper-typography vesper-typography-copy-sm vesper-accordion-children"
     >
       <div
         style="height: 200px;"

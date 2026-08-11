@@ -95,14 +95,16 @@ describe("split-button [unit]", () => {
     expect(onClick).not.toHaveBeenCalled();
   });
 
-  test("clicking menu button", () => {
+  test("clicking menu button", async () => {
     const result = render(
       <SplitButton menuItems={MENU_ITEMS}>button text</SplitButton>,
     );
 
     const [, menuButton] = within(result.container).getAllByRole("button");
-    fireEvent.pointerDown(menuButton!);
-    expect(document.querySelector(".vesper-menu")).not.toBeNull();
+    await userEvent.click(menuButton!);
+    await waitFor(() =>
+      expect(document.querySelector(".vesper-menu")).not.toBeNull(),
+    );
   });
 
   test("clicking disabled menu button", async () => {
@@ -113,7 +115,7 @@ describe("split-button [unit]", () => {
     );
 
     const [, menuButton] = within(result.container).getAllByRole("button");
-    fireEvent.pointerDown(menuButton!);
+    await userEvent.click(menuButton!, { force: true });
     expect(document.querySelector(".vesper-menu")).toBeNull();
   });
 

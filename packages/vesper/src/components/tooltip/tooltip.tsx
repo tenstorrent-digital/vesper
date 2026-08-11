@@ -1,13 +1,7 @@
 "use client";
 
-import { type ReactNode, useState } from "react";
-import {
-  Tooltip as TooltipRoot,
-  TooltipContent,
-  TooltipPortal,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@radix-ui/react-tooltip";
+import { type ReactNode, useId, useState } from "react";
+import { Tooltip as BaseTooltip } from "@base-ui/react/tooltip";
 
 import { Typography } from "@/components/typography/typography";
 
@@ -49,7 +43,7 @@ export interface TooltipProps {
   children?: ReactNode;
   /** The maximum width of the tooltip in pixels. Content will wrap if it exceeds this width. @default 240 */
   maxWidth?: number;
-  /** Specify the element or document fragment to portal the tooltip into */
+  /** Specify the element or shadow root to portal the tooltip into */
   container?: PortalContainer;
 }
 
@@ -63,7 +57,7 @@ export interface TooltipProps {
  * @param {TooltipAlign} [props.align] - (optional) Alignment relative to the trigger. @default center
  * @param {number} [props.delayDuration] - (optional) Delay in milliseconds before showing. @default 500
  * @param {number} [props.maxWidth] - (optional) Maximum width of the tooltip in pixels. @default 240
- * @param {Element | DocumentFragment} [props.container] - (optional) Specify the element or document fragment to portal the tooltip into
+ * @param {PortalContainer} [props.container] - (optional) Specify the element or shadow root to portal the tooltip into
  * @param {boolean} [props.open] - (optional) Controls the open state (controlled)
  * @param {(value: boolean) => void} [props.onOpenChange] - (optional) Callback fired when open state changes
  *
@@ -95,6 +89,14 @@ export function Tooltip(props: TooltipProps) {
 
   const [ref, setRef] = useState<Element | null>(null);
 
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(
+    defaultOpen ?? false,
+  );
+  const isOpen = open ?? uncontrolledOpen;
+
+  const id = useId();
+  const popupId = `vesper-tooltip-${id}`;
+
   const baseRemSize = useBaseRemSize();
 
   const portalContainer = getPortalContainer(container, ref);
@@ -104,32 +106,42 @@ export function Tooltip(props: TooltipProps) {
   }
 
   return (
-    <TooltipProvider>
-      <TooltipRoot
+    <BaseTooltip.Provider>
+      <BaseTooltip.Root
         defaultOpen={defaultOpen}
-        delayDuration={delayDuration}
-        onOpenChange={onOpenChange}
+        onOpenChange={(value) => {
+          setUncontrolledOpen(value);
+          onOpenChange?.(value);
+        }}
         open={open}
       >
-        <TooltipTrigger asChild ref={setRef}>
-          {children}
-        </TooltipTrigger>
-        <TooltipPortal container={portalContainer}>
-          <Typography
-            variant="label-xs"
-            className="vesper-tooltip"
-            style={{ maxWidth: `calc(${maxWidth} * (1rem / 16))` }}
-            as={TooltipContent}
+        <BaseTooltip.Trigger
+          aria-describedby={isOpen ? popupId : undefined}
+          delay={delayDuration}
+          render={children}
+          ref={setRef}
+        />
+        <BaseTooltip.Portal container={portalContainer}>
+          <BaseTooltip.Positioner
             align={align}
             alignOffset={alignOffset * (baseRemSize / 16)}
             side={side}
             sideOffset={baseRemSize / 2 + sideOffset * (baseRemSize / 16)}
           >
-            {content}
-            <div className="vesper-tooltip-arrow" />
-          </Typography>
-        </TooltipPortal>
-      </TooltipRoot>
-    </TooltipProvider>
+            <Typography
+              variant="label-xs"
+              className="vesper-tooltip"
+              style={{ maxWidth: `calc(${maxWidth} * (1rem / 16))` }}
+              as={BaseTooltip.Popup}
+              id={popupId}
+              role="tooltip"
+            >
+              {content}
+              <div className="vesper-tooltip-arrow" />
+            </Typography>
+          </BaseTooltip.Positioner>
+        </BaseTooltip.Portal>
+      </BaseTooltip.Root>
+    </BaseTooltip.Provider>
   );
 }

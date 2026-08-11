@@ -38,7 +38,7 @@ describe("tooltip [unit]", () => {
     );
 
     const trigger = result.container.firstChild as HTMLElement;
-    fireEvent.pointerMove(trigger);
+    fireEvent.mouseEnter(trigger);
 
     await waitFor(() => {
       expect(handleOpenChange).toHaveBeenCalledWith(true);
@@ -102,11 +102,62 @@ describe("tooltip [unit]", () => {
     );
 
     const trigger = result.container.firstChild as HTMLElement;
-    fireEvent.pointerMove(trigger);
+    fireEvent.mouseEnter(trigger);
 
     await waitFor(() => {
       expect(handleOpenChange).toHaveBeenCalledWith(true);
     });
+  });
+
+  test("renders the popup with tooltip semantics", () => {
+    render(
+      <Tooltip open content="Tooltip text">
+        <Typography>trigger</Typography>
+      </Tooltip>,
+    );
+
+    const tooltip = document.querySelector(".vesper-tooltip")!;
+    expect(tooltip).toHaveAttribute("role", "tooltip");
+    expect(tooltip.id).not.toBe("");
+  });
+
+  test("associates the trigger with the popup while open", () => {
+    const result = render(
+      <Tooltip open content="Tooltip text">
+        <Typography>trigger</Typography>
+      </Tooltip>,
+    );
+
+    const trigger = result.container.firstChild as HTMLElement;
+    const tooltip = document.querySelector(".vesper-tooltip")!;
+
+    expect(trigger).toHaveAttribute("aria-describedby", tooltip.id);
+  });
+
+  test("does not describe the trigger while closed", async () => {
+    const handleOpenChange = vi.fn();
+
+    const result = render(
+      <Tooltip
+        delayDuration={0}
+        onOpenChange={handleOpenChange}
+        content="Tooltip text"
+      >
+        <Typography>trigger</Typography>
+      </Tooltip>,
+    );
+
+    const trigger = result.container.firstChild as HTMLElement;
+    expect(trigger).not.toHaveAttribute("aria-describedby");
+
+    fireEvent.mouseEnter(trigger);
+
+    await waitFor(() => {
+      expect(handleOpenChange).toHaveBeenCalledWith(true);
+    });
+
+    const tooltip = document.querySelector(".vesper-tooltip")!;
+    expect(trigger).toHaveAttribute("aria-describedby", tooltip.id);
   });
 
   test("nullable children", () => {
@@ -197,7 +248,7 @@ describe("tooltip [unit]", () => {
     );
 
     const trigger = result.container.firstChild as HTMLElement;
-    fireEvent.pointerMove(trigger);
+    fireEvent.mouseEnter(trigger);
 
     await waitFor(() => {
       expect(handleOpenChange).toHaveBeenCalledWith(true);

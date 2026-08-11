@@ -37,11 +37,11 @@
     color: var(--vesper-text-secondary);
     position: relative;
     &:hover,
-    &[data-state="active"] {
+    &[data-active] {
       color: var(--vesper-text-primary);
     }
     &:hover::after,
-    &[data-state="active"]::after {
+    &[data-active]::after {
       content: "";
       position: absolute;
       bottom: 0;

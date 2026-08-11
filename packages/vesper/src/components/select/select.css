@@ -7,10 +7,10 @@
   &:not(:disabled) {
     cursor: pointer;
   }
-  &[data-state="open"] .vesper-select-state-indicator-closed {
+  &[data-popup-open] .vesper-select-state-indicator-closed {
     display: none;
   }
-  &[data-state="closed"] .vesper-select-state-indicator-open {
+  &:not([data-popup-open]) .vesper-select-state-indicator-open {
     display: none;
   }
   &:disabled {
@@ -22,7 +22,7 @@
       color: var(--vesper-icon-disabled);
     }
   }
-  &.vesper-select-open,
+  &[data-popup-open],
   &:focus-visible {
     border-color: var(--vesper-border-strong);
     box-shadow: var(--vesper-shadow-focus-ring);
@@ -87,12 +87,13 @@
 }
 
 .vesper-select-content {
-  min-width: var(--radix-select-trigger-width);
+  min-width: var(--anchor-width);
   border-radius: var(--vesper-radius-3);
   border: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
   background: var(--vesper-background-primary);
   box-shadow: var(--vesper-shadow-200);
   color: var(--vesper-text-primary);
+  outline: none;
 }
 
 .vesper-select-viewport {
@@ -114,10 +115,7 @@
   &[data-highlighted] {
     background: var(--vesper-state-neutral-hover);
   }
-  &[data-state="checked"] {
+  &[data-selected] {
     background: var(--vesper-tint-neutral-200);
-  }
-  &:not([data-state="checked"]) .vesper-select-item-checkmark {
-    display: none;
   }
 }
