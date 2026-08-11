@@ -238,13 +238,8 @@
     "vitest-axe": "^0.1.0"
   },
   "dependencies": {
-    "@radix-ui/react-collapsible": "^1.1.12",
-    "@radix-ui/react-dropdown-menu": "^2.1.16",
-    "@radix-ui/react-progress": "^1.1.8",
-    "@radix-ui/react-select": "^2.3.4",
+    "@base-ui/react": "^1.7.0",
     "@radix-ui/react-slider": "^1.4.1",
-    "@radix-ui/react-tabs": "^1.1.15",
-    "@radix-ui/react-tooltip": "^1.2.10",
     "@shikijs/core": "^4.3.1",
     "@shikijs/engine-javascript": "^4.3.1",
     "@shikijs/langs": "^4.3.1",

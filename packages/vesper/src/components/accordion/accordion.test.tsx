@@ -23,7 +23,7 @@ describe("accordion [unit]", () => {
     within(result.container).getByRole("button").click();
     await waitFor(() =>
       expect(
-        result.container.querySelector(".vesper-accordion-content-children"),
+        result.container.querySelector(".vesper-accordion-children"),
       ).not.toBeNull(),
     );
   });
@@ -38,7 +38,7 @@ describe("accordion [unit]", () => {
     within(result.container).getByRole("button").click();
     await waitFor(() =>
       expect(
-        result.container.querySelector(".vesper-accordion-content-children"),
+        result.container.querySelector(".vesper-accordion-children"),
       ).toBeNull(),
     );
   });

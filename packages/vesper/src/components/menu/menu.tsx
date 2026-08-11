@@ -1,13 +1,7 @@
 "use client";
 
-import { type ReactNode, useState } from "react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuPortal,
-  DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
+import { type ReactNode, RefObject, useState } from "react";
+import { Menu as DropdownMenu } from "@base-ui/react/menu";
 
 import { Checkmark, Lock } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
@@ -53,8 +47,10 @@ export interface MenuProps {
   items: MenuItemProps[];
   /** The width of the menu dropdown in pixels. @default 200 */
   width?: number;
-  /** Specify the element or document fragment to portal the menu into */
+  /** Specify the element or shadow root to portal the menu into */
   container?: PortalContainer;
+  /** Specify the element to anchor the menu against. @default trigger element */
+  anchor?: HTMLElement | RefObject<HTMLElement | null>;
 }
 
 /**
@@ -66,7 +62,7 @@ export interface MenuProps {
  * @param {"top" | "bottom" | "left" | "right"} [props.side] - (optional) The preferred side of the trigger. @default bottom
  * @param {number} [props.sideOffset] - (optional) Distance in pixels from the trigger. @default 8
  * @param {"start" | "center" | "end"} [props.align] - (optional) Alignment relative to the trigger. @default start
- * @param {Element | DocumentFragment} [props.container] - (optional) Specify the element or document fragment to portal the menu into
+ * @param {PortalContainer} [props.container] - (optional) Specify the element or shadow root to portal the menu into
  * @param {boolean} [props.open] - (optional) Controls the open state (controlled)
  * @param {(open: boolean) => void} [props.onOpenChange] - (optional) Callback fired when the open state changes
  *
@@ -100,6 +96,7 @@ export function Menu(props: MenuProps) {
     align = "start",
     alignOffset = 0,
     container,
+    anchor,
     ...rest
   } = props;
 
@@ -114,25 +111,27 @@ export function Menu(props: MenuProps) {
   }
 
   return (
-    <DropdownMenu {...rest}>
-      <DropdownMenuTrigger asChild ref={setRef}>
-        {children}
-      </DropdownMenuTrigger>
-      <DropdownMenuPortal container={portalContainer}>
-        <DropdownMenuContent
-          className="vesper-menu"
-          style={{ width: `calc(${width} * (1rem / 16))` }}
+    <DropdownMenu.Root {...rest}>
+      <DropdownMenu.Trigger render={children} ref={setRef} />
+      <DropdownMenu.Portal container={portalContainer}>
+        <DropdownMenu.Positioner
+          anchor={anchor}
           side={side}
           sideOffset={sideOffset * (baseRemSize / 16)}
           align={align}
           alignOffset={alignOffset * (baseRemSize / 16)}
         >
-          {items.map((item, index) => (
-            <MenuItem key={index} {...item} />
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenuPortal>
-    </DropdownMenu>
+          <DropdownMenu.Popup
+            className="vesper-menu"
+            style={{ width: `calc(${width} * (1rem / 16))` }}
+          >
+            {items.map((item, index) => (
+              <MenuItem key={index} {...item} />
+            ))}
+          </DropdownMenu.Popup>
+        </DropdownMenu.Positioner>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
   );
 }
 
@@ -144,11 +143,11 @@ function MenuItem({
   style = "default",
 }: MenuItemProps) {
   return (
-    <DropdownMenuItem
+    <DropdownMenu.Item
       disabled={style === "disabled" || style === "locked"}
       className={`vesper-menu-item vesper-menu-item-${style}`}
-      onSelect={onSelect}
-      textValue={text}
+      onClick={() => onSelect()}
+      label={text}
     >
       {icon && <div className="vesper-menu-item-left-icon">{icon}</div>}
       <div className="vesper-menu-item-text-container">
@@ -169,6 +168,6 @@ function MenuItem({
         <Checkmark className="vesper-menu-item-right-icon" />
       )}
       {style === "locked" && <Lock className="vesper-menu-item-right-icon" />}
-    </DropdownMenuItem>
+    </DropdownMenu.Item>
   );
 }

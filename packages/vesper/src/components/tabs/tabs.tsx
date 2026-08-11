@@ -1,10 +1,7 @@
-import { ComponentProps, Fragment, isValidElement, ReactNode } from "react";
-import {
-  Tabs as RadixTabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@radix-ui/react-tabs";
+"use client";
+
+import { ComponentProps, ReactNode } from "react";
+import { Tabs as BaseTabs } from "@base-ui/react/tabs";
 
 import {
   Typography,
@@ -12,6 +9,7 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import { isSingleReactElement } from "@/utils/isSingleReactElement";
 
 export const TABS_VARIANTS = ["primary", "secondary"] as const;
 
@@ -82,14 +80,28 @@ const TRIGGER_TYPOGRAPHY: { [V in TabsVariant]: TypographyVariant } = {
  * />
  */
 export function Tabs(props: TabsProps) {
-  const { items, className, variant = "primary", ...rest } = props;
+  const {
+    items,
+    className,
+    variant = "primary",
+    activationMode = "automatic",
+    onValueChange,
+    ...rest
+  } = props;
 
   return (
-    <RadixTabs className={cn(`vesper-tabs-${variant}`, className)} {...rest}>
-      <TabsList className="vesper-tabs-list">
+    <BaseTabs.Root
+      className={cn(`vesper-tabs-${variant}`, className)}
+      onValueChange={(value) => onValueChange?.(value)}
+      {...rest}
+    >
+      <BaseTabs.List
+        activateOnFocus={activationMode === "automatic"}
+        className="vesper-tabs-list"
+      >
         {items.map((item) => (
           <Typography
-            as={TabsTrigger}
+            as={BaseTabs.Tab}
             variant={TRIGGER_TYPOGRAPHY[variant]}
             key={item.value}
             value={item.value}
@@ -101,16 +113,22 @@ export function Tabs(props: TabsProps) {
             {item.label}
           </Typography>
         ))}
-      </TabsList>
-      {items.map((item) => (
-        <TabsContent asChild key={item.value} value={item.value}>
-          {isValidElement(item.content) && item.content.type !== Fragment ? (
-            item.content
-          ) : (
-            <span>{item.content}</span>
-          )}
-        </TabsContent>
-      ))}
-    </RadixTabs>
+      </BaseTabs.List>
+      {items.map((item) => {
+        const children = isSingleReactElement(item.content) ? (
+          item.content
+        ) : (
+          <span>{item.content}</span>
+        );
+
+        return (
+          <BaseTabs.Panel
+            render={children}
+            key={item.value}
+            value={item.value}
+          />
+        );
+      })}
+    </BaseTabs.Root>
   );
 }

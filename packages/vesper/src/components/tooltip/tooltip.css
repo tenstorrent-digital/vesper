@@ -50,12 +50,11 @@
     bottom: min(calc(50% - 0.25rem), var(--vesper-spacing-3));
   }
 
-  &[data-state="closed"] {
-    animation: vesper-tooltip-hide var(--vesper-transition-duration-fast) ease;
-  }
-  &[data-state="delayed-open"],
-  &[data-state="instant-open"] {
+  &[data-open] {
     animation: vesper-tooltip-show var(--vesper-transition-duration-fast) ease;
+  }
+  &[data-closed] {
+    animation: vesper-tooltip-hide var(--vesper-transition-duration-fast) ease;
   }
 }
 

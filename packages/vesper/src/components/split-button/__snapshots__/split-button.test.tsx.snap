@@ -3,21 +3,21 @@
 exports[`split-button [snapshot] > contrast, lg 1`] = `
 <div>
   <div
-    aria-expanded="false"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-state="closed"
-    id="radix-_r_45_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-lg vesper-button-contrast"
+      class="vesper-button vesper-button-lg vesper-button-contrast vesper-split-button-action-button"
     >
       button text
     </button>
     <button
+      aria-expanded="false"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-contrast vesper-icon-button"
+      class="vesper-button vesper-button-lg vesper-button-contrast vesper-icon-button vesper-split-button-menu-button"
+      id="base-ui-_r_7e_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -51,23 +51,23 @@ exports[`split-button [snapshot] > contrast, lg 1`] = `
 exports[`split-button [snapshot] > contrast, lg, disabled 1`] = `
 <div>
   <div
-    aria-expanded="false"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-state="closed"
-    id="radix-_r_4e_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-lg vesper-button-disabled"
+      class="vesper-button vesper-button-lg vesper-button-disabled vesper-split-button-action-button"
       disabled=""
     >
       button text
     </button>
     <button
+      aria-expanded="false"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-disabled vesper-icon-button"
+      class="vesper-button vesper-button-lg vesper-button-disabled vesper-icon-button vesper-split-button-menu-button"
       disabled=""
+      id="base-ui-_r_7u_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -100,30 +100,35 @@ exports[`split-button [snapshot] > contrast, lg, disabled 1`] = `
 
 exports[`split-button [snapshot] > contrast, lg, disabled, open 1`] = `
 <div
-  aria-hidden="true"
-  data-aria-hidden="true"
+  data-base-ui-inert=""
 >
   <div
-    aria-controls="radix-_r_4h_"
-    aria-expanded="true"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-radix-popper-align="start"
-    data-radix-popper-side="bottom"
-    data-state="open"
-    id="radix-_r_4g_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-lg vesper-button-disabled"
+      class="vesper-button vesper-button-lg vesper-button-disabled vesper-split-button-action-button"
       disabled=""
     >
       button text
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
     <button
+      aria-controls="_r_81_"
+      aria-expanded="true"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-disabled vesper-icon-button"
+      class="vesper-button vesper-button-lg vesper-button-disabled vesper-icon-button vesper-split-button-menu-button"
+      data-popup-open=""
+      data-pressed=""
       disabled=""
+      id="base-ui-_r_83_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -150,34 +155,63 @@ exports[`split-button [snapshot] > contrast, lg, disabled, open 1`] = `
         </svg>
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-owns="_r_85_"
+      style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
   </div>
 </div>
 `;
 
 exports[`split-button [snapshot] > contrast, lg, open 1`] = `
 <div
-  aria-hidden="true"
-  data-aria-hidden="true"
+  data-base-ui-inert=""
 >
   <div
-    aria-controls="radix-_r_48_"
-    aria-expanded="true"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-radix-popper-align="start"
-    data-radix-popper-side="bottom"
-    data-state="open"
-    id="radix-_r_47_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-lg vesper-button-contrast"
+      class="vesper-button vesper-button-lg vesper-button-contrast vesper-split-button-action-button"
     >
       button text
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
     <button
+      aria-controls="_r_7h_"
+      aria-expanded="true"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-contrast vesper-icon-button"
+      class="vesper-button vesper-button-lg vesper-button-contrast vesper-icon-button vesper-split-button-menu-button"
+      data-popup-open=""
+      data-pressed=""
+      id="base-ui-_r_7j_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -204,6 +238,30 @@ exports[`split-button [snapshot] > contrast, lg, open 1`] = `
         </svg>
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-owns="_r_7l_"
+      style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
   </div>
 </div>
 `;
@@ -211,21 +269,21 @@ exports[`split-button [snapshot] > contrast, lg, open 1`] = `
 exports[`split-button [snapshot] > contrast, md 1`] = `
 <div>
   <div
-    aria-expanded="false"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-state="closed"
-    id="radix-_r_3j_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-md vesper-button-contrast"
+      class="vesper-button vesper-button-md vesper-button-contrast vesper-split-button-action-button"
     >
       button text
     </button>
     <button
+      aria-expanded="false"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-contrast vesper-icon-button"
+      class="vesper-button vesper-button-md vesper-button-contrast vesper-icon-button vesper-split-button-menu-button"
+      id="base-ui-_r_6e_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -259,23 +317,23 @@ exports[`split-button [snapshot] > contrast, md 1`] = `
 exports[`split-button [snapshot] > contrast, md, disabled 1`] = `
 <div>
   <div
-    aria-expanded="false"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-state="closed"
-    id="radix-_r_3s_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-md vesper-button-disabled"
+      class="vesper-button vesper-button-md vesper-button-disabled vesper-split-button-action-button"
       disabled=""
     >
       button text
     </button>
     <button
+      aria-expanded="false"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-disabled vesper-icon-button"
+      class="vesper-button vesper-button-md vesper-button-disabled vesper-icon-button vesper-split-button-menu-button"
       disabled=""
+      id="base-ui-_r_6u_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -308,30 +366,35 @@ exports[`split-button [snapshot] > contrast, md, disabled 1`] = `
 
 exports[`split-button [snapshot] > contrast, md, disabled, open 1`] = `
 <div
-  aria-hidden="true"
-  data-aria-hidden="true"
+  data-base-ui-inert=""
 >
   <div
-    aria-controls="radix-_r_3v_"
-    aria-expanded="true"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-radix-popper-align="start"
-    data-radix-popper-side="bottom"
-    data-state="open"
-    id="radix-_r_3u_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-md vesper-button-disabled"
+      class="vesper-button vesper-button-md vesper-button-disabled vesper-split-button-action-button"
       disabled=""
     >
       button text
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
     <button
+      aria-controls="_r_71_"
+      aria-expanded="true"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-disabled vesper-icon-button"
+      class="vesper-button vesper-button-md vesper-button-disabled vesper-icon-button vesper-split-button-menu-button"
+      data-popup-open=""
+      data-pressed=""
       disabled=""
+      id="base-ui-_r_73_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -358,34 +421,63 @@ exports[`split-button [snapshot] > contrast, md, disabled, open 1`] = `
         </svg>
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-owns="_r_75_"
+      style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
   </div>
 </div>
 `;
 
 exports[`split-button [snapshot] > contrast, md, open 1`] = `
 <div
-  aria-hidden="true"
-  data-aria-hidden="true"
+  data-base-ui-inert=""
 >
   <div
-    aria-controls="radix-_r_3m_"
-    aria-expanded="true"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-radix-popper-align="start"
-    data-radix-popper-side="bottom"
-    data-state="open"
-    id="radix-_r_3l_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-md vesper-button-contrast"
+      class="vesper-button vesper-button-md vesper-button-contrast vesper-split-button-action-button"
     >
       button text
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
     <button
+      aria-controls="_r_6h_"
+      aria-expanded="true"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-contrast vesper-icon-button"
+      class="vesper-button vesper-button-md vesper-button-contrast vesper-icon-button vesper-split-button-menu-button"
+      data-popup-open=""
+      data-pressed=""
+      id="base-ui-_r_6j_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -412,6 +504,30 @@ exports[`split-button [snapshot] > contrast, md, open 1`] = `
         </svg>
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-owns="_r_6l_"
+      style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
   </div>
 </div>
 `;
@@ -419,21 +535,21 @@ exports[`split-button [snapshot] > contrast, md, open 1`] = `
 exports[`split-button [snapshot] > contrast, sm 1`] = `
 <div>
   <div
-    aria-expanded="false"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-state="closed"
-    id="radix-_r_31_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-sm vesper-button-contrast"
+      class="vesper-button vesper-button-sm vesper-button-contrast vesper-split-button-action-button"
     >
       button text
     </button>
     <button
+      aria-expanded="false"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-contrast vesper-icon-button"
+      class="vesper-button vesper-button-sm vesper-button-contrast vesper-icon-button vesper-split-button-menu-button"
+      id="base-ui-_r_5e_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -467,23 +583,23 @@ exports[`split-button [snapshot] > contrast, sm 1`] = `
 exports[`split-button [snapshot] > contrast, sm, disabled 1`] = `
 <div>
   <div
-    aria-expanded="false"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-state="closed"
-    id="radix-_r_3a_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-sm vesper-button-disabled"
+      class="vesper-button vesper-button-sm vesper-button-disabled vesper-split-button-action-button"
       disabled=""
     >
       button text
     </button>
     <button
+      aria-expanded="false"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-disabled vesper-icon-button"
+      class="vesper-button vesper-button-sm vesper-button-disabled vesper-icon-button vesper-split-button-menu-button"
       disabled=""
+      id="base-ui-_r_5u_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -516,30 +632,35 @@ exports[`split-button [snapshot] > contrast, sm, disabled 1`] = `
 
 exports[`split-button [snapshot] > contrast, sm, disabled, open 1`] = `
 <div
-  aria-hidden="true"
-  data-aria-hidden="true"
+  data-base-ui-inert=""
 >
   <div
-    aria-controls="radix-_r_3d_"
-    aria-expanded="true"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-radix-popper-align="start"
-    data-radix-popper-side="bottom"
-    data-state="open"
-    id="radix-_r_3c_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-sm vesper-button-disabled"
+      class="vesper-button vesper-button-sm vesper-button-disabled vesper-split-button-action-button"
       disabled=""
     >
       button text
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
     <button
+      aria-controls="_r_61_"
+      aria-expanded="true"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-disabled vesper-icon-button"
+      class="vesper-button vesper-button-sm vesper-button-disabled vesper-icon-button vesper-split-button-menu-button"
+      data-popup-open=""
+      data-pressed=""
       disabled=""
+      id="base-ui-_r_63_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -566,34 +687,63 @@ exports[`split-button [snapshot] > contrast, sm, disabled, open 1`] = `
         </svg>
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-owns="_r_65_"
+      style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
   </div>
 </div>
 `;
 
 exports[`split-button [snapshot] > contrast, sm, open 1`] = `
 <div
-  aria-hidden="true"
-  data-aria-hidden="true"
+  data-base-ui-inert=""
 >
   <div
-    aria-controls="radix-_r_34_"
-    aria-expanded="true"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-radix-popper-align="start"
-    data-radix-popper-side="bottom"
-    data-state="open"
-    id="radix-_r_33_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-sm vesper-button-contrast"
+      class="vesper-button vesper-button-sm vesper-button-contrast vesper-split-button-action-button"
     >
       button text
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
     <button
+      aria-controls="_r_5h_"
+      aria-expanded="true"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-contrast vesper-icon-button"
+      class="vesper-button vesper-button-sm vesper-button-contrast vesper-icon-button vesper-split-button-menu-button"
+      data-popup-open=""
+      data-pressed=""
+      id="base-ui-_r_5j_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -620,6 +770,30 @@ exports[`split-button [snapshot] > contrast, sm, open 1`] = `
         </svg>
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-owns="_r_5l_"
+      style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
   </div>
 </div>
 `;
@@ -627,21 +801,21 @@ exports[`split-button [snapshot] > contrast, sm, open 1`] = `
 exports[`split-button [snapshot] > subtle, lg 1`] = `
 <div>
   <div
-    aria-expanded="false"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-state="closed"
-    id="radix-_r_2f_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-lg vesper-button-subtle"
+      class="vesper-button vesper-button-lg vesper-button-subtle vesper-split-button-action-button"
     >
       button text
     </button>
     <button
+      aria-expanded="false"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-subtle vesper-icon-button"
+      class="vesper-button vesper-button-lg vesper-button-subtle vesper-icon-button vesper-split-button-menu-button"
+      id="base-ui-_r_4e_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -675,23 +849,23 @@ exports[`split-button [snapshot] > subtle, lg 1`] = `
 exports[`split-button [snapshot] > subtle, lg, disabled 1`] = `
 <div>
   <div
-    aria-expanded="false"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-state="closed"
-    id="radix-_r_2o_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-lg vesper-button-disabled"
+      class="vesper-button vesper-button-lg vesper-button-disabled vesper-split-button-action-button"
       disabled=""
     >
       button text
     </button>
     <button
+      aria-expanded="false"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-disabled vesper-icon-button"
+      class="vesper-button vesper-button-lg vesper-button-disabled vesper-icon-button vesper-split-button-menu-button"
       disabled=""
+      id="base-ui-_r_4u_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -724,30 +898,35 @@ exports[`split-button [snapshot] > subtle, lg, disabled 1`] = `
 
 exports[`split-button [snapshot] > subtle, lg, disabled, open 1`] = `
 <div
-  aria-hidden="true"
-  data-aria-hidden="true"
+  data-base-ui-inert=""
 >
   <div
-    aria-controls="radix-_r_2r_"
-    aria-expanded="true"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-radix-popper-align="start"
-    data-radix-popper-side="bottom"
-    data-state="open"
-    id="radix-_r_2q_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-lg vesper-button-disabled"
+      class="vesper-button vesper-button-lg vesper-button-disabled vesper-split-button-action-button"
       disabled=""
     >
       button text
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
     <button
+      aria-controls="_r_51_"
+      aria-expanded="true"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-disabled vesper-icon-button"
+      class="vesper-button vesper-button-lg vesper-button-disabled vesper-icon-button vesper-split-button-menu-button"
+      data-popup-open=""
+      data-pressed=""
       disabled=""
+      id="base-ui-_r_53_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -774,34 +953,63 @@ exports[`split-button [snapshot] > subtle, lg, disabled, open 1`] = `
         </svg>
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-owns="_r_55_"
+      style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
   </div>
 </div>
 `;
 
 exports[`split-button [snapshot] > subtle, lg, open 1`] = `
 <div
-  aria-hidden="true"
-  data-aria-hidden="true"
+  data-base-ui-inert=""
 >
   <div
-    aria-controls="radix-_r_2i_"
-    aria-expanded="true"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-radix-popper-align="start"
-    data-radix-popper-side="bottom"
-    data-state="open"
-    id="radix-_r_2h_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-lg vesper-button-subtle"
+      class="vesper-button vesper-button-lg vesper-button-subtle vesper-split-button-action-button"
     >
       button text
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
     <button
+      aria-controls="_r_4h_"
+      aria-expanded="true"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-subtle vesper-icon-button"
+      class="vesper-button vesper-button-lg vesper-button-subtle vesper-icon-button vesper-split-button-menu-button"
+      data-popup-open=""
+      data-pressed=""
+      id="base-ui-_r_4j_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -828,6 +1036,30 @@ exports[`split-button [snapshot] > subtle, lg, open 1`] = `
         </svg>
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-owns="_r_4l_"
+      style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
   </div>
 </div>
 `;
@@ -835,21 +1067,21 @@ exports[`split-button [snapshot] > subtle, lg, open 1`] = `
 exports[`split-button [snapshot] > subtle, md 1`] = `
 <div>
   <div
-    aria-expanded="false"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-state="closed"
-    id="radix-_r_1t_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-md vesper-button-subtle"
+      class="vesper-button vesper-button-md vesper-button-subtle vesper-split-button-action-button"
     >
       button text
     </button>
     <button
+      aria-expanded="false"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-subtle vesper-icon-button"
+      class="vesper-button vesper-button-md vesper-button-subtle vesper-icon-button vesper-split-button-menu-button"
+      id="base-ui-_r_3e_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -883,23 +1115,23 @@ exports[`split-button [snapshot] > subtle, md 1`] = `
 exports[`split-button [snapshot] > subtle, md, disabled 1`] = `
 <div>
   <div
-    aria-expanded="false"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-state="closed"
-    id="radix-_r_26_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-md vesper-button-disabled"
+      class="vesper-button vesper-button-md vesper-button-disabled vesper-split-button-action-button"
       disabled=""
     >
       button text
     </button>
     <button
+      aria-expanded="false"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-disabled vesper-icon-button"
+      class="vesper-button vesper-button-md vesper-button-disabled vesper-icon-button vesper-split-button-menu-button"
       disabled=""
+      id="base-ui-_r_3u_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -932,30 +1164,35 @@ exports[`split-button [snapshot] > subtle, md, disabled 1`] = `
 
 exports[`split-button [snapshot] > subtle, md, disabled, open 1`] = `
 <div
-  aria-hidden="true"
-  data-aria-hidden="true"
+  data-base-ui-inert=""
 >
   <div
-    aria-controls="radix-_r_29_"
-    aria-expanded="true"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-radix-popper-align="start"
-    data-radix-popper-side="bottom"
-    data-state="open"
-    id="radix-_r_28_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-md vesper-button-disabled"
+      class="vesper-button vesper-button-md vesper-button-disabled vesper-split-button-action-button"
       disabled=""
     >
       button text
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
     <button
+      aria-controls="_r_41_"
+      aria-expanded="true"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-disabled vesper-icon-button"
+      class="vesper-button vesper-button-md vesper-button-disabled vesper-icon-button vesper-split-button-menu-button"
+      data-popup-open=""
+      data-pressed=""
       disabled=""
+      id="base-ui-_r_43_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -982,34 +1219,63 @@ exports[`split-button [snapshot] > subtle, md, disabled, open 1`] = `
         </svg>
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-owns="_r_45_"
+      style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
   </div>
 </div>
 `;
 
 exports[`split-button [snapshot] > subtle, md, open 1`] = `
 <div
-  aria-hidden="true"
-  data-aria-hidden="true"
+  data-base-ui-inert=""
 >
   <div
-    aria-controls="radix-_r_20_"
-    aria-expanded="true"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-radix-popper-align="start"
-    data-radix-popper-side="bottom"
-    data-state="open"
-    id="radix-_r_1v_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-md vesper-button-subtle"
+      class="vesper-button vesper-button-md vesper-button-subtle vesper-split-button-action-button"
     >
       button text
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
     <button
+      aria-controls="_r_3h_"
+      aria-expanded="true"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-subtle vesper-icon-button"
+      class="vesper-button vesper-button-md vesper-button-subtle vesper-icon-button vesper-split-button-menu-button"
+      data-popup-open=""
+      data-pressed=""
+      id="base-ui-_r_3j_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -1036,6 +1302,30 @@ exports[`split-button [snapshot] > subtle, md, open 1`] = `
         </svg>
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-owns="_r_3l_"
+      style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
   </div>
 </div>
 `;
@@ -1043,21 +1333,21 @@ exports[`split-button [snapshot] > subtle, md, open 1`] = `
 exports[`split-button [snapshot] > subtle, sm 1`] = `
 <div>
   <div
-    aria-expanded="false"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-state="closed"
-    id="radix-_r_1b_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-sm vesper-button-subtle"
+      class="vesper-button vesper-button-sm vesper-button-subtle vesper-split-button-action-button"
     >
       button text
     </button>
     <button
+      aria-expanded="false"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
+      class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button vesper-split-button-menu-button"
+      id="base-ui-_r_2e_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -1091,23 +1381,23 @@ exports[`split-button [snapshot] > subtle, sm 1`] = `
 exports[`split-button [snapshot] > subtle, sm, disabled 1`] = `
 <div>
   <div
-    aria-expanded="false"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-state="closed"
-    id="radix-_r_1k_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-sm vesper-button-disabled"
+      class="vesper-button vesper-button-sm vesper-button-disabled vesper-split-button-action-button"
       disabled=""
     >
       button text
     </button>
     <button
+      aria-expanded="false"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-disabled vesper-icon-button"
+      class="vesper-button vesper-button-sm vesper-button-disabled vesper-icon-button vesper-split-button-menu-button"
       disabled=""
+      id="base-ui-_r_2u_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -1140,30 +1430,35 @@ exports[`split-button [snapshot] > subtle, sm, disabled 1`] = `
 
 exports[`split-button [snapshot] > subtle, sm, disabled, open 1`] = `
 <div
-  aria-hidden="true"
-  data-aria-hidden="true"
+  data-base-ui-inert=""
 >
   <div
-    aria-controls="radix-_r_1n_"
-    aria-expanded="true"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-radix-popper-align="start"
-    data-radix-popper-side="bottom"
-    data-state="open"
-    id="radix-_r_1m_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-sm vesper-button-disabled"
+      class="vesper-button vesper-button-sm vesper-button-disabled vesper-split-button-action-button"
       disabled=""
     >
       button text
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
     <button
+      aria-controls="_r_31_"
+      aria-expanded="true"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-disabled vesper-icon-button"
+      class="vesper-button vesper-button-sm vesper-button-disabled vesper-icon-button vesper-split-button-menu-button"
+      data-popup-open=""
+      data-pressed=""
       disabled=""
+      id="base-ui-_r_33_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -1190,34 +1485,63 @@ exports[`split-button [snapshot] > subtle, sm, disabled, open 1`] = `
         </svg>
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-owns="_r_35_"
+      style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
   </div>
 </div>
 `;
 
 exports[`split-button [snapshot] > subtle, sm, open 1`] = `
 <div
-  aria-hidden="true"
-  data-aria-hidden="true"
+  data-base-ui-inert=""
 >
   <div
-    aria-controls="radix-_r_1e_"
-    aria-expanded="true"
-    aria-haspopup="menu"
     class="vesper-split-button"
-    data-radix-popper-align="start"
-    data-radix-popper-side="bottom"
-    data-state="open"
-    id="radix-_r_1d_"
-    type="button"
   >
     <button
-      class="vesper-button vesper-button-sm vesper-button-subtle"
+      class="vesper-button vesper-button-sm vesper-button-subtle vesper-split-button-action-button"
     >
       button text
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
     <button
+      aria-controls="_r_2h_"
+      aria-expanded="true"
+      aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
+      class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button vesper-split-button-menu-button"
+      data-popup-open=""
+      data-pressed=""
+      id="base-ui-_r_2j_"
+      tabindex="0"
+      type="button"
     >
       <span
         class="vesper-button-icon"
@@ -1244,6 +1568,30 @@ exports[`split-button [snapshot] > subtle, sm, open 1`] = `
         </svg>
       </span>
     </button>
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
+    <span
+      aria-owns="_r_2l_"
+      style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
+    />
+    <span
+      aria-hidden="true"
+      data-base-ui-focus-guard=""
+      data-type="outside"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="0"
+    />
   </div>
 </div>
 `;

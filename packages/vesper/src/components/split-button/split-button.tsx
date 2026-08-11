@@ -5,6 +5,7 @@ import {
   type MouseEventHandler,
   type PointerEvent,
   useCallback,
+  useImperativeHandle,
   useRef,
 } from "react";
 
@@ -120,58 +121,56 @@ export function SplitButton(props: SplitButtonProps) {
     menuButtonAriaLabel,
     onPointerDown,
     defaultMenuOpen,
+    ref,
     ...rest
   } = props;
+
+  const innerRef = useRef<HTMLDivElement>(null);
+  useImperativeHandle(ref, () => innerRef.current!);
 
   const actionButtonRef = useRef<HTMLButtonElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   const handlePointerDown = useCallback(
     (e: PointerEvent<HTMLDivElement>) => {
-      if (disabled || actionButtonRef.current?.contains(e.target as Node)) {
-        e.preventDefault();
-      }
+      if (disabled) e.preventDefault();
       onPointerDown?.(e);
     },
     [disabled, onPointerDown],
   );
 
-  const handleOpenMenuChange = useCallback(
-    (open: boolean) => {
-      if (!open) menuButtonRef.current?.focus();
-      onMenuOpenChange?.(open);
-    },
-    [onMenuOpenChange],
-  );
-
   return (
-    <Menu
-      items={menuItems}
-      align={menuAlign}
-      side={menuSide}
-      alignOffset={menuAlignOffset}
-      open={menuOpen}
-      onOpenChange={handleOpenMenuChange}
-      sideOffset={menuSideOffset}
-      width={menuWidth}
-      defaultOpen={defaultMenuOpen}
+    <div
+      className={cn("vesper-split-button", className)}
+      onPointerDown={handlePointerDown}
+      ref={innerRef}
+      {...rest}
     >
-      <div
-        className={cn("vesper-split-button", className)}
-        onPointerDown={handlePointerDown}
-        {...rest}
+      <Button
+        className="vesper-split-button-action-button"
+        ref={actionButtonRef}
+        onClick={onClick}
+        onKeyDown={(e) => e.stopPropagation()}
+        size={size}
+        variant={variant}
+        disabled={disabled}
       >
-        <Button
-          ref={actionButtonRef}
-          onClick={onClick}
-          onKeyDown={(e) => e.stopPropagation()}
-          size={size}
-          variant={variant}
-          disabled={disabled}
-        >
-          {children}
-        </Button>
+        {children}
+      </Button>
+      <Menu
+        anchor={innerRef}
+        items={menuItems}
+        align={menuAlign}
+        side={menuSide}
+        alignOffset={menuAlignOffset}
+        open={menuOpen}
+        sideOffset={menuSideOffset}
+        width={menuWidth}
+        defaultOpen={defaultMenuOpen}
+        onOpenChange={onMenuOpenChange}
+      >
         <IconButton
+          className="vesper-split-button-menu-button"
           size={size}
           variant={variant}
           disabled={disabled}
@@ -184,7 +183,7 @@ export function SplitButton(props: SplitButtonProps) {
             </>
           }
         />
-      </div>
-    </Menu>
+      </Menu>
+    </div>
   );
 }

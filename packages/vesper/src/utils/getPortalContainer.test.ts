@@ -1,3 +1,4 @@
+import { RefObject } from "react";
 import { describe, expect, test } from "vitest";
 
 import { getPortalContainer } from "@/utils/getPortalContainer";
@@ -16,8 +17,24 @@ describe("getPortalContainer", () => {
     expect(getPortalContainer(container, null)).toBe(container);
   });
 
-  test("returns a document fragment container", () => {
-    const container = document.createDocumentFragment();
+  test("returns a shadow root container", () => {
+    const host = document.createElement("div");
+    const container = host.attachShadow({ mode: "open" });
+
+    expect(getPortalContainer(container, null)).toBe(container);
+  });
+
+  test("returns a ref object container", () => {
+    const container: RefObject<HTMLElement | null> = {
+      current: document.createElement("div"),
+    };
+    const trigger = document.createElement("button");
+
+    expect(getPortalContainer(container, trigger)).toBe(container);
+  });
+
+  test("returns a ref object container whose current value is null", () => {
+    const container: RefObject<HTMLElement | null> = { current: null };
 
     expect(getPortalContainer(container, null)).toBe(container);
   });
@@ -29,6 +46,19 @@ describe("getPortalContainer", () => {
     dialog.append(trigger);
 
     expect(getPortalContainer(container, trigger)).toBe(container);
+  });
+
+  test("ref object container takes precedence over the closest dialog ancestor", () => {
+    const container: RefObject<HTMLElement | null> = {
+      current: document.createElement("div"),
+    };
+    const emptyContainer: RefObject<HTMLElement | null> = { current: null };
+    const dialog = document.createElement("dialog");
+    const trigger = document.createElement("button");
+    dialog.append(trigger);
+
+    expect(getPortalContainer(container, trigger)).toBe(container);
+    expect(getPortalContainer(emptyContainer, trigger)).toBe(emptyContainer);
   });
 
   test("falls back to default behavior when the container is null", () => {

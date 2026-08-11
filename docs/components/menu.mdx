@@ -11,19 +11,20 @@ A dropdown menu component that displays a list of actionable items when triggere
 
 ## Options
 
-| Prop           | Type                                     | Description                                                                                                      | Default    |
-| -------------- | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------- |
-| `items`        | `MenuItemProps[]`                        | The list of menu items to render. Each item has `text`, optional `description`, `icon`, `style`, and `onSelect`. | —          |
-| `children`     | `ReactElement`                           | The trigger element that opens the menu.                                                                         | —          |
-| `side`         | `"top" \| "bottom" \| "left" \| "right"` | The preferred side to render the menu against.                                                                   | `"bottom"` |
-| `sideOffset`   | `number`                                 | The distance in pixels from the trigger to the menu.                                                             | `8`        |
-| `align`        | `"start" \| "center" \| "end"`           | The alignment of the menu relative to the trigger.                                                               | `"start"`  |
-| `alignOffset`  | `number`                                 | An offset in pixels from the aligned edge of the trigger.                                                        | —          |
-| `width`        | `number`                                 | The width of the menu dropdown in pixels.                                                                        | `200`      |
-| `open`         | `boolean`                                | Controls the open state of the menu (controlled mode).                                                           | —          |
-| `defaultOpen`  | `boolean`                                | Whether the menu is open by default (uncontrolled mode).                                                         | `false`    |
-| `onOpenChange` | `(open: boolean) => void`                | Callback fired when the open state changes.                                                                      | —          |
-| `container`    | `Element \| DocumentFragment \| null`    | Specify the element or document fragment to portal the menu into.                                                | –          |
+| Prop           | Type                                                                                | Description                                                                                                      | Default    |
+| -------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------- |
+| `items`        | `MenuItemProps[]`                                                                   | The list of menu items to render. Each item has `text`, optional `description`, `icon`, `style`, and `onSelect`. | —          |
+| `children`     | `ReactElement`                                                                      | The trigger element that opens the menu.                                                                         | —          |
+| `side`         | `"top" \| "bottom" \| "left" \| "right"`                                            | The preferred side to render the menu against.                                                                   | `"bottom"` |
+| `sideOffset`   | `number`                                                                            | The distance in pixels from the trigger to the menu.                                                             | `8`        |
+| `align`        | `"start" \| "center" \| "end"`                                                      | The alignment of the menu relative to the trigger.                                                               | `"start"`  |
+| `alignOffset`  | `number`                                                                            | An offset in pixels from the aligned edge of the trigger.                                                        | —          |
+| `width`        | `number`                                                                            | The width of the menu dropdown in pixels.                                                                        | `200`      |
+| `open`         | `boolean`                                                                           | Controls the open state of the menu (controlled mode).                                                           | —          |
+| `defaultOpen`  | `boolean`                                                                           | Whether the menu is open by default (uncontrolled mode).                                                         | `false`    |
+| `onOpenChange` | `(open: boolean) => void`                                                           | Callback fired when the open state changes.                                                                      | —          |
+| `container`    | `HTMLElement \| ShadowRoot \| null \| RefObject<HTMLElement \| ShadowRoot \| null>` | Specify the element or shadow root to portal the menu into.                                                      | –          |
+| `anchor`       | `HTMLElement \| RefObject<HTMLElement \| null>`                                     | Specify the element to anchor the menu against. Default behavior anchors the menu to the triggering element      | –          |
 
 ### MenuItemProps
 

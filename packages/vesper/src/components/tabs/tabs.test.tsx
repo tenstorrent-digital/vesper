@@ -113,7 +113,7 @@ describe("tabs [unit]", () => {
     const result = render(<TabsTestComponent />);
 
     const tab1Content = result.queryByTestId("tab-1-content");
-    expect(tab1Content).toBeNull();
+    expect(tab1Content).not.toBeNull();
 
     const tab2Content = result.queryByTestId("tab-2-content");
     expect(tab2Content).toBeNull();
