@@ -1,4 +1,4 @@
-import { createRef, type KeyboardEvent } from "react";
+import { createRef } from "react";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
