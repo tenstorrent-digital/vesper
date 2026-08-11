@@ -25,7 +25,6 @@ const BUTTON_A11Y_FAILING_PERMUTATIONS: (ButtonProps & {
   ...BUTTON_SIZES.flatMap((size) => [
     { size, variant: "warning" as const, disabled: false, theme: "light" },
     { size, variant: "danger" as const, disabled: false, theme: "light" },
-    { size, variant: "primary" as const, disabled: false, theme: "dark" },
     { size, variant: "danger" as const, disabled: false, theme: "dark" },
     { size, variant: "warning" as const, disabled: false, theme: "dark" },
   ]),

@@ -535,7 +535,7 @@ describe("sheet [a11y]", () => {
     SHEET_A11Y_PERMUTATIONS.forEach(({ label, props, children }) => {
       const testLabel = `a11y - ${label} (${theme})`;
 
-      test.todo(testLabel, async () => {
+      test(testLabel, async () => {
         const result = render(
           <SheetWithHook {...props}>{children}</SheetWithHook>,
         );

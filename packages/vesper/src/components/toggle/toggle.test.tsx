@@ -484,7 +484,7 @@ describe("toggle [a11y]", () => {
       expect(await axe.run(container)).toHaveNoViolations();
     };
 
-    test.todo(`a11y (text, ${theme})`, testFn);
+    test(`a11y (text, ${theme})`, testFn);
 
     test(`a11y (icons, ${theme})`, async () => {
       const { container } = render(

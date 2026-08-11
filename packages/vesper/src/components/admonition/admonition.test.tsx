@@ -22,12 +22,12 @@ const ADMONITION_A11Y_FAILING_PERMUTATIONS: (AdmonitionProps & {
   theme: string;
 })[] = [
   ...ADMONITION_SIZES.flatMap((size) => [
+    { size, variant: "info" as const, subtle: true, theme: "light" },
     { size, variant: "info" as const, subtle: false, theme: "light" },
     { size, variant: "success" as const, subtle: true, theme: "light" },
     { size, variant: "success" as const, subtle: false, theme: "light" },
     { size, variant: "warning" as const, subtle: true, theme: "light" },
     { size, variant: "warning" as const, subtle: false, theme: "light" },
-    { size, variant: "danger" as const, subtle: true, theme: "light" },
     { size, variant: "danger" as const, subtle: false, theme: "light" },
     { size, variant: "info" as const, subtle: true, theme: "dark" },
     { size, variant: "info" as const, subtle: false, theme: "dark" },

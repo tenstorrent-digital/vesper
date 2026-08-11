@@ -80,16 +80,6 @@ describe("accordion [snapshot]", () => {
   });
 });
 
-const ACCORDION_A11Y_FAILING_PERMUTATIONS: {
-  open: boolean;
-  theme: string;
-}[] = [
-  { open: true, theme: "light" },
-  { open: false, theme: "light" },
-  { open: true, theme: "dark" },
-  { open: false, theme: "dark" },
-];
-
 describe("accordion [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
@@ -105,7 +95,7 @@ describe("accordion [a11y]", () => {
     ([true, false] as const).forEach((open) => {
       const label = `a11y (${open ? "open" : "closed"}, ${theme})`;
 
-      const testFn = async () => {
+      test(label, async () => {
         const result = render(
           <Accordion title={TITLE} open={open}>
             {CHILDREN}
@@ -113,14 +103,7 @@ describe("accordion [a11y]", () => {
         );
 
         expect(await axe.run(result.container)).toHaveNoViolations();
-      };
-
-      const failsA11y = ACCORDION_A11Y_FAILING_PERMUTATIONS.some(
-        (p) => p.open === open && p.theme === theme,
-      );
-
-      if (failsA11y) test.todo(label, testFn);
-      else test(label, testFn);
+      });
     });
   });
 });

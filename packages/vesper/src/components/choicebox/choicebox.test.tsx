@@ -38,7 +38,7 @@ const CHOICEBOX_OPTIONS_WITH_DESCRIPTIONS: ChoiceboxItem[] = [
 
 type ChoiceboxPermutation = ChoiceboxProps & { permutationName: string };
 
-const CHOICEBOX_PASSING_A11Y_PERMUTATIONS: ChoiceboxPermutation[] = [
+const CHOICEBOX_PERMUTATIONS: ChoiceboxPermutation[] = [
   {
     permutationName: "single-select",
     name: "test-choicebox",
@@ -49,6 +49,11 @@ const CHOICEBOX_PASSING_A11Y_PERMUTATIONS: ChoiceboxPermutation[] = [
     name: "test-choicebox",
     options: CHOICEBOX_OPTIONS,
     disabled: true,
+  },
+  {
+    permutationName: "single-select, with descriptions",
+    name: "test-choicebox",
+    options: CHOICEBOX_OPTIONS_WITH_DESCRIPTIONS,
   },
   {
     permutationName: "single-select, with descriptions, disabled",
@@ -70,25 +75,17 @@ const CHOICEBOX_PASSING_A11Y_PERMUTATIONS: ChoiceboxPermutation[] = [
     disabled: true,
   },
   {
+    permutationName: "multi-select, with descriptions",
+    name: "test-choicebox",
+    multiselect: true,
+    options: CHOICEBOX_OPTIONS_WITH_DESCRIPTIONS,
+  },
+  {
     permutationName: "multi-select, with descriptions, disabled",
     name: "test-choicebox",
     multiselect: true,
     options: CHOICEBOX_OPTIONS_WITH_DESCRIPTIONS,
     disabled: true,
-  },
-];
-
-const CHOICEBOX_FAILING_A11Y_PERMUTATIONS: ChoiceboxPermutation[] = [
-  {
-    permutationName: "single-select, with descriptions",
-    name: "test-choicebox",
-    options: CHOICEBOX_OPTIONS_WITH_DESCRIPTIONS,
-  },
-  {
-    permutationName: "multi-select, with descriptions",
-    name: "test-choicebox",
-    multiselect: true,
-    options: CHOICEBOX_OPTIONS_WITH_DESCRIPTIONS,
   },
 ];
 
@@ -898,10 +895,7 @@ describe("choicebox [unit]", () => {
 });
 
 describe("choicebox [snapshot]", () => {
-  [
-    ...CHOICEBOX_PASSING_A11Y_PERMUTATIONS,
-    ...CHOICEBOX_FAILING_A11Y_PERMUTATIONS,
-  ].forEach(({ permutationName, ...props }) => {
+  CHOICEBOX_PERMUTATIONS.forEach(({ permutationName, ...props }) => {
     test(permutationName, () => {
       const { container } = render(<Choicebox {...props} />);
       expect(container.firstChild).toMatchSnapshot();
@@ -919,22 +913,11 @@ describe("choicebox [a11y]", () => {
       document.documentElement.removeAttribute("data-vesper-theme");
     });
 
-    CHOICEBOX_PASSING_A11Y_PERMUTATIONS.forEach(
-      ({ permutationName, ...props }) => {
-        test(`wcag2aaa (${permutationName}, ${theme})`, async () => {
-          const { container } = render(<Choicebox {...props} />);
-          expect(await axe.run(container)).toHaveNoViolations();
-        });
-      },
-    );
-
-    CHOICEBOX_FAILING_A11Y_PERMUTATIONS.forEach(
-      ({ permutationName, ...props }) => {
-        test.todo(`wcag2aaa (${permutationName}, ${theme})`, async () => {
-          const { container } = render(<Choicebox {...props} />);
-          expect(await axe.run(container)).toHaveNoViolations();
-        });
-      },
-    );
+    CHOICEBOX_PERMUTATIONS.forEach(({ permutationName, ...props }) => {
+      test(`wcag2aaa (${permutationName}, ${theme})`, async () => {
+        const { container } = render(<Choicebox {...props} />);
+        expect(await axe.run(container)).toHaveNoViolations();
+      });
+    });
   });
 });

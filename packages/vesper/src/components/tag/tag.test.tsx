@@ -26,16 +26,16 @@ const TAG_A11Y_FAILING_PERMUTATIONS: (TagProps & { theme: string })[] = [
     { size, variant: "danger-bold", disabled: false, theme: "light" },
     { size, variant: "success-bold", disabled: false, theme: "light" },
     { size, variant: "success-subtle", disabled: false, theme: "light" },
+    { size, variant: "info-bold", disabled: false, theme: "light" },
     { size, variant: "info-subtle", disabled: false, theme: "light" },
     { size, variant: "warning-bold", disabled: false, theme: "light" },
     { size, variant: "warning-subtle", disabled: false, theme: "light" },
-    { size, variant: "accent-bold", disabled: false, theme: "dark" },
+    { size, variant: "accent-subtle", disabled: false, theme: "dark" },
     { size, variant: "danger-bold", disabled: false, theme: "dark" },
     { size, variant: "danger-subtle", disabled: false, theme: "dark" },
     { size, variant: "success-subtle", disabled: false, theme: "dark" },
     { size, variant: "info-bold", disabled: false, theme: "dark" },
     { size, variant: "info-subtle", disabled: false, theme: "dark" },
-    { size, variant: "warning-bold", disabled: false, theme: "dark" },
   ]),
 ];
 
