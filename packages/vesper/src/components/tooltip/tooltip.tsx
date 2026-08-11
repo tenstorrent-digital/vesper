@@ -43,7 +43,7 @@ export interface TooltipProps {
   children?: ReactNode;
   /** The maximum width of the tooltip in pixels. Content will wrap if it exceeds this width. @default 240 */
   maxWidth?: number;
-  /** Specify the element or document fragment to portal the tooltip into */
+  /** Specify the element or shadow root to portal the tooltip into */
   container?: PortalContainer;
 }
 
@@ -57,7 +57,7 @@ export interface TooltipProps {
  * @param {TooltipAlign} [props.align] - (optional) Alignment relative to the trigger. @default center
  * @param {number} [props.delayDuration] - (optional) Delay in milliseconds before showing. @default 500
  * @param {number} [props.maxWidth] - (optional) Maximum width of the tooltip in pixels. @default 240
- * @param {PortalContainer} [props.container] - (optional) Specify the element or document fragment to portal the tooltip into
+ * @param {PortalContainer} [props.container] - (optional) Specify the element or shadow root to portal the tooltip into
  * @param {boolean} [props.open] - (optional) Controls the open state (controlled)
  * @param {(value: boolean) => void} [props.onOpenChange] - (optional) Callback fired when open state changes
  *

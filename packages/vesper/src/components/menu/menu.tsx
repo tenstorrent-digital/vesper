@@ -47,7 +47,7 @@ export interface MenuProps {
   items: MenuItemProps[];
   /** The width of the menu dropdown in pixels. @default 200 */
   width?: number;
-  /** Specify the element or document fragment to portal the menu into */
+  /** Specify the element or shadow root to portal the menu into */
   container?: PortalContainer;
   /** Specify the element to anchor the menu against. @default trigger element */
   anchor?: HTMLElement | RefObject<HTMLElement | null>;
@@ -62,7 +62,7 @@ export interface MenuProps {
  * @param {"top" | "bottom" | "left" | "right"} [props.side] - (optional) The preferred side of the trigger. @default bottom
  * @param {number} [props.sideOffset] - (optional) Distance in pixels from the trigger. @default 8
  * @param {"start" | "center" | "end"} [props.align] - (optional) Alignment relative to the trigger. @default start
- * @param {PortalContainer} [props.container] - (optional) Specify the element or document fragment to portal the menu into
+ * @param {PortalContainer} [props.container] - (optional) Specify the element or shadow root to portal the menu into
  * @param {boolean} [props.open] - (optional) Controls the open state (controlled)
  * @param {(open: boolean) => void} [props.onOpenChange] - (optional) Callback fired when the open state changes
  *
