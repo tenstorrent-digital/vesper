@@ -24,7 +24,7 @@ A small labeling component used to highlight status, categories, or metadata. Su
 
 ### Basic usage
 
-By default, a `Badge` will render using the `accent` variant at `md` size when no `variant` or `size` prop is supplied.
+By default, a `Badge` will render using the `accent` variant at `md` size when no `variant` or `size` prop is supplied:
 
 <Badge>Default</Badge>
 
@@ -36,7 +36,7 @@ import { Badge } from "@tenstorrent/vesper/badge";
 
 ### Color variants
 
-A `Badge` can be rendered in a number of variants:
+A `Badge` can be rendered in one of nine color variants matching the meaning of the content it describes:
 
 <Badge variant="accent">Accent</Badge>
 <Badge variant="success">Success</Badge>
@@ -80,7 +80,7 @@ import { Badge } from "@tenstorrent/vesper/badge";
 
 ### Subtle appearance
 
-The `subtle` prop renders badge variants with a more subdued appearance:
+The `subtle` prop renders any variant with a more subdued appearance:
 
 <Badge variant="success" subtle>
   Completed
@@ -96,7 +96,7 @@ import { Badge } from "@tenstorrent/vesper/badge";
 
 ### With icon
 
-Supplying an `icon` prop to the `Badge` component will render it to the left of the badge's text:
+Supplying an `icon` prop renders an icon to the left of the badge's text:
 
 <Badge variant="success" icon={<Checkmark />}>
   Verified
