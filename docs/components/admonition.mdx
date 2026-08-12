@@ -111,3 +111,28 @@ import { Admonition } from "@tenstorrent/vesper/admonition";
   Subtle warning variant
 </Admonition>;
 ```
+
+### Polymorphic CTA
+
+You can use the `ctaAs` prop to specify what underlying element to render for the call-to-action. In this case, we are passing `ctaAs="a"` to render the call-to-action as an anchor link:
+
+<Admonition
+  variant="warning"
+  ctaAs="a"
+  cta={{ children: "Read docs", href: "" }}
+>
+  This option will be deprecated in <Code>v2.0</Code>.
+</Admonition>
+
+```tsx
+import { Admonition } from "@tenstorrent/vesper/admonition";
+import { Code } from "@tenstorrent/vesper/code";
+
+<Admonition
+  variant="warning"
+  ctaAs="a"
+  cta={{ children: "Read docs", href: "/docs" }}
+>
+  This option will be deprecated in <Code>2.0</Code>.
+</Admonition>;
+```
