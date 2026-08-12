@@ -142,7 +142,7 @@ const components = {
     }
 
     return (
-      <CodeBlock className="max-w-full" lang={resolvedLang} copyOnHover>
+      <CodeBlock className="w-full" lang={resolvedLang} copyOnHover>
         {code}
       </CodeBlock>
     );
