@@ -27,28 +27,138 @@ Displays a stacked row of avatars with an overflow indicator when more than thre
 
 ## Examples
 
+### Basic usage
+
+By default, an `AvatarGroup` will render all avatars at `md` size if the `size` prop is not specified:
+
+<AvatarGroup
+  avatars={[
+    { src: "https://i.pravatar.cc/128", alt: "Alice" },
+    { src: "https://i.pravatar.cc/256", alt: "Bob" },
+  ]}
+/>
+
 ```tsx
 import { AvatarGroup } from "@tenstorrent/vesper/avatar-group";
 
-// Basic usage
 <AvatarGroup
   avatars={[
-    { src: "/user1.png", alt: "Alice" },
-    { src: "/user2.png", alt: "Bob" },
+    { src: "https://i.pravatar.cc/128", alt: "Alice" },
+    { src: "https://i.pravatar.cc/256", alt: "Bob" },
   ]}
 />;
 ```
 
-```tsx
-// With overflow indicator (more than 3 avatars)
+### Different sizes
+
+An `AvatarGroup` can be rendered in one of three sizes: `sm`, `md`, and `lg`:
+
+<AvatarGroup
+  size="sm"
+  avatars={[
+    { src: "https://i.pravatar.cc/128", alt: "Alice" },
+    { src: "https://i.pravatar.cc/256", alt: "Bob" },
+    { src: "https://i.pravatar.cc/384", alt: "Jim" },
+  ]}
+/>
+<AvatarGroup
+  size="md"
+  avatars={[
+    { src: "https://i.pravatar.cc/128", alt: "Alice" },
+    { src: "https://i.pravatar.cc/256", alt: "Bob" },
+    { src: "https://i.pravatar.cc/384", alt: "Jim" },
+  ]}
+/>
 <AvatarGroup
   size="lg"
   avatars={[
-    { src: "/user1.png", alt: "Alice" },
-    { src: "/user2.png", alt: "Bob" },
-    { src: "/user3.png", alt: "Carol" },
-    { src: "/user4.png", alt: "Dave" },
-    { src: "/user5.png", alt: "Eve" },
+    { src: "https://i.pravatar.cc/128", alt: "Alice" },
+    { src: "https://i.pravatar.cc/256", alt: "Bob" },
+    { src: "https://i.pravatar.cc/384", alt: "Jim" },
+  ]}
+/>
+
+```tsx
+import { AvatarGroup } from "@tenstorrent/vesper/avatar-group";
+
+<AvatarGroup
+  size="sm"
+  avatars={[
+      { src: "https://i.pravatar.cc/128", alt: "Alice" },
+      { src: "https://i.pravatar.cc/256", alt: "Bob" },
+      { src: "https://i.pravatar.cc/384", alt: "Bob" },
+  ]}
+/>
+<AvatarGroup
+  size="md"
+  avatars={[
+      { src: "https://i.pravatar.cc/128", alt: "Alice" },
+      { src: "https://i.pravatar.cc/256", alt: "Bob" },
+      { src: "https://i.pravatar.cc/384", alt: "Bob" },
+  ]}
+/>
+<AvatarGroup
+  size="lg"
+  avatars={[
+      { src: "https://i.pravatar.cc/128", alt: "Alice" },
+      { src: "https://i.pravatar.cc/256", alt: "Bob" },
+      { src: "https://i.pravatar.cc/384", alt: "Bob" },
   ]}
 />
 ```
+
+### With overflow (>3 avatars)
+
+When more than 3 avatars are present, an `AvatarGroup` will render an overflow indicator:
+
+<AvatarGroup
+  avatars={[
+    { src: "https://i.pravatar.cc/128", alt: "Alice" },
+    { src: "https://i.pravatar.cc/256", alt: "Bob" },
+    { src: "https://i.pravatar.cc/384", alt: "Jim" },
+    { src: "https://i.pravatar.cc/512", alt: "Alex" },
+  ]}
+/>
+
+```tsx
+import { AvatarGroup } from "@tenstorrent/vesper/avatar-group";
+
+<AvatarGroup
+  avatars={[
+    { src: "https://i.pravatar.cc/128", alt: "Alice" },
+    { src: "https://i.pravatar.cc/256", alt: "Bob" },
+    { src: "https://i.pravatar.cc/384", alt: "Jim" },
+    { src: "https://i.pravatar.cc/512", alt: "Alex" },
+  ]}
+/>;
+```
+
+### Polymorphic usage
+
+You can use the `as` prop to specify what underlying element to render. In this case, we are passing `as="a"` to render the `AvatarGroup` as an anchor link:
+
+```tsx
+import { AvatarGroup } from "@tenstorrent/vesper/avatar-group";
+
+<AvatarGroup
+  as="a"
+  href="/settings/team"
+  avatars={[
+    { src: "https://i.pravatar.cc/128", alt: "Alice" },
+    { src: "https://i.pravatar.cc/256", alt: "Bob" },
+    { src: "https://i.pravatar.cc/384", alt: "Jim" },
+    { src: "https://i.pravatar.cc/512", alt: "Alex" },
+  ]}
+/>;
+```
+
+<AvatarGroup
+  as="a"
+  href=""
+  avatars={[
+    { src: "https://i.pravatar.cc/128", alt: "Alice" },
+    { src: "https://i.pravatar.cc/256", alt: "Bob" },
+    { src: "https://i.pravatar.cc/384", alt: "Jim" },
+    { src: "https://i.pravatar.cc/512", alt: "Alex" },
+  ]}
+/>
