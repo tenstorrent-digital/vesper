@@ -46,8 +46,6 @@ body {
 }
 
 body {
-  background: var(--vesper-background-primary);
-  color: var(--vesper-text-primary);
   &:where([inert], :has(dialog[open]:modal)) {
     overflow-y: clip;
   }
