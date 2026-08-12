@@ -27,6 +27,8 @@ You may also pass additional props to the underlying `div` element. For example,
 
 ### Basic usage
 
+The simplest way to use an `Accordion` is to render it with a `title` and `children` without controlling its open/closed state:
+
 <Accordion title="Section Title" className="w-full max-w-xs">
   Content goes here.
 </Accordion>
@@ -38,6 +40,8 @@ import { Accordion } from "@tenstorrent/vesper/accordion";
 ```
 
 ### Default open state
+
+You can render an `Accordion` in a default opened state by passing `defaultOpen`:
 
 <Accordion title="Already Open" defaultOpen className="w-full max-w-xs">
   This accordion starts expanded.
@@ -51,7 +55,9 @@ import { Accordion } from "@tenstorrent/vesper/accordion";
 </Accordion>;
 ```
 
-### Controlled usage via `useState`
+### Controlled usage
+
+If you need to control the open/closed state of the `Accordion`, you can do so via the `open` and `onOpenChange` props:
 
 <Accordion title="Controlled" className="w-full max-w-xs">
   Controlled accordion content.
