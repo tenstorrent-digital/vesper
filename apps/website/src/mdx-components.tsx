@@ -30,6 +30,7 @@ import { CodeBlock } from "@tenstorrent/vesper/code-block";
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import {
   Add,
+  Checkmark,
   Gear,
   Globe,
   Info,
@@ -217,6 +218,7 @@ const components = {
 
   // icons will need to be added here too if we want to use them directly
   Add,
+  Checkmark,
   Gear,
   Globe,
   Info,

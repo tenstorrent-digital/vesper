@@ -22,40 +22,108 @@ A small labeling component used to highlight status, categories, or metadata. Su
 
 ## Examples
 
+### Basic usage
+
+By default, a `Badge` will render using the `accent` variant at `md` size when no `variant` or `size` prop is supplied.
+
+<Badge>Default</Badge>
+
 ```tsx
 import { Badge } from "@tenstorrent/vesper/badge";
 
-// Basic usage
 <Badge>Default</Badge>;
 ```
 
-```tsx
-// Color variants
-<Badge variant="success">Active</Badge>
-<Badge variant="danger">Error</Badge>
-<Badge variant="warning">Pending</Badge>
+### Color variants
+
+A `Badge` can be rendered in a number of variants:
+
+<Badge variant="accent">Accent</Badge>
+<Badge variant="success">Success</Badge>
+<Badge variant="warning">Warning</Badge>
+<Badge variant="danger">Danger</Badge>
 <Badge variant="info">Info</Badge>
-```
+<Badge variant="purple">Purple</Badge>
+<Badge variant="pink">Pink</Badge>
+<Badge variant="mint">Mint</Badge>
+<Badge variant="contrast">Contrast</Badge>
 
 ```tsx
-// Sizes
+import { Badge } from "@tenstorrent/vesper/badge";
+
+<Badge variant="accent">Accent</Badge>
+<Badge variant="success">Success</Badge>
+<Badge variant="warning">Warning</Badge>
+<Badge variant="danger">Danger</Badge>
+<Badge variant="info">Info</Badge>
+<Badge variant="purple">Purple</Badge>
+<Badge variant="pink">Pink</Badge>
+<Badge variant="mint">Mint</Badge>
+<Badge variant="contrast">Contrast</Badge>
+```
+
+### Sizes
+
+A `Badge` can be rendered in one of three sizes: `sm`, `md`, and `lg`:
+
+<Badge size="sm">Small</Badge>
+<Badge size="md">Medium</Badge>
+<Badge size="lg">Large</Badge>
+
+```tsx
+import { Badge } from "@tenstorrent/vesper/badge";
+
 <Badge size="sm">Small</Badge>
 <Badge size="md">Medium</Badge>
 <Badge size="lg">Large</Badge>
 ```
 
-```tsx
-// Subtle appearance
+### Subtle appearance
+
+The `subtle` prop renders badge variants with a more subdued appearance:
+
 <Badge variant="success" subtle>
   Completed
 </Badge>
-```
 
 ```tsx
-// With icon
+import { Badge } from "@tenstorrent/vesper/badge";
+
+<Badge variant="success" subtle>
+  Completed
+</Badge>;
+```
+
+### With icon
+
+Supplying an `icon` prop to the `Badge` component will render it to the left of the badge's text:
+
+<Badge variant="success" icon={<Checkmark />}>
+  Verified
+</Badge>
+
+```tsx
+import { Badge } from "@tenstorrent/vesper/badge";
 import { Checkmark } from "@tenstorrent/vesper/icons";
 
 <Badge variant="success" icon={<Checkmark />}>
   Verified
+</Badge>;
+```
+
+### Polymorphic usage
+
+You can use the `as` prop to specify what underlying element to render. In this case, we are passing `as="a"` to render the `Badge` as an anchor link:
+
+<Badge variant="info" icon={<Globe />} as="a" href="/archive">
+  Archived
+</Badge>
+
+```tsx
+import { Badge } from "@tenstorrent/vesper/badge";
+import { Globe } from "@tenstorrent/vesper/icons";
+
+<Badge variant="info" icon={<Globe />} as="a" href="/archive">
+  Archived
 </Badge>;
 ```
