@@ -13,7 +13,7 @@
  *
  * that compiles to `<Typography><p>Some text.</p></Typography>`, and since
  * `p` is mapped to a component in `src/mdx-components.tsx`, the text ends up
- * wrapped in a second `Typography` (or a `Accordion`/`Admonition` renders a
+ * wrapped in a second `Typography` (or an `Accordion`/`Admonition` renders a
  * paragraph it never asked for)
  *
  * this plugin unwraps those paragraphs so a component's children stay
