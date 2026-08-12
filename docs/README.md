@@ -37,6 +37,19 @@ Vesper components can be used **without importing them**. Components are provide
 <Accordion title="Click to expand">This is the accordion content.</Accordion>
 ```
 
+### Component children
+
+Text written inside a component stays **plain text** - it is never wrapped in a markdown paragraph, so a component renders exactly the children it was given:
+
+```mdx
+<Typography variant="copy-lg">
+  Plain text, even on its own line. Inline markdown like **bold**, `code`, and
+  [links](./components/button.mdx) still works.
+</Typography>
+```
+
+Blocks that can't be inlined - lists, headings, code blocks, tables, nested components - are left alone. There is no way to opt out from inside a document: a component whose children must keep markdown flow parsing has to be added to the `ignore` list of [`remark-jsx-text-children`](/apps/website/src/lib/mdx/remark-jsx-text-children.mjs) in [`next.config.ts`](/apps/website/next.config.ts).
+
 > [!IMPORTANT]
 >
 > Documents are rendered on the server, so a component that needs **non-serializable props** - event handlers, refs, or state - cannot be used here:

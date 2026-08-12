@@ -78,6 +78,19 @@ const withMDX = createMDX({
        * path resolves against `node_modules/@next/mdx` and is not found
        */
       path.join(appRoot, "src/lib/mdx/remark-doc-links.mjs"),
+
+      /**
+       * keeps text written inside a JSX element from being parsed as markdown
+       * flow, so `<Typography>`/`<Accordion>`/`<Admonition>`/etc. render their
+       * children as-is instead of wrapping them in a paragraph (which
+       * `src/mdx-components.tsx` maps to another component)
+       *
+       * absolute path for the same reason as the plugin above
+       */
+      [
+        path.join(appRoot, "src/lib/mdx/remark-jsx-text-children.mjs"),
+        { ignore: [] },
+      ],
     ],
   },
 });
