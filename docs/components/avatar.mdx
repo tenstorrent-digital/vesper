@@ -20,26 +20,66 @@ A circular image component for representing users or entities. Renders an image 
 
 ## Examples
 
+### Default usage
+
+By default, an `Avatar` will render at `md` size if the `size` prop is not specified:
+
+<Avatar src="https://i.pravatar.cc/128" alt="Jane Doe" />
+
 ```tsx
 import { Avatar } from "@tenstorrent/vesper/avatar";
 
-// Basic usage
-<Avatar src="/avatar.png" alt="Jane Doe" />;
+<Avatar src="https://i.pravatar.cc/128" alt="Jane Doe" />;
 ```
 
-```tsx
-// Different sizes
-<Avatar size="sm" src="/avatar.png" alt="Small" />
-<Avatar size="md" src="/avatar.png" alt="Medium" />
-<Avatar size="lg" src="/avatar.png" alt="Large" />
-```
+### Different sizes
+
+An `Avatar` can be rendered in one of three sizes: `sm`, `md`, and `lg`:
+
+<Avatar src="https://i.pravatar.cc/128" alt="Jane Doe" size="sm" />
+<Avatar src="https://i.pravatar.cc/128" alt="Jane Doe" size="md" />
+<Avatar src="https://i.pravatar.cc/128" alt="Jane Doe" size="lg" />
 
 ```tsx
-// Placeholder (no image)
-<Avatar size="md" />
+import { Avatar } from "@tenstorrent/vesper/avatar";
+
+<Avatar src="https://i.pravatar.cc/128" alt="Jane Doe" size="sm" />;
+<Avatar src="https://i.pravatar.cc/128" alt="Jane Doe" size="md" />;
+<Avatar src="https://i.pravatar.cc/128" alt="Jane Doe" size="lg" />;
 ```
 
+### Placeholder (no image)
+
+Rendering an `Avatar` with no `src` prop will show an empty circle with a placeholder fill color:
+
 ```tsx
-// Rendered as a link
-<Avatar as="a" href="/profile" src="/avatar.png" alt="Profile" />
+import { Avatar } from "@tenstorrent/vesper/avatar";
+
+<Avatar />;
 ```
+
+<Avatar />
+
+### Polymorphic usage
+
+You can use the `as` prop to specify what underlying element to render. In this case, we are passing `as="a"` to render the `Avatar` as an anchor link. This is helpful for apps where clicking on an avatar may navigate to a user profile, for example:
+
+```tsx
+import { Avatar } from "@tenstorrent/vesper/avatar";
+
+<Avatar
+  as="a"
+  href="/profile"
+  src="https://i.pravatar.cc/128"
+  alt="Profile"
+  size="lg"
+/>;
+```
+
+<Avatar
+  as="a"
+  href=""
+  src="https://i.pravatar.cc/128"
+  alt="Profile"
+  size="lg"
+/>
