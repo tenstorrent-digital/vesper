@@ -27,6 +27,8 @@ You may also pass additional props to the underlying element. For example, you m
 
 ### Info variant (default)
 
+An `Admonition` renders with the `info` variant at `sm` size when no `variant` or `size` prop is specified:
+
 <Admonition>Helpful information goes here.</Admonition>
 
 ```tsx
@@ -36,6 +38,8 @@ import { Admonition } from "@tenstorrent/vesper/admonition";
 ```
 
 ### Warning variant, `md` size
+
+Use the `warning` variant to flag content that needs attention, and `size="md"` to give it more padding and larger typography:
 
 <Admonition variant="warning" size="md">
   Please review before continuing.
@@ -51,6 +55,8 @@ import { Admonition } from "@tenstorrent/vesper/admonition";
 
 ### Danger variant, with CTA
 
+The `danger` variant highlights destructive or error states, and the `cta` prop renders a call-to-action button alongside the content:
+
 <Admonition variant="danger" cta={{ children: "Undo" }}>
   This action cannot be reversed.
 </Admonition>
@@ -65,6 +71,8 @@ import { Admonition } from "@tenstorrent/vesper/admonition";
 
 ### Success variant
 
+The `success` variant is best suited for confirming an action completed as expected:
+
 <Admonition variant="success">Operation completed successfully.</Admonition>
 
 ```tsx
@@ -74,6 +82,8 @@ import { Admonition } from "@tenstorrent/vesper/admonition";
 ```
 
 ### Secondary variant
+
+The `secondary` variant provides a neutral color scheme for supplementary information that doesn't need to stand out:
 
 <Admonition variant="secondary">
   This admonition details some information.
@@ -88,6 +98,8 @@ import { Admonition } from "@tenstorrent/vesper/admonition";
 ```
 
 ### Subtle
+
+Passing `subtle` renders a variant with a more subdued appearance:
 
 <Admonition variant="warning" subtle>
   Subtle warning variant
