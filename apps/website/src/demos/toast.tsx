@@ -1,19 +1,14 @@
 "use client";
 
-import type { ReactNode } from "react";
-
 import { Button } from "@tenstorrent/vesper/button";
 import { addToast, type ToastOptions, Toasts } from "@tenstorrent/vesper/toast";
 
 type ToastDemoProps =
+  | { kind: "container" }
+  | { kind: "spawner"; options: ToastOptions }
   | {
-      kind: "container";
-    }
-  | { kind: "spawner"; options: ToastOptions; children?: ReactNode }
-  | {
-      kind: "async-spawner";
+      kind: "updating-spawner";
       options: [ToastOptions, ToastOptions];
-      children?: ReactNode;
       timeout: number;
     };
 
@@ -23,22 +18,29 @@ export function ToastDemo(props: ToastDemoProps) {
   }
 
   if (props.kind === "spawner") {
-    return (
-      <Button onClick={() => addToast(props.options)}>{props.children}</Button>
-    );
+    if (props.options.action) {
+      props.options.action.handler = () => {};
+    }
+
+    return <Button onClick={() => addToast(props.options)}>Show toast</Button>;
   }
 
-  if (props.kind === "async-spawner") {
+  if (props.kind === "updating-spawner") {
     return (
       <Button
         onClick={() => {
-          const [optionsA, optionsB] = props.options;
-          const toast = addToast(optionsA);
-          setTimeout(() => toast.update(optionsB), props.timeout);
+          const [optionsA, optionsB] = props.options.map((o) => {
+            if (o.action) o.action.handler = () => {};
+            return o;
+          });
+          const toast = addToast(optionsA!);
+          setTimeout(() => toast.update(optionsB!), props.timeout);
         }}
       >
-        {props.children}
+        Show toast
       </Button>
     );
   }
+
+  return null;
 }

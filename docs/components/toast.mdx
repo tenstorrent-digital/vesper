@@ -11,9 +11,7 @@ A notification system for displaying temporary messages at the bottom of the scr
 <ToastDemo
   kind="spawner"
   options={{ content: "Hello from Vesper!", timeout: 5000 }}
->
-  Show toast
-</ToastDemo>
+/>
 
 ## Options
 
@@ -68,6 +66,29 @@ interface ToastOptions {
 }
 ```
 
+### Toast variants
+
+Toasts can be spawned with one of five variants: `"default"`, `"loading"`, `"success"`, `"warning"`, or `"danger"`.
+
+For example, to spawn a warning variant toast that self-dismisses after 5 seconds, you would call `addToast` like so:
+
+```tsx
+addToast({
+  content: "Resistance is futile.",
+  variant: "warning",
+  timeout: 5000,
+});
+```
+
+<ToastDemo
+  kind="spawner"
+  options={{
+    content: "Resistance is futile.",
+    variant: "warning",
+    timeout: 5000,
+  }}
+/>
+
 ### Self-dismissing toasts
 
 Toasts by default do not dismiss themselves; you must specify a timeout duration if you want a toast to disappear on its own. If a user interacts with a toast by moving their cursor or keyboard focus into the toast, the timeout will stop, and restart once the user ceases to interact with the toast.
@@ -91,30 +112,41 @@ addToast({
   Show toast
 </ToastDemo>
 
-### Toast variants
+### Toasts with actions
 
-Toasts can be spawned with one of five variants: `"default"`, `"loading"`, `"success"`, `"warning"`, or `"danger"`.
-
-For example, to spawn a warning variant toast that self-dismisses after 5 seconds, you would call `addToast` like so:
+You may spawn a toast with an associated call-to-action by passing an `action` object in the toast options:
 
 ```tsx
 addToast({
-  content: "Resistance is futile.",
-  variant: "warning",
+  content: "Conversation archived.",
   timeout: 5000,
+  variant: "success",
+  action: {
+    handler: () => unarchiveConversation(conversation.id),
+    content: "Undo",
+    altText: "Go to archive to restore conversations.",
+  },
 });
 ```
 
 <ToastDemo
   kind="spawner"
   options={{
-    content: "Resistance is futile.",
-    variant: "warning",
+    content: "Conversation archived.",
     timeout: 5000,
+    variant: "success",
+    action: {
+      content: "Undo",
+      altText: "Go to archive to restore conversations.",
+    },
   }}
->
-  Show toast
-</ToastDemo>
+/>
+
+Action objects have three properties:
+
+1. `handler` – a callback function that fires when the call-to-action is clicked.
+2. `content` – what appears inside the call-to-action (usually this will just be text, though any `ReactNode` is supported)
+3. `altText` – short description of an alternative way for users to acheive the desired action. This field is important for screen reader users who may not be able to access the toast easily, especially if it is time-sensitive.
 
 ### Updating toasts
 
@@ -156,7 +188,7 @@ if (response.ok) {
 ```
 
 <ToastDemo
-  kind="async-spawner"
+  kind="updating-spawner"
   timeout={3000}
   options={[
     {
@@ -169,6 +201,4 @@ if (response.ok) {
       timeout: 3000,
     },
   ]}
->
-  Show toast
-</ToastDemo>
+/>
