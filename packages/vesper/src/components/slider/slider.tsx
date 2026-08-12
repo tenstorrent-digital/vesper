@@ -43,6 +43,7 @@ interface SliderProps extends Omit<
  * @param {number} [props.step] - (optional) The stepping interval. @default 1
  * @param {boolean} [props.showValueLabel] - (optional) Whether to display the value label above the thumb. @default false
  * @param {boolean} [props.showTicks] - (optional) Whether to render tick marks at each step interval. @default false
+ * @param {string[]} props.thumbAriaLabel - Accessible label for the slider thumb
  *
  * You may also pass any additional props to the underlying `div` element
  *

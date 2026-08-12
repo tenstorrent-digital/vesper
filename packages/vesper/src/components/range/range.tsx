@@ -61,6 +61,7 @@ export interface RangeProps extends Omit<
  * @param {number} [props.step] - (optional) The stepping interval. @default 1
  * @param {boolean} [props.showTicks] - (optional) Whether to render tick marks at each step interval. @default false
  * @param {boolean} [props.showValueLabels] - (optional) Whether to display value labels above each thumb
+ * @param {string[]} props.thumbAriaLabels - Accessible `aria-label` attributes for each thumb
  *
  * You may also pass any additional props to the underlying `div` element
  *
@@ -70,6 +71,7 @@ export interface RangeProps extends Omit<
  *   max={100}
  *   defaultValues={[20, 80]}
  *   onValuesCommit={(values) => console.log(values)}
+ *   thumbAriaLabels={["Volume (min)", "Volume (max)"]}
  * />
  *
  * @example
@@ -81,6 +83,7 @@ export interface RangeProps extends Omit<
  *   showValueLabels
  *   values={range}
  *   onValuesChange={setRange}
+ *   thumbAriaLabels={["Volume (min)", "Volume (max)"]}
  * />
  */
 export function Range(props: RangeProps) {
