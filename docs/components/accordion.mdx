@@ -7,7 +7,7 @@ description: A collapsible content panel that toggles between expanded and colla
 
 A collapsible content panel that toggles between expanded and collapsed states. Useful for organizing long-form content into manageable sections.
 
-<Accordion title="Click to expand">
+<Accordion title="Click to expand" className="w-full max-w-xs">
   This is the accordion content. It can contain any text or elements.
 </Accordion>
 
@@ -21,24 +21,45 @@ A collapsible content panel that toggles between expanded and collapsed states. 
 | `onOpenChange` | `(open: boolean) => void` | Callback fired when the open state changes.                   | —       |
 | `children`     | `ReactNode`               | The content displayed when the accordion is expanded.         | —       |
 
+You may also pass additional props to the underlying `div` element. For example, you may wish to give the `<Accordion>` instance a custom max-width, aria-label, etc.
+
 ## Examples
+
+### Basic usage
+
+<Accordion title="Section Title" className="w-full max-w-xs">
+  Content goes here.
+</Accordion>
 
 ```tsx
 import { Accordion } from "@tenstorrent/vesper/accordion";
 
-// Basic usage
 <Accordion title="Section Title">Content goes here.</Accordion>;
 ```
 
-```tsx
-// Default open
-<Accordion title="Already Open" defaultOpen>
+### Default open state
+
+<Accordion title="Already Open" defaultOpen className="w-full max-w-xs">
   This accordion starts expanded.
 </Accordion>
-```
 
 ```tsx
-// Controlled
+import { Accordion } from "@tenstorrent/vesper/accordion";
+
+<Accordion title="Already Open" defaultOpen>
+  This accordion starts expanded.
+</Accordion>;
+```
+
+### Controlled usage via `useState`
+
+<Accordion title="Controlled" className="w-full max-w-xs">
+  Controlled accordion content.
+</Accordion>
+
+```tsx
+import { Accordion } from "@tenstorrent/vesper/accordion";
+
 const [open, setOpen] = useState(false);
 
 <Accordion title="Controlled" open={open} onOpenChange={setOpen}>
