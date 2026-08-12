@@ -2,15 +2,16 @@
 
 import { type ComponentProps, type CSSProperties, useMemo } from "react";
 import {
-  Slider as RadixSlider,
-  SliderRange,
-  SliderThumb,
-  SliderTrack,
-} from "@radix-ui/react-slider";
+  Slider as BaseSlider,
+  type SliderThumbState,
+} from "@base-ui/react/slider";
 
 import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+
+const toValues = (value: number | number[]) =>
+  Array.isArray(value) ? value : [value];
 
 export interface RangeProps extends Omit<
   ComponentProps<"div">,
@@ -21,7 +22,7 @@ export interface RangeProps extends Omit<
   /** Custom display labels for each thumb, shown as a tooltip-style label above the thumb. When left blank, defaults to the active values of each thumb. */
   valueLabels?: string[];
   /** Accessible `aria-label` attributes for each thumb. */
-  thumbAriaLabels?: string[];
+  thumbAriaLabels: string[];
   /** When `true`, displays the value labels above each thumb. */
   showValueLabels?: boolean;
   /** The initial thumb values (uncontrolled mode). @default [min, max] */
@@ -60,6 +61,7 @@ export interface RangeProps extends Omit<
  * @param {number} [props.step] - (optional) The stepping interval. @default 1
  * @param {boolean} [props.showTicks] - (optional) Whether to render tick marks at each step interval. @default false
  * @param {boolean} [props.showValueLabels] - (optional) Whether to display value labels above each thumb
+ * @param {string[]} props.thumbAriaLabels - Accessible `aria-label` attributes for each thumb
  *
  * You may also pass any additional props to the underlying `div` element
  *
@@ -69,6 +71,7 @@ export interface RangeProps extends Omit<
  *   max={100}
  *   defaultValues={[20, 80]}
  *   onValuesCommit={(values) => console.log(values)}
+ *   thumbAriaLabels={["Volume (min)", "Volume (max)"]}
  * />
  *
  * @example
@@ -80,6 +83,7 @@ export interface RangeProps extends Omit<
  *   showValueLabels
  *   values={range}
  *   onValuesChange={setRange}
+ *   thumbAriaLabels={["Volume (min)", "Volume (max)"]}
  * />
  */
 export function Range(props: RangeProps) {
@@ -111,65 +115,79 @@ export function Range(props: RangeProps) {
   const thumbValues = values ?? defaultValues;
 
   return (
-    <RadixSlider
+    <BaseSlider.Root
       className={cn("vesper-range", className)}
       value={values}
       defaultValue={defaultValues}
-      onValueChange={onValuesChange}
-      onValueCommit={onValuesCommit}
+      onValueChange={(value: number | number[]) =>
+        onValuesChange?.(toValues(value))
+      }
+      onValueCommitted={(value: number | number[]) =>
+        onValuesCommit?.(toValues(value))
+      }
       min={min}
       max={max}
       step={step}
-      minStepsBetweenThumbs={minStepsBetweenThumbs}
+      minStepsBetweenValues={minStepsBetweenThumbs}
+      thumbCollisionBehavior="none"
       {...rest}
     >
-      <SliderTrack className="vesper-range-track">
-        {showTicks &&
-          Array.from({ length: numTicks }).map((_, i) => (
-            <span
-              key={i}
-              className="vesper-range-tick"
-              style={{ left: tickLeft * ((i + 1) * step) + "%" }}
+      <BaseSlider.Control>
+        <BaseSlider.Track className="vesper-range-track">
+          {showTicks &&
+            Array.from({ length: numTicks }).map((_, i) => (
+              <span
+                key={i}
+                className="vesper-range-tick"
+                style={{ left: tickLeft * ((i + 1) * step) + "%" }}
+              />
+            ))}
+          <BaseSlider.Indicator className="vesper-range-range" />
+          {thumbValues.map((_, index) => (
+            <RangeThumb
+              key={index}
+              index={index}
+              ariaLabel={thumbAriaLabels[index]}
+              showLabel={showValueLabels}
+              label={valueLabels?.[index]}
             />
           ))}
-        <SliderRange className="vesper-range-range" />
-      </SliderTrack>
-      {thumbValues.map((_, index) => (
-        <RangeThumb
-          key={index}
-          ariaLabel={thumbAriaLabels?.[index]}
-          showLabel={showValueLabels}
-          label={valueLabels?.[index]}
-        />
-      ))}
-    </RadixSlider>
+        </BaseSlider.Track>
+      </BaseSlider.Control>
+    </BaseSlider.Root>
   );
 }
 
 function RangeThumb({
+  index,
   showLabel,
   label,
   ariaLabel,
 }: {
+  index: number;
   showLabel?: boolean;
   label?: string;
   ariaLabel?: string;
 }) {
   return (
     <Typography
-      as={SliderThumb}
+      as={BaseSlider.Thumb}
       variant="label-xs"
+      index={index}
       className={cn(
         "vesper-range-thumb",
         showLabel && "vesper-range-thumb-labeled",
       )}
+      onPointerDown={(e) => {
+        e.currentTarget.setPointerCapture(e.pointerId);
+      }}
       aria-label={ariaLabel}
-      style={
-        label
+      style={(state: SliderThumbState) =>
+        showLabel
           ? ({
-              ["--vesper-range-thumb-label"]: `"${label}"`,
+              ["--vesper-range-thumb-label"]: `"${label ?? state.values[index]}"`,
             } as CSSProperties)
-          : {}
+          : undefined
       }
     />
   );
