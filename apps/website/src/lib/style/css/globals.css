@@ -1,8 +1,11 @@
 /*
   setup tailwind
-  - `source("../../..")` tells Tailwind where to scan class names to watch
+  - `@source "../../.."` tells Tailwind where to scan class names to watch
+  - `@source "../../../../../../docs/` adds the repo's `docs/` mdx files, which live outside of this app
 */
-@import "tailwindcss" source("../../..");
+@import "tailwindcss";
+@source "../../..";
+@source "../../../../../../docs/";
 @import "@tenstorrent/vesper/tailwind.css";
 
 /* tailwind theme for docs */
