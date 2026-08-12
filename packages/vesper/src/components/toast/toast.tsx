@@ -19,7 +19,7 @@ import { animateToastEnter, animateToastExit } from "./animations";
 import { store, type ToastData, useStore } from "./store";
 import { focusOldestToast, getNearestActiveToast, isFocusable } from "./utils";
 
-export { TOAST_VARIANTS, type ToastOptions } from "./store";
+export { TOAST_VARIANTS, type ToastHandle, type ToastOptions } from "./store";
 
 export const { addToast } = store;
 

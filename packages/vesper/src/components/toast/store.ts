@@ -24,6 +24,11 @@ export interface ToastOptions {
   dismissText?: string;
 }
 
+export interface ToastHandle {
+  dismiss(): void;
+  update(options: Partial<ToastOptions>): void;
+}
+
 export type ToastState = "entering" | "active" | "dismissed";
 
 export type ToastVariant = (typeof TOAST_VARIANTS)[number];
@@ -69,7 +74,7 @@ class ToastsStore {
    *   timeout: 5000,
    * })
    * */
-  addToast = (options: ToastOptions) => {
+  addToast = (options: ToastOptions): ToastHandle => {
     const toast: ToastData = {
       options,
       id: generateId(),
