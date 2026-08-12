@@ -7,7 +7,13 @@ description: A notification system for displaying temporary messages at the bott
 
 A notification system for displaying temporary messages at the bottom of the screen. Toasts support multiple variants, optional action buttons, auto-dismiss timeouts, and keyboard navigation. Render the `Toasts` container once in your app and use `addToast()` to trigger notifications.
 
-<ToastDemo />
+<ToastDemo kind="container" />
+<ToastDemo
+  kind="spawner"
+  options={{ content: "Hello from Vesper!", timeout: 5000 }}
+>
+  Show toast
+</ToastDemo>
 
 ## Options
 
@@ -30,48 +36,139 @@ A notification system for displaying temporary messages at the bottom of the scr
 
 ## Examples
 
-```tsx
-import { Toasts, addToast } from "@tenstorrent/vesper/toast";
+### Basic usage
 
-// Setup: render Toasts once at your app root
+To enable usage of toasts in your application, you must first render the `Toasts` component once at the root level of your application. In a `Next.js` application, for example, you would render the `Toasts` component in your app's root `layout.tsx`.
+
+```tsx
+import { Toasts } from "@tenstorrent/vesper/toast";
+
 <Toasts />;
 ```
 
-```tsx
-// Basic toast
-addToast({ content: "Changes saved." });
-```
+Once you have rendered the `Toasts` component in your application, you can spawn toasts by calling the `addToast` function:
 
 ```tsx
-// Success variant with timeout
+addToast({ content: "Changes saved.", timeout: 5000 });
+```
+
+`addToast` can be called with the following set of options:
+
+```tsx
+interface ToastOptions {
+  content: ReactNode;
+  action?: {
+    handler: () => void;
+    content: ReactNode;
+    altText?: string;
+  };
+  timeout?: number | false;
+  variant?: ToastVariant;
+  dismissText?: string;
+}
+```
+
+### Self-dismissing toasts
+
+Toasts by default do not dismiss themselves; you must specify a timeout duration if you want a toast to disappear on its own. If a user interacts with a toast by moving their cursor or keyboard focus into the toast, the timeout will stop, and restart once the user ceases to interact with the toast.
+
+To spawn a self-dismissing toast, you must provide a `timeout`, which represents the duration in milliseconds the toast will be visible for:
+
+```tsx
 addToast({
-  content: "File uploaded successfully.",
-  variant: "success",
+  content: "This toast will dismiss itself!",
   timeout: 5000,
 });
 ```
 
+<ToastDemo
+  kind="spawner"
+  options={{
+    content: "This toast will dismiss itself!",
+    timeout: 5000,
+  }}
+>
+  Show toast
+</ToastDemo>
+
+### Toast variants
+
+Toasts can be spawned with one of five variants: `"default"`, `"loading"`, `"success"`, `"warning"`, or `"danger"`.
+
+For example, to spawn a warning variant toast that self-dismisses after 5 seconds, you would call `addToast` like so:
+
 ```tsx
-// Danger variant
 addToast({
-  content: "Failed to delete item.",
-  variant: "danger",
+  content: "Resistance is futile.",
+  variant: "warning",
+  timeout: 5000,
 });
 ```
 
-```tsx
-// With action buttons
-addToast({
-  content: "Item deleted.",
-  buttons: [{ content: "Undo", handler: handleUndo }],
-  timeout: 8000,
-});
-```
+<ToastDemo
+  kind="spawner"
+  options={{
+    content: "Resistance is futile.",
+    variant: "warning",
+    timeout: 5000,
+  }}
+>
+  Show toast
+</ToastDemo>
+
+### Updating toasts
+
+There may be situations where you want to update a toast while it's active. `addToast` will return a handle to the toast it spawned, which has the following type signature:
 
 ```tsx
-// Loading variant
-addToast({
-  content: "Processing your request...",
+interface ToastHandle {
+  dismiss(): void;
+  update(options: Partial<ToastOptions>): void;
+}
+```
+
+Calling `dismiss()` will dismiss the toast, and calling `update()` will update the toast. For example, you could have a `"loading"` variant toast show while a network request is being made, then transition to either a `"success"` or `"warning"` variant and dismiss itself after a 5 second timeout when the request completes:
+
+```tsx
+// Spawn the toast
+const toast = addToast({
+  content: "Fetching updates...",
   variant: "loading",
 });
+
+// Make the network request
+const response = await fetch("https://vesper.tenstorrent.com/api/v1/updates");
+
+// Update the toast
+if (response.ok) {
+  toast.update({
+    content: "Updates fetched!",
+    variant: "success",
+    timeout: 3000,
+  });
+} else {
+  toast.update({
+    content: "Something went wrong.",
+    variant: "warning",
+    timeout: 3000,
+  });
+}
 ```
+
+<ToastDemo
+  kind="async-spawner"
+  timeout={3000}
+  options={[
+    {
+      content: "Fetching updates...",
+      variant: "loading",
+    },
+    {
+      content: "Updates fetched!",
+      variant: "success",
+      timeout: 3000,
+    },
+  ]}
+>
+  Show toast
+</ToastDemo>
