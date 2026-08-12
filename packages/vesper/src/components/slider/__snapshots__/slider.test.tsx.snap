@@ -8,7 +8,6 @@ exports[`slider [snapshot] > default 1`] = `
   role="group"
 >
   <div
-    class="vesper-range-control"
     data-orientation="horizontal"
   >
     <div
@@ -55,7 +54,6 @@ exports[`slider [snapshot] > disabled 1`] = `
   role="group"
 >
   <div
-    class="vesper-range-control"
     data-disabled=""
     data-orientation="horizontal"
   >
@@ -106,7 +104,6 @@ exports[`slider [snapshot] > with custom min/max/step 1`] = `
   role="group"
 >
   <div
-    class="vesper-range-control"
     data-orientation="horizontal"
   >
     <div
@@ -152,7 +149,6 @@ exports[`slider [snapshot] > with ticks 1`] = `
   role="group"
 >
   <div
-    class="vesper-range-control"
     data-orientation="horizontal"
   >
     <div
@@ -214,7 +210,6 @@ exports[`slider [snapshot] > with value label 1`] = `
   role="group"
 >
   <div
-    class="vesper-range-control"
     data-orientation="horizontal"
   >
     <div

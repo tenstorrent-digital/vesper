@@ -9,7 +9,6 @@ exports[`range [snapshot] > default 1`] = `
   role="group"
 >
   <div
-    class="vesper-range-control"
     data-orientation="horizontal"
   >
     <div
@@ -77,7 +76,6 @@ exports[`range [snapshot] > disabled 1`] = `
   role="group"
 >
   <div
-    class="vesper-range-control"
     data-disabled=""
     data-orientation="horizontal"
   >
@@ -151,7 +149,6 @@ exports[`range [snapshot] > with custom min/max/step 1`] = `
   role="group"
 >
   <div
-    class="vesper-range-control"
     data-orientation="horizontal"
   >
     <div
@@ -218,7 +215,6 @@ exports[`range [snapshot] > with multiple values 1`] = `
   role="group"
 >
   <div
-    class="vesper-range-control"
     data-orientation="horizontal"
   >
     <div
@@ -321,7 +317,6 @@ exports[`range [snapshot] > with ticks 1`] = `
   role="group"
 >
   <div
-    class="vesper-range-control"
     data-orientation="horizontal"
   >
     <div
@@ -404,7 +399,6 @@ exports[`range [snapshot] > with value labels 1`] = `
   role="group"
 >
   <div
-    class="vesper-range-control"
     data-orientation="horizontal"
   >
     <div
