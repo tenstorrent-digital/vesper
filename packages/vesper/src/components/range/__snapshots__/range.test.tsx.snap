@@ -2,7 +2,6 @@
 
 exports[`range [snapshot] > default 1`] = `
 <div
-  aria-label="Range"
   class="vesper-range"
   data-orientation="horizontal"
   id="base-ui-_r_6r_"
@@ -29,6 +28,7 @@ exports[`range [snapshot] > default 1`] = `
         style="position: absolute; inset-inline-start: 0%; top: 50%; translate: -50% -50%;"
       >
         <input
+          aria-label="Range (min)"
           aria-orientation="horizontal"
           aria-valuenow="0"
           aria-valuetext="0 start range"
@@ -49,6 +49,7 @@ exports[`range [snapshot] > default 1`] = `
         style="position: absolute; inset-inline-start: 100%; top: 50%; translate: -50% -50%;"
       >
         <input
+          aria-label="Range (max)"
           aria-orientation="horizontal"
           aria-valuenow="100"
           aria-valuetext="100 end range"
@@ -68,7 +69,6 @@ exports[`range [snapshot] > default 1`] = `
 
 exports[`range [snapshot] > disabled 1`] = `
 <div
-  aria-label="Range"
   class="vesper-range"
   data-disabled=""
   data-orientation="horizontal"
@@ -100,6 +100,7 @@ exports[`range [snapshot] > disabled 1`] = `
         style="position: absolute; inset-inline-start: 0%; top: 50%; translate: -50% -50%;"
       >
         <input
+          aria-label="Range (min)"
           aria-orientation="horizontal"
           aria-valuenow="0"
           aria-valuetext="0 start range"
@@ -122,6 +123,7 @@ exports[`range [snapshot] > disabled 1`] = `
         style="position: absolute; inset-inline-start: 100%; top: 50%; translate: -50% -50%;"
       >
         <input
+          aria-label="Range (max)"
           aria-orientation="horizontal"
           aria-valuenow="100"
           aria-valuetext="100 end range"
@@ -142,7 +144,6 @@ exports[`range [snapshot] > disabled 1`] = `
 
 exports[`range [snapshot] > with custom min/max/step 1`] = `
 <div
-  aria-label="Range"
   class="vesper-range"
   data-orientation="horizontal"
   id="base-ui-_r_72_"
@@ -169,6 +170,7 @@ exports[`range [snapshot] > with custom min/max/step 1`] = `
         style="position: absolute; inset-inline-start: 0%; top: 50%; translate: -50% -50%;"
       >
         <input
+          aria-label="Range (min)"
           aria-orientation="horizontal"
           aria-valuenow="0"
           aria-valuetext="0 start range"
@@ -189,6 +191,7 @@ exports[`range [snapshot] > with custom min/max/step 1`] = `
         style="position: absolute; inset-inline-start: 100%; top: 50%; translate: -50% -50%;"
       >
         <input
+          aria-label="Range (max)"
           aria-orientation="horizontal"
           aria-valuenow="10"
           aria-valuetext="10 end range"
@@ -208,7 +211,6 @@ exports[`range [snapshot] > with custom min/max/step 1`] = `
 
 exports[`range [snapshot] > with multiple values 1`] = `
 <div
-  aria-label="Range"
   class="vesper-range"
   data-orientation="horizontal"
   id="base-ui-_r_7n_"
@@ -235,6 +237,7 @@ exports[`range [snapshot] > with multiple values 1`] = `
         style="position: absolute; inset-inline-start: 20%; top: 50%; translate: -50% -50%; --vesper-range-thumb-label: "A";"
       >
         <input
+          aria-label="Range (min)"
           aria-orientation="horizontal"
           aria-valuenow="20"
           id="base-ui-_r_7p_"
@@ -254,6 +257,7 @@ exports[`range [snapshot] > with multiple values 1`] = `
         style="position: absolute; inset-inline-start: 40%; top: 50%; translate: -50% -50%; --vesper-range-thumb-label: "B";"
       >
         <input
+          aria-label="Range (max)"
           aria-orientation="horizontal"
           aria-valuenow="40"
           id="base-ui-_r_7s_"
@@ -310,7 +314,6 @@ exports[`range [snapshot] > with multiple values 1`] = `
 
 exports[`range [snapshot] > with ticks 1`] = `
 <div
-  aria-label="Range"
   class="vesper-range"
   data-orientation="horizontal"
   id="base-ui-_r_79_"
@@ -353,6 +356,7 @@ exports[`range [snapshot] > with ticks 1`] = `
         style="position: absolute; inset-inline-start: 0%; top: 50%; translate: -50% -50%;"
       >
         <input
+          aria-label="Range (min)"
           aria-orientation="horizontal"
           aria-valuenow="0"
           aria-valuetext="0 start range"
@@ -373,6 +377,7 @@ exports[`range [snapshot] > with ticks 1`] = `
         style="position: absolute; inset-inline-start: 100%; top: 50%; translate: -50% -50%;"
       >
         <input
+          aria-label="Range (max)"
           aria-orientation="horizontal"
           aria-valuenow="5"
           aria-valuetext="5 end range"
@@ -392,7 +397,6 @@ exports[`range [snapshot] > with ticks 1`] = `
 
 exports[`range [snapshot] > with value labels 1`] = `
 <div
-  aria-label="Range"
   class="vesper-range"
   data-orientation="horizontal"
   id="base-ui-_r_7g_"
@@ -419,6 +423,7 @@ exports[`range [snapshot] > with value labels 1`] = `
         style="position: absolute; inset-inline-start: 0%; top: 50%; translate: -50% -50%; --vesper-range-thumb-label: "Min";"
       >
         <input
+          aria-label="Range (min)"
           aria-orientation="horizontal"
           aria-valuenow="0"
           aria-valuetext="0 start range"
@@ -439,6 +444,7 @@ exports[`range [snapshot] > with value labels 1`] = `
         style="position: absolute; inset-inline-start: 100%; top: 50%; translate: -50% -50%; --vesper-range-thumb-label: "Max";"
       >
         <input
+          aria-label="Range (max)"
           aria-orientation="horizontal"
           aria-valuenow="100"
           aria-valuetext="100 end range"

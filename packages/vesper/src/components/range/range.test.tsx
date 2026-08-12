@@ -12,7 +12,10 @@ afterEach(cleanup);
 describe("range [unit]", () => {
   test("custom className is merged", () => {
     const { container } = render(
-      <Range aria-label="Range" className="custom-class" />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        className="custom-class"
+      />,
     );
     expect(container.firstChild).toHaveClass("vesper-range");
     expect(container.firstChild).toHaveClass("custom-class");
@@ -20,7 +23,10 @@ describe("range [unit]", () => {
 
   test("additional props are passed through", () => {
     const { container } = render(
-      <Range aria-label="Range" data-testid="range-slider" />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        data-testid="range-slider"
+      />,
     );
     expect(container.firstChild).toHaveAttribute("data-testid", "range-slider");
   });
@@ -36,21 +42,28 @@ describe("range [unit]", () => {
   });
 
   test("renders two thumbs by default", () => {
-    const result = render(<Range aria-label="Range" />);
+    const result = render(
+      <Range thumbAriaLabels={["Range (min)", "Range (max)"]} />,
+    );
     const thumbs = result.getAllByRole("slider");
     expect(thumbs).toHaveLength(2);
   });
 
   test("renders thumbs matching values array length", () => {
     const result = render(
-      <Range aria-label="Range" values={[10, 30, 50, 70]} />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        values={[10, 30, 50, 70]}
+      />,
     );
     const thumbs = result.getAllByRole("slider");
     expect(thumbs).toHaveLength(4);
   });
 
   test("default min/max/step values", () => {
-    const result = render(<Range aria-label="Range" />);
+    const result = render(
+      <Range thumbAriaLabels={["Range (min)", "Range (max)"]} />,
+    );
     const thumbs = result.getAllByRole("slider");
     expect(thumbs[0]).toHaveAttribute("min", "0");
     expect(thumbs[0]).toHaveAttribute("max", "100");
@@ -59,7 +72,13 @@ describe("range [unit]", () => {
   });
 
   test("custom min and max", () => {
-    const result = render(<Range aria-label="Range" min={10} max={50} />);
+    const result = render(
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        min={10}
+        max={50}
+      />,
+    );
     const thumbs = result.getAllByRole("slider");
     expect(thumbs[0]).toHaveAttribute("min", "10");
     expect(thumbs[0]).toHaveAttribute("max", "50");
@@ -67,7 +86,10 @@ describe("range [unit]", () => {
 
   test("defaultValues sets initial thumb positions", () => {
     const result = render(
-      <Range aria-label="Range" defaultValues={[20, 80]} />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        defaultValues={[20, 80]}
+      />,
     );
     const thumbs = result.getAllByRole("slider");
     expect(thumbs[0]).toHaveAttribute("aria-valuenow", "20");
@@ -75,14 +97,25 @@ describe("range [unit]", () => {
   });
 
   test("defaultValues defaults to [min, max]", () => {
-    const result = render(<Range aria-label="Range" min={5} max={95} />);
+    const result = render(
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        min={5}
+        max={95}
+      />,
+    );
     const thumbs = result.getAllByRole("slider");
     expect(thumbs[0]).toHaveAttribute("aria-valuenow", "5");
     expect(thumbs[1]).toHaveAttribute("aria-valuenow", "95");
   });
 
   test("controlled values", () => {
-    const result = render(<Range aria-label="Range" values={[25, 75]} />);
+    const result = render(
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        values={[25, 75]}
+      />,
+    );
     const thumbs = result.getAllByRole("slider");
     expect(thumbs[0]).toHaveAttribute("aria-valuenow", "25");
     expect(thumbs[1]).toHaveAttribute("aria-valuenow", "75");
@@ -90,7 +123,13 @@ describe("range [unit]", () => {
 
   test("showTicks renders tick marks", () => {
     const { container } = render(
-      <Range aria-label="Range" min={0} max={5} step={1} showTicks />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        min={0}
+        max={5}
+        step={1}
+        showTicks
+      />,
     );
     const ticks = container.querySelectorAll(".vesper-range-tick");
     // Ticks between min and max: Math.ceil((5 - 0) / 1) - 1 = 4
@@ -99,7 +138,13 @@ describe("range [unit]", () => {
 
   test("showTicks with different step values", () => {
     const { container } = render(
-      <Range aria-label="Range" min={0} max={10} step={2} showTicks />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        min={0}
+        max={10}
+        step={2}
+        showTicks
+      />,
     );
     const ticks = container.querySelectorAll(".vesper-range-tick");
     // Math.ceil((10 - 0) / 2) - 1 = 4
@@ -108,7 +153,12 @@ describe("range [unit]", () => {
 
   test("ticks are not rendered when showTicks is false", () => {
     const { container } = render(
-      <Range aria-label="Range" min={0} max={5} step={1} />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        min={0}
+        max={5}
+        step={1}
+      />,
     );
     const ticks = container.querySelectorAll(".vesper-range-tick");
     expect(ticks).toHaveLength(0);
@@ -116,7 +166,13 @@ describe("range [unit]", () => {
 
   test("tick positioning uses correct left percentage", () => {
     const { container } = render(
-      <Range aria-label="Range" min={0} max={100} step={25} showTicks />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        min={0}
+        max={100}
+        step={25}
+        showTicks
+      />,
     );
     const ticks = container.querySelectorAll(".vesper-range-tick");
     // tickLeft = 100 / (100 - 0) = 1
@@ -128,7 +184,12 @@ describe("range [unit]", () => {
   });
 
   test("showValueLabels adds labeled class to thumbs", () => {
-    const { container } = render(<Range aria-label="Range" showValueLabels />);
+    const { container } = render(
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        showValueLabels
+      />,
+    );
     const thumbs = container.querySelectorAll(".vesper-range-thumb");
     thumbs.forEach((thumb) => {
       expect(thumb).toHaveClass("vesper-range-thumb-labeled");
@@ -136,7 +197,9 @@ describe("range [unit]", () => {
   });
 
   test("thumbs do not have labeled class when showValueLabels is false", () => {
-    const { container } = render(<Range aria-label="Range" />);
+    const { container } = render(
+      <Range thumbAriaLabels={["Range (min)", "Range (max)"]} />,
+    );
     const thumbs = container.querySelectorAll(".vesper-range-thumb");
     thumbs.forEach((thumb) => {
       expect(thumb).not.toHaveClass("vesper-range-thumb-labeled");
@@ -145,7 +208,11 @@ describe("range [unit]", () => {
 
   test("valueLabels sets CSS custom property on thumbs", () => {
     const { container } = render(
-      <Range aria-label="Range" valueLabels={["$10", "$90"]} showValueLabels />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        valueLabels={["$10", "$90"]}
+        showValueLabels
+      />,
     );
 
     const thumbs = container.querySelectorAll(
@@ -164,7 +231,7 @@ describe("range [unit]", () => {
   test("valueLabels with controlled values", () => {
     const { container } = render(
       <Range
-        aria-label="Range"
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
         values={[10, 50, 90]}
         valueLabels={["Low", "Mid", "High"]}
         showValueLabels
@@ -191,7 +258,11 @@ describe("range [unit]", () => {
 
   test("value labels fall back to the thumb values", () => {
     const { container } = render(
-      <Range aria-label="Range" values={[10, 90]} showValueLabels />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        values={[10, 90]}
+        showValueLabels
+      />,
     );
 
     const thumbs = container.querySelectorAll(
@@ -209,7 +280,10 @@ describe("range [unit]", () => {
 
   test("no label custom property when showValueLabels is false", () => {
     const { container } = render(
-      <Range aria-label="Range" valueLabels={["$10", "$90"]} />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        valueLabels={["$10", "$90"]}
+      />,
     );
 
     const thumbs = container.querySelectorAll(
@@ -224,7 +298,9 @@ describe("range [unit]", () => {
   });
 
   test("disabled state", () => {
-    const { container } = render(<Range aria-label="Range" disabled />);
+    const { container } = render(
+      <Range thumbAriaLabels={["Range (min)", "Range (max)"]} disabled />,
+    );
     expect(container.firstChild).toHaveAttribute("data-disabled", "");
   });
 
@@ -232,7 +308,7 @@ describe("range [unit]", () => {
     const onValuesChange = vi.fn();
     const result = render(
       <Range
-        aria-label="Range"
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
         defaultValues={[25, 75]}
         disabled
         onValuesChange={onValuesChange}
@@ -254,7 +330,7 @@ describe("range [unit]", () => {
     const onValuesChange = vi.fn();
     const result = render(
       <Range
-        aria-label="Range"
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
         defaultValues={[25, 75]}
         onValuesChange={onValuesChange}
       />,
@@ -270,7 +346,11 @@ describe("range [unit]", () => {
 
   test("keyboard ArrowRight increases thumb value", async () => {
     const result = render(
-      <Range aria-label="Range" defaultValues={[50, 75]} step={1} />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        defaultValues={[50, 75]}
+        step={1}
+      />,
     );
     const thumbs = result.getAllByRole("slider");
 
@@ -283,7 +363,11 @@ describe("range [unit]", () => {
 
   test("keyboard ArrowLeft decreases thumb value", async () => {
     const result = render(
-      <Range aria-label="Range" defaultValues={[50, 75]} step={1} />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        defaultValues={[50, 75]}
+        step={1}
+      />,
     );
     const thumbs = result.getAllByRole("slider");
 
@@ -296,7 +380,12 @@ describe("range [unit]", () => {
 
   test("thumb value does not go below min", async () => {
     const result = render(
-      <Range aria-label="Range" min={0} max={100} defaultValues={[0, 50]} />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        min={0}
+        max={100}
+        defaultValues={[0, 50]}
+      />,
     );
     const thumbs = result.getAllByRole("slider");
 
@@ -309,7 +398,12 @@ describe("range [unit]", () => {
 
   test("thumb value does not go above max", async () => {
     const result = render(
-      <Range aria-label="Range" min={0} max={100} defaultValues={[50, 100]} />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        min={0}
+        max={100}
+        defaultValues={[50, 100]}
+      />,
     );
     const thumbs = result.getAllByRole("slider");
 
@@ -322,7 +416,11 @@ describe("range [unit]", () => {
 
   test("step value affects keyboard increment", async () => {
     const result = render(
-      <Range aria-label="Range" defaultValues={[50, 80]} step={5} />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        defaultValues={[50, 80]}
+        step={5}
+      />,
     );
     const thumbs = result.getAllByRole("slider");
 
@@ -338,7 +436,7 @@ describe("range [unit]", () => {
     const onValuesCommit = vi.fn();
     const result = render(
       <Range
-        aria-label="Range"
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
         defaultValues={[0, 80]}
         onValuesChange={onValuesChange}
         onValuesCommit={onValuesCommit}
@@ -362,7 +460,7 @@ describe("range [unit]", () => {
     const onValuesChange = vi.fn();
     const result = render(
       <Range
-        aria-label="Range"
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
         defaultValues={[0, 80]}
         disabled
         onValuesChange={onValuesChange}
@@ -382,27 +480,44 @@ describe("range [unit]", () => {
 
 describe("range [snapshot]", () => {
   test("default", () => {
-    const { container } = render(<Range aria-label="Range" />);
+    const { container } = render(
+      <Range thumbAriaLabels={["Range (min)", "Range (max)"]} />,
+    );
     expect(container.firstChild).toMatchSnapshot();
   });
 
   test("with custom min/max/step", () => {
     const { container } = render(
-      <Range aria-label="Range" min={0} max={10} step={2} />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        min={0}
+        max={10}
+        step={2}
+      />,
     );
     expect(container.firstChild).toMatchSnapshot();
   });
 
   test("with ticks", () => {
     const { container } = render(
-      <Range aria-label="Range" min={0} max={5} step={1} showTicks />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        min={0}
+        max={5}
+        step={1}
+        showTicks
+      />,
     );
     expect(container.firstChild).toMatchSnapshot();
   });
 
   test("with value labels", () => {
     const { container } = render(
-      <Range aria-label="Range" showValueLabels valueLabels={["Min", "Max"]} />,
+      <Range
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
+        showValueLabels
+        valueLabels={["Min", "Max"]}
+      />,
     );
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -410,7 +525,7 @@ describe("range [snapshot]", () => {
   test("with multiple values", () => {
     const { container } = render(
       <Range
-        aria-label="Range"
+        thumbAriaLabels={["Range (min)", "Range (max)"]}
         values={[20, 40, 60, 80]}
         valueLabels={["A", "B", "C", "D"]}
         showValueLabels
@@ -420,7 +535,9 @@ describe("range [snapshot]", () => {
   });
 
   test("disabled", () => {
-    const { container } = render(<Range aria-label="Range" disabled />);
+    const { container } = render(
+      <Range thumbAriaLabels={["Range (min)", "Range (max)"]} disabled />,
+    );
     expect(container.firstChild).toMatchSnapshot();
   });
 });
@@ -438,14 +555,22 @@ describe("range [a11y]", () => {
     });
 
     test.todo(`a11y (default, ${theme})`, async () => {
-      const { container } = render(<Range aria-label="Price range" />);
+      const { container } = render(
+        <Range thumbAriaLabels={["Price (min)", "Price (max)"]} />,
+      );
 
       expect(await axe.run(container)).toHaveNoViolations();
     });
 
     test.todo(`a11y (with ticks, ${theme})`, async () => {
       const { container } = render(
-        <Range aria-label="Price range" min={0} max={5} step={1} showTicks />,
+        <Range
+          thumbAriaLabels={["Price (min)", "Price (max)"]}
+          min={0}
+          max={5}
+          step={1}
+          showTicks
+        />,
       );
 
       expect(await axe.run(container)).toHaveNoViolations();
@@ -454,8 +579,8 @@ describe("range [a11y]", () => {
     test.todo(`a11y (with value labels, ${theme})`, async () => {
       const { container } = render(
         <Range
-          aria-label="Price range"
           showValueLabels
+          thumbAriaLabels={["Price (min)", "Price (max)"]}
           valueLabels={["$0", "$100"]}
         />,
       );
@@ -464,7 +589,9 @@ describe("range [a11y]", () => {
     });
 
     test.todo(`a11y (disabled, ${theme})`, async () => {
-      const { container } = render(<Range aria-label="Price range" disabled />);
+      const { container } = render(
+        <Range thumbAriaLabels={["Price (min)", "Price (max)"]} disabled />,
+      );
 
       expect(await axe.run(container)).toHaveNoViolations();
     });

@@ -22,7 +22,7 @@ export interface RangeProps extends Omit<
   /** Custom display labels for each thumb, shown as a tooltip-style label above the thumb. When left blank, defaults to the active values of each thumb. */
   valueLabels?: string[];
   /** Accessible `aria-label` attributes for each thumb. */
-  thumbAriaLabels?: string[];
+  thumbAriaLabels: string[];
   /** When `true`, displays the value labels above each thumb. */
   showValueLabels?: boolean;
   /** The initial thumb values (uncontrolled mode). @default [min, max] */
@@ -144,7 +144,7 @@ export function Range(props: RangeProps) {
             <RangeThumb
               key={index}
               index={index}
-              ariaLabel={thumbAriaLabels?.[index]}
+              ariaLabel={thumbAriaLabels[index]}
               showLabel={showValueLabels}
               label={valueLabels?.[index]}
             />

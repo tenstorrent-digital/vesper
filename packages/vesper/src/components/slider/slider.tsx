@@ -28,7 +28,7 @@ interface SliderProps extends Omit<
   /** Callback fired when the thumb interaction is completed (e.g., on pointer up). Receives the final value. */
   onValueCommit?(value: number): void;
   /** An accessible `aria-label` attribute for the thumb. */
-  thumbAriaLabel?: string;
+  thumbAriaLabel: string;
 }
 
 /**
@@ -96,9 +96,7 @@ export function Slider(props: SliderProps) {
       showValueLabels={showValueLabel}
       onValuesChange={handleValueChange}
       onValuesCommit={handleValueCommit}
-      thumbAriaLabels={
-        typeof thumbAriaLabel === "string" ? [thumbAriaLabel] : undefined
-      }
+      thumbAriaLabels={[thumbAriaLabel]}
       min={min}
       {...rest}
     />

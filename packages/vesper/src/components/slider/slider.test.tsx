@@ -11,32 +11,32 @@ afterEach(cleanup);
 
 describe("slider [unit]", () => {
   test("renders a single thumb", () => {
-    const result = render(<Slider aria-label="Volume" />);
+    const result = render(<Slider thumbAriaLabel="Volume" />);
     const thumbs = result.getAllByRole("slider");
     expect(thumbs).toHaveLength(1);
   });
 
   test("controlled value sets thumb position", () => {
-    const result = render(<Slider aria-label="Volume" value={42} />);
+    const result = render(<Slider thumbAriaLabel="Volume" value={42} />);
     const thumb = result.getByRole("slider");
     expect(thumb).toHaveAttribute("aria-valuenow", "42");
   });
 
   test("defaultValue sets initial thumb position", () => {
-    const result = render(<Slider aria-label="Volume" defaultValue={30} />);
+    const result = render(<Slider thumbAriaLabel="Volume" defaultValue={30} />);
     const thumb = result.getByRole("slider");
     expect(thumb).toHaveAttribute("aria-valuenow", "30");
   });
 
   test("defaults to min when no value or defaultValue is provided", () => {
-    const result = render(<Slider aria-label="Volume" min={10} max={90} />);
+    const result = render(<Slider thumbAriaLabel="Volume" min={10} max={90} />);
     const thumb = result.getByRole("slider");
     expect(thumb).toHaveAttribute("aria-valuenow", "10");
   });
 
   test("custom min and max", () => {
     const result = render(
-      <Slider aria-label="Volume" value={25} min={10} max={50} />,
+      <Slider thumbAriaLabel="Volume" value={25} min={10} max={50} />,
     );
     const thumb = result.getByRole("slider");
     expect(thumb).toHaveAttribute("min", "10");
@@ -52,7 +52,7 @@ describe("slider [unit]", () => {
 
   test("keyboard ArrowRight increases value", async () => {
     const result = render(
-      <Slider aria-label="Volume" defaultValue={50} step={1} />,
+      <Slider thumbAriaLabel="Volume" defaultValue={50} step={1} />,
     );
     const thumb = result.getByRole("slider");
 
@@ -64,7 +64,7 @@ describe("slider [unit]", () => {
 
   test("keyboard ArrowLeft decreases value", async () => {
     const result = render(
-      <Slider aria-label="Volume" defaultValue={50} step={1} />,
+      <Slider thumbAriaLabel="Volume" defaultValue={50} step={1} />,
     );
     const thumb = result.getByRole("slider");
 
@@ -76,7 +76,7 @@ describe("slider [unit]", () => {
 
   test("value does not go below min", async () => {
     const result = render(
-      <Slider aria-label="Volume" defaultValue={0} min={0} max={100} />,
+      <Slider thumbAriaLabel="Volume" defaultValue={0} min={0} max={100} />,
     );
     const thumb = result.getByRole("slider");
 
@@ -88,7 +88,7 @@ describe("slider [unit]", () => {
 
   test("value does not go above max", async () => {
     const result = render(
-      <Slider aria-label="Volume" defaultValue={100} min={0} max={100} />,
+      <Slider thumbAriaLabel="Volume" defaultValue={100} min={0} max={100} />,
     );
     const thumb = result.getByRole("slider");
 
@@ -100,7 +100,7 @@ describe("slider [unit]", () => {
 
   test("step value affects keyboard increment", async () => {
     const result = render(
-      <Slider aria-label="Volume" defaultValue={50} step={5} />,
+      <Slider thumbAriaLabel="Volume" defaultValue={50} step={5} />,
     );
     const thumb = result.getByRole("slider");
 
@@ -112,7 +112,7 @@ describe("slider [unit]", () => {
 
   test("disabled state", () => {
     const { container } = render(
-      <Slider aria-label="Volume" value={50} disabled />,
+      <Slider thumbAriaLabel="Volume" value={50} disabled />,
     );
     expect(container.firstChild).toHaveAttribute("data-disabled", "");
   });
@@ -121,7 +121,7 @@ describe("slider [unit]", () => {
     const onValueChange = vi.fn();
     const result = render(
       <Slider
-        aria-label="Volume"
+        thumbAriaLabel="Volume"
         defaultValue={50}
         disabled
         onValueChange={onValueChange}
@@ -138,7 +138,7 @@ describe("slider [unit]", () => {
 
   test("showTicks renders tick marks", () => {
     const { container } = render(
-      <Slider aria-label="Volume" min={0} max={5} step={1} showTicks />,
+      <Slider thumbAriaLabel="Volume" min={0} max={5} step={1} showTicks />,
     );
     const ticks = container.querySelectorAll(".vesper-range-tick");
     expect(ticks).toHaveLength(4);
@@ -146,7 +146,7 @@ describe("slider [unit]", () => {
 
   test("showValueLabel adds labeled class to thumb", () => {
     const { container } = render(
-      <Slider aria-label="Volume" value={50} showValueLabel />,
+      <Slider thumbAriaLabel="Volume" value={50} showValueLabel />,
     );
     const thumb = container.querySelector(".vesper-range-thumb");
     expect(thumb).toHaveClass("vesper-range-thumb-labeled");
@@ -154,7 +154,12 @@ describe("slider [unit]", () => {
 
   test("valueLabel sets CSS custom property on thumb", () => {
     const { container } = render(
-      <Slider aria-label="Volume" value={50} valueLabel="50%" showValueLabel />,
+      <Slider
+        thumbAriaLabel="Volume"
+        value={50}
+        valueLabel="50%"
+        showValueLabel
+      />,
     );
     const thumb = container.querySelector(".vesper-range-thumb") as HTMLElement;
     expect(thumb.style.getPropertyValue("--vesper-range-thumb-label")).toBe(
@@ -164,7 +169,7 @@ describe("slider [unit]", () => {
 
   test("value label falls back to the thumb value", () => {
     const { container } = render(
-      <Slider aria-label="Volume" value={50} showValueLabel />,
+      <Slider thumbAriaLabel="Volume" value={50} showValueLabel />,
     );
     const thumb = container.querySelector(".vesper-range-thumb") as HTMLElement;
     expect(thumb.style.getPropertyValue("--vesper-range-thumb-label")).toBe(
@@ -174,7 +179,7 @@ describe("slider [unit]", () => {
 
   test("no label custom property when showValueLabel is false", () => {
     const { container } = render(
-      <Slider aria-label="Volume" value={50} valueLabel="50%" />,
+      <Slider thumbAriaLabel="Volume" value={50} valueLabel="50%" />,
     );
     const thumb = container.querySelector(".vesper-range-thumb") as HTMLElement;
     expect(thumb.style.getPropertyValue("--vesper-range-thumb-label")).toBe("");
@@ -185,7 +190,7 @@ describe("slider [unit]", () => {
     const onValueCommit = vi.fn();
     const result = render(
       <Slider
-        aria-label="Volume"
+        thumbAriaLabel="Volume"
         defaultValue={0}
         onValueChange={onValueChange}
         onValueCommit={onValueCommit}
@@ -206,7 +211,7 @@ describe("slider [unit]", () => {
     const onValueChange = vi.fn();
     const result = render(
       <Slider
-        aria-label="Volume"
+        thumbAriaLabel="Volume"
         defaultValue={0}
         disabled
         onValueChange={onValueChange}
@@ -223,7 +228,7 @@ describe("slider [unit]", () => {
 
   test("custom className is passed through", () => {
     const { container } = render(
-      <Slider aria-label="Volume" value={50} className="custom-slider" />,
+      <Slider thumbAriaLabel="Volume" value={50} className="custom-slider" />,
     );
     expect(container.firstChild).toHaveClass("vesper-range");
     expect(container.firstChild).toHaveClass("custom-slider");
@@ -231,7 +236,7 @@ describe("slider [unit]", () => {
 
   test("additional props are passed through", () => {
     const { container } = render(
-      <Slider aria-label="Volume" value={50} data-testid="my-slider" />,
+      <Slider thumbAriaLabel="Volume" value={50} data-testid="my-slider" />,
     );
     expect(container.firstChild).toHaveAttribute("data-testid", "my-slider");
   });
@@ -300,7 +305,7 @@ describe("slider [a11y]", () => {
 
     test.todo(`a11y (default, ${theme})`, async () => {
       const { container } = render(
-        <Slider aria-label="Volume" defaultValue={50} />,
+        <Slider thumbAriaLabel="Volume" defaultValue={50} />,
       );
 
       expect(await axe.run(container)).toHaveNoViolations();
@@ -309,7 +314,7 @@ describe("slider [a11y]", () => {
     test.todo(`a11y (with ticks, ${theme})`, async () => {
       const { container } = render(
         <Slider
-          aria-label="Volume"
+          thumbAriaLabel="Volume"
           defaultValue={2}
           min={0}
           max={5}
@@ -324,7 +329,7 @@ describe("slider [a11y]", () => {
     test.todo(`a11y (with value label, ${theme})`, async () => {
       const { container } = render(
         <Slider
-          aria-label="Volume"
+          thumbAriaLabel="Volume"
           value={50}
           valueLabel="50%"
           showValueLabel
@@ -336,7 +341,7 @@ describe("slider [a11y]", () => {
 
     test.todo(`a11y (disabled, ${theme})`, async () => {
       const { container } = render(
-        <Slider aria-label="Volume" value={50} disabled />,
+        <Slider thumbAriaLabel="Volume" value={50} disabled />,
       );
 
       expect(await axe.run(container)).toHaveNoViolations();
