@@ -12,7 +12,6 @@
 .vesper-range-track {
   display: block;
   position: relative;
-  isolation: isolate;
   height: 1rem;
   width: 100%;
   &::before {
@@ -39,78 +38,69 @@
 }
 
 .vesper-range-range {
-  background: var(--vesper-background-accent-base);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-accent-base);
-  border-radius: var(--vesper-spacing-1);
-  position: absolute;
-  top: 0.3125rem;
-  bottom: 0.3125rem;
-  &[data-disabled] {
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0.3125rem;
+    bottom: 0.3125rem;
+    left: 0;
+    right: 0;
+    background: var(--vesper-background-accent-base);
+    border: var(--vesper-stroke-base) solid var(--vesper-border-accent-base);
+    border-radius: var(--vesper-spacing-1);
+  }
+  &[data-disabled]::before {
     background: var(--vesper-tint-neutral-400);
     border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   }
   @media (forced-colors: active) {
-    background: CanvasText;
-    &[data-disabled] {
+    &::before,
+    &[data-disabled]::before {
       background: CanvasText;
     }
   }
 }
 
 .vesper-range-thumb {
-  width: 0rem;
-  height: 0rem;
+  width: 1rem;
+  height: 1rem;
   display: flex;
   justify-content: center;
-  position: relative;
   cursor: pointer;
-  &::before {
-    content: "";
-    position: absolute;
-    top: -1rem;
-    left: -0.5rem;
-    width: 1rem;
-    height: 1rem;
-    background: var(--vesper-background-tertiary);
-    border: var(--vesper-stroke-base) solid var(--vesper-border-accent-base);
-    border-radius: var(--vesper-spacing-2);
-  }
+  background: var(--vesper-background-tertiary);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-accent-base);
+  border-radius: var(--vesper-spacing-2);
   &.vesper-range-thumb-labeled {
     &::after {
       white-space: pre;
-      content: var(--vesper-range-thumb-label, attr(aria-valuenow));
+      content: var(--vesper-range-thumb-label, "");
       color: var(--vesper-text-primary);
       background: var(--vesper-tint-neutral-100);
       border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
       border-radius: var(--vesper-radius-half);
       padding: var(--vesper-spacing-1);
       position: absolute;
-      bottom: 1rem;
+      /* offset by the thumb's border width, as the label is positioned
+         against the thumb's padding box */
+      bottom: calc(100% + var(--vesper-stroke-base));
       transform: translateY(calc(var(--vesper-spacing-micro) * -1));
     }
   }
   &[data-disabled] {
     cursor: auto;
-    &::before {
-      border-color: var(--vesper-stone-400);
-    }
+    border-color: var(--vesper-stone-400);
     &::after {
       color: var(--vesper-text-disabled);
     }
   }
   @media (forced-colors: active) {
-    &:focus-visible {
-      outline: none;
-      &::before {
-        outline: var(--vesper-stroke-strong) solid CanvasText;
-      }
+    &:has(:focus-visible) {
+      outline: var(--vesper-stroke-strong) solid CanvasText;
     }
   }
   @media not (forced-colors: active) {
-    &:focus-visible {
-      &::before {
-        box-shadow: var(--vesper-shadow-focus-ring);
-      }
+    &:has(:focus-visible) {
+      box-shadow: var(--vesper-shadow-focus-ring);
     }
   }
 }

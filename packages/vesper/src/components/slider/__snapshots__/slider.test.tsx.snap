@@ -1,210 +1,253 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`slider [snapshot] > default 1`] = `
-<span
-  aria-disabled="false"
+<div
   class="vesper-range"
   data-orientation="horizontal"
-  dir="ltr"
-  style="--radix-slider-thumb-transform: translateX(-50%);"
+  id="base-ui-_r_2o_"
+  role="group"
 >
-  <span
-    class="vesper-range-track"
+  <div
+    class="vesper-range-control"
     data-orientation="horizontal"
   >
-    <span
-      class="vesper-range-range"
+    <div
+      class="vesper-range-track"
       data-orientation="horizontal"
-      style="left: 0%; right: 50%;"
-    />
-  </span>
-  <span
-    style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(50% + 0px);"
-  >
-    <span
-      aria-label="Volume"
-      aria-orientation="horizontal"
-      aria-valuemax="100"
-      aria-valuemin="0"
-      aria-valuenow="50"
-      class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
-      data-orientation="horizontal"
-      data-radix-collection-item=""
-      role="slider"
-      style=""
-      tabindex="0"
-    />
-  </span>
-</span>
+      style="position: relative;"
+    >
+      <div
+        class="vesper-range-range"
+        data-orientation="horizontal"
+        style="position: relative; height: inherit; inset-inline-start: 0px; width: 50%;"
+      />
+      <div
+        class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
+        data-index="0"
+        data-orientation="horizontal"
+        id="base-ui-_r_2p_"
+        style="position: absolute; inset-inline-start: 50%; top: 50%; translate: -50% -50%;"
+      >
+        <input
+          aria-label="Volume"
+          aria-orientation="horizontal"
+          aria-valuenow="50"
+          id="base-ui-_r_2r_"
+          max="100"
+          min="0"
+          step="1"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px; position: fixed; top: 0px; left: 0px;"
+          type="range"
+          value="50"
+        />
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`slider [snapshot] > disabled 1`] = `
-<span
-  aria-disabled="true"
+<div
   class="vesper-range"
   data-disabled=""
   data-orientation="horizontal"
-  dir="ltr"
-  style="--radix-slider-thumb-transform: translateX(-50%);"
+  id="base-ui-_r_38_"
+  role="group"
 >
-  <span
-    class="vesper-range-track"
+  <div
+    class="vesper-range-control"
     data-disabled=""
     data-orientation="horizontal"
   >
-    <span
-      class="vesper-range-range"
+    <div
+      class="vesper-range-track"
       data-disabled=""
       data-orientation="horizontal"
-      style="left: 0%; right: 50%;"
-    />
-  </span>
-  <span
-    style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(50% + 0px);"
-  >
-    <span
-      aria-label="Volume"
-      aria-orientation="horizontal"
-      aria-valuemax="100"
-      aria-valuemin="0"
-      aria-valuenow="50"
-      class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
-      data-disabled=""
-      data-orientation="horizontal"
-      data-radix-collection-item=""
-      role="slider"
-      style=""
-    />
-  </span>
-</span>
+      style="position: relative;"
+    >
+      <div
+        class="vesper-range-range"
+        data-disabled=""
+        data-orientation="horizontal"
+        style="position: relative; height: inherit; inset-inline-start: 0px; width: 50%;"
+      />
+      <div
+        class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
+        data-disabled=""
+        data-index="0"
+        data-orientation="horizontal"
+        id="base-ui-_r_39_"
+        style="position: absolute; inset-inline-start: 50%; top: 50%; translate: -50% -50%;"
+      >
+        <input
+          aria-label="Volume"
+          aria-orientation="horizontal"
+          aria-valuenow="50"
+          disabled=""
+          id="base-ui-_r_3b_"
+          max="100"
+          min="0"
+          step="1"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px; position: fixed; top: 0px; left: 0px;"
+          type="range"
+          value="50"
+        />
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`slider [snapshot] > with custom min/max/step 1`] = `
-<span
-  aria-disabled="false"
+<div
   class="vesper-range"
   data-orientation="horizontal"
-  dir="ltr"
-  style="--radix-slider-thumb-transform: translateX(-50%);"
+  id="base-ui-_r_2s_"
+  role="group"
 >
-  <span
-    class="vesper-range-track"
+  <div
+    class="vesper-range-control"
     data-orientation="horizontal"
   >
-    <span
-      class="vesper-range-range"
+    <div
+      class="vesper-range-track"
       data-orientation="horizontal"
-      style="left: 0%; right: 60%;"
-    />
-  </span>
-  <span
-    style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(40% + 0px);"
-  >
-    <span
-      aria-label="Volume"
-      aria-orientation="horizontal"
-      aria-valuemax="10"
-      aria-valuemin="0"
-      aria-valuenow="4"
-      class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
-      data-orientation="horizontal"
-      data-radix-collection-item=""
-      role="slider"
-      style=""
-      tabindex="0"
-    />
-  </span>
-</span>
+      style="position: relative;"
+    >
+      <div
+        class="vesper-range-range"
+        data-orientation="horizontal"
+        style="position: relative; height: inherit; inset-inline-start: 0px; width: 40%;"
+      />
+      <div
+        class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
+        data-index="0"
+        data-orientation="horizontal"
+        id="base-ui-_r_2t_"
+        style="position: absolute; inset-inline-start: 40%; top: 50%; translate: -50% -50%;"
+      >
+        <input
+          aria-label="Volume"
+          aria-orientation="horizontal"
+          aria-valuenow="4"
+          id="base-ui-_r_2v_"
+          max="10"
+          min="0"
+          step="2"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px; position: fixed; top: 0px; left: 0px;"
+          type="range"
+          value="4"
+        />
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`slider [snapshot] > with ticks 1`] = `
-<span
-  aria-disabled="false"
+<div
   class="vesper-range"
   data-orientation="horizontal"
-  dir="ltr"
-  style="--radix-slider-thumb-transform: translateX(-50%);"
+  id="base-ui-_r_30_"
+  role="group"
 >
-  <span
-    class="vesper-range-track"
+  <div
+    class="vesper-range-control"
     data-orientation="horizontal"
   >
-    <span
-      class="vesper-range-tick"
-      style="left: 20%;"
-    />
-    <span
-      class="vesper-range-tick"
-      style="left: 40%;"
-    />
-    <span
-      class="vesper-range-tick"
-      style="left: 60%;"
-    />
-    <span
-      class="vesper-range-tick"
-      style="left: 80%;"
-    />
-    <span
-      class="vesper-range-range"
+    <div
+      class="vesper-range-track"
       data-orientation="horizontal"
-      style="left: 0%; right: 60%;"
-    />
-  </span>
-  <span
-    style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(40% + 0px);"
-  >
-    <span
-      aria-label="Volume"
-      aria-orientation="horizontal"
-      aria-valuemax="5"
-      aria-valuemin="0"
-      aria-valuenow="2"
-      class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
-      data-orientation="horizontal"
-      data-radix-collection-item=""
-      role="slider"
-      style=""
-      tabindex="0"
-    />
-  </span>
-</span>
+      style="position: relative;"
+    >
+      <span
+        class="vesper-range-tick"
+        style="left: 20%;"
+      />
+      <span
+        class="vesper-range-tick"
+        style="left: 40%;"
+      />
+      <span
+        class="vesper-range-tick"
+        style="left: 60%;"
+      />
+      <span
+        class="vesper-range-tick"
+        style="left: 80%;"
+      />
+      <div
+        class="vesper-range-range"
+        data-orientation="horizontal"
+        style="position: relative; height: inherit; inset-inline-start: 0px; width: 40%;"
+      />
+      <div
+        class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
+        data-index="0"
+        data-orientation="horizontal"
+        id="base-ui-_r_31_"
+        style="position: absolute; inset-inline-start: 40%; top: 50%; translate: -50% -50%;"
+      >
+        <input
+          aria-label="Volume"
+          aria-orientation="horizontal"
+          aria-valuenow="2"
+          id="base-ui-_r_33_"
+          max="5"
+          min="0"
+          step="1"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px; position: fixed; top: 0px; left: 0px;"
+          type="range"
+          value="2"
+        />
+      </div>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`slider [snapshot] > with value label 1`] = `
-<span
-  aria-disabled="false"
+<div
   class="vesper-range"
   data-orientation="horizontal"
-  dir="ltr"
-  style="--radix-slider-thumb-transform: translateX(-50%);"
+  id="base-ui-_r_34_"
+  role="group"
 >
-  <span
-    class="vesper-range-track"
+  <div
+    class="vesper-range-control"
     data-orientation="horizontal"
   >
-    <span
-      class="vesper-range-range"
+    <div
+      class="vesper-range-track"
       data-orientation="horizontal"
-      style="left: 0%; right: 25%;"
-    />
-  </span>
-  <span
-    style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(75% + 0px);"
-  >
-    <span
-      aria-label="Volume"
-      aria-orientation="horizontal"
-      aria-valuemax="100"
-      aria-valuemin="0"
-      aria-valuenow="75"
-      class="vesper-typography vesper-typography-label-xs vesper-range-thumb vesper-range-thumb-labeled"
-      data-orientation="horizontal"
-      data-radix-collection-item=""
-      role="slider"
-      style="--vesper-range-thumb-label: "75%";"
-      tabindex="0"
-    />
-  </span>
-</span>
+      style="position: relative;"
+    >
+      <div
+        class="vesper-range-range"
+        data-orientation="horizontal"
+        style="position: relative; height: inherit; inset-inline-start: 0px; width: 75%;"
+      />
+      <div
+        class="vesper-typography vesper-typography-label-xs vesper-range-thumb vesper-range-thumb-labeled"
+        data-index="0"
+        data-orientation="horizontal"
+        id="base-ui-_r_35_"
+        style="position: absolute; inset-inline-start: 75%; top: 50%; translate: -50% -50%; --vesper-range-thumb-label: "75%";"
+      >
+        <input
+          aria-label="Volume"
+          aria-orientation="horizontal"
+          aria-valuenow="75"
+          id="base-ui-_r_37_"
+          max="100"
+          min="0"
+          step="1"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px; position: fixed; top: 0px; left: 0px;"
+          type="range"
+          value="75"
+        />
+      </div>
+    </div>
+  </div>
+</div>
 `;

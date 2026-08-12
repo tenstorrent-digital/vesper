@@ -39,8 +39,8 @@ describe("slider [unit]", () => {
       <Slider aria-label="Volume" value={25} min={10} max={50} />,
     );
     const thumb = result.getByRole("slider");
-    expect(thumb).toHaveAttribute("aria-valuemin", "10");
-    expect(thumb).toHaveAttribute("aria-valuemax", "50");
+    expect(thumb).toHaveAttribute("min", "10");
+    expect(thumb).toHaveAttribute("max", "50");
     expect(thumb).toHaveAttribute("aria-valuenow", "25");
   });
 
@@ -162,12 +162,63 @@ describe("slider [unit]", () => {
     );
   });
 
-  test("no inline label style when valueLabel is not provided", () => {
+  test("value label falls back to the thumb value", () => {
     const { container } = render(
       <Slider aria-label="Volume" value={50} showValueLabel />,
     );
     const thumb = container.querySelector(".vesper-range-thumb") as HTMLElement;
+    expect(thumb.style.getPropertyValue("--vesper-range-thumb-label")).toBe(
+      '"50"',
+    );
+  });
+
+  test("no label custom property when showValueLabel is false", () => {
+    const { container } = render(
+      <Slider aria-label="Volume" value={50} valueLabel="50%" />,
+    );
+    const thumb = container.querySelector(".vesper-range-thumb") as HTMLElement;
     expect(thumb.style.getPropertyValue("--vesper-range-thumb-label")).toBe("");
+  });
+
+  test("pressing the track updates the value", async () => {
+    const onValueChange = vi.fn();
+    const onValueCommit = vi.fn();
+    const result = render(
+      <Slider
+        aria-label="Volume"
+        defaultValue={0}
+        onValueChange={onValueChange}
+        onValueCommit={onValueCommit}
+      />,
+    );
+
+    // clicking an element presses its center, ie. the middle of the track
+    await userEvent.click(
+      result.container.querySelector(".vesper-range-track")!,
+    );
+
+    expect(result.getByRole("slider")).toHaveAttribute("aria-valuenow", "50");
+    expect(onValueChange).toHaveBeenCalledWith(50);
+    expect(onValueCommit).toHaveBeenCalledWith(50);
+  });
+
+  test("disabled slider does not respond to pointer", async () => {
+    const onValueChange = vi.fn();
+    const result = render(
+      <Slider
+        aria-label="Volume"
+        defaultValue={0}
+        disabled
+        onValueChange={onValueChange}
+      />,
+    );
+
+    await userEvent.click(
+      result.container.querySelector(".vesper-range-track")!,
+    );
+
+    expect(result.getByRole("slider")).toHaveAttribute("aria-valuenow", "0");
+    expect(onValueChange).not.toHaveBeenCalled();
   });
 
   test("custom className is passed through", () => {

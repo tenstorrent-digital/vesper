@@ -52,17 +52,17 @@ describe("range [unit]", () => {
   test("default min/max/step values", () => {
     const result = render(<Range aria-label="Range" />);
     const thumbs = result.getAllByRole("slider");
-    expect(thumbs[0]).toHaveAttribute("aria-valuemin", "0");
-    expect(thumbs[0]).toHaveAttribute("aria-valuemax", "100");
-    expect(thumbs[1]).toHaveAttribute("aria-valuemin", "0");
-    expect(thumbs[1]).toHaveAttribute("aria-valuemax", "100");
+    expect(thumbs[0]).toHaveAttribute("min", "0");
+    expect(thumbs[0]).toHaveAttribute("max", "100");
+    expect(thumbs[1]).toHaveAttribute("min", "0");
+    expect(thumbs[1]).toHaveAttribute("max", "100");
   });
 
   test("custom min and max", () => {
     const result = render(<Range aria-label="Range" min={10} max={50} />);
     const thumbs = result.getAllByRole("slider");
-    expect(thumbs[0]).toHaveAttribute("aria-valuemin", "10");
-    expect(thumbs[0]).toHaveAttribute("aria-valuemax", "50");
+    expect(thumbs[0]).toHaveAttribute("min", "10");
+    expect(thumbs[0]).toHaveAttribute("max", "50");
   });
 
   test("defaultValues sets initial thumb positions", () => {
@@ -189,8 +189,28 @@ describe("range [unit]", () => {
     ).toBe('"High"');
   });
 
-  test("no inline style when valueLabels are not provided", () => {
-    const { container } = render(<Range aria-label="Range" showValueLabels />);
+  test("value labels fall back to the thumb values", () => {
+    const { container } = render(
+      <Range aria-label="Range" values={[10, 90]} showValueLabels />,
+    );
+
+    const thumbs = container.querySelectorAll(
+      ".vesper-range-thumb",
+    ) as NodeListOf<HTMLElement>;
+
+    expect(
+      thumbs[0]!.style.getPropertyValue("--vesper-range-thumb-label"),
+    ).toBe('"10"');
+
+    expect(
+      thumbs[1]!.style.getPropertyValue("--vesper-range-thumb-label"),
+    ).toBe('"90"');
+  });
+
+  test("no label custom property when showValueLabels is false", () => {
+    const { container } = render(
+      <Range aria-label="Range" valueLabels={["$10", "$90"]} />,
+    );
 
     const thumbs = container.querySelectorAll(
       ".vesper-range-thumb",
@@ -311,6 +331,52 @@ describe("range [unit]", () => {
     await userEvent.keyboard("{ArrowRight}");
 
     expect(thumbs[0]).toHaveAttribute("aria-valuenow", "55");
+  });
+
+  test("pressing the track moves the nearest thumb", async () => {
+    const onValuesChange = vi.fn();
+    const onValuesCommit = vi.fn();
+    const result = render(
+      <Range
+        aria-label="Range"
+        defaultValues={[0, 80]}
+        onValuesChange={onValuesChange}
+        onValuesCommit={onValuesCommit}
+      />,
+    );
+
+    // clicking an element presses its center, ie. the middle of the track
+    await userEvent.click(
+      result.container.querySelector(".vesper-range-track")!,
+    );
+
+    const thumbs = result.getAllByRole("slider");
+    expect(thumbs[0]).toHaveAttribute("aria-valuenow", "0");
+    expect(thumbs[1]).toHaveAttribute("aria-valuenow", "50");
+
+    expect(onValuesChange).toHaveBeenCalledWith([0, 50]);
+    expect(onValuesCommit).toHaveBeenCalledWith([0, 50]);
+  });
+
+  test("disabled thumbs cannot be adjusted by pointer", async () => {
+    const onValuesChange = vi.fn();
+    const result = render(
+      <Range
+        aria-label="Range"
+        defaultValues={[0, 80]}
+        disabled
+        onValuesChange={onValuesChange}
+      />,
+    );
+
+    await userEvent.click(
+      result.container.querySelector(".vesper-range-track")!,
+    );
+
+    const thumbs = result.getAllByRole("slider");
+    expect(thumbs[0]).toHaveAttribute("aria-valuenow", "0");
+    expect(thumbs[1]).toHaveAttribute("aria-valuenow", "80");
+    expect(onValuesChange).not.toHaveBeenCalled();
   });
 });
 
