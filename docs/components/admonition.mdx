@@ -21,32 +21,82 @@ A callout component for highlighting important information, warnings, errors, or
 | `as`       | `ElementType`                                                 | The root element type for polymorphic rendering.                                  | `"div"`    |
 | `children` | `ReactNode`                                                   | The content displayed inside the admonition.                                      | —          |
 
+You may also pass additional props to the underlying element. For example, you may wish to give the `<Admonition>` instance a custom max-width, aria-label, etc.
+
 ## Examples
+
+### Info variant (default)
+
+<Admonition>Helpful information goes here.</Admonition>
 
 ```tsx
 import { Admonition } from "@tenstorrent/vesper/admonition";
 
-// Info variant (default)
 <Admonition>Helpful information goes here.</Admonition>;
 ```
 
-```tsx
-// Warning with medium size
+### Warning variant, `md` size
+
 <Admonition variant="warning" size="md">
   Please review before continuing.
 </Admonition>
-```
 
 ```tsx
-// Danger with CTA button
-<Admonition variant="danger" cta={{ children: "Undo", onClick: handleUndo }}>
+import { Admonition } from "@tenstorrent/vesper/admonition";
+
+<Admonition variant="warning" size="md">
+  Please review before continuing.
+</Admonition>;
+```
+
+### Danger variant, with CTA
+
+<Admonition variant="danger" cta={{ children: "Undo" }}>
   This action cannot be reversed.
 </Admonition>
-```
 
 ```tsx
-// Subtle success
-<Admonition variant="success" subtle>
-  Operation completed successfully.
+import { Admonition } from "@tenstorrent/vesper/admonition";
+
+<Admonition variant="danger" cta={{ children: "Undo", onClick: handleUndo }}>
+  This action cannot be reversed.
+</Admonition>;
+```
+
+### Success variant
+
+<Admonition variant="success">Operation completed successfully.</Admonition>
+
+```tsx
+import { Admonition } from "@tenstorrent/vesper/admonition";
+
+<Admonition variant="success">Operation completed successfully.</Admonition>;
+```
+
+### Secondary variant
+
+<Admonition variant="secondary">
+  This admonition details some information.
 </Admonition>
+
+```tsx
+import { Admonition } from "@tenstorrent/vesper/admonition";
+
+<Admonition variant="secondary">
+  This admonition details some information.
+</Admonition>;
+```
+
+### Subtle
+
+<Admonition variant="warning" subtle>
+  Subtle warning variant
+</Admonition>
+
+```tsx
+import { Admonition } from "@tenstorrent/vesper/admonition";
+
+<Admonition variant="warning" subtle>
+  Subtle warning variant
+</Admonition>;
 ```
