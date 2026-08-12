@@ -15,6 +15,7 @@
   height: 1rem;
   width: 100%;
   &::before {
+    z-index: 1;
     content: "";
     position: absolute;
     top: 0.3125rem;
@@ -28,16 +29,17 @@
 }
 
 .vesper-range-tick {
+  z-index: 0;
   height: 1rem;
   position: absolute;
   border-left: var(--vesper-stroke-base) solid var(--vesper-border-primary);
-  z-index: -1;
   @media (forced-colors: active) {
     background: CanvasText;
   }
 }
 
 .vesper-range-range {
+  z-index: 1;
   &::before {
     content: "";
     position: absolute;
@@ -62,6 +64,7 @@
 }
 
 .vesper-range-thumb {
+  z-index: 2;
   width: 1rem;
   height: 1rem;
   display: flex;
