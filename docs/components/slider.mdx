@@ -33,22 +33,35 @@ A single-thumb slider for selecting a numeric value within a range. Built on top
 import { Slider } from "@tenstorrent/vesper/slider";
 
 // Basic usage
-<Slider defaultValue={50} />;
+<Slider defaultValue={50} thumbAriaLabel="Volume" />;
 ```
 
 ```tsx
 // With value label
-<Slider defaultValue={30} showValueLabel />
+<Slider defaultValue={30} showValueLabel thumbAriaLabel="Volume" />
 ```
 
 ```tsx
 // Custom range and step
-<Slider min={0} max={1000} step={100} defaultValue={500} />
+<Slider
+  min={0}
+  max={1000}
+  step={100}
+  defaultValue={500}
+  thumbAriaLabel="Volume"
+/>
 ```
 
 ```tsx
 // With ticks
-<Slider min={0} max={100} step={10} showTicks defaultValue={50} />
+<Slider
+  min={0}
+  max={100}
+  step={10}
+  showTicks
+  defaultValue={50}
+  thumbAriaLabel="Volume"
+/>
 ```
 
 ```tsx

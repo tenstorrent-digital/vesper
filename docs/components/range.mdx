@@ -7,7 +7,10 @@ description: A dual-thumb range slider for selecting a range of values between a
 
 A dual-thumb range slider for selecting a range of values between a minimum and maximum. Supports tick marks, value labels, custom step sizes, and accessible thumb labels.
 
-<Range defaultValues={[25, 75]} />
+<Range
+  defaultValues={[25, 75]}
+  thumbAriaLabels={["Volume (min)", "Volume (max)"]}
+/>
 
 ## Options
 
@@ -35,27 +38,49 @@ A dual-thumb range slider for selecting a range of values between a minimum and 
 import { Range } from "@tenstorrent/vesper/range";
 
 // Basic usage
-<Range defaultValues={[20, 80]} />;
+<Range
+  defaultValues={[20, 80]}
+  thumbAriaLabels={["Volume (min)", "Volume (max)"]}
+/>;
 ```
 
 ```tsx
 // With value labels
-<Range defaultValues={[30, 70]} showValueLabels />
+<Range
+  defaultValues={[30, 70]}
+  showValueLabels
+  thumbAriaLabels={["Volume (min)", "Volume (max)"]}
+/>
 ```
 
 ```tsx
 // With ticks
-<Range defaultValues={[0, 100]} step={10} showTicks />
+<Range
+  defaultValues={[0, 100]}
+  step={10}
+  showTicks
+  thumbAriaLabels={["Volume (min)", "Volume (max)"]}
+/>
 ```
 
 ```tsx
 // Custom range
-<Range min={0} max={1000} step={50} defaultValues={[200, 800]} />
+<Range
+  min={0}
+  max={1000}
+  step={50}
+  defaultValues={[200, 800]}
+  thumbAriaLabels={["Volume (min)", "Volume (max)"]}
+/>
 ```
 
 ```tsx
 // Controlled
 const [values, setValues] = useState([25, 75]);
 
-<Range values={values} onValuesChange={setValues} />;
+<Range
+  values={values}
+  onValuesChange={setValues}
+  thumbAriaLabels={["Volume (min)", "Volume (max)"]}
+/>;
 ```

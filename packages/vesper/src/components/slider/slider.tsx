@@ -28,7 +28,7 @@ interface SliderProps extends Omit<
   /** Callback fired when the thumb interaction is completed (e.g., on pointer up). Receives the final value. */
   onValueCommit?(value: number): void;
   /** An accessible `aria-label` attribute for the thumb. */
-  thumbAriaLabel?: string;
+  thumbAriaLabel: string;
 }
 
 /**
@@ -43,6 +43,7 @@ interface SliderProps extends Omit<
  * @param {number} [props.step] - (optional) The stepping interval. @default 1
  * @param {boolean} [props.showValueLabel] - (optional) Whether to display the value label above the thumb. @default false
  * @param {boolean} [props.showTicks] - (optional) Whether to render tick marks at each step interval. @default false
+ * @param {string[]} props.thumbAriaLabel - Accessible label for the slider thumb
  *
  * You may also pass any additional props to the underlying `div` element
  *
@@ -96,9 +97,7 @@ export function Slider(props: SliderProps) {
       showValueLabels={showValueLabel}
       onValuesChange={handleValueChange}
       onValuesCommit={handleValueCommit}
-      thumbAriaLabels={
-        typeof thumbAriaLabel === "string" ? [thumbAriaLabel] : undefined
-      }
+      thumbAriaLabels={[thumbAriaLabel]}
       min={min}
       {...rest}
     />

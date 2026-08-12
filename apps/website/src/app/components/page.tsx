@@ -16,6 +16,7 @@ import { CodeBlock } from "@tenstorrent/vesper/code-block";
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
 import { RadioGroup } from "@tenstorrent/vesper/radio-group";
+import { Range } from "@tenstorrent/vesper/range";
 import { Select } from "@tenstorrent/vesper/select";
 import { ShowMore } from "@tenstorrent/vesper/show-more";
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
@@ -171,7 +172,19 @@ export default function Page() {
         </Cell>
 
         <Cell name="Slider">
-          <Slider defaultValue={50} className="w-full" />
+          <Slider
+            defaultValue={50}
+            thumbAriaLabel="Volume"
+            className="w-full"
+          />
+        </Cell>
+
+        <Cell name="Range">
+          <Range
+            defaultValues={[0, 100]}
+            thumbAriaLabels={["Volume (min)", "Volume (max)"]}
+            className="w-full"
+          />
         </Cell>
 
         <Cell name="Snippet">
