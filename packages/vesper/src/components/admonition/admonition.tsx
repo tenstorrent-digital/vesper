@@ -1,4 +1,4 @@
-import type { ElementType } from "react";
+import type { ComponentProps, ElementType } from "react";
 
 import { Button, ButtonProps } from "@/components/button/button";
 import {
@@ -14,7 +14,6 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
-import { Polymorphic } from "@/utils/polymorphic";
 
 export const ADMONITION_SIZES = ["sm", "md"] as const;
 
@@ -30,28 +29,24 @@ export type AdmonitionSize = (typeof ADMONITION_SIZES)[number];
 
 export type AdmonitionVariant = (typeof ADMONITION_VARIANTS)[number];
 
-export type AdmonitionProps<
-  E extends ElementType = "div",
+export interface AdmonitionProps<
   C extends ElementType = "button",
-> = Polymorphic<
-  {
-    /** The size of the admonition. Affects padding and typography. @default sm */
-    size?: AdmonitionSize;
-    /** The visual variant of the admonition, which determines its color scheme and icon. @default info */
-    variant?: AdmonitionVariant;
-    /** When `true`, renders the admonition with a more subdued, subtle appearance. @default false */
-    subtle?: boolean;
-    /**
-     * Props passed to the optional call-to-action button rendered alongside the admonition content.
-     *
-     * The presence of this prop will render a small contrast-themed button to the right of the admonition content.
-     */
-    cta?: Omit<ButtonProps<C>, "size" | "variant" | "as">;
-    /** Sets the `ElementType` the cta will render as. @default button */
-    ctaAs?: C;
-  },
-  E
->;
+> extends ComponentProps<"div"> {
+  /** The size of the admonition. Affects padding and typography. @default sm */
+  size?: AdmonitionSize;
+  /** The visual variant of the admonition, which determines its color scheme and icon. @default info */
+  variant?: AdmonitionVariant;
+  /** When `true`, renders the admonition with a more subdued, subtle appearance. @default false */
+  subtle?: boolean;
+  /**
+   * Props passed to the optional call-to-action button rendered alongside the admonition content.
+   *
+   * The presence of this prop will render a small contrast-themed button to the right of the admonition content.
+   */
+  cta?: Omit<ButtonProps<C>, "size" | "variant" | "as">;
+  /** Sets the `ElementType` the cta will render as. @default button */
+  ctaAs?: C;
+}
 
 const ADMONITION_TYPOGRAPHY_VARIANTS: {
   [S in AdmonitionSize]: TypographyVariant;
@@ -67,7 +62,7 @@ const ADMONITION_TYPOGRAPHY_VARIANTS: {
  * @param {AdmonitionSize} [props.size] - (optional) The size of the admonition. @default sm
  * @param {boolean} [props.subtle] - (optional) Renders the admonition with a more subdued appearance
  * @param {ButtonProps} [props.cta] - (optional) Props for an action button rendered alongside the content
- * @param {React.ElementType} [props.as] - (optional) Element type to render. @default div
+ * @param {React.ElementType} [props.ctaAs] - (optional) Element type to render for the cta. @default button
  *
  * You may also pass any additional props to the underlying element
  *
@@ -85,23 +80,21 @@ const ADMONITION_TYPOGRAPHY_VARIANTS: {
  *   Failed to save changes.
  * </Admonition>
  */
-export function Admonition<
-  E extends ElementType = "div",
-  C extends ElementType = "button",
->(props: AdmonitionProps<E, C>) {
+export function Admonition<C extends ElementType = "button">(
+  props: AdmonitionProps<C>,
+) {
   const {
-    as: Component = "div",
     className,
     size = "sm",
     variant = "info",
-    ctaAs,
+    ctaAs = "button",
     cta,
     children,
     subtle,
     ...rest
   } = props;
   return (
-    <Component
+    <div
       className={cn(
         "vesper-admonition",
         `vesper-admonition-${size}`,
@@ -126,12 +119,12 @@ export function Admonition<
       {cta && (
         <Button
           type="button"
-          {...(cta as ButtonProps<E>)}
+          {...(cta as ButtonProps<C>)}
           as={ctaAs}
           variant="contrast"
           size="sm"
         />
       )}
-    </Component>
+    </div>
   );
 }
