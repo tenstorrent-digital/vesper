@@ -175,6 +175,9 @@ function RangeThumb({
         "vesper-range-thumb",
         showLabel && "vesper-range-thumb-labeled",
       )}
+      onPointerDown={(e) => {
+        e.currentTarget.setPointerCapture(e.pointerId);
+      }}
       aria-label={ariaLabel}
       style={(state: SliderThumbState) =>
         showLabel
