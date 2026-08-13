@@ -31,6 +31,7 @@ exports[`code-block [snapshot] > default (no props) 1`] = `
       class="vesper-button-icon"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -77,6 +78,7 @@ exports[`code-block [snapshot] > with custom className 1`] = `
       class="vesper-button-icon"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -132,6 +134,7 @@ exports[`code-block [snapshot] > with multi-line content 1`] = `
       class="vesper-button-icon"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -178,6 +181,7 @@ exports[`code-block [snapshot] > with showLineNumbers 1`] = `
       class="vesper-button-icon"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -224,6 +228,7 @@ exports[`code-block [snapshot] > with string children 1`] = `
       class="vesper-button-icon"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >

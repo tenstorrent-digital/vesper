@@ -16,6 +16,7 @@ exports[`checkbox [snapshot] > md, checked: false, indeterminate: false 1`] = `
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -26,6 +27,7 @@ exports[`checkbox [snapshot] > md, checked: false, indeterminate: false 1`] = `
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -60,6 +62,7 @@ exports[`checkbox [snapshot] > md, checked: false, indeterminate: true 1`] = `
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -70,6 +73,7 @@ exports[`checkbox [snapshot] > md, checked: false, indeterminate: true 1`] = `
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -105,6 +109,7 @@ exports[`checkbox [snapshot] > md, checked: true, indeterminate: false 1`] = `
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -115,6 +120,7 @@ exports[`checkbox [snapshot] > md, checked: true, indeterminate: false 1`] = `
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -150,6 +156,7 @@ exports[`checkbox [snapshot] > md, checked: true, indeterminate: true 1`] = `
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -160,6 +167,7 @@ exports[`checkbox [snapshot] > md, checked: true, indeterminate: true 1`] = `
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -195,6 +203,7 @@ exports[`checkbox [snapshot] > md, disabled, checked: false, indeterminate: fals
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -205,6 +214,7 @@ exports[`checkbox [snapshot] > md, disabled, checked: false, indeterminate: fals
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -240,6 +250,7 @@ exports[`checkbox [snapshot] > md, disabled, checked: false, indeterminate: true
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -250,6 +261,7 @@ exports[`checkbox [snapshot] > md, disabled, checked: false, indeterminate: true
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -286,6 +298,7 @@ exports[`checkbox [snapshot] > md, disabled, checked: true, indeterminate: false
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -296,6 +309,7 @@ exports[`checkbox [snapshot] > md, disabled, checked: true, indeterminate: false
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -332,6 +346,7 @@ exports[`checkbox [snapshot] > md, disabled, checked: true, indeterminate: true 
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -342,6 +357,7 @@ exports[`checkbox [snapshot] > md, disabled, checked: true, indeterminate: true 
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -377,6 +393,7 @@ exports[`checkbox [snapshot] > md, required, checked: false, indeterminate: fals
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -387,6 +404,7 @@ exports[`checkbox [snapshot] > md, required, checked: false, indeterminate: fals
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -422,6 +440,7 @@ exports[`checkbox [snapshot] > md, required, checked: false, indeterminate: true
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -432,6 +451,7 @@ exports[`checkbox [snapshot] > md, required, checked: false, indeterminate: true
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -468,6 +488,7 @@ exports[`checkbox [snapshot] > md, required, checked: true, indeterminate: false
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -478,6 +499,7 @@ exports[`checkbox [snapshot] > md, required, checked: true, indeterminate: false
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -514,6 +536,7 @@ exports[`checkbox [snapshot] > md, required, checked: true, indeterminate: true 
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -524,6 +547,7 @@ exports[`checkbox [snapshot] > md, required, checked: true, indeterminate: true 
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -560,6 +584,7 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: false, indetermi
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -570,6 +595,7 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: false, indetermi
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -606,6 +632,7 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: false, indetermi
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -616,6 +643,7 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: false, indetermi
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -653,6 +681,7 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: true, indetermin
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -663,6 +692,7 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: true, indetermin
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -700,6 +730,7 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: true, indetermin
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -710,6 +741,7 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: true, indetermin
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -744,6 +776,7 @@ exports[`checkbox [snapshot] > sm, checked: false, indeterminate: false 1`] = `
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -754,6 +787,7 @@ exports[`checkbox [snapshot] > sm, checked: false, indeterminate: false 1`] = `
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -788,6 +822,7 @@ exports[`checkbox [snapshot] > sm, checked: false, indeterminate: true 1`] = `
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -798,6 +833,7 @@ exports[`checkbox [snapshot] > sm, checked: false, indeterminate: true 1`] = `
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -833,6 +869,7 @@ exports[`checkbox [snapshot] > sm, checked: true, indeterminate: false 1`] = `
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -843,6 +880,7 @@ exports[`checkbox [snapshot] > sm, checked: true, indeterminate: false 1`] = `
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -878,6 +916,7 @@ exports[`checkbox [snapshot] > sm, checked: true, indeterminate: true 1`] = `
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -888,6 +927,7 @@ exports[`checkbox [snapshot] > sm, checked: true, indeterminate: true 1`] = `
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -923,6 +963,7 @@ exports[`checkbox [snapshot] > sm, disabled, checked: false, indeterminate: fals
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -933,6 +974,7 @@ exports[`checkbox [snapshot] > sm, disabled, checked: false, indeterminate: fals
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -968,6 +1010,7 @@ exports[`checkbox [snapshot] > sm, disabled, checked: false, indeterminate: true
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -978,6 +1021,7 @@ exports[`checkbox [snapshot] > sm, disabled, checked: false, indeterminate: true
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1014,6 +1058,7 @@ exports[`checkbox [snapshot] > sm, disabled, checked: true, indeterminate: false
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1024,6 +1069,7 @@ exports[`checkbox [snapshot] > sm, disabled, checked: true, indeterminate: false
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1060,6 +1106,7 @@ exports[`checkbox [snapshot] > sm, disabled, checked: true, indeterminate: true 
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1070,6 +1117,7 @@ exports[`checkbox [snapshot] > sm, disabled, checked: true, indeterminate: true 
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1105,6 +1153,7 @@ exports[`checkbox [snapshot] > sm, required, checked: false, indeterminate: fals
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1115,6 +1164,7 @@ exports[`checkbox [snapshot] > sm, required, checked: false, indeterminate: fals
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1150,6 +1200,7 @@ exports[`checkbox [snapshot] > sm, required, checked: false, indeterminate: true
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1160,6 +1211,7 @@ exports[`checkbox [snapshot] > sm, required, checked: false, indeterminate: true
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1196,6 +1248,7 @@ exports[`checkbox [snapshot] > sm, required, checked: true, indeterminate: false
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1206,6 +1259,7 @@ exports[`checkbox [snapshot] > sm, required, checked: true, indeterminate: false
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1242,6 +1296,7 @@ exports[`checkbox [snapshot] > sm, required, checked: true, indeterminate: true 
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1252,6 +1307,7 @@ exports[`checkbox [snapshot] > sm, required, checked: true, indeterminate: true 
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1288,6 +1344,7 @@ exports[`checkbox [snapshot] > sm, required, disabled, checked: false, indetermi
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1298,6 +1355,7 @@ exports[`checkbox [snapshot] > sm, required, disabled, checked: false, indetermi
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1334,6 +1392,7 @@ exports[`checkbox [snapshot] > sm, required, disabled, checked: false, indetermi
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1344,6 +1403,7 @@ exports[`checkbox [snapshot] > sm, required, disabled, checked: false, indetermi
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1381,6 +1441,7 @@ exports[`checkbox [snapshot] > sm, required, disabled, checked: true, indetermin
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1391,6 +1452,7 @@ exports[`checkbox [snapshot] > sm, required, disabled, checked: true, indetermin
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1428,6 +1490,7 @@ exports[`checkbox [snapshot] > sm, required, disabled, checked: true, indetermin
     >
       <svg
         class="vesper-checkbox-checked-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -1438,6 +1501,7 @@ exports[`checkbox [snapshot] > sm, required, disabled, checked: true, indetermin
       </svg>
       <svg
         class="vesper-checkbox-indeterminate-icon"
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >

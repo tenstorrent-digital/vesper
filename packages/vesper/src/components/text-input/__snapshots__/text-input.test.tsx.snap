@@ -20,6 +20,7 @@ exports[`text-input [snapshot] > disabled 1`] = `
       type="button"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -79,6 +80,7 @@ exports[`text-input [snapshot] > full options 1`] = `
       class="vesper-text-input-message-icon"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -134,6 +136,7 @@ exports[`text-input [snapshot] > size: lg 1`] = `
       type="button"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -165,6 +168,7 @@ exports[`text-input [snapshot] > size: md 1`] = `
       type="button"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -196,6 +200,7 @@ exports[`text-input [snapshot] > size: sm 1`] = `
       type="button"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -228,6 +233,7 @@ exports[`text-input [snapshot] > variant: default 1`] = `
       type="button"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -245,6 +251,7 @@ exports[`text-input [snapshot] > variant: default 1`] = `
       class="vesper-text-input-message-icon"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -286,6 +293,7 @@ exports[`text-input [snapshot] > variant: error 1`] = `
       type="button"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -303,6 +311,7 @@ exports[`text-input [snapshot] > variant: error 1`] = `
       class="vesper-text-input-message-icon"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -344,6 +353,7 @@ exports[`text-input [snapshot] > variant: success 1`] = `
       type="button"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -361,6 +371,7 @@ exports[`text-input [snapshot] > variant: success 1`] = `
       class="vesper-text-input-message-icon"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -400,6 +411,7 @@ exports[`text-input [snapshot] > variant: warning 1`] = `
       type="button"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -417,6 +429,7 @@ exports[`text-input [snapshot] > variant: warning 1`] = `
       class="vesper-text-input-message-icon"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -450,6 +463,7 @@ exports[`text-input [snapshot] > with icon 1`] = `
       class="vesper-text-input-icon"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -472,6 +486,7 @@ exports[`text-input [snapshot] > with icon 1`] = `
       type="button"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -511,6 +526,7 @@ exports[`text-input [snapshot] > with label 1`] = `
         type="button"
       >
         <svg
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
