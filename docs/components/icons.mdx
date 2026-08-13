@@ -7,20 +7,27 @@ description: A library of SVG icon components used throughout Vesper.
 
 A library of SVG icon components used throughout Vesper. Each icon renders as an inline `<svg>` element with `currentColor` fill, making it easy to style via CSS. An `Icon` component is also available for rendering icons dynamically by name.
 
-<div className="flex items-center gap-1">
-  <Add style={{ width: 24 }} />
-  <Gear style={{ width: 24 }} />
-  <Search style={{ width: 24 }} />
-  <Info style={{ width: 24 }} />
-  <Globe style={{ width: 24 }} />
-  <Tenstorrent style={{ width: 24 }} />
-</div>
+<IconsDemo />
+
+```tsx
+import { Icon, ICON_KINDS } from "@tenstorrent/vesper/icons";
+
+export function IconsDemo() {
+  return (
+    <div className="flex flex-wrap gap-1">
+      {ICON_KINDS.map((kind) => (
+        <Icon key={kind} kind={kind} style={{ width: 24 }} />
+      ))}
+    </div>
+  );
+}
+```
 
 ## Options
 
 Each individual icon component (e.g., `Add`, `Gear`, `Search`) accepts all standard `SVG` element props (`ComponentProps<"svg">`).
 
-The dynamic `Icon` component accepts:
+The dynamic `Icon` component also accepts:
 
 | Prop   | Type       | Description                                                                             | Default |
 | ------ | ---------- | --------------------------------------------------------------------------------------- | ------- |
@@ -63,18 +70,19 @@ See the full list of available icon kinds in [Storybook](/storybook/?path=/story
 You can use inline styles or CSS stylesheets to style an icon:
 
 ```tsx
-import { Gear, Tenstorrent } from "@tenstorrent/vesper/icons";
+import { Gear, Icon, Tenstorrent } from "@tenstorrent/vesper/icons";
 
 <Gear style={{ width: 32, height: 32 }} />
-<Tenstorrent style={{ color: 'blue' }} />
+<Icon kind="tenstorrent" style={{ color: 'blue' }} />
 ```
 
 Coloring an icon can also be done by supplying a `color` prop:
 
 ```tsx
-import { Globe } from "@tenstorrent/vesper/icons";
+import { Globe, Icon } from "@tenstorrent/vesper/icons";
 
 <Globe color="red" />;
+<Icon kind="ai-video-gen" color="green" />;
 ```
 
 ### Pre-colored icons
@@ -90,10 +98,19 @@ import {
   ModelQwenColor,
 } from "@tenstorrent/vesper/icons";
 
-
 <ModelDeepSeekColor />
 <ModelFalconColor />
 <ModelGoogleColor />
 <ModelLlamaColor />
 <ModelQwenColor />
+```
+
+```tsx
+import { Icon } from "@tenstorrent/vesper/icons";
+
+<Icon kind="model-deepseek-color" />
+<Icon kind="model-falcon-color" />
+<Icon kind="model-google-color" />
+<Icon kind="model-llama-color" />
+<Icon kind="model-qwen-color" />
 ```

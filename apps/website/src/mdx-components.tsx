@@ -33,6 +33,7 @@ import {
   Checkmark,
   Gear,
   Globe,
+  Icon,
   Info,
   Search,
   Tenstorrent,
@@ -66,6 +67,7 @@ import { trimChildren } from "@/lib/markdown/utils";
 
 // named demos for components w non-serializable props (event handlers,
 // refs, state) that are used inside `docs/` documents
+import { IconsDemo } from "@/demos/icons";
 import { MenuDemo } from "@/demos/menu";
 import { ShowMoreDemo } from "@/demos/show-more";
 import { SplitButtonDemo } from "@/demos/split-button";
@@ -191,6 +193,7 @@ const components = {
   Choicebox,
   Code,
   CodeBlock,
+  Icon,
   IconButton,
   Material,
   Modal,
@@ -227,6 +230,7 @@ const components = {
   Tenstorrent,
 
   // demos
+  IconsDemo,
   MenuDemo,
   ShowMoreDemo,
   SplitButtonDemo,
