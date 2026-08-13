@@ -7,7 +7,7 @@ description: A collapsible content panel that toggles between expanded and colla
 
 A collapsible content panel that toggles between expanded and collapsed states. Useful for organizing long-form content into manageable sections.
 
-<Accordion title="Click to expand" className="w-full max-w-xs">
+<Accordion title="Click to expand">
   This is the accordion content. It can contain any text or elements.
 </Accordion>
 
@@ -29,9 +29,7 @@ You may also pass additional props to the underlying `div` element. For example,
 
 The simplest way to use an `Accordion` is to render it with a `title` and `children` without controlling its open/closed state:
 
-<Accordion title="Section Title" className="w-full max-w-xs">
-  Content goes here.
-</Accordion>
+<Accordion title="Section Title">Content goes here.</Accordion>
 
 ```tsx
 import { Accordion } from "@tenstorrent/vesper/accordion";
@@ -43,7 +41,7 @@ import { Accordion } from "@tenstorrent/vesper/accordion";
 
 You can render an `Accordion` in a default opened state by passing `defaultOpen`:
 
-<Accordion title="Already Open" defaultOpen className="w-full max-w-xs">
+<Accordion title="Already Open" defaultOpen>
   This accordion starts expanded.
 </Accordion>
 
@@ -59,9 +57,7 @@ import { Accordion } from "@tenstorrent/vesper/accordion";
 
 If you need to control the open/closed state of the `Accordion`, you can do so via the `open` and `onOpenChange` props:
 
-<Accordion title="Controlled" className="w-full max-w-xs">
-  Controlled accordion content.
-</Accordion>
+<Accordion title="Controlled">Controlled accordion content.</Accordion>
 
 ```tsx
 import { useState } from "react";

@@ -144,7 +144,7 @@ const components = {
     }
 
     return (
-      <CodeBlock className="w-full" lang={resolvedLang} copyOnHover>
+      <CodeBlock lang={resolvedLang} copyOnHover>
         {code}
       </CodeBlock>
     );
