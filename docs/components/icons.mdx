@@ -30,7 +30,7 @@ The dynamic `Icon` component accepts:
 
 ### Rendering individual icons
 
-You can import individual icons from `@tesntorrent/vesper/icons` on an as-needed basis. These imports are [tree-shakeable](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking), so your application can only bundle the icons that are actually used:
+You can import individual icons from `@tenstorrent/vesper/icons` on an as-needed basis. These imports are [tree-shakeable](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking), so your application can only bundle the icons that are actually used:
 
 ```tsx
 import { Add, Gear, Search } from "@tenstorrent/vesper/icons";
@@ -79,7 +79,7 @@ import { Globe } from "@tenstorrent/vesper/icons";
 
 ### Pre-colored icons
 
-Some icons ship with both colored and uncolored versions. The colored icon component names are the same as their uncolored name suffixed with the word "Color". These are typically branded icons for different AI models, and should **not** have their colors overridden with css, inline styles, or the `color` prop:
+Some icons ship with both colored and uncolored versions. The colored icon component names are the same as their uncolored name suffixed with the word "Color". These are typically branded icons for different AI models, and should **not** have their colors overridden with CSS, inline styles, or the `color` prop:
 
 ```tsx
 import {
