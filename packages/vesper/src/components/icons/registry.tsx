@@ -63,7 +63,7 @@ import { Lock } from "./lock";
 import { LockFill } from "./lock-fill";
 import { LoudBox } from "./loudbox";
 import { Menu } from "./menu";
-import { Minus } from "./Minus";
+import { Minus } from "./minus";
 import { ModeDark } from "./mode-dark";
 import { ModeLight } from "./mode-light";
 import { ModeSystem } from "./mode-system";
@@ -129,7 +129,6 @@ import { Wormhole } from "./wormhole";
 export const registry: {
   [K in IconKind]: ComponentType<ComponentProps<"svg">>;
 } = {
-  Minus: Minus,
   add: Add,
   "ai-agent-solid": AIAgentSolid,
   "ai-agent": AIAgent,
@@ -185,6 +184,7 @@ export const registry: {
   lock: Lock,
   loudbox: LoudBox,
   menu: Menu,
+  minus: Minus,
   "mode-dark": ModeDark,
   "mode-light": ModeLight,
   "mode-system": ModeSystem,
