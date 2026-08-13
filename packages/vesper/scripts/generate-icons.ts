@@ -73,7 +73,7 @@ const icons = iconFiles.map((fileName) => {
     if (node.tagName === "svg" && parent?.type === "root") {
       delete node.properties.width;
       delete node.properties.height;
-      delete node.properties.fill;
+      node.properties.fill = "none";
       return;
     }
 
