@@ -19,7 +19,7 @@ export interface ToastOptions {
   action?: {
     /** Callback function that fires when the user clicks the action button. */
     handler: () => void;
-    /** The content displated in the button. Typically this will be just text, though any `ReactNode` is supported. */
+    /** The content displayed in the button. Typically this will be just text, though any `ReactNode` is supported. */
     content: ReactNode;
     /** Short description of an alternative way for users to acheive the desired action. This field is important for screen reader users who may not be able to access the toast easily, especially if it is time-sensitive. */
     altText?: string;
