@@ -1,10 +1,9 @@
 /*
   setup tailwind
-  - `@source "../../.."` tells Tailwind where to scan class names to watch
+  - `source("../../..")` tells Tailwind where to set base path for automatic className detection
   - `@source "../../../../../../docs/"` adds the repo's `docs/` mdx files, which live outside of this app
 */
-@import "tailwindcss";
-@source "../../..";
+@import "tailwindcss" source("../../..");
 @source "../../../../../../docs/";
 @import "@tenstorrent/vesper/tailwind.css";
 
