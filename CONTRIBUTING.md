@@ -66,6 +66,12 @@ You can use these guidelines to determine which kind of change your contribution
 - `minor` – features that introduce new behavior or APIs, but are backwards-compatible and do not break existing implementations of exported modules.
 - `major` – large changes or redesigns that introduce breaking changes to existing component implementations, and requires code updates prior to upgrading.
 
+#### PRs requiring multiple changesets
+
+Sometimes you will want to generate multiple changesets for a PR. It is recommended to keep your PRs scoped to a single change though sometimes this is unavoidable. In such cases, you can generate multiple changesets to describe each change made.
+
+An example of when this could happen is if a change to module `A` depend on a change to module `B`, with both changes happening in a single PR.
+
 ### Code review
 
 Prior to merging your PR, any code changes you made must be reviewed. PRs require approvals from two contributors with write access, at least one of which must be a Vesper admin. All checks must also pass.
