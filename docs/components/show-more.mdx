@@ -21,6 +21,8 @@ A toggle button that switches between "Show more" and "Show less" labels with a 
 
 ### Basic usage
 
+`ShowMore` is fully controlled: pass the current `expanded` state to set the button's label and caret direction, and use `onClick` to toggle the content you're revealing:
+
 <ShowMoreDemo type="with-content" />
 
 ```tsx
@@ -36,6 +38,8 @@ const [expanded, setExpanded] = useState(false);
 ```
 
 ### Disabled
+
+Passing `disabled` prevents interaction:
 
 <ShowMore disabled className="w-full" />
 
