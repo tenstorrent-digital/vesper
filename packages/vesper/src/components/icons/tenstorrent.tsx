@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const Tenstorrent = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M16.8 13.3698L12 16.1151L7.20002 13.3698V18.8603L12 21.6L16.8 18.8603V13.3698Z"
         fill="currentColor"

@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const TTForgeFE = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M14.7 13.4V14.3333H11.8137L7.31367 19H6.6V17.1333L8.4 15.2667V13.4H14.7Z"
         fill="currentColor"

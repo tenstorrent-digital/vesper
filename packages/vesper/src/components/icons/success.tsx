@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const Success = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M16.5284 8.34163L17.109 8.89333L17.2961 9.07176L17.109 9.25116L10.4259 15.6121L10.3546 15.6806H9.27045L9.19907 15.6121L6.89101 13.4159L6.7039 13.2365L6.89101 13.0581L7.47164 12.5064L7.6414 12.3443L7.81211 12.5064L9.80671 14.4055H9.81829L16.1879 8.34163L16.3586 8.17959L16.5284 8.34163Z"
         fill="currentColor"

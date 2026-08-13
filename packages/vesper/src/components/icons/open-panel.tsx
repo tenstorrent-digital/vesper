@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const OpenPanel = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path d="M19.5 4L21 4V20H19.5V4Z" fill="currentColor"></path>
       <path
         d="M10.3486 18.1768L15.7119 12.8057V12.7188L3 12.7187L3 11.2812L15.7119 11.2812V11.1953L10.3486 5.82324L11.3477 4.82324L17.125 10.6084V13.3906L11.3477 19.1768L10.3486 18.1768Z"

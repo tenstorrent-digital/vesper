@@ -63,7 +63,7 @@ export { Lock } from "./lock";
 export { LockFill } from "./lock-fill";
 export { LoudBox } from "./loudbox";
 export { Menu } from "./menu";
-export { Minus } from "./minus";
+export { Minus } from "./Minus";
 export { ModeDark } from "./mode-dark";
 export { ModeLight } from "./mode-light";
 export { ModeSystem } from "./mode-system";

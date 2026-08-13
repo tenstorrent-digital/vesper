@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const Phone = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M16.05 3H7.95001L6.60001 4.35V19.65L7.95001 21H16.05L17.4 19.65V4.35L16.05 3ZM11.1 3.9H12.9V4.8H11.1V3.9ZM13.8 20.1H10.2V19.2H13.8V20.1ZM7.95001 18.3V5.7H16.05V18.3H7.95001Z"
         fill="currentColor"

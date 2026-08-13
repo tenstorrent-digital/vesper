@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const Quasar = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M7.51687 13.1228H5.22469V14.8125L9.15727 18.7374H11.9833L11.9663 21H8.59548L3.02249 15.375L3 12.9701V11.9885L3.01097 10.8772H7.51687V13.1228Z"
         fill="currentColor"

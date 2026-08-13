@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const Download = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M4.05859 9.66992L10.8984 16.5039H11.2363V3H12.7637V16.5039H13.1016L19.9414 9.66992L21 10.7285L13.7217 18H10.2783L3 10.7285L4.05859 9.66992Z"
         fill="currentColor"

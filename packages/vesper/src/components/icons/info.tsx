@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const Info = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M18.1582 3L21 5.8418V18.1582L18.1582 21H5.8418L3 18.1582V5.8418L5.8418 3H18.1582ZM4 6.25586V17.7441L6.25586 20H17.7441L20 17.7441V6.25586L17.7441 4H6.25586L4 6.25586Z"
         fill="currentColor"

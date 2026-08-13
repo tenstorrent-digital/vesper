@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const Shield = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M21 5.5L20 15.5L13.4287 21.5H10.5713L4 15.5L3 5.5L7 2.5H17L21 5.5ZM4.05078 5.96094L4.96094 15.0615L11.0049 20.5H12.9951L19.0381 15.0615L19.9482 5.96094L16.667 3.5H7.33301L4.05078 5.96094Z"
         fill="currentColor"

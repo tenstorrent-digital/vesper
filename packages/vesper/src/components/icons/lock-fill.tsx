@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const LockFill = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M17.5 5.29297V9.5H18L20 11.5V19L18 21H6L4 19V11.5L6 9.5H6.5V5.29297L8.79297 3H15.207L17.5 5.29297ZM11.5 12.5V17.5H12.5V12.5H11.5ZM7.5 5.70703V9.5H16.5V5.70703L14.793 4H9.20703L7.5 5.70703Z"
         fill="currentColor"
