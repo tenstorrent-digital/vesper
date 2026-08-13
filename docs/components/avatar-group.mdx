@@ -10,10 +10,22 @@ Displays a stacked row of avatars with an overflow indicator when more than thre
 <AvatarGroup
   size="md"
   avatars={[
-    { src: "https://i.pravatar.cc/128?u=1", alt: "User 1" },
-    { src: "https://i.pravatar.cc/128?u=2", alt: "User 2" },
-    { src: "https://i.pravatar.cc/128?u=3", alt: "User 3" },
-    { src: "https://i.pravatar.cc/128?u=4", alt: "User 4" },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex",
+      alt: "Alex",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=marisa",
+      alt: "Marisa",
+    },
   ]}
 />
 
@@ -33,8 +45,14 @@ By default, an `AvatarGroup` will render all avatars at `md` size if the `size` 
 
 <AvatarGroup
   avatars={[
-    { src: "https://i.pravatar.cc/128", alt: "Alice" },
-    { src: "https://i.pravatar.cc/256", alt: "Bob" },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
   ]}
 />
 
@@ -43,8 +61,14 @@ import { AvatarGroup } from "@tenstorrent/vesper/avatar-group";
 
 <AvatarGroup
   avatars={[
-    { src: "https://i.pravatar.cc/128", alt: "Alice" },
-    { src: "https://i.pravatar.cc/256", alt: "Bob" },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
   ]}
 />;
 ```
@@ -56,25 +80,52 @@ An `AvatarGroup` can be rendered in one of three sizes: `sm`, `md`, and `lg`:
 <AvatarGroup
   size="sm"
   avatars={[
-    { src: "https://i.pravatar.cc/128", alt: "Alice" },
-    { src: "https://i.pravatar.cc/256", alt: "Bob" },
-    { src: "https://i.pravatar.cc/384", alt: "Jim" },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex",
+      alt: "Alex",
+    },
   ]}
 />
 <AvatarGroup
   size="md"
   avatars={[
-    { src: "https://i.pravatar.cc/128", alt: "Alice" },
-    { src: "https://i.pravatar.cc/256", alt: "Bob" },
-    { src: "https://i.pravatar.cc/384", alt: "Jim" },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex",
+      alt: "Alex",
+    },
   ]}
 />
 <AvatarGroup
   size="lg"
   avatars={[
-    { src: "https://i.pravatar.cc/128", alt: "Alice" },
-    { src: "https://i.pravatar.cc/256", alt: "Bob" },
-    { src: "https://i.pravatar.cc/384", alt: "Jim" },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex",
+      alt: "Alex",
+    },
   ]}
 />
 
@@ -84,25 +135,25 @@ import { AvatarGroup } from "@tenstorrent/vesper/avatar-group";
 <AvatarGroup
   size="sm"
   avatars={[
-    { src: "https://i.pravatar.cc/128", alt: "Alice" },
-    { src: "https://i.pravatar.cc/256", alt: "Bob" },
-    { src: "https://i.pravatar.cc/384", alt: "Jim" },
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob", alt: "Bob" },
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim", alt: "Jim" },
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex", alt: "Alex" },
   ]}
 />
 <AvatarGroup
   size="md"
   avatars={[
-    { src: "https://i.pravatar.cc/128", alt: "Alice" },
-    { src: "https://i.pravatar.cc/256", alt: "Bob" },
-    { src: "https://i.pravatar.cc/384", alt: "Jim" },
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob", alt: "Bob" },
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim", alt: "Jim" },
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex", alt: "Alex" },
   ]}
 />
 <AvatarGroup
   size="lg"
   avatars={[
-    { src: "https://i.pravatar.cc/128", alt: "Alice" },
-    { src: "https://i.pravatar.cc/256", alt: "Bob" },
-    { src: "https://i.pravatar.cc/384", alt: "Jim" },
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob", alt: "Bob" },
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim", alt: "Jim" },
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex", alt: "Alex" },
   ]}
 />
 ```
@@ -113,10 +164,22 @@ When more than 3 avatars are present, an `AvatarGroup` will render an overflow i
 
 <AvatarGroup
   avatars={[
-    { src: "https://i.pravatar.cc/128", alt: "Alice" },
-    { src: "https://i.pravatar.cc/256", alt: "Bob" },
-    { src: "https://i.pravatar.cc/384", alt: "Jim" },
-    { src: "https://i.pravatar.cc/512", alt: "Alex" },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex",
+      alt: "Alex",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=marisa",
+      alt: "Marisa",
+    },
   ]}
 />
 
@@ -125,10 +188,22 @@ import { AvatarGroup } from "@tenstorrent/vesper/avatar-group";
 
 <AvatarGroup
   avatars={[
-    { src: "https://i.pravatar.cc/128", alt: "Alice" },
-    { src: "https://i.pravatar.cc/256", alt: "Bob" },
-    { src: "https://i.pravatar.cc/384", alt: "Jim" },
-    { src: "https://i.pravatar.cc/512", alt: "Alex" },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex",
+      alt: "Alex",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=marisa",
+      alt: "Marisa",
+    },
   ]}
 />;
 ```
@@ -144,10 +219,22 @@ import { AvatarGroup } from "@tenstorrent/vesper/avatar-group";
   as="a"
   href="#"
   avatars={[
-    { src: "https://i.pravatar.cc/128", alt: "Alice" },
-    { src: "https://i.pravatar.cc/256", alt: "Bob" },
-    { src: "https://i.pravatar.cc/384", alt: "Jim" },
-    { src: "https://i.pravatar.cc/512", alt: "Alex" },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex",
+      alt: "Alex",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=marisa",
+      alt: "Marisa",
+    },
   ]}
 />;
 ```
@@ -156,9 +243,21 @@ import { AvatarGroup } from "@tenstorrent/vesper/avatar-group";
   as="a"
   href="#"
   avatars={[
-    { src: "https://i.pravatar.cc/128", alt: "Alice" },
-    { src: "https://i.pravatar.cc/256", alt: "Bob" },
-    { src: "https://i.pravatar.cc/384", alt: "Jim" },
-    { src: "https://i.pravatar.cc/512", alt: "Alex" },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex",
+      alt: "Alex",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=marisa",
+      alt: "Marisa",
+    },
   ]}
 />
