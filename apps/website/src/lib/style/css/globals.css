@@ -1,7 +1,7 @@
 /*
   setup tailwind
   - `@source "../../.."` tells Tailwind where to scan class names to watch
-  - `@source "../../../../../../docs/` adds the repo's `docs/` mdx files, which live outside of this app
+  - `@source "../../../../../../docs/"` adds the repo's `docs/` mdx files, which live outside of this app
 */
 @import "tailwindcss";
 @source "../../..";
