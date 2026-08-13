@@ -3,6 +3,7 @@
   display: flex;
   padding: var(--vesper-spacing-2) var(--vesper-spacing-3);
   align-items: center;
+  width: fit-content;
   gap: var(--vesper-spacing-16);
   border: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
   border-radius: var(--vesper-radius-1);

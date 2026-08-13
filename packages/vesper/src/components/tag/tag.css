@@ -1,5 +1,6 @@
 .vesper-tag {
   display: inline-flex;
+  width: fit-content;
   align-items: center;
 }
 

@@ -1,5 +1,6 @@
 .vesper-split-button {
   display: inline-flex;
+  width: fit-content;
 }
 
 .vesper-split-button-action-button {

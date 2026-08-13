@@ -1,6 +1,6 @@
 .vesper-theme-switcher {
   display: inline-flex;
-  max-width: fit-content;
+  width: fit-content;
   background: var(--vesper-background-primary);
   outline: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   position: relative;
