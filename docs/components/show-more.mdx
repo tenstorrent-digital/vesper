@@ -7,7 +7,7 @@ description: A toggle button that switches between "Show more" and "Show less" l
 
 A toggle button that switches between "Show more" and "Show less" labels with a caret icon. Used to expand and collapse content sections.
 
-<ShowMore />
+<ShowMoreDemo type="without-content" />
 
 ## Options
 
@@ -19,19 +19,28 @@ A toggle button that switches between "Show more" and "Show less" labels with a 
 
 ## Examples
 
+### Basic usage
+
+<ShowMoreDemo type="with-content" />
+
 ```tsx
 import { ShowMore } from "@tenstorrent/vesper/show-more";
+import { Typography } from "@tenstorrent/vesper/typography";
 
-// Basic uncontrolled toggle
 const [expanded, setExpanded] = useState(false);
 
 <div>
-  {expanded && <p>Additional content revealed here.</p>}
+  {expanded && <Typography>Additional content revealed here.</Typography>}
   <ShowMore expanded={expanded} onClick={() => setExpanded(!expanded)} />
 </div>;
 ```
 
+### Disabled
+
+<ShowMore disabled className="w-full" />
+
 ```tsx
-// Disabled state
-<ShowMore disabled />
+import { ShowMore } from "@tenstorrent/vesper/show-more";
+
+<ShowMore disabled />;
 ```
