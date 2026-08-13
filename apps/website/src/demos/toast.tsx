@@ -1,10 +1,15 @@
 "use client";
 
 import { Button } from "@tenstorrent/vesper/button";
-import { addToast, type ToastOptions, Toasts } from "@tenstorrent/vesper/toast";
+import {
+  addToast,
+  type ToastAction,
+  type ToastOptions,
+  Toasts,
+} from "@tenstorrent/vesper/toast";
 
 type ToastDemoOptions = Omit<ToastOptions, "action"> & {
-  action?: Omit<NonNullable<ToastOptions["action"]>, "handler">;
+  action?: Omit<ToastAction, "handler">;
 };
 
 type ToastDemoProps =

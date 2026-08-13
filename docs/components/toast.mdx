@@ -25,12 +25,13 @@ A notification system for displaying temporary messages at the bottom of the scr
 
 ### addToast (Options)
 
-| Prop      | Type                                                           | Description                                                                                                                             | Default     |
-| --------- | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `content` | `ReactNode`                                                    | The message content displayed inside the toast.                                                                                         | —           |
-| `variant` | `"default" \| "success" \| "warning" \| "danger" \| "loading"` | The visual variant of the toast, which determines its icon and color.                                                                   | `"default"` |
-| `timeout` | `number \| false`                                              | Duration in milliseconds before the toast auto-dismisses. Set to `false` to disable.                                                    | `false`     |
-| `buttons` | `ToastButton[]`                                                | An optional array of action buttons rendered below the toast content. Each has `content`, `handler`, optional `variant`, and `altText`. | `[]`        |
+| Prop          | Type                                                           | Description                                                                          | Default     |
+| ------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ----------- |
+| `content`     | `ReactNode`                                                    | The message content displayed inside the toast.                                      | —           |
+| `variant`     | `"default" \| "success" \| "warning" \| "danger" \| "loading"` | The visual variant of the toast, which determines its icon and color.                | `"default"` |
+| `timeout`     | `number \| false`                                              | Duration in milliseconds before the toast auto-dismisses. Set to `false` to disable. | `false`     |
+| `action`      | `ToastAction`                                                  | An optional action to render a button at the bottom of the toast.                    | —           |
+| `dismissText` | `string`                                                       | Customizes the `aria-label` text for the dismiss button.                             | `"Dismiss"` |
 
 ## Examples
 

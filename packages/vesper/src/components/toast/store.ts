@@ -16,20 +16,22 @@ export interface ToastOptions {
   /** The content displayed in the toast. Typically this will be just text, though any `ReactNode` is supported. */
   content: ReactNode;
   /** Optional action to render a button at the bottom of the toast.  */
-  action?: {
-    /** Callback function that fires when the user clicks the action button. */
-    handler: () => void;
-    /** The content displayed in the button. Typically this will be just text, though any `ReactNode` is supported. */
-    content: ReactNode;
-    /** Short description of an alternative way for users to acheive the desired action. This field is important for screen reader users who may not be able to access the toast easily, especially if it is time-sensitive. */
-    altText?: string;
-  };
+  action?: ToastAction;
   /** The duration in milliseconds the toast will be visible for. Omitting or setting this property to false will show the toast indefinitely until the user dismisses it manually. @default false */
   timeout?: number | false;
   /** Determines which visual style to render the toast in. @default default */
   variant?: ToastVariant;
   /** Customizes the `aria-label` text for the dismiss button. */
   dismissText?: string;
+}
+
+export interface ToastAction {
+  /** Callback function that fires when the user clicks the action button. */
+  handler: () => void;
+  /** The content displayed in the button. Typically this will be just text, though any `ReactNode` is supported. */
+  content: ReactNode;
+  /** Short description of an alternative way for users to acheive the desired action. This field is important for screen reader users who may not be able to access the toast easily, especially if it is time-sensitive. */
+  altText?: string;
 }
 
 export interface ToastHandle {
