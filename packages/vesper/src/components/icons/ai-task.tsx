@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const AITask = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M8.4 5.77778V7.55556L7.51406 8.60503L11.2248 14.6667H12.7778L16.4868 8.60677L15.6 7.55556V5.77778L17.1003 4H19.4997L21 5.77778V7.55556L19.4997 9.33333H17.1003L17.0625 9.28906L13.5302 15.0582L14.7 16.4444V18.2222L13.1997 20H10.8003L9.3 18.2222V16.4444L10.4707 15.0564L6.93838 9.28646L6.89971 9.33333H4.50029L3 7.55556V5.77778L4.50029 4H6.89971L8.4 5.77778Z"
         fill="currentColor"

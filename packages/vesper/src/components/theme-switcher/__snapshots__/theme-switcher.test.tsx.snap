@@ -10,6 +10,7 @@ exports[`theme-switcher [snapshot] > lg 1`] = `
     type="button"
   >
     <svg
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -25,6 +26,7 @@ exports[`theme-switcher [snapshot] > lg 1`] = `
     type="button"
   >
     <svg
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -42,6 +44,7 @@ exports[`theme-switcher [snapshot] > lg 1`] = `
     type="button"
   >
     <svg
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -69,6 +72,7 @@ exports[`theme-switcher [snapshot] > sm 1`] = `
     type="button"
   >
     <svg
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -84,6 +88,7 @@ exports[`theme-switcher [snapshot] > sm 1`] = `
     type="button"
   >
     <svg
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -101,6 +106,7 @@ exports[`theme-switcher [snapshot] > sm 1`] = `
     type="button"
   >
     <svg
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >

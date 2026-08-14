@@ -36,6 +36,7 @@ exports[`modal [snapshot] > custom width and maxHeight 1`] = `
           class="vesper-button-icon"
         >
           <svg
+            fill="none"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -87,6 +88,7 @@ exports[`modal [snapshot] > default 1`] = `
           class="vesper-button-icon"
         >
           <svg
+            fill="none"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -138,6 +140,7 @@ exports[`modal [snapshot] > with buttons (between alignment) 1`] = `
           class="vesper-button-icon"
         >
           <svg
+            fill="none"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -203,6 +206,7 @@ exports[`modal [snapshot] > with buttons (end alignment) 1`] = `
           class="vesper-button-icon"
         >
           <svg
+            fill="none"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -268,6 +272,7 @@ exports[`modal [snapshot] > with buttons (fill alignment) 1`] = `
           class="vesper-button-icon"
         >
           <svg
+            fill="none"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -333,6 +338,7 @@ exports[`modal [snapshot] > with buttons (start alignment) 1`] = `
           class="vesper-button-icon"
         >
           <svg
+            fill="none"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -398,6 +404,7 @@ exports[`modal [snapshot] > with children 1`] = `
           class="vesper-button-icon"
         >
           <svg
+            fill="none"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -456,6 +463,7 @@ exports[`modal [snapshot] > with form 1`] = `
           class="vesper-button-icon"
         >
           <svg
+            fill="none"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >

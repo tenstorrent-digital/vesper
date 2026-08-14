@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const ArrowUpRight = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M8 4.5293H17.8789L18.1357 4.78516L3 19.9209L4.0791 21L19.2148 5.86426L19.4707 6.12109V16H21V5.4873L18.5127 3H8V4.5293Z"
         fill="currentColor"

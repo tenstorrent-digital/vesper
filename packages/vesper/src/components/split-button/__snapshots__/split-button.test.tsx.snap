@@ -24,6 +24,7 @@ exports[`split-button [snapshot] > contrast, lg 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -34,6 +35,7 @@ exports[`split-button [snapshot] > contrast, lg 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -74,6 +76,7 @@ exports[`split-button [snapshot] > contrast, lg, disabled 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -84,6 +87,7 @@ exports[`split-button [snapshot] > contrast, lg, disabled 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -135,6 +139,7 @@ exports[`split-button [snapshot] > contrast, lg, disabled, open 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -145,6 +150,7 @@ exports[`split-button [snapshot] > contrast, lg, disabled, open 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -218,6 +224,7 @@ exports[`split-button [snapshot] > contrast, lg, open 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -228,6 +235,7 @@ exports[`split-button [snapshot] > contrast, lg, open 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -290,6 +298,7 @@ exports[`split-button [snapshot] > contrast, md 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -300,6 +309,7 @@ exports[`split-button [snapshot] > contrast, md 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -340,6 +350,7 @@ exports[`split-button [snapshot] > contrast, md, disabled 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -350,6 +361,7 @@ exports[`split-button [snapshot] > contrast, md, disabled 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -401,6 +413,7 @@ exports[`split-button [snapshot] > contrast, md, disabled, open 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -411,6 +424,7 @@ exports[`split-button [snapshot] > contrast, md, disabled, open 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -484,6 +498,7 @@ exports[`split-button [snapshot] > contrast, md, open 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -494,6 +509,7 @@ exports[`split-button [snapshot] > contrast, md, open 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -556,6 +572,7 @@ exports[`split-button [snapshot] > contrast, sm 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -566,6 +583,7 @@ exports[`split-button [snapshot] > contrast, sm 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -606,6 +624,7 @@ exports[`split-button [snapshot] > contrast, sm, disabled 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -616,6 +635,7 @@ exports[`split-button [snapshot] > contrast, sm, disabled 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -667,6 +687,7 @@ exports[`split-button [snapshot] > contrast, sm, disabled, open 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -677,6 +698,7 @@ exports[`split-button [snapshot] > contrast, sm, disabled, open 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -750,6 +772,7 @@ exports[`split-button [snapshot] > contrast, sm, open 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -760,6 +783,7 @@ exports[`split-button [snapshot] > contrast, sm, open 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -822,6 +846,7 @@ exports[`split-button [snapshot] > subtle, lg 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -832,6 +857,7 @@ exports[`split-button [snapshot] > subtle, lg 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -872,6 +898,7 @@ exports[`split-button [snapshot] > subtle, lg, disabled 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -882,6 +909,7 @@ exports[`split-button [snapshot] > subtle, lg, disabled 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -933,6 +961,7 @@ exports[`split-button [snapshot] > subtle, lg, disabled, open 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -943,6 +972,7 @@ exports[`split-button [snapshot] > subtle, lg, disabled, open 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1016,6 +1046,7 @@ exports[`split-button [snapshot] > subtle, lg, open 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1026,6 +1057,7 @@ exports[`split-button [snapshot] > subtle, lg, open 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1088,6 +1120,7 @@ exports[`split-button [snapshot] > subtle, md 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1098,6 +1131,7 @@ exports[`split-button [snapshot] > subtle, md 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1138,6 +1172,7 @@ exports[`split-button [snapshot] > subtle, md, disabled 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1148,6 +1183,7 @@ exports[`split-button [snapshot] > subtle, md, disabled 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1199,6 +1235,7 @@ exports[`split-button [snapshot] > subtle, md, disabled, open 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1209,6 +1246,7 @@ exports[`split-button [snapshot] > subtle, md, disabled, open 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1282,6 +1320,7 @@ exports[`split-button [snapshot] > subtle, md, open 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1292,6 +1331,7 @@ exports[`split-button [snapshot] > subtle, md, open 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1354,6 +1394,7 @@ exports[`split-button [snapshot] > subtle, sm 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1364,6 +1405,7 @@ exports[`split-button [snapshot] > subtle, sm 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1404,6 +1446,7 @@ exports[`split-button [snapshot] > subtle, sm, disabled 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1414,6 +1457,7 @@ exports[`split-button [snapshot] > subtle, sm, disabled 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1465,6 +1509,7 @@ exports[`split-button [snapshot] > subtle, sm, disabled, open 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1475,6 +1520,7 @@ exports[`split-button [snapshot] > subtle, sm, disabled, open 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1548,6 +1594,7 @@ exports[`split-button [snapshot] > subtle, sm, open 1`] = `
       >
         <svg
           class="vesper-split-button-caret-down"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -1558,6 +1605,7 @@ exports[`split-button [snapshot] > subtle, sm, open 1`] = `
         </svg>
         <svg
           class="vesper-split-button-caret-up"
+          fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >

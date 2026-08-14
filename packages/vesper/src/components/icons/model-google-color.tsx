@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const ModelGoogleColor = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M21 12.2005C21 11.46 20.9386 10.92 20.8069 10.3595H12.1833V13.7002H17.2445C17.1431 14.5298 16.5925 15.78 15.3676 16.6203L15.3505 16.7315L18.0766 18.8015L18.2648 18.8195C20.001 17.2503 21 14.9397 21 12.2005Z"
         fill="#4285F4"

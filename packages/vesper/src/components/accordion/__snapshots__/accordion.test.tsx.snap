@@ -17,6 +17,7 @@ exports[`accordion [snapshot] > closed 1`] = `
     </span>
     <svg
       class="vesper-accordion-trigger-icon"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -48,6 +49,7 @@ exports[`accordion [snapshot] > open 1`] = `
     </span>
     <svg
       class="vesper-accordion-trigger-icon"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >

@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const CloudServer = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M15 5.41406L13.5859 4H10.4141L9 5.41406V8H5.41406L4 9.41406V11.5859L5.41406 13H18.5859L20 11.5859V9.41406L18.5859 8H15V5.41406ZM19 7L21 9V12L19 14H5L3 12V9L5 7H8V5L10 3H14L16 5V7H19Z"
         fill="currentColor"

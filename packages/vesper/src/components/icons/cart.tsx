@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const Cart = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M21 5.08696L19.6754 10.2463L19.5446 10.3747L17.4019 12.4616L17.2052 12.6522H7.29807L5.3562 5.08696H21ZM8.34434 11.3478H16.6496L18.4659 9.57779L19.2841 6.3913H7.07208L8.34434 11.3478Z"
         fill="currentColor"

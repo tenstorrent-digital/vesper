@@ -22,6 +22,7 @@ exports[`snippet [snapshot] > empty content 1`] = `
       class="vesper-button-icon"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -64,6 +65,7 @@ exports[`snippet [snapshot] > multi-line content 1`] = `
       class="vesper-button-icon"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -101,6 +103,7 @@ exports[`snippet [snapshot] > variant: contrast 1`] = `
       class="vesper-button-icon"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -138,6 +141,7 @@ exports[`snippet [snapshot] > variant: default 1`] = `
       class="vesper-button-icon"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >

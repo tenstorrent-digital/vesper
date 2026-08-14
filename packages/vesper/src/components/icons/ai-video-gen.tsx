@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const AIVideoGen = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M12.4375 8.5L13.0498 10.9502L15.5 11.5625V12.4375L13.0498 13.0498L12.4375 15.5H11.5625L10.9502 13.0498L8.5 12.4375V11.5625L10.9502 10.9502L11.5625 8.5H12.4375Z"
         fill="currentColor"

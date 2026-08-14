@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const AIModel = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M3 19.293L4.70703 21H8.5V22H4.29297L2 19.707V15.5H3V19.293Z"
         fill="currentColor"

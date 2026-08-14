@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const TTMetalium = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M16.5455 5.5L17 6V19.5L15.6364 21H8.36364L7 19.5V11H11.0909L11.5455 11.5V12.5L11.0909 13H8.81818V14H15.1818V6L15.6364 5.5H16.5455Z"
         fill="currentColor"

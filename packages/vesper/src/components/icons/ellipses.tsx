@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const Ellipses = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path d="M7 13.5H4V10.5H7V13.5Z" fill="currentColor"></path>
       <path d="M13.5 13.5H10.5V10.5H13.5V13.5Z" fill="currentColor"></path>
       <path d="M20 13.5H17V10.5H20V13.5Z" fill="currentColor"></path>
