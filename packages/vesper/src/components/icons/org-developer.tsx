@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const OrgDeveloper = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M13.0918 8.42529L11.8408 13.0938L10.875 12.835L12.1255 8.1665L13.0918 8.42529Z"
         fill="currentColor"

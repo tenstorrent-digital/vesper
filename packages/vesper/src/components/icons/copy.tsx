@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const Copy = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M15.8457 4.50195V8.1543H19.498L22 10.6562V19.498L19.498 22H10.6562L8.1543 19.498V15.8457H4.50195L2 13.3438V4.50195L4.50195 2H13.3438L15.8457 4.50195ZM15.8457 13.3438L13.3438 15.8457H9.69238V18.8613L11.293 20.4619H18.8613L20.4619 18.8613V11.293L18.8613 9.69238H15.8457V13.3438ZM3.53809 5.13867V12.707L5.13867 14.3076H12.707L14.3076 12.707V5.13867L12.707 3.53809H5.13867L3.53809 5.13867Z"
         fill="currentColor"

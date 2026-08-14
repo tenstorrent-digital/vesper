@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const Trash = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path d="M10 18H9V10H10V18Z" fill="currentColor"></path>
       <path d="M15 18H14V10H15V18Z" fill="currentColor"></path>
       <path

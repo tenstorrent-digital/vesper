@@ -37,6 +37,7 @@ exports[`sheet [snapshot] > default (right side) 1`] = `
           class="vesper-button-icon"
         >
           <svg
+            fill="none"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -92,6 +93,7 @@ exports[`sheet [snapshot] > left side 1`] = `
           class="vesper-button-icon"
         >
           <svg
+            fill="none"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -147,6 +149,7 @@ exports[`sheet [snapshot] > left side with buttons and children 1`] = `
           class="vesper-button-icon"
         >
           <svg
+            fill="none"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -219,6 +222,7 @@ exports[`sheet [snapshot] > popover mode (left side with buttons and children) 1
           class="vesper-button-icon"
         >
           <svg
+            fill="none"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -291,6 +295,7 @@ exports[`sheet [snapshot] > popover mode (right side) 1`] = `
           class="vesper-button-icon"
         >
           <svg
+            fill="none"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -346,6 +351,7 @@ exports[`sheet [snapshot] > with buttons 1`] = `
           class="vesper-button-icon"
         >
           <svg
+            fill="none"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -415,6 +421,7 @@ exports[`sheet [snapshot] > with children 1`] = `
           class="vesper-button-icon"
         >
           <svg
+            fill="none"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >

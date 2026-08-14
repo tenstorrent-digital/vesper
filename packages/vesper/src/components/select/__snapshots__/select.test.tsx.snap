@@ -26,6 +26,7 @@ exports[`select [snapshot] > lg 1`] = `
   >
     <svg
       class="vesper-select-state-indicator-closed"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -36,6 +37,7 @@ exports[`select [snapshot] > lg 1`] = `
     </svg>
     <svg
       class="vesper-select-state-indicator-open"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -76,6 +78,7 @@ exports[`select [snapshot] > lg, disabled 1`] = `
   >
     <svg
       class="vesper-select-state-indicator-closed"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -86,6 +89,7 @@ exports[`select [snapshot] > lg, disabled 1`] = `
     </svg>
     <svg
       class="vesper-select-state-indicator-open"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -114,6 +118,7 @@ exports[`select [snapshot] > lg, with icon 1`] = `
     class="vesper-select-icon"
   >
     <svg
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -175,6 +180,7 @@ exports[`select [snapshot] > lg, with icon 1`] = `
   >
     <svg
       class="vesper-select-state-indicator-closed"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -185,6 +191,7 @@ exports[`select [snapshot] > lg, with icon 1`] = `
     </svg>
     <svg
       class="vesper-select-state-indicator-open"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -215,6 +222,7 @@ exports[`select [snapshot] > lg, with icon, disabled 1`] = `
     class="vesper-select-icon"
   >
     <svg
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -276,6 +284,7 @@ exports[`select [snapshot] > lg, with icon, disabled 1`] = `
   >
     <svg
       class="vesper-select-state-indicator-closed"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -286,6 +295,7 @@ exports[`select [snapshot] > lg, with icon, disabled 1`] = `
     </svg>
     <svg
       class="vesper-select-state-indicator-open"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -321,6 +331,7 @@ exports[`select [snapshot] > lg, with value 1`] = `
   >
     <svg
       class="vesper-select-state-indicator-closed"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -331,6 +342,7 @@ exports[`select [snapshot] > lg, with value 1`] = `
     </svg>
     <svg
       class="vesper-select-state-indicator-open"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -369,6 +381,7 @@ exports[`select [snapshot] > md 1`] = `
   >
     <svg
       class="vesper-select-state-indicator-closed"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -379,6 +392,7 @@ exports[`select [snapshot] > md 1`] = `
     </svg>
     <svg
       class="vesper-select-state-indicator-open"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -419,6 +433,7 @@ exports[`select [snapshot] > md, disabled 1`] = `
   >
     <svg
       class="vesper-select-state-indicator-closed"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -429,6 +444,7 @@ exports[`select [snapshot] > md, disabled 1`] = `
     </svg>
     <svg
       class="vesper-select-state-indicator-open"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -457,6 +473,7 @@ exports[`select [snapshot] > md, with icon 1`] = `
     class="vesper-select-icon"
   >
     <svg
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -518,6 +535,7 @@ exports[`select [snapshot] > md, with icon 1`] = `
   >
     <svg
       class="vesper-select-state-indicator-closed"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -528,6 +546,7 @@ exports[`select [snapshot] > md, with icon 1`] = `
     </svg>
     <svg
       class="vesper-select-state-indicator-open"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -558,6 +577,7 @@ exports[`select [snapshot] > md, with icon, disabled 1`] = `
     class="vesper-select-icon"
   >
     <svg
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -619,6 +639,7 @@ exports[`select [snapshot] > md, with icon, disabled 1`] = `
   >
     <svg
       class="vesper-select-state-indicator-closed"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -629,6 +650,7 @@ exports[`select [snapshot] > md, with icon, disabled 1`] = `
     </svg>
     <svg
       class="vesper-select-state-indicator-open"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -664,6 +686,7 @@ exports[`select [snapshot] > md, with value 1`] = `
   >
     <svg
       class="vesper-select-state-indicator-closed"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -674,6 +697,7 @@ exports[`select [snapshot] > md, with value 1`] = `
     </svg>
     <svg
       class="vesper-select-state-indicator-open"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -712,6 +736,7 @@ exports[`select [snapshot] > sm 1`] = `
   >
     <svg
       class="vesper-select-state-indicator-closed"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -722,6 +747,7 @@ exports[`select [snapshot] > sm 1`] = `
     </svg>
     <svg
       class="vesper-select-state-indicator-open"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -762,6 +788,7 @@ exports[`select [snapshot] > sm, disabled 1`] = `
   >
     <svg
       class="vesper-select-state-indicator-closed"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -772,6 +799,7 @@ exports[`select [snapshot] > sm, disabled 1`] = `
     </svg>
     <svg
       class="vesper-select-state-indicator-open"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -800,6 +828,7 @@ exports[`select [snapshot] > sm, with icon 1`] = `
     class="vesper-select-icon"
   >
     <svg
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -861,6 +890,7 @@ exports[`select [snapshot] > sm, with icon 1`] = `
   >
     <svg
       class="vesper-select-state-indicator-closed"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -871,6 +901,7 @@ exports[`select [snapshot] > sm, with icon 1`] = `
     </svg>
     <svg
       class="vesper-select-state-indicator-open"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -901,6 +932,7 @@ exports[`select [snapshot] > sm, with icon, disabled 1`] = `
     class="vesper-select-icon"
   >
     <svg
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -962,6 +994,7 @@ exports[`select [snapshot] > sm, with icon, disabled 1`] = `
   >
     <svg
       class="vesper-select-state-indicator-closed"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -972,6 +1005,7 @@ exports[`select [snapshot] > sm, with icon, disabled 1`] = `
     </svg>
     <svg
       class="vesper-select-state-indicator-open"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -1007,6 +1041,7 @@ exports[`select [snapshot] > sm, with value 1`] = `
   >
     <svg
       class="vesper-select-state-indicator-closed"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -1017,6 +1052,7 @@ exports[`select [snapshot] > sm, with value 1`] = `
     </svg>
     <svg
       class="vesper-select-state-indicator-open"
+      fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >

@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const Chip = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M15 9.59961V14.4004L14.4004 15H9.59961L9 14.4004V9.59961L9.59961 9H14.4004L15 9.59961Z"
         fill="currentColor"

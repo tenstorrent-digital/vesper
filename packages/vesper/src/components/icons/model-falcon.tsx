@@ -10,7 +10,12 @@ import type { ComponentProps } from "react";
 
 export const ModelFalcon = (props: ComponentProps<"svg">) => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         d="M10.043 2C12.7879 2.00003 15.1664 2.98667 17.1113 4.93164C19.0563 6.87663 20.042 9.25503 20.042 12C20.042 14.7458 19.0562 17.1293 17.1104 19.0693C15.1646 21.0093 12.792 22 10.043 22L10.042 21.1211C12.5503 21.1211 14.7193 20.2214 16.4893 18.4473C18.2584 16.6723 19.1641 14.5083 19.1641 12C19.1641 9.49253 18.2634 7.32786 16.4893 5.55371C14.716 3.77874 12.5462 2.87796 10.043 2.87793V2Z"
         fill="currentColor"

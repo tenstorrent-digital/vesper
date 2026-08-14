@@ -24,6 +24,7 @@ exports[`choicebox [snapshot] > multi-select 1`] = `
       class="vesper-choicebox-input-multi-indicator"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -54,6 +55,7 @@ exports[`choicebox [snapshot] > multi-select 1`] = `
       class="vesper-choicebox-input-multi-indicator"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -84,6 +86,7 @@ exports[`choicebox [snapshot] > multi-select 1`] = `
       class="vesper-choicebox-input-multi-indicator"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -122,6 +125,7 @@ exports[`choicebox [snapshot] > multi-select, disabled 1`] = `
       class="vesper-choicebox-input-multi-indicator"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -153,6 +157,7 @@ exports[`choicebox [snapshot] > multi-select, disabled 1`] = `
       class="vesper-choicebox-input-multi-indicator"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -184,6 +189,7 @@ exports[`choicebox [snapshot] > multi-select, disabled 1`] = `
       class="vesper-choicebox-input-multi-indicator"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -226,6 +232,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions 1`] = `
       class="vesper-choicebox-input-multi-indicator"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -261,6 +268,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions 1`] = `
       class="vesper-choicebox-input-multi-indicator"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -296,6 +304,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions 1`] = `
       class="vesper-choicebox-input-multi-indicator"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -339,6 +348,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions, disabled 1`] = 
       class="vesper-choicebox-input-multi-indicator"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -375,6 +385,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions, disabled 1`] = 
       class="vesper-choicebox-input-multi-indicator"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -411,6 +422,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions, disabled 1`] = 
       class="vesper-choicebox-input-multi-indicator"
     >
       <svg
+        fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
