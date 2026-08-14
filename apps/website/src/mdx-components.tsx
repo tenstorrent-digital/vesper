@@ -30,8 +30,10 @@ import { CodeBlock } from "@tenstorrent/vesper/code-block";
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import {
   Add,
+  Checkmark,
   Gear,
   Globe,
+  Icon,
   Info,
   Search,
   Tenstorrent,
@@ -65,7 +67,9 @@ import { trimChildren } from "@/lib/markdown/utils";
 
 // named demos for components w non-serializable props (event handlers,
 // refs, state) that are used inside `docs/` documents
+import { IconsDemo } from "@/demos/icons";
 import { MenuDemo } from "@/demos/menu";
+import { ShowMoreDemo } from "@/demos/show-more";
 import { SplitButtonDemo } from "@/demos/split-button";
 import { ToastDemo } from "@/demos/toast";
 
@@ -142,7 +146,7 @@ const components = {
     }
 
     return (
-      <CodeBlock className="max-w-full" lang={resolvedLang} copyOnHover>
+      <CodeBlock lang={resolvedLang} copyOnHover>
         {code}
       </CodeBlock>
     );
@@ -189,6 +193,7 @@ const components = {
   Choicebox,
   Code,
   CodeBlock,
+  Icon,
   IconButton,
   Material,
   Modal,
@@ -217,6 +222,7 @@ const components = {
 
   // icons will need to be added here too if we want to use them directly
   Add,
+  Checkmark,
   Gear,
   Globe,
   Info,
@@ -224,7 +230,9 @@ const components = {
   Tenstorrent,
 
   // demos
+  IconsDemo,
   MenuDemo,
+  ShowMoreDemo,
   SplitButtonDemo,
   ToastDemo,
 } satisfies MDXComponents;

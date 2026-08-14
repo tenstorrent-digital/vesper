@@ -5,12 +5,14 @@ description: A syntax-highlighted code block component powered by Shiki.
 
 # Code Block
 
-A syntax-highlighted code block component powered by Shiki. Supports static code strings and streaming content, line numbers, copy-to-clipboard, and custom transformers.
+A syntax-highlighted code block component powered by Shiki. Supports static code strings and streaming content, line numbers, and copy-to-clipboard.
 
-<CodeBlock className="w-full">
-  {`const greeting = "Hello, world!";
-console.log(greeting);`}
-</CodeBlock>
+```tsx
+const greeting = "Hello, world!";
+console.log(greeting);
+```
+
+> The code samples on this page are rendered using the `CodeBlock` component itself!
 
 ## Options
 
@@ -18,51 +20,90 @@ console.log(greeting);`}
 | ----------------- | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | `children`        | `string \| () => ReadableStream<string> \| Promise<ReadableStream<string>>` | The code to render. Can be a string or a factory function returning a `ReadableStream` for streaming content.                                      | `""`     |
 | `lang`            | `LanguageRegistration[] \| "text" \| "ansi"`                                | The language syntax for highlighting. Import grammar objects from `@shikijs/langs`. Use `"text"` for plain text or `"ansi"` for ANSI escape codes. | `"text"` |
-| `showLineNumbers` | `boolean`                                                                   | Whether to show line numbers on the left-hand side. Not available when streaming.                                                                  | `false`  |
-| `transformers`    | `ShikiTransformer[]`                                                        | An array of Shiki transformers to apply to the hast tree. Not applied to streamed code.                                                            | —        |
+| `showLineNumbers` | `boolean`                                                                   | Whether to show line numbers on the left-hand side.                                                                                                | `false`  |
 | `copyOnHover`     | `boolean`                                                                   | When `true`, hides the copy-to-clipboard button until the code block is hovered.                                                                   | `false`  |
 
 ## Examples
 
+### Basic usage
+
+The most straightforward way to use the `CodeBlock` component is to pass in plain text:
+
 ```tsx
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
 
-// Plain text
 <CodeBlock>Hello, world!</CodeBlock>;
 ```
 
+### Syntax highlighting
+
+`CodeBlock` ships without any built-in grammars, and expects you to provide them yourself. Individual grammars can be imported from `@shikijs/langs/*` and supplied to the component. For example, to achieve `javascript` syntax highlighting you would import the grammar and pass it to the component via the `lang` prop:
+
 ```tsx
-// With syntax highlighting
+import { CodeBlock } from "@tenstorrent/vesper/code-block";
 import javascript from "@shikijs/langs/javascript";
 
 <CodeBlock lang={javascript}>
-  {`const count = 42;
-console.log(count);`}
+  {"const count = 42;\nconsole.log(count);"}
 </CodeBlock>;
 ```
 
+#### Plain text and ANSI
+
+Plain text and ANSI come prebundled and don't require supplying any grammar objects. You can simply set the `lang` prop to `"text"` or `"ansi"`:
+
 ```tsx
-// With line numbers
+import { CodeBlock } from "@tenstorrent/vesper/code-block";
+
+<CodeBlock lang="ansi">{buildLogs}</CodeBlock>;
+```
+
+#### Custom grammars
+
+You can provide your own custom grammars by passing them into the `lang` prop as an array of TextMate grammar objects:
+
+```tsx
+import { CodeBlock } from "@tenstorrent/vesper/code-block";
+import customGrammar from "./custom-grammar.json";
+
+<CodeBlock lang={[customGrammar]}>{/* your custom language code */}</CodeBlock>;
+```
+
+[tm-grammars package on GitHub](https://github.com/shikijs/textmate-grammars-themes/tree/main/packages/tm-grammars)
+
+### With line numbers
+
+Passing `showLineNumbers` renders a line number gutter down the left-hand side of the code block:
+
+```tsx
+import { CodeBlock } from "@tenstorrent/vesper/code-block";
 import typescript from "@shikijs/langs/typescript";
 
 <CodeBlock lang={typescript} showLineNumbers>
-  {`interface User {
-  name: string;
-  email: string;
-}
-
-function greet(user: User) {
-  return \`Hello, \${user.name}!\`;
-}`}
+  {codeContent}
 </CodeBlock>;
 ```
 
-```tsx
-// Streaming content
-<CodeBlock lang={javascript}>{() => getCodeStream()}</CodeBlock>
-```
+### Streaming content
+
+To stream code as it arrives (build logs, LLM output, etc.), pass a factory function that returns a `ReadableStream<string>` instead of a string:
 
 ```tsx
-// ANSI output
-<CodeBlock lang="ansi">{buildLogs}</CodeBlock>
+import { CodeBlock } from "@tenstorrent/vesper/code-block";
+import typescript from "@shikijs/langs/typescript";
+
+<CodeBlock lang={typescript}>{() => getCodeStream()}</CodeBlock>;
+```
+
+### Showing clipboard button on hover
+
+The copy-to-clipboard button is always visible by default; pass `copyOnHover` to hide it until the code block is hovered:
+
+```tsx
+import { CodeBlock } from "@tenstorrent/vesper/code-block";
+import typescript from "@shikijs/langs/typescript";
+
+<CodeBlock lang={typescript} copyOnHover>
+  {codeContent}
+</CodeBlock>;
 ```

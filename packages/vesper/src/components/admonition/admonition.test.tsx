@@ -76,18 +76,6 @@ describe("admonition [unit]", () => {
     expect(cta).toBeDefined();
   });
 
-  test("polymorphism", () => {
-    const result = render(
-      <Admonition as="a" href="/link">
-        As Link
-      </Admonition>,
-    );
-    const view = within(result.container);
-    const link = view.getByRole("link");
-    expect(link.tagName).toBe("A");
-    expect(link).toHaveAttribute("href", "/link");
-  });
-
   test("additional prop passthrough", () => {
     const result = render(
       <Admonition aria-label="custom label">With Aria Label</Admonition>,

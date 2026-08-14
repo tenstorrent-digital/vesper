@@ -1,8 +1,10 @@
 /*
   setup tailwind
-  - `source("../../..")` tells Tailwind where to scan class names to watch
+  - `source("../../..")` tells Tailwind where to set base path for automatic className detection
+  - `@source "../../../../../../docs/"` adds the repo's `docs/` mdx files, which live outside of this app
 */
 @import "tailwindcss" source("../../..");
+@source "../../../../../../docs/";
 @import "@tenstorrent/vesper/tailwind.css";
 
 /* tailwind theme for docs */
@@ -46,6 +48,8 @@ body {
 }
 
 body {
+  background: var(--vesper-background-primary);
+  color: var(--vesper-text-primary);
   &:where([inert], :has(dialog[open]:modal)) {
     overflow-y: clip;
   }
@@ -187,7 +191,6 @@ nav#sidebar {
 
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: var(--gap);
   padding: var(--spacing);
   margin-right: auto;

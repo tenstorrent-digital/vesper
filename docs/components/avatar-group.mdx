@@ -10,10 +10,22 @@ Displays a stacked row of avatars with an overflow indicator when more than thre
 <AvatarGroup
   size="md"
   avatars={[
-    { src: "https://i.pravatar.cc/128?u=1", alt: "User 1" },
-    { src: "https://i.pravatar.cc/128?u=2", alt: "User 2" },
-    { src: "https://i.pravatar.cc/128?u=3", alt: "User 3" },
-    { src: "https://i.pravatar.cc/128?u=4", alt: "User 4" },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex",
+      alt: "Alex",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=marisa",
+      alt: "Marisa",
+    },
   ]}
 />
 
@@ -27,28 +39,225 @@ Displays a stacked row of avatars with an overflow indicator when more than thre
 
 ## Examples
 
+### Basic usage
+
+By default, an `AvatarGroup` will render all avatars at `md` size if the `size` prop is not specified:
+
+<AvatarGroup
+  avatars={[
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
+  ]}
+/>
+
 ```tsx
 import { AvatarGroup } from "@tenstorrent/vesper/avatar-group";
 
-// Basic usage
 <AvatarGroup
   avatars={[
-    { src: "/user1.png", alt: "Alice" },
-    { src: "/user2.png", alt: "Bob" },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
   ]}
 />;
 ```
 
-```tsx
-// With overflow indicator (more than 3 avatars)
+### Sizes
+
+An `AvatarGroup` can be rendered in one of three sizes: `sm`, `md`, and `lg`:
+
+<AvatarGroup
+  size="sm"
+  avatars={[
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex",
+      alt: "Alex",
+    },
+  ]}
+/>
+<AvatarGroup
+  size="md"
+  avatars={[
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex",
+      alt: "Alex",
+    },
+  ]}
+/>
 <AvatarGroup
   size="lg"
   avatars={[
-    { src: "/user1.png", alt: "Alice" },
-    { src: "/user2.png", alt: "Bob" },
-    { src: "/user3.png", alt: "Carol" },
-    { src: "/user4.png", alt: "Dave" },
-    { src: "/user5.png", alt: "Eve" },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex",
+      alt: "Alex",
+    },
+  ]}
+/>
+
+```tsx
+import { AvatarGroup } from "@tenstorrent/vesper/avatar-group";
+
+<AvatarGroup
+  size="sm"
+  avatars={[
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob", alt: "Bob" },
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim", alt: "Jim" },
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex", alt: "Alex" },
+  ]}
+/>
+<AvatarGroup
+  size="md"
+  avatars={[
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob", alt: "Bob" },
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim", alt: "Jim" },
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex", alt: "Alex" },
+  ]}
+/>
+<AvatarGroup
+  size="lg"
+  avatars={[
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob", alt: "Bob" },
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim", alt: "Jim" },
+    { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex", alt: "Alex" },
   ]}
 />
 ```
+
+### With overflow (>3 avatars)
+
+When more than 3 avatars are present, an `AvatarGroup` will render an overflow indicator:
+
+<AvatarGroup
+  avatars={[
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex",
+      alt: "Alex",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=marisa",
+      alt: "Marisa",
+    },
+  ]}
+/>
+
+```tsx
+import { AvatarGroup } from "@tenstorrent/vesper/avatar-group";
+
+<AvatarGroup
+  avatars={[
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex",
+      alt: "Alex",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=marisa",
+      alt: "Marisa",
+    },
+  ]}
+/>;
+```
+
+### Polymorphic usage
+
+You can use the `as` prop to specify what underlying element to render. In this case, we are passing `as="a"` to render the `AvatarGroup` as an anchor link:
+
+```tsx
+import { AvatarGroup } from "@tenstorrent/vesper/avatar-group";
+
+<AvatarGroup
+  as="a"
+  href="#"
+  avatars={[
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex",
+      alt: "Alex",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=marisa",
+      alt: "Marisa",
+    },
+  ]}
+/>;
+```
+
+<AvatarGroup
+  as="a"
+  href="#"
+  avatars={[
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=bob",
+      alt: "Bob",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=jim",
+      alt: "Jim",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=alex",
+      alt: "Alex",
+    },
+    {
+      src: "https://api.dicebear.com/10.x/initial-face/svg?seed=marisa",
+      alt: "Marisa",
+    },
+  ]}
+/>

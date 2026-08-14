@@ -21,24 +21,48 @@ A collapsible content panel that toggles between expanded and collapsed states. 
 | `onOpenChange` | `(open: boolean) => void` | Callback fired when the open state changes.                   | —       |
 | `children`     | `ReactNode`               | The content displayed when the accordion is expanded.         | —       |
 
+You may also pass additional props to the underlying `div` element. For example, you may wish to give the `<Accordion>` instance a custom max-width, aria-label, etc.
+
 ## Examples
+
+### Basic usage
+
+The simplest way to use an `Accordion` is to render it with a `title` and `children` without controlling its open/closed state:
+
+<Accordion title="Section Title">Content goes here.</Accordion>
 
 ```tsx
 import { Accordion } from "@tenstorrent/vesper/accordion";
 
-// Basic usage
 <Accordion title="Section Title">Content goes here.</Accordion>;
 ```
 
-```tsx
-// Default open
+### Default open state
+
+You can render an `Accordion` in a default opened state by passing `defaultOpen`:
+
 <Accordion title="Already Open" defaultOpen>
   This accordion starts expanded.
 </Accordion>
-```
 
 ```tsx
-// Controlled
+import { Accordion } from "@tenstorrent/vesper/accordion";
+
+<Accordion title="Already Open" defaultOpen>
+  This accordion starts expanded.
+</Accordion>;
+```
+
+### Controlled usage
+
+If you need to control the open/closed state of the `Accordion`, you can do so via the `open` and `onOpenChange` props:
+
+<Accordion title="Controlled">Controlled accordion content.</Accordion>
+
+```tsx
+import { useState } from "react";
+import { Accordion } from "@tenstorrent/vesper/accordion";
+
 const [open, setOpen] = useState(false);
 
 <Accordion title="Controlled" open={open} onOpenChange={setOpen}>

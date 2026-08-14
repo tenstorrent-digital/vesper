@@ -1,5 +1,6 @@
 .vesper-toggle {
   display: inline-flex;
+  width: fit-content;
   gap: var(--vesper-spacing-1);
   padding: var(--vesper-spacing-1);
   border-radius: var(--vesper-radius-2);

@@ -18,35 +18,121 @@ A callout component for highlighting important information, warnings, errors, or
 | `subtle`   | `boolean`                                                     | When `true`, renders the admonition with a more subdued appearance.               | `false`    |
 | `cta`      | `ButtonProps`                                                 | Props passed to an optional call-to-action button rendered alongside the content. | —          |
 | `ctaAs`    | `ElementType`                                                 | The element type the CTA will render as.                                          | `"button"` |
-| `as`       | `ElementType`                                                 | The root element type for polymorphic rendering.                                  | `"div"`    |
 | `children` | `ReactNode`                                                   | The content displayed inside the admonition.                                      | —          |
 
+You may also pass additional props to the underlying element. For example, you may wish to give the `<Admonition>` instance a custom max-width, aria-label, etc.
+
 ## Examples
+
+### Info variant (default)
+
+An `Admonition` renders with the `info` variant at `sm` size when no `variant` or `size` prop is specified:
+
+<Admonition>Helpful information goes here.</Admonition>
 
 ```tsx
 import { Admonition } from "@tenstorrent/vesper/admonition";
 
-// Info variant (default)
 <Admonition>Helpful information goes here.</Admonition>;
 ```
 
-```tsx
-// Warning with medium size
+### Warning variant, `md` size
+
+Use the `warning` variant to flag content that needs attention, and `size="md"` to give it more padding and larger typography:
+
 <Admonition variant="warning" size="md">
   Please review before continuing.
 </Admonition>
-```
 
 ```tsx
-// Danger with CTA button
-<Admonition variant="danger" cta={{ children: "Undo", onClick: handleUndo }}>
+import { Admonition } from "@tenstorrent/vesper/admonition";
+
+<Admonition variant="warning" size="md">
+  Please review before continuing.
+</Admonition>;
+```
+
+### Danger variant, with CTA
+
+The `danger` variant highlights destructive or error states, and the `cta` prop renders a call-to-action button alongside the content:
+
+<Admonition variant="danger" cta={{ children: "Undo" }}>
   This action cannot be reversed.
 </Admonition>
-```
 
 ```tsx
-// Subtle success
-<Admonition variant="success" subtle>
-  Operation completed successfully.
+import { Admonition } from "@tenstorrent/vesper/admonition";
+
+<Admonition variant="danger" cta={{ children: "Undo", onClick: handleUndo }}>
+  This action cannot be reversed.
+</Admonition>;
+```
+
+### Success variant
+
+The `success` variant is best suited for confirming an action completed as expected:
+
+<Admonition variant="success">Operation completed successfully.</Admonition>
+
+```tsx
+import { Admonition } from "@tenstorrent/vesper/admonition";
+
+<Admonition variant="success">Operation completed successfully.</Admonition>;
+```
+
+### Secondary variant
+
+The `secondary` variant provides a neutral color scheme for supplementary information that doesn't need to stand out:
+
+<Admonition variant="secondary">
+  This admonition details some information.
 </Admonition>
+
+```tsx
+import { Admonition } from "@tenstorrent/vesper/admonition";
+
+<Admonition variant="secondary">
+  This admonition details some information.
+</Admonition>;
+```
+
+### Subtle
+
+Passing `subtle` renders a variant with a more subdued appearance:
+
+<Admonition variant="warning" subtle>
+  Subtle warning variant
+</Admonition>
+
+```tsx
+import { Admonition } from "@tenstorrent/vesper/admonition";
+
+<Admonition variant="warning" subtle>
+  Subtle warning variant
+</Admonition>;
+```
+
+### Polymorphic CTA
+
+You can use the `ctaAs` prop to specify what underlying element to render for the call-to-action. In this case, we are passing `ctaAs="a"` to render the call-to-action as an anchor link:
+
+<Admonition
+  variant="warning"
+  ctaAs="a"
+  cta={{ children: "Read docs", href: "#" }}
+>
+  This option will be deprecated in <Code>v2.0</Code>.
+</Admonition>
+
+```tsx
+import { Admonition } from "@tenstorrent/vesper/admonition";
+import { Code } from "@tenstorrent/vesper/code";
+
+<Admonition
+  variant="warning"
+  ctaAs="a"
+  cta={{ children: "Read docs", href: "#" }}
+>
+  This option will be deprecated in <Code>v2.0</Code>.
+</Admonition>;
 ```

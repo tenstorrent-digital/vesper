@@ -17,7 +17,7 @@ export function StreamingCodeBlock({
   copyOnHover = false,
   showLineNumbers,
   ...props
-}: Omit<CodeBlockProps, "children" | "transformers"> & {
+}: Omit<CodeBlockProps, "children"> & {
   children: () => ReadableStream<string> | Promise<ReadableStream<string>>;
 }) {
   handleLanguageRegistration(lang);

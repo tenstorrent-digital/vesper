@@ -7,60 +7,98 @@ description: A library of SVG icon components used throughout Vesper.
 
 A library of SVG icon components used throughout Vesper. Each icon renders as an inline `<svg>` element with `currentColor` fill, making it easy to style via CSS. An `Icon` component is also available for rendering icons dynamically by name.
 
-<div
-  style={{
-    display: "flex",
-    gap: "16px",
-    alignItems: "center",
-    fontSize: "24px",
-  }}
->
-  <Add />
-  <Gear />
-  <Search />
-  <Info />
-  <Globe />
-  <Tenstorrent />
-</div>
+<IconsDemo />
 
 ## Options
 
 Each individual icon component (e.g., `Add`, `Gear`, `Search`) accepts all standard `SVG` element props (`ComponentProps<"svg">`).
 
-The dynamic `Icon` component accepts:
+The dynamic `Icon` component also accepts:
 
 | Prop   | Type       | Description                                                                             | Default |
 | ------ | ---------- | --------------------------------------------------------------------------------------- | ------- |
-| `kind` | `IconKind` | The name of the icon to render. See the full list of available icon names in Storybook. | —       |
+| `kind` | `IconKind` | The name of the icon to render. See the full list of available icon kinds in Storybook. | —       |
 
 ## Examples
+
+### Rendering individual icons
+
+You can import individual icons from `@tenstorrent/vesper/icons` on an as-needed basis. These imports are [tree-shakeable](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking), so your application can only bundle the icons that are actually used:
 
 ```tsx
 import { Add, Gear, Search } from "@tenstorrent/vesper/icons";
 
-// Individual icon imports (tree-shakeable)
 <Add />
 <Gear />
 <Search />
 ```
 
-```tsx
-// Sizing via CSS
-<Gear style={{ width: 32, height: 32 }} />
-```
+### Rendering icons dynamically
+
+In addition to separate components for each individual icon, Vesper also exposes a dynamic `Icon` component which accepts a `kind` prop to determine which icon to render.
 
 ```tsx
-// Coloring via currentColor
-<span style={{ color: "red" }}>
-  <Search />
-</span>
-```
-
-```tsx
-// Dynamic icon rendering
 import { Icon } from "@tenstorrent/vesper/icons";
 
-<Icon kind="gear" />
-<Icon kind="search" />
+<Icon kind="add" />
 <Icon kind="tenstorrent" />
+<Icon kind="model-llama" />
+<Icon kind="blackhole" />
+<Icon kind="board" />
+```
+
+See the full list of available icon kinds in [Storybook](/storybook/?path=/story/components-icons--playground).
+
+> The advantage of using this component is that you can dynamically render any kind of icon you want with just the one component.
+>
+> However, because this component requires all icons to be available at runtime, it is **not** [tree-shakeable](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking) and will increase bundle size more than just importing icons individually.
+
+### Styling icons
+
+You can use inline styles or CSS stylesheets to style an icon:
+
+```tsx
+import { Gear, Icon, Tenstorrent } from "@tenstorrent/vesper/icons";
+
+<Gear style={{ width: 32, height: 32 }} />
+<Icon kind="tenstorrent" style={{ color: 'blue' }} />
+```
+
+Coloring an icon can also be done by supplying a `color` prop:
+
+```tsx
+import { Globe, Icon } from "@tenstorrent/vesper/icons";
+
+<Globe color="red" />;
+<Icon kind="ai-video-gen" color="green" />;
+```
+
+### Pre-colored icons
+
+Some icons ship with both colored and uncolored versions. The colored icon component names are the same as their uncolored name suffixed with the word "Color". These are typically branded icons for different AI models, and should **not** have their colors overridden with CSS, inline styles, or the `color` prop:
+
+```tsx
+import {
+  ModelDeepSeekColor,
+  ModelFalconColor,
+  ModelGoogleColor,
+  ModelLlamaColor,
+  ModelQwenColor,
+} from "@tenstorrent/vesper/icons";
+
+<ModelDeepSeekColor />
+<ModelFalconColor />
+<ModelGoogleColor />
+<ModelLlamaColor />
+<ModelQwenColor />
+```
+
+```tsx
+import { Icon } from "@tenstorrent/vesper/icons";
+
+<Icon kind="model-deepseek-color" />
+<Icon kind="model-falcon-color" />
+<Icon kind="model-google-color" />
+<Icon kind="model-llama-color" />
+<Icon kind="model-qwen-color" />
 ```

@@ -13,12 +13,18 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+const avatars = [
+  { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=simon" },
+  { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=mackenzie" },
+  { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=keith" },
+  { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=neesh" },
+  { src: "https://api.dicebear.com/10.x/initial-face/svg?seed=marisa" },
+];
+
 export const Playground: Story = {
   args: {
     size: "md",
-    avatars: Array.from({ length: 5 }).map((_, index) => ({
-      src: `https://unsplash.it/${(index + 1) * 150}/${(index + 1) * 150}`,
-    })),
+    avatars,
   },
 };
 

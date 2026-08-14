@@ -17,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   args: {
     size: "md",
-    src: "https://unsplash.it/400/400",
+    src: "https://api.dicebear.com/10.x/initial-face/svg?seed=keith",
   },
 };
 Playground.storyName = "avatar";

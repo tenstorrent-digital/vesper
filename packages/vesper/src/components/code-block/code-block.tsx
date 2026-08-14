@@ -35,12 +35,11 @@ export interface CodeBlockProps extends Omit<
 }
 
 /**
- * A syntax-highlighted code block with support for static code, streaming content, line numbers, and Shiki transformers.
+ * A syntax-highlighted code block with support for static code, streaming content, and line numbers.
  *
  * @param {string | (() => ReadableStream<string> | Promise<ReadableStream<string>>)} [props.children] - (optional) The code to render, either as a string or a stream factory
  * @param {LanguageRegistration[] | "text" | "ansi"} [props.lang] - (optional) The language syntax for highlighting. @default text
- * @param {boolean} [props.showLineNumbers] - (optional) Whether to display line numbers. Has no effect when rendering streamed code. @default false
- * @param {ShikiTransformer[]} [props.transformers] - (optional) An array of Shiki transformers to apply to the hast tree. Has no effect when rendering streamed code
+ * @param {boolean} [props.showLineNumbers] - (optional) Whether to display line numbers. @default false
  * @param {boolean} [props.copyOnHover] - (optional) Hide the copy button until the code block is hovered. @default false
  *
  * You may also pass any additional props to the underlying `div` element

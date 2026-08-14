@@ -7,7 +7,11 @@ description: A circular image component for representing users or entities.
 
 A circular image component for representing users or entities. Renders an image when a `src` is provided, or an empty placeholder when omitted.
 
-<Avatar size="lg" src="https://i.pravatar.cc/128" alt="User avatar" />
+<Avatar
+  size="lg"
+  src="https://api.dicebear.com/10.x/initial-face/svg?seed=jane-doe"
+  alt="User avatar"
+/>
 
 ## Options
 
@@ -20,26 +24,90 @@ A circular image component for representing users or entities. Renders an image 
 
 ## Examples
 
+### Basic usage
+
+By default, an `Avatar` will render at `md` size if the `size` prop is not specified:
+
+<Avatar
+  src="https://api.dicebear.com/10.x/initial-face/svg?seed=simon"
+  alt="Simon"
+/>
+
 ```tsx
 import { Avatar } from "@tenstorrent/vesper/avatar";
 
-// Basic usage
-<Avatar src="/avatar.png" alt="Jane Doe" />;
+<Avatar
+  src="https://api.dicebear.com/10.x/initial-face/svg?seed=simon"
+  alt="Simon"
+/>;
 ```
 
-```tsx
-// Different sizes
-<Avatar size="sm" src="/avatar.png" alt="Small" />
-<Avatar size="md" src="/avatar.png" alt="Medium" />
-<Avatar size="lg" src="/avatar.png" alt="Large" />
-```
+### Sizes
+
+An `Avatar` can be rendered in one of three sizes: `sm`, `md`, and `lg`:
+
+<Avatar
+  src="https://api.dicebear.com/10.x/initial-face/svg?seed=simon"
+  size="sm"
+/>
+<Avatar
+  src="https://api.dicebear.com/10.x/initial-face/svg?seed=mackenzie"
+  size="md"
+/>
+<Avatar
+  src="https://api.dicebear.com/10.x/initial-face/svg?seed=neesh"
+  size="lg"
+/>
 
 ```tsx
-// Placeholder (no image)
-<Avatar size="md" />
+import { Avatar } from "@tenstorrent/vesper/avatar";
+
+<Avatar
+  src="https://api.dicebear.com/10.x/initial-face/svg?seed=simon"
+  size="sm"
+/>;
+<Avatar
+  src="https://api.dicebear.com/10.x/initial-face/svg?seed=mackenzie"
+  size="md"
+/>;
+<Avatar
+  src="https://api.dicebear.com/10.x/initial-face/svg?seed=neesh"
+  size="lg"
+/>;
 ```
 
+### Placeholder (no image)
+
+Rendering an `Avatar` with no `src` prop will show an empty circle with a placeholder fill color:
+
+<Avatar />
+
 ```tsx
-// Rendered as a link
-<Avatar as="a" href="/profile" src="/avatar.png" alt="Profile" />
+import { Avatar } from "@tenstorrent/vesper/avatar";
+
+<Avatar />;
+```
+
+### Polymorphic usage
+
+You can use the `as` prop to specify what underlying element to render. In this case, we are passing `as="a"` to render the `Avatar` as an anchor link. This is helpful for apps where clicking on an avatar may navigate to a user profile, for example:
+
+<Avatar
+  as="a"
+  href="#"
+  src="https://api.dicebear.com/10.x/initial-face/svg?seed=jane-doe"
+  alt="Jane Doe"
+  size="lg"
+/>
+
+```tsx
+import { Avatar } from "@tenstorrent/vesper/avatar";
+
+<Avatar
+  as="a"
+  href="#"
+  src="https://api.dicebear.com/10.x/initial-face/svg?seed=jane-doe"
+  alt="Jane Doe"
+  size="lg"
+/>;
 ```
