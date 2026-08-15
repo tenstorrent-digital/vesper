@@ -40,8 +40,8 @@ export type InputComponentProps<
   : React.InputHTMLAttributes<HTMLInputElement>);
 
 // https://github.com/GoncharukOrg/react-input/issues/15
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type InputComponent<P extends object> = <
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   C extends React.ComponentType<any> | undefined = undefined,
 >(
   props: P & InputComponentProps<C> & React.RefAttributes<HTMLInputElement>,

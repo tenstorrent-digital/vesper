@@ -146,7 +146,7 @@ export class Input<T = unknown> {
           // автоподстановке значения меньше чем предыдущее, тип ввода будет определён как `deleteBackward`.
           // Учитывая что при автоподстановке `inputType` не определён и значение заменяется полностью,
           // нам надо имитировать выделение всего значения, для этого переопределяем позиции выделения
-          // @ts-expect-error
+          // @ts-expect-error if `event.inputType` is missing it resolves to `undefined`
           if (event.inputType === undefined) {
             tracker.selectionStart = 0;
             tracker.selectionEnd = previousValue.length;
