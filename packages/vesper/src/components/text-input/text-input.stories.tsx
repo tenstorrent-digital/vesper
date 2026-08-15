@@ -1,12 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Globe } from "@/components/icons/icons";
+import { Close, Search } from "@/components/icons/icons";
 import { TextInput } from "@/components/text-input/text-input";
 
 const meta = {
   component: TextInput,
   argTypes: {
-    icon: { control: "boolean", name: "icon (no effect on multiline inputs)" },
+    iconLeft: {
+      control: "boolean",
+      name: "iconLeft (no effect on multiline inputs)",
+    },
+    iconLeftAriaLabel: { table: { disable: true } },
+    iconLeftOnClick: { table: { disable: true } },
+    iconRight: {
+      control: "boolean",
+      name: "iconRight (no effect on multiline inputs)",
+    },
+    iconRightAriaLabel: { table: { disable: true } },
+    iconRightOnClick: { table: { disable: true } },
     height: {
       control: "number",
       name: "height (only affects multiline inputs)",
@@ -27,7 +38,8 @@ export const Playground: Story = {
     disabled: false,
     label: "Label",
     placeholder: "This is placeholder text",
-    icon: false,
+    iconLeft: false,
+    iconRight: false,
     message: "This is a message you can display under the input.",
     multiline: false,
     height: 104 as unknown as undefined,
@@ -45,7 +57,8 @@ export const Playground: Story = {
       <TextInput
         {...props}
         style={{ width: "min(calc(100vw - 4rem), 400px)" }}
-        icon={props.icon ? <Globe /> : undefined}
+        iconLeft={props.iconLeft ? <Search /> : undefined}
+        iconRight={props.iconRight ? <Close /> : undefined}
       />
     );
   },

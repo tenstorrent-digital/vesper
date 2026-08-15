@@ -69,25 +69,10 @@
     outline: none;
     box-shadow: none;
   }
-  &:placeholder-shown {
-    & ~ .vesper-text-input-icon {
-      display: none;
-    }
-  }
   &:disabled {
     color: var(--vesper-text-tertiary);
     &::placeholder {
       color: var(--vesper-text-disabled);
-    }
-  }
-  & ~ .vesper-text-input-icon {
-    cursor: pointer;
-    border-radius: 50%;
-    &:focus-visible {
-      box-shadow: var(--vesper-shadow-focus-ring);
-      @media (forced-colors: active) {
-        outline: var(--vesper-stroke-strong) solid CanvasText;
-      }
     }
   }
   &::-webkit-search-decoration,

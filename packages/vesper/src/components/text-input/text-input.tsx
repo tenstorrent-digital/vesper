@@ -2,13 +2,13 @@
 
 import {
   type ComponentProps,
+  MouseEvent,
   type ReactNode,
   type RefObject,
   useId,
 } from "react";
 
 import {
-  CircleXSolid,
   ErrorSolid,
   InfoSolid,
   SuccessSolid,
@@ -107,7 +107,12 @@ export type MultiLineTextInputProps = TextInputBaseProps &
     inputRef?: RefObject<HTMLTextAreaElement | null>;
     /** The fixed height of the textarea in pixels. */
     height?: number;
-    icon?: never;
+    iconLeft?: never;
+    iconLeftOnClick?: never;
+    iconLeftAriaLabel?: never;
+    iconRight?: never;
+    iconRightOnClick?: never;
+    iconRightAriaLabel?: never;
     type?: never;
   } & { [P in InputOnlyPropTypes]?: never };
 
@@ -120,8 +125,14 @@ export type SingleLineTextInputProps = TextInputBaseProps &
     inputRef?: RefObject<HTMLInputElement | null>;
     height?: never;
     /** An optional icon element rendered to the left of the input field. */
-    icon?: ReactNode;
+    iconLeft?: ReactNode;
+    iconLeftOnClick?(e: MouseEvent<HTMLButtonElement>): void;
+    iconLeftAriaLabel?: string;
+    /** An optional icon element rendered to the right of the input field. */
+    iconRight?: ReactNode;
     /** The HTML input type. Determines the browser's native input behavior and keyboard. @default text */
+    iconRightOnClick?(e: MouseEvent<HTMLButtonElement>): void;
+    iconRightAriaLabel?: string;
     type?:
       | "text"
       | "email"
@@ -145,14 +156,6 @@ const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
   lg: "copy-md",
 };
 
-const CLEAR_BUTTON_DISABLED_TYPES = [
-  "date",
-  "datetime-local",
-  "week",
-  "month",
-  "time",
-];
-
 /**
  * A form-ready text input component supporting single-line and multiline modes with labels, icons, validation messages, and variants.
  *
@@ -161,7 +164,8 @@ const CLEAR_BUTTON_DISABLED_TYPES = [
  * @param {string} [props.label] - (optional) A label displayed above the input
  * @param {string} [props.message] - (optional) A message displayed below the input with a variant-specific icon
  * @param {boolean} [props.multiline] - (optional) When `true`, renders a `<textarea>` instead of an `<input>`. @default false
- * @param {ReactNode} [props.icon] - (optional) An icon rendered to the left of the input field (single-line only)
+ * @param {ReactNode} [props.iconLeft] - (optional) An element rendered to the left of the input field (single-line only)
+ * @param {ReactNode} [props.iconRight] - (optional) An element rendered to the right of the input field (single-line only)
  * @param {string} [props.type] - (optional) The HTML input type. @default text
  * @param {string} [props.placeholder] - (optional) Placeholder text for the input
  *
@@ -186,7 +190,12 @@ export function TextInput(props: TextInputProps) {
   const {
     // component-specific props
     multiline,
-    icon,
+    iconLeft,
+    iconLeftOnClick,
+    iconLeftAriaLabel,
+    iconRight,
+    iconRightOnClick,
+    iconRightAriaLabel,
     inputRef,
     message,
     label,
@@ -260,8 +269,10 @@ export function TextInput(props: TextInputProps) {
 
   const input = (
     <div className="vesper-text-input-field-wrapper">
-      {icon && !multiline && (
-        <span className="vesper-text-input-icon">{icon}</span>
+      {iconLeft && !multiline && (
+        <TextInputIcon ariaLabel={iconLeftAriaLabel} onClick={iconLeftOnClick}>
+          {iconLeft}
+        </TextInputIcon>
       )}
       <Typography
         {...(multiline
@@ -318,24 +329,14 @@ export function TextInput(props: TextInputProps) {
         onKeyUp={onKeyUp}
         onKeyUpCapture={onKeyUpCapture}
       />
-      {!multiline &&
-        !readOnly &&
-        !CLEAR_BUTTON_DISABLED_TYPES.includes(type) && (
-          <button
-            type="button"
-            className="vesper-text-input-icon"
-            aria-label="Clear text input"
-            disabled={disabled}
-            onClick={(e) => {
-              const input = e.currentTarget
-                .previousElementSibling as HTMLInputElement;
-              fireReactOnChange(input, "");
-              input.focus();
-            }}
-          >
-            <CircleXSolid />
-          </button>
-        )}
+      {iconRight && !multiline && (
+        <TextInputIcon
+          ariaLabel={iconRightAriaLabel}
+          onClick={iconRightOnClick}
+        >
+          {iconRight}
+        </TextInputIcon>
+      )}
     </div>
   );
 
@@ -388,22 +389,31 @@ export function TextInput(props: TextInputProps) {
   );
 }
 
-/**
- * Trigger a React onChange event programmatically.
- *
- * Simply updating an element's value via JavaScript will not fire the event because React intercepts standard DOM setters to manage form states efficiently.
- * */
-function fireReactOnChange(inputElement: HTMLInputElement, newValue: string) {
-  // 1. Get the native input value setter from the browser prototype
-  const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
-    window.HTMLInputElement.prototype,
-    "value",
-  )?.set;
+function TextInputIcon({
+  ariaLabel,
+  onClick,
+  children,
+}: {
+  ariaLabel?: string;
+  onClick?(e: MouseEvent<HTMLButtonElement>): void;
+  children: ReactNode;
+}) {
+  if (onClick) {
+    return (
+      <button
+        aria-label={ariaLabel}
+        onClick={onClick}
+        type="button"
+        className="vesper-text-input-icon"
+      >
+        {children}
+      </button>
+    );
+  }
 
-  // 2. Force the value update directly through the native setter
-  nativeInputValueSetter?.call(inputElement, newValue);
-
-  // 3. Dispatch a bubbling input event to notify React's Virtual DOM
-  const event = new Event("input", { bubbles: true });
-  inputElement.dispatchEvent(event);
+  return (
+    <span aria-label={ariaLabel} className="vesper-text-input-icon">
+      {children}
+    </span>
+  );
 }
