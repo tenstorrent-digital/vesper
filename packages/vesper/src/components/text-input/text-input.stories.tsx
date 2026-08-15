@@ -32,6 +32,7 @@ const meta = {
       control: "boolean",
       description: "no effect on multiline inputs",
     },
+    mask: { control: "text" },
   },
 } satisfies Meta<typeof TextInput>;
 

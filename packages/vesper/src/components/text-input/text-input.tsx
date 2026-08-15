@@ -122,6 +122,7 @@ export type MultiLineTextInputProps = TextInputBaseProps &
     iconRightOnClick?: never;
     iconRightAriaLabel?: never;
     prefix?: never;
+    mask?: never;
     type?: never;
   } & { [P in InputOnlyPropTypes]?: never };
 
@@ -167,6 +168,8 @@ export type SingleLineTextInputProps = TextInputBaseProps &
       | "month"
       | "time";
     prefix?: TextInputPrefixProps;
+    mask?:
+      string | { format: string; replace: string | { [key: string]: RegExp } };
   };
 
 export type TextInputProps = SingleLineTextInputProps | MultiLineTextInputProps;
