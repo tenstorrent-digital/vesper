@@ -282,6 +282,7 @@ export function TextInput(props: TextInputProps) {
   } = props;
 
   const messageId = useId();
+
   let inputId = useId();
   if (id) inputId = id;
 

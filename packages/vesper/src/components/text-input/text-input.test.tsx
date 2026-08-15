@@ -60,6 +60,7 @@ const SNAPSHOT_CASES: (TextInputProps & { name: string })[] = [
       ariaLabel: "Area code",
       name: "area-code",
       defaultValue: "+1",
+      width: 100,
     },
     size: "lg" as const,
   },
@@ -212,6 +213,37 @@ describe("text-input [unit]", () => {
     await userEvent.click(label);
 
     expect(result.getByRole("textbox")).toHaveFocus();
+  });
+
+  test("the id prop is forwarded to the input", () => {
+    const result = render(<TextInput id="email-input" />);
+
+    expect(result.getByRole("textbox")).toHaveAttribute("id", "email-input");
+  });
+
+  test("the id prop is forwarded to the textarea when multiline", () => {
+    const result = render(<TextInput multiline label="Bio" id="bio-input" />);
+
+    expect(result.getByRole("textbox")).toHaveAttribute("id", "bio-input");
+    expect(
+      result.container.querySelector(".vesper-text-input-label"),
+    ).toHaveAttribute("for", "bio-input");
+  });
+
+  test("an id is generated when the id prop is omitted", () => {
+    const result = render(<TextInput label="Username" />);
+
+    const input = result.getByRole("textbox");
+    expect(input.id).not.toBe("");
+    expect(
+      result.container.querySelector(".vesper-text-input-label"),
+    ).toHaveAttribute("for", input.id);
+  });
+
+  test("the generated id associates the label with the input", () => {
+    const result = render(<TextInput label="Username" />);
+
+    expect(result.getByLabelText("Username")).toBe(result.getByRole("textbox"));
   });
 
   test("renders an icon to the left when provided", () => {
@@ -388,6 +420,26 @@ describe("text-input [unit]", () => {
           `vesper-chip-${PREFIX_CHIP_SIZES[size]}`,
         );
       });
+    });
+
+    test("prefix has no explicit width by default", () => {
+      const result = render(<TextInput prefix={{ options: PREFIX_OPTIONS }} />);
+
+      const trigger = result.getByRole("combobox");
+      expect(trigger.style.width).toBe("");
+      expect(trigger.style.flexShrink).toBe("0");
+    });
+
+    test("prefix width is applied to the trigger", () => {
+      const result = render(
+        <TextInput prefix={{ options: PREFIX_OPTIONS, width: 80 }} />,
+      );
+
+      const trigger = result.getByRole("combobox");
+      // the width is calculated as rem-relative
+      expect(trigger.style.width).toBe("calc(5rem)");
+      expect(trigger.style.flexShrink).toBe("0");
+      expect(trigger.getBoundingClientRect().width).toBeCloseTo(80, 1);
     });
 
     test("renders string options", async () => {
