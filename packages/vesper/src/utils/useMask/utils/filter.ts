@@ -3,7 +3,6 @@ import type { Replacement } from "../types";
 interface Options {
   replacementChars: string;
   replacement: Replacement;
-  separate: boolean;
 }
 
 /**
@@ -14,7 +13,7 @@ interface Options {
  */
 export default function filter(
   value: string,
-  { replacementChars, replacement, separate }: Options,
+  { replacementChars, replacement }: Options,
 ): string {
   let __replacementChars = replacementChars;
 
@@ -28,7 +27,7 @@ export default function filter(
     const isValidChar =
       !isReplacementKey && replacement[__replacementChars[0]!]?.test(char);
 
-    if ((separate && char === __replacementChars[0]) || isValidChar) {
+    if (isValidChar) {
       __replacementChars = __replacementChars.slice(1);
       filteredValue += char;
     }

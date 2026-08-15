@@ -16,17 +16,12 @@ function normalizeOptions(options: MaskOptions) {
       typeof options.replacement === "string"
         ? formatToReplacementObject(options.replacement)
         : (options.replacement ?? {}),
-    showMask: options.showMask ?? false,
-    separate: options.separate ?? false,
-    track: options.track,
-    modify: options.modify,
   };
 }
 
 export default class Mask extends Input<{
   mask: string;
   replacement: Replacement;
-  separate: boolean;
 }> {
   static {
     Object.defineProperty(this.prototype, Symbol.toStringTag, {
@@ -47,12 +42,8 @@ export default class Mask extends Input<{
       /**
        * Init
        */
-      init: ({ initialValue, controlled }) => {
-        const { mask, replacement, separate, showMask } =
-          normalizeOptions(options);
-
-        initialValue =
-          controlled || initialValue ? initialValue : showMask ? mask : "";
+      init: ({ initialValue }) => {
+        const { mask, replacement } = normalizeOptions(options);
 
         if (process.env.NODE_ENV !== "production") {
           validate({ initialValue, mask, replacement });
@@ -60,7 +51,7 @@ export default class Mask extends Input<{
 
         return {
           value: initialValue,
-          options: { mask, replacement, separate },
+          options: { mask, replacement },
         };
       },
       /**
@@ -74,44 +65,7 @@ export default class Mask extends Input<{
         changeStart,
         changeEnd,
       }) => {
-        const { track, modify, ...normalizedOptions } =
-          normalizeOptions(options);
-
-        let { mask, replacement, showMask, separate } = normalizedOptions;
-
-        const _data =
-          inputType === "insert"
-            ? { inputType, data: addedValue }
-            : { inputType, data: null };
-        const trackingData = {
-          ..._data,
-          value: previousValue,
-          selectionStart: changeStart,
-          selectionEnd: changeEnd,
-        };
-
-        const trackingValue = track?.(trackingData);
-
-        if (trackingValue === false) {
-          throw new SyntheticChangeError("Custom tracking stop.");
-        } else if (trackingValue === null) {
-          addedValue = "";
-        } else if (trackingValue !== true && trackingValue !== undefined) {
-          addedValue = trackingValue;
-        }
-
-        const modifiedOptions = modify?.(trackingData);
-
-        if (modifiedOptions?.mask !== undefined) mask = modifiedOptions.mask;
-        if (modifiedOptions?.replacement !== undefined)
-          replacement =
-            typeof modifiedOptions?.replacement === "string"
-              ? formatToReplacementObject(modifiedOptions?.replacement)
-              : modifiedOptions.replacement;
-        if (modifiedOptions?.showMask !== undefined)
-          showMask = modifiedOptions.showMask;
-        if (modifiedOptions?.separate !== undefined)
-          separate = modifiedOptions.separate;
+        const { mask, replacement } = normalizeOptions(options);
 
         // Дополнительно учитываем, что добавление/удаление символов не затрагивают значения до и после диапазона
         // изменения, поэтому нам важно получить их немаскированные значения на основе предыдущего значения и
@@ -135,7 +89,6 @@ export default class Mask extends Input<{
           beforeChangeValue = filter(beforeChangeValue, {
             replacementChars,
             replacement,
-            separate,
           });
           replacementChars = replacementChars.slice(beforeChangeValue.length);
         }
@@ -145,7 +98,6 @@ export default class Mask extends Input<{
           addedValue = filter(addedValue, {
             replacementChars,
             replacement,
-            separate: false,
           });
           replacementChars = replacementChars.slice(addedValue.length);
         }
@@ -156,37 +108,15 @@ export default class Mask extends Input<{
           );
         }
 
-        // Модифицируем `afterChangeValue` чтобы позиция символов не смещалась. Необходимо выполнять
-        // после фильтрации `addedValue` и перед фильтрацией `afterChangeValue`
-        if (separate) {
-          // Находим заменяемые символы в диапазоне изменяемых символов
-          const separateChars = mask
-            .slice(changeStart, changeEnd)
-            .replace(regExp$1, "");
-          // Получаем количество символов для сохранения перед `afterChangeValue`. Возможные значения:
-          // `меньше ноля` - обрезаем значение от начала на количество символов;
-          // `ноль` - не меняем значение;
-          // `больше ноля` - добавляем заменяемые символы к началу значения.
-          const countSeparateChars = separateChars.length - addedValue.length;
-
-          if (countSeparateChars < 0) {
-            afterChangeValue = afterChangeValue.slice(-countSeparateChars);
-          } else if (countSeparateChars > 0) {
-            afterChangeValue =
-              separateChars.slice(-countSeparateChars) + afterChangeValue;
-          }
-        }
-
         if (afterChangeValue) {
           afterChangeValue = filter(afterChangeValue, {
             replacementChars,
             replacement,
-            separate,
           });
         }
 
         const input = beforeChangeValue + addedValue + afterChangeValue;
-        const value = format(input, { mask, replacement, separate, showMask });
+        const value = format(input, { mask, replacement });
 
         const selection = resolveSelection({
           inputType,
@@ -195,14 +125,13 @@ export default class Mask extends Input<{
           beforeChangeValue,
           mask,
           replacement,
-          separate,
         });
 
         return {
           value,
           selectionStart: selection,
           selectionEnd: selection,
-          options: { mask, replacement, separate },
+          options: { mask, replacement },
         };
       },
     });

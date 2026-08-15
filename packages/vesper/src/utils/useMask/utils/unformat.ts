@@ -5,7 +5,6 @@ interface Options {
   end?: number;
   mask: string;
   replacement: Replacement;
-  separate: boolean;
 }
 
 /**
@@ -16,7 +15,7 @@ interface Options {
  */
 export default function unformat(
   formattedValue: string,
-  { start = 0, end, mask, replacement, separate }: Options,
+  { start = 0, end, mask, replacement }: Options,
 ): string {
   const slicedFormattedValue = formattedValue.slice(start, end);
   const slicedMask = mask.slice(start, end);
@@ -35,8 +34,6 @@ export default function unformat(
       slicedFormattedValue[i] !== slicedMask[i]
     ) {
       unformattedValue += slicedFormattedValue[i];
-    } else if (isReplacementKey && separate) {
-      unformattedValue += slicedMask[i];
     }
   }
 

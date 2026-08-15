@@ -35,14 +35,11 @@ export function format(value: string, { mask, replacement }: Options): string {
   const input = _filter(value, {
     replacementChars,
     replacement: replacementObject,
-    separate: false,
   });
 
   return _format(input, {
     mask,
     replacement: replacementObject,
-    separate: false,
-    showMask: false,
   });
 }
 
@@ -65,7 +62,6 @@ export function unformat(
   const unformattedValue = _unformat(value, {
     mask,
     replacement: replacementObject,
-    separate: false,
   });
 
   const regExp$1 = RegExp(`[^${Object.keys(replacementObject).join("")}]`, "g");
@@ -74,7 +70,6 @@ export function unformat(
   return _filter(unformattedValue, {
     replacementChars,
     replacement: replacementObject,
-    separate: false,
   });
 }
 

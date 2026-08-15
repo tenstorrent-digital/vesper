@@ -9,7 +9,6 @@ interface ResolveSelectionParam {
   beforeChangeValue: string;
   mask: string;
   replacement: Replacement;
-  separate: boolean;
 }
 
 /**
@@ -24,12 +23,9 @@ export default function resolveSelection({
   beforeChangeValue,
   mask,
   replacement,
-  separate,
 }: ResolveSelectionParam): number {
   const parts = formatToParts(value, { mask, replacement });
-  const unformattedChars = parts.filter(
-    ({ type }) => type === "input" || (separate && type === "replacement"),
-  );
+  const unformattedChars = parts.filter(({ type }) => type === "input");
 
   const lastAddedValueIndex =
     unformattedChars[beforeChangeValue.length + addedValue.length - 1]?.index;
