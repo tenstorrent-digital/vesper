@@ -4,8 +4,8 @@ import type { ElementType, ReactNode } from "react";
 
 import {
   Typography,
-  TypographyVariant,
   type TypographyProps,
+  TypographyVariant,
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
@@ -41,8 +41,8 @@ export type ChipProps<E extends ElementType = "button"> = Polymorphic<
 >;
 
 const CHIP_TYPOGRAPHY: { [S in ChipSize]: TypographyVariant } = {
-  sm: "copy-xs",
-  md: "copy-sm",
+  sm: "label-xs",
+  md: "label-sm",
 };
 
 /**
