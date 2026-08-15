@@ -1,5 +1,4 @@
 .vesper-chip {
-  height: 1.75rem;
   display: inline-flex;
   width: fit-content;
   align-items: center;
@@ -18,6 +17,14 @@
       box-shadow: var(--vesper-shadow-focus-ring);
     }
   }
+}
+
+.vesper-chip-sm {
+  height: 1.5rem;
+}
+
+.vesper-chip-md {
+  height: 1.75rem;
 }
 
 .vesper-chip-default {
@@ -84,4 +91,5 @@
 .vesper-chip-icon {
   width: 0.875rem;
   height: 0.875rem;
+  display: flex;
 }
