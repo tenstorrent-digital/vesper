@@ -1,7 +1,7 @@
 import { useMemo, useRef } from "react";
 
 import { createProxy } from "./createProxy";
-import Mask from "./Mask";
+import MaskInput from "./MaskInput";
 import type { MaskOptions } from "./types";
 
 export function useMask({ mask, replacement }: MaskOptions = {}) {
@@ -12,6 +12,6 @@ export function useMask({ mask, replacement }: MaskOptions = {}) {
   $options.current.replacement = replacement;
 
   return useMemo(() => {
-    return createProxy($ref, new Mask($options.current));
+    return createProxy($ref, new MaskInput($options.current));
   }, []);
 }

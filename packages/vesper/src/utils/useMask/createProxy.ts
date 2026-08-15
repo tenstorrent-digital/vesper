@@ -1,10 +1,13 @@
 import { RefObject } from "react";
 
-import { type Input } from "./Input";
+interface Registrable {
+  register: (element: HTMLInputElement) => void;
+  unregister: (element: HTMLInputElement) => void;
+}
 
 export function createProxy(
   ref: RefObject<HTMLInputElement | null>,
-  instanse: Input,
+  instanse: Registrable,
 ) {
   return new Proxy(ref, {
     set(target, property, element: HTMLInputElement | null) {
