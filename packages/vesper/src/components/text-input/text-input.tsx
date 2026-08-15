@@ -125,7 +125,7 @@ export type MultiLineTextInputProps = TextInputBaseProps &
     type?: never;
   } & { [P in InputOnlyPropTypes]?: never };
 
-type TextInputPrefixProps = {
+export type TextInputPrefixProps = {
   ariaLabel?: string;
   name?: string;
   value?: string;

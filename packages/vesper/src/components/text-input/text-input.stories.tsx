@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Close, Search } from "@/components/icons/icons";
-import { TextInput } from "@/components/text-input/text-input";
+import {
+  TextInput,
+  type TextInputPrefixProps,
+} from "@/components/text-input/text-input";
 
 const meta = {
   component: TextInput,
@@ -48,13 +51,7 @@ export const Playground: Story = {
     message: "This is a message you can display under the input.",
     multiline: false,
     height: 104 as unknown as undefined,
-    prefix: {
-      options: ["+1", "+44", "+51"],
-      name: "area-code",
-      ariaLabel: "Area code",
-      defaultValue: "+1",
-      width: 58,
-    },
+    prefix: false as unknown as TextInputPrefixProps,
   },
   render: (props) => {
     if (props.multiline) {
@@ -71,6 +68,17 @@ export const Playground: Story = {
         style={{ width: "min(calc(100vw - 4rem), 400px)" }}
         iconLeft={props.iconLeft ? <Search /> : undefined}
         iconRight={props.iconRight ? <Close /> : undefined}
+        prefix={
+          props.prefix
+            ? {
+                options: ["+1", "+44", "+51"],
+                name: "area-code",
+                ariaLabel: "Area code",
+                defaultValue: "+1",
+                width: 58,
+              }
+            : undefined
+        }
       />
     );
   },
