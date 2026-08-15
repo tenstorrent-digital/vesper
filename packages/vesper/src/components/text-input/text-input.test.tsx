@@ -3,7 +3,7 @@ import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 
-import { Globe } from "@/components/icons/icons";
+import { Close, Globe } from "@/components/icons/icons";
 import {
   TEXT_INPUT_SIZES,
   TEXT_INPUT_VARIANTS,
@@ -28,7 +28,7 @@ const SNAPSHOT_CASES: (TextInputProps & { name: string })[] = [
   })),
   // Meaningful feature combos
   { name: "multiline", multiline: true, size: "lg" as const },
-  { name: "with icon", icon: <Globe />, size: "lg" as const },
+  { name: "with icon", iconLeft: <Globe />, size: "lg" as const },
   { name: "with label", label: "Label text", size: "lg" as const },
   { name: "disabled", disabled: true, size: "lg" as const },
   {
@@ -130,11 +130,6 @@ describe("text-input [unit]", () => {
 
   test("disabling when single line", () => {
     const result = render(<TextInput disabled />);
-
-    const clearButton = result.container.querySelector(
-      'button[aria-label="Clear text input"]',
-    );
-    expect(clearButton).toBeDisabled();
     expect(result.getByRole("textbox")).toBeDisabled();
   });
 
@@ -148,24 +143,6 @@ describe("text-input [unit]", () => {
     const result = render(<TextInput multiline height={200} />);
 
     expect(result.getByRole("textbox")).toHaveStyle({ height: "200px" });
-  });
-
-  test("clicking clear button", async () => {
-    const onChange = vi.fn();
-    const result = render(
-      <TextInput defaultValue="hello" onChange={onChange} />,
-    );
-
-    const input = result.getByRole("textbox") as HTMLInputElement;
-    expect(input.value).toBe("hello");
-
-    const clearButton = result.getByRole("button", {
-      name: "Clear text input",
-    });
-    await userEvent.click(clearButton);
-
-    expect(input.value).toBe("");
-    expect(onChange).toHaveBeenCalled();
   });
 
   test("renders a label when supplied", () => {
@@ -193,11 +170,69 @@ describe("text-input [unit]", () => {
     expect(result.getByRole("textbox")).toHaveFocus();
   });
 
-  test("renders an icon when provided", () => {
+  test("renders an icon to the left when provided", () => {
+    const clickHandler = vi.fn();
     const result = render(
-      <TextInput icon={<Globe data-testid="search-icon" />} />,
+      <TextInput
+        iconLeft={<Globe data-testid="search-icon" />}
+        iconLeftOnClick={clickHandler}
+        iconLeftAriaLabel="Search"
+      />,
     );
+
+    // assert the icon exists
     expect(result.getByTestId("search-icon")).not.toBeNull();
+
+    // assert the icon got rendered inside a button
+    const iconButton = result.getByRole("button", { name: /search/i });
+    expect(iconButton).not.toBeNull();
+    expect(iconButton).toHaveAttribute("aria-label", "Search");
+
+    // assert the icon button click handler works
+    iconButton.click();
+    expect(clickHandler).toHaveBeenCalledOnce();
+  });
+
+  test("renders an icon to the right when provided", () => {
+    const clickHandler = vi.fn();
+    const result = render(
+      <TextInput
+        iconRight={<Globe data-testid="search-icon" />}
+        iconRightOnClick={clickHandler}
+        iconRightAriaLabel="Search"
+      />,
+    );
+
+    // assert the icon exists
+    expect(result.getByTestId("search-icon")).not.toBeNull();
+
+    // assert the icon got rendered inside a button
+    const iconButton = result.getByRole("button", { name: /search/i });
+    expect(iconButton).not.toBeNull();
+    expect(iconButton).toHaveAttribute("aria-label", "Search");
+
+    // assert the icon button click handler works
+    iconButton.click();
+    expect(clickHandler).toHaveBeenCalledOnce();
+  });
+
+  test("icon buttons get disabled input is disabled", () => {
+    const leftIconClickHandler = vi.fn();
+    const rightIconClickHandler = vi.fn();
+
+    const result = render(
+      <TextInput
+        iconRight={<Globe />}
+        iconLeft={<Close />}
+        iconRightOnClick={rightIconClickHandler}
+        iconLeftOnClick={leftIconClickHandler}
+        disabled
+      />,
+    );
+
+    const [leftIconButton, rightIconButton] = result.getAllByRole("button");
+    expect(leftIconButton).toBeDisabled();
+    expect(rightIconButton).toBeDisabled();
   });
 
   TEXT_INPUT_VARIANTS.forEach((variant) => {

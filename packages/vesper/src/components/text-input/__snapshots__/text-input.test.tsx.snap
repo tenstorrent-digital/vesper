@@ -13,23 +13,6 @@ exports[`text-input [snapshot] > disabled 1`] = `
       placeholder=" "
       type="text"
     />
-    <button
-      aria-label="Clear text input"
-      class="vesper-text-input-icon"
-      disabled=""
-      type="button"
-    >
-      <svg
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 11.1113L8.88867 8L8 8.88867L11.1113 12L8 15.1113L8.88867 16L12 12.8887L15.1113 16L16 15.1113L12.8887 12L16 8.88867L15.1113 8L12 11.1113Z"
-          fill="currentColor"
-        />
-      </svg>
-    </button>
   </div>
 </div>
 `;
@@ -66,7 +49,7 @@ exports[`text-input [snapshot] > full options 1`] = `
       class="vesper-text-input-field-wrapper"
     >
       <textarea
-        aria-describedby="_r_13_"
+        aria-describedby="_r_14_"
         class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
         disabled=""
         placeholder=" "
@@ -95,7 +78,7 @@ exports[`text-input [snapshot] > full options 1`] = `
     <span
       aria-live="polite"
       class="vesper-typography vesper-typography-label-xs vesper-text-input-message-text"
-      id="_r_13_"
+      id="_r_14_"
     >
       Message text
     </span>
@@ -130,22 +113,6 @@ exports[`text-input [snapshot] > size: lg 1`] = `
       placeholder=" "
       type="text"
     />
-    <button
-      aria-label="Clear text input"
-      class="vesper-text-input-icon"
-      type="button"
-    >
-      <svg
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 11.1113L8.88867 8L8 8.88867L11.1113 12L8 15.1113L8.88867 16L12 12.8887L15.1113 16L16 15.1113L12.8887 12L16 8.88867L15.1113 8L12 11.1113Z"
-          fill="currentColor"
-        />
-      </svg>
-    </button>
   </div>
 </div>
 `;
@@ -162,22 +129,6 @@ exports[`text-input [snapshot] > size: md 1`] = `
       placeholder=" "
       type="text"
     />
-    <button
-      aria-label="Clear text input"
-      class="vesper-text-input-icon"
-      type="button"
-    >
-      <svg
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 11.1113L8.88867 8L8 8.88867L11.1113 12L8 15.1113L8.88867 16L12 12.8887L15.1113 16L16 15.1113L12.8887 12L16 8.88867L15.1113 8L12 11.1113Z"
-          fill="currentColor"
-        />
-      </svg>
-    </button>
   </div>
 </div>
 `;
@@ -194,22 +145,6 @@ exports[`text-input [snapshot] > size: sm 1`] = `
       placeholder=" "
       type="text"
     />
-    <button
-      aria-label="Clear text input"
-      class="vesper-text-input-icon"
-      type="button"
-    >
-      <svg
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 11.1113L8.88867 8L8 8.88867L11.1113 12L8 15.1113L8.88867 16L12 12.8887L15.1113 16L16 15.1113L12.8887 12L16 8.88867L15.1113 8L12 11.1113Z"
-          fill="currentColor"
-        />
-      </svg>
-    </button>
   </div>
 </div>
 `;
@@ -222,27 +157,11 @@ exports[`text-input [snapshot] > variant: default 1`] = `
     class="vesper-text-input-field-wrapper"
   >
     <input
-      aria-describedby="_r_n_"
+      aria-describedby="_r_o_"
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
       placeholder=" "
       type="text"
     />
-    <button
-      aria-label="Clear text input"
-      class="vesper-text-input-icon"
-      type="button"
-    >
-      <svg
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 11.1113L8.88867 8L8 8.88867L11.1113 12L8 15.1113L8.88867 16L12 12.8887L15.1113 16L16 15.1113L12.8887 12L16 8.88867L15.1113 8L12 11.1113Z"
-          fill="currentColor"
-        />
-      </svg>
-    </button>
   </div>
   <p
     class="vesper-text-input-message"
@@ -266,7 +185,7 @@ exports[`text-input [snapshot] > variant: default 1`] = `
     <span
       aria-live="polite"
       class="vesper-typography vesper-typography-label-xs vesper-text-input-message-text"
-      id="_r_n_"
+      id="_r_o_"
     >
       Message text
     </span>
@@ -282,27 +201,11 @@ exports[`text-input [snapshot] > variant: error 1`] = `
     class="vesper-text-input-field-wrapper"
   >
     <input
-      aria-describedby="_r_q_"
+      aria-describedby="_r_r_"
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
       placeholder=" "
       type="text"
     />
-    <button
-      aria-label="Clear text input"
-      class="vesper-text-input-icon"
-      type="button"
-    >
-      <svg
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 11.1113L8.88867 8L8 8.88867L11.1113 12L8 15.1113L8.88867 16L12 12.8887L15.1113 16L16 15.1113L12.8887 12L16 8.88867L15.1113 8L12 11.1113Z"
-          fill="currentColor"
-        />
-      </svg>
-    </button>
   </div>
   <p
     class="vesper-text-input-message"
@@ -326,7 +229,7 @@ exports[`text-input [snapshot] > variant: error 1`] = `
     <span
       aria-live="polite"
       class="vesper-typography vesper-typography-label-xs vesper-text-input-message-text"
-      id="_r_q_"
+      id="_r_r_"
     >
       Message text
     </span>
@@ -342,27 +245,11 @@ exports[`text-input [snapshot] > variant: success 1`] = `
     class="vesper-text-input-field-wrapper"
   >
     <input
-      aria-describedby="_r_p_"
+      aria-describedby="_r_q_"
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
       placeholder=" "
       type="text"
     />
-    <button
-      aria-label="Clear text input"
-      class="vesper-text-input-icon"
-      type="button"
-    >
-      <svg
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 11.1113L8.88867 8L8 8.88867L11.1113 12L8 15.1113L8.88867 16L12 12.8887L15.1113 16L16 15.1113L12.8887 12L16 8.88867L15.1113 8L12 11.1113Z"
-          fill="currentColor"
-        />
-      </svg>
-    </button>
   </div>
   <p
     class="vesper-text-input-message"
@@ -384,7 +271,7 @@ exports[`text-input [snapshot] > variant: success 1`] = `
     <span
       aria-live="polite"
       class="vesper-typography vesper-typography-label-xs vesper-text-input-message-text"
-      id="_r_p_"
+      id="_r_q_"
     >
       Message text
     </span>
@@ -400,27 +287,11 @@ exports[`text-input [snapshot] > variant: warning 1`] = `
     class="vesper-text-input-field-wrapper"
   >
     <input
-      aria-describedby="_r_o_"
+      aria-describedby="_r_p_"
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
       placeholder=" "
       type="text"
     />
-    <button
-      aria-label="Clear text input"
-      class="vesper-text-input-icon"
-      type="button"
-    >
-      <svg
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 11.1113L8.88867 8L8 8.88867L11.1113 12L8 15.1113L8.88867 16L12 12.8887L15.1113 16L16 15.1113L12.8887 12L16 8.88867L15.1113 8L12 11.1113Z"
-          fill="currentColor"
-        />
-      </svg>
-    </button>
   </div>
   <p
     class="vesper-text-input-message"
@@ -444,7 +315,7 @@ exports[`text-input [snapshot] > variant: warning 1`] = `
     <span
       aria-live="polite"
       class="vesper-typography vesper-typography-label-xs vesper-text-input-message-text"
-      id="_r_o_"
+      id="_r_p_"
     >
       Message text
     </span>
@@ -480,22 +351,6 @@ exports[`text-input [snapshot] > with icon 1`] = `
       placeholder=" "
       type="text"
     />
-    <button
-      aria-label="Clear text input"
-      class="vesper-text-input-icon"
-      type="button"
-    >
-      <svg
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 11.1113L8.88867 8L8 8.88867L11.1113 12L8 15.1113L8.88867 16L12 12.8887L15.1113 16L16 15.1113L12.8887 12L16 8.88867L15.1113 8L12 11.1113Z"
-          fill="currentColor"
-        />
-      </svg>
-    </button>
   </div>
 </div>
 `;
@@ -520,22 +375,6 @@ exports[`text-input [snapshot] > with label 1`] = `
         placeholder=" "
         type="text"
       />
-      <button
-        aria-label="Clear text input"
-        class="vesper-text-input-icon"
-        type="button"
-      >
-        <svg
-          fill="none"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 11.1113L8.88867 8L8 8.88867L11.1113 12L8 15.1113L8.88867 16L12 12.8887L15.1113 16L16 15.1113L12.8887 12L16 8.88867L15.1113 8L12 11.1113Z"
-            fill="currentColor"
-          />
-        </svg>
-      </button>
     </div>
   </label>
 </div>

@@ -270,7 +270,11 @@ export function TextInput(props: TextInputProps) {
   const input = (
     <div className="vesper-text-input-field-wrapper">
       {iconLeft && !multiline && (
-        <TextInputIcon ariaLabel={iconLeftAriaLabel} onClick={iconLeftOnClick}>
+        <TextInputIcon
+          ariaLabel={iconLeftAriaLabel}
+          onClick={iconLeftOnClick}
+          disabled={disabled}
+        >
           {iconLeft}
         </TextInputIcon>
       )}
@@ -333,6 +337,7 @@ export function TextInput(props: TextInputProps) {
         <TextInputIcon
           ariaLabel={iconRightAriaLabel}
           onClick={iconRightOnClick}
+          disabled={disabled}
         >
           {iconRight}
         </TextInputIcon>
@@ -393,16 +398,19 @@ function TextInputIcon({
   ariaLabel,
   onClick,
   children,
+  disabled,
 }: {
   ariaLabel?: string;
   onClick?(e: MouseEvent<HTMLButtonElement>): void;
   children: ReactNode;
+  disabled?: boolean;
 }) {
   if (onClick) {
     return (
       <button
         aria-label={ariaLabel}
         onClick={onClick}
+        disabled={disabled}
         type="button"
         className="vesper-text-input-icon"
       >
