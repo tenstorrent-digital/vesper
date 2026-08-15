@@ -8,22 +8,27 @@ const meta = {
   argTypes: {
     iconLeft: {
       control: "boolean",
-      name: "iconLeft (no effect on multiline inputs)",
+      description: "no effect on multiline inputs",
     },
     iconLeftAriaLabel: { table: { disable: true } },
     iconLeftOnClick: { table: { disable: true } },
     iconRight: {
       control: "boolean",
-      name: "iconRight (no effect on multiline inputs)",
+      description: "no effect on multiline inputs",
     },
     iconRightAriaLabel: { table: { disable: true } },
     iconRightOnClick: { table: { disable: true } },
     height: {
       control: "number",
-      name: "height (only affects multiline inputs)",
+      name: "height",
+      description: "only affects multiline inputs",
     },
     type: { table: { disable: true } },
     inputRef: { table: { disable: true } },
+    prefix: {
+      control: "boolean",
+      description: "no effect on multiline inputs",
+    },
   },
 } satisfies Meta<typeof TextInput>;
 
@@ -43,6 +48,12 @@ export const Playground: Story = {
     message: "This is a message you can display under the input.",
     multiline: false,
     height: 104 as unknown as undefined,
+    prefix: {
+      options: ["+1", "+44", "+51"],
+      name: "area-code",
+      ariaLabel: "Area code",
+      defaultValue: "+1",
+    },
   },
   render: (props) => {
     if (props.multiline) {

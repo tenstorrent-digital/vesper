@@ -96,6 +96,9 @@
     width: 0.875rem;
     height: 0.875rem;
   }
+  .vesper-text-input-prefix {
+    margin-left: calc(var(--vesper-spacing-1) * -1);
+  }
   .vesper-text-input-field {
     padding: var(--vesper-spacing-1) 0;
   }
@@ -112,9 +115,16 @@
     width: 1rem;
     height: 1rem;
   }
+  .vesper-text-input-prefix {
+    margin-left: calc(var(--vesper-spacing-1) * -1.5);
+  }
   .vesper-text-input-field {
     padding: var(--vesper-spacing-2) 0;
   }
+}
+
+.vesper-text-input-icon + .vesper-text-input-prefix {
+  margin-left: 0;
 }
 
 .vesper-text-input-lg {
@@ -127,6 +137,9 @@
   .vesper-text-input-icon {
     width: 1.25rem;
     height: 1.25rem;
+  }
+  .vesper-text-input-prefix {
+    margin-left: 0;
   }
   .vesper-text-input-field {
     padding: var(--vesper-spacing-3) 0;

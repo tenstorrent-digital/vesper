@@ -6,9 +6,15 @@ import {
   type ReactNode,
   type RefObject,
   useId,
+  useState,
 } from "react";
+import { Select } from "@base-ui/react/select";
 
+import { Chip, ChipSize } from "@/components/chip/chip";
 import {
+  CaretDown,
+  CaretUp,
+  Checkmark,
   ErrorSolid,
   InfoSolid,
   SuccessSolid,
@@ -20,6 +26,8 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import { getPortalContainer } from "@/utils/getPortalContainer";
+import { useBaseRemSize } from "@/utils/useBaseRemSize";
 
 export const TEXT_INPUT_SIZES = ["sm", "md", "lg"] as const;
 
@@ -113,11 +121,22 @@ export type MultiLineTextInputProps = TextInputBaseProps &
     iconRight?: never;
     iconRightOnClick?: never;
     iconRightAriaLabel?: never;
+    prefix?: never;
     type?: never;
   } & { [P in InputOnlyPropTypes]?: never };
 
+type TextInputPrefixProps = {
+  ariaLabel?: string;
+  name?: string;
+  value?: string;
+  placeholder?: string;
+  defaultValue?: string;
+  options: (string | { value: string; label: string })[];
+  onChange?(value: string): void;
+};
+
 export type SingleLineTextInputProps = TextInputBaseProps &
-  Omit<ComponentProps<"div">, ForwardedPropTypes> &
+  Omit<ComponentProps<"div">, ForwardedPropTypes | "prefix"> &
   Pick<ComponentProps<"input">, ForwardedPropTypes | InputOnlyPropTypes> & {
     /** When false or omitted, renders a single-line `<input>` element. @default false */
     multiline?: false;
@@ -146,6 +165,7 @@ export type SingleLineTextInputProps = TextInputBaseProps &
       | "week"
       | "month"
       | "time";
+    prefix?: TextInputPrefixProps;
   };
 
 export type TextInputProps = SingleLineTextInputProps | MultiLineTextInputProps;
@@ -198,6 +218,7 @@ export function TextInput(props: TextInputProps) {
     iconRightAriaLabel,
     inputRef,
     message,
+    prefix,
     label,
     type = "text",
     variant = "default",
@@ -277,6 +298,15 @@ export function TextInput(props: TextInputProps) {
         >
           {iconLeft}
         </TextInputIcon>
+      )}
+      {prefix && !multiline && (
+        <TextInputPrefix
+          {...prefix}
+          disabled={disabled}
+          required={required}
+          form={form}
+          size={size}
+        />
       )}
       <Typography
         {...(multiline
@@ -423,5 +453,104 @@ function TextInputIcon({
     <span aria-label={ariaLabel} className="vesper-text-input-icon">
       {children}
     </span>
+  );
+}
+
+const TEXT_INPUT_CHIP_SIZES: { [key in TextInputSize]: ChipSize } = {
+  lg: "md",
+  md: "md",
+  sm: "sm",
+};
+
+function TextInputPrefix({
+  options,
+  defaultValue,
+  name,
+  onChange,
+  value,
+  disabled,
+  required,
+  placeholder,
+  form,
+  ariaLabel,
+  size,
+}: TextInputPrefixProps & {
+  disabled?: boolean;
+  required?: boolean;
+  form?: string;
+  size: TextInputSize;
+}) {
+  const [open, setOpen] = useState(false);
+  const [ref, setRef] = useState<HTMLButtonElement | null>(null);
+  const portalContainer = getPortalContainer(undefined, ref);
+
+  const baseRemSize = useBaseRemSize();
+
+  const items = options.map((option) =>
+    typeof option === "string" ? { value: option, label: option } : option,
+  );
+
+  return (
+    <Select.Root
+      items={items}
+      value={value}
+      defaultValue={defaultValue}
+      onValueChange={(next) => {
+        if (next !== null) onChange?.(next);
+      }}
+      disabled={disabled}
+      name={name}
+      required={required}
+      form={form}
+      open={open}
+      onOpenChange={setOpen}
+    >
+      <Select.Trigger
+        ref={setRef}
+        className="vesper-text-input-prefix"
+        disabled={disabled}
+        aria-label={ariaLabel}
+        render={
+          <Chip
+            disabled={disabled}
+            size={TEXT_INPUT_CHIP_SIZES[size]}
+            iconRight={open ? <CaretUp /> : <CaretDown />}
+            selected={open}
+            variant={open ? "contrast" : "default"}
+          />
+        }
+      >
+        <Select.Value placeholder={placeholder} />
+      </Select.Trigger>
+      <Select.Portal container={portalContainer}>
+        <Select.Positioner
+          side="bottom"
+          align="start"
+          alignItemWithTrigger={false}
+          sideOffset={12 * (baseRemSize / 16)}
+        >
+          <Select.Popup className="vesper-select-content">
+            <Select.List className="vesper-select-viewport">
+              {items.map((item) => {
+                return (
+                  <Select.Item
+                    key={item.value}
+                    value={item.value}
+                    className="vesper-select-item"
+                  >
+                    <Select.ItemText render={<Typography variant="label-md" />}>
+                      {item.label}
+                    </Select.ItemText>
+                    <Select.ItemIndicator className="vesper-select-item-checkmark">
+                      <Checkmark />
+                    </Select.ItemIndicator>
+                  </Select.Item>
+                );
+              })}
+            </Select.List>
+          </Select.Popup>
+        </Select.Positioner>
+      </Select.Portal>
+    </Select.Root>
   );
 }
