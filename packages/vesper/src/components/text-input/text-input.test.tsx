@@ -1,4 +1,4 @@
-import { cleanup, render } from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
@@ -12,6 +12,29 @@ import {
 } from "@/components/text-input/text-input";
 
 import "@/styles/test.css";
+
+const PREFIX_OPTIONS = ["+1", "+44", "+51"];
+
+const PREFIX_LABELLED_OPTIONS = [
+  { value: "us", label: "+1" },
+  { value: "uk", label: "+44" },
+  { value: "pe", label: "+51" },
+];
+
+/** The chip size rendered by the prefix for each text input size */
+const PREFIX_CHIP_SIZES = { sm: "sm", md: "md", lg: "md" } as const;
+
+/** Opens the prefix dropdown and resolves with its rendered options */
+async function openPrefix(trigger: HTMLElement) {
+  await userEvent.click(trigger);
+  await waitFor(() => {
+    expect(document.querySelector(".vesper-select-content")).not.toBeNull();
+  });
+
+  return Array.from(
+    document.querySelectorAll<HTMLElement>(".vesper-select-item"),
+  );
+}
 
 const SNAPSHOT_CASES: (TextInputProps & { name: string })[] = [
   // One per variant
@@ -30,6 +53,27 @@ const SNAPSHOT_CASES: (TextInputProps & { name: string })[] = [
   { name: "multiline", multiline: true, size: "lg" as const },
   { name: "with icon", iconLeft: <Globe />, size: "lg" as const },
   { name: "with label", label: "Label text", size: "lg" as const },
+  {
+    name: "with prefix",
+    prefix: {
+      options: PREFIX_OPTIONS,
+      ariaLabel: "Area code",
+      name: "area-code",
+      defaultValue: "+1",
+    },
+    size: "lg" as const,
+  },
+  {
+    name: "with prefix, disabled",
+    prefix: {
+      options: PREFIX_OPTIONS,
+      ariaLabel: "Area code",
+      name: "area-code",
+      defaultValue: "+1",
+    },
+    disabled: true,
+    size: "lg" as const,
+  },
   { name: "disabled", disabled: true, size: "lg" as const },
   {
     name: "disabled, multiline",
@@ -271,6 +315,315 @@ describe("text-input [unit]", () => {
     expect(el).toHaveClass("vesper-text-input-default");
     expect(el).toHaveClass("custom-class");
   });
+
+  describe("prefix", () => {
+    test("no prefix is rendered by default", () => {
+      const result = render(<TextInput />);
+
+      expect(result.queryByRole("combobox")).toBeNull();
+      expect(
+        result.container.querySelector(".vesper-text-input-prefix"),
+      ).toBeNull();
+    });
+
+    test("renders a prefix select trigger when provided", () => {
+      const result = render(
+        <TextInput
+          prefix={{ options: PREFIX_OPTIONS, ariaLabel: "Area code" }}
+        />,
+      );
+
+      const trigger = result.getByRole("combobox");
+      expect(trigger).toHaveClass("vesper-text-input-prefix");
+      // the trigger renders as a Chip
+      expect(trigger).toHaveClass("vesper-chip");
+      expect(
+        trigger.closest(".vesper-text-input-field-wrapper"),
+      ).not.toBeNull();
+    });
+
+    test("renders the prefix between the left icon and the input", () => {
+      const result = render(
+        <TextInput
+          iconLeft={<Globe />}
+          prefix={{ options: PREFIX_OPTIONS, ariaLabel: "Area code" }}
+        />,
+      );
+
+      const wrapper = result.container.querySelector(
+        ".vesper-text-input-field-wrapper",
+      )!;
+      const children = Array.from(wrapper.children);
+      const indexOf = (selector: string) =>
+        children.indexOf(wrapper.querySelector(selector)!);
+
+      expect(indexOf(".vesper-text-input-icon")).toBeLessThan(
+        indexOf(".vesper-text-input-prefix"),
+      );
+      expect(indexOf(".vesper-text-input-prefix")).toBeLessThan(
+        indexOf(".vesper-text-input-field"),
+      );
+    });
+
+    test("no prefix is rendered when multiline", () => {
+      // `prefix` is not assignable to multiline inputs, so the props are cast
+      // to assert that the runtime guard matches the prop types
+      const props = {
+        multiline: true,
+        prefix: { options: PREFIX_OPTIONS },
+      } as unknown as TextInputProps;
+      const result = render(<TextInput {...props} />);
+
+      expect(result.getByRole("textbox").tagName).toBe("TEXTAREA");
+      expect(result.queryByRole("combobox")).toBeNull();
+    });
+
+    TEXT_INPUT_SIZES.forEach((size) => {
+      test(`${size} input renders a ${PREFIX_CHIP_SIZES[size]} prefix chip`, () => {
+        const result = render(
+          <TextInput size={size} prefix={{ options: PREFIX_OPTIONS }} />,
+        );
+
+        expect(result.getByRole("combobox")).toHaveClass(
+          `vesper-chip-${PREFIX_CHIP_SIZES[size]}`,
+        );
+      });
+    });
+
+    test("renders string options", async () => {
+      const result = render(<TextInput prefix={{ options: PREFIX_OPTIONS }} />);
+
+      const items = await openPrefix(result.getByRole("combobox"));
+      expect(items).toHaveLength(3);
+      expect(items.map((item) => item.textContent)).toEqual(PREFIX_OPTIONS);
+    });
+
+    test("renders labelled options", async () => {
+      const result = render(
+        <TextInput prefix={{ options: PREFIX_LABELLED_OPTIONS }} />,
+      );
+
+      const items = await openPrefix(result.getByRole("combobox"));
+      expect(items).toHaveLength(3);
+      expect(items.map((item) => item.textContent)).toEqual([
+        "+1",
+        "+44",
+        "+51",
+      ]);
+    });
+
+    test("selecting an option calls onChange with the option value", async () => {
+      const onChange = vi.fn();
+      const result = render(
+        <TextInput prefix={{ options: PREFIX_LABELLED_OPTIONS, onChange }} />,
+      );
+
+      const trigger = result.getByRole("combobox");
+      const items = await openPrefix(trigger);
+      await userEvent.click(items[1]!);
+
+      await waitFor(() => {
+        // the value is reported, and the label is displayed
+        expect(onChange).toHaveBeenCalledExactlyOnceWith("uk");
+        expect(trigger).toHaveTextContent("+44");
+      });
+    });
+
+    test("selecting an option closes the dropdown", async () => {
+      const result = render(<TextInput prefix={{ options: PREFIX_OPTIONS }} />);
+
+      const trigger = result.getByRole("combobox");
+      const items = await openPrefix(trigger);
+      await userEvent.click(items[0]!);
+
+      await waitFor(() => {
+        expect(trigger).not.toHaveAttribute("data-popup-open");
+      });
+    });
+
+    test("renders the prefix placeholder until an option is selected", async () => {
+      const result = render(
+        <TextInput prefix={{ options: PREFIX_OPTIONS, placeholder: "Code" }} />,
+      );
+
+      const trigger = result.getByRole("combobox");
+      expect(trigger).toHaveTextContent("Code");
+
+      const items = await openPrefix(trigger);
+      await userEvent.click(items[2]!);
+
+      await waitFor(() => {
+        expect(trigger).toHaveTextContent("+51");
+        expect(trigger).not.toHaveTextContent("Code");
+      });
+    });
+
+    test("prefix defaultValue selects the matching option", async () => {
+      const result = render(
+        <TextInput prefix={{ options: PREFIX_OPTIONS, defaultValue: "+44" }} />,
+      );
+
+      const trigger = result.getByRole("combobox");
+      expect(trigger).toHaveTextContent("+44");
+
+      const items = await openPrefix(trigger);
+      expect(items[1]).toHaveAttribute("data-selected");
+      expect(items[0]).not.toHaveAttribute("data-selected");
+      expect(items[2]).not.toHaveAttribute("data-selected");
+    });
+
+    test("prefix value is controlled when supplied", async () => {
+      const onChange = vi.fn();
+      const props = { options: PREFIX_OPTIONS, onChange };
+      const result = render(<TextInput prefix={{ ...props, value: "+1" }} />);
+
+      const trigger = result.getByRole("combobox");
+      const items = await openPrefix(trigger);
+      await userEvent.click(items[2]!);
+
+      await waitFor(() => {
+        expect(onChange).toHaveBeenCalledExactlyOnceWith("+51");
+      });
+    });
+
+    test("prefix ariaLabel is applied to the trigger", () => {
+      const result = render(
+        <TextInput
+          prefix={{ options: PREFIX_OPTIONS, ariaLabel: "Area code" }}
+        />,
+      );
+
+      expect(
+        result.getByRole("combobox", { name: "Area code" }),
+      ).not.toBeNull();
+    });
+
+    test("prefix chip reflects the open state", async () => {
+      const result = render(<TextInput prefix={{ options: PREFIX_OPTIONS }} />);
+
+      const trigger = result.getByRole("combobox");
+      expect(trigger).toHaveClass("vesper-chip-default");
+      expect(trigger).not.toHaveClass("vesper-chip-selected");
+
+      await openPrefix(trigger);
+
+      await waitFor(() => {
+        expect(trigger).toHaveClass("vesper-chip-contrast");
+        expect(trigger).toHaveClass("vesper-chip-selected");
+      });
+    });
+
+    test("prefix opens with the keyboard and closes with Escape", async () => {
+      const result = render(<TextInput prefix={{ options: PREFIX_OPTIONS }} />);
+
+      const trigger = result.getByRole("combobox");
+      trigger.focus();
+      await userEvent.keyboard("{Enter}");
+      await waitFor(() => {
+        expect(trigger).toHaveAttribute("data-popup-open");
+      });
+
+      await userEvent.keyboard("{Escape}");
+      await waitFor(() => {
+        expect(trigger).not.toHaveAttribute("data-popup-open");
+      });
+    });
+
+    test("prefix is usable when the input has a label", async () => {
+      const result = render(
+        <TextInput
+          label="Phone number"
+          id="phone-number"
+          prefix={{ options: PREFIX_OPTIONS, ariaLabel: "Area code" }}
+        />,
+      );
+
+      const trigger = result.getByRole("combobox");
+      const items = await openPrefix(trigger);
+      await userEvent.click(items[1]!);
+
+      await waitFor(() => {
+        expect(trigger).toHaveTextContent("+44");
+      });
+    });
+
+    test("prefix is disabled when the input is disabled", async () => {
+      const result = render(
+        <TextInput disabled prefix={{ options: PREFIX_OPTIONS }} />,
+      );
+
+      const trigger = result.getByRole("combobox");
+      expect(trigger).toBeDisabled();
+      expect(trigger).toHaveClass("vesper-chip-disabled");
+
+      fireEvent.pointerDown(trigger);
+      fireEvent.click(trigger);
+      expect(trigger).not.toHaveAttribute("data-popup-open");
+      expect(document.querySelector(".vesper-select-content")).toBeNull();
+    });
+
+    test("prefix renders a hidden input", () => {
+      const result = render(
+        <TextInput
+          name="phone-number"
+          prefix={{
+            options: PREFIX_LABELLED_OPTIONS,
+            name: "area-code",
+            defaultValue: "uk",
+          }}
+        />,
+      );
+
+      expect(
+        result.container.querySelector("input[name='area-code']"),
+      ).toHaveValue("uk");
+    });
+
+    test("prefix inherits required prop", () => {
+      const result = render(
+        <form>
+          <TextInput
+            required
+            prefix={{ options: PREFIX_OPTIONS, name: "area-code" }}
+          />
+        </form>,
+      );
+
+      expect(
+        result.container.querySelector("input[name='area-code']"),
+      ).toBeRequired();
+      expect(result.getByRole("textbox")).toBeRequired();
+    });
+
+    test("prefix inherits form prop", () => {
+      const result = render(
+        <>
+          <form id="contact-form" />
+          <TextInput
+            form="contact-form"
+            prefix={{ options: PREFIX_OPTIONS, name: "area-code" }}
+          />
+        </>,
+      );
+
+      expect(
+        result.container.querySelector("input[name='area-code']"),
+      ).toHaveAttribute("form", "contact-form");
+    });
+
+    test("portals the prefix dropdown into the closest dialog ancestor", async () => {
+      const result = render(
+        <dialog open data-testid="dialog">
+          <TextInput prefix={{ options: PREFIX_OPTIONS }} />
+        </dialog>,
+      );
+
+      await openPrefix(result.getByRole("combobox"));
+
+      const content = document.querySelector(".vesper-select-content")!;
+      expect(result.getByTestId("dialog").contains(content)).toBe(true);
+    });
+  });
 });
 
 describe("text-input [snapshot]", () => {
@@ -314,6 +667,30 @@ describe("text-input [a11y]", () => {
 
       if (failsA11y) test.todo(label, testFn);
       else test(label, testFn);
+    });
+
+    [false, true].forEach((disabled) => {
+      const name = disabled ? "with prefix, disabled" : "with prefix";
+
+      const testFn = async () => {
+        const { container } = render(
+          <TextInput
+            label="Phone number"
+            disabled={disabled}
+            prefix={{
+              options: PREFIX_OPTIONS,
+              ariaLabel: "Area code",
+              defaultValue: "+1",
+            }}
+          />,
+        );
+        expect(await axe.run(container.firstChild!)).toHaveNoViolations();
+      };
+
+      // the prefix trigger renders `aria-pressed` (supplied by `Chip`) next to
+      // the `role="combobox"` applied by the underlying Base UI select trigger,
+      // which axe flags as an `aria-allowed-attr` violation
+      test.todo(`wcag2aaa (${name}, ${theme})`, testFn);
     });
   });
 });

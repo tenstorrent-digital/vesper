@@ -53,6 +53,7 @@ export const Playground: Story = {
       name: "area-code",
       ariaLabel: "Area code",
       defaultValue: "+1",
+      width: 58,
     },
   },
   render: (props) => {

@@ -133,6 +133,7 @@ type TextInputPrefixProps = {
   defaultValue?: string;
   options: (string | { value: string; label: string })[];
   onChange?(value: string): void;
+  width?: number;
 };
 
 export type SingleLineTextInputProps = TextInputBaseProps &
@@ -281,6 +282,8 @@ export function TextInput(props: TextInputProps) {
   } = props;
 
   const messageId = useId();
+  let inputId = useId();
+  if (id) inputId = id;
 
   // If an additional aria-describedby is supplied, this ensures that both ids get used
   const describedBy =
@@ -331,7 +334,7 @@ export function TextInput(props: TextInputProps) {
         minLength={minLength}
         maxLength={maxLength}
         readOnly={readOnly}
-        id={id}
+        id={inputId}
         placeholder={
           required && !label && placeholder.trim()
             ? `${placeholder.trim()} *`
@@ -389,7 +392,7 @@ export function TextInput(props: TextInputProps) {
       {label ? (
         <Typography
           as="label"
-          htmlFor={id}
+          htmlFor={inputId}
           variant="label-sm"
           className="vesper-text-input-label"
         >
@@ -474,6 +477,7 @@ function TextInputPrefix({
   form,
   ariaLabel,
   size,
+  width,
 }: TextInputPrefixProps & {
   disabled?: boolean;
   required?: boolean;
@@ -517,6 +521,12 @@ function TextInputPrefix({
             iconRight={open ? <CaretUp /> : <CaretDown />}
             selected={open}
             variant={open ? "contrast" : "default"}
+            aria-pressed={undefined}
+            style={
+              width
+                ? { flexShrink: 0, width: `calc(${width} * (1rem / 16))` }
+                : { flexShrink: 0 }
+            }
           />
         }
       >

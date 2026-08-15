@@ -24,8 +24,7 @@
   align-items: center;
   border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
   background: var(--vesper-tint-neutral-100);
-  &:has(.vesper-text-input-field:focus-visible),
-  &:has(.vesper-text-input-icon:focus) {
+  &:has(:focus-visible, .vesper-text-input-prefix[data-popup-open]) {
     border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
     box-shadow: var(--vesper-shadow-focus-ring);
     @media (forced-colors: active) {
