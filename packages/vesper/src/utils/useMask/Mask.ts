@@ -1,6 +1,6 @@
 import filter from "./utils/filter";
 import format from "./utils/format";
-import formatToReplacementObject from "./utils/formatToReplacementObject";
+import normalizeReplacement from "./utils/normalizeReplacementObject";
 import resolveSelection from "./utils/resolveSelection";
 import unformat from "./utils/unformat";
 import validate from "./utils/validate";
@@ -12,10 +12,7 @@ import * as utils from "./utils";
 function normalizeOptions(options: MaskOptions) {
   return {
     mask: options.mask ?? "",
-    replacement:
-      typeof options.replacement === "string"
-        ? formatToReplacementObject(options.replacement)
-        : (options.replacement ?? {}),
+    replacement: normalizeReplacement(options.replacement ?? {}),
   };
 }
 

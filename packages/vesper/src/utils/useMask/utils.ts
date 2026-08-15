@@ -1,7 +1,7 @@
 import _filter from "./utils/filter";
 import _format from "./utils/format";
 import _formatToParts from "./utils/formatToParts";
-import _formatToReplacementObject from "./utils/formatToReplacementObject";
+import normalizeReplacement from "./utils/normalizeReplacementObject";
 import _unformat from "./utils/unformat";
 import type { MaskPart, Overlap, Replacement } from "./types";
 
@@ -24,10 +24,7 @@ interface Options {
  * `format('1', { mask: '+__', replacement: { _: /\d/ } })` → "+1"
  */
 export function format(value: string, { mask, replacement }: Options): string {
-  const replacementObject =
-    typeof replacement === "string"
-      ? _formatToReplacementObject(replacement)
-      : replacement;
+  const replacementObject = normalizeReplacement(replacement);
 
   const regExp$1 = RegExp(`[^${Object.keys(replacementObject).join("")}]`, "g");
   const replacementChars = mask.replace(regExp$1, "");
@@ -54,10 +51,7 @@ export function unformat(
   value: string,
   { mask, replacement }: Options,
 ): string {
-  const replacementObject =
-    typeof replacement === "string"
-      ? _formatToReplacementObject(replacement)
-      : replacement;
+  const replacementObject = normalizeReplacement(replacement);
 
   const unformattedValue = _unformat(value, {
     mask,
@@ -98,10 +92,7 @@ export function formatToParts(
   value: string,
   { mask, replacement }: Options,
 ): MaskPart[] {
-  const replacementObject =
-    typeof replacement === "string"
-      ? _formatToReplacementObject(replacement)
-      : replacement;
+  const replacementObject = normalizeReplacement(replacement);
 
   const formattedValue = format(value, {
     mask,
@@ -167,10 +158,7 @@ export function generatePattern(
     );
   }
 
-  const replacementObject =
-    typeof replacement === "string"
-      ? _formatToReplacementObject(replacement)
-      : replacement;
+  const replacementObject = normalizeReplacement(replacement);
   const isPartial = overlap === "partial" || overlap === "partial-inexact";
   const isExact = overlap === "full" || overlap === "partial";
 
