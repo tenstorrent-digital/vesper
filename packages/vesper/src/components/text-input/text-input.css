@@ -99,7 +99,7 @@
     margin-left: calc(var(--vesper-spacing-1) * -1);
   }
   .vesper-text-input-field {
-    padding: var(--vesper-spacing-1) 0;
+    padding: calc(var(--vesper-spacing-micro) * 6.9) 0;
   }
 }
 
@@ -118,7 +118,7 @@
     margin-left: calc(var(--vesper-spacing-1) * -1.5);
   }
   .vesper-text-input-field {
-    padding: var(--vesper-spacing-2) 0;
+    padding: calc(var(--vesper-spacing-micro) * 10.2) 0;
   }
 }
 
@@ -141,7 +141,7 @@
     margin-left: 0;
   }
   .vesper-text-input-field {
-    padding: var(--vesper-spacing-3) 0;
+    padding: calc(var(--vesper-spacing-micro) * 14.4) 0;
   }
 }
 
@@ -165,7 +165,6 @@
     height: auto;
   }
   textarea {
-    height: 6.5rem;
     resize: none;
     -ms-overflow-style: none;
     scrollbar-width: none;
