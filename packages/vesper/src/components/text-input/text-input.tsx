@@ -234,7 +234,7 @@ export function TextInput(props: TextInputProps) {
     pattern,
     list,
     // props that may only get forwarded to a textarea element
-    height,
+    height = 104,
     // props that should get forwarded to input & textarea elements
     defaultValue,
     inputMode,

@@ -53,6 +53,7 @@ export const Playground: Story = {
     multiline: false,
     height: 104 as unknown as undefined,
     prefix: false as unknown as TextInputPrefixProps,
+    mask: "",
   },
   render: (props) => {
     if (props.multiline) {
