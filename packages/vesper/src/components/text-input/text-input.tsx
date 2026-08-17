@@ -29,7 +29,8 @@ import {
 import { cn } from "@/utils/cn";
 import { getPortalContainer } from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/useBaseRemSize";
-import { useInputMask } from "@/utils/useInputMask";
+
+import { useInputMask } from "./useInputMask";
 
 export const TEXT_INPUT_SIZES = ["sm", "md", "lg"] as const;
 
