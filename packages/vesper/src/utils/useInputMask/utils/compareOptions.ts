@@ -7,12 +7,16 @@ export function compareOptions(a: MaskOptions, b: MaskOptions) {
   if (a === undefined && b !== undefined) return false;
   if (a.mask !== b.mask) return false;
 
+  if (a.replacement === undefined && b.replacement === undefined) {
+    return true;
+  }
+
   if (typeof a.replacement === "string" && typeof b.replacement === "string") {
     return a.replacement === b.replacement;
   }
 
-  if (a.replacement === undefined && b.replacement === undefined) {
-    return true;
+  if (a.replacement instanceof RegExp && b.replacement instanceof RegExp) {
+    return compareRegExps(a.replacement, b.replacement);
   }
 
   if (typeof a.replacement === "object" && typeof b.replacement === "object") {
@@ -28,9 +32,14 @@ export function compareOptions(a: MaskOptions, b: MaskOptions) {
       const valueB = replacementB[key];
       if (!valueA || !valueB) return false;
 
-      return valueA.source === valueB.source && valueA.flags === valueB.flags;
+      return compareRegExps(valueA, valueB);
     });
   }
 
   return false;
+}
+
+/** Compare whether RegExps are functionally identical or not. @returns boolean */
+function compareRegExps(a: RegExp, b: RegExp) {
+  return a.source === b.source && a.flags === b.flags;
 }

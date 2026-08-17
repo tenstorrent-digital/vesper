@@ -171,7 +171,11 @@ export type SingleLineTextInputProps = TextInputBaseProps &
       | "time";
     prefix?: TextInputPrefixProps;
     mask?:
-      string | { format: string; replace: string | { [key: string]: RegExp } };
+      | string
+      | {
+          format: string;
+          replace: RegExp | string | { [key: string]: RegExp };
+        };
   };
 
 export type TextInputProps = SingleLineTextInputProps | MultiLineTextInputProps;
