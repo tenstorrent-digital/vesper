@@ -1,6 +1,6 @@
 import type { Replacement } from "../types";
 
-export default function normalizeReplacement(
+export function normalizeReplacement(
   replacement: string | Replacement,
 ): Replacement {
   if (typeof replacement === "string") {

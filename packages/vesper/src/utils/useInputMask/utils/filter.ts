@@ -1,19 +1,14 @@
 import type { Replacement } from "../types";
 
-interface Options {
-  replacementChars: string;
-  replacement: Replacement;
-}
-
-/**
- * Фильтрует символы для соответствия значениям `replacement`
- * @param value
- * @param options
- * @returns
- */
-export default function filter(
+export function filter(
   value: string,
-  { replacementChars, replacement }: Options,
+  {
+    replacementChars,
+    replacement,
+  }: {
+    replacementChars: string;
+    replacement: Replacement;
+  },
 ): string {
   let __replacementChars = replacementChars;
 

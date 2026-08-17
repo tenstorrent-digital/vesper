@@ -1,19 +1,8 @@
-import type { Replacement } from "../types";
+import type { NormalizedOptions } from "../types";
 
-interface Options {
-  mask: string;
-  replacement: Replacement;
-}
-
-/**
- * Форматирует значение по заданной маске
- * @param input
- * @param options
- * @returns
- */
-export default function format(
+export function format(
   input: string,
-  { mask, replacement }: Options,
+  { mask, replacement }: NormalizedOptions,
 ): string {
   let position = 0;
   let formattedValue = "";

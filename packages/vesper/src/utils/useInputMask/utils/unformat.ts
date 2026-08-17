@@ -1,21 +1,16 @@
-import type { Replacement } from "../types";
+import type { NormalizedOptions } from "../types";
 
-interface Options {
-  start?: number;
-  end?: number;
-  mask: string;
-  replacement: Replacement;
-}
-
-/**
- *
- * @param formattedValue
- * @param options
- * @returns
- */
-export default function unformat(
+export function unformat(
   formattedValue: string,
-  { start = 0, end, mask, replacement }: Options,
+  {
+    start = 0,
+    end,
+    options: { mask, replacement },
+  }: {
+    start?: number;
+    end?: number;
+    options: NormalizedOptions;
+  },
 ): string {
   const slicedFormattedValue = formattedValue.slice(start, end);
   const slicedMask = mask.slice(start, end);

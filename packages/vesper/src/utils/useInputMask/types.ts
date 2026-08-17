@@ -63,3 +63,8 @@ export interface MaskOptions {
   /** Sets the characters replaced in the mask, where "key" is the replaced character, "value" is the regular expression to which the input character must match (see «[Replacement](https://github.com/GoncharukOrg/react-input/tree/main/packages/mask#replacement)»). It is possible to pass the replacement character as a string, then `replacement="_"` will default to `replacement={{ _: /./ }}`. Keys are ignored as you type. */
   replacement?: string | Replacement;
 }
+
+export interface NormalizedOptions {
+  mask: string;
+  replacement: Replacement;
+}

@@ -6,22 +6,15 @@ const createError = (ErrorType: ErrorConstructor) => {
   };
 };
 
-interface ValidateParam {
-  initialValue: string;
-  mask: string;
-  replacement: Replacement;
-}
-
-/**
- * Выводит в консоль сообщения об ошибках.
- * Сообщения выводятся на этапе инициализации элеменета.
- * @param param
- */
-export default function validate({
+export function validate({
   initialValue,
   mask,
   replacement,
-}: ValidateParam) {
+}: {
+  initialValue: string;
+  mask: string;
+  replacement: Replacement;
+}) {
   if (initialValue.length > mask.length) {
     console.error(
       createError(Error)(
@@ -30,6 +23,7 @@ export default function validate({
         "To initialize an unmasked value, use the `format` utility. More details https://github.com/GoncharukOrg/react-input/tree/main/packages/mask#initializing-the-value.",
       ),
     );
+    return false;
   }
 
   const invalidReplacementKeys = Object.keys(replacement).filter(
@@ -44,6 +38,7 @@ export default function validate({
         "To initialize an unmasked value, use the `format` utility. More details https://github.com/GoncharukOrg/react-input/tree/main/packages/mask#initializing-the-value.",
       ),
     );
+    return false;
   }
 
   const value = mask.slice(0, initialValue.length);
@@ -74,5 +69,8 @@ export default function validate({
         "To initialize an unmasked value, use the `format` utility. More details https://github.com/GoncharukOrg/react-input/tree/main/packages/mask#initializing-the-value.",
       ),
     );
+    return false;
   }
+
+  return true;
 }

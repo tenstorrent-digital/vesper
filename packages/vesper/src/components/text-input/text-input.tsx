@@ -6,6 +6,7 @@ import {
   type ReactNode,
   type RefObject,
   useId,
+  useImperativeHandle,
   useState,
 } from "react";
 import { Select } from "@base-ui/react/select";
@@ -28,6 +29,7 @@ import {
 import { cn } from "@/utils/cn";
 import { getPortalContainer } from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/useBaseRemSize";
+import { useInputMask } from "@/utils/useInputMask";
 
 export const TEXT_INPUT_SIZES = ["sm", "md", "lg"] as const;
 
@@ -227,6 +229,7 @@ export function TextInput(props: TextInputProps) {
     type = "text",
     variant = "default",
     size = "md",
+    mask,
     // props that may only get forwarded to an input element
     min,
     max,
@@ -295,6 +298,22 @@ export function TextInput(props: TextInputProps) {
       .filter(Boolean)
       .join(" ") || undefined;
 
+  const [innerRef, setInnerRef] = useState<
+    HTMLInputElement | HTMLTextAreaElement | null
+  >(null);
+
+  useImperativeHandle<
+    HTMLInputElement | HTMLTextAreaElement,
+    HTMLInputElement | HTMLTextAreaElement
+  >(inputRef, () => innerRef!);
+
+  useInputMask(
+    innerRef,
+    typeof mask === "string"
+      ? { mask, replacement: "_" }
+      : { mask: mask?.format, replacement: mask?.replace },
+  );
+
   const input = (
     <div className="vesper-text-input-field-wrapper">
       {iconLeft && !multiline && (
@@ -322,7 +341,7 @@ export function TextInput(props: TextInputProps) {
               style: { height: `${height / 16}rem` },
             }
           : { as: "input", type, list, multiple, pattern, min, max })}
-        ref={inputRef}
+        ref={setInnerRef}
         variant={TEXT_INPUT_TYPOGRAPHY[size]}
         aria-describedby={describedBy}
         aria-label={ariaLabel}

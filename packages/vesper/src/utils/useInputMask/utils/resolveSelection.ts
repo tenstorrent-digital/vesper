@@ -1,30 +1,23 @@
-import type { InputType, Replacement } from "../types";
+import type { InputType, NormalizedOptions } from "../types";
 
-import formatToParts from "./formatToParts";
+import { formatToParts } from "./formatToParts";
 
 interface ResolveSelectionParam {
   inputType: InputType;
   value: string;
   addedValue: string;
   beforeChangeValue: string;
-  mask: string;
-  replacement: Replacement;
+  options: NormalizedOptions;
 }
 
-/**
- * Определяет позицию курсора для последующей установки
- * @param param
- * @returns
- */
-export default function resolveSelection({
+export function resolveSelection({
   inputType,
   value,
   addedValue,
   beforeChangeValue,
-  mask,
-  replacement,
+  options,
 }: ResolveSelectionParam): number {
-  const parts = formatToParts(value, { mask, replacement });
+  const parts = formatToParts(value, options);
   const unformattedChars = parts.filter(({ type }) => type === "input");
 
   const lastAddedValueIndex =
@@ -56,11 +49,10 @@ export default function resolveSelection({
       return firstAfterChangeValueIndex;
   }
 
-  // Находим первый индекс символа замены указанного в свойстве `replacement`
   const replacementCharIndex = value
     .split("")
     .findIndex((char) =>
-      Object.prototype.hasOwnProperty.call(replacement, char),
+      Object.prototype.hasOwnProperty.call(options.replacement, char),
     );
 
   return replacementCharIndex !== -1 ? replacementCharIndex : value.length;
