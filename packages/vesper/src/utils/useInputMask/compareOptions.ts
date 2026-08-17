@@ -1,4 +1,4 @@
-import { MaskOptions } from "../types";
+import { MaskOptions } from "./types";
 
 /** Compare whether two sets of options are functionally identical or not. @returns boolean */
 export function compareOptions(a: MaskOptions, b: MaskOptions) {

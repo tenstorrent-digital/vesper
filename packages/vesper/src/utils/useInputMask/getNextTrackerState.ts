@@ -1,12 +1,11 @@
+import { getValueChanges } from "./getValueChanges";
+import { resolveSelection } from "./resolveSelection";
 import type {
   CacheState,
   InputType,
   NormalizedOptions,
   TrackerState,
-} from "../types";
-
-import { getValueChanges } from "./getValueChanges";
-import { resolveSelection } from "./resolveSelection";
+} from "./types";
 
 export function getNextTrackerState({
   inputType,

@@ -1,13 +1,12 @@
-import { SyntheticChangeError } from "../SyntheticChangeError";
+import { filter } from "./filter";
+import { format } from "./format";
+import { SyntheticChangeError } from "./SyntheticChangeError";
 import type {
   CacheState,
   InputType,
   NormalizedOptions,
   TrackerState,
-} from "../types";
-
-import { filter } from "./filter";
-import { format } from "./format";
+} from "./types";
 import { unformat } from "./unformat";
 
 export function getValueChanges({

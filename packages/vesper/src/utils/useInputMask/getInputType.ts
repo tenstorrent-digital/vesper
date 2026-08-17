@@ -1,5 +1,5 @@
-import { SyntheticChangeError } from "../SyntheticChangeError";
-import type { InputType, TrackerState } from "../types";
+import { SyntheticChangeError } from "./SyntheticChangeError";
+import type { InputType, TrackerState } from "./types";
 
 export function getInputType({
   event,

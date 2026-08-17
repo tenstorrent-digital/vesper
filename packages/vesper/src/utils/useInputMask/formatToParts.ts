@@ -1,4 +1,4 @@
-import type { MaskPart, NormalizedOptions } from "../types";
+import type { MaskPart, NormalizedOptions } from "./types";
 
 export function formatToParts(
   formattedValue: string,

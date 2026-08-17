@@ -1,4 +1,4 @@
-import type { NormalizedOptions } from "../types";
+import type { NormalizedOptions } from "./types";
 
 export function unformat(
   formattedValue: string,

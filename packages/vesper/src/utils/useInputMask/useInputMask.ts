@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useRef } from "react";
 
-import { compareOptions } from "./utils/compareOptions";
-import { fireReactOnChange } from "./utils/fireReactOnChange";
-import { getInputType } from "./utils/getInputType";
-import { getNextTrackerState } from "./utils/getNextTrackerState";
-import { normalizeOptions } from "./utils/normalizeOptions";
-import { validate } from "./utils/validate";
+import { fireReactOnChange } from "@/utils/fireReactOnChange";
+
+import { compareOptions } from "./compareOptions";
+import { getInputType } from "./getInputType";
+import { getNextTrackerState } from "./getNextTrackerState";
+import { normalizeOptions } from "./normalizeOptions";
 import { SyntheticChangeError } from "./SyntheticChangeError";
 import type {
   CacheState,
@@ -13,6 +13,7 @@ import type {
   TimeoutState,
   TrackerState,
 } from "./types";
+import { validate } from "./validate";
 
 const ALLOWED_TYPES = ["text", "email", "tel", "search", "url"];
 

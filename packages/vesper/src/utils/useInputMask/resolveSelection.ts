@@ -1,6 +1,5 @@
-import type { InputType, NormalizedOptions } from "../types";
-
 import { formatToParts } from "./formatToParts";
+import type { InputType, NormalizedOptions } from "./types";
 
 export function resolveSelection({
   inputType,

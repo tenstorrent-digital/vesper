@@ -1,4 +1,4 @@
-import type { Replacement } from "../types";
+import type { Replacement } from "./types";
 
 export function normalizeReplacement(
   replacement: string | RegExp | Replacement,

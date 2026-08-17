@@ -1,4 +1,4 @@
-import type { Replacement } from "../types";
+import type { Replacement } from "./types";
 
 const createError = (ErrorType: ErrorConstructor) => {
   return (...messages: string[]) => {

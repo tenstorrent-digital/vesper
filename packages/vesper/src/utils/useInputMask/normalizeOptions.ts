@@ -1,6 +1,5 @@
-import { MaskOptions, NormalizedOptions } from "../types";
-
 import { normalizeReplacement } from "./normalizeReplacement";
+import { MaskOptions, NormalizedOptions } from "./types";
 
 export function normalizeOptions(options: MaskOptions): NormalizedOptions {
   return {
