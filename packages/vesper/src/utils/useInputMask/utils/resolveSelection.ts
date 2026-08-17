@@ -2,21 +2,19 @@ import type { InputType, NormalizedOptions } from "../types";
 
 import { formatToParts } from "./formatToParts";
 
-interface ResolveSelectionParam {
-  inputType: InputType;
-  value: string;
-  addedValue: string;
-  beforeChangeValue: string;
-  options: NormalizedOptions;
-}
-
 export function resolveSelection({
   inputType,
   value,
   addedValue,
   beforeChangeValue,
   options,
-}: ResolveSelectionParam): number {
+}: {
+  inputType: InputType;
+  value: string;
+  addedValue: string;
+  beforeChangeValue: string;
+  options: NormalizedOptions;
+}): number {
   const parts = formatToParts(value, options);
   const unformattedChars = parts.filter(({ type }) => type === "input");
 
