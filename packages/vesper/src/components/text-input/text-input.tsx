@@ -131,7 +131,7 @@ export type MultiLineTextInputProps = TextInputBaseProps &
     type?: never;
   } & { [P in InputOnlyPropTypes]?: never };
 
-export type TextInputPrefixProps = {
+export interface TextInputPrefixProps {
   ariaLabel?: string;
   name?: string;
   value?: string;
@@ -140,7 +140,7 @@ export type TextInputPrefixProps = {
   options: (string | { value: string; label: string })[];
   onChange?(value: string): void;
   width?: number;
-};
+}
 
 export type SingleLineTextInputProps = TextInputBaseProps &
   Omit<ComponentProps<"div">, ForwardedPropTypes | "prefix"> &

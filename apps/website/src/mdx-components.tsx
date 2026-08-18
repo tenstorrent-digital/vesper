@@ -71,6 +71,7 @@ import { IconsDemo } from "@/demos/icons";
 import { MenuDemo } from "@/demos/menu";
 import { ShowMoreDemo } from "@/demos/show-more";
 import { SplitButtonDemo } from "@/demos/split-button";
+import { TextInputDemo } from "@/demos/text-input";
 import { ToastDemo } from "@/demos/toast";
 
 const components = {
@@ -234,6 +235,7 @@ const components = {
   MenuDemo,
   ShowMoreDemo,
   SplitButtonDemo,
+  TextInputDemo,
   ToastDemo,
 } satisfies MDXComponents;
 

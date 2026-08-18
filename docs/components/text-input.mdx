@@ -1,81 +1,235 @@
 ---
 title: Text Input
-description: A form input component supporting single-line text, multiline textarea, optional labels, validation messages, and leading icons.
+description: A form input component supporting single-line text, multiline textarea, optional labels, validation messages, icons, leading dropdown selects, and input masking.
 ---
 
 # Text Input
 
-A form input component supporting single-line text, multiline textarea, optional labels, validation messages, and leading icons. Built on native `<input>` and `<textarea>` elements for full form compatibility.
+A form input component supporting single-line text, multiline textarea, optional labels, validation messages, icons, leading dropdown selects, and input masking. Built on native `<input>` and `<textarea>` elements for full form compatibility.
 
-<TextInput label="Email" placeholder="you@example.com" />
+<TextInput label="Email" placeholder="you@example.com" type="email" />
 
 ## Options
 
-| Prop          | Type                                                                                                                                     | Description                                                                                     | Default     |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------- |
-| `size`        | `"sm" \| "md" \| "lg"`                                                                                                                   | The size of the text input. Affects padding and typography.                                     | `"md"`      |
-| `variant`     | `"default" \| "warning" \| "success" \| "error"`                                                                                         | The visual variant, which determines color scheme and message icon.                             | `"default"` |
-| `label`       | `string`                                                                                                                                 | An optional label displayed above the input. An asterisk is appended when `required` is `true`. | —           |
-| `message`     | `string`                                                                                                                                 | An optional message displayed below the input, paired with a variant-specific icon.             | —           |
-| `multiline`   | `boolean`                                                                                                                                | When `true`, renders a `<textarea>` instead of an `<input>`.                                    | `false`     |
-| `icon`        | `ReactNode`                                                                                                                              | An optional icon rendered to the left of the input field (single-line only).                    | —           |
-| `type`        | `"text" \| "email" \| "password" \| "url" \| "tel" \| "search" \| "number" \| "date" \| "datetime-local" \| "week" \| "month" \| "time"` | The HTML input type.                                                                            | `"text"`    |
-| `inputRef`    | `RefObject`                                                                                                                              | A ref forwarded to the underlying `<input>` or `<textarea>` element.                            | —           |
-| `height`      | `number`                                                                                                                                 | The fixed height of the textarea in pixels (multiline only).                                    | —           |
-| `placeholder` | `string`                                                                                                                                 | Placeholder text for the input.                                                                 | `" "`       |
-| `disabled`    | `boolean`                                                                                                                                | When `true`, prevents interaction.                                                              | `false`     |
-| `required`    | `boolean`                                                                                                                                | When `true`, marks the input as required.                                                       | `false`     |
-| `readOnly`    | `boolean`                                                                                                                                | When `true`, makes the input read-only.                                                         | `false`     |
+| Prop                 | Type                                                                                                                                     | Description                                                                                     | Default     |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------- |
+| `size`               | `"sm" \| "md" \| "lg"`                                                                                                                   | The size of the text input. Affects padding and typography.                                     | `"md"`      |
+| `variant`            | `"default" \| "warning" \| "success" \| "error"`                                                                                         | The visual variant, which determines color scheme and message icon.                             | `"default"` |
+| `label`              | `string`                                                                                                                                 | An optional label displayed above the input. An asterisk is appended when `required` is `true`. | —           |
+| `message`            | `string`                                                                                                                                 | An optional message displayed below the input, paired with a variant-specific icon.             | —           |
+| `multiline`          | `boolean`                                                                                                                                | When `true`, renders a `<textarea>` instead of an `<input>`.                                    | `false`     |
+| `iconLeft`           | `ReactNode`                                                                                                                              | An optional icon rendered to the left of the input field (single-line only).                    | —           |
+| `iconLeftOnClick`    | `(e: MouseEvent<HTMLButtonElement>) => void`                                                                                             | When provided, the left icon renders as a `<button>` and calls this handler when clicked.       | —           |
+| `iconLeftAriaLabel`  | `string`                                                                                                                                 | An accessible label for the left icon. Required when `iconLeftOnClick` is provided.             | —           |
+| `iconRight`          | `ReactNode`                                                                                                                              | An optional icon rendered to the right of the input field (single-line only).                   | —           |
+| `iconRightOnClick`   | `(e: MouseEvent<HTMLButtonElement>) => void`                                                                                             | When provided, the right icon renders as a `<button>` and calls this handler when clicked.      | —           |
+| `iconRightAriaLabel` | `string`                                                                                                                                 | An accessible label for the right icon. Required when `iconRightOnClick` is provided.           | —           |
+| `prefix`             | `TextInputPrefixProps`                                                                                                                   | An optional dropdown select rendered inside the input, before the field (single-line only).     | —           |
+| `mask`               | `string \| { format: string, replace: string \| RegExp \| { [char: string]: RegExp } } \| MaskitoOptions`                                | An optional input mask restricting and formatting what can be typed (single-line only).         | —           |
+| `type`               | `"text" \| "email" \| "password" \| "url" \| "tel" \| "search" \| "number" \| "date" \| "datetime-local" \| "week" \| "month" \| "time"` | The HTML input type.                                                                            | `"text"`    |
+| `inputRef`           | `RefObject`                                                                                                                              | A ref forwarded to the underlying `<input>` or `<textarea>` element.                            | —           |
+| `height`             | `number`                                                                                                                                 | The fixed height of the textarea in pixels (multiline only).                                    | `104`       |
+| `placeholder`        | `string`                                                                                                                                 | Placeholder text for the input.                                                                 | `" "`       |
+| `disabled`           | `boolean`                                                                                                                                | When `true`, prevents interaction.                                                              | `false`     |
+| `required`           | `boolean`                                                                                                                                | When `true`, marks the input as required.                                                       | `false`     |
+| `readOnly`           | `boolean`                                                                                                                                | When `true`, makes the input read-only.                                                         | `false`     |
 
 ## Examples
+
+### Uncontrolled vs controlled
+
+The simplest way to use the `TextInput` component is render it in an uncontrolled fashion, where the component is responsible for keeping track of its own value:
 
 ```tsx
 import { TextInput } from "@tenstorrent/vesper/text-input";
 
-// Basic usage
-<TextInput label="Name" placeholder="Enter your name" />;
+<TextInput placeholder="Enter some text" />;
 ```
 
+If you need to control the value of the `TextInput`, you can do so via the `value` and `onChange` props:
+
 ```tsx
-// With validation message
+import { useState } from "react"
+import { TextInput } from "@tenstorrent/vesper/text-input"
+
+const [value, setValue] = useState("")
+
 <TextInput
-  label="Email"
-  variant="error"
-  message="Please enter a valid email address."
-  placeholder="you@example.com"
+  placeholder="Enter some text"
+  value={value}
+  onChange={e => setValue(e.target.value)}
 />
 ```
 
-```tsx
-// Success variant
-<TextInput
-  label="Username"
-  variant="success"
-  message="Username is available."
-  defaultValue="johndoe"
-/>
-```
+### Different sizes
+
+The `TextInput` component can be rendered at `sm`, `md`, or `lg` size, defaulting to `md`. Size affects the padding and text styles of the input, as well as the size of the rendered icons.
+
+<TextInput size="sm" placeholder="A small text input" />
+<TextInput size="md" placeholder="A medium text input" />
+<TextInput size="lg" placeholder="A large text input" />
 
 ```tsx
-// With icon
+import { TextInput } from "@tenstorrent/vesper/text-input"
+
+<TextInput size="sm" placeholder="A small text input" />
+<TextInput size="md" placeholder="A medium text input" />
+<TextInput size="lg" placeholder="A large text input" />
+```
+
+### Rendering icons
+
+You can render icons to the left or the right of the input via the `iconLeft` and `iconRight` props:
+
+<TextInput
+  placeholder="Enter some text"
+  iconLeft={<Globe />}
+  iconRight={<Search />}
+/>
+
+```tsx
+import { Search, Globe } from "@tenstorrent/vesper/icons";
+import { TextInput } from "@tenstorrent/vesper/text-input";
+
+<TextInput
+  placeholder="Enter some text"
+  iconLeft={<Globe />}
+  iconRight={<Search />}
+/>;
+```
+
+Rendered icons can be treated as buttons by passing `iconLeftOnClick` and `iconRightOnClick` event handlers. It is important that icons with click handlers are also given an accessible label via `iconLeftAriaLabel` or `iconRightAriaLabel`:
+
+```tsx
 import { Search } from "@tenstorrent/vesper/icons";
+import { TextInput } from "@tenstorrent/vesper/text-input";
 
-<TextInput icon={<Search />} placeholder="Search..." />;
+<TextInput
+  placeholder="Enter some text"
+  iconLeft={<Search />}
+  iconLeftOnClick={() => searchLogs()}
+  iconLeftAriaLabel="Search logs"
+/>;
 ```
 
-```tsx
-// Multiline textarea
+### Leading dropdown select
+
+To render a `TextInput` with a leading dropdown select, you can use the `prefix` prop. This can be useful for area codes, protocols, units, etc. It is ignored when `multiline` is true.
+
 <TextInput
-  multiline
-  label="Description"
-  height={120}
-  placeholder="Tell us more..."
+  type="number"
+  placeholder="Enter the weight of the product."
+  prefix={{
+    name: "unit",
+    ariaLabel: "Measurement unit",
+    options: ["lbs", "oz"],
+    defaultValue: "lbs",
+  }}
+/>
+
+```
+<TextInput
+  type="number"
+  placeholder="Enter the weight of the product."
+  prefix={{
+    name: "unit",
+    ariaLabel: "Measurement unit",
+    options: ["lbs", "oz"],
+    defaultValue: "lbs",
+  }}
 />
 ```
 
+#### `prefix` options
+
+| Prop           | Type                             | Description                                                                        | Default |
+| -------------- | -------------------------------- | ---------------------------------------------------------------------------------- | ------- |
+| `options`      | `(string \| { value, label })[]` | The list of selectable options. Strings are used as both the value and the label.  | —       |
+| `ariaLabel`    | `string`                         | An accessible label for the prefix dropdown, eg. `"Area code"`.                    | —       |
+| `name`         | `string`                         | The field name used when the prefix value is submitted with form data.             | —       |
+| `value`        | `string`                         | The currently selected value (controlled mode).                                    | —       |
+| `defaultValue` | `string`                         | The initially selected value (uncontrolled mode).                                  | —       |
+| `onChange`     | `(value: string) => void`        | Callback fired when the selected prefix value changes.                             | —       |
+| `placeholder`  | `string`                         | Text shown in the prefix when no value is selected.                                | —       |
+| `width`        | `number`                         | A fixed width for the prefix in pixels. Useful for keeping options evenly aligned. | —       |
+
+The prefix inherits `disabled`, `required`, and `form` from the text input, so it participates in the same form and disabled state as the field itself.
+
+### Masked input
+
+`TextInput` comes with the ability to mask text built on top of [Maskito](https://maskito.dev). The `mask` prop restricts and formats what can be typed into the field, inserting literal characters (spaces, dashes, brackets) automatically as the user types. It is ignored when `multiline` is `true`.
+
+#### `string` masks
+
+A plain string mask is the simplest way to enable text-masking for a `TextInput`. A plain string mask might look something like `"____-____-____"`. Underscores (`_`) in plain string masks are treated as the masked values, and accept any character:
+
+<TextInput
+  placeholder="Enter your activation code: (ex: F938-X9XV-0KSA)"
+  mask="____-____-____"
+/>
+
 ```tsx
-// Sizes
-<TextInput size="sm" placeholder="Small" />
-<TextInput size="md" placeholder="Medium" />
-<TextInput size="lg" placeholder="Large" />
+import { TextInput } from "@tenstorrent/vesper/text-input";
+
+<TextInput
+  placeholder="Enter your activation code: (ex: F938-X9XV-0KSA)"
+  mask="____-____-____"
+/>;
 ```
+
+#### `format` & `replace` masks
+
+If you need more control over what characters to treat as maskable, you can pass an `object` with `format` and `replace` properties to the `mask` prop. The `format` property defines the shape of the mask, much in the same way a plain-text mask works. The `replace` property can be used to define what the masked characters are and what each character will accept as replacements.
+
+If you wanted to change the kind of character that can be accepted as a masked value, you would set the `replace` attribute to a regular expression. In this example, we use the regular expression `/\d/` to ensure that only digits may replace the masked value:
+
+<TextInputDemo kind="mask-replace-regex" />
+
+```tsx
+import { TextInput } from "@tenstorrent/vesper/text-input";
+
+<TextInput
+  placeholder="Enter your phone number"
+  mask={{ format: "+1 (___) ___-____", replace: /\d/ }}
+/>;
+```
+
+If you wanted to modify which character gets masked, you can pass a single character string to override the default behavior of masking underscores. In this example, we mask the `"x"` character instead of an underscore:
+
+<TextInputDemo kind="mask-replace-string" />
+
+```tsx
+import { TextInput } from "@tenstorrent/vesper/text-input";
+
+<TextInput
+  placeholder="Enter your product license"
+  mask={{
+    format: "xxxx-xxxx-xxxx-xxxx",
+    replace: "x",
+  }}
+/>;
+```
+
+If you want to modify both the masked character and the accepted values of that masked character, you can pass `Record<string, RegExp>` to the `replace` attribute, where the keys should be single-character strings representing the masked characters, and the values are regular expressions that validate what those masked characters can be.
+
+For example, Canadian postal codes follow the format `ABA BAB`, where `A` is a letter, and `B` is a number. You could write a masked input following this format like so:
+
+<TextInputDemo kind="mask-postal-code" />
+
+```tsx
+import { TextInput } from "@tenstorrent/vesper/text-input";
+
+<TextInput
+  placeholder="Enter your postal code (ex: A0A 1B1)"
+  mask={{
+    format: "ABA BAB",
+    replace: { A: /[a-zA-Z]/, B: /\d/ },
+  }}
+/>;
+```
+
+#### `MaskitoOptions` masks
+
+If you need fine-grained control over masking behavior and neither `string` nor `{ format, replace }` options can get you what you need, you can pass a `MaskitoOptions` configuration object as a `mask` prop. `MaskitoOptions` allow you to opt into things like dynamic masks, pre/post-processing hooks, overwrite modes, and more.
+
+For more information about `Maskito` and the kinds of things you can do with it, see [the Maskito docs](https://maskito.dev).
