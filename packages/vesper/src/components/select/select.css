@@ -87,6 +87,10 @@
 }
 
 .vesper-select-content {
+  max-height: var(--available-height);
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   min-width: var(--anchor-width);
   border-radius: var(--vesper-radius-3);
   border: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
