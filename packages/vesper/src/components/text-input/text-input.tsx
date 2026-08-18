@@ -324,7 +324,7 @@ export function TextInput(props: TextInputProps) {
           {iconLeft}
         </TextInputIcon>
       )}
-      {!!prefix?.options.length && !multiline && (
+      {!!prefix?.options?.length && !multiline && (
         <TextInputPrefix
           {...prefix}
           disabled={disabled}

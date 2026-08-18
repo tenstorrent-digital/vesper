@@ -30,6 +30,7 @@ exports[`text-input [snapshot] > disabled, multiline 1`] = `
       disabled=""
       id="_r_6r_"
       placeholder=" "
+      style="height: 6.5rem;"
     />
   </div>
 </div>
@@ -57,6 +58,7 @@ exports[`text-input [snapshot] > full options 1`] = `
         disabled=""
         id="_r_6t_"
         placeholder=" "
+        style="height: 6.5rem;"
       />
     </div>
   </label>
@@ -101,6 +103,7 @@ exports[`text-input [snapshot] > multiline 1`] = `
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
       id="_r_69_"
       placeholder=" "
+      style="height: 6.5rem;"
     />
   </div>
 </div>
