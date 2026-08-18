@@ -26,8 +26,8 @@ export type FormInputMessageVariant =
   (typeof FORM_INPUT_MESSAGE_VARIANTS)[number];
 
 export interface FormInputMessageProps extends ComponentProps<"output"> {
+  /** The visual variant of the message, which determines its color scheme and message icon. @default default */
   variant?: FormInputMessageVariant;
-  messageId?: string;
 }
 
 /**
@@ -68,7 +68,7 @@ export const FormInputMessage = ({
         variant="label-xs"
         className="vesper-form-input-message-text"
       >
-        {message}
+        {children}
       </Typography>
     </output>
   );
