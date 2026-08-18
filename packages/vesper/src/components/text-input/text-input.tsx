@@ -7,6 +7,7 @@ import {
   type RefObject,
   useCallback,
   useId,
+  useMemo,
   useState,
 } from "react";
 import { Select } from "@base-ui/react/select";
@@ -304,7 +305,7 @@ export function TextInput(props: TextInputProps) {
       .filter(Boolean)
       .join(" ") || undefined;
 
-  const getMaskitoOptions = useCallback((): MaskitoOptions => {
+  const maskitoOptions = useMemo((): MaskitoOptions => {
     if (!mask || multiline) {
       return { mask: /./ };
     }
@@ -317,9 +318,7 @@ export function TextInput(props: TextInputProps) {
     return { mask: stringToMaskitoMask(mask) };
   }, [mask, multiline]);
 
-  const maskitoRef = useMaskito({
-    options: getMaskitoOptions(),
-  });
+  const maskitoRef = useMaskito({ options: maskitoOptions });
 
   const input = (
     <div className="vesper-text-input-field-wrapper">
