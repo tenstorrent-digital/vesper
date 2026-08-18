@@ -5,7 +5,6 @@ import {
   MouseEvent,
   type ReactNode,
   type RefObject,
-  useCallback,
   useId,
   useMemo,
   useState,
@@ -32,6 +31,8 @@ import {
 import { cn } from "@/utils/cn";
 import { getPortalContainer } from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/useBaseRemSize";
+
+import { getMaskitoOptions } from "./getMaskitoOptions";
 
 export const TEXT_INPUT_SIZES = ["sm", "md", "lg"] as const;
 
@@ -305,18 +306,10 @@ export function TextInput(props: TextInputProps) {
       .filter(Boolean)
       .join(" ") || undefined;
 
-  const maskitoOptions = useMemo((): MaskitoOptions => {
-    if (!mask || multiline) {
-      return { mask: /./ };
-    }
-    if (typeof mask === "string") {
-      return { mask: stringToMaskitoMask(mask) };
-    }
-    if ("mask" in mask) {
-      return mask;
-    }
-    return { mask: stringToMaskitoMask(mask) };
-  }, [mask, multiline]);
+  const maskitoOptions = useMemo(
+    () => getMaskitoOptions(mask, multiline),
+    [mask, multiline],
+  );
 
   const maskitoRef = useMaskito({ options: maskitoOptions });
 
@@ -420,7 +413,7 @@ export function TextInput(props: TextInputProps) {
         `vesper-text-input-${size}`,
         `vesper-text-input-${variant}`,
         multiline && "vesper-text-input-multiline",
-        className
+        className,
       )}
       {...rest}
     >
@@ -526,7 +519,7 @@ function TextInputPrefix({
   const baseRemSize = useBaseRemSize();
 
   const items = options.map((option) =>
-    typeof option === "string" ? { value: option, label: option } : option
+    typeof option === "string" ? { value: option, label: option } : option,
   );
 
   return (
@@ -598,28 +591,4 @@ function TextInputPrefix({
       </Select.Portal>
     </Select.Root>
   );
-}
-
-function stringToMaskitoMask(
-  options:
-    | string
-    | { format: string; replace: RegExp | string | { [key: string]: RegExp } }
-): (string | RegExp)[] {
-  if (typeof options === "string") {
-    return options.split("").map((c) => (c === "_" ? /./ : c));
-  }
-
-  if (typeof options.replace === "string") {
-    return options.format
-      .split("")
-      .map((c) => (c === options.replace ? /./ : c));
-  }
-
-  if (options.replace instanceof RegExp) {
-    const replacement = options.replace;
-    return options.format.split("").map((c) => (c === "_" ? replacement : c));
-  }
-
-  const replacements = options.replace;
-  return options.format.split("").map((c) => replacements[c] ?? c);
 }
