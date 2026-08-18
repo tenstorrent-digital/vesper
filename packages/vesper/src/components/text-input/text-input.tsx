@@ -5,11 +5,13 @@ import {
   MouseEvent,
   type ReactNode,
   type RefObject,
+  useCallback,
   useId,
-  useImperativeHandle,
   useState,
 } from "react";
 import { Select } from "@base-ui/react/select";
+import type { MaskitoOptions } from "@maskito/core";
+import { useMaskito } from "@maskito/react";
 
 import { Chip, ChipSize } from "@/components/chip/chip";
 import {
@@ -29,8 +31,6 @@ import {
 import { cn } from "@/utils/cn";
 import { getPortalContainer } from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/useBaseRemSize";
-
-import { useInputMask } from "./useInputMask";
 
 export const TEXT_INPUT_SIZES = ["sm", "md", "lg"] as const;
 
@@ -172,6 +172,7 @@ export type SingleLineTextInputProps = TextInputBaseProps &
       | "time";
     prefix?: TextInputPrefixProps;
     mask?:
+      | MaskitoOptions
       | string
       | {
           format: string;
@@ -303,21 +304,22 @@ export function TextInput(props: TextInputProps) {
       .filter(Boolean)
       .join(" ") || undefined;
 
-  const [innerRef, setInnerRef] = useState<
-    HTMLInputElement | HTMLTextAreaElement | null
-  >(null);
+  const getMaskitoOptions = useCallback((): MaskitoOptions => {
+    if (!mask || multiline) {
+      return { mask: /./ };
+    }
+    if (typeof mask === "string") {
+      return { mask: stringToMaskitoMask(mask) };
+    }
+    if ("mask" in mask) {
+      return mask;
+    }
+    return { mask: stringToMaskitoMask(mask) };
+  }, [mask, multiline]);
 
-  useImperativeHandle<
-    HTMLInputElement | HTMLTextAreaElement,
-    HTMLInputElement | HTMLTextAreaElement
-  >(inputRef, () => innerRef!);
-
-  useInputMask(
-    innerRef,
-    typeof mask === "string"
-      ? { mask, replacement: "_" }
-      : { mask: mask?.format, replacement: mask?.replace },
-  );
+  const maskitoRef = useMaskito({
+    options: getMaskitoOptions(),
+  });
 
   const input = (
     <div className="vesper-text-input-field-wrapper">
@@ -330,7 +332,7 @@ export function TextInput(props: TextInputProps) {
           {iconLeft}
         </TextInputIcon>
       )}
-      {prefix && !multiline && (
+      {!!prefix?.options.length && !multiline && (
         <TextInputPrefix
           {...prefix}
           disabled={disabled}
@@ -346,7 +348,10 @@ export function TextInput(props: TextInputProps) {
               style: { height: `${height / 16}rem` },
             }
           : { as: "input", type, list, multiple, pattern, min, max })}
-        ref={setInnerRef}
+        ref={(instance: HTMLTextAreaElement | HTMLInputElement | null) => {
+          maskitoRef(instance);
+          if (inputRef) inputRef.current = instance;
+        }}
         variant={TEXT_INPUT_TYPOGRAPHY[size]}
         aria-describedby={describedBy}
         aria-label={ariaLabel}
@@ -416,7 +421,7 @@ export function TextInput(props: TextInputProps) {
         `vesper-text-input-${size}`,
         `vesper-text-input-${variant}`,
         multiline && "vesper-text-input-multiline",
-        className,
+        className
       )}
       {...rest}
     >
@@ -522,7 +527,7 @@ function TextInputPrefix({
   const baseRemSize = useBaseRemSize();
 
   const items = options.map((option) =>
-    typeof option === "string" ? { value: option, label: option } : option,
+    typeof option === "string" ? { value: option, label: option } : option
   );
 
   return (
@@ -594,4 +599,28 @@ function TextInputPrefix({
       </Select.Portal>
     </Select.Root>
   );
+}
+
+function stringToMaskitoMask(
+  options:
+    | string
+    | { format: string; replace: RegExp | string | { [key: string]: RegExp } }
+): (string | RegExp)[] {
+  if (typeof options === "string") {
+    return options.split("").map((c) => (c === "_" ? /./ : c));
+  }
+
+  if (typeof options.replace === "string") {
+    return options.format
+      .split("")
+      .map((c) => (c === options.replace ? /./ : c));
+  }
+
+  if (options.replace instanceof RegExp) {
+    const replacement = options.replace;
+    return options.format.split("").map((c) => (c === "_" ? replacement : c));
+  }
+
+  const replacements = options.replace;
+  return options.format.split("").map((c) => replacements[c] ?? c);
 }

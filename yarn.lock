@@ -1053,6 +1053,21 @@
     globby "^11.0.0"
     read-yaml-file "^1.1.0"
 
+"@maskito/core@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@maskito/core/-/core-5.4.0.tgz#ee35df0afece4b1d1a06df9bb792ea46408831ba"
+  integrity sha512-g2Ps71bVidiIoIdrSqzvu85i1vbfDnQScJItikIXTrSGZN8/PwcRsnzr0Cx56dljWbVcEHe2cpZMkYo5Th64zw==
+
+"@maskito/phone@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@maskito/phone/-/phone-5.4.0.tgz#b8d808fae6795202dace60b31d248c50e35157bf"
+  integrity sha512-E0g5Hov+n4F4pNXS/qVZxsHq+Fro2rnmzOOR3LU9FnSto9j2iG5KSemTdfTLbVPEuMlD3KyEBvHy/0NRerm2nA==
+
+"@maskito/react@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@maskito/react/-/react-5.4.0.tgz#16c0d599a04b4d51e0d78f22e9a2de3063459a1e"
+  integrity sha512-eW6pTeM9NhwCDMW6K7CVA45TZwZ0fRwqN6zcRMgJGUHmwuTQUsKLDGIPxEhpxiXPTIFN3Cs5oP1LuCirFfZRQA==
+
 "@mdx-js/loader@^3.1.1":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-3.1.1.tgz#77bdab9c71d965b33cfbdaa80c69911f06c1524a"

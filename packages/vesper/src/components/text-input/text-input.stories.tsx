@@ -32,7 +32,10 @@ const meta = {
       control: "boolean",
       description: "no effect on multiline inputs",
     },
-    mask: { control: "text" },
+    mask: {
+      control: "text",
+      description: "no effect on multiline inputs",
+    },
   },
 } satisfies Meta<typeof TextInput>;
 
@@ -70,14 +73,14 @@ export const Playground: Story = {
         style={{ width: "min(calc(100vw - 4rem), 400px)" }}
         iconLeft={props.iconLeft ? <Search /> : undefined}
         iconRight={props.iconRight ? <Close /> : undefined}
+        mask={props.mask || undefined}
         prefix={
           props.prefix
             ? {
-                options: ["+1", "+44", "+51"],
-                name: "area-code",
-                ariaLabel: "Area code",
-                defaultValue: "+1",
-                width: 58,
+                options: ["USD", "CAD"],
+                name: "currency",
+                ariaLabel: "Currency",
+                defaultValue: "USD",
               }
             : undefined
         }
