@@ -14,35 +14,30 @@ export function getMaskitoOptions(
   if (!mask || multiline) {
     return { mask: /./ };
   }
+
   if (typeof mask === "string") {
-    return { mask: stringToMaskitoMask(mask) };
+    return { mask: mask.split("").map((c) => (c === "_" ? /./ : c)) };
   }
+
   if ("mask" in mask) {
     return mask;
   }
-  return { mask: stringToMaskitoMask(mask) };
-}
 
-function stringToMaskitoMask(
-  options:
-    | string
-    | { format: string; replace: RegExp | string | { [key: string]: RegExp } },
-): (string | RegExp)[] {
-  if (typeof options === "string") {
-    return options.split("").map((c) => (c === "_" ? /./ : c));
+  if (typeof mask.replace === "string") {
+    return {
+      mask: mask.format.split("").map((c) => (c === mask.replace ? /./ : c)),
+    };
   }
 
-  if (typeof options.replace === "string") {
-    return options.format
-      .split("")
-      .map((c) => (c === options.replace ? /./ : c));
+  if (mask.replace instanceof RegExp) {
+    const replacement = mask.replace;
+    return {
+      mask: mask.format.split("").map((c) => (c === "_" ? replacement : c)),
+    };
   }
 
-  if (options.replace instanceof RegExp) {
-    const replacement = options.replace;
-    return options.format.split("").map((c) => (c === "_" ? replacement : c));
-  }
-
-  const replacements = options.replace;
-  return options.format.split("").map((c) => replacements[c] ?? c);
+  const replacements = mask.replace;
+  return {
+    mask: mask.format.split("").map((c) => replacements[c] ?? c),
+  };
 }
