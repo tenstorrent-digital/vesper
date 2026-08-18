@@ -240,7 +240,6 @@
   "dependencies": {
     "@base-ui/react": "^1.7.0",
     "@maskito/core": "^5.4.0",
-    "@maskito/phone": "^5.4.0",
     "@maskito/react": "^5.4.0",
     "@shikijs/core": "^4.3.1",
     "@shikijs/engine-javascript": "^4.3.1",
