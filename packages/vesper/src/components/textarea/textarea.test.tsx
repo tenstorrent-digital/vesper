@@ -44,6 +44,7 @@ const TEXTAREA_PERMUTATIONS = TEXTAREA_VARIANTS.flatMap((variant) =>
     {
       name: `${variant}, ${size}`,
       variant,
+      size,
       label: "Label text",
       message: "Message text",
       disabled: false,
@@ -51,11 +52,12 @@ const TEXTAREA_PERMUTATIONS = TEXTAREA_VARIANTS.flatMap((variant) =>
     {
       name: `${variant}, ${size}, disabled`,
       variant,
+      size,
       label: "Label text",
       message: "Message text",
       disabled: true,
     },
-  ]),
+  ])
 );
 
 const TEXTAREA_A11Y_FAILING_PERMUTATIONS: (Pick<
@@ -91,7 +93,7 @@ describe("textarea [unit]", () => {
       const result = render(<Textarea variant={variant} />);
 
       expect(result.container.firstChild).toHaveClass(
-        `vesper-textarea-${variant}`,
+        `vesper-textarea-${variant}`
       );
     });
   });
@@ -101,7 +103,7 @@ describe("textarea [unit]", () => {
       const result = render(<Textarea size={size} />);
 
       expect(result.container.firstChild).toHaveClass(
-        `vesper-textarea-${size}`,
+        `vesper-textarea-${size}`
       );
     });
   });
@@ -148,7 +150,7 @@ describe("textarea [unit]", () => {
     const textarea = result.getByRole("textbox");
     expect(textarea.id).not.toBe("");
     expect(
-      result.container.querySelector(".vesper-textarea-label"),
+      result.container.querySelector(".vesper-textarea-label")
     ).toHaveAttribute("for", textarea.id);
   });
 
@@ -166,7 +168,7 @@ describe("textarea [unit]", () => {
 
   test("custom className", () => {
     const result = render(
-      <Textarea size="lg" variant="default" className="custom-class" />,
+      <Textarea size="lg" variant="default" className="custom-class" />
     );
 
     const el = result.container.firstChild;
@@ -213,7 +215,7 @@ describe("textarea [a11y]", () => {
         (p) =>
           p.variant === props.variant &&
           p.disabled === props.disabled &&
-          p.theme === theme,
+          p.theme === theme
       );
 
       if (failsA11y) test.todo(label, testFn);
