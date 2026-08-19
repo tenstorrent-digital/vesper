@@ -11,25 +11,23 @@ A text input component supporting optional labels, validation messages, icons, a
 
 ## Options
 
-| Prop                 | Type                                                                                                                                     | Description                                                                                     | Default     |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------- |
-| `size`               | `"sm" \| "md" \| "lg"`                                                                                                                   | The size of the text input. Affects padding and typography.                                     | `"md"`      |
-| `variant`            | `"default" \| "warning" \| "success" \| "error"`                                                                                         | The visual variant, which determines color scheme and message icon.                             | `"default"` |
-| `label`              | `string`                                                                                                                                 | An optional label displayed above the input. An asterisk is appended when `required` is `true`. | —           |
-| `message`            | `string`                                                                                                                                 | An optional message displayed below the input, paired with a variant-specific icon.             | —           |
-| `iconLeft`           | `ReactNode`                                                                                                                              | An optional icon rendered to the left of the input field (single-line only).                    | —           |
-| `iconLeftOnClick`    | `(e: MouseEvent<HTMLButtonElement>) => void`                                                                                             | When provided, the left icon renders as a `<button>` and calls this handler when clicked.       | —           |
-| `iconLeftAriaLabel`  | `string`                                                                                                                                 | An accessible label for the left icon. Required when `iconLeftOnClick` is provided.             | —           |
-| `iconRight`          | `ReactNode`                                                                                                                              | An optional icon rendered to the right of the input field (single-line only).                   | —           |
-| `iconRightOnClick`   | `(e: MouseEvent<HTMLButtonElement>) => void`                                                                                             | When provided, the right icon renders as a `<button>` and calls this handler when clicked.      | —           |
-| `iconRightAriaLabel` | `string`                                                                                                                                 | An accessible label for the right icon. Required when `iconRightOnClick` is provided.           | —           |
-| `dropdown`           | `TextInputDropdownProps`                                                                                                                 | An optional dropdown select rendered inside the input, before the field (single-line only).     | —           |
-| `type`               | `"text" \| "email" \| "password" \| "url" \| "tel" \| "search" \| "number" \| "date" \| "datetime-local" \| "week" \| "month" \| "time"` | The HTML input type.                                                                            | `"text"`    |
-| `inputRef`           | `Ref<HTMLInputElement>`                                                                                                                  | A ref forwarded to the underlying `<input>` element.                                            | —           |
-| `placeholder`        | `string`                                                                                                                                 | Placeholder text for the input.                                                                 | `" "`       |
-| `disabled`           | `boolean`                                                                                                                                | When `true`, prevents interaction.                                                              | `false`     |
-| `required`           | `boolean`                                                                                                                                | When `true`, marks the input as required.                                                       | `false`     |
-| `readOnly`           | `boolean`                                                                                                                                | When `true`, makes the input read-only.                                                         | `false`     |
+| Prop              | Type                                                                                                                                     | Description                                                                                                       | Default     |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
+| `size`            | `"sm" \| "md" \| "lg"`                                                                                                                   | The size of the text input. Affects padding and typography.                                                       | `"md"`      |
+| `variant`         | `"default" \| "warning" \| "success" \| "error"`                                                                                         | The visual variant, which determines color scheme and message icon.                                               | `"default"` |
+| `label`           | `string`                                                                                                                                 | An optional label displayed above the input. An asterisk is appended when `required` is `true`.                   | —           |
+| `message`         | `string`                                                                                                                                 | An optional message displayed below the input, paired with a variant-specific icon.                               | —           |
+| `iconLeft`        | `ReactNode`                                                                                                                              | An optional icon rendered to the left of the input field (single-line only).                                      | —           |
+| `iconLeftAction`  | `{ handler: (e: MouseEvent<HTMLButtonElement>) => void; ariaLabel: string }`                                                             | When provided, the left icon renders as a `<button>` that calls `handler` when clicked, labelled by `ariaLabel`.  | —           |
+| `iconRight`       | `ReactNode`                                                                                                                              | An optional icon rendered to the right of the input field (single-line only).                                     | —           |
+| `iconRightAction` | `{ handler: (e: MouseEvent<HTMLButtonElement>) => void; ariaLabel: string }`                                                             | When provided, the right icon renders as a `<button>` that calls `handler` when clicked, labelled by `ariaLabel`. | —           |
+| `dropdown`        | `TextInputDropdownProps`                                                                                                                 | An optional dropdown select rendered inside the input, before the field (single-line only).                       | —           |
+| `type`            | `"text" \| "email" \| "password" \| "url" \| "tel" \| "search" \| "number" \| "date" \| "datetime-local" \| "week" \| "month" \| "time"` | The HTML input type.                                                                                              | `"text"`    |
+| `inputRef`        | `Ref<HTMLInputElement>`                                                                                                                  | A ref forwarded to the underlying `<input>` element.                                                              | —           |
+| `placeholder`     | `string`                                                                                                                                 | Placeholder text for the input.                                                                                   | `" "`       |
+| `disabled`        | `boolean`                                                                                                                                | When `true`, prevents interaction.                                                                                | `false`     |
+| `required`        | `boolean`                                                                                                                                | When `true`, marks the input as required.                                                                         | `false`     |
+| `readOnly`        | `boolean`                                                                                                                                | When `true`, makes the input read-only.                                                                           | `false`     |
 
 Any other props are forwarded either to the underlying `<input>` element or to the wrapping `<div>`, depending on the prop.
 
@@ -97,7 +95,7 @@ import { TextInput } from "@tenstorrent/vesper/text-input";
 />;
 ```
 
-Rendered icons can be treated as buttons by passing `iconLeftOnClick` and `iconRightOnClick` event handlers. It is important that icons with click handlers are also given an accessible label via `iconLeftAriaLabel` or `iconRightAriaLabel`:
+Rendered icons can be treated as buttons by passing the `iconLeftAction` and `iconRightAction` props. Each action takes a `handler` that is called when the icon is clicked, and an `ariaLabel` that gives the resulting button an accessible label:
 
 ```tsx
 import { Search } from "@tenstorrent/vesper/icons";
@@ -106,8 +104,10 @@ import { TextInput } from "@tenstorrent/vesper/text-input";
 <TextInput
   placeholder="Enter some text"
   iconLeft={<Search />}
-  iconLeftOnClick={() => searchLogs()}
-  iconLeftAriaLabel="Search logs"
+  iconLeftAction={{
+    handler: () => searchLogs(),
+    ariaLabel: "Search logs",
+  }}
 />;
 ```
 
@@ -349,7 +349,9 @@ const inputRef = useRef<HTMLInputElement>(null)
   placeholder="Search logs"
   inputRef={inputRef}
   iconLeft={<Search />}
-  iconLeftOnClick={() => inputRef.current?.focus()}
-  iconLeftAriaLabel="Search logs"
+  iconLeftAction={{
+    handler: () => inputRef.current?.focus(),
+    ariaLabel: "Search logs",
+  }}
 />
 ```

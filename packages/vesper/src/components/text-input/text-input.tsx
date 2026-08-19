@@ -123,16 +123,22 @@ export interface TextInputProps
   inputRef?: Ref<HTMLInputElement>;
   /** An optional icon element rendered to the left of the input field. */
   iconLeft?: ReactNode;
-  /** An optional click handler for the left icon. When provided, the icon is rendered as a `<button>` instead of a `<span>`. */
-  iconLeftOnClick?(e: MouseEvent<HTMLButtonElement>): void;
-  /** An accessible label for the left icon, applied via `aria-label`. Recommended whenever `iconLeftOnClick` is provided. */
-  iconLeftAriaLabel?: string;
+  /** Optional click handler for the left icon. When provided, the icon is rendered as a `<button>` instead of a `<span>`. */
+  iconLeftAction?: {
+    /** The click event handler */
+    handler(e: MouseEvent<HTMLButtonElement>): void;
+    /** An accessible aria-label for the icon */
+    ariaLabel: string;
+  };
   /** An optional icon element rendered to the right of the input field. */
   iconRight?: ReactNode;
-  /** An optional click handler for the right icon. When provided, the icon is rendered as a `<button>` instead of a `<span>`. */
-  iconRightOnClick?(e: MouseEvent<HTMLButtonElement>): void;
-  /** An accessible label for the right icon, applied via `aria-label`. Recommended whenever `iconRightOnClick` is provided. */
-  iconRightAriaLabel?: string;
+  /** Optional click handler for the right icon. When provided, the icon is rendered as a `<button>` instead of a `<span>`. */
+  iconRightAction?: {
+    /** The click event handler */
+    handler(e: MouseEvent<HTMLButtonElement>): void;
+    /** An accessible aria-label for the icon */
+    ariaLabel: string;
+  };
   /** The HTML input type. Determines the browser's native input behavior and keyboard. @default text */
   type?:
     | "text"
@@ -187,11 +193,9 @@ export function TextInput(props: TextInputProps) {
   const {
     // component-specific props
     iconLeft,
-    iconLeftOnClick,
-    iconLeftAriaLabel,
+    iconLeftAction,
     iconRight,
-    iconRightOnClick,
-    iconRightAriaLabel,
+    iconRightAction,
     inputRef,
     message,
     dropdown,
@@ -269,8 +273,8 @@ export function TextInput(props: TextInputProps) {
     <div className="vesper-text-input-field-wrapper">
       {iconLeft && (
         <TextInputIcon
-          ariaLabel={iconLeftAriaLabel}
-          onClick={iconLeftOnClick}
+          ariaLabel={iconLeftAction?.ariaLabel}
+          onClick={iconLeftAction?.handler}
           disabled={disabled}
         >
           {iconLeft}
@@ -347,8 +351,8 @@ export function TextInput(props: TextInputProps) {
       />
       {iconRight && (
         <TextInputIcon
-          ariaLabel={iconRightAriaLabel}
-          onClick={iconRightOnClick}
+          ariaLabel={iconRightAction?.ariaLabel}
+          onClick={iconRightAction?.handler}
           disabled={disabled}
         >
           {iconRight}

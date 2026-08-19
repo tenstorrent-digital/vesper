@@ -235,8 +235,7 @@ describe("text-input [unit]", () => {
     const result = render(
       <TextInput
         iconLeft={<Globe data-testid="search-icon" />}
-        iconLeftOnClick={clickHandler}
-        iconLeftAriaLabel="Search"
+        iconLeftAction={{ handler: clickHandler, ariaLabel: "Search" }}
       />
     );
 
@@ -258,8 +257,7 @@ describe("text-input [unit]", () => {
     const result = render(
       <TextInput
         iconRight={<Globe data-testid="search-icon" />}
-        iconRightOnClick={clickHandler}
-        iconRightAriaLabel="Search"
+        iconRightAction={{ handler: clickHandler, ariaLabel: "Search" }}
       />
     );
 
@@ -284,8 +282,11 @@ describe("text-input [unit]", () => {
       <TextInput
         iconRight={<Globe />}
         iconLeft={<Close />}
-        iconRightOnClick={rightIconClickHandler}
-        iconLeftOnClick={leftIconClickHandler}
+        iconRightAction={{
+          handler: rightIconClickHandler,
+          ariaLabel: "Search",
+        }}
+        iconLeftAction={{ handler: leftIconClickHandler, ariaLabel: "Close" }}
         disabled
       />
     );

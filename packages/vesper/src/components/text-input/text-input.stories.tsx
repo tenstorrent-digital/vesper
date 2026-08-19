@@ -10,11 +10,9 @@ const meta = {
   component: TextInput,
   argTypes: {
     iconLeft: { control: "boolean" },
-    iconLeftAriaLabel: { table: { disable: true } },
-    iconLeftOnClick: { table: { disable: true } },
+    iconLeftAction: { table: { disable: true } },
     iconRight: { control: "boolean" },
-    iconRightAriaLabel: { table: { disable: true } },
-    iconRightOnClick: { table: { disable: true } },
+    iconRightAction: { table: { disable: true } },
     type: { table: { disable: true } },
     inputRef: { table: { disable: true } },
     dropdown: { control: "boolean" },
