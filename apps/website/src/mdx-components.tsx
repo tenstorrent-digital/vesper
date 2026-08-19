@@ -69,6 +69,7 @@ import { trimChildren } from "@/lib/markdown/utils";
 // named demos for components w non-serializable props (event handlers,
 // refs, state) that are used inside `docs/` documents
 import { IconsDemo } from "@/demos/icons";
+import { MaskedInputDemo } from "@/demos/masked-input";
 import { MenuDemo } from "@/demos/menu";
 import { ShowMoreDemo } from "@/demos/show-more";
 import { SplitButtonDemo } from "@/demos/split-button";
@@ -234,6 +235,7 @@ const components = {
 
   // demos
   IconsDemo,
+  MaskedInputDemo,
   MenuDemo,
   ShowMoreDemo,
   SplitButtonDemo,

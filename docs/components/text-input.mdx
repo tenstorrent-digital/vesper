@@ -1,11 +1,11 @@
 ---
 title: Text Input
-description: A form input component supporting single-line text, multiline textarea, optional labels, validation messages, icons, leading dropdown selects, and input masking.
+description: A text input component supporting optional labels, validation messages, icons, and leading dropdown selects.
 ---
 
 # Text Input
 
-A form input component supporting single-line text, multiline textarea, optional labels, validation messages, icons, leading dropdown selects, and input masking. Built on native `<input>` and `<textarea>` elements for full form compatibility.
+A text input component supporting optional labels, validation messages, icons, and leading dropdown selects. Built on the native `<input>` element for full form compatibility.
 
 <TextInput label="Email" placeholder="you@example.com" type="email" />
 
@@ -17,7 +17,6 @@ A form input component supporting single-line text, multiline textarea, optional
 | `variant`            | `"default" \| "warning" \| "success" \| "error"`                                                                                         | The visual variant, which determines color scheme and message icon.                             | `"default"` |
 | `label`              | `string`                                                                                                                                 | An optional label displayed above the input. An asterisk is appended when `required` is `true`. | —           |
 | `message`            | `string`                                                                                                                                 | An optional message displayed below the input, paired with a variant-specific icon.             | —           |
-| `multiline`          | `boolean`                                                                                                                                | When `true`, renders a `<textarea>` instead of an `<input>`.                                    | `false`     |
 | `iconLeft`           | `ReactNode`                                                                                                                              | An optional icon rendered to the left of the input field (single-line only).                    | —           |
 | `iconLeftOnClick`    | `(e: MouseEvent<HTMLButtonElement>) => void`                                                                                             | When provided, the left icon renders as a `<button>` and calls this handler when clicked.       | —           |
 | `iconLeftAriaLabel`  | `string`                                                                                                                                 | An accessible label for the left icon. Required when `iconLeftOnClick` is provided.             | —           |
@@ -25,10 +24,8 @@ A form input component supporting single-line text, multiline textarea, optional
 | `iconRightOnClick`   | `(e: MouseEvent<HTMLButtonElement>) => void`                                                                                             | When provided, the right icon renders as a `<button>` and calls this handler when clicked.      | —           |
 | `iconRightAriaLabel` | `string`                                                                                                                                 | An accessible label for the right icon. Required when `iconRightOnClick` is provided.           | —           |
 | `dropdown`           | `TextInputDropdownProps`                                                                                                                 | An optional dropdown select rendered inside the input, before the field (single-line only).     | —           |
-| `mask`               | `string \| { format: string, replace: string \| RegExp \| { [char: string]: RegExp } } \| MaskitoOptions`                                | An optional input mask restricting and formatting what can be typed (single-line only).         | —           |
 | `type`               | `"text" \| "email" \| "password" \| "url" \| "tel" \| "search" \| "number" \| "date" \| "datetime-local" \| "week" \| "month" \| "time"` | The HTML input type.                                                                            | `"text"`    |
 | `inputRef`           | `RefObject`                                                                                                                              | A ref forwarded to the underlying `<input>` or `<textarea>` element.                            | —           |
-| `height`             | `number`                                                                                                                                 | The fixed height of the textarea in pixels (multiline only).                                    | `104`       |
 | `placeholder`        | `string`                                                                                                                                 | Placeholder text for the input.                                                                 | `" "`       |
 | `disabled`           | `boolean`                                                                                                                                | When `true`, prevents interaction.                                                              | `false`     |
 | `required`           | `boolean`                                                                                                                                | When `true`, marks the input as required.                                                       | `false`     |
@@ -114,7 +111,7 @@ import { TextInput } from "@tenstorrent/vesper/text-input";
 
 ### Leading dropdown select
 
-To render a `TextInput` with a leading dropdown select, you can use the `dropdown` prop. This can be useful for area codes, protocols, units, etc. It is ignored when `multiline` is true.
+To render a `TextInput` with a leading dropdown select, you can use the `dropdown` prop. This can be useful for area codes, protocols, units, etc.
 
 <TextInput
   type="number"
@@ -157,7 +154,7 @@ The dropdown inherits `disabled`, `required`, and `form` from the text input, so
 
 ### Masked input
 
-`TextInput` comes with the ability to mask text built on top of [Maskito](https://maskito.dev). The `mask` prop restricts and formats what can be typed into the field, inserting literal characters (spaces, dashes, brackets) automatically as the user types. It is ignored when `multiline` is `true`.
+`TextInput` comes with the ability to mask text built on top of [Maskito](https://maskito.dev). The `mask` prop restricts and formats what can be typed into the field, inserting literal characters (spaces, dashes, brackets) automatically as the user types.
 
 #### `string` masks
 
