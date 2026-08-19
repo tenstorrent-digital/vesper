@@ -61,21 +61,21 @@ Every character in `format` that is not a placeholder is treated as a literal an
 
 ### `string` masks
 
-A plain string mask is the simplest way to enable text-masking for a `TextInput`. A plain string mask might look something like `"____-____-____"`. Underscores (`_`) in plain string masks are treated as the masked values, and accept any character:
+A plain string mask is the simplest way to enable text masking for a `TextInput`. A plain string mask might look something like `"____-____-____"`. Underscores (`_`) in plain string masks are treated as the masked values, and accept any character:
 
 <MaskedInput
-  label="Two-factor authentication code"
-  placeholder="ex: 1-X-9-4-T"
-  mask="_-_-_-_-_-_"
+  label="Masked text"
+  placeholder="Every other character will be masked"
+  mask="_-_-_-_-_-_-_-_-_-_-_-_"
 />
 
 ```tsx
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 
 <MaskedInput
-  label="Two-factor authentication code"
-  placeholder="ex: 1-X-9-4-T"
-  mask="_-_-_-_-_-_"
+  label="Masked text"
+  placeholder="Every other character will be masked"
+  mask="_-_-_-_-_-_-_-_-_-_-_-_"
 />;
 ```
 
@@ -83,7 +83,7 @@ import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 
 If you need more control over what characters to treat as maskable, you can pass an `object` with `format` and `replace` properties to the `mask` prop. The `format` property defines the shape of the mask, while the `replace` property can be used to define what the masked characters are and what each character will accept as replacements.
 
-#### `string` replacements
+#### `replace: string`
 
 If you wanted to modify which character gets masked, you can pass a single character string to override the default behavior of masking underscores. In this example, we mask the `"x"` character instead of an underscore:
 
@@ -102,7 +102,7 @@ import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 />;
 ```
 
-#### `RegExp` replacements
+#### `replace: RegExp`
 
 If you wanted to change the kind of character that can be accepted as a masked value, you would set the `replace` attribute to a regular expression. In this example, we use the regular expression `/\d/` to ensure that only digits may replace the masked value:
 
@@ -118,13 +118,13 @@ import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 />;
 ```
 
-#### Combining `string` & `RegExp` replacements
+#### `replace: Record<string, RegExp>`
 
 If you want to modify both the masked character and the accepted values of that masked character, you can pass `Record<string, RegExp>` to the `replace` attribute, where the keys should be single-character strings representing the masked characters, and the values are regular expressions that validate what those masked characters can be.
 
 For example, Canadian postal codes follow the format `ABA BAB`, where `A` is a letter, and `B` is a number. You could write a masked input following this format like so:
 
-<MaskedInputDemo kind="postal-code" />
+<MaskedInputDemo kind="replace-record" />
 
 ```tsx
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";

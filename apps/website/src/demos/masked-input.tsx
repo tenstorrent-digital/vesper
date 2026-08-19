@@ -23,9 +23,8 @@ export function MaskedInputDemo(props: MaskedInputDemoProps) {
     return (
       <MaskedInput
         label="Product license"
-        placeholder="ex: JDF8-KL32-CMX0-IU6V"
+        placeholder="ex: jDf8-Kl32-CmX0-iU6v"
         mask={{ format: "____-____-____-____", replace: /[a-zA-Z\d]/ }}
-        className="[&_input]:not-placeholder-shown:uppercase"
       />
     );
   }
