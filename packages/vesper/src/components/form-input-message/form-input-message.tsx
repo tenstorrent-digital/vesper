@@ -79,6 +79,12 @@ const getReactNodeTextContent = (node: ReactNode): string => {
   if (typeof node === "number" || typeof node === "bigint") {
     return node.toString();
   }
+  if (Array.isArray(node)) {
+    return node.reduce<string>(
+      (acc, child) => acc + getReactNodeTextContent(child),
+      "",
+    );
+  }
   if (!isValidElement<{ children?: ReactNode }>(node)) return "";
   return Children.toArray(node.props?.children).reduce(
     (acc: string, child) => acc + getReactNodeTextContent(child),
