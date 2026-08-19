@@ -13,27 +13,12 @@ description: A superset of the `TextInput` component that supports text masking.
 
 `MaskedInput` inherits all of the same props as `TextInput` as well a `mask` prop for configuring the text masking behavior. Additionally, the `type` prop is restricted to `"text" | "search" | "tel" | "email" | "url"`, as other input types cannot be masked.
 
-| Prop                 | Type                                              | Description                                                                                     | Default     |
-| -------------------- | ------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------- |
-| `mask`               | `TextMaskingConfig`                               | Text masking configuration. Determines the shape and formatting of the masked text.             | `"md"`      |
-| `size`               | `"sm" \| "md" \| "lg"`                            | The size of the text input. Affects padding and typography.                                     | `"md"`      |
-| `variant`            | `"default" \| "warning" \| "success" \| "error"`  | The visual variant, which determines color scheme and message icon.                             | `"default"` |
-| `label`              | `string`                                          | An optional label displayed above the input. An asterisk is appended when `required` is `true`. | —           |
-| `message`            | `string`                                          | An optional message displayed below the input, paired with a variant-specific icon.             | —           |
-| `iconLeft`           | `ReactNode`                                       | An optional icon rendered to the left of the input field (single-line only).                    | —           |
-| `iconLeftOnClick`    | `(e: MouseEvent<HTMLButtonElement>) => void`      | When provided, the left icon renders as a `<button>` and calls this handler when clicked.       | —           |
-| `iconLeftAriaLabel`  | `string`                                          | An accessible label for the left icon. Required when `iconLeftOnClick` is provided.             | —           |
-| `iconRight`          | `ReactNode`                                       | An optional icon rendered to the right of the input field (single-line only).                   | —           |
-| `iconRightOnClick`   | `(e: MouseEvent<HTMLButtonElement>) => void`      | When provided, the right icon renders as a `<button>` and calls this handler when clicked.      | —           |
-| `iconRightAriaLabel` | `string`                                          | An accessible label for the right icon. Required when `iconRightOnClick` is provided.           | —           |
-| `dropdown`           | `TextInputDropdownProps`                          | An optional dropdown select rendered inside the input, before the field (single-line only).     | —           |
-| `type`               | `"text" \| "search" \| "tel" \| "email" \| "url"` | The HTML input type.                                                                            | `"text"`    |
-| `inputRef`           | `RefObject`                                       | A ref forwarded to the underlying `<input>` or `<textarea>` element.                            | —           |
-| `placeholder`        | `string`                                          | Placeholder text for the input.                                                                 | `" "`       |
-| `disabled`           | `boolean`                                         | When `true`, prevents interaction.                                                              | `false`     |
-| `required`           | `boolean`                                         | When `true`, marks the input as required.                                                       | `false`     |
-| `readOnly`           | `boolean`                                         | When `true`, makes the input read-only.                                                         | `false`     |
-| `readOnly`           | `boolean`                                         | When `true`, makes the input read-only.                                                         | `false`     |
+| Prop   | Type                                              | Description                                                                         | Default  |
+| ------ | ------------------------------------------------- | ----------------------------------------------------------------------------------- | -------- |
+| `mask` | `TextMaskingConfig`                               | Text masking configuration. Determines the shape and formatting of the masked text. | `"md"`   |
+| `type` | `"text" \| "search" \| "tel" \| "email" \| "url"` | The HTML input type.                                                                | `"text"` |
+
+> See [the `TextInput` component](./text-input.mdx) for the full set of props `MaskedInput` inherits
 
 ### `mask` options
 
