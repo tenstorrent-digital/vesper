@@ -11,6 +11,19 @@ import {
 
 import { getMaskitoOptions } from "./getMaskitoOptions";
 
+/**
+ * The text masking configuration for a `MaskedInput`, which can take one of three shapes:
+ *
+ * - `string`: a fixed-length pattern where every `_` is a placeholder that accepts any character, eg. `"____-____-____"`.
+ * - `{ format, replace }`: a fixed-length pattern where `replace` determines the placeholder characters and what they accept.
+ *   Pass a `RegExp` to keep `_` as the placeholder but restrict accepted characters, a single-character `string` to use a
+ *   different placeholder that accepts any character, or a `Record<string, RegExp>` to map each placeholder character in
+ *   `format` to the expression validating it.
+ * - `MaskitoOptions`: a full [maskito](https://maskito.dev) configuration, for behavior the shorthands can't express, eg.
+ *   dynamic (variable-length) masks, pre/post-processing hooks, or overwrite mode.
+ *
+ * Any character in a `string` or `format` pattern that is not a placeholder is treated as a literal and inserted automatically as the user types.
+ */
 export type TextMaskingConfig =
   | MaskitoOptions
   | string
@@ -20,18 +33,36 @@ export type TextMaskingConfig =
     };
 
 export interface MaskedInputProps extends Omit<TextInputProps, "type"> {
+  /** The text masking configuration, which determines the shape and formatting of the masked text. When omitted, no masking is applied and the field behaves like a regular `TextInput`. */
   mask?: TextMaskingConfig;
+  /** The HTML input type. Restricted to the types that can be masked. @default text */
   type?: "text" | "search" | "tel" | "email" | "url";
 }
 
 /**
- * MaskedInput component description, params, and example usage
+ * A `TextInput` that restricts and formats its value as the user types, via a text mask.
  *
- * @param {ParamType} [props.optionalParam] - (optional) The prop description. @default value
- * @param {ParamType} props.requiredParam - The prop description
+ * @param {TextMaskingConfig} [props.mask] - (optional) The text masking configuration. Accepts a `string` pattern, a `{ format, replace }` object, or a `MaskitoOptions` object. When omitted, no masking is applied
+ * @param {string} [props.type] - (optional) The HTML input type, restricted to `"text" | "search" | "tel" | "email" | "url"`. @default text
+ *
+ * You may also pass any additional props supported by the `TextInput` component including `size`, `variant`, `iconLeft`, `iconRight`, and `dropdown`
  *
  * @example
- * <MaskedInput />
+ * <MaskedInput label="Activation code" mask="____-____-____" />
+ *
+ * @example
+ * <MaskedInput
+ *   label="Phone number"
+ *   placeholder="ex: +1 (222) 333-4444"
+ *   mask={{ format: "+1 (___) ___-____", replace: /\d/ }}
+ * />
+ *
+ * @example
+ * <MaskedInput
+ *   label="Postal code"
+ *   placeholder="ex: A0A 1B1"
+ *   mask={{ format: "ABA BAB", replace: { A: /[a-zA-Z]/, B: /\d/ } }}
+ * />
  */
 export function MaskedInput({ mask, inputRef, ...props }: MaskedInputProps) {
   const maskitoConfig = useMemo(
