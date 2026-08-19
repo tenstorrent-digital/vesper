@@ -20,23 +20,37 @@ export const FORM_INPUT_MESSAGE_VARIANTS = [
 export type FormInputMessageVariant =
   (typeof FORM_INPUT_MESSAGE_VARIANTS)[number];
 
-export interface FormInputMessageProps extends Omit<
-  ComponentProps<"output">,
-  "children"
-> {
+export interface FormInputMessageProps
+  extends Omit<ComponentProps<"output">, "children"> {
   /** The visual variant of the message, which determines its color scheme and message icon. @default default */
   variant?: FormInputMessageVariant;
+  /** The message text to display. When omitted or empty, the message content and icon are not rendered, but the element remains in the document so it can reserve space and announce updates. */
   message?: string | undefined;
 }
 
 /**
- * FormInputMessage component description, params, and example usage
+ * A validation or helper message displayed alongside a form input, rendered as a live `output` element with a variant icon.
  *
- * @param {ParamType} [props.optionalParam] - (optional) The prop description. @default value
- * @param {ParamType} props.requiredParam - The prop description
+ * @see packages/vesper/src/components/text-input/text-input.tsx
+ * @see packages/vesper/src/components/textarea/textarea.tsx
+ *
+ * @param {FormInputMessageVariant} [props.variant] - (optional) The visual variant, which determines the color scheme and message icon. @default default
+ * @param {string} [props.message] - (optional) The message text to display. When omitted or empty, no content is rendered
+ *
+ * You may also pass any additional props to the underlying `output` element
  *
  * @example
- * <FormInputMessage />
+ * <FormInputMessage message="We'll never share your email." />
+ *
+ * @example
+ * <FormInputMessage variant="error" message="Please enter a valid email address." />
+ *
+ * @example
+ * <FormInputMessage
+ *   id={messageId}
+ *   variant="success"
+ *   message="Your changes have been saved."
+ * />
  */
 export const FormInputMessage = ({
   variant = "default",
@@ -50,7 +64,7 @@ export const FormInputMessage = ({
       className={cn(
         "vesper-form-input-message",
         `vesper-form-input-message-${variant}`,
-        className,
+        className
       )}
       {...props}
     >
