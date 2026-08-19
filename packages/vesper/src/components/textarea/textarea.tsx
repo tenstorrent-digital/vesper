@@ -247,7 +247,6 @@ export function Textarea(props: TextareaProps) {
         "vesper-textarea",
         `vesper-textarea-${size}`,
         `vesper-textarea-${variant}`,
-        "vesper-textarea-multiline",
         className,
       )}
       {...rest}
