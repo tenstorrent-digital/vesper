@@ -416,11 +416,7 @@ function TextInputIcon({
     );
   }
 
-  return (
-    <span aria-label={ariaLabel} className="vesper-text-input-icon">
-      {children}
-    </span>
-  );
+  return <span className="vesper-text-input-icon">{children}</span>;
 }
 
 const TEXT_INPUT_CHIP_SIZES: { [key in TextInputSize]: ChipSize } = {
