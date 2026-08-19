@@ -38,18 +38,19 @@ export function MaskedInput({ mask, inputRef, ...props }: MaskedInputProps) {
     () => ({ options: getMaskitoOptions(mask) }),
     [mask]
   );
+
   const maskitoRef = useMaskito(maskitoConfig);
 
-  return (
-    <TextInput
-      inputRef={(instance) => {
-        if (inputRef) {
-          if (typeof inputRef === "function") inputRef(instance);
-          else inputRef.current = instance;
-        }
-        maskitoRef(instance);
-      }}
-      {...props}
-    />
+  const mergedInputRef = useMemo(
+    () => (instance: HTMLInputElement | null) => {
+      if (inputRef) {
+        if (typeof inputRef === "function") inputRef(instance);
+        else inputRef.current = instance;
+      }
+      maskitoRef(instance);
+    },
+    [inputRef, maskitoRef]
   );
+
+  return <TextInput inputRef={mergedInputRef} {...props} />;
 }
