@@ -3,14 +3,14 @@ import { MaskitoOptions } from "@maskito/core";
 import { useMaskito } from "@maskito/react";
 
 import {
-  type SingleLineTextInputProps,
   TextInput,
+  type TextInputProps,
 } from "@/components/text-input/text-input";
 
 import { getMaskitoOptions } from "./getMaskitoOptions";
 
 export interface MaskedInputProps extends Omit<
-  SingleLineTextInputProps,
+  TextInputProps,
   "multiline" | "type"
 > {
   mask?:
