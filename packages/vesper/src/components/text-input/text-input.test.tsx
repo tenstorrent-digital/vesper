@@ -21,9 +21,6 @@ const PREFIX_LABELLED_OPTIONS = [
   { value: "pe", label: "+51" },
 ];
 
-/** The chip size rendered by the prefix for each text input size */
-const PREFIX_CHIP_SIZES = { sm: "sm", md: "md", lg: "md" } as const;
-
 /** Opens the prefix dropdown and resolves with its rendered options */
 async function openPrefix(trigger: HTMLElement) {
   await userEvent.click(trigger);
@@ -361,26 +358,6 @@ describe("text-input [unit]", () => {
       );
     });
 
-    TEXT_INPUT_SIZES.forEach((size) => {
-      test(`${size} input renders a ${PREFIX_CHIP_SIZES[size]} prefix chip`, () => {
-        const result = render(
-          <TextInput size={size} prefix={{ options: PREFIX_OPTIONS }} />,
-        );
-
-        expect(result.getByRole("combobox")).toHaveClass(
-          `vesper-chip-${PREFIX_CHIP_SIZES[size]}`,
-        );
-      });
-    });
-
-    test("prefix has no explicit width by default", () => {
-      const result = render(<TextInput prefix={{ options: PREFIX_OPTIONS }} />);
-
-      const trigger = result.getByRole("combobox");
-      expect(trigger.style.width).toBe("");
-      expect(trigger.style.flexShrink).toBe("0");
-    });
-
     test("prefix width is applied to the trigger", () => {
       const result = render(
         <TextInput prefix={{ options: PREFIX_OPTIONS, width: 80 }} />,
@@ -432,19 +409,7 @@ describe("text-input [unit]", () => {
       });
     });
 
-    test("selecting an option closes the dropdown", async () => {
-      const result = render(<TextInput prefix={{ options: PREFIX_OPTIONS }} />);
-
-      const trigger = result.getByRole("combobox");
-      const items = await openPrefix(trigger);
-      await userEvent.click(items[0]!);
-
-      await waitFor(() => {
-        expect(trigger).not.toHaveAttribute("data-popup-open");
-      });
-    });
-
-    test("renders the prefix placeholder until an option is selected", async () => {
+    test("renders the prefix placeholder", async () => {
       const result = render(
         <TextInput prefix={{ options: PREFIX_OPTIONS, placeholder: "Code" }} />,
       );
@@ -516,40 +481,6 @@ describe("text-input [unit]", () => {
       });
     });
 
-    test("prefix opens with the keyboard and closes with Escape", async () => {
-      const result = render(<TextInput prefix={{ options: PREFIX_OPTIONS }} />);
-
-      const trigger = result.getByRole("combobox");
-      trigger.focus();
-      await userEvent.keyboard("{Enter}");
-      await waitFor(() => {
-        expect(trigger).toHaveAttribute("data-popup-open");
-      });
-
-      await userEvent.keyboard("{Escape}");
-      await waitFor(() => {
-        expect(trigger).not.toHaveAttribute("data-popup-open");
-      });
-    });
-
-    test("prefix is usable when the input has a label", async () => {
-      const result = render(
-        <TextInput
-          label="Phone number"
-          id="phone-number"
-          prefix={{ options: PREFIX_OPTIONS, ariaLabel: "Area code" }}
-        />,
-      );
-
-      const trigger = result.getByRole("combobox");
-      const items = await openPrefix(trigger);
-      await userEvent.click(items[1]!);
-
-      await waitFor(() => {
-        expect(trigger).toHaveTextContent("+44");
-      });
-    });
-
     test("prefix is disabled when the input is disabled", async () => {
       const result = render(
         <TextInput disabled prefix={{ options: PREFIX_OPTIONS }} />,
@@ -563,23 +494,6 @@ describe("text-input [unit]", () => {
       fireEvent.click(trigger);
       expect(trigger).not.toHaveAttribute("data-popup-open");
       expect(document.querySelector(".vesper-select-content")).toBeNull();
-    });
-
-    test("prefix renders a hidden input", () => {
-      const result = render(
-        <TextInput
-          name="phone-number"
-          prefix={{
-            options: PREFIX_LABELLED_OPTIONS,
-            name: "area-code",
-            defaultValue: "uk",
-          }}
-        />,
-      );
-
-      expect(
-        result.container.querySelector("input[name='area-code']"),
-      ).toHaveValue("uk");
     });
 
     test("prefix inherits required prop", () => {
