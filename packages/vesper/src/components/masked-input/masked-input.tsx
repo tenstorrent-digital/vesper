@@ -1,3 +1,5 @@
+"use client";
+
 import { useMemo } from "react";
 import { MaskitoOptions } from "@maskito/core";
 import { useMaskito } from "@maskito/react";

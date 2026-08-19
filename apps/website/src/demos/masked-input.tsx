@@ -3,11 +3,11 @@
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 
 interface MaskedInputDemoProps {
-  type: "product-license" | "na-phone-number";
+  kind: "product-license" | "na-phone-number" | "postal-code";
 }
 
 export function MaskedInputDemo(props: MaskedInputDemoProps) {
-  if (props.type === "product-license") {
+  if (props.kind === "product-license") {
     return (
       <MaskedInput
         label="Product license"
@@ -18,12 +18,25 @@ export function MaskedInputDemo(props: MaskedInputDemoProps) {
     );
   }
 
-  if (props.type === "na-phone-number") {
+  if (props.kind === "na-phone-number") {
     return (
       <MaskedInput
         label="Phone number"
         placeholder="ex: +1 (222) 333-4444"
         mask={{ format: "+1 (___) ___-____", replace: /\d/ }}
+      />
+    );
+  }
+
+  if (props.kind === "postal-code") {
+    return (
+      <MaskedInput
+        label="Postal code"
+        placeholder="ex: A0A 1B1"
+        mask={{
+          format: "ABA BAB",
+          replace: { A: /[a-zA-Z]/, B: /\d/ },
+        }}
       />
     );
   }
