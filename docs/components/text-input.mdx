@@ -31,6 +31,8 @@ A text input component supporting optional labels, validation messages, icons, a
 | `required`           | `boolean`                                                                                                                                | When `true`, marks the input as required.                                                       | `false`     |
 | `readOnly`           | `boolean`                                                                                                                                | When `true`, makes the input read-only.                                                         | `false`     |
 
+Any other props are forwarded either to the underlying `<input>` element or to the wrapping `<div>`, depending on the prop.
+
 ## Examples
 
 ### Uncontrolled vs controlled
@@ -127,6 +129,18 @@ import { TextInput } from "@tenstorrent/vesper/text-input";
   placeholder="Enter your desired username"
   message="Use 3-16 characters, letters and numbers only."
 />;
+```
+
+### Disabling the input
+
+You can disable a `TextInput` by passing `disabled={true}` or just `disabled` as a prop:
+
+<TextInput label="Byline" placeholder="Who wrote this article?" disabled />
+
+```tsx
+import { Textarea } from "@tenstorrent/vesper/textarea";
+
+<TextInput label="Byline" placeholder="Who wrote this article?" disabled />;
 ```
 
 ### Variants
@@ -268,3 +282,74 @@ To render a `TextInput` with a leading dropdown select, you can use the `dropdow
 | `width`        | `number`                         | A fixed width for the dropdown in pixels. Useful for keeping options evenly aligned. | —       |
 
 The dropdown inherits `disabled`, `required`, and `form` from the text input, so it participates in the same form and disabled state as the field itself.
+
+### Labels and required fields
+
+When a `label` is provided, it is rendered above the input and associated with it, so clicking the label focuses the field. Passing `required` appends an asterisk to the label:
+
+<TextInput label="Email" type="email" placeholder="you@example.com" required />
+
+```tsx
+import { TextInput } from "@tenstorrent/vesper/text-input";
+
+<TextInput label="Email" type="email" placeholder="you@example.com" required />;
+```
+
+If you render a required `TextInput` without a `label`, the asterisk is appended to the `placeholder` instead:
+
+<TextInput type="email" placeholder="you@example.com" required />
+
+```tsx
+import { TextInput } from "@tenstorrent/vesper/text-input";
+
+<TextInput type="email" placeholder="you@example.com" required />;
+```
+
+An `id` is generated for you, but you can provide your own if you need to reference the field elsewhere. Any `aria-describedby` you pass is merged with the automatically generated `message` id, so both remain announced by assistive technology.
+
+### Usage in forms
+
+`TextInput` renders a native `<input>`, so it works with regular form submission and native validation via props like `name`, `form`, `required`, `pattern`, `minLength`, and `maxLength`. When a `dropdown` is present, give it its own `name` so its value is submitted alongside the field:
+
+```tsx
+import { Button } from "@tenstorrent/vesper/button";
+import { TextInput } from "@tenstorrent/vesper/text-input";
+
+<form action="/api/contact" method="post">
+  <TextInput
+    name="phone"
+    type="tel"
+    label="Phone number"
+    placeholder="555-555-5555"
+    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+    required
+    dropdown={{
+      name: "countryCode",
+      ariaLabel: "Country code",
+      options: ["+1", "+44", "+61"],
+      defaultValue: "+1",
+    }}
+  />
+  <Button type="submit">Submit</Button>
+</form>;
+```
+
+### Accessing the underlying element
+
+Use the `inputRef` prop when you need direct access to the underlying `<input>` element, eg. to focus it or read its selection:
+
+```tsx
+import { useRef } from "react"
+import { Search } from "@tenstorrent/vesper/icons"
+import { TextInput } from "@tenstorrent/vesper/text-input"
+
+const inputRef = useRef<HTMLInputElement>(null)
+
+<TextInput
+  placeholder="Search logs"
+  inputRef={inputRef}
+  iconLeft={<Search />}
+  iconLeftOnClick={() => inputRef.current?.focus()}
+  iconLeftAriaLabel="Search logs"
+/>
+```

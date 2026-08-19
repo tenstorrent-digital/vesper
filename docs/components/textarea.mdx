@@ -26,6 +26,8 @@ A multi-line text input component supporting optional labels and validation mess
 | `required`    | `boolean`                                        | When `true`, marks the textarea as required.                                                       | `false`     |
 | `readOnly`    | `boolean`                                        | When `true`, makes the textarea read-only.                                                         | `false`     |
 
+Any other props are forwarded either to the underlying `<textarea>` element or to the wrapping `<div>`, depending on the prop.
+
 Unlike [the `TextInput` component](./text-input.mdx), `Textarea` does not support icons, a leading dropdown select, or a `type` prop, since none of them apply to multi-line text.
 
 ## Examples
@@ -88,6 +90,26 @@ import { Textarea } from "@tenstorrent/vesper/textarea";
   label="Release notes"
   placeholder="Summarise what changed in this release"
   height={200}
+/>;
+```
+
+### Disabling the textarea
+
+You can disable a textarea by passing `disabled={true}` or just `disabled` as a prop:
+
+<Textarea
+  label="Overview"
+  placeholder="Add a brief outline of your project"
+  disabled
+/>
+
+```tsx
+import { Textarea } from "@tenstorrent/vesper/textarea";
+
+<Textarea
+  label="Overview"
+  placeholder="Add a brief outline of your project"
+  disabled
 />;
 ```
 
@@ -271,5 +293,3 @@ const textareaRef = useRef<HTMLTextAreaElement>(null)
   textareaRef={textareaRef}
 />
 ```
-
-Any other props are forwarded either to the underlying `<textarea>` element or to the wrapping `<div>`, depending on the prop.
