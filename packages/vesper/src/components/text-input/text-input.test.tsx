@@ -36,73 +36,98 @@ async function openPrefix(trigger: HTMLElement) {
   );
 }
 
-const SNAPSHOT_CASES: (TextInputProps & { name: string })[] = [
-  // One per variant
-  ...TEXT_INPUT_VARIANTS.map((variant) => ({
-    name: `variant: ${variant}`,
-    variant,
-    size: "lg" as const,
-    message: "Message text",
-  })),
-  // One per size
-  ...TEXT_INPUT_SIZES.map((size) => ({
-    name: `size: ${size}`,
-    size,
-  })),
-  // Meaningful feature combos
-  { name: "with icon", iconLeft: <Globe />, size: "lg" as const },
-  { name: "with label", label: "Label text", size: "lg" as const },
-  {
-    name: "with prefix",
-    prefix: {
-      options: PREFIX_OPTIONS,
-      ariaLabel: "Area code",
-      name: "area-code",
-      defaultValue: "+1",
-      width: 100,
-    },
-    size: "lg" as const,
-  },
-  {
-    name: "with prefix, disabled",
-    prefix: {
-      options: PREFIX_OPTIONS,
-      ariaLabel: "Area code",
-      name: "area-code",
-      defaultValue: "+1",
-    },
-    disabled: true,
-    size: "lg" as const,
-  },
-  { name: "disabled", disabled: true, size: "lg" as const },
-  {
-    name: "full options",
-    variant: "error",
-    size: "lg" as const,
-    label: "Label text",
-    message: "Message text",
-    disabled: true,
-  },
-];
-
-// A11y: variant × disabled are the axes that affect contrast/color
-const A11Y_CASES: (TextInputProps & { name: string })[] =
-  TEXT_INPUT_VARIANTS.flatMap((variant) => [
+const TEXT_INPUT_SNAPSHOT_PERMUTATIONS: (TextInputProps & { name: string })[] =
+  [
+    // One per variant
+    ...TEXT_INPUT_VARIANTS.map((variant) => ({
+      name: `variant: ${variant}`,
+      variant,
+      size: "lg" as const,
+      message: "Message text",
+    })),
+    // One per size
+    ...TEXT_INPUT_SIZES.map((size) => ({
+      name: `size: ${size}`,
+      size,
+    })),
+    // Meaningful feature combos
+    { name: "with icon", iconLeft: <Globe />, size: "lg" as const },
+    { name: "with label", label: "Label text", size: "lg" as const },
     {
-      name: `${variant}`,
+      name: "with prefix",
+      prefix: {
+        options: PREFIX_OPTIONS,
+        ariaLabel: "Area code",
+        name: "area-code",
+        defaultValue: "+1",
+        width: 100,
+      },
+      size: "lg" as const,
+    },
+    {
+      name: "with prefix, disabled",
+      prefix: {
+        options: PREFIX_OPTIONS,
+        ariaLabel: "Area code",
+        name: "area-code",
+        defaultValue: "+1",
+      },
+      disabled: true,
+      size: "lg" as const,
+    },
+    { name: "disabled", disabled: true, size: "lg" as const },
+    {
+      name: "full options",
+      variant: "error",
+      size: "lg" as const,
+      label: "Label text",
+      message: "Message text",
+      disabled: true,
+    },
+  ];
+
+const TEXT_INPUT_PERMUTATIONS = TEXT_INPUT_VARIANTS.flatMap((variant) =>
+  TEXT_INPUT_SIZES.flatMap((size) => [
+    {
+      name: `${variant}, ${size}`,
       variant,
       label: "Label text",
       message: "Message text",
       disabled: false,
     },
     {
-      name: `${variant}, disabled`,
+      name: `${variant}, ${size}, with prefix`,
+      variant,
+      label: "Label text",
+      message: "Message text",
+      disabled: false,
+      prefix: {
+        options: PREFIX_OPTIONS,
+        ariaLabel: "Area code",
+        defaultValue: "+1",
+      },
+    },
+    {
+      name: `${variant}, ${size}, disabled`,
       variant,
       label: "Label text",
       message: "Message text",
       disabled: true,
     },
-  ]);
+    {
+      name: `${variant}, ${size}, with prefix, disabled`,
+      variant,
+      label: "Label text",
+      message: "Message text",
+      disabled: true,
+      prefix: {
+        options: PREFIX_OPTIONS,
+        ariaLabel: "Area code",
+        defaultValue: "+1",
+      },
+    },
+  ]),
+);
 
 const TEXT_INPUT_A11Y_FAILING_PERMUTATIONS: (Pick<
   TextInputProps,
@@ -605,7 +630,7 @@ describe("text-input [unit]", () => {
 });
 
 describe("text-input [snapshot]", () => {
-  SNAPSHOT_CASES.forEach((permutation) => {
+  TEXT_INPUT_SNAPSHOT_PERMUTATIONS.forEach((permutation) => {
     const { name, ...props } = permutation;
 
     test(name, () => {
@@ -627,7 +652,7 @@ describe("text-input [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    A11Y_CASES.forEach((permutation) => {
+    TEXT_INPUT_PERMUTATIONS.forEach((permutation) => {
       const { name, ...props } = permutation;
       const label = `wcag2aaa (${name}, ${theme})`;
 
@@ -645,30 +670,6 @@ describe("text-input [a11y]", () => {
 
       if (failsA11y) test.todo(label, testFn);
       else test(label, testFn);
-    });
-
-    [false, true].forEach((disabled) => {
-      const name = disabled ? "with prefix, disabled" : "with prefix";
-
-      const testFn = async () => {
-        const { container } = render(
-          <TextInput
-            label="Phone number"
-            disabled={disabled}
-            prefix={{
-              options: PREFIX_OPTIONS,
-              ariaLabel: "Area code",
-              defaultValue: "+1",
-            }}
-          />,
-        );
-        expect(await axe.run(container.firstChild!)).toHaveNoViolations();
-      };
-
-      // the prefix trigger renders `aria-pressed` (supplied by `Chip`) next to
-      // the `role="combobox"` applied by the underlying Base UI select trigger,
-      // which axe flags as an `aria-allowed-attr` violation
-      test.todo(`wcag2aaa (${name}, ${theme})`, testFn);
     });
   });
 });
