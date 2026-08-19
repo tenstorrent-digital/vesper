@@ -20,8 +20,10 @@ export const FORM_INPUT_MESSAGE_VARIANTS = [
 export type FormInputMessageVariant =
   (typeof FORM_INPUT_MESSAGE_VARIANTS)[number];
 
-export interface FormInputMessageProps
-  extends Omit<ComponentProps<"output">, "children"> {
+export interface FormInputMessageProps extends Omit<
+  ComponentProps<"output">,
+  "children"
+> {
   /** The visual variant of the message, which determines its color scheme and message icon. @default default */
   variant?: FormInputMessageVariant;
   /** The message text to display. When omitted or empty, the message content and icon are not rendered, but the element remains in the document so it can reserve space and announce updates. */
@@ -64,7 +66,7 @@ export const FormInputMessage = ({
       className={cn(
         "vesper-form-input-message",
         `vesper-form-input-message-${variant}`,
-        className
+        className,
       )}
       {...props}
     >

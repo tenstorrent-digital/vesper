@@ -109,7 +109,8 @@ export interface TextInputDropdownProps {
 }
 
 export interface TextInputProps
-  extends Omit<ComponentProps<"div">, ForwardedPropTypes>,
+  extends
+    Omit<ComponentProps<"div">, ForwardedPropTypes>,
     Pick<ComponentProps<"input">, ForwardedPropTypes> {
   /** The size of the text input. Affects padding and typography. @default md */
   size?: TextInputSize;
@@ -367,7 +368,7 @@ export function TextInput(props: TextInputProps) {
         "vesper-text-input",
         `vesper-text-input-${size}`,
         `vesper-text-input-${variant}`,
-        className
+        className,
       )}
       {...rest}
     >
@@ -455,7 +456,7 @@ function TextInputDropdown({
   const baseRemSize = useBaseRemSize();
 
   const items = options.map((option) =>
-    typeof option === "string" ? { value: option, label: option } : option
+    typeof option === "string" ? { value: option, label: option } : option,
   );
 
   return (

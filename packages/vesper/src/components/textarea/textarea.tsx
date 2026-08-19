@@ -73,7 +73,8 @@ type ForwardedPropTypes =
   | "onKeyUpCapture";
 
 export interface TextareaProps
-  extends Omit<ComponentProps<"div">, ForwardedPropTypes>,
+  extends
+    Omit<ComponentProps<"div">, ForwardedPropTypes>,
     Pick<ComponentProps<"textarea">, ForwardedPropTypes> {
   /** A ref forwarded to the underlying `<textarea>` element for direct DOM access. */
   textareaRef?: Ref<HTMLTextAreaElement>;
@@ -246,7 +247,7 @@ export function Textarea(props: TextareaProps) {
         "vesper-textarea",
         `vesper-textarea-${size}`,
         `vesper-textarea-${variant}`,
-        className
+        className,
       )}
       {...rest}
     >

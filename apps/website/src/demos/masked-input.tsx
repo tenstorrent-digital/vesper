@@ -81,7 +81,7 @@ function IntlPhoneNumberMaskedInput() {
         format: "INTERNATIONAL",
         strict: true,
       }),
-    [countryIsoCode]
+    [countryIsoCode],
   );
 
   return (

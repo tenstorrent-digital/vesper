@@ -29,7 +29,7 @@ async function openDropdown(trigger: HTMLElement) {
   });
 
   return Array.from(
-    document.querySelectorAll<HTMLElement>(".vesper-select-item")
+    document.querySelectorAll<HTMLElement>(".vesper-select-item"),
   );
 }
 
@@ -127,7 +127,7 @@ const TEXT_INPUT_PERMUTATIONS = TEXT_INPUT_VARIANTS.flatMap((variant) =>
         defaultValue: "+1",
       },
     },
-  ])
+  ]),
 );
 
 const TEXT_INPUT_A11Y_FAILING_PERMUTATIONS: (Pick<
@@ -163,7 +163,7 @@ describe("text-input [unit]", () => {
       const result = render(<TextInput variant={variant} />);
 
       expect(result.container.firstChild).toHaveClass(
-        `vesper-text-input-${variant}`
+        `vesper-text-input-${variant}`,
       );
     });
   });
@@ -173,7 +173,7 @@ describe("text-input [unit]", () => {
       const result = render(<TextInput size={size} />);
 
       expect(result.container.firstChild).toHaveClass(
-        `vesper-text-input-${size}`
+        `vesper-text-input-${size}`,
       );
     });
   });
@@ -220,7 +220,7 @@ describe("text-input [unit]", () => {
     const input = result.getByRole("textbox");
     expect(input.id).not.toBe("");
     expect(
-      result.container.querySelector(".vesper-text-input-label")
+      result.container.querySelector(".vesper-text-input-label"),
     ).toHaveAttribute("for", input.id);
   });
 
@@ -236,7 +236,7 @@ describe("text-input [unit]", () => {
       <TextInput
         iconLeft={<Globe data-testid="search-icon" />}
         iconLeftAction={{ handler: clickHandler, ariaLabel: "Search" }}
-      />
+      />,
     );
 
     // assert the icon exists
@@ -258,7 +258,7 @@ describe("text-input [unit]", () => {
       <TextInput
         iconRight={<Globe data-testid="search-icon" />}
         iconRightAction={{ handler: clickHandler, ariaLabel: "Search" }}
-      />
+      />,
     );
 
     // assert the icon exists
@@ -288,7 +288,7 @@ describe("text-input [unit]", () => {
         }}
         iconLeftAction={{ handler: leftIconClickHandler, ariaLabel: "Close" }}
         disabled
-      />
+      />,
     );
 
     const [leftIconButton, rightIconButton] = result.getAllByRole("button");
@@ -304,7 +304,7 @@ describe("text-input [unit]", () => {
 
   test("custom className", () => {
     const result = render(
-      <TextInput size="lg" variant="default" className="custom-class" />
+      <TextInput size="lg" variant="default" className="custom-class" />,
     );
 
     const el = result.container.firstChild;
@@ -320,7 +320,7 @@ describe("text-input [unit]", () => {
 
       expect(result.queryByRole("combobox")).toBeNull();
       expect(
-        result.container.querySelector(".vesper-text-input-dropdown")
+        result.container.querySelector(".vesper-text-input-dropdown"),
       ).toBeNull();
     });
 
@@ -328,7 +328,7 @@ describe("text-input [unit]", () => {
       const result = render(
         <TextInput
           dropdown={{ options: DROPDOWN_OPTIONS, ariaLabel: "Area code" }}
-        />
+        />,
       );
 
       const trigger = result.getByRole("combobox");
@@ -336,7 +336,7 @@ describe("text-input [unit]", () => {
       // the trigger renders as a Chip
       expect(trigger).toHaveClass("vesper-chip");
       expect(
-        trigger.closest(".vesper-text-input-field-wrapper")
+        trigger.closest(".vesper-text-input-field-wrapper"),
       ).not.toBeNull();
     });
 
@@ -345,27 +345,27 @@ describe("text-input [unit]", () => {
         <TextInput
           iconLeft={<Globe />}
           dropdown={{ options: DROPDOWN_OPTIONS, ariaLabel: "Area code" }}
-        />
+        />,
       );
 
       const wrapper = result.container.querySelector(
-        ".vesper-text-input-field-wrapper"
+        ".vesper-text-input-field-wrapper",
       )!;
       const children = Array.from(wrapper.children);
       const indexOf = (selector: string) =>
         children.indexOf(wrapper.querySelector(selector)!);
 
       expect(indexOf(".vesper-text-input-icon")).toBeLessThan(
-        indexOf(".vesper-text-input-dropdown")
+        indexOf(".vesper-text-input-dropdown"),
       );
       expect(indexOf(".vesper-text-input-dropdown")).toBeLessThan(
-        indexOf(".vesper-text-input-field")
+        indexOf(".vesper-text-input-field"),
       );
     });
 
     test("dropdown width is applied to the trigger", () => {
       const result = render(
-        <TextInput dropdown={{ options: DROPDOWN_OPTIONS, width: 80 }} />
+        <TextInput dropdown={{ options: DROPDOWN_OPTIONS, width: 80 }} />,
       );
 
       const trigger = result.getByRole("combobox");
@@ -377,7 +377,7 @@ describe("text-input [unit]", () => {
 
     test("renders string options", async () => {
       const result = render(
-        <TextInput dropdown={{ options: DROPDOWN_OPTIONS }} />
+        <TextInput dropdown={{ options: DROPDOWN_OPTIONS }} />,
       );
 
       const items = await openDropdown(result.getByRole("combobox"));
@@ -387,7 +387,7 @@ describe("text-input [unit]", () => {
 
     test("renders labelled options", async () => {
       const result = render(
-        <TextInput dropdown={{ options: DROPDOWN_LABELLED_OPTIONS }} />
+        <TextInput dropdown={{ options: DROPDOWN_LABELLED_OPTIONS }} />,
       );
 
       const items = await openDropdown(result.getByRole("combobox"));
@@ -404,7 +404,7 @@ describe("text-input [unit]", () => {
       const result = render(
         <TextInput
           dropdown={{ options: DROPDOWN_LABELLED_OPTIONS, onChange }}
-        />
+        />,
       );
 
       const trigger = result.getByRole("combobox");
@@ -422,7 +422,7 @@ describe("text-input [unit]", () => {
       const result = render(
         <TextInput
           dropdown={{ options: DROPDOWN_OPTIONS, placeholder: "Code" }}
-        />
+        />,
       );
 
       const trigger = result.getByRole("combobox");
@@ -441,7 +441,7 @@ describe("text-input [unit]", () => {
       const result = render(
         <TextInput
           dropdown={{ options: DROPDOWN_OPTIONS, defaultValue: "+44" }}
-        />
+        />,
       );
 
       const trigger = result.getByRole("combobox");
@@ -471,17 +471,17 @@ describe("text-input [unit]", () => {
       const result = render(
         <TextInput
           dropdown={{ options: DROPDOWN_OPTIONS, ariaLabel: "Area code" }}
-        />
+        />,
       );
 
       expect(
-        result.getByRole("combobox", { name: "Area code" })
+        result.getByRole("combobox", { name: "Area code" }),
       ).not.toBeNull();
     });
 
     test("dropdown chip reflects the open state", async () => {
       const result = render(
-        <TextInput dropdown={{ options: DROPDOWN_OPTIONS }} />
+        <TextInput dropdown={{ options: DROPDOWN_OPTIONS }} />,
       );
 
       const trigger = result.getByRole("combobox");
@@ -498,7 +498,7 @@ describe("text-input [unit]", () => {
 
     test("dropdown is disabled when the input is disabled", async () => {
       const result = render(
-        <TextInput disabled dropdown={{ options: DROPDOWN_OPTIONS }} />
+        <TextInput disabled dropdown={{ options: DROPDOWN_OPTIONS }} />,
       );
 
       const trigger = result.getByRole("combobox");
@@ -518,11 +518,11 @@ describe("text-input [unit]", () => {
             required
             dropdown={{ options: DROPDOWN_OPTIONS, name: "area-code" }}
           />
-        </form>
+        </form>,
       );
 
       expect(
-        result.container.querySelector("input[name='area-code']")
+        result.container.querySelector("input[name='area-code']"),
       ).toBeRequired();
       expect(result.getByRole("textbox")).toBeRequired();
     });
@@ -535,11 +535,11 @@ describe("text-input [unit]", () => {
             form="contact-form"
             dropdown={{ options: DROPDOWN_OPTIONS, name: "area-code" }}
           />
-        </>
+        </>,
       );
 
       expect(
-        result.container.querySelector("input[name='area-code']")
+        result.container.querySelector("input[name='area-code']"),
       ).toHaveAttribute("form", "contact-form");
     });
 
@@ -547,7 +547,7 @@ describe("text-input [unit]", () => {
       const result = render(
         <dialog open data-testid="dialog">
           <TextInput dropdown={{ options: DROPDOWN_OPTIONS }} />
-        </dialog>
+        </dialog>,
       );
 
       await openDropdown(result.getByRole("combobox"));
@@ -594,7 +594,7 @@ describe("text-input [a11y]", () => {
         (p) =>
           p.variant === props.variant &&
           p.disabled === props.disabled &&
-          p.theme === theme
+          p.theme === theme,
       );
 
       if (failsA11y) test.todo(label, testFn);
