@@ -220,17 +220,19 @@ nav#sidebar {
 
   h1,
   h2,
-  h3 {
-    margin-top: var(--spacing);
-    margin-bottom: calc(var(--spacing) / 4);
-    margin-left: calc(var(--spacing) / 12 * -1); /* optically align w content */
-  }
-
+  h3,
   h4,
   h5,
   h6 {
-    margin-top: 0;
+    margin-top: calc(var(--spacing) * 2);
     margin-bottom: 0;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin-bottom: calc(var(--spacing) / 4);
+    margin-left: calc(var(--spacing) / 12 * -1); /* optically align w content */
   }
 
   & > p {
