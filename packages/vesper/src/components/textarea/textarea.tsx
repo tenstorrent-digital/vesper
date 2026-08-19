@@ -119,9 +119,8 @@ export function Textarea(props: TextareaProps) {
     label,
     variant = "default",
     size = "md",
-    // props that may only get forwarded to a textarea element
+    // props that should get forwarded to the textarea element
     height = 104,
-    // props that should get forwarded to input & textarea elements
     defaultValue,
     inputMode,
     enterKeyHint,
