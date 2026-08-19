@@ -90,13 +90,21 @@ type ForwardedPropTypes =
   | "list";
 
 export interface TextInputPrefixProps {
+  /** An accessible label for the prefix select trigger, applied via `aria-label`. */
   ariaLabel?: string;
+  /** The form field name submitted for the prefix select's value. */
   name?: string;
+  /** The selected value, for controlled usage. Pair with `onChange`. */
   value?: string;
+  /** Text displayed in the prefix select trigger while no value is selected. */
   placeholder?: string;
+  /** The initially selected value, for uncontrolled usage. */
   defaultValue?: string;
+  /** The selectable options. A string is used as both the option's value and label; use the object form to set them independently. */
   options: (string | { value: string; label: string })[];
+  /** Called with the newly selected value whenever the prefix selection changes. */
   onChange?(value: string): void;
+  /** A fixed width for the prefix select trigger, in pixels (scaled relative to the base rem size). */
   width?: number;
 }
 
@@ -116,13 +124,17 @@ export interface TextInputProps
   inputRef?: Ref<HTMLInputElement>;
   /** An optional icon element rendered to the left of the input field. */
   iconLeft?: ReactNode;
+  /** An optional click handler for the left icon. When provided, the icon is rendered as a `<button>` instead of a `<span>`. */
   iconLeftOnClick?(e: MouseEvent<HTMLButtonElement>): void;
+  /** An accessible label for the left icon, applied via `aria-label`. Recommended whenever `iconLeftOnClick` is provided. */
   iconLeftAriaLabel?: string;
   /** An optional icon element rendered to the right of the input field. */
   iconRight?: ReactNode;
-  /** The HTML input type. Determines the browser's native input behavior and keyboard. @default text */
+  /** An optional click handler for the right icon. When provided, the icon is rendered as a `<button>` instead of a `<span>`. */
   iconRightOnClick?(e: MouseEvent<HTMLButtonElement>): void;
+  /** An accessible label for the right icon, applied via `aria-label`. Recommended whenever `iconRightOnClick` is provided. */
   iconRightAriaLabel?: string;
+  /** The HTML input type. Determines the browser's native input behavior and keyboard. @default text */
   type?:
     | "text"
     | "email"
@@ -136,6 +148,7 @@ export interface TextInputProps
     | "week"
     | "month"
     | "time";
+  /** An optional select dropdown rendered before the input field, used to pick a value that qualifies the input (e.g. a country code). Only rendered when `options` is non-empty. */
   prefix?: TextInputPrefixProps;
 }
 
