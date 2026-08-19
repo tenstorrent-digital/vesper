@@ -173,17 +173,3 @@
     appearance: textfield;
   }
 }
-
-.vesper-text-input-multiline {
-  .vesper-text-input-field-wrapper {
-    height: auto;
-  }
-  textarea {
-    resize: none;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-}

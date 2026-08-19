@@ -21,11 +21,6 @@ const meta = {
     },
     iconRightAriaLabel: { table: { disable: true } },
     iconRightOnClick: { table: { disable: true } },
-    height: {
-      control: "number",
-      name: "height",
-      description: "only affects multiline inputs",
-    },
     type: { table: { disable: true } },
     inputRef: { table: { disable: true } },
     prefix: {
@@ -49,19 +44,9 @@ export const Playground: Story = {
     iconLeft: false,
     iconRight: false,
     message: "This is a message you can display under the input.",
-    multiline: false,
-    height: 104 as unknown as undefined,
     prefix: false as unknown as TextInputPrefixProps,
   },
   render: (props) => {
-    if (props.multiline) {
-      return (
-        <TextInput
-          {...props}
-          style={{ width: "min(calc(100vw - 4rem), 400px)" }}
-        />
-      );
-    }
     return (
       <TextInput
         {...props}

@@ -23,6 +23,10 @@
     "dist"
   ],
   "exports": {
+    "./textarea": {
+      "types": "./dist/components/textarea/textarea.d.ts",
+      "import": "./dist/components/textarea/textarea.js"
+    },
     "./masked-input": {
       "types": "./dist/components/masked-input/masked-input.d.ts",
       "import": "./dist/components/masked-input/masked-input.js"

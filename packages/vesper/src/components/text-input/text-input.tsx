@@ -72,6 +72,7 @@ type ForwardedPropTypes =
   | "onBeforeInputCapture"
   | "onInput"
   | "onInputCapture"
+  | "onPaste"
   | "onReset"
   | "onResetCapture"
   | "onSubmit"
@@ -81,42 +82,12 @@ type ForwardedPropTypes =
   | "onKeyDown"
   | "onKeyDownCapture"
   | "onKeyUp"
-  | "onKeyUpCapture";
-
-/**
- * Union of all the prop types that should only be forwarded to an input element
- * */
-type InputOnlyPropTypes = "min" | "max" | "multiple" | "pattern" | "list";
-
-interface TextInputBaseProps {
-  /** The size of the text input. Affects padding and typography. @default md */
-  size?: TextInputSize;
-  /** The visual variant of the text input, which determines its color scheme and message icon. @default default */
-  variant?: TextInputVariant;
-  /** An optional message displayed below the input, paired with a variant-specific icon. Also linked to the input via `aria-describedby`. */
-  message?: string;
-  /** An optional label displayed above the input. The input is associated by nesting; when `id` is provided, it is also associated via `htmlFor`. An asterisk is appended when `required` is `true`. */
-  label?: string;
-}
-
-export type MultiLineTextInputProps = TextInputBaseProps &
-  Omit<ComponentProps<"div">, ForwardedPropTypes> &
-  Pick<ComponentProps<"textarea">, ForwardedPropTypes> & {
-    /** When `true`, renders a `<textarea>` element instead of an `<input>`. */
-    multiline: true;
-    /** A ref forwarded to the underlying `<textarea>` element for direct DOM access. */
-    inputRef?: Ref<HTMLTextAreaElement>;
-    /** The fixed height of the textarea in pixels. */
-    height?: number;
-    iconLeft?: never;
-    iconLeftOnClick?: never;
-    iconLeftAriaLabel?: never;
-    iconRight?: never;
-    iconRightOnClick?: never;
-    iconRightAriaLabel?: never;
-    prefix?: never;
-    type?: never;
-  } & { [P in InputOnlyPropTypes]?: never };
+  | "onKeyUpCapture"
+  | "min"
+  | "max"
+  | "multiple"
+  | "pattern"
+  | "list";
 
 export interface TextInputPrefixProps {
   ariaLabel?: string;
@@ -129,40 +100,44 @@ export interface TextInputPrefixProps {
   width?: number;
 }
 
-export type SingleLineTextInputProps = TextInputBaseProps &
-  Omit<ComponentProps<"div">, ForwardedPropTypes | "prefix"> &
-  Pick<ComponentProps<"input">, ForwardedPropTypes | InputOnlyPropTypes> & {
-    /** When false or omitted, renders a single-line `<input>` element. @default false */
-    multiline?: false;
-    /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
-    inputRef?: Ref<HTMLInputElement>;
-    height?: never;
-    /** An optional icon element rendered to the left of the input field. */
-    iconLeft?: ReactNode;
-    iconLeftOnClick?(e: MouseEvent<HTMLButtonElement>): void;
-    iconLeftAriaLabel?: string;
-    /** An optional icon element rendered to the right of the input field. */
-    iconRight?: ReactNode;
-    /** The HTML input type. Determines the browser's native input behavior and keyboard. @default text */
-    iconRightOnClick?(e: MouseEvent<HTMLButtonElement>): void;
-    iconRightAriaLabel?: string;
-    type?:
-      | "text"
-      | "email"
-      | "password"
-      | "url"
-      | "tel"
-      | "search"
-      | "number"
-      | "date"
-      | "datetime-local"
-      | "week"
-      | "month"
-      | "time";
-    prefix?: TextInputPrefixProps;
-  };
-
-export type TextInputProps = SingleLineTextInputProps | MultiLineTextInputProps;
+export interface TextInputProps
+  extends
+    Omit<ComponentProps<"div">, ForwardedPropTypes | "prefix">,
+    Pick<ComponentProps<"input">, ForwardedPropTypes> {
+  /** The size of the text input. Affects padding and typography. @default md */
+  size?: TextInputSize;
+  /** The visual variant of the text input, which determines its color scheme and message icon. @default default */
+  variant?: TextInputVariant;
+  /** An optional message displayed below the input, paired with a variant-specific icon. Also linked to the input via `aria-describedby`. */
+  message?: string;
+  /** An optional label displayed above the input. The input is associated by nesting; when `id` is provided, it is also associated via `htmlFor`. An asterisk is appended when `required` is `true`. */
+  label?: string;
+  /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
+  inputRef?: Ref<HTMLInputElement>;
+  /** An optional icon element rendered to the left of the input field. */
+  iconLeft?: ReactNode;
+  iconLeftOnClick?(e: MouseEvent<HTMLButtonElement>): void;
+  iconLeftAriaLabel?: string;
+  /** An optional icon element rendered to the right of the input field. */
+  iconRight?: ReactNode;
+  /** The HTML input type. Determines the browser's native input behavior and keyboard. @default text */
+  iconRightOnClick?(e: MouseEvent<HTMLButtonElement>): void;
+  iconRightAriaLabel?: string;
+  type?:
+    | "text"
+    | "email"
+    | "password"
+    | "url"
+    | "tel"
+    | "search"
+    | "number"
+    | "date"
+    | "datetime-local"
+    | "week"
+    | "month"
+    | "time";
+  prefix?: TextInputPrefixProps;
+}
 
 const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
   sm: "copy-xs",
@@ -203,7 +178,6 @@ const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
 export function TextInput(props: TextInputProps) {
   const {
     // component-specific props
-    multiline,
     iconLeft,
     iconLeftOnClick,
     iconLeftAriaLabel,
@@ -214,18 +188,15 @@ export function TextInput(props: TextInputProps) {
     message,
     prefix,
     label,
-    type = "text",
     variant = "default",
     size = "md",
-    // props that may only get forwarded to an input element
+    // props that should get forwarded to the input element
+    type = "text",
     min,
     max,
     multiple,
     pattern,
     list,
-    // props that may only get forwarded to a textarea element
-    height = 104,
-    // props that should get forwarded to input & textarea elements
     defaultValue,
     inputMode,
     enterKeyHint,
@@ -259,6 +230,7 @@ export function TextInput(props: TextInputProps) {
     onBeforeInputCapture,
     onInput,
     onInputCapture,
+    onPaste,
     onReset,
     onResetCapture,
     onSubmit,
@@ -287,7 +259,7 @@ export function TextInput(props: TextInputProps) {
 
   const input = (
     <div className="vesper-text-input-field-wrapper">
-      {iconLeft && !multiline && (
+      {iconLeft && (
         <TextInputIcon
           ariaLabel={iconLeftAriaLabel}
           onClick={iconLeftOnClick}
@@ -296,7 +268,7 @@ export function TextInput(props: TextInputProps) {
           {iconLeft}
         </TextInputIcon>
       )}
-      {!!prefix?.options?.length && !multiline && (
+      {!!prefix?.options?.length && (
         <TextInputPrefix
           {...prefix}
           disabled={disabled}
@@ -306,12 +278,8 @@ export function TextInput(props: TextInputProps) {
         />
       )}
       <Typography
-        {...(multiline
-          ? {
-              as: "textarea",
-              style: { height: `${height / 16}rem` },
-            }
-          : { as: "input", type, list, multiple, pattern, min, max })}
+        className="vesper-text-input-field"
+        as="input"
         ref={inputRef}
         variant={TEXT_INPUT_TYPOGRAPHY[size]}
         aria-describedby={describedBy}
@@ -320,7 +288,12 @@ export function TextInput(props: TextInputProps) {
         aria-invalid={ariaInvalid}
         role={role}
         tabIndex={tabIndex}
-        className="vesper-text-input-field"
+        type={type}
+        min={min}
+        max={max}
+        multiple={multiple}
+        pattern={pattern}
+        list={list}
         defaultValue={defaultValue}
         inputMode={inputMode}
         enterKeyHint={enterKeyHint}
@@ -352,6 +325,7 @@ export function TextInput(props: TextInputProps) {
         onBeforeInputCapture={onBeforeInputCapture}
         onInput={onInput}
         onInputCapture={onInputCapture}
+        onPaste={onPaste}
         onReset={onReset}
         onResetCapture={onResetCapture}
         onSubmit={onSubmit}
@@ -363,7 +337,7 @@ export function TextInput(props: TextInputProps) {
         onKeyUp={onKeyUp}
         onKeyUpCapture={onKeyUpCapture}
       />
-      {iconRight && !multiline && (
+      {iconRight && (
         <TextInputIcon
           ariaLabel={iconRightAriaLabel}
           onClick={iconRightOnClick}
@@ -381,7 +355,6 @@ export function TextInput(props: TextInputProps) {
         "vesper-text-input",
         `vesper-text-input-${size}`,
         `vesper-text-input-${variant}`,
-        multiline && "vesper-text-input-multiline",
         className,
       )}
       {...rest}

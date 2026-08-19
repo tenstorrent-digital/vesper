@@ -50,7 +50,6 @@ const SNAPSHOT_CASES: (TextInputProps & { name: string })[] = [
     size,
   })),
   // Meaningful feature combos
-  { name: "multiline", multiline: true, size: "lg" as const },
   { name: "with icon", iconLeft: <Globe />, size: "lg" as const },
   { name: "with label", label: "Label text", size: "lg" as const },
   {
@@ -77,16 +76,9 @@ const SNAPSHOT_CASES: (TextInputProps & { name: string })[] = [
   },
   { name: "disabled", disabled: true, size: "lg" as const },
   {
-    name: "disabled, multiline",
-    disabled: true,
-    multiline: true,
-    size: "lg" as const,
-  },
-  {
     name: "full options",
     variant: "error",
     size: "lg" as const,
-    multiline: true,
     label: "Label text",
     message: "Message text",
     disabled: true,
@@ -135,22 +127,9 @@ const TEXT_INPUT_A11Y_FAILING_PERMUTATIONS: (Pick<
 afterEach(cleanup);
 
 describe("text-input [unit]", () => {
-  test("renders an input by default", () => {
+  test("renders an input", () => {
     const result = render(<TextInput />);
-
     expect(result.getByRole("textbox").tagName).toBe("INPUT");
-    expect(result.container.firstChild).not.toHaveClass(
-      "vesper-text-input-multiline",
-    );
-  });
-
-  test("renders a textarea when multiline", () => {
-    const result = render(<TextInput multiline />);
-
-    expect(result.getByRole("textbox").tagName).toBe("TEXTAREA");
-    expect(result.container.firstChild).toHaveClass(
-      "vesper-text-input-multiline",
-    );
   });
 
   TEXT_INPUT_VARIANTS.forEach((variant) => {
@@ -176,18 +155,6 @@ describe("text-input [unit]", () => {
   test("disabling when single line", () => {
     const result = render(<TextInput disabled />);
     expect(result.getByRole("textbox")).toBeDisabled();
-  });
-
-  test("disabling when multiline", () => {
-    const result = render(<TextInput multiline disabled />);
-
-    expect(result.getByRole("textbox")).toBeDisabled();
-  });
-
-  test("multiline with custom height", () => {
-    const result = render(<TextInput multiline height={200} />);
-
-    expect(result.getByRole("textbox")).toHaveStyle({ height: "200px" });
   });
 
   test("renders a label when supplied", () => {
@@ -219,15 +186,6 @@ describe("text-input [unit]", () => {
     const result = render(<TextInput id="email-input" />);
 
     expect(result.getByRole("textbox")).toHaveAttribute("id", "email-input");
-  });
-
-  test("the id prop is forwarded to the textarea when multiline", () => {
-    const result = render(<TextInput multiline label="Bio" id="bio-input" />);
-
-    expect(result.getByRole("textbox")).toHaveAttribute("id", "bio-input");
-    expect(
-      result.container.querySelector(".vesper-text-input-label"),
-    ).toHaveAttribute("for", "bio-input");
   });
 
   test("an id is generated when the id prop is omitted", () => {
@@ -376,19 +334,6 @@ describe("text-input [unit]", () => {
       expect(indexOf(".vesper-text-input-prefix")).toBeLessThan(
         indexOf(".vesper-text-input-field"),
       );
-    });
-
-    test("no prefix is rendered when multiline", () => {
-      // `prefix` is not assignable to multiline inputs, so the props are cast
-      // to assert that the runtime guard matches the prop types
-      const props = {
-        multiline: true,
-        prefix: { options: PREFIX_OPTIONS },
-      } as unknown as TextInputProps;
-      const result = render(<TextInput {...props} />);
-
-      expect(result.getByRole("textbox").tagName).toBe("TEXTAREA");
-      expect(result.queryByRole("combobox")).toBeNull();
     });
 
     TEXT_INPUT_SIZES.forEach((size) => {
