@@ -19,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   args: {
     variant: "default",
-    children: "The message text",
+    message: "The message text",
   },
 };
 Playground.storyName = "form-input-message";

@@ -14,15 +14,8 @@ import type { MaskitoOptions } from "@maskito/core";
 import { useMaskito } from "@maskito/react";
 
 import { Chip, ChipSize } from "@/components/chip/chip";
-import {
-  CaretDown,
-  CaretUp,
-  Checkmark,
-  ErrorSolid,
-  InfoSolid,
-  SuccessSolid,
-  WarningSolid,
-} from "@/components/icons/icons";
+import { FormInputMessage } from "@/components/form-input-message/form-input-message";
+import { CaretDown, CaretUp, Checkmark } from "@/components/icons/icons";
 import {
   Typography,
   type TypographyVariant,
@@ -432,25 +425,11 @@ export function TextInput(props: TextInputProps) {
       ) : (
         input
       )}
-      {message && (
-        <p className="vesper-text-input-message">
-          <span className="vesper-text-input-message-icon">
-            {variant === "default" && <InfoSolid />}
-            {variant === "error" && <ErrorSolid />}
-            {variant === "success" && <SuccessSolid />}
-            {variant === "warning" && <WarningSolid />}
-          </span>
-          <Typography
-            id={messageId}
-            as="span"
-            variant="label-xs"
-            className="vesper-text-input-message-text"
-            aria-live="polite"
-          >
-            {message}
-          </Typography>
-        </p>
-      )}
+      <FormInputMessage
+        id={message ? messageId : undefined}
+        variant={variant}
+        message={message}
+      />
     </div>
   );
 }

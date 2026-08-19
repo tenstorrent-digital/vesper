@@ -25,9 +25,13 @@ export const FORM_INPUT_MESSAGE_VARIANTS = [
 export type FormInputMessageVariant =
   (typeof FORM_INPUT_MESSAGE_VARIANTS)[number];
 
-export interface FormInputMessageProps extends ComponentProps<"output"> {
+export interface FormInputMessageProps extends Omit<
+  ComponentProps<"output">,
+  "children"
+> {
   /** The visual variant of the message, which determines its color scheme and message icon. @default default */
   variant?: FormInputMessageVariant;
+  message?: string | undefined;
 }
 
 /**
@@ -41,12 +45,10 @@ export interface FormInputMessageProps extends ComponentProps<"output"> {
  */
 export const FormInputMessage = ({
   variant = "default",
-  children,
   className,
+  message,
   ...props
 }: FormInputMessageProps) => {
-  const message = getReactNodeTextContent(children);
-
   return (
     <output
       data-message={!!message}
@@ -57,37 +59,23 @@ export const FormInputMessage = ({
       )}
       {...props}
     >
-      <span aria-hidden className="vesper-form-input-message-icon">
-        {variant === "default" && <InfoSolid />}
-        {variant === "error" && <ErrorSolid />}
-        {variant === "success" && <SuccessSolid />}
-        {variant === "warning" && <WarningSolid />}
-      </span>
-      <Typography
-        as="span"
-        variant="label-xs"
-        className="vesper-form-input-message-text"
-      >
-        {children}
-      </Typography>
+      {!!message && (
+        <>
+          <span aria-hidden className="vesper-form-input-message-icon">
+            {variant === "default" && <InfoSolid />}
+            {variant === "error" && <ErrorSolid />}
+            {variant === "success" && <SuccessSolid />}
+            {variant === "warning" && <WarningSolid />}
+          </span>
+          <Typography
+            as="span"
+            variant="label-xs"
+            className="vesper-form-input-message-text"
+          >
+            {message}
+          </Typography>
+        </>
+      )}
     </output>
-  );
-};
-
-const getReactNodeTextContent = (node: ReactNode): string => {
-  if (typeof node === "string") return node;
-  if (typeof node === "number" || typeof node === "bigint") {
-    return node.toString();
-  }
-  if (Array.isArray(node)) {
-    return node.reduce<string>(
-      (acc, child) => acc + getReactNodeTextContent(child),
-      "",
-    );
-  }
-  if (!isValidElement<{ children?: ReactNode }>(node)) return "";
-  return Children.toArray(node.props?.children).reduce(
-    (acc: string, child) => acc + getReactNodeTextContent(child),
-    "",
   );
 };

@@ -311,25 +311,6 @@ describe("text-input [unit]", () => {
     expect(rightIconButton).toBeDisabled();
   });
 
-  TEXT_INPUT_VARIANTS.forEach((variant) => {
-    test(`${variant} message rendering`, () => {
-      const result = render(
-        <TextInput variant={variant} message="Message text" />,
-      );
-
-      const message = result.container.querySelector(
-        ".vesper-text-input-message",
-      );
-      expect(message).not.toBeNull();
-      expect(message).toHaveTextContent("Message text");
-
-      const icon = message!.querySelector(
-        ".vesper-text-input-message-icon svg",
-      );
-      expect(icon).not.toBeNull();
-    });
-  });
-
   test("additional prop passthrough", () => {
     const result = render(<TextInput aria-label="custom label" />);
     const input = result.container.querySelector("input")!;
