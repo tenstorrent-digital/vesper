@@ -23,6 +23,10 @@
     "dist"
   ],
   "exports": {
+    "./masked-input": {
+      "types": "./dist/components/masked-input/masked-input.d.ts",
+      "import": "./dist/components/masked-input/masked-input.js"
+    },
     "./select": {
       "types": "./dist/components/select/select.d.ts",
       "import": "./dist/components/select/select.js"

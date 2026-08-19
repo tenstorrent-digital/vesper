@@ -4,14 +4,11 @@ import {
   type ComponentProps,
   MouseEvent,
   type ReactNode,
-  type RefObject,
+  type Ref,
   useId,
-  useMemo,
   useState,
 } from "react";
 import { Select } from "@base-ui/react/select";
-import type { MaskitoOptions } from "@maskito/core";
-import { useMaskito } from "@maskito/react";
 
 import { Chip, ChipSize } from "@/components/chip/chip";
 import { FormInputMessage } from "@/components/form-input-message/form-input-message";
@@ -24,8 +21,6 @@ import {
 import { cn } from "@/utils/cn";
 import { getPortalContainer } from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/useBaseRemSize";
-
-import { getMaskitoOptions } from "./getMaskitoOptions";
 
 export const TEXT_INPUT_SIZES = ["sm", "md", "lg"] as const;
 
@@ -110,7 +105,7 @@ export type MultiLineTextInputProps = TextInputBaseProps &
     /** When `true`, renders a `<textarea>` element instead of an `<input>`. */
     multiline: true;
     /** A ref forwarded to the underlying `<textarea>` element for direct DOM access. */
-    inputRef?: RefObject<HTMLTextAreaElement | null>;
+    inputRef?: Ref<HTMLTextAreaElement>;
     /** The fixed height of the textarea in pixels. */
     height?: number;
     iconLeft?: never;
@@ -120,7 +115,6 @@ export type MultiLineTextInputProps = TextInputBaseProps &
     iconRightOnClick?: never;
     iconRightAriaLabel?: never;
     prefix?: never;
-    mask?: never;
     type?: never;
   } & { [P in InputOnlyPropTypes]?: never };
 
@@ -141,7 +135,7 @@ export type SingleLineTextInputProps = TextInputBaseProps &
     /** When false or omitted, renders a single-line `<input>` element. @default false */
     multiline?: false;
     /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
-    inputRef?: RefObject<HTMLInputElement | null>;
+    inputRef?: Ref<HTMLInputElement>;
     height?: never;
     /** An optional icon element rendered to the left of the input field. */
     iconLeft?: ReactNode;
@@ -166,13 +160,6 @@ export type SingleLineTextInputProps = TextInputBaseProps &
       | "month"
       | "time";
     prefix?: TextInputPrefixProps;
-    mask?:
-      | MaskitoOptions
-      | string
-      | {
-          format: string;
-          replace: RegExp | string | { [key: string]: RegExp };
-        };
   };
 
 export type TextInputProps = SingleLineTextInputProps | MultiLineTextInputProps;
@@ -230,7 +217,6 @@ export function TextInput(props: TextInputProps) {
     type = "text",
     variant = "default",
     size = "md",
-    mask,
     // props that may only get forwarded to an input element
     min,
     max,
@@ -299,13 +285,6 @@ export function TextInput(props: TextInputProps) {
       .filter(Boolean)
       .join(" ") || undefined;
 
-  const maskitoOptions = useMemo(
-    () => getMaskitoOptions(mask, multiline),
-    [mask, multiline],
-  );
-
-  const maskitoRef = useMaskito({ options: maskitoOptions });
-
   const input = (
     <div className="vesper-text-input-field-wrapper">
       {iconLeft && !multiline && (
@@ -333,10 +312,7 @@ export function TextInput(props: TextInputProps) {
               style: { height: `${height / 16}rem` },
             }
           : { as: "input", type, list, multiple, pattern, min, max })}
-        ref={(instance: HTMLTextAreaElement | HTMLInputElement | null) => {
-          maskitoRef(instance);
-          if (inputRef) inputRef.current = instance;
-        }}
+        ref={inputRef}
         variant={TEXT_INPUT_TYPOGRAPHY[size]}
         aria-describedby={describedBy}
         aria-label={ariaLabel}

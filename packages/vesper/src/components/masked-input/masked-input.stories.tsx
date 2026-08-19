@@ -1,13 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Close, Search } from "@/components/icons/icons";
+import { MaskedInput } from "@/components/masked-input/masked-input";
 import {
-  TextInput,
-  type TextInputPrefixProps,
+  TEXT_INPUT_SIZES,
+  TEXT_INPUT_VARIANTS,
+  TextInputPrefixProps,
 } from "@/components/text-input/text-input";
 
 const meta = {
-  component: TextInput,
+  component: MaskedInput,
   argTypes: {
     iconLeft: {
       control: "boolean",
@@ -21,19 +23,20 @@ const meta = {
     },
     iconRightAriaLabel: { table: { disable: true } },
     iconRightOnClick: { table: { disable: true } },
-    height: {
-      control: "number",
-      name: "height",
-      description: "only affects multiline inputs",
-    },
     type: { table: { disable: true } },
     inputRef: { table: { disable: true } },
     prefix: {
       control: "boolean",
       description: "no effect on multiline inputs",
     },
+    mask: {
+      control: "text",
+      description: "no effect on multiline inputs",
+    },
+    size: { control: "radio", options: TEXT_INPUT_SIZES },
+    variant: { control: "radio", options: TEXT_INPUT_VARIANTS },
   },
-} satisfies Meta<typeof TextInput>;
+} satisfies Meta<typeof MaskedInput>;
 
 export default meta;
 
@@ -45,36 +48,28 @@ export const Playground: Story = {
     size: "md",
     disabled: false,
     label: "Label",
-    placeholder: "This is placeholder text",
+    placeholder: "Enter a NA phone number",
     iconLeft: false,
     iconRight: false,
     message: "This is a message you can display under the input.",
-    multiline: false,
-    height: 104 as unknown as undefined,
     prefix: false as unknown as TextInputPrefixProps,
+    mask: "+1 (___) ___-____",
   },
-  render: (props) => {
-    if (props.multiline) {
-      return (
-        <TextInput
-          {...props}
-          style={{ width: "min(calc(100vw - 4rem), 400px)" }}
-        />
-      );
-    }
+  render(props) {
     return (
-      <TextInput
+      <MaskedInput
         {...props}
         style={{ width: "min(calc(100vw - 4rem), 400px)" }}
         iconLeft={props.iconLeft ? <Search /> : undefined}
         iconRight={props.iconRight ? <Close /> : undefined}
+        mask={props.mask}
         prefix={
           props.prefix
             ? {
-                options: ["USD", "CAD"],
-                name: "currency",
-                ariaLabel: "Currency",
-                defaultValue: "USD",
+                options: ["US", "CA"],
+                name: "country-code",
+                ariaLabel: "Country code",
+                defaultValue: "US",
               }
             : undefined
         }
@@ -82,4 +77,4 @@ export const Playground: Story = {
     );
   },
 };
-Playground.storyName = "text-input";
+Playground.storyName = "masked-input";
