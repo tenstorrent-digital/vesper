@@ -16,15 +16,6 @@ describe("getMaskitoOptions", () => {
       expect(getMaskitoOptions("")).toEqual(NO_MASK);
     });
 
-    test.each([
-      { name: "undefined", mask: undefined },
-      { name: "string", mask: "___-___" },
-      { name: "format/replace object", mask: { format: "___", replace: "_" } },
-      { name: "MaskitoOptions", mask: { mask: [/\d/, /\d/] } },
-    ])("returns a permissive mask when multiline (mask: $name)", ({ mask }) => {
-      expect(getMaskitoOptions(mask, true)).toEqual(NO_MASK);
-    });
-
     test("applies no masking to arbitrary values", () => {
       expect(maskitoTransform("a1!-Z", getMaskitoOptions(undefined))).toBe(
         "a1!-Z",

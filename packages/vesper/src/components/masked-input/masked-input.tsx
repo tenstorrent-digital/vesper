@@ -9,17 +9,19 @@ import {
 
 import { getMaskitoOptions } from "./getMaskitoOptions";
 
+export type TextMaskingConfig =
+  | MaskitoOptions
+  | string
+  | {
+      format: string;
+      replace: RegExp | string | { [key: string]: RegExp };
+    };
+
 export interface MaskedInputProps extends Omit<
   TextInputProps,
   "multiline" | "type"
 > {
-  mask?:
-    | MaskitoOptions
-    | string
-    | {
-        format: string;
-        replace: RegExp | string | { [key: string]: RegExp };
-      };
+  mask?: TextMaskingConfig;
   type?: "text" | "search" | "tel" | "email" | "url";
 }
 

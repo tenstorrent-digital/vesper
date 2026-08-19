@@ -1,17 +1,9 @@
 import { MaskitoOptions } from "@maskito/core";
 
-export function getMaskitoOptions(
-  mask:
-    | undefined
-    | MaskitoOptions
-    | string
-    | {
-        format: string;
-        replace: RegExp | string | { [key: string]: RegExp };
-      },
-  multiline?: boolean,
-): MaskitoOptions {
-  if (!mask || multiline) {
+import type { TextMaskingConfig } from "@/components/masked-input/masked-input";
+
+export function getMaskitoOptions(mask?: TextMaskingConfig): MaskitoOptions {
+  if (!mask) {
     return { mask: /./ };
   }
 
