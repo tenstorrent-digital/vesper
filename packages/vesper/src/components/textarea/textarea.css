@@ -28,9 +28,12 @@
   &:has(.vesper-textarea-field:disabled) {
     border: var(--vesper-stroke-base) solid var(--vesper-border-disabled);
     background: var(--vesper-tint-neutral-200);
-    .vesper-textarea-icon {
-      color: var(--vesper-icon-disabled);
-      pointer-events: none;
+  }
+  &:has(:focus-visible) {
+    border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
+    box-shadow: var(--vesper-shadow-focus-ring);
+    @media (forced-colors: active) {
+      outline: var(--vesper-stroke-strong) solid CanvasText;
     }
   }
 }
