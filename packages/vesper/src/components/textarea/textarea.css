@@ -92,10 +92,6 @@
   }
 }
 
-.vesper-textarea-icon + .vesper-textarea-prefix {
-  margin-left: 0;
-}
-
 .vesper-textarea-lg {
   .vesper-textarea-field-wrapper {
     gap: var(--vesper-spacing-2);

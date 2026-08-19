@@ -13,16 +13,16 @@ import {
 
 import "@/styles/test.css";
 
-const PREFIX_OPTIONS = ["+1", "+44", "+51"];
+const DROPDOWN_OPTIONS = ["+1", "+44", "+51"];
 
-const PREFIX_LABELLED_OPTIONS = [
+const DROPDOWN_LABELLED_OPTIONS = [
   { value: "us", label: "+1" },
   { value: "uk", label: "+44" },
   { value: "pe", label: "+51" },
 ];
 
-/** Opens the prefix dropdown and resolves with its rendered options */
-async function openPrefix(trigger: HTMLElement) {
+/** Opens the dropdown and resolves with its rendered options */
+async function openDropdown(trigger: HTMLElement) {
   await userEvent.click(trigger);
   await waitFor(() => {
     expect(document.querySelector(".vesper-select-content")).not.toBeNull();
@@ -51,9 +51,9 @@ const TEXT_INPUT_SNAPSHOT_PERMUTATIONS: (TextInputProps & { name: string })[] =
     { name: "with icon", iconLeft: <Globe />, size: "lg" as const },
     { name: "with label", label: "Label text", size: "lg" as const },
     {
-      name: "with prefix",
-      prefix: {
-        options: PREFIX_OPTIONS,
+      name: "with dropdown",
+      dropdown: {
+        options: DROPDOWN_OPTIONS,
         ariaLabel: "Area code",
         name: "area-code",
         defaultValue: "+1",
@@ -62,9 +62,9 @@ const TEXT_INPUT_SNAPSHOT_PERMUTATIONS: (TextInputProps & { name: string })[] =
       size: "lg" as const,
     },
     {
-      name: "with prefix, disabled",
-      prefix: {
-        options: PREFIX_OPTIONS,
+      name: "with dropdown, disabled",
+      dropdown: {
+        options: DROPDOWN_OPTIONS,
         ariaLabel: "Area code",
         name: "area-code",
         defaultValue: "+1",
@@ -93,13 +93,13 @@ const TEXT_INPUT_PERMUTATIONS = TEXT_INPUT_VARIANTS.flatMap((variant) =>
       disabled: false,
     },
     {
-      name: `${variant}, ${size}, with prefix`,
+      name: `${variant}, ${size}, with dropdown`,
       variant,
       label: "Label text",
       message: "Message text",
       disabled: false,
-      prefix: {
-        options: PREFIX_OPTIONS,
+      dropdown: {
+        options: DROPDOWN_OPTIONS,
         ariaLabel: "Area code",
         defaultValue: "+1",
       },
@@ -112,13 +112,13 @@ const TEXT_INPUT_PERMUTATIONS = TEXT_INPUT_VARIANTS.flatMap((variant) =>
       disabled: true,
     },
     {
-      name: `${variant}, ${size}, with prefix, disabled`,
+      name: `${variant}, ${size}, with dropdown, disabled`,
       variant,
       label: "Label text",
       message: "Message text",
       disabled: true,
-      prefix: {
-        options: PREFIX_OPTIONS,
+      dropdown: {
+        options: DROPDOWN_OPTIONS,
         ariaLabel: "Area code",
         defaultValue: "+1",
       },
@@ -309,25 +309,25 @@ describe("text-input [unit]", () => {
     expect(el).toHaveClass("custom-class");
   });
 
-  describe("prefix", () => {
-    test("no prefix is rendered by default", () => {
+  describe("dropdown", () => {
+    test("no dropdown is rendered by default", () => {
       const result = render(<TextInput />);
 
       expect(result.queryByRole("combobox")).toBeNull();
       expect(
-        result.container.querySelector(".vesper-text-input-prefix"),
+        result.container.querySelector(".vesper-text-input-dropdown"),
       ).toBeNull();
     });
 
-    test("renders a prefix select trigger when provided", () => {
+    test("renders a dropdown select trigger when provided", () => {
       const result = render(
         <TextInput
-          prefix={{ options: PREFIX_OPTIONS, ariaLabel: "Area code" }}
+          dropdown={{ options: DROPDOWN_OPTIONS, ariaLabel: "Area code" }}
         />,
       );
 
       const trigger = result.getByRole("combobox");
-      expect(trigger).toHaveClass("vesper-text-input-prefix");
+      expect(trigger).toHaveClass("vesper-text-input-dropdown");
       // the trigger renders as a Chip
       expect(trigger).toHaveClass("vesper-chip");
       expect(
@@ -335,11 +335,11 @@ describe("text-input [unit]", () => {
       ).not.toBeNull();
     });
 
-    test("renders the prefix between the left icon and the input", () => {
+    test("renders the dropdown between the left icon and the input", () => {
       const result = render(
         <TextInput
           iconLeft={<Globe />}
-          prefix={{ options: PREFIX_OPTIONS, ariaLabel: "Area code" }}
+          dropdown={{ options: DROPDOWN_OPTIONS, ariaLabel: "Area code" }}
         />,
       );
 
@@ -351,16 +351,16 @@ describe("text-input [unit]", () => {
         children.indexOf(wrapper.querySelector(selector)!);
 
       expect(indexOf(".vesper-text-input-icon")).toBeLessThan(
-        indexOf(".vesper-text-input-prefix"),
+        indexOf(".vesper-text-input-dropdown"),
       );
-      expect(indexOf(".vesper-text-input-prefix")).toBeLessThan(
+      expect(indexOf(".vesper-text-input-dropdown")).toBeLessThan(
         indexOf(".vesper-text-input-field"),
       );
     });
 
-    test("prefix width is applied to the trigger", () => {
+    test("dropdown width is applied to the trigger", () => {
       const result = render(
-        <TextInput prefix={{ options: PREFIX_OPTIONS, width: 80 }} />,
+        <TextInput dropdown={{ options: DROPDOWN_OPTIONS, width: 80 }} />,
       );
 
       const trigger = result.getByRole("combobox");
@@ -371,19 +371,21 @@ describe("text-input [unit]", () => {
     });
 
     test("renders string options", async () => {
-      const result = render(<TextInput prefix={{ options: PREFIX_OPTIONS }} />);
+      const result = render(
+        <TextInput dropdown={{ options: DROPDOWN_OPTIONS }} />,
+      );
 
-      const items = await openPrefix(result.getByRole("combobox"));
+      const items = await openDropdown(result.getByRole("combobox"));
       expect(items).toHaveLength(3);
-      expect(items.map((item) => item.textContent)).toEqual(PREFIX_OPTIONS);
+      expect(items.map((item) => item.textContent)).toEqual(DROPDOWN_OPTIONS);
     });
 
     test("renders labelled options", async () => {
       const result = render(
-        <TextInput prefix={{ options: PREFIX_LABELLED_OPTIONS }} />,
+        <TextInput dropdown={{ options: DROPDOWN_LABELLED_OPTIONS }} />,
       );
 
-      const items = await openPrefix(result.getByRole("combobox"));
+      const items = await openDropdown(result.getByRole("combobox"));
       expect(items).toHaveLength(3);
       expect(items.map((item) => item.textContent)).toEqual([
         "+1",
@@ -395,11 +397,13 @@ describe("text-input [unit]", () => {
     test("selecting an option calls onChange with the option value", async () => {
       const onChange = vi.fn();
       const result = render(
-        <TextInput prefix={{ options: PREFIX_LABELLED_OPTIONS, onChange }} />,
+        <TextInput
+          dropdown={{ options: DROPDOWN_LABELLED_OPTIONS, onChange }}
+        />,
       );
 
       const trigger = result.getByRole("combobox");
-      const items = await openPrefix(trigger);
+      const items = await openDropdown(trigger);
       await userEvent.click(items[1]!);
 
       await waitFor(() => {
@@ -409,15 +413,17 @@ describe("text-input [unit]", () => {
       });
     });
 
-    test("renders the prefix placeholder", async () => {
+    test("renders the dropdown placeholder", async () => {
       const result = render(
-        <TextInput prefix={{ options: PREFIX_OPTIONS, placeholder: "Code" }} />,
+        <TextInput
+          dropdown={{ options: DROPDOWN_OPTIONS, placeholder: "Code" }}
+        />,
       );
 
       const trigger = result.getByRole("combobox");
       expect(trigger).toHaveTextContent("Code");
 
-      const items = await openPrefix(trigger);
+      const items = await openDropdown(trigger);
       await userEvent.click(items[2]!);
 
       await waitFor(() => {
@@ -426,27 +432,29 @@ describe("text-input [unit]", () => {
       });
     });
 
-    test("prefix defaultValue selects the matching option", async () => {
+    test("dropdown defaultValue selects the matching option", async () => {
       const result = render(
-        <TextInput prefix={{ options: PREFIX_OPTIONS, defaultValue: "+44" }} />,
+        <TextInput
+          dropdown={{ options: DROPDOWN_OPTIONS, defaultValue: "+44" }}
+        />,
       );
 
       const trigger = result.getByRole("combobox");
       expect(trigger).toHaveTextContent("+44");
 
-      const items = await openPrefix(trigger);
+      const items = await openDropdown(trigger);
       expect(items[1]).toHaveAttribute("data-selected");
       expect(items[0]).not.toHaveAttribute("data-selected");
       expect(items[2]).not.toHaveAttribute("data-selected");
     });
 
-    test("prefix value is controlled when supplied", async () => {
+    test("dropdown value is controlled when supplied", async () => {
       const onChange = vi.fn();
-      const props = { options: PREFIX_OPTIONS, onChange };
-      const result = render(<TextInput prefix={{ ...props, value: "+1" }} />);
+      const props = { options: DROPDOWN_OPTIONS, onChange };
+      const result = render(<TextInput dropdown={{ ...props, value: "+1" }} />);
 
       const trigger = result.getByRole("combobox");
-      const items = await openPrefix(trigger);
+      const items = await openDropdown(trigger);
       await userEvent.click(items[2]!);
 
       await waitFor(() => {
@@ -454,10 +462,10 @@ describe("text-input [unit]", () => {
       });
     });
 
-    test("prefix ariaLabel is applied to the trigger", () => {
+    test("dropdown ariaLabel is applied to the trigger", () => {
       const result = render(
         <TextInput
-          prefix={{ options: PREFIX_OPTIONS, ariaLabel: "Area code" }}
+          dropdown={{ options: DROPDOWN_OPTIONS, ariaLabel: "Area code" }}
         />,
       );
 
@@ -466,14 +474,16 @@ describe("text-input [unit]", () => {
       ).not.toBeNull();
     });
 
-    test("prefix chip reflects the open state", async () => {
-      const result = render(<TextInput prefix={{ options: PREFIX_OPTIONS }} />);
+    test("dropdown chip reflects the open state", async () => {
+      const result = render(
+        <TextInput dropdown={{ options: DROPDOWN_OPTIONS }} />,
+      );
 
       const trigger = result.getByRole("combobox");
       expect(trigger).toHaveClass("vesper-chip-default");
       expect(trigger).not.toHaveClass("vesper-chip-selected");
 
-      await openPrefix(trigger);
+      await openDropdown(trigger);
 
       await waitFor(() => {
         expect(trigger).toHaveClass("vesper-chip-contrast");
@@ -481,9 +491,9 @@ describe("text-input [unit]", () => {
       });
     });
 
-    test("prefix is disabled when the input is disabled", async () => {
+    test("dropdown is disabled when the input is disabled", async () => {
       const result = render(
-        <TextInput disabled prefix={{ options: PREFIX_OPTIONS }} />,
+        <TextInput disabled dropdown={{ options: DROPDOWN_OPTIONS }} />,
       );
 
       const trigger = result.getByRole("combobox");
@@ -496,12 +506,12 @@ describe("text-input [unit]", () => {
       expect(document.querySelector(".vesper-select-content")).toBeNull();
     });
 
-    test("prefix inherits required prop", () => {
+    test("dropdown inherits required prop", () => {
       const result = render(
         <form>
           <TextInput
             required
-            prefix={{ options: PREFIX_OPTIONS, name: "area-code" }}
+            dropdown={{ options: DROPDOWN_OPTIONS, name: "area-code" }}
           />
         </form>,
       );
@@ -512,13 +522,13 @@ describe("text-input [unit]", () => {
       expect(result.getByRole("textbox")).toBeRequired();
     });
 
-    test("prefix inherits form prop", () => {
+    test("dropdown inherits form prop", () => {
       const result = render(
         <>
           <form id="contact-form" />
           <TextInput
             form="contact-form"
-            prefix={{ options: PREFIX_OPTIONS, name: "area-code" }}
+            dropdown={{ options: DROPDOWN_OPTIONS, name: "area-code" }}
           />
         </>,
       );
@@ -528,14 +538,14 @@ describe("text-input [unit]", () => {
       ).toHaveAttribute("form", "contact-form");
     });
 
-    test("portals the prefix dropdown into the closest dialog ancestor", async () => {
+    test("portals the dropdown dropdown into the closest dialog ancestor", async () => {
       const result = render(
         <dialog open data-testid="dialog">
-          <TextInput prefix={{ options: PREFIX_OPTIONS }} />
+          <TextInput dropdown={{ options: DROPDOWN_OPTIONS }} />
         </dialog>,
       );
 
-      await openPrefix(result.getByRole("combobox"));
+      await openDropdown(result.getByRole("combobox"));
 
       const content = document.querySelector(".vesper-select-content")!;
       expect(result.getByTestId("dialog").contains(content)).toBe(true);

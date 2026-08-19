@@ -89,28 +89,28 @@ type ForwardedPropTypes =
   | "pattern"
   | "list";
 
-export interface TextInputPrefixProps {
-  /** An accessible label for the prefix select trigger, applied via `aria-label`. */
+export interface TextInputDropdownProps {
+  /** An accessible label for the dropdown select trigger, applied via `aria-label`. */
   ariaLabel?: string;
-  /** The form field name submitted for the prefix select's value. */
+  /** The form field name submitted for the dropdown select's value. */
   name?: string;
   /** The selected value, for controlled usage. Pair with `onChange`. */
   value?: string;
-  /** Text displayed in the prefix select trigger while no value is selected. */
+  /** Text displayed in the dropdown select trigger while no value is selected. */
   placeholder?: string;
   /** The initially selected value, for uncontrolled usage. */
   defaultValue?: string;
   /** The selectable options. A string is used as both the option's value and label; use the object form to set them independently. */
   options: (string | { value: string; label: string })[];
-  /** Called with the newly selected value whenever the prefix selection changes. */
+  /** Called with the newly selected value whenever the dropdown selection changes. */
   onChange?(value: string): void;
-  /** A fixed width for the prefix select trigger, in pixels (scaled relative to the base rem size). */
+  /** A fixed width for the dropdown select trigger, in pixels (scaled relative to the base rem size). */
   width?: number;
 }
 
 export interface TextInputProps
   extends
-    Omit<ComponentProps<"div">, ForwardedPropTypes | "prefix">,
+    Omit<ComponentProps<"div">, ForwardedPropTypes>,
     Pick<ComponentProps<"input">, ForwardedPropTypes> {
   /** The size of the text input. Affects padding and typography. @default md */
   size?: TextInputSize;
@@ -149,7 +149,7 @@ export interface TextInputProps
     | "month"
     | "time";
   /** An optional select dropdown rendered before the input field, used to pick a value that qualifies the input (e.g. a country code). Only rendered when `options` is non-empty. */
-  prefix?: TextInputPrefixProps;
+  dropdown?: TextInputDropdownProps;
 }
 
 const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
@@ -199,7 +199,7 @@ export function TextInput(props: TextInputProps) {
     iconRightAriaLabel,
     inputRef,
     message,
-    prefix,
+    dropdown,
     label,
     variant = "default",
     size = "md",
@@ -281,9 +281,9 @@ export function TextInput(props: TextInputProps) {
           {iconLeft}
         </TextInputIcon>
       )}
-      {!!prefix?.options?.length && (
-        <TextInputPrefix
-          {...prefix}
+      {!!dropdown?.options?.length && (
+        <TextInputDropdown
+          {...dropdown}
           disabled={disabled}
           required={required}
           form={form}
@@ -434,7 +434,7 @@ const TEXT_INPUT_CHIP_SIZES: { [key in TextInputSize]: ChipSize } = {
   sm: "sm",
 };
 
-function TextInputPrefix({
+function TextInputDropdown({
   options,
   defaultValue,
   name,
@@ -447,7 +447,7 @@ function TextInputPrefix({
   ariaLabel,
   size,
   width,
-}: TextInputPrefixProps & {
+}: TextInputDropdownProps & {
   disabled?: boolean;
   required?: boolean;
   form?: string;
@@ -480,7 +480,7 @@ function TextInputPrefix({
     >
       <Select.Trigger
         ref={setRef}
-        className="vesper-text-input-prefix"
+        className="vesper-text-input-dropdown"
         disabled={disabled}
         aria-label={ariaLabel}
         render={

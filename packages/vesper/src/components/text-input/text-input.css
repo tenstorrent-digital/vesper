@@ -24,7 +24,7 @@
   align-items: center;
   border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
   background: var(--vesper-tint-neutral-100);
-  &:has(:focus-visible, .vesper-text-input-prefix[data-popup-open]) {
+  &:has(:focus-visible, .vesper-text-input-dropdown[data-popup-open]) {
     border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
     box-shadow: var(--vesper-shadow-focus-ring);
     @media (forced-colors: active) {
@@ -109,7 +109,7 @@
     width: 0.875rem;
     height: 0.875rem;
   }
-  .vesper-text-input-prefix {
+  .vesper-text-input-dropdown {
     margin-left: calc(var(--vesper-spacing-1) * -1);
   }
   .vesper-text-input-field {
@@ -128,7 +128,7 @@
     width: 1rem;
     height: 1rem;
   }
-  .vesper-text-input-prefix {
+  .vesper-text-input-dropdown {
     margin-left: calc(var(--vesper-spacing-1) * -1.5);
   }
   .vesper-text-input-field {
@@ -136,7 +136,7 @@
   }
 }
 
-.vesper-text-input-icon + .vesper-text-input-prefix {
+.vesper-text-input-icon + .vesper-text-input-dropdown {
   margin-left: 0;
 }
 
@@ -151,7 +151,7 @@
     width: 1.25rem;
     height: 1.25rem;
   }
-  .vesper-text-input-prefix {
+  .vesper-text-input-dropdown {
     margin-left: 0;
   }
   .vesper-text-input-field {

@@ -24,7 +24,7 @@ A form input component supporting single-line text, multiline textarea, optional
 | `iconRight`          | `ReactNode`                                                                                                                              | An optional icon rendered to the right of the input field (single-line only).                   | —           |
 | `iconRightOnClick`   | `(e: MouseEvent<HTMLButtonElement>) => void`                                                                                             | When provided, the right icon renders as a `<button>` and calls this handler when clicked.      | —           |
 | `iconRightAriaLabel` | `string`                                                                                                                                 | An accessible label for the right icon. Required when `iconRightOnClick` is provided.           | —           |
-| `prefix`             | `TextInputPrefixProps`                                                                                                                   | An optional dropdown select rendered inside the input, before the field (single-line only).     | —           |
+| `dropdown`           | `TextInputDropdownProps`                                                                                                                 | An optional dropdown select rendered inside the input, before the field (single-line only).     | —           |
 | `mask`               | `string \| { format: string, replace: string \| RegExp \| { [char: string]: RegExp } } \| MaskitoOptions`                                | An optional input mask restricting and formatting what can be typed (single-line only).         | —           |
 | `type`               | `"text" \| "email" \| "password" \| "url" \| "tel" \| "search" \| "number" \| "date" \| "datetime-local" \| "week" \| "month" \| "time"` | The HTML input type.                                                                            | `"text"`    |
 | `inputRef`           | `RefObject`                                                                                                                              | A ref forwarded to the underlying `<input>` or `<textarea>` element.                            | —           |
@@ -114,12 +114,12 @@ import { TextInput } from "@tenstorrent/vesper/text-input";
 
 ### Leading dropdown select
 
-To render a `TextInput` with a leading dropdown select, you can use the `prefix` prop. This can be useful for area codes, protocols, units, etc. It is ignored when `multiline` is true.
+To render a `TextInput` with a leading dropdown select, you can use the `dropdown` prop. This can be useful for area codes, protocols, units, etc. It is ignored when `multiline` is true.
 
 <TextInput
   type="number"
   placeholder="Enter the weight of the product."
-  prefix={{
+  dropdown={{
     name: "unit",
     ariaLabel: "Measurement unit",
     options: ["lbs", "oz"],
@@ -131,7 +131,7 @@ To render a `TextInput` with a leading dropdown select, you can use the `prefix`
 <TextInput
   type="number"
   placeholder="Enter the weight of the product."
-  prefix={{
+  dropdown={{
     name: "unit",
     ariaLabel: "Measurement unit",
     options: ["lbs", "oz"],
@@ -140,20 +140,20 @@ To render a `TextInput` with a leading dropdown select, you can use the `prefix`
 />
 ```
 
-#### `prefix` options
+#### `dropdown` options
 
-| Prop           | Type                             | Description                                                                        | Default |
-| -------------- | -------------------------------- | ---------------------------------------------------------------------------------- | ------- |
-| `options`      | `(string \| { value, label })[]` | The list of selectable options. Strings are used as both the value and the label.  | —       |
-| `ariaLabel`    | `string`                         | An accessible label for the prefix dropdown, eg. `"Area code"`.                    | —       |
-| `name`         | `string`                         | The field name used when the prefix value is submitted with form data.             | —       |
-| `value`        | `string`                         | The currently selected value (controlled mode).                                    | —       |
-| `defaultValue` | `string`                         | The initially selected value (uncontrolled mode).                                  | —       |
-| `onChange`     | `(value: string) => void`        | Callback fired when the selected prefix value changes.                             | —       |
-| `placeholder`  | `string`                         | Text shown in the prefix when no value is selected.                                | —       |
-| `width`        | `number`                         | A fixed width for the prefix in pixels. Useful for keeping options evenly aligned. | —       |
+| Prop           | Type                             | Description                                                                          | Default |
+| -------------- | -------------------------------- | ------------------------------------------------------------------------------------ | ------- |
+| `options`      | `(string \| { value, label })[]` | The list of selectable options. Strings are used as both the value and the label.    | —       |
+| `ariaLabel`    | `string`                         | An accessible label for the dropdown, eg. `"Area code"`.                             | —       |
+| `name`         | `string`                         | The field name used when the dropdown value is submitted with form data.             | —       |
+| `value`        | `string`                         | The currently selected value (controlled mode).                                      | —       |
+| `defaultValue` | `string`                         | The initially selected value (uncontrolled mode).                                    | —       |
+| `onChange`     | `(value: string) => void`        | Callback fired when the selected dropdown value changes.                             | —       |
+| `placeholder`  | `string`                         | Text shown in the dropdown when no value is selected.                                | —       |
+| `width`        | `number`                         | A fixed width for the dropdown in pixels. Useful for keeping options evenly aligned. | —       |
 
-The prefix inherits `disabled`, `required`, and `form` from the text input, so it participates in the same form and disabled state as the field itself.
+The dropdown inherits `disabled`, `required`, and `form` from the text input, so it participates in the same form and disabled state as the field itself.
 
 ### Masked input
 

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Close, Search } from "@/components/icons/icons";
 import {
   TextInput,
-  type TextInputPrefixProps,
+  type TextInputDropdownProps,
 } from "@/components/text-input/text-input";
 
 const meta = {
@@ -23,7 +23,7 @@ const meta = {
     iconRightOnClick: { table: { disable: true } },
     type: { table: { disable: true } },
     inputRef: { table: { disable: true } },
-    prefix: {
+    dropdown: {
       control: "boolean",
       description: "no effect on multiline inputs",
     },
@@ -44,7 +44,7 @@ export const Playground: Story = {
     iconLeft: false,
     iconRight: false,
     message: "This is a message you can display under the input.",
-    prefix: false as unknown as TextInputPrefixProps,
+    dropdown: false as unknown as TextInputDropdownProps,
   },
   render: (props) => {
     return (
@@ -53,8 +53,8 @@ export const Playground: Story = {
         style={{ width: "min(calc(100vw - 4rem), 400px)" }}
         iconLeft={props.iconLeft ? <Search /> : undefined}
         iconRight={props.iconRight ? <Close /> : undefined}
-        prefix={
-          props.prefix
+        dropdown={
+          props.dropdown
             ? {
                 options: ["USD", "CAD"],
                 name: "currency",
