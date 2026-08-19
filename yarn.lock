@@ -1058,6 +1058,16 @@
   resolved "https://registry.yarnpkg.com/@maskito/core/-/core-5.4.0.tgz#ee35df0afece4b1d1a06df9bb792ea46408831ba"
   integrity sha512-g2Ps71bVidiIoIdrSqzvu85i1vbfDnQScJItikIXTrSGZN8/PwcRsnzr0Cx56dljWbVcEHe2cpZMkYo5Th64zw==
 
+"@maskito/kit@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@maskito/kit/-/kit-5.4.0.tgz#5f68295a27d15ad50fef67f842d33b8aca18b9ee"
+  integrity sha512-kW/U+4qoMmegkC4vyf6Lz4Hfbrel8ph3Yuh3O+XT7ePaQXV9QwSqoo3/jVuXahf46zUV0rN5FHg866bwcFWPUw==
+
+"@maskito/phone@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@maskito/phone/-/phone-5.4.0.tgz#b8d808fae6795202dace60b31d248c50e35157bf"
+  integrity sha512-E0g5Hov+n4F4pNXS/qVZxsHq+Fro2rnmzOOR3LU9FnSto9j2iG5KSemTdfTLbVPEuMlD3KyEBvHy/0NRerm2nA==
+
 "@maskito/react@^5.4.0":
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/@maskito/react/-/react-5.4.0.tgz#16c0d599a04b4d51e0d78f22e9a2de3063459a1e"
@@ -4505,6 +4515,11 @@ levn@^0.4.1:
   dependencies:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
+
+libphonenumber-js@^1.13.11:
+  version "1.13.11"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.13.11.tgz#72d066a69bc6149b36288c54115a926a8d2d3ce1"
+  integrity sha512-ETER2kMaIFTI/Nh1a8Gk03dUF/SL0VZqtI+CcVHZxp5WIHYwNS7S+uiYZDYCvLy3lOR4/DAD5jf0h5WkePPpqg==
 
 lightningcss-android-arm64@1.32.0:
   version "1.32.0"

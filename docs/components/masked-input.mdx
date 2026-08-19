@@ -59,7 +59,7 @@ Every character in `format` that is not a placeholder is treated as a literal an
 
 ## Examples
 
-#### `string` masks
+### `string` masks
 
 A plain string mask is the simplest way to enable text-masking for a `TextInput`. A plain string mask might look something like `"____-____-____"`. Underscores (`_`) in plain string masks are treated as the masked values, and accept any character:
 
@@ -79,13 +79,34 @@ import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 />;
 ```
 
-#### `{ format, replace }` masks
+### `{ format, replace }` masks
 
-If you need more control over what characters to treat as maskable, you can pass an `object` with `format` and `replace` properties to the `mask` prop. The `format` property defines the shape of the mask, much in the same way a plain-text mask works. The `replace` property can be used to define what the masked characters are and what each character will accept as replacements.
+If you need more control over what characters to treat as maskable, you can pass an `object` with `format` and `replace` properties to the `mask` prop. The `format` property defines the shape of the mask, while the `replace` property can be used to define what the masked characters are and what each character will accept as replacements.
+
+#### `string` replacements
+
+If you wanted to modify which character gets masked, you can pass a single character string to override the default behavior of masking underscores. In this example, we mask the `"x"` character instead of an underscore:
+
+<MaskedInputDemo kind="replace-string" />
+
+```tsx
+import { MaskedInput } from "@tenstorrent/vesper/masked-input";
+
+<MaskedInput
+  label="Masked input"
+  placeholder="ex. 1a2-b3c-4d5"
+  mask={{
+    format: "xxx-xxx-xxx",
+    replace: "x",
+  }}
+/>;
+```
+
+#### `RegExp` replacements
 
 If you wanted to change the kind of character that can be accepted as a masked value, you would set the `replace` attribute to a regular expression. In this example, we use the regular expression `/\d/` to ensure that only digits may replace the masked value:
 
-<MaskedInputDemo kind="na-phone-number" />
+<MaskedInputDemo kind="replace-regex" />
 
 ```tsx
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";
@@ -97,19 +118,7 @@ import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 />;
 ```
 
-If you wanted to modify which character gets masked, you can pass a single character string to override the default behavior of masking underscores. In this example, we mask the `"x"` character instead of an underscore:
-
-```tsx
-import { MaskedInput } from "@tenstorrent/vesper/masked-input";
-
-<MaskedInput
-  label="Masked input"
-  mask={{
-    format: "xxx-xxx-xxx",
-    replace: "x",
-  }}
-/>;
-```
+#### Combining `string` & `RegExp` replacements
 
 If you want to modify both the masked character and the accepted values of that masked character, you can pass `Record<string, RegExp>` to the `replace` attribute, where the keys should be single-character strings representing the masked characters, and the values are regular expressions that validate what those masked characters can be.
 
@@ -130,8 +139,53 @@ import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 />;
 ```
 
-#### `MaskitoOptions` masks
+### `MaskitoOptions` masks
 
 If you need fine-grained control over masking behavior and neither `string` nor `{ format, replace }` options can get you what you need, you can pass a `MaskitoOptions` configuration object as a `mask` prop. `MaskitoOptions` allow you to opt into things like dynamic masks, pre/post-processing hooks, overwrite modes, and more.
 
 For more information about `Maskito` and the kinds of things you can do with it, see [the Maskito docs](https://maskito.dev).
+
+#### Example: international phone number
+
+> You will need to install the `@maskito/phone`, `@maskito/kit` and `libphonenumber-js` packages for this example to work
+
+A good use-case for using a `MaskitoOptions` object is when you need to build a phone number input that supports text masking for international phone numbers. Maskito has a [phone input addon](https://maskito.dev/addons/phone) that you can use to build out this kind of input.
+
+<MaskedInputDemo kind="intl-phone-number" />
+
+```tsx
+import { useState } from "react";
+import { MaskedInput } from "@tenstorrent/vesper/masked-input";
+import { type CountryCode, getCountries } from "libphonenumber-js/core";
+import metadata from "libphonenumber-js/min/metadata";
+
+const countries = getCountries(metadata);
+
+function PhoneNumberInput() {
+  const [countryIsoCode, setCountryIsoCode] = useState<CountryCode>("US");
+  const mask = useMemo(
+    () =>
+      maskitoPhone({
+        countryIsoCode,
+        metadata,
+        format: "INTERNATIONAL",
+        strict: true,
+      }),
+    [countryIsoCode]
+  );
+
+  return (
+    <MaskedInput
+      label="Phone number"
+      placeholder="Enter your phone number"
+      mask={mask}
+      dropdown={{
+        options: countries,
+        value: countryIsoCode,
+        ariaLabel: "Country",
+        onChange: (code) => setCountryIsoCode(code as CountryCode),
+      }}
+    />
+  );
+}
+```
