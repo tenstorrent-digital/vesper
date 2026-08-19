@@ -177,7 +177,7 @@ describe("text-input [unit]", () => {
     });
   });
 
-  test("disabling when single line", () => {
+  test("disabled prop disables input", () => {
     const result = render(<TextInput disabled />);
     expect(result.getByRole("textbox")).toBeDisabled();
   });
