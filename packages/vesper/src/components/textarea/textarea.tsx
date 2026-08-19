@@ -73,11 +73,10 @@ type ForwardedPropTypes =
   | "onKeyUpCapture";
 
 export interface TextareaProps
-  extends
-    Omit<ComponentProps<"div">, ForwardedPropTypes>,
+  extends Omit<ComponentProps<"div">, ForwardedPropTypes>,
     Pick<ComponentProps<"textarea">, ForwardedPropTypes> {
   /** A ref forwarded to the underlying `<textarea>` element for direct DOM access. */
-  inputRef?: Ref<HTMLTextAreaElement>;
+  textareaRef?: Ref<HTMLTextAreaElement>;
   /** The fixed height of the textarea in pixels, scaling with base rem size. */
   height?: number;
   /** The size of the textarea. Affects padding and typography. @default md */
@@ -114,7 +113,7 @@ const TEXTAREA_TYPOGRAPHY: { [S in TextareaSize]: TypographyVariant } = {
 export function Textarea(props: TextareaProps) {
   const {
     // component-specific props
-    inputRef,
+    textareaRef,
     message,
     label,
     variant = "default",
@@ -187,7 +186,7 @@ export function Textarea(props: TextareaProps) {
         className="vesper-textarea-field"
         as="textarea"
         style={{ height: `${height / 16}rem` }}
-        ref={inputRef}
+        ref={textareaRef}
         variant={TEXTAREA_TYPOGRAPHY[size]}
         aria-describedby={describedBy}
         aria-label={ariaLabel}
@@ -247,7 +246,7 @@ export function Textarea(props: TextareaProps) {
         "vesper-textarea",
         `vesper-textarea-${size}`,
         `vesper-textarea-${variant}`,
-        className,
+        className
       )}
       {...rest}
     >
