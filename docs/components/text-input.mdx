@@ -109,6 +109,103 @@ import { TextInput } from "@tenstorrent/vesper/text-input";
 />;
 ```
 
+### Variants
+
+The `TextInput` component can be rendered in one of four variants: `default`, `warning`, `success`, or `error`. The variant determines the colour scheme of the input, as well as the icon paired with its `message`.
+
+#### Default variant
+
+A `TextInput` renders with the `default` variant when no `variant` prop is specified. Its `message` is best suited for neutral hints, such as formatting requirements:
+
+<TextInput
+  label="Username"
+  placeholder="you@example.com"
+  message="Use 3-16 characters, letters and numbers only."
+/>
+
+```tsx
+import { TextInput } from "@tenstorrent/vesper/text-input";
+
+<TextInput
+  label="Username"
+  placeholder="you@example.com"
+  message="Use 3-16 characters, letters and numbers only."
+/>;
+```
+
+#### Warning variant
+
+Use the `warning` variant to flag a value that needs attention, but that doesn't prevent the form from being submitted:
+
+<TextInput
+  variant="warning"
+  label="Password"
+  type="password"
+  defaultValue="password1"
+  message="This password is weak."
+/>
+
+```tsx
+import { TextInput } from "@tenstorrent/vesper/text-input";
+
+<TextInput
+  variant="warning"
+  label="Password"
+  type="password"
+  message="This password is weak."
+/>;
+```
+
+#### Success variant
+
+The `success` variant is best suited for confirming that a value has been validated as expected:
+
+<TextInput
+  variant="success"
+  label="Workspace slug"
+  defaultValue="vesper"
+  message="This workspace slug is available."
+/>
+
+```tsx
+import { TextInput } from "@tenstorrent/vesper/text-input";
+
+<TextInput
+  variant="success"
+  label="Workspace slug"
+  value={workspace}
+  onChange={(e) => setWorkspace(e.target.value)}
+  message="This workspace slug is available."
+/>;
+```
+
+#### Error variant
+
+The `error` variant highlights an invalid value that must be corrected before the form can be submitted:
+
+<TextInput
+  variant="error"
+  label="Email"
+  type="email"
+  defaultValue="you@example.com"
+  message="This email address is taken."
+  required
+/>
+
+```tsx
+import { TextInput } from "@tenstorrent/vesper/text-input";
+
+<TextInput
+  variant="error"
+  label="Email"
+  type="email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  message="This email address is taken."
+  required
+/>;
+```
+
 ### Leading dropdown select
 
 To render a `TextInput` with a leading dropdown select, you can use the `dropdown` prop. This can be useful for area codes, protocols, units, etc.
@@ -118,7 +215,7 @@ To render a `TextInput` with a leading dropdown select, you can use the `dropdow
   placeholder="Enter the weight of the product."
   dropdown={{
     name: "unit",
-    ariaLabel: "Measurement unit",
+    ariaLabel: "Unit",
     options: ["lbs", "oz"],
     defaultValue: "lbs",
   }}
@@ -130,7 +227,7 @@ To render a `TextInput` with a leading dropdown select, you can use the `dropdow
   placeholder="Enter the weight of the product."
   dropdown={{
     name: "unit",
-    ariaLabel: "Measurement unit",
+    ariaLabel: "Unit",
     options: ["lbs", "oz"],
     defaultValue: "lbs",
   }}
