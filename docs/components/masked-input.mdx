@@ -139,8 +139,9 @@ A good use-case for using a `MaskitoOptions` object is when you need to build a 
 <MaskedInputDemo kind="intl-phone-number" />
 
 ```tsx
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";
+import { maskitoPhone } from "@maskito/phone";
 import { type CountryCode, getCountries } from "libphonenumber-js/core";
 import metadata from "libphonenumber-js/min/metadata";
 
