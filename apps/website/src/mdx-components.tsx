@@ -38,6 +38,7 @@ import {
   Search,
   Tenstorrent,
 } from "@tenstorrent/vesper/icons";
+import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 import { Material } from "@tenstorrent/vesper/material";
 import { Modal } from "@tenstorrent/vesper/modal";
 import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
@@ -196,6 +197,7 @@ const components = {
   CodeBlock,
   Icon,
   IconButton,
+  MaskedInput,
   Material,
   Modal,
   ProgressBar,
