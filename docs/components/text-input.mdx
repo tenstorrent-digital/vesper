@@ -109,6 +109,26 @@ import { TextInput } from "@tenstorrent/vesper/text-input";
 />;
 ```
 
+### Message
+
+You can provide supplementary information to the user via the `message` prop, which renders a line of text below the input element. Combine with the `variant` prop to indicate the tone of the message to the user.
+
+<TextInput
+  label="Username"
+  placeholder="Enter your desired username"
+  message="Use 3-16 characters, letters and numbers only."
+/>
+
+```tsx
+import { TextInput } from "@tenstorrent/vesper/text-input";
+
+<TextInput
+  label="Username"
+  placeholder="Enter your desired username"
+  message="Use 3-16 characters, letters and numbers only."
+/>;
+```
+
 ### Variants
 
 The `TextInput` component can be rendered in one of four variants: `default`, `warning`, `success`, or `error`. The variant determines the colour scheme of the input, as well as the icon paired with its `message`.
@@ -119,7 +139,7 @@ A `TextInput` renders with the `default` variant when no `variant` prop is speci
 
 <TextInput
   label="Username"
-  placeholder="you@example.com"
+  placeholder="Enter your desired username"
   message="Use 3-16 characters, letters and numbers only."
 />
 
@@ -128,7 +148,7 @@ import { TextInput } from "@tenstorrent/vesper/text-input";
 
 <TextInput
   label="Username"
-  placeholder="you@example.com"
+  placeholder="Enter your desired username"
   message="Use 3-16 characters, letters and numbers only."
 />;
 ```
