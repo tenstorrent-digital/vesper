@@ -19,10 +19,7 @@ export type TextMaskingConfig =
       replace: RegExp | string | { [key: string]: RegExp };
     };
 
-export interface MaskedInputProps extends Omit<
-  TextInputProps,
-  "multiline" | "type"
-> {
+export interface MaskedInputProps extends Omit<TextInputProps, "type"> {
   mask?: TextMaskingConfig;
   type?: "text" | "search" | "tel" | "email" | "url";
 }
@@ -39,7 +36,7 @@ export interface MaskedInputProps extends Omit<
 export function MaskedInput({ mask, inputRef, ...props }: MaskedInputProps) {
   const maskitoConfig = useMemo(
     () => ({ options: getMaskitoOptions(mask) }),
-    [mask],
+    [mask]
   );
   const maskitoRef = useMaskito(maskitoConfig);
 

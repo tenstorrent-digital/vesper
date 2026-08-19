@@ -11,28 +11,16 @@ import {
 const meta = {
   component: MaskedInput,
   argTypes: {
-    iconLeft: {
-      control: "boolean",
-      description: "no effect on multiline inputs",
-    },
+    iconLeft: { control: "boolean" },
     iconLeftAriaLabel: { table: { disable: true } },
     iconLeftOnClick: { table: { disable: true } },
-    iconRight: {
-      control: "boolean",
-      description: "no effect on multiline inputs",
-    },
+    iconRight: { control: "boolean" },
     iconRightAriaLabel: { table: { disable: true } },
     iconRightOnClick: { table: { disable: true } },
     type: { table: { disable: true } },
     inputRef: { table: { disable: true } },
-    dropdown: {
-      control: "boolean",
-      description: "no effect on multiline inputs",
-    },
-    mask: {
-      control: "text",
-      description: "no effect on multiline inputs",
-    },
+    dropdown: { control: "boolean" },
+    mask: { control: "text" },
     size: { control: "radio", options: TEXT_INPUT_SIZES },
     variant: { control: "radio", options: TEXT_INPUT_VARIANTS },
   },

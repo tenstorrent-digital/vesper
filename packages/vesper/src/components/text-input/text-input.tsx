@@ -109,8 +109,7 @@ export interface TextInputDropdownProps {
 }
 
 export interface TextInputProps
-  extends
-    Omit<ComponentProps<"div">, ForwardedPropTypes>,
+  extends Omit<ComponentProps<"div">, ForwardedPropTypes>,
     Pick<ComponentProps<"input">, ForwardedPropTypes> {
   /** The size of the text input. Affects padding and typography. @default md */
   size?: TextInputSize;
@@ -159,15 +158,14 @@ const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
 };
 
 /**
- * A form-ready text input component supporting single-line and multiline modes with labels, icons, validation messages, and variants.
+ * A form-ready text input component supporting labels, icons, validation messages, variants, and leading dropdown select.
  *
  * @param {TextInputSize} [props.size] - (optional) The size of the text input. @default md
  * @param {TextInputVariant} [props.variant] - (optional) The visual variant determining color scheme and message icon. @default default
  * @param {string} [props.label] - (optional) A label displayed above the input
  * @param {string} [props.message] - (optional) A message displayed below the input with a variant-specific icon
- * @param {boolean} [props.multiline] - (optional) When `true`, renders a `<textarea>` instead of an `<input>`. @default false
- * @param {ReactNode} [props.iconLeft] - (optional) An element rendered to the left of the input field (single-line only)
- * @param {ReactNode} [props.iconRight] - (optional) An element rendered to the right of the input field (single-line only)
+ * @param {ReactNode} [props.iconLeft] - (optional) An element rendered to the left of the input field
+ * @param {ReactNode} [props.iconRight] - (optional) An element rendered to the right of the input field
  * @param {string} [props.type] - (optional) The HTML input type. @default text
  * @param {string} [props.placeholder] - (optional) Placeholder text for the input
  *
@@ -184,9 +182,6 @@ const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
  *   value={username}
  *   onChange={(e) => setUsername(e.target.value)}
  * />
- *
- * @example
- * <TextInput multiline label="Bio" height={120} maxLength={500} />
  */
 export function TextInput(props: TextInputProps) {
   const {
@@ -368,7 +363,7 @@ export function TextInput(props: TextInputProps) {
         "vesper-text-input",
         `vesper-text-input-${size}`,
         `vesper-text-input-${variant}`,
-        className,
+        className
       )}
       {...rest}
     >
@@ -460,7 +455,7 @@ function TextInputDropdown({
   const baseRemSize = useBaseRemSize();
 
   const items = options.map((option) =>
-    typeof option === "string" ? { value: option, label: option } : option,
+    typeof option === "string" ? { value: option, label: option } : option
   );
 
   return (
