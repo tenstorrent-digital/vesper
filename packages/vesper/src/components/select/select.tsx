@@ -177,11 +177,11 @@ export function Select(props: SelectProps) {
                   value={o.value}
                   className="vesper-select-item"
                 >
-                  <Typography variant="label-md">
-                    <BaseSelect.ItemText render={<span />}>
-                      {o.label}
-                    </BaseSelect.ItemText>
-                  </Typography>
+                  <BaseSelect.ItemText
+                    render={<Typography variant="label-md" />}
+                  >
+                    {o.label}
+                  </BaseSelect.ItemText>
                   <BaseSelect.ItemIndicator className="vesper-select-item-checkmark">
                     <Checkmark />
                   </BaseSelect.ItemIndicator>
