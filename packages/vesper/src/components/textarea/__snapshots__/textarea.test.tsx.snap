@@ -26,15 +26,15 @@ exports[`textarea [snapshot] > full options 1`] = `
 <div
   class="vesper-textarea vesper-textarea-lg vesper-textarea-error"
 >
-  <label
-    class="vesper-typography vesper-typography-label-sm vesper-textarea-label"
-    for="_r_1n_"
+  <div
+    class="vesper-textarea-label-wrapper"
   >
-    <span
-      class="vesper-textarea-label-text"
+    <label
+      class="vesper-typography vesper-typography-label-sm vesper-textarea-label"
+      for="_r_1n_"
     >
       Label text
-    </span>
+    </label>
     <div
       class="vesper-textarea-field-wrapper"
     >
@@ -47,7 +47,7 @@ exports[`textarea [snapshot] > full options 1`] = `
         style="height: 6.5rem;"
       />
     </div>
-  </label>
+  </div>
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
     data-message="true"
@@ -349,15 +349,15 @@ exports[`textarea [snapshot] > with label 1`] = `
 <div
   class="vesper-textarea vesper-textarea-lg vesper-textarea-default"
 >
-  <label
-    class="vesper-typography vesper-typography-label-sm vesper-textarea-label"
-    for="_r_1j_"
+  <div
+    class="vesper-textarea-label-wrapper"
   >
-    <span
-      class="vesper-textarea-label-text"
+    <label
+      class="vesper-typography vesper-typography-label-sm vesper-textarea-label"
+      for="_r_1j_"
     >
       Label text
-    </span>
+    </label>
     <div
       class="vesper-textarea-field-wrapper"
     >
@@ -368,7 +368,7 @@ exports[`textarea [snapshot] > with label 1`] = `
         style="height: 6.5rem;"
       />
     </div>
-  </label>
+  </div>
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
     data-message="false"
