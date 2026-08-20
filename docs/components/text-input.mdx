@@ -1,11 +1,11 @@
 ---
 title: Text Input
-description: A text input component supporting optional labels, validation messages, and icons.
+description: A text input component supporting optional labels, validation messages, icons, and leading dropdown selects.
 ---
 
 # Text Input
 
-A text input component supporting optional labels, validation messages, and icons. Built on the native `<input>` element for full form compatibility.
+A text input component supporting optional labels, validation messages, icons, and leading dropdown selects. Built on the native `<input>` element for full form compatibility.
 
 <TextInput label="Email" placeholder="you@example.com" type="email" />
 
@@ -21,6 +21,7 @@ A text input component supporting optional labels, validation messages, and icon
 | `iconLeftAction`  | `{ handler: (e: MouseEvent<HTMLButtonElement>) => void; ariaLabel: string }`                                                             | When provided, the left icon renders as a `<button>` that calls `handler` when clicked, labelled by `ariaLabel`.  | —           |
 | `iconRight`       | `ReactNode`                                                                                                                              | An optional icon rendered to the right of the input field (single-line only).                                     | —           |
 | `iconRightAction` | `{ handler: (e: MouseEvent<HTMLButtonElement>) => void; ariaLabel: string }`                                                             | When provided, the right icon renders as a `<button>` that calls `handler` when clicked, labelled by `ariaLabel`. | —           |
+| `dropdown`        | `TextInputDropdownProps`                                                                                                                 | An optional dropdown select rendered inside the input, before the field (single-line only).                       | —           |
 | `type`            | `"text" \| "email" \| "password" \| "url" \| "tel" \| "search" \| "number" \| "date" \| "datetime-local" \| "week" \| "month" \| "time"` | The HTML input type.                                                                                              | `"text"`    |
 | `inputRef`        | `Ref<HTMLInputElement>`                                                                                                                  | A ref forwarded to the underlying `<input>` element.                                                              | —           |
 | `placeholder`     | `string`                                                                                                                                 | Placeholder text for the input.                                                                                   | `" "`       |
@@ -239,6 +240,49 @@ import { TextInput } from "@tenstorrent/vesper/text-input";
 />;
 ```
 
+### Leading dropdown select
+
+To render a `TextInput` with a leading dropdown select, you can use the `dropdown` prop. This can be useful for area codes, protocols, units, etc.
+
+<TextInput
+  type="number"
+  placeholder="Enter the weight of the product."
+  dropdown={{
+    name: "unit",
+    ariaLabel: "Unit",
+    options: ["lbs", "oz"],
+    defaultValue: "lbs",
+  }}
+/>
+
+```
+<TextInput
+  type="number"
+  placeholder="Enter the weight of the product."
+  dropdown={{
+    name: "unit",
+    ariaLabel: "Unit",
+    options: ["lbs", "oz"],
+    defaultValue: "lbs",
+  }}
+/>
+```
+
+#### `dropdown` options
+
+| Prop           | Type                             | Description                                                                          | Default |
+| -------------- | -------------------------------- | ------------------------------------------------------------------------------------ | ------- |
+| `options`      | `(string \| { value, label })[]` | The list of selectable options. Strings are used as both the value and the label.    | —       |
+| `ariaLabel`    | `string`                         | An accessible label for the dropdown, eg. `"Area code"`.                             | —       |
+| `name`         | `string`                         | The field name used when the dropdown value is submitted with form data.             | —       |
+| `value`        | `string`                         | The currently selected value (controlled mode).                                      | —       |
+| `defaultValue` | `string`                         | The initially selected value (uncontrolled mode).                                    | —       |
+| `onChange`     | `(value: string) => void`        | Callback fired when the selected dropdown value changes.                             | —       |
+| `placeholder`  | `string`                         | Text shown in the dropdown when no value is selected.                                | —       |
+| `width`        | `number`                         | A fixed width for the dropdown in pixels. Useful for keeping options evenly aligned. | —       |
+
+The dropdown inherits `disabled`, `required`, and `form` from the text input, so it participates in the same form and disabled state as the field itself.
+
 ### Labels and required fields
 
 When a `label` is provided, it is rendered above the input and associated with it, so clicking the label focuses the field. Passing `required` appends an asterisk to the label:
@@ -265,7 +309,7 @@ An `id` is generated for you, but you can provide your own if you need to refere
 
 ### Usage in forms
 
-`TextInput` renders a native `<input>`, so it works with regular form submission and native validation via props like `name`, `form`, `required`, `pattern`, `minLength`, and `maxLength`:
+`TextInput` renders a native `<input>`, so it works with regular form submission and native validation via props like `name`, `form`, `required`, `pattern`, `minLength`, and `maxLength`. When a `dropdown` is present, give it its own `name` so its value is submitted alongside the field:
 
 ```tsx
 import { Button } from "@tenstorrent/vesper/button";
@@ -279,6 +323,12 @@ import { TextInput } from "@tenstorrent/vesper/text-input";
     placeholder="555-555-5555"
     pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
     required
+    dropdown={{
+      name: "countryCode",
+      ariaLabel: "Country code",
+      options: ["+1", "+44", "+61"],
+      defaultValue: "+1",
+    }}
   />
   <Button type="submit">Submit</Button>
 </form>;

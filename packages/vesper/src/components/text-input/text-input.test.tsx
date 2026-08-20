@@ -1,4 +1,4 @@
-import { cleanup, render } from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
@@ -12,6 +12,26 @@ import {
 } from "@/components/text-input/text-input";
 
 import "@/styles/test.css";
+
+const DROPDOWN_OPTIONS = ["+1", "+44", "+51"];
+
+const DROPDOWN_LABELLED_OPTIONS = [
+  { value: "us", label: "+1" },
+  { value: "uk", label: "+44" },
+  { value: "pe", label: "+51" },
+];
+
+/** Opens the dropdown and resolves with its rendered options */
+async function openDropdown(trigger: HTMLElement) {
+  await userEvent.click(trigger);
+  await waitFor(() => {
+    expect(document.querySelector(".vesper-select-content")).not.toBeNull();
+  });
+
+  return Array.from(
+    document.querySelectorAll<HTMLElement>(".vesper-select-item"),
+  );
+}
 
 const TEXT_INPUT_SNAPSHOT_PERMUTATIONS: (TextInputProps & { name: string })[] =
   [
@@ -30,6 +50,28 @@ const TEXT_INPUT_SNAPSHOT_PERMUTATIONS: (TextInputProps & { name: string })[] =
     // Meaningful feature combos
     { name: "with icon", iconLeft: <Globe />, size: "lg" as const },
     { name: "with label", label: "Label text", size: "lg" as const },
+    {
+      name: "with dropdown",
+      dropdown: {
+        options: DROPDOWN_OPTIONS,
+        ariaLabel: "Area code",
+        name: "area-code",
+        defaultValue: "+1",
+        width: 100,
+      },
+      size: "lg" as const,
+    },
+    {
+      name: "with dropdown, disabled",
+      dropdown: {
+        options: DROPDOWN_OPTIONS,
+        ariaLabel: "Area code",
+        name: "area-code",
+        defaultValue: "+1",
+      },
+      disabled: true,
+      size: "lg" as const,
+    },
     { name: "disabled", disabled: true, size: "lg" as const },
     {
       name: "full options",
@@ -52,12 +94,38 @@ const TEXT_INPUT_PERMUTATIONS = TEXT_INPUT_VARIANTS.flatMap((variant) =>
       size,
     },
     {
+      name: `${variant}, ${size}, with dropdown`,
+      variant,
+      label: "Label text",
+      message: "Message text",
+      disabled: false,
+      size,
+      dropdown: {
+        options: DROPDOWN_OPTIONS,
+        ariaLabel: "Area code",
+        defaultValue: "+1",
+      },
+    },
+    {
       name: `${variant}, ${size}, disabled`,
       variant,
       label: "Label text",
       message: "Message text",
       disabled: true,
       size,
+    },
+    {
+      name: `${variant}, ${size}, with dropdown, disabled`,
+      variant,
+      label: "Label text",
+      message: "Message text",
+      disabled: true,
+      size,
+      dropdown: {
+        options: DROPDOWN_OPTIONS,
+        ariaLabel: "Area code",
+        defaultValue: "+1",
+      },
     },
   ]),
 );
@@ -244,6 +312,251 @@ describe("text-input [unit]", () => {
     expect(el).toHaveClass("vesper-text-input-lg");
     expect(el).toHaveClass("vesper-text-input-default");
     expect(el).toHaveClass("custom-class");
+  });
+
+  describe("dropdown", () => {
+    test("no dropdown is rendered by default", () => {
+      const result = render(<TextInput />);
+
+      expect(result.queryByRole("combobox")).toBeNull();
+      expect(
+        result.container.querySelector(".vesper-text-input-dropdown"),
+      ).toBeNull();
+    });
+
+    test("renders a dropdown select trigger when provided", () => {
+      const result = render(
+        <TextInput
+          dropdown={{ options: DROPDOWN_OPTIONS, ariaLabel: "Area code" }}
+        />,
+      );
+
+      const trigger = result.getByRole("combobox");
+      expect(trigger).toHaveClass("vesper-text-input-dropdown");
+      // the trigger renders as a Chip
+      expect(trigger).toHaveClass("vesper-chip");
+      expect(
+        trigger.closest(".vesper-text-input-field-wrapper"),
+      ).not.toBeNull();
+    });
+
+    test("renders the dropdown between the left icon and the input", () => {
+      const result = render(
+        <TextInput
+          iconLeft={<Globe />}
+          dropdown={{ options: DROPDOWN_OPTIONS, ariaLabel: "Area code" }}
+        />,
+      );
+
+      const wrapper = result.container.querySelector(
+        ".vesper-text-input-field-wrapper",
+      )!;
+      const children = Array.from(wrapper.children);
+      const indexOf = (selector: string) =>
+        children.indexOf(wrapper.querySelector(selector)!);
+
+      expect(indexOf(".vesper-text-input-icon")).toBeLessThan(
+        indexOf(".vesper-text-input-dropdown"),
+      );
+      expect(indexOf(".vesper-text-input-dropdown")).toBeLessThan(
+        indexOf(".vesper-text-input-field"),
+      );
+    });
+
+    test("dropdown width is applied to the trigger", () => {
+      const result = render(
+        <TextInput dropdown={{ options: DROPDOWN_OPTIONS, width: 80 }} />,
+      );
+
+      const trigger = result.getByRole("combobox");
+      // the width is calculated as rem-relative
+      expect(trigger.style.width).toBe("calc(5rem)");
+      expect(trigger.style.flexShrink).toBe("0");
+      expect(trigger.getBoundingClientRect().width).toBeCloseTo(80, 1);
+    });
+
+    test("renders string options", async () => {
+      const result = render(
+        <TextInput dropdown={{ options: DROPDOWN_OPTIONS }} />,
+      );
+
+      const items = await openDropdown(result.getByRole("combobox"));
+      expect(items).toHaveLength(3);
+      expect(items.map((item) => item.textContent)).toEqual(DROPDOWN_OPTIONS);
+    });
+
+    test("renders labelled options", async () => {
+      const result = render(
+        <TextInput dropdown={{ options: DROPDOWN_LABELLED_OPTIONS }} />,
+      );
+
+      const items = await openDropdown(result.getByRole("combobox"));
+      expect(items).toHaveLength(3);
+      expect(items.map((item) => item.textContent)).toEqual([
+        "+1",
+        "+44",
+        "+51",
+      ]);
+    });
+
+    test("selecting an option calls onChange with the option value", async () => {
+      const onChange = vi.fn();
+      const result = render(
+        <TextInput
+          dropdown={{ options: DROPDOWN_LABELLED_OPTIONS, onChange }}
+        />,
+      );
+
+      const trigger = result.getByRole("combobox");
+      const items = await openDropdown(trigger);
+      await userEvent.click(items[1]!);
+
+      await waitFor(() => {
+        // the value is reported, and the label is displayed
+        expect(onChange).toHaveBeenCalledExactlyOnceWith("uk");
+        expect(trigger).toHaveTextContent("+44");
+      });
+    });
+
+    test("renders the dropdown placeholder", async () => {
+      const result = render(
+        <TextInput
+          dropdown={{ options: DROPDOWN_OPTIONS, placeholder: "Code" }}
+        />,
+      );
+
+      const trigger = result.getByRole("combobox");
+      expect(trigger).toHaveTextContent("Code");
+
+      const items = await openDropdown(trigger);
+      await userEvent.click(items[2]!);
+
+      await waitFor(() => {
+        expect(trigger).toHaveTextContent("+51");
+        expect(trigger).not.toHaveTextContent("Code");
+      });
+    });
+
+    test("dropdown defaultValue selects the matching option", async () => {
+      const result = render(
+        <TextInput
+          dropdown={{ options: DROPDOWN_OPTIONS, defaultValue: "+44" }}
+        />,
+      );
+
+      const trigger = result.getByRole("combobox");
+      expect(trigger).toHaveTextContent("+44");
+
+      const items = await openDropdown(trigger);
+      expect(items[1]).toHaveAttribute("data-selected");
+      expect(items[0]).not.toHaveAttribute("data-selected");
+      expect(items[2]).not.toHaveAttribute("data-selected");
+    });
+
+    test("dropdown value is controlled when supplied", async () => {
+      const onChange = vi.fn();
+      const props = { options: DROPDOWN_OPTIONS, onChange };
+      const result = render(<TextInput dropdown={{ ...props, value: "+1" }} />);
+
+      const trigger = result.getByRole("combobox");
+      expect(trigger).toHaveTextContent("+1");
+
+      const items = await openDropdown(trigger);
+      await userEvent.click(items[2]!);
+
+      await waitFor(() => {
+        expect(onChange).toHaveBeenCalledExactlyOnceWith("+51");
+      });
+    });
+
+    test("dropdown ariaLabel is applied to the trigger", () => {
+      const result = render(
+        <TextInput
+          dropdown={{ options: DROPDOWN_OPTIONS, ariaLabel: "Area code" }}
+        />,
+      );
+
+      expect(
+        result.getByRole("combobox", { name: "Area code" }),
+      ).not.toBeNull();
+    });
+
+    test("dropdown chip reflects the open state", async () => {
+      const result = render(
+        <TextInput dropdown={{ options: DROPDOWN_OPTIONS }} />,
+      );
+
+      const trigger = result.getByRole("combobox");
+      expect(trigger).toHaveClass("vesper-chip-default");
+      expect(trigger).not.toHaveClass("vesper-chip-selected");
+
+      await openDropdown(trigger);
+
+      await waitFor(() => {
+        expect(trigger).toHaveClass("vesper-chip-contrast");
+        expect(trigger).toHaveClass("vesper-chip-selected");
+      });
+    });
+
+    test("dropdown is disabled when the input is disabled", async () => {
+      const result = render(
+        <TextInput disabled dropdown={{ options: DROPDOWN_OPTIONS }} />,
+      );
+
+      const trigger = result.getByRole("combobox");
+      expect(trigger).toBeDisabled();
+      expect(trigger).toHaveClass("vesper-chip-disabled");
+
+      fireEvent.pointerDown(trigger);
+      fireEvent.click(trigger);
+      expect(trigger).not.toHaveAttribute("data-popup-open");
+      expect(document.querySelector(".vesper-select-content")).toBeNull();
+    });
+
+    test("dropdown inherits required prop", () => {
+      const result = render(
+        <form>
+          <TextInput
+            required
+            dropdown={{ options: DROPDOWN_OPTIONS, name: "area-code" }}
+          />
+        </form>,
+      );
+
+      expect(
+        result.container.querySelector("input[name='area-code']"),
+      ).toBeRequired();
+      expect(result.getByRole("textbox")).toBeRequired();
+    });
+
+    test("dropdown inherits form prop", () => {
+      const result = render(
+        <>
+          <form id="contact-form" />
+          <TextInput
+            form="contact-form"
+            dropdown={{ options: DROPDOWN_OPTIONS, name: "area-code" }}
+          />
+        </>,
+      );
+
+      expect(
+        result.container.querySelector("input[name='area-code']"),
+      ).toHaveAttribute("form", "contact-form");
+    });
+
+    test("portals the dropdown dropdown into the closest dialog ancestor", async () => {
+      const result = render(
+        <dialog open data-testid="dialog">
+          <TextInput dropdown={{ options: DROPDOWN_OPTIONS }} />
+        </dialog>,
+      );
+
+      await openDropdown(result.getByRole("combobox"));
+
+      const content = document.querySelector(".vesper-select-content")!;
+      expect(result.getByTestId("dialog").contains(content)).toBe(true);
+    });
   });
 });
 

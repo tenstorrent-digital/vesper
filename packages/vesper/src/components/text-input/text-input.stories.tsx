@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Close, Search } from "@/components/icons/icons";
-import { TextInput } from "@/components/text-input/text-input";
+import {
+  TextInput,
+  type TextInputDropdownProps,
+} from "@/components/text-input/text-input";
 
 const meta = {
   component: TextInput,
@@ -12,6 +15,7 @@ const meta = {
     iconRightAction: { table: { disable: true } },
     type: { table: { disable: true } },
     inputRef: { table: { disable: true } },
+    dropdown: { control: "boolean" },
   },
 } satisfies Meta<typeof TextInput>;
 
@@ -29,6 +33,7 @@ export const Playground: Story = {
     iconLeft: false,
     iconRight: false,
     message: "This is a message you can display under the input.",
+    dropdown: false as unknown as TextInputDropdownProps,
   },
   render: (props) => {
     return (
@@ -37,6 +42,16 @@ export const Playground: Story = {
         style={{ width: "min(calc(100vw - 4rem), 400px)" }}
         iconLeft={props.iconLeft ? <Search /> : undefined}
         iconRight={props.iconRight ? <Close /> : undefined}
+        dropdown={
+          props.dropdown
+            ? {
+                options: ["USD", "CAD"],
+                name: "currency",
+                ariaLabel: "Currency",
+                defaultValue: "USD",
+              }
+            : undefined
+        }
       />
     );
   },

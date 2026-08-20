@@ -6,15 +6,21 @@ import {
   type ReactNode,
   type Ref,
   useId,
+  useState,
 } from "react";
+import { Select } from "@base-ui/react/select";
 
+import { Chip, ChipSize } from "@/components/chip/chip";
 import { FormInputMessage } from "@/components/form-input-message/form-input-message";
+import { CaretDown, CaretUp, Checkmark } from "@/components/icons/icons";
 import {
   Typography,
   type TypographyVariant,
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import { getPortalContainer } from "@/utils/getPortalContainer";
+import { useBaseRemSize } from "@/utils/useBaseRemSize";
 
 export const TEXT_INPUT_SIZES = ["sm", "md", "lg"] as const;
 
@@ -83,6 +89,25 @@ type ForwardedPropTypes =
   | "pattern"
   | "list";
 
+export interface TextInputDropdownProps {
+  /** An accessible label for the dropdown select trigger, applied via `aria-label`. */
+  ariaLabel?: string;
+  /** The form field name submitted for the dropdown select's value. */
+  name?: string;
+  /** The selected value, for controlled usage. Pair with `onChange`. */
+  value?: string;
+  /** Text displayed in the dropdown select trigger while no value is selected. */
+  placeholder?: string;
+  /** The initially selected value, for uncontrolled usage. */
+  defaultValue?: string;
+  /** The selectable options. A string is used as both the option's value and label; use the object form to set them independently. */
+  options: (string | { value: string; label: string })[];
+  /** Called with the newly selected value whenever the dropdown selection changes. */
+  onChange?(value: string): void;
+  /** A fixed width for the dropdown select trigger, in pixels (scaled relative to the base rem size). */
+  width?: number;
+}
+
 export interface TextInputProps
   extends
     Omit<ComponentProps<"div">, ForwardedPropTypes>,
@@ -129,6 +154,8 @@ export interface TextInputProps
     | "week"
     | "month"
     | "time";
+  /** An optional select dropdown rendered before the input field, used to pick a value that qualifies the input (e.g. a country code). Only rendered when `options` is non-empty. */
+  dropdown?: TextInputDropdownProps;
 }
 
 const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
@@ -172,6 +199,7 @@ export function TextInput(props: TextInputProps) {
     iconRightAction,
     inputRef,
     message,
+    dropdown,
     label,
     variant = "default",
     size = "md",
@@ -252,6 +280,15 @@ export function TextInput(props: TextInputProps) {
         >
           {iconLeft}
         </TextInputIcon>
+      )}
+      {!!dropdown?.options?.length && (
+        <TextInputDropdown
+          {...dropdown}
+          disabled={disabled}
+          required={required}
+          form={form}
+          size={size}
+        />
       )}
       <Typography
         className="vesper-text-input-field"
@@ -385,4 +422,110 @@ function TextInputIcon({
   }
 
   return <span className="vesper-text-input-icon">{children}</span>;
+}
+
+const TEXT_INPUT_CHIP_SIZES: { [key in TextInputSize]: ChipSize } = {
+  lg: "md",
+  md: "md",
+  sm: "sm",
+};
+
+function TextInputDropdown({
+  options,
+  defaultValue,
+  name,
+  onChange,
+  value,
+  disabled,
+  required,
+  placeholder,
+  form,
+  ariaLabel,
+  size,
+  width,
+}: TextInputDropdownProps & {
+  disabled?: boolean;
+  required?: boolean;
+  form?: string;
+  size: TextInputSize;
+}) {
+  const [open, setOpen] = useState(false);
+  const [ref, setRef] = useState<HTMLButtonElement | null>(null);
+  const portalContainer = getPortalContainer(undefined, ref);
+
+  const baseRemSize = useBaseRemSize();
+
+  const items = options.map((option) =>
+    typeof option === "string" ? { value: option, label: option } : option,
+  );
+
+  return (
+    <Select.Root
+      items={items}
+      value={value}
+      defaultValue={defaultValue}
+      onValueChange={(next) => {
+        if (next !== null) onChange?.(next);
+      }}
+      disabled={disabled}
+      name={name}
+      required={required}
+      form={form}
+      open={open}
+      onOpenChange={setOpen}
+    >
+      <Select.Trigger
+        ref={setRef}
+        className="vesper-text-input-dropdown"
+        disabled={disabled}
+        aria-label={ariaLabel}
+        render={
+          <Chip
+            disabled={disabled}
+            size={TEXT_INPUT_CHIP_SIZES[size]}
+            iconRight={open ? <CaretUp /> : <CaretDown />}
+            selected={open}
+            variant={open ? "contrast" : "default"}
+            aria-pressed={undefined}
+            style={
+              width
+                ? { flexShrink: 0, width: `calc(${width} * (1rem / 16))` }
+                : { flexShrink: 0 }
+            }
+          />
+        }
+      >
+        <Select.Value placeholder={placeholder} />
+      </Select.Trigger>
+      <Select.Portal container={portalContainer}>
+        <Select.Positioner
+          side="bottom"
+          align="start"
+          alignItemWithTrigger={false}
+          sideOffset={12 * (baseRemSize / 16)}
+        >
+          <Select.Popup className="vesper-select-content">
+            <Select.List className="vesper-select-viewport">
+              {items.map((item) => {
+                return (
+                  <Select.Item
+                    key={item.value}
+                    value={item.value}
+                    className="vesper-select-item"
+                  >
+                    <Select.ItemText render={<Typography variant="label-md" />}>
+                      {item.label}
+                    </Select.ItemText>
+                    <Select.ItemIndicator className="vesper-select-item-checkmark">
+                      <Checkmark />
+                    </Select.ItemIndicator>
+                  </Select.Item>
+                );
+              })}
+            </Select.List>
+          </Select.Popup>
+        </Select.Positioner>
+      </Select.Portal>
+    </Select.Root>
+  );
 }
