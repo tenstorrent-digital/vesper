@@ -8,7 +8,7 @@ export function getMaskitoOptions(mask?: TextMaskingConfig): MaskitoOptions {
   }
 
   if (typeof mask === "string") {
-    return { mask: mask.split("").map((c) => (c === "_" ? /./ : c)) };
+    return { mask: Array.from(mask, (c) => (c === "_" ? /./ : c)) };
   }
 
   if ("mask" in mask) {
@@ -17,19 +17,19 @@ export function getMaskitoOptions(mask?: TextMaskingConfig): MaskitoOptions {
 
   if (typeof mask.replace === "string") {
     return {
-      mask: mask.format.split("").map((c) => (c === mask.replace ? /./ : c)),
+      mask: Array.from(mask.format, (c) => (c === mask.replace ? /./ : c)),
     };
   }
 
   if (mask.replace instanceof RegExp) {
     const replacement = mask.replace;
     return {
-      mask: mask.format.split("").map((c) => (c === "_" ? replacement : c)),
+      mask: Array.from(mask.format, (c) => (c === "_" ? replacement : c)),
     };
   }
 
   const replacements = mask.replace;
   return {
-    mask: mask.format.split("").map((c) => replacements[c] ?? c),
+    mask: Array.from(mask.format, (c) => replacements[c] ?? c),
   };
 }
