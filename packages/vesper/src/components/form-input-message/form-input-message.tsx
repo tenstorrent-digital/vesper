@@ -26,7 +26,7 @@ export interface FormInputMessageProps extends Omit<
 > {
   /** The visual variant of the message, which determines its color scheme and message icon. @default default */
   variant?: FormInputMessageVariant;
-  /** The message text to display. When omitted or empty, the message content and icon are not rendered, but the element remains in the document so it can reserve space and announce updates. */
+  /** The message text to display. When omitted or empty, the message content and icon are not rendered, but the visually hidden element remains in the document so it can announce updates. */
   message?: string | undefined;
 }
 
