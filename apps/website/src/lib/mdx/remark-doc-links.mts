@@ -40,7 +40,8 @@ type DocumentSlug = string[];
  * returns `null` for files outside `docs/` (eg. `src/app/page.mdx`), which
  * have no doc route to resolve relative links against
  *
- * (`VFile["path"]` is typed as a `string`, but is `undefined` for a file
+ * (`VFile["path"]` (the virtual file used under the hood by `remark` and `rehype`)
+ * is typed as a `string`, but is `undefined` for a file
  * compiled from a value rather than read from disk)
  */
 const documentSlug = (filePath: string | undefined): DocumentSlug | null => {
