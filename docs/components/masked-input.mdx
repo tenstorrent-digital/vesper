@@ -1,0 +1,226 @@
+---
+title: Masked Input
+description: A superset of the `TextInput` component that supports text masking.
+---
+
+# Masked Input
+
+`MaskedInput` is a thin wrapper around [the `TextInput` component](./text-input.mdx) that enables text masking via [maskito](https://maskito.dev). Text masks restrict and format what can be typed into the field automatically as the user types.
+
+<MaskedInputDemo kind="product-license" />
+
+## Options
+
+`MaskedInput` inherits all of the same props as `TextInput`. It also has a `mask` prop for configuring the text masking behavior. Additionally, the `type` prop is restricted to `"text" | "search" | "tel" | "email" | "url"`, as other input types cannot be masked.
+
+| Prop                 | Type                                              | Description                                                                                   | Default  |
+| -------------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------- | -------- |
+| `mask`               | `TextMaskingConfig`                               | Text masking configuration. Determines the shape and formatting of the masked text.           | —        |
+| `type`               | `"text" \| "search" \| "tel" \| "email" \| "url"` | The HTML input type.                                                                          | `"text"` |
+| `formatOnMount`      | `boolean`                                         | When `true`, the initial value of the input is formatted to match the `mask` on mount.        | `false`  |
+| `formatOnMaskChange` | `boolean`                                         | When `true`, the value of the input is reformatted to match the `mask` when the mask changes. | `true`   |
+
+> See [the `TextInput` component](./text-input.mdx) for the full set of props `MaskedInput` inherits
+
+### `mask` options
+
+The `mask` prop accepts a `TextMaskingConfig` which can be one of three shapes:
+
+| Type                                                                      | Example                                          | Placeholder characters          | Use it when                                                                                                                                                         |
+| ------------------------------------------------------------------------- | ------------------------------------------------ | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `string`                                                                  | `"____-____-____"`                               | `_` only, accepts any character | The mask is a fixed-length pattern and any character is valid, eg. activation codes.                                                                                |
+| `{ format: string; replace: RegExp \| string \| Record<string, RegExp> }` | `{ format: "+1 (___) ___-____", replace: /\d/ }` | Defined by `replace`            | The mask is a fixed-length pattern, but you need to restrict which characters are accepted, or use a placeholder other than `_`, eg. phone numbers or postal codes. |
+| `MaskitoOptions`                                                          | `{ mask: [/\d/, /\d/, ":", /\d/, /\d/] }`        | Defined by `mask`               | You need behavior the shorthands can't express, eg. dynamic (variable-length) masks, pre/post-processing hooks, or overwrite mode.                                  |
+
+When the `mask` prop is omitted, no masking is applied and the field behaves like a regular [`TextInput`](./text-input.mdx).
+
+The `replace` property of a `{ format, replace }` mask can itself take three forms:
+
+| `replace` type           | Example                      | Behavior                                                                                                 |
+| ------------------------ | ---------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `RegExp`                 | `/\d/`                       | `_` remains the placeholder character, but only characters matching the expression are accepted.         |
+| `string`                 | `"x"`                        | The given single character becomes the placeholder instead of `_`, and accepts any character.            |
+| `Record<string, RegExp>` | `{ A: /[a-zA-Z]/, B: /\d/ }` | Each key is a placeholder character in `format`, and each value validates what that placeholder accepts. |
+
+Every character in `format` that is not a placeholder is treated as a literal and is inserted automatically as the user types.
+
+## Examples
+
+### `string` masks
+
+A plain string mask is the simplest way to enable text masking for a `TextInput`. A plain string mask might look something like `"____-____-____"`. Underscores (`_`) in plain string masks are treated as the masked values, and accept any character:
+
+<MaskedInput
+  label="Masked text"
+  placeholder="Every other character will be masked"
+  mask="_-_-_-_-_-_-_-_-_-_-_-_"
+/>
+
+```tsx
+import { MaskedInput } from "@tenstorrent/vesper/masked-input";
+
+<MaskedInput
+  label="Masked text"
+  placeholder="Every other character will be masked"
+  mask="_-_-_-_-_-_-_-_-_-_-_-_"
+/>;
+```
+
+### `{ format, replace }` masks
+
+If you need more control over what characters to treat as maskable, you can pass an `object` with `format` and `replace` properties to the `mask` prop. The `format` property defines the shape of the mask, while the `replace` property can be used to define what the masked characters are and what each character will accept as replacements.
+
+#### `replace: string`
+
+If you wanted to modify which character gets masked, you can pass a single character string to override the default behavior of masking underscores. In this example, we mask the `"x"` character instead of an underscore:
+
+<MaskedInputDemo kind="replace-string" />
+
+```tsx
+import { MaskedInput } from "@tenstorrent/vesper/masked-input";
+
+<MaskedInput
+  label="Masked input"
+  placeholder="ex. 1a2-b3c-4d5"
+  mask={{
+    format: "xxx-xxx-xxx",
+    replace: "x",
+  }}
+/>;
+```
+
+#### `replace: RegExp`
+
+If you wanted to change the kind of character that can be accepted as a masked value, you would set the `replace` attribute to a regular expression. In this example, we use the regular expression `/\d/` to ensure that only digits may replace the masked value:
+
+<MaskedInputDemo kind="replace-regex" />
+
+```tsx
+import { MaskedInput } from "@tenstorrent/vesper/masked-input";
+
+<MaskedInput
+  label="Phone number"
+  placeholder="ex: +1 (222) 333-4444"
+  mask={{ format: "+1 (___) ___-____", replace: /\d/ }}
+/>;
+```
+
+#### `replace: Record<string, RegExp>`
+
+If you want to modify both the masked character and the accepted values of that masked character, you can pass `Record<string, RegExp>` to the `replace` attribute, where the keys should be single-character strings representing the masked characters, and the values are regular expressions that validate what those masked characters can be.
+
+For example, Canadian postal codes follow the format `ABA BAB`, where `A` is a letter, and `B` is a number. You could write a masked input following this format like so:
+
+<MaskedInputDemo kind="replace-record" />
+
+```tsx
+import { MaskedInput } from "@tenstorrent/vesper/masked-input";
+
+<MaskedInput
+  label="Postal code"
+  placeholder="ex: A0A 1B1"
+  mask={{
+    format: "ABA BAB",
+    replace: { A: /[a-zA-Z]/, B: /\d/ },
+  }}
+/>;
+```
+
+### `MaskitoOptions` masks
+
+If you need fine-grained control over masking behavior and neither `string` nor `{ format, replace }` options can achieve your goals, you can pass a `MaskitoOptions` configuration object as a `mask` prop. `MaskitoOptions` allow you to opt into things like dynamic masks, pre/post-processing hooks, overwrite modes, and more.
+
+For more information about `Maskito` and the kinds of things you can do with it, see [the Maskito docs](https://maskito.dev).
+
+#### Example: international phone number
+
+> You will need to install the `@maskito/phone`, `@maskito/kit` and `libphonenumber-js` packages for this example to work
+
+A good use-case for using a `MaskitoOptions` object is when you need to build a phone number input that supports text masking for international phone numbers. Maskito has a [phone input addon](https://maskito.dev/addons/phone) that you can use to build out this kind of input.
+
+<MaskedInputDemo kind="intl-phone-number" />
+
+```tsx
+import { useMemo, useState } from "react";
+import { MaskedInput } from "@tenstorrent/vesper/masked-input";
+import { maskitoPhone } from "@maskito/phone";
+import { type CountryCode, getCountries } from "libphonenumber-js/core";
+import metadata from "libphonenumber-js/min/metadata";
+
+const countries = getCountries(metadata);
+
+function PhoneNumberInput() {
+  const [countryIsoCode, setCountryIsoCode] = useState<CountryCode>("US");
+  const mask = useMemo(
+    () =>
+      maskitoPhone({
+        countryIsoCode,
+        metadata,
+        format: "INTERNATIONAL",
+        strict: true,
+      }),
+    [countryIsoCode],
+  );
+
+  return (
+    <MaskedInput
+      formatOnMaskChange
+      label="Phone number"
+      placeholder="Enter your phone number"
+      mask={mask}
+      dropdown={{
+        options: countries,
+        value: countryIsoCode,
+        ariaLabel: "Country",
+        onChange: (code) => setCountryIsoCode(code as CountryCode),
+      }}
+    />
+  );
+}
+```
+
+### Formatting existing values
+
+A mask normally only formats a value as it is edited, so a value that is already in the field when a mask is applied is left untouched. The `formatOnMount` and `formatOnMaskChange` props control whether an existing value is formatted anyway.
+
+#### `formatOnMount`
+
+By default, an initial `value` or `defaultValue` is left exactly as it was provided, since formatting it on mount would change the value of the field without the user doing anything. Pass `formatOnMount` when the initial value is known to be unformatted, eg. a raw value read from an API:
+
+```tsx
+import { MaskedInput } from "@tenstorrent/vesper/masked-input"
+
+// renders "jDf8-Kl32-CmX0"
+<MaskedInput
+  label="Activation code"
+  mask={{ format: "____-____-____", replace: /[a-zA-Z\d]/ }}
+  defaultValue="jDf8Kl32CmX0"
+  formatOnMount
+/>
+
+// renders "jDf8Kl32CmX0"
+<MaskedInput
+  label="Activation code"
+  mask={{ format: "____-____-____", replace: /[a-zA-Z\d]/ }}
+  defaultValue="jDf8Kl32CmX0"
+/>
+```
+
+#### `formatOnMaskChange`
+
+When the `mask` prop changes, the current value of the field is reformatted to match the new mask by default. This keeps the value consistent with the mask that is currently applied, eg. when the user picks a different country in the international phone number example above.
+
+Pass `formatOnMaskChange={false}` to leave the current value alone when the mask changes. The new mask still applies to any subsequent edits:
+
+```tsx
+import { MaskedInput } from "@tenstorrent/vesper/masked-input"
+
+// a value of "123-456" is reformatted to "12/34/56" when the mask changes
+<MaskedInput mask={{ format: "__/__/__", replace: /\d/ }} />
+
+// a value of "123-456" is left as-is when the mask changes
+<MaskedInput
+  mask={{ format: "__/__/__", replace: /\d/ }}
+  formatOnMaskChange={false}
+/>
+```

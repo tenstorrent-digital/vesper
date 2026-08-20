@@ -44,6 +44,7 @@ import {
   Search,
   Tenstorrent,
 } from "@tenstorrent/vesper/icons";
+import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 import { Material } from "@tenstorrent/vesper/material";
 import { Modal } from "@tenstorrent/vesper/modal";
 import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
@@ -74,6 +75,7 @@ import { ColorChip } from "@/components/color-chip";
 // refs, state) that are used inside `docs/` documents
 import { ChipDemo } from "@/demos/chip";
 import { IconsDemo } from "@/demos/icons";
+import { MaskedInputDemo } from "@/demos/masked-input";
 import { MenuDemo } from "@/demos/menu";
 import { ShowMoreDemo } from "@/demos/show-more";
 import { SplitButtonDemo } from "@/demos/split-button";
@@ -229,6 +231,7 @@ const components = {
   FormInputMessage,
   Icon,
   IconButton,
+  MaskedInput,
   Material,
   Modal,
   ProgressBar,
@@ -269,6 +272,7 @@ const components = {
   // demos
   ChipDemo,
   IconsDemo,
+  MaskedInputDemo,
   MenuDemo,
   ShowMoreDemo,
   SplitButtonDemo,

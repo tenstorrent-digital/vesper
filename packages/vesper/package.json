@@ -31,6 +31,10 @@
       "types": "./dist/components/form-input-message/form-input-message.d.ts",
       "import": "./dist/components/form-input-message/form-input-message.js"
     },
+    "./masked-input": {
+      "types": "./dist/components/masked-input/masked-input.d.ts",
+      "import": "./dist/components/masked-input/masked-input.js"
+    },
     "./select": {
       "types": "./dist/components/select/select.d.ts",
       "import": "./dist/components/select/select.js"
@@ -247,6 +251,8 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
+    "@maskito/core": "^5.4.0",
+    "@maskito/react": "^5.4.0",
     "@shikijs/core": "^4.3.1",
     "@shikijs/engine-javascript": "^4.3.1",
     "@shikijs/langs": "^4.3.1",

@@ -1,0 +1,53 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`masked-input [snapshot] > renders correctly 1`] = `
+<div
+  class="vesper-text-input vesper-text-input-md vesper-text-input-default"
+>
+  <div
+    class="vesper-text-input-field-wrapper"
+  >
+    <input
+      class="vesper-typography vesper-typography-copy-sm vesper-text-input-field"
+      id="_r_19_"
+      placeholder=" "
+      type="text"
+    />
+  </div>
+  <output
+    class="vesper-form-input-message vesper-form-input-message-default"
+    data-message="false"
+  />
+</div>
+`;
+
+exports[`masked-input [snapshot] > renders correctly with a mask 1`] = `
+<div
+  class="vesper-text-input vesper-text-input-md vesper-text-input-default"
+>
+  <label
+    class="vesper-typography vesper-typography-label-sm vesper-text-input-label"
+    for="_r_1b_"
+  >
+    <span
+      class="vesper-text-input-label-text"
+    >
+      Activation code
+    </span>
+    <div
+      class="vesper-text-input-field-wrapper"
+    >
+      <input
+        class="vesper-typography vesper-typography-copy-sm vesper-text-input-field"
+        id="_r_1b_"
+        placeholder=" "
+        type="text"
+      />
+    </div>
+  </label>
+  <output
+    class="vesper-form-input-message vesper-form-input-message-default"
+    data-message="false"
+  />
+</div>
+`;
