@@ -10,8 +10,10 @@
  * - [Getting Started](../getting-started.mdx#installation) -> /getting-started#installation
  */
 
+import type { Link, Nodes, Root } from "mdast";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import type { Transformer } from "unified";
 
 /**
  * monorepo root `docs/` folder
@@ -25,6 +27,9 @@ const DOCS_DIR = path.resolve(
   "docs",
 );
 
+/** a document's own path segments, relative to `docs/` */
+type DocumentSlug = string[];
+
 /**
  * get a document's own path segments, relative to `docs/`
  *
@@ -34,8 +39,12 @@ const DOCS_DIR = path.resolve(
  *
  * returns `null` for files outside `docs/` (eg. `src/app/page.mdx`), which
  * have no doc route to resolve relative links against
+ *
+ * (`VFile["path"]` (the virtual file used under the hood by `remark` and `rehype`)
+ * is typed as a `string`, but is `undefined` for a file
+ * compiled from a value rather than read from disk)
  */
-const documentSlug = (filePath) => {
+const documentSlug = (filePath: string | undefined): DocumentSlug | null => {
   if (!filePath) return null;
 
   const relativePath = path.relative(DOCS_DIR, filePath);
@@ -45,7 +54,7 @@ const documentSlug = (filePath) => {
 };
 
 /** only rewrite relative links that point at a document */
-const isRelativeDoc = (url) =>
+const isRelativeDoc = (url: string): boolean =>
   /^\.{1,2}\//.test(url) && /\.mdx?($|[#?])/.test(url);
 
 /**
@@ -54,7 +63,7 @@ const isRelativeDoc = (url) =>
  * - `./theming.mdx` -> `/theming`
  * - `../components/button.mdx#props` -> `/components/button#props`
  */
-const resolveDocUrl = (url, slug) => {
+const resolveDocUrl = (url: string, slug: DocumentSlug): string | null => {
   // split the url into path and hash/query (if any)
   const splitAt = url.search(/[#?]/);
   // url path is before the splitAt
@@ -78,12 +87,13 @@ const resolveDocUrl = (url, slug) => {
 /**
  * visit all links in the MD/MDX and rewrites relative doc links
  */
-const visitLinks = (node, visit) => {
+const visitLinks = (node: Nodes, visit: (link: Link) => void): void => {
   if (node.type === "link") visit(node);
-  (node.children ?? []).forEach((child) => visitLinks(child, visit));
+  if ("children" in node)
+    node.children.forEach((child) => visitLinks(child, visit));
 };
 
-export default function remarkDocLinks() {
+export default function remarkDocLinks(): Transformer<Root> {
   return (tree, file) => {
     const slug = documentSlug(file.path);
 

@@ -112,7 +112,7 @@ export function Admonition<C extends ElementType = "button">(
           {variant === "success" && <SuccessSolid />}
           {variant === "warning" && <WarningSolid />}
         </span>
-        <Typography as="span" variant={ADMONITION_TYPOGRAPHY_VARIANTS[size]}>
+        <Typography as="div" variant={ADMONITION_TYPOGRAPHY_VARIANTS[size]}>
           {children}
         </Typography>
       </div>

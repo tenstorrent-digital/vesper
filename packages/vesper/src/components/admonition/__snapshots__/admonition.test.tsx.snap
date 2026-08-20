@@ -23,11 +23,11 @@ exports[`admonition [snapshot] > danger, md 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-sm"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -55,11 +55,11 @@ exports[`admonition [snapshot] > danger, md, subtle 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-sm"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -87,11 +87,11 @@ exports[`admonition [snapshot] > danger, sm 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-xs"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -119,11 +119,11 @@ exports[`admonition [snapshot] > danger, sm, subtle 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-xs"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -151,11 +151,11 @@ exports[`admonition [snapshot] > info, md 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-sm"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -183,11 +183,11 @@ exports[`admonition [snapshot] > info, md, subtle 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-sm"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -215,11 +215,11 @@ exports[`admonition [snapshot] > info, sm 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-xs"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -247,11 +247,11 @@ exports[`admonition [snapshot] > info, sm, subtle 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-xs"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -285,11 +285,11 @@ exports[`admonition [snapshot] > secondary, md 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-sm"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -323,11 +323,11 @@ exports[`admonition [snapshot] > secondary, md, subtle 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-sm"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -361,11 +361,11 @@ exports[`admonition [snapshot] > secondary, sm 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-xs"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -399,11 +399,11 @@ exports[`admonition [snapshot] > secondary, sm, subtle 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-xs"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -429,11 +429,11 @@ exports[`admonition [snapshot] > success, md 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-sm"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -459,11 +459,11 @@ exports[`admonition [snapshot] > success, md, subtle 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-sm"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -489,11 +489,11 @@ exports[`admonition [snapshot] > success, sm 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-xs"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -519,11 +519,11 @@ exports[`admonition [snapshot] > success, sm, subtle 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-xs"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -551,11 +551,11 @@ exports[`admonition [snapshot] > warning, md 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-sm"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -583,11 +583,11 @@ exports[`admonition [snapshot] > warning, md, subtle 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-sm"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -615,11 +615,11 @@ exports[`admonition [snapshot] > warning, sm 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-xs"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
@@ -647,11 +647,11 @@ exports[`admonition [snapshot] > warning, sm, subtle 1`] = `
         />
       </svg>
     </span>
-    <span
+    <div
       class="vesper-typography vesper-typography-copy-xs"
     >
       content
-    </span>
+    </div>
   </div>
 </div>
 `;
