@@ -1,7 +1,10 @@
 "use client";
 
-import { useMemo } from "react";
-import { MaskitoOptions } from "@maskito/core";
+import { useMemo, useRef } from "react";
+import {
+  maskitoInitialCalibrationPlugin,
+  type MaskitoOptions,
+} from "@maskito/core";
 import { useMaskito } from "@maskito/react";
 
 import {
@@ -65,10 +68,24 @@ export interface MaskedInputProps extends Omit<TextInputProps, "type"> {
  * />
  */
 export function MaskedInput({ mask, inputRef, ...props }: MaskedInputProps) {
-  const maskitoConfig = useMemo(
-    () => ({ options: getMaskitoOptions(mask) }),
-    [mask],
-  );
+  const mounted = useRef(false);
+
+  const maskitoConfig = useMemo(() => {
+    const calibrate = maskitoInitialCalibrationPlugin();
+    const config = { options: getMaskitoOptions(mask) };
+    if (!mounted.current) {
+      mounted.current = true;
+      return config;
+    }
+
+    return {
+      ...config,
+      options: {
+        ...config.options,
+        plugins: [...(config.options.plugins ?? []), calibrate],
+      },
+    };
+  }, [mask]);
 
   const maskitoRef = useMaskito(maskitoConfig);
 
