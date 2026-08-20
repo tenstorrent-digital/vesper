@@ -21,8 +21,6 @@
  */
 
 import type { Blockquote, Nodes, Root } from "mdast";
-// registers `data.hProperties` on mdast nodes (see `setAlertType`)
-import type {} from "mdast-util-to-hast";
 import type { Transformer } from "unified";
 
 /** alert types github supports - anything else is left as a plain blockquote */
