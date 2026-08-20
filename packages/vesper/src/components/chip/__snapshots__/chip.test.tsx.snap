@@ -47,8 +47,7 @@ exports[`chip [snapshot] > md, contrast, iconLeft 1`] = `
 exports[`chip [snapshot] > md, contrast, iconRight 1`] = `
 <button
   aria-pressed="false"
-  class="vesper-typography vesper-typography-label-sm vesper-chip vesper-chip-contrast vesper-chip-md vesper-chip-disabled"
-  disabled=""
+  class="vesper-typography vesper-typography-label-sm vesper-chip vesper-chip-contrast vesper-chip-md"
 >
   Label
   <span
@@ -126,8 +125,7 @@ exports[`chip [snapshot] > md, default, iconLeft 1`] = `
 exports[`chip [snapshot] > md, default, iconRight 1`] = `
 <button
   aria-pressed="false"
-  class="vesper-typography vesper-typography-label-sm vesper-chip vesper-chip-default vesper-chip-md vesper-chip-disabled"
-  disabled=""
+  class="vesper-typography vesper-typography-label-sm vesper-chip vesper-chip-default vesper-chip-md"
 >
   Label
   <span
@@ -205,8 +203,7 @@ exports[`chip [snapshot] > sm, contrast, iconLeft 1`] = `
 exports[`chip [snapshot] > sm, contrast, iconRight 1`] = `
 <button
   aria-pressed="false"
-  class="vesper-typography vesper-typography-label-xs vesper-chip vesper-chip-contrast vesper-chip-sm vesper-chip-disabled"
-  disabled=""
+  class="vesper-typography vesper-typography-label-xs vesper-chip vesper-chip-contrast vesper-chip-sm"
 >
   Label
   <span
@@ -284,8 +281,7 @@ exports[`chip [snapshot] > sm, default, iconLeft 1`] = `
 exports[`chip [snapshot] > sm, default, iconRight 1`] = `
 <button
   aria-pressed="false"
-  class="vesper-typography vesper-typography-label-xs vesper-chip vesper-chip-default vesper-chip-sm vesper-chip-disabled"
-  disabled=""
+  class="vesper-typography vesper-typography-label-xs vesper-chip vesper-chip-default vesper-chip-sm"
 >
   Label
   <span
