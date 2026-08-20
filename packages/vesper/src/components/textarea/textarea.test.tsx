@@ -113,6 +113,18 @@ describe("textarea [unit]", () => {
     expect(result.getByRole("textbox")).toBeDisabled();
   });
 
+  test("applies the default height to the textarea", () => {
+    const result = render(<Textarea />);
+
+    expect(result.getByRole("textbox").style.height).toBe("6.5rem");
+  });
+
+  test("height prop overrides the default height", () => {
+    const result = render(<Textarea height={200} />);
+
+    expect(result.getByRole("textbox").style.height).toBe("12.5rem");
+  });
+
   test("renders a label when supplied", () => {
     const result = render(<Textarea label="Username" />);
 
