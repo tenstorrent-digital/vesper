@@ -71,6 +71,25 @@ Links resolve to other documents by relative path, so the path resolves on GitHu
 | `[Icon Button](./icon-button.mdx)`          | `/components/icon-button` |
 | `[Getting Started](../getting-started.mdx)` | `/getting-started`        |
 
+## Callouts
+
+A blockquote renders as an [`Admonition`](./components/admonition.mdx). GitHub's alert syntax sets its variant, so a callout renders as a callout in both places:
+
+```md
+> [!WARNING]
+> This can not be undone.
+```
+
+| Marker           | Variant     |
+| ---------------- | ----------- |
+| `> [!NOTE]`      | `info`      |
+| `> [!TIP]`       | `success`   |
+| `> [!IMPORTANT]` | `secondary` |
+| `> [!WARNING]`   | `warning`   |
+| `> [!CAUTION]`   | `danger`    |
+
+The marker has to be the first line of the blockquote. A blockquote without one renders as the default `info` admonition.
+
 ## Some notes
 
 ### Do not use these in documentation

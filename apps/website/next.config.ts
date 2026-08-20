@@ -80,6 +80,15 @@ const withMDX = createMDX({
       path.join(appRoot, "src/lib/mdx/remark-doc-links.mjs"),
 
       /**
+       * adds support for github's alert syntax (`> [!NOTE]`, `> [!WARNING]`,
+       * etc.), so a blockquote written as a callout renders as the matching
+       * `Admonition` variant on the site and as a callout on GitHub
+       *
+       * absolute path for the same reason as the plugin above
+       */
+      path.join(appRoot, "src/lib/mdx/remark-blockquote-alerts.mjs"),
+
+      /**
        * keeps text written inside a JSX element from being parsed as markdown
        * flow, so `<Typography>`/`<Accordion>`/`<Admonition>`/etc. render their
        * children as-is instead of wrapping them in a paragraph (which
@@ -91,6 +100,22 @@ const withMDX = createMDX({
         path.join(appRoot, "src/lib/mdx/remark-jsx-text-children.mjs"),
         { ignore: [] },
       ],
+    ],
+
+    rehypePlugins: [
+      /**
+       * same idea as `remark-jsx-text-children.mjs`, but for blockquotes:
+       * markdown turns their content into one paragraph per block, so
+       * `<Admonition>` (what `blockquote` maps to in `src/mdx-components.tsx`)
+       * would render a `Typography` per paragraph inside the one it already
+       * wraps its children in
+       *
+       * it runs on hast instead of mdast because the paragraphs a blockquote
+       * holds are re-padded with `\n` when markdown is turned into html
+       *
+       * absolute path for the same reason as the plugins above
+       */
+      path.join(appRoot, "src/lib/mdx/rehype-blockquote-text-children.mjs"),
     ],
   },
 });
