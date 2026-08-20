@@ -3,10 +3,7 @@
 import {
   type ComponentProps,
   type ReactNode,
-  useCallback,
-  useEffect,
   useImperativeHandle,
-  useRef,
   useState,
 } from "react";
 import { Select as BaseSelect } from "@base-ui/react/select";
