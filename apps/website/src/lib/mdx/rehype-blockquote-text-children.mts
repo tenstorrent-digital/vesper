@@ -29,11 +29,21 @@
  * blocks, tables, nested components)
  *
  * this has to run on hast rather than mdast (ie. it can not be a remark plugin
- * like `remark-jsx-text-children.mjs`): `mdast-util-to-hast` re-wraps the
+ * like `remark-jsx-text-children.mts`): `mdast-util-to-hast` re-wraps the
  * children of a blockquote with `\n` text nodes when markdown is turned into
  * html, which `white-space: pre-wrap` would render as line breaks between
  * every unwrapped node
  */
+
+import type {
+  Element,
+  ElementContent,
+  Nodes,
+  Root,
+  RootContent,
+  Text,
+} from "hast";
+import type { Transformer } from "unified";
 
 /** hast element nodes, ie. anything that became an html tag */
 const ELEMENT = "element";
@@ -50,9 +60,9 @@ const TEXT = "text";
  *
  * (created per use - hast nodes must not be shared between parents)
  */
-const paragraphBreak = () => ({ type: TEXT, value: "\n\n" });
+const paragraphBreak = (): Text => ({ type: TEXT, value: "\n\n" });
 
-const isElement = (node, tagName) =>
+const isElement = (node: Nodes, tagName: string): node is Element =>
   node.type === ELEMENT && node.tagName === tagName;
 
 /**
@@ -60,7 +70,7 @@ const isElement = (node, tagName) =>
  * nodes for readable html - inside a blockquote every direct child is block
  * content, so a whitespace-only text node is always one of those separators
  */
-const isFormattingWhitespace = (node) =>
+const isFormattingWhitespace = (node: RootContent): boolean =>
   node.type === TEXT && !node.value.trim();
 
 /**
@@ -72,8 +82,10 @@ const isFormattingWhitespace = (node) =>
  * every other element (list, heading, `pre`, table, nested blockquote or JSX
  * element) is left alone, since it can not be represented as phrasing content
  */
-const toPhrasingContent = (children) => {
-  const phrasing = [];
+const toPhrasingContent = (
+  children: readonly ElementContent[],
+): ElementContent[] => {
+  const phrasing: ElementContent[] = [];
   let previousWasParagraph = false;
 
   children.forEach((child) => {
@@ -102,17 +114,20 @@ const toPhrasingContent = (children) => {
  * nested blockquotes are flattened from the inside out - a blockquote is block
  * content, so it stays in place inside its parent rather than being unwrapped
  */
-const unwrapBlockquoteChildren = (node) => {
-  const children = node.children;
-  if (!children?.length) return;
+const unwrapBlockquoteChildren = (node: Nodes): void => {
+  if (!("children" in node)) return;
+
+  // `Root` also holds doctypes, so its children are the wider `RootContent`
+  const children: readonly RootContent[] = node.children;
+  if (!children.length) return;
 
   children.forEach(unwrapBlockquoteChildren);
 
   if (isElement(node, "blockquote"))
-    node.children = toPhrasingContent(children);
+    node.children = toPhrasingContent(node.children);
 };
 
-export default function rehypeBlockquoteTextChildren() {
+export default function rehypeBlockquoteTextChildren(): Transformer<Root> {
   return (tree) => {
     unwrapBlockquoteChildren(tree);
   };

@@ -20,8 +20,19 @@
  * the very first line of the blockquote (github ignores those too)
  */
 
+import type { Blockquote, Nodes, Root } from "mdast";
+// registers `data.hProperties` on mdast nodes (see `setAlertType`)
+import type {} from "mdast-util-to-hast";
+import type { Transformer } from "unified";
+
 /** alert types github supports - anything else is left as a plain blockquote */
-const ALERT_TYPES = new Set(["note", "tip", "important", "warning", "caution"]);
+const ALERT_TYPES = ["note", "tip", "important", "warning", "caution"] as const;
+
+/** an alert type github supports, eg. `"warning"` for `> [!WARNING]` */
+type AlertType = (typeof ALERT_TYPES)[number];
+
+const isAlertType = (value: string): value is AlertType =>
+  (ALERT_TYPES as readonly string[]).includes(value);
 
 /**
  * an alert marker: `[!TYPE]` alone on the first line of a blockquote
@@ -38,7 +49,7 @@ const ALERT_MARKER = /^\[!([a-z]+)\][^\S\n]*(?:\n|$)/i;
  * returns `undefined` (leaving the blockquote alone) unless the first thing
  * inside it is a paragraph starting with a marker for a known alert type
  */
-const takeAlertType = (blockquote) => {
+const takeAlertType = (blockquote: Blockquote): AlertType | undefined => {
   const [paragraph] = blockquote.children;
   if (paragraph?.type !== "paragraph") return;
 
@@ -48,8 +59,8 @@ const takeAlertType = (blockquote) => {
   const match = text.value.match(ALERT_MARKER);
   if (!match) return;
 
-  const type = match[1].toLowerCase();
-  if (!ALERT_TYPES.has(type)) return;
+  const type = match[1]?.toLowerCase();
+  if (!type || !isAlertType(type)) return;
 
   text.value = text.value.slice(match[0].length);
 
@@ -65,7 +76,7 @@ const takeAlertType = (blockquote) => {
  * becomes in html, so the type survives as a prop on the `blockquote`
  * component
  */
-const setAlertType = (blockquote, type) => {
+const setAlertType = (blockquote: Blockquote, type: AlertType): void => {
   blockquote.data ??= {};
   blockquote.data.hProperties = {
     ...blockquote.data.hProperties,
@@ -74,11 +85,10 @@ const setAlertType = (blockquote, type) => {
 };
 
 /** walk the tree, converting every blockquote that opens with a marker */
-const convertAlerts = (node) => {
-  const children = node.children;
-  if (!children?.length) return;
+const convertAlerts = (node: Nodes): void => {
+  if (!("children" in node) || !node.children.length) return;
 
-  children.forEach(convertAlerts);
+  node.children.forEach(convertAlerts);
 
   if (node.type !== "blockquote") return;
 
@@ -86,7 +96,7 @@ const convertAlerts = (node) => {
   if (type) setAlertType(node, type);
 };
 
-export default function remarkBlockquoteAlerts() {
+export default function remarkBlockquoteAlerts(): Transformer<Root> {
   return (tree) => {
     convertAlerts(tree);
   };

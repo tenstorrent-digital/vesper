@@ -48,7 +48,7 @@ Text written inside a component stays **plain text** - it is never wrapped in a 
 </Typography>
 ```
 
-Blocks that can't be inlined - lists, headings, code blocks, tables, nested components - are left alone. There is no way to opt out from inside a document: a component whose children must keep markdown flow parsing has to be added to the `ignore` list of [`remark-jsx-text-children`](/apps/website/src/lib/mdx/remark-jsx-text-children.mjs) in [`next.config.ts`](/apps/website/next.config.ts).
+Blocks that can't be inlined - lists, headings, code blocks, tables, nested components - are left alone. There is no way to opt out from inside a document: a component whose children must keep markdown flow parsing has to be added to the `ignore` list of [`remark-jsx-text-children`](/apps/website/src/lib/mdx/remark-jsx-text-children.mts) in [`next.config.ts`](/apps/website/next.config.ts).
 
 > [!IMPORTANT]
 >

@@ -76,7 +76,7 @@ import { ToastDemo } from "@/demos/toast";
 
 /**
  * github alert types (`> [!NOTE]`), as picked up by
- * `src/lib/mdx/remark-blockquote-alerts.mjs`, mapped to admonition variants
+ * `src/lib/mdx/remark-blockquote-alerts.mts`, mapped to admonition variants
  */
 const ALERT_VARIANTS = {
   note: "info",
@@ -139,7 +139,7 @@ const components = {
   code: (props) => <Code>{props.children}</Code>,
   /**
    * blockquote children arrive as phrasing content (see
-   * `src/lib/mdx/rehype-blockquote-text-children.mjs`), so they can be
+   * `src/lib/mdx/rehype-blockquote-text-children.mts`), so they can be
    * forwarded as-is instead of being wrapped in a `Typography` per paragraph
    *
    * a blockquote written as a github alert (`> [!NOTE]`) also carries the
