@@ -83,8 +83,6 @@ const withMDX = createMDX({
        * adds support for github's alert syntax (`> [!NOTE]`, `> [!WARNING]`,
        * etc.), so a blockquote written as a callout renders as the matching
        * `Admonition` variant on the site and as a callout on GitHub
-       *
-       * absolute path for the same reason as the plugin above
        */
       path.join(appRoot, "src/lib/mdx/remark-blockquote-alerts.mjs"),
 
@@ -93,8 +91,6 @@ const withMDX = createMDX({
        * flow, so `<Typography>`/`<Accordion>`/`<Admonition>`/etc. render their
        * children as-is instead of wrapping them in a paragraph (which
        * `src/mdx-components.tsx` maps to another component)
-       *
-       * absolute path for the same reason as the plugin above
        */
       [
         path.join(appRoot, "src/lib/mdx/remark-jsx-text-children.mjs"),
