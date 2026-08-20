@@ -30,6 +30,7 @@ import { Chip } from "@tenstorrent/vesper/chip";
 import { Choicebox } from "@tenstorrent/vesper/choicebox";
 import { Code } from "@tenstorrent/vesper/code";
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
+import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import {
   Add,
@@ -221,6 +222,7 @@ const components = {
   Choicebox,
   Code,
   CodeBlock,
+  FormInputMessage,
   Icon,
   IconButton,
   Material,

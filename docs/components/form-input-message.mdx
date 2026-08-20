@@ -1,0 +1,172 @@
+---
+title: Form Input Message
+description: A message displayed alongside a form input, rendered as a live region so updates are announced by screen readers.
+---
+
+# Form Input Message
+
+A message displayed alongside a form input, paired with a variant-specific icon. It is rendered as a native `<output>` element, which is an implicit live region (`role="status"`), so a message that appears or changes is announced by screen readers.
+
+<FormInputMessage message="We'll never share your email address." />
+
+This is the same component used to render the `message` of [Text Input](./text-input.mdx) and [Textarea](./textarea.mdx), so you'll usually only reach for it directly when describing a form control that Vesper doesn't provide.
+
+## Options
+
+| Prop      | Type                                             | Description                                                                                                                   | Default     |
+| --------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `variant` | `"default" \| "warning" \| "success" \| "error"` | The visual variant, which determines the colour scheme and message icon.                                                      | `"default"` |
+| `message` | `string`                                         | The message text to display. When omitted or empty, no content is rendered, but the `<output>` element stays in the document. | —           |
+
+You may also pass any additional props to the underlying `<output>` element. Most commonly, this will be an `id` so the message can be referenced by an input's `aria-describedby`.
+
+Messages preserve line breaks (`white-space: pre-line`), so a `message` containing `\n` renders across multiple lines.
+
+## Examples
+
+### Basic usage
+
+Pass a `message` to render it alongside the icon for the current variant:
+
+<FormInputMessage message="Use 3-16 characters, letters and numbers only." />
+
+```tsx
+import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
+
+<FormInputMessage message="Use 3-16 characters, letters and numbers only." />;
+```
+
+### Variants
+
+The `FormInputMessage` component can be rendered in one of four variants: `default`, `warning`, `success`, or `error`. The variant determines the colour scheme of the message, as well as the icon it is paired with.
+
+#### Default variant
+
+A `FormInputMessage` renders with the `default` variant when no `variant` prop is specified. It is best suited for neutral hints, such as formatting requirements:
+
+<FormInputMessage message="Use 3-16 characters, letters and numbers only." />
+
+```tsx
+import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
+
+<FormInputMessage message="Use 3-16 characters, letters and numbers only." />;
+```
+
+#### Warning variant
+
+Use the `warning` variant to flag a value that needs attention, but that doesn't prevent the form from being submitted:
+
+<FormInputMessage variant="warning" message="This password is weak." />
+
+```tsx
+import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
+
+<FormInputMessage variant="warning" message="This password is weak." />;
+```
+
+#### Success variant
+
+The `success` variant is best suited for confirming that a value has been validated as expected:
+
+<FormInputMessage
+  variant="success"
+  message="This workspace slug is available."
+/>
+
+```tsx
+import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
+
+<FormInputMessage
+  variant="success"
+  message="This workspace slug is available."
+/>;
+```
+
+#### Error variant
+
+The `error` variant highlights an invalid value that must be corrected before the form can be submitted:
+
+<FormInputMessage
+  variant="error"
+  message="Please enter a valid email address."
+/>
+
+```tsx
+import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
+
+<FormInputMessage
+  variant="error"
+  message="Please enter a valid email address."
+/>;
+```
+
+### Empty and undefined messages
+
+`FormInputMessage` **always renders its `<output>` element**, even when `message` is `undefined` or an empty string. In that case the icon and text are not rendered, and the element is visually hidden — it takes up no space in the layout and shows nothing on screen, but it remains in the DOM:
+
+<FormInputMessage />
+
+```tsx
+import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
+
+// still renders a visually-hidden <output> element
+<FormInputMessage />;
+<FormInputMessage message="" />;
+<FormInputMessage message={undefined} />;
+```
+
+This is deliberate, and is what makes validation messages announce reliably. An `<output>` is an implicit live region, and a live region must already exist in the DOM **before** its content changes for assistive technology to announce that change. If the element were mounted at the same moment its message appeared, screen readers would typically miss the update entirely.
+
+> Don't conditionally render `FormInputMessage`. Keep it mounted and drive it with the `message` prop instead, so the live region is always in place when the message arrives.
+
+```tsx
+import { useState } from "react"
+import { FormInputMessage } from "@tenstorrent/vesper/form-input-message"
+
+const [error, setError] = useState<string>()
+
+// 👍 the output is mounted up front, so `error` is announced when it is set
+<FormInputMessage variant="error" message={error} />
+
+// 👎 the output is mounted alongside its content, so it may not be announced
+{error && <FormInputMessage variant="error" message={error} />}
+```
+
+The element exposes a `data-message` attribute (`"true"` or `"false"`) reflecting whether it currently has a message, which is useful if you need to style or query the empty state.
+
+### Describing an input
+
+To associate a message with an input, give the `FormInputMessage` an `id` and reference it from the input's `aria-describedby`:
+
+```tsx
+import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
+
+<div>
+  <label htmlFor="api-key">API key</label>
+  <input id="api-key" name="apiKey" aria-describedby="api-key-message" />
+  <FormInputMessage id="api-key-message" variant="error" message={error} />
+</div>;
+```
+
+Note that [Text Input](./text-input.mdx) and [Textarea](./textarea.mdx) already render a `FormInputMessage` for you and wire up `aria-describedby` automatically, so prefer passing `message` and `variant` to those components directly:
+
+<TextInput
+  variant="error"
+  label="Email"
+  type="email"
+  defaultValue="you@example.com"
+  message="This email address is taken."
+/>
+
+```tsx
+import { TextInput } from "@tenstorrent/vesper/text-input";
+
+<TextInput
+  variant="error"
+  label="Email"
+  type="email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  message="This email address is taken."
+/>;
+```
