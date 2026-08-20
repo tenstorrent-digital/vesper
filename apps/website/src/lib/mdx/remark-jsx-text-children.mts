@@ -31,6 +31,10 @@
  * markdown flow - see `next.config.ts`
  */
 
+import type { Nodes, Root, RootContent } from "mdast";
+import type { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
+import type { Transformer } from "unified";
+
 /** JSX element nodes that can hold flow (block) content */
 const JSX_FLOW_ELEMENT = "mdxJsxFlowElement";
 
@@ -43,7 +47,7 @@ const JSX_FLOW_ELEMENT = "mdxJsxFlowElement";
  *
  * (created per use - mdast nodes must not be shared between parents)
  */
-const paragraphBreak = () => ({ type: "text", value: "\n\n" });
+const paragraphBreak = (): RootContent => ({ type: "text", value: "\n\n" });
 
 /**
  * flatten a JSX element's flow children into phrasing content
@@ -53,9 +57,15 @@ const paragraphBreak = () => ({ type: "text", value: "\n\n" });
  *
  * every other flow node (list, heading, code, table, nested JSX element) is
  * left alone, since it can not be represented as phrasing content
+ *
+ * mdast types a flow element's children as flow content, so the result is cast
+ * back - holding phrasing content is the whole point of the plugin, and it is
+ * what MDX compiles to JSX children either way
  */
-const toPhrasingContent = (children) => {
-  const phrasing = [];
+const toPhrasingContent = (
+  children: readonly RootContent[],
+): MdxJsxFlowElement["children"] => {
+  const phrasing: RootContent[] = [];
   let previousWasParagraph = false;
 
   children.forEach((child) => {
@@ -72,7 +82,7 @@ const toPhrasingContent = (children) => {
     previousWasParagraph = true;
   });
 
-  return phrasing;
+  return phrasing as MdxJsxFlowElement["children"];
 };
 
 /**
@@ -81,27 +91,39 @@ const toPhrasingContent = (children) => {
  * ignored elements are skipped along with everything inside them, so opting
  * out applies to the whole subtree
  */
-const unwrapJsxChildren = (node, ignore) => {
-  const children = node.children;
-  if (!children?.length) return;
+const unwrapJsxChildren = (node: Nodes, ignore: ReadonlySet<string>): void => {
+  if (!("children" in node) || !node.children.length) return;
 
   const isJsxElement = node.type === JSX_FLOW_ELEMENT;
-  if (isJsxElement && ignore.has(node.name)) return;
+  if (isJsxElement && node.name !== null && ignore.has(node.name)) return;
 
   // handle nested elements first, so their children are phrasing content by
   // the time this element is flattened
+  const children: readonly RootContent[] = node.children;
   children.forEach((child) => unwrapJsxChildren(child, ignore));
 
   if (isJsxElement) node.children = toPhrasingContent(children);
 };
 
+export interface RemarkJsxTextChildrenOptions {
+  /**
+   * names of JSX elements (eg. `["Tabs"]`) whose children - and whose
+   * descendants' children - keep markdown flow parsing
+   *
+   * @default []
+   */
+  ignore?: string[];
+}
+
 /**
- * @param {object} [options]
- * @param {string[]} [options.ignore] - names of JSX elements (eg. `["Tabs"]`)
- *   whose children - and whose descendants' children - keep markdown flow
- *   parsing @default []
+ * @param {RemarkJsxTextChildrenOptions} [options] - (optional) plugin options
+ * @param {string[]} [options.ignore] - (optional) names of JSX elements (eg.
+ *   `["Tabs"]`) whose children - and whose descendants' children - keep
+ *   markdown flow parsing @default []
  */
-export default function remarkJsxTextChildren({ ignore = [] } = {}) {
+export default function remarkJsxTextChildren({
+  ignore = [],
+}: RemarkJsxTextChildrenOptions = {}): Transformer<Root> {
   const ignored = new Set(ignore);
 
   return (tree) => {

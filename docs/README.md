@@ -48,7 +48,7 @@ Text written inside a component stays **plain text** - it is never wrapped in a 
 </Typography>
 ```
 
-Blocks that can't be inlined - lists, headings, code blocks, tables, nested components - are left alone. There is no way to opt out from inside a document: a component whose children must keep markdown flow parsing has to be added to the `ignore` list of [`remark-jsx-text-children`](/apps/website/src/lib/mdx/remark-jsx-text-children.mjs) in [`next.config.ts`](/apps/website/next.config.ts).
+Blocks that can't be inlined - lists, headings, code blocks, tables, nested components - are left alone. There is no way to opt out from inside a document: a component whose children must keep markdown flow parsing has to be added to the `ignore` list of [`remark-jsx-text-children`](/apps/website/src/lib/mdx/remark-jsx-text-children.mts) in [`next.config.ts`](/apps/website/next.config.ts).
 
 > [!IMPORTANT]
 >
@@ -70,6 +70,25 @@ Links resolve to other documents by relative path, so the path resolves on GitHu
 | ------------------------------------------- | ------------------------- |
 | `[Icon Button](./icon-button.mdx)`          | `/components/icon-button` |
 | `[Getting Started](../getting-started.mdx)` | `/getting-started`        |
+
+## Callouts
+
+A blockquote renders as an [`Admonition`](./components/admonition.mdx). GitHub's alert syntax sets its variant, so a callout renders as a callout in both places:
+
+```md
+> [!WARNING]
+> This can not be undone.
+```
+
+| Marker           | Variant   |
+| ---------------- | --------- |
+| `> [!NOTE]`      | `info`    |
+| `> [!TIP]`       | `success` |
+| `> [!IMPORTANT]` | `info`    |
+| `> [!WARNING]`   | `warning` |
+| `> [!CAUTION]`   | `danger`  |
+
+The marker has to be the first line of the blockquote. A blockquote without one renders as a `secondary` admonition.
 
 ## Some notes
 

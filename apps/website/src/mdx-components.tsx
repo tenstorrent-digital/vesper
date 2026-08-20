@@ -17,7 +17,10 @@ import {
 } from "shiki/bundle/web";
 
 import { Accordion } from "@tenstorrent/vesper/accordion";
-import { Admonition } from "@tenstorrent/vesper/admonition";
+import {
+  Admonition,
+  type AdmonitionVariant,
+} from "@tenstorrent/vesper/admonition";
 import { Avatar } from "@tenstorrent/vesper/avatar";
 import { AvatarGroup } from "@tenstorrent/vesper/avatar-group";
 import { Badge } from "@tenstorrent/vesper/badge";
@@ -63,8 +66,6 @@ import { Typography } from "@tenstorrent/vesper/typography";
 // docs-only components (not part of the design system)
 import { ColorChip } from "@/components/color-chip";
 
-import { trimChildren } from "@/lib/markdown/utils";
-
 // named demos for components w non-serializable props (event handlers,
 // refs, state) that are used inside `docs/` documents
 import { IconsDemo } from "@/demos/icons";
@@ -72,6 +73,20 @@ import { MenuDemo } from "@/demos/menu";
 import { ShowMoreDemo } from "@/demos/show-more";
 import { SplitButtonDemo } from "@/demos/split-button";
 import { ToastDemo } from "@/demos/toast";
+
+/**
+ * github alert types (`> [!NOTE]`), as picked up by
+ * `src/lib/mdx/remark-blockquote-alerts.mts`, mapped to admonition variants
+ */
+const ALERT_VARIANTS = {
+  note: "info",
+  tip: "success",
+  important: "info",
+  warning: "warning",
+  caution: "danger",
+} satisfies Record<string, AdmonitionVariant>;
+
+type BlockquoteAlert = keyof typeof ALERT_VARIANTS;
 
 const components = {
   h1: (props) => (
@@ -110,9 +125,7 @@ const components = {
     </Typography>
   ),
   strong: (props) => (
-    <Typography as="strong" variant="copy-md-bold">
-      {props.children}
-    </Typography>
+    <strong style={{ fontWeight: 500 }}>{props.children}</strong>
   ),
   a: (props) => (
     <Link
@@ -124,8 +137,23 @@ const components = {
     </Link>
   ),
   code: (props) => <Code>{props.children}</Code>,
-  blockquote: (props) => (
-    <Admonition size="sm">{trimChildren(props.children)}</Admonition>
+  /**
+   * blockquote children arrive as phrasing content (see
+   * `src/lib/mdx/rehype-blockquote-text-children.mts`), so they can be
+   * forwarded as-is instead of being wrapped in a `Typography` per paragraph
+   *
+   * a blockquote written as a github alert (`> [!NOTE]`) also carries the
+   * alert type, which picks the admonition's variant
+   */
+  blockquote: ({
+    children,
+    "data-alert": alert,
+  }: React.ComponentProps<"blockquote"> & {
+    "data-alert"?: BlockquoteAlert;
+  }) => (
+    <Admonition size="sm" variant={alert ? ALERT_VARIANTS[alert] : "secondary"}>
+      {children}
+    </Admonition>
   ),
   pre: async (props) => {
     const codeElement = props.children as React.ReactElement<{

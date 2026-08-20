@@ -55,7 +55,12 @@ const withMDX = createMDX({
      * to use remark/rehype plugins with turborepo, we have to
      * specify plugin names using a string (no need for `import`)
      *
+     * our own plugins are authored in typescript (`.mts`) and are loaded by
+     * node's type stripping, which erases the types at import time - so they
+     * must stay erasable syntax only (no `enum`, `namespace`, etc.)
+     *
      * @see https://nextjs.org/docs/app/guides/mdx#using-plugins-with-turbopack
+     * @see https://nodejs.org/api/typescript.html#type-stripping
      */
     remarkPlugins: [
       "remark-gfm",
@@ -77,20 +82,41 @@ const withMDX = createMDX({
        * `require.resolve` from inside its own loader, so a project-relative
        * path resolves against `node_modules/@next/mdx` and is not found
        */
-      path.join(appRoot, "src/lib/mdx/remark-doc-links.mjs"),
+      path.join(appRoot, "src/lib/mdx/remark-doc-links.mts"),
+
+      /**
+       * adds support for github's alert syntax (`> [!NOTE]`, `> [!WARNING]`,
+       * etc.), so a blockquote written as a callout renders as the matching
+       * `Admonition` variant on the site and as a callout on GitHub
+       */
+      path.join(appRoot, "src/lib/mdx/remark-blockquote-alerts.mts"),
 
       /**
        * keeps text written inside a JSX element from being parsed as markdown
        * flow, so `<Typography>`/`<Accordion>`/`<Admonition>`/etc. render their
        * children as-is instead of wrapping them in a paragraph (which
        * `src/mdx-components.tsx` maps to another component)
-       *
-       * absolute path for the same reason as the plugin above
        */
       [
-        path.join(appRoot, "src/lib/mdx/remark-jsx-text-children.mjs"),
+        path.join(appRoot, "src/lib/mdx/remark-jsx-text-children.mts"),
         { ignore: [] },
       ],
+    ],
+
+    rehypePlugins: [
+      /**
+       * same idea as `remark-jsx-text-children.mts`, but for blockquotes:
+       * markdown turns their content into one paragraph per block, so
+       * `<Admonition>` (what `blockquote` maps to in `src/mdx-components.tsx`)
+       * would render a `Typography` per paragraph inside the one it already
+       * wraps its children in
+       *
+       * it runs on hast instead of mdast because the paragraphs a blockquote
+       * holds are re-padded with `\n` when markdown is turned into html
+       *
+       * absolute path for the same reason as the plugins above
+       */
+      path.join(appRoot, "src/lib/mdx/rehype-blockquote-text-children.mts"),
     ],
   },
 });
