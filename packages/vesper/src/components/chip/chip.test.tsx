@@ -3,12 +3,52 @@ import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 
-import { Chip } from "@/components/chip/chip";
+import {
+  Chip,
+  CHIP_SIZES,
+  CHIP_VARIANTS,
+  type ChipProps,
+} from "@/components/chip/chip";
 import { Globe } from "@/components/icons/icons";
 
 import "@/styles/test.css";
 
 afterEach(cleanup);
+
+const CHIP_PERMUTATIONS = CHIP_SIZES.flatMap((size) =>
+  CHIP_VARIANTS.flatMap((variant): (ChipProps & { name: string })[] => [
+    {
+      name: `${size}, ${variant}`,
+      size,
+      variant,
+    },
+    {
+      name: `${size}, ${variant}, disabled`,
+      size,
+      variant,
+      disabled: true,
+    },
+    {
+      name: `${size}, ${variant}, selected`,
+      size,
+      variant,
+      selected: true,
+    },
+    {
+      name: `${size}, ${variant}, iconLeft`,
+      size,
+      variant,
+      iconLeft: <Globe />,
+    },
+    {
+      name: `${size}, ${variant}, iconRight`,
+      size,
+      variant,
+      disabled: true,
+      iconRight: <Globe />,
+    },
+  ]),
+);
 
 describe("chip [unit]", () => {
   test("renders a button by default", () => {
@@ -21,14 +61,18 @@ describe("chip [unit]", () => {
     expect(container.firstElementChild?.tagName).toBe("SPAN");
   });
 
-  test("default variant class", () => {
-    const { container } = render(<Chip variant="default">Label</Chip>);
-    expect(container.firstElementChild).toHaveClass("vesper-chip-default");
+  CHIP_VARIANTS.forEach((variant) => {
+    test(`${variant} variant class`, () => {
+      const { container } = render(<Chip variant={variant}>Label</Chip>);
+      expect(container.firstElementChild).toHaveClass(`vesper-chip-${variant}`);
+    });
   });
 
-  test("contrast variant class", () => {
-    const { container } = render(<Chip variant="contrast">Label</Chip>);
-    expect(container.firstElementChild).toHaveClass("vesper-chip-contrast");
+  CHIP_SIZES.forEach((size) => {
+    test(`${size} size class`, () => {
+      const { container } = render(<Chip size={size}>Label</Chip>);
+      expect(container.firstElementChild).toHaveClass(`vesper-chip-${size}`);
+    });
   });
 
   test("selected class applied when selected", () => {
@@ -229,33 +273,11 @@ describe("chip [unit]", () => {
 });
 
 describe("chip [snapshot]", () => {
-  test("default variant", () => {
-    const { container } = render(<Chip variant="default">Label</Chip>);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test("contrast variant", () => {
-    const { container } = render(<Chip variant="contrast">Label</Chip>);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test("selected", () => {
-    const { container } = render(<Chip selected>Label</Chip>);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test("disabled", () => {
-    const { container } = render(<Chip disabled>Label</Chip>);
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
-  test("with icons", () => {
-    const { container } = render(
-      <Chip iconLeft={<Globe />} iconRight={<Globe />}>
-        Label
-      </Chip>,
-    );
-    expect(container.firstChild).toMatchSnapshot();
+  CHIP_PERMUTATIONS.forEach(({ name, ...props }) => {
+    test(name, () => {
+      const { container } = render(<Chip {...props}>Label</Chip>);
+      expect(container.firstChild).toMatchSnapshot();
+    });
   });
 });
 
@@ -271,37 +293,11 @@ describe("chip [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    test(`a11y (default, ${theme})`, async () => {
-      const { container } = render(<Chip variant="default">Label</Chip>);
-      expect(await axe.run(container)).toHaveNoViolations();
-    });
-
-    test(`a11y (contrast, ${theme})`, async () => {
-      const { container } = render(<Chip variant="contrast">Label</Chip>);
-      expect(await axe.run(container)).toHaveNoViolations();
-    });
-
-    test(`a11y (default, selected, ${theme})`, async () => {
-      const { container } = render(
-        <Chip variant="default" selected>
-          Label
-        </Chip>,
-      );
-      expect(await axe.run(container)).toHaveNoViolations();
-    });
-
-    test(`a11y (contrast, selected, ${theme})`, async () => {
-      const { container } = render(
-        <Chip variant="contrast" selected>
-          Label
-        </Chip>,
-      );
-      expect(await axe.run(container)).toHaveNoViolations();
-    });
-
-    test(`a11y (disabled, ${theme})`, async () => {
-      const { container } = render(<Chip disabled>Label</Chip>);
-      expect(await axe.run(container)).toHaveNoViolations();
+    CHIP_PERMUTATIONS.forEach(({ name, ...props }) => {
+      test(`${name} (${theme})`, async () => {
+        const { container } = render(<Chip {...props}>Label</Chip>);
+        expect(await axe.run(container)).toHaveNoViolations();
+      });
     });
   });
 });

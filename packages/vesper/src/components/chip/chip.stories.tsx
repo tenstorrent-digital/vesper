@@ -25,6 +25,7 @@ export const Playground: Story = {
     disabled: false,
     iconLeft: false,
     iconRight: false,
+    size: "md",
   },
   render: ({ iconLeft, iconRight, ...props }) => (
     <Chip
