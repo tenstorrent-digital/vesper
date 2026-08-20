@@ -44,7 +44,6 @@ const CHIP_PERMUTATIONS = CHIP_SIZES.flatMap((size) =>
       name: `${size}, ${variant}, iconRight`,
       size,
       variant,
-      disabled: true,
       iconRight: <Globe />,
     },
   ]),
