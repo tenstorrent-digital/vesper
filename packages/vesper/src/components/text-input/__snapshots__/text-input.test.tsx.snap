@@ -26,15 +26,15 @@ exports[`text-input [snapshot] > full options 1`] = `
 <div
   class="vesper-text-input vesper-text-input-lg vesper-text-input-error"
 >
-  <label
-    class="vesper-typography vesper-typography-label-sm vesper-text-input-label"
-    for="_r_1t_"
+  <div
+    class="vesper-text-input-label-wrapper"
   >
-    <span
-      class="vesper-text-input-label-text"
+    <label
+      class="vesper-typography vesper-typography-label-sm vesper-text-input-label"
+      for="_r_1t_"
     >
       Label text
-    </span>
+    </label>
     <div
       class="vesper-text-input-field-wrapper"
     >
@@ -47,7 +47,7 @@ exports[`text-input [snapshot] > full options 1`] = `
         type="text"
       />
     </div>
-  </label>
+  </div>
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
     data-message="true"
@@ -365,15 +365,15 @@ exports[`text-input [snapshot] > with label 1`] = `
 <div
   class="vesper-text-input vesper-text-input-lg vesper-text-input-default"
 >
-  <label
-    class="vesper-typography vesper-typography-label-sm vesper-text-input-label"
-    for="_r_1p_"
+  <div
+    class="vesper-text-input-label-wrapper"
   >
-    <span
-      class="vesper-text-input-label-text"
+    <label
+      class="vesper-typography vesper-typography-label-sm vesper-text-input-label"
+      for="_r_1p_"
     >
       Label text
-    </span>
+    </label>
     <div
       class="vesper-text-input-field-wrapper"
     >
@@ -384,7 +384,7 @@ exports[`text-input [snapshot] > with label 1`] = `
         type="text"
       />
     </div>
-  </label>
+  </div>
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
     data-message="false"

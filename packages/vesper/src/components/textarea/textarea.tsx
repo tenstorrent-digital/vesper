@@ -252,17 +252,17 @@ export function Textarea(props: TextareaProps) {
       {...rest}
     >
       {label ? (
-        <Typography
-          as="label"
-          htmlFor={inputId}
-          variant="label-sm"
-          className="vesper-textarea-label"
-        >
-          <span className="vesper-textarea-label-text">
+        <div className="vesper-textarea-label-wrapper">
+          <Typography
+            as="label"
+            htmlFor={inputId}
+            variant="label-sm"
+            className="vesper-textarea-label"
+          >
             {label + (required ? " *" : "")}
-          </span>
+          </Typography>
           {input}
-        </Typography>
+        </div>
       ) : (
         input
       )}

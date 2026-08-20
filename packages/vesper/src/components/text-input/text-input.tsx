@@ -336,17 +336,17 @@ export function TextInput(props: TextInputProps) {
       {...rest}
     >
       {label ? (
-        <Typography
-          as="label"
-          htmlFor={inputId}
-          variant="label-sm"
-          className="vesper-text-input-label"
-        >
-          <span className="vesper-text-input-label-text">
+        <div className="vesper-text-input-label-wrapper">
+          <Typography
+            as="label"
+            variant="label-sm"
+            className="vesper-text-input-label"
+            htmlFor={inputId}
+          >
             {label + (required ? " *" : "")}
-          </span>
+          </Typography>
           {input}
-        </Typography>
+        </div>
       ) : (
         input
       )}
