@@ -24,7 +24,8 @@
   align-items: center;
   border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
   background: var(--vesper-tint-neutral-100);
-  &:has(:focus-visible) {
+  &:has(.vesper-text-input-field:focus-visible),
+  &:has(.vesper-text-input-icon:focus-visible) {
     border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
     box-shadow: var(--vesper-shadow-focus-ring);
     @media (forced-colors: active) {
