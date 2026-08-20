@@ -34,7 +34,9 @@ import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import {
   Add,
+  CaretDown,
   Checkmark,
+  Close,
   Gear,
   Globe,
   Icon,
@@ -69,6 +71,7 @@ import { ColorChip } from "@/components/color-chip";
 
 // named demos for components w non-serializable props (event handlers,
 // refs, state) that are used inside `docs/` documents
+import { ChipDemo } from "@/demos/chip";
 import { IconsDemo } from "@/demos/icons";
 import { MenuDemo } from "@/demos/menu";
 import { ShowMoreDemo } from "@/demos/show-more";
@@ -252,7 +255,9 @@ const components = {
 
   // icons will need to be added here too if we want to use them directly
   Add,
+  CaretDown,
   Checkmark,
+  Close,
   Gear,
   Globe,
   Info,
@@ -260,6 +265,7 @@ const components = {
   Tenstorrent,
 
   // demos
+  ChipDemo,
   IconsDemo,
   MenuDemo,
   ShowMoreDemo,
