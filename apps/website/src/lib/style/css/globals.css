@@ -164,10 +164,10 @@ nav#sidebar {
     margin: calc(var(--spacing) / 8 * -1) 0; /* so hover can take up adjacent space */
     border-radius: calc(var(--spacing) / 2);
     &:hover {
-      background-color: var(--vesper-alpha-black-50);
+      background-color: var(--vesper-state-neutral-hover);
     }
     &[data-active] {
-      background-color: var(--vesper-alpha-black-100);
+      background-color: var(--vesper-state-neutral-active);
     }
   }
 

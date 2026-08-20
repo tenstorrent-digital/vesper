@@ -726,8 +726,8 @@ html[data-vesper-theme="dark"] {
   --vesper-scrim-contrast-base: var(--vesper-alpha-black-600);
   --vesper-scrim-inverse-subtle: var(--vesper-alpha-white-300);
   --vesper-scrim-inverse-base: var(--vesper-alpha-white-600);
-  --vesper-state-neutral-hover: var(--vesper-alpha-stone-0);
-  --vesper-state-neutral-active: var(--vesper-alpha-stone-50);
+  --vesper-state-neutral-hover: var(--vesper-alpha-stone-50);
+  --vesper-state-neutral-active: var(--vesper-alpha-stone-100);
   --vesper-state-contrast-hover: var(--vesper-alpha-contrast-50);
   --vesper-state-contrast-active: var(--vesper-alpha-contrast-100);
   --vesper-state-inverse-hover: var(--vesper-alpha-inverse-100);
