@@ -15,8 +15,7 @@ interface MaskedInputDemoProps {
     | "replace-regex"
     | "replace-string"
     | "replace-record"
-    | "intl-phone-number"
-    | "format-on-mount";
+    | "intl-phone-number";
 }
 
 export function MaskedInputDemo(props: MaskedInputDemoProps) {
