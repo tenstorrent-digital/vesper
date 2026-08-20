@@ -113,13 +113,35 @@ export function MaskedInput({
 
   const maskitoRef = useMaskito(maskitoConfig);
 
+  // React 19 does not call a ref callback with `null` when that callback returns
+  // a cleanup function, so this ref always returns one and performs every
+  // detachment itself: the consumer's cleanup (or the legacy `null` call when it
+  // does not provide one), and detaching maskito from the element.
   const mergedInputRef = useMemo(
     () => (instance: HTMLInputElement | null) => {
-      if (inputRef) {
-        if (typeof inputRef === "function") inputRef(instance);
-        else inputRef.current = instance;
+      if (typeof inputRef === "function") {
+        const cleanup = inputRef(instance);
+        maskitoRef(instance);
+
+        return () => {
+          if (typeof cleanup === "function") cleanup();
+          else inputRef(null);
+          maskitoRef(null);
+        };
       }
+
+      if (inputRef) {
+        inputRef.current = instance;
+        maskitoRef(instance);
+
+        return () => {
+          inputRef.current = null;
+          maskitoRef(null);
+        };
+      }
+
       maskitoRef(instance);
+      return () => maskitoRef(null);
     },
     [inputRef, maskitoRef],
   );

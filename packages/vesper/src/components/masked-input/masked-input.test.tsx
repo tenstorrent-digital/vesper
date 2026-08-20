@@ -1,5 +1,5 @@
 import { createRef } from "react";
-import { MaskitoOptions } from "@maskito/core";
+import { Maskito, MaskitoOptions } from "@maskito/core";
 import { cleanup, render } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
@@ -22,7 +22,10 @@ function renderMaskedInput(props: MaskedInputProps = {}) {
   };
 }
 
-afterEach(cleanup);
+afterEach(() => {
+  cleanup();
+  vi.restoreAllMocks();
+});
 
 describe("masked-input [unit]", () => {
   test("renders an input", () => {
@@ -232,6 +235,44 @@ describe("masked-input [unit]", () => {
     unmount();
 
     expect(inputRef).toHaveBeenLastCalledWith(null);
+  });
+
+  test("a function inputRef's cleanup function is called when the ref is detached", () => {
+    const cleanupInputRef = vi.fn();
+    const inputRef = vi.fn(() => cleanupInputRef);
+    const { input, unmount } = renderMaskedInput({ inputRef, mask: "___-___" });
+
+    expect(inputRef).toHaveBeenCalledWith(input);
+    expect(cleanupInputRef).not.toHaveBeenCalled();
+
+    unmount();
+
+    expect(cleanupInputRef).toHaveBeenCalledOnce();
+    // React 19 does not call a ref with null when it returns a cleanup function
+    expect(inputRef).not.toHaveBeenCalledWith(null);
+  });
+
+  test("masking still applies when a function inputRef returns a cleanup function", async () => {
+    const inputRef = vi.fn(() => vi.fn());
+    const { input } = renderMaskedInput({ inputRef, mask: "___-___" });
+
+    await userEvent.fill(input, "123456");
+
+    expect(input).toHaveValue("123-456");
+  });
+
+  test("detaches maskito from the input element on unmount", () => {
+    const destroy = vi.spyOn(Maskito.prototype, "destroy");
+    const { unmount } = renderMaskedInput({
+      mask: "___-___",
+      inputRef: vi.fn(() => vi.fn()),
+    });
+
+    expect(destroy).not.toHaveBeenCalled();
+
+    unmount();
+
+    expect(destroy).toHaveBeenCalled();
   });
 });
 
