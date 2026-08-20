@@ -77,9 +77,6 @@ import { ToastDemo } from "@/demos/toast";
 /**
  * github alert types (`> [!NOTE]`), as picked up by
  * `src/lib/mdx/remark-blockquote-alerts.mjs`, mapped to admonition variants
- *
- * github colours `important` purple, which the design system has no equivalent
- * for - `secondary` is the closest "this is worth reading" treatment
  */
 const ALERT_VARIANTS = {
   note: "info",
