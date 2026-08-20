@@ -1,10 +1,10 @@
-.vesper-text-input {
+.vesper-textarea {
   display: flex;
   flex-direction: column;
   gap: var(--vesper-spacing-2);
 }
 
-.vesper-text-input-label {
+.vesper-textarea-label {
   color: var(--vesper-text-secondary);
   display: flex;
   flex-direction: column;
@@ -15,15 +15,20 @@
   }
 }
 
-.vesper-text-input-label-text {
+.vesper-textarea-label-text {
   width: fit-content;
 }
 
-.vesper-text-input-field-wrapper {
+.vesper-textarea-field-wrapper {
+  height: auto;
   display: flex;
   align-items: center;
   border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
   background: var(--vesper-tint-neutral-100);
+  &:has(.vesper-textarea-field:disabled) {
+    border: var(--vesper-stroke-base) solid var(--vesper-border-disabled);
+    background: var(--vesper-tint-neutral-200);
+  }
   &:has(:focus-visible) {
     border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
     box-shadow: var(--vesper-shadow-focus-ring);
@@ -31,47 +36,25 @@
       outline: var(--vesper-stroke-strong) solid CanvasText;
     }
   }
-  &:has(.vesper-text-input-field:disabled) {
-    border: var(--vesper-stroke-base) solid var(--vesper-border-disabled);
-    background: var(--vesper-tint-neutral-200);
-    .vesper-text-input-icon {
-      color: var(--vesper-icon-disabled);
-      pointer-events: none;
-    }
-  }
 }
 
-.vesper-text-input-success {
-  .vesper-text-input-field-wrapper {
+.vesper-textarea-success {
+  .vesper-textarea-field-wrapper {
     border: var(--vesper-stroke-base) solid var(--vesper-border-success-base);
   }
 }
-.vesper-text-input-warning {
-  .vesper-text-input-field-wrapper {
+.vesper-textarea-warning {
+  .vesper-textarea-field-wrapper {
     border: var(--vesper-stroke-base) solid var(--vesper-border-warning-base);
   }
 }
-.vesper-text-input-error {
-  .vesper-text-input-field-wrapper {
+.vesper-textarea-error {
+  .vesper-textarea-field-wrapper {
     border: var(--vesper-stroke-base) solid var(--vesper-border-error-base);
   }
 }
 
-.vesper-text-input-icon {
-  color: var(--vesper-icon-secondary);
-  flex-shrink: 0;
-  &:where(button:not(:disabled)) {
-    position: relative;
-    cursor: pointer;
-    &::after {
-      content: "";
-      position: absolute;
-      inset: calc(var(--vesper-spacing-micro) * -4);
-    }
-  }
-}
-
-.vesper-text-input-field {
+.vesper-textarea-field {
   width: 100%;
   &:focus-visible {
     outline: none;
@@ -88,75 +71,50 @@
       color: var(--vesper-text-disabled);
     }
   }
-  &::-webkit-search-decoration,
-  &::-webkit-search-cancel-button,
-  &::-webkit-search-results-button,
-  &::-webkit-search-results-decoration {
-    -webkit-appearance: none;
-    appearance: none;
-    display: none; /* Secondary fallback to guarantee removal */
-  }
 }
 
-.vesper-text-input-sm {
-  .vesper-text-input-field-wrapper {
+.vesper-textarea-sm {
+  .vesper-textarea-field-wrapper {
     gap: var(--vesper-spacing-1);
     padding: 0 var(--vesper-spacing-2);
     border-radius: var(--vesper-radius-1);
-    height: 2rem;
   }
-  .vesper-text-input-icon {
-    width: 0.875rem;
-    height: 0.875rem;
-  }
-  .vesper-text-input-field {
+  .vesper-textarea-field {
     padding: calc(var(--vesper-spacing-micro) * 6.9) 0;
   }
 }
 
-.vesper-text-input-md {
-  .vesper-text-input-field-wrapper {
+.vesper-textarea-md {
+  .vesper-textarea-field-wrapper {
     gap: var(--vesper-spacing-2);
     padding: 0 var(--vesper-spacing-3);
     border-radius: var(--vesper-radius-2);
-    height: 2.5rem;
   }
-  .vesper-text-input-icon {
-    width: 1rem;
-    height: 1rem;
-  }
-  .vesper-text-input-field {
+  .vesper-textarea-field {
     padding: calc(var(--vesper-spacing-micro) * 10.2) 0;
   }
 }
 
-.vesper-text-input-lg {
-  .vesper-text-input-field-wrapper {
+.vesper-textarea-lg {
+  .vesper-textarea-field-wrapper {
     gap: var(--vesper-spacing-2);
     padding: 0 var(--vesper-spacing-3);
     border-radius: var(--vesper-radius-2);
-    height: 3rem;
   }
-  .vesper-text-input-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-  .vesper-text-input-field {
+  .vesper-textarea-field {
     padding: calc(var(--vesper-spacing-micro) * 14.4) 0;
   }
 }
 
-.vesper-text-input-field {
+.vesper-textarea-field {
   color: var(--vesper-text-primary);
   &::placeholder {
     color: var(--vesper-text-tertiary);
   }
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  &[type="number"] {
-    appearance: textfield;
+  resize: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
