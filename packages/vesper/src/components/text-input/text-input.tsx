@@ -91,7 +91,7 @@ type ForwardedPropTypes =
 
 export interface TextInputDropdownProps {
   /** An accessible label for the dropdown select trigger, applied via `aria-label`. */
-  ariaLabel?: string;
+  ariaLabel: string;
   /** The form field name submitted for the dropdown select's value. */
   name?: string;
   /** The selected value, for controlled usage. Pair with `onChange`. */

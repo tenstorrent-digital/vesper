@@ -365,7 +365,13 @@ describe("text-input [unit]", () => {
 
     test("dropdown width is applied to the trigger", () => {
       const result = render(
-        <TextInput dropdown={{ options: DROPDOWN_OPTIONS, width: 80 }} />,
+        <TextInput
+          dropdown={{
+            options: DROPDOWN_OPTIONS,
+            width: 80,
+            ariaLabel: "Area code",
+          }}
+        />,
       );
 
       const trigger = result.getByRole("combobox");
@@ -377,7 +383,9 @@ describe("text-input [unit]", () => {
 
     test("renders string options", async () => {
       const result = render(
-        <TextInput dropdown={{ options: DROPDOWN_OPTIONS }} />,
+        <TextInput
+          dropdown={{ options: DROPDOWN_OPTIONS, ariaLabel: "Area code" }}
+        />,
       );
 
       const items = await openDropdown(result.getByRole("combobox"));
@@ -387,7 +395,12 @@ describe("text-input [unit]", () => {
 
     test("renders labelled options", async () => {
       const result = render(
-        <TextInput dropdown={{ options: DROPDOWN_LABELLED_OPTIONS }} />,
+        <TextInput
+          dropdown={{
+            options: DROPDOWN_LABELLED_OPTIONS,
+            ariaLabel: "Area code",
+          }}
+        />,
       );
 
       const items = await openDropdown(result.getByRole("combobox"));
@@ -403,7 +416,11 @@ describe("text-input [unit]", () => {
       const onChange = vi.fn();
       const result = render(
         <TextInput
-          dropdown={{ options: DROPDOWN_LABELLED_OPTIONS, onChange }}
+          dropdown={{
+            options: DROPDOWN_LABELLED_OPTIONS,
+            onChange,
+            ariaLabel: "Area code",
+          }}
         />,
       );
 
@@ -421,7 +438,11 @@ describe("text-input [unit]", () => {
     test("renders the dropdown placeholder", async () => {
       const result = render(
         <TextInput
-          dropdown={{ options: DROPDOWN_OPTIONS, placeholder: "Code" }}
+          dropdown={{
+            options: DROPDOWN_OPTIONS,
+            placeholder: "Code",
+            ariaLabel: "Area code",
+          }}
         />,
       );
 
@@ -440,7 +461,11 @@ describe("text-input [unit]", () => {
     test("dropdown defaultValue selects the matching option", async () => {
       const result = render(
         <TextInput
-          dropdown={{ options: DROPDOWN_OPTIONS, defaultValue: "+44" }}
+          dropdown={{
+            options: DROPDOWN_OPTIONS,
+            defaultValue: "+44",
+            ariaLabel: "Area code",
+          }}
         />,
       );
 
@@ -456,7 +481,11 @@ describe("text-input [unit]", () => {
     test("dropdown value is controlled when supplied", async () => {
       const onChange = vi.fn();
       const props = { options: DROPDOWN_OPTIONS, onChange };
-      const result = render(<TextInput dropdown={{ ...props, value: "+1" }} />);
+      const result = render(
+        <TextInput
+          dropdown={{ ...props, value: "+1", ariaLabel: "Area code" }}
+        />,
+      );
 
       const trigger = result.getByRole("combobox");
       expect(trigger).toHaveTextContent("+1");
@@ -483,7 +512,9 @@ describe("text-input [unit]", () => {
 
     test("dropdown chip reflects the open state", async () => {
       const result = render(
-        <TextInput dropdown={{ options: DROPDOWN_OPTIONS }} />,
+        <TextInput
+          dropdown={{ options: DROPDOWN_OPTIONS, ariaLabel: "Area code" }}
+        />,
       );
 
       const trigger = result.getByRole("combobox");
@@ -500,7 +531,10 @@ describe("text-input [unit]", () => {
 
     test("dropdown is disabled when the input is disabled", async () => {
       const result = render(
-        <TextInput disabled dropdown={{ options: DROPDOWN_OPTIONS }} />,
+        <TextInput
+          disabled
+          dropdown={{ options: DROPDOWN_OPTIONS, ariaLabel: "Area code" }}
+        />,
       );
 
       const trigger = result.getByRole("combobox");
@@ -518,7 +552,11 @@ describe("text-input [unit]", () => {
         <form>
           <TextInput
             required
-            dropdown={{ options: DROPDOWN_OPTIONS, name: "area-code" }}
+            dropdown={{
+              options: DROPDOWN_OPTIONS,
+              name: "area-code",
+              ariaLabel: "Area code",
+            }}
           />
         </form>,
       );
@@ -535,7 +573,11 @@ describe("text-input [unit]", () => {
           <form id="contact-form" />
           <TextInput
             form="contact-form"
-            dropdown={{ options: DROPDOWN_OPTIONS, name: "area-code" }}
+            dropdown={{
+              options: DROPDOWN_OPTIONS,
+              name: "area-code",
+              ariaLabel: "Area code",
+            }}
           />
         </>,
       );
@@ -548,7 +590,9 @@ describe("text-input [unit]", () => {
     test("portals the dropdown dropdown into the closest dialog ancestor", async () => {
       const result = render(
         <dialog open data-testid="dialog">
-          <TextInput dropdown={{ options: DROPDOWN_OPTIONS }} />
+          <TextInput
+            dropdown={{ options: DROPDOWN_OPTIONS, ariaLabel: "Area code" }}
+          />
         </dialog>,
       );
 
