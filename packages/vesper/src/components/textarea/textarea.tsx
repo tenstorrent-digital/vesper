@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  type ComponentProps,
-  MouseEvent,
-  type ReactNode,
-  type Ref,
-  useId,
-} from "react";
+import { type ComponentProps, type Ref, useId } from "react";
 
 import { FormInputMessage } from "@/components/form-input-message/form-input-message";
 import {
@@ -16,21 +10,21 @@ import {
 
 import { cn } from "@/utils/cn";
 
-export const TEXT_INPUT_SIZES = ["sm", "md", "lg"] as const;
+export const TEXTAREA_SIZES = ["sm", "md", "lg"] as const;
 
-export const TEXT_INPUT_VARIANTS = [
+export const TEXTAREA_VARIANTS = [
   "default",
   "warning",
   "success",
   "error",
 ] as const;
 
-export type TextInputSize = (typeof TEXT_INPUT_SIZES)[number];
+export type TextareaSize = (typeof TEXTAREA_SIZES)[number];
 
-export type TextInputVariant = (typeof TEXT_INPUT_VARIANTS)[number];
+export type TextareaVariant = (typeof TEXTAREA_VARIANTS)[number];
 
 /**
- * Union of all the prop types that should be forwarded to the input/textarea element, and excluded from the containing div element
+ * Union of all the prop types that should be forwarded to the textarea element, and excluded from the containing div element
  * */
 type ForwardedPropTypes =
   | "defaultValue"
@@ -76,112 +70,57 @@ type ForwardedPropTypes =
   | "onKeyDown"
   | "onKeyDownCapture"
   | "onKeyUp"
-  | "onKeyUpCapture"
-  | "min"
-  | "max"
-  | "multiple"
-  | "pattern"
-  | "list";
+  | "onKeyUpCapture";
 
-export interface TextInputProps
+export interface TextareaProps
   extends
     Omit<ComponentProps<"div">, ForwardedPropTypes>,
-    Pick<ComponentProps<"input">, ForwardedPropTypes> {
-  /** The size of the text input. Affects padding and typography. @default md */
-  size?: TextInputSize;
+    Pick<ComponentProps<"textarea">, ForwardedPropTypes> {
+  /** A ref forwarded to the underlying `<textarea>` element for direct DOM access. */
+  textareaRef?: Ref<HTMLTextAreaElement>;
+  /** The fixed height of the textarea in pixels, scaling with base rem size. */
+  height?: number;
+  /** The size of the textarea. Affects padding and typography. @default md */
+  size?: TextareaSize;
   /** The visual variant of the text input, which determines its color scheme and message icon. @default default */
-  variant?: TextInputVariant;
+  variant?: TextareaVariant;
   /** An optional message displayed below the input, paired with a variant-specific icon. Also linked to the input via `aria-describedby`. */
   message?: string;
   /** An optional label displayed above the input. The input is associated by nesting; when `id` is provided, it is also associated via `htmlFor`. An asterisk is appended when `required` is `true`. */
   label?: string;
-  /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
-  inputRef?: Ref<HTMLInputElement>;
-  /** An optional icon element rendered to the left of the input field. */
-  iconLeft?: ReactNode;
-  /** Optional click handler for the left icon. When provided, the icon is rendered as a `<button>` instead of a `<span>`. */
-  iconLeftAction?: {
-    /** The click event handler */
-    handler(e: MouseEvent<HTMLButtonElement>): void;
-    /** An accessible aria-label for the icon */
-    ariaLabel: string;
-  };
-  /** An optional icon element rendered to the right of the input field. */
-  iconRight?: ReactNode;
-  /** Optional click handler for the right icon. When provided, the icon is rendered as a `<button>` instead of a `<span>`. */
-  iconRightAction?: {
-    /** The click event handler */
-    handler(e: MouseEvent<HTMLButtonElement>): void;
-    /** An accessible aria-label for the icon */
-    ariaLabel: string;
-  };
-  /** The HTML input type. Determines the browser's native input behavior and keyboard. @default text */
-  type?:
-    | "text"
-    | "email"
-    | "password"
-    | "url"
-    | "tel"
-    | "search"
-    | "number"
-    | "date"
-    | "datetime-local"
-    | "week"
-    | "month"
-    | "time";
 }
 
-const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
+const TEXTAREA_TYPOGRAPHY: { [S in TextareaSize]: TypographyVariant } = {
   sm: "copy-xs",
   md: "copy-sm",
   lg: "copy-md",
 };
 
 /**
- * A form-ready text input component supporting labels, icons, validation messages, variants, and leading dropdown select.
+ * A form-ready textarea component supporting labels, validation messages, and variants.
  *
- * @param {TextInputSize} [props.size] - (optional) The size of the text input. @default md
- * @param {TextInputVariant} [props.variant] - (optional) The visual variant determining color scheme and message icon. @default default
+ * @param {TextareaSize} [props.size] - (optional) The size of the text input. @default md
+ * @param {TextareaVariant} [props.variant] - (optional) The visual variant determining color scheme and message icon. @default default
  * @param {string} [props.label] - (optional) A label displayed above the input
  * @param {string} [props.message] - (optional) A message displayed below the input with a variant-specific icon
- * @param {ReactNode} [props.iconLeft] - (optional) An element rendered to the left of the input field
- * @param {ReactNode} [props.iconRight] - (optional) An element rendered to the right of the input field
- * @param {string} [props.type] - (optional) The HTML input type. @default text
  * @param {string} [props.placeholder] - (optional) Placeholder text for the input
+ * @param {number} [props.height] - (optional) The fixed height of the textarea in pixels, scaling with base rem size. @default 104
  *
- * You may also pass any additional props to the underlying `div` wrapper or input/textarea element
- *
+ * You may also pass any additional props to the underlying `div` wrapper or `textarea` element
+
  * @example
- * <TextInput label="Email" name="email" type="email" required />
- *
- * @example
- * <TextInput
- *   variant="error"
- *   message="This field is required"
- *   label="Username"
- *   value={username}
- *   onChange={(e) => setUsername(e.target.value)}
- * />
+ * <Textarea label="Bio" height={120} maxLength={500} />
  */
-export function TextInput(props: TextInputProps) {
+export function Textarea(props: TextareaProps) {
   const {
     // component-specific props
-    iconLeft,
-    iconLeftAction,
-    iconRight,
-    iconRightAction,
-    inputRef,
+    textareaRef,
     message,
     label,
     variant = "default",
     size = "md",
-    // props that should get forwarded to the input element
-    type = "text",
-    min,
-    max,
-    multiple,
-    pattern,
-    list,
+    // props that should get forwarded to the textarea element
+    height = 104,
     defaultValue,
     inputMode,
     enterKeyHint,
@@ -243,33 +182,19 @@ export function TextInput(props: TextInputProps) {
       .join(" ") || undefined;
 
   const input = (
-    <div className="vesper-text-input-field-wrapper">
-      {iconLeft && (
-        <TextInputIcon
-          ariaLabel={iconLeftAction?.ariaLabel}
-          onClick={iconLeftAction?.handler}
-          disabled={disabled}
-        >
-          {iconLeft}
-        </TextInputIcon>
-      )}
+    <div className="vesper-textarea-field-wrapper">
       <Typography
-        className="vesper-text-input-field"
-        as="input"
-        ref={inputRef}
-        variant={TEXT_INPUT_TYPOGRAPHY[size]}
+        className="vesper-textarea-field"
+        as="textarea"
+        style={{ height: `${height / 16}rem` }}
+        ref={textareaRef}
+        variant={TEXTAREA_TYPOGRAPHY[size]}
         aria-describedby={describedBy}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledby}
         aria-invalid={ariaInvalid}
         role={role}
         tabIndex={tabIndex}
-        type={type}
-        min={min}
-        max={max}
-        multiple={multiple}
-        pattern={pattern}
-        list={list}
         defaultValue={defaultValue}
         inputMode={inputMode}
         enterKeyHint={enterKeyHint}
@@ -313,24 +238,15 @@ export function TextInput(props: TextInputProps) {
         onKeyUp={onKeyUp}
         onKeyUpCapture={onKeyUpCapture}
       />
-      {iconRight && (
-        <TextInputIcon
-          ariaLabel={iconRightAction?.ariaLabel}
-          onClick={iconRightAction?.handler}
-          disabled={disabled}
-        >
-          {iconRight}
-        </TextInputIcon>
-      )}
     </div>
   );
 
   return (
     <div
       className={cn(
-        "vesper-text-input",
-        `vesper-text-input-${size}`,
-        `vesper-text-input-${variant}`,
+        "vesper-textarea",
+        `vesper-textarea-${size}`,
+        `vesper-textarea-${variant}`,
         className,
       )}
       {...rest}
@@ -340,9 +256,9 @@ export function TextInput(props: TextInputProps) {
           as="label"
           htmlFor={inputId}
           variant="label-sm"
-          className="vesper-text-input-label"
+          className="vesper-textarea-label"
         >
-          <span className="vesper-text-input-label-text">
+          <span className="vesper-textarea-label-text">
             {label + (required ? " *" : "")}
           </span>
           {input}
@@ -357,32 +273,4 @@ export function TextInput(props: TextInputProps) {
       />
     </div>
   );
-}
-
-function TextInputIcon({
-  ariaLabel,
-  onClick,
-  children,
-  disabled,
-}: {
-  ariaLabel?: string;
-  onClick?(e: MouseEvent<HTMLButtonElement>): void;
-  children: ReactNode;
-  disabled?: boolean;
-}) {
-  if (onClick) {
-    return (
-      <button
-        aria-label={ariaLabel}
-        onClick={onClick}
-        disabled={disabled}
-        type="button"
-        className="vesper-text-input-icon"
-      >
-        {children}
-      </button>
-    );
-  }
-
-  return <span className="vesper-text-input-icon">{children}</span>;
 }

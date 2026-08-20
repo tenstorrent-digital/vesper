@@ -3,7 +3,7 @@ import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 
-import { Globe } from "@/components/icons/icons";
+import { Close, Globe } from "@/components/icons/icons";
 import {
   TEXT_INPUT_SIZES,
   TEXT_INPUT_VARIANTS,
@@ -13,59 +13,54 @@ import {
 
 import "@/styles/test.css";
 
-const SNAPSHOT_CASES: (TextInputProps & { name: string })[] = [
-  // One per variant
-  ...TEXT_INPUT_VARIANTS.map((variant) => ({
-    name: `variant: ${variant}`,
-    variant,
-    size: "lg" as const,
-    message: "Message text",
-  })),
-  // One per size
-  ...TEXT_INPUT_SIZES.map((size) => ({
-    name: `size: ${size}`,
-    size,
-  })),
-  // Meaningful feature combos
-  { name: "multiline", multiline: true, size: "lg" as const },
-  { name: "with icon", icon: <Globe />, size: "lg" as const },
-  { name: "with label", label: "Label text", size: "lg" as const },
-  { name: "disabled", disabled: true, size: "lg" as const },
-  {
-    name: "disabled, multiline",
-    disabled: true,
-    multiline: true,
-    size: "lg" as const,
-  },
-  {
-    name: "full options",
-    variant: "error",
-    size: "lg" as const,
-    multiline: true,
-    label: "Label text",
-    message: "Message text",
-    disabled: true,
-  },
-];
-
-// A11y: variant × disabled are the axes that affect contrast/color
-const A11Y_CASES: (TextInputProps & { name: string })[] =
-  TEXT_INPUT_VARIANTS.flatMap((variant) => [
-    {
-      name: `${variant}`,
+const TEXT_INPUT_SNAPSHOT_PERMUTATIONS: (TextInputProps & { name: string })[] =
+  [
+    // One per variant
+    ...TEXT_INPUT_VARIANTS.map((variant) => ({
+      name: `variant: ${variant}`,
       variant,
-      label: "Label text",
+      size: "lg" as const,
       message: "Message text",
-      disabled: false,
-    },
+    })),
+    // One per size
+    ...TEXT_INPUT_SIZES.map((size) => ({
+      name: `size: ${size}`,
+      size,
+    })),
+    // Meaningful feature combos
+    { name: "with icon", iconLeft: <Globe />, size: "lg" as const },
+    { name: "with label", label: "Label text", size: "lg" as const },
+    { name: "disabled", disabled: true, size: "lg" as const },
     {
-      name: `${variant}, disabled`,
-      variant,
+      name: "full options",
+      variant: "error",
+      size: "lg" as const,
       label: "Label text",
       message: "Message text",
       disabled: true,
     },
-  ]);
+  ];
+
+const TEXT_INPUT_PERMUTATIONS = TEXT_INPUT_VARIANTS.flatMap((variant) =>
+  TEXT_INPUT_SIZES.flatMap((size) => [
+    {
+      name: `${variant}, ${size}`,
+      variant,
+      label: "Label text",
+      message: "Message text",
+      disabled: false,
+      size,
+    },
+    {
+      name: `${variant}, ${size}, disabled`,
+      variant,
+      label: "Label text",
+      message: "Message text",
+      disabled: true,
+      size,
+    },
+  ]),
+);
 
 const TEXT_INPUT_A11Y_FAILING_PERMUTATIONS: (Pick<
   TextInputProps,
@@ -90,22 +85,9 @@ const TEXT_INPUT_A11Y_FAILING_PERMUTATIONS: (Pick<
 afterEach(cleanup);
 
 describe("text-input [unit]", () => {
-  test("renders an input by default", () => {
+  test("renders an input", () => {
     const result = render(<TextInput />);
-
     expect(result.getByRole("textbox").tagName).toBe("INPUT");
-    expect(result.container.firstChild).not.toHaveClass(
-      "vesper-text-input-multiline",
-    );
-  });
-
-  test("renders a textarea when multiline", () => {
-    const result = render(<TextInput multiline />);
-
-    expect(result.getByRole("textbox").tagName).toBe("TEXTAREA");
-    expect(result.container.firstChild).toHaveClass(
-      "vesper-text-input-multiline",
-    );
   });
 
   TEXT_INPUT_VARIANTS.forEach((variant) => {
@@ -128,44 +110,9 @@ describe("text-input [unit]", () => {
     });
   });
 
-  test("disabling when single line", () => {
+  test("disabled prop disables input", () => {
     const result = render(<TextInput disabled />);
-
-    const clearButton = result.container.querySelector(
-      'button[aria-label="Clear text input"]',
-    );
-    expect(clearButton).toBeDisabled();
     expect(result.getByRole("textbox")).toBeDisabled();
-  });
-
-  test("disabling when multiline", () => {
-    const result = render(<TextInput multiline disabled />);
-
-    expect(result.getByRole("textbox")).toBeDisabled();
-  });
-
-  test("multiline with custom height", () => {
-    const result = render(<TextInput multiline height={200} />);
-
-    expect(result.getByRole("textbox")).toHaveStyle({ height: "200px" });
-  });
-
-  test("clicking clear button", async () => {
-    const onChange = vi.fn();
-    const result = render(
-      <TextInput defaultValue="hello" onChange={onChange} />,
-    );
-
-    const input = result.getByRole("textbox") as HTMLInputElement;
-    expect(input.value).toBe("hello");
-
-    const clearButton = result.getByRole("button", {
-      name: "Clear text input",
-    });
-    await userEvent.click(clearButton);
-
-    expect(input.value).toBe("");
-    expect(onChange).toHaveBeenCalled();
   });
 
   test("renders a label when supplied", () => {
@@ -193,30 +140,92 @@ describe("text-input [unit]", () => {
     expect(result.getByRole("textbox")).toHaveFocus();
   });
 
-  test("renders an icon when provided", () => {
-    const result = render(
-      <TextInput icon={<Globe data-testid="search-icon" />} />,
-    );
-    expect(result.getByTestId("search-icon")).not.toBeNull();
+  test("the id prop is forwarded to the input", () => {
+    const result = render(<TextInput id="email-input" />);
+
+    expect(result.getByRole("textbox")).toHaveAttribute("id", "email-input");
   });
 
-  TEXT_INPUT_VARIANTS.forEach((variant) => {
-    test(`${variant} message rendering`, () => {
-      const result = render(
-        <TextInput variant={variant} message="Message text" />,
-      );
+  test("an id is generated when the id prop is omitted", () => {
+    const result = render(<TextInput label="Username" />);
 
-      const message = result.container.querySelector(
-        ".vesper-text-input-message",
-      );
-      expect(message).not.toBeNull();
-      expect(message).toHaveTextContent("Message text");
+    const input = result.getByRole("textbox");
+    expect(input.id).not.toBe("");
+    expect(
+      result.container.querySelector(".vesper-text-input-label"),
+    ).toHaveAttribute("for", input.id);
+  });
 
-      const icon = message!.querySelector(
-        ".vesper-text-input-message-icon svg",
-      );
-      expect(icon).not.toBeNull();
-    });
+  test("the generated id associates the label with the input", () => {
+    const result = render(<TextInput label="Username" />);
+
+    expect(result.getByLabelText("Username")).toBe(result.getByRole("textbox"));
+  });
+
+  test("renders an icon to the left when provided", () => {
+    const clickHandler = vi.fn();
+    const result = render(
+      <TextInput
+        iconLeft={<Globe data-testid="search-icon" />}
+        iconLeftAction={{ handler: clickHandler, ariaLabel: "Search" }}
+      />,
+    );
+
+    // assert the icon exists
+    expect(result.getByTestId("search-icon")).not.toBeNull();
+
+    // assert the icon got rendered inside a button
+    const iconButton = result.getByRole("button", { name: /search/i });
+    expect(iconButton).not.toBeNull();
+    expect(iconButton).toHaveAttribute("aria-label", "Search");
+
+    // assert the icon button click handler works
+    iconButton.click();
+    expect(clickHandler).toHaveBeenCalledOnce();
+  });
+
+  test("renders an icon to the right when provided", () => {
+    const clickHandler = vi.fn();
+    const result = render(
+      <TextInput
+        iconRight={<Globe data-testid="search-icon" />}
+        iconRightAction={{ handler: clickHandler, ariaLabel: "Search" }}
+      />,
+    );
+
+    // assert the icon exists
+    expect(result.getByTestId("search-icon")).not.toBeNull();
+
+    // assert the icon got rendered inside a button
+    const iconButton = result.getByRole("button", { name: /search/i });
+    expect(iconButton).not.toBeNull();
+    expect(iconButton).toHaveAttribute("aria-label", "Search");
+
+    // assert the icon button click handler works
+    iconButton.click();
+    expect(clickHandler).toHaveBeenCalledOnce();
+  });
+
+  test("icon buttons get disabled input is disabled", () => {
+    const leftIconClickHandler = vi.fn();
+    const rightIconClickHandler = vi.fn();
+
+    const result = render(
+      <TextInput
+        iconRight={<Globe />}
+        iconLeft={<Close />}
+        iconRightAction={{
+          handler: rightIconClickHandler,
+          ariaLabel: "Search",
+        }}
+        iconLeftAction={{ handler: leftIconClickHandler, ariaLabel: "Close" }}
+        disabled
+      />,
+    );
+
+    const [leftIconButton, rightIconButton] = result.getAllByRole("button");
+    expect(leftIconButton).toBeDisabled();
+    expect(rightIconButton).toBeDisabled();
   });
 
   test("additional prop passthrough", () => {
@@ -239,7 +248,7 @@ describe("text-input [unit]", () => {
 });
 
 describe("text-input [snapshot]", () => {
-  SNAPSHOT_CASES.forEach((permutation) => {
+  TEXT_INPUT_SNAPSHOT_PERMUTATIONS.forEach((permutation) => {
     const { name, ...props } = permutation;
 
     test(name, () => {
@@ -261,7 +270,7 @@ describe("text-input [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    A11Y_CASES.forEach((permutation) => {
+    TEXT_INPUT_PERMUTATIONS.forEach((permutation) => {
       const { name, ...props } = permutation;
       const label = `wcag2aaa (${name}, ${theme})`;
 
