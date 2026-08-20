@@ -1,6 +1,6 @@
 import { cleanup, render } from "@testing-library/react";
 import axe from "axe-core";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import { userEvent } from "vitest/browser";
 
 import {
