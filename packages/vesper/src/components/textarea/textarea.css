@@ -25,7 +25,7 @@
     border: var(--vesper-stroke-base) solid var(--vesper-border-disabled);
     background: var(--vesper-tint-neutral-200);
   }
-  &:has(:focus-visible) {
+  &:has(.vesper-textarea-field:focus-visible) {
     border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
     box-shadow: var(--vesper-shadow-focus-ring);
     @media (forced-colors: active) {
