@@ -80,15 +80,15 @@ A blockquote renders as an [`Admonition`](./components/admonition.mdx). GitHub's
 > This can not be undone.
 ```
 
-| Marker           | Variant     |
-| ---------------- | ----------- |
-| `> [!NOTE]`      | `info`      |
-| `> [!TIP]`       | `success`   |
-| `> [!IMPORTANT]` | `secondary` |
-| `> [!WARNING]`   | `warning`   |
-| `> [!CAUTION]`   | `danger`    |
+| Marker           | Variant   |
+| ---------------- | --------- |
+| `> [!NOTE]`      | `info`    |
+| `> [!TIP]`       | `success` |
+| `> [!IMPORTANT]` | `info`    |
+| `> [!WARNING]`   | `warning` |
+| `> [!CAUTION]`   | `danger`  |
 
-The marker has to be the first line of the blockquote. A blockquote without one renders as the default `info` admonition.
+The marker has to be the first line of the blockquote. A blockquote without one renders as a `secondary` admonition.
 
 ## Some notes
 
