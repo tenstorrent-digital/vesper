@@ -62,13 +62,13 @@ export const FormInputMessage = ({
 }: FormInputMessageProps) => {
   return (
     <output
+      {...props}
       data-message={!!message}
       className={cn(
         "vesper-form-input-message",
         `vesper-form-input-message-${variant}`,
         className,
       )}
-      {...props}
     >
       {!!message && (
         <>
