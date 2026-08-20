@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import {
   maskitoInitialCalibrationPlugin,
   type MaskitoOptions,
@@ -40,6 +40,10 @@ export interface MaskedInputProps extends Omit<TextInputProps, "type"> {
   mask?: TextMaskingConfig;
   /** The HTML input type. Restricted to the types that can be masked. @default text */
   type?: "text" | "search" | "tel" | "email" | "url";
+  /** When `true`, the initial value of the input is formatted to match the `mask` on mount. @default false */
+  formatOnMount?: boolean;
+  /** When `true`, the current value of the input is reformatted to match the `mask` whenever the `mask` prop changes. @default true */
+  formatOnMaskChange?: boolean;
 }
 
 /**
@@ -47,6 +51,8 @@ export interface MaskedInputProps extends Omit<TextInputProps, "type"> {
  *
  * @param {TextMaskingConfig} [props.mask] - (optional) The text masking configuration. Accepts a `string` pattern, a `{ format, replace }` object, or a `MaskitoOptions` object. When omitted, no masking is applied
  * @param {string} [props.type] - (optional) The HTML input type, restricted to `"text" | "search" | "tel" | "email" | "url"`. @default text
+ * @param {boolean} [props.formatOnMount] - (optional) When `true`, the initial value of the input is formatted to match the `mask` on mount. @default false
+ * @param {boolean} [props.formatOnMaskChange] - (optional) When `true`, the current value of the input is reformatted to match the `mask` whenever the `mask` prop changes. @default true
  *
  * You may also pass any additional props supported by the `TextInput` component including `size`, `variant`, `iconLeft`, `iconRight`, and `dropdown`
  *
@@ -66,26 +72,44 @@ export interface MaskedInputProps extends Omit<TextInputProps, "type"> {
  *   placeholder="ex: A0A 1B1"
  *   mask={{ format: "ABA BAB", replace: { A: /[a-zA-Z]/, B: /\d/ } }}
  * />
+ *
+ * @example
+ * <MaskedInput
+ *   label="Activation code"
+ *   mask="____-____-____"
+ *   defaultValue="123456789012"
+ *   formatOnMount
+ * />
  */
-export function MaskedInput({ mask, inputRef, ...props }: MaskedInputProps) {
+export function MaskedInput({
+  mask,
+  inputRef,
+  formatOnMount = false,
+  formatOnMaskChange = true,
+  ...props
+}: MaskedInputProps) {
   const mounted = useRef(false);
 
+  useEffect(() => {
+    mounted.current = true;
+  }, []);
+
   const maskitoConfig = useMemo(() => {
-    const calibrate = maskitoInitialCalibrationPlugin();
-    const config = { options: getMaskitoOptions(mask) };
-    if (!mounted.current) {
-      mounted.current = true;
-      return config;
-    }
+    const options = getMaskitoOptions(mask);
+
+    const shouldFormat = mounted.current ? formatOnMaskChange : formatOnMount;
+    if (!shouldFormat) return { options };
 
     return {
-      ...config,
       options: {
-        ...config.options,
-        plugins: [...(config.options.plugins ?? []), calibrate],
+        ...options,
+        plugins: [
+          ...(options.plugins ?? []),
+          maskitoInitialCalibrationPlugin(),
+        ],
       },
     };
-  }, [mask]);
+  }, [mask, formatOnMount, formatOnMaskChange]);
 
   const maskitoRef = useMaskito(maskitoConfig);
 

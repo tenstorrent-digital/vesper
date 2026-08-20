@@ -133,16 +133,63 @@ describe("masked-input [unit]", () => {
     expect(input).toHaveValue("12");
   });
 
-  test("applies the new mask when the mask prop changes", async () => {
-    const { input, rerender } = renderMaskedInput({ mask: "___-___" });
+  test("reformats the current value when formatOnMaskChange is true", async () => {
+    const { input, rerender } = renderMaskedInput({
+      mask: { format: "___-___", replace: /\d/ },
+      formatOnMaskChange: true,
+    });
 
     await userEvent.fill(input, "123456");
     expect(input).toHaveValue("123-456");
 
-    rerender(<MaskedInput mask={{ format: "__/__", replace: /\d/ }} />);
+    rerender(
+      <MaskedInput
+        mask={{ format: "__/__/__", replace: /\d/ }}
+        formatOnMaskChange={true}
+      />,
+    );
+    expect(input).toHaveValue("12/34/56");
+  });
 
-    await userEvent.fill(input, "12ab34");
-    expect(input).toHaveValue("12/34");
+  test("does not reformat the current value when formatOnMaskChange is false", async () => {
+    const { input, rerender } = renderMaskedInput({
+      mask: { format: "___-___", replace: /\d/ },
+      formatOnMaskChange: false,
+    });
+
+    await userEvent.fill(input, "123456");
+    expect(input).toHaveValue("123-456");
+
+    rerender(
+      <MaskedInput
+        mask={{ format: "__/__/__", replace: /\d/ }}
+        formatOnMaskChange={false}
+      />,
+    );
+    expect(input).toHaveValue("123-456");
+
+    // the new mask still applies to subsequent edits
+    await userEvent.fill(input, "123456");
+    expect(input).toHaveValue("12/34/56");
+  });
+
+  test("does not format the initial value on mount by default", () => {
+    const { input } = renderMaskedInput({
+      mask: { format: "___-___", replace: /\d/ },
+      defaultValue: "123456",
+    });
+
+    expect(input).toHaveValue("123456");
+  });
+
+  test("formats the initial value on mount when formatOnMount is true", () => {
+    const { input } = renderMaskedInput({
+      mask: { format: "___-___", replace: /\d/ },
+      defaultValue: "123456",
+      formatOnMount: true,
+    });
+
+    expect(input).toHaveValue("123-456");
   });
 
   test("an object inputRef receives the input element", () => {

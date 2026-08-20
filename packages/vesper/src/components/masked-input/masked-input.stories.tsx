@@ -19,6 +19,8 @@ const meta = {
     inputRef: { table: { disable: true } },
     dropdown: { control: "boolean" },
     mask: { control: "text" },
+    formatOnMount: { control: "boolean" },
+    formatOnMaskChange: { control: "boolean" },
     size: { control: "radio", options: TEXT_INPUT_SIZES },
     variant: { control: "radio", options: TEXT_INPUT_VARIANTS },
   },
@@ -40,6 +42,8 @@ export const Playground: Story = {
     message: "This is a message you can display under the input.",
     dropdown: false as unknown as TextInputDropdownProps,
     mask: "+1 (___) ___-____",
+    formatOnMount: false,
+    formatOnMaskChange: true,
   },
   render(props) {
     return (

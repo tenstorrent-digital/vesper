@@ -9,7 +9,7 @@ exports[`masked-input [snapshot] > renders correctly 1`] = `
   >
     <input
       class="vesper-typography vesper-typography-copy-sm vesper-text-input-field"
-      id="_r_13_"
+      id="_r_19_"
       placeholder=" "
       type="text"
     />
@@ -27,7 +27,7 @@ exports[`masked-input [snapshot] > renders correctly with a mask 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-text-input-label"
-    for="_r_15_"
+    for="_r_1b_"
   >
     <span
       class="vesper-text-input-label-text"
@@ -39,7 +39,7 @@ exports[`masked-input [snapshot] > renders correctly with a mask 1`] = `
     >
       <input
         class="vesper-typography vesper-typography-copy-sm vesper-text-input-field"
-        id="_r_15_"
+        id="_r_1b_"
         placeholder=" "
         type="text"
       />
