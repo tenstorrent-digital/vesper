@@ -587,7 +587,7 @@ describe("text-input [unit]", () => {
       ).toHaveAttribute("form", "contact-form");
     });
 
-    test("portals the dropdown dropdown into the closest dialog ancestor", async () => {
+    test("portals the dropdown into the closest dialog ancestor", async () => {
       const result = render(
         <dialog open data-testid="dialog">
           <TextInput
