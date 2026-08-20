@@ -459,6 +459,8 @@ describe("text-input [unit]", () => {
       const result = render(<TextInput dropdown={{ ...props, value: "+1" }} />);
 
       const trigger = result.getByRole("combobox");
+      expect(trigger).toHaveTextContent("+1");
+
       const items = await openDropdown(trigger);
       await userEvent.click(items[2]!);
 
