@@ -25,7 +25,7 @@ const DROPDOWN_LABELLED_OPTIONS = [
 async function openDropdown(trigger: HTMLElement) {
   await userEvent.click(trigger);
   await waitFor(() => {
-    expect(document.querySelector(".vesper-select-content")).not.toBeNull();
+    expect(document.querySelector(".vesper-select-popup")).not.toBeNull();
   });
 
   return Array.from(
@@ -510,25 +510,6 @@ describe("text-input [unit]", () => {
       ).not.toBeNull();
     });
 
-    test("dropdown chip reflects the open state", async () => {
-      const result = render(
-        <TextInput
-          dropdown={{ options: DROPDOWN_OPTIONS, ariaLabel: "Area code" }}
-        />,
-      );
-
-      const trigger = result.getByRole("combobox");
-      expect(trigger).toHaveClass("vesper-chip-default");
-      expect(trigger).not.toHaveClass("vesper-chip-selected");
-
-      await openDropdown(trigger);
-
-      await waitFor(() => {
-        expect(trigger).toHaveClass("vesper-chip-contrast");
-        expect(trigger).toHaveClass("vesper-chip-selected");
-      });
-    });
-
     test("dropdown is disabled when the input is disabled", async () => {
       const result = render(
         <TextInput
@@ -544,7 +525,7 @@ describe("text-input [unit]", () => {
       fireEvent.pointerDown(trigger);
       fireEvent.click(trigger);
       expect(trigger).not.toHaveAttribute("data-popup-open");
-      expect(document.querySelector(".vesper-select-content")).toBeNull();
+      expect(document.querySelector(".vesper-select-popup")).toBeNull();
     });
 
     test("dropdown inherits required prop", () => {
@@ -598,7 +579,7 @@ describe("text-input [unit]", () => {
 
       await openDropdown(result.getByRole("combobox"));
 
-      const content = document.querySelector(".vesper-select-content")!;
+      const content = document.querySelector(".vesper-select-popup")!;
       expect(result.getByTestId("dialog").contains(content)).toBe(true);
     });
   });

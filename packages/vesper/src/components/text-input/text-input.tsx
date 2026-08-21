@@ -481,6 +481,7 @@ function TextInputDropdown({
         aria-label={ariaLabel}
         render={
           <Chip
+            aria-pressed={undefined}
             disabled={disabled}
             size={TEXT_INPUT_CHIP_SIZES[size]}
             iconRight={open ? <CaretUp /> : <CaretDown />}

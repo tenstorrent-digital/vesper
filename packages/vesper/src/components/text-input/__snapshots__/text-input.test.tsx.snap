@@ -10,7 +10,7 @@ exports[`text-input [snapshot] > disabled 1`] = `
     <input
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
       disabled=""
-      id="_r_4q_"
+      id="_r_4k_"
       placeholder=" "
       type="text"
     />
@@ -31,7 +31,7 @@ exports[`text-input [snapshot] > full options 1`] = `
   >
     <label
       class="vesper-typography vesper-typography-label-sm vesper-text-input-label"
-      for="_r_4s_"
+      for="_r_4m_"
     >
       Label text
     </label>
@@ -39,10 +39,10 @@ exports[`text-input [snapshot] > full options 1`] = `
       class="vesper-text-input-field-wrapper"
     >
       <input
-        aria-describedby="_r_4r_"
+        aria-describedby="_r_4l_"
         class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
         disabled=""
-        id="_r_4s_"
+        id="_r_4m_"
         placeholder=" "
         type="text"
       />
@@ -51,7 +51,7 @@ exports[`text-input [snapshot] > full options 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
     data-message="true"
-    id="_r_4r_"
+    id="_r_4l_"
   >
     <span
       aria-hidden="true"
@@ -88,7 +88,7 @@ exports[`text-input [snapshot] > size: lg 1`] = `
   >
     <input
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
-      id="_r_4a_"
+      id="_r_44_"
       placeholder=" "
       type="text"
     />
@@ -109,7 +109,7 @@ exports[`text-input [snapshot] > size: md 1`] = `
   >
     <input
       class="vesper-typography vesper-typography-copy-sm vesper-text-input-field"
-      id="_r_48_"
+      id="_r_42_"
       placeholder=" "
       type="text"
     />
@@ -130,7 +130,7 @@ exports[`text-input [snapshot] > size: sm 1`] = `
   >
     <input
       class="vesper-typography vesper-typography-copy-xs vesper-text-input-field"
-      id="_r_46_"
+      id="_r_40_"
       placeholder=" "
       type="text"
     />
@@ -150,9 +150,9 @@ exports[`text-input [snapshot] > variant: default 1`] = `
     class="vesper-text-input-field-wrapper"
   >
     <input
-      aria-describedby="_r_3t_"
+      aria-describedby="_r_3n_"
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
-      id="_r_3u_"
+      id="_r_3o_"
       placeholder=" "
       type="text"
     />
@@ -160,7 +160,7 @@ exports[`text-input [snapshot] > variant: default 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
     data-message="true"
-    id="_r_3t_"
+    id="_r_3n_"
   >
     <span
       aria-hidden="true"
@@ -196,9 +196,9 @@ exports[`text-input [snapshot] > variant: error 1`] = `
     class="vesper-text-input-field-wrapper"
   >
     <input
-      aria-describedby="_r_43_"
+      aria-describedby="_r_3t_"
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
-      id="_r_44_"
+      id="_r_3u_"
       placeholder=" "
       type="text"
     />
@@ -206,7 +206,7 @@ exports[`text-input [snapshot] > variant: error 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
     data-message="true"
-    id="_r_43_"
+    id="_r_3t_"
   >
     <span
       aria-hidden="true"
@@ -242,9 +242,9 @@ exports[`text-input [snapshot] > variant: success 1`] = `
     class="vesper-text-input-field-wrapper"
   >
     <input
-      aria-describedby="_r_41_"
+      aria-describedby="_r_3r_"
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
-      id="_r_42_"
+      id="_r_3s_"
       placeholder=" "
       type="text"
     />
@@ -252,7 +252,7 @@ exports[`text-input [snapshot] > variant: success 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-success"
     data-message="true"
-    id="_r_41_"
+    id="_r_3r_"
   >
     <span
       aria-hidden="true"
@@ -286,9 +286,9 @@ exports[`text-input [snapshot] > variant: warning 1`] = `
     class="vesper-text-input-field-wrapper"
   >
     <input
-      aria-describedby="_r_3v_"
+      aria-describedby="_r_3p_"
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
-      id="_r_40_"
+      id="_r_3q_"
       placeholder=" "
       type="text"
     />
@@ -296,7 +296,7 @@ exports[`text-input [snapshot] > variant: warning 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-warning"
     data-message="true"
-    id="_r_3v_"
+    id="_r_3p_"
   >
     <span
       aria-hidden="true"
@@ -336,7 +336,7 @@ exports[`text-input [snapshot] > with dropdown 1`] = `
       aria-haspopup="listbox"
       aria-label="Area code"
       class="vesper-typography vesper-typography-label-sm vesper-chip vesper-chip-default vesper-chip-md vesper-text-input-dropdown"
-      id="base-ui-_r_4h_"
+      id="base-ui-_r_4b_"
       role="combobox"
       style="flex-shrink: 0; width: calc(6.25rem);"
       tabindex="0"
@@ -369,7 +369,7 @@ exports[`text-input [snapshot] > with dropdown 1`] = `
     />
     <input
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
-      id="_r_4g_"
+      id="_r_4a_"
       placeholder=" "
       type="text"
     />
@@ -395,7 +395,7 @@ exports[`text-input [snapshot] > with dropdown, disabled 1`] = `
       class="vesper-typography vesper-typography-label-sm vesper-chip vesper-chip-default vesper-chip-md vesper-chip-disabled vesper-text-input-dropdown"
       data-disabled=""
       disabled=""
-      id="base-ui-_r_4m_"
+      id="base-ui-_r_4g_"
       role="combobox"
       style="flex-shrink: 0;"
       tabindex="-1"
@@ -430,7 +430,7 @@ exports[`text-input [snapshot] > with dropdown, disabled 1`] = `
     <input
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
       disabled=""
-      id="_r_4l_"
+      id="_r_4f_"
       placeholder=" "
       type="text"
     />
@@ -467,7 +467,7 @@ exports[`text-input [snapshot] > with icon 1`] = `
     </span>
     <input
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
-      id="_r_4c_"
+      id="_r_46_"
       placeholder=" "
       type="text"
     />
@@ -488,7 +488,7 @@ exports[`text-input [snapshot] > with label 1`] = `
   >
     <label
       class="vesper-typography vesper-typography-label-sm vesper-text-input-label"
-      for="_r_4e_"
+      for="_r_48_"
     >
       Label text
     </label>
@@ -497,7 +497,7 @@ exports[`text-input [snapshot] > with label 1`] = `
     >
       <input
         class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
-        id="_r_4e_"
+        id="_r_48_"
         placeholder=" "
         type="text"
       />
