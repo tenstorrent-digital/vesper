@@ -74,7 +74,7 @@ type ForwardedPropTypes =
 
 export interface TextAreaProps
   extends
-    Omit<ComponentProps<"div">, ForwardedPropTypes>,
+    Omit<ComponentProps<"div">, ForwardedPropTypes | "children">,
     Pick<ComponentProps<"textarea">, ForwardedPropTypes> {
   /** A ref forwarded to the underlying `<textarea>` element for direct DOM access. */
   textareaRef?: Ref<HTMLTextAreaElement>;
