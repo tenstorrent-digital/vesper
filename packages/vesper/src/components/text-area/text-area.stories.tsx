@@ -1,22 +1,22 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
-  Textarea,
-  TEXTAREA_SIZES,
-  TEXTAREA_VARIANTS,
-} from "@/components/textarea/textarea";
+  TEXT_AREA_SIZES,
+  TEXT_AREA_VARIANTS,
+  TextArea,
+} from "@/components/text-area/text-area";
 
 const meta = {
-  component: Textarea,
+  component: TextArea,
   argTypes: {
     height: {
       control: "number",
       name: "height",
     },
-    size: { control: "radio", options: TEXTAREA_SIZES },
-    variant: { control: "radio", options: TEXTAREA_VARIANTS },
+    size: { control: "radio", options: TEXT_AREA_SIZES },
+    variant: { control: "radio", options: TEXT_AREA_VARIANTS },
   },
-} satisfies Meta<typeof Textarea>;
+} satisfies Meta<typeof TextArea>;
 
 export default meta;
 
@@ -33,4 +33,4 @@ export const Playground: Story = {
     height: 104,
   },
 };
-Playground.storyName = "textarea";
+Playground.storyName = "text-area";

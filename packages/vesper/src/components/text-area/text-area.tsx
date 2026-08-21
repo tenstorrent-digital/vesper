@@ -10,21 +10,21 @@ import {
 
 import { cn } from "@/utils/cn";
 
-export const TEXTAREA_SIZES = ["sm", "md", "lg"] as const;
+export const TEXT_AREA_SIZES = ["sm", "md", "lg"] as const;
 
-export const TEXTAREA_VARIANTS = [
+export const TEXT_AREA_VARIANTS = [
   "default",
   "warning",
   "success",
   "error",
 ] as const;
 
-export type TextareaSize = (typeof TEXTAREA_SIZES)[number];
+export type TextAreaSize = (typeof TEXT_AREA_SIZES)[number];
 
-export type TextareaVariant = (typeof TEXTAREA_VARIANTS)[number];
+export type TextAreaVariant = (typeof TEXT_AREA_VARIANTS)[number];
 
 /**
- * Union of all the prop types that should be forwarded to the textarea element, and excluded from the containing div element
+ * Union of all the prop types that should be forwarded to the `textarea` element, and excluded from the containing div element
  * */
 type ForwardedPropTypes =
   | "defaultValue"
@@ -72,7 +72,7 @@ type ForwardedPropTypes =
   | "onKeyUp"
   | "onKeyUpCapture";
 
-export interface TextareaProps
+export interface TextAreaProps
   extends
     Omit<ComponentProps<"div">, ForwardedPropTypes>,
     Pick<ComponentProps<"textarea">, ForwardedPropTypes> {
@@ -81,16 +81,16 @@ export interface TextareaProps
   /** The fixed height of the textarea in pixels, scaling with base rem size. */
   height?: number;
   /** The size of the textarea. Affects padding and typography. @default md */
-  size?: TextareaSize;
+  size?: TextAreaSize;
   /** The visual variant of the text input, which determines its color scheme and message icon. @default default */
-  variant?: TextareaVariant;
+  variant?: TextAreaVariant;
   /** An optional message displayed below the input, paired with a variant-specific icon. Also linked to the input via `aria-describedby`. */
   message?: string;
   /** An optional label displayed above the input. The input is associated by nesting; when `id` is provided, it is also associated via `htmlFor`. An asterisk is appended when `required` is `true`. */
   label?: string;
 }
 
-const TEXTAREA_TYPOGRAPHY: { [S in TextareaSize]: TypographyVariant } = {
+const TEXTAREA_TYPOGRAPHY: { [S in TextAreaSize]: TypographyVariant } = {
   sm: "copy-xs",
   md: "copy-sm",
   lg: "copy-md",
@@ -99,8 +99,8 @@ const TEXTAREA_TYPOGRAPHY: { [S in TextareaSize]: TypographyVariant } = {
 /**
  * A form-ready textarea component supporting labels, validation messages, and variants.
  *
- * @param {TextareaSize} [props.size] - (optional) The size of the text input. @default md
- * @param {TextareaVariant} [props.variant] - (optional) The visual variant determining color scheme and message icon. @default default
+ * @param {TextAreaSize} [props.size] - (optional) The size of the text input. @default md
+ * @param {TextAreaVariant} [props.variant] - (optional) The visual variant determining color scheme and message icon. @default default
  * @param {string} [props.label] - (optional) A label displayed above the input
  * @param {string} [props.message] - (optional) A message displayed below the input with a variant-specific icon
  * @param {string} [props.placeholder] - (optional) Placeholder text for the input
@@ -109,9 +109,9 @@ const TEXTAREA_TYPOGRAPHY: { [S in TextareaSize]: TypographyVariant } = {
  * You may also pass any additional props to the underlying `div` wrapper or `textarea` element
 
  * @example
- * <Textarea label="Bio" height={120} maxLength={500} />
+ * <TextArea label="Bio" height={120} maxLength={500} />
  */
-export function Textarea(props: TextareaProps) {
+export function TextArea(props: TextAreaProps) {
   const {
     // component-specific props
     textareaRef,
@@ -182,9 +182,9 @@ export function Textarea(props: TextareaProps) {
       .join(" ") || undefined;
 
   const input = (
-    <div className="vesper-textarea-field-wrapper">
+    <div className="vesper-text-area-field-wrapper">
       <Typography
-        className="vesper-textarea-field"
+        className="vesper-text-area-field"
         as="textarea"
         style={{ height: `${height / 16}rem` }}
         ref={textareaRef}
@@ -244,20 +244,20 @@ export function Textarea(props: TextareaProps) {
   return (
     <div
       className={cn(
-        "vesper-textarea",
-        `vesper-textarea-${size}`,
-        `vesper-textarea-${variant}`,
+        "vesper-text-area",
+        `vesper-text-area-${size}`,
+        `vesper-text-area-${variant}`,
         className,
       )}
       {...rest}
     >
       {label ? (
-        <div className="vesper-textarea-label-wrapper">
+        <div className="vesper-text-area-label-wrapper">
           <Typography
             as="label"
             htmlFor={inputId}
             variant="label-sm"
-            className="vesper-textarea-label"
+            className="vesper-text-area-label"
           >
             {label + (required ? " *" : "")}
           </Typography>

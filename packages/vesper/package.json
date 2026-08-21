@@ -23,9 +23,9 @@
     "dist"
   ],
   "exports": {
-    "./textarea": {
-      "types": "./dist/components/textarea/textarea.d.ts",
-      "import": "./dist/components/textarea/textarea.js"
+    "./text-area": {
+      "types": "./dist/components/text-area/text-area.d.ts",
+      "import": "./dist/components/text-area/text-area.js"
     },
     "./form-input-message": {
       "types": "./dist/components/form-input-message/form-input-message.d.ts",

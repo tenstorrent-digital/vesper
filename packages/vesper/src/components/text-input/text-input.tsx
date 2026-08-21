@@ -30,7 +30,7 @@ export type TextInputSize = (typeof TEXT_INPUT_SIZES)[number];
 export type TextInputVariant = (typeof TEXT_INPUT_VARIANTS)[number];
 
 /**
- * Union of all the prop types that should be forwarded to the input/textarea element, and excluded from the containing div element
+ * Union of all the prop types that should be forwarded to the `input` element, and excluded from the containing div element
  * */
 type ForwardedPropTypes =
   | "defaultValue"
@@ -149,7 +149,7 @@ const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
  * @param {string} [props.type] - (optional) The HTML input type. @default text
  * @param {string} [props.placeholder] - (optional) Placeholder text for the input
  *
- * You may also pass any additional props to the underlying `div` wrapper or input/textarea element
+ * You may also pass any additional props to the underlying `div` wrapper or `input` element
  *
  * @example
  * <TextInput label="Email" name="email" type="email" required />
