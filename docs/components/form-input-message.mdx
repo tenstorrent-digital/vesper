@@ -144,7 +144,11 @@ import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
 <div>
   <label htmlFor="api-key">API key</label>
   <input id="api-key" name="apiKey" aria-describedby="api-key-message" />
-  <FormInputMessage id="api-key-message" variant="error" message={error} />
+  <FormInputMessage
+    id="api-key-message"
+    variant="error"
+    message="Invalid key"
+  />
 </div>;
 ```
 
