@@ -52,7 +52,7 @@ export interface MaskedInputProps extends Omit<TextInputProps, "type"> {
  * @param {TextMaskingConfig} [props.mask] - (optional) The text masking configuration. Accepts a `string` pattern, a `{ format, replace }` object, or a `MaskitoOptions` object. When omitted, no masking is applied
  * @param {string} [props.type] - (optional) The HTML input type, restricted to `"text" | "search" | "tel" | "email" | "url"`. @default text
  * @param {boolean} [props.formatOnMount] - (optional) When `true`, the initial value of the input is formatted to match the `mask` on mount. @default false
- * @param {boolean} [props.formatOnMaskChange] - (optional) When `true`, the current value of the input is reformatted to match the `mask` whenever the `mask` prop changes. @default true
+ * @param {boolean} [props.formatOnMaskChange] - (optional) When `true`, the current value of the input is reformatted to match the `mask` whenever the `mask` prop changes. @default false
  *
  * You may also pass any additional props supported by the `TextInput` component including `size`, `variant`, `iconLeft`, `iconRight`, and `dropdown`
  *
