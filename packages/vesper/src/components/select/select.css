@@ -127,6 +127,9 @@
   border-radius: var(--vesper-radius-1);
   &[data-highlighted] {
     background: var(--vesper-state-neutral-hover);
+    @media (forced-colors: active) {
+      outline: var(--vesper-stroke-base) solid CanvasText;
+    }
   }
   &[data-selected] {
     background: var(--vesper-tint-neutral-200);
