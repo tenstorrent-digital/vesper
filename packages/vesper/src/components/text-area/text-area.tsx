@@ -78,7 +78,7 @@ export interface TextAreaProps
     Pick<ComponentProps<"textarea">, ForwardedPropTypes> {
   /** A ref forwarded to the underlying `<textarea>` element for direct DOM access. */
   textareaRef?: Ref<HTMLTextAreaElement>;
-  /** The fixed height of the textarea in pixels, scaling with base rem size. */
+  /** The fixed height of the textarea in pixels, scaling with base rem size. @default 104 */
   height?: number;
   /** The size of the textarea. Affects padding and typography. @default md */
   size?: TextAreaSize;
