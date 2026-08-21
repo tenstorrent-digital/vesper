@@ -87,6 +87,7 @@
 }
 
 .vesper-select-popup {
+  /* --available-height comes from base-ui */
   max-height: min(var(--available-height), 20rem);
   overflow-y: scroll;
   -ms-overflow-style: none;
