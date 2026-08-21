@@ -85,7 +85,7 @@ export function MaskedInput({
   mask,
   inputRef,
   formatOnMount = false,
-  formatOnMaskChange = true,
+  formatOnMaskChange = false,
   ...props
 }: MaskedInputProps) {
   const mounted = useRef(false);

@@ -136,10 +136,9 @@ describe("masked-input [unit]", () => {
     expect(input).toHaveValue("12");
   });
 
-  test("reformats the current value when formatOnMaskChange is true", async () => {
+  test("does not reformat when the mask changes by default", async () => {
     const { input, rerender } = renderMaskedInput({
       mask: { format: "___-___", replace: /\d/ },
-      formatOnMaskChange: true,
     });
 
     await userEvent.fill(input, "123456");
@@ -148,13 +147,17 @@ describe("masked-input [unit]", () => {
     rerender(
       <MaskedInput
         mask={{ format: "__/__/__", replace: /\d/ }}
-        formatOnMaskChange={true}
+        formatOnMaskChange={false}
       />,
     );
+    expect(input).toHaveValue("123-456");
+
+    // the new mask still applies to subsequent edits
+    await userEvent.fill(input, "123456");
     expect(input).toHaveValue("12/34/56");
   });
 
-  test("does not reformat the current value when formatOnMaskChange is false", async () => {
+  test("does not reformat when the mask changes when formatOnMaskChange is false", async () => {
     const { input, rerender } = renderMaskedInput({
       mask: { format: "___-___", replace: /\d/ },
       formatOnMaskChange: false,
@@ -176,10 +179,38 @@ describe("masked-input [unit]", () => {
     expect(input).toHaveValue("12/34/56");
   });
 
+  test("reformats when the mask changes when formatOnMaskChange is true", async () => {
+    const { input, rerender } = renderMaskedInput({
+      mask: { format: "___-___", replace: /\d/ },
+      formatOnMaskChange: true,
+    });
+
+    await userEvent.fill(input, "123456");
+    expect(input).toHaveValue("123-456");
+
+    rerender(
+      <MaskedInput
+        mask={{ format: "__/__/__", replace: /\d/ }}
+        formatOnMaskChange={true}
+      />,
+    );
+    expect(input).toHaveValue("12/34/56");
+  });
+
   test("does not format the initial value on mount by default", () => {
     const { input } = renderMaskedInput({
       mask: { format: "___-___", replace: /\d/ },
       defaultValue: "123456",
+    });
+
+    expect(input).toHaveValue("123456");
+  });
+
+  test("does not format the initial value on mount when formatOnMount is false", () => {
+    const { input } = renderMaskedInput({
+      mask: { format: "___-___", replace: /\d/ },
+      defaultValue: "123456",
+      formatOnMount: false,
     });
 
     expect(input).toHaveValue("123456");

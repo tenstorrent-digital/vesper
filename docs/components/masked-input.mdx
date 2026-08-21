@@ -18,7 +18,7 @@ description: A superset of the `TextInput` component that supports text masking.
 | `mask`               | `TextMaskingConfig`                               | Text masking configuration. Determines the shape and formatting of the masked text.           | —        |
 | `type`               | `"text" \| "search" \| "tel" \| "email" \| "url"` | The HTML input type.                                                                          | `"text"` |
 | `formatOnMount`      | `boolean`                                         | When `true`, the initial value of the input is formatted to match the `mask` on mount.        | `false`  |
-| `formatOnMaskChange` | `boolean`                                         | When `true`, the value of the input is reformatted to match the `mask` when the mask changes. | `true`   |
+| `formatOnMaskChange` | `boolean`                                         | When `true`, the value of the input is reformatted to match the `mask` when the mask changes. | `false`  |
 
 > See [the `TextInput` component](./text-input.mdx) for the full set of props `MaskedInput` inherits
 
@@ -134,6 +134,8 @@ For more information about `Maskito` and the kinds of things you can do with it,
 
 #### Example: international phone number
 
+> [!NOTE]
+>
 > You will need to install the `@maskito/phone`, `@maskito/kit` and `libphonenumber-js` packages for this example to work
 
 A good use-case for using a `MaskitoOptions` object is when you need to build a phone number input that supports text masking for international phone numbers. Maskito has a [phone input addon](https://maskito.dev/addons/phone) that you can use to build out this kind of input.
@@ -185,42 +187,8 @@ A mask normally only formats a value as it is edited, so a value that is already
 
 #### `formatOnMount`
 
-By default, an initial `value` or `defaultValue` is left exactly as it was provided, since formatting it on mount would change the value of the field without the user doing anything. Pass `formatOnMount` when the initial value is known to be unformatted, eg. a raw value read from an API:
-
-```tsx
-import { MaskedInput } from "@tenstorrent/vesper/masked-input"
-
-// renders "jDf8-Kl32-CmX0"
-<MaskedInput
-  label="Activation code"
-  mask={{ format: "____-____-____", replace: /[a-zA-Z\d]/ }}
-  defaultValue="jDf8Kl32CmX0"
-  formatOnMount
-/>
-
-// renders "jDf8Kl32CmX0"
-<MaskedInput
-  label="Activation code"
-  mask={{ format: "____-____-____", replace: /[a-zA-Z\d]/ }}
-  defaultValue="jDf8Kl32CmX0"
-/>
-```
+By default, an initial `value` or `defaultValue` is left exactly as it was provided, since formatting it on mount would change the value of the field without the user doing anything. Pass `formatOnMount` when the initial value is known to be unformatted, eg. a raw value read from an API.
 
 #### `formatOnMaskChange`
 
-When the `mask` prop changes, the current value of the field is reformatted to match the new mask by default. This keeps the value consistent with the mask that is currently applied, eg. when the user picks a different country in the international phone number example above.
-
-Pass `formatOnMaskChange={false}` to leave the current value alone when the mask changes. The new mask still applies to any subsequent edits:
-
-```tsx
-import { MaskedInput } from "@tenstorrent/vesper/masked-input"
-
-// a value of "123-456" is reformatted to "12/34/56" when the mask changes
-<MaskedInput mask={{ format: "__/__/__", replace: /\d/ }} />
-
-// a value of "123-456" is left as-is when the mask changes
-<MaskedInput
-  mask={{ format: "__/__/__", replace: /\d/ }}
-  formatOnMaskChange={false}
-/>
-```
+Setting `formatOnMaskChange` to `true` reformats the input's value when the `mask` prop changes. This keeps the value consistent with the mask that is currently applied, eg. when the user picks a different country in the international phone number example above.
