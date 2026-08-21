@@ -72,33 +72,30 @@
 .vesper-textarea-sm {
   .vesper-textarea-field-wrapper {
     gap: var(--vesper-spacing-1);
-    padding: 0 var(--vesper-spacing-2);
     border-radius: var(--vesper-radius-1);
   }
   .vesper-textarea-field {
-    padding: calc(var(--vesper-spacing-micro) * 6.9) 0;
+    padding: 0.43125rem var(--vesper-spacing-2);
   }
 }
 
 .vesper-textarea-md {
   .vesper-textarea-field-wrapper {
     gap: var(--vesper-spacing-2);
-    padding: 0 var(--vesper-spacing-3);
     border-radius: var(--vesper-radius-2);
   }
   .vesper-textarea-field {
-    padding: calc(var(--vesper-spacing-micro) * 10.2) 0;
+    padding: 0.6375rem var(--vesper-spacing-3);
   }
 }
 
 .vesper-textarea-lg {
   .vesper-textarea-field-wrapper {
     gap: var(--vesper-spacing-2);
-    padding: 0 var(--vesper-spacing-3);
     border-radius: var(--vesper-radius-2);
   }
   .vesper-textarea-field {
-    padding: calc(var(--vesper-spacing-micro) * 14.4) 0;
+    padding: 0.9rem var(--vesper-spacing-3);
   }
 }
 
