@@ -34,7 +34,7 @@ export interface FormInputMessageProps extends Omit<
  * A validation or helper message displayed alongside a form input, rendered as a live `output` element with a variant icon.
  *
  * @see packages/vesper/src/components/text-input/text-input.tsx
- * @see packages/vesper/src/components/textarea/textarea.tsx
+ * @see packages/vesper/src/components/text-area/text-area.tsx
  *
  * @param {FormInputMessageVariant} [props.variant] - (optional) The visual variant, which determines the color scheme and message icon. @default default
  * @param {string} [props.message] - (optional) The message text to display. When omitted or empty, no content is rendered

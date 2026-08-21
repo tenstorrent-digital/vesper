@@ -1,13 +1,13 @@
 ---
-title: Textarea
+title: TextArea
 description: A multi-line text input component supporting optional labels and validation messages.
 ---
 
-# Textarea
+# TextArea
 
 A multi-line text input component supporting optional labels and validation messages. Built on the native `<textarea>` element for full form compatibility.
 
-<Textarea label="Bio" placeholder="Tell us about yourself" />
+<TextArea label="Bio" placeholder="Tell us about yourself" />
 
 ## Options
 
@@ -28,29 +28,29 @@ A multi-line text input component supporting optional labels and validation mess
 
 Any other props are forwarded either to the underlying `<textarea>` element or to the wrapping `<div>`, depending on the prop.
 
-Unlike [the `TextInput` component](./text-input.mdx), `Textarea` does not support icons or a `type` prop, since neither of them apply to multi-line text.
+Unlike [the `TextInput` component](./text-input.mdx), `TextArea` does not support icons or a `type` prop, since neither of them apply to multi-line text.
 
 ## Examples
 
 ### Uncontrolled vs controlled
 
-The simplest way to use the `Textarea` component is to render it in an uncontrolled fashion, where the component is responsible for keeping track of its own value:
+The simplest way to use the `TextArea` component is to render it in an uncontrolled fashion, where the component is responsible for keeping track of its own value:
 
 ```tsx
-import { Textarea } from "@tenstorrent/vesper/textarea";
+import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<Textarea placeholder="Enter some text" />;
+<TextArea placeholder="Enter some text" />;
 ```
 
-If you need to control the value of the `Textarea`, you can do so via the `value` and `onChange` props:
+If you need to control the value of the `TextArea`, you can do so via the `value` and `onChange` props:
 
 ```tsx
 import { useState } from "react"
-import { Textarea } from "@tenstorrent/vesper/textarea"
+import { TextArea } from "@tenstorrent/vesper/text-area"
 
 const [value, setValue] = useState("")
 
-<Textarea
+<TextArea
   placeholder="Enter some text"
   value={value}
   onChange={e => setValue(e.target.value)}
@@ -59,54 +59,54 @@ const [value, setValue] = useState("")
 
 ### Different sizes
 
-The `Textarea` component can be rendered at `sm`, `md`, or `lg` size, defaulting to `md`. Size affects the padding and text styles of the textarea.
+The `TextArea` component can be rendered at `sm`, `md`, or `lg` size, defaulting to `md`. Size affects the padding and text styles of the `textarea`.
 
-<Textarea size="sm" placeholder="A small textarea" />
-<Textarea size="md" placeholder="A medium textarea" />
-<Textarea size="lg" placeholder="A large textarea" />
+<TextArea size="sm" placeholder="A small TextArea" />
+<TextArea size="md" placeholder="A medium TextArea" />
+<TextArea size="lg" placeholder="A large TextArea" />
 
 ```tsx
-import { Textarea } from "@tenstorrent/vesper/textarea"
+import { TextArea } from "@tenstorrent/vesper/text-area"
 
-<Textarea size="sm" placeholder="A small textarea" />
-<Textarea size="md" placeholder="A medium textarea" />
-<Textarea size="lg" placeholder="A large textarea" />
+<TextArea size="sm" placeholder="A small TextArea" />
+<TextArea size="md" placeholder="A medium TextArea" />
+<TextArea size="lg" placeholder="A large TextArea" />
 ```
 
 ### Setting the height
 
-The `Textarea` component is not resizable by the user. Instead, you can set a fixed height in pixels via the `height` prop, which defaults to `104`. The value is converted to `rem`, so the rendered height scales with the base font size.
+The `TextArea` component is not resizable by the user. Instead, you can set a fixed height in pixels via the `height` prop, which defaults to `104`. The value is converted to `rem`, so the rendered height scales with the base font size.
 
-<Textarea
+<TextArea
   label="Release notes"
   placeholder="Summarise what changed in this release"
   height={200}
 />
 
 ```tsx
-import { Textarea } from "@tenstorrent/vesper/textarea";
+import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<Textarea
+<TextArea
   label="Release notes"
-  placeholder="Summarise what changed in this release"
+  placeholder="Summarize what changed in this release"
   height={200}
 />;
 ```
 
 ### Disabling the textarea
 
-You can disable a textarea by passing `disabled={true}` or just `disabled` as a prop:
+You can disable the underlying textarea by passing `disabled={true}` or just `disabled` as a prop:
 
-<Textarea
+<TextArea
   label="Overview"
   placeholder="Add a brief outline of your project"
   disabled
 />
 
 ```tsx
-import { Textarea } from "@tenstorrent/vesper/textarea";
+import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<Textarea
+<TextArea
   label="Overview"
   placeholder="Add a brief outline of your project"
   disabled
@@ -117,16 +117,16 @@ import { Textarea } from "@tenstorrent/vesper/textarea";
 
 You can render an additional line of text under the input element via the `message` prop. Combine with the `variant` prop to indicate the tone of the message to the user.
 
-<Textarea
+<TextArea
   label="Bio"
   placeholder="Tell us about yourself"
   message="This will be displayed on your public profile."
 />
 
 ```tsx
-import { Textarea } from "@tenstorrent/vesper/textarea";
+import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<Textarea
+<TextArea
   label="Bio"
   placeholder="Tell us about yourself"
   message="This will be displayed on your public profile."
@@ -135,13 +135,13 @@ import { Textarea } from "@tenstorrent/vesper/textarea";
 
 ### Variants
 
-The `Textarea` component can be rendered in one of four variants: `default`, `warning`, `success`, or `error`. The variant determines the colour scheme of the textarea, as well as the icon paired with its `message`.
+The `TextArea` component can be rendered in one of four variants: `default`, `warning`, `success`, or `error`. The variant determines the colour scheme of the `textarea` element, as well as the icon paired with its `message`.
 
 #### Default variant
 
-A `Textarea` renders with the `default` variant when no `variant` prop is specified. Its `message` is best suited for neutral hints, such as formatting requirements:
+A `TextArea` renders with the `default` variant when no `variant` prop is specified. Its `message` is best suited for neutral hints, such as formatting requirements:
 
-<Textarea
+<TextArea
   label="Bio"
   placeholder="Tell us about yourself"
   message="Markdown is supported, up to 500 characters."
@@ -149,9 +149,9 @@ A `Textarea` renders with the `default` variant when no `variant` prop is specif
 />
 
 ```tsx
-import { Textarea } from "@tenstorrent/vesper/textarea";
+import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<Textarea
+<TextArea
   label="Bio"
   placeholder="Tell us about yourself"
   message="Markdown is supported, up to 500 characters."
@@ -163,7 +163,7 @@ import { Textarea } from "@tenstorrent/vesper/textarea";
 
 Use the `warning` variant to flag a value that needs attention, but that doesn't prevent the form from being submitted:
 
-<Textarea
+<TextArea
   variant="warning"
   label="Commit message"
   defaultValue="fix stuff"
@@ -171,9 +171,9 @@ Use the `warning` variant to flag a value that needs attention, but that doesn't
 />
 
 ```tsx
-import { Textarea } from "@tenstorrent/vesper/textarea";
+import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<Textarea
+<TextArea
   variant="warning"
   label="Commit message"
   value={commitMessage}
@@ -186,7 +186,7 @@ import { Textarea } from "@tenstorrent/vesper/textarea";
 
 The `success` variant is best suited for confirming that a value has been validated as expected:
 
-<Textarea
+<TextArea
   variant="success"
   label="SSH public key"
   defaultValue="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL4rT9m2 you@example.com"
@@ -194,9 +194,9 @@ The `success` variant is best suited for confirming that a value has been valida
 />
 
 ```tsx
-import { Textarea } from "@tenstorrent/vesper/textarea";
+import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<Textarea
+<TextArea
   variant="success"
   label="SSH public key"
   value={publicKey}
@@ -209,7 +209,7 @@ import { Textarea } from "@tenstorrent/vesper/textarea";
 
 The `error` variant highlights an invalid value that must be corrected before the form can be submitted:
 
-<Textarea
+<TextArea
   variant="error"
   label="Feedback"
   defaultValue="No"
@@ -219,9 +219,9 @@ The `error` variant highlights an invalid value that must be corrected before th
 />
 
 ```tsx
-import { Textarea } from "@tenstorrent/vesper/textarea";
+import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<Textarea
+<TextArea
   variant="error"
   label="Feedback"
   value={feedback}
@@ -236,36 +236,36 @@ import { Textarea } from "@tenstorrent/vesper/textarea";
 
 When a `label` is provided, it is rendered above the textarea and associated with it, so clicking the label focuses the field. Passing `required` appends an asterisk to the label:
 
-<Textarea label="Feedback" placeholder="What could we do better?" required />
+<TextArea label="Feedback" placeholder="What could we do better?" required />
 
 ```tsx
-import { Textarea } from "@tenstorrent/vesper/textarea";
+import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<Textarea label="Feedback" placeholder="What could we do better?" required />;
+<TextArea label="Feedback" placeholder="What could we do better?" required />;
 ```
 
-If you render a required `Textarea` without a `label`, the asterisk is appended to the `placeholder` instead:
+If you render a required `TextArea` without a `label`, the asterisk is appended to the `placeholder` instead:
 
-<Textarea placeholder="What could we do better?" required />
+<TextArea placeholder="What could we do better?" required />
 
 ```tsx
-import { Textarea } from "@tenstorrent/vesper/textarea";
+import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<Textarea placeholder="What could we do better?" required />;
+<TextArea placeholder="What could we do better?" required />;
 ```
 
 An `id` is generated for you, but you can provide your own if you need to reference the field elsewhere. Any `aria-describedby` you pass is merged with the automatically generated `message` id, so both remain announced by assistive technology.
 
 ### Usage in forms
 
-`Textarea` renders a native `<textarea>`, so it works with regular form submission and native validation via props like `name`, `form`, `required`, `minLength`, and `maxLength`:
+`TextArea` renders a native `<textarea>`, so it works with regular form submission and native validation via props like `name`, `form`, `required`, `minLength`, and `maxLength`:
 
 ```tsx
 import { Button } from "@tenstorrent/vesper/button";
-import { Textarea } from "@tenstorrent/vesper/textarea";
+import { TextArea } from "@tenstorrent/vesper/text-area";
 
 <form action="/api/feedback" method="post">
-  <Textarea
+  <TextArea
     name="feedback"
     label="Feedback"
     placeholder="What could we do better?"
@@ -283,11 +283,11 @@ Use the `textareaRef` prop when you need direct access to the underlying `<texta
 
 ```tsx
 import { useRef } from "react"
-import { Textarea } from "@tenstorrent/vesper/textarea"
+import { TextArea } from "@tenstorrent/vesper/text-area"
 
 const textareaRef = useRef<HTMLTextAreaElement>(null)
 
-<Textarea
+<TextArea
   label="Bio"
   placeholder="Tell us about yourself"
   textareaRef={textareaRef}

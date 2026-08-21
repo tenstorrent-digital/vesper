@@ -9,7 +9,7 @@ A message displayed alongside a form input, paired with a variant-specific icon.
 
 <FormInputMessage message="We'll never share your email address." />
 
-This is the same component used to render the `message` of [Text Input](./text-input.mdx) and [Textarea](./textarea.mdx), so you'll usually only reach for it directly when describing a form control that Vesper doesn't provide.
+This is the same component used to render the `message` of [Text Input](./text-input.mdx) and [TextArea](./text-area.mdx), so you'll usually only reach for it directly when describing a form control that Vesper doesn't provide.
 
 ## Options
 
@@ -152,7 +152,7 @@ import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
 </div>;
 ```
 
-Note that [Text Input](./text-input.mdx) and [Textarea](./textarea.mdx) already render a `FormInputMessage` for you and wire up `aria-describedby` automatically, so prefer passing `message` and `variant` to those components directly:
+Note that [Text Input](./text-input.mdx) and [TextArea](./text-area.mdx) already render a `FormInputMessage` for you and wire up `aria-describedby` automatically, so prefer passing `message` and `variant` to those components directly:
 
 <TextInput
   variant="error"

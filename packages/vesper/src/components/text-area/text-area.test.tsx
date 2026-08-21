@@ -4,24 +4,24 @@ import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import { userEvent } from "vitest/browser";
 
 import {
-  Textarea,
-  TEXTAREA_SIZES,
-  TEXTAREA_VARIANTS,
-  TextareaProps,
-} from "@/components/textarea/textarea";
+  TEXT_AREA_SIZES,
+  TEXT_AREA_VARIANTS,
+  TextArea,
+  TextAreaProps,
+} from "@/components/text-area/text-area";
 
 import "@/styles/test.css";
 
-const TEXTAREA_SNAPSHOT_PERMUTATIONS: (TextareaProps & { name: string })[] = [
+const TEXTAREA_SNAPSHOT_PERMUTATIONS: (TextAreaProps & { name: string })[] = [
   // One per variant
-  ...TEXTAREA_VARIANTS.map((variant) => ({
+  ...TEXT_AREA_VARIANTS.map((variant) => ({
     name: `variant: ${variant}`,
     variant,
     size: "lg" as const,
     message: "Message text",
   })),
   // One per size
-  ...TEXTAREA_SIZES.map((size) => ({
+  ...TEXT_AREA_SIZES.map((size) => ({
     name: `size: ${size}`,
     size,
   })),
@@ -39,8 +39,8 @@ const TEXTAREA_SNAPSHOT_PERMUTATIONS: (TextareaProps & { name: string })[] = [
   },
 ];
 
-const TEXTAREA_PERMUTATIONS = TEXTAREA_VARIANTS.flatMap((variant) =>
-  TEXTAREA_SIZES.flatMap((size) => [
+const TEXT_AREA_PERMUTATIONS = TEXT_AREA_VARIANTS.flatMap((variant) =>
+  TEXT_AREA_SIZES.flatMap((size) => [
     {
       name: `${variant}, ${size}`,
       variant,
@@ -61,7 +61,7 @@ const TEXTAREA_PERMUTATIONS = TEXTAREA_VARIANTS.flatMap((variant) =>
 );
 
 const TEXTAREA_A11Y_FAILING_PERMUTATIONS: (Pick<
-  TextareaProps,
+  TextAreaProps,
   "variant" | "disabled"
 > & { theme: string })[] = [
   { variant: "default", disabled: false, theme: "light" },
@@ -82,127 +82,127 @@ const TEXTAREA_A11Y_FAILING_PERMUTATIONS: (Pick<
 
 afterEach(cleanup);
 
-describe("textarea [unit]", () => {
+describe("text-area [unit]", () => {
   test("renders a textarea", () => {
-    const result = render(<Textarea />);
+    const result = render(<TextArea />);
     expect(result.getByRole("textbox").tagName).toBe("TEXTAREA");
   });
 
-  TEXTAREA_VARIANTS.forEach((variant) => {
+  TEXT_AREA_VARIANTS.forEach((variant) => {
     test(`${variant} variant`, () => {
-      const result = render(<Textarea variant={variant} />);
+      const result = render(<TextArea variant={variant} />);
 
       expect(result.container.firstChild).toHaveClass(
-        `vesper-textarea-${variant}`,
+        `vesper-text-area-${variant}`,
       );
     });
   });
 
-  TEXTAREA_SIZES.forEach((size) => {
+  TEXT_AREA_SIZES.forEach((size) => {
     test(`${size} size`, () => {
-      const result = render(<Textarea size={size} />);
+      const result = render(<TextArea size={size} />);
 
       expect(result.container.firstChild).toHaveClass(
-        `vesper-textarea-${size}`,
+        `vesper-text-area-${size}`,
       );
     });
   });
 
   test("disabled prop disables textarea", () => {
-    const result = render(<Textarea disabled />);
+    const result = render(<TextArea disabled />);
     expect(result.getByRole("textbox")).toBeDisabled();
   });
 
   test("applies the default height to the textarea", () => {
-    const result = render(<Textarea />);
+    const result = render(<TextArea />);
 
     expect(result.getByRole("textbox").style.height).toBe("6.5rem");
   });
 
   test("height prop overrides the default height", () => {
-    const result = render(<Textarea height={200} />);
+    const result = render(<TextArea height={200} />);
 
     expect(result.getByRole("textbox").style.height).toBe("12.5rem");
   });
 
   test("renders a label when supplied", () => {
-    const result = render(<Textarea label="Username" />);
+    const result = render(<TextArea label="Username" />);
 
-    const label = result.container.querySelector(".vesper-textarea-label");
+    const label = result.container.querySelector(".vesper-text-area-label");
     expect(label).not.toBeNull();
     expect(label!.tagName).toBe("LABEL");
     expect(label).toHaveTextContent("Username");
   });
 
   test("label htmlFor matches the id prop", () => {
-    const result = render(<Textarea label="Bio" id="bio" />);
+    const result = render(<TextArea label="Bio" id="bio" />);
 
-    const label = result.container.querySelector(".vesper-textarea-label");
+    const label = result.container.querySelector(".vesper-text-area-label");
     expect(label).toHaveAttribute("for", "bio");
   });
 
   test("clicking the label focuses the textarea", async () => {
-    const result = render(<Textarea label="Bio" id="bio" />);
+    const result = render(<TextArea label="Bio" id="bio" />);
 
-    const label = result.container.querySelector(".vesper-textarea-label")!;
+    const label = result.container.querySelector(".vesper-text-area-label")!;
     await userEvent.click(label);
 
     expect(result.getByRole("textbox")).toHaveFocus();
   });
 
   test("the id prop is forwarded to the textarea", () => {
-    const result = render(<Textarea label="Bio" id="bio" />);
+    const result = render(<TextArea label="Bio" id="bio" />);
 
     expect(result.getByRole("textbox")).toHaveAttribute("id", "bio");
   });
 
   test("an id is generated when the id prop is omitted", () => {
-    const result = render(<Textarea label="Bio" />);
+    const result = render(<TextArea label="Bio" />);
 
     const textarea = result.getByRole("textbox");
     expect(textarea.id).not.toBe("");
     expect(
-      result.container.querySelector(".vesper-textarea-label"),
+      result.container.querySelector(".vesper-text-area-label"),
     ).toHaveAttribute("for", textarea.id);
   });
 
   test("the generated id associates the label with the textarea", () => {
-    const result = render(<Textarea label="Username" />);
+    const result = render(<TextArea label="Username" />);
 
     expect(result.getByLabelText("Username")).toBe(result.getByRole("textbox"));
   });
 
   test("additional prop passthrough", () => {
-    const result = render(<Textarea aria-label="custom label" />);
+    const result = render(<TextArea aria-label="custom label" />);
     const textarea = result.getByRole("textbox");
     expect(textarea).toHaveAttribute("aria-label", "custom label");
   });
 
   test("custom className", () => {
     const result = render(
-      <Textarea size="lg" variant="default" className="custom-class" />,
+      <TextArea size="lg" variant="default" className="custom-class" />,
     );
 
     const el = result.container.firstChild;
-    expect(el).toHaveClass("vesper-textarea");
-    expect(el).toHaveClass("vesper-textarea-lg");
-    expect(el).toHaveClass("vesper-textarea-default");
+    expect(el).toHaveClass("vesper-text-area");
+    expect(el).toHaveClass("vesper-text-area-lg");
+    expect(el).toHaveClass("vesper-text-area-default");
     expect(el).toHaveClass("custom-class");
   });
 });
 
-describe("textarea [snapshot]", () => {
+describe("text-area [snapshot]", () => {
   TEXTAREA_SNAPSHOT_PERMUTATIONS.forEach((permutation) => {
     const { name, ...props } = permutation;
 
     test(name, () => {
-      const { container } = render(<Textarea {...props} />);
+      const { container } = render(<TextArea {...props} />);
       expect(container.firstChild).toMatchSnapshot();
     });
   });
 });
 
-describe("textarea [a11y]", () => {
+describe("text-area [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
@@ -214,12 +214,12 @@ describe("textarea [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    TEXTAREA_PERMUTATIONS.forEach((permutation) => {
+    TEXT_AREA_PERMUTATIONS.forEach((permutation) => {
       const { name, ...props } = permutation;
       const label = `wcag2aaa (${name}, ${theme})`;
 
       const testFn = async () => {
-        const { container } = render(<Textarea {...props} />);
+        const { container } = render(<TextArea {...props} />);
         expect(await axe.run(container.firstChild!)).toHaveNoViolations();
       };
 

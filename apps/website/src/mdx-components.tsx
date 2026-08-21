@@ -59,9 +59,9 @@ import { StatusIndicator } from "@tenstorrent/vesper/status-indicator";
 import { Switch } from "@tenstorrent/vesper/switch";
 import { Tabs } from "@tenstorrent/vesper/tabs";
 import { Tag } from "@tenstorrent/vesper/tag";
+import { TextArea } from "@tenstorrent/vesper/text-area";
 import { TextButton } from "@tenstorrent/vesper/text-button";
 import { TextInput } from "@tenstorrent/vesper/text-input";
-import { Textarea } from "@tenstorrent/vesper/textarea";
 import { ThemeSwitcher } from "@tenstorrent/vesper/theme-switcher";
 import { Toggle } from "@tenstorrent/vesper/toggle";
 import { Tooltip } from "@tenstorrent/vesper/tooltip";
@@ -246,7 +246,7 @@ const components = {
   Tag,
   TextButton,
   TextInput,
-  Textarea,
+  TextArea,
   ThemeSwitcher,
   Toggle,
   Tooltip,
