@@ -80,6 +80,8 @@ export interface TextAreaProps
   textareaRef?: Ref<HTMLTextAreaElement>;
   /** The fixed height of the textarea in pixels, scaling with base rem size. @default 104 */
   height?: number;
+  /** Whether to allow vertical resizing of the underling `textarea` element. @default false */
+  resizeable?: boolean;
   /** The size of the textarea. Affects padding and typography. @default md */
   size?: TextAreaSize;
   /** The visual variant of the text input, which determines its color scheme and message icon. @default default */
@@ -119,6 +121,7 @@ export function TextArea(props: TextAreaProps) {
     label,
     variant = "default",
     size = "md",
+    resizeable = false,
     // props that should get forwarded to the textarea element
     height = 104,
     defaultValue,
@@ -186,7 +189,10 @@ export function TextArea(props: TextAreaProps) {
       <Typography
         className="vesper-text-area-field"
         as="textarea"
-        style={{ height: `${height / 16}rem` }}
+        style={{
+          height: `${height / 16}rem`,
+          resize: resizeable ? "block" : "none",
+        }}
         ref={textareaRef}
         variant={TEXTAREA_TYPOGRAPHY[size]}
         aria-describedby={describedBy}

@@ -10,9 +10,9 @@ exports[`text-area [snapshot] > disabled 1`] = `
     <textarea
       class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
       disabled=""
-      id="_r_1p_"
+      id="_r_1t_"
       placeholder=" "
-      style="height: 6.5rem;"
+      style="height: 6.5rem; resize: none;"
     />
   </div>
   <output
@@ -31,7 +31,7 @@ exports[`text-area [snapshot] > full options 1`] = `
   >
     <label
       class="vesper-typography vesper-typography-label-sm vesper-text-area-label"
-      for="_r_1r_"
+      for="_r_1v_"
     >
       Label text
     </label>
@@ -39,19 +39,19 @@ exports[`text-area [snapshot] > full options 1`] = `
       class="vesper-text-area-field-wrapper"
     >
       <textarea
-        aria-describedby="_r_1q_"
+        aria-describedby="_r_1u_"
         class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
         disabled=""
-        id="_r_1r_"
+        id="_r_1v_"
         placeholder=" "
-        style="height: 6.5rem;"
+        style="height: 6.5rem; resize: none;"
       />
     </div>
   </div>
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
     data-message="true"
-    id="_r_1q_"
+    id="_r_1u_"
   >
     <span
       aria-hidden="true"
@@ -88,9 +88,9 @@ exports[`text-area [snapshot] > size: lg 1`] = `
   >
     <textarea
       class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
-      id="_r_1j_"
+      id="_r_1n_"
       placeholder=" "
-      style="height: 6.5rem;"
+      style="height: 6.5rem; resize: none;"
     />
   </div>
   <output
@@ -109,9 +109,9 @@ exports[`text-area [snapshot] > size: md 1`] = `
   >
     <textarea
       class="vesper-typography vesper-typography-copy-sm vesper-text-area-field"
-      id="_r_1h_"
+      id="_r_1l_"
       placeholder=" "
-      style="height: 6.5rem;"
+      style="height: 6.5rem; resize: none;"
     />
   </div>
   <output
@@ -130,9 +130,9 @@ exports[`text-area [snapshot] > size: sm 1`] = `
   >
     <textarea
       class="vesper-typography vesper-typography-copy-xs vesper-text-area-field"
-      id="_r_1f_"
+      id="_r_1j_"
       placeholder=" "
-      style="height: 6.5rem;"
+      style="height: 6.5rem; resize: none;"
     />
   </div>
   <output
@@ -150,17 +150,17 @@ exports[`text-area [snapshot] > variant: default 1`] = `
     class="vesper-text-area-field-wrapper"
   >
     <textarea
-      aria-describedby="_r_16_"
+      aria-describedby="_r_1a_"
       class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
-      id="_r_17_"
+      id="_r_1b_"
       placeholder=" "
-      style="height: 6.5rem;"
+      style="height: 6.5rem; resize: none;"
     />
   </div>
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
     data-message="true"
-    id="_r_16_"
+    id="_r_1a_"
   >
     <span
       aria-hidden="true"
@@ -196,17 +196,17 @@ exports[`text-area [snapshot] > variant: error 1`] = `
     class="vesper-text-area-field-wrapper"
   >
     <textarea
-      aria-describedby="_r_1c_"
+      aria-describedby="_r_1g_"
       class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
-      id="_r_1d_"
+      id="_r_1h_"
       placeholder=" "
-      style="height: 6.5rem;"
+      style="height: 6.5rem; resize: none;"
     />
   </div>
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
     data-message="true"
-    id="_r_1c_"
+    id="_r_1g_"
   >
     <span
       aria-hidden="true"
@@ -242,17 +242,17 @@ exports[`text-area [snapshot] > variant: success 1`] = `
     class="vesper-text-area-field-wrapper"
   >
     <textarea
-      aria-describedby="_r_1a_"
+      aria-describedby="_r_1e_"
       class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
-      id="_r_1b_"
+      id="_r_1f_"
       placeholder=" "
-      style="height: 6.5rem;"
+      style="height: 6.5rem; resize: none;"
     />
   </div>
   <output
     class="vesper-form-input-message vesper-form-input-message-success"
     data-message="true"
-    id="_r_1a_"
+    id="_r_1e_"
   >
     <span
       aria-hidden="true"
@@ -286,17 +286,17 @@ exports[`text-area [snapshot] > variant: warning 1`] = `
     class="vesper-text-area-field-wrapper"
   >
     <textarea
-      aria-describedby="_r_18_"
+      aria-describedby="_r_1c_"
       class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
-      id="_r_19_"
+      id="_r_1d_"
       placeholder=" "
-      style="height: 6.5rem;"
+      style="height: 6.5rem; resize: none;"
     />
   </div>
   <output
     class="vesper-form-input-message vesper-form-input-message-warning"
     data-message="true"
-    id="_r_18_"
+    id="_r_1c_"
   >
     <span
       aria-hidden="true"
@@ -333,9 +333,9 @@ exports[`text-area [snapshot] > with icon 1`] = `
   >
     <textarea
       class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
-      id="_r_1l_"
+      id="_r_1p_"
       placeholder=" "
-      style="height: 6.5rem;"
+      style="height: 6.5rem; resize: none;"
     />
   </div>
   <output
@@ -354,7 +354,7 @@ exports[`text-area [snapshot] > with label 1`] = `
   >
     <label
       class="vesper-typography vesper-typography-label-sm vesper-text-area-label"
-      for="_r_1n_"
+      for="_r_1r_"
     >
       Label text
     </label>
@@ -363,9 +363,9 @@ exports[`text-area [snapshot] > with label 1`] = `
     >
       <textarea
         class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
-        id="_r_1n_"
+        id="_r_1r_"
         placeholder=" "
-        style="height: 6.5rem;"
+        style="height: 6.5rem; resize: none;"
       />
     </div>
   </div>

@@ -125,6 +125,16 @@ describe("text-area [unit]", () => {
     expect(result.getByRole("textbox").style.height).toBe("12.5rem");
   });
 
+  test("textarea is not resizeable by default", () => {
+    const result = render(<TextArea />);
+    expect(result.getByRole("textbox").style.resize).toBe("none");
+  });
+
+  test("textarea can be resized when resizeable is true", () => {
+    const result = render(<TextArea resizeable />);
+    expect(result.getByRole("textbox").style.resize).toBe("block");
+  });
+
   test("renders a label when supplied", () => {
     const result = render(<TextArea label="Username" />);
 

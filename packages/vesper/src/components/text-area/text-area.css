@@ -104,7 +104,6 @@
   &::placeholder {
     color: var(--vesper-text-tertiary);
   }
-  resize: none;
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {

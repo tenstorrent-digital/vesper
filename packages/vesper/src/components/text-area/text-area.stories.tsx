@@ -31,6 +31,7 @@ export const Playground: Story = {
     placeholder: "Tell us about yourself",
     message: "This is a message you can display under the input.",
     height: 104,
+    resizeable: true,
   },
 };
 Playground.storyName = "text-area";

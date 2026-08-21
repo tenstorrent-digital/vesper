@@ -1,13 +1,13 @@
 ---
-title: TextArea
+title: Text Area
 description: A multi-line text input component supporting optional labels and validation messages.
 ---
 
-# TextArea
+# Text Area
 
 A multi-line text input component supporting optional labels and validation messages. Built on the native `<textarea>` element for full form compatibility.
 
-<TextArea label="Bio" placeholder="Tell us about yourself" />
+<TextArea label="Bio" placeholder="Tell us about yourself" resizeable />
 
 ## Options
 
@@ -25,6 +25,7 @@ A multi-line text input component supporting optional labels and validation mess
 | `disabled`    | `boolean`                                        | When `true`, prevents interaction.                                                                 | `false`     |
 | `required`    | `boolean`                                        | When `true`, marks the textarea as required.                                                       | `false`     |
 | `readOnly`    | `boolean`                                        | When `true`, makes the textarea read-only.                                                         | `false`     |
+| `resizeable`  | `boolean`                                        | When `true`, enables resizing the textarea.                                                        | `false`     |
 
 Any other props are forwarded either to the underlying `<textarea>` element or to the wrapping `<div>`, depending on the prop.
 
