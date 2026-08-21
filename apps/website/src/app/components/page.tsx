@@ -14,6 +14,7 @@ import { Chip } from "@tenstorrent/vesper/chip";
 import { Code } from "@tenstorrent/vesper/code";
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
 import { IconButton } from "@tenstorrent/vesper/icon-button";
+import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
 import { RadioGroup } from "@tenstorrent/vesper/radio-group";
 import { Range } from "@tenstorrent/vesper/range";
@@ -135,6 +136,13 @@ export default function Page() {
 
         <Cell name="IconButton">
           <IconButton aria-label="Action" icon={<span>✦</span>} />
+        </Cell>
+
+        <Cell name="MaskedInput">
+          <MaskedInput
+            placeholder="Enter your phone number"
+            mask={{ format: "+1 (___) ___-____", replace: /\d/ }}
+          />
         </Cell>
 
         <Cell name="ProgressBar">
