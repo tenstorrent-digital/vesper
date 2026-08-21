@@ -501,7 +501,7 @@ function TextInputDropdown({
           alignItemWithTrigger={false}
           sideOffset={12 * (baseRemSize / 16)}
         >
-          <Select.Popup className="vesper-select-content">
+          <Select.Popup className="vesper-select-popup">
             <Select.List className="vesper-select-viewport">
               {items.map((item) => {
                 return (
