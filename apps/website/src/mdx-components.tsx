@@ -75,6 +75,7 @@ import { ColorChip } from "@/components/color-chip";
 // named demos for components w non-serializable props (event handlers,
 // refs, state) that are used inside `docs/` documents
 import { ChipDemo } from "@/demos/chip";
+import { ComboboxDemo } from "@/demos/combobox";
 import { IconsDemo } from "@/demos/icons";
 import { MaskedInputDemo } from "@/demos/masked-input";
 import { MenuDemo } from "@/demos/menu";
@@ -273,6 +274,7 @@ const components = {
 
   // demos
   ChipDemo,
+  ComboboxDemo,
   IconsDemo,
   MaskedInputDemo,
   MenuDemo,
