@@ -4,18 +4,14 @@
   gap: var(--vesper-spacing-2);
 }
 
-.vesper-text-input-label {
+.vesper-text-input-label-wrapper {
   color: var(--vesper-text-secondary);
   display: flex;
   flex-direction: column;
   gap: var(--vesper-spacing-2);
-  pointer-events: none;
-  > * {
-    pointer-events: auto;
-  }
 }
 
-.vesper-text-input-label-text {
+.vesper-text-input-label {
   width: fit-content;
 }
 
@@ -25,7 +21,7 @@
   border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
   background: var(--vesper-tint-neutral-100);
   &:has(.vesper-text-input-field:focus-visible),
-  &:has(.vesper-text-input-icon:focus) {
+  &:has(.vesper-text-input-icon:focus-visible) {
     border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
     box-shadow: var(--vesper-shadow-focus-ring);
     @media (forced-colors: active) {
@@ -61,6 +57,15 @@
 .vesper-text-input-icon {
   color: var(--vesper-icon-secondary);
   flex-shrink: 0;
+  &:where(button:not(:disabled)) {
+    position: relative;
+    cursor: pointer;
+    &::after {
+      content: "";
+      position: absolute;
+      inset: calc(var(--vesper-spacing-micro) * -4);
+    }
+  }
 }
 
 .vesper-text-input-field {
@@ -69,25 +74,15 @@
     outline: none;
     box-shadow: none;
   }
-  &:placeholder-shown {
-    & ~ .vesper-text-input-icon {
-      display: none;
-    }
+  /* https://css-tricks.com/snippets/css/change-autocomplete-styles-webkit-browsers/ */
+  &:autofill,
+  &:-webkit-autofill {
+    transition: background-color 2147483647s step-end;
   }
   &:disabled {
     color: var(--vesper-text-tertiary);
     &::placeholder {
       color: var(--vesper-text-disabled);
-    }
-  }
-  & ~ .vesper-text-input-icon {
-    cursor: pointer;
-    border-radius: 50%;
-    &:focus-visible {
-      box-shadow: var(--vesper-shadow-focus-ring);
-      @media (forced-colors: active) {
-        outline: var(--vesper-stroke-strong) solid CanvasText;
-      }
     }
   }
   &::-webkit-search-decoration,
@@ -112,7 +107,7 @@
     height: 0.875rem;
   }
   .vesper-text-input-field {
-    padding: var(--vesper-spacing-1) 0;
+    padding: 0.43125rem 0;
   }
 }
 
@@ -128,7 +123,7 @@
     height: 1rem;
   }
   .vesper-text-input-field {
-    padding: var(--vesper-spacing-2) 0;
+    padding: 0.6375rem 0;
   }
 }
 
@@ -144,7 +139,7 @@
     height: 1.25rem;
   }
   .vesper-text-input-field {
-    padding: var(--vesper-spacing-3) 0;
+    padding: 0.9rem 0;
   }
 }
 
@@ -160,66 +155,5 @@
   }
   &[type="number"] {
     appearance: textfield;
-  }
-}
-
-.vesper-text-input-multiline {
-  .vesper-text-input-field-wrapper {
-    height: auto;
-  }
-  textarea {
-    height: 6.5rem;
-    resize: none;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-}
-
-.vesper-text-input-message {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--vesper-spacing-1);
-  padding: var(--vesper-spacing-half);
-  border-radius: var(--vesper-radius-half);
-  width: fit-content;
-}
-.vesper-text-input-message-text {
-  font-size: 0.625rem;
-  white-space: pre-line;
-}
-.vesper-text-input-message-icon {
-  flex-shrink: 0;
-  display: flex;
-  align-self: stretch;
-  align-items: start;
-  > svg {
-    width: 0.875rem;
-  }
-}
-.vesper-text-input-success {
-  .vesper-text-input-message {
-    background: var(--vesper-background-success-subtle);
-    color: var(--vesper-text-success);
-  }
-}
-.vesper-text-input-error {
-  .vesper-text-input-message {
-    background: var(--vesper-background-error-subtle);
-    color: var(--vesper-text-error);
-  }
-}
-.vesper-text-input-default {
-  .vesper-text-input-message {
-    background: var(--vesper-background-info-subtle);
-    color: var(--vesper-text-info);
-  }
-}
-.vesper-text-input-warning {
-  .vesper-text-input-message {
-    background: var(--vesper-background-warning-subtle);
-    color: var(--vesper-text-warning);
   }
 }

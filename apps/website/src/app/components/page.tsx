@@ -14,6 +14,7 @@ import { Chip } from "@tenstorrent/vesper/chip";
 import { Code } from "@tenstorrent/vesper/code";
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
 import { IconButton } from "@tenstorrent/vesper/icon-button";
+import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
 import { RadioGroup } from "@tenstorrent/vesper/radio-group";
 import { Range } from "@tenstorrent/vesper/range";
@@ -27,6 +28,7 @@ import { StatusIndicator } from "@tenstorrent/vesper/status-indicator";
 import { Switch } from "@tenstorrent/vesper/switch";
 import { Tabs } from "@tenstorrent/vesper/tabs";
 import { Tag } from "@tenstorrent/vesper/tag";
+import { TextArea } from "@tenstorrent/vesper/text-area";
 import { TextButton } from "@tenstorrent/vesper/text-button";
 import { TextInput } from "@tenstorrent/vesper/text-input";
 import { ThemeSwitcher } from "@tenstorrent/vesper/theme-switcher";
@@ -136,6 +138,13 @@ export default function Page() {
           <IconButton aria-label="Action" icon={<span>✦</span>} />
         </Cell>
 
+        <Cell name="MaskedInput">
+          <MaskedInput
+            placeholder="Enter your phone number"
+            mask={{ format: "+1 (___) ___-____", replace: /\d/ }}
+          />
+        </Cell>
+
         <Cell name="ProgressBar">
           <ProgressBar value={65} className="w-full" />
         </Cell>
@@ -217,6 +226,10 @@ export default function Page() {
 
         <Cell name="Tag">
           <Tag>Category</Tag>
+        </Cell>
+
+        <Cell name="TextArea">
+          <TextArea placeholder="Tell us about yourself" />
         </Cell>
 
         <Cell name="TextButton">

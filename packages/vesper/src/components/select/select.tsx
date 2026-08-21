@@ -169,7 +169,7 @@ export function Select(props: SelectProps) {
           alignItemWithTrigger={false}
           sideOffset={12 * (baseRemSize / 16)}
         >
-          <BaseSelect.Popup className="vesper-select-content">
+          <BaseSelect.Popup className="vesper-select-popup">
             <BaseSelect.List className="vesper-select-viewport">
               {options.map((o) => (
                 <BaseSelect.Item
@@ -177,11 +177,11 @@ export function Select(props: SelectProps) {
                   value={o.value}
                   className="vesper-select-item"
                 >
-                  <Typography variant="label-md">
-                    <BaseSelect.ItemText render={<span />}>
-                      {o.label}
-                    </BaseSelect.ItemText>
-                  </Typography>
+                  <BaseSelect.ItemText
+                    render={<Typography variant="label-md" />}
+                  >
+                    {o.label}
+                  </BaseSelect.ItemText>
                   <BaseSelect.ItemIndicator className="vesper-select-item-checkmark">
                     <Checkmark />
                   </BaseSelect.ItemIndicator>

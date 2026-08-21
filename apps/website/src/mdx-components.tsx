@@ -30,10 +30,13 @@ import { Chip } from "@tenstorrent/vesper/chip";
 import { Choicebox } from "@tenstorrent/vesper/choicebox";
 import { Code } from "@tenstorrent/vesper/code";
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
+import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import {
   Add,
+  CaretDown,
   Checkmark,
+  Close,
   Gear,
   Globe,
   Icon,
@@ -41,6 +44,7 @@ import {
   Search,
   Tenstorrent,
 } from "@tenstorrent/vesper/icons";
+import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 import { Material } from "@tenstorrent/vesper/material";
 import { Modal } from "@tenstorrent/vesper/modal";
 import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
@@ -56,6 +60,7 @@ import { StatusIndicator } from "@tenstorrent/vesper/status-indicator";
 import { Switch } from "@tenstorrent/vesper/switch";
 import { Tabs } from "@tenstorrent/vesper/tabs";
 import { Tag } from "@tenstorrent/vesper/tag";
+import { TextArea } from "@tenstorrent/vesper/text-area";
 import { TextButton } from "@tenstorrent/vesper/text-button";
 import { TextInput } from "@tenstorrent/vesper/text-input";
 import { ThemeSwitcher } from "@tenstorrent/vesper/theme-switcher";
@@ -68,7 +73,9 @@ import { ColorChip } from "@/components/color-chip";
 
 // named demos for components w non-serializable props (event handlers,
 // refs, state) that are used inside `docs/` documents
+import { ChipDemo } from "@/demos/chip";
 import { IconsDemo } from "@/demos/icons";
+import { MaskedInputDemo } from "@/demos/masked-input";
 import { MenuDemo } from "@/demos/menu";
 import { ShowMoreDemo } from "@/demos/show-more";
 import { SplitButtonDemo } from "@/demos/split-button";
@@ -221,8 +228,10 @@ const components = {
   Choicebox,
   Code,
   CodeBlock,
+  FormInputMessage,
   Icon,
   IconButton,
+  MaskedInput,
   Material,
   Modal,
   ProgressBar,
@@ -240,6 +249,7 @@ const components = {
   Tag,
   TextButton,
   TextInput,
+  TextArea,
   ThemeSwitcher,
   Toggle,
   Tooltip,
@@ -250,7 +260,9 @@ const components = {
 
   // icons will need to be added here too if we want to use them directly
   Add,
+  CaretDown,
   Checkmark,
+  Close,
   Gear,
   Globe,
   Info,
@@ -258,7 +270,9 @@ const components = {
   Tenstorrent,
 
   // demos
+  ChipDemo,
   IconsDemo,
+  MaskedInputDemo,
   MenuDemo,
   ShowMoreDemo,
   SplitButtonDemo,

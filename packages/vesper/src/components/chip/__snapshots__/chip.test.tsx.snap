@@ -1,46 +1,106 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`chip [snapshot] > contrast variant 1`] = `
+exports[`chip [snapshot] > md, contrast 1`] = `
 <button
   aria-pressed="false"
-  class="vesper-typography vesper-typography-label-md vesper-chip vesper-chip-contrast"
+  class="vesper-typography vesper-typography-label-sm vesper-chip vesper-chip-contrast vesper-chip-md"
 >
   Label
 </button>
 `;
 
-exports[`chip [snapshot] > default variant 1`] = `
+exports[`chip [snapshot] > md, contrast, disabled 1`] = `
 <button
   aria-pressed="false"
-  class="vesper-typography vesper-typography-label-md vesper-chip vesper-chip-default"
->
-  Label
-</button>
-`;
-
-exports[`chip [snapshot] > disabled 1`] = `
-<button
-  aria-pressed="false"
-  class="vesper-typography vesper-typography-label-md vesper-chip vesper-chip-default vesper-chip-disabled"
+  class="vesper-typography vesper-typography-label-sm vesper-chip vesper-chip-contrast vesper-chip-md vesper-chip-disabled"
   disabled=""
 >
   Label
 </button>
 `;
 
-exports[`chip [snapshot] > selected 1`] = `
+exports[`chip [snapshot] > md, contrast, iconLeft 1`] = `
+<button
+  aria-pressed="false"
+  class="vesper-typography vesper-typography-label-sm vesper-chip vesper-chip-contrast vesper-chip-md"
+>
+  <span
+    class="vesper-chip-icon"
+  >
+    <svg
+      fill="none"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        clip-rule="evenodd"
+        d="M21 9V15L16 21H8L3 15V9L8 3H16L21 9ZM8.43652 20H9.25684L7.53711 15.7676L7.5 15.6768V15.5H4.8291L8.43652 20ZM16.5 15.6768L16.4629 15.7676L14.7432 20H15.5635L19.1709 15.5H16.5V15.6768ZM10.3359 20H13.6641L15.4932 15.5H8.50781L10.3359 20ZM4 14.5H7.5V9.5H4V14.5ZM16.5 14.5H20V9.5H16.5V14.5ZM8.5 14.5H15.5V9.5H8.5V14.5ZM4.71875 8.5H7.5V8.32324L7.53711 8.23242L9.25684 4H8.46875L4.71875 8.5ZM16.4629 8.23242L16.5 8.32324V8.5H19.2812L15.5312 4H14.7432L16.4629 8.23242ZM8.50684 8.5H15.4922L13.6641 4H10.3359L8.50684 8.5Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </span>
+  Label
+</button>
+`;
+
+exports[`chip [snapshot] > md, contrast, iconRight 1`] = `
+<button
+  aria-pressed="false"
+  class="vesper-typography vesper-typography-label-sm vesper-chip vesper-chip-contrast vesper-chip-md"
+>
+  Label
+  <span
+    class="vesper-chip-icon"
+  >
+    <svg
+      fill="none"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        clip-rule="evenodd"
+        d="M21 9V15L16 21H8L3 15V9L8 3H16L21 9ZM8.43652 20H9.25684L7.53711 15.7676L7.5 15.6768V15.5H4.8291L8.43652 20ZM16.5 15.6768L16.4629 15.7676L14.7432 20H15.5635L19.1709 15.5H16.5V15.6768ZM10.3359 20H13.6641L15.4932 15.5H8.50781L10.3359 20ZM4 14.5H7.5V9.5H4V14.5ZM16.5 14.5H20V9.5H16.5V14.5ZM8.5 14.5H15.5V9.5H8.5V14.5ZM4.71875 8.5H7.5V8.32324L7.53711 8.23242L9.25684 4H8.46875L4.71875 8.5ZM16.4629 8.23242L16.5 8.32324V8.5H19.2812L15.5312 4H14.7432L16.4629 8.23242ZM8.50684 8.5H15.4922L13.6641 4H10.3359L8.50684 8.5Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`chip [snapshot] > md, contrast, selected 1`] = `
 <button
   aria-pressed="true"
-  class="vesper-typography vesper-typography-label-md vesper-chip vesper-chip-default vesper-chip-selected"
+  class="vesper-typography vesper-typography-label-sm vesper-chip vesper-chip-contrast vesper-chip-md vesper-chip-selected"
 >
   Label
 </button>
 `;
 
-exports[`chip [snapshot] > with icons 1`] = `
+exports[`chip [snapshot] > md, default 1`] = `
 <button
   aria-pressed="false"
-  class="vesper-typography vesper-typography-label-md vesper-chip vesper-chip-default"
+  class="vesper-typography vesper-typography-label-sm vesper-chip vesper-chip-default vesper-chip-md"
+>
+  Label
+</button>
+`;
+
+exports[`chip [snapshot] > md, default, disabled 1`] = `
+<button
+  aria-pressed="false"
+  class="vesper-typography vesper-typography-label-sm vesper-chip vesper-chip-default vesper-chip-md vesper-chip-disabled"
+  disabled=""
+>
+  Label
+</button>
+`;
+
+exports[`chip [snapshot] > md, default, iconLeft 1`] = `
+<button
+  aria-pressed="false"
+  class="vesper-typography vesper-typography-label-sm vesper-chip vesper-chip-default vesper-chip-md"
 >
   <span
     class="vesper-chip-icon"
@@ -59,6 +119,15 @@ exports[`chip [snapshot] > with icons 1`] = `
     </svg>
   </span>
   Label
+</button>
+`;
+
+exports[`chip [snapshot] > md, default, iconRight 1`] = `
+<button
+  aria-pressed="false"
+  class="vesper-typography vesper-typography-label-sm vesper-chip vesper-chip-default vesper-chip-md"
+>
+  Label
   <span
     class="vesper-chip-icon"
   >
@@ -75,5 +144,170 @@ exports[`chip [snapshot] > with icons 1`] = `
       />
     </svg>
   </span>
+</button>
+`;
+
+exports[`chip [snapshot] > md, default, selected 1`] = `
+<button
+  aria-pressed="true"
+  class="vesper-typography vesper-typography-label-sm vesper-chip vesper-chip-default vesper-chip-md vesper-chip-selected"
+>
+  Label
+</button>
+`;
+
+exports[`chip [snapshot] > sm, contrast 1`] = `
+<button
+  aria-pressed="false"
+  class="vesper-typography vesper-typography-label-xs vesper-chip vesper-chip-contrast vesper-chip-sm"
+>
+  Label
+</button>
+`;
+
+exports[`chip [snapshot] > sm, contrast, disabled 1`] = `
+<button
+  aria-pressed="false"
+  class="vesper-typography vesper-typography-label-xs vesper-chip vesper-chip-contrast vesper-chip-sm vesper-chip-disabled"
+  disabled=""
+>
+  Label
+</button>
+`;
+
+exports[`chip [snapshot] > sm, contrast, iconLeft 1`] = `
+<button
+  aria-pressed="false"
+  class="vesper-typography vesper-typography-label-xs vesper-chip vesper-chip-contrast vesper-chip-sm"
+>
+  <span
+    class="vesper-chip-icon"
+  >
+    <svg
+      fill="none"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        clip-rule="evenodd"
+        d="M21 9V15L16 21H8L3 15V9L8 3H16L21 9ZM8.43652 20H9.25684L7.53711 15.7676L7.5 15.6768V15.5H4.8291L8.43652 20ZM16.5 15.6768L16.4629 15.7676L14.7432 20H15.5635L19.1709 15.5H16.5V15.6768ZM10.3359 20H13.6641L15.4932 15.5H8.50781L10.3359 20ZM4 14.5H7.5V9.5H4V14.5ZM16.5 14.5H20V9.5H16.5V14.5ZM8.5 14.5H15.5V9.5H8.5V14.5ZM4.71875 8.5H7.5V8.32324L7.53711 8.23242L9.25684 4H8.46875L4.71875 8.5ZM16.4629 8.23242L16.5 8.32324V8.5H19.2812L15.5312 4H14.7432L16.4629 8.23242ZM8.50684 8.5H15.4922L13.6641 4H10.3359L8.50684 8.5Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </span>
+  Label
+</button>
+`;
+
+exports[`chip [snapshot] > sm, contrast, iconRight 1`] = `
+<button
+  aria-pressed="false"
+  class="vesper-typography vesper-typography-label-xs vesper-chip vesper-chip-contrast vesper-chip-sm"
+>
+  Label
+  <span
+    class="vesper-chip-icon"
+  >
+    <svg
+      fill="none"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        clip-rule="evenodd"
+        d="M21 9V15L16 21H8L3 15V9L8 3H16L21 9ZM8.43652 20H9.25684L7.53711 15.7676L7.5 15.6768V15.5H4.8291L8.43652 20ZM16.5 15.6768L16.4629 15.7676L14.7432 20H15.5635L19.1709 15.5H16.5V15.6768ZM10.3359 20H13.6641L15.4932 15.5H8.50781L10.3359 20ZM4 14.5H7.5V9.5H4V14.5ZM16.5 14.5H20V9.5H16.5V14.5ZM8.5 14.5H15.5V9.5H8.5V14.5ZM4.71875 8.5H7.5V8.32324L7.53711 8.23242L9.25684 4H8.46875L4.71875 8.5ZM16.4629 8.23242L16.5 8.32324V8.5H19.2812L15.5312 4H14.7432L16.4629 8.23242ZM8.50684 8.5H15.4922L13.6641 4H10.3359L8.50684 8.5Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`chip [snapshot] > sm, contrast, selected 1`] = `
+<button
+  aria-pressed="true"
+  class="vesper-typography vesper-typography-label-xs vesper-chip vesper-chip-contrast vesper-chip-sm vesper-chip-selected"
+>
+  Label
+</button>
+`;
+
+exports[`chip [snapshot] > sm, default 1`] = `
+<button
+  aria-pressed="false"
+  class="vesper-typography vesper-typography-label-xs vesper-chip vesper-chip-default vesper-chip-sm"
+>
+  Label
+</button>
+`;
+
+exports[`chip [snapshot] > sm, default, disabled 1`] = `
+<button
+  aria-pressed="false"
+  class="vesper-typography vesper-typography-label-xs vesper-chip vesper-chip-default vesper-chip-sm vesper-chip-disabled"
+  disabled=""
+>
+  Label
+</button>
+`;
+
+exports[`chip [snapshot] > sm, default, iconLeft 1`] = `
+<button
+  aria-pressed="false"
+  class="vesper-typography vesper-typography-label-xs vesper-chip vesper-chip-default vesper-chip-sm"
+>
+  <span
+    class="vesper-chip-icon"
+  >
+    <svg
+      fill="none"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        clip-rule="evenodd"
+        d="M21 9V15L16 21H8L3 15V9L8 3H16L21 9ZM8.43652 20H9.25684L7.53711 15.7676L7.5 15.6768V15.5H4.8291L8.43652 20ZM16.5 15.6768L16.4629 15.7676L14.7432 20H15.5635L19.1709 15.5H16.5V15.6768ZM10.3359 20H13.6641L15.4932 15.5H8.50781L10.3359 20ZM4 14.5H7.5V9.5H4V14.5ZM16.5 14.5H20V9.5H16.5V14.5ZM8.5 14.5H15.5V9.5H8.5V14.5ZM4.71875 8.5H7.5V8.32324L7.53711 8.23242L9.25684 4H8.46875L4.71875 8.5ZM16.4629 8.23242L16.5 8.32324V8.5H19.2812L15.5312 4H14.7432L16.4629 8.23242ZM8.50684 8.5H15.4922L13.6641 4H10.3359L8.50684 8.5Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </span>
+  Label
+</button>
+`;
+
+exports[`chip [snapshot] > sm, default, iconRight 1`] = `
+<button
+  aria-pressed="false"
+  class="vesper-typography vesper-typography-label-xs vesper-chip vesper-chip-default vesper-chip-sm"
+>
+  Label
+  <span
+    class="vesper-chip-icon"
+  >
+    <svg
+      fill="none"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        clip-rule="evenodd"
+        d="M21 9V15L16 21H8L3 15V9L8 3H16L21 9ZM8.43652 20H9.25684L7.53711 15.7676L7.5 15.6768V15.5H4.8291L8.43652 20ZM16.5 15.6768L16.4629 15.7676L14.7432 20H15.5635L19.1709 15.5H16.5V15.6768ZM10.3359 20H13.6641L15.4932 15.5H8.50781L10.3359 20ZM4 14.5H7.5V9.5H4V14.5ZM16.5 14.5H20V9.5H16.5V14.5ZM8.5 14.5H15.5V9.5H8.5V14.5ZM4.71875 8.5H7.5V8.32324L7.53711 8.23242L9.25684 4H8.46875L4.71875 8.5ZM16.4629 8.23242L16.5 8.32324V8.5H19.2812L15.5312 4H14.7432L16.4629 8.23242ZM8.50684 8.5H15.4922L13.6641 4H10.3359L8.50684 8.5Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`chip [snapshot] > sm, default, selected 1`] = `
+<button
+  aria-pressed="true"
+  class="vesper-typography vesper-typography-label-xs vesper-chip vesper-chip-default vesper-chip-sm vesper-chip-selected"
+>
+  Label
 </button>
 `;

@@ -5,6 +5,7 @@ import type { ElementType, ReactNode } from "react";
 import {
   Typography,
   type TypographyProps,
+  TypographyVariant,
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
@@ -13,12 +14,18 @@ import type { Polymorphic } from "@/utils/polymorphic";
 
 export const CHIP_VARIANTS = ["default", "contrast"] as const;
 
+export const CHIP_SIZES = ["sm", "md"] as const;
+
 export type ChipVariant = (typeof CHIP_VARIANTS)[number];
+
+export type ChipSize = (typeof CHIP_SIZES)[number];
 
 export type ChipProps<E extends ElementType = "button"> = Polymorphic<
   {
     /** The visual style variant of the chip. @default default */
     variant?: ChipVariant;
+    /** The size of the chip. @default md */
+    size?: ChipSize;
     /** An optional icon element rendered to the left of the chip content. */
     iconLeft?: ReactNode;
     /** An optional icon element rendered to the right of the chip content. */
@@ -33,6 +40,11 @@ export type ChipProps<E extends ElementType = "button"> = Polymorphic<
   E
 >;
 
+const CHIP_TYPOGRAPHY: { [S in ChipSize]: TypographyVariant } = {
+  sm: "label-xs",
+  md: "label-sm",
+};
+
 /**
  * A polymorphic selectable chip component for displaying on/off states in UI panels and forms, supporting icons and click callbacks.
  *
@@ -42,6 +54,7 @@ export type ChipProps<E extends ElementType = "button"> = Polymorphic<
  * @see packages/vesper/src/components/tag/tag.tsx
  *
  * @param {ChipVariant} [props.variant] - (optional) The visual style variant. @default default
+ * @param {ChipSize} [props.size] - (optional) The size of the `Chip`. @default md
  * @param {boolean} [props.selected] - (optional) Whether the chip is currently selected @default false
  * @param {boolean} [props.disabled] - (optional) Renders the chip in a disabled state @default false
  * @param {ReactNode} [props.iconLeft] - (optional) An icon rendered to the left of the chip content
@@ -65,6 +78,7 @@ export function Chip<E extends ElementType = "button">(props: ChipProps<E>) {
   const {
     as: Component = "button",
     variant = "default",
+    size = "md",
     children,
     iconLeft,
     iconRight,
@@ -79,11 +93,12 @@ export function Chip<E extends ElementType = "button">(props: ChipProps<E>) {
   return (
     <Typography
       as={Component}
-      variant="label-md"
+      variant={CHIP_TYPOGRAPHY[size]}
       aria-pressed={Component === "button" ? selected : undefined}
       className={cn(
         "vesper-chip",
         `vesper-chip-${variant}`,
+        `vesper-chip-${size}`,
         selected && `vesper-chip-selected`,
         disabled && `vesper-chip-disabled`,
         className,
