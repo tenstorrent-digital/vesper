@@ -179,7 +179,7 @@
   width: fit-content;
 }
 
-.vesper-combobox-content {
+.vesper-combobox-popup {
   min-width: var(--anchor-width);
   border-radius: var(--vesper-radius-3);
   border: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);

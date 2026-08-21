@@ -187,6 +187,7 @@ export function Combobox(props: ComboboxProps) {
     label,
     message,
     "aria-describedby": ariaDescribedby,
+    "aria-label": ariaLabel,
     ...rest
   } = props;
   const [innerRef, setInnerRef] = useState<HTMLDivElement | null>(null);
@@ -216,6 +217,7 @@ export function Combobox(props: ComboboxProps) {
       <Typography
         as={BaseCombobox.Input}
         aria-describedby={describedBy}
+        aria-label={ariaLabel}
         id={inputId}
         variant={COMBOBOX_TYPOGRAPHY[size]}
         placeholder={placeholder}
@@ -309,7 +311,7 @@ export function Combobox(props: ComboboxProps) {
           align="start"
           sideOffset={12 * (baseRemSize / 16)}
         >
-          <BaseCombobox.Popup className="vesper-combobox-content">
+          <BaseCombobox.Popup className="vesper-combobox-popup">
             <BaseCombobox.Empty>
               <Typography
                 className="vesper-combobox-empty-state"
