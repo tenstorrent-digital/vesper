@@ -1,6 +1,12 @@
 "use client";
 
-import { ComponentProps, Ref, useImperativeHandle, useState } from "react";
+import {
+  ComponentProps,
+  Ref,
+  useId,
+  useImperativeHandle,
+  useState,
+} from "react";
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
 
 import {
@@ -8,7 +14,11 @@ import {
   CaretUp,
   Checkmark,
   Close,
+  ErrorSolid,
+  InfoSolid,
   Search,
+  SuccessSolid,
+  WarningSolid,
 } from "@/components/icons/icons";
 import {
   Typography,
@@ -24,7 +34,16 @@ import { useBaseRemSize } from "@/utils/useBaseRemSize";
 
 export const COMBOBOX_SIZES = ["sm", "md", "lg"] as const;
 
+export const COMBOBOX_VARIANTS = [
+  "default",
+  "warning",
+  "success",
+  "error",
+] as const;
+
 export type ComboboxSize = (typeof COMBOBOX_SIZES)[number];
+
+export type ComboboxVariant = (typeof COMBOBOX_VARIANTS)[number];
 
 const COMBOBOX_TYPOGRAPHY: Record<ComboboxSize, TypographyVariant> = {
   lg: "copy-md",
@@ -46,7 +65,11 @@ export interface ComboboxProps extends Omit<
   disabled?: boolean;
   readOnly?: boolean;
   size?: ComboboxSize;
+  variant?: ComboboxVariant;
   emptyStateText?: string;
+  message?: string;
+  placeholder?: string;
+  label?: string;
   name?: string;
   form?: string;
   id?: string;
@@ -69,7 +92,9 @@ export function Combobox(props: ComboboxProps) {
     options,
     disabled,
     size = "md",
+    variant = "default",
     emptyStateText = "No results",
+    placeholder = "Search...",
     className,
     open,
     defaultOpen,
@@ -88,6 +113,9 @@ export function Combobox(props: ComboboxProps) {
     container,
     inputRef,
     ref,
+    label,
+    message,
+    "aria-describedby": ariaDescribedby,
     ...rest
   } = props;
   const [innerRef, setInnerRef] = useState<HTMLDivElement | null>(null);
@@ -95,11 +123,48 @@ export function Combobox(props: ComboboxProps) {
 
   const baseRemSize = useBaseRemSize();
 
+  const inputId = useId();
+
+  const messageId = useId();
+
+  // If an additional aria-describedby is supplied, this ensures that both ids get used
+  const describedBy =
+    [ariaDescribedby, message ? messageId : undefined]
+      .filter(Boolean)
+      .join(" ") || undefined;
+
   const items: ComboboxItem[] = options.map((option) =>
     typeof option === "string" ? { value: option, label: option } : option,
   );
 
   const portalContainer = getPortalContainer(container, innerRef);
+
+  const input = (
+    <BaseCombobox.InputGroup className="vesper-combobox-input-wrapper">
+      <Search className="vesper-combobox-search-icon" />
+      <Typography
+        as={BaseCombobox.Input}
+        aria-describedby={describedBy}
+        id={inputId}
+        variant={COMBOBOX_TYPOGRAPHY[size]}
+        placeholder={placeholder}
+        className="vesper-combobox-input"
+      />
+      <BaseCombobox.Clear
+        className="vesper-combobox-clear"
+        aria-label="Clear selection"
+      >
+        <Close />
+      </BaseCombobox.Clear>
+      <BaseCombobox.Trigger
+        className="vesper-combobox-trigger"
+        aria-label="Show options"
+      >
+        <CaretUp className="vesper-combobox-caret-up" />
+        <CaretDown className="vesper-combobox-caret-down" />
+      </BaseCombobox.Trigger>
+    </BaseCombobox.InputGroup>
+  );
 
   return (
     <BaseCombobox.Root
@@ -121,35 +186,55 @@ export function Combobox(props: ComboboxProps) {
       inputRef={inputRef}
       readOnly={readOnly}
     >
-      <BaseCombobox.InputGroup
-        className={cn("vesper-combobox", `vesper-combobox-${size}`, className)}
+      <div
+        className={cn(
+          "vesper-combobox",
+          `vesper-combobox-${size}`,
+          `vesper-combobox-${variant}`,
+          className,
+        )}
         ref={setInnerRef}
         {...rest}
       >
-        <Search className="vesper-combobox-search-icon" />
-        <Typography
-          as={BaseCombobox.Input}
-          variant={COMBOBOX_TYPOGRAPHY[size]}
-          placeholder="e.g. Apple"
-          className="vesper-combobox-input"
-        />
-        <BaseCombobox.Clear
-          className="vesper-combobox-clear"
-          aria-label="Clear selection"
-        >
-          <Close />
-        </BaseCombobox.Clear>
-        <BaseCombobox.Trigger
-          className="vesper-combobox-trigger"
-          aria-label="Show options"
-        >
-          <CaretUp className="vesper-combobox-caret-up" />
-          <CaretDown className="vesper-combobox-caret-down" />
-        </BaseCombobox.Trigger>
-      </BaseCombobox.InputGroup>
+        {label ? (
+          <div className="vesper-combobox-label-wrapper">
+            <Typography
+              as="label"
+              variant="label-sm"
+              className="vesper-combobox-label"
+              htmlFor={inputId}
+            >
+              {label + (required ? " *" : "")}
+            </Typography>
+            {input}
+          </div>
+        ) : (
+          input
+        )}
+        {message && (
+          <p className="vesper-combobox-message">
+            <span className="vesper-combobox-message-icon">
+              {variant === "default" && <InfoSolid />}
+              {variant === "error" && <ErrorSolid />}
+              {variant === "success" && <SuccessSolid />}
+              {variant === "warning" && <WarningSolid />}
+            </span>
+            <Typography
+              id={messageId}
+              as="span"
+              variant="label-xs"
+              className="vesper-combobox-message-text"
+              aria-live="polite"
+            >
+              {message}
+            </Typography>
+          </p>
+        )}
+      </div>
       <BaseCombobox.Portal container={portalContainer}>
         <BaseCombobox.Positioner
           side="bottom"
+          collisionAvoidance={{ side: "none" }}
           align="start"
           sideOffset={12 * (baseRemSize / 16)}
         >

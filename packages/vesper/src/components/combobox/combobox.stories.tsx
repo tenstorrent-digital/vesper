@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Combobox } from "@/components/combobox/combobox";
+import {
+  Combobox,
+  COMBOBOX_SIZES,
+  COMBOBOX_VARIANTS,
+} from "@/components/combobox/combobox";
 
 const meta = {
   component: Combobox,
@@ -16,6 +20,8 @@ const meta = {
     inputValue: { table: { disable: true } },
     defaultInputValue: { table: { disable: true } },
     onInputValueChange: { table: { disable: true } },
+    size: { control: "radio", options: COMBOBOX_SIZES },
+    variant: { control: "radio", options: COMBOBOX_VARIANTS },
   },
 } satisfies Meta<typeof Combobox>;
 
@@ -26,9 +32,13 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   args: {
     size: "md",
-    emptyStateText: "No results",
+    variant: "default",
+    label: "Fruit",
+    placeholder: "e.g. Apple",
+    message: "This is a message you can display under the input.",
     disabled: false,
-    style: { width: "min(calc(100vw - 4rem), 15rem)" },
+    emptyStateText: "No results",
+    style: { width: "min(calc(100vw - 4rem), 400px)" },
     options: [
       { label: "Apple", value: "apple" },
       { label: "Banana", value: "banana" },
