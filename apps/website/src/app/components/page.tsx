@@ -27,6 +27,7 @@ import { StatusIndicator } from "@tenstorrent/vesper/status-indicator";
 import { Switch } from "@tenstorrent/vesper/switch";
 import { Tabs } from "@tenstorrent/vesper/tabs";
 import { Tag } from "@tenstorrent/vesper/tag";
+import { TextArea } from "@tenstorrent/vesper/text-area";
 import { TextButton } from "@tenstorrent/vesper/text-button";
 import { TextInput } from "@tenstorrent/vesper/text-input";
 import { ThemeSwitcher } from "@tenstorrent/vesper/theme-switcher";
@@ -217,6 +218,10 @@ export default function Page() {
 
         <Cell name="Tag">
           <Tag>Category</Tag>
+        </Cell>
+
+        <Cell name="TextArea">
+          <TextArea placeholder="Tell us about yourself" />
         </Cell>
 
         <Cell name="TextButton">
