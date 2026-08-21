@@ -93,7 +93,7 @@ export interface TextInputProps
   variant?: TextInputVariant;
   /** An optional message displayed below the input, paired with a variant-specific icon. Also linked to the input via `aria-describedby`. */
   message?: string;
-  /** An optional label displayed above the input. The input is associated by nesting; when `id` is provided, it is also associated via `htmlFor`. An asterisk is appended when `required` is `true`. */
+  /** An optional label displayed above the input. An asterisk is appended when `required` is `true`. */
   label?: string;
   /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
   inputRef?: Ref<HTMLInputElement>;
@@ -138,7 +138,7 @@ const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
 };
 
 /**
- * A form-ready text input component supporting labels, icons, validation messages, variants, and leading dropdown select.
+ * A form-ready text input component supporting labels, icons, validation messages, and variants.
  *
  * @param {TextInputSize} [props.size] - (optional) The size of the text input. @default md
  * @param {TextInputVariant} [props.variant] - (optional) The visual variant determining color scheme and message icon. @default default
