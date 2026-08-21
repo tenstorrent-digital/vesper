@@ -144,12 +144,7 @@ describe("masked-input [unit]", () => {
     await userEvent.fill(input, "123456");
     expect(input).toHaveValue("123-456");
 
-    rerender(
-      <MaskedInput
-        mask={{ format: "__/__/__", replace: /\d/ }}
-        formatOnMaskChange={false}
-      />,
-    );
+    rerender(<MaskedInput mask={{ format: "__/__/__", replace: /\d/ }} />);
     expect(input).toHaveValue("123-456");
 
     // the new mask still applies to subsequent edits
