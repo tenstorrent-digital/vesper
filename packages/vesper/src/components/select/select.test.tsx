@@ -194,7 +194,7 @@ describe("select [unit]", () => {
       expect(trigger).toHaveAttribute("data-popup-open");
     });
 
-    const content = document.querySelector(".vesper-select-content");
+    const content = document.querySelector(".vesper-select-popup");
     expect(content).not.toBeNull();
   });
 
@@ -204,7 +204,7 @@ describe("select [unit]", () => {
 
     await userEvent.click(trigger);
     await waitFor(() => {
-      expect(document.querySelector(".vesper-select-content")).not.toBeNull();
+      expect(document.querySelector(".vesper-select-popup")).not.toBeNull();
     });
 
     const items = document.querySelectorAll(".vesper-select-item");
@@ -222,7 +222,7 @@ describe("select [unit]", () => {
 
     await userEvent.click(trigger);
     await waitFor(() => {
-      expect(document.querySelector(".vesper-select-content")).not.toBeNull();
+      expect(document.querySelector(".vesper-select-popup")).not.toBeNull();
     });
 
     const items = document.querySelectorAll(".vesper-select-item");
@@ -239,7 +239,7 @@ describe("select [unit]", () => {
 
     await userEvent.click(trigger);
     await waitFor(() => {
-      expect(document.querySelector(".vesper-select-content")).not.toBeNull();
+      expect(document.querySelector(".vesper-select-popup")).not.toBeNull();
     });
 
     const items = document.querySelectorAll(".vesper-select-item");
@@ -259,7 +259,7 @@ describe("select [unit]", () => {
 
     await userEvent.click(trigger);
     await waitFor(() => {
-      expect(document.querySelector(".vesper-select-content")).not.toBeNull();
+      expect(document.querySelector(".vesper-select-popup")).not.toBeNull();
     });
 
     const items = document.querySelectorAll(".vesper-select-item");
@@ -276,7 +276,7 @@ describe("select [unit]", () => {
 
     await userEvent.click(trigger);
     await waitFor(() => {
-      expect(document.querySelector(".vesper-select-content")).not.toBeNull();
+      expect(document.querySelector(".vesper-select-popup")).not.toBeNull();
     });
 
     const items = document.querySelectorAll(".vesper-select-item");
@@ -290,7 +290,7 @@ describe("select [unit]", () => {
 
     await userEvent.click(trigger);
     await waitFor(() => {
-      expect(document.querySelector(".vesper-select-content")).not.toBeNull();
+      expect(document.querySelector(".vesper-select-popup")).not.toBeNull();
     });
 
     const items = document.querySelectorAll(".vesper-select-item");
@@ -346,7 +346,7 @@ describe("select [unit]", () => {
     trigger.focus();
     await userEvent.keyboard("{Enter}");
     await waitFor(() => {
-      expect(document.querySelector(".vesper-select-content")).not.toBeNull();
+      expect(document.querySelector(".vesper-select-popup")).not.toBeNull();
     });
 
     await userEvent.keyboard("{ArrowDown}");
@@ -363,7 +363,7 @@ describe("select [unit]", () => {
 
     await userEvent.click(trigger);
     await waitFor(() => {
-      expect(document.querySelector(".vesper-select-content")).not.toBeNull();
+      expect(document.querySelector(".vesper-select-popup")).not.toBeNull();
     });
 
     const items = document.querySelectorAll(".vesper-select-item");
@@ -406,10 +406,10 @@ describe("select [unit]", () => {
 
     await userEvent.click(trigger);
     await waitFor(() => {
-      expect(document.querySelector(".vesper-select-content")).not.toBeNull();
+      expect(document.querySelector(".vesper-select-popup")).not.toBeNull();
     });
 
-    const content = document.querySelector(".vesper-select-content")!;
+    const content = document.querySelector(".vesper-select-popup")!;
     expect(content.closest("dialog")).toBeNull();
     expect(document.body.contains(content)).toBe(true);
   });
@@ -428,11 +428,11 @@ describe("select [unit]", () => {
 
     await userEvent.click(trigger);
     await waitFor(() => {
-      expect(document.querySelector(".vesper-select-content")).not.toBeNull();
+      expect(document.querySelector(".vesper-select-popup")).not.toBeNull();
     });
 
     const dialog = result.getByTestId("dialog");
-    const content = document.querySelector(".vesper-select-content")!;
+    const content = document.querySelector(".vesper-select-popup")!;
     expect(dialog.contains(content)).toBe(true);
   });
 
@@ -445,7 +445,7 @@ describe("select [unit]", () => {
 
     await userEvent.click(trigger);
     await waitFor(() => {
-      expect(container.querySelector(".vesper-select-content")).not.toBeNull();
+      expect(container.querySelector(".vesper-select-popup")).not.toBeNull();
     });
 
     container.remove();
@@ -464,11 +464,11 @@ describe("select [unit]", () => {
 
     await userEvent.click(trigger);
     await waitFor(() => {
-      expect(container.querySelector(".vesper-select-content")).not.toBeNull();
+      expect(container.querySelector(".vesper-select-popup")).not.toBeNull();
     });
 
     const dialog = result.getByTestId("dialog");
-    expect(dialog.querySelector(".vesper-select-content")).toBeNull();
+    expect(dialog.querySelector(".vesper-select-popup")).toBeNull();
 
     container.remove();
   });

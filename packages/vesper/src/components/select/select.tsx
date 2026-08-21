@@ -169,7 +169,7 @@ export function Select(props: SelectProps) {
           alignItemWithTrigger={false}
           sideOffset={12 * (baseRemSize / 16)}
         >
-          <BaseSelect.Popup className="vesper-select-content">
+          <BaseSelect.Popup className="vesper-select-popup">
             <BaseSelect.List className="vesper-select-viewport">
               {options.map((o) => (
                 <BaseSelect.Item

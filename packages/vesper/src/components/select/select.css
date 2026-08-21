@@ -86,7 +86,7 @@
   }
 }
 
-.vesper-select-content {
+.vesper-select-popup {
   max-height: min(var(--available-height), 20rem);
   overflow-y: scroll;
   -ms-overflow-style: none;
