@@ -3,6 +3,7 @@
 import {
   ComponentProps,
   Ref,
+  useCallback,
   useId,
   useImperativeHandle,
   useState,
@@ -239,6 +240,11 @@ export function Combobox(props: ComboboxProps) {
     </BaseCombobox.InputGroup>
   );
 
+  const handleValueChange = useCallback(
+    (value: string | null) => onValueChange?.(value),
+    [onValueChange],
+  );
+
   return (
     <BaseCombobox.Root
       items={items}
@@ -247,7 +253,7 @@ export function Combobox(props: ComboboxProps) {
       onOpenChange={onOpenChange}
       value={value}
       defaultValue={defaultValue}
-      onValueChange={onValueChange}
+      onValueChange={handleValueChange}
       inputValue={inputValue}
       defaultInputValue={defaultInputValue}
       onInputValueChange={onInputValueChange}
@@ -324,7 +330,7 @@ export function Combobox(props: ComboboxProps) {
               {(item: ComboboxItem) => (
                 <BaseCombobox.Item
                   key={item.value}
-                  value={item}
+                  value={item.value}
                   className="vesper-combobox-item"
                 >
                   <Typography as="span" variant="label-md">
