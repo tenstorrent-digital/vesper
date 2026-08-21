@@ -143,39 +143,22 @@ A good use-case for using a `MaskitoOptions` object is when you need to build a 
 <MaskedInputDemo kind="intl-phone-number" />
 
 ```tsx
-import { useMemo, useState } from "react";
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 import { maskitoPhone } from "@maskito/phone";
-import { type CountryCode, getCountries } from "libphonenumber-js/core";
 import metadata from "libphonenumber-js/min/metadata";
 
-const countries = getCountries(metadata);
+const mask = maskitoPhone({
+  metadata,
+  format: "INTERNATIONAL",
+  strict: true,
+});
 
 function PhoneNumberInput() {
-  const [countryIsoCode, setCountryIsoCode] = useState<CountryCode>("US");
-  const mask = useMemo(
-    () =>
-      maskitoPhone({
-        countryIsoCode,
-        metadata,
-        format: "INTERNATIONAL",
-        strict: true,
-      }),
-    [countryIsoCode],
-  );
-
   return (
     <MaskedInput
-      formatOnMaskChange
       label="Phone number"
       placeholder="Enter your phone number"
       mask={mask}
-      dropdown={{
-        options: countries,
-        value: countryIsoCode,
-        ariaLabel: "Country",
-        onChange: (code) => setCountryIsoCode(code as CountryCode),
-      }}
     />
   );
 }
@@ -191,4 +174,4 @@ By default, an initial `value` or `defaultValue` is left exactly as it was provi
 
 #### `formatOnMaskChange`
 
-Setting `formatOnMaskChange` to `true` reformats the input's value when the `mask` prop changes. This keeps the value consistent with the mask that is currently applied, eg. when the user picks a different country in the international phone number example above.
+Setting `formatOnMaskChange` to `true` reformats the input's value when the `mask` prop changes. This keeps the value consistent with the mask that is currently applied.

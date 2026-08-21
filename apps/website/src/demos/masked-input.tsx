@@ -1,13 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import { maskitoPhone } from "@maskito/phone";
-import { type CountryCode, getCountries } from "libphonenumber-js/core";
 import metadata from "libphonenumber-js/min/metadata";
 
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";
-
-const countries = getCountries(metadata);
 
 interface MaskedInputDemoProps {
   kind:
@@ -71,31 +67,19 @@ export function MaskedInputDemo(props: MaskedInputDemoProps) {
 
   return null;
 }
-function IntlPhoneNumberMaskedInput() {
-  const [countryIsoCode, setCountryIsoCode] = useState<CountryCode>("US");
-  const mask = useMemo(
-    () =>
-      maskitoPhone({
-        countryIsoCode,
-        metadata,
-        format: "INTERNATIONAL",
-        strict: true,
-      }),
-    [countryIsoCode],
-  );
 
+const mask = maskitoPhone({
+  metadata,
+  format: "INTERNATIONAL",
+  strict: true,
+});
+
+function IntlPhoneNumberMaskedInput() {
   return (
     <MaskedInput
-      formatOnMaskChange
       label="Phone number"
       placeholder="Enter your phone number"
       mask={mask}
-      dropdown={{
-        options: countries,
-        value: countryIsoCode,
-        ariaLabel: "Country",
-        onChange: (code) => setCountryIsoCode(code as CountryCode),
-      }}
     />
   );
 }
