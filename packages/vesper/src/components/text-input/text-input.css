@@ -72,6 +72,10 @@
   }
 }
 
+.vesper-text-input-dropdown[data-popup-open] {
+  border-color: var(--vesper-border-strong);
+}
+
 .vesper-text-input-field {
   width: 100%;
   &:focus-visible {
@@ -137,10 +141,6 @@
   }
 }
 
-.vesper-text-input-icon + .vesper-text-input-dropdown {
-  margin-left: 0;
-}
-
 .vesper-text-input-lg {
   .vesper-text-input-field-wrapper {
     gap: var(--vesper-spacing-2);
@@ -158,6 +158,10 @@
   .vesper-text-input-field {
     padding: 0.9rem 0;
   }
+}
+
+.vesper-text-input-icon + .vesper-text-input-dropdown {
+  margin-left: 0;
 }
 
 .vesper-text-input-field {

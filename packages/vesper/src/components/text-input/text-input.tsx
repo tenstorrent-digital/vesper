@@ -484,9 +484,6 @@ function TextInputDropdown({
             disabled={disabled}
             size={TEXT_INPUT_CHIP_SIZES[size]}
             iconRight={open ? <CaretUp /> : <CaretDown />}
-            selected={open}
-            variant={open ? "contrast" : "default"}
-            aria-pressed={undefined}
             style={
               width
                 ? { flexShrink: 0, width: `calc(${width} * (1rem / 16))` }
