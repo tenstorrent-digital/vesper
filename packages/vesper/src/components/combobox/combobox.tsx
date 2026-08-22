@@ -6,6 +6,7 @@ import {
   useCallback,
   useId,
   useImperativeHandle,
+  useMemo,
   useState,
 } from "react";
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
@@ -206,8 +207,26 @@ export function Combobox(props: ComboboxProps) {
       .filter(Boolean)
       .join(" ") || undefined;
 
-  const items: ComboboxItem[] = options.map((option) =>
-    typeof option === "string" ? { value: option, label: option } : option,
+  const { values, labels } = useMemo(() => {
+    const labels: Map<string, string> = new Map();
+    const values: string[] = [];
+
+    for (const option of options) {
+      if (typeof option === "string") {
+        values.push(option);
+        labels.set(option, option);
+        continue;
+      }
+      values.push(option.value);
+      labels.set(option.value, option.label);
+    }
+
+    return { values, labels };
+  }, [options]);
+
+  const itemToStringLabel = useCallback(
+    (itemValue: string) => labels.get(itemValue) ?? itemValue,
+    [labels],
   );
 
   const portalContainer = getPortalContainer(container, innerRef);
@@ -247,7 +266,8 @@ export function Combobox(props: ComboboxProps) {
 
   return (
     <BaseCombobox.Root
-      items={items}
+      items={values}
+      itemToStringLabel={itemToStringLabel}
       open={open}
       defaultOpen={defaultOpen}
       onOpenChange={onOpenChange}
@@ -327,14 +347,14 @@ export function Combobox(props: ComboboxProps) {
               </Typography>
             </BaseCombobox.Empty>
             <BaseCombobox.List className="vesper-combobox-viewport">
-              {(item: ComboboxItem) => (
+              {(itemValue: string) => (
                 <BaseCombobox.Item
-                  key={item.value}
-                  value={item.value}
+                  key={itemValue}
+                  value={itemValue}
                   className="vesper-combobox-item"
                 >
                   <Typography as="span" variant="label-md">
-                    {item.label}
+                    {itemToStringLabel(itemValue)}
                   </Typography>
                   <BaseCombobox.ItemIndicator>
                     <Checkmark className="vesper-combobox-item-checkmark" />
