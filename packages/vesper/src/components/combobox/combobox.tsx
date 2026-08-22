@@ -11,16 +11,13 @@ import {
 } from "react";
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
 
+import { FormInputMessage } from "@/components/form-input-message/form-input-message";
 import {
   CaretDown,
   CaretUp,
   Checkmark,
   Close,
-  ErrorSolid,
-  InfoSolid,
   Search,
-  SuccessSolid,
-  WarningSolid,
 } from "@/components/icons/icons";
 import {
   Typography,
@@ -310,25 +307,7 @@ export function Combobox(props: ComboboxProps) {
         ) : (
           input
         )}
-        {message && (
-          <p className="vesper-combobox-message">
-            <span className="vesper-combobox-message-icon">
-              {variant === "default" && <InfoSolid />}
-              {variant === "error" && <ErrorSolid />}
-              {variant === "success" && <SuccessSolid />}
-              {variant === "warning" && <WarningSolid />}
-            </span>
-            <Typography
-              id={messageId}
-              as="span"
-              variant="label-xs"
-              className="vesper-combobox-message-text"
-              aria-live="polite"
-            >
-              {message}
-            </Typography>
-          </p>
-        )}
+        <FormInputMessage variant={variant} message={message} />
       </div>
       <BaseCombobox.Portal container={portalContainer}>
         <BaseCombobox.Positioner
