@@ -26,6 +26,7 @@ import { Auto } from "./auto";
 import { Blackhole } from "./blackhole";
 import { Board } from "./board";
 import { Bolt } from "./bolt";
+import { Bug } from "./bug";
 import { CaretDown } from "./caret-down";
 import { CaretLeft } from "./caret-left";
 import { CaretRight } from "./caret-right";
@@ -35,8 +36,13 @@ import { Chat } from "./chat";
 import { ChatSolid } from "./chat-solid";
 import { Checkmark } from "./checkmark";
 import { Chip } from "./chip";
+import { CircleAdd } from "./circle-add";
+import { CircleAddSolid } from "./circle-add-solid";
 import { CircleX } from "./circle-x";
 import { CircleXSolid } from "./circle-x-solid";
+import { Clock } from "./clock";
+import { ClockCountdown } from "./clock-countdown";
+import { ClockCounterClockwise } from "./clock-counter-clockwise";
 import { Close } from "./close";
 import { ClosePanel } from "./close-panel";
 import { CloudServer } from "./cloud-server";
@@ -48,10 +54,13 @@ import { Download } from "./download";
 import { Ellipses } from "./ellipses";
 import { Error } from "./error";
 import { ErrorSolid } from "./error-solid";
+import { Eye } from "./eye";
+import { EyeSlash } from "./eye-slash";
 import { Folder } from "./folder";
 import { Galaxy } from "./galaxy";
 import { GalaxyRack } from "./galaxy-rack";
 import { Gear } from "./gear";
+import { GearSolid } from "./gear-solid";
 import { Globe } from "./globe";
 import { Grid } from "./grid";
 import { Info } from "./info";
@@ -63,6 +72,7 @@ import { Lock } from "./lock";
 import { LockFill } from "./lock-fill";
 import { LoudBox } from "./loudbox";
 import { Menu } from "./menu";
+import { Microphone } from "./microphone";
 import { Minus } from "./minus";
 import { ModeDark } from "./mode-dark";
 import { ModeLight } from "./mode-light";
@@ -94,6 +104,7 @@ import { Server } from "./server";
 import { ServerSolid } from "./server-solid";
 import { Shield } from "./shield";
 import { ShieldSolid } from "./shield-solid";
+import { Sidebar } from "./sidebar";
 import { Size } from "./size";
 import { SocialDiscord } from "./social-discord";
 import { SocialFacebook } from "./social-facebook";
@@ -147,6 +158,7 @@ export const registry: {
   blackhole: Blackhole,
   board: Board,
   bolt: Bolt,
+  bug: Bug,
   "caret-down": CaretDown,
   "caret-left": CaretLeft,
   "caret-right": CaretRight,
@@ -156,8 +168,13 @@ export const registry: {
   chat: Chat,
   checkmark: Checkmark,
   chip: Chip,
+  "circle-add-solid": CircleAddSolid,
+  "circle-add": CircleAdd,
   "circle-x-solid": CircleXSolid,
   "circle-x": CircleX,
+  "clock-countdown": ClockCountdown,
+  "clock-counter-clockwise": ClockCounterClockwise,
+  clock: Clock,
   "close-panel": ClosePanel,
   close: Close,
   "cloud-server-solid": CloudServerSolid,
@@ -169,9 +186,12 @@ export const registry: {
   ellipses: Ellipses,
   "error-solid": ErrorSolid,
   error: Error,
+  "eye-slash": EyeSlash,
+  eye: Eye,
   folder: Folder,
   "galaxy-rack": GalaxyRack,
   galaxy: Galaxy,
+  "gear-solid": GearSolid,
   gear: Gear,
   globe: Globe,
   grid: Grid,
@@ -184,6 +204,7 @@ export const registry: {
   lock: Lock,
   loudbox: LoudBox,
   menu: Menu,
+  microphone: Microphone,
   minus: Minus,
   "mode-dark": ModeDark,
   "mode-light": ModeLight,
@@ -215,6 +236,7 @@ export const registry: {
   server: Server,
   "shield-solid": ShieldSolid,
   shield: Shield,
+  sidebar: Sidebar,
   size: Size,
   "social-discord": SocialDiscord,
   "social-facebook": SocialFacebook,
