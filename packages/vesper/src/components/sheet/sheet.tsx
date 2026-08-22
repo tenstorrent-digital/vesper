@@ -2,7 +2,7 @@
 
 import {
   type ComponentPropsWithoutRef,
-  type RefObject,
+  type Ref,
   useCallback,
   useEffect,
   useId,
@@ -39,7 +39,7 @@ export interface SheetProps extends Omit<
   /** A description displayed below the title in the sheet header. Also used for the sheet's `aria-describedby` association. */
   description: string;
   /** A ref that exposes imperative `open()` and `close()` methods for controlling the sheet. Can be obtained via the `useSheet` hook. */
-  ref?: RefObject<SheetRef>;
+  ref?: Ref<SheetRef>;
   /** The side of the viewport the sheet slides in from. @default right */
   side?: SheetSide;
   /** When `true`, renders the sheet as a popover instead of a modal dialog. Popovers do not render a backdrop, and allow interaction with the content behind them. @default false */
@@ -59,7 +59,7 @@ export interface SheetProps extends Omit<
  * @param {string} props.description - A description displayed below the title
  * @param {SheetSide} [props.side] - (optional) The side of the viewport the sheet slides in from. @default right
  * @param {boolean} [props.popover] - (optional) Render as a non-modal popover instead of a modal dialog. @default false
- * @param {RefObject<SheetRef>} [props.ref] - (optional) A ref exposing imperative `open()` and `close()` methods
+ * @param {Ref<SheetRef>} [props.ref] - (optional) A ref exposing imperative `open()` and `close()` methods
  * @param {ButtonProps[]} [props.buttons] - (optional) Action buttons rendered at the bottom of the sheet
  *
  * You may also pass any additional props to the underlying `dialog` element

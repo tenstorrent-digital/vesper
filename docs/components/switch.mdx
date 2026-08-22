@@ -15,7 +15,7 @@ A toggle switch input with an optional label. Uses the native `switch` ARIA role
 | ---------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------- | ------- |
 | `label`          | `string`                               | The text label displayed next to the switch. An asterisk is appended when `required` is `true`. | —       |
 | `size`           | `"sm" \| "md"`                         | The size of the switch and its label.                                                           | `"md"`  |
-| `inputRef`       | `RefObject<HTMLInputElement \| null>`  | A ref forwarded to the underlying `<input>` element.                                            | —       |
+| `inputRef`       | `Ref<HTMLInputElement>`                | A ref forwarded to the underlying `<input>` element.                                            | —       |
 | `checked`        | `boolean`                              | Controls the checked state (controlled mode).                                                   | —       |
 | `defaultChecked` | `boolean`                              | The initial checked state (uncontrolled mode).                                                  | `false` |
 | `disabled`       | `boolean`                              | When `true`, prevents interaction.                                                              | `false` |

@@ -50,7 +50,7 @@ export interface MenuProps {
   /** Specify the element or shadow root to portal the menu into */
   container?: PortalContainer;
   /** Specify the element to anchor the menu against. @default trigger element */
-  anchor?: HTMLElement | RefObject<HTMLElement | null>;
+  anchor?: HTMLElement | null | RefObject<HTMLElement | null>;
 }
 
 /**

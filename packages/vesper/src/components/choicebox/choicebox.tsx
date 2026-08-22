@@ -6,7 +6,6 @@ import {
   type KeyboardEventHandler,
   useCallback,
   useEffect,
-  useImperativeHandle,
   useRef,
 } from "react";
 
@@ -14,6 +13,7 @@ import { Checkmark } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import { useMergedRefs } from "@/utils/useMergedRefs";
 
 export type ChoiceboxItem = {
   /** The value associated with this option. */
@@ -171,7 +171,7 @@ function ChoiceboxMultiSelect({
   ...props
 }: ChoiceboxMultiSelectProps) {
   const innerRef = useRef<HTMLFieldSetElement>(null);
-  useImperativeHandle(ref, () => innerRef.current!);
+  const mergedRef = useMergedRefs(ref, innerRef);
 
   useEffect(() => {
     if (!innerRef.current) return;
@@ -216,7 +216,7 @@ function ChoiceboxMultiSelect({
 
   return (
     <fieldset
-      ref={innerRef}
+      ref={mergedRef}
       className={cn("vesper-choicebox", className)}
       onKeyDown={handleKeyDown}
       {...props}
