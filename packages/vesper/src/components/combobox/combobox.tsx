@@ -202,7 +202,8 @@ export function Combobox(props: ComboboxProps) {
 
   const baseRemSize = useBaseRemSize();
 
-  const inputId = useId();
+  let inputId = useId();
+  if (id) inputId = id;
 
   const messageId = useId();
 
@@ -289,7 +290,6 @@ export function Combobox(props: ComboboxProps) {
       required={required}
       name={name}
       form={form}
-      id={id}
       readOnly={readOnly}
     >
       <div
