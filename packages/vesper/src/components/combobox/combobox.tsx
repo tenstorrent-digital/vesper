@@ -193,6 +193,8 @@ export function Combobox(props: ComboboxProps) {
     message,
     "aria-describedby": ariaDescribedby,
     "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledBy,
+    "aria-invalid": ariaInvalid,
     ...rest
   } = props;
   const [innerRef, setInnerRef] = useState<HTMLDivElement | null>(null);
@@ -242,6 +244,8 @@ export function Combobox(props: ComboboxProps) {
         ref={inputRef}
         aria-describedby={describedBy}
         aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledBy}
+        aria-invalid={ariaInvalid}
         id={inputId}
         variant={COMBOBOX_TYPOGRAPHY[size]}
         placeholder={placeholder}
