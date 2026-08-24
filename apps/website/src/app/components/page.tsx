@@ -137,6 +137,7 @@ export default function Page() {
 
         <Cell name="Combobox">
           <Combobox
+            aria-label="Fruit"
             options={[
               { label: "Apple", value: "apple" },
               { label: "Banana", value: "banana" },
