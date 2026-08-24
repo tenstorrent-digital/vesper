@@ -1,5 +1,5 @@
 /**
- * Adapted version of tests for of `@base-ui`s internal utility `useMergedRefsN`
+ * Adapted from tests for `@base-ui`'s internal utility `useMergedRefsN`
  *
  * @see https://github.com/mui/base-ui/blob/ccfe02679ec9ed08a518bc5444cb6d1ffb63f5e1/packages/utils/src/useMergedRefs.test.tsx
  */

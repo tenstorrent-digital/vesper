@@ -1,5 +1,5 @@
 /**
- * This is a 1:1 implementation of `@base-ui`s internal utility `useMergedRefsN`
+ * Adapted from `@base-ui`'s internal `useMergedRefsN` utility to expose a variadic API
  *
  * @see https://github.com/mui/base-ui/blob/ccfe02679ec9ed08a518bc5444cb6d1ffb63f5e1/packages/utils/src/useMergedRefs.ts
  */
