@@ -190,7 +190,7 @@ export function Combobox(props: ComboboxProps) {
     ...rest
   } = props;
   const [innerRef, setInnerRef] = useState<HTMLDivElement | null>(null);
-  useMergedRefs(setInnerRef, ref);
+  const mergedRef = useMergedRefs(setInnerRef, ref);
 
   const baseRemSize = useBaseRemSize();
 
@@ -233,6 +233,7 @@ export function Combobox(props: ComboboxProps) {
       <Search className="vesper-combobox-search-icon" />
       <Typography
         as={BaseCombobox.Input}
+        ref={inputRef}
         aria-describedby={describedBy}
         aria-label={ariaLabel}
         id={inputId}
@@ -279,7 +280,6 @@ export function Combobox(props: ComboboxProps) {
       name={name}
       form={form}
       id={id}
-      inputRef={inputRef}
       readOnly={readOnly}
     >
       <div
@@ -289,7 +289,7 @@ export function Combobox(props: ComboboxProps) {
           `vesper-combobox-${variant}`,
           className,
         )}
-        ref={setInnerRef}
+        ref={mergedRef}
         {...rest}
       >
         {label ? (
@@ -307,7 +307,11 @@ export function Combobox(props: ComboboxProps) {
         ) : (
           input
         )}
-        <FormInputMessage variant={variant} message={message} />
+        <FormInputMessage
+          id={message ? messageId : undefined}
+          variant={variant}
+          message={message}
+        />
       </div>
       <BaseCombobox.Portal container={portalContainer}>
         <BaseCombobox.Positioner
