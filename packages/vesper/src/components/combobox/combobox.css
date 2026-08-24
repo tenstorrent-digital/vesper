@@ -101,12 +101,8 @@
   color: var(--vesper-icon-primary);
 }
 
-.vesper-combobox-trigger:not([data-popup-open]) .vesper-combobox-caret-up {
-  display: none;
-}
-
-.vesper-combobox-trigger[data-popup-open] .vesper-combobox-caret-down {
-  display: none;
+.vesper-combobox-trigger[data-popup-open] svg {
+  transform: rotate(0.5turn);
 }
 
 .vesper-combobox-clear:not([data-popup-open]) ~ .vesper-combobox-trigger {

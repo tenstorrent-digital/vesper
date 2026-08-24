@@ -11,13 +11,7 @@ import {
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
 
 import { FormInputMessage } from "@/components/form-input-message/form-input-message";
-import {
-  CaretDown,
-  CaretUp,
-  Checkmark,
-  Close,
-  Search,
-} from "@/components/icons/icons";
+import { CaretDown, Checkmark, Close, Search } from "@/components/icons/icons";
 import {
   Typography,
   TypographyVariant,
@@ -262,8 +256,7 @@ export function Combobox(props: ComboboxProps) {
         className="vesper-combobox-trigger"
         aria-label={dropdownTriggerAriaLabel}
       >
-        <CaretUp className="vesper-combobox-caret-up" />
-        <CaretDown className="vesper-combobox-caret-down" />
+        <CaretDown />
       </BaseCombobox.Trigger>
     </BaseCombobox.InputGroup>
   );

@@ -51,18 +51,6 @@ exports[`combobox [snapshot] > disabled 1`] = `
       type="button"
     >
       <svg
-        class="vesper-combobox-caret-up"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-combobox-caret-down"
         fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -154,18 +142,6 @@ exports[`combobox [snapshot] > full options 1`] = `
         type="button"
       >
         <svg
-          class="vesper-combobox-caret-up"
-          fill="none"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-            fill="currentColor"
-          />
-        </svg>
-        <svg
-          class="vesper-combobox-caret-down"
           fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -265,18 +241,6 @@ exports[`combobox [snapshot] > required 1`] = `
         type="button"
       >
         <svg
-          class="vesper-combobox-caret-up"
-          fill="none"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-            fill="currentColor"
-          />
-        </svg>
-        <svg
-          class="vesper-combobox-caret-down"
           fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -342,18 +306,6 @@ exports[`combobox [snapshot] > size: lg 1`] = `
       type="button"
     >
       <svg
-        class="vesper-combobox-caret-up"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-combobox-caret-down"
         fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -418,18 +370,6 @@ exports[`combobox [snapshot] > size: md 1`] = `
       type="button"
     >
       <svg
-        class="vesper-combobox-caret-up"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-combobox-caret-down"
         fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -494,18 +434,6 @@ exports[`combobox [snapshot] > size: sm 1`] = `
       type="button"
     >
       <svg
-        class="vesper-combobox-caret-up"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-combobox-caret-down"
         fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -571,18 +499,6 @@ exports[`combobox [snapshot] > variant: default 1`] = `
       type="button"
     >
       <svg
-        class="vesper-combobox-caret-up"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-combobox-caret-down"
         fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -672,18 +588,6 @@ exports[`combobox [snapshot] > variant: error 1`] = `
       type="button"
     >
       <svg
-        class="vesper-combobox-caret-up"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-combobox-caret-down"
         fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -773,18 +677,6 @@ exports[`combobox [snapshot] > variant: success 1`] = `
       type="button"
     >
       <svg
-        class="vesper-combobox-caret-up"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-combobox-caret-down"
         fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -872,18 +764,6 @@ exports[`combobox [snapshot] > variant: warning 1`] = `
       type="button"
     >
       <svg
-        class="vesper-combobox-caret-up"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-combobox-caret-down"
         fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -981,18 +861,6 @@ exports[`combobox [snapshot] > with label 1`] = `
         type="button"
       >
         <svg
-          class="vesper-combobox-caret-up"
-          fill="none"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-            fill="currentColor"
-          />
-        </svg>
-        <svg
-          class="vesper-combobox-caret-down"
           fill="none"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -1074,18 +942,6 @@ exports[`combobox [snapshot] > with value 1`] = `
       type="button"
     >
       <svg
-        class="vesper-combobox-caret-up"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-combobox-caret-down"
         fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
