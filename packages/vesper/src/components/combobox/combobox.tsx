@@ -5,7 +5,6 @@ import {
   Ref,
   useCallback,
   useId,
-  useImperativeHandle,
   useMemo,
   useState,
 } from "react";
