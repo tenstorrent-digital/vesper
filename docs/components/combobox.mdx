@@ -266,8 +266,7 @@ import { Combobox } from "@tenstorrent/vesper/combobox";
 <Combobox
   variant="warning"
   label="Region"
-  value={region}
-  onValueChange={setRegion}
+  defaultValue="ap"
   options={[
     { label: "United States", value: "us" },
     { label: "Europe", value: "eu" },
@@ -299,8 +298,7 @@ import { Combobox } from "@tenstorrent/vesper/combobox";
 <Combobox
   variant="success"
   label="Region"
-  value={region}
-  onValueChange={setRegion}
+  defaultValue="eu"
   options={[
     { label: "United States", value: "us" },
     { label: "Europe", value: "eu" },
@@ -335,8 +333,6 @@ import { Combobox } from "@tenstorrent/vesper/combobox";
   variant="error"
   label="Region"
   placeholder="e.g. Europe"
-  value={region}
-  onValueChange={setRegion}
   options={[
     { label: "United States", value: "us" },
     { label: "Europe", value: "eu" },
