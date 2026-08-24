@@ -40,7 +40,9 @@ interface ComboboxDemoProps {
 
 export function ComboboxDemo(props: ComboboxDemoProps) {
   if (props.kind === "fruits") {
-    return <Combobox placeholder="e.g. Apple" options={FRUITS} />;
+    return (
+      <Combobox aria-label="Fruit" placeholder="e.g. Apple" options={FRUITS} />
+    );
   }
 
   if (props.kind === "controlled") {
