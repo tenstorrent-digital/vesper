@@ -58,7 +58,7 @@ function ControlledComboboxDemo() {
   const [fruit, setFruit] = useState<string | null>("apple");
 
   return (
-    <div className="gap-vesper-4 flex w-full flex-col">
+    <div className="gap-vesper-4 flex flex-col">
       <Combobox
         label="Fruit"
         placeholder="e.g. Apple"
@@ -69,12 +69,7 @@ function ControlledComboboxDemo() {
       <Typography variant="copy-sm">
         Selected value: {fruit ?? "null"}
       </Typography>
-      <Button
-        size="sm"
-        variant="tertiary"
-        className="self-start"
-        onClick={() => setFruit(null)}
-      >
+      <Button size="sm" onClick={() => setFruit(null)}>
         Reset
       </Button>
     </div>
@@ -86,7 +81,7 @@ function FormComboboxDemo() {
 
   return (
     <form
-      className="gap-vesper-4 flex w-full flex-col"
+      className="gap-vesper-4 flex flex-col"
       onSubmit={(event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -100,7 +95,7 @@ function FormComboboxDemo() {
         placeholder="e.g. Apple"
         options={FRUITS}
       />
-      <Button size="sm" type="submit" className="self-start">
+      <Button size="sm" type="submit">
         Submit
       </Button>
       {submitted !== null && (
