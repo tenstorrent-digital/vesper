@@ -1,0 +1,25 @@
+{
+  // the project used by `yarn check-types`
+  //
+  // `tsconfig.build.json` deliberately excludes tests and stories (they must
+  // not be emitted into `dist`), and neither vitest nor storybook type-check
+  // what they run - vitest transforms with esbuild and `@storybook/react-vite`
+  // builds with vite, both of which only strip types
+  //
+  // so without this project, `*.test.*`, `*.stories.*` and the tooling configs
+  // are never type-checked by anything except an editor, and type errors in
+  // them reach `main`
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": [
+    "src",
+    "storybook",
+    "scripts",
+    "vitest.config.ts",
+    "vitest.setup.ts",
+    "vitest.shims.d.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
+}

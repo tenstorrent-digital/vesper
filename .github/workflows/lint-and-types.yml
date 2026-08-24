@@ -1,0 +1,79 @@
+name: Lint and Types
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    # The vouch workflows push `.github/VOUCHED.td` to `main` using a GitHub App
+    # token, which (unlike `GITHUB_TOKEN`) does trigger workflows. That commit
+    # can't affect linting or types, so don't spend a run on it. Only applies to
+    # `push`; pull request runs are unaffected, so the required checks still
+    # gate PRs.
+    paths-ignore:
+      - ".github/VOUCHED.td"
+
+  # Empty `workflow_dispatch` allows this workflow to be run manually from the Actions tab:
+  workflow_dispatch:
+
+concurrency:
+  # Key PR runs by number, not `head_ref`: that's only the branch name, so
+  # same-named branches from different forks would cancel each other. `push` and
+  # `workflow_dispatch` runs have no PR number and fall back to `github.ref`.
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  # Two jobs rather than one so a lint failure still reports the type errors
+  # (and vice versa), and so each can be required independently.
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          # Runs untrusted PR code, so keep the token out of `.git/config`.
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          cache: "yarn"
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Lint
+        run: yarn lint
+
+  check-types:
+    name: Check Types
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          # Runs untrusted PR code, so keep the token out of `.git/config`.
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          cache: "yarn"
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      # `check-types` depends on `^build` (see `turbo.jsonc`): the website
+      # resolves `@tenstorrent/vesper` subpaths to declaration files under
+      # `dist`, so turbo builds the library first.
+      - name: Check Types
+        run: yarn check-types

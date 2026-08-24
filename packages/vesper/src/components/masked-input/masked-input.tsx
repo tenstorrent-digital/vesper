@@ -56,7 +56,7 @@ export interface MaskedInputProps extends Omit<TextInputProps, "type"> {
  * @param {boolean} [props.formatOnMount] - (optional) When `true`, the initial value of the input is formatted to match the `mask` on mount. @default false
  * @param {boolean} [props.formatOnMaskChange] - (optional) When `true`, the current value of the input is reformatted to match the `mask` whenever the `mask` prop changes. @default false
  *
- * You may also pass any additional props supported by the `TextInput` component including `size`, `variant`, `iconLeft`, `iconRight`, and `dropdown`
+ * You may also pass any additional props supported by the `TextInput` component including `size`, `variant`, `iconLeft`, and `iconRight`
  *
  * @example
  * <MaskedInput label="Activation code" mask="____-____-____" />
