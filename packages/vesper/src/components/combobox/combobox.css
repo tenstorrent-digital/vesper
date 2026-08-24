@@ -120,7 +120,7 @@
   .vesper-combobox-search-icon,
   .vesper-combobox-clear svg,
   .vesper-combobox-trigger svg {
-    width: 14px;
+    width: 0.875rem;
   }
   .vesper-combobox-clear,
   .vesper-combobox-trigger {
@@ -137,7 +137,7 @@
   .vesper-combobox-search-icon,
   .vesper-combobox-clear svg,
   .vesper-combobox-trigger svg {
-    width: 16px;
+    width: 1rem;
   }
   .vesper-combobox-clear,
   .vesper-combobox-trigger {
@@ -154,7 +154,7 @@
   .vesper-combobox-search-icon,
   .vesper-combobox-clear svg,
   .vesper-combobox-trigger svg {
-    width: 20px;
+    width: 1.25rem;
   }
   .vesper-combobox-clear,
   .vesper-combobox-trigger {
