@@ -10,8 +10,8 @@ import {
   getPortalContainer,
   type PortalContainer,
 } from "@/utils/getPortalContainer";
+import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
 import { isSingleReactElement } from "@/utils/isSingleReactElement";
-import { useBaseRemSize } from "@/utils/useBaseRemSize";
 
 export type MenuItemProps = {
   /** The text label displayed for the menu item. */
@@ -50,7 +50,7 @@ export interface MenuProps {
   /** Specify the element or shadow root to portal the menu into */
   container?: PortalContainer;
   /** Specify the element to anchor the menu against. @default trigger element */
-  anchor?: HTMLElement | RefObject<HTMLElement | null>;
+  anchor?: HTMLElement | null | RefObject<HTMLElement | null>;
 }
 
 /**

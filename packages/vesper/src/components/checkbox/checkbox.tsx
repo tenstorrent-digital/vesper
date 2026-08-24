@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  type ComponentProps,
-  RefObject,
-  useImperativeHandle,
-  useLayoutEffect,
-  useRef,
-} from "react";
+import { type ComponentProps, Ref, useLayoutEffect, useRef } from "react";
 
 import { Checkmark, Minus } from "@/components/icons/icons";
 import {
@@ -15,6 +9,7 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 export const CHECKBOX_SIZES = ["sm", "md"] as const;
 
@@ -71,7 +66,7 @@ export interface CheckboxProps
   /** The size of the checkbox and its label. @default md */
   size?: CheckboxSize;
   /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
-  inputRef?: RefObject<HTMLInputElement | null>;
+  inputRef?: Ref<HTMLInputElement>;
 }
 
 const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
@@ -157,12 +152,12 @@ export function Checkbox(props: CheckboxProps) {
     ...rest
   } = props;
 
-  const ref = useRef<HTMLInputElement>(null);
+  const innerRef = useRef<HTMLInputElement>(null);
   useLayoutEffect(() => {
-    if (ref.current) ref.current.indeterminate = !!indeterminate;
+    if (innerRef.current) innerRef.current.indeterminate = !!indeterminate;
   }, [indeterminate]);
 
-  useImperativeHandle(inputRef, () => ref.current!);
+  const mergedInputRef = useMergedRefs(inputRef, innerRef);
 
   return (
     <label
@@ -170,7 +165,7 @@ export function Checkbox(props: CheckboxProps) {
       {...rest}
     >
       <input
-        ref={ref}
+        ref={mergedInputRef}
         type="checkbox"
         className="vesper-checkbox-input"
         id={id}

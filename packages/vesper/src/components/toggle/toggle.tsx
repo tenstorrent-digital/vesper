@@ -7,7 +7,6 @@ import {
   type ReactNode,
   useCallback,
   useEffect,
-  useImperativeHandle,
   useRef,
   useState,
 } from "react";
@@ -18,6 +17,7 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 export const TOGGLE_SIZES = ["sm", "md", "lg"] as const;
 
@@ -130,7 +130,7 @@ export function Toggle(props: ToggleProps) {
   } = props;
 
   const innerRef = useRef<HTMLDivElement>(null);
-  useImperativeHandle(ref, () => innerRef.current!);
+  const mergedRef = useMergedRefs(ref, innerRef);
 
   const [innerValue, setInnerValue] = useState(value ?? defaultValue);
 
@@ -232,7 +232,7 @@ export function Toggle(props: ToggleProps) {
 
   return (
     <div
-      ref={innerRef}
+      ref={mergedRef}
       role="radiogroup"
       aria-required={required}
       className={cn(

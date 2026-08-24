@@ -3,7 +3,7 @@
 import {
   ComponentProps,
   type ComponentPropsWithoutRef,
-  type RefObject,
+  type Ref,
   useCallback,
   useEffect,
   useId,
@@ -53,7 +53,7 @@ export interface ModalProps extends Omit<
   /** Controls the horizontal alignment of the action buttons. @default end */
   buttonsAlignment?: ModalButtonsAlignment;
   /** A ref that exposes imperative `open()` and `close()` methods for controlling the modal. Obtained via the `useModal` hook. */
-  ref?: RefObject<ModalRef>;
+  ref?: Ref<ModalRef>;
   /** When `true`, clicking the backdrop outside the modal will close it. Defaults to `false`. */
   closeOnClickOutside?: boolean;
   /** When provided, wraps the modal content in a `<form>` element with the given form attributes, enabling native form submission from within the modal. @default false */
@@ -90,7 +90,7 @@ export interface ModalProps extends Omit<
  * @param {number | string} [props.maxHeight] - (optional) The maximum height of the modal container. @default 640
  * @param {ButtonProps[]} [props.buttons] - (optional) Action buttons rendered at the bottom of the modal
  * @param {ModalButtonsAlignment} [props.buttonsAlignment] - (optional) Horizontal alignment of action buttons. @default end
- * @param {RefObject<ModalRef>} [props.ref] - (optional) A ref exposing imperative `open()` and `close()` methods
+ * @param {Ref<ModalRef>} [props.ref] - (optional) A ref exposing imperative `open()` and `close()` methods
  * @param {boolean} [props.closeOnClickOutside] - (optional) Whether clicking the backdrop closes the modal. @default false
  * @param {object} [props.form] - (optional) Form attributes to wrap the modal content in a `<form>` element
  *

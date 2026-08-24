@@ -5,7 +5,6 @@ import {
   type MouseEventHandler,
   type PointerEvent,
   useCallback,
-  useImperativeHandle,
   useRef,
 } from "react";
 
@@ -19,6 +18,7 @@ import {
 } from "@/components/menu/menu";
 
 import { cn } from "@/utils/cn";
+import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 export const SPLIT_BUTTON_SIZES = ["sm", "md", "lg"] as const;
 
@@ -126,7 +126,7 @@ export function SplitButton(props: SplitButtonProps) {
   } = props;
 
   const innerRef = useRef<HTMLDivElement>(null);
-  useImperativeHandle(ref, () => innerRef.current!);
+  const mergedRef = useMergedRefs(ref, innerRef);
 
   const actionButtonRef = useRef<HTMLButtonElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -143,7 +143,7 @@ export function SplitButton(props: SplitButtonProps) {
     <div
       className={cn("vesper-split-button", className)}
       onPointerDown={handlePointerDown}
-      ref={innerRef}
+      ref={mergedRef}
       {...rest}
     >
       <Button

@@ -3,7 +3,7 @@
 import {
   type ChangeEvent,
   type ComponentProps,
-  type RefObject,
+  type Ref,
   useCallback,
   useState,
 } from "react";
@@ -69,7 +69,7 @@ export interface SwitchProps
   /** The size of the switch and its label. @default md */
   size?: SwitchSize;
   /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
-  inputRef?: RefObject<HTMLInputElement | null>;
+  inputRef?: Ref<HTMLInputElement>;
 }
 
 const SWITCH_TYPOGRAPHY: { [S in SwitchSize]: TypographyVariant } = {

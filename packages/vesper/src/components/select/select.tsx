@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  type ComponentProps,
-  type ReactNode,
-  useImperativeHandle,
-  useState,
-} from "react";
+import { type ComponentProps, type ReactNode, useState } from "react";
 import { Select as BaseSelect } from "@base-ui/react/select";
 
 import { CaretDown, CaretUp, Checkmark } from "@/components/icons/icons";
@@ -19,7 +14,8 @@ import {
   getPortalContainer,
   type PortalContainer,
 } from "@/utils/getPortalContainer";
-import { useBaseRemSize } from "@/utils/useBaseRemSize";
+import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
+import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 export const SELECT_SIZES = ["sm", "md", "lg"] as const;
 
@@ -126,10 +122,10 @@ export function Select(props: SelectProps) {
     ...rest
   } = props;
 
-  const [innerRef, setInnerRef] = useState<HTMLButtonElement | null>(null);
-  useImperativeHandle(ref, () => innerRef!);
+  const [trigger, setTrigger] = useState<HTMLButtonElement | null>(null);
+  const mergedRef = useMergedRefs(ref, setTrigger);
 
-  const portalContainer = getPortalContainer(container, innerRef);
+  const portalContainer = getPortalContainer(container, trigger);
 
   const baseRemSize = useBaseRemSize();
 
@@ -150,7 +146,7 @@ export function Select(props: SelectProps) {
         className={cn("vesper-select", `vesper-select-${size}`, className)}
         disabled={disabled}
         aria-label={ariaLabel}
-        ref={setInnerRef}
+        ref={mergedRef}
         {...rest}
       >
         {icon && <span className="vesper-select-icon">{icon}</span>}
