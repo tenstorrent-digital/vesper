@@ -193,6 +193,7 @@
   box-shadow: var(--vesper-shadow-200);
   color: var(--vesper-text-primary);
   outline: none;
+  /* --available-height comes from base-ui */
   max-height: min(var(--available-height), 20rem);
   overflow-y: scroll;
   -ms-overflow-style: none;
@@ -240,6 +241,7 @@
 }
 
 .vesper-combobox-empty-state {
+  /* --available-height comes from base-ui */
   height: min(var(--available-height), 7.5rem);
   display: flex;
   align-items: center;
