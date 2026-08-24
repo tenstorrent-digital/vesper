@@ -1,25 +1,500 @@
 ---
 title: Combobox
-description: Short component description
+description: A form-ready, searchable select component that filters a list of options as the user types.
 ---
 
 # Combobox
 
-Long component description
+A form-ready, searchable select component that filters a list of options as the user types. It supports controlled and uncontrolled usage, and shares the same sizes, variants, labels, and messages as [the `TextInput` component](./text-input.mdx).
 
 <ComboboxDemo kind="fruits" />
 
 ## Options
 
-| Prop       | Type       | Description      | Default        |
-| ---------- | ---------- | ---------------- | -------------- |
-| `propName` | `propType` | Prop description | `defaultValue` |
+| Prop                 | Type                                                                                | Description                                                                                                    | Default        |
+| -------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------- |
+| `options`            | `(ComboboxItem \| string)[]`                                                        | The list of selectable options displayed in the dropdown. Strings are treated as both the label and the value. | —              |
+| `size`               | `"sm" \| "md" \| "lg"`                                                              | The size of the combobox. Affects padding and typography.                                                      | `"md"`         |
+| `variant`            | `"default" \| "warning" \| "success" \| "error"`                                    | The visual variant, which determines color scheme and message icon.                                            | `"default"`    |
+| `label`              | `string`                                                                            | An optional label displayed above the input. An asterisk is appended when `required` is `true`.                | —              |
+| `message`            | `string`                                                                            | An optional message displayed below the input, paired with a variant-specific icon.                            | —              |
+| `placeholder`        | `string`                                                                            | Placeholder text shown in the input when it is empty.                                                          | `"Search..."`  |
+| `emptyStateText`     | `string`                                                                            | The text displayed in the dropdown when no options match the input's value.                                    | `"No results"` |
+| `value`              | `string \| null`                                                                    | The currently selected value (controlled mode). Pass `null` to represent no selection.                         | —              |
+| `defaultValue`       | `string \| null`                                                                    | The initial selected value (uncontrolled mode).                                                                | —              |
+| `onValueChange`      | `(value: string \| null) => void`                                                   | Callback invoked with the new value when the selection changes, or `null` when it is cleared.                  | —              |
+| `inputValue`         | `string`                                                                            | The current text displayed in the input (controlled mode).                                                     | —              |
+| `defaultInputValue`  | `string`                                                                            | The initial text displayed in the input (uncontrolled mode).                                                   | —              |
+| `onInputValueChange` | `(value: string) => void`                                                           | Callback invoked with the new text whenever the input's value changes.                                         | —              |
+| `open`               | `boolean`                                                                           | Controls the open state of the dropdown (controlled mode).                                                     | —              |
+| `defaultOpen`        | `boolean`                                                                           | Whether the dropdown is open by default (uncontrolled mode).                                                   | `false`        |
+| `onOpenChange`       | `(open: boolean) => void`                                                           | Callback fired when the open state of the dropdown changes.                                                    | —              |
+| `name`               | `string`                                                                            | The form field name submitted with form data.                                                                  | —              |
+| `form`               | `string`                                                                            | Associates the combobox with a `<form>` element by its `id`.                                                   | —              |
+| `id`                 | `string`                                                                            | An identifier applied to the underlying form control, used to reference it from form validation errors.        | —              |
+| `required`           | `boolean`                                                                           | When `true`, marks the input as required and appends an asterisk to the label.                                 | `false`        |
+| `disabled`           | `boolean`                                                                           | When `true`, prevents interaction with the input and dropdown.                                                 | `false`        |
+| `readOnly`           | `boolean`                                                                           | When `true`, the input's value cannot be edited, but it is still submitted with form data.                     | `false`        |
+| `container`          | `HTMLElement \| ShadowRoot \| null \| RefObject<HTMLElement \| ShadowRoot \| null>` | Specify the element or shadow root to portal the dropdown into.                                                | —              |
+| `inputRef`           | `Ref<HTMLInputElement>`                                                             | A ref forwarded to the underlying `<input>` element.                                                           | —              |
+
+Any other props are forwarded to the wrapping `<div>` element.
+
+### `ComboboxItem` options
+
+| Property | Type     | Description                                                                                       |
+| -------- | -------- | ------------------------------------------------------------------------------------------------- |
+| `label`  | `string` | The text displayed for this option in the dropdown, and used to filter options as the user types. |
+| `value`  | `string` | The underlying value submitted with form data and passed to `onValueChange`. Must be unique.      |
 
 ## Examples
+
+### Defining options
+
+Each entry in the `options` array can either be a `ComboboxItem`, or a plain string. Use `ComboboxItem` objects when value associated with each item differs from the text you want to display:
+
+<Combobox
+  label="Country"
+  placeholder="e.g. Canada"
+  options={[
+    { label: "Canada", value: "ca" },
+    { label: "Japan", value: "jp" },
+    { label: "Norway", value: "no" },
+  ]}
+/>
 
 ```tsx
 import { Combobox } from "@tenstorrent/vesper/combobox";
 
-// Basic usage
-<Combobox />;
+<Combobox
+  label="Country"
+  placeholder="e.g. Canada"
+  options={[
+    { label: "Canada", value: "ca" },
+    { label: "Japan", value: "jp" },
+    { label: "Norway", value: "no" },
+  ]}
+/>;
+```
+
+When the displayed text is the same as the value of the item, a string option is a convenient shorthand:
+
+<Combobox
+  label="Country"
+  placeholder="e.g. Canada"
+  options={["Canada", "Japan", "Norway"]}
+/>
+
+```tsx
+import { Combobox } from "@tenstorrent/vesper/combobox";
+
+<Combobox
+  label="Country"
+  placeholder="e.g. Canada"
+  options={["Canada", "Japan", "Norway"]}
+/>;
+```
+
+Both shapes can be mixed in the same `options` array. Options are filtered against their `label` as the user types, and selecting an option fills the input with that option's `label` while reporting its `value`.
+
+### Uncontrolled vs controlled
+
+The simplest way to use the `Combobox` component is to render it in an uncontrolled fashion, where the component keeps track of its own selection. Pass `defaultValue` if you need an option to be selected initially:
+
+<Combobox
+  label="Country"
+  defaultValue="Japan"
+  options={["Canada", "Japan", "Norway"]}
+/>
+
+```tsx
+import { Combobox } from "@tenstorrent/vesper/combobox";
+
+<Combobox
+  label="Country"
+  defaultValue="Japan"
+  options={["Canada", "Japan", "Norway"]}
+/>;
+```
+
+If you need to control which option is selected, use the `value` and `onValueChange` props. `value` is the `value` of the selected option, and is `null` when nothing is selected — clearing the selection with the clear button calls `onValueChange` with `null`:
+
+<ComboboxDemo kind="controlled" />
+
+```tsx
+import { useState } from "react"
+import { Combobox } from "@tenstorrent/vesper/combobox"
+
+const [fruit, setFruit] = useState<string | null>("apple")
+
+<Combobox
+  label="Fruit"
+  placeholder="e.g. Apple"
+  value={fruit}
+  onValueChange={setFruit}
+  options={[
+    { label: "Apple", value: "apple" },
+    { label: "Banana", value: "banana" },
+    { label: "Cherry", value: "cherry" },
+  ]}
+/>
+```
+
+### Controlling the input's text
+
+The text typed into the input is tracked separately from the selected value. Use `defaultInputValue` to seed the input's text, or `inputValue` and `onInputValueChange` to control it. For example, to fetch options from a server as the user types:
+
+```tsx
+import { useState } from "react"
+import { Combobox } from "@tenstorrent/vesper/combobox"
+
+const [query, setQuery] = useState("")
+const options = useSearchResults(query)
+
+<Combobox
+  label="Repository"
+  placeholder="Search repositories"
+  options={options}
+  inputValue={query}
+  onInputValueChange={setQuery}
+/>
+```
+
+> [!NOTE]
+>
+> Options are always filtered against the text in the input. When you supply options that have already been filtered by a server, make sure the results have labels that match against what the user typed.
+
+### Different sizes
+
+The `Combobox` component can be rendered at `sm`, `md`, or `lg` size, defaulting to `md`. Size affects the height, padding, and text styles of the input, as well as the size of its icons.
+
+<Combobox
+  size="sm"
+  placeholder="A small combobox"
+  options={["Canada", "Japan", "Norway"]}
+/>
+<Combobox
+  size="md"
+  placeholder="A medium combobox"
+  options={["Canada", "Japan", "Norway"]}
+/>
+<Combobox
+  size="lg"
+  placeholder="A large combobox"
+  options={["Canada", "Japan", "Norway"]}
+/>
+
+```tsx
+import { Combobox } from "@tenstorrent/vesper/combobox"
+
+const options = ["Canada", "Japan", "Norway"]
+
+<Combobox size="sm" placeholder="A small combobox" options={options} />
+<Combobox size="md" placeholder="A medium combobox" options={options} />
+<Combobox size="lg" placeholder="A large combobox" options={options} />
+```
+
+### Message
+
+You can render an additional line of text under the input via the `message` prop. Combine it with the `variant` prop to indicate the tone of the message to the user.
+
+<Combobox
+  label="Country"
+  placeholder="e.g. Canada"
+  options={["Canada", "Japan", "Norway"]}
+  message="Only countries we currently ship to are listed."
+/>
+
+```tsx
+import { Combobox } from "@tenstorrent/vesper/combobox";
+
+<Combobox
+  label="Country"
+  placeholder="e.g. Canada"
+  options={["Canada", "Japan", "Norway"]}
+  message="Only countries we currently ship to are listed."
+/>;
+```
+
+### Variants
+
+The `Combobox` component can be rendered in one of four variants: `default`, `warning`, `success`, or `error`. The variant determines the colour scheme of the input, as well as the icon paired with its `message`.
+
+#### Default variant
+
+A `Combobox` renders with the `default` variant when no `variant` prop is specified. Its `message` is best suited for neutral hints:
+
+<Combobox
+  label="Country"
+  placeholder="e.g. Canada"
+  options={["Canada", "Japan", "Norway"]}
+  message="Start typing to filter the list."
+/>
+
+```tsx
+import { Combobox } from "@tenstorrent/vesper/combobox";
+
+<Combobox
+  label="Country"
+  placeholder="e.g. Canada"
+  options={["Canada", "Japan", "Norway"]}
+  message="Start typing to filter the list."
+/>;
+```
+
+#### Warning variant
+
+Use the `warning` variant to flag a selection that needs attention, but that doesn't prevent the form from being submitted:
+
+<Combobox
+  variant="warning"
+  label="Region"
+  defaultValue="ap"
+  options={[
+    { label: "United States", value: "us" },
+    { label: "Europe", value: "eu" },
+    { label: "Asia Pacific", value: "ap" },
+  ]}
+  message="This region has limited availability."
+/>
+
+```tsx
+import { Combobox } from "@tenstorrent/vesper/combobox";
+
+<Combobox
+  variant="warning"
+  label="Region"
+  value={region}
+  onValueChange={setRegion}
+  options={[
+    { label: "United States", value: "us" },
+    { label: "Europe", value: "eu" },
+    { label: "Asia Pacific", value: "ap" },
+  ]}
+  message="This region has limited availability."
+/>;
+```
+
+#### Success variant
+
+The `success` variant is best suited for confirming that a selection has been validated as expected:
+
+<Combobox
+  variant="success"
+  label="Region"
+  defaultValue="eu"
+  options={[
+    { label: "United States", value: "us" },
+    { label: "Europe", value: "eu" },
+    { label: "Asia Pacific", value: "ap" },
+  ]}
+  message="This region is available."
+/>
+
+```tsx
+import { Combobox } from "@tenstorrent/vesper/combobox";
+
+<Combobox
+  variant="success"
+  label="Region"
+  value={region}
+  onValueChange={setRegion}
+  options={[
+    { label: "United States", value: "us" },
+    { label: "Europe", value: "eu" },
+    { label: "Asia Pacific", value: "ap" },
+  ]}
+  message="This region is available."
+/>;
+```
+
+#### Error variant
+
+The `error` variant highlights a missing or invalid selection that must be corrected before the form can be submitted:
+
+<Combobox
+  required
+  variant="error"
+  label="Region"
+  placeholder="e.g. Europe"
+  options={[
+    { label: "United States", value: "us" },
+    { label: "Europe", value: "eu" },
+    { label: "Asia Pacific", value: "ap" },
+  ]}
+  message="Please select a region."
+/>
+
+```tsx
+import { Combobox } from "@tenstorrent/vesper/combobox";
+
+<Combobox
+  required
+  variant="error"
+  label="Region"
+  placeholder="e.g. Europe"
+  value={region}
+  onValueChange={setRegion}
+  options={[
+    { label: "United States", value: "us" },
+    { label: "Europe", value: "eu" },
+    { label: "Asia Pacific", value: "ap" },
+  ]}
+  message="Please select a region."
+/>;
+```
+
+### Customising the empty state
+
+When no option matches the text in the input, the dropdown renders a short empty state message. Use `emptyStateText` to tailor it to the data being searched:
+
+<Combobox
+  label="Country"
+  placeholder="e.g. Canada"
+  options={["Canada", "Japan", "Norway"]}
+  emptyStateText="No matching countries"
+/>
+
+```tsx
+import { Combobox } from "@tenstorrent/vesper/combobox";
+
+<Combobox
+  label="Country"
+  placeholder="e.g. Canada"
+  options={["Canada", "Japan", "Norway"]}
+  emptyStateText="No matching countries"
+/>;
+```
+
+### Labels and required fields
+
+When a `label` is provided, it is rendered above the input and associated with it, so clicking the label focuses the field. Passing `required` appends an asterisk to the label:
+
+<Combobox
+  required
+  label="Country"
+  placeholder="e.g. Canada"
+  options={["Canada", "Japan", "Norway"]}
+/>
+
+```tsx
+import { Combobox } from "@tenstorrent/vesper/combobox";
+
+<Combobox
+  required
+  label="Country"
+  placeholder="e.g. Canada"
+  options={["Canada", "Japan", "Norway"]}
+/>;
+```
+
+An `id` is generated for the input for you, but you can provide your own via the `id` prop if you need to reference the field elsewhere. Any `aria-describedby` you pass is merged with the automatically generated `message` id, so both remain announced by assistive technology. When rendering a `Combobox` without a `label`, pass an `aria-label` so the field still has an accessible name.
+
+### Disabled and read-only
+
+Pass `disabled` to prevent all interaction with the input and its dropdown:
+
+<Combobox
+  disabled
+  label="Country"
+  defaultValue="Japan"
+  options={["Canada", "Japan", "Norway"]}
+/>
+
+```tsx
+import { Combobox } from "@tenstorrent/vesper/combobox";
+
+<Combobox
+  disabled
+  label="Country"
+  defaultValue="Japan"
+  options={["Canada", "Japan", "Norway"]}
+/>;
+```
+
+Pass `readOnly` when the value should be visible and submitted with the form, but not editable:
+
+<Combobox
+  readOnly
+  label="Country"
+  defaultValue="Japan"
+  options={["Canada", "Japan", "Norway"]}
+/>
+
+```tsx
+import { Combobox } from "@tenstorrent/vesper/combobox";
+
+<Combobox
+  readOnly
+  label="Country"
+  defaultValue="Japan"
+  options={["Canada", "Japan", "Norway"]}
+/>;
+```
+
+### Controlling the dropdown
+
+The dropdown opens when the input or the caret is clicked, and as the user types. You can open it initially with `defaultOpen`, or control it entirely with `open` and `onOpenChange`:
+
+```tsx
+import { useState } from "react"
+import { Combobox } from "@tenstorrent/vesper/combobox"
+
+const [open, setOpen] = useState(false)
+
+<Combobox
+  label="Country"
+  options={["Canada", "Japan", "Norway"]}
+  open={open}
+  onOpenChange={setOpen}
+/>
+```
+
+### Usage in forms
+
+`Combobox` renders a form control, so passing a `name` includes the selected value in form submissions, and `required` participates in native form validation. Use the `form` prop to associate the field with a `<form>` rendered elsewhere on the page:
+
+<ComboboxDemo kind="form" />
+
+```tsx
+import { Button } from "@tenstorrent/vesper/button";
+import { Combobox } from "@tenstorrent/vesper/combobox";
+
+<form action="/api/preferences" method="post">
+  <Combobox
+    required
+    name="fruit"
+    label="Fruit"
+    placeholder="e.g. Apple"
+    options={[
+      { label: "Apple", value: "apple" },
+      { label: "Banana", value: "banana" },
+      { label: "Cherry", value: "cherry" },
+    ]}
+  />
+  <Button type="submit">Submit</Button>
+</form>;
+```
+
+The value submitted is the `value` of the selected option, not the text displayed in the input — the form above submits `fruit=apple` when "Apple" is selected.
+
+### Accessing the underlying element
+
+Use the `inputRef` prop when you need direct access to the underlying `<input>` element, eg. to focus it when a page loads:
+
+```tsx
+import { useEffect, useRef } from "react"
+import { Combobox } from "@tenstorrent/vesper/combobox"
+
+const inputRef = useRef<HTMLInputElement>(null)
+
+useEffect(() => {
+  inputRef.current?.focus()
+}, [])
+
+<Combobox
+  label="Country"
+  options={["Canada", "Japan", "Norway"]}
+  inputRef={inputRef}
+/>
 ```
