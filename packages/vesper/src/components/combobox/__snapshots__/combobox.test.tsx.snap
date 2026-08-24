@@ -33,7 +33,7 @@ exports[`combobox [snapshot] > disabled 1`] = `
       class="vesper-typography vesper-typography-copy-sm vesper-combobox-input"
       data-disabled=""
       disabled=""
-      id="_r_33_"
+      id="_r_3m_"
       placeholder="Search..."
       role="combobox"
       spellcheck="false"
@@ -90,7 +90,7 @@ exports[`combobox [snapshot] > full options 1`] = `
   >
     <label
       class="vesper-typography vesper-typography-label-sm vesper-combobox-label"
-      for="_r_39_"
+      for="_r_3s_"
     >
       Label text *
     </label>
@@ -113,7 +113,7 @@ exports[`combobox [snapshot] > full options 1`] = `
       </svg>
       <input
         aria-autocomplete="list"
-        aria-describedby="_r_3a_"
+        aria-describedby="_r_3t_"
         aria-expanded="false"
         aria-haspopup="listbox"
         aria-required="true"
@@ -121,7 +121,7 @@ exports[`combobox [snapshot] > full options 1`] = `
         autocomplete="off"
         autocorrect="off"
         class="vesper-typography vesper-typography-copy-md vesper-combobox-input"
-        id="_r_39_"
+        id="_r_3s_"
         placeholder="Placeholder text"
         role="combobox"
         spellcheck="false"
@@ -181,7 +181,7 @@ exports[`combobox [snapshot] > full options 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
     data-message="true"
-    id="_r_3a_"
+    id="_r_3t_"
   >
     <span
       aria-hidden="true"
@@ -218,7 +218,7 @@ exports[`combobox [snapshot] > required 1`] = `
   >
     <label
       class="vesper-typography vesper-typography-label-sm vesper-combobox-label"
-      for="_r_2n_"
+      for="_r_3a_"
     >
       Label text *
     </label>
@@ -249,7 +249,7 @@ exports[`combobox [snapshot] > required 1`] = `
         autocomplete="off"
         autocorrect="off"
         class="vesper-typography vesper-typography-copy-sm vesper-combobox-input"
-        id="_r_2n_"
+        id="_r_3a_"
         placeholder="Search..."
         role="combobox"
         spellcheck="false"
@@ -326,7 +326,7 @@ exports[`combobox [snapshot] > size: lg 1`] = `
       autocomplete="off"
       autocorrect="off"
       class="vesper-typography vesper-typography-copy-md vesper-combobox-input"
-      id="_r_2b_"
+      id="_r_2u_"
       placeholder="Search..."
       role="combobox"
       spellcheck="false"
@@ -402,7 +402,7 @@ exports[`combobox [snapshot] > size: md 1`] = `
       autocomplete="off"
       autocorrect="off"
       class="vesper-typography vesper-typography-copy-sm vesper-combobox-input"
-      id="_r_25_"
+      id="_r_2o_"
       placeholder="Search..."
       role="combobox"
       spellcheck="false"
@@ -478,7 +478,7 @@ exports[`combobox [snapshot] > size: sm 1`] = `
       autocomplete="off"
       autocorrect="off"
       class="vesper-typography vesper-typography-copy-xs vesper-combobox-input"
-      id="_r_1v_"
+      id="_r_2i_"
       placeholder="Search..."
       role="combobox"
       spellcheck="false"
@@ -548,14 +548,14 @@ exports[`combobox [snapshot] > variant: default 1`] = `
     </svg>
     <input
       aria-autocomplete="list"
-      aria-describedby="_r_18_"
+      aria-describedby="_r_1r_"
       aria-expanded="false"
       aria-haspopup="listbox"
       autocapitalize="none"
       autocomplete="off"
       autocorrect="off"
       class="vesper-typography vesper-typography-copy-sm vesper-combobox-input"
-      id="_r_17_"
+      id="_r_1q_"
       placeholder="Search..."
       role="combobox"
       spellcheck="false"
@@ -597,7 +597,7 @@ exports[`combobox [snapshot] > variant: default 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
     data-message="true"
-    id="_r_18_"
+    id="_r_1r_"
   >
     <span
       aria-hidden="true"
@@ -649,14 +649,14 @@ exports[`combobox [snapshot] > variant: error 1`] = `
     </svg>
     <input
       aria-autocomplete="list"
-      aria-describedby="_r_1q_"
+      aria-describedby="_r_2d_"
       aria-expanded="false"
       aria-haspopup="listbox"
       autocapitalize="none"
       autocomplete="off"
       autocorrect="off"
       class="vesper-typography vesper-typography-copy-sm vesper-combobox-input"
-      id="_r_1p_"
+      id="_r_2c_"
       placeholder="Search..."
       role="combobox"
       spellcheck="false"
@@ -698,7 +698,7 @@ exports[`combobox [snapshot] > variant: error 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
     data-message="true"
-    id="_r_1q_"
+    id="_r_2d_"
   >
     <span
       aria-hidden="true"
@@ -750,14 +750,14 @@ exports[`combobox [snapshot] > variant: success 1`] = `
     </svg>
     <input
       aria-autocomplete="list"
-      aria-describedby="_r_1k_"
+      aria-describedby="_r_27_"
       aria-expanded="false"
       aria-haspopup="listbox"
       autocapitalize="none"
       autocomplete="off"
       autocorrect="off"
       class="vesper-typography vesper-typography-copy-sm vesper-combobox-input"
-      id="_r_1j_"
+      id="_r_26_"
       placeholder="Search..."
       role="combobox"
       spellcheck="false"
@@ -799,7 +799,7 @@ exports[`combobox [snapshot] > variant: success 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-success"
     data-message="true"
-    id="_r_1k_"
+    id="_r_27_"
   >
     <span
       aria-hidden="true"
@@ -849,14 +849,14 @@ exports[`combobox [snapshot] > variant: warning 1`] = `
     </svg>
     <input
       aria-autocomplete="list"
-      aria-describedby="_r_1e_"
+      aria-describedby="_r_21_"
       aria-expanded="false"
       aria-haspopup="listbox"
       autocapitalize="none"
       autocomplete="off"
       autocorrect="off"
       class="vesper-typography vesper-typography-copy-sm vesper-combobox-input"
-      id="_r_1d_"
+      id="_r_20_"
       placeholder="Search..."
       role="combobox"
       spellcheck="false"
@@ -898,7 +898,7 @@ exports[`combobox [snapshot] > variant: warning 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-warning"
     data-message="true"
-    id="_r_1e_"
+    id="_r_21_"
   >
     <span
       aria-hidden="true"
@@ -935,7 +935,7 @@ exports[`combobox [snapshot] > with label 1`] = `
   >
     <label
       class="vesper-typography vesper-typography-label-sm vesper-combobox-label"
-      for="_r_2h_"
+      for="_r_34_"
     >
       Label text
     </label>
@@ -965,7 +965,7 @@ exports[`combobox [snapshot] > with label 1`] = `
         autocomplete="off"
         autocorrect="off"
         class="vesper-typography vesper-typography-copy-sm vesper-combobox-input"
-        id="_r_2h_"
+        id="_r_34_"
         placeholder="Search..."
         role="combobox"
         spellcheck="false"
@@ -1041,7 +1041,7 @@ exports[`combobox [snapshot] > with value 1`] = `
       autocomplete="off"
       autocorrect="off"
       class="vesper-typography vesper-typography-copy-sm vesper-combobox-input"
-      id="_r_2t_"
+      id="_r_3g_"
       placeholder="Search..."
       role="combobox"
       spellcheck="false"

@@ -92,6 +92,8 @@ function renderCombobox(props: Partial<ComboboxProps> = {}) {
     wrapper: result.container.querySelector(".vesper-combobox")!,
     input: result.container.querySelector(".vesper-combobox-input")!,
     trigger: result.container.querySelector(".vesper-combobox-trigger")!,
+    /** Only rendered once a value is selected, so this is `null` for an empty combobox */
+    clear: result.container.querySelector(".vesper-combobox-clear")!,
     message: result.container.querySelector(".vesper-form-input-message")!,
   };
 }
@@ -160,6 +162,42 @@ describe("combobox [unit]", () => {
     await openPopup(trigger);
     await userEvent.click(getItems()[1]!);
     await waitFor(() => expect(onValueChange).toHaveBeenCalledWith("jp"));
+  });
+
+  test("the clear button and dropdown trigger have default accessible labels", () => {
+    const { clear, trigger } = renderCombobox({ defaultValue: "apple" });
+
+    expect(clear).toHaveAttribute("aria-label", "Clear selection");
+    expect(trigger).toHaveAttribute("aria-label", "Show options");
+  });
+
+  test("clearButtonAriaLabel labels the button that clears the selection", async () => {
+    const onValueChange = vi.fn();
+    const result = renderCombobox({
+      defaultValue: "apple",
+      clearButtonAriaLabel: "Clear fruit",
+      onValueChange,
+    });
+
+    expect(result.clear).toHaveAttribute("aria-label", "Clear fruit");
+    expect(result.getByLabelText("Clear fruit")).toBe(result.clear);
+    expect(result.queryByLabelText("Clear selection")).toBeNull();
+
+    // The labelled element is the control that actually clears the selection
+    await userEvent.click(result.clear);
+    await waitFor(() => expect(onValueChange).toHaveBeenCalledWith(null));
+  });
+
+  test("dropdownTriggerAriaLabel labels the button that opens the dropdown", async () => {
+    const result = renderCombobox({ dropdownTriggerAriaLabel: "Show fruits" });
+
+    expect(result.trigger).toHaveAttribute("aria-label", "Show fruits");
+    expect(result.getByLabelText("Show fruits")).toBe(result.trigger);
+    expect(result.queryByLabelText("Show options")).toBeNull();
+
+    // The labelled element is the control that actually opens the dropdown
+    await openPopup(result.trigger);
+    expect(getItems()).toHaveLength(OPTIONS.length);
   });
 
   test("renders the empty state text when no options match", async () => {

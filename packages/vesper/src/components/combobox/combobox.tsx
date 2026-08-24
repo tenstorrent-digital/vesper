@@ -109,6 +109,10 @@ export interface ComboboxProps extends Omit<
   container?: PortalContainer;
   /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
   inputRef?: Ref<HTMLInputElement>;
+  /** Accessible label for the button that clears the currently selected value. @default Clear selection */
+  clearButtonAriaLabel?: string;
+  /** Accessible label for the button that opens the dropdown. @default Show options */
+  dropdownTriggerAriaLabel?: string;
 }
 
 /**
@@ -165,6 +169,8 @@ export function Combobox(props: ComboboxProps) {
     variant = "default",
     emptyStateText = "No results",
     placeholder = "Search...",
+    clearButtonAriaLabel = "Clear selection",
+    dropdownTriggerAriaLabel = "Show options",
     className,
     open,
     defaultOpen,
@@ -243,13 +249,13 @@ export function Combobox(props: ComboboxProps) {
       />
       <BaseCombobox.Clear
         className="vesper-combobox-clear"
-        aria-label="Clear selection"
+        aria-label={clearButtonAriaLabel}
       >
         <Close />
       </BaseCombobox.Clear>
       <BaseCombobox.Trigger
         className="vesper-combobox-trigger"
-        aria-label="Show options"
+        aria-label={dropdownTriggerAriaLabel}
       >
         <CaretUp className="vesper-combobox-caret-up" />
         <CaretDown className="vesper-combobox-caret-down" />
