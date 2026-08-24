@@ -30,6 +30,7 @@ import { Chip } from "@tenstorrent/vesper/chip";
 import { Choicebox } from "@tenstorrent/vesper/choicebox";
 import { Code } from "@tenstorrent/vesper/code";
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
+import { Combobox } from "@tenstorrent/vesper/combobox";
 import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import {
@@ -74,6 +75,7 @@ import { ColorChip } from "@/components/color-chip";
 // named demos for components w non-serializable props (event handlers,
 // refs, state) that are used inside `docs/` documents
 import { ChipDemo } from "@/demos/chip";
+import { ComboboxDemo } from "@/demos/combobox";
 import { IconsDemo } from "@/demos/icons";
 import { MaskedInputDemo } from "@/demos/masked-input";
 import { MenuDemo } from "@/demos/menu";
@@ -229,6 +231,7 @@ const components = {
   Code,
   CodeBlock,
   FormInputMessage,
+  Combobox,
   Icon,
   IconButton,
   MaskedInput,
@@ -271,6 +274,7 @@ const components = {
 
   // demos
   ChipDemo,
+  ComboboxDemo,
   IconsDemo,
   MaskedInputDemo,
   MenuDemo,

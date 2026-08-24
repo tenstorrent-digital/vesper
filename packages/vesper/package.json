@@ -23,6 +23,10 @@
     "dist"
   ],
   "exports": {
+    "./combobox": {
+      "types": "./dist/components/combobox/combobox.d.ts",
+      "import": "./dist/components/combobox/combobox.js"
+    },
     "./text-area": {
       "types": "./dist/components/text-area/text-area.d.ts",
       "import": "./dist/components/text-area/text-area.js"

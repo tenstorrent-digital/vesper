@@ -13,6 +13,7 @@ import { Checkbox } from "@tenstorrent/vesper/checkbox";
 import { Chip } from "@tenstorrent/vesper/chip";
 import { Code } from "@tenstorrent/vesper/code";
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
+import { Combobox } from "@tenstorrent/vesper/combobox";
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
@@ -132,6 +133,19 @@ export default function Page() {
   flex-direction: column;
   align-items: flex-start;
 }`}</CodeBlock>
+        </Cell>
+
+        <Cell name="Combobox">
+          <Combobox
+            aria-label="Fruit"
+            options={[
+              { label: "Apple", value: "apple" },
+              { label: "Banana", value: "banana" },
+              { label: "Orange", value: "orange" },
+              { label: "Pineapple", value: "pineapple" },
+              { label: "Grape", value: "grape" },
+            ]}
+          />
         </Cell>
 
         <Cell name="IconButton">
