@@ -29,7 +29,8 @@ import {
   getPortalContainer,
   type PortalContainer,
 } from "@/utils/getPortalContainer";
-import { useBaseRemSize } from "@/utils/useBaseRemSize";
+import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
+import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 export const COMBOBOX_SIZES = ["sm", "md", "lg"] as const;
 
@@ -190,7 +191,7 @@ export function Combobox(props: ComboboxProps) {
     ...rest
   } = props;
   const [innerRef, setInnerRef] = useState<HTMLDivElement | null>(null);
-  useImperativeHandle(ref, () => innerRef!);
+  useMergedRefs(setInnerRef, ref);
 
   const baseRemSize = useBaseRemSize();
 
