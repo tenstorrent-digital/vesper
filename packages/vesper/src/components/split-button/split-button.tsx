@@ -18,7 +18,7 @@ import {
 } from "@/components/menu/menu";
 
 import { cn } from "@/utils/cn";
-import { useMergedRefs } from "@/utils/useMergedRefs";
+import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 export const SPLIT_BUTTON_SIZES = ["sm", "md", "lg"] as const;
 

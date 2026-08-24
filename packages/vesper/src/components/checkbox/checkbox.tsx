@@ -9,7 +9,7 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
-import { useMergedRefs } from "@/utils/useMergedRefs";
+import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 export const CHECKBOX_SIZES = ["sm", "md"] as const;
 

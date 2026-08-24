@@ -14,8 +14,8 @@ import {
   getPortalContainer,
   type PortalContainer,
 } from "@/utils/getPortalContainer";
-import { useBaseRemSize } from "@/utils/useBaseRemSize";
-import { useMergedRefs } from "@/utils/useMergedRefs";
+import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
+import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 export const SELECT_SIZES = ["sm", "md", "lg"] as const;
 

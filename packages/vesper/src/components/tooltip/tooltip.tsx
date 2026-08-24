@@ -9,8 +9,8 @@ import {
   getPortalContainer,
   type PortalContainer,
 } from "@/utils/getPortalContainer";
+import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
 import { isSingleReactElement } from "@/utils/isSingleReactElement";
-import { useBaseRemSize } from "@/utils/useBaseRemSize";
 
 export const TOOLTIP_SIDES = ["top", "right", "bottom", "left"] as const;
 

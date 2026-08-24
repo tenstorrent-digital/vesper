@@ -13,7 +13,7 @@ import { Checkmark } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
-import { useMergedRefs } from "@/utils/useMergedRefs";
+import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 export type ChoiceboxItem = {
   /** The value associated with this option. */

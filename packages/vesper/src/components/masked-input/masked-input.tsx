@@ -12,7 +12,7 @@ import {
   type TextInputProps,
 } from "@/components/text-input/text-input";
 
-import { useMergedRefs } from "@/utils/useMergedRefs";
+import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 import { getMaskitoOptions } from "./getMaskitoOptions";
 

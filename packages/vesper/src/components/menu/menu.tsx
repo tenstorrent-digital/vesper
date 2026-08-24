@@ -10,8 +10,8 @@ import {
   getPortalContainer,
   type PortalContainer,
 } from "@/utils/getPortalContainer";
+import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
 import { isSingleReactElement } from "@/utils/isSingleReactElement";
-import { useBaseRemSize } from "@/utils/useBaseRemSize";
 
 export type MenuItemProps = {
   /** The text label displayed for the menu item. */

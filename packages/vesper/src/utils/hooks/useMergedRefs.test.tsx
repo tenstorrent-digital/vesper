@@ -15,7 +15,7 @@ import {
 import { cleanup, render } from "@testing-library/react";
 import { afterEach, describe, expect, test, vi } from "vitest";
 
-import { useMergedRefs } from "@/utils/useMergedRefs";
+import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 afterEach(cleanup);
 
