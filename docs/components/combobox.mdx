@@ -366,6 +366,10 @@ import { Combobox } from "@tenstorrent/vesper/combobox";
 
 ### Labels and required fields
 
+> [!IMPORTANT]
+>
+> Always give a `Combobox` an accessible name by passing either a `label` or an `aria-label`. Without one, assistive technology announces the field with no indication of what it is for. A `placeholder` is **not** a substitute: it is not reliably announced, and it disappears as soon as the user starts typing.
+
 When a `label` is provided, it is rendered above the input and associated with it, so clicking the label focuses the field. Passing `required` appends an asterisk to the label:
 
 <Combobox
@@ -386,7 +390,31 @@ import { Combobox } from "@tenstorrent/vesper/combobox";
 />;
 ```
 
-An `id` is generated for the input for you, but you can provide your own via the `id` prop if you need to reference the field elsewhere. Any `aria-describedby` you pass is merged with the automatically generated `message` id, so both remain announced by assistive technology. When rendering a `Combobox` without a `label`, pass an `aria-label` so the field still has an accessible name.
+An `id` is generated for the input for you, but you can provide your own via the `id` prop if you need to reference the field elsewhere. Any `aria-describedby` you pass is merged with the automatically generated `message` id, so both remain announced by assistive technology.
+
+<Combobox
+  aria-label="Country"
+  placeholder="e.g. Canada"
+  options={["Canada", "Japan", "Norway"]}
+/>
+
+```tsx
+import { Combobox } from "@tenstorrent/vesper/combobox";
+
+// Visible label — preferred
+<Combobox
+  label="Country"
+  placeholder="e.g. Canada"
+  options={["Canada", "Japan", "Norway"]}
+/>;
+
+// No visible label — provide an `aria-label` instead
+<Combobox
+  aria-label="Country"
+  placeholder="e.g. Canada"
+  options={["Canada", "Japan", "Norway"]}
+/>;
+```
 
 ### Disabled and read-only
 
