@@ -36,6 +36,7 @@
   z-index: 0;
   height: 1rem;
   position: absolute;
+  transform: translateX(-0.03125rem);
   border-left: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   @media (forced-colors: active) {
     background: CanvasText;
