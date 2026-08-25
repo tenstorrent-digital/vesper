@@ -186,7 +186,7 @@ export function Combobox(props: ComboboxProps) {
     label,
     message,
     "aria-describedby": ariaDescribedby,
-    "aria-label": ariaLabel,
+    "aria-label": ariaLabel = label,
     "aria-labelledby": ariaLabelledBy,
     "aria-invalid": ariaInvalid,
     ...rest
@@ -256,7 +256,11 @@ export function Combobox(props: ComboboxProps) {
       readOnly={readOnly}
     >
       <FormInputWrapper
-        label={label ? { text: label, htmlFor: inputId } : undefined}
+        label={
+          label
+            ? { text: required ? `${label} *` : label, htmlFor: inputId }
+            : undefined
+        }
         message={message ? { text: message, id: messageId } : undefined}
         className={className}
       >
