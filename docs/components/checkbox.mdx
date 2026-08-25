@@ -7,23 +7,24 @@ description: A form checkbox input with a label, supporting checked, unchecked, 
 
 A form checkbox input with a label, supporting checked, unchecked, and indeterminate states. Built on a native `<input type="checkbox">` for full form compatibility and accessibility.
 
-<Checkbox label="Accept terms and conditions" />
+<Checkbox text="Accept terms and conditions" />
 
 ## Options
 
-| Prop             | Type                                             | Description                                                                                       | Default     |
-| ---------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------- | ----------- |
-| `label`          | `string`                                         | The text label displayed next to the checkbox. An asterisk is appended when `required` is `true`. | —           |
-| `size`           | `"sm" \| "md"`                                   | The size of the checkbox and its label.                                                           | `"md"`      |
-| `variant`        | `"default" \| "warning" \| "error" \| "success"` | The visual variant, which determines the color scheme and icon of the message.                    | `"default"` |
-| `message`        | `string`                                         | An optional message displayed below the checkbox, paired with a variant-specific icon.            | —           |
-| `indeterminate`  | `boolean`                                        | When `true`, renders the checkbox in an indeterminate (mixed) state with a dash icon.             | `false`     |
-| `inputRef`       | `Ref<HTMLInputElement>`                          | A ref forwarded to the underlying `<input>` element.                                              | —           |
-| `checked`        | `boolean`                                        | Controls the checked state (controlled mode).                                                     | —           |
-| `defaultChecked` | `boolean`                                        | The initial checked state (uncontrolled mode).                                                    | —           |
-| `disabled`       | `boolean`                                        | When `true`, prevents interaction.                                                                | `false`     |
-| `required`       | `boolean`                                        | When `true`, marks the input as required and appends an asterisk to the label.                    | `false`     |
-| `onChange`       | `ChangeEventHandler<HTMLInputElement>`           | Callback fired when the checked state changes.                                                    | —           |
+| Prop             | Type                                             | Description                                                                                                                                       | Default     |
+| ---------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `text`           | `string`                                         | The text displayed next to the checkbox. **Required.**                                                                                            | —           |
+| `label`          | `string`                                         | An optional label displayed above the checkbox, also used as the input's default `aria-label`. An asterisk is appended when `required` is `true`. | —           |
+| `size`           | `"sm" \| "md"`                                   | The size of the checkbox and its label.                                                                                                           | `"md"`      |
+| `variant`        | `"default" \| "warning" \| "error" \| "success"` | The visual variant, which determines the color scheme and icon of the message.                                                                    | `"default"` |
+| `message`        | `string`                                         | An optional message displayed below the checkbox, paired with a variant-specific icon.                                                            | —           |
+| `indeterminate`  | `boolean`                                        | When `true`, renders the checkbox in an indeterminate (mixed) state with a dash icon.                                                             | `false`     |
+| `inputRef`       | `Ref<HTMLInputElement>`                          | A ref forwarded to the underlying `<input>` element.                                                                                              | —           |
+| `checked`        | `boolean`                                        | Controls the checked state (controlled mode).                                                                                                     | —           |
+| `defaultChecked` | `boolean`                                        | The initial checked state (uncontrolled mode).                                                                                                    | —           |
+| `disabled`       | `boolean`                                        | When `true`, prevents interaction.                                                                                                                | `false`     |
+| `required`       | `boolean`                                        | When `true`, marks the input as required and appends an asterisk to the `label`.                                                                  | `false`     |
+| `onChange`       | `ChangeEventHandler<HTMLInputElement>`           | Callback fired when the checked state changes.                                                                                                    | —           |
 
 Any other props are forwarded to the `<label>` element wrapping the checkbox.
 
@@ -33,27 +34,27 @@ Any other props are forwarded to the `<label>` element wrapping the checkbox.
 import { Checkbox } from "@tenstorrent/vesper/checkbox";
 
 // Basic usage
-<Checkbox label="Remember me" />;
+<Checkbox text="Remember me" />;
 ```
 
 ```tsx
 // Default checked
-<Checkbox label="Subscribe to newsletter" defaultChecked />
+<Checkbox text="Subscribe to newsletter" defaultChecked />
 ```
 
 ```tsx
 // Indeterminate state
-<Checkbox label="Select all" indeterminate />
+<Checkbox text="Select all" indeterminate />
 ```
 
 ```tsx
 // Required
-<Checkbox label="I agree to the terms" required />
+<Checkbox text="I agree to the terms" label="Terms and conditions" required />
 ```
 
 ```tsx
 // Small size
-<Checkbox label="Compact checkbox" size="sm" />
+<Checkbox text="Compact checkbox" size="sm" />
 ```
 
 ```tsx
@@ -61,10 +62,37 @@ import { Checkbox } from "@tenstorrent/vesper/checkbox";
 const [checked, setChecked] = useState(false);
 
 <Checkbox
-  label="Controlled"
+  text="Controlled"
   checked={checked}
   onChange={(e) => setChecked(e.target.checked)}
 />;
+```
+
+### Labels and required fields
+
+The `text` prop renders next to the checkbox and is required. The optional `label` prop renders a separate label _above_ the checkbox, associated with it via `htmlFor`, so clicking it toggles the checkbox. When a `label` is supplied it also becomes the input's default `aria-label`, and therefore its accessible name; otherwise the accessible name falls back to `text`.
+
+Passing `required` marks the input as required for native form validation, and appends an asterisk to the `label`. The asterisk is visual only — it is not part of the accessible name, so assistive technology announces `"Terms and conditions"` rather than `"Terms and conditions star"`. The `text` next to the checkbox is left untouched, so when rendering without a visible `label` nothing marks the field as required on screen — mention it in the `message` if users need to know before submitting.
+
+<Checkbox text="I agree to the terms" label="Terms and conditions" required />
+
+```tsx
+import { Checkbox } from "@tenstorrent/vesper/checkbox";
+
+<Checkbox text="I agree to the terms" label="Terms and conditions" required />;
+```
+
+`aria-labelledby` is never generated for you. Pass it explicitly if you need to point the checkbox at markup elsewhere on the page — it is forwarded as-is, and takes precedence over the `label`-derived `aria-label`.
+
+```tsx
+<>
+  <h2 id="terms-heading">Terms and conditions</h2>
+  <Checkbox
+    text="I agree to the terms"
+    aria-labelledby="terms-heading"
+    required
+  />
+</>
 ```
 
 ### Message
@@ -72,7 +100,8 @@ const [checked, setChecked] = useState(false);
 You can render an additional line of text under the checkbox via the `message` prop. Combine with the `variant` prop to indicate the tone of the message to the user.
 
 <Checkbox
-  label="Accept terms and conditions"
+  text="I agree to the terms"
+  label="Terms and conditions"
   message="You must accept the terms before continuing."
   variant="error"
   required
@@ -82,7 +111,8 @@ You can render an additional line of text under the checkbox via the `message` p
 import { Checkbox } from "@tenstorrent/vesper/checkbox";
 
 <Checkbox
-  label="Accept terms and conditions"
+  text="I agree to the terms"
+  label="Terms and conditions"
   message="You must accept the terms before continuing."
   variant="error"
   required
