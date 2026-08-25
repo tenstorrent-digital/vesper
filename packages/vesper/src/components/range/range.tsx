@@ -133,13 +133,21 @@ export function Range(props: RangeProps) {
     ...rest
   } = props;
 
-  const numTicks = useMemo(() => {
-    let n = Math.max(Math.ceil((max - min) / step) - 1, 0);
-    if (n === Infinity) n = 0;
-    return n;
-  }, [min, max, step]);
+  const tickPositions = useMemo(() => {
+    const span = max - min;
+    if (
+      !Number.isFinite(span) ||
+      !Number.isFinite(step) ||
+      span <= 0 ||
+      step <= 0
+    ) {
+      return [];
+    }
 
-  const tickLeft = useMemo(() => 100 / Math.max(max - min, 0), [min, max]);
+    const numTicks = Math.max(Math.ceil(span / step) - 1, 0);
+
+    return Array.from({ length: numTicks }, (_, i) => ((i + 1) * step) / span);
+  }, [min, max, step]);
 
   const thumbValues = values ?? defaultValues;
 
@@ -180,6 +188,7 @@ export function Range(props: RangeProps) {
         max={max}
         step={step}
         minStepsBetweenValues={minStepsBetweenThumbs}
+        thumbAlignment="edge"
         thumbCollisionBehavior="none"
         aria-invalid={ariaInvalid}
         aria-describedby={describedBy}
@@ -188,11 +197,15 @@ export function Range(props: RangeProps) {
         <BaseSlider.Control>
           <BaseSlider.Track className="vesper-range-track">
             {showTicks &&
-              Array.from({ length: numTicks }).map((_, i) => (
+              tickPositions.map((position, i) => (
                 <span
                   key={i}
                   className="vesper-range-tick"
-                  style={{ left: tickLeft * ((i + 1) * step) + "%" }}
+                  style={
+                    {
+                      ["--vesper-range-tick-position"]: position,
+                    } as CSSProperties
+                  }
                 />
               ))}
             <BaseSlider.Indicator className="vesper-range-range" />
