@@ -25,6 +25,7 @@ const FORM_INPUT_WRAPPER_PERMUTATIONS = FORM_INPUT_WRAPPER_VARIANTS.flatMap(
       label: {
         htmlFor: "input-id",
         text: "Label",
+        id: "label-id",
       },
     },
     {
@@ -43,6 +44,7 @@ const FORM_INPUT_WRAPPER_PERMUTATIONS = FORM_INPUT_WRAPPER_VARIANTS.flatMap(
       label: {
         htmlFor: "input-id",
         text: "Label",
+        id: "label-id",
       },
       message: {
         id: "message-id",
@@ -81,12 +83,15 @@ describe("form-input-wrapper [unit]", () => {
 
   test("renders a label when provided", () => {
     const { container } = render(
-      <FormInputWrapper label={{ htmlFor: "input-id", text: "Label" }} />,
+      <FormInputWrapper
+        label={{ htmlFor: "input-id", text: "Label", id: "label-id" }}
+      />,
     );
     const label = container.querySelector("label");
     expect(container).toContainElement(label);
     expect(label).toHaveTextContent("Label");
     expect(label).toHaveAttribute("for", "input-id");
+    expect(label).toHaveAttribute("id", "label-id");
   });
 
   test("renders an empty message by default", () => {
