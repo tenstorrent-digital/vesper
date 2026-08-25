@@ -34,13 +34,13 @@ export interface RangeProps extends Omit<
   ComponentProps<"div">,
   "children" | "defaultValue" | "dir"
 > {
-  /** The controlled values of the range thumbs. Each entry corresponds to a thumb position. */
+  /** The values of each thumb (controlled mode). One thumb is rendered per entry in the array. */
   values?: number[];
   /** Custom display labels for each thumb, shown as a tooltip-style label above the thumb. When left blank, defaults to the active values of each thumb. */
   valueLabels?: string[];
-  /** Accessible `aria-label` attributes for each thumb. */
+  /** Accessible `aria-label` attributes for each thumb, in the same order as the values. */
   thumbAriaLabels: string[];
-  /** When `true`, displays the value labels above each thumb. */
+  /** When `true`, displays the value labels above each thumb. @default false */
   showValueLabels?: boolean;
   /** The initial thumb values (uncontrolled mode). @default [min, max] */
   defaultValues?: number[];
@@ -50,7 +50,7 @@ export interface RangeProps extends Omit<
   onValuesCommit?(value: number[]): void;
   /** When `true`, renders tick marks along the track at each step interval. @default false */
   showTicks?: boolean;
-  /** The name attribute applied to the underlying hidden input, used for form submission. */
+  /** The name attribute applied to each thumb's underlying input, used for form submission. Every thumb submits its value under this name. */
   name?: string;
   /** When true, prevents interaction. @default false */
   disabled?: boolean;
@@ -73,18 +73,25 @@ export interface RangeProps extends Omit<
 }
 
 /**
- * A dual-thumb range slider for selecting a numeric range between a minimum and maximum value.
+ * A multi-thumb range input for selecting a span of numeric values between a minimum and maximum.
  *
- * @param {number[]} [props.values] - (optional) The controlled values of the range thumbs
+ * @param {string[]} props.thumbAriaLabels - Accessible `aria-label` attributes for each thumb, in the same order as the values
+ * @param {number[]} [props.values] - (optional) The values of each thumb (controlled). One thumb is rendered per entry
  * @param {number[]} [props.defaultValues] - (optional) The initial thumb values (uncontrolled). @default [min, max]
  * @param {(value: number[]) => void} [props.onValuesChange] - (optional) Callback fired as thumb values change during interaction
  * @param {(value: number[]) => void} [props.onValuesCommit] - (optional) Callback fired when thumb interaction is completed
  * @param {number} [props.min] - (optional) The minimum allowed value. @default 0
  * @param {number} [props.max] - (optional) The maximum allowed value. @default 100
  * @param {number} [props.step] - (optional) The stepping interval. @default 1
+ * @param {number} [props.minStepsBetweenThumbs] - (optional) The minimum number of steps required between thumbs. @default 1
  * @param {boolean} [props.showTicks] - (optional) Whether to render tick marks at each step interval. @default false
- * @param {boolean} [props.showValueLabels] - (optional) Whether to display value labels above each thumb
- * @param {string[]} props.thumbAriaLabels - Accessible `aria-label` attributes for each thumb
+ * @param {boolean} [props.showValueLabels] - (optional) Whether to display a value label above each thumb. @default false
+ * @param {string[]} [props.valueLabels] - (optional) Custom display labels for each thumb, falling back to that thumb's current value
+ * @param {RangeVariant} [props.variant] - (optional) The visual variant, which determines the color scheme and icon of the message. @default default
+ * @param {string} [props.label] - (optional) A label displayed above the track, also used as the accessible name of the range group
+ * @param {string} [props.message] - (optional) A message displayed below the track, linked to the range via `aria-describedby`
+ * @param {boolean} [props.disabled] - (optional) Whether to prevent interaction. @default false
+ * @param {string} [props.name] - (optional) The form field name each thumb submits its value under
  *
  * You may also pass any additional props to the underlying `div` element
  *
@@ -107,6 +114,17 @@ export interface RangeProps extends Omit<
  *   values={range}
  *   onValuesChange={setRange}
  *   thumbAriaLabels={["Volume (min)", "Volume (max)"]}
+ * />
+ *
+ * @example
+ * <Range
+ *   variant="error"
+ *   label="Price"
+ *   message="The range must span at least $50."
+ *   values={price}
+ *   onValuesChange={setPrice}
+ *   aria-invalid
+ *   thumbAriaLabels={["Price (min)", "Price (max)"]}
  * />
  */
 export function Range(props: RangeProps) {
