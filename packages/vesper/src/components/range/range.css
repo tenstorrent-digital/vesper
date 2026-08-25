@@ -1,4 +1,5 @@
 .vesper-range {
+  --vesper-range-thumb-size: 1rem;
   width: 100%;
   display: block;
   position: relative;
@@ -36,6 +37,11 @@
   z-index: 0;
   height: 1rem;
   position: absolute;
+  left: calc(
+    var(--vesper-range-thumb-size) / 2 +
+      (100% - var(--vesper-range-thumb-size)) *
+      var(--vesper-range-tick-position, 0)
+  );
   transform: translateX(-0.03125rem);
   border-left: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   @media (forced-colors: active) {
@@ -70,8 +76,8 @@
 
 .vesper-range-thumb {
   z-index: 2;
-  width: 1rem;
-  height: 1rem;
+  width: var(--vesper-range-thumb-size);
+  height: var(--vesper-range-thumb-size);
   display: flex;
   justify-content: center;
   cursor: pointer;
