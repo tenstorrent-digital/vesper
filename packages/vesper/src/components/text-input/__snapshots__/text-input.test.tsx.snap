@@ -37,6 +37,7 @@ exports[`text-input [snapshot] > full options 1`] = `
   >
     <input
       aria-describedby="_r_1s_"
+      aria-label="Label text"
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
       disabled=""
       id="_r_1t_"
@@ -373,6 +374,7 @@ exports[`text-input [snapshot] > with label 1`] = `
     class="vesper-text-input vesper-text-input-lg vesper-text-input-default"
   >
     <input
+      aria-label="Label text"
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
       id="_r_1p_"
       placeholder=" "
