@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { RANGE_VARIANTS } from "@/components/range/range";
-import { Slider } from "@/components/slider/slider";
+import { Slider, SLIDER_VARIANTS } from "@/components/slider/slider";
 
 const meta = {
   component: Slider,
@@ -15,7 +14,7 @@ const meta = {
     valueLabel: { table: { disable: true } },
     name: { table: { disable: true } },
     form: { table: { disable: true } },
-    variant: { control: "radio", options: RANGE_VARIANTS },
+    variant: { control: "radio", options: SLIDER_VARIANTS },
   },
 } satisfies Meta<typeof Slider>;
 

@@ -68,7 +68,7 @@ export interface RangeProps extends Omit<
   message?: string;
   /** An optional label displayed above the input. An asterisk is appended when `required` is `true`. */
   label?: string;
-  /** The visual variant of the text input, which determines its message's color scheme and icon. @default default */
+  /** The visual variant of the input, which determines its message's color scheme and icon. @default default */
   variant?: RangeVariant;
 }
 
@@ -126,6 +126,9 @@ export function Range(props: RangeProps) {
     defaultValues = [min, max],
     message,
     label,
+    disabled,
+    name,
+    form,
     "aria-describedby": ariaDescribedby,
     "aria-labelledby": ariaLabelledby,
     "aria-invalid": ariaInvalid,
@@ -187,6 +190,9 @@ export function Range(props: RangeProps) {
         min={min}
         max={max}
         step={step}
+        disabled={disabled}
+        name={name}
+        form={form}
         minStepsBetweenValues={minStepsBetweenThumbs}
         thumbAlignment="edge"
         thumbCollisionBehavior="none"
