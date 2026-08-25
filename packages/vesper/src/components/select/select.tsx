@@ -40,7 +40,7 @@ export interface SelectItem {
 
 export interface SelectProps
   extends
-    Omit<ComponentProps<"div">, "children">,
+    Omit<ComponentProps<"div">, "children" | "defaultValue">,
     Pick<ComponentProps<"button">, "name" | "disabled"> {
   /** An optional icon rendered at the leading edge of the select trigger. */
   icon?: ReactNode;
@@ -57,11 +57,11 @@ export interface SelectProps
   /** The list of selectable options displayed in the dropdown */
   options: SelectItem[];
   /** The initial selected value for uncontrolled usage */
-  defaultValue?: string;
-  /** The currently selected value for controlled usage */
-  value?: string;
-  /** Callback invoked with the new value whenever the selection changes */
-  onValueChange?(value: string): void;
+  defaultValue?: string | null;
+  /** The currently selected value for controlled usage. Pass `null` to represent no selection. */
+  value?: string | null;
+  /** Callback invoked with the new value whenever the selection changes, or `null` when the selection is cleared. */
+  onValueChange?(value: string | null): void;
   /** When `true`, marks the underlying select as required for form validation */
   required?: boolean;
   /** Associates the select with a `<form>` element by its `id`, allowing submission from outside the form */
@@ -180,9 +180,7 @@ export function Select(props: SelectProps) {
         items={options}
         value={value}
         defaultValue={defaultValue}
-        onValueChange={(next) => {
-          if (next !== null) onValueChange?.(next);
-        }}
+        onValueChange={(next) => onValueChange?.(next)}
         disabled={disabled}
         name={name}
         required={required}

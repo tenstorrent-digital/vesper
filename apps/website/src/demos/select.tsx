@@ -31,7 +31,7 @@ export function SelectDemo(props: SelectDemoProps) {
 }
 
 function ControlledSelectDemo() {
-  const [fruit, setFruit] = useState("apple");
+  const [fruit, setFruit] = useState<string | null>("apple");
 
   return (
     <div className="gap-vesper-4 flex flex-col">
@@ -45,7 +45,7 @@ function ControlledSelectDemo() {
       <Typography variant="copy-sm">
         Selected value: {fruit === "" ? "(none)" : fruit}
       </Typography>
-      <Button size="sm" onClick={() => setFruit("")}>
+      <Button size="sm" onClick={() => setFruit(null)}>
         Reset
       </Button>
     </div>
