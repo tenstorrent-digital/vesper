@@ -2,19 +2,15 @@
 
 exports[`text-area [snapshot] > disabled 1`] = `
 <div
-  class="vesper-text-area vesper-text-area-lg vesper-text-area-default"
+  class="vesper-form-input-wrapper"
 >
-  <div
-    class="vesper-text-area-field-wrapper"
-  >
-    <textarea
-      class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
-      disabled=""
-      id="_r_1t_"
-      placeholder=" "
-      style="height: 6.5rem; resize: none;"
-    />
-  </div>
+  <textarea
+    class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-default"
+    disabled=""
+    id="_r_1t_"
+    placeholder=" "
+    style="height: 6.5rem; resize: none;"
+  />
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
     data-message="false"
@@ -24,30 +20,22 @@ exports[`text-area [snapshot] > disabled 1`] = `
 
 exports[`text-area [snapshot] > full options 1`] = `
 <div
-  class="vesper-text-area vesper-text-area-lg vesper-text-area-error"
+  class="vesper-form-input-wrapper"
 >
-  <div
-    class="vesper-text-area-label-wrapper"
+  <label
+    class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
+    for="_r_1v_"
   >
-    <label
-      class="vesper-typography vesper-typography-label-sm vesper-text-area-label"
-      for="_r_1v_"
-    >
-      Label text
-    </label>
-    <div
-      class="vesper-text-area-field-wrapper"
-    >
-      <textarea
-        aria-describedby="_r_1u_"
-        class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
-        disabled=""
-        id="_r_1v_"
-        placeholder=" "
-        style="height: 6.5rem; resize: none;"
-      />
-    </div>
-  </div>
+    Label text
+  </label>
+  <textarea
+    aria-describedby="_r_1u_"
+    class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-error"
+    disabled=""
+    id="_r_1v_"
+    placeholder=" "
+    style="height: 6.5rem; resize: none;"
+  />
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
     data-message="true"
@@ -81,18 +69,14 @@ exports[`text-area [snapshot] > full options 1`] = `
 
 exports[`text-area [snapshot] > size: lg 1`] = `
 <div
-  class="vesper-text-area vesper-text-area-lg vesper-text-area-default"
+  class="vesper-form-input-wrapper"
 >
-  <div
-    class="vesper-text-area-field-wrapper"
-  >
-    <textarea
-      class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
-      id="_r_1n_"
-      placeholder=" "
-      style="height: 6.5rem; resize: none;"
-    />
-  </div>
+  <textarea
+    class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-default"
+    id="_r_1n_"
+    placeholder=" "
+    style="height: 6.5rem; resize: none;"
+  />
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
     data-message="false"
@@ -102,18 +86,14 @@ exports[`text-area [snapshot] > size: lg 1`] = `
 
 exports[`text-area [snapshot] > size: md 1`] = `
 <div
-  class="vesper-text-area vesper-text-area-md vesper-text-area-default"
+  class="vesper-form-input-wrapper"
 >
-  <div
-    class="vesper-text-area-field-wrapper"
-  >
-    <textarea
-      class="vesper-typography vesper-typography-copy-sm vesper-text-area-field"
-      id="_r_1l_"
-      placeholder=" "
-      style="height: 6.5rem; resize: none;"
-    />
-  </div>
+  <textarea
+    class="vesper-typography vesper-typography-copy-sm vesper-text-area vesper-text-area-md vesper-text-area-default"
+    id="_r_1l_"
+    placeholder=" "
+    style="height: 6.5rem; resize: none;"
+  />
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
     data-message="false"
@@ -123,18 +103,14 @@ exports[`text-area [snapshot] > size: md 1`] = `
 
 exports[`text-area [snapshot] > size: sm 1`] = `
 <div
-  class="vesper-text-area vesper-text-area-sm vesper-text-area-default"
+  class="vesper-form-input-wrapper"
 >
-  <div
-    class="vesper-text-area-field-wrapper"
-  >
-    <textarea
-      class="vesper-typography vesper-typography-copy-xs vesper-text-area-field"
-      id="_r_1j_"
-      placeholder=" "
-      style="height: 6.5rem; resize: none;"
-    />
-  </div>
+  <textarea
+    class="vesper-typography vesper-typography-copy-xs vesper-text-area vesper-text-area-sm vesper-text-area-default"
+    id="_r_1j_"
+    placeholder=" "
+    style="height: 6.5rem; resize: none;"
+  />
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
     data-message="false"
@@ -144,19 +120,15 @@ exports[`text-area [snapshot] > size: sm 1`] = `
 
 exports[`text-area [snapshot] > variant: default 1`] = `
 <div
-  class="vesper-text-area vesper-text-area-lg vesper-text-area-default"
+  class="vesper-form-input-wrapper"
 >
-  <div
-    class="vesper-text-area-field-wrapper"
-  >
-    <textarea
-      aria-describedby="_r_1a_"
-      class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
-      id="_r_1b_"
-      placeholder=" "
-      style="height: 6.5rem; resize: none;"
-    />
-  </div>
+  <textarea
+    aria-describedby="_r_1a_"
+    class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-default"
+    id="_r_1b_"
+    placeholder=" "
+    style="height: 6.5rem; resize: none;"
+  />
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
     data-message="true"
@@ -190,19 +162,15 @@ exports[`text-area [snapshot] > variant: default 1`] = `
 
 exports[`text-area [snapshot] > variant: error 1`] = `
 <div
-  class="vesper-text-area vesper-text-area-lg vesper-text-area-error"
+  class="vesper-form-input-wrapper"
 >
-  <div
-    class="vesper-text-area-field-wrapper"
-  >
-    <textarea
-      aria-describedby="_r_1g_"
-      class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
-      id="_r_1h_"
-      placeholder=" "
-      style="height: 6.5rem; resize: none;"
-    />
-  </div>
+  <textarea
+    aria-describedby="_r_1g_"
+    class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-error"
+    id="_r_1h_"
+    placeholder=" "
+    style="height: 6.5rem; resize: none;"
+  />
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
     data-message="true"
@@ -236,19 +204,15 @@ exports[`text-area [snapshot] > variant: error 1`] = `
 
 exports[`text-area [snapshot] > variant: success 1`] = `
 <div
-  class="vesper-text-area vesper-text-area-lg vesper-text-area-success"
+  class="vesper-form-input-wrapper"
 >
-  <div
-    class="vesper-text-area-field-wrapper"
-  >
-    <textarea
-      aria-describedby="_r_1e_"
-      class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
-      id="_r_1f_"
-      placeholder=" "
-      style="height: 6.5rem; resize: none;"
-    />
-  </div>
+  <textarea
+    aria-describedby="_r_1e_"
+    class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-success"
+    id="_r_1f_"
+    placeholder=" "
+    style="height: 6.5rem; resize: none;"
+  />
   <output
     class="vesper-form-input-message vesper-form-input-message-success"
     data-message="true"
@@ -280,19 +244,15 @@ exports[`text-area [snapshot] > variant: success 1`] = `
 
 exports[`text-area [snapshot] > variant: warning 1`] = `
 <div
-  class="vesper-text-area vesper-text-area-lg vesper-text-area-warning"
+  class="vesper-form-input-wrapper"
 >
-  <div
-    class="vesper-text-area-field-wrapper"
-  >
-    <textarea
-      aria-describedby="_r_1c_"
-      class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
-      id="_r_1d_"
-      placeholder=" "
-      style="height: 6.5rem; resize: none;"
-    />
-  </div>
+  <textarea
+    aria-describedby="_r_1c_"
+    class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-warning"
+    id="_r_1d_"
+    placeholder=" "
+    style="height: 6.5rem; resize: none;"
+  />
   <output
     class="vesper-form-input-message vesper-form-input-message-warning"
     data-message="true"
@@ -326,18 +286,14 @@ exports[`text-area [snapshot] > variant: warning 1`] = `
 
 exports[`text-area [snapshot] > with icon 1`] = `
 <div
-  class="vesper-text-area vesper-text-area-lg vesper-text-area-default"
+  class="vesper-form-input-wrapper"
 >
-  <div
-    class="vesper-text-area-field-wrapper"
-  >
-    <textarea
-      class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
-      id="_r_1p_"
-      placeholder=" "
-      style="height: 6.5rem; resize: none;"
-    />
-  </div>
+  <textarea
+    class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-default"
+    id="_r_1p_"
+    placeholder=" "
+    style="height: 6.5rem; resize: none;"
+  />
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
     data-message="false"
@@ -347,28 +303,20 @@ exports[`text-area [snapshot] > with icon 1`] = `
 
 exports[`text-area [snapshot] > with label 1`] = `
 <div
-  class="vesper-text-area vesper-text-area-lg vesper-text-area-default"
+  class="vesper-form-input-wrapper"
 >
-  <div
-    class="vesper-text-area-label-wrapper"
+  <label
+    class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
+    for="_r_1r_"
   >
-    <label
-      class="vesper-typography vesper-typography-label-sm vesper-text-area-label"
-      for="_r_1r_"
-    >
-      Label text
-    </label>
-    <div
-      class="vesper-text-area-field-wrapper"
-    >
-      <textarea
-        class="vesper-typography vesper-typography-copy-md vesper-text-area-field"
-        id="_r_1r_"
-        placeholder=" "
-        style="height: 6.5rem; resize: none;"
-      />
-    </div>
-  </div>
+    Label text
+  </label>
+  <textarea
+    class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-default"
+    id="_r_1r_"
+    placeholder=" "
+    style="height: 6.5rem; resize: none;"
+  />
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
     data-message="false"
