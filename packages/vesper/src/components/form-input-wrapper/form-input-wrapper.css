@@ -1,0 +1,10 @@
+.vesper-form-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-2);
+}
+
+.vesper-form-input-wrapper-label {
+  width: fit-content;
+  color: var(--vesper-text-secondary);
+}
