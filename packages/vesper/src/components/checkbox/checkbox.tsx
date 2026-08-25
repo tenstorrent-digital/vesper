@@ -75,7 +75,7 @@ export interface CheckboxProps
   extends
     Omit<ComponentProps<"div">, "children" | "onChange" | ForwardedPropTypes>,
     Pick<ComponentProps<"input">, ForwardedPropTypes> {
-  /** The text label displayed next to the checkbox. An asterisk is appended when `required` is true. */
+  /** The text displayed next to the checkbox. */
   text: string;
   /** When true, renders the checkbox in an indeterminate (mixed) state, displaying a dash icon instead of a checkmark. @default false */
   indeterminate?: boolean;
@@ -83,7 +83,7 @@ export interface CheckboxProps
   size?: CheckboxSize;
   /** The visual variant of the input, which determines its message's color scheme and icon. @default default */
   variant?: CheckboxVariant;
-  /** An optional label displayed above the checkbox. An asterisk is appended when `required` is `true`. */
+  /** An optional label displayed above the checkbox, also used as the input's default `aria-label`. An asterisk is appended when `required` is `true`, and is not included in the accessible name. */
   label?: string;
   /** An optional message displayed below the checkbox, paired with a variant-specific icon. Also linked to the input via `aria-describedby`. */
   message?: string;
@@ -107,23 +107,23 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
  * @param {string} props.text - The text displayed next to the checkbox
  * @param {CheckboxSize} [props.size] - (optional) The size of the checkbox and its text. @default md
  * @param {CheckboxVariant} [props.variant] - (optional) The visual variant determining the color scheme and icon of the message. @default default
- * @param {string} [props.label] - (optional) A label displayed above the checkbox
+ * @param {string} [props.label] - (optional) A label displayed above the checkbox, also used as the input's default `aria-label`
  * @param {string} [props.message] - (optional) A message displayed below the checkbox with a variant-specific icon
  * @param {boolean} [props.indeterminate] - (optional) Renders the checkbox in an indeterminate (mixed) state. @default false
  * @param {boolean} [props.checked] - (optional) The controlled checked state
  * @param {boolean} [props.defaultChecked] - (optional) The initial checked state (uncontrolled)
  * @param {boolean} [props.disabled] - (optional) Prevents interaction. @default false
- * @param {boolean} [props.required] - (optional) Marks the checkbox as required for form validation. @default false
+ * @param {boolean} [props.required] - (optional) Marks the checkbox as required for form validation, and appends an asterisk to the `label`. @default false
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  *
  * You may also pass any additional props to the underlying `label` element
  *
  * @example
- * <Checkbox label="Accept terms" name="terms" required />
+ * <Checkbox text="Accept terms" name="terms" required />
  *
  * @example
  * <Checkbox
- *   label="Select all"
+ *   text="Select all"
  *   indeterminate={someChecked && !allChecked}
  *   checked={allChecked}
  *   onChange={(e) => toggleAll(e.target.checked)}
@@ -131,7 +131,8 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
  *
  * @example
  * <Checkbox
- *   label="Accept terms"
+ *   text="Accept terms"
+ *   label="Terms and conditions"
  *   variant="error"
  *   message="You must accept the terms to continue."
  *   required
@@ -159,7 +160,7 @@ export function Checkbox(props: CheckboxProps) {
     defaultChecked,
     role,
     tabIndex,
-    "aria-label": ariaLabel,
+    "aria-label": ariaLabel = label,
     "aria-labelledby": ariaLabelledby,
     "aria-describedby": ariaDescribedby,
     "aria-invalid": ariaInvalid,
@@ -206,16 +207,16 @@ export function Checkbox(props: CheckboxProps) {
       .filter(Boolean)
       .join(" ") || undefined;
 
-  const labelId = useId();
-
-  // If an additional aria-labelledby is supplied, this ensures that both ids get used
-  const labelledBy =
-    [ariaLabelledby, label ? labelId : undefined].filter(Boolean).join(" ") ||
-    undefined;
-
   return (
     <FormInputWrapper
-      label={label ? { text: label, htmlFor: inputId, id: labelId } : undefined}
+      label={
+        label
+          ? {
+              text: required ? `${label} *` : label,
+              htmlFor: inputId,
+            }
+          : undefined
+      }
       message={message ? { text: message, id: messageId } : undefined}
       variant={variant}
       className={className}
@@ -238,7 +239,7 @@ export function Checkbox(props: CheckboxProps) {
           role={role}
           tabIndex={tabIndex}
           aria-label={ariaLabel}
-          aria-labelledby={labelledBy}
+          aria-labelledby={ariaLabelledby}
           aria-describedby={describedBy}
           aria-invalid={ariaInvalid}
           onChange={onChange}
