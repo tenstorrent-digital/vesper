@@ -135,14 +135,14 @@ export function Select(props: SelectProps) {
     required,
     form,
     container,
-    "aria-label": ariaLabel = placeholder,
+    message,
+    label,
+    "aria-label": ariaLabel,
     "aria-describedby": ariaDescribedby,
     "aria-labelledby": ariaLabelledby,
     "aria-invalid": ariaInvalid,
     ref,
     id,
-    message,
-    label,
     ...rest
   } = props;
 
@@ -166,7 +166,11 @@ export function Select(props: SelectProps) {
   return (
     <FormInputWrapper
       variant={variant}
-      label={label ? { text: label, htmlFor: inputId } : undefined}
+      label={
+        label
+          ? { text: required ? `${label} *` : label, htmlFor: inputId }
+          : undefined
+      }
       message={message ? { text: message, id: messageId } : undefined}
       ref={ref}
       className={className}
