@@ -9,7 +9,7 @@ exports[`select [snapshot] > lg 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-default"
     data-placeholder=""
-    id="_r_ee_"
+    id="_r_ek_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -52,7 +52,7 @@ exports[`select [snapshot] > lg 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_ef_-hidden-input"
+    id="base-ui-_r_el_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -73,7 +73,7 @@ exports[`select [snapshot] > lg 2`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-warning"
     data-placeholder=""
-    id="_r_fc_"
+    id="_r_fi_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -116,7 +116,7 @@ exports[`select [snapshot] > lg 2`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_fd_-hidden-input"
+    id="base-ui-_r_fj_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -137,7 +137,7 @@ exports[`select [snapshot] > lg 3`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-error"
     data-placeholder=""
-    id="_r_ga_"
+    id="_r_gg_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -180,7 +180,7 @@ exports[`select [snapshot] > lg 3`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_gb_-hidden-input"
+    id="base-ui-_r_gh_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -201,7 +201,7 @@ exports[`select [snapshot] > lg 4`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-success"
     data-placeholder=""
-    id="_r_h8_"
+    id="_r_he_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -244,7 +244,7 @@ exports[`select [snapshot] > lg 4`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_h9_-hidden-input"
+    id="base-ui-_r_hf_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -267,7 +267,7 @@ exports[`select [snapshot] > lg, default, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_ej_"
+    id="_r_ep_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -311,7 +311,7 @@ exports[`select [snapshot] > lg, default, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_ek_-hidden-input"
+    id="base-ui-_r_eq_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -332,7 +332,7 @@ exports[`select [snapshot] > lg, default, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-default"
     data-placeholder=""
-    id="_r_eo_"
+    id="_r_eu_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -427,7 +427,7 @@ exports[`select [snapshot] > lg, default, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_ep_-hidden-input"
+    id="base-ui-_r_ev_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -445,7 +445,7 @@ exports[`select [snapshot] > lg, default, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_f2_"
+    for="_r_f8_"
   >
     Select label
   </label>
@@ -454,7 +454,7 @@ exports[`select [snapshot] > lg, default, with label 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-default"
     data-placeholder=""
-    id="_r_f2_"
+    id="_r_f8_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -497,7 +497,7 @@ exports[`select [snapshot] > lg, default, with label 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_f3_-hidden-input"
+    id="base-ui-_r_f9_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -514,12 +514,12 @@ exports[`select [snapshot] > lg, default, with message 1`] = `
   class="vesper-form-input-wrapper"
 >
   <button
-    aria-describedby="_r_f6_"
+    aria-describedby="_r_fc_"
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-default"
     data-placeholder=""
-    id="_r_f7_"
+    id="_r_fd_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -562,7 +562,7 @@ exports[`select [snapshot] > lg, default, with message 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_f8_-hidden-input"
+    id="base-ui-_r_fe_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -570,7 +570,7 @@ exports[`select [snapshot] > lg, default, with message 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
     data-message="true"
-    id="_r_f6_"
+    id="_r_fc_"
   >
     <span
       aria-hidden="true"
@@ -606,7 +606,7 @@ exports[`select [snapshot] > lg, default, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-default"
-    id="_r_et_"
+    id="_r_f3_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -647,7 +647,7 @@ exports[`select [snapshot] > lg, default, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_eu_-hidden-input"
+    id="base-ui-_r_f4_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -670,7 +670,7 @@ exports[`select [snapshot] > lg, error, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_gf_"
+    id="_r_gl_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -714,7 +714,7 @@ exports[`select [snapshot] > lg, error, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_gg_-hidden-input"
+    id="base-ui-_r_gm_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -735,7 +735,7 @@ exports[`select [snapshot] > lg, error, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-error"
     data-placeholder=""
-    id="_r_gk_"
+    id="_r_gq_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -830,7 +830,7 @@ exports[`select [snapshot] > lg, error, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_gl_-hidden-input"
+    id="base-ui-_r_gr_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -848,7 +848,7 @@ exports[`select [snapshot] > lg, error, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_gu_"
+    for="_r_h4_"
   >
     Select label
   </label>
@@ -857,7 +857,7 @@ exports[`select [snapshot] > lg, error, with label 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-error"
     data-placeholder=""
-    id="_r_gu_"
+    id="_r_h4_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -900,7 +900,7 @@ exports[`select [snapshot] > lg, error, with label 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_gv_-hidden-input"
+    id="base-ui-_r_h5_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -917,12 +917,12 @@ exports[`select [snapshot] > lg, error, with message 1`] = `
   class="vesper-form-input-wrapper"
 >
   <button
-    aria-describedby="_r_h2_"
+    aria-describedby="_r_h8_"
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-error"
     data-placeholder=""
-    id="_r_h3_"
+    id="_r_h9_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -965,7 +965,7 @@ exports[`select [snapshot] > lg, error, with message 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_h4_-hidden-input"
+    id="base-ui-_r_ha_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -973,7 +973,7 @@ exports[`select [snapshot] > lg, error, with message 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
     data-message="true"
-    id="_r_h2_"
+    id="_r_h8_"
   >
     <span
       aria-hidden="true"
@@ -1009,7 +1009,7 @@ exports[`select [snapshot] > lg, error, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-error"
-    id="_r_gp_"
+    id="_r_gv_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -1050,7 +1050,7 @@ exports[`select [snapshot] > lg, error, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_gq_-hidden-input"
+    id="base-ui-_r_h0_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -1073,7 +1073,7 @@ exports[`select [snapshot] > lg, success, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_hd_"
+    id="_r_hj_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -1117,7 +1117,7 @@ exports[`select [snapshot] > lg, success, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_he_-hidden-input"
+    id="base-ui-_r_hk_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -1138,7 +1138,7 @@ exports[`select [snapshot] > lg, success, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-success"
     data-placeholder=""
-    id="_r_hi_"
+    id="_r_ho_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -1233,7 +1233,7 @@ exports[`select [snapshot] > lg, success, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_hj_-hidden-input"
+    id="base-ui-_r_hp_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -1251,7 +1251,7 @@ exports[`select [snapshot] > lg, success, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_hs_"
+    for="_r_i2_"
   >
     Select label
   </label>
@@ -1260,7 +1260,7 @@ exports[`select [snapshot] > lg, success, with label 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-success"
     data-placeholder=""
-    id="_r_hs_"
+    id="_r_i2_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -1303,7 +1303,7 @@ exports[`select [snapshot] > lg, success, with label 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_ht_-hidden-input"
+    id="base-ui-_r_i3_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -1320,12 +1320,12 @@ exports[`select [snapshot] > lg, success, with message 1`] = `
   class="vesper-form-input-wrapper"
 >
   <button
-    aria-describedby="_r_i0_"
+    aria-describedby="_r_i6_"
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-success"
     data-placeholder=""
-    id="_r_i1_"
+    id="_r_i7_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -1368,7 +1368,7 @@ exports[`select [snapshot] > lg, success, with message 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_i2_-hidden-input"
+    id="base-ui-_r_i8_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -1376,7 +1376,7 @@ exports[`select [snapshot] > lg, success, with message 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-success"
     data-message="true"
-    id="_r_i0_"
+    id="_r_i6_"
   >
     <span
       aria-hidden="true"
@@ -1410,7 +1410,7 @@ exports[`select [snapshot] > lg, success, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-success"
-    id="_r_hn_"
+    id="_r_ht_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -1451,7 +1451,7 @@ exports[`select [snapshot] > lg, success, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_ho_-hidden-input"
+    id="base-ui-_r_hu_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -1474,7 +1474,7 @@ exports[`select [snapshot] > lg, warning, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_fh_"
+    id="_r_fn_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -1518,7 +1518,7 @@ exports[`select [snapshot] > lg, warning, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_fi_-hidden-input"
+    id="base-ui-_r_fo_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -1539,7 +1539,7 @@ exports[`select [snapshot] > lg, warning, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-warning"
     data-placeholder=""
-    id="_r_fm_"
+    id="_r_fs_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -1634,7 +1634,7 @@ exports[`select [snapshot] > lg, warning, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_fn_-hidden-input"
+    id="base-ui-_r_ft_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -1652,7 +1652,7 @@ exports[`select [snapshot] > lg, warning, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_g0_"
+    for="_r_g6_"
   >
     Select label
   </label>
@@ -1661,7 +1661,7 @@ exports[`select [snapshot] > lg, warning, with label 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-warning"
     data-placeholder=""
-    id="_r_g0_"
+    id="_r_g6_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -1704,7 +1704,7 @@ exports[`select [snapshot] > lg, warning, with label 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_g1_-hidden-input"
+    id="base-ui-_r_g7_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -1721,12 +1721,12 @@ exports[`select [snapshot] > lg, warning, with message 1`] = `
   class="vesper-form-input-wrapper"
 >
   <button
-    aria-describedby="_r_g4_"
+    aria-describedby="_r_ga_"
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-warning"
     data-placeholder=""
-    id="_r_g5_"
+    id="_r_gb_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -1769,7 +1769,7 @@ exports[`select [snapshot] > lg, warning, with message 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_g6_-hidden-input"
+    id="base-ui-_r_gc_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -1777,7 +1777,7 @@ exports[`select [snapshot] > lg, warning, with message 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-warning"
     data-message="true"
-    id="_r_g4_"
+    id="_r_ga_"
   >
     <span
       aria-hidden="true"
@@ -1813,7 +1813,7 @@ exports[`select [snapshot] > lg, warning, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-warning"
-    id="_r_fr_"
+    id="_r_g1_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -1854,7 +1854,7 @@ exports[`select [snapshot] > lg, warning, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_fs_-hidden-input"
+    id="base-ui-_r_g2_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -1875,7 +1875,7 @@ exports[`select [snapshot] > md 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-default"
     data-placeholder=""
-    id="_r_am_"
+    id="_r_as_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -1918,7 +1918,7 @@ exports[`select [snapshot] > md 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_an_-hidden-input"
+    id="base-ui-_r_at_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -1939,7 +1939,7 @@ exports[`select [snapshot] > md 2`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-warning"
     data-placeholder=""
-    id="_r_bk_"
+    id="_r_bq_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -1982,7 +1982,7 @@ exports[`select [snapshot] > md 2`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_bl_-hidden-input"
+    id="base-ui-_r_br_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -2003,7 +2003,7 @@ exports[`select [snapshot] > md 3`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-error"
     data-placeholder=""
-    id="_r_ci_"
+    id="_r_co_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -2046,7 +2046,7 @@ exports[`select [snapshot] > md 3`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_cj_-hidden-input"
+    id="base-ui-_r_cp_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -2067,7 +2067,7 @@ exports[`select [snapshot] > md 4`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-success"
     data-placeholder=""
-    id="_r_dg_"
+    id="_r_dm_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -2110,7 +2110,7 @@ exports[`select [snapshot] > md 4`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_dh_-hidden-input"
+    id="base-ui-_r_dn_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -2133,7 +2133,7 @@ exports[`select [snapshot] > md, default, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_ar_"
+    id="_r_b1_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -2177,7 +2177,7 @@ exports[`select [snapshot] > md, default, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_as_-hidden-input"
+    id="base-ui-_r_b2_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -2198,7 +2198,7 @@ exports[`select [snapshot] > md, default, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-default"
     data-placeholder=""
-    id="_r_b0_"
+    id="_r_b6_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -2293,7 +2293,7 @@ exports[`select [snapshot] > md, default, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_b1_-hidden-input"
+    id="base-ui-_r_b7_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -2311,7 +2311,7 @@ exports[`select [snapshot] > md, default, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_ba_"
+    for="_r_bg_"
   >
     Select label
   </label>
@@ -2320,7 +2320,7 @@ exports[`select [snapshot] > md, default, with label 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-default"
     data-placeholder=""
-    id="_r_ba_"
+    id="_r_bg_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -2363,7 +2363,7 @@ exports[`select [snapshot] > md, default, with label 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_bb_-hidden-input"
+    id="base-ui-_r_bh_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -2380,12 +2380,12 @@ exports[`select [snapshot] > md, default, with message 1`] = `
   class="vesper-form-input-wrapper"
 >
   <button
-    aria-describedby="_r_be_"
+    aria-describedby="_r_bk_"
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-default"
     data-placeholder=""
-    id="_r_bf_"
+    id="_r_bl_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -2428,7 +2428,7 @@ exports[`select [snapshot] > md, default, with message 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_bg_-hidden-input"
+    id="base-ui-_r_bm_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -2436,7 +2436,7 @@ exports[`select [snapshot] > md, default, with message 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
     data-message="true"
-    id="_r_be_"
+    id="_r_bk_"
   >
     <span
       aria-hidden="true"
@@ -2472,7 +2472,7 @@ exports[`select [snapshot] > md, default, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-default"
-    id="_r_b5_"
+    id="_r_bb_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -2513,7 +2513,7 @@ exports[`select [snapshot] > md, default, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_b6_-hidden-input"
+    id="base-ui-_r_bc_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -2536,7 +2536,7 @@ exports[`select [snapshot] > md, error, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_cn_"
+    id="_r_ct_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -2580,7 +2580,7 @@ exports[`select [snapshot] > md, error, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_co_-hidden-input"
+    id="base-ui-_r_cu_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -2601,7 +2601,7 @@ exports[`select [snapshot] > md, error, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-error"
     data-placeholder=""
-    id="_r_cs_"
+    id="_r_d2_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -2696,7 +2696,7 @@ exports[`select [snapshot] > md, error, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_ct_-hidden-input"
+    id="base-ui-_r_d3_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -2714,7 +2714,7 @@ exports[`select [snapshot] > md, error, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_d6_"
+    for="_r_dc_"
   >
     Select label
   </label>
@@ -2723,7 +2723,7 @@ exports[`select [snapshot] > md, error, with label 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-error"
     data-placeholder=""
-    id="_r_d6_"
+    id="_r_dc_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -2766,7 +2766,7 @@ exports[`select [snapshot] > md, error, with label 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_d7_-hidden-input"
+    id="base-ui-_r_dd_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -2783,12 +2783,12 @@ exports[`select [snapshot] > md, error, with message 1`] = `
   class="vesper-form-input-wrapper"
 >
   <button
-    aria-describedby="_r_da_"
+    aria-describedby="_r_dg_"
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-error"
     data-placeholder=""
-    id="_r_db_"
+    id="_r_dh_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -2831,7 +2831,7 @@ exports[`select [snapshot] > md, error, with message 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_dc_-hidden-input"
+    id="base-ui-_r_di_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -2839,7 +2839,7 @@ exports[`select [snapshot] > md, error, with message 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
     data-message="true"
-    id="_r_da_"
+    id="_r_dg_"
   >
     <span
       aria-hidden="true"
@@ -2875,7 +2875,7 @@ exports[`select [snapshot] > md, error, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-error"
-    id="_r_d1_"
+    id="_r_d7_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -2916,7 +2916,7 @@ exports[`select [snapshot] > md, error, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_d2_-hidden-input"
+    id="base-ui-_r_d8_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -2939,7 +2939,7 @@ exports[`select [snapshot] > md, success, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_dl_"
+    id="_r_dr_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -2983,7 +2983,7 @@ exports[`select [snapshot] > md, success, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_dm_-hidden-input"
+    id="base-ui-_r_ds_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3004,7 +3004,7 @@ exports[`select [snapshot] > md, success, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-success"
     data-placeholder=""
-    id="_r_dq_"
+    id="_r_e0_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3099,7 +3099,7 @@ exports[`select [snapshot] > md, success, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_dr_-hidden-input"
+    id="base-ui-_r_e1_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3117,7 +3117,7 @@ exports[`select [snapshot] > md, success, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_e4_"
+    for="_r_ea_"
   >
     Select label
   </label>
@@ -3126,7 +3126,7 @@ exports[`select [snapshot] > md, success, with label 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-success"
     data-placeholder=""
-    id="_r_e4_"
+    id="_r_ea_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3169,7 +3169,7 @@ exports[`select [snapshot] > md, success, with label 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_e5_-hidden-input"
+    id="base-ui-_r_eb_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3186,12 +3186,12 @@ exports[`select [snapshot] > md, success, with message 1`] = `
   class="vesper-form-input-wrapper"
 >
   <button
-    aria-describedby="_r_e8_"
+    aria-describedby="_r_ee_"
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-success"
     data-placeholder=""
-    id="_r_e9_"
+    id="_r_ef_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3234,7 +3234,7 @@ exports[`select [snapshot] > md, success, with message 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_ea_-hidden-input"
+    id="base-ui-_r_eg_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3242,7 +3242,7 @@ exports[`select [snapshot] > md, success, with message 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-success"
     data-message="true"
-    id="_r_e8_"
+    id="_r_ee_"
   >
     <span
       aria-hidden="true"
@@ -3276,7 +3276,7 @@ exports[`select [snapshot] > md, success, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-success"
-    id="_r_dv_"
+    id="_r_e5_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3317,7 +3317,7 @@ exports[`select [snapshot] > md, success, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_e0_-hidden-input"
+    id="base-ui-_r_e6_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -3340,7 +3340,7 @@ exports[`select [snapshot] > md, warning, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_bp_"
+    id="_r_bv_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -3384,7 +3384,7 @@ exports[`select [snapshot] > md, warning, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_bq_-hidden-input"
+    id="base-ui-_r_c0_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3405,7 +3405,7 @@ exports[`select [snapshot] > md, warning, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-warning"
     data-placeholder=""
-    id="_r_bu_"
+    id="_r_c4_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3500,7 +3500,7 @@ exports[`select [snapshot] > md, warning, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_bv_-hidden-input"
+    id="base-ui-_r_c5_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3518,7 +3518,7 @@ exports[`select [snapshot] > md, warning, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_c8_"
+    for="_r_ce_"
   >
     Select label
   </label>
@@ -3527,7 +3527,7 @@ exports[`select [snapshot] > md, warning, with label 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-warning"
     data-placeholder=""
-    id="_r_c8_"
+    id="_r_ce_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3570,7 +3570,7 @@ exports[`select [snapshot] > md, warning, with label 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_c9_-hidden-input"
+    id="base-ui-_r_cf_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3587,12 +3587,12 @@ exports[`select [snapshot] > md, warning, with message 1`] = `
   class="vesper-form-input-wrapper"
 >
   <button
-    aria-describedby="_r_cc_"
+    aria-describedby="_r_ci_"
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-warning"
     data-placeholder=""
-    id="_r_cd_"
+    id="_r_cj_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3635,7 +3635,7 @@ exports[`select [snapshot] > md, warning, with message 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_ce_-hidden-input"
+    id="base-ui-_r_ck_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3643,7 +3643,7 @@ exports[`select [snapshot] > md, warning, with message 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-warning"
     data-message="true"
-    id="_r_cc_"
+    id="_r_ci_"
   >
     <span
       aria-hidden="true"
@@ -3679,7 +3679,7 @@ exports[`select [snapshot] > md, warning, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-warning"
-    id="_r_c3_"
+    id="_r_c9_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3720,7 +3720,7 @@ exports[`select [snapshot] > md, warning, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_c4_-hidden-input"
+    id="base-ui-_r_ca_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -3741,7 +3741,7 @@ exports[`select [snapshot] > sm 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-default"
     data-placeholder=""
-    id="_r_6u_"
+    id="_r_74_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3784,7 +3784,7 @@ exports[`select [snapshot] > sm 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_6v_-hidden-input"
+    id="base-ui-_r_75_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3805,7 +3805,7 @@ exports[`select [snapshot] > sm 2`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-warning"
     data-placeholder=""
-    id="_r_7s_"
+    id="_r_82_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3848,7 +3848,7 @@ exports[`select [snapshot] > sm 2`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_7t_-hidden-input"
+    id="base-ui-_r_83_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3869,7 +3869,7 @@ exports[`select [snapshot] > sm 3`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-error"
     data-placeholder=""
-    id="_r_8q_"
+    id="_r_90_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3912,7 +3912,7 @@ exports[`select [snapshot] > sm 3`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_8r_-hidden-input"
+    id="base-ui-_r_91_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3933,7 +3933,7 @@ exports[`select [snapshot] > sm 4`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-success"
     data-placeholder=""
-    id="_r_9o_"
+    id="_r_9u_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3976,7 +3976,7 @@ exports[`select [snapshot] > sm 4`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_9p_-hidden-input"
+    id="base-ui-_r_9v_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3999,7 +3999,7 @@ exports[`select [snapshot] > sm, default, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_73_"
+    id="_r_79_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -4043,7 +4043,7 @@ exports[`select [snapshot] > sm, default, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_74_-hidden-input"
+    id="base-ui-_r_7a_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -4064,7 +4064,7 @@ exports[`select [snapshot] > sm, default, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-default"
     data-placeholder=""
-    id="_r_78_"
+    id="_r_7e_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -4159,7 +4159,7 @@ exports[`select [snapshot] > sm, default, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_79_-hidden-input"
+    id="base-ui-_r_7f_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -4177,7 +4177,7 @@ exports[`select [snapshot] > sm, default, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_7i_"
+    for="_r_7o_"
   >
     Select label
   </label>
@@ -4186,7 +4186,7 @@ exports[`select [snapshot] > sm, default, with label 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-default"
     data-placeholder=""
-    id="_r_7i_"
+    id="_r_7o_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -4229,7 +4229,7 @@ exports[`select [snapshot] > sm, default, with label 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_7j_-hidden-input"
+    id="base-ui-_r_7p_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -4246,12 +4246,12 @@ exports[`select [snapshot] > sm, default, with message 1`] = `
   class="vesper-form-input-wrapper"
 >
   <button
-    aria-describedby="_r_7m_"
+    aria-describedby="_r_7s_"
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-default"
     data-placeholder=""
-    id="_r_7n_"
+    id="_r_7t_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -4294,7 +4294,7 @@ exports[`select [snapshot] > sm, default, with message 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_7o_-hidden-input"
+    id="base-ui-_r_7u_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -4302,7 +4302,7 @@ exports[`select [snapshot] > sm, default, with message 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
     data-message="true"
-    id="_r_7m_"
+    id="_r_7s_"
   >
     <span
       aria-hidden="true"
@@ -4338,7 +4338,7 @@ exports[`select [snapshot] > sm, default, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-default"
-    id="_r_7d_"
+    id="_r_7j_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -4379,7 +4379,7 @@ exports[`select [snapshot] > sm, default, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_7e_-hidden-input"
+    id="base-ui-_r_7k_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -4402,7 +4402,7 @@ exports[`select [snapshot] > sm, error, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_8v_"
+    id="_r_95_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -4446,7 +4446,7 @@ exports[`select [snapshot] > sm, error, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_90_-hidden-input"
+    id="base-ui-_r_96_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -4467,7 +4467,7 @@ exports[`select [snapshot] > sm, error, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-error"
     data-placeholder=""
-    id="_r_94_"
+    id="_r_9a_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -4562,7 +4562,7 @@ exports[`select [snapshot] > sm, error, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_95_-hidden-input"
+    id="base-ui-_r_9b_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -4580,7 +4580,7 @@ exports[`select [snapshot] > sm, error, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_9e_"
+    for="_r_9k_"
   >
     Select label
   </label>
@@ -4589,7 +4589,7 @@ exports[`select [snapshot] > sm, error, with label 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-error"
     data-placeholder=""
-    id="_r_9e_"
+    id="_r_9k_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -4632,7 +4632,7 @@ exports[`select [snapshot] > sm, error, with label 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_9f_-hidden-input"
+    id="base-ui-_r_9l_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -4649,12 +4649,12 @@ exports[`select [snapshot] > sm, error, with message 1`] = `
   class="vesper-form-input-wrapper"
 >
   <button
-    aria-describedby="_r_9i_"
+    aria-describedby="_r_9o_"
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-error"
     data-placeholder=""
-    id="_r_9j_"
+    id="_r_9p_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -4697,7 +4697,7 @@ exports[`select [snapshot] > sm, error, with message 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_9k_-hidden-input"
+    id="base-ui-_r_9q_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -4705,7 +4705,7 @@ exports[`select [snapshot] > sm, error, with message 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
     data-message="true"
-    id="_r_9i_"
+    id="_r_9o_"
   >
     <span
       aria-hidden="true"
@@ -4741,7 +4741,7 @@ exports[`select [snapshot] > sm, error, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-error"
-    id="_r_99_"
+    id="_r_9f_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -4782,7 +4782,7 @@ exports[`select [snapshot] > sm, error, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_9a_-hidden-input"
+    id="base-ui-_r_9g_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -4805,7 +4805,7 @@ exports[`select [snapshot] > sm, success, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_9t_"
+    id="_r_a3_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -4849,7 +4849,7 @@ exports[`select [snapshot] > sm, success, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_9u_-hidden-input"
+    id="base-ui-_r_a4_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -4870,7 +4870,7 @@ exports[`select [snapshot] > sm, success, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-success"
     data-placeholder=""
-    id="_r_a2_"
+    id="_r_a8_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -4965,7 +4965,7 @@ exports[`select [snapshot] > sm, success, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_a3_-hidden-input"
+    id="base-ui-_r_a9_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -4983,7 +4983,7 @@ exports[`select [snapshot] > sm, success, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_ac_"
+    for="_r_ai_"
   >
     Select label
   </label>
@@ -4992,7 +4992,7 @@ exports[`select [snapshot] > sm, success, with label 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-success"
     data-placeholder=""
-    id="_r_ac_"
+    id="_r_ai_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -5035,7 +5035,7 @@ exports[`select [snapshot] > sm, success, with label 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_ad_-hidden-input"
+    id="base-ui-_r_aj_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -5052,12 +5052,12 @@ exports[`select [snapshot] > sm, success, with message 1`] = `
   class="vesper-form-input-wrapper"
 >
   <button
-    aria-describedby="_r_ag_"
+    aria-describedby="_r_am_"
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-success"
     data-placeholder=""
-    id="_r_ah_"
+    id="_r_an_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -5100,7 +5100,7 @@ exports[`select [snapshot] > sm, success, with message 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_ai_-hidden-input"
+    id="base-ui-_r_ao_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -5108,7 +5108,7 @@ exports[`select [snapshot] > sm, success, with message 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-success"
     data-message="true"
-    id="_r_ag_"
+    id="_r_am_"
   >
     <span
       aria-hidden="true"
@@ -5142,7 +5142,7 @@ exports[`select [snapshot] > sm, success, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-success"
-    id="_r_a7_"
+    id="_r_ad_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -5183,7 +5183,7 @@ exports[`select [snapshot] > sm, success, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_a8_-hidden-input"
+    id="base-ui-_r_ae_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -5206,7 +5206,7 @@ exports[`select [snapshot] > sm, warning, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_81_"
+    id="_r_87_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -5250,7 +5250,7 @@ exports[`select [snapshot] > sm, warning, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_82_-hidden-input"
+    id="base-ui-_r_88_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -5271,7 +5271,7 @@ exports[`select [snapshot] > sm, warning, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-warning"
     data-placeholder=""
-    id="_r_86_"
+    id="_r_8c_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -5366,7 +5366,7 @@ exports[`select [snapshot] > sm, warning, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_87_-hidden-input"
+    id="base-ui-_r_8d_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -5384,7 +5384,7 @@ exports[`select [snapshot] > sm, warning, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_8g_"
+    for="_r_8m_"
   >
     Select label
   </label>
@@ -5393,7 +5393,7 @@ exports[`select [snapshot] > sm, warning, with label 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-warning"
     data-placeholder=""
-    id="_r_8g_"
+    id="_r_8m_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -5436,7 +5436,7 @@ exports[`select [snapshot] > sm, warning, with label 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_8h_-hidden-input"
+    id="base-ui-_r_8n_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -5453,12 +5453,12 @@ exports[`select [snapshot] > sm, warning, with message 1`] = `
   class="vesper-form-input-wrapper"
 >
   <button
-    aria-describedby="_r_8k_"
+    aria-describedby="_r_8q_"
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-warning"
     data-placeholder=""
-    id="_r_8l_"
+    id="_r_8r_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -5501,7 +5501,7 @@ exports[`select [snapshot] > sm, warning, with message 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_8m_-hidden-input"
+    id="base-ui-_r_8s_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -5509,7 +5509,7 @@ exports[`select [snapshot] > sm, warning, with message 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-warning"
     data-message="true"
-    id="_r_8k_"
+    id="_r_8q_"
   >
     <span
       aria-hidden="true"
@@ -5545,7 +5545,7 @@ exports[`select [snapshot] > sm, warning, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-warning"
-    id="_r_8b_"
+    id="_r_8h_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -5586,7 +5586,7 @@ exports[`select [snapshot] > sm, warning, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_8c_-hidden-input"
+    id="base-ui-_r_8i_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
