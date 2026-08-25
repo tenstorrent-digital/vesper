@@ -1,40 +1,30 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Icon, ICON_KINDS, type IconKind } from "@/components/icons/icons";
-import {
-  Select,
-  SELECT_SIZES,
-  type SelectProps,
-} from "@/components/select/select";
-
-function SelectStoryComponent({
-  icon,
-  ...props
-}: Pick<SelectProps, "size" | "disabled" | "placeholder"> & {
-  icon?: IconKind;
-}) {
-  return (
-    <Select
-      style={{ width: "min(calc(100vw - 4rem), 15rem)" }}
-      icon={icon ? <Icon kind={icon} /> : undefined}
-      options={[
-        { value: "lions", label: "Lions" },
-        { value: "tigers", label: "Tigers" },
-        { value: "bears", label: "Bears" },
-        { value: "oh_my", label: "Oh my" },
-      ]}
-      {...props}
-    />
-  );
-}
+import { Select, SELECT_SIZES } from "@/components/select/select";
 
 const meta = {
-  component: SelectStoryComponent,
+  component: Select,
   argTypes: {
     size: { control: "radio", options: SELECT_SIZES },
     icon: { control: "select", options: ICON_KINDS },
+    options: { table: { disable: true } },
+    value: { table: { disable: true } },
+    form: { table: { disable: true } },
+    container: { table: { disable: true } },
+    defaultValue: { table: { disable: true } },
+    onValueChange: { table: { disable: true } },
   },
-} satisfies Meta<typeof SelectStoryComponent>;
+  render: function Render(props) {
+    return (
+      <Select
+        style={{ width: "min(calc(100vw - 4rem), 15rem)" }}
+        {...props}
+        icon={props.icon ? <Icon kind={props.icon as IconKind} /> : undefined}
+      />
+    );
+  },
+} satisfies Meta<typeof Select>;
 
 export default meta;
 
@@ -45,6 +35,16 @@ export const Playground: Story = {
     size: "md",
     placeholder: "Select an option",
     disabled: false,
+    options: [
+      { value: "lions", label: "Lions" },
+      { value: "tigers", label: "Tigers" },
+      { value: "bears", label: "Bears" },
+      { value: "oh_my", label: "Oh my" },
+    ],
+    icon: false as unknown as boolean,
+    label: "Animal",
+    message: "Optional message",
+    required: false,
   },
 };
 Playground.storyName = "select";

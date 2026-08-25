@@ -97,10 +97,7 @@ describe("select [unit]", () => {
     const { container } = render(
       <Select options={OPTIONS} className="custom-class" />,
     );
-    const trigger = container.querySelector(".vesper-select");
-    expect(trigger).toHaveClass("vesper-select");
-    expect(trigger).toHaveClass("vesper-select-md");
-    expect(trigger).toHaveClass("custom-class");
+    expect(container.firstChild).toHaveClass("custom-class");
   });
 
   test("renders icon when provided", () => {
@@ -168,8 +165,11 @@ describe("select [unit]", () => {
     const result = render(
       <Select options={OPTIONS} data-testid="my-select" id="select-id" />,
     );
+    expect(result.container.firstChild).toHaveAttribute(
+      "data-testid",
+      "my-select",
+    );
     const trigger = result.getByRole("combobox");
-    expect(trigger).toHaveAttribute("data-testid", "my-select");
     expect(trigger).toHaveAttribute("id", "select-id");
   });
 
