@@ -1,6 +1,6 @@
 "use client";
 
-import { type ComponentProps, type ReactNode, useState } from "react";
+import { type ComponentProps, type ReactNode, useId, useState } from "react";
 import { Select as BaseSelect } from "@base-ui/react/select";
 
 import { CaretDown, CaretUp, Checkmark } from "@/components/icons/icons";
@@ -15,9 +15,19 @@ import {
   type PortalContainer,
 } from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
-import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
+
+import { FormInputWrapper } from "../form-input-wrapper/form-input-wrapper";
+
+export const SELECT_VARIANTS = [
+  "default",
+  "warning",
+  "error",
+  "success",
+] as const;
 
 export const SELECT_SIZES = ["sm", "md", "lg"] as const;
+
+export type SelectVariant = (typeof SELECT_VARIANTS)[number];
 
 export type SelectSize = (typeof SELECT_SIZES)[number];
 
@@ -28,14 +38,20 @@ export interface SelectItem {
   label: string;
 }
 
-export interface SelectProps extends Omit<
-  ComponentProps<"button">,
-  "children" | "type"
-> {
+export interface SelectProps
+  extends
+    Omit<ComponentProps<"div">, "children">,
+    Pick<ComponentProps<"button">, "name" | "disabled"> {
   /** An optional icon rendered at the leading edge of the select trigger. */
   icon?: ReactNode;
   /** The size variant of the select trigger. Affects padding, height, and typography. @default md */
   size?: SelectSize;
+  /** The visual variant of the select trigger, which determines its color scheme and message icon. @default default */
+  variant?: SelectVariant;
+  /** An optional message displayed below the input, paired with a variant-specific icon. Also linked to the input via `aria-describedby`. */
+  message?: string;
+  /** An optional label displayed above the input. An asterisk is appended when `required` is `true`. */
+  label?: string;
   /** Placeholder text shown in the trigger when no value is selected. @default Select an option */
   placeholder?: string;
   /** The list of selectable options displayed in the dropdown */
@@ -68,6 +84,7 @@ const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
  *
  * @param {SelectItem[]} props.options - The list of selectable options displayed in the dropdown. See {@link SelectItem} for the shape of each option
  * @param {SelectSize} [props.size] - (optional) Size variant of the select trigger. Affects padding, height, and typography. @default md
+ * @param {SelectVariant} [props.variant] - (optional) The visual variant determining color scheme and message icon. @default default
  * @param {string} [props.placeholder] - (optional) Placeholder text shown when no value is selected. @default Select an option
  * @param {ReactNode} [props.icon] - (optional) An icon rendered at the leading edge of the select trigger
  * @param {string} [props.value] - (optional) The currently selected value for controlled usage
@@ -112,81 +129,114 @@ export function Select(props: SelectProps) {
     defaultValue,
     onValueChange,
     size = "md",
+    variant = "default",
     icon,
     name,
     required,
     form,
     container,
     "aria-label": ariaLabel = placeholder,
+    "aria-describedby": ariaDescribedby,
+    "aria-labelledby": ariaLabelledby,
+    "aria-invalid": ariaInvalid,
     ref,
+    id,
+    message,
+    label,
     ...rest
   } = props;
 
   const [trigger, setTrigger] = useState<HTMLButtonElement | null>(null);
-  const mergedRef = useMergedRefs(ref, setTrigger);
 
   const portalContainer = getPortalContainer(container, trigger);
 
   const baseRemSize = useBaseRemSize();
 
+  const messageId = useId();
+
+  let inputId = useId();
+  if (id) inputId = id;
+
+  // If an additional aria-describedby is supplied, this ensures that both ids get used
+  const describedBy =
+    [ariaDescribedby, message ? messageId : undefined]
+      .filter(Boolean)
+      .join(" ") || undefined;
+
   return (
-    <BaseSelect.Root
-      items={options}
-      value={value}
-      defaultValue={defaultValue}
-      onValueChange={(next) => {
-        if (next !== null) onValueChange?.(next);
-      }}
-      disabled={disabled}
-      name={name}
-      required={required}
-      form={form}
+    <FormInputWrapper
+      variant={variant}
+      label={label ? { text: label, htmlFor: inputId } : undefined}
+      message={message ? { text: message, id: messageId } : undefined}
+      ref={ref}
+      className={className}
+      {...rest}
     >
-      <BaseSelect.Trigger
-        className={cn("vesper-select", `vesper-select-${size}`, className)}
+      <BaseSelect.Root
+        items={options}
+        value={value}
+        defaultValue={defaultValue}
+        onValueChange={(next) => {
+          if (next !== null) onValueChange?.(next);
+        }}
         disabled={disabled}
-        aria-label={ariaLabel}
-        ref={mergedRef}
-        {...rest}
+        name={name}
+        required={required}
+        form={form}
       >
-        {icon && <span className="vesper-select-icon">{icon}</span>}
-        <Typography as="span" variant={SELECT_TRIGGER_TYPOGRAPHY[size]}>
-          <BaseSelect.Value placeholder={placeholder} />
-        </Typography>
-        <span className="vesper-select-state-indicator">
-          <CaretDown className="vesper-select-state-indicator-closed" />
-          <CaretUp className="vesper-select-state-indicator-open" />
-        </span>
-      </BaseSelect.Trigger>
-      <BaseSelect.Portal container={portalContainer}>
-        <BaseSelect.Positioner
-          side="bottom"
-          align="start"
-          alignItemWithTrigger={false}
-          sideOffset={12 * (baseRemSize / 16)}
+        <BaseSelect.Trigger
+          className={cn(
+            "vesper-select",
+            `vesper-select-${size}`,
+            `vesper-select-${variant}`,
+          )}
+          disabled={disabled}
+          aria-label={ariaLabel}
+          aria-describedby={describedBy}
+          aria-labelledby={ariaLabelledby}
+          aria-invalid={ariaInvalid}
+          ref={setTrigger}
+          id={inputId}
         >
-          <BaseSelect.Popup className="vesper-select-popup">
-            <BaseSelect.List className="vesper-select-viewport">
-              {options.map((o) => (
-                <BaseSelect.Item
-                  key={o.value}
-                  value={o.value}
-                  className="vesper-select-item"
-                >
-                  <BaseSelect.ItemText
-                    render={<Typography variant="label-md" />}
+          {icon && <span className="vesper-select-icon">{icon}</span>}
+          <Typography as="span" variant={SELECT_TRIGGER_TYPOGRAPHY[size]}>
+            <BaseSelect.Value placeholder={placeholder} />
+          </Typography>
+          <span className="vesper-select-state-indicator">
+            <CaretDown className="vesper-select-state-indicator-closed" />
+            <CaretUp className="vesper-select-state-indicator-open" />
+          </span>
+        </BaseSelect.Trigger>
+        <BaseSelect.Portal container={portalContainer}>
+          <BaseSelect.Positioner
+            side="bottom"
+            align="start"
+            alignItemWithTrigger={false}
+            sideOffset={12 * (baseRemSize / 16)}
+          >
+            <BaseSelect.Popup className="vesper-select-popup">
+              <BaseSelect.List className="vesper-select-viewport">
+                {options.map((o) => (
+                  <BaseSelect.Item
+                    key={o.value}
+                    value={o.value}
+                    className="vesper-select-item"
                   >
-                    {o.label}
-                  </BaseSelect.ItemText>
-                  <BaseSelect.ItemIndicator className="vesper-select-item-checkmark">
-                    <Checkmark />
-                  </BaseSelect.ItemIndicator>
-                </BaseSelect.Item>
-              ))}
-            </BaseSelect.List>
-          </BaseSelect.Popup>
-        </BaseSelect.Positioner>
-      </BaseSelect.Portal>
-    </BaseSelect.Root>
+                    <BaseSelect.ItemText
+                      render={<Typography variant="label-md" />}
+                    >
+                      {o.label}
+                    </BaseSelect.ItemText>
+                    <BaseSelect.ItemIndicator className="vesper-select-item-checkmark">
+                      <Checkmark />
+                    </BaseSelect.ItemIndicator>
+                  </BaseSelect.Item>
+                ))}
+              </BaseSelect.List>
+            </BaseSelect.Popup>
+          </BaseSelect.Positioner>
+        </BaseSelect.Portal>
+      </BaseSelect.Root>
+    </FormInputWrapper>
   );
 }
