@@ -79,8 +79,10 @@ import { ComboboxDemo } from "@/demos/combobox";
 import { IconsDemo } from "@/demos/icons";
 import { MaskedInputDemo } from "@/demos/masked-input";
 import { MenuDemo } from "@/demos/menu";
+import { RangeDemo } from "@/demos/range";
 import { SelectDemo } from "@/demos/select";
 import { ShowMoreDemo } from "@/demos/show-more";
+import { SliderDemo } from "@/demos/slider";
 import { SplitButtonDemo } from "@/demos/split-button";
 import { ToastDemo } from "@/demos/toast";
 
@@ -279,8 +281,10 @@ const components = {
   IconsDemo,
   MaskedInputDemo,
   MenuDemo,
+  RangeDemo,
   SelectDemo,
   ShowMoreDemo,
+  SliderDemo,
   SplitButtonDemo,
   ToastDemo,
 } satisfies MDXComponents;
