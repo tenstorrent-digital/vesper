@@ -30,6 +30,7 @@ exports[`text-area [snapshot] > full options 1`] = `
   </label>
   <textarea
     aria-describedby="_r_1u_"
+    aria-label="Label text"
     class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-error"
     disabled=""
     id="_r_1v_"
@@ -312,6 +313,7 @@ exports[`text-area [snapshot] > with label 1`] = `
     Label text
   </label>
   <textarea
+    aria-label="Label text"
     class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-default"
     id="_r_1r_"
     placeholder=" "
