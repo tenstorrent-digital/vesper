@@ -75,7 +75,7 @@ export interface CheckboxProps
   extends
     Omit<ComponentProps<"div">, "children" | "onChange" | ForwardedPropTypes>,
     Pick<ComponentProps<"input">, ForwardedPropTypes> {
-  /** The text displayed next to the checkbox. */
+  /** The text displayed next to the checkbox, also used as the input's default `aria-label`. An asterisk is appended when `required` is `true` and no `label` is supplied, and is not included in the accessible name. */
   text: string;
   /** When true, renders the checkbox in an indeterminate (mixed) state, displaying a dash icon instead of a checkmark. @default false */
   indeterminate?: boolean;
@@ -83,7 +83,7 @@ export interface CheckboxProps
   size?: CheckboxSize;
   /** The visual variant of the input, which determines its message's color scheme and icon. @default default */
   variant?: CheckboxVariant;
-  /** An optional label displayed above the checkbox, also used as the input's default `aria-label`. An asterisk is appended when `required` is `true`, and is not included in the accessible name. */
+  /** An optional label displayed above the checkbox. An asterisk is appended when `required` is `true`, and is not included in the accessible name. */
   label?: string;
   /** An optional message displayed below the checkbox, paired with a variant-specific icon. Also linked to the input via `aria-describedby`. */
   message?: string;
@@ -99,24 +99,25 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
 /**
  * A form-ready checkbox input with a label, supporting controlled and uncontrolled usage as well as indeterminate state.
  *
- * Unlike `Switch` (which presents a binary on/off choice as a sliding pill) and `Toggle` (which selects one option from a segmented group), `Checkbox` is used for individual boolean selections that can include indeterminate state.
+ * Unlike `Switch` (which presents a binary on/off choice as a sliding pill), `Toggle` (which selects one option from a segmented group), and `Choicebox` (which selects any number of options from a group), `Checkbox` is used for individual boolean selections that can include indeterminate state.
  *
  * @see packages/vesper/src/components/switch/switch.tsx
  * @see packages/vesper/src/components/toggle/toggle.tsx
+ * @see packages/vesper/src/components/choicebox/choicebox.tsx
  *
- * @param {string} props.text - The text displayed next to the checkbox
+ * @param {string} props.text - The text displayed next to the checkbox, also used as the input's default `aria-label`
  * @param {CheckboxSize} [props.size] - (optional) The size of the checkbox and its text. @default md
  * @param {CheckboxVariant} [props.variant] - (optional) The visual variant determining the color scheme and icon of the message. @default default
- * @param {string} [props.label] - (optional) A label displayed above the checkbox, also used as the input's default `aria-label`
+ * @param {string} [props.label] - (optional) A label displayed above the checkbox
  * @param {string} [props.message] - (optional) A message displayed below the checkbox with a variant-specific icon
  * @param {boolean} [props.indeterminate] - (optional) Renders the checkbox in an indeterminate (mixed) state. @default false
  * @param {boolean} [props.checked] - (optional) The controlled checked state
  * @param {boolean} [props.defaultChecked] - (optional) The initial checked state (uncontrolled)
  * @param {boolean} [props.disabled] - (optional) Prevents interaction. @default false
- * @param {boolean} [props.required] - (optional) Marks the checkbox as required for form validation, and appends an asterisk to the `label`. @default false
+ * @param {boolean} [props.required] - (optional) Marks the checkbox as required for form validation, and appends an asterisk to the `label`, or to `text` when no `label` is supplied. @default false
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  *
- * You may also pass any additional props to the underlying `label` element
+ * You may also pass any additional props to the wrapping `div` element
  *
  * @example
  * <Checkbox text="Accept terms" name="terms" required />
@@ -160,7 +161,7 @@ export function Checkbox(props: CheckboxProps) {
     defaultChecked,
     role,
     tabIndex,
-    "aria-label": ariaLabel = label,
+    "aria-label": ariaLabel = text,
     "aria-labelledby": ariaLabelledby,
     "aria-describedby": ariaDescribedby,
     "aria-invalid": ariaInvalid,
@@ -274,7 +275,7 @@ export function Checkbox(props: CheckboxProps) {
           className="vesper-checkbox-label"
           as="span"
         >
-          {text}
+          {required && !label ? `${text} *` : text}
         </Typography>
       </label>
     </FormInputWrapper>

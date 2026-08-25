@@ -171,6 +171,27 @@ describe("checkbox [unit]", () => {
     ).toHaveTextContent(/^Label text$/);
   });
 
+  test("renders the checkbox text with an asterisk when required and no label is supplied", () => {
+    const result = render(<Checkbox text="Checkbox text" required />);
+    expect(result.getByText("Checkbox text *")).not.toBeNull();
+  });
+
+  test("renders the checkbox text without an asterisk when required and a label is supplied", () => {
+    const { container } = render(
+      <Checkbox text="Checkbox text" label="Label text" required />,
+    );
+    expect(container.querySelector(".vesper-checkbox-label")).toHaveTextContent(
+      /^Checkbox text$/,
+    );
+  });
+
+  test("renders the checkbox text without an asterisk when not marked as required", () => {
+    const { container } = render(<Checkbox text="Checkbox text" />);
+    expect(container.querySelector(".vesper-checkbox-label")).toHaveTextContent(
+      /^Checkbox text$/,
+    );
+  });
+
   test("no label is rendered when the label prop is omitted", () => {
     const { container } = render(<Checkbox text="Checkbox text" />);
     expect(
@@ -216,36 +237,31 @@ describe("checkbox [unit]", () => {
     expect(checkbox).toBeChecked();
   });
 
-  test("label is used as the input's accessible name", () => {
-    const result = render(<Checkbox text="Checkbox text" label="Label text" />);
-    expect(result.getByRole("checkbox", { name: "Label text" })).not.toBeNull();
-  });
-
-  test("the required asterisk is not part of the accessible name", () => {
-    const result = render(
-      <Checkbox text="Checkbox text" label="Label text" required />,
-    );
-    expect(result.getByRole("checkbox", { name: "Label text" })).not.toBeNull();
-  });
-
-  test("checkbox text is used as the accessible name when no label is supplied", () => {
+  test("checkbox text is used as the input's accessible name", () => {
     const result = render(<Checkbox text="Checkbox text" />);
     expect(
       result.getByRole("checkbox", { name: "Checkbox text" }),
     ).not.toBeNull();
   });
 
-  test("aria-label defaults to the label prop", () => {
+  test("the required asterisk is not part of the accessible name", () => {
+    const result = render(<Checkbox text="Checkbox text" required />);
+    expect(
+      result.getByRole("checkbox", { name: "Checkbox text" }),
+    ).not.toBeNull();
+  });
+
+  test("aria-label defaults to the text prop", () => {
     const result = render(
       <Checkbox text="Checkbox text" label="Label text" required />,
     );
     expect(result.getByRole("checkbox")).toHaveAttribute(
       "aria-label",
-      "Label text",
+      "Checkbox text",
     );
   });
 
-  test("an explicit aria-label takes precedence over the label prop", () => {
+  test("an explicit aria-label takes precedence over the text prop", () => {
     const result = render(
       <Checkbox
         text="Checkbox text"
@@ -257,11 +273,6 @@ describe("checkbox [unit]", () => {
       "aria-label",
       "Custom label",
     );
-  });
-
-  test("no aria-label is set when neither label nor aria-label is supplied", () => {
-    const result = render(<Checkbox text="Checkbox text" />);
-    expect(result.getByRole("checkbox")).not.toHaveAttribute("aria-label");
   });
 
   test("a supplied aria-labelledby is forwarded as-is alongside the label", () => {
@@ -278,7 +289,7 @@ describe("checkbox [unit]", () => {
     );
   });
 
-  test("aria-labelledby is forwarded when no label is supplied", () => {
+  test("aria-labelledby is forwarded when supplied", () => {
     const result = render(
       <Checkbox text="Checkbox text" aria-labelledby="external-label" />,
     );
@@ -286,11 +297,6 @@ describe("checkbox [unit]", () => {
       "aria-labelledby",
       "external-label",
     );
-  });
-
-  test("no aria-labelledby is set when neither label nor aria-labelledby is supplied", () => {
-    const result = render(<Checkbox text="Checkbox text" />);
-    expect(result.getByRole("checkbox")).not.toHaveAttribute("aria-labelledby");
   });
 
   test("renders a message when supplied", () => {
