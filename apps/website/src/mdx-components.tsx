@@ -79,6 +79,7 @@ import { ComboboxDemo } from "@/demos/combobox";
 import { IconsDemo } from "@/demos/icons";
 import { MaskedInputDemo } from "@/demos/masked-input";
 import { MenuDemo } from "@/demos/menu";
+import { SelectDemo } from "@/demos/select";
 import { ShowMoreDemo } from "@/demos/show-more";
 import { SplitButtonDemo } from "@/demos/split-button";
 import { ToastDemo } from "@/demos/toast";
@@ -278,6 +279,7 @@ const components = {
   IconsDemo,
   MaskedInputDemo,
   MenuDemo,
+  SelectDemo,
   ShowMoreDemo,
   SplitButtonDemo,
   ToastDemo,
