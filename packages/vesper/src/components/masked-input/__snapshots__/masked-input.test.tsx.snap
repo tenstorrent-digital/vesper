@@ -2,10 +2,10 @@
 
 exports[`masked-input [snapshot] > renders correctly 1`] = `
 <div
-  class="vesper-text-input vesper-text-input-md vesper-text-input-default"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-text-input-field-wrapper"
+    class="vesper-text-input vesper-text-input-md vesper-text-input-default"
   >
     <input
       class="vesper-typography vesper-typography-copy-sm vesper-text-input-field"
@@ -23,27 +23,23 @@ exports[`masked-input [snapshot] > renders correctly 1`] = `
 
 exports[`masked-input [snapshot] > renders correctly with a mask 1`] = `
 <div
-  class="vesper-text-input vesper-text-input-md vesper-text-input-default"
+  class="vesper-form-input-wrapper"
 >
-  <div
-    class="vesper-text-input-label-wrapper"
+  <label
+    class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
+    for="_r_1l_"
   >
-    <label
-      class="vesper-typography vesper-typography-label-sm vesper-text-input-label"
-      for="_r_1l_"
-    >
-      Activation code
-    </label>
-    <div
-      class="vesper-text-input-field-wrapper"
-    >
-      <input
-        class="vesper-typography vesper-typography-copy-sm vesper-text-input-field"
-        id="_r_1l_"
-        placeholder=" "
-        type="text"
-      />
-    </div>
+    Activation code
+  </label>
+  <div
+    class="vesper-text-input vesper-text-input-md vesper-text-input-default"
+  >
+    <input
+      class="vesper-typography vesper-typography-copy-sm vesper-text-input-field"
+      id="_r_1l_"
+      placeholder=" "
+      type="text"
+    />
   </div>
   <output
     class="vesper-form-input-message vesper-form-input-message-default"

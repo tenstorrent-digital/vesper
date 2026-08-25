@@ -8,7 +8,7 @@ import {
   useId,
 } from "react";
 
-import { FormInputMessage } from "@/components/form-input-message/form-input-message";
+import { FormInputWrapper } from "@/components/form-input-wrapper/form-input-wrapper";
 import {
   Typography,
   type TypographyVariant,
@@ -242,120 +242,100 @@ export function TextInput(props: TextInputProps) {
       .filter(Boolean)
       .join(" ") || undefined;
 
-  const input = (
-    <div className="vesper-text-input-field-wrapper">
-      {iconLeft && (
-        <TextInputIcon
-          ariaLabel={iconLeftAction?.ariaLabel}
-          onClick={iconLeftAction?.handler}
-          disabled={disabled}
-        >
-          {iconLeft}
-        </TextInputIcon>
-      )}
-      <Typography
-        className="vesper-text-input-field"
-        as="input"
-        ref={inputRef}
-        variant={TEXT_INPUT_TYPOGRAPHY[size]}
-        aria-describedby={describedBy}
-        aria-label={ariaLabel}
-        aria-labelledby={ariaLabelledby}
-        aria-invalid={ariaInvalid}
-        role={role}
-        tabIndex={tabIndex}
-        type={type}
-        min={min}
-        max={max}
-        multiple={multiple}
-        pattern={pattern}
-        list={list}
-        defaultValue={defaultValue}
-        inputMode={inputMode}
-        enterKeyHint={enterKeyHint}
-        form={form}
-        disabled={disabled}
-        spellCheck={spellCheck}
-        name={name}
-        minLength={minLength}
-        maxLength={maxLength}
-        readOnly={readOnly}
-        id={inputId}
-        placeholder={
-          required && !label && placeholder.trim()
-            ? `${placeholder.trim()} *`
-            : placeholder
-        }
-        value={value}
-        required={required}
-        autoFocus={autoFocus}
-        autoComplete={autoComplete}
-        autoCorrect={autoCorrect}
-        onFocus={onFocus}
-        onFocusCapture={onFocusCapture}
-        onBlur={onBlur}
-        onBlurCapture={onBlurCapture}
-        onChange={onChange}
-        onChangeCapture={onChangeCapture}
-        onBeforeInput={onBeforeInput}
-        onBeforeInputCapture={onBeforeInputCapture}
-        onInput={onInput}
-        onInputCapture={onInputCapture}
-        onPaste={onPaste}
-        onReset={onReset}
-        onResetCapture={onResetCapture}
-        onSubmit={onSubmit}
-        onSubmitCapture={onSubmitCapture}
-        onInvalid={onInvalid}
-        onInvalidCapture={onInvalidCapture}
-        onKeyDown={onKeyDown}
-        onKeyDownCapture={onKeyDownCapture}
-        onKeyUp={onKeyUp}
-        onKeyUpCapture={onKeyUpCapture}
-      />
-      {iconRight && (
-        <TextInputIcon
-          ariaLabel={iconRightAction?.ariaLabel}
-          onClick={iconRightAction?.handler}
-          disabled={disabled}
-        >
-          {iconRight}
-        </TextInputIcon>
-      )}
-    </div>
-  );
-
   return (
-    <div
-      className={cn(
-        "vesper-text-input",
-        `vesper-text-input-${size}`,
-        `vesper-text-input-${variant}`,
-        className,
-      )}
-      {...rest}
+    <FormInputWrapper
+      label={label ? { text: label, htmlFor: inputId } : undefined}
+      message={message ? { text: message, id: messageId } : undefined}
+      className={className}
     >
-      {label ? (
-        <div className="vesper-text-input-label-wrapper">
-          <Typography
-            as="label"
-            variant="label-sm"
-            className="vesper-text-input-label"
-            htmlFor={inputId}
+      <div
+        className={cn(
+          "vesper-text-input",
+          `vesper-text-input-${size}`,
+          `vesper-text-input-${variant}`,
+        )}
+        {...rest}
+      >
+        {iconLeft && (
+          <TextInputIcon
+            ariaLabel={iconLeftAction?.ariaLabel}
+            onClick={iconLeftAction?.handler}
+            disabled={disabled}
           >
-            {label + (required ? " *" : "")}
-          </Typography>
-          {input}
-        </div>
-      ) : (
-        input
-      )}
-      <FormInputMessage
-        id={message ? messageId : undefined}
-        variant={variant}
-        message={message}
-      />
-    </div>
+            {iconLeft}
+          </TextInputIcon>
+        )}
+        <Typography
+          className="vesper-text-input-field"
+          as="input"
+          ref={inputRef}
+          variant={TEXT_INPUT_TYPOGRAPHY[size]}
+          aria-describedby={describedBy}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledby}
+          aria-invalid={ariaInvalid}
+          role={role}
+          tabIndex={tabIndex}
+          type={type}
+          min={min}
+          max={max}
+          multiple={multiple}
+          pattern={pattern}
+          list={list}
+          defaultValue={defaultValue}
+          inputMode={inputMode}
+          enterKeyHint={enterKeyHint}
+          form={form}
+          disabled={disabled}
+          spellCheck={spellCheck}
+          name={name}
+          minLength={minLength}
+          maxLength={maxLength}
+          readOnly={readOnly}
+          id={inputId}
+          placeholder={
+            required && !label && placeholder.trim()
+              ? `${placeholder.trim()} *`
+              : placeholder
+          }
+          value={value}
+          required={required}
+          autoFocus={autoFocus}
+          autoComplete={autoComplete}
+          autoCorrect={autoCorrect}
+          onFocus={onFocus}
+          onFocusCapture={onFocusCapture}
+          onBlur={onBlur}
+          onBlurCapture={onBlurCapture}
+          onChange={onChange}
+          onChangeCapture={onChangeCapture}
+          onBeforeInput={onBeforeInput}
+          onBeforeInputCapture={onBeforeInputCapture}
+          onInput={onInput}
+          onInputCapture={onInputCapture}
+          onPaste={onPaste}
+          onReset={onReset}
+          onResetCapture={onResetCapture}
+          onSubmit={onSubmit}
+          onSubmitCapture={onSubmitCapture}
+          onInvalid={onInvalid}
+          onInvalidCapture={onInvalidCapture}
+          onKeyDown={onKeyDown}
+          onKeyDownCapture={onKeyDownCapture}
+          onKeyUp={onKeyUp}
+          onKeyUpCapture={onKeyUpCapture}
+        />
+        {iconRight && (
+          <TextInputIcon
+            ariaLabel={iconRightAction?.ariaLabel}
+            onClick={iconRightAction?.handler}
+            disabled={disabled}
+          >
+            {iconRight}
+          </TextInputIcon>
+        )}
+      </div>
+    </FormInputWrapper>
   );
 }
 
