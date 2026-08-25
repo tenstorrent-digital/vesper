@@ -4,9 +4,19 @@ import { useCallback } from "react";
 
 import { Range, type RangeProps } from "@/components/range/range";
 
-interface SliderProps extends Omit<
+export const SLIDER_VARIANTS = [
+  "default",
+  "warning",
+  "error",
+  "success",
+] as const;
+
+export type SliderVariant = (typeof SLIDER_VARIANTS)[number];
+
+export interface SliderProps extends Omit<
   RangeProps,
   | "values"
+  | "variant"
   | "valueLabels"
   | "thumbAriaLabels"
   | "showValueLabels"
@@ -29,6 +39,8 @@ interface SliderProps extends Omit<
   onValueCommit?(value: number): void;
   /** An accessible `aria-label` attribute for the thumb. */
   thumbAriaLabel: string;
+  /** The visual variant of the input, which determines its message's color scheme and icon. @default default */
+  variant?: SliderVariant;
 }
 
 /**
