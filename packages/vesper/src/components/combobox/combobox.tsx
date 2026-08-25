@@ -256,6 +256,7 @@ export function Combobox(props: ComboboxProps) {
       readOnly={readOnly}
     >
       <FormInputWrapper
+        variant={variant}
         label={
           label
             ? { text: required ? `${label} *` : label, htmlFor: inputId }

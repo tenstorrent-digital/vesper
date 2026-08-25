@@ -79,7 +79,6 @@ const COMBOBOX_A11Y_FAILING_PERMUTATIONS: (Pick<ComboboxProps, "variant"> & {
   { variant: "success", theme: "light" },
   { variant: "error", theme: "light" },
   { variant: "default", theme: "dark" },
-  { variant: "warning", theme: "dark" },
   { variant: "success", theme: "dark" },
   { variant: "error", theme: "dark" },
 ];
