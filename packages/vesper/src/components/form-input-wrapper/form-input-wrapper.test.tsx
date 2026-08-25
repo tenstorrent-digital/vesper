@@ -98,7 +98,7 @@ describe("form-input-wrapper [unit]", () => {
     const result = render(<FormInputWrapper />);
     const message = result.getByRole("status");
     expect(message).not.toBeNull();
-    expect(message.querySelector("vesper-form-input-message-text")).toBeNull();
+    expect(message.querySelector(".vesper-form-input-message-text")).toBeNull();
   });
 
   test("renders a message when provided", () => {
