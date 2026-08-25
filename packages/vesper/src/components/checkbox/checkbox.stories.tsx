@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Checkbox } from "@/components/checkbox/checkbox";
+import { Checkbox, CHECKBOX_VARIANTS } from "@/components/checkbox/checkbox";
 
 const meta = {
   component: Checkbox,
@@ -10,6 +10,7 @@ const meta = {
     name: { table: { disable: true } },
     onChange: { table: { disable: true } },
     inputRef: { table: { disable: true } },
+    variant: { control: "radio", options: CHECKBOX_VARIANTS },
   },
 } satisfies Meta<typeof Checkbox>;
 
@@ -20,11 +21,14 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   args: {
     size: "md",
-    label: "Label",
+    text: "Sign up for our newsletter",
     disabled: false,
     indeterminate: true,
     required: false,
     defaultChecked: true,
+    message: "",
+    label: "",
+    variant: "default",
   },
 };
 Playground.storyName = "checkbox";
