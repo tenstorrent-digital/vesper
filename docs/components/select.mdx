@@ -21,16 +21,16 @@ A form-ready dropdown select component supporting controlled and uncontrolled us
 
 | Prop            | Type                                                                                | Description                                                                                                                        | Default              |
 | --------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
-| `options`       | `SelectItem[]`                                                                      | The list of selectable options displayed in the dropdown.                                                                          | —                    |
+| `options`       | `(SelectItem \| string)[]`                                                          | The list of selectable options displayed in the dropdown. Strings are treated as both the label and the value.                     | —                    |
 | `size`          | `"sm" \| "md" \| "lg"`                                                              | The size of the select trigger. Affects height, padding, and typography.                                                           | `"md"`               |
 | `variant`       | `"default" \| "warning" \| "success" \| "error"`                                    | The visual variant, which determines color scheme and message icon.                                                                | `"default"`          |
 | `label`         | `string`                                                                            | An optional label displayed above the trigger, and used as its accessible name. An asterisk is appended when `required` is `true`. | —                    |
 | `message`       | `string`                                                                            | An optional message displayed below the trigger, paired with a variant-specific icon.                                              | —                    |
 | `placeholder`   | `string`                                                                            | Placeholder text shown in the trigger when no value is selected.                                                                   | `"Select an option"` |
 | `icon`          | `ReactNode`                                                                         | An optional icon rendered at the leading edge of the trigger.                                                                      | —                    |
-| `value`         | `string`                                                                            | The currently selected value (controlled mode).                                                                                    | —                    |
-| `defaultValue`  | `string`                                                                            | The initial selected value (uncontrolled mode).                                                                                    | —                    |
-| `onValueChange` | `(value: string) => void`                                                           | Callback invoked with the new value whenever the selection changes.                                                                | —                    |
+| `value`         | `string \| null`                                                                    | The currently selected value (controlled mode). Pass `null` to represent no selection.                                             | —                    |
+| `defaultValue`  | `string \| null`                                                                    | The initial selected value (uncontrolled mode).                                                                                    | —                    |
+| `onValueChange` | `(value: string \| null) => void`                                                   | Callback invoked with the new value whenever the selection changes, or `null` when it is cleared.                                  | —                    |
 | `name`          | `string`                                                                            | The form field name submitted with form data.                                                                                      | —                    |
 | `form`          | `string`                                                                            | Associates the select with a `<form>` element by its `id`.                                                                         | —                    |
 | `id`            | `string`                                                                            | An identifier applied to the trigger, used to reference it from form validation errors.                                            | —                    |
@@ -47,13 +47,15 @@ Any other props are forwarded to the wrapping `<div>` element.
 | `label`  | `string` | The text displayed for this option in the dropdown, and in the trigger once it is selected.  |
 | `value`  | `string` | The underlying value submitted with form data and passed to `onValueChange`. Must be unique. |
 
+A plain string option is shorthand for a `SelectItem` whose `label` and `value` are both that string.
+
 If your list is long enough that users will want to search it, reach for [the `Combobox` component](./combobox.mdx) instead: it renders the same trigger sizes and variants, but filters its options as the user types.
 
 ## Examples
 
 ### Defining options
 
-Each entry in the `options` array is a `SelectItem`, made up of the `label` shown to the user and the `value` it represents. Options are rendered in the order they are provided, and the selected one is marked with a checkmark when the dropdown is open.
+Each entry in the `options` array can either be a `SelectItem`, or a plain string. Use `SelectItem` objects when the value associated with each item differs from the text you want to display:
 
 <Select
   label="Region"
@@ -76,6 +78,26 @@ import { Select } from "@tenstorrent/vesper/select";
   ]}
 />;
 ```
+
+When the displayed text is the same as the value of the item, a string option is a convenient shorthand:
+
+<Select
+  label="Country"
+  placeholder="Select a country"
+  options={["Canada", "Japan", "Norway"]}
+/>
+
+```tsx
+import { Select } from "@tenstorrent/vesper/select";
+
+<Select
+  label="Country"
+  placeholder="Select a country"
+  options={["Canada", "Japan", "Norway"]}
+/>;
+```
+
+Both shapes can be mixed in the same `options` array. Options are rendered in the order they are provided, and the selected one is marked with a checkmark when the dropdown is open.
 
 ### Uncontrolled vs controlled
 
@@ -105,7 +127,7 @@ import { Select } from "@tenstorrent/vesper/select";
 />;
 ```
 
-If you need to control which option is selected, use the `value` and `onValueChange` props. `onValueChange` is called with the `value` of the newly selected option. There is no built-in way for a user to clear a selection, so pass an empty string when you need to return the select to its placeholder state:
+If you need to control which option is selected, use the `value` and `onValueChange` props. `value` is the `value` of the selected option, and is `null` when nothing is selected. There is no built-in way for a user to clear a selection, so pass `null` when you need to return the select to its placeholder state:
 
 <SelectDemo kind="controlled" />
 
@@ -113,7 +135,7 @@ If you need to control which option is selected, use the `value` and `onValueCha
 import { useState } from "react"
 import { Select } from "@tenstorrent/vesper/select"
 
-const [fruit, setFruit] = useState("apple")
+const [fruit, setFruit] = useState<string | null>("apple")
 
 <Select
   label="Fruit"
@@ -128,7 +150,7 @@ const [fruit, setFruit] = useState("apple")
 />
 
 // clearing the selection shows the placeholder again
-<Button onClick={() => setFruit("")}>Reset</Button>
+<Button onClick={() => setFruit(null)}>Reset</Button>
 ```
 
 ### Different sizes

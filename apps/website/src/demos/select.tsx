@@ -43,7 +43,7 @@ function ControlledSelectDemo() {
         onValueChange={setFruit}
       />
       <Typography variant="copy-sm">
-        Selected value: {fruit === "" ? "(none)" : fruit}
+        Selected value: {fruit ?? "null"}
       </Typography>
       <Button size="sm" onClick={() => setFruit(null)}>
         Reset
