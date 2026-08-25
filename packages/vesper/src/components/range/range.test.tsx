@@ -194,7 +194,9 @@ describe("range [unit]", () => {
       ".vesper-form-input-wrapper-label",
     );
     expect(label).toHaveAttribute("for", result.thumbs[0]!.id);
-    expect(result.getByLabelText("Price")).toBe(result.thumbs[0]);
+    expect(result.getByLabelText("Price", { selector: "input" })).toBe(
+      result.thumbs[0],
+    );
   });
 
   test("an empty message is rendered by default", async () => {

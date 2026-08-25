@@ -319,7 +319,9 @@ describe("slider [unit]", () => {
       ".vesper-form-input-wrapper-label",
     );
     expect(label).toHaveAttribute("for", result.thumb.id);
-    expect(result.getByLabelText("Volume")).toBe(result.thumb);
+    expect(result.getByLabelText("Volume", { selector: "input" })).toBe(
+      result.thumb,
+    );
   });
 
   test("an empty message is rendered by default", async () => {
