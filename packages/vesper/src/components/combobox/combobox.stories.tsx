@@ -27,6 +27,8 @@ const meta = {
     inputRef: { table: { disable: true } },
     required: { table: { disable: true } },
     readOnly: { table: { disable: true } },
+    clearButtonAriaLabel: { table: { disable: true } },
+    dropdownTriggerAriaLabel: { table: { disable: true } },
     size: { control: "radio", options: COMBOBOX_SIZES },
     variant: { control: "radio", options: COMBOBOX_VARIANTS },
   },
