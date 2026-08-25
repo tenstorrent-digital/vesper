@@ -452,6 +452,7 @@ exports[`select [snapshot] > lg, default, with label 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-label="Select label"
     class="vesper-select vesper-select-lg vesper-select-default"
     data-placeholder=""
     id="_r_f8_"
@@ -855,6 +856,7 @@ exports[`select [snapshot] > lg, error, with label 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-label="Select label"
     class="vesper-select vesper-select-lg vesper-select-error"
     data-placeholder=""
     id="_r_h4_"
@@ -1258,6 +1260,7 @@ exports[`select [snapshot] > lg, success, with label 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-label="Select label"
     class="vesper-select vesper-select-lg vesper-select-success"
     data-placeholder=""
     id="_r_i2_"
@@ -1659,6 +1662,7 @@ exports[`select [snapshot] > lg, warning, with label 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-label="Select label"
     class="vesper-select vesper-select-lg vesper-select-warning"
     data-placeholder=""
     id="_r_g6_"
@@ -2318,6 +2322,7 @@ exports[`select [snapshot] > md, default, with label 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-label="Select label"
     class="vesper-select vesper-select-md vesper-select-default"
     data-placeholder=""
     id="_r_bg_"
@@ -2721,6 +2726,7 @@ exports[`select [snapshot] > md, error, with label 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-label="Select label"
     class="vesper-select vesper-select-md vesper-select-error"
     data-placeholder=""
     id="_r_dc_"
@@ -3124,6 +3130,7 @@ exports[`select [snapshot] > md, success, with label 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-label="Select label"
     class="vesper-select vesper-select-md vesper-select-success"
     data-placeholder=""
     id="_r_ea_"
@@ -3525,6 +3532,7 @@ exports[`select [snapshot] > md, warning, with label 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-label="Select label"
     class="vesper-select vesper-select-md vesper-select-warning"
     data-placeholder=""
     id="_r_ce_"
@@ -4184,6 +4192,7 @@ exports[`select [snapshot] > sm, default, with label 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-label="Select label"
     class="vesper-select vesper-select-sm vesper-select-default"
     data-placeholder=""
     id="_r_7o_"
@@ -4587,6 +4596,7 @@ exports[`select [snapshot] > sm, error, with label 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-label="Select label"
     class="vesper-select vesper-select-sm vesper-select-error"
     data-placeholder=""
     id="_r_9k_"
@@ -4990,6 +5000,7 @@ exports[`select [snapshot] > sm, success, with label 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-label="Select label"
     class="vesper-select vesper-select-sm vesper-select-success"
     data-placeholder=""
     id="_r_ai_"
@@ -5391,6 +5402,7 @@ exports[`select [snapshot] > sm, warning, with label 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-label="Select label"
     class="vesper-select vesper-select-sm vesper-select-warning"
     data-placeholder=""
     id="_r_8m_"
