@@ -219,6 +219,23 @@ describe("select [unit]", () => {
     expect(content).not.toBeNull();
   });
 
+  test("string options render their value as their label", async () => {
+    const result = render(<Select options={["Japan", "Canada", "Norway"]} />);
+    const trigger = result.getByRole("combobox");
+
+    await userEvent.click(trigger);
+    await waitFor(() => {
+      expect(document.querySelector(".vesper-select-popup")).not.toBeNull();
+    });
+
+    const items = document.querySelectorAll(".vesper-select-item");
+    expect(items).toHaveLength(3);
+
+    expect(items[0]!.textContent).toContain("Japan");
+    expect(items[1]!.textContent).toContain("Canada");
+    expect(items[2]!.textContent).toContain("Norway");
+  });
+
   test("options render in dropdown", async () => {
     const result = render(<Select options={OPTIONS} />);
     const trigger = result.getByRole("combobox");

@@ -1,6 +1,12 @@
 "use client";
 
-import { type ComponentProps, type ReactNode, useId, useState } from "react";
+import {
+  type ComponentProps,
+  type ReactNode,
+  useId,
+  useMemo,
+  useState,
+} from "react";
 import { Select as BaseSelect } from "@base-ui/react/select";
 
 import { CaretDown, CaretUp, Checkmark } from "@/components/icons/icons";
@@ -55,7 +61,7 @@ export interface SelectProps
   /** Placeholder text shown in the trigger when no value is selected. @default Select an option */
   placeholder?: string;
   /** The list of selectable options displayed in the dropdown */
-  options: SelectItem[];
+  options: (SelectItem | string)[];
   /** The initial selected value for uncontrolled usage */
   defaultValue?: string | null;
   /** The currently selected value for controlled usage. Pass `null` to represent no selection. */
@@ -163,6 +169,14 @@ export function Select(props: SelectProps) {
       .filter(Boolean)
       .join(" ") || undefined;
 
+  const items = useMemo(
+    () =>
+      options.map((option) =>
+        typeof option === "string" ? { value: option, label: option } : option,
+      ),
+    [options],
+  );
+
   return (
     <FormInputWrapper
       variant={variant}
@@ -177,7 +191,7 @@ export function Select(props: SelectProps) {
       {...rest}
     >
       <BaseSelect.Root
-        items={options}
+        items={items}
         value={value}
         defaultValue={defaultValue}
         onValueChange={(next) => onValueChange?.(next)}
@@ -218,7 +232,7 @@ export function Select(props: SelectProps) {
           >
             <BaseSelect.Popup className="vesper-select-popup">
               <BaseSelect.List className="vesper-select-viewport">
-                {options.map((o) => (
+                {items.map((o) => (
                   <BaseSelect.Item
                     key={o.value}
                     value={o.value}
