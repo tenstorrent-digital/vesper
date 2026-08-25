@@ -130,6 +130,102 @@ describe("checkbox [unit]", () => {
     expect(input).toHaveAttribute("aria-describedby", "help-text");
   });
 
+  test("renders a label when supplied", () => {
+    const { container } = render(
+      <Checkbox text="Checkbox text" label="Label text" />,
+    );
+
+    const label = container.querySelector(".vesper-form-input-wrapper-label");
+    expect(label).not.toBeNull();
+    expect(label!.tagName).toBe("LABEL");
+    expect(label).toHaveTextContent("Label text");
+  });
+
+  test("no label is rendered when the label prop is omitted", () => {
+    const { container } = render(<Checkbox text="Checkbox text" />);
+    expect(
+      container.querySelector(".vesper-form-input-wrapper-label"),
+    ).toBeNull();
+  });
+
+  test("the id prop is forwarded to the input", () => {
+    const result = render(<Checkbox text="Checkbox text" id="terms" />);
+    expect(result.getByRole("checkbox")).toHaveAttribute("id", "terms");
+  });
+
+  test("label htmlFor matches the id prop", () => {
+    const { container } = render(
+      <Checkbox text="Checkbox text" label="Label text" id="terms" />,
+    );
+    expect(
+      container.querySelector(".vesper-form-input-wrapper-label"),
+    ).toHaveAttribute("for", "terms");
+  });
+
+  test("an id is generated when the id prop is omitted", () => {
+    const { container, getByRole } = render(
+      <Checkbox text="Checkbox text" label="Label text" />,
+    );
+
+    const checkbox = getByRole("checkbox");
+    expect(checkbox.id).not.toBe("");
+    expect(
+      container.querySelector(".vesper-form-input-wrapper-label"),
+    ).toHaveAttribute("for", checkbox.id);
+  });
+
+  test("clicking the label toggles the checkbox", async () => {
+    const { container, getByRole } = render(
+      <Checkbox text="Checkbox text" label="Label text" />,
+    );
+
+    const label = container.querySelector(".vesper-form-input-wrapper-label")!;
+    const checkbox = getByRole("checkbox");
+
+    await userEvent.click(label);
+    expect(checkbox).toBeChecked();
+  });
+
+  test("label is linked to the input via aria-labelledby", () => {
+    const result = render(<Checkbox text="Checkbox text" label="Label text" />);
+    const checkbox = result.getByRole("checkbox");
+    const labelId = checkbox.getAttribute("aria-labelledby");
+
+    expect(labelId).not.toBeNull();
+    expect(document.getElementById(labelId!)).toHaveTextContent("Label text");
+  });
+
+  test("an additional aria-labelledby is preserved alongside the label", () => {
+    const result = render(
+      <Checkbox
+        text="Checkbox text"
+        label="Label text"
+        aria-labelledby="external-label"
+      />,
+    );
+    const labelledBy = result
+      .getByRole("checkbox")
+      .getAttribute("aria-labelledby");
+
+    expect(labelledBy?.split(" ")).toHaveLength(2);
+    expect(labelledBy?.split(" ")[0]).toBe("external-label");
+  });
+
+  test("aria-labelledby is forwarded when no label is supplied", () => {
+    const result = render(
+      <Checkbox text="Checkbox text" aria-labelledby="external-label" />,
+    );
+    expect(result.getByRole("checkbox")).toHaveAttribute(
+      "aria-labelledby",
+      "external-label",
+    );
+  });
+
+  test("no aria-labelledby is set when neither label nor aria-labelledby is supplied", () => {
+    const result = render(<Checkbox text="Checkbox text" />);
+    expect(result.getByRole("checkbox")).not.toHaveAttribute("aria-labelledby");
+  });
+
   test("renders a message when supplied", () => {
     const result = render(
       <Checkbox text="Checkbox text" message="Message text" />,
