@@ -23,9 +23,23 @@
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
     "build:storybook": {
-      "dependsOn": ["^build"],
+      // `@storybook/react-vite` bundles stories with vite, which strips
+      // types with esbuild instead of checking them, so check-types is
+      // required here or else storybook can build despite type errors
+      "dependsOn": ["^build", "check-types"],
       "inputs": ["$TURBO_DEFAULT$", "storybook/**"],
       "outputs": ["$TURBO_ROOT$/apps/website/public/storybook/**"]
+    },
+    "compile": {
+      /**
+       * emits a package's build output (`dist`) without type-checking
+       * anything beyond what `tsc` needs to emit it
+       *
+       * nothing shippable is produced from here: every `build*` task
+       * stays gated on `check-types`
+       */
+      "dependsOn": ["^compile"],
+      "outputs": ["dist/**"]
     },
     "check-types": {
       // NOT a transit node: `docs` resolves `@tenstorrent/vesper` subpaths to
@@ -34,16 +48,16 @@
       "dependsOn": ["^build"]
     },
     "dev": {
-      // ensure workspace deps are built (turbo restores `dist` from cache) so
+      // ensure workspace deps are compiled (turbo restores `dist` from cache) so
       // we never boot against a missing or half-written `dist`
-      "dependsOn": ["^build"],
+      "dependsOn": ["^compile"],
       "cache": false,
       "persistent": true
     },
     "watch": {
-      // depends on `build` because `dev` above pulls `^build` into the dev graph
+      // depends on `compile` because `dev` above pulls `^compile` into the dev graph
       // (otherwise concurrent writes write over each other)
-      "dependsOn": ["build"],
+      "dependsOn": ["compile"],
       "cache": false,
       "persistent": true
     },

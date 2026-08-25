@@ -1,0 +1,33 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      /**
+       * this package has no `build` script on purpose
+       *
+       * `build` here is a no-op aggregate node - the same script-less task
+       * mechanism as `transit` in the root `turbo.jsonc`
+       *
+       *   compile     emits `dist` (the only script that writes build output)
+       *   check-types `tsc --noEmit -p tsconfig.check.json`
+       *   build       "compile, and only if the package type-checks"
+       *
+       * the `check-types` edge matters because `compile` runs
+       * `tsc -p tsconfig.build.json`, which excludes tests and stories so they
+       * are never emitted into `dist` - meaning compiling alone never
+       * type-checks them. `tsconfig.check.json` covers `src` (tests and stories
+       * included), `storybook/`, `scripts/` and the vitest configs
+       *
+       * everything that produces something shippable depends on `build` (the
+       * website build Vercel runs reaches it via `^build`), while `dev` and
+       * `watch` depend on `compile` directly (see the root `turbo.jsonc`), so
+       * booting is never gated on a type error in a test or story
+       */
+      "dependsOn": ["^build", "compile", "check-types"],
+      // the emitted output belongs to `compile`; this node produces nothing and
+      // must not claim `dist/**` from the root `build` definition
+      "outputs": []
+    }
+  }
+}

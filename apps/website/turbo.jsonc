@@ -14,10 +14,10 @@
 
     "dev": {
       /**
-       * running `build` here is required so `packages/vesper/src`
+       * running `compile` here is required so `packages/vesper/src`
        * is built into `dist` so we can use them here
        */
-      "dependsOn": ["^build"],
+      "dependsOn": ["^compile"],
       /**
        * and then we also need:
        *
