@@ -143,7 +143,7 @@ export function Select(props: SelectProps) {
     container,
     message,
     label,
-    "aria-label": ariaLabel,
+    "aria-label": ariaLabel = label,
     "aria-describedby": ariaDescribedby,
     "aria-labelledby": ariaLabelledby,
     "aria-invalid": ariaInvalid,
