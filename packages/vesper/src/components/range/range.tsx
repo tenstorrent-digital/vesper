@@ -132,6 +132,7 @@ export function Range(props: RangeProps) {
     "aria-describedby": ariaDescribedby,
     "aria-labelledby": ariaLabelledby,
     "aria-invalid": ariaInvalid,
+    "aria-label": ariaLabel = label,
     variant = "default",
     ...rest
   } = props;
@@ -199,6 +200,7 @@ export function Range(props: RangeProps) {
         aria-invalid={ariaInvalid}
         aria-describedby={describedBy}
         aria-labelledby={ariaLabelledby}
+        aria-label={ariaLabel}
       >
         <BaseSlider.Control>
           <BaseSlider.Track className="vesper-range-track">
