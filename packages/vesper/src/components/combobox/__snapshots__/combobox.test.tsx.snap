@@ -77,7 +77,7 @@ exports[`combobox [snapshot] > full options 1`] = `
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
     for="_r_3s_"
   >
-    Label text
+    Label text *
   </label>
   <div
     class="vesper-combobox vesper-combobox-lg vesper-combobox-error"
@@ -101,6 +101,7 @@ exports[`combobox [snapshot] > full options 1`] = `
       aria-describedby="_r_3t_"
       aria-expanded="false"
       aria-haspopup="listbox"
+      aria-label="Label text"
       aria-required="true"
       autocapitalize="none"
       autocomplete="off"
@@ -189,7 +190,7 @@ exports[`combobox [snapshot] > required 1`] = `
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
     for="_r_3a_"
   >
-    Label text
+    Label text *
   </label>
   <div
     class="vesper-combobox vesper-combobox-md vesper-combobox-default"
@@ -213,6 +214,7 @@ exports[`combobox [snapshot] > required 1`] = `
       aria-autocomplete="list"
       aria-expanded="false"
       aria-haspopup="listbox"
+      aria-label="Label text"
       aria-required="true"
       autocapitalize="none"
       autocomplete="off"
@@ -832,6 +834,7 @@ exports[`combobox [snapshot] > with label 1`] = `
       aria-autocomplete="list"
       aria-expanded="false"
       aria-haspopup="listbox"
+      aria-label="Label text"
       autocapitalize="none"
       autocomplete="off"
       autocorrect="off"
