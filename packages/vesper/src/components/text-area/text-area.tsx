@@ -144,7 +144,7 @@ export function TextArea(props: TextAreaProps) {
     autoCorrect,
     role,
     tabIndex,
-    "aria-label": ariaLabel,
+    "aria-label": ariaLabel = label,
     "aria-labelledby": ariaLabelledby,
     "aria-describedby": ariaDescribedby,
     "aria-invalid": ariaInvalid,
@@ -187,7 +187,14 @@ export function TextArea(props: TextAreaProps) {
 
   return (
     <FormInputWrapper
-      label={label ? { text: label, htmlFor: inputId } : undefined}
+      label={
+        label
+          ? {
+              text: required ? `${label} *` : label,
+              htmlFor: inputId,
+            }
+          : undefined
+      }
       message={message ? { text: message, id: messageId } : undefined}
       variant={variant}
       className={className}
