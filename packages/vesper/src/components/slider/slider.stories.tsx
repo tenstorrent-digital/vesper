@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { RANGE_VARIANTS } from "@/components/range/range";
 import { Slider } from "@/components/slider/slider";
 
 const meta = {
@@ -14,6 +15,7 @@ const meta = {
     valueLabel: { table: { disable: true } },
     name: { table: { disable: true } },
     form: { table: { disable: true } },
+    variant: { control: "radio", options: RANGE_VARIANTS },
   },
 } satisfies Meta<typeof Slider>;
 
@@ -31,6 +33,9 @@ export const Playground: Story = {
     showValueLabel: false,
     disabled: false,
     thumbAriaLabel: "Volume",
+    label: "Label",
+    message: "Optional message",
+    variant: "default",
   },
 };
 Playground.storyName = "slider";

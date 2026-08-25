@@ -9,6 +9,10 @@
   }
 }
 
+.vesper-range-labeled {
+  padding-top: 1.4375rem;
+}
+
 .vesper-range-track {
   display: block;
   position: relative;
