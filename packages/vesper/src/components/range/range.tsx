@@ -157,11 +157,7 @@ export function Range(props: RangeProps) {
 
   return (
     <FormInputWrapper
-      label={
-        label && firstThumbRef?.id
-          ? { text: label, htmlFor: firstThumbRef.id }
-          : undefined
-      }
+      label={label ? { text: label, htmlFor: firstThumbRef?.id } : undefined}
       message={message ? { text: message, id: messageId } : undefined}
       variant={variant}
       className={className}
