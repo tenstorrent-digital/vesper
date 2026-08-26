@@ -123,7 +123,6 @@ export interface RangeProps extends Omit<
  *   message="The range must span at least $50."
  *   values={price}
  *   onValuesChange={setPrice}
- *   aria-invalid
  *   thumbAriaLabels={["Price (min)", "Price (max)"]}
  * />
  */
