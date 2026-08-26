@@ -2,14 +2,13 @@
 
 import { type ComponentProps, type Ref, useId } from "react";
 
+import { FormInputWrapper } from "@/components/form-input-wrapper/form-input-wrapper";
 import {
   Typography,
   type TypographyVariant,
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
-
-import { FormInputWrapper } from "../form-input-wrapper/form-input-wrapper";
 
 export const TEXT_AREA_SIZES = ["sm", "md", "lg"] as const;
 
