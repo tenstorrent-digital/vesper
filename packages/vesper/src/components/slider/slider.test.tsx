@@ -340,30 +340,27 @@ describe("slider [unit]", () => {
     expect(message).toHaveTextContent("Pick a volume");
   });
 
-  test("the label is linked to the thumb via aria-labelledby", async () => {
+  test("the label is linked to the thumb via htmlFor", async () => {
     const result = await renderSlider({ value: 50, label: "Volume" });
 
     const label = result.container.querySelector<HTMLElement>(
       ".vesper-form-input-wrapper-label",
     )!;
-    expect(result.thumb).toHaveAttribute("aria-labelledby", label.id);
+    expect(label).toHaveAttribute("for", result.thumb.id);
   });
 
-  test("a custom aria-labelledby is preserved alongside the label id", async () => {
+  test("aria-label is forwarded to the slider root", async () => {
     const result = await renderSlider({
-      value: 50,
-      label: "Volume",
-      "aria-labelledby": "external-description",
+      "aria-label": "Price in USD",
     });
+    expect(result.root).toHaveAttribute("aria-label", "Price in USD");
+  });
 
-    const label = result.container.querySelector<HTMLElement>(
-      ".vesper-form-input-wrapper-label",
-    )!;
-
-    expect(result.thumb).toHaveAttribute(
-      "aria-labelledby",
-      `external-description ${label.id}`,
-    );
+  test("aria-labelledby is forwarded to the slider root", async () => {
+    const result = await renderSlider({
+      "aria-labelledby": "external-label",
+    });
+    expect(result.root).toHaveAttribute("aria-labelledby", "external-label");
   });
 
   test("the message is linked to the thumb via aria-describedby", async () => {

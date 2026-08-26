@@ -215,52 +215,29 @@ describe("range [unit]", () => {
     expect(message).toHaveTextContent("Pick a price range");
   });
 
-  test("the label is linked to the first thumb via aria-labelledby", async () => {
+  test("the label is linked to the first thumb via htmlFor", async () => {
     const result = await renderRange({ label: "Price" });
 
     const label = result.container.querySelector<HTMLElement>(
       ".vesper-form-input-wrapper-label",
     )!;
 
-    const [first, ...rest] = result.thumbs;
-    expect(first).toHaveAttribute("aria-labelledby", label.id);
-    rest.forEach((thumb) =>
-      expect(thumb).not.toHaveAttribute("aria-labelledby"),
-    );
+    const [first] = result.thumbs;
+    expect(label).toHaveAttribute("for", first?.id);
   });
 
-  test("a custom aria-labelledby is preserved alongside the label id", async () => {
+  test("aria-label is forwarded to the slider root", async () => {
     const result = await renderRange({
-      label: "Price",
-      "aria-labelledby": "external-description",
+      "aria-label": "Price in USD",
     });
-
-    const label = result.container.querySelector<HTMLElement>(
-      ".vesper-form-input-wrapper-label",
-    )!;
-
-    const [first, ...rest] = result.thumbs;
-    expect(first).toHaveAttribute(
-      "aria-labelledby",
-      `external-description ${label.id}`,
-    );
-
-    rest.forEach((thumb) =>
-      expect(thumb).not.toHaveAttribute("aria-labelledby"),
-    );
+    expect(result.root).toHaveAttribute("aria-label", "Price in USD");
   });
 
-  test("a custom aria-labelledby is used when no label is provided", async () => {
+  test("aria-labelledby is forwarded to the slider root", async () => {
     const result = await renderRange({
-      "aria-labelledby": "external-description",
+      "aria-labelledby": "external-label",
     });
-
-    const [first, ...rest] = result.thumbs;
-    expect(first).toHaveAttribute("aria-labelledby", "external-description");
-
-    rest.forEach((thumb) =>
-      expect(thumb).not.toHaveAttribute("aria-labelledby"),
-    );
+    expect(result.root).toHaveAttribute("aria-labelledby", "external-label");
   });
 
   test("the message is linked to the thumbs via aria-describedby", async () => {

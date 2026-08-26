@@ -185,20 +185,9 @@ export function Range(props: RangeProps) {
       .filter(Boolean)
       .join(" ") || undefined;
 
-  const labelId = useId();
-
-  // If an additional aria-labelledby is supplied, this ensures that both ids get used
-  const labelledBy =
-    [ariaLabelledby, label ? labelId : undefined].filter(Boolean).join(" ") ||
-    undefined;
-
   return (
     <FormInputWrapper
-      label={
-        label
-          ? { text: label, htmlFor: firstThumbRef?.id, id: labelId }
-          : undefined
-      }
+      label={label ? { text: label, htmlFor: firstThumbRef?.id } : undefined}
       message={message ? { text: message, id: messageId } : undefined}
       variant={variant}
       className={className}
@@ -227,6 +216,7 @@ export function Range(props: RangeProps) {
         thumbAlignment="edge"
         thumbCollisionBehavior="none"
         aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledby}
       >
         <BaseSlider.Control>
           <BaseSlider.Track className="vesper-range-track">
@@ -248,7 +238,6 @@ export function Range(props: RangeProps) {
                 key={index}
                 index={index}
                 inputRef={index === 0 ? setFirstThumbRef : undefined}
-                labelledBy={index === 0 ? labelledBy : undefined}
                 describedBy={describedBy}
                 ariaLabel={thumbAriaLabels[index]}
                 showLabel={showValueLabels}
@@ -268,7 +257,6 @@ function RangeThumb({
   label,
   ariaLabel,
   describedBy,
-  labelledBy,
   inputRef,
 }: {
   index: number;
@@ -276,7 +264,6 @@ function RangeThumb({
   label?: string;
   ariaLabel?: string;
   describedBy?: string;
-  labelledBy?: string;
   inputRef?: Ref<HTMLInputElement>;
 }) {
   return (
@@ -294,7 +281,6 @@ function RangeThumb({
       }}
       aria-label={ariaLabel}
       aria-describedby={describedBy}
-      aria-labelledby={labelledBy}
       style={(state: SliderThumbState) =>
         showLabel
           ? ({
