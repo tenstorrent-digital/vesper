@@ -375,8 +375,8 @@ describe("slider [unit]", () => {
   });
 
   test("aria-describedby is unset when no message is supplied", async () => {
-    const { root } = await renderSlider({ value: 50 });
-    expect(root).not.toHaveAttribute("aria-describedby");
+    const { thumb } = await renderSlider({ value: 50 });
+    expect(thumb).not.toHaveAttribute("aria-describedby");
   });
 
   test("a custom aria-describedby is preserved alongside the message id", async () => {
