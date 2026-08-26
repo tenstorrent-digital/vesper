@@ -100,7 +100,7 @@ const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
  * @param {PortalContainer} [props.container] - (optional) Specify the element or shadow root to portal the dropdown into
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  *
- * You may also pass any additional props to the underlying `button` element
+ * You may also pass any additional props to the underlying `div` element
  *
  * @example
  * <Select

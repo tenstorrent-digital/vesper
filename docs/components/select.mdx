@@ -38,7 +38,7 @@ A form-ready dropdown select component supporting controlled and uncontrolled us
 | `disabled`      | `boolean`                                                                           | When `true`, prevents interaction with the trigger and dropdown.                                                                   | `false`              |
 | `container`     | `HTMLElement \| ShadowRoot \| null \| RefObject<HTMLElement \| ShadowRoot \| null>` | Specify the element or shadow root to portal the dropdown into.                                                                    | —                    |
 
-Any other props are forwarded to the wrapping `<div>` element.
+`aria-label`, `aria-labelledby`, `aria-describedby`, and `aria-invalid` are all forwarded to the select trigger. Any other props are forwarded to the wrapping `<div>` element.
 
 ### `SelectItem` options
 
