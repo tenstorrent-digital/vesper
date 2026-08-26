@@ -252,6 +252,7 @@ export function TextInput(props: TextInputProps) {
       }
       message={message ? { text: message, id: messageId } : undefined}
       className={className}
+      {...rest}
     >
       <div
         className={cn(
@@ -259,7 +260,6 @@ export function TextInput(props: TextInputProps) {
           `vesper-text-input-${size}`,
           `vesper-text-input-${variant}`,
         )}
-        {...rest}
       >
         {iconLeft && (
           <TextInputIcon

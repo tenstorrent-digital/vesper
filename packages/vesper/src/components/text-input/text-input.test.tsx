@@ -233,8 +233,14 @@ describe("text-input [unit]", () => {
   });
 
   test("additional prop passthrough", () => {
-    const result = render(<TextInput aria-label="custom label" />);
-    const input = result.container.querySelector("input")!;
+    const result = render(
+      <TextInput aria-label="custom label" data-testid="foo" />,
+    );
+
+    const wrapper = result.container.firstChild;
+    expect(wrapper).toHaveAttribute("data-testid", "foo");
+
+    const input = result.getByRole("textbox");
     expect(input).toHaveAttribute("aria-label", "custom label");
   });
 
