@@ -94,9 +94,8 @@ describe("text-input [unit]", () => {
     test(`${variant} variant`, () => {
       const result = render(<TextInput variant={variant} />);
 
-      expect(result.container.firstChild).toHaveClass(
-        `vesper-text-input-${variant}`,
-      );
+      const inputWrapper = result.container.querySelector(".vesper-text-input");
+      expect(inputWrapper).toHaveClass(`vesper-text-input-${variant}`);
     });
   });
 
@@ -104,9 +103,8 @@ describe("text-input [unit]", () => {
     test(`${size} size`, () => {
       const result = render(<TextInput size={size} />);
 
-      expect(result.container.firstChild).toHaveClass(
-        `vesper-text-input-${size}`,
-      );
+      const inputWrapper = result.container.querySelector(".vesper-text-input");
+      expect(inputWrapper).toHaveClass(`vesper-text-input-${size}`);
     });
   });
 
@@ -118,7 +116,9 @@ describe("text-input [unit]", () => {
   test("renders a label when supplied", () => {
     const result = render(<TextInput label="Username" />);
 
-    const label = result.container.querySelector(".vesper-text-input-label");
+    const label = result.container.querySelector(
+      ".vesper-form-input-wrapper-label",
+    );
     expect(label).not.toBeNull();
     expect(label!.tagName).toBe("LABEL");
     expect(label).toHaveTextContent("Username");
@@ -127,14 +127,18 @@ describe("text-input [unit]", () => {
   test("label htmlFor matches the id prop", () => {
     const result = render(<TextInput label="Email" id="email-input" />);
 
-    const label = result.container.querySelector(".vesper-text-input-label");
+    const label = result.container.querySelector(
+      ".vesper-form-input-wrapper-label",
+    );
     expect(label).toHaveAttribute("for", "email-input");
   });
 
   test("clicking the label focuses the input", async () => {
     const result = render(<TextInput label="Username" id="username-input" />);
 
-    const label = result.container.querySelector(".vesper-text-input-label")!;
+    const label = result.container.querySelector(
+      ".vesper-form-input-wrapper-label",
+    )!;
     await userEvent.click(label);
 
     expect(result.getByRole("textbox")).toHaveFocus();
@@ -152,7 +156,7 @@ describe("text-input [unit]", () => {
     const input = result.getByRole("textbox");
     expect(input.id).not.toBe("");
     expect(
-      result.container.querySelector(".vesper-text-input-label"),
+      result.container.querySelector(".vesper-form-input-wrapper-label"),
     ).toHaveAttribute("for", input.id);
   });
 
@@ -229,8 +233,14 @@ describe("text-input [unit]", () => {
   });
 
   test("additional prop passthrough", () => {
-    const result = render(<TextInput aria-label="custom label" />);
-    const input = result.container.querySelector("input")!;
+    const result = render(
+      <TextInput aria-label="custom label" data-testid="foo" />,
+    );
+
+    const wrapper = result.container.firstChild;
+    expect(wrapper).toHaveAttribute("data-testid", "foo");
+
+    const input = result.getByRole("textbox");
     expect(input).toHaveAttribute("aria-label", "custom label");
   });
 
@@ -240,9 +250,6 @@ describe("text-input [unit]", () => {
     );
 
     const el = result.container.firstChild;
-    expect(el).toHaveClass("vesper-text-input");
-    expect(el).toHaveClass("vesper-text-input-lg");
-    expect(el).toHaveClass("vesper-text-input-default");
     expect(el).toHaveClass("custom-class");
   });
 });

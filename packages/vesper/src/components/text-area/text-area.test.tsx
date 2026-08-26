@@ -92,9 +92,8 @@ describe("text-area [unit]", () => {
     test(`${variant} variant`, () => {
       const result = render(<TextArea variant={variant} />);
 
-      expect(result.container.firstChild).toHaveClass(
-        `vesper-text-area-${variant}`,
-      );
+      const textarea = result.getByRole("textbox");
+      expect(textarea).toHaveClass(`vesper-text-area-${variant}`);
     });
   });
 
@@ -102,9 +101,8 @@ describe("text-area [unit]", () => {
     test(`${size} size`, () => {
       const result = render(<TextArea size={size} />);
 
-      expect(result.container.firstChild).toHaveClass(
-        `vesper-text-area-${size}`,
-      );
+      const textarea = result.getByRole("textbox");
+      expect(textarea).toHaveClass(`vesper-text-area-${size}`);
     });
   });
 
@@ -138,7 +136,9 @@ describe("text-area [unit]", () => {
   test("renders a label when supplied", () => {
     const result = render(<TextArea label="Username" />);
 
-    const label = result.container.querySelector(".vesper-text-area-label");
+    const label = result.container.querySelector(
+      ".vesper-form-input-wrapper-label",
+    );
     expect(label).not.toBeNull();
     expect(label!.tagName).toBe("LABEL");
     expect(label).toHaveTextContent("Username");
@@ -147,14 +147,18 @@ describe("text-area [unit]", () => {
   test("label htmlFor matches the id prop", () => {
     const result = render(<TextArea label="Bio" id="bio" />);
 
-    const label = result.container.querySelector(".vesper-text-area-label");
+    const label = result.container.querySelector(
+      ".vesper-form-input-wrapper-label",
+    );
     expect(label).toHaveAttribute("for", "bio");
   });
 
   test("clicking the label focuses the textarea", async () => {
     const result = render(<TextArea label="Bio" id="bio" />);
 
-    const label = result.container.querySelector(".vesper-text-area-label")!;
+    const label = result.container.querySelector(
+      ".vesper-form-input-wrapper-label",
+    )!;
     await userEvent.click(label);
 
     expect(result.getByRole("textbox")).toHaveFocus();
@@ -172,7 +176,7 @@ describe("text-area [unit]", () => {
     const textarea = result.getByRole("textbox");
     expect(textarea.id).not.toBe("");
     expect(
-      result.container.querySelector(".vesper-text-area-label"),
+      result.container.querySelector(".vesper-form-input-wrapper-label"),
     ).toHaveAttribute("for", textarea.id);
   });
 
@@ -194,9 +198,6 @@ describe("text-area [unit]", () => {
     );
 
     const el = result.container.firstChild;
-    expect(el).toHaveClass("vesper-text-area");
-    expect(el).toHaveClass("vesper-text-area-lg");
-    expect(el).toHaveClass("vesper-text-area-default");
     expect(el).toHaveClass("custom-class");
   });
 });

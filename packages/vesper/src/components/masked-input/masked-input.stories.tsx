@@ -5,7 +5,6 @@ import { MaskedInput } from "@/components/masked-input/masked-input";
 import {
   TEXT_INPUT_SIZES,
   TEXT_INPUT_VARIANTS,
-  TextInputDropdownProps,
 } from "@/components/text-input/text-input";
 
 const meta = {
@@ -17,7 +16,6 @@ const meta = {
     iconRightAction: { table: { disable: true } },
     type: { table: { disable: true } },
     inputRef: { table: { disable: true } },
-    dropdown: { control: "boolean" },
     mask: { control: "text" },
     formatOnMount: { control: "boolean" },
     formatOnMaskChange: { control: "boolean" },
@@ -40,7 +38,6 @@ export const Playground: Story = {
     iconLeft: false,
     iconRight: false,
     message: "This is a message you can display under the input.",
-    dropdown: false as unknown as TextInputDropdownProps,
     mask: "+1 (___) ___-____",
     formatOnMount: false,
     formatOnMaskChange: true,
@@ -53,16 +50,6 @@ export const Playground: Story = {
         iconLeft={props.iconLeft ? <Search /> : undefined}
         iconRight={props.iconRight ? <Close /> : undefined}
         mask={props.mask}
-        dropdown={
-          props.dropdown
-            ? {
-                options: ["US", "CA"],
-                name: "country-code",
-                ariaLabel: "Country code",
-                defaultValue: "US",
-              }
-            : undefined
-        }
       />
     );
   },

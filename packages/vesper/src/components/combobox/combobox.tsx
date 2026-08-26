@@ -10,7 +10,7 @@ import {
 } from "react";
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
 
-import { FormInputMessage } from "@/components/form-input-message/form-input-message";
+import { FormInputWrapper } from "@/components/form-input-wrapper/form-input-wrapper";
 import { CaretDown, Checkmark, Close, Search } from "@/components/icons/icons";
 import {
   Typography,
@@ -186,7 +186,7 @@ export function Combobox(props: ComboboxProps) {
     label,
     message,
     "aria-describedby": ariaDescribedby,
-    "aria-label": ariaLabel,
+    "aria-label": ariaLabel = label,
     "aria-labelledby": ariaLabelledBy,
     "aria-invalid": ariaInvalid,
     ...rest
@@ -231,36 +231,6 @@ export function Combobox(props: ComboboxProps) {
 
   const portalContainer = getPortalContainer(container, innerRef);
 
-  const input = (
-    <BaseCombobox.InputGroup className="vesper-combobox-input-wrapper">
-      <Search className="vesper-combobox-search-icon" />
-      <Typography
-        as={BaseCombobox.Input}
-        ref={inputRef}
-        aria-describedby={describedBy}
-        aria-label={ariaLabel}
-        aria-labelledby={ariaLabelledBy}
-        aria-invalid={ariaInvalid}
-        id={inputId}
-        variant={COMBOBOX_TYPOGRAPHY[size]}
-        placeholder={placeholder}
-        className="vesper-combobox-input"
-      />
-      <BaseCombobox.Clear
-        className="vesper-combobox-clear"
-        aria-label={clearButtonAriaLabel}
-      >
-        <Close />
-      </BaseCombobox.Clear>
-      <BaseCombobox.Trigger
-        className="vesper-combobox-trigger"
-        aria-label={dropdownTriggerAriaLabel}
-      >
-        <CaretDown />
-      </BaseCombobox.Trigger>
-    </BaseCombobox.InputGroup>
-  );
-
   const handleValueChange = useCallback(
     (value: string | null) => onValueChange?.(value),
     [onValueChange],
@@ -285,37 +255,52 @@ export function Combobox(props: ComboboxProps) {
       form={form}
       readOnly={readOnly}
     >
-      <div
-        className={cn(
-          "vesper-combobox",
-          `vesper-combobox-${size}`,
-          `vesper-combobox-${variant}`,
-          className,
-        )}
+      <FormInputWrapper
+        variant={variant}
+        label={
+          label
+            ? { text: required ? `${label} *` : label, htmlFor: inputId }
+            : undefined
+        }
+        message={message ? { text: message, id: messageId } : undefined}
+        className={className}
         ref={mergedRef}
         {...rest}
       >
-        {label ? (
-          <div className="vesper-combobox-label-wrapper">
-            <Typography
-              as="label"
-              variant="label-sm"
-              className="vesper-combobox-label"
-              htmlFor={inputId}
-            >
-              {label + (required ? " *" : "")}
-            </Typography>
-            {input}
-          </div>
-        ) : (
-          input
-        )}
-        <FormInputMessage
-          id={message ? messageId : undefined}
-          variant={variant}
-          message={message}
-        />
-      </div>
+        <BaseCombobox.InputGroup
+          className={cn(
+            "vesper-combobox",
+            `vesper-combobox-${size}`,
+            `vesper-combobox-${variant}`,
+          )}
+        >
+          <Search className="vesper-combobox-search-icon" />
+          <Typography
+            as={BaseCombobox.Input}
+            ref={inputRef}
+            aria-describedby={describedBy}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledBy}
+            aria-invalid={ariaInvalid}
+            id={inputId}
+            variant={COMBOBOX_TYPOGRAPHY[size]}
+            placeholder={placeholder}
+            className="vesper-combobox-input"
+          />
+          <BaseCombobox.Clear
+            className="vesper-combobox-clear"
+            aria-label={clearButtonAriaLabel}
+          >
+            <Close />
+          </BaseCombobox.Clear>
+          <BaseCombobox.Trigger
+            className="vesper-combobox-trigger"
+            aria-label={dropdownTriggerAriaLabel}
+          >
+            <CaretDown />
+          </BaseCombobox.Trigger>
+        </BaseCombobox.InputGroup>
+      </FormInputWrapper>
       <BaseCombobox.Portal container={portalContainer}>
         <BaseCombobox.Positioner
           side="bottom"

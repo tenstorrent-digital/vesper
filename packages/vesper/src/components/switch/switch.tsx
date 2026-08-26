@@ -80,7 +80,9 @@ const SWITCH_TYPOGRAPHY: { [S in SwitchSize]: TypographyVariant } = {
 /**
  * A form-ready toggle switch input with an optional label, supporting controlled and uncontrolled usage.
  *
- * Unlike `Checkbox` (which supports indeterminate state and displays as a checkmark box) and `Toggle` (which selects one option from a segmented group), `Switch` presents a binary on/off choice as a sliding pill.
+ * Unlike `Checkbox`, which can render an indeterminate state, `Switch` only allows a binary on/off choice.
+ *
+ * Related components include `Toggle` (which selects one option from a segmented group) and `Choicebox` (which selects any number of options from a group).
  *
  * @see packages/vesper/src/components/checkbox/checkbox.tsx
  * @see packages/vesper/src/components/toggle/toggle.tsx

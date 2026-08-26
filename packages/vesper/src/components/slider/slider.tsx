@@ -4,9 +4,19 @@ import { useCallback } from "react";
 
 import { Range, type RangeProps } from "@/components/range/range";
 
-interface SliderProps extends Omit<
+export const SLIDER_VARIANTS = [
+  "default",
+  "warning",
+  "error",
+  "success",
+] as const;
+
+export type SliderVariant = (typeof SLIDER_VARIANTS)[number];
+
+export interface SliderProps extends Omit<
   RangeProps,
   | "values"
+  | "variant"
   | "valueLabels"
   | "thumbAriaLabels"
   | "showValueLabels"
@@ -15,11 +25,11 @@ interface SliderProps extends Omit<
   | "onValuesCommit"
   | "minStepsBetweenThumbs"
 > {
-  /** The controlled value of the slider thumb. */
+  /** The value of the slider thumb (controlled mode). */
   value?: number;
   /** A custom display label for the thumb, shown as a tooltip-style label above it. When unset, defaults to the active value of the slider. */
   valueLabel?: string;
-  /** When `true`, displays the value label above the thumb. */
+  /** When `true`, displays the value label above the thumb. @default false */
   showValueLabel?: boolean;
   /** The initial thumb value (uncontrolled mode). @default props.min */
   defaultValue?: number;
@@ -27,23 +37,31 @@ interface SliderProps extends Omit<
   onValueChange?(value: number): void;
   /** Callback fired when the thumb interaction is completed (e.g., on pointer up). Receives the final value. */
   onValueCommit?(value: number): void;
-  /** An accessible `aria-label` attribute for the thumb. */
+  /** The accessible `aria-label` attribute for the thumb. */
   thumbAriaLabel: string;
+  /** The visual variant of the input, which determines its message's color scheme and icon. @default default */
+  variant?: SliderVariant;
 }
 
 /**
  * A single-thumb slider for selecting a numeric value within a range.
  *
- * @param {number} [props.value] - (optional) The controlled value of the slider thumb
+ * @param {string} props.thumbAriaLabel - The accessible `aria-label` for the thumb
+ * @param {number} [props.value] - (optional) The value of the thumb (controlled)
  * @param {number} [props.defaultValue] - (optional) The initial thumb value (uncontrolled). @default props.min
  * @param {(value: number) => void} [props.onValueChange] - (optional) Callback fired as the thumb value changes during interaction
  * @param {(value: number) => void} [props.onValueCommit] - (optional) Callback fired when thumb interaction is completed
  * @param {number} [props.min] - (optional) The minimum allowed value. @default 0
  * @param {number} [props.max] - (optional) The maximum allowed value. @default 100
  * @param {number} [props.step] - (optional) The stepping interval. @default 1
- * @param {boolean} [props.showValueLabel] - (optional) Whether to display the value label above the thumb. @default false
  * @param {boolean} [props.showTicks] - (optional) Whether to render tick marks at each step interval. @default false
- * @param {string[]} props.thumbAriaLabel - Accessible label for the slider thumb
+ * @param {boolean} [props.showValueLabel] - (optional) Whether to display the value label above the thumb. @default false
+ * @param {string} [props.valueLabel] - (optional) A custom display label for the thumb, falling back to its current value
+ * @param {SliderVariant} [props.variant] - (optional) The visual variant, which determines the color scheme and icon of the message. @default default
+ * @param {string} [props.label] - (optional) A label displayed above the track, also used as the accessible name of the slider group
+ * @param {string} [props.message] - (optional) A message displayed below the track, linked to the slider via `aria-describedby`
+ * @param {boolean} [props.disabled] - (optional) Whether to prevent interaction. @default false
+ * @param {string} [props.name] - (optional) The form field name the thumb submits its value under
  *
  * You may also pass any additional props to the underlying `div` element
  *
@@ -53,6 +71,7 @@ interface SliderProps extends Omit<
  *   max={100}
  *   defaultValue={50}
  *   onValueCommit={(value) => console.log(value)}
+ *   thumbAriaLabel="Volume"
  * />
  *
  * @example
@@ -64,6 +83,18 @@ interface SliderProps extends Omit<
  *   showValueLabel
  *   value={volume}
  *   onValueChange={setVolume}
+ *   thumbAriaLabel="Volume"
+ * />
+ *
+ * @example
+ * <Slider
+ *   variant="error"
+ *   label="Workers"
+ *   message="Your plan allows a maximum of 8 workers."
+ *   value={workers}
+ *   onValueChange={setWorkers}
+ *   aria-invalid
+ *   thumbAriaLabel="Workers"
  * />
  */
 export function Slider(props: SliderProps) {
