@@ -185,7 +185,7 @@ export function Checkbox(props: CheckboxProps) {
     onKeyDownCapture,
     onKeyUp,
     onKeyUpCapture,
-    // props spread onto the containing label
+    // props spread onto the wrapper div
     className,
     ...rest
   } = props;
