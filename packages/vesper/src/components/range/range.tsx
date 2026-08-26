@@ -66,7 +66,7 @@ export interface RangeProps extends Omit<
   form?: string;
   /** An optional message displayed below the input, paired with a variant-specific icon. Also linked to the input via `aria-describedby`. */
   message?: string;
-  /** An optional label displayed above the input. An asterisk is appended when `required` is `true`. */
+  /** An optional label displayed above the input. */
   label?: string;
   /** The visual variant of the input, which determines its message's color scheme and icon. @default default */
   variant?: RangeVariant;
