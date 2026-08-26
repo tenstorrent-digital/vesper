@@ -10,6 +10,7 @@ import {
 } from "react";
 import { Select as BaseSelect } from "@base-ui/react/select";
 
+import { FormInputWrapper } from "@/components/form-input-wrapper/form-input-wrapper";
 import { CaretDown, CaretUp, Checkmark } from "@/components/icons/icons";
 import {
   Typography,
@@ -23,8 +24,6 @@ import {
 } from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
 import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
-
-import { FormInputWrapper } from "../form-input-wrapper/form-input-wrapper";
 
 export const SELECT_VARIANTS = [
   "default",
