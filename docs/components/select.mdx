@@ -406,7 +406,7 @@ import { Select } from "@tenstorrent/vesper/select";
 
 > [!IMPORTANT]
 >
-> Always give a `Select` an accessible name by passing either a `label` or an `aria-label`. A `Select` with neither is announced with no indication of what it is for.
+> Always give a `Select` an accessible name by passing a `label`, an `aria-label`, or an `aria-labelledby` that points at existing visible text. A `Select` with none of these is announced with no indication of what it is for.
 
 When a `label` is provided, it is rendered above the trigger and associated with it via the trigger's `id`. It becomes the trigger's accessible name, and clicking it opens the dropdown:
 
