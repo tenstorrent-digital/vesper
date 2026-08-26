@@ -25,7 +25,7 @@ type SelectPermutation = SelectProps & { permutationName: string };
 const SELECT_PERMUTATIONS: SelectPermutation[] = SELECT_SIZES.flatMap((size) =>
   SELECT_VARIANTS.flatMap((variant): SelectPermutation[] => [
     {
-      permutationName: `${size}`,
+      permutationName: `${size}, ${variant}`,
       size,
       variant,
       options: OPTIONS,
