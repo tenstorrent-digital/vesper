@@ -131,15 +131,15 @@ yarn build
 
 It orchestrates a few smaller scripts:
 
-- `yarn build:tsc`
-- `yarn build:alias`
-- `yarn build:css`
+- `yarn compile:tsc`
+- `yarn compile:alias`
+- `yarn compile:css`
 
 Those steps perform the following work in order:
 
-1. `yarn build:tsc` compiles source files to ESM plus declarations
-2. `yarn build:alias` rewrites emitted import specifiers to relative ESM-compatible paths with `.js` extensions
-3. `yarn build:css` copies every side-effectful file file under `src/` into the matching location under `dist/`
+1. `yarn compile:tsc` compiles source files to ESM plus declarations
+2. `yarn compile:alias` rewrites emitted import specifiers to relative ESM-compatible paths with `.js` extensions
+3. `yarn compile:css` copies every side-effectful file file under `src/` into the matching location under `dist/`
 
 The result is a `dist/` directory that matches the package's export map and is ready for local consumption or publishing.
 
