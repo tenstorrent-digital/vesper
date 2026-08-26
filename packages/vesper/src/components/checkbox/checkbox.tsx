@@ -99,7 +99,9 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
 /**
  * A form-ready checkbox input with a label, supporting controlled and uncontrolled usage as well as indeterminate state.
  *
- * Unlike `Switch` (which presents a binary on/off choice as a sliding pill), `Toggle` (which selects one option from a segmented group), and `Choicebox` (which selects any number of options from a group), `Checkbox` is used for individual boolean selections that can include indeterminate state.
+ * Unlike `Switch`, which only allows a binary on/off choice, `Checkbox` can be used for individual boolean selections that can also include indeterminate state.
+ *
+ * Related components include `Toggle` (which selects one option from a segmented group) and `Choicebox` (which selects any number of options from a group).
  *
  * @see packages/vesper/src/components/switch/switch.tsx
  * @see packages/vesper/src/components/toggle/toggle.tsx
