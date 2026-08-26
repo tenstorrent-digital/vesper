@@ -368,7 +368,6 @@ The `error` variant highlights an invalid range that must be corrected before th
   label="Price"
   message="The range must span at least $50."
   defaultValues={[40, 60]}
-  aria-invalid
   thumbAriaLabels={["Price (min)", "Price (max)"]}
 />
 
@@ -384,12 +383,9 @@ const [price, setPrice] = useState([40, 60]);
   message="The range must span at least $50."
   values={price}
   onValuesChange={setPrice}
-  aria-invalid
   thumbAriaLabels={["Price (min)", "Price (max)"]}
 />;
 ```
-
-The `variant` only affects the appearance of the message. Pass `aria-invalid` alongside the `error` variant so that assistive technology is told the value is invalid too.
 
 ### Labels and accessible names
 
