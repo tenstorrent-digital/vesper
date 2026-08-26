@@ -316,7 +316,10 @@ Use the `warning` variant to flag a range that needs attention, but that doesn't
 />
 
 ```tsx
+import { useState } from "react";
 import { Range } from "@tenstorrent/vesper/range";
+
+const [price, setPrice] = useState([90, 95]);
 
 <Range
   variant="warning"
@@ -341,7 +344,10 @@ The `success` variant is best suited for confirming that a range has been valida
 />
 
 ```tsx
+import { useState } from "react";
 import { Range } from "@tenstorrent/vesper/range";
+
+const [price, setPrice] = useState([20, 60]);
 
 <Range
   variant="success"
@@ -367,7 +373,10 @@ The `error` variant highlights an invalid range that must be corrected before th
 />
 
 ```tsx
+import { useState } from "react";
 import { Range } from "@tenstorrent/vesper/range";
+
+const [price, setPrice] = useState([40, 60]);
 
 <Range
   variant="error"

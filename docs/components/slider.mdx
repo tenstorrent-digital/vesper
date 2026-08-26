@@ -258,7 +258,10 @@ Use the `warning` variant to flag a value that needs attention, but that doesn't
 />
 
 ```tsx
+import { useState } from "react";
 import { Slider } from "@tenstorrent/vesper/slider";
+
+const [volume, setVolume] = useState(95);
 
 <Slider
   variant="warning"
@@ -287,7 +290,10 @@ The `success` variant is best suited for confirming that a value has been valida
 />
 
 ```tsx
+import { useState } from "react";
 import { Slider } from "@tenstorrent/vesper/slider";
+
+const [workers, setWorkers] = useState(4);
 
 <Slider
   variant="success"
@@ -319,7 +325,10 @@ The `error` variant highlights an invalid value that must be corrected before th
 />
 
 ```tsx
+import { useState } from "react";
 import { Slider } from "@tenstorrent/vesper/slider";
+
+const [workers, setWorkers] = useState(12);
 
 <Slider
   variant="error"
