@@ -244,6 +244,7 @@ export function TextInput(props: TextInputProps) {
 
   return (
     <FormInputWrapper
+      variant={variant}
       label={
         label
           ? { text: required ? `${label} *` : label, htmlFor: inputId }
