@@ -1,10 +1,4 @@
 .vesper-combobox {
-  display: flex;
-  flex-direction: column;
-  gap: var(--vesper-spacing-2);
-}
-
-.vesper-combobox-input-wrapper {
   cursor: text;
   display: flex;
   align-items: center;
@@ -38,32 +32,28 @@
   }
 }
 
-.vesper-combobox-success {
-  .vesper-combobox-input-wrapper:not(
-    [data-disabled],
-    [data-popup-open],
-    :has(:focus-visible)
-  ) {
-    border-color: var(--vesper-border-success-base);
-  }
+.vesper-combobox-success:not(
+  [data-disabled],
+  [data-popup-open],
+  :has(:focus-visible)
+) {
+  border-color: var(--vesper-border-success-base);
 }
-.vesper-combobox-warning {
-  .vesper-combobox-input-wrapper:not(
-    [data-disabled],
-    [data-popup-open],
-    :has(:focus-visible)
-  ) {
-    border-color: var(--vesper-border-warning-base);
-  }
+
+.vesper-combobox-warning:not(
+  [data-disabled],
+  [data-popup-open],
+  :has(:focus-visible)
+) {
+  border-color: var(--vesper-border-warning-base);
 }
-.vesper-combobox-error {
-  .vesper-combobox-input-wrapper:not(
-    [data-disabled],
-    [data-popup-open],
-    :has(:focus-visible)
-  ) {
-    border-color: var(--vesper-border-error-base);
-  }
+
+.vesper-combobox-error:not(
+  [data-disabled],
+  [data-popup-open],
+  :has(:focus-visible)
+) {
+  border-color: var(--vesper-border-error-base);
 }
 
 .vesper-combobox-input {
@@ -112,7 +102,7 @@
   display: none;
 }
 
-.vesper-combobox-sm .vesper-combobox-input-wrapper {
+.vesper-combobox-sm {
   border-radius: var(--vesper-radius-1);
   height: 2rem;
   padding: 0 var(--vesper-spacing-2);
@@ -129,7 +119,7 @@
     }
   }
 }
-.vesper-combobox-md .vesper-combobox-input-wrapper {
+.vesper-combobox-md {
   border-radius: var(--vesper-radius-2);
   height: 2.5rem;
   padding: 0 var(--vesper-spacing-2);
@@ -146,7 +136,7 @@
     }
   }
 }
-.vesper-combobox-lg .vesper-combobox-input-wrapper {
+.vesper-combobox-lg {
   border-radius: var(--vesper-radius-2);
   height: 3rem;
   padding: 0 var(--vesper-spacing-3);
@@ -162,17 +152,6 @@
       inset: -0.825rem -0.75rem;
     }
   }
-}
-
-.vesper-combobox-label-wrapper {
-  color: var(--vesper-text-secondary);
-  display: flex;
-  flex-direction: column;
-  gap: var(--vesper-spacing-2);
-}
-
-.vesper-combobox-label {
-  width: fit-content;
 }
 
 .vesper-combobox-popup {

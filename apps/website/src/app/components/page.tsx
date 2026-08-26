@@ -111,7 +111,7 @@ export default function Page() {
         </Cell>
 
         <Cell name="Checkbox">
-          <Checkbox label="Check me" size="md" />
+          <Checkbox text="Check me" size="md" />
         </Cell>
 
         <Cell name="Chip">

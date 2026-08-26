@@ -86,6 +86,16 @@
   }
 }
 
+.vesper-select-success {
+  border: var(--vesper-stroke-base) solid var(--vesper-border-success-base);
+}
+.vesper-select-warning {
+  border: var(--vesper-stroke-base) solid var(--vesper-border-warning-base);
+}
+.vesper-select-error {
+  border: var(--vesper-stroke-base) solid var(--vesper-border-error-base);
+}
+
 .vesper-select-popup {
   /* --available-height comes from base-ui */
   max-height: min(var(--available-height), 20rem);

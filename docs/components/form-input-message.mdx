@@ -117,7 +117,9 @@ import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
 
 This is deliberate, and is what makes validation messages announce reliably. An `<output>` is an implicit live region, and a live region must already exist in the DOM **before** its content changes for assistive technology to announce that change. If the element were mounted at the same moment its message appeared, screen readers would typically miss the update entirely.
 
-> Don't conditionally render `FormInputMessage`. Keep it mounted and drive it with the `message` prop instead, so the live region is always in place when the message arrives.
+> [!WARNING]
+>
+> Don't conditionally render `FormInputMessage`. Keep it mounted at all times so the live region is always in place when the `message` changes.
 
 ```tsx
 import { useState } from "react"

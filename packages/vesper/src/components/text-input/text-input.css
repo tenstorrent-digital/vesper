@@ -1,22 +1,5 @@
 .vesper-text-input {
   display: flex;
-  flex-direction: column;
-  gap: var(--vesper-spacing-2);
-}
-
-.vesper-text-input-label-wrapper {
-  color: var(--vesper-text-secondary);
-  display: flex;
-  flex-direction: column;
-  gap: var(--vesper-spacing-2);
-}
-
-.vesper-text-input-label {
-  width: fit-content;
-}
-
-.vesper-text-input-field-wrapper {
-  display: flex;
   align-items: center;
   border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
   background: var(--vesper-tint-neutral-100);
@@ -39,19 +22,13 @@
 }
 
 .vesper-text-input-success {
-  .vesper-text-input-field-wrapper {
-    border: var(--vesper-stroke-base) solid var(--vesper-border-success-base);
-  }
+  border: var(--vesper-stroke-base) solid var(--vesper-border-success-base);
 }
 .vesper-text-input-warning {
-  .vesper-text-input-field-wrapper {
-    border: var(--vesper-stroke-base) solid var(--vesper-border-warning-base);
-  }
+  border: var(--vesper-stroke-base) solid var(--vesper-border-warning-base);
 }
 .vesper-text-input-error {
-  .vesper-text-input-field-wrapper {
-    border: var(--vesper-stroke-base) solid var(--vesper-border-error-base);
-  }
+  border: var(--vesper-stroke-base) solid var(--vesper-border-error-base);
 }
 
 .vesper-text-input-icon {
@@ -96,12 +73,10 @@
 }
 
 .vesper-text-input-sm {
-  .vesper-text-input-field-wrapper {
-    gap: var(--vesper-spacing-1);
-    padding: 0 var(--vesper-spacing-2);
-    border-radius: var(--vesper-radius-1);
-    height: 2rem;
-  }
+  gap: var(--vesper-spacing-1);
+  padding: 0 var(--vesper-spacing-2);
+  border-radius: var(--vesper-radius-1);
+  height: 2rem;
   .vesper-text-input-icon {
     width: 0.875rem;
     height: 0.875rem;
@@ -112,12 +87,10 @@
 }
 
 .vesper-text-input-md {
-  .vesper-text-input-field-wrapper {
-    gap: var(--vesper-spacing-2);
-    padding: 0 var(--vesper-spacing-3);
-    border-radius: var(--vesper-radius-2);
-    height: 2.5rem;
-  }
+  gap: var(--vesper-spacing-2);
+  padding: 0 var(--vesper-spacing-3);
+  border-radius: var(--vesper-radius-2);
+  height: 2.5rem;
   .vesper-text-input-icon {
     width: 1rem;
     height: 1rem;
@@ -128,12 +101,10 @@
 }
 
 .vesper-text-input-lg {
-  .vesper-text-input-field-wrapper {
-    gap: var(--vesper-spacing-2);
-    padding: 0 var(--vesper-spacing-3);
-    border-radius: var(--vesper-radius-2);
-    height: 3rem;
-  }
+  gap: var(--vesper-spacing-2);
+  padding: 0 var(--vesper-spacing-3);
+  border-radius: var(--vesper-radius-2);
+  height: 3rem;
   .vesper-text-input-icon {
     width: 1.25rem;
     height: 1.25rem;

@@ -1,11 +1,19 @@
 "use client";
 
-import { type ComponentProps, type CSSProperties, useMemo } from "react";
+import {
+  type ComponentProps,
+  type CSSProperties,
+  Ref,
+  useId,
+  useMemo,
+  useState,
+} from "react";
 import {
   Slider as BaseSlider,
   type SliderThumbState,
 } from "@base-ui/react/slider";
 
+import { FormInputWrapper } from "@/components/form-input-wrapper/form-input-wrapper";
 import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
@@ -13,17 +21,26 @@ import { cn } from "@/utils/cn";
 const toValues = (value: number | number[]) =>
   Array.isArray(value) ? value : [value];
 
+export const RANGE_VARIANTS = [
+  "default",
+  "warning",
+  "error",
+  "success",
+] as const;
+
+export type RangeVariant = (typeof RANGE_VARIANTS)[number];
+
 export interface RangeProps extends Omit<
   ComponentProps<"div">,
   "children" | "defaultValue" | "dir"
 > {
-  /** The controlled values of the range thumbs. Each entry corresponds to a thumb position. */
+  /** The values of each thumb (controlled mode). One thumb is rendered per entry in the array. */
   values?: number[];
   /** Custom display labels for each thumb, shown as a tooltip-style label above the thumb. When left blank, defaults to the active values of each thumb. */
   valueLabels?: string[];
-  /** Accessible `aria-label` attributes for each thumb. */
+  /** Accessible `aria-label` attributes for each thumb, in the same order as the values. */
   thumbAriaLabels: string[];
-  /** When `true`, displays the value labels above each thumb. */
+  /** When `true`, displays the value labels above each thumb. @default false */
   showValueLabels?: boolean;
   /** The initial thumb values (uncontrolled mode). @default [min, max] */
   defaultValues?: number[];
@@ -33,7 +50,7 @@ export interface RangeProps extends Omit<
   onValuesCommit?(value: number[]): void;
   /** When `true`, renders tick marks along the track at each step interval. @default false */
   showTicks?: boolean;
-  /** The name attribute applied to the underlying hidden input, used for form submission. */
+  /** The name attribute applied to each thumb's underlying input, used for form submission. Every thumb submits its value under this name. */
   name?: string;
   /** When true, prevents interaction. @default false */
   disabled?: boolean;
@@ -47,21 +64,34 @@ export interface RangeProps extends Omit<
   minStepsBetweenThumbs?: number;
   /** The `id` of the `<form>` element this input belongs to, allowing association with a form outside the input's DOM hierarchy. */
   form?: string;
+  /** An optional message displayed below the input, paired with a variant-specific icon. Also linked to the input via `aria-describedby`. */
+  message?: string;
+  /** An optional label displayed above the input. */
+  label?: string;
+  /** The visual variant of the input, which determines its message's color scheme and icon. @default default */
+  variant?: RangeVariant;
 }
 
 /**
- * A dual-thumb range slider for selecting a numeric range between a minimum and maximum value.
+ * A multi-thumb range input for selecting a span of numeric values between a minimum and maximum.
  *
- * @param {number[]} [props.values] - (optional) The controlled values of the range thumbs
+ * @param {string[]} props.thumbAriaLabels - Accessible `aria-label` attributes for each thumb, in the same order as the values
+ * @param {number[]} [props.values] - (optional) The values of each thumb (controlled). One thumb is rendered per entry
  * @param {number[]} [props.defaultValues] - (optional) The initial thumb values (uncontrolled). @default [min, max]
  * @param {(value: number[]) => void} [props.onValuesChange] - (optional) Callback fired as thumb values change during interaction
  * @param {(value: number[]) => void} [props.onValuesCommit] - (optional) Callback fired when thumb interaction is completed
  * @param {number} [props.min] - (optional) The minimum allowed value. @default 0
  * @param {number} [props.max] - (optional) The maximum allowed value. @default 100
  * @param {number} [props.step] - (optional) The stepping interval. @default 1
+ * @param {number} [props.minStepsBetweenThumbs] - (optional) The minimum number of steps required between thumbs. @default 1
  * @param {boolean} [props.showTicks] - (optional) Whether to render tick marks at each step interval. @default false
- * @param {boolean} [props.showValueLabels] - (optional) Whether to display value labels above each thumb
- * @param {string[]} props.thumbAriaLabels - Accessible `aria-label` attributes for each thumb
+ * @param {boolean} [props.showValueLabels] - (optional) Whether to display a value label above each thumb. @default false
+ * @param {string[]} [props.valueLabels] - (optional) Custom display labels for each thumb, falling back to that thumb's current value
+ * @param {RangeVariant} [props.variant] - (optional) The visual variant, which determines the color scheme and icon of the message. @default default
+ * @param {string} [props.label] - (optional) A label displayed above the track, also used as the accessible name of the range group
+ * @param {string} [props.message] - (optional) A message displayed below the track, linked to the range via `aria-describedby`
+ * @param {boolean} [props.disabled] - (optional) Whether to prevent interaction. @default false
+ * @param {string} [props.name] - (optional) The form field name each thumb submits its value under
  *
  * You may also pass any additional props to the underlying `div` element
  *
@@ -85,6 +115,16 @@ export interface RangeProps extends Omit<
  *   onValuesChange={setRange}
  *   thumbAriaLabels={["Volume (min)", "Volume (max)"]}
  * />
+ *
+ * @example
+ * <Range
+ *   variant="error"
+ *   label="Price"
+ *   message="The range must span at least $50."
+ *   values={price}
+ *   onValuesChange={setPrice}
+ *   thumbAriaLabels={["Price (min)", "Price (max)"]}
+ * />
  */
 export function Range(props: RangeProps) {
   const {
@@ -101,60 +141,113 @@ export function Range(props: RangeProps) {
     max = 100,
     step = 1,
     defaultValues = [min, max],
+    message,
+    label,
+    disabled,
+    name,
+    form,
+    "aria-describedby": ariaDescribedby,
+    "aria-labelledby": ariaLabelledby,
+    "aria-label": ariaLabel,
+    variant = "default",
     ...rest
   } = props;
 
-  const numTicks = useMemo(() => {
-    let n = Math.max(Math.ceil((max - min) / step) - 1, 0);
-    if (n === Infinity) n = 0;
-    return n;
-  }, [min, max, step]);
+  const tickPositions = useMemo(() => {
+    if (!showTicks) return [];
 
-  const tickLeft = useMemo(() => 100 / Math.max(max - min, 0), [min, max]);
+    const span = max - min;
+    if (
+      !Number.isFinite(span) ||
+      !Number.isFinite(step) ||
+      span <= 0 ||
+      step <= 0
+    ) {
+      return [];
+    }
+
+    const numTicks = Math.max(Math.ceil(span / step) - 1, 0);
+
+    return Array.from({ length: numTicks }, (_, i) => ((i + 1) * step) / span);
+  }, [min, max, step, showTicks]);
 
   const thumbValues = values ?? defaultValues;
 
+  const messageId = useId();
+
+  const [firstThumbRef, setFirstThumbRef] = useState<HTMLInputElement | null>(
+    null,
+  );
+
+  // If an additional aria-describedby is supplied, this ensures that both ids get used
+  const describedBy =
+    [ariaDescribedby, message ? messageId : undefined]
+      .filter(Boolean)
+      .join(" ") || undefined;
+
   return (
-    <BaseSlider.Root
-      className={cn("vesper-range", className)}
-      value={values}
-      defaultValue={defaultValues}
-      onValueChange={(value: number | number[]) =>
-        onValuesChange?.(toValues(value))
-      }
-      onValueCommitted={(value: number | number[]) =>
-        onValuesCommit?.(toValues(value))
-      }
-      min={min}
-      max={max}
-      step={step}
-      minStepsBetweenValues={minStepsBetweenThumbs}
-      thumbCollisionBehavior="none"
+    <FormInputWrapper
+      label={label ? { text: label, htmlFor: firstThumbRef?.id } : undefined}
+      message={message ? { text: message, id: messageId } : undefined}
+      variant={variant}
+      className={className}
       {...rest}
     >
-      <BaseSlider.Control>
-        <BaseSlider.Track className="vesper-range-track">
-          {showTicks &&
-            Array.from({ length: numTicks }).map((_, i) => (
-              <span
-                key={i}
-                className="vesper-range-tick"
-                style={{ left: tickLeft * ((i + 1) * step) + "%" }}
+      <BaseSlider.Root
+        className={cn(
+          "vesper-range",
+          showValueLabels && "vesper-range-labeled",
+        )}
+        value={values}
+        defaultValue={defaultValues}
+        onValueChange={(value: number | number[]) =>
+          onValuesChange?.(toValues(value))
+        }
+        onValueCommitted={(value: number | number[]) =>
+          onValuesCommit?.(toValues(value))
+        }
+        min={min}
+        max={max}
+        step={step}
+        disabled={disabled}
+        name={name}
+        form={form}
+        minStepsBetweenValues={minStepsBetweenThumbs}
+        thumbAlignment="edge"
+        thumbCollisionBehavior="none"
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledby}
+      >
+        <BaseSlider.Control>
+          <BaseSlider.Track className="vesper-range-track">
+            {showTicks &&
+              tickPositions.map((position, i) => (
+                <span
+                  key={i}
+                  className="vesper-range-tick"
+                  style={
+                    {
+                      ["--vesper-range-tick-position"]: position,
+                    } as CSSProperties
+                  }
+                />
+              ))}
+            <BaseSlider.Indicator className="vesper-range-range" />
+            {thumbValues.map((_, index) => (
+              <RangeThumb
+                key={index}
+                index={index}
+                inputRef={index === 0 ? setFirstThumbRef : undefined}
+                describedBy={describedBy}
+                ariaLabel={thumbAriaLabels[index]}
+                showLabel={showValueLabels}
+                label={valueLabels?.[index]}
               />
             ))}
-          <BaseSlider.Indicator className="vesper-range-range" />
-          {thumbValues.map((_, index) => (
-            <RangeThumb
-              key={index}
-              index={index}
-              ariaLabel={thumbAriaLabels[index]}
-              showLabel={showValueLabels}
-              label={valueLabels?.[index]}
-            />
-          ))}
-        </BaseSlider.Track>
-      </BaseSlider.Control>
-    </BaseSlider.Root>
+          </BaseSlider.Track>
+        </BaseSlider.Control>
+      </BaseSlider.Root>
+    </FormInputWrapper>
   );
 }
 
@@ -163,14 +256,19 @@ function RangeThumb({
   showLabel,
   label,
   ariaLabel,
+  describedBy,
+  inputRef,
 }: {
   index: number;
   showLabel?: boolean;
   label?: string;
   ariaLabel?: string;
+  describedBy?: string;
+  inputRef?: Ref<HTMLInputElement>;
 }) {
   return (
     <Typography
+      inputRef={inputRef}
       as={BaseSlider.Thumb}
       variant="label-xs"
       index={index}
@@ -182,6 +280,7 @@ function RangeThumb({
         e.currentTarget.setPointerCapture(e.pointerId);
       }}
       aria-label={ariaLabel}
+      aria-describedby={describedBy}
       style={(state: SliderThumbState) =>
         showLabel
           ? ({

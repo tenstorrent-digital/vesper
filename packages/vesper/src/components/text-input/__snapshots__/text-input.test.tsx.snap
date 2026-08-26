@@ -2,10 +2,10 @@
 
 exports[`text-input [snapshot] > disabled 1`] = `
 <div
-  class="vesper-text-input vesper-text-input-lg vesper-text-input-default"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-text-input-field-wrapper"
+    class="vesper-text-input vesper-text-input-lg vesper-text-input-default"
   >
     <input
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
@@ -24,29 +24,26 @@ exports[`text-input [snapshot] > disabled 1`] = `
 
 exports[`text-input [snapshot] > full options 1`] = `
 <div
-  class="vesper-text-input vesper-text-input-lg vesper-text-input-error"
+  class="vesper-form-input-wrapper"
 >
-  <div
-    class="vesper-text-input-label-wrapper"
+  <label
+    class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
+    for="_r_1t_"
   >
-    <label
-      class="vesper-typography vesper-typography-label-sm vesper-text-input-label"
-      for="_r_1t_"
-    >
-      Label text
-    </label>
-    <div
-      class="vesper-text-input-field-wrapper"
-    >
-      <input
-        aria-describedby="_r_1s_"
-        class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
-        disabled=""
-        id="_r_1t_"
-        placeholder=" "
-        type="text"
-      />
-    </div>
+    Label text
+  </label>
+  <div
+    class="vesper-text-input vesper-text-input-lg vesper-text-input-error"
+  >
+    <input
+      aria-describedby="_r_1s_"
+      aria-label="Label text"
+      class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
+      disabled=""
+      id="_r_1t_"
+      placeholder=" "
+      type="text"
+    />
   </div>
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
@@ -81,10 +78,10 @@ exports[`text-input [snapshot] > full options 1`] = `
 
 exports[`text-input [snapshot] > size: lg 1`] = `
 <div
-  class="vesper-text-input vesper-text-input-lg vesper-text-input-default"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-text-input-field-wrapper"
+    class="vesper-text-input vesper-text-input-lg vesper-text-input-default"
   >
     <input
       class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
@@ -102,10 +99,10 @@ exports[`text-input [snapshot] > size: lg 1`] = `
 
 exports[`text-input [snapshot] > size: md 1`] = `
 <div
-  class="vesper-text-input vesper-text-input-md vesper-text-input-default"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-text-input-field-wrapper"
+    class="vesper-text-input vesper-text-input-md vesper-text-input-default"
   >
     <input
       class="vesper-typography vesper-typography-copy-sm vesper-text-input-field"
@@ -123,10 +120,10 @@ exports[`text-input [snapshot] > size: md 1`] = `
 
 exports[`text-input [snapshot] > size: sm 1`] = `
 <div
-  class="vesper-text-input vesper-text-input-sm vesper-text-input-default"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-text-input-field-wrapper"
+    class="vesper-text-input vesper-text-input-sm vesper-text-input-default"
   >
     <input
       class="vesper-typography vesper-typography-copy-xs vesper-text-input-field"
@@ -144,10 +141,10 @@ exports[`text-input [snapshot] > size: sm 1`] = `
 
 exports[`text-input [snapshot] > variant: default 1`] = `
 <div
-  class="vesper-text-input vesper-text-input-lg vesper-text-input-default"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-text-input-field-wrapper"
+    class="vesper-text-input vesper-text-input-lg vesper-text-input-default"
   >
     <input
       aria-describedby="_r_18_"
@@ -190,10 +187,10 @@ exports[`text-input [snapshot] > variant: default 1`] = `
 
 exports[`text-input [snapshot] > variant: error 1`] = `
 <div
-  class="vesper-text-input vesper-text-input-lg vesper-text-input-error"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-text-input-field-wrapper"
+    class="vesper-text-input vesper-text-input-lg vesper-text-input-error"
   >
     <input
       aria-describedby="_r_1e_"
@@ -236,10 +233,10 @@ exports[`text-input [snapshot] > variant: error 1`] = `
 
 exports[`text-input [snapshot] > variant: success 1`] = `
 <div
-  class="vesper-text-input vesper-text-input-lg vesper-text-input-success"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-text-input-field-wrapper"
+    class="vesper-text-input vesper-text-input-lg vesper-text-input-success"
   >
     <input
       aria-describedby="_r_1c_"
@@ -280,10 +277,10 @@ exports[`text-input [snapshot] > variant: success 1`] = `
 
 exports[`text-input [snapshot] > variant: warning 1`] = `
 <div
-  class="vesper-text-input vesper-text-input-lg vesper-text-input-warning"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-text-input-field-wrapper"
+    class="vesper-text-input vesper-text-input-lg vesper-text-input-warning"
   >
     <input
       aria-describedby="_r_1a_"
@@ -326,10 +323,10 @@ exports[`text-input [snapshot] > variant: warning 1`] = `
 
 exports[`text-input [snapshot] > with icon 1`] = `
 <div
-  class="vesper-text-input vesper-text-input-lg vesper-text-input-default"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-text-input-field-wrapper"
+    class="vesper-text-input vesper-text-input-lg vesper-text-input-default"
   >
     <span
       class="vesper-text-input-icon"
@@ -363,27 +360,24 @@ exports[`text-input [snapshot] > with icon 1`] = `
 
 exports[`text-input [snapshot] > with label 1`] = `
 <div
-  class="vesper-text-input vesper-text-input-lg vesper-text-input-default"
+  class="vesper-form-input-wrapper"
 >
-  <div
-    class="vesper-text-input-label-wrapper"
+  <label
+    class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
+    for="_r_1p_"
   >
-    <label
-      class="vesper-typography vesper-typography-label-sm vesper-text-input-label"
-      for="_r_1p_"
-    >
-      Label text
-    </label>
-    <div
-      class="vesper-text-input-field-wrapper"
-    >
-      <input
-        class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
-        id="_r_1p_"
-        placeholder=" "
-        type="text"
-      />
-    </div>
+    Label text
+  </label>
+  <div
+    class="vesper-text-input vesper-text-input-lg vesper-text-input-default"
+  >
+    <input
+      aria-label="Label text"
+      class="vesper-typography vesper-typography-copy-md vesper-text-input-field"
+      id="_r_1p_"
+      placeholder=" "
+      type="text"
+    />
   </div>
   <output
     class="vesper-form-input-message vesper-form-input-message-default"

@@ -2,7 +2,7 @@
 
 import { type ComponentProps, type Ref, useId } from "react";
 
-import { FormInputMessage } from "@/components/form-input-message/form-input-message";
+import { FormInputWrapper } from "@/components/form-input-wrapper/form-input-wrapper";
 import {
   Typography,
   type TypographyVariant,
@@ -143,7 +143,7 @@ export function TextArea(props: TextAreaProps) {
     autoCorrect,
     role,
     tabIndex,
-    "aria-label": ariaLabel,
+    "aria-label": ariaLabel = label,
     "aria-labelledby": ariaLabelledby,
     "aria-describedby": ariaDescribedby,
     "aria-invalid": ariaInvalid,
@@ -184,10 +184,27 @@ export function TextArea(props: TextAreaProps) {
       .filter(Boolean)
       .join(" ") || undefined;
 
-  const input = (
-    <div className="vesper-text-area-field-wrapper">
+  return (
+    <FormInputWrapper
+      label={
+        label
+          ? {
+              text: required ? `${label} *` : label,
+              htmlFor: inputId,
+            }
+          : undefined
+      }
+      message={message ? { text: message, id: messageId } : undefined}
+      variant={variant}
+      className={className}
+      {...rest}
+    >
       <Typography
-        className="vesper-text-area-field"
+        className={cn(
+          "vesper-text-area",
+          `vesper-text-area-${size}`,
+          `vesper-text-area-${variant}`,
+        )}
         as="textarea"
         style={{
           height: `${height / 16}rem`,
@@ -244,39 +261,6 @@ export function TextArea(props: TextAreaProps) {
         onKeyUp={onKeyUp}
         onKeyUpCapture={onKeyUpCapture}
       />
-    </div>
-  );
-
-  return (
-    <div
-      className={cn(
-        "vesper-text-area",
-        `vesper-text-area-${size}`,
-        `vesper-text-area-${variant}`,
-        className,
-      )}
-      {...rest}
-    >
-      {label ? (
-        <div className="vesper-text-area-label-wrapper">
-          <Typography
-            as="label"
-            htmlFor={inputId}
-            variant="label-sm"
-            className="vesper-text-area-label"
-          >
-            {label + (required ? " *" : "")}
-          </Typography>
-          {input}
-        </div>
-      ) : (
-        input
-      )}
-      <FormInputMessage
-        id={message ? messageId : undefined}
-        variant={variant}
-        message={message}
-      />
-    </div>
+    </FormInputWrapper>
   );
 }

@@ -2,10 +2,10 @@
 
 exports[`combobox [snapshot] > disabled 1`] = `
 <div
-  class="vesper-combobox vesper-combobox-md vesper-combobox-default"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-combobox-input-wrapper"
+    class="vesper-combobox vesper-combobox-md vesper-combobox-default"
     data-disabled=""
     data-placeholder=""
     role="group"
@@ -71,88 +71,85 @@ exports[`combobox [snapshot] > disabled 1`] = `
 
 exports[`combobox [snapshot] > full options 1`] = `
 <div
-  class="vesper-combobox vesper-combobox-lg vesper-combobox-error"
+  class="vesper-form-input-wrapper"
 >
-  <div
-    class="vesper-combobox-label-wrapper"
+  <label
+    class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
+    for="_r_3s_"
   >
-    <label
-      class="vesper-typography vesper-typography-label-sm vesper-combobox-label"
-      for="_r_3s_"
+    Label text *
+  </label>
+  <div
+    class="vesper-combobox vesper-combobox-lg vesper-combobox-error"
+    role="group"
+  >
+    <svg
+      class="vesper-combobox-search-icon"
+      fill="none"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      Label text *
-    </label>
-    <div
-      class="vesper-combobox-input-wrapper"
-      role="group"
+      <path
+        clip-rule="evenodd"
+        d="M16 6.61133V12.3887L14.7334 13.6543L21 19.9209L19.9209 21L13.6543 14.7334L12.3887 16H6.61133L3 12.3887V6.61133L6.61133 3H12.3887L16 6.61133ZM4.5 7.23242V11.7676L7.23242 14.5H11.7676L14.5 11.7676V7.23242L11.7676 4.5H7.23242L4.5 7.23242Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+    </svg>
+    <input
+      aria-autocomplete="list"
+      aria-describedby="_r_3t_"
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-label="Label text"
+      aria-required="true"
+      autocapitalize="none"
+      autocomplete="off"
+      autocorrect="off"
+      class="vesper-typography vesper-typography-copy-md vesper-combobox-input"
+      id="_r_3s_"
+      placeholder="Placeholder text"
+      role="combobox"
+      spellcheck="false"
+      value="Apple"
+    />
+    <button
+      aria-label="Clear selection"
+      class="vesper-combobox-clear"
+      data-visible=""
+      tabindex="-1"
+      type="button"
     >
       <svg
-        class="vesper-combobox-search-icon"
         fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          clip-rule="evenodd"
-          d="M16 6.61133V12.3887L14.7334 13.6543L21 19.9209L19.9209 21L13.6543 14.7334L12.3887 16H6.61133L3 12.3887V6.61133L6.61133 3H12.3887L16 6.61133ZM4.5 7.23242V11.7676L7.23242 14.5H11.7676L14.5 11.7676V7.23242L11.7676 4.5H7.23242L4.5 7.23242Z"
+          d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
           fill="currentColor"
-          fill-rule="evenodd"
         />
       </svg>
-      <input
-        aria-autocomplete="list"
-        aria-describedby="_r_3t_"
-        aria-expanded="false"
-        aria-haspopup="listbox"
-        aria-required="true"
-        autocapitalize="none"
-        autocomplete="off"
-        autocorrect="off"
-        class="vesper-typography vesper-typography-copy-md vesper-combobox-input"
-        id="_r_3s_"
-        placeholder="Placeholder text"
-        role="combobox"
-        spellcheck="false"
-        value="Apple"
-      />
-      <button
-        aria-label="Clear selection"
-        class="vesper-combobox-clear"
-        data-visible=""
-        tabindex="-1"
-        type="button"
+    </button>
+    <button
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-label="Show options"
+      class="vesper-combobox-trigger"
+      tabindex="-1"
+      type="button"
+    >
+      <svg
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <svg
-          fill="none"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
-            fill="currentColor"
-          />
-        </svg>
-      </button>
-      <button
-        aria-expanded="false"
-        aria-haspopup="listbox"
-        aria-label="Show options"
-        class="vesper-combobox-trigger"
-        tabindex="-1"
-        type="button"
-      >
-        <svg
-          fill="none"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-            fill="currentColor"
-          />
-        </svg>
-      </button>
-    </div>
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
   </div>
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
@@ -187,71 +184,68 @@ exports[`combobox [snapshot] > full options 1`] = `
 
 exports[`combobox [snapshot] > required 1`] = `
 <div
-  class="vesper-combobox vesper-combobox-md vesper-combobox-default"
+  class="vesper-form-input-wrapper"
 >
-  <div
-    class="vesper-combobox-label-wrapper"
+  <label
+    class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
+    for="_r_3a_"
   >
-    <label
-      class="vesper-typography vesper-typography-label-sm vesper-combobox-label"
-      for="_r_3a_"
+    Label text *
+  </label>
+  <div
+    class="vesper-combobox vesper-combobox-md vesper-combobox-default"
+    data-placeholder=""
+    role="group"
+  >
+    <svg
+      class="vesper-combobox-search-icon"
+      fill="none"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      Label text *
-    </label>
-    <div
-      class="vesper-combobox-input-wrapper"
+      <path
+        clip-rule="evenodd"
+        d="M16 6.61133V12.3887L14.7334 13.6543L21 19.9209L19.9209 21L13.6543 14.7334L12.3887 16H6.61133L3 12.3887V6.61133L6.61133 3H12.3887L16 6.61133ZM4.5 7.23242V11.7676L7.23242 14.5H11.7676L14.5 11.7676V7.23242L11.7676 4.5H7.23242L4.5 7.23242Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+    </svg>
+    <input
+      aria-autocomplete="list"
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-label="Label text"
+      aria-required="true"
+      autocapitalize="none"
+      autocomplete="off"
+      autocorrect="off"
+      class="vesper-typography vesper-typography-copy-sm vesper-combobox-input"
+      id="_r_3a_"
+      placeholder="Search..."
+      role="combobox"
+      spellcheck="false"
+      value=""
+    />
+    <button
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-label="Show options"
+      class="vesper-combobox-trigger"
       data-placeholder=""
-      role="group"
+      tabindex="-1"
+      type="button"
     >
       <svg
-        class="vesper-combobox-search-icon"
         fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          clip-rule="evenodd"
-          d="M16 6.61133V12.3887L14.7334 13.6543L21 19.9209L19.9209 21L13.6543 14.7334L12.3887 16H6.61133L3 12.3887V6.61133L6.61133 3H12.3887L16 6.61133ZM4.5 7.23242V11.7676L7.23242 14.5H11.7676L14.5 11.7676V7.23242L11.7676 4.5H7.23242L4.5 7.23242Z"
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
           fill="currentColor"
-          fill-rule="evenodd"
         />
       </svg>
-      <input
-        aria-autocomplete="list"
-        aria-expanded="false"
-        aria-haspopup="listbox"
-        aria-required="true"
-        autocapitalize="none"
-        autocomplete="off"
-        autocorrect="off"
-        class="vesper-typography vesper-typography-copy-sm vesper-combobox-input"
-        id="_r_3a_"
-        placeholder="Search..."
-        role="combobox"
-        spellcheck="false"
-        value=""
-      />
-      <button
-        aria-expanded="false"
-        aria-haspopup="listbox"
-        aria-label="Show options"
-        class="vesper-combobox-trigger"
-        data-placeholder=""
-        tabindex="-1"
-        type="button"
-      >
-        <svg
-          fill="none"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-            fill="currentColor"
-          />
-        </svg>
-      </button>
-    </div>
+    </button>
   </div>
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
@@ -262,10 +256,10 @@ exports[`combobox [snapshot] > required 1`] = `
 
 exports[`combobox [snapshot] > size: lg 1`] = `
 <div
-  class="vesper-combobox vesper-combobox-lg vesper-combobox-default"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-combobox-input-wrapper"
+    class="vesper-combobox vesper-combobox-lg vesper-combobox-default"
     data-placeholder=""
     role="group"
   >
@@ -326,10 +320,10 @@ exports[`combobox [snapshot] > size: lg 1`] = `
 
 exports[`combobox [snapshot] > size: md 1`] = `
 <div
-  class="vesper-combobox vesper-combobox-md vesper-combobox-default"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-combobox-input-wrapper"
+    class="vesper-combobox vesper-combobox-md vesper-combobox-default"
     data-placeholder=""
     role="group"
   >
@@ -390,10 +384,10 @@ exports[`combobox [snapshot] > size: md 1`] = `
 
 exports[`combobox [snapshot] > size: sm 1`] = `
 <div
-  class="vesper-combobox vesper-combobox-sm vesper-combobox-default"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-combobox-input-wrapper"
+    class="vesper-combobox vesper-combobox-sm vesper-combobox-default"
     data-placeholder=""
     role="group"
   >
@@ -454,10 +448,10 @@ exports[`combobox [snapshot] > size: sm 1`] = `
 
 exports[`combobox [snapshot] > variant: default 1`] = `
 <div
-  class="vesper-combobox vesper-combobox-md vesper-combobox-default"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-combobox-input-wrapper"
+    class="vesper-combobox vesper-combobox-md vesper-combobox-default"
     data-placeholder=""
     role="group"
   >
@@ -543,10 +537,10 @@ exports[`combobox [snapshot] > variant: default 1`] = `
 
 exports[`combobox [snapshot] > variant: error 1`] = `
 <div
-  class="vesper-combobox vesper-combobox-md vesper-combobox-error"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-combobox-input-wrapper"
+    class="vesper-combobox vesper-combobox-md vesper-combobox-error"
     data-placeholder=""
     role="group"
   >
@@ -632,10 +626,10 @@ exports[`combobox [snapshot] > variant: error 1`] = `
 
 exports[`combobox [snapshot] > variant: success 1`] = `
 <div
-  class="vesper-combobox vesper-combobox-md vesper-combobox-success"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-combobox-input-wrapper"
+    class="vesper-combobox vesper-combobox-md vesper-combobox-success"
     data-placeholder=""
     role="group"
   >
@@ -719,10 +713,10 @@ exports[`combobox [snapshot] > variant: success 1`] = `
 
 exports[`combobox [snapshot] > variant: warning 1`] = `
 <div
-  class="vesper-combobox vesper-combobox-md vesper-combobox-warning"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-combobox-input-wrapper"
+    class="vesper-combobox vesper-combobox-md vesper-combobox-warning"
     data-placeholder=""
     role="group"
   >
@@ -808,70 +802,67 @@ exports[`combobox [snapshot] > variant: warning 1`] = `
 
 exports[`combobox [snapshot] > with label 1`] = `
 <div
-  class="vesper-combobox vesper-combobox-md vesper-combobox-default"
+  class="vesper-form-input-wrapper"
 >
-  <div
-    class="vesper-combobox-label-wrapper"
+  <label
+    class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
+    for="_r_34_"
   >
-    <label
-      class="vesper-typography vesper-typography-label-sm vesper-combobox-label"
-      for="_r_34_"
+    Label text
+  </label>
+  <div
+    class="vesper-combobox vesper-combobox-md vesper-combobox-default"
+    data-placeholder=""
+    role="group"
+  >
+    <svg
+      class="vesper-combobox-search-icon"
+      fill="none"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      Label text
-    </label>
-    <div
-      class="vesper-combobox-input-wrapper"
+      <path
+        clip-rule="evenodd"
+        d="M16 6.61133V12.3887L14.7334 13.6543L21 19.9209L19.9209 21L13.6543 14.7334L12.3887 16H6.61133L3 12.3887V6.61133L6.61133 3H12.3887L16 6.61133ZM4.5 7.23242V11.7676L7.23242 14.5H11.7676L14.5 11.7676V7.23242L11.7676 4.5H7.23242L4.5 7.23242Z"
+        fill="currentColor"
+        fill-rule="evenodd"
+      />
+    </svg>
+    <input
+      aria-autocomplete="list"
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-label="Label text"
+      autocapitalize="none"
+      autocomplete="off"
+      autocorrect="off"
+      class="vesper-typography vesper-typography-copy-sm vesper-combobox-input"
+      id="_r_34_"
+      placeholder="Search..."
+      role="combobox"
+      spellcheck="false"
+      value=""
+    />
+    <button
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-label="Show options"
+      class="vesper-combobox-trigger"
       data-placeholder=""
-      role="group"
+      tabindex="-1"
+      type="button"
     >
       <svg
-        class="vesper-combobox-search-icon"
         fill="none"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          clip-rule="evenodd"
-          d="M16 6.61133V12.3887L14.7334 13.6543L21 19.9209L19.9209 21L13.6543 14.7334L12.3887 16H6.61133L3 12.3887V6.61133L6.61133 3H12.3887L16 6.61133ZM4.5 7.23242V11.7676L7.23242 14.5H11.7676L14.5 11.7676V7.23242L11.7676 4.5H7.23242L4.5 7.23242Z"
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
           fill="currentColor"
-          fill-rule="evenodd"
         />
       </svg>
-      <input
-        aria-autocomplete="list"
-        aria-expanded="false"
-        aria-haspopup="listbox"
-        autocapitalize="none"
-        autocomplete="off"
-        autocorrect="off"
-        class="vesper-typography vesper-typography-copy-sm vesper-combobox-input"
-        id="_r_34_"
-        placeholder="Search..."
-        role="combobox"
-        spellcheck="false"
-        value=""
-      />
-      <button
-        aria-expanded="false"
-        aria-haspopup="listbox"
-        aria-label="Show options"
-        class="vesper-combobox-trigger"
-        data-placeholder=""
-        tabindex="-1"
-        type="button"
-      >
-        <svg
-          fill="none"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-            fill="currentColor"
-          />
-        </svg>
-      </button>
-    </div>
+    </button>
   </div>
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
@@ -882,10 +873,10 @@ exports[`combobox [snapshot] > with label 1`] = `
 
 exports[`combobox [snapshot] > with value 1`] = `
 <div
-  class="vesper-combobox vesper-combobox-md vesper-combobox-default"
+  class="vesper-form-input-wrapper"
 >
   <div
-    class="vesper-combobox-input-wrapper"
+    class="vesper-combobox vesper-combobox-md vesper-combobox-default"
     role="group"
   >
     <svg
