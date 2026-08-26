@@ -234,7 +234,7 @@ import { Checkbox } from "@tenstorrent/vesper/checkbox";
 <Checkbox text="I agree to the terms" />;
 ```
 
-The `text` prop is always the input's accessible name: it is used as the default `aria-label`, whether or not a `label` is supplied. Pass an explicit `aria-label` to override it.
+The `text` prop is used as the input's default `aria-label`, whether or not a `label` is supplied, so it is the accessible name unless you override it. Pass an explicit `aria-label` to replace it, or `aria-labelledby` to name the input from other elements on the page.
 
 Passing `required` marks the input as required for native form validation, and appends an asterisk to the `label`:
 
