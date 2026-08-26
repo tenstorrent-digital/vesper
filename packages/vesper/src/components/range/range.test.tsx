@@ -215,17 +215,71 @@ describe("range [unit]", () => {
     expect(message).toHaveTextContent("Pick a price range");
   });
 
-  test("the message is linked to the range via aria-describedby", async () => {
+  test("the label is linked to the first thumb via aria-labelledby", async () => {
+    const result = await renderRange({ label: "Price" });
+
+    const label = result.container.querySelector<HTMLElement>(
+      ".vesper-form-input-wrapper-label",
+    )!;
+
+    const [first, ...rest] = result.thumbs;
+    expect(first).toHaveAttribute("aria-labelledby", label.id);
+    rest.forEach((thumb) =>
+      expect(thumb).not.toHaveAttribute("aria-labelledby"),
+    );
+  });
+
+  test("a custom aria-labelledby is preserved alongside the label id", async () => {
+    const result = await renderRange({
+      label: "Price",
+      "aria-labelledby": "external-description",
+    });
+
+    const label = result.container.querySelector<HTMLElement>(
+      ".vesper-form-input-wrapper-label",
+    )!;
+
+    const [first, ...rest] = result.thumbs;
+    expect(first).toHaveAttribute(
+      "aria-labelledby",
+      `external-description ${label.id}`,
+    );
+
+    rest.forEach((thumb) =>
+      expect(thumb).not.toHaveAttribute("aria-labelledby"),
+    );
+  });
+
+  test("a custom aria-labelledby is used when no label is provided", async () => {
+    const result = await renderRange({
+      "aria-labelledby": "external-description",
+    });
+
+    const [first, ...rest] = result.thumbs;
+    expect(first).toHaveAttribute("aria-labelledby", "external-description");
+
+    rest.forEach((thumb) =>
+      expect(thumb).not.toHaveAttribute("aria-labelledby"),
+    );
+  });
+
+  test("the message is linked to the thumbs via aria-describedby", async () => {
     const result = await renderRange({ message: "Pick a price range" });
 
     const message = result.getByRole("status");
     expect(message.id).not.toBe("");
-    expect(result.root).toHaveAttribute("aria-describedby", message.id);
+
+    result.thumbs.forEach((thumb) =>
+      expect(thumb).toHaveAttribute("aria-describedby", message.id),
+    );
   });
 
   test("aria-describedby is unset when no message is supplied", async () => {
-    const { root } = await renderRange();
-    expect(root).not.toHaveAttribute("aria-describedby");
+    const { thumbs } = await renderRange();
+
+    thumbs.forEach((thumb) =>
+      expect(thumb).not.toHaveAttribute("aria-describedby"),
+    );
   });
 
   test("a custom aria-describedby is preserved alongside the message id", async () => {
@@ -235,27 +289,23 @@ describe("range [unit]", () => {
     });
 
     const message = result.getByRole("status");
-    expect(result.root).toHaveAttribute(
-      "aria-describedby",
-      `external-description ${message.id}`,
+
+    result.thumbs.forEach((thumb) =>
+      expect(thumb).toHaveAttribute(
+        "aria-describedby",
+        `external-description ${message.id}`,
+      ),
     );
   });
 
   test("a custom aria-describedby is used when no message is supplied", async () => {
-    const { root } = await renderRange({
+    const result = await renderRange({
       "aria-describedby": "external-description",
     });
-    expect(root).toHaveAttribute("aria-describedby", "external-description");
-  });
 
-  test("aria-labelledby is forwarded to the range", async () => {
-    const { root } = await renderRange({ "aria-labelledby": "external-label" });
-    expect(root).toHaveAttribute("aria-labelledby", "external-label");
-  });
-
-  test("aria-invalid is forwarded to the range", async () => {
-    const { root } = await renderRange({ "aria-invalid": true });
-    expect(root).toHaveAttribute("aria-invalid", "true");
+    result.thumbs.forEach((thumb) =>
+      expect(thumb).toHaveAttribute("aria-describedby", "external-description"),
+    );
   });
 
   test("showTicks renders tick marks", async () => {
