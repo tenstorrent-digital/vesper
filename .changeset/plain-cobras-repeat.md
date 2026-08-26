@@ -2,4 +2,4 @@
 "@tenstorrent/vesper": minor
 ---
 
-Update `checkbox` to use new `form-input-wrapper` component
+Update `Checkbox` to use `FormInputWrapper`. Rename the required adjacent-text prop from `label` to `text`, and add optional `label`, `message`, and `variant` props.
