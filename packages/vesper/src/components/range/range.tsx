@@ -154,6 +154,8 @@ export function Range(props: RangeProps) {
   } = props;
 
   const tickPositions = useMemo(() => {
+    if (!showTicks) return [];
+
     const span = max - min;
     if (
       !Number.isFinite(span) ||
@@ -167,7 +169,7 @@ export function Range(props: RangeProps) {
     const numTicks = Math.max(Math.ceil(span / step) - 1, 0);
 
     return Array.from({ length: numTicks }, (_, i) => ((i + 1) * step) / span);
-  }, [min, max, step]);
+  }, [min, max, step, showTicks]);
 
   const thumbValues = values ?? defaultValues;
 
