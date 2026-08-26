@@ -3,6 +3,7 @@
 import {
   type ComponentProps,
   type ReactNode,
+  type Ref,
   useId,
   useMemo,
   useState,
@@ -21,6 +22,7 @@ import {
   type PortalContainer,
 } from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
+import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 import { FormInputWrapper } from "../form-input-wrapper/form-input-wrapper";
 
@@ -74,6 +76,8 @@ export interface SelectProps
   form?: string;
   /** Specify the element or shadow root to portal the dropdown into */
   container?: PortalContainer;
+  /** A ref forwarded to the underlying select trigger `<button>` element for direct DOM access. */
+  triggerRef?: Ref<HTMLButtonElement>;
 }
 
 const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
@@ -98,6 +102,7 @@ const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
  * @param {(value: string) => void} [props.onValueChange] - (optional) Callback invoked with the new value whenever the selection changes
  * @param {boolean} [props.required] - (optional) Marks the select as required for form validation
  * @param {PortalContainer} [props.container] - (optional) Specify the element or shadow root to portal the dropdown into
+ * @param {Ref<HTMLButtonElement>} [props.triggerRef] - (optional) A ref forwarded to the underlying select trigger `<button>` element
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  *
  * You may also pass any additional props to the underlying `div` element
@@ -143,6 +148,7 @@ export function Select(props: SelectProps) {
     container,
     message,
     label,
+    triggerRef,
     "aria-label": ariaLabel = label,
     "aria-describedby": ariaDescribedby,
     "aria-labelledby": ariaLabelledby,
@@ -153,6 +159,8 @@ export function Select(props: SelectProps) {
   } = props;
 
   const [trigger, setTrigger] = useState<HTMLButtonElement | null>(null);
+
+  const mergedTriggerRef = useMergedRefs(setTrigger, triggerRef);
 
   const portalContainer = getPortalContainer(container, trigger);
 
@@ -211,7 +219,7 @@ export function Select(props: SelectProps) {
           aria-describedby={describedBy}
           aria-labelledby={ariaLabelledby}
           aria-invalid={ariaInvalid}
-          ref={setTrigger}
+          ref={mergedTriggerRef}
           id={inputId}
         >
           {icon && <span className="vesper-select-icon">{icon}</span>}
