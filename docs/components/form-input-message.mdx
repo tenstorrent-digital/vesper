@@ -119,7 +119,7 @@ This is deliberate, and is what makes validation messages announce reliably. An 
 
 > [!WARNING]
 >
-> Don't conditionally render `FormInputMessage`. Keep it mounted and drive it with the `message` prop instead, so the live region is always in place when the message arrives.
+> Don't conditionally render `FormInputMessage`. Keep it mounted at all times so the live region is always in place when the `message` changes.
 
 ```tsx
 import { useState } from "react"
