@@ -349,7 +349,7 @@ describe("slider [unit]", () => {
     expect(result.thumb).toHaveAttribute("aria-labelledby", label.id);
   });
 
-  test("a custom aria-labelledby is preserved alongside the message id", async () => {
+  test("a custom aria-labelledby is preserved alongside the label id", async () => {
     const result = await renderSlider({
       value: 50,
       label: "Volume",
