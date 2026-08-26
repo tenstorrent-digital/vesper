@@ -320,7 +320,6 @@ The `error` variant highlights an invalid value that must be corrected before th
   message="Your plan allows a maximum of 8 workers."
   defaultValue={12}
   showValueLabel
-  aria-invalid
   thumbAriaLabel="Workers"
 />
 
@@ -339,12 +338,9 @@ const [workers, setWorkers] = useState(12);
   value={workers}
   onValueChange={setWorkers}
   showValueLabel
-  aria-invalid
   thumbAriaLabel="Workers"
 />;
 ```
-
-The `variant` only affects the appearance of the message. Pass `aria-invalid` alongside the `error` variant so that assistive technology is told the value is invalid too.
 
 ### Labels and accessible names
 
