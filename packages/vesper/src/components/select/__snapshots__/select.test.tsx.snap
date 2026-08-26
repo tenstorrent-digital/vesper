@@ -9,7 +9,7 @@ exports[`select [snapshot] > lg, default 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-default"
     data-placeholder=""
-    id="_r_ek_"
+    id="_r_ep_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -52,7 +52,7 @@ exports[`select [snapshot] > lg, default 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_el_-hidden-input"
+    id="base-ui-_r_eq_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -75,7 +75,7 @@ exports[`select [snapshot] > lg, default, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_ep_"
+    id="_r_eu_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -119,7 +119,7 @@ exports[`select [snapshot] > lg, default, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_eq_-hidden-input"
+    id="base-ui-_r_ev_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -140,7 +140,7 @@ exports[`select [snapshot] > lg, default, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-default"
     data-placeholder=""
-    id="_r_eu_"
+    id="_r_f3_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -235,7 +235,7 @@ exports[`select [snapshot] > lg, default, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_ev_-hidden-input"
+    id="base-ui-_r_f4_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -253,7 +253,7 @@ exports[`select [snapshot] > lg, default, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_f8_"
+    for="_r_fd_"
   >
     Select label
   </label>
@@ -261,71 +261,6 @@ exports[`select [snapshot] > lg, default, with label 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     aria-label="Select label"
-    class="vesper-select vesper-select-lg vesper-select-default"
-    data-placeholder=""
-    id="_r_f8_"
-    role="combobox"
-    tabindex="0"
-    type="button"
-  >
-    <span
-      class="vesper-typography vesper-typography-copy-md"
-    >
-      <span
-        data-placeholder=""
-      >
-        Select an option
-      </span>
-    </span>
-    <span
-      class="vesper-select-state-indicator"
-    >
-      <svg
-        class="vesper-select-state-indicator-closed"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-select-state-indicator-open"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <input
-    aria-hidden="true"
-    id="base-ui-_r_f9_-hidden-input"
-    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
-    tabindex="-1"
-    value=""
-  />
-  <output
-    class="vesper-form-input-message vesper-form-input-message-default"
-    data-message="false"
-  />
-</div>
-`;
-
-exports[`select [snapshot] > lg, default, with message 1`] = `
-<div
-  class="vesper-form-input-wrapper"
->
-  <button
-    aria-describedby="_r_fc_"
-    aria-expanded="false"
-    aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-default"
     data-placeholder=""
     id="_r_fd_"
@@ -378,8 +313,73 @@ exports[`select [snapshot] > lg, default, with message 1`] = `
   />
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
+    data-message="false"
+  />
+</div>
+`;
+
+exports[`select [snapshot] > lg, default, with message 1`] = `
+<div
+  class="vesper-form-input-wrapper"
+>
+  <button
+    aria-describedby="_r_fh_"
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    class="vesper-select vesper-select-lg vesper-select-default"
+    data-placeholder=""
+    id="_r_fi_"
+    role="combobox"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="vesper-typography vesper-typography-copy-md"
+    >
+      <span
+        data-placeholder=""
+      >
+        Select an option
+      </span>
+    </span>
+    <span
+      class="vesper-select-state-indicator"
+    >
+      <svg
+        class="vesper-select-state-indicator-closed"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-select-state-indicator-open"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+  <input
+    aria-hidden="true"
+    id="base-ui-_r_fj_-hidden-input"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    value=""
+  />
+  <output
+    class="vesper-form-input-message vesper-form-input-message-default"
     data-message="true"
-    id="_r_fc_"
+    id="_r_fh_"
   >
     <span
       aria-hidden="true"
@@ -415,7 +415,7 @@ exports[`select [snapshot] > lg, default, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-default"
-    id="_r_f3_"
+    id="_r_f8_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -456,7 +456,7 @@ exports[`select [snapshot] > lg, default, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_f4_-hidden-input"
+    id="base-ui-_r_f9_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -477,7 +477,7 @@ exports[`select [snapshot] > lg, error 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-error"
     data-placeholder=""
-    id="_r_gg_"
+    id="_r_gl_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -520,7 +520,7 @@ exports[`select [snapshot] > lg, error 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_gh_-hidden-input"
+    id="base-ui-_r_gm_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -543,7 +543,7 @@ exports[`select [snapshot] > lg, error, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_gl_"
+    id="_r_gq_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -587,7 +587,7 @@ exports[`select [snapshot] > lg, error, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_gm_-hidden-input"
+    id="base-ui-_r_gr_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -608,7 +608,7 @@ exports[`select [snapshot] > lg, error, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-error"
     data-placeholder=""
-    id="_r_gq_"
+    id="_r_gv_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -703,7 +703,7 @@ exports[`select [snapshot] > lg, error, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_gr_-hidden-input"
+    id="base-ui-_r_h0_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -721,7 +721,7 @@ exports[`select [snapshot] > lg, error, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_h4_"
+    for="_r_h9_"
   >
     Select label
   </label>
@@ -729,71 +729,6 @@ exports[`select [snapshot] > lg, error, with label 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     aria-label="Select label"
-    class="vesper-select vesper-select-lg vesper-select-error"
-    data-placeholder=""
-    id="_r_h4_"
-    role="combobox"
-    tabindex="0"
-    type="button"
-  >
-    <span
-      class="vesper-typography vesper-typography-copy-md"
-    >
-      <span
-        data-placeholder=""
-      >
-        Select an option
-      </span>
-    </span>
-    <span
-      class="vesper-select-state-indicator"
-    >
-      <svg
-        class="vesper-select-state-indicator-closed"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-select-state-indicator-open"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <input
-    aria-hidden="true"
-    id="base-ui-_r_h5_-hidden-input"
-    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
-    tabindex="-1"
-    value=""
-  />
-  <output
-    class="vesper-form-input-message vesper-form-input-message-error"
-    data-message="false"
-  />
-</div>
-`;
-
-exports[`select [snapshot] > lg, error, with message 1`] = `
-<div
-  class="vesper-form-input-wrapper"
->
-  <button
-    aria-describedby="_r_h8_"
-    aria-expanded="false"
-    aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-error"
     data-placeholder=""
     id="_r_h9_"
@@ -846,104 +781,20 @@ exports[`select [snapshot] > lg, error, with message 1`] = `
   />
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
-    data-message="true"
-    id="_r_h8_"
-  >
-    <span
-      aria-hidden="true"
-      class="vesper-form-input-message-icon"
-    >
-      <svg
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          clip-rule="evenodd"
-          d="M21 8V16L16 21H8L3 16V8L8 3H16L21 8ZM11.4932 15.2422L10.9766 15.7578V16.7881L11.4932 17.3027H12.5264L13.042 16.7881V15.7578L12.5264 15.2422H11.4932ZM11.2354 7L10.7188 7.51562L11.2354 13.6973L11.751 14.2119H12.2676L12.7842 13.6973L13.3008 7.51562L12.7842 7H11.2354Z"
-          fill="currentColor"
-          fill-rule="evenodd"
-        />
-      </svg>
-    </span>
-    <span
-      class="vesper-typography vesper-typography-label-xs vesper-form-input-message-text"
-    >
-      This is the message
-    </span>
-  </output>
-</div>
-`;
-
-exports[`select [snapshot] > lg, error, with value 1`] = `
-<div
-  class="vesper-form-input-wrapper"
->
-  <button
-    aria-expanded="false"
-    aria-haspopup="listbox"
-    class="vesper-select vesper-select-lg vesper-select-error"
-    id="_r_gv_"
-    role="combobox"
-    tabindex="0"
-    type="button"
-  >
-    <span
-      class="vesper-typography vesper-typography-copy-md"
-    >
-      <span>
-        Tigers
-      </span>
-    </span>
-    <span
-      class="vesper-select-state-indicator"
-    >
-      <svg
-        class="vesper-select-state-indicator-closed"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-select-state-indicator-open"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <input
-    aria-hidden="true"
-    id="base-ui-_r_h0_-hidden-input"
-    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
-    tabindex="-1"
-    value="tigers"
-  />
-  <output
-    class="vesper-form-input-message vesper-form-input-message-error"
     data-message="false"
   />
 </div>
 `;
 
-exports[`select [snapshot] > lg, success 1`] = `
+exports[`select [snapshot] > lg, error, with message 1`] = `
 <div
   class="vesper-form-input-wrapper"
 >
   <button
+    aria-describedby="_r_hd_"
     aria-expanded="false"
     aria-haspopup="listbox"
-    class="vesper-select vesper-select-lg vesper-select-success"
+    class="vesper-select vesper-select-lg vesper-select-error"
     data-placeholder=""
     id="_r_he_"
     role="combobox"
@@ -994,6 +845,155 @@ exports[`select [snapshot] > lg, success 1`] = `
     value=""
   />
   <output
+    class="vesper-form-input-message vesper-form-input-message-error"
+    data-message="true"
+    id="_r_hd_"
+  >
+    <span
+      aria-hidden="true"
+      class="vesper-form-input-message-icon"
+    >
+      <svg
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M21 8V16L16 21H8L3 16V8L8 3H16L21 8ZM11.4932 15.2422L10.9766 15.7578V16.7881L11.4932 17.3027H12.5264L13.042 16.7881V15.7578L12.5264 15.2422H11.4932ZM11.2354 7L10.7188 7.51562L11.2354 13.6973L11.751 14.2119H12.2676L12.7842 13.6973L13.3008 7.51562L12.7842 7H11.2354Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-label-xs vesper-form-input-message-text"
+    >
+      This is the message
+    </span>
+  </output>
+</div>
+`;
+
+exports[`select [snapshot] > lg, error, with value 1`] = `
+<div
+  class="vesper-form-input-wrapper"
+>
+  <button
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    class="vesper-select vesper-select-lg vesper-select-error"
+    id="_r_h4_"
+    role="combobox"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="vesper-typography vesper-typography-copy-md"
+    >
+      <span>
+        Tigers
+      </span>
+    </span>
+    <span
+      class="vesper-select-state-indicator"
+    >
+      <svg
+        class="vesper-select-state-indicator-closed"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-select-state-indicator-open"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+  <input
+    aria-hidden="true"
+    id="base-ui-_r_h5_-hidden-input"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    value="tigers"
+  />
+  <output
+    class="vesper-form-input-message vesper-form-input-message-error"
+    data-message="false"
+  />
+</div>
+`;
+
+exports[`select [snapshot] > lg, success 1`] = `
+<div
+  class="vesper-form-input-wrapper"
+>
+  <button
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    class="vesper-select vesper-select-lg vesper-select-success"
+    data-placeholder=""
+    id="_r_hj_"
+    role="combobox"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="vesper-typography vesper-typography-copy-md"
+    >
+      <span
+        data-placeholder=""
+      >
+        Select an option
+      </span>
+    </span>
+    <span
+      class="vesper-select-state-indicator"
+    >
+      <svg
+        class="vesper-select-state-indicator-closed"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-select-state-indicator-open"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+  <input
+    aria-hidden="true"
+    id="base-ui-_r_hk_-hidden-input"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    value=""
+  />
+  <output
     class="vesper-form-input-message vesper-form-input-message-success"
     data-message="false"
   />
@@ -1011,7 +1011,7 @@ exports[`select [snapshot] > lg, success, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_hj_"
+    id="_r_ho_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -1055,7 +1055,7 @@ exports[`select [snapshot] > lg, success, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_hk_-hidden-input"
+    id="base-ui-_r_hp_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -1076,7 +1076,7 @@ exports[`select [snapshot] > lg, success, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-success"
     data-placeholder=""
-    id="_r_ho_"
+    id="_r_ht_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -1171,7 +1171,7 @@ exports[`select [snapshot] > lg, success, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_hp_-hidden-input"
+    id="base-ui-_r_hu_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -1189,7 +1189,7 @@ exports[`select [snapshot] > lg, success, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_i2_"
+    for="_r_i7_"
   >
     Select label
   </label>
@@ -1197,71 +1197,6 @@ exports[`select [snapshot] > lg, success, with label 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     aria-label="Select label"
-    class="vesper-select vesper-select-lg vesper-select-success"
-    data-placeholder=""
-    id="_r_i2_"
-    role="combobox"
-    tabindex="0"
-    type="button"
-  >
-    <span
-      class="vesper-typography vesper-typography-copy-md"
-    >
-      <span
-        data-placeholder=""
-      >
-        Select an option
-      </span>
-    </span>
-    <span
-      class="vesper-select-state-indicator"
-    >
-      <svg
-        class="vesper-select-state-indicator-closed"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-select-state-indicator-open"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <input
-    aria-hidden="true"
-    id="base-ui-_r_i3_-hidden-input"
-    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
-    tabindex="-1"
-    value=""
-  />
-  <output
-    class="vesper-form-input-message vesper-form-input-message-success"
-    data-message="false"
-  />
-</div>
-`;
-
-exports[`select [snapshot] > lg, success, with message 1`] = `
-<div
-  class="vesper-form-input-wrapper"
->
-  <button
-    aria-describedby="_r_i6_"
-    aria-expanded="false"
-    aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-success"
     data-placeholder=""
     id="_r_i7_"
@@ -1314,8 +1249,73 @@ exports[`select [snapshot] > lg, success, with message 1`] = `
   />
   <output
     class="vesper-form-input-message vesper-form-input-message-success"
+    data-message="false"
+  />
+</div>
+`;
+
+exports[`select [snapshot] > lg, success, with message 1`] = `
+<div
+  class="vesper-form-input-wrapper"
+>
+  <button
+    aria-describedby="_r_ib_"
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    class="vesper-select vesper-select-lg vesper-select-success"
+    data-placeholder=""
+    id="_r_ic_"
+    role="combobox"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="vesper-typography vesper-typography-copy-md"
+    >
+      <span
+        data-placeholder=""
+      >
+        Select an option
+      </span>
+    </span>
+    <span
+      class="vesper-select-state-indicator"
+    >
+      <svg
+        class="vesper-select-state-indicator-closed"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-select-state-indicator-open"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+  <input
+    aria-hidden="true"
+    id="base-ui-_r_id_-hidden-input"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    value=""
+  />
+  <output
+    class="vesper-form-input-message vesper-form-input-message-success"
     data-message="true"
-    id="_r_i6_"
+    id="_r_ib_"
   >
     <span
       aria-hidden="true"
@@ -1349,7 +1349,7 @@ exports[`select [snapshot] > lg, success, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-success"
-    id="_r_ht_"
+    id="_r_i2_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -1390,7 +1390,7 @@ exports[`select [snapshot] > lg, success, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_hu_-hidden-input"
+    id="base-ui-_r_i3_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -1411,7 +1411,7 @@ exports[`select [snapshot] > lg, warning 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-warning"
     data-placeholder=""
-    id="_r_fi_"
+    id="_r_fn_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -1454,7 +1454,7 @@ exports[`select [snapshot] > lg, warning 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_fj_-hidden-input"
+    id="base-ui-_r_fo_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -1477,7 +1477,7 @@ exports[`select [snapshot] > lg, warning, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_fn_"
+    id="_r_fs_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -1521,7 +1521,7 @@ exports[`select [snapshot] > lg, warning, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_fo_-hidden-input"
+    id="base-ui-_r_ft_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -1542,7 +1542,7 @@ exports[`select [snapshot] > lg, warning, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-warning"
     data-placeholder=""
-    id="_r_fs_"
+    id="_r_g1_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -1637,7 +1637,7 @@ exports[`select [snapshot] > lg, warning, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_ft_-hidden-input"
+    id="base-ui-_r_g2_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -1655,7 +1655,7 @@ exports[`select [snapshot] > lg, warning, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_g6_"
+    for="_r_gb_"
   >
     Select label
   </label>
@@ -1663,71 +1663,6 @@ exports[`select [snapshot] > lg, warning, with label 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     aria-label="Select label"
-    class="vesper-select vesper-select-lg vesper-select-warning"
-    data-placeholder=""
-    id="_r_g6_"
-    role="combobox"
-    tabindex="0"
-    type="button"
-  >
-    <span
-      class="vesper-typography vesper-typography-copy-md"
-    >
-      <span
-        data-placeholder=""
-      >
-        Select an option
-      </span>
-    </span>
-    <span
-      class="vesper-select-state-indicator"
-    >
-      <svg
-        class="vesper-select-state-indicator-closed"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-select-state-indicator-open"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <input
-    aria-hidden="true"
-    id="base-ui-_r_g7_-hidden-input"
-    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
-    tabindex="-1"
-    value=""
-  />
-  <output
-    class="vesper-form-input-message vesper-form-input-message-warning"
-    data-message="false"
-  />
-</div>
-`;
-
-exports[`select [snapshot] > lg, warning, with message 1`] = `
-<div
-  class="vesper-form-input-wrapper"
->
-  <button
-    aria-describedby="_r_ga_"
-    aria-expanded="false"
-    aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-warning"
     data-placeholder=""
     id="_r_gb_"
@@ -1780,8 +1715,73 @@ exports[`select [snapshot] > lg, warning, with message 1`] = `
   />
   <output
     class="vesper-form-input-message vesper-form-input-message-warning"
+    data-message="false"
+  />
+</div>
+`;
+
+exports[`select [snapshot] > lg, warning, with message 1`] = `
+<div
+  class="vesper-form-input-wrapper"
+>
+  <button
+    aria-describedby="_r_gf_"
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    class="vesper-select vesper-select-lg vesper-select-warning"
+    data-placeholder=""
+    id="_r_gg_"
+    role="combobox"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="vesper-typography vesper-typography-copy-md"
+    >
+      <span
+        data-placeholder=""
+      >
+        Select an option
+      </span>
+    </span>
+    <span
+      class="vesper-select-state-indicator"
+    >
+      <svg
+        class="vesper-select-state-indicator-closed"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-select-state-indicator-open"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+  <input
+    aria-hidden="true"
+    id="base-ui-_r_gh_-hidden-input"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    value=""
+  />
+  <output
+    class="vesper-form-input-message vesper-form-input-message-warning"
     data-message="true"
-    id="_r_ga_"
+    id="_r_gf_"
   >
     <span
       aria-hidden="true"
@@ -1817,7 +1817,7 @@ exports[`select [snapshot] > lg, warning, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-lg vesper-select-warning"
-    id="_r_g1_"
+    id="_r_g6_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -1858,7 +1858,7 @@ exports[`select [snapshot] > lg, warning, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_g2_-hidden-input"
+    id="base-ui-_r_g7_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -1879,7 +1879,7 @@ exports[`select [snapshot] > md, default 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-default"
     data-placeholder=""
-    id="_r_as_"
+    id="_r_b1_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -1922,7 +1922,7 @@ exports[`select [snapshot] > md, default 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_at_-hidden-input"
+    id="base-ui-_r_b2_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -1945,7 +1945,7 @@ exports[`select [snapshot] > md, default, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_b1_"
+    id="_r_b6_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -1989,7 +1989,7 @@ exports[`select [snapshot] > md, default, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_b2_-hidden-input"
+    id="base-ui-_r_b7_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -2010,7 +2010,7 @@ exports[`select [snapshot] > md, default, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-default"
     data-placeholder=""
-    id="_r_b6_"
+    id="_r_bb_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -2105,7 +2105,7 @@ exports[`select [snapshot] > md, default, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_b7_-hidden-input"
+    id="base-ui-_r_bc_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -2123,7 +2123,7 @@ exports[`select [snapshot] > md, default, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_bg_"
+    for="_r_bl_"
   >
     Select label
   </label>
@@ -2131,71 +2131,6 @@ exports[`select [snapshot] > md, default, with label 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     aria-label="Select label"
-    class="vesper-select vesper-select-md vesper-select-default"
-    data-placeholder=""
-    id="_r_bg_"
-    role="combobox"
-    tabindex="0"
-    type="button"
-  >
-    <span
-      class="vesper-typography vesper-typography-copy-sm"
-    >
-      <span
-        data-placeholder=""
-      >
-        Select an option
-      </span>
-    </span>
-    <span
-      class="vesper-select-state-indicator"
-    >
-      <svg
-        class="vesper-select-state-indicator-closed"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-select-state-indicator-open"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <input
-    aria-hidden="true"
-    id="base-ui-_r_bh_-hidden-input"
-    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
-    tabindex="-1"
-    value=""
-  />
-  <output
-    class="vesper-form-input-message vesper-form-input-message-default"
-    data-message="false"
-  />
-</div>
-`;
-
-exports[`select [snapshot] > md, default, with message 1`] = `
-<div
-  class="vesper-form-input-wrapper"
->
-  <button
-    aria-describedby="_r_bk_"
-    aria-expanded="false"
-    aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-default"
     data-placeholder=""
     id="_r_bl_"
@@ -2248,8 +2183,73 @@ exports[`select [snapshot] > md, default, with message 1`] = `
   />
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
+    data-message="false"
+  />
+</div>
+`;
+
+exports[`select [snapshot] > md, default, with message 1`] = `
+<div
+  class="vesper-form-input-wrapper"
+>
+  <button
+    aria-describedby="_r_bp_"
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    class="vesper-select vesper-select-md vesper-select-default"
+    data-placeholder=""
+    id="_r_bq_"
+    role="combobox"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="vesper-typography vesper-typography-copy-sm"
+    >
+      <span
+        data-placeholder=""
+      >
+        Select an option
+      </span>
+    </span>
+    <span
+      class="vesper-select-state-indicator"
+    >
+      <svg
+        class="vesper-select-state-indicator-closed"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-select-state-indicator-open"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+  <input
+    aria-hidden="true"
+    id="base-ui-_r_br_-hidden-input"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    value=""
+  />
+  <output
+    class="vesper-form-input-message vesper-form-input-message-default"
     data-message="true"
-    id="_r_bk_"
+    id="_r_bp_"
   >
     <span
       aria-hidden="true"
@@ -2285,7 +2285,7 @@ exports[`select [snapshot] > md, default, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-default"
-    id="_r_bb_"
+    id="_r_bg_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -2326,7 +2326,7 @@ exports[`select [snapshot] > md, default, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_bc_-hidden-input"
+    id="base-ui-_r_bh_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -2347,7 +2347,7 @@ exports[`select [snapshot] > md, error 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-error"
     data-placeholder=""
-    id="_r_co_"
+    id="_r_ct_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -2390,7 +2390,7 @@ exports[`select [snapshot] > md, error 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_cp_-hidden-input"
+    id="base-ui-_r_cu_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -2413,7 +2413,7 @@ exports[`select [snapshot] > md, error, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_ct_"
+    id="_r_d2_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -2457,7 +2457,7 @@ exports[`select [snapshot] > md, error, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_cu_-hidden-input"
+    id="base-ui-_r_d3_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -2478,7 +2478,7 @@ exports[`select [snapshot] > md, error, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-error"
     data-placeholder=""
-    id="_r_d2_"
+    id="_r_d7_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -2573,7 +2573,7 @@ exports[`select [snapshot] > md, error, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_d3_-hidden-input"
+    id="base-ui-_r_d8_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -2591,7 +2591,7 @@ exports[`select [snapshot] > md, error, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_dc_"
+    for="_r_dh_"
   >
     Select label
   </label>
@@ -2599,71 +2599,6 @@ exports[`select [snapshot] > md, error, with label 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     aria-label="Select label"
-    class="vesper-select vesper-select-md vesper-select-error"
-    data-placeholder=""
-    id="_r_dc_"
-    role="combobox"
-    tabindex="0"
-    type="button"
-  >
-    <span
-      class="vesper-typography vesper-typography-copy-sm"
-    >
-      <span
-        data-placeholder=""
-      >
-        Select an option
-      </span>
-    </span>
-    <span
-      class="vesper-select-state-indicator"
-    >
-      <svg
-        class="vesper-select-state-indicator-closed"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-select-state-indicator-open"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <input
-    aria-hidden="true"
-    id="base-ui-_r_dd_-hidden-input"
-    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
-    tabindex="-1"
-    value=""
-  />
-  <output
-    class="vesper-form-input-message vesper-form-input-message-error"
-    data-message="false"
-  />
-</div>
-`;
-
-exports[`select [snapshot] > md, error, with message 1`] = `
-<div
-  class="vesper-form-input-wrapper"
->
-  <button
-    aria-describedby="_r_dg_"
-    aria-expanded="false"
-    aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-error"
     data-placeholder=""
     id="_r_dh_"
@@ -2716,104 +2651,20 @@ exports[`select [snapshot] > md, error, with message 1`] = `
   />
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
-    data-message="true"
-    id="_r_dg_"
-  >
-    <span
-      aria-hidden="true"
-      class="vesper-form-input-message-icon"
-    >
-      <svg
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          clip-rule="evenodd"
-          d="M21 8V16L16 21H8L3 16V8L8 3H16L21 8ZM11.4932 15.2422L10.9766 15.7578V16.7881L11.4932 17.3027H12.5264L13.042 16.7881V15.7578L12.5264 15.2422H11.4932ZM11.2354 7L10.7188 7.51562L11.2354 13.6973L11.751 14.2119H12.2676L12.7842 13.6973L13.3008 7.51562L12.7842 7H11.2354Z"
-          fill="currentColor"
-          fill-rule="evenodd"
-        />
-      </svg>
-    </span>
-    <span
-      class="vesper-typography vesper-typography-label-xs vesper-form-input-message-text"
-    >
-      This is the message
-    </span>
-  </output>
-</div>
-`;
-
-exports[`select [snapshot] > md, error, with value 1`] = `
-<div
-  class="vesper-form-input-wrapper"
->
-  <button
-    aria-expanded="false"
-    aria-haspopup="listbox"
-    class="vesper-select vesper-select-md vesper-select-error"
-    id="_r_d7_"
-    role="combobox"
-    tabindex="0"
-    type="button"
-  >
-    <span
-      class="vesper-typography vesper-typography-copy-sm"
-    >
-      <span>
-        Tigers
-      </span>
-    </span>
-    <span
-      class="vesper-select-state-indicator"
-    >
-      <svg
-        class="vesper-select-state-indicator-closed"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-select-state-indicator-open"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <input
-    aria-hidden="true"
-    id="base-ui-_r_d8_-hidden-input"
-    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
-    tabindex="-1"
-    value="tigers"
-  />
-  <output
-    class="vesper-form-input-message vesper-form-input-message-error"
     data-message="false"
   />
 </div>
 `;
 
-exports[`select [snapshot] > md, success 1`] = `
+exports[`select [snapshot] > md, error, with message 1`] = `
 <div
   class="vesper-form-input-wrapper"
 >
   <button
+    aria-describedby="_r_dl_"
     aria-expanded="false"
     aria-haspopup="listbox"
-    class="vesper-select vesper-select-md vesper-select-success"
+    class="vesper-select vesper-select-md vesper-select-error"
     data-placeholder=""
     id="_r_dm_"
     role="combobox"
@@ -2864,6 +2715,155 @@ exports[`select [snapshot] > md, success 1`] = `
     value=""
   />
   <output
+    class="vesper-form-input-message vesper-form-input-message-error"
+    data-message="true"
+    id="_r_dl_"
+  >
+    <span
+      aria-hidden="true"
+      class="vesper-form-input-message-icon"
+    >
+      <svg
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M21 8V16L16 21H8L3 16V8L8 3H16L21 8ZM11.4932 15.2422L10.9766 15.7578V16.7881L11.4932 17.3027H12.5264L13.042 16.7881V15.7578L12.5264 15.2422H11.4932ZM11.2354 7L10.7188 7.51562L11.2354 13.6973L11.751 14.2119H12.2676L12.7842 13.6973L13.3008 7.51562L12.7842 7H11.2354Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-label-xs vesper-form-input-message-text"
+    >
+      This is the message
+    </span>
+  </output>
+</div>
+`;
+
+exports[`select [snapshot] > md, error, with value 1`] = `
+<div
+  class="vesper-form-input-wrapper"
+>
+  <button
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    class="vesper-select vesper-select-md vesper-select-error"
+    id="_r_dc_"
+    role="combobox"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="vesper-typography vesper-typography-copy-sm"
+    >
+      <span>
+        Tigers
+      </span>
+    </span>
+    <span
+      class="vesper-select-state-indicator"
+    >
+      <svg
+        class="vesper-select-state-indicator-closed"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-select-state-indicator-open"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+  <input
+    aria-hidden="true"
+    id="base-ui-_r_dd_-hidden-input"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    value="tigers"
+  />
+  <output
+    class="vesper-form-input-message vesper-form-input-message-error"
+    data-message="false"
+  />
+</div>
+`;
+
+exports[`select [snapshot] > md, success 1`] = `
+<div
+  class="vesper-form-input-wrapper"
+>
+  <button
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    class="vesper-select vesper-select-md vesper-select-success"
+    data-placeholder=""
+    id="_r_dr_"
+    role="combobox"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="vesper-typography vesper-typography-copy-sm"
+    >
+      <span
+        data-placeholder=""
+      >
+        Select an option
+      </span>
+    </span>
+    <span
+      class="vesper-select-state-indicator"
+    >
+      <svg
+        class="vesper-select-state-indicator-closed"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-select-state-indicator-open"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+  <input
+    aria-hidden="true"
+    id="base-ui-_r_ds_-hidden-input"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    value=""
+  />
+  <output
     class="vesper-form-input-message vesper-form-input-message-success"
     data-message="false"
   />
@@ -2881,7 +2881,7 @@ exports[`select [snapshot] > md, success, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_dr_"
+    id="_r_e0_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -2925,7 +2925,7 @@ exports[`select [snapshot] > md, success, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_ds_-hidden-input"
+    id="base-ui-_r_e1_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -2946,7 +2946,7 @@ exports[`select [snapshot] > md, success, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-success"
     data-placeholder=""
-    id="_r_e0_"
+    id="_r_e5_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3041,7 +3041,7 @@ exports[`select [snapshot] > md, success, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_e1_-hidden-input"
+    id="base-ui-_r_e6_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3059,7 +3059,7 @@ exports[`select [snapshot] > md, success, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_ea_"
+    for="_r_ef_"
   >
     Select label
   </label>
@@ -3067,71 +3067,6 @@ exports[`select [snapshot] > md, success, with label 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     aria-label="Select label"
-    class="vesper-select vesper-select-md vesper-select-success"
-    data-placeholder=""
-    id="_r_ea_"
-    role="combobox"
-    tabindex="0"
-    type="button"
-  >
-    <span
-      class="vesper-typography vesper-typography-copy-sm"
-    >
-      <span
-        data-placeholder=""
-      >
-        Select an option
-      </span>
-    </span>
-    <span
-      class="vesper-select-state-indicator"
-    >
-      <svg
-        class="vesper-select-state-indicator-closed"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-select-state-indicator-open"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <input
-    aria-hidden="true"
-    id="base-ui-_r_eb_-hidden-input"
-    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
-    tabindex="-1"
-    value=""
-  />
-  <output
-    class="vesper-form-input-message vesper-form-input-message-success"
-    data-message="false"
-  />
-</div>
-`;
-
-exports[`select [snapshot] > md, success, with message 1`] = `
-<div
-  class="vesper-form-input-wrapper"
->
-  <button
-    aria-describedby="_r_ee_"
-    aria-expanded="false"
-    aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-success"
     data-placeholder=""
     id="_r_ef_"
@@ -3184,8 +3119,73 @@ exports[`select [snapshot] > md, success, with message 1`] = `
   />
   <output
     class="vesper-form-input-message vesper-form-input-message-success"
+    data-message="false"
+  />
+</div>
+`;
+
+exports[`select [snapshot] > md, success, with message 1`] = `
+<div
+  class="vesper-form-input-wrapper"
+>
+  <button
+    aria-describedby="_r_ej_"
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    class="vesper-select vesper-select-md vesper-select-success"
+    data-placeholder=""
+    id="_r_ek_"
+    role="combobox"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="vesper-typography vesper-typography-copy-sm"
+    >
+      <span
+        data-placeholder=""
+      >
+        Select an option
+      </span>
+    </span>
+    <span
+      class="vesper-select-state-indicator"
+    >
+      <svg
+        class="vesper-select-state-indicator-closed"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-select-state-indicator-open"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+  <input
+    aria-hidden="true"
+    id="base-ui-_r_el_-hidden-input"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    value=""
+  />
+  <output
+    class="vesper-form-input-message vesper-form-input-message-success"
     data-message="true"
-    id="_r_ee_"
+    id="_r_ej_"
   >
     <span
       aria-hidden="true"
@@ -3219,7 +3219,7 @@ exports[`select [snapshot] > md, success, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-success"
-    id="_r_e5_"
+    id="_r_ea_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3260,7 +3260,7 @@ exports[`select [snapshot] > md, success, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_e6_-hidden-input"
+    id="base-ui-_r_eb_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -3281,7 +3281,7 @@ exports[`select [snapshot] > md, warning 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-warning"
     data-placeholder=""
-    id="_r_bq_"
+    id="_r_bv_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3324,7 +3324,7 @@ exports[`select [snapshot] > md, warning 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_br_-hidden-input"
+    id="base-ui-_r_c0_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3347,7 +3347,7 @@ exports[`select [snapshot] > md, warning, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_bv_"
+    id="_r_c4_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -3391,7 +3391,7 @@ exports[`select [snapshot] > md, warning, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_c0_-hidden-input"
+    id="base-ui-_r_c5_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3412,7 +3412,7 @@ exports[`select [snapshot] > md, warning, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-warning"
     data-placeholder=""
-    id="_r_c4_"
+    id="_r_c9_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3507,7 +3507,7 @@ exports[`select [snapshot] > md, warning, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_c5_-hidden-input"
+    id="base-ui-_r_ca_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3525,7 +3525,7 @@ exports[`select [snapshot] > md, warning, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_ce_"
+    for="_r_cj_"
   >
     Select label
   </label>
@@ -3533,71 +3533,6 @@ exports[`select [snapshot] > md, warning, with label 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     aria-label="Select label"
-    class="vesper-select vesper-select-md vesper-select-warning"
-    data-placeholder=""
-    id="_r_ce_"
-    role="combobox"
-    tabindex="0"
-    type="button"
-  >
-    <span
-      class="vesper-typography vesper-typography-copy-sm"
-    >
-      <span
-        data-placeholder=""
-      >
-        Select an option
-      </span>
-    </span>
-    <span
-      class="vesper-select-state-indicator"
-    >
-      <svg
-        class="vesper-select-state-indicator-closed"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-select-state-indicator-open"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <input
-    aria-hidden="true"
-    id="base-ui-_r_cf_-hidden-input"
-    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
-    tabindex="-1"
-    value=""
-  />
-  <output
-    class="vesper-form-input-message vesper-form-input-message-warning"
-    data-message="false"
-  />
-</div>
-`;
-
-exports[`select [snapshot] > md, warning, with message 1`] = `
-<div
-  class="vesper-form-input-wrapper"
->
-  <button
-    aria-describedby="_r_ci_"
-    aria-expanded="false"
-    aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-warning"
     data-placeholder=""
     id="_r_cj_"
@@ -3650,8 +3585,73 @@ exports[`select [snapshot] > md, warning, with message 1`] = `
   />
   <output
     class="vesper-form-input-message vesper-form-input-message-warning"
+    data-message="false"
+  />
+</div>
+`;
+
+exports[`select [snapshot] > md, warning, with message 1`] = `
+<div
+  class="vesper-form-input-wrapper"
+>
+  <button
+    aria-describedby="_r_cn_"
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    class="vesper-select vesper-select-md vesper-select-warning"
+    data-placeholder=""
+    id="_r_co_"
+    role="combobox"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="vesper-typography vesper-typography-copy-sm"
+    >
+      <span
+        data-placeholder=""
+      >
+        Select an option
+      </span>
+    </span>
+    <span
+      class="vesper-select-state-indicator"
+    >
+      <svg
+        class="vesper-select-state-indicator-closed"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-select-state-indicator-open"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+  <input
+    aria-hidden="true"
+    id="base-ui-_r_cp_-hidden-input"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    value=""
+  />
+  <output
+    class="vesper-form-input-message vesper-form-input-message-warning"
     data-message="true"
-    id="_r_ci_"
+    id="_r_cn_"
   >
     <span
       aria-hidden="true"
@@ -3687,7 +3687,7 @@ exports[`select [snapshot] > md, warning, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-md vesper-select-warning"
-    id="_r_c9_"
+    id="_r_ce_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3728,7 +3728,7 @@ exports[`select [snapshot] > md, warning, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_ca_-hidden-input"
+    id="base-ui-_r_cf_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -3749,7 +3749,7 @@ exports[`select [snapshot] > sm, default 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-default"
     data-placeholder=""
-    id="_r_74_"
+    id="_r_79_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3792,7 +3792,7 @@ exports[`select [snapshot] > sm, default 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_75_-hidden-input"
+    id="base-ui-_r_7a_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3815,7 +3815,7 @@ exports[`select [snapshot] > sm, default, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_79_"
+    id="_r_7e_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -3859,7 +3859,7 @@ exports[`select [snapshot] > sm, default, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_7a_-hidden-input"
+    id="base-ui-_r_7f_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3880,7 +3880,7 @@ exports[`select [snapshot] > sm, default, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-default"
     data-placeholder=""
-    id="_r_7e_"
+    id="_r_7j_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -3975,7 +3975,7 @@ exports[`select [snapshot] > sm, default, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_7f_-hidden-input"
+    id="base-ui-_r_7k_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -3993,7 +3993,7 @@ exports[`select [snapshot] > sm, default, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_7o_"
+    for="_r_7t_"
   >
     Select label
   </label>
@@ -4001,71 +4001,6 @@ exports[`select [snapshot] > sm, default, with label 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     aria-label="Select label"
-    class="vesper-select vesper-select-sm vesper-select-default"
-    data-placeholder=""
-    id="_r_7o_"
-    role="combobox"
-    tabindex="0"
-    type="button"
-  >
-    <span
-      class="vesper-typography vesper-typography-copy-xs"
-    >
-      <span
-        data-placeholder=""
-      >
-        Select an option
-      </span>
-    </span>
-    <span
-      class="vesper-select-state-indicator"
-    >
-      <svg
-        class="vesper-select-state-indicator-closed"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-select-state-indicator-open"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <input
-    aria-hidden="true"
-    id="base-ui-_r_7p_-hidden-input"
-    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
-    tabindex="-1"
-    value=""
-  />
-  <output
-    class="vesper-form-input-message vesper-form-input-message-default"
-    data-message="false"
-  />
-</div>
-`;
-
-exports[`select [snapshot] > sm, default, with message 1`] = `
-<div
-  class="vesper-form-input-wrapper"
->
-  <button
-    aria-describedby="_r_7s_"
-    aria-expanded="false"
-    aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-default"
     data-placeholder=""
     id="_r_7t_"
@@ -4118,8 +4053,73 @@ exports[`select [snapshot] > sm, default, with message 1`] = `
   />
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
+    data-message="false"
+  />
+</div>
+`;
+
+exports[`select [snapshot] > sm, default, with message 1`] = `
+<div
+  class="vesper-form-input-wrapper"
+>
+  <button
+    aria-describedby="_r_81_"
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    class="vesper-select vesper-select-sm vesper-select-default"
+    data-placeholder=""
+    id="_r_82_"
+    role="combobox"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="vesper-typography vesper-typography-copy-xs"
+    >
+      <span
+        data-placeholder=""
+      >
+        Select an option
+      </span>
+    </span>
+    <span
+      class="vesper-select-state-indicator"
+    >
+      <svg
+        class="vesper-select-state-indicator-closed"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-select-state-indicator-open"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+  <input
+    aria-hidden="true"
+    id="base-ui-_r_83_-hidden-input"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    value=""
+  />
+  <output
+    class="vesper-form-input-message vesper-form-input-message-default"
     data-message="true"
-    id="_r_7s_"
+    id="_r_81_"
   >
     <span
       aria-hidden="true"
@@ -4155,7 +4155,7 @@ exports[`select [snapshot] > sm, default, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-default"
-    id="_r_7j_"
+    id="_r_7o_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -4196,7 +4196,7 @@ exports[`select [snapshot] > sm, default, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_7k_-hidden-input"
+    id="base-ui-_r_7p_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -4217,7 +4217,7 @@ exports[`select [snapshot] > sm, error 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-error"
     data-placeholder=""
-    id="_r_90_"
+    id="_r_95_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -4260,7 +4260,7 @@ exports[`select [snapshot] > sm, error 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_91_-hidden-input"
+    id="base-ui-_r_96_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -4283,7 +4283,7 @@ exports[`select [snapshot] > sm, error, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_95_"
+    id="_r_9a_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -4327,7 +4327,7 @@ exports[`select [snapshot] > sm, error, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_96_-hidden-input"
+    id="base-ui-_r_9b_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -4348,7 +4348,7 @@ exports[`select [snapshot] > sm, error, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-error"
     data-placeholder=""
-    id="_r_9a_"
+    id="_r_9f_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -4443,7 +4443,7 @@ exports[`select [snapshot] > sm, error, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_9b_-hidden-input"
+    id="base-ui-_r_9g_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -4461,7 +4461,7 @@ exports[`select [snapshot] > sm, error, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_9k_"
+    for="_r_9p_"
   >
     Select label
   </label>
@@ -4469,71 +4469,6 @@ exports[`select [snapshot] > sm, error, with label 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     aria-label="Select label"
-    class="vesper-select vesper-select-sm vesper-select-error"
-    data-placeholder=""
-    id="_r_9k_"
-    role="combobox"
-    tabindex="0"
-    type="button"
-  >
-    <span
-      class="vesper-typography vesper-typography-copy-xs"
-    >
-      <span
-        data-placeholder=""
-      >
-        Select an option
-      </span>
-    </span>
-    <span
-      class="vesper-select-state-indicator"
-    >
-      <svg
-        class="vesper-select-state-indicator-closed"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-select-state-indicator-open"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <input
-    aria-hidden="true"
-    id="base-ui-_r_9l_-hidden-input"
-    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
-    tabindex="-1"
-    value=""
-  />
-  <output
-    class="vesper-form-input-message vesper-form-input-message-error"
-    data-message="false"
-  />
-</div>
-`;
-
-exports[`select [snapshot] > sm, error, with message 1`] = `
-<div
-  class="vesper-form-input-wrapper"
->
-  <button
-    aria-describedby="_r_9o_"
-    aria-expanded="false"
-    aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-error"
     data-placeholder=""
     id="_r_9p_"
@@ -4586,104 +4521,20 @@ exports[`select [snapshot] > sm, error, with message 1`] = `
   />
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
-    data-message="true"
-    id="_r_9o_"
-  >
-    <span
-      aria-hidden="true"
-      class="vesper-form-input-message-icon"
-    >
-      <svg
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          clip-rule="evenodd"
-          d="M21 8V16L16 21H8L3 16V8L8 3H16L21 8ZM11.4932 15.2422L10.9766 15.7578V16.7881L11.4932 17.3027H12.5264L13.042 16.7881V15.7578L12.5264 15.2422H11.4932ZM11.2354 7L10.7188 7.51562L11.2354 13.6973L11.751 14.2119H12.2676L12.7842 13.6973L13.3008 7.51562L12.7842 7H11.2354Z"
-          fill="currentColor"
-          fill-rule="evenodd"
-        />
-      </svg>
-    </span>
-    <span
-      class="vesper-typography vesper-typography-label-xs vesper-form-input-message-text"
-    >
-      This is the message
-    </span>
-  </output>
-</div>
-`;
-
-exports[`select [snapshot] > sm, error, with value 1`] = `
-<div
-  class="vesper-form-input-wrapper"
->
-  <button
-    aria-expanded="false"
-    aria-haspopup="listbox"
-    class="vesper-select vesper-select-sm vesper-select-error"
-    id="_r_9f_"
-    role="combobox"
-    tabindex="0"
-    type="button"
-  >
-    <span
-      class="vesper-typography vesper-typography-copy-xs"
-    >
-      <span>
-        Tigers
-      </span>
-    </span>
-    <span
-      class="vesper-select-state-indicator"
-    >
-      <svg
-        class="vesper-select-state-indicator-closed"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-select-state-indicator-open"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <input
-    aria-hidden="true"
-    id="base-ui-_r_9g_-hidden-input"
-    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
-    tabindex="-1"
-    value="tigers"
-  />
-  <output
-    class="vesper-form-input-message vesper-form-input-message-error"
     data-message="false"
   />
 </div>
 `;
 
-exports[`select [snapshot] > sm, success 1`] = `
+exports[`select [snapshot] > sm, error, with message 1`] = `
 <div
   class="vesper-form-input-wrapper"
 >
   <button
+    aria-describedby="_r_9t_"
     aria-expanded="false"
     aria-haspopup="listbox"
-    class="vesper-select vesper-select-sm vesper-select-success"
+    class="vesper-select vesper-select-sm vesper-select-error"
     data-placeholder=""
     id="_r_9u_"
     role="combobox"
@@ -4734,6 +4585,155 @@ exports[`select [snapshot] > sm, success 1`] = `
     value=""
   />
   <output
+    class="vesper-form-input-message vesper-form-input-message-error"
+    data-message="true"
+    id="_r_9t_"
+  >
+    <span
+      aria-hidden="true"
+      class="vesper-form-input-message-icon"
+    >
+      <svg
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M21 8V16L16 21H8L3 16V8L8 3H16L21 8ZM11.4932 15.2422L10.9766 15.7578V16.7881L11.4932 17.3027H12.5264L13.042 16.7881V15.7578L12.5264 15.2422H11.4932ZM11.2354 7L10.7188 7.51562L11.2354 13.6973L11.751 14.2119H12.2676L12.7842 13.6973L13.3008 7.51562L12.7842 7H11.2354Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
+    <span
+      class="vesper-typography vesper-typography-label-xs vesper-form-input-message-text"
+    >
+      This is the message
+    </span>
+  </output>
+</div>
+`;
+
+exports[`select [snapshot] > sm, error, with value 1`] = `
+<div
+  class="vesper-form-input-wrapper"
+>
+  <button
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    class="vesper-select vesper-select-sm vesper-select-error"
+    id="_r_9k_"
+    role="combobox"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="vesper-typography vesper-typography-copy-xs"
+    >
+      <span>
+        Tigers
+      </span>
+    </span>
+    <span
+      class="vesper-select-state-indicator"
+    >
+      <svg
+        class="vesper-select-state-indicator-closed"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-select-state-indicator-open"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+  <input
+    aria-hidden="true"
+    id="base-ui-_r_9l_-hidden-input"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    value="tigers"
+  />
+  <output
+    class="vesper-form-input-message vesper-form-input-message-error"
+    data-message="false"
+  />
+</div>
+`;
+
+exports[`select [snapshot] > sm, success 1`] = `
+<div
+  class="vesper-form-input-wrapper"
+>
+  <button
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    class="vesper-select vesper-select-sm vesper-select-success"
+    data-placeholder=""
+    id="_r_a3_"
+    role="combobox"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="vesper-typography vesper-typography-copy-xs"
+    >
+      <span
+        data-placeholder=""
+      >
+        Select an option
+      </span>
+    </span>
+    <span
+      class="vesper-select-state-indicator"
+    >
+      <svg
+        class="vesper-select-state-indicator-closed"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-select-state-indicator-open"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+  <input
+    aria-hidden="true"
+    id="base-ui-_r_a4_-hidden-input"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    value=""
+  />
+  <output
     class="vesper-form-input-message vesper-form-input-message-success"
     data-message="false"
   />
@@ -4751,7 +4751,7 @@ exports[`select [snapshot] > sm, success, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_a3_"
+    id="_r_a8_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -4795,7 +4795,7 @@ exports[`select [snapshot] > sm, success, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_a4_-hidden-input"
+    id="base-ui-_r_a9_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -4816,7 +4816,7 @@ exports[`select [snapshot] > sm, success, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-success"
     data-placeholder=""
-    id="_r_a8_"
+    id="_r_ad_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -4911,7 +4911,7 @@ exports[`select [snapshot] > sm, success, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_a9_-hidden-input"
+    id="base-ui-_r_ae_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -4929,7 +4929,7 @@ exports[`select [snapshot] > sm, success, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_ai_"
+    for="_r_an_"
   >
     Select label
   </label>
@@ -4937,71 +4937,6 @@ exports[`select [snapshot] > sm, success, with label 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     aria-label="Select label"
-    class="vesper-select vesper-select-sm vesper-select-success"
-    data-placeholder=""
-    id="_r_ai_"
-    role="combobox"
-    tabindex="0"
-    type="button"
-  >
-    <span
-      class="vesper-typography vesper-typography-copy-xs"
-    >
-      <span
-        data-placeholder=""
-      >
-        Select an option
-      </span>
-    </span>
-    <span
-      class="vesper-select-state-indicator"
-    >
-      <svg
-        class="vesper-select-state-indicator-closed"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-select-state-indicator-open"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <input
-    aria-hidden="true"
-    id="base-ui-_r_aj_-hidden-input"
-    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
-    tabindex="-1"
-    value=""
-  />
-  <output
-    class="vesper-form-input-message vesper-form-input-message-success"
-    data-message="false"
-  />
-</div>
-`;
-
-exports[`select [snapshot] > sm, success, with message 1`] = `
-<div
-  class="vesper-form-input-wrapper"
->
-  <button
-    aria-describedby="_r_am_"
-    aria-expanded="false"
-    aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-success"
     data-placeholder=""
     id="_r_an_"
@@ -5054,8 +4989,73 @@ exports[`select [snapshot] > sm, success, with message 1`] = `
   />
   <output
     class="vesper-form-input-message vesper-form-input-message-success"
+    data-message="false"
+  />
+</div>
+`;
+
+exports[`select [snapshot] > sm, success, with message 1`] = `
+<div
+  class="vesper-form-input-wrapper"
+>
+  <button
+    aria-describedby="_r_ar_"
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    class="vesper-select vesper-select-sm vesper-select-success"
+    data-placeholder=""
+    id="_r_as_"
+    role="combobox"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="vesper-typography vesper-typography-copy-xs"
+    >
+      <span
+        data-placeholder=""
+      >
+        Select an option
+      </span>
+    </span>
+    <span
+      class="vesper-select-state-indicator"
+    >
+      <svg
+        class="vesper-select-state-indicator-closed"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-select-state-indicator-open"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+  <input
+    aria-hidden="true"
+    id="base-ui-_r_at_-hidden-input"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    value=""
+  />
+  <output
+    class="vesper-form-input-message vesper-form-input-message-success"
     data-message="true"
-    id="_r_am_"
+    id="_r_ar_"
   >
     <span
       aria-hidden="true"
@@ -5089,7 +5089,7 @@ exports[`select [snapshot] > sm, success, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-success"
-    id="_r_ad_"
+    id="_r_ai_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -5130,7 +5130,7 @@ exports[`select [snapshot] > sm, success, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_ae_-hidden-input"
+    id="base-ui-_r_aj_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"
@@ -5151,7 +5151,7 @@ exports[`select [snapshot] > sm, warning 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-warning"
     data-placeholder=""
-    id="_r_82_"
+    id="_r_87_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -5194,7 +5194,7 @@ exports[`select [snapshot] > sm, warning 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_83_-hidden-input"
+    id="base-ui-_r_88_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -5217,7 +5217,7 @@ exports[`select [snapshot] > sm, warning, disabled 1`] = `
     data-disabled=""
     data-placeholder=""
     disabled=""
-    id="_r_87_"
+    id="_r_8c_"
     role="combobox"
     tabindex="-1"
     type="button"
@@ -5261,7 +5261,7 @@ exports[`select [snapshot] > sm, warning, disabled 1`] = `
   <input
     aria-hidden="true"
     disabled=""
-    id="base-ui-_r_88_-hidden-input"
+    id="base-ui-_r_8d_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -5282,7 +5282,7 @@ exports[`select [snapshot] > sm, warning, with icon 1`] = `
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-warning"
     data-placeholder=""
-    id="_r_8c_"
+    id="_r_8h_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -5377,7 +5377,7 @@ exports[`select [snapshot] > sm, warning, with icon 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_8d_-hidden-input"
+    id="base-ui-_r_8i_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value=""
@@ -5395,7 +5395,7 @@ exports[`select [snapshot] > sm, warning, with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="_r_8m_"
+    for="_r_8r_"
   >
     Select label
   </label>
@@ -5403,71 +5403,6 @@ exports[`select [snapshot] > sm, warning, with label 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     aria-label="Select label"
-    class="vesper-select vesper-select-sm vesper-select-warning"
-    data-placeholder=""
-    id="_r_8m_"
-    role="combobox"
-    tabindex="0"
-    type="button"
-  >
-    <span
-      class="vesper-typography vesper-typography-copy-xs"
-    >
-      <span
-        data-placeholder=""
-      >
-        Select an option
-      </span>
-    </span>
-    <span
-      class="vesper-select-state-indicator"
-    >
-      <svg
-        class="vesper-select-state-indicator-closed"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
-          fill="currentColor"
-        />
-      </svg>
-      <svg
-        class="vesper-select-state-indicator-open"
-        fill="none"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
-  </button>
-  <input
-    aria-hidden="true"
-    id="base-ui-_r_8n_-hidden-input"
-    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
-    tabindex="-1"
-    value=""
-  />
-  <output
-    class="vesper-form-input-message vesper-form-input-message-warning"
-    data-message="false"
-  />
-</div>
-`;
-
-exports[`select [snapshot] > sm, warning, with message 1`] = `
-<div
-  class="vesper-form-input-wrapper"
->
-  <button
-    aria-describedby="_r_8q_"
-    aria-expanded="false"
-    aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-warning"
     data-placeholder=""
     id="_r_8r_"
@@ -5520,8 +5455,73 @@ exports[`select [snapshot] > sm, warning, with message 1`] = `
   />
   <output
     class="vesper-form-input-message vesper-form-input-message-warning"
+    data-message="false"
+  />
+</div>
+`;
+
+exports[`select [snapshot] > sm, warning, with message 1`] = `
+<div
+  class="vesper-form-input-wrapper"
+>
+  <button
+    aria-describedby="_r_8v_"
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    class="vesper-select vesper-select-sm vesper-select-warning"
+    data-placeholder=""
+    id="_r_90_"
+    role="combobox"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="vesper-typography vesper-typography-copy-xs"
+    >
+      <span
+        data-placeholder=""
+      >
+        Select an option
+      </span>
+    </span>
+    <span
+      class="vesper-select-state-indicator"
+    >
+      <svg
+        class="vesper-select-state-indicator-closed"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.05859 8L10.8984 14.8291L13.1016 14.8291L19.9414 8L21 9.05664L13.7217 16.3242L10.2783 16.3242L3 9.05664L4.05859 8Z"
+          fill="currentColor"
+        />
+      </svg>
+      <svg
+        class="vesper-select-state-indicator-open"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.9414 16.3242L13.1016 9.49512L10.8984 9.49512L4.05859 16.3242L3 15.2676L10.2783 8L13.7217 8L21 15.2676L19.9414 16.3242Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+  </button>
+  <input
+    aria-hidden="true"
+    id="base-ui-_r_91_-hidden-input"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    value=""
+  />
+  <output
+    class="vesper-form-input-message vesper-form-input-message-warning"
     data-message="true"
-    id="_r_8q_"
+    id="_r_8v_"
   >
     <span
       aria-hidden="true"
@@ -5557,7 +5557,7 @@ exports[`select [snapshot] > sm, warning, with value 1`] = `
     aria-expanded="false"
     aria-haspopup="listbox"
     class="vesper-select vesper-select-sm vesper-select-warning"
-    id="_r_8h_"
+    id="_r_8m_"
     role="combobox"
     tabindex="0"
     type="button"
@@ -5598,7 +5598,7 @@ exports[`select [snapshot] > sm, warning, with value 1`] = `
   </button>
   <input
     aria-hidden="true"
-    id="base-ui-_r_8i_-hidden-input"
+    id="base-ui-_r_8n_-hidden-input"
     style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     value="tigers"

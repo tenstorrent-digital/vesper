@@ -1,3 +1,4 @@
+import { createRef } from "react";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
@@ -509,6 +510,14 @@ describe("select [unit]", () => {
     expect(dialog.querySelector(".vesper-select-popup")).toBeNull();
 
     container.remove();
+  });
+
+  test("triggerRef is forwarded to the trigger button", () => {
+    const triggerRef = createRef<HTMLButtonElement>();
+    const result = render(<Select options={OPTIONS} triggerRef={triggerRef} />);
+    const trigger = result.getByRole("combobox");
+
+    expect(triggerRef.current).toBe(trigger);
   });
 });
 
