@@ -264,6 +264,8 @@ export function Combobox(props: ComboboxProps) {
         }
         message={message ? { text: message, id: messageId } : undefined}
         className={className}
+        ref={mergedRef}
+        {...rest}
       >
         <BaseCombobox.InputGroup
           className={cn(
@@ -271,8 +273,6 @@ export function Combobox(props: ComboboxProps) {
             `vesper-combobox-${size}`,
             `vesper-combobox-${variant}`,
           )}
-          ref={mergedRef}
-          {...rest}
         >
           <Search className="vesper-combobox-search-icon" />
           <Typography
