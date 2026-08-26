@@ -7,7 +7,7 @@ exports[`slider [snapshot] > default 1`] = `
   <div
     class="vesper-range"
     data-orientation="horizontal"
-    id="base-ui-_r_4s_"
+    id="base-ui-_r_5s_"
     role="group"
   >
     <div
@@ -29,14 +29,14 @@ exports[`slider [snapshot] > default 1`] = `
           class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
           data-index="0"
           data-orientation="horizontal"
-          id="base-ui-_r_4t_"
+          id="base-ui-_r_5t_"
           style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 50%;"
         >
           <input
             aria-label="Volume"
             aria-orientation="horizontal"
             aria-valuenow="50"
-            id="base-ui-_r_4v_"
+            id="base-ui-_r_5v_"
             max="100"
             min="0"
             step="1"
@@ -63,7 +63,7 @@ exports[`slider [snapshot] > disabled 1`] = `
     class="vesper-range"
     data-disabled=""
     data-orientation="horizontal"
-    id="base-ui-_r_5g_"
+    id="base-ui-_r_6k_"
     role="group"
   >
     <div
@@ -89,7 +89,7 @@ exports[`slider [snapshot] > disabled 1`] = `
           data-disabled=""
           data-index="0"
           data-orientation="horizontal"
-          id="base-ui-_r_5h_"
+          id="base-ui-_r_6l_"
           style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 50%;"
         >
           <input
@@ -97,7 +97,7 @@ exports[`slider [snapshot] > disabled 1`] = `
             aria-orientation="horizontal"
             aria-valuenow="50"
             disabled=""
-            id="base-ui-_r_5j_"
+            id="base-ui-_r_6n_"
             max="100"
             min="0"
             step="1"
@@ -122,16 +122,15 @@ exports[`slider [snapshot] > variant: default 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="base-ui-_r_62_"
+    for="base-ui-_r_79_"
+    id="_r_75_"
   >
     Label text
   </label>
   <div
-    aria-describedby="_r_5u_"
-    aria-label="Label text"
     class="vesper-range"
     data-orientation="horizontal"
-    id="base-ui-_r_5v_"
+    id="base-ui-_r_76_"
     role="group"
   >
     <div
@@ -153,14 +152,16 @@ exports[`slider [snapshot] > variant: default 1`] = `
           class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
           data-index="0"
           data-orientation="horizontal"
-          id="base-ui-_r_60_"
+          id="base-ui-_r_77_"
           style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 50%;"
         >
           <input
+            aria-describedby="_r_74_"
             aria-label="Volume"
+            aria-labelledby="_r_75_"
             aria-orientation="horizontal"
             aria-valuenow="50"
-            id="base-ui-_r_62_"
+            id="base-ui-_r_79_"
             max="100"
             min="0"
             step="1"
@@ -175,7 +176,7 @@ exports[`slider [snapshot] > variant: default 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
     data-message="true"
-    id="_r_5u_"
+    id="_r_74_"
   >
     <span
       aria-hidden="true"
@@ -209,16 +210,15 @@ exports[`slider [snapshot] > variant: error 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="base-ui-_r_6c_"
+    for="base-ui-_r_7l_"
+    id="_r_7h_"
   >
     Label text
   </label>
   <div
-    aria-describedby="_r_68_"
-    aria-label="Label text"
     class="vesper-range"
     data-orientation="horizontal"
-    id="base-ui-_r_69_"
+    id="base-ui-_r_7i_"
     role="group"
   >
     <div
@@ -240,14 +240,16 @@ exports[`slider [snapshot] > variant: error 1`] = `
           class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
           data-index="0"
           data-orientation="horizontal"
-          id="base-ui-_r_6a_"
+          id="base-ui-_r_7j_"
           style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 50%;"
         >
           <input
+            aria-describedby="_r_7g_"
             aria-label="Volume"
+            aria-labelledby="_r_7h_"
             aria-orientation="horizontal"
             aria-valuenow="50"
-            id="base-ui-_r_6c_"
+            id="base-ui-_r_7l_"
             max="100"
             min="0"
             step="1"
@@ -262,7 +264,7 @@ exports[`slider [snapshot] > variant: error 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-error"
     data-message="true"
-    id="_r_68_"
+    id="_r_7g_"
   >
     <span
       aria-hidden="true"
@@ -296,16 +298,15 @@ exports[`slider [snapshot] > variant: success 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="base-ui-_r_6h_"
+    for="base-ui-_r_7r_"
+    id="_r_7n_"
   >
     Label text
   </label>
   <div
-    aria-describedby="_r_6d_"
-    aria-label="Label text"
     class="vesper-range"
     data-orientation="horizontal"
-    id="base-ui-_r_6e_"
+    id="base-ui-_r_7o_"
     role="group"
   >
     <div
@@ -327,14 +328,16 @@ exports[`slider [snapshot] > variant: success 1`] = `
           class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
           data-index="0"
           data-orientation="horizontal"
-          id="base-ui-_r_6f_"
+          id="base-ui-_r_7p_"
           style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 50%;"
         >
           <input
+            aria-describedby="_r_7m_"
             aria-label="Volume"
+            aria-labelledby="_r_7n_"
             aria-orientation="horizontal"
             aria-valuenow="50"
-            id="base-ui-_r_6h_"
+            id="base-ui-_r_7r_"
             max="100"
             min="0"
             step="1"
@@ -349,7 +352,7 @@ exports[`slider [snapshot] > variant: success 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-success"
     data-message="true"
-    id="_r_6d_"
+    id="_r_7m_"
   >
     <span
       aria-hidden="true"
@@ -381,16 +384,15 @@ exports[`slider [snapshot] > variant: warning 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="base-ui-_r_67_"
+    for="base-ui-_r_7f_"
+    id="_r_7b_"
   >
     Label text
   </label>
   <div
-    aria-describedby="_r_63_"
-    aria-label="Label text"
     class="vesper-range"
     data-orientation="horizontal"
-    id="base-ui-_r_64_"
+    id="base-ui-_r_7c_"
     role="group"
   >
     <div
@@ -412,14 +414,16 @@ exports[`slider [snapshot] > variant: warning 1`] = `
           class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
           data-index="0"
           data-orientation="horizontal"
-          id="base-ui-_r_65_"
+          id="base-ui-_r_7d_"
           style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 50%;"
         >
           <input
+            aria-describedby="_r_7a_"
             aria-label="Volume"
+            aria-labelledby="_r_7b_"
             aria-orientation="horizontal"
             aria-valuenow="50"
-            id="base-ui-_r_67_"
+            id="base-ui-_r_7f_"
             max="100"
             min="0"
             step="1"
@@ -434,7 +438,7 @@ exports[`slider [snapshot] > variant: warning 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-warning"
     data-message="true"
-    id="_r_63_"
+    id="_r_7a_"
   >
     <span
       aria-hidden="true"
@@ -469,7 +473,7 @@ exports[`slider [snapshot] > with custom min/max/step 1`] = `
   <div
     class="vesper-range"
     data-orientation="horizontal"
-    id="base-ui-_r_51_"
+    id="base-ui-_r_62_"
     role="group"
   >
     <div
@@ -491,14 +495,14 @@ exports[`slider [snapshot] > with custom min/max/step 1`] = `
           class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
           data-index="0"
           data-orientation="horizontal"
-          id="base-ui-_r_52_"
+          id="base-ui-_r_63_"
           style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 40.386473429951685%;"
         >
           <input
             aria-label="Volume"
             aria-orientation="horizontal"
             aria-valuenow="4"
-            id="base-ui-_r_54_"
+            id="base-ui-_r_65_"
             max="10"
             min="0"
             step="2"
@@ -523,15 +527,15 @@ exports[`slider [snapshot] > with label 1`] = `
 >
   <label
     class="vesper-typography vesper-typography-label-sm vesper-form-input-wrapper-label"
-    for="base-ui-_r_5o_"
+    for="base-ui-_r_6t_"
+    id="_r_6p_"
   >
     Label text
   </label>
   <div
-    aria-label="Label text"
     class="vesper-range"
     data-orientation="horizontal"
-    id="base-ui-_r_5l_"
+    id="base-ui-_r_6q_"
     role="group"
   >
     <div
@@ -553,14 +557,15 @@ exports[`slider [snapshot] > with label 1`] = `
           class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
           data-index="0"
           data-orientation="horizontal"
-          id="base-ui-_r_5m_"
+          id="base-ui-_r_6r_"
           style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 50%;"
         >
           <input
             aria-label="Volume"
+            aria-labelledby="_r_6p_"
             aria-orientation="horizontal"
             aria-valuenow="50"
-            id="base-ui-_r_5o_"
+            id="base-ui-_r_6t_"
             max="100"
             min="0"
             step="1"
@@ -584,10 +589,9 @@ exports[`slider [snapshot] > with message 1`] = `
   class="vesper-form-input-wrapper"
 >
   <div
-    aria-describedby="_r_5p_"
     class="vesper-range"
     data-orientation="horizontal"
-    id="base-ui-_r_5q_"
+    id="base-ui-_r_70_"
     role="group"
   >
     <div
@@ -609,14 +613,15 @@ exports[`slider [snapshot] > with message 1`] = `
           class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
           data-index="0"
           data-orientation="horizontal"
-          id="base-ui-_r_5r_"
+          id="base-ui-_r_71_"
           style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 50%;"
         >
           <input
+            aria-describedby="_r_6u_"
             aria-label="Volume"
             aria-orientation="horizontal"
             aria-valuenow="50"
-            id="base-ui-_r_5t_"
+            id="base-ui-_r_73_"
             max="100"
             min="0"
             step="1"
@@ -631,7 +636,7 @@ exports[`slider [snapshot] > with message 1`] = `
   <output
     class="vesper-form-input-message vesper-form-input-message-default"
     data-message="true"
-    id="_r_5p_"
+    id="_r_6u_"
   >
     <span
       aria-hidden="true"
@@ -666,7 +671,7 @@ exports[`slider [snapshot] > with ticks 1`] = `
   <div
     class="vesper-range"
     data-orientation="horizontal"
-    id="base-ui-_r_56_"
+    id="base-ui-_r_68_"
     role="group"
   >
     <div
@@ -704,14 +709,14 @@ exports[`slider [snapshot] > with ticks 1`] = `
           class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
           data-index="0"
           data-orientation="horizontal"
-          id="base-ui-_r_57_"
+          id="base-ui-_r_69_"
           style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 40.386473429951685%;"
         >
           <input
             aria-label="Volume"
             aria-orientation="horizontal"
             aria-valuenow="2"
-            id="base-ui-_r_59_"
+            id="base-ui-_r_6b_"
             max="5"
             min="0"
             step="1"
@@ -737,7 +742,7 @@ exports[`slider [snapshot] > with value label 1`] = `
   <div
     class="vesper-range vesper-range-labeled"
     data-orientation="horizontal"
-    id="base-ui-_r_5b_"
+    id="base-ui-_r_6e_"
     role="group"
   >
     <div
@@ -759,14 +764,14 @@ exports[`slider [snapshot] > with value label 1`] = `
           class="vesper-typography vesper-typography-label-xs vesper-range-thumb vesper-range-thumb-labeled"
           data-index="0"
           data-orientation="horizontal"
-          id="base-ui-_r_5c_"
+          id="base-ui-_r_6f_"
           style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 74.03381642512076%; --vesper-range-thumb-label: "75%";"
         >
           <input
             aria-label="Volume"
             aria-orientation="horizontal"
             aria-valuenow="75"
-            id="base-ui-_r_5e_"
+            id="base-ui-_r_6h_"
             max="100"
             min="0"
             step="1"

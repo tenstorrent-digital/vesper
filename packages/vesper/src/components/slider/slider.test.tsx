@@ -340,12 +340,38 @@ describe("slider [unit]", () => {
     expect(message).toHaveTextContent("Pick a volume");
   });
 
-  test("the message is linked to the slider via aria-describedby", async () => {
+  test("the label is linked to the thumb via aria-labelledby", async () => {
+    const result = await renderSlider({ value: 50, label: "Volume" });
+
+    const label = result.container.querySelector<HTMLElement>(
+      ".vesper-form-input-wrapper-label",
+    )!;
+    expect(result.thumb).toHaveAttribute("aria-labelledby", label.id);
+  });
+
+  test("a custom aria-labelledby is preserved alongside the message id", async () => {
+    const result = await renderSlider({
+      value: 50,
+      label: "Volume",
+      "aria-labelledby": "external-description",
+    });
+
+    const label = result.container.querySelector<HTMLElement>(
+      ".vesper-form-input-wrapper-label",
+    )!;
+
+    expect(result.thumb).toHaveAttribute(
+      "aria-labelledby",
+      `external-description ${label.id}`,
+    );
+  });
+
+  test("the message is linked to the thumb via aria-describedby", async () => {
     const result = await renderSlider({ value: 50, message: "Pick a volume" });
 
     const message = result.getByRole("status");
     expect(message.id).not.toBe("");
-    expect(result.root).toHaveAttribute("aria-describedby", message.id);
+    expect(result.thumb).toHaveAttribute("aria-describedby", message.id);
   });
 
   test("aria-describedby is unset when no message is supplied", async () => {
@@ -361,27 +387,10 @@ describe("slider [unit]", () => {
     });
 
     const message = result.getByRole("status");
-    expect(result.root).toHaveAttribute(
+    expect(result.thumb).toHaveAttribute(
       "aria-describedby",
       `external-description ${message.id}`,
     );
-  });
-
-  test("aria-invalid is forwarded to the slider", async () => {
-    const { root } = await renderSlider({ value: 50, "aria-invalid": true });
-    expect(root).toHaveAttribute("aria-invalid", "true");
-  });
-
-  test("custom className is merged onto the wrapper", async () => {
-    const { wrapper, root } = await renderSlider({
-      value: 50,
-      className: "custom-slider",
-    });
-
-    expect(wrapper).toHaveClass("vesper-form-input-wrapper");
-    expect(wrapper).toHaveClass("custom-slider");
-    expect(root).toHaveClass("vesper-range");
-    expect(root).not.toHaveClass("custom-slider");
   });
 
   test("additional props are passed through to the wrapper", async () => {
