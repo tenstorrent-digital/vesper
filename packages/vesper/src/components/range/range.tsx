@@ -149,6 +149,7 @@ export function Range(props: RangeProps) {
     form,
     "aria-describedby": ariaDescribedby,
     "aria-labelledby": ariaLabelledby,
+    "aria-label": ariaLabel,
     variant = "default",
     ...rest
   } = props;
@@ -226,6 +227,7 @@ export function Range(props: RangeProps) {
         minStepsBetweenValues={minStepsBetweenThumbs}
         thumbAlignment="edge"
         thumbCollisionBehavior="none"
+        aria-label={ariaLabel}
       >
         <BaseSlider.Control>
           <BaseSlider.Track className="vesper-range-track">
