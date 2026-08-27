@@ -38,6 +38,17 @@ A multi-thumb range input for selecting a span of numeric values between a minim
 
 Accessibility and form props — including `aria-*` attributes, `title`, `tabIndex`, `autoFocus`, and focus, keyboard, and input event handlers — are forwarded to the slider root element. Layout props, including `className`, `style`, `data-*` attributes, and pointer event handlers, are applied to the wrapping `<div>` element. `aria-describedby` is applied to each thumb, and the value ARIA attributes (`aria-valuenow` and friends) are managed per thumb by the component. `role` is managed by the component and cannot be overridden.
 
+When `variant` is `"error"`, the control is marked `aria-invalid`, so the error state is reported to assistive technology rather than being conveyed by styling alone. This can be overridden by passing `aria-invalid` yourself. The `message` is associated with the control via `aria-describedby` for every variant. If you need `aria-errormessage` pointing at a specific error node, pass it yourself — it is forwarded to the control.
+
+For anything the routing rules can't infer, `controlProps` and `wrapperProps` apply props directly to a given element. `className`, `style`, and event handlers are merged with the component's own rather than replacing them:
+
+```tsx
+<Range
+  controlProps={{ "data-1p-ignore": true }}
+  wrapperProps={{ id: "field-wrapper" }}
+/>
+```
+
 If you only need to select a single value, reach for [the `Slider` component](./slider.mdx) instead: it renders the same track, ticks, and labels, but exposes a single-value API.
 
 ## Examples

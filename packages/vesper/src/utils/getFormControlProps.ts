@@ -24,8 +24,18 @@ export interface GetFormControlPropsOptions {
   message?: string;
   /** Whether the control is required, which appends an asterisk to the label */
   required?: boolean;
+  /** Whether the control is in an invalid state, normally derived from `variant === "error"` */
+  invalid?: boolean;
+  /** The accessible name used when the consumer supplies neither `aria-label` nor `aria-labelledby` */
+  defaultAriaLabel?: string;
+  /** A consumer-supplied `aria-label` */
+  ariaLabel?: string;
+  /** A consumer-supplied `aria-labelledby` */
+  ariaLabelledby?: string;
   /** A consumer-supplied `aria-describedby`, merged with the message id rather than replaced */
   ariaDescribedby?: string;
+  /** A consumer-supplied `aria-invalid`, which takes precedence over `invalid` */
+  ariaInvalid?: boolean | "true" | "false" | "grammar" | "spelling";
   /** How the label is associated with the control. @default htmlFor */
   labelAssociation?: FormControlLabelAssociation;
 }
@@ -35,6 +45,10 @@ export interface FormControlProps {
   describedBy: string | undefined;
   /** The control's `aria-labelledby`, set only when associating via `aria-labelledby` */
   labelledBy: string | undefined;
+  /** The control's accessible name, suppressed when `aria-labelledby` supplies one instead */
+  ariaLabel: string | undefined;
+  /** The control's `aria-invalid` */
+  ariaInvalid: boolean | "true" | "false" | "grammar" | "spelling" | undefined;
   /** The `label` prop for `FormInputWrapper` */
   labelProps: { text: string; htmlFor?: string; id?: string } | undefined;
   /** The `message` prop for `FormInputWrapper` */
@@ -42,23 +56,27 @@ export interface FormControlProps {
 }
 
 /**
- * Builds the shared wiring every form input needs: the merged `aria-describedby`, and the `label`
- * and `message` props for `FormInputWrapper`.
+ * Builds the shared accessibility wiring every form input needs: the merged `aria-describedby`, the
+ * resolved accessible name, the invalid state, and the `label` and `message` props for
+ * `FormInputWrapper`.
  *
- * Replaces logic that was previously copy-pasted into each form input, most notably the
- * `aria-describedby` merge, which appeared verbatim in six components.
+ * Three rules are worth calling out:
  *
- * Id generation stays with the caller for now; moving it here is a later step, because deriving
- * ids (`${id}-message`) changes the generated values.
+ * - The message is always associated through `aria-describedby`, which is universally supported.
+ *   `aria-errormessage` is left to the consumer: it is only meaningful when pointing at a specific
+ *   error node, and it adds nothing over `aria-describedby` for the message this component renders.
+ * - A supplied `aria-labelledby` suppresses the default `aria-label`, so the two don't compete for
+ *   the accessible name.
+ * - Consumer values always win over derived ones.
+ *
+ * Id generation stays with the caller for now, because deriving ids changes the generated values.
  *
  * @example
- * const { describedBy, labelProps, messageProps } = getFormControlProps({
+ * const { describedBy, ariaInvalid } = getFormControlProps({
  *   controlId,
  *   messageId,
- *   label,
  *   message,
- *   required,
- *   ariaDescribedby,
+ *   invalid: variant === "error",
  * });
  */
 export function getFormControlProps({
@@ -68,10 +86,18 @@ export function getFormControlProps({
   label,
   message,
   required,
+  invalid,
+  defaultAriaLabel,
+  ariaLabel,
+  ariaLabelledby,
   ariaDescribedby,
+  ariaInvalid,
   labelAssociation = "htmlFor",
 }: GetFormControlPropsOptions): FormControlProps {
   const usesHtmlFor = labelAssociation === "htmlFor";
+
+  const labelledBy =
+    ariaLabelledby ?? (!usesHtmlFor && label ? labelId : undefined);
 
   // if an additional aria-describedby is supplied, this ensures that both ids get used
   const describedBy =
@@ -88,7 +114,11 @@ export function getFormControlProps({
 
   return {
     describedBy,
-    labelledBy: !usesHtmlFor && label ? labelId : undefined,
+    labelledBy,
+    // a supplied aria-labelledby already provides the accessible name, so the default would only
+    // compete with it
+    ariaLabel: ariaLabel ?? (labelledBy ? undefined : defaultAriaLabel),
+    ariaInvalid: ariaInvalid ?? (invalid || undefined),
     labelProps,
     messageProps: message ? { text: message, id: messageId } : undefined,
   };

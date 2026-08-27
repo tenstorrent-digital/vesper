@@ -110,6 +110,8 @@ export type FormProp = (typeof FORM_PROPS)[number];
 
 export type ControlProp = (typeof CONTROL_PROPS)[number];
 
+export type DeniedProp = (typeof DENIED_PROPS)[number];
+
 /**
  * Every prop a form input routes away from its wrapper and onto the control.
  *
@@ -122,24 +124,39 @@ export type FormInputControlProp =
   | ControlProp
   | Exclude<
       keyof AriaAttributes,
-      (typeof WRAPPER_ARIA_PROPS)[number] | (typeof DENIED_PROPS)[number]
+      (typeof WRAPPER_ARIA_PROPS)[number] | DeniedProp
     >;
+
+/**
+ * Explicit prop bags, for anything the routing rules can't infer — a vendor attribute, a
+ * control-scoped `data-testid`, or a ref to the wrapper.
+ *
+ * A control ref is the top-level `ref`, so `controlProps` does not accept one.
+ */
+export interface FormInputSlotProps<E extends ElementType> {
+  /** Props applied directly to the control, merged over the routed props */
+  controlProps?: Omit<ComponentProps<E>, "children" | "ref">;
+  /** Props applied directly to the layout wrapper, merged over the routed props */
+  wrapperProps?: Omit<ComponentProps<"div">, "children">;
+}
 
 /**
  * The prop surface shared by form inputs that render a `FormInputWrapper` around a native control.
  *
  * Control-bound props are typed against the control element, and everything else against the
  * wrapping `div`. Props that don't exist on the given control element are dropped automatically —
- * `pattern` and `multiple`, for instance, resolve away for `textarea`.
+ * `pattern` and `multiple`, for instance, resolve away for `textarea`. Props the router refuses to
+ * route are omitted entirely, so passing one is a compile error rather than a silent no-op.
  */
 export type FormInputProps<E extends ElementType> = Omit<
   ComponentProps<"div">,
-  FormInputControlProp
+  FormInputControlProp | DeniedProp
 > &
   Pick<
     ComponentProps<E>,
     Extract<FormInputControlProp, keyof ComponentProps<E>>
-  >;
+  > &
+  FormInputSlotProps<E>;
 
 const FORM_PROP_SET: ReadonlySet<string> = new Set(FORM_PROPS);
 

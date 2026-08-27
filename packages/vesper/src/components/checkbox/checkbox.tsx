@@ -12,6 +12,7 @@ import {
 import { cn } from "@/utils/cn";
 import { getFormControlProps } from "@/utils/getFormControlProps";
 import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
+import { mergeFormInputProps } from "@/utils/mergeFormInputProps";
 import {
   type FormInputProps,
   splitFormInputProps,
@@ -107,12 +108,16 @@ export function Checkbox(props: CheckboxProps) {
     label,
     message,
     indeterminate,
+    controlProps: controlPropsOverride,
+    wrapperProps: wrapperPropsOverride,
     // control props that also drive component behaviour, re-applied to the input below
     ref,
     id,
     required,
-    "aria-label": ariaLabel = text,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby,
     "aria-describedby": ariaDescribedby,
+    "aria-invalid": ariaInvalid,
     ...rest
   } = props;
 
@@ -130,33 +135,45 @@ export function Checkbox(props: CheckboxProps) {
 
   const messageId = useId();
 
-  const { describedBy, labelProps, messageProps } = getFormControlProps({
+  const control = getFormControlProps({
     controlId: inputId,
     messageId,
     label,
     message,
     required,
+    invalid: variant === "error",
+    defaultAriaLabel: text,
+    ariaLabel,
+    ariaLabelledby,
     ariaDescribedby,
+    ariaInvalid,
   });
 
   return (
     <FormInputWrapper
-      label={labelProps}
-      message={messageProps}
+      label={control.labelProps}
+      message={control.messageProps}
       variant={variant}
-      {...wrapperProps}
+      {...mergeFormInputProps(wrapperProps, wrapperPropsOverride)}
     >
       <label className={cn("vesper-checkbox", `vesper-checkbox-${size}`)}>
         <input
-          {...formProps}
-          {...controlProps}
+          {...mergeFormInputProps(
+            {
+              ...formProps,
+              ...controlProps,
+              type: "checkbox",
+              className: "vesper-checkbox-input",
+              id: inputId,
+              required,
+              "aria-label": control.ariaLabel,
+              "aria-labelledby": control.labelledBy,
+              "aria-describedby": control.describedBy,
+              "aria-invalid": control.ariaInvalid,
+            },
+            controlPropsOverride,
+          )}
           ref={mergedInputRef}
-          type="checkbox"
-          className="vesper-checkbox-input"
-          id={inputId}
-          required={required}
-          aria-label={ariaLabel}
-          aria-describedby={describedBy}
         />
         <div className="vesper-checkbox-box">
           <div className="vesper-checkbox-indicator">

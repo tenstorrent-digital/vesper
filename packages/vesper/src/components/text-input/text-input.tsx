@@ -10,6 +10,7 @@ import {
 
 import { cn } from "@/utils/cn";
 import { getFormControlProps } from "@/utils/getFormControlProps";
+import { mergeFormInputProps } from "@/utils/mergeFormInputProps";
 import {
   type FormInputProps,
   splitFormInputProps,
@@ -114,6 +115,8 @@ export function TextInput(props: TextInputProps) {
     label,
     variant = "default",
     size = "md",
+    controlProps: controlPropsOverride,
+    wrapperProps: wrapperPropsOverride,
     // control props that also drive component behaviour, re-applied to the input below
     ref,
     type = "text",
@@ -121,8 +124,10 @@ export function TextInput(props: TextInputProps) {
     id,
     placeholder = " ",
     required,
-    "aria-label": ariaLabel = label,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby,
     "aria-describedby": ariaDescribedby,
+    "aria-invalid": ariaInvalid,
     ...rest
   } = props;
 
@@ -133,21 +138,26 @@ export function TextInput(props: TextInputProps) {
   let inputId = useId();
   if (id) inputId = id;
 
-  const { describedBy, labelProps, messageProps } = getFormControlProps({
+  const control = getFormControlProps({
     controlId: inputId,
     messageId,
     label,
     message,
     required,
+    invalid: variant === "error",
+    defaultAriaLabel: label,
+    ariaLabel,
+    ariaLabelledby,
     ariaDescribedby,
+    ariaInvalid,
   });
 
   return (
     <FormInputWrapper
       variant={variant}
-      label={labelProps}
-      message={messageProps}
-      {...wrapperProps}
+      label={control.labelProps}
+      message={control.messageProps}
+      {...mergeFormInputProps(wrapperProps, wrapperPropsOverride)}
     >
       <div
         className={cn(
@@ -166,23 +176,29 @@ export function TextInput(props: TextInputProps) {
           </TextInputIcon>
         )}
         <Typography
-          {...formProps}
-          {...controlProps}
-          className="vesper-text-input-field"
+          {...mergeFormInputProps(
+            {
+              ...formProps,
+              ...controlProps,
+              type,
+              disabled,
+              required,
+              id: inputId,
+              placeholder:
+                required && !label && placeholder.trim()
+                  ? `${placeholder.trim()} *`
+                  : placeholder,
+              "aria-label": control.ariaLabel,
+              "aria-labelledby": control.labelledBy,
+              "aria-describedby": control.describedBy,
+              "aria-invalid": control.ariaInvalid,
+              className: "vesper-text-input-field",
+            },
+            controlPropsOverride,
+          )}
           as="input"
           ref={ref}
           variant={TEXT_INPUT_TYPOGRAPHY[size]}
-          type={type}
-          disabled={disabled}
-          required={required}
-          id={inputId}
-          placeholder={
-            required && !label && placeholder.trim()
-              ? `${placeholder.trim()} *`
-              : placeholder
-          }
-          aria-label={ariaLabel}
-          aria-describedby={describedBy}
         />
         {iconRight && (
           <TextInputIcon

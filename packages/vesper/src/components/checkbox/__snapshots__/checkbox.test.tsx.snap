@@ -1930,6 +1930,7 @@ exports[`checkbox [snapshot] > variant: error, with message 1`] = `
   >
     <input
       aria-describedby="_r_4t_"
+      aria-invalid="true"
       aria-label="Checkbox text"
       class="vesper-checkbox-input"
       id="_r_4s_"

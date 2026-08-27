@@ -29,6 +29,17 @@ A multi-line text input component supporting optional labels and validation mess
 
 Accessibility and form props — including `aria-*` attributes, `title`, `tabIndex`, `autoFocus`, and focus, keyboard, and input event handlers — are forwarded to the underlying `<textarea>` element. Layout props, including `className`, `style`, `data-*` attributes, and pointer event handlers, are applied to the wrapping `<div>` element. `role` is managed by the component and cannot be overridden.
 
+When `variant` is `"error"`, the control is marked `aria-invalid`, so the error state is reported to assistive technology rather than being conveyed by styling alone. This can be overridden by passing `aria-invalid` yourself. The `message` is associated with the control via `aria-describedby` for every variant. If you need `aria-errormessage` pointing at a specific error node, pass it yourself — it is forwarded to the control.
+
+For anything the routing rules can't infer, `controlProps` and `wrapperProps` apply props directly to a given element. `className`, `style`, and event handlers are merged with the component's own rather than replacing them:
+
+```tsx
+<TextArea
+  controlProps={{ "data-1p-ignore": true }}
+  wrapperProps={{ id: "field-wrapper" }}
+/>
+```
+
 Unlike [the `TextInput` component](./text-input.mdx), `TextArea` does not support icons or a `type` prop, since neither of them apply to multi-line text.
 
 ## Examples

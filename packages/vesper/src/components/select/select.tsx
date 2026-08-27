@@ -18,6 +18,7 @@ import {
 } from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
 import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
+import { mergeFormInputProps } from "@/utils/mergeFormInputProps";
 import {
   type FormInputProps,
   splitFormInputProps,
@@ -165,11 +166,15 @@ export function Select(props: SelectProps) {
     message,
     label,
     disabled,
+    controlProps: controlPropsOverride,
+    wrapperProps: wrapperPropsOverride,
     // control props that also drive component behaviour, re-applied to the trigger below
     ref,
     id,
-    "aria-label": ariaLabel = label,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby,
     "aria-describedby": ariaDescribedby,
+    "aria-invalid": ariaInvalid,
     ...rest
   } = props;
 
@@ -190,13 +195,18 @@ export function Select(props: SelectProps) {
   let inputId = useId();
   if (id) inputId = id;
 
-  const { describedBy, labelProps, messageProps } = getFormControlProps({
+  const control = getFormControlProps({
     controlId: inputId,
     messageId,
     label,
     message,
     required,
+    invalid: variant === "error",
+    defaultAriaLabel: label,
+    ariaLabel,
+    ariaLabelledby,
     ariaDescribedby,
+    ariaInvalid,
   });
 
   const items = useMemo(
@@ -210,9 +220,9 @@ export function Select(props: SelectProps) {
   return (
     <FormInputWrapper
       variant={variant}
-      label={labelProps}
-      message={messageProps}
-      {...wrapperProps}
+      label={control.labelProps}
+      message={control.messageProps}
+      {...mergeFormInputProps(wrapperProps, wrapperPropsOverride)}
     >
       <BaseSelect.Root
         items={items}
@@ -225,17 +235,24 @@ export function Select(props: SelectProps) {
         form={form}
       >
         <BaseSelect.Trigger
-          {...controlProps}
-          className={cn(
-            "vesper-select",
-            `vesper-select-${size}`,
-            `vesper-select-${variant}`,
+          {...mergeFormInputProps(
+            {
+              ...controlProps,
+              disabled,
+              id: inputId,
+              "aria-label": control.ariaLabel,
+              "aria-labelledby": control.labelledBy,
+              "aria-describedby": control.describedBy,
+              "aria-invalid": control.ariaInvalid,
+              className: cn(
+                "vesper-select",
+                `vesper-select-${size}`,
+                `vesper-select-${variant}`,
+              ),
+            },
+            controlPropsOverride,
           )}
-          disabled={disabled}
-          aria-label={ariaLabel}
-          aria-describedby={describedBy}
           ref={mergedTriggerRef}
-          id={inputId}
         >
           {icon && <span className="vesper-select-icon">{icon}</span>}
           <Typography as="span" variant={SELECT_TRIGGER_TYPOGRAPHY[size]}>

@@ -30,6 +30,7 @@ exports[`text-area [snapshot] > full options 1`] = `
   </label>
   <textarea
     aria-describedby="_r_1u_"
+    aria-invalid="true"
     aria-label="Label text"
     class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-error"
     disabled=""
@@ -167,6 +168,7 @@ exports[`text-area [snapshot] > variant: error 1`] = `
 >
   <textarea
     aria-describedby="_r_1g_"
+    aria-invalid="true"
     class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-error"
     id="_r_1h_"
     placeholder=" "

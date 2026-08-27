@@ -11,6 +11,7 @@ import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
 import { getFormControlProps } from "@/utils/getFormControlProps";
+import { mergeFormInputProps } from "@/utils/mergeFormInputProps";
 import {
   type FormInputProps,
   splitFormInputProps,
@@ -164,8 +165,11 @@ export function Range(props: RangeProps) {
     name,
     form,
     variant = "default",
+    controlProps: controlPropsOverride,
+    wrapperProps: wrapperPropsOverride,
     // control props that also drive component behaviour, re-applied below
     "aria-describedby": ariaDescribedby,
+    "aria-invalid": ariaInvalid,
     ...rest
   } = props;
 
@@ -200,26 +204,34 @@ export function Range(props: RangeProps) {
   );
 
   // If an additional aria-describedby is supplied, this ensures that both ids get used
-  const { describedBy, labelProps, messageProps } = getFormControlProps({
+  const control = getFormControlProps({
     controlId: firstThumbRef?.id,
     messageId,
     label,
     message,
+    invalid: variant === "error",
     ariaDescribedby,
+    ariaInvalid,
   });
 
   return (
     <FormInputWrapper
-      label={labelProps}
-      message={messageProps}
+      label={control.labelProps}
+      message={control.messageProps}
       variant={variant}
-      {...wrapperProps}
+      {...mergeFormInputProps(wrapperProps, wrapperPropsOverride)}
     >
       <BaseSlider.Root
-        {...controlProps}
-        className={cn(
-          "vesper-range",
-          showValueLabels && "vesper-range-labeled",
+        {...mergeFormInputProps(
+          {
+            ...controlProps,
+            "aria-invalid": control.ariaInvalid,
+            className: cn(
+              "vesper-range",
+              showValueLabels && "vesper-range-labeled",
+            ),
+          },
+          controlPropsOverride,
         )}
         value={values}
         defaultValue={defaultValues}
@@ -259,7 +271,7 @@ export function Range(props: RangeProps) {
                 key={index}
                 index={index}
                 inputRef={index === 0 ? setFirstThumbRef : undefined}
-                describedBy={describedBy}
+                describedBy={control.describedBy}
                 ariaLabel={thumbAriaLabels[index]}
                 showLabel={showValueLabels}
                 label={valueLabels?.[index]}

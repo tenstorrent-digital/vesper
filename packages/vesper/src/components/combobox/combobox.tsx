@@ -17,6 +17,8 @@ import {
   type PortalContainer,
 } from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
+import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
+import { mergeFormInputProps } from "@/utils/mergeFormInputProps";
 import {
   type FormInputProps,
   splitFormInputProps,
@@ -199,10 +201,14 @@ export function Combobox(props: ComboboxProps) {
     container,
     label,
     message,
+    controlProps: controlPropsOverride,
+    wrapperProps: wrapperPropsOverride,
     // control props that also drive component behaviour, re-applied to the input below
     ref,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby,
     "aria-describedby": ariaDescribedby,
-    "aria-label": ariaLabel = label,
+    "aria-invalid": ariaInvalid,
     ...rest
   } = props;
 
@@ -211,6 +217,10 @@ export function Combobox(props: ComboboxProps) {
   });
 
   const [innerRef, setInnerRef] = useState<HTMLDivElement | null>(null);
+  const mergedWrapperRef = useMergedRefs(
+    setInnerRef,
+    wrapperPropsOverride?.ref,
+  );
 
   const baseRemSize = useBaseRemSize();
 
@@ -219,13 +229,18 @@ export function Combobox(props: ComboboxProps) {
 
   const messageId = useId();
 
-  const { describedBy, labelProps, messageProps } = getFormControlProps({
+  const control = getFormControlProps({
     controlId: inputId,
     messageId,
     label,
     message,
     required,
+    invalid: variant === "error",
+    defaultAriaLabel: label,
+    ariaLabel,
+    ariaLabelledby,
     ariaDescribedby,
+    ariaInvalid,
   });
 
   const { values, labels } = useMemo(() => {
@@ -278,10 +293,10 @@ export function Combobox(props: ComboboxProps) {
     >
       <FormInputWrapper
         variant={variant}
-        label={labelProps}
-        message={messageProps}
-        ref={setInnerRef}
-        {...wrapperProps}
+        label={control.labelProps}
+        message={control.messageProps}
+        {...mergeFormInputProps(wrapperProps, wrapperPropsOverride)}
+        ref={mergedWrapperRef}
       >
         <BaseCombobox.InputGroup
           className={cn(
@@ -292,15 +307,22 @@ export function Combobox(props: ComboboxProps) {
         >
           <Search className="vesper-combobox-search-icon" />
           <Typography
-            {...controlProps}
+            {...mergeFormInputProps(
+              {
+                ...controlProps,
+                id: inputId,
+                placeholder,
+                "aria-label": control.ariaLabel,
+                "aria-labelledby": control.labelledBy,
+                "aria-describedby": control.describedBy,
+                "aria-invalid": control.ariaInvalid,
+                className: "vesper-combobox-input",
+              },
+              controlPropsOverride,
+            )}
             as={BaseCombobox.Input}
             ref={ref}
-            aria-describedby={describedBy}
-            aria-label={ariaLabel}
-            id={inputId}
             variant={COMBOBOX_TYPOGRAPHY[size]}
-            placeholder={placeholder}
-            className="vesper-combobox-input"
           />
           <BaseCombobox.Clear
             className="vesper-combobox-clear"

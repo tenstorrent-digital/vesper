@@ -105,3 +105,105 @@ describe("getFormControlProps", () => {
     });
   });
 });
+
+describe("getFormControlProps validation wiring", () => {
+  const invalidOptions = {
+    ...baseOptions,
+    invalid: true,
+    message: "Something went wrong",
+  };
+
+  test("marks the control invalid", () => {
+    expect(getFormControlProps(invalidOptions).ariaInvalid).toBe(true);
+  });
+
+  test("marks the control invalid even without a message", () => {
+    const { ariaInvalid } = getFormControlProps({
+      ...baseOptions,
+      invalid: true,
+    });
+
+    expect(ariaInvalid).toBe(true);
+  });
+
+  test("associates the message via aria-describedby, which is universally supported", () => {
+    expect(getFormControlProps(invalidOptions).describedBy).toBe("message-id");
+  });
+
+  test("leaves aria-errormessage to the consumer", () => {
+    expect(getFormControlProps(invalidOptions)).not.toHaveProperty(
+      "ariaErrormessage",
+    );
+  });
+
+  test("still merges a consumer aria-describedby when invalid", () => {
+    const { describedBy } = getFormControlProps({
+      ...invalidOptions,
+      ariaDescribedby: "external-id",
+    });
+
+    expect(describedBy).toBe("external-id message-id");
+  });
+
+  test("a consumer aria-invalid wins over the derived value", () => {
+    const { ariaInvalid } = getFormControlProps({
+      ...invalidOptions,
+      ariaInvalid: "grammar",
+    });
+
+    expect(ariaInvalid).toBe("grammar");
+  });
+
+  test("a valid control is not marked invalid", () => {
+    const { ariaInvalid } = getFormControlProps({
+      ...baseOptions,
+      message: "Helper text",
+    });
+
+    expect(ariaInvalid).toBeUndefined();
+  });
+});
+
+describe("getFormControlProps accessible name", () => {
+  test("falls back to the default when nothing is supplied", () => {
+    const { ariaLabel } = getFormControlProps({
+      ...baseOptions,
+      defaultAriaLabel: "Email",
+    });
+
+    expect(ariaLabel).toBe("Email");
+  });
+
+  test("a consumer aria-label wins over the default", () => {
+    const { ariaLabel } = getFormControlProps({
+      ...baseOptions,
+      defaultAriaLabel: "Email",
+      ariaLabel: "Custom",
+    });
+
+    expect(ariaLabel).toBe("Custom");
+  });
+
+  test("a supplied aria-labelledby suppresses the default aria-label", () => {
+    const { ariaLabel, labelledBy } = getFormControlProps({
+      ...baseOptions,
+      defaultAriaLabel: "Email",
+      ariaLabelledby: "external-label",
+    });
+
+    expect(ariaLabel).toBeUndefined();
+    expect(labelledBy).toBe("external-label");
+  });
+
+  test("an explicit aria-label is kept alongside aria-labelledby", () => {
+    const { ariaLabel, labelledBy } = getFormControlProps({
+      ...baseOptions,
+      defaultAriaLabel: "Email",
+      ariaLabel: "Custom",
+      ariaLabelledby: "external-label",
+    });
+
+    expect(ariaLabel).toBe("Custom");
+    expect(labelledBy).toBe("external-label");
+  });
+});

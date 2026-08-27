@@ -10,6 +10,7 @@ import {
 
 import { cn } from "@/utils/cn";
 import { getFormControlProps } from "@/utils/getFormControlProps";
+import { mergeFormInputProps } from "@/utils/mergeFormInputProps";
 import {
   type FormInputProps,
   splitFormInputProps,
@@ -76,13 +77,17 @@ export function TextArea(props: TextAreaProps) {
     size = "md",
     resizeable = false,
     height = 104,
+    controlProps: controlPropsOverride,
+    wrapperProps: wrapperPropsOverride,
     // control props that also drive component behaviour, re-applied to the textarea below
     ref,
     id,
     placeholder = " ",
     required,
-    "aria-label": ariaLabel = label,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby,
     "aria-describedby": ariaDescribedby,
+    "aria-invalid": ariaInvalid,
     ...rest
   } = props;
 
@@ -93,29 +98,49 @@ export function TextArea(props: TextAreaProps) {
   let inputId = useId();
   if (id) inputId = id;
 
-  const { describedBy, labelProps, messageProps } = getFormControlProps({
+  const control = getFormControlProps({
     controlId: inputId,
     messageId,
     label,
     message,
     required,
+    invalid: variant === "error",
+    defaultAriaLabel: label,
+    ariaLabel,
+    ariaLabelledby,
     ariaDescribedby,
+    ariaInvalid,
   });
 
   return (
     <FormInputWrapper
-      label={labelProps}
-      message={messageProps}
+      label={control.labelProps}
+      message={control.messageProps}
       variant={variant}
-      {...wrapperProps}
+      {...mergeFormInputProps(wrapperProps, wrapperPropsOverride)}
     >
       <Typography
-        {...formProps}
-        {...controlProps}
-        className={cn(
-          "vesper-text-area",
-          `vesper-text-area-${size}`,
-          `vesper-text-area-${variant}`,
+        {...mergeFormInputProps(
+          {
+            ...formProps,
+            ...controlProps,
+            id: inputId,
+            required,
+            placeholder:
+              required && !label && placeholder.trim()
+                ? `${placeholder.trim()} *`
+                : placeholder,
+            "aria-label": control.ariaLabel,
+            "aria-labelledby": control.labelledBy,
+            "aria-describedby": control.describedBy,
+            "aria-invalid": control.ariaInvalid,
+            className: cn(
+              "vesper-text-area",
+              `vesper-text-area-${size}`,
+              `vesper-text-area-${variant}`,
+            ),
+          },
+          controlPropsOverride,
         )}
         as="textarea"
         style={{
@@ -124,15 +149,6 @@ export function TextArea(props: TextAreaProps) {
         }}
         ref={ref}
         variant={TEXTAREA_TYPOGRAPHY[size]}
-        id={inputId}
-        required={required}
-        placeholder={
-          required && !label && placeholder.trim()
-            ? `${placeholder.trim()} *`
-            : placeholder
-        }
-        aria-label={ariaLabel}
-        aria-describedby={describedBy}
       />
     </FormInputWrapper>
   );

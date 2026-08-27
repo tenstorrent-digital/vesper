@@ -213,6 +213,7 @@ exports[`slider [snapshot] > variant: error 1`] = `
     Label text
   </label>
   <div
+    aria-invalid="true"
     class="vesper-range"
     data-orientation="horizontal"
     id="base-ui-_r_6e_"

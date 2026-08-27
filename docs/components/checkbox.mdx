@@ -32,6 +32,17 @@ A form checkbox input with a label, supporting checked, unchecked, and indetermi
 
 Accessibility and form props — including `aria-*` attributes, `title`, `tabIndex`, `autoFocus`, and focus, keyboard, and input event handlers — are forwarded to the underlying `<input>` element. Layout props, including `className`, `style`, `data-*` attributes, and pointer event handlers, are applied to the wrapping `<div>` element. `role` is managed by the component and cannot be overridden.
 
+When `variant` is `"error"`, the control is marked `aria-invalid`, so the error state is reported to assistive technology rather than being conveyed by styling alone. This can be overridden by passing `aria-invalid` yourself. The `message` is associated with the control via `aria-describedby` for every variant. If you need `aria-errormessage` pointing at a specific error node, pass it yourself — it is forwarded to the control.
+
+For anything the routing rules can't infer, `controlProps` and `wrapperProps` apply props directly to a given element. `className`, `style`, and event handlers are merged with the component's own rather than replacing them:
+
+```tsx
+<Checkbox
+  controlProps={{ "data-1p-ignore": true }}
+  wrapperProps={{ id: "field-wrapper" }}
+/>
+```
+
 Use a `Checkbox` for an individual boolean choice, such as accepting terms or opting into a mailing list. When the user is picking any number of options from a set, reach for [the `Choicebox` component](./choicebox.mdx) in `multiselect` mode instead of rendering a list of checkboxes — it groups the options in a labelled `<fieldset>` and validates how many of them are selected. For other related alternatives, use [the `Switch` component](./switch.mdx) when toggling a setting on and off takes effect immediately, [the `RadioGroup` component](./radio-group.mdx) when exactly one option out of many must be chosen, and [the `Toggle` component](./toggle.mdx) when a compact segmented control fits better than a list.
 
 ## Examples

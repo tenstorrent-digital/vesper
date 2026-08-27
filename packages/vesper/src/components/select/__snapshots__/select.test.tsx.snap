@@ -475,6 +475,7 @@ exports[`select [snapshot] > lg, error 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     class="vesper-select vesper-select-lg vesper-select-error"
     data-placeholder=""
     id="_r_gl_"
@@ -539,6 +540,7 @@ exports[`select [snapshot] > lg, error, disabled 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     class="vesper-select vesper-select-lg vesper-select-error"
     data-disabled=""
     data-placeholder=""
@@ -606,6 +608,7 @@ exports[`select [snapshot] > lg, error, with icon 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     class="vesper-select vesper-select-lg vesper-select-error"
     data-placeholder=""
     id="_r_gv_"
@@ -728,6 +731,7 @@ exports[`select [snapshot] > lg, error, with label 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     aria-label="Select label"
     class="vesper-select vesper-select-lg vesper-select-error"
     data-placeholder=""
@@ -794,6 +798,7 @@ exports[`select [snapshot] > lg, error, with message 1`] = `
     aria-describedby="_r_hd_"
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     class="vesper-select vesper-select-lg vesper-select-error"
     data-placeholder=""
     id="_r_he_"
@@ -882,6 +887,7 @@ exports[`select [snapshot] > lg, error, with value 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     class="vesper-select vesper-select-lg vesper-select-error"
     id="_r_h4_"
     role="combobox"
@@ -2345,6 +2351,7 @@ exports[`select [snapshot] > md, error 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     class="vesper-select vesper-select-md vesper-select-error"
     data-placeholder=""
     id="_r_ct_"
@@ -2409,6 +2416,7 @@ exports[`select [snapshot] > md, error, disabled 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     class="vesper-select vesper-select-md vesper-select-error"
     data-disabled=""
     data-placeholder=""
@@ -2476,6 +2484,7 @@ exports[`select [snapshot] > md, error, with icon 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     class="vesper-select vesper-select-md vesper-select-error"
     data-placeholder=""
     id="_r_d7_"
@@ -2598,6 +2607,7 @@ exports[`select [snapshot] > md, error, with label 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     aria-label="Select label"
     class="vesper-select vesper-select-md vesper-select-error"
     data-placeholder=""
@@ -2664,6 +2674,7 @@ exports[`select [snapshot] > md, error, with message 1`] = `
     aria-describedby="_r_dl_"
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     class="vesper-select vesper-select-md vesper-select-error"
     data-placeholder=""
     id="_r_dm_"
@@ -2752,6 +2763,7 @@ exports[`select [snapshot] > md, error, with value 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     class="vesper-select vesper-select-md vesper-select-error"
     id="_r_dc_"
     role="combobox"
@@ -4215,6 +4227,7 @@ exports[`select [snapshot] > sm, error 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     class="vesper-select vesper-select-sm vesper-select-error"
     data-placeholder=""
     id="_r_95_"
@@ -4279,6 +4292,7 @@ exports[`select [snapshot] > sm, error, disabled 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     class="vesper-select vesper-select-sm vesper-select-error"
     data-disabled=""
     data-placeholder=""
@@ -4346,6 +4360,7 @@ exports[`select [snapshot] > sm, error, with icon 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     class="vesper-select vesper-select-sm vesper-select-error"
     data-placeholder=""
     id="_r_9f_"
@@ -4468,6 +4483,7 @@ exports[`select [snapshot] > sm, error, with label 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     aria-label="Select label"
     class="vesper-select vesper-select-sm vesper-select-error"
     data-placeholder=""
@@ -4534,6 +4550,7 @@ exports[`select [snapshot] > sm, error, with message 1`] = `
     aria-describedby="_r_9t_"
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     class="vesper-select vesper-select-sm vesper-select-error"
     data-placeholder=""
     id="_r_9u_"
@@ -4622,6 +4639,7 @@ exports[`select [snapshot] > sm, error, with value 1`] = `
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
+    aria-invalid="true"
     class="vesper-select vesper-select-sm vesper-select-error"
     id="_r_9k_"
     role="combobox"

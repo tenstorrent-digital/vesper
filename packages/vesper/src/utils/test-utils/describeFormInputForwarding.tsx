@@ -350,5 +350,62 @@ export function describeFormInputForwarding(
 
       expect(onMouseEnter).toHaveBeenCalledTimes(1);
     });
+
+    describe("escape hatches", () => {
+      test("controlProps reaches the control", () => {
+        const { control, wrapper } = renderWith({
+          controlProps: { "data-1p-ignore": "true" },
+        });
+
+        expect(control).toHaveAttribute("data-1p-ignore", "true");
+        expect(wrapper).not.toHaveAttribute("data-1p-ignore");
+      });
+
+      test("wrapperProps reaches the wrapper", () => {
+        const { control, wrapper } = renderWith({
+          wrapperProps: { "data-region": "field" },
+        });
+
+        expect(wrapper).toHaveAttribute("data-region", "field");
+        expect(control).not.toHaveAttribute("data-region");
+      });
+
+      test("wrapperProps.ref resolves to the wrapper", () => {
+        const ref = createRef<HTMLDivElement>();
+        const { wrapper } = renderWith({ wrapperProps: { ref } });
+
+        expect(ref.current).toBe(wrapper);
+      });
+
+      test("controlProps wins over a routed prop of the same name", () => {
+        const { control } = renderWith({
+          "aria-label": "routed",
+          controlProps: { "aria-label": "override" },
+        });
+
+        expect(control).toHaveAttribute("aria-label", "override");
+      });
+
+      test("controlProps className is added rather than replacing the component's", () => {
+        const { control } = renderWith({
+          controlProps: { className: "custom-control" },
+        });
+
+        expect(control).toHaveClass("custom-control");
+        expect(control.className.split(" ").length).toBeGreaterThan(1);
+      });
+
+      test("controlProps handlers compose with routed handlers", () => {
+        const calls: string[] = [];
+        const { control } = renderWith({
+          onKeyDown: () => calls.push("routed"),
+          controlProps: { onKeyDown: () => calls.push("override") },
+        });
+
+        fireEvent.keyDown(control, { key: "a" });
+
+        expect(calls).toEqual(["routed", "override"]);
+      });
+    });
   });
 }

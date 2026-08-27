@@ -129,21 +129,46 @@ suites now cover `select`, `combobox`, and `range` as well, at 63 assertions eac
   whatever the primitive sets itself, otherwise it can't tell a rejected consumer value from Base
   UI's own. `aria-autocomplete` collided at `"list"`.
 
-### PR 3 — P2: semantics and surface (`minor`)
+### PR 3 — P2: semantics and surface (`minor`) ✅ DONE
 
-- [ ] Validation wiring in `useFormControl` (§3.10): `variant === "error" && message` sets
-      `aria-invalid="true"` + `aria-errormessage={messageId}` on the control unless explicitly
-      overridden; `aria-describedby` for non-error variants. This is the fix for the original
-      Copilot review comment
-- [ ] Fix P-10: consumer `aria-labelledby` should suppress the auto `aria-label` default (which
-      currently competes with the `<label htmlFor>` accessible name)
-- [ ] Fix P-11: stop extending `ComponentProps<"div">`; introduce a curated
-      `FormInputWrapperOwnProps` so control-specific ARIA on the wrapper is a **compile error**.
-      Omit `children` everywhere — `TextInputProps` currently accepts it and silently discards it
-- [ ] Add the `controlProps` / `wrapperProps` escape hatch (§3.6, P-8). Precedence:
-      component defaults < routed props < explicit bag; `className`/`style`/handlers merge
-- [ ] Extend `describeFormInputForwarding` to assert the escape hatch and precedence
-- [ ] Add a `minor` changeset
+- [x] Validation wiring in `getFormControlProps` (§3.10): `variant === "error"` sets
+      `aria-invalid="true"` unless explicitly overridden, so the error state is reported
+      programmatically rather than conveyed by styling alone. **Together with P1 routing
+      `aria-errormessage` to the control, this resolves the original Copilot review comment.**
+      Note `aria-invalid` is set for the error variant even without a message, since the field is
+      visually invalid either way.
+      **`aria-errormessage` is deliberately not derived.** The `message` is associated via
+      `aria-describedby` for every variant, which is universally supported; deriving
+      `aria-errormessage` to point at the same node would add nothing over that and risk double
+      announcement. A consumer-supplied `aria-errormessage` (pointing at a specific error node) is
+      forwarded to the control by the router with no special handling.
+- [x] Fix P-10: a supplied `aria-labelledby` now suppresses the auto `aria-label` default. An
+      explicitly-passed `aria-label` is still kept alongside it
+- [x] Fix P-11: denied props (`role`, `aria-hidden`, `children`, `dangerouslySetInnerHTML`) are
+      omitted from `FormInputProps`, so passing one is a compile error rather than a silent no-op.
+      Verified with `@ts-expect-error` probes
+- [x] Add the `controlProps` / `wrapperProps` escape hatch (§3.6, P-8) via
+      `packages/vesper/src/utils/mergeFormInputProps.ts`. Precedence: component defaults < routed
+      props < explicit bag; `className`, `style`, and handlers merge rather than replace. **This is
+      what finally gives `composeEventHandlers` a caller**
+- [x] Extend `describeFormInputForwarding` to assert the escape hatch and precedence (6 new
+      assertions per component)
+- [x] Update the seven component `.mdx` files with the validation semantics and the escape hatch
+- [x] Add a `minor` changeset (`.changeset/olive-schools-tickle.md`)
+
+**Outcome:** full suite green (3019 passed across 55 files), lint + types + format clean. Contract
+suites now run 69 assertions per component across 6 components.
+
+**Snapshot churn was intentional and minimal:** error-variant cases gained `aria-invalid="true"`.
+27 lines across 7 snapshot files; no attribute was removed or moved.
+
+**Scope note on §3.8.** The plan called for replacing `ComponentProps<"div">` with a curated
+`FormInputWrapperOwnProps`, so that control-specific ARIA on the wrapper became a compile error.
+P1 removed that motivation — control ARIA is now *routed to the control*, not silently dropped on
+the wrapper, so there is nothing to make an error. What remained valuable was the denied-prop
+omission above, which targets the actual remaining silent no-op. Narrowing the wrapper surface
+further (dropping legacy React props like `about`, `datatype`, `inlist`, `prefix`) is still
+possible but is now cosmetic, and would remove currently-working props; left undone deliberately.
 
 ### PR 4 — P3: polish (`patch`)
 
