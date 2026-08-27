@@ -12,7 +12,6 @@ import {
 import { cn } from "@/utils/cn";
 import { getFormControlProps } from "@/utils/getFormControlProps";
 import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
-import { mergeFormInputProps } from "@/utils/mergeFormInputProps";
 import {
   type FormInputProps,
   splitFormInputProps,
@@ -108,8 +107,9 @@ export function Checkbox(props: CheckboxProps) {
     label,
     message,
     indeterminate,
-    controlProps: controlPropsOverride,
-    wrapperProps: wrapperPropsOverride,
+    controlData,
+    wrapperId,
+    wrapperRef,
     // control props that also drive component behaviour, re-applied to the input below
     ref,
     id,
@@ -158,25 +158,23 @@ export function Checkbox(props: CheckboxProps) {
       label={control.labelProps}
       message={control.messageProps}
       variant={variant}
-      {...mergeFormInputProps(wrapperProps, wrapperPropsOverride)}
+      {...wrapperProps}
+      id={wrapperId}
+      ref={wrapperRef}
     >
       <label className={cn("vesper-checkbox", `vesper-checkbox-${size}`)}>
         <input
-          {...mergeFormInputProps(
-            {
-              ...formProps,
-              ...controlProps,
-              type: "checkbox",
-              className: "vesper-checkbox-input",
-              id: inputId,
-              required,
-              "aria-label": control.ariaLabel,
-              "aria-labelledby": control.labelledBy,
-              "aria-describedby": control.describedBy,
-              "aria-invalid": control.ariaInvalid,
-            },
-            controlPropsOverride,
-          )}
+          {...formProps}
+          {...controlProps}
+          type="checkbox"
+          className="vesper-checkbox-input"
+          id={inputId}
+          required={required}
+          aria-label={control.ariaLabel}
+          aria-labelledby={control.labelledBy}
+          aria-describedby={control.describedBy}
+          aria-invalid={control.ariaInvalid}
+          {...controlData}
           ref={mergedInputRef}
         />
         <div className="vesper-checkbox-box">

@@ -266,7 +266,8 @@ handlers", so an explicit union is unavoidable — the point is that there is ex
 | `aria-posinset`, `-setsize`, `-level`, `aria-col*`, `aria-row*` | wrapper | describe the field's position in an outer structure |
 | `aria-controls`, `-owns`, `-details`, `-flowto` | control | relationships originate at the interactive element |
 | focus, keyboard, input, clipboard, composition, `onInvalid` | control | **compose** with internal handlers (§3.5) |
-| mouse, pointer, touch, drag, scroll, animation/transition | wrapper | non-bubbling ones are load-bearing |
+| `onScroll`, `onWheel` | control | the element that scrolls is the control, never the wrapper; `onScroll` doesn't bubble, so routing it to the wrapper meant it could never fire |
+| mouse, pointer, touch, drag, animation/transition | wrapper | non-bubbling ones are load-bearing |
 | `onSubmit`, `onReset` | **delete** | can never fire on either element (P-5) |
 | `*Capture` (83 props) | follows its base | strip suffix -> classify -> reapply |
 | `id`, `tabIndex`, `autoFocus`, `spellCheck`, `autoCapitalize`, `autoCorrect`, `enterKeyHint`, `inputMode` | control | |
@@ -285,6 +286,8 @@ Rationale for the two most contested rows:
   the input is roughly equivalent for `Checkbox` (label activation synthesizes a click on the
   control) but **not** for `TextInput`, where clicks on wrapper padding and the icon buttons would
   stop firing. `onMouseEnter`/`onMouseLeave` don't bubble and are usually meant for the whole field.
+  `onScroll`/`onWheel` are the exception: they belong to whichever element overflows, which is
+  always the control.
 
 ### 3.3 Multi-control components
 
@@ -314,31 +317,21 @@ Notes:
 
 ### 3.5 Handler composition
 
-Where the router sends a consumer handler to an element that already has one of ours, the two are
-composed rather than overwritten. Per D-6: **consumer first, internal second, unconditionally.**
+Where the router sends a consumer handler to an element that already has one of ours, the two must
+be composed rather than overwritten. Per D-6: **consumer first, internal second, unconditionally.**
 
-Add `packages/vesper/src/utils/composeEventHandlers.ts`:
-
-```ts
-/**
- * Composes a consumer handler with an internal one. The consumer handler runs first; the internal
- * handler always runs afterwards and cannot be suppressed.
- */
-export function composeEventHandlers<E extends SyntheticEvent>(
-  consumer: ((e: E) => void) | undefined,
-  internal: (e: E) => void,
-): (e: E) => void;
-```
+**No such collision exists in scope, so nothing implements this yet.** `checkbox`, `text-input`, and
+`text-area` attach no internal handlers — they purely forward. `select` and `combobox` delegate to
+Base UI. `Range`'s `onPointerDown` (`range.tsx:279`, pointer capture) sits on the thumb, while a
+consumer's `onPointerDown` routes to the wrapper, so the two never meet. A `composeEventHandlers`
+utility was written and then deleted for want of a caller; it is ~10 lines and should be re-added
+when the deferred components land (§7.7), which do attach internal handlers to elements they render
+themselves.
 
 Consumer-first ordering matches both Base UI and Radix, and means a suppression mechanism could be
 added later without a breaking reorder.
 
-**In-scope collision surface is one site:** `Range`'s `onPointerDown` (`range.tsx:279`, pointer
-capture). `checkbox`, `text-input`, and `text-area` attach no internal handlers — they purely
-forward — and `select`/`combobox` delegate to Base UI. Composition becomes load-bearing when the
-deferred components land (§7.7).
-
-Two caveats to document:
+Two caveats for whoever implements it:
 
 - **This governs handlers *we* compose.** Handlers that reach a Base UI element are additionally
   merged by Base UI's own `mergeProps`, which does support `event.preventBaseUIHandler()`. Vesper
@@ -449,7 +442,7 @@ Land the machinery with **today's routing preserved exactly**. Pure refactor: no
 no snapshot churn, deletes ~700 lines. This gives the behaviour changes in P1 a green, meaningful
 test suite to land against, and keeps the P1 diff reviewable.
 
-1. `splitFormInputProps.ts` + `composeEventHandlers.ts` + `hooks/useFormControl.ts`, satisfying
+1. `splitFormInputProps.ts` + `hooks/useFormControl.ts`, satisfying
    §3.11
 2. `describeFormInputForwarding.tsx` contract suite, plus a `src/**/test-utils/**` entry in
    `packages/vesper/tsconfig.build.json`'s `exclude` so the helper isn't published

@@ -10,7 +10,6 @@ import {
 
 import { cn } from "@/utils/cn";
 import { getFormControlProps } from "@/utils/getFormControlProps";
-import { mergeFormInputProps } from "@/utils/mergeFormInputProps";
 import {
   type FormInputProps,
   splitFormInputProps,
@@ -115,8 +114,9 @@ export function TextInput(props: TextInputProps) {
     label,
     variant = "default",
     size = "md",
-    controlProps: controlPropsOverride,
-    wrapperProps: wrapperPropsOverride,
+    controlData,
+    wrapperId,
+    wrapperRef,
     // control props that also drive component behaviour, re-applied to the input below
     ref,
     type = "text",
@@ -161,7 +161,9 @@ export function TextInput(props: TextInputProps) {
       variant={variant}
       label={control.labelProps}
       message={control.messageProps}
-      {...mergeFormInputProps(wrapperProps, wrapperPropsOverride)}
+      {...wrapperProps}
+      id={wrapperId}
+      ref={wrapperRef}
     >
       <div
         className={cn(
@@ -180,26 +182,23 @@ export function TextInput(props: TextInputProps) {
           </TextInputIcon>
         )}
         <Typography
-          {...mergeFormInputProps(
-            {
-              ...formProps,
-              ...controlProps,
-              type,
-              disabled,
-              required,
-              id: inputId,
-              placeholder:
-                required && !label && placeholder.trim()
-                  ? `${placeholder.trim()} *`
-                  : placeholder,
-              "aria-label": control.ariaLabel,
-              "aria-labelledby": control.labelledBy,
-              "aria-describedby": control.describedBy,
-              "aria-invalid": control.ariaInvalid,
-              className: "vesper-text-input-field",
-            },
-            controlPropsOverride,
-          )}
+          {...formProps}
+          {...controlProps}
+          type={type}
+          disabled={disabled}
+          required={required}
+          id={inputId}
+          placeholder={
+            required && !label && placeholder.trim()
+              ? `${placeholder.trim()} *`
+              : placeholder
+          }
+          aria-label={control.ariaLabel}
+          aria-labelledby={control.labelledBy}
+          aria-describedby={control.describedBy}
+          aria-invalid={control.ariaInvalid}
+          className="vesper-text-input-field"
+          {...controlData}
           as="input"
           ref={ref}
           variant={TEXT_INPUT_TYPOGRAPHY[size]}

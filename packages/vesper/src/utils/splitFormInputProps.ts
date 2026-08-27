@@ -1,4 +1,4 @@
-import type { AriaAttributes, ComponentProps, ElementType } from "react";
+import type { AriaAttributes, ComponentProps, ElementType, Ref } from "react";
 
 import { warnOnce } from "@/utils/warnOnce";
 
@@ -37,6 +37,11 @@ const FORM_PROPS = [
  *
  * `*Capture` variants are not listed: they are resolved by stripping the suffix and classifying the
  * base handler, so the two can never be routed to different elements.
+ *
+ * `onScroll` and `onWheel` are here despite being pointer-adjacent, because the element that
+ * actually scrolls is the control — a `textarea`, or an input whose value overflows — never the
+ * presentational wrapper. `onScroll` does not bubble, so routing it to the wrapper meant it could
+ * never fire at all.
  */
 const CONTROL_PROPS = [
   "autoComplete",
@@ -60,6 +65,8 @@ const CONTROL_PROPS = [
   "onKeyDown",
   "onKeyUp",
   "onPaste",
+  "onScroll",
+  "onWheel",
   "pattern",
   "placeholder",
   "readOnly",
@@ -130,16 +137,27 @@ export type FormInputControlProp =
     >;
 
 /**
- * Explicit prop bags, for anything the routing rules can't infer — a vendor attribute, a
- * control-scoped `data-testid`, or a ref to the wrapper.
- *
- * A control ref is the top-level `ref`, so `controlProps` does not accept one.
+ * Data attributes, the one category of prop the routing rules can't place for you: `data-*` goes to
+ * the wrapper by default, but third-party integrations often need it on the control itself —
+ * password managers (`data-1p-ignore`, `data-lpignore`), analytics hooks, control-scoped test ids.
  */
-export interface FormInputSlotProps<E extends ElementType> {
-  /** Props applied directly to the control, merged over the routed props */
-  controlProps?: Omit<ComponentProps<E>, "children" | "ref">;
-  /** Props applied directly to the layout wrapper, merged over the routed props */
-  wrapperProps?: Omit<ComponentProps<"div">, "children">;
+export type FormInputDataAttributes = {
+  [key: `data-${string}`]: string | number | boolean | undefined;
+};
+
+/**
+ * Escape hatches for the few things the routing rules deliberately don't cover.
+ *
+ * Styling the control is not among them: these components own their own appearance, and a
+ * consumer-supplied `className` or `style` on the control would undermine that.
+ */
+export interface FormInputSlotProps {
+  /** Data attributes applied to the control rather than the wrapper */
+  controlData?: FormInputDataAttributes;
+  /** An `id` applied to the wrapper. The top-level `id` goes to the control. */
+  wrapperId?: string;
+  /** A ref to the wrapper element. The top-level `ref` goes to the control. */
+  wrapperRef?: Ref<HTMLDivElement>;
 }
 
 /**
@@ -158,7 +176,7 @@ export type FormInputProps<E extends ElementType> = Omit<
     ComponentProps<E>,
     Extract<FormInputControlProp, keyof ComponentProps<E>>
   > &
-  FormInputSlotProps<E>;
+  FormInputSlotProps;
 
 const FORM_PROP_SET: ReadonlySet<string> = new Set(FORM_PROPS);
 

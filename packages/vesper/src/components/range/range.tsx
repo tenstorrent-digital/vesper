@@ -11,7 +11,6 @@ import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
 import { getFormControlProps } from "@/utils/getFormControlProps";
-import { mergeFormInputProps } from "@/utils/mergeFormInputProps";
 import {
   type FormInputProps,
   splitFormInputProps,
@@ -166,8 +165,9 @@ export function Range(props: RangeProps) {
     name,
     form,
     variant = "default",
-    controlProps: controlPropsOverride,
-    wrapperProps: wrapperPropsOverride,
+    controlData,
+    wrapperId,
+    wrapperRef,
     // control props that also drive component behaviour, re-applied below
     "aria-describedby": ariaDescribedby,
     "aria-invalid": ariaInvalid,
@@ -223,20 +223,18 @@ export function Range(props: RangeProps) {
       label={control.labelProps}
       message={control.messageProps}
       variant={variant}
-      {...mergeFormInputProps(wrapperProps, wrapperPropsOverride)}
+      {...wrapperProps}
+      id={wrapperId}
+      ref={wrapperRef}
     >
       <BaseSlider.Root
-        {...mergeFormInputProps(
-          {
-            ...controlProps,
-            "aria-invalid": control.ariaInvalid,
-            className: cn(
-              "vesper-range",
-              showValueLabels && "vesper-range-labeled",
-            ),
-          },
-          controlPropsOverride,
+        {...controlProps}
+        aria-invalid={control.ariaInvalid}
+        className={cn(
+          "vesper-range",
+          showValueLabels && "vesper-range-labeled",
         )}
+        {...controlData}
         value={values}
         defaultValue={defaultValues}
         onValueChange={(value: number | number[]) =>

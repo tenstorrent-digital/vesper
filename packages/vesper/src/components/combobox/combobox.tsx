@@ -18,7 +18,6 @@ import {
 } from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
 import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
-import { mergeFormInputProps } from "@/utils/mergeFormInputProps";
 import {
   type FormInputProps,
   splitFormInputProps,
@@ -202,8 +201,9 @@ export function Combobox(props: ComboboxProps) {
     container,
     label,
     message,
-    controlProps: controlPropsOverride,
-    wrapperProps: wrapperPropsOverride,
+    controlData,
+    wrapperId,
+    wrapperRef,
     // control props that also drive component behaviour, re-applied to the input below
     ref,
     "aria-label": ariaLabel,
@@ -219,10 +219,7 @@ export function Combobox(props: ComboboxProps) {
   });
 
   const [innerRef, setInnerRef] = useState<HTMLDivElement | null>(null);
-  const mergedWrapperRef = useMergedRefs(
-    setInnerRef,
-    wrapperPropsOverride?.ref,
-  );
+  const mergedWrapperRef = useMergedRefs(setInnerRef, wrapperRef);
 
   const baseRemSize = useBaseRemSize();
 
@@ -299,7 +296,8 @@ export function Combobox(props: ComboboxProps) {
         variant={variant}
         label={control.labelProps}
         message={control.messageProps}
-        {...mergeFormInputProps(wrapperProps, wrapperPropsOverride)}
+        {...wrapperProps}
+        id={wrapperId}
         ref={mergedWrapperRef}
       >
         <BaseCombobox.InputGroup
@@ -311,19 +309,15 @@ export function Combobox(props: ComboboxProps) {
         >
           <Search className="vesper-combobox-search-icon" />
           <Typography
-            {...mergeFormInputProps(
-              {
-                ...controlProps,
-                id: inputId,
-                placeholder,
-                "aria-label": control.ariaLabel,
-                "aria-labelledby": control.labelledBy,
-                "aria-describedby": control.describedBy,
-                "aria-invalid": control.ariaInvalid,
-                className: "vesper-combobox-input",
-              },
-              controlPropsOverride,
-            )}
+            {...controlProps}
+            id={inputId}
+            placeholder={placeholder}
+            aria-label={control.ariaLabel}
+            aria-labelledby={control.labelledBy}
+            aria-describedby={control.describedBy}
+            aria-invalid={control.ariaInvalid}
+            className="vesper-combobox-input"
+            {...controlData}
             as={BaseCombobox.Input}
             ref={ref}
             variant={COMBOBOX_TYPOGRAPHY[size]}

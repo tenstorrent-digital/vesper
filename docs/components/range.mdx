@@ -40,13 +40,10 @@ Accessibility and form props — including `aria-*` attributes, `title`, `tabInd
 
 When `variant` is `"error"`, the control is marked `aria-invalid`, so the error state is reported to assistive technology rather than being conveyed by styling alone. This can be overridden by passing `aria-invalid` yourself. The `message` is associated with the control via `aria-describedby` for every variant. If you need `aria-errormessage` pointing at a specific error node, pass it yourself — it is forwarded to the control.
 
-For anything the routing rules can't infer, `controlProps` and `wrapperProps` apply props directly to a given element. `className`, `style`, and event handlers are merged with the component's own rather than replacing them:
+`data-*` attributes are applied to the wrapper. Use `controlData` when a third-party integration needs them on the control itself, and `wrapperId` / `wrapperRef` to reach the wrapper, since the top-level `id` and `ref` go to the control:
 
 ```tsx
-<Range
-  controlProps={{ "data-1p-ignore": true }}
-  wrapperProps={{ id: "field-wrapper" }}
-/>
+<Range controlData={{ "data-1p-ignore": true }} wrapperId="field-wrapper" />
 ```
 
 If you only need to select a single value, reach for [the `Slider` component](./slider.mdx) instead: it renders the same track, ticks, and labels, but exposes a single-value API.

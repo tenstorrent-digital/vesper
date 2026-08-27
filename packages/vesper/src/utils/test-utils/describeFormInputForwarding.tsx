@@ -351,60 +351,93 @@ export function describeFormInputForwarding(
       expect(onMouseEnter).toHaveBeenCalledTimes(1);
     });
 
+    test("scroll handlers are attached to the control, which is the element that scrolls", () => {
+      const onScroll = vi.fn();
+      const { control } = renderWith({ onScroll });
+
+      // onScroll does not bubble either, so the wrapper would never see it
+      fireEvent.scroll(control);
+
+      expect(onScroll).toHaveBeenCalledTimes(1);
+    });
+
+    describe("handler buckets", () => {
+      // one representative per bucket, so a mis-routed rule fails here rather than in review
+      const controlHandlers = [
+        ["onPaste", (element: Element) => fireEvent.paste(element)],
+        ["onInput", (element: Element) => fireEvent.input(element)],
+        ["onWheel", (element: Element) => fireEvent.wheel(element)],
+      ] as const;
+
+      const wrapperHandlers = [
+        ["onClick", (element: Element) => fireEvent.click(element)],
+        [
+          "onPointerEnter",
+          (element: Element) => fireEvent.pointerEnter(element),
+        ],
+      ] as const;
+
+      test.each(controlHandlers)(
+        "%s is attached to the control",
+        (prop, fire) => {
+          const [handler, seen] = trackCurrentTarget();
+          const { control } = renderWith({ [prop]: handler });
+
+          fire(control);
+
+          expect(handler).toHaveBeenCalled();
+          expect(seen.currentTarget).toBe(control);
+        },
+      );
+
+      test.each(wrapperHandlers)(
+        "%s is attached to the wrapper",
+        (prop, fire) => {
+          const [handler, seen] = trackCurrentTarget();
+          const { control, wrapper } = renderWith({ [prop]: handler });
+
+          fire(control);
+
+          expect(handler).toHaveBeenCalled();
+          expect(seen.currentTarget).toBe(wrapper);
+        },
+      );
+    });
+
     describe("escape hatches", () => {
-      test("controlProps reaches the control", () => {
+      test("controlData reaches the control, which routed data-* cannot", () => {
         const { control, wrapper } = renderWith({
-          controlProps: { "data-1p-ignore": "true" },
+          "data-region": "field",
+          controlData: { "data-1p-ignore": "true" },
         });
 
         expect(control).toHaveAttribute("data-1p-ignore", "true");
+        expect(control).not.toHaveAttribute("data-region");
+
+        expect(wrapper).toHaveAttribute("data-region", "field");
         expect(wrapper).not.toHaveAttribute("data-1p-ignore");
       });
 
-      test("wrapperProps reaches the wrapper", () => {
+      test("wrapperId applies to the wrapper while id applies to the control", () => {
         const { control, wrapper } = renderWith({
-          wrapperProps: { "data-region": "field" },
+          id: "control-id",
+          wrapperId: "wrapper-id",
         });
 
-        expect(wrapper).toHaveAttribute("data-region", "field");
-        expect(control).not.toHaveAttribute("data-region");
+        expect(control).toHaveAttribute("id", "control-id");
+        expect(wrapper).toHaveAttribute("id", "wrapper-id");
       });
 
-      test("wrapperProps.ref resolves to the wrapper", () => {
-        const ref = createRef<HTMLDivElement>();
-        const { wrapper } = renderWith({ wrapperProps: { ref } });
-
-        expect(ref.current).toBe(wrapper);
-      });
-
-      test("controlProps wins over a routed prop of the same name", () => {
-        const { control } = renderWith({
-          "aria-label": "routed",
-          controlProps: { "aria-label": "override" },
+      test("wrapperRef resolves to the wrapper while ref resolves to the control", () => {
+        const controlRef = createRef<HTMLElement>();
+        const wrapperRef = createRef<HTMLDivElement>();
+        const { control, wrapper } = renderWith({
+          ref: controlRef,
+          wrapperRef,
         });
 
-        expect(control).toHaveAttribute("aria-label", "override");
-      });
-
-      test("controlProps className is added rather than replacing the component's", () => {
-        const { control } = renderWith({
-          controlProps: { className: "custom-control" },
-        });
-
-        expect(control).toHaveClass("custom-control");
-        expect(control.className.split(" ").length).toBeGreaterThan(1);
-      });
-
-      test("controlProps handlers compose with routed handlers", () => {
-        const calls: string[] = [];
-        const { control } = renderWith({
-          onKeyDown: () => calls.push("routed"),
-          controlProps: { onKeyDown: () => calls.push("override") },
-        });
-
-        fireEvent.keyDown(control, { key: "a" });
-
-        expect(calls).toEqual(["routed", "override"]);
+        expect(controlRef.current).toBe(control);
+        expect(wrapperRef.current).toBe(wrapper);
       });
     });
   });

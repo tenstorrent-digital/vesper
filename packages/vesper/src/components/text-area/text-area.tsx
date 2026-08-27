@@ -10,7 +10,6 @@ import {
 
 import { cn } from "@/utils/cn";
 import { getFormControlProps } from "@/utils/getFormControlProps";
-import { mergeFormInputProps } from "@/utils/mergeFormInputProps";
 import {
   type FormInputProps,
   splitFormInputProps,
@@ -77,8 +76,9 @@ export function TextArea(props: TextAreaProps) {
     size = "md",
     resizeable = false,
     height = 104,
-    controlProps: controlPropsOverride,
-    wrapperProps: wrapperPropsOverride,
+    controlData,
+    wrapperId,
+    wrapperRef,
     // control props that also drive component behaviour, re-applied to the textarea below
     ref,
     id,
@@ -121,31 +121,30 @@ export function TextArea(props: TextAreaProps) {
       label={control.labelProps}
       message={control.messageProps}
       variant={variant}
-      {...mergeFormInputProps(wrapperProps, wrapperPropsOverride)}
+      {...wrapperProps}
+      id={wrapperId}
+      ref={wrapperRef}
     >
       <Typography
-        {...mergeFormInputProps(
-          {
-            ...formProps,
-            ...controlProps,
-            id: inputId,
-            required,
-            placeholder:
-              required && !label && placeholder.trim()
-                ? `${placeholder.trim()} *`
-                : placeholder,
-            "aria-label": control.ariaLabel,
-            "aria-labelledby": control.labelledBy,
-            "aria-describedby": control.describedBy,
-            "aria-invalid": control.ariaInvalid,
-            className: cn(
-              "vesper-text-area",
-              `vesper-text-area-${size}`,
-              `vesper-text-area-${variant}`,
-            ),
-          },
-          controlPropsOverride,
+        {...formProps}
+        {...controlProps}
+        id={inputId}
+        required={required}
+        placeholder={
+          required && !label && placeholder.trim()
+            ? `${placeholder.trim()} *`
+            : placeholder
+        }
+        aria-label={control.ariaLabel}
+        aria-labelledby={control.labelledBy}
+        aria-describedby={control.describedBy}
+        aria-invalid={control.ariaInvalid}
+        className={cn(
+          "vesper-text-area",
+          `vesper-text-area-${size}`,
+          `vesper-text-area-${variant}`,
         )}
+        {...controlData}
         as="textarea"
         style={{
           height: `${height / 16}rem`,

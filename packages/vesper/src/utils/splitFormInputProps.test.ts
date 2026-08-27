@@ -25,6 +25,13 @@ describe("classifyFormInputProp", () => {
     expect(classifyFormInputProp(prop)).toBe("control");
   });
 
+  test.each(["onScroll", "onWheel"])(
+    "'%s' is routed to the control, since the control is what scrolls",
+    (prop) => {
+      expect(classifyFormInputProp(prop)).toBe("control");
+    },
+  );
+
   test.each(["className", "style", "onMouseEnter", "onClick"])(
     "'%s' is routed to the wrapper",
     (prop) => {

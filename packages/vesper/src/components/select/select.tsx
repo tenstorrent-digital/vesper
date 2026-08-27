@@ -18,7 +18,6 @@ import {
 } from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
 import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
-import { mergeFormInputProps } from "@/utils/mergeFormInputProps";
 import {
   type FormInputProps,
   splitFormInputProps,
@@ -167,8 +166,9 @@ export function Select(props: SelectProps) {
     message,
     label,
     disabled,
-    controlProps: controlPropsOverride,
-    wrapperProps: wrapperPropsOverride,
+    controlData,
+    wrapperId,
+    wrapperRef,
     // control props that also drive component behaviour, re-applied to the trigger below
     ref,
     id,
@@ -226,7 +226,9 @@ export function Select(props: SelectProps) {
       variant={variant}
       label={control.labelProps}
       message={control.messageProps}
-      {...mergeFormInputProps(wrapperProps, wrapperPropsOverride)}
+      {...wrapperProps}
+      id={wrapperId}
+      ref={wrapperRef}
     >
       <BaseSelect.Root
         items={items}
@@ -239,23 +241,19 @@ export function Select(props: SelectProps) {
         form={form}
       >
         <BaseSelect.Trigger
-          {...mergeFormInputProps(
-            {
-              ...controlProps,
-              disabled,
-              id: inputId,
-              "aria-label": control.ariaLabel,
-              "aria-labelledby": control.labelledBy,
-              "aria-describedby": control.describedBy,
-              "aria-invalid": control.ariaInvalid,
-              className: cn(
-                "vesper-select",
-                `vesper-select-${size}`,
-                `vesper-select-${variant}`,
-              ),
-            },
-            controlPropsOverride,
+          {...controlProps}
+          disabled={disabled}
+          id={inputId}
+          aria-label={control.ariaLabel}
+          aria-labelledby={control.labelledBy}
+          aria-describedby={control.describedBy}
+          aria-invalid={control.ariaInvalid}
+          className={cn(
+            "vesper-select",
+            `vesper-select-${size}`,
+            `vesper-select-${variant}`,
           )}
+          {...controlData}
           ref={mergedTriggerRef}
         >
           {icon && <span className="vesper-select-icon">{icon}</span>}

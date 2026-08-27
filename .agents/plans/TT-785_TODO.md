@@ -44,10 +44,11 @@ snapshot churn, ~700 lines deleted.
     `reserved`), E-5 (per-prop `overrides`)
 - [x] Create `packages/vesper/src/utils/splitFormInputProps.test.ts` — all 53 `aria-*`, the
       `*Capture` rule, `reserved`, `overrides`, `data-*` -> wrapper, deny-list props
-- [x] Create `packages/vesper/src/utils/composeEventHandlers.ts` — consumer handler first, internal
-      second, **unconditionally** (D-6; no `preventDefault` check, no suppression)
-- [x] Create `packages/vesper/src/utils/composeEventHandlers.test.ts` — ordering, and that the
-      internal handler still runs after the consumer calls `preventDefault()`
+- [x] ~~`composeEventHandlers.ts`~~ — written in P0, then deleted once nothing needed it. D-6's
+      convention (consumer first, internal second, no suppression) still stands and is recorded in
+      plan §3.5; the ~10-line utility should be re-added when the deferred components land, since
+      they attach internal handlers to elements they render themselves
+- [x] ~~`composeEventHandlers.test.ts`~~ — deleted alongside the utility
 - [x] ~~`useFormControl.ts`~~ → shipped as `packages/vesper/src/utils/getFormControlProps.ts`.
       It is a plain function, not a hook: id *generation* stays with the callers for now, because
       moving the `useId()` calls changes the generated values and would churn every snapshot. Id
@@ -103,8 +104,8 @@ Goal: flip the defaults. This is where behaviour changes.
 - [x] Fix P-4 in `select`/`combobox`/`range`: non-bubbling handlers now reach the control
 - [x] Compose `Range`'s internal `onPointerDown` with any routed consumer handler — **not needed**:
       `onPointerDown` is a pointer handler, so it routes to the wrapper, and never collides with the
-      thumb's internal handler. `composeEventHandlers` therefore has no in-scope caller yet; it
-      stays for the deferred components (§7.7)
+      thumb's internal handler. `composeEventHandlers` therefore had no in-scope caller; it was
+      later deleted entirely (see follow-ups)
 - [x] Remove the ref aliases (D-8) — `inputRef` from `text-input`, `checkbox`, `combobox`;
       `textareaRef` from `text-area`; `triggerRef` from `select`. `switch.tsx` and `range.tsx`'s
       internal `RangeThumb` prop left alone
@@ -147,10 +148,9 @@ suites now cover `select`, `combobox`, and `range` as well, at 63 assertions eac
 - [x] Fix P-11: denied props (`role`, `aria-hidden`, `children`, `dangerouslySetInnerHTML`) are
       omitted from `FormInputProps`, so passing one is a compile error rather than a silent no-op.
       Verified with `@ts-expect-error` probes
-- [x] Add the `controlProps` / `wrapperProps` escape hatch (§3.6, P-8) via
-      `packages/vesper/src/utils/mergeFormInputProps.ts`. Precedence: component defaults < routed
-      props < explicit bag; `className`, `style`, and handlers merge rather than replace. **This is
-      what finally gives `composeEventHandlers` a caller**
+- [x] Add narrow escape hatches for the three things the routing rules deliberately don't cover:
+      `controlData` (data attributes on the control), `wrapperId`, and `wrapperRef`
+      (§3.6, P-8). **Scope was cut back after review** — see the follow-up below
 - [x] Extend `describeFormInputForwarding` to assert the escape hatch and precedence (6 new
       assertions per component)
 - [x] Update the seven component `.mdx` files with the validation semantics and the escape hatch
@@ -201,6 +201,65 @@ warning was suppressed. Now compared against both `false` and `"false"`.
 prop-forwarding prose in seven `.mdx` files, because leaving statements that were accurate before
 the flip but wrong after would have been worse than the small scope bleed. P3 added the dedicated
 page those sentences now link to.
+
+---
+
+## Follow-ups
+
+### Narrow the escape hatches (`minor`, folded into PR 3) ✅ DONE
+
+The original `controlProps` / `wrapperProps` prop bags were too broad. Reviewing whether they
+earned their keep showed that most of what they allowed was either already reachable or shouldn't
+be allowed at all:
+
+| Use case | Verdict |
+| --- | --- |
+| `onFocus`/`onKeyDown` on the wrapper | Redundant — an outer `<div>` catches them, since both bubble. Verified it also catches focus on `TextInput`'s icon buttons |
+| `className`/`style`/`data-*`/pointer handlers/`dir`/`lang` on the wrapper | Not a use case — these already route there |
+| `id`, `ref` on the wrapper | Only reachable via the hatch, since the top-level ones now go to the control → kept as `wrapperId` and `wrapperRef` |
+| `data-*` on the control | Only reachable via the hatch; needed for password managers and analytics → kept as `controlData` |
+| `className`/`style` on the control | **Removed deliberately.** These components own their appearance; a CSS descendant rule covers the rare case |
+| `role` on the control | **Removed deliberately.** These are self-contained widgets; a gap should be filled in the component under a `minor`, not worked around from outside |
+
+- [x] Replace `wrapperProps` with `wrapperId` and `wrapperRef`
+- [x] Replace `controlProps` with `controlData`, typed as `` { [key: `data-${string}`]: … } ``
+- [x] Delete `mergeFormInputProps.ts` and its tests — with `controlData` limited to `data-*`, which
+      routes to the wrapper by default, an override can never collide with a routed prop, so there
+      is nothing to merge. The `{...mergeFormInputProps({…})}` call sites flattened back to plain
+      JSX attributes
+- [x] Update the contract suite, the seven component `.mdx` files, `docs/prop-forwarding.mdx`, and
+      the changeset
+
+**`dir`/`lang` stay on the wrapper.** They inherit, and the wrapper contains the label, control,
+and message — so one prop covers the whole field, which is the common case. Routing them to the
+control would have forced an ancestor `<div>` for normal usage in order to serve the niche
+"English label, RTL value" case. One caveat worth knowing: `dir="auto"` on a container resolves
+from the first strong directional character in its text, which is the *label* — so per-value
+direction detection isn't supported. Revisit only if someone needs it.
+
+**`composeEventHandlers` was deleted.** `mergeFormInputProps` was its only consumer, and P1 had
+already shown `Range`'s `onPointerDown` doesn't collide with a routed handler. Rather than keep
+~10 lines of unused code, it goes; D-6's convention is recorded in plan §3.5 for whoever implements
+the deferred components, which do attach internal handlers.
+
+### Route `onScroll` and `onWheel` to the control (`patch`) ✅ DONE
+
+Found while reviewing whether the `controlProps`/`wrapperProps` escape hatches had genuine day-zero
+uses. `<TextArea onScroll={…} />` could never fire: §3.2 grouped scroll with the pointer handlers
+and routed it to the wrapper, but the element that overflows is the control, and `onScroll` doesn't
+bubble. The escape hatch was papering over a mis-rule.
+
+- [x] Move `onScroll` and `onWheel` into `CONTROL_PROPS`, with the reasoning recorded in the JSDoc
+- [x] Update the §3.2 matrix in the plan, `docs/prop-forwarding.mdx`, and the router unit tests
+- [x] Add per-bucket handler coverage to `describeFormInputForwarding` — one representative per
+      bucket (`onPaste`, `onInput`, `onWheel` → control; `onClick`, `onPointerEnter` → wrapper),
+      each asserting `currentTarget`, plus a dedicated non-bubbling `onScroll` test. **The suite
+      missed this originally because it only asserted `onMouseEnter` for the wrapper bucket.**
+      Verified the new test fails when the rule is reverted
+- [x] Add a `patch` changeset (`.changeset/olive-hoops-marry.md`)
+
+**Outcome:** 3067 tests across 56 files (+38 from the new bucket coverage), lint + types + format
+clean.
 
 ---
 

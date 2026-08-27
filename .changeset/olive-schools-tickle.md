@@ -2,7 +2,7 @@
 "@tenstorrent/vesper": minor
 ---
 
-Wire up validation semantics, fix competing accessible names, and add explicit prop bags for `Checkbox`, `TextInput`, `TextArea`, `Select`, `Combobox`, `Range`, and `Slider`.
+Wire up validation semantics, fix competing accessible names, and add narrow escape hatches for `Checkbox`, `TextInput`, `TextArea`, `Select`, `Combobox`, `Range`, and `Slider`.
 
 **Error state is now conveyed programmatically.** Setting `variant="error"` previously only changed the styling, so assistive technology had no way to know the field was invalid. The control is now marked `aria-invalid`:
 
@@ -15,15 +15,19 @@ Passing `aria-invalid` yourself still takes precedence. The `message` continues 
 
 **A supplied `aria-labelledby` no longer competes with the default `aria-label`.** These components default `aria-label` to the visible label text, which previously remained in place even when a consumer supplied `aria-labelledby`, leaving two sources for the accessible name. The default is now suppressed. An explicitly-passed `aria-label` is still kept.
 
-**New `controlProps` and `wrapperProps` escape hatches**, for anything the routing rules can't infer — a vendor attribute, a control-scoped `data-testid`, or a ref to the wrapper:
+**New `controlData`, `wrapperId`, and `wrapperRef` props**, covering the three things the routing rules deliberately don't:
 
 ```tsx
 <TextInput
-  controlProps={{ "data-1p-ignore": true }}
-  wrapperProps={{ id: "field-wrapper" }}
+  type="password"
+  controlData={{ "data-1p-ignore": true }}
+  wrapperId="email-field"
+  wrapperRef={wrapperRef}
 />
 ```
 
-`className`, `style`, and event handlers are merged with the component's own rather than replacing them. A control ref remains the top-level `ref`.
+`data-*` attributes normally go to the wrapper; `controlData` puts them on the control instead, for password managers, analytics hooks, or a control-scoped test id. `wrapperId` and `wrapperRef` exist because the top-level `id` and `ref` now go to the control.
+
+There is deliberately no way to pass arbitrary props, `className`, or `style` to the control — these components own their own appearance and semantics.
 
 **Props that are not forwarded are now type errors** instead of silent no-ops. `role`, `aria-hidden`, `children`, and `dangerouslySetInnerHTML` were accepted by the prop types but dropped at runtime; passing one no longer compiles. Use `hidden` or `inert` in place of `aria-hidden`.
