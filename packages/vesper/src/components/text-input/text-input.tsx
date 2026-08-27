@@ -1,6 +1,6 @@
 "use client";
 
-import { MouseEvent, type ReactNode, type Ref, useId } from "react";
+import { MouseEvent, type ReactNode, useId } from "react";
 
 import { FormInputWrapper } from "@/components/form-input-wrapper/form-input-wrapper";
 import {
@@ -37,8 +37,6 @@ export interface TextInputProps extends FormInputProps<"input"> {
   message?: string;
   /** An optional label displayed above the input. An asterisk is appended when `required` is `true`. */
   label?: string;
-  /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
-  inputRef?: Ref<HTMLInputElement>;
   /** An optional icon element rendered to the left of the input field. */
   iconLeft?: ReactNode;
   /** Optional click handler for the left icon. When provided, the icon is rendered as a `<button>` instead of a `<span>`. */
@@ -91,7 +89,7 @@ const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
  * @param {string} [props.type] - (optional) The HTML input type. @default text
  * @param {string} [props.placeholder] - (optional) Placeholder text for the input
  *
- * You may also pass any additional props to the underlying `div` wrapper or `input` element
+ * You may also pass any additional props to the underlying `div` wrapper, and a `ref` to access the underlying `input` element
  *
  * @example
  * <TextInput label="Email" name="email" type="email" required />
@@ -112,12 +110,12 @@ export function TextInput(props: TextInputProps) {
     iconLeftAction,
     iconRight,
     iconRightAction,
-    inputRef,
     message,
     label,
     variant = "default",
     size = "md",
     // control props that also drive component behaviour, re-applied to the input below
+    ref,
     type = "text",
     disabled,
     id,
@@ -172,7 +170,7 @@ export function TextInput(props: TextInputProps) {
           {...controlProps}
           className="vesper-text-input-field"
           as="input"
-          ref={inputRef}
+          ref={ref}
           variant={TEXT_INPUT_TYPOGRAPHY[size]}
           type={type}
           disabled={disabled}

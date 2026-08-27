@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  type ComponentProps,
-  type CSSProperties,
-  Ref,
-  useId,
-  useMemo,
-  useState,
-} from "react";
+import { type CSSProperties, Ref, useId, useMemo, useState } from "react";
 import {
   Slider as BaseSlider,
   type SliderThumbState,
@@ -17,6 +10,11 @@ import { FormInputWrapper } from "@/components/form-input-wrapper/form-input-wra
 import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import { getFormControlProps } from "@/utils/getFormControlProps";
+import {
+  type FormInputProps,
+  splitFormInputProps,
+} from "@/utils/splitFormInputProps";
 
 const toValues = (value: number | number[]) =>
   Array.isArray(value) ? value : [value];
@@ -31,8 +29,15 @@ export const RANGE_VARIANTS = [
 export type RangeVariant = (typeof RANGE_VARIANTS)[number];
 
 export interface RangeProps extends Omit<
-  ComponentProps<"div">,
-  "children" | "defaultValue" | "dir"
+  FormInputProps<"div">,
+  | "children"
+  | "defaultValue"
+  | "dir"
+  | "min"
+  | "max"
+  | "name"
+  | "disabled"
+  | "form"
 > {
   /** The values of each thumb (controlled mode). One thumb is rendered per entry in the array. */
   values?: number[];
@@ -71,6 +76,18 @@ export interface RangeProps extends Omit<
   /** The visual variant of the input, which determines its message's color scheme and icon. @default default */
   variant?: RangeVariant;
 }
+
+/**
+ * Value ARIA has no single destination on a multi-thumb slider, and Base UI manages it per-thumb
+ * regardless. Per-thumb accessible names go through `thumbAriaLabels`.
+ */
+const RANGE_RESERVED_PROPS = [
+  "aria-valuemin",
+  "aria-valuemax",
+  "aria-valuenow",
+  "aria-valuetext",
+  "aria-orientation",
+] as const;
 
 /**
  * A multi-thumb range input for selecting a span of numeric values between a minimum and maximum.
@@ -128,7 +145,7 @@ export interface RangeProps extends Omit<
  */
 export function Range(props: RangeProps) {
   const {
-    className,
+    // component-specific props
     thumbAriaLabels,
     values,
     valueLabels,
@@ -146,12 +163,15 @@ export function Range(props: RangeProps) {
     disabled,
     name,
     form,
-    "aria-describedby": ariaDescribedby,
-    "aria-labelledby": ariaLabelledby,
-    "aria-label": ariaLabel,
     variant = "default",
+    // control props that also drive component behaviour, re-applied below
+    "aria-describedby": ariaDescribedby,
     ...rest
   } = props;
+
+  const { controlProps, wrapperProps } = splitFormInputProps(rest, {
+    reserved: RANGE_RESERVED_PROPS,
+  });
 
   const tickPositions = useMemo(() => {
     if (!showTicks) return [];
@@ -180,20 +200,23 @@ export function Range(props: RangeProps) {
   );
 
   // If an additional aria-describedby is supplied, this ensures that both ids get used
-  const describedBy =
-    [ariaDescribedby, message ? messageId : undefined]
-      .filter(Boolean)
-      .join(" ") || undefined;
+  const { describedBy, labelProps, messageProps } = getFormControlProps({
+    controlId: firstThumbRef?.id,
+    messageId,
+    label,
+    message,
+    ariaDescribedby,
+  });
 
   return (
     <FormInputWrapper
-      label={label ? { text: label, htmlFor: firstThumbRef?.id } : undefined}
-      message={message ? { text: message, id: messageId } : undefined}
+      label={labelProps}
+      message={messageProps}
       variant={variant}
-      className={className}
-      {...rest}
+      {...wrapperProps}
     >
       <BaseSlider.Root
+        {...controlProps}
         className={cn(
           "vesper-range",
           showValueLabels && "vesper-range-labeled",
@@ -215,8 +238,6 @@ export function Range(props: RangeProps) {
         minStepsBetweenValues={minStepsBetweenThumbs}
         thumbAlignment="edge"
         thumbCollisionBehavior="none"
-        aria-label={ariaLabel}
-        aria-labelledby={ariaLabelledby}
       >
         <BaseSlider.Control>
           <BaseSlider.Track className="vesper-range-track">

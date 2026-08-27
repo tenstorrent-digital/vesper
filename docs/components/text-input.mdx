@@ -22,13 +22,13 @@ A text input component supporting optional labels, validation messages, and icon
 | `iconRight`       | `ReactNode`                                                                                                                              | An optional icon rendered to the right of the input field.                                                        | —           |
 | `iconRightAction` | `{ handler: (e: MouseEvent<HTMLButtonElement>) => void; ariaLabel: string }`                                                             | When provided, the right icon renders as a `<button>` that calls `handler` when clicked, labelled by `ariaLabel`. | —           |
 | `type`            | `"text" \| "email" \| "password" \| "url" \| "tel" \| "search" \| "number" \| "date" \| "datetime-local" \| "week" \| "month" \| "time"` | The HTML input type.                                                                                              | `"text"`    |
-| `inputRef`        | `Ref<HTMLInputElement>`                                                                                                                  | A ref forwarded to the underlying `<input>` element.                                                              | —           |
+| `ref`             | `Ref<HTMLInputElement>`                                                                                                                  | A ref forwarded to the underlying `<input>` element.                                                              | —           |
 | `placeholder`     | `string`                                                                                                                                 | Placeholder text for the input.                                                                                   | `" "`       |
 | `disabled`        | `boolean`                                                                                                                                | When `true`, prevents interaction.                                                                                | `false`     |
 | `required`        | `boolean`                                                                                                                                | When `true`, marks the input as required.                                                                         | `false`     |
 | `readOnly`        | `boolean`                                                                                                                                | When `true`, makes the input read-only.                                                                           | `false`     |
 
-Any other props are forwarded either to the underlying `<input>` element or to the wrapping `<div>`, depending on the prop.
+Accessibility and form props — including `aria-*` attributes, `title`, `tabIndex`, `autoFocus`, and focus, keyboard, and input event handlers — are forwarded to the underlying `<input>` element. Layout props, including `className`, `style`, `data-*` attributes, and pointer event handlers, are applied to the wrapping `<div>` element. `role` is managed by the component and cannot be overridden.
 
 ## Examples
 
@@ -286,7 +286,7 @@ import { TextInput } from "@tenstorrent/vesper/text-input";
 
 ### Accessing the underlying element
 
-Use the `inputRef` prop when you need direct access to the underlying `<input>` element, eg. to focus it or read its selection:
+Use the `ref` prop when you need direct access to the underlying `<input>` element, eg. to focus it or read its selection:
 
 ```tsx
 import { useRef } from "react"
@@ -297,7 +297,7 @@ const inputRef = useRef<HTMLInputElement>(null)
 
 <TextInput
   placeholder="Search logs"
-  inputRef={inputRef}
+  ref={inputRef}
   iconLeft={<Search />}
   iconLeftAction={{
     handler: () => inputRef.current?.focus(),

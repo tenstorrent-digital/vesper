@@ -1,6 +1,6 @@
 "use client";
 
-import { type Ref, useId } from "react";
+import { useId } from "react";
 
 import { FormInputWrapper } from "@/components/form-input-wrapper/form-input-wrapper";
 import {
@@ -32,8 +32,6 @@ export interface TextAreaProps extends Omit<
   FormInputProps<"textarea">,
   "children"
 > {
-  /** A ref forwarded to the underlying `<textarea>` element for direct DOM access. */
-  textareaRef?: Ref<HTMLTextAreaElement>;
   /** The fixed height of the textarea in pixels, scaling with base rem size. @default 104 */
   height?: number;
   /** Whether to allow vertical resizing of the underling `textarea` element. @default false */
@@ -64,7 +62,7 @@ const TEXTAREA_TYPOGRAPHY: { [S in TextAreaSize]: TypographyVariant } = {
  * @param {string} [props.placeholder] - (optional) Placeholder text for the input
  * @param {number} [props.height] - (optional) The fixed height of the textarea in pixels, scaling with base rem size. @default 104
  *
- * You may also pass any additional props to the underlying `div` wrapper or `textarea` element
+ * You may also pass any additional props to the underlying `div` wrapper, and a `ref` to access the underlying `textarea` element
 
  * @example
  * <TextArea label="Bio" height={120} maxLength={500} />
@@ -72,7 +70,6 @@ const TEXTAREA_TYPOGRAPHY: { [S in TextAreaSize]: TypographyVariant } = {
 export function TextArea(props: TextAreaProps) {
   const {
     // component-specific props
-    textareaRef,
     message,
     label,
     variant = "default",
@@ -80,6 +77,7 @@ export function TextArea(props: TextAreaProps) {
     resizeable = false,
     height = 104,
     // control props that also drive component behaviour, re-applied to the textarea below
+    ref,
     id,
     placeholder = " ",
     required,
@@ -124,7 +122,7 @@ export function TextArea(props: TextAreaProps) {
           height: `${height / 16}rem`,
           resize: resizeable ? "block" : "none",
         }}
-        ref={textareaRef}
+        ref={ref}
         variant={TEXTAREA_TYPOGRAPHY[size]}
         id={inputId}
         required={required}

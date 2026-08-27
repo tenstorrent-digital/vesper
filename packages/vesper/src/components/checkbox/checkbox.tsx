@@ -1,6 +1,6 @@
 "use client";
 
-import { Ref, useId, useLayoutEffect, useRef } from "react";
+import { useId, useLayoutEffect, useRef } from "react";
 
 import { FormInputWrapper } from "@/components/form-input-wrapper/form-input-wrapper";
 import { Checkmark, Minus } from "@/components/icons/icons";
@@ -46,8 +46,6 @@ export interface CheckboxProps extends Omit<
   label?: string;
   /** An optional message displayed below the checkbox, paired with a variant-specific icon. Also linked to the input via `aria-describedby`. */
   message?: string;
-  /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
-  inputRef?: Ref<HTMLInputElement>;
 }
 
 const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
@@ -78,7 +76,7 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
  * @param {boolean} [props.required] - (optional) Marks the checkbox as required for form validation, and appends an asterisk to the `label`, or to `text` when no `label` is supplied. @default false
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  *
- * You may also pass any additional props to the wrapping `div` element
+ * You may also pass any additional props to the wrapping `div` element, and a `ref` to access the underlying `input` element
  *
  * @example
  * <Checkbox text="Accept terms" name="terms" required />
@@ -109,8 +107,8 @@ export function Checkbox(props: CheckboxProps) {
     label,
     message,
     indeterminate,
-    inputRef,
     // control props that also drive component behaviour, re-applied to the input below
+    ref,
     id,
     required,
     "aria-label": ariaLabel = text,
@@ -125,7 +123,7 @@ export function Checkbox(props: CheckboxProps) {
     if (innerRef.current) innerRef.current.indeterminate = !!indeterminate;
   }, [indeterminate]);
 
-  const mergedInputRef = useMergedRefs(inputRef, innerRef);
+  const mergedInputRef = useMergedRefs(ref, innerRef);
 
   let inputId = useId();
   if (id) inputId = id;

@@ -36,11 +36,11 @@ A form-ready, searchable select component that filters a list of options as the 
 | `disabled`                 | `boolean`                                                                           | When `true`, prevents interaction with the input and dropdown.                                                 | `false`             |
 | `readOnly`                 | `boolean`                                                                           | When `true`, the input's value cannot be edited, but it is still submitted with form data.                     | `false`             |
 | `container`                | `HTMLElement \| ShadowRoot \| null \| RefObject<HTMLElement \| ShadowRoot \| null>` | Specify the element or shadow root to portal the dropdown into.                                                | —                   |
-| `inputRef`                 | `Ref<HTMLInputElement>`                                                             | A ref forwarded to the underlying `<input>` element.                                                           | —                   |
+| `ref`                      | `Ref<HTMLInputElement>`                                                             | A ref forwarded to the underlying `<input>` element.                                                           | —                   |
 | `clearButtonAriaLabel`     | `string`                                                                            | Accessible label for the button that clears the currently selected value.                                      | `"Clear selection"` |
 | `dropdownTriggerAriaLabel` | `string`                                                                            | Accessible label for the button that opens the dropdown.                                                       | `"Show options"`    |
 
-Any other props are forwarded to the wrapping `<div>` element.
+Accessibility and form props — including `aria-*` attributes, `title`, `tabIndex`, `autoFocus`, and focus, keyboard, and input event handlers — are forwarded to the underlying `<input>` element. Layout props, including `className`, `style`, `data-*` attributes, and pointer event handlers, are applied to the wrapping `<div>` element. `role` is managed by the component and cannot be overridden, alongside `aria-expanded`, `aria-controls`, `aria-autocomplete`, and `aria-activedescendant`, which the dropdown manages itself.
 
 ### `ComboboxItem` options
 
@@ -506,7 +506,7 @@ The value submitted is the `value` of the selected option, not the text displaye
 
 ### Accessing the underlying element
 
-Use the `inputRef` prop when you need direct access to the underlying `<input>` element, eg. to focus it when a page loads:
+Use the `ref` prop when you need direct access to the underlying `<input>` element, eg. to focus it when a page loads:
 
 ```tsx
 import { useEffect, useRef } from "react"
@@ -521,6 +521,6 @@ useEffect(() => {
 <Combobox
   label="Country"
   options={["Canada", "Japan", "Norway"]}
-  inputRef={inputRef}
+  ref={inputRef}
 />
 ```

@@ -83,43 +83,51 @@ as the router, so `CheckboxProps` now accepts the input-only props it previously
 `<input type="checkbox">`. `TextAreaProps` narrows correctly — `pattern` and friends resolve away,
 since they are not `textarea` attributes.
 
-### PR 2 — P1: apply the routing matrix (`minor`)
+### PR 2 — P1: apply the routing matrix (`minor`) ✅ DONE
 
 Goal: flip the defaults. This is where behaviour changes.
 
-- [ ] Apply the §3.2 matrix to `checkbox`, `text-input`, `text-area`: `aria-*` -> control,
+- [x] Apply the §3.2 matrix to `checkbox`, `text-input`, `text-area`: `aria-*` -> control,
       `title` -> control (D-2), `ref` -> control (D-3), `data-*` stays on the wrapper (D-1)
-- [ ] `packages/vesper/src/components/select/select.tsx` — target map: `form` = `BaseSelect.Root`,
-      `control` = `BaseSelect.Trigger`; reserve `role`, `aria-expanded`, `aria-controls`,
-      `aria-haspopup`
-- [ ] `packages/vesper/src/components/combobox/combobox.tsx` — target map: `form` =
-      `BaseCombobox.Root`, `control` = `BaseCombobox.Input`; reserve `role`, `aria-expanded`,
-      `aria-controls`, `aria-autocomplete`, `aria-activedescendant`. Do **not** touch the Portal
-      subtree (it is a sibling of the wrapper, which sits inside `BaseCombobox.Root`)
-- [ ] `packages/vesper/src/components/range/range.tsx` + `slider/slider.tsx` — target map, plus the
-      **generic** multi-control opt-out (§3.3 / E-2), not a `Range` special case. Reserve all value
-      ARIA; per-thumb attributes stay in `thumbAriaLabels`
-- [ ] Fix P-3 in `range`/`slider`: `id` currently lands on the wrapper while the label's `htmlFor`
-      points at a generated thumb id
-- [ ] Fix P-2 in `select`/`combobox`: `role` and `tabIndex` currently reach the wrapper, producing
-      two nested `role="combobox"` elements and a tab stop that focuses nothing
-- [ ] Fix P-4 in `select`/`combobox`/`range`: route non-bubbling handlers (`onInvalid`,
-      `onMouseEnter`/`onMouseLeave`, `onPointerEnter`/`onPointerLeave`) to the element where they
-      can actually fire
-- [ ] Compose `Range`'s internal `onPointerDown` (`range.tsx:279`, pointer capture) with any routed
-      consumer handler via `composeEventHandlers` — currently last-one-wins
-- [ ] Remove the ref aliases (D-8) — delete `inputRef` from `text-input.tsx`, `checkbox.tsx`,
-      `combobox.tsx`; `textareaRef` from `text-area.tsx`; `triggerRef` from `select.tsx`.
-      **Leave `switch.tsx`'s `inputRef`** (out of scope, D-5) and `range.tsx:267` (internal
-      `RangeThumb` helper prop, not public API)
-- [ ] Update `packages/vesper/src/components/masked-input/masked-input.tsx` — it destructures
-      `inputRef` and merges it with `maskitoRef` (lines 88, 118, 120); switch to `ref`
-- [ ] Update docs: `docs/components/{checkbox,select,combobox,text-area,text-input}.mdx` — prop
-      tables and the "Accessing the underlying element" sections. **Leave `switch.mdx`.**
-      No `apps/website` changes needed — it has zero usages of the aliases
-- [ ] Update `__snapshots__/` (`yarn test:vesper:update`) and review the diff attribute by attribute
-- [ ] Add a `minor` changeset with a "props that changed destination" table, and note the future
-      break from §7.6 (`className`/`data-*` will move for the group components when they migrate)
+- [x] `packages/vesper/src/components/select/select.tsx` — target map: `form` = `BaseSelect.Root`,
+      `control` = `BaseSelect.Trigger`; reserved `aria-expanded`, `aria-controls`, `aria-haspopup`,
+      `tabIndex`
+- [x] `packages/vesper/src/components/combobox/combobox.tsx` — target map: `control` =
+      `BaseCombobox.Input`; reserved `aria-expanded`, `aria-controls`, `aria-autocomplete`,
+      `aria-activedescendant`. Portal subtree untouched
+- [x] `packages/vesper/src/components/range/range.tsx` + `slider/slider.tsx` — target map, plus the
+      **generic** multi-control opt-out (§3.3 / E-2). Value ARIA reserved; per-thumb attributes stay
+      in `thumbAriaLabels`
+- [x] Fix P-3 in `range`/`slider`: `id` now lands on the slider root rather than the wrapper
+- [x] Fix P-2 in `select`/`combobox`: `role` and `tabIndex` no longer reach the wrapper
+- [x] Fix P-4 in `select`/`combobox`/`range`: non-bubbling handlers now reach the control
+- [x] Compose `Range`'s internal `onPointerDown` with any routed consumer handler — **not needed**:
+      `onPointerDown` is a pointer handler, so it routes to the wrapper, and never collides with the
+      thumb's internal handler. `composeEventHandlers` therefore has no in-scope caller yet; it
+      stays for the deferred components (§7.7)
+- [x] Remove the ref aliases (D-8) — `inputRef` from `text-input`, `checkbox`, `combobox`;
+      `textareaRef` from `text-area`; `triggerRef` from `select`. `switch.tsx` and `range.tsx`'s
+      internal `RangeThumb` prop left alone
+- [x] Update `packages/vesper/src/components/masked-input/masked-input.tsx` ref plumbing
+- [x] Update docs: prop tables and "Accessing the underlying element" sections in
+      `docs/components/{checkbox,select,combobox,text-area,text-input}.mdx`, plus the now-inaccurate
+      prop-forwarding sentences in those five and in `range.mdx` / `slider.mdx`
+- [x] Update `__snapshots__/` — **no churn**: the routing changes only affect props the snapshot
+      cases don't pass
+- [x] Add a `minor` changeset with a "props that changed destination" table
+      (`.changeset/brave-donkeys-repeat.md`)
+
+**Outcome:** full suite green (2963 passed across 54 files), lint + types + format clean. Contract
+suites now cover `select`, `combobox`, and `range` as well, at 63 assertions each.
+
+**Two additions to the contract suite** driven by real behaviour found during the work:
+
+- `distributed` — for attributes a component applies across several inner controls rather than one
+  element. `Range` puts `aria-describedby` on each thumb, so the message is announced when a thumb
+  takes focus; asserting it on a single "control" would have been wrong.
+- `ARIA_RESERVED_TEST_VALUES` — a reserved-attribute assertion needs a test value that differs from
+  whatever the primitive sets itself, otherwise it can't tell a rejected consumer value from Base
+  UI's own. `aria-autocomplete` collided at `"list"`.
 
 ### PR 3 — P2: semantics and surface (`minor`)
 

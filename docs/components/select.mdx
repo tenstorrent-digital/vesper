@@ -37,9 +37,9 @@ A form-ready dropdown select component supporting controlled and uncontrolled us
 | `required`      | `boolean`                                                                           | When `true`, marks the select as required for native form validation.                                                              | `false`              |
 | `disabled`      | `boolean`                                                                           | When `true`, prevents interaction with the trigger and dropdown.                                                                   | `false`              |
 | `container`     | `HTMLElement \| ShadowRoot \| null \| RefObject<HTMLElement \| ShadowRoot \| null>` | Specify the element or shadow root to portal the dropdown into.                                                                    | —                    |
-| `triggerRef`    | `Ref<HTMLButtonElement>`                                                            | A ref forwarded to the underlying select trigger `<button>` element.                                                               | —                    |
+| `ref`           | `Ref<HTMLButtonElement>`                                                            | A ref forwarded to the underlying select trigger `<button>` element.                                                               | —                    |
 
-`aria-label`, `aria-labelledby`, `aria-describedby`, and `aria-invalid` are all forwarded to the select trigger. Any other props are forwarded to the wrapping `<div>` element.
+Accessibility and form props — including `aria-*` attributes, `title`, `tabIndex`, `autoFocus`, and focus, keyboard, and input event handlers — are forwarded to the select trigger `<button>`. Layout props, including `className`, `style`, `data-*` attributes, and pointer event handlers, are applied to the wrapping `<div>` element. `role` is managed by the component and cannot be overridden, alongside `tabIndex`, `aria-expanded`, `aria-controls`, and `aria-haspopup`, which the dropdown manages itself.
 
 ### `SelectItem` options
 
@@ -506,7 +506,7 @@ The value submitted is the `value` of the selected option, not the `label` displ
 
 ### Accessing the underlying element
 
-Use the `triggerRef` prop when you need direct access to the underlying trigger `<button>` element, eg. to focus it when a page loads:
+Use the `ref` prop when you need direct access to the underlying trigger `<button>` element, eg. to focus it when a page loads:
 
 ```tsx
 import { useEffect, useRef } from "react"
@@ -522,6 +522,6 @@ useEffect(() => {
   label="Region"
   placeholder="Select a region"
   options={["United States", "Europe", "Asia Pacific"]}
-  triggerRef={triggerRef}
+  ref={triggerRef}
 />
 ```

@@ -474,11 +474,9 @@ describe("checkbox [unit]", () => {
     expect(checkbox).toBeChecked();
   });
 
-  test("inputRef exposes the input element", () => {
+  test("ref exposes the input element", () => {
     const inputRef = createRef<HTMLInputElement>();
-    const result = render(
-      <Checkbox text="Checkbox text" inputRef={inputRef} />,
-    );
+    const result = render(<Checkbox text="Checkbox text" ref={inputRef} />);
     const checkbox = result.getByRole("checkbox");
     expect(inputRef.current).toBe(checkbox);
   });

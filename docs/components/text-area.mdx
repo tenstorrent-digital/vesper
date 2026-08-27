@@ -18,7 +18,7 @@ A multi-line text input component supporting optional labels and validation mess
 | `label`       | `string`                                         | An optional label displayed above the textarea. An asterisk is appended when `required` is `true`. | —           |
 | `message`     | `string`                                         | An optional message displayed below the textarea, paired with a variant-specific icon.             | —           |
 | `height`      | `number`                                         | The fixed height of the textarea in pixels, scaling with base rem size.                            | `104`       |
-| `textareaRef` | `Ref<HTMLTextAreaElement>`                       | A ref forwarded to the underlying `<textarea>` element.                                            | —           |
+| `ref`         | `Ref<HTMLTextAreaElement>`                       | A ref forwarded to the underlying `<textarea>` element.                                            | —           |
 | `placeholder` | `string`                                         | Placeholder text for the textarea.                                                                 | `" "`       |
 | `maxLength`   | `number`                                         | The maximum number of characters the user can enter.                                               | —           |
 | `minLength`   | `number`                                         | The minimum number of characters required for the field to be valid.                               | —           |
@@ -27,7 +27,7 @@ A multi-line text input component supporting optional labels and validation mess
 | `readOnly`    | `boolean`                                        | When `true`, makes the textarea read-only.                                                         | `false`     |
 | `resizeable`  | `boolean`                                        | When `true`, enables resizing the textarea.                                                        | `false`     |
 
-Any other props are forwarded either to the underlying `<textarea>` element or to the wrapping `<div>`, depending on the prop.
+Accessibility and form props — including `aria-*` attributes, `title`, `tabIndex`, `autoFocus`, and focus, keyboard, and input event handlers — are forwarded to the underlying `<textarea>` element. Layout props, including `className`, `style`, `data-*` attributes, and pointer event handlers, are applied to the wrapping `<div>` element. `role` is managed by the component and cannot be overridden.
 
 Unlike [the `TextInput` component](./text-input.mdx), `TextArea` does not support icons or a `type` prop, since neither of them apply to multi-line text.
 
@@ -280,7 +280,7 @@ import { TextArea } from "@tenstorrent/vesper/text-area";
 
 ### Accessing the underlying element
 
-Use the `textareaRef` prop when you need direct access to the underlying `<textarea>` element, eg. to focus it or read its selection:
+Use the `ref` prop when you need direct access to the underlying `<textarea>` element, eg. to focus it or read its selection:
 
 ```tsx
 import { useRef } from "react"
@@ -291,6 +291,6 @@ const textareaRef = useRef<HTMLTextAreaElement>(null)
 <TextArea
   label="Bio"
   placeholder="Tell us about yourself"
-  textareaRef={textareaRef}
+  ref={textareaRef}
 />
 ```

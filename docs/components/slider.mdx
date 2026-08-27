@@ -31,7 +31,7 @@ A single-thumb slider for selecting a numeric value within a range. It is built 
 | `name`           | `string`                                         | The form field name submitted with form data.                                                     | —           |
 | `form`           | `string`                                         | Associates the slider with a `<form>` element by its `id`.                                        | —           |
 
-Any other props are forwarded to the wrapping `<div>` element.
+Accessibility and form props — including `aria-*` attributes, `title`, `tabIndex`, `autoFocus`, and focus, keyboard, and input event handlers — are forwarded to the slider root element. Layout props, including `className`, `style`, `data-*` attributes, and pointer event handlers, are applied to the wrapping `<div>` element. `aria-describedby` is applied to the thumb, and the value ARIA attributes (`aria-valuenow` and friends) are managed by the component. `role` is managed by the component and cannot be overridden.
 
 If you need to select a span of values rather than a single one, reach for [the `Range` component](./range.mdx) instead: it renders the same track, but with a thumb per value.
 

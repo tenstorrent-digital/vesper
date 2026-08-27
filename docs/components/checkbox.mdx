@@ -28,9 +28,9 @@ A form checkbox input with a label, supporting checked, unchecked, and indetermi
 | `id`             | `string`                                         | An identifier applied to the underlying `<input>`, used to reference it from form validation errors.                       | —           |
 | `disabled`       | `boolean`                                        | When `true`, prevents interaction.                                                                                         | `false`     |
 | `required`       | `boolean`                                        | When `true`, marks the input as required and appends an asterisk to the `label`, or to `text` when no `label` is supplied. | `false`     |
-| `inputRef`       | `Ref<HTMLInputElement>`                          | A ref forwarded to the underlying `<input>` element.                                                                       | —           |
+| `ref`            | `Ref<HTMLInputElement>`                          | A ref forwarded to the underlying `<input>` element.                                                                       | —           |
 
-Form and accessibility props — such as `autoFocus`, `tabIndex`, `aria-label`, `aria-labelledby`, `aria-describedby`, `aria-invalid`, and event handlers like `onFocus`, `onBlur`, and `onKeyDown` — are forwarded to the underlying `<input>` element. Any other props, including `className`, are forwarded to the wrapping `<div>` element.
+Accessibility and form props — including `aria-*` attributes, `title`, `tabIndex`, `autoFocus`, and focus, keyboard, and input event handlers — are forwarded to the underlying `<input>` element. Layout props, including `className`, `style`, `data-*` attributes, and pointer event handlers, are applied to the wrapping `<div>` element. `role` is managed by the component and cannot be overridden.
 
 Use a `Checkbox` for an individual boolean choice, such as accepting terms or opting into a mailing list. When the user is picking any number of options from a set, reach for [the `Choicebox` component](./choicebox.mdx) in `multiselect` mode instead of rendering a list of checkboxes — it groups the options in a labelled `<fieldset>` and validates how many of them are selected. For other related alternatives, use [the `Switch` component](./switch.mdx) when toggling a setting on and off takes effect immediately, [the `RadioGroup` component](./radio-group.mdx) when exactly one option out of many must be chosen, and [the `Toggle` component](./toggle.mdx) when a compact segmented control fits better than a list.
 
@@ -331,7 +331,7 @@ import { Checkbox } from "@tenstorrent/vesper/checkbox";
 
 ### Accessing the underlying element
 
-Use the `inputRef` prop when you need direct access to the underlying `<input>` element, eg. to focus it or report a custom validation message:
+Use the `ref` prop when you need direct access to the underlying `<input>` element, eg. to focus it or report a custom validation message:
 
 ```tsx
 import { useRef } from "react"
@@ -343,7 +343,7 @@ const inputRef = useRef<HTMLInputElement>(null)
   required
   text="I agree to the terms"
   label="Terms and conditions"
-  inputRef={inputRef}
+  ref={inputRef}
   onInvalid={() =>
     inputRef.current?.setCustomValidity("Please accept the terms to continue.")
   }

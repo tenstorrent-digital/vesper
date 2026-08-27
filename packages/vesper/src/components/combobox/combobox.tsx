@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  ComponentProps,
-  Ref,
-  useCallback,
-  useId,
-  useMemo,
-  useState,
-} from "react";
+import { useCallback, useId, useMemo, useState } from "react";
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
 
 import { FormInputWrapper } from "@/components/form-input-wrapper/form-input-wrapper";
@@ -18,12 +11,16 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import { getFormControlProps } from "@/utils/getFormControlProps";
 import {
   getPortalContainer,
   type PortalContainer,
 } from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
-import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
+import {
+  type FormInputProps,
+  splitFormInputProps,
+} from "@/utils/splitFormInputProps";
 
 export const COMBOBOX_SIZES = ["sm", "md", "lg"] as const;
 
@@ -52,8 +49,17 @@ export interface ComboboxItem {
 }
 
 export interface ComboboxProps extends Omit<
-  ComponentProps<"div">,
-  "children" | "defaultValue"
+  FormInputProps<"input">,
+  | "children"
+  | "defaultValue"
+  | "value"
+  | "name"
+  | "disabled"
+  | "required"
+  | "readOnly"
+  | "form"
+  | "id"
+  | "placeholder"
 > {
   /** The list of selectable options displayed in the dropdown. Strings are treated as both the label and the value of an option. */
   options: (ComboboxItem | string)[];
@@ -102,12 +108,23 @@ export interface ComboboxProps extends Omit<
   /** Specify the element or shadow root to portal the menu into */
   container?: PortalContainer;
   /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
-  inputRef?: Ref<HTMLInputElement>;
+  ref?: FormInputProps<"input">["ref"];
   /** Accessible label for the button that clears the currently selected value. @default Clear selection */
   clearButtonAriaLabel?: string;
   /** Accessible label for the button that opens the dropdown. @default Show options */
   dropdownTriggerAriaLabel?: string;
 }
+
+/**
+ * Attributes Base UI manages on the combobox input itself. Forwarding a consumer value would fight
+ * the primitive's own state.
+ */
+const COMBOBOX_RESERVED_PROPS = [
+  "aria-expanded",
+  "aria-controls",
+  "aria-autocomplete",
+  "aria-activedescendant",
+] as const;
 
 /**
  * A form-ready, searchable select component that filters a list of options as the user types.
@@ -128,7 +145,7 @@ export interface ComboboxProps extends Omit<
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  * @param {PortalContainer} [props.container] - (optional) Specify the element or shadow root to portal the menu into
  *
- * You may also pass any additional props to the underlying `div` wrapper element
+ * You may also pass any additional props to the underlying `div` wrapper element, and a `ref` to access the underlying `input` element
  *
  * @example
  * <Combobox
@@ -165,7 +182,6 @@ export function Combobox(props: ComboboxProps) {
     placeholder = "Search...",
     clearButtonAriaLabel = "Clear selection",
     dropdownTriggerAriaLabel = "Show options",
-    className,
     open,
     defaultOpen,
     onOpenChange,
@@ -181,18 +197,20 @@ export function Combobox(props: ComboboxProps) {
     form,
     id,
     container,
-    inputRef,
-    ref,
     label,
     message,
+    // control props that also drive component behaviour, re-applied to the input below
+    ref,
     "aria-describedby": ariaDescribedby,
     "aria-label": ariaLabel = label,
-    "aria-labelledby": ariaLabelledBy,
-    "aria-invalid": ariaInvalid,
     ...rest
   } = props;
+
+  const { controlProps, wrapperProps } = splitFormInputProps(rest, {
+    reserved: COMBOBOX_RESERVED_PROPS,
+  });
+
   const [innerRef, setInnerRef] = useState<HTMLDivElement | null>(null);
-  const mergedRef = useMergedRefs(setInnerRef, ref);
 
   const baseRemSize = useBaseRemSize();
 
@@ -201,11 +219,14 @@ export function Combobox(props: ComboboxProps) {
 
   const messageId = useId();
 
-  // If an additional aria-describedby is supplied, this ensures that both ids get used
-  const describedBy =
-    [ariaDescribedby, message ? messageId : undefined]
-      .filter(Boolean)
-      .join(" ") || undefined;
+  const { describedBy, labelProps, messageProps } = getFormControlProps({
+    controlId: inputId,
+    messageId,
+    label,
+    message,
+    required,
+    ariaDescribedby,
+  });
 
   const { values, labels } = useMemo(() => {
     const labels: Map<string, string> = new Map();
@@ -257,15 +278,10 @@ export function Combobox(props: ComboboxProps) {
     >
       <FormInputWrapper
         variant={variant}
-        label={
-          label
-            ? { text: required ? `${label} *` : label, htmlFor: inputId }
-            : undefined
-        }
-        message={message ? { text: message, id: messageId } : undefined}
-        className={className}
-        ref={mergedRef}
-        {...rest}
+        label={labelProps}
+        message={messageProps}
+        ref={setInnerRef}
+        {...wrapperProps}
       >
         <BaseCombobox.InputGroup
           className={cn(
@@ -276,12 +292,11 @@ export function Combobox(props: ComboboxProps) {
         >
           <Search className="vesper-combobox-search-icon" />
           <Typography
+            {...controlProps}
             as={BaseCombobox.Input}
-            ref={inputRef}
+            ref={ref}
             aria-describedby={describedBy}
             aria-label={ariaLabel}
-            aria-labelledby={ariaLabelledBy}
-            aria-invalid={ariaInvalid}
             id={inputId}
             variant={COMBOBOX_TYPOGRAPHY[size]}
             placeholder={placeholder}

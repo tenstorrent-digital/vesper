@@ -13,14 +13,19 @@ describe("classifyFormInputProp", () => {
     },
   );
 
-  test.each(["id", "placeholder", "readOnly", "role", "tabIndex", "onChange"])(
-    "'%s' is routed to the control",
-    (prop) => {
-      expect(classifyFormInputProp(prop)).toBe("control");
-    },
-  );
+  test.each([
+    "id",
+    "placeholder",
+    "readOnly",
+    "tabIndex",
+    "onChange",
+    "title",
+    "ref",
+  ])("'%s' is routed to the control", (prop) => {
+    expect(classifyFormInputProp(prop)).toBe("control");
+  });
 
-  test.each(["className", "style", "title", "ref", "onMouseEnter", "onClick"])(
+  test.each(["className", "style", "onMouseEnter", "onClick"])(
     "'%s' is routed to the wrapper",
     (prop) => {
       expect(classifyFormInputProp(prop)).toBe("wrapper");
@@ -32,14 +37,29 @@ describe("classifyFormInputProp", () => {
     "aria-labelledby",
     "aria-describedby",
     "aria-invalid",
+    "aria-errormessage",
+    "aria-required",
+    "aria-controls",
+    "aria-expanded",
   ])("'%s' is routed to the control", (prop) => {
     expect(classifyFormInputProp(prop)).toBe("control");
   });
 
-  test.each(["aria-errormessage", "aria-required", "aria-live"])(
-    "'%s' is routed to the wrapper",
+  test.each([
+    "aria-live",
+    "aria-atomic",
+    "aria-busy",
+    "aria-relevant",
+    "aria-setsize",
+    "aria-posinset",
+  ])("region-scoped '%s' is routed to the wrapper", (prop) => {
+    expect(classifyFormInputProp(prop)).toBe("wrapper");
+  });
+
+  test.each(["role", "aria-hidden", "children", "dangerouslySetInnerHTML"])(
+    "'%s' is denied, because no destination is correct",
     (prop) => {
-      expect(classifyFormInputProp(prop)).toBe("wrapper");
+      expect(classifyFormInputProp(prop)).toBeNull();
     },
   );
 
@@ -92,11 +112,19 @@ describe("classifyFormInputProp", () => {
       ).toBe("control");
     });
 
-    test("an override wins over the reserved list", () => {
+    test("an override wins over the denied list", () => {
       expect(
         classifyFormInputProp("role", {
-          reserved: ["role"],
           overrides: { role: "control" },
+        }),
+      ).toBe("control");
+    });
+
+    test("an override wins over the reserved list", () => {
+      expect(
+        classifyFormInputProp("aria-expanded", {
+          reserved: ["aria-expanded"],
+          overrides: { "aria-expanded": "control" },
         }),
       ).toBe("control");
     });
@@ -125,12 +153,12 @@ describe("splitFormInputProps", () => {
       id: "field-id",
       onChange,
       "aria-label": "Field",
+      "aria-errormessage": "err",
     });
     expect(result.wrapperProps).toEqual({
       className: "custom",
       onClick,
       "data-testid": "field",
-      "aria-errormessage": "err",
     });
   });
 
@@ -142,8 +170,8 @@ describe("splitFormInputProps", () => {
 
   test("drops reserved props entirely", () => {
     const result = splitFormInputProps(
-      { role: "combobox", "aria-label": "Field" },
-      { reserved: ["role"] },
+      { "aria-expanded": "true", "aria-label": "Field" },
+      { reserved: ["aria-expanded"] },
     );
 
     expect(result.controlProps).toEqual({ "aria-label": "Field" });

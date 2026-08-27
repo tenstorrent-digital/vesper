@@ -221,23 +221,23 @@ describe("masked-input [unit]", () => {
     expect(input).toHaveValue("123-456");
   });
 
-  test("an object inputRef receives the input element", () => {
+  test("an object ref receives the input element", () => {
     const inputRef = createRef<HTMLInputElement>();
-    const { input } = renderMaskedInput({ inputRef, mask: "___-___" });
+    const { input } = renderMaskedInput({ ref: inputRef, mask: "___-___" });
 
     expect(inputRef.current).toBe(input);
   });
 
-  test("a function inputRef is called with the input element", () => {
+  test("a function ref is called with the input element", () => {
     const inputRef = vi.fn();
-    const { input } = renderMaskedInput({ inputRef, mask: "___-___" });
+    const { input } = renderMaskedInput({ ref: inputRef, mask: "___-___" });
 
     expect(inputRef).toHaveBeenCalledWith(input);
   });
 
-  test("masking still applies when an inputRef is supplied", async () => {
+  test("masking still applies when a ref is supplied", async () => {
     const inputRef = createRef<HTMLInputElement>();
-    const { input } = renderMaskedInput({ inputRef, mask: "___-___" });
+    const { input } = renderMaskedInput({ ref: inputRef, mask: "___-___" });
 
     await userEvent.fill(input, "123456");
 
@@ -245,28 +245,31 @@ describe("masked-input [unit]", () => {
     expect(inputRef.current).toHaveValue("123-456");
   });
 
-  test("an object inputRef is cleared on unmount", () => {
+  test("an object ref is cleared on unmount", () => {
     const inputRef = createRef<HTMLInputElement>();
-    const { unmount } = renderMaskedInput({ inputRef });
+    const { unmount } = renderMaskedInput({ ref: inputRef });
 
     unmount();
 
     expect(inputRef.current).toBeNull();
   });
 
-  test("a function inputRef is called with null on unmount", () => {
+  test("a function ref is called with null on unmount", () => {
     const inputRef = vi.fn();
-    const { unmount } = renderMaskedInput({ inputRef });
+    const { unmount } = renderMaskedInput({ ref: inputRef });
 
     unmount();
 
     expect(inputRef).toHaveBeenLastCalledWith(null);
   });
 
-  test("a function inputRef's cleanup function is called when the ref is detached", () => {
+  test("a function ref's cleanup function is called when the ref is detached", () => {
     const cleanupInputRef = vi.fn();
     const inputRef = vi.fn(() => cleanupInputRef);
-    const { input, unmount } = renderMaskedInput({ inputRef, mask: "___-___" });
+    const { input, unmount } = renderMaskedInput({
+      ref: inputRef,
+      mask: "___-___",
+    });
 
     expect(inputRef).toHaveBeenCalledWith(input);
     expect(cleanupInputRef).not.toHaveBeenCalled();
@@ -278,9 +281,9 @@ describe("masked-input [unit]", () => {
     expect(inputRef).not.toHaveBeenCalledWith(null);
   });
 
-  test("masking still applies when a function inputRef returns a cleanup function", async () => {
+  test("masking still applies when a function ref returns a cleanup function", async () => {
     const inputRef = vi.fn(() => vi.fn());
-    const { input } = renderMaskedInput({ inputRef, mask: "___-___" });
+    const { input } = renderMaskedInput({ ref: inputRef, mask: "___-___" });
 
     await userEvent.fill(input, "123456");
 

@@ -1,4 +1,4 @@
-import type { ReactElement } from "react";
+import { createRef, type ReactElement } from "react";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import { afterEach, describe, expect, test, vi } from "vitest";
 
@@ -93,6 +93,43 @@ const ARIA_TEST_VALUES: Record<string, string> = {
   "aria-sort": "ascending",
 };
 
+/**
+ * ARIA attributes that describe the field as a region, and so belong on the wrapper.
+ */
+export const WRAPPER_ARIA_ATTRIBUTES = [
+  "aria-atomic",
+  "aria-busy",
+  "aria-colcount",
+  "aria-colindex",
+  "aria-colindextext",
+  "aria-colspan",
+  "aria-level",
+  "aria-live",
+  "aria-posinset",
+  "aria-relevant",
+  "aria-rowcount",
+  "aria-rowindex",
+  "aria-rowindextext",
+  "aria-rowspan",
+  "aria-setsize",
+] as const;
+
+/**
+ * ARIA attributes that are dropped rather than routed, because no destination is correct.
+ */
+export const DENIED_ARIA_ATTRIBUTES = ["aria-hidden"] as const;
+
+/**
+ * Values used when asserting that a reserved attribute was *not* forwarded.
+ *
+ * These must differ from whatever the underlying primitive sets itself, otherwise the assertion
+ * cannot tell a rejected consumer value apart from the primitive's own.
+ */
+const ARIA_RESERVED_TEST_VALUES: Record<string, string> = {
+  // Base UI's combobox sets `list`
+  "aria-autocomplete": "both",
+};
+
 export interface FormInputForwardingConfig {
   /** Renders the component under test with the supplied props */
   render(props: Record<string, unknown>): ReactElement;
@@ -100,10 +137,14 @@ export interface FormInputForwardingConfig {
   control(container: HTMLElement): Element;
   /** Resolves the presentational wrapper element. @default container.firstElementChild */
   wrapper?(container: HTMLElement): Element;
-  /** ARIA attributes expected on the control rather than the wrapper */
-  controlAria: readonly string[];
   /** Attributes owned by the underlying primitive, which should be dropped entirely */
   reserved?: readonly string[];
+  /**
+   * Attributes the component distributes across several inner controls rather than applying to a
+   * single element, eg. `aria-describedby` across each thumb of a multi-thumb slider. Asserted to
+   * be absent from the wrapper, and present somewhere inside the control.
+   */
+  distributed?: readonly string[];
 }
 
 /**
@@ -117,7 +158,6 @@ export interface FormInputForwardingConfig {
  * describeFormInputForwarding("checkbox", {
  *   render: (props) => <Checkbox text="Label" {...props} />,
  *   control: (container) => container.querySelector("input")!,
- *   controlAria: ["aria-label", "aria-labelledby", "aria-describedby", "aria-invalid"],
  * });
  */
 export function describeFormInputForwarding(
@@ -128,8 +168,8 @@ export function describeFormInputForwarding(
     render: renderComponent,
     control,
     wrapper = (container: HTMLElement) => container.firstElementChild!,
-    controlAria,
     reserved = [],
+    distributed = [],
   } = config;
 
   describe(`${name} [prop forwarding]`, () => {
@@ -144,15 +184,30 @@ export function describeFormInputForwarding(
       };
     };
 
+    const isRouted = (attribute: string) =>
+      !reserved.includes(attribute) &&
+      !distributed.includes(attribute) &&
+      !DENIED_ARIA_ATTRIBUTES.includes(
+        attribute as (typeof DENIED_ARIA_ATTRIBUTES)[number],
+      );
+
     const ariaOnControl = ARIA_ATTRIBUTES.filter(
       (attribute) =>
-        controlAria.includes(attribute) && !reserved.includes(attribute),
+        isRouted(attribute) &&
+        !WRAPPER_ARIA_ATTRIBUTES.includes(
+          attribute as (typeof WRAPPER_ARIA_ATTRIBUTES)[number],
+        ),
     );
 
     const ariaOnWrapper = ARIA_ATTRIBUTES.filter(
       (attribute) =>
-        !controlAria.includes(attribute) && !reserved.includes(attribute),
+        isRouted(attribute) &&
+        WRAPPER_ARIA_ATTRIBUTES.includes(
+          attribute as (typeof WRAPPER_ARIA_ATTRIBUTES)[number],
+        ),
     );
+
+    const denied = [...DENIED_ARIA_ATTRIBUTES, ...reserved];
 
     test.each(ariaOnControl)("%s is applied to the control", (attribute) => {
       const value = ARIA_TEST_VALUES[attribute] ?? "test-value";
@@ -170,15 +225,55 @@ export function describeFormInputForwarding(
       expect(control).not.toHaveAttribute(attribute);
     });
 
-    if (reserved.length > 0) {
-      test.each(reserved)("%s is reserved and not forwarded", (attribute) => {
-        const value = ARIA_TEST_VALUES[attribute] ?? "test-value";
-        const { control, wrapper } = renderWith({ [attribute]: value });
+    if (denied.length > 0) {
+      test.each(denied)(
+        "%s is not forwarded to either element",
+        (attribute) => {
+          const value =
+            ARIA_RESERVED_TEST_VALUES[attribute] ??
+            ARIA_TEST_VALUES[attribute] ??
+            "test-value";
+          const { control, wrapper } = renderWith({ [attribute]: value });
 
-        expect(wrapper).not.toHaveAttribute(attribute, value);
-        expect(control).not.toHaveAttribute(attribute, value);
-      });
+          expect(wrapper).not.toHaveAttribute(attribute, value);
+          expect(control).not.toHaveAttribute(attribute, value);
+        },
+      );
     }
+
+    if (distributed.length > 0) {
+      test.each(distributed)(
+        "%s is distributed across the inner controls, not the wrapper",
+        (attribute) => {
+          const value = ARIA_TEST_VALUES[attribute] ?? "test-value";
+          const { control, wrapper } = renderWith({ [attribute]: value });
+
+          expect(wrapper).not.toHaveAttribute(attribute);
+          expect(control.querySelector(`[${attribute}]`)).not.toBeNull();
+        },
+      );
+    }
+
+    test("role is not forwarded to either element", () => {
+      const { control, wrapper } = renderWith({ role: "presentation" });
+
+      expect(wrapper).not.toHaveAttribute("role", "presentation");
+      expect(control).not.toHaveAttribute("role", "presentation");
+    });
+
+    test("title is applied to the control", () => {
+      const { control, wrapper } = renderWith({ title: "Hint text" });
+
+      expect(control).toHaveAttribute("title", "Hint text");
+      expect(wrapper).not.toHaveAttribute("title");
+    });
+
+    test("ref resolves to the control", () => {
+      const ref = createRef<HTMLElement>();
+      const { control } = renderWith({ ref });
+
+      expect(ref.current).toBe(control);
+    });
 
     test("data attributes are applied to the wrapper", () => {
       const { control, wrapper } = renderWith({ "data-testid": "field" });

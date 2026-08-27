@@ -512,9 +512,9 @@ describe("select [unit]", () => {
     container.remove();
   });
 
-  test("triggerRef is forwarded to the trigger button", () => {
+  test("ref is forwarded to the trigger button", () => {
     const triggerRef = createRef<HTMLButtonElement>();
-    const result = render(<Select options={OPTIONS} triggerRef={triggerRef} />);
+    const result = render(<Select options={OPTIONS} ref={triggerRef} />);
     const trigger = result.getByRole("combobox");
 
     expect(triggerRef.current).toBe(trigger);

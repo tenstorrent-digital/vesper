@@ -1,4 +1,4 @@
-import type { ComponentProps, ElementType } from "react";
+import type { AriaAttributes, ComponentProps, ElementType } from "react";
 
 /**
  * The element a given prop should be applied to.
@@ -61,38 +61,69 @@ const CONTROL_PROPS = [
   "pattern",
   "placeholder",
   "readOnly",
-  "role",
+  "ref",
   "spellCheck",
   "tabIndex",
+  "title",
 ] as const satisfies readonly (keyof ComponentProps<"input">)[];
 
 /**
- * ARIA attributes routed to the control.
- *
- * NOTE: this is deliberately limited to the four attributes that reach the control today, so that
- * adopting the router is behaviour-preserving. Widening this to "every ARIA attribute except the
- * container-scoped ones" is the P1 change — see `.agents/plans/TT-785_PLAN.md` §3.2.
+ * ARIA attributes that describe the field as a region rather than the control within it, and so
+ * belong on the wrapper. `aria-live` on the control, for instance, would not announce the message,
+ * because the message is a sibling of the control rather than a descendant.
  */
-const CONTROL_ARIA_PROPS = [
-  "aria-describedby",
-  "aria-invalid",
-  "aria-label",
-  "aria-labelledby",
+const WRAPPER_ARIA_PROPS = [
+  "aria-atomic",
+  "aria-busy",
+  "aria-colcount",
+  "aria-colindex",
+  "aria-colindextext",
+  "aria-colspan",
+  "aria-level",
+  "aria-live",
+  "aria-posinset",
+  "aria-relevant",
+  "aria-rowcount",
+  "aria-rowindex",
+  "aria-rowindextext",
+  "aria-rowspan",
+  "aria-setsize",
+] as const;
+
+/**
+ * Props that are dropped rather than routed, because no destination is correct.
+ *
+ * - `aria-hidden` would hide a subtree containing a focusable element, which is an ARIA violation.
+ *   Use `hidden` or `inert` to hide the whole field instead.
+ * - `role` would override a native control's implicit role, or a role a primitive manages itself.
+ * - `children` is ignored anyway, since JSX children take precedence over spread ones.
+ * - `dangerouslySetInnerHTML` would replace the component's own content.
+ */
+const DENIED_PROPS = [
+  "aria-hidden",
+  "children",
+  "dangerouslySetInnerHTML",
+  "role",
 ] as const;
 
 export type FormProp = (typeof FORM_PROPS)[number];
 
 export type ControlProp = (typeof CONTROL_PROPS)[number];
 
-export type ControlAriaProp = (typeof CONTROL_ARIA_PROPS)[number];
-
 /**
  * Every prop a form input routes away from its wrapper and onto the control.
  *
  * Derived from the same arrays that drive the runtime router, so the type and the runtime
- * behaviour cannot disagree.
+ * behaviour cannot disagree. ARIA attributes are included wholesale, minus the region-scoped and
+ * denied ones, since `AriaAttributes` is accepted by the wrapper's own prop type regardless.
  */
-export type FormInputControlProp = FormProp | ControlProp | ControlAriaProp;
+export type FormInputControlProp =
+  | FormProp
+  | ControlProp
+  | Exclude<
+      keyof AriaAttributes,
+      (typeof WRAPPER_ARIA_PROPS)[number] | (typeof DENIED_PROPS)[number]
+    >;
 
 /**
  * The prop surface shared by form inputs that render a `FormInputWrapper` around a native control.
@@ -114,7 +145,9 @@ const FORM_PROP_SET: ReadonlySet<string> = new Set(FORM_PROPS);
 
 const CONTROL_PROP_SET: ReadonlySet<string> = new Set(CONTROL_PROPS);
 
-const CONTROL_ARIA_PROP_SET: ReadonlySet<string> = new Set(CONTROL_ARIA_PROPS);
+const WRAPPER_ARIA_PROP_SET: ReadonlySet<string> = new Set(WRAPPER_ARIA_PROPS);
+
+const DENIED_PROP_SET: ReadonlySet<string> = new Set(DENIED_PROPS);
 
 const CAPTURE_SUFFIX = "Capture";
 
@@ -150,10 +183,11 @@ export function classifyFormInputProp(
 
   if (overrides && prop in overrides) return overrides[prop]!;
   if (reserved?.includes(prop)) return null;
+  if (DENIED_PROP_SET.has(prop)) return null;
 
   if (prop.startsWith("data-")) return "wrapper";
   if (prop.startsWith("aria-")) {
-    return CONTROL_ARIA_PROP_SET.has(prop) ? "control" : "wrapper";
+    return WRAPPER_ARIA_PROP_SET.has(prop) ? "wrapper" : "control";
   }
 
   const base = getBaseHandlerName(prop);

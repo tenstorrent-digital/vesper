@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  type ComponentProps,
-  type ReactNode,
-  type Ref,
-  useId,
-  useMemo,
-  useState,
-} from "react";
+import { type ReactNode, useId, useMemo, useState } from "react";
 import { Select as BaseSelect } from "@base-ui/react/select";
 
 import { FormInputWrapper } from "@/components/form-input-wrapper/form-input-wrapper";
@@ -18,12 +11,17 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import { getFormControlProps } from "@/utils/getFormControlProps";
 import {
   getPortalContainer,
   type PortalContainer,
 } from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
 import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
+import {
+  type FormInputProps,
+  splitFormInputProps,
+} from "@/utils/splitFormInputProps";
 
 export const SELECT_VARIANTS = [
   "default",
@@ -45,10 +43,18 @@ export interface SelectItem {
   label: string;
 }
 
-export interface SelectProps
-  extends
-    Omit<ComponentProps<"div">, "children" | "defaultValue">,
-    Pick<ComponentProps<"button">, "name" | "disabled"> {
+export interface SelectProps extends Omit<
+  FormInputProps<"button">,
+  | "children"
+  | "defaultValue"
+  | "value"
+  | "name"
+  | "disabled"
+  | "required"
+  | "form"
+  | "placeholder"
+  | "type"
+> {
   /** An optional icon rendered at the leading edge of the select trigger. */
   icon?: ReactNode;
   /** The size variant of the select trigger. Affects padding, height, and typography. @default md */
@@ -71,13 +77,26 @@ export interface SelectProps
   onValueChange?(value: string | null): void;
   /** When `true`, marks the underlying select as required for form validation */
   required?: boolean;
+  /** The form field name submitted with form data */
+  name?: string;
+  /** When `true`, prevents interaction with the select */
+  disabled?: boolean;
   /** Associates the select with a `<form>` element by its `id`, allowing submission from outside the form */
   form?: string;
   /** Specify the element or shadow root to portal the dropdown into */
   container?: PortalContainer;
-  /** A ref forwarded to the underlying select trigger `<button>` element for direct DOM access. */
-  triggerRef?: Ref<HTMLButtonElement>;
 }
+
+/**
+ * Attributes Base UI manages on the select trigger itself. Forwarding a consumer value would
+ * fight the primitive's own state.
+ */
+const SELECT_RESERVED_PROPS = [
+  "aria-expanded",
+  "aria-controls",
+  "aria-haspopup",
+  "tabIndex",
+] as const;
 
 const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
   sm: "copy-xs",
@@ -101,10 +120,9 @@ const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
  * @param {(value: string) => void} [props.onValueChange] - (optional) Callback invoked with the new value whenever the selection changes
  * @param {boolean} [props.required] - (optional) Marks the select as required for form validation
  * @param {PortalContainer} [props.container] - (optional) Specify the element or shadow root to portal the dropdown into
- * @param {Ref<HTMLButtonElement>} [props.triggerRef] - (optional) A ref forwarded to the underlying select trigger `<button>` element
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  *
- * You may also pass any additional props to the underlying `div` element
+ * You may also pass any additional props to the underlying `div` wrapper, and a `ref` to access the underlying trigger `button` element
  *
  * @example
  * <Select
@@ -131,8 +149,7 @@ const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
  */
 export function Select(props: SelectProps) {
   const {
-    className,
-    disabled,
+    // component-specific props
     placeholder = "Select an option",
     options,
     value,
@@ -147,19 +164,22 @@ export function Select(props: SelectProps) {
     container,
     message,
     label,
-    triggerRef,
-    "aria-label": ariaLabel = label,
-    "aria-describedby": ariaDescribedby,
-    "aria-labelledby": ariaLabelledby,
-    "aria-invalid": ariaInvalid,
+    disabled,
+    // control props that also drive component behaviour, re-applied to the trigger below
     ref,
     id,
+    "aria-label": ariaLabel = label,
+    "aria-describedby": ariaDescribedby,
     ...rest
   } = props;
 
+  const { controlProps, wrapperProps } = splitFormInputProps(rest, {
+    reserved: SELECT_RESERVED_PROPS,
+  });
+
   const [trigger, setTrigger] = useState<HTMLButtonElement | null>(null);
 
-  const mergedTriggerRef = useMergedRefs(setTrigger, triggerRef);
+  const mergedTriggerRef = useMergedRefs(setTrigger, ref);
 
   const portalContainer = getPortalContainer(container, trigger);
 
@@ -170,11 +190,14 @@ export function Select(props: SelectProps) {
   let inputId = useId();
   if (id) inputId = id;
 
-  // If an additional aria-describedby is supplied, this ensures that both ids get used
-  const describedBy =
-    [ariaDescribedby, message ? messageId : undefined]
-      .filter(Boolean)
-      .join(" ") || undefined;
+  const { describedBy, labelProps, messageProps } = getFormControlProps({
+    controlId: inputId,
+    messageId,
+    label,
+    message,
+    required,
+    ariaDescribedby,
+  });
 
   const items = useMemo(
     () =>
@@ -187,15 +210,9 @@ export function Select(props: SelectProps) {
   return (
     <FormInputWrapper
       variant={variant}
-      label={
-        label
-          ? { text: required ? `${label} *` : label, htmlFor: inputId }
-          : undefined
-      }
-      message={message ? { text: message, id: messageId } : undefined}
-      ref={ref}
-      className={className}
-      {...rest}
+      label={labelProps}
+      message={messageProps}
+      {...wrapperProps}
     >
       <BaseSelect.Root
         items={items}
@@ -208,6 +225,7 @@ export function Select(props: SelectProps) {
         form={form}
       >
         <BaseSelect.Trigger
+          {...controlProps}
           className={cn(
             "vesper-select",
             `vesper-select-${size}`,
@@ -216,8 +234,6 @@ export function Select(props: SelectProps) {
           disabled={disabled}
           aria-label={ariaLabel}
           aria-describedby={describedBy}
-          aria-labelledby={ariaLabelledby}
-          aria-invalid={ariaInvalid}
           ref={mergedTriggerRef}
           id={inputId}
         >

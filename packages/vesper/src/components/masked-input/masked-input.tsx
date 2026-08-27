@@ -57,7 +57,6 @@ export interface MaskedInputProps extends Omit<TextInputProps, "type"> {
  * @param {boolean} [props.formatOnMaskChange] - (optional) When `true`, the current value of the input is reformatted to match the `mask` whenever the `mask` prop changes. @default false
  *
  * You may also pass any additional props supported by the `TextInput` component including `size`, `variant`, `iconLeft`, `iconRight`, and `dropdown`
- *
  * @example
  * <MaskedInput label="Activation code" mask="____-____-____" />
  *
@@ -85,7 +84,7 @@ export interface MaskedInputProps extends Omit<TextInputProps, "type"> {
  */
 export function MaskedInput({
   mask,
-  inputRef,
+  ref,
   formatOnMount = false,
   formatOnMaskChange = false,
   ...props
@@ -115,7 +114,7 @@ export function MaskedInput({
 
   const maskitoRef = useMaskito(maskitoConfig);
 
-  const mergedInputRef = useMergedRefs(inputRef, maskitoRef);
+  const mergedInputRef = useMergedRefs(ref, maskitoRef);
 
-  return <TextInput inputRef={mergedInputRef} {...props} />;
+  return <TextInput ref={mergedInputRef} {...props} />;
 }
