@@ -28,12 +28,12 @@ yarn lint && yarn format && yarn check-types && yarn test:vesper
 
 ## TODO
 
-### PR 1 — P0: router + tests, behaviour-preserving (`patch`)
+### PR 1 — P0: router + tests, behaviour-preserving (`patch`) ✅ DONE
 
 Goal: land the machinery with **today's routing preserved exactly**. No behaviour change, no
 snapshot churn, ~700 lines deleted.
 
-- [ ] Create `packages/vesper/src/utils/splitFormInputProps.ts`
+- [x] Create `packages/vesper/src/utils/splitFormInputProps.ts`
   - Export `FormInputTarget = "form" | "control" | "wrapper"` and
     `SplitFormInputPropsOptions { reserved?, overrides? }`
   - Declare the control prop list **once** as
@@ -42,35 +42,46 @@ snapshot churn, ~700 lines deleted.
   - Implement classification per plan §3.2; `*Capture` props strip the suffix, classify, reapply
   - Must satisfy E-1 (`form`/`control` may alias), E-2 (multi-control opt-out), E-3 (per-component
     `reserved`), E-5 (per-prop `overrides`)
-- [ ] Create `packages/vesper/src/utils/splitFormInputProps.test.ts` — all 53 `aria-*`, the
+- [x] Create `packages/vesper/src/utils/splitFormInputProps.test.ts` — all 53 `aria-*`, the
       `*Capture` rule, `reserved`, `overrides`, `data-*` -> wrapper, deny-list props
-- [ ] Create `packages/vesper/src/utils/composeEventHandlers.ts` — consumer handler first, internal
+- [x] Create `packages/vesper/src/utils/composeEventHandlers.ts` — consumer handler first, internal
       second, **unconditionally** (D-6; no `preventDefault` check, no suppression)
-- [ ] Create `packages/vesper/src/utils/composeEventHandlers.test.ts` — ordering, and that the
+- [x] Create `packages/vesper/src/utils/composeEventHandlers.test.ts` — ordering, and that the
       internal handler still runs after the consumer calls `preventDefault()`
-- [ ] Create `packages/vesper/src/utils/hooks/useFormControl.ts` — id derivation
-      (`${id}-message`, `${id}-label`), the `aria-describedby` merge currently duplicated in six
-      files, and a **pluggable label-association strategy** (`htmlFor` vs `label.id` +
-      `aria-labelledby`, per E-4)
-- [ ] Create `packages/vesper/src/utils/hooks/useFormControl.test.ts`
-- [ ] Create `packages/vesper/src/utils/test-utils/describeFormInputForwarding.tsx` — shared
-      contract suite taking `render`, `control`, `form` resolvers and an expected `reserved` list
-      (E-6)
-- [ ] Add `"src/**/test-utils/**"` to `exclude` in `packages/vesper/tsconfig.build.json` —
-      **required**, or the helper is compiled into `dist` and published (the existing excludes only
-      cover `*.test.*` and `*.stories.*`; vitest's `include` is `src/**/*.test.{ts,tsx}`, so the
-      helper won't be collected as a test suite either way)
-- [ ] Migrate `packages/vesper/src/components/checkbox/checkbox.tsx` off its local
+- [x] ~~`useFormControl.ts`~~ → shipped as `packages/vesper/src/utils/getFormControlProps.ts`.
+      It is a plain function, not a hook: id *generation* stays with the callers for now, because
+      moving the `useId()` calls changes the generated values and would churn every snapshot. Id
+      derivation is a P2 item anyway (plan §3.10), at which point this becomes a real hook. Owns
+      the `aria-describedby` merge plus the `label`/`message` props for `FormInputWrapper`, and
+      takes a `labelAssociation` option (`htmlFor` | `aria-labelledby`) for E-4.
+- [x] Create `packages/vesper/src/utils/getFormControlProps.test.ts`
+- [x] Create `packages/vesper/src/utils/test-utils/describeFormInputForwarding.tsx` — shared
+      contract suite taking `render`, `control`, `wrapper` resolvers and an expected `reserved`
+      list (E-6)
+- [x] Add `"src/**/test-utils/**"` to `exclude` in `packages/vesper/tsconfig.build.json` —
+      **required**, or the helper is compiled into `dist` and published (verified: it no longer
+      appears in `dist/utils/`)
+- [x] Migrate `packages/vesper/src/components/checkbox/checkbox.tsx` off its local
       `ForwardedPropTypes` union, preserving today's destinations exactly
-- [ ] Migrate `packages/vesper/src/components/text-input/text-input.tsx` — same
-- [ ] Migrate `packages/vesper/src/components/text-area/text-area.tsx` — same
-- [ ] Remove `onSubmit`/`onReset` from those three components' forwarded props (P-5: they fire on
-      `<form>` and bubble upward, so a descendant input never receives them)
-- [ ] Wire `describeFormInputForwarding` into `checkbox.test.tsx`, `text-input.test.tsx`,
-      `text-area.test.tsx`
-- [ ] Confirm `__snapshots__/` are unchanged — any churn here means the refactor wasn't
-      behaviour-preserving
-- [ ] Add a `patch` changeset
+- [x] Migrate `packages/vesper/src/components/text-input/text-input.tsx` — same
+- [x] Migrate `packages/vesper/src/components/text-area/text-area.tsx` — same
+- [x] Remove `onSubmit`/`onReset` from those three components' forwarded props (P-5: they fire on
+      `<form>` and bubble upward, so a descendant input never received them). No test covered them.
+- [x] Wire `describeFormInputForwarding` into `checkbox.forwarding.test.tsx`,
+      `text-input.forwarding.test.tsx`, `text-area.forwarding.test.tsx` — **separate files** from
+      the existing suites on purpose: adding renders to the existing files shifts React's `useId`
+      counter and churns snapshots for reasons unrelated to the refactor
+- [x] Confirm `__snapshots__/` are unchanged — verified, zero churn across all three components
+- [x] Add a `patch` changeset (`.changeset/violet-moons-shave.md`)
+
+**Outcome:** 457 lines deleted / 88 added across the three components. 180 new contract tests and
+55 new unit tests; full suite green (2754 passed across 51 files); lint, types, and format clean.
+
+**Type-surface note for PR 2:** the shared `FormInputProps<E>` type is derived from the same arrays
+as the router, so `CheckboxProps` now accepts the input-only props it previously omitted
+(`placeholder`, `pattern`, `min`, `max`, `list`, `multiple`). They are inert on
+`<input type="checkbox">`. `TextAreaProps` narrows correctly — `pattern` and friends resolve away,
+since they are not `textarea` attributes.
 
 ### PR 2 — P1: apply the routing matrix (`minor`)
 

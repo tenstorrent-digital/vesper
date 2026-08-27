@@ -1,6 +1,6 @@
 "use client";
 
-import { type ComponentProps, type Ref, useId } from "react";
+import { type Ref, useId } from "react";
 
 import { FormInputWrapper } from "@/components/form-input-wrapper/form-input-wrapper";
 import {
@@ -9,6 +9,11 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import { getFormControlProps } from "@/utils/getFormControlProps";
+import {
+  type FormInputProps,
+  splitFormInputProps,
+} from "@/utils/splitFormInputProps";
 
 export const TEXT_AREA_SIZES = ["sm", "md", "lg"] as const;
 
@@ -23,59 +28,10 @@ export type TextAreaSize = (typeof TEXT_AREA_SIZES)[number];
 
 export type TextAreaVariant = (typeof TEXT_AREA_VARIANTS)[number];
 
-/**
- * Union of all the prop types that should be forwarded to the `textarea` element, and excluded from the containing div element
- * */
-type ForwardedPropTypes =
-  | "defaultValue"
-  | "inputMode"
-  | "enterKeyHint"
-  | "form"
-  | "disabled"
-  | "spellCheck"
-  | "name"
-  | "minLength"
-  | "maxLength"
-  | "readOnly"
-  | "id"
-  | "placeholder"
-  | "value"
-  | "required"
-  | "autoFocus"
-  | "autoComplete"
-  | "autoCorrect"
-  | "role"
-  | "tabIndex"
-  | "aria-label"
-  | "aria-labelledby"
-  | "aria-describedby"
-  | "aria-invalid"
-  | "onFocus"
-  | "onFocusCapture"
-  | "onBlur"
-  | "onBlurCapture"
-  | "onChange"
-  | "onChangeCapture"
-  | "onBeforeInput"
-  | "onBeforeInputCapture"
-  | "onInput"
-  | "onInputCapture"
-  | "onPaste"
-  | "onReset"
-  | "onResetCapture"
-  | "onSubmit"
-  | "onSubmitCapture"
-  | "onInvalid"
-  | "onInvalidCapture"
-  | "onKeyDown"
-  | "onKeyDownCapture"
-  | "onKeyUp"
-  | "onKeyUpCapture";
-
-export interface TextAreaProps
-  extends
-    Omit<ComponentProps<"div">, ForwardedPropTypes | "children">,
-    Pick<ComponentProps<"textarea">, ForwardedPropTypes> {
+export interface TextAreaProps extends Omit<
+  FormInputProps<"textarea">,
+  "children"
+> {
   /** A ref forwarded to the underlying `<textarea>` element for direct DOM access. */
   textareaRef?: Ref<HTMLTextAreaElement>;
   /** The fixed height of the textarea in pixels, scaling with base rem size. @default 104 */
@@ -122,84 +78,42 @@ export function TextArea(props: TextAreaProps) {
     variant = "default",
     size = "md",
     resizeable = false,
-    // props that should get forwarded to the textarea element
     height = 104,
-    defaultValue,
-    inputMode,
-    enterKeyHint,
-    form,
-    disabled,
-    spellCheck,
-    name,
-    minLength,
-    maxLength,
-    readOnly,
+    // control props that also drive component behaviour, re-applied to the textarea below
     id,
     placeholder = " ",
-    value,
     required,
-    autoFocus,
-    autoComplete,
-    autoCorrect,
-    role,
-    tabIndex,
     "aria-label": ariaLabel = label,
-    "aria-labelledby": ariaLabelledby,
     "aria-describedby": ariaDescribedby,
-    "aria-invalid": ariaInvalid,
-    onFocus,
-    onFocusCapture,
-    onBlur,
-    onBlurCapture,
-    onChange,
-    onChangeCapture,
-    onBeforeInput,
-    onBeforeInputCapture,
-    onInput,
-    onInputCapture,
-    onPaste,
-    onReset,
-    onResetCapture,
-    onSubmit,
-    onSubmitCapture,
-    onInvalid,
-    onInvalidCapture,
-    onKeyDown,
-    onKeyDownCapture,
-    onKeyUp,
-    onKeyUpCapture,
-    // props that should get spread onto the wrapper div
-    className,
     ...rest
   } = props;
+
+  const { formProps, controlProps, wrapperProps } = splitFormInputProps(rest);
 
   const messageId = useId();
 
   let inputId = useId();
   if (id) inputId = id;
 
-  // If an additional aria-describedby is supplied, this ensures that both ids get used
-  const describedBy =
-    [ariaDescribedby, message ? messageId : undefined]
-      .filter(Boolean)
-      .join(" ") || undefined;
+  const { describedBy, labelProps, messageProps } = getFormControlProps({
+    controlId: inputId,
+    messageId,
+    label,
+    message,
+    required,
+    ariaDescribedby,
+  });
 
   return (
     <FormInputWrapper
-      label={
-        label
-          ? {
-              text: required ? `${label} *` : label,
-              htmlFor: inputId,
-            }
-          : undefined
-      }
-      message={message ? { text: message, id: messageId } : undefined}
+      label={labelProps}
+      message={messageProps}
       variant={variant}
-      className={className}
-      {...rest}
+      {...wrapperProps}
     >
       <Typography
+        {...formProps}
+        {...controlProps}
         className={cn(
           "vesper-text-area",
           `vesper-text-area-${size}`,
@@ -212,54 +126,15 @@ export function TextArea(props: TextAreaProps) {
         }}
         ref={textareaRef}
         variant={TEXTAREA_TYPOGRAPHY[size]}
-        aria-describedby={describedBy}
-        aria-label={ariaLabel}
-        aria-labelledby={ariaLabelledby}
-        aria-invalid={ariaInvalid}
-        role={role}
-        tabIndex={tabIndex}
-        defaultValue={defaultValue}
-        inputMode={inputMode}
-        enterKeyHint={enterKeyHint}
-        form={form}
-        disabled={disabled}
-        spellCheck={spellCheck}
-        name={name}
-        minLength={minLength}
-        maxLength={maxLength}
-        readOnly={readOnly}
         id={inputId}
+        required={required}
         placeholder={
           required && !label && placeholder.trim()
             ? `${placeholder.trim()} *`
             : placeholder
         }
-        value={value}
-        required={required}
-        autoFocus={autoFocus}
-        autoComplete={autoComplete}
-        autoCorrect={autoCorrect}
-        onFocus={onFocus}
-        onFocusCapture={onFocusCapture}
-        onBlur={onBlur}
-        onBlurCapture={onBlurCapture}
-        onChange={onChange}
-        onChangeCapture={onChangeCapture}
-        onBeforeInput={onBeforeInput}
-        onBeforeInputCapture={onBeforeInputCapture}
-        onInput={onInput}
-        onInputCapture={onInputCapture}
-        onPaste={onPaste}
-        onReset={onReset}
-        onResetCapture={onResetCapture}
-        onSubmit={onSubmit}
-        onSubmitCapture={onSubmitCapture}
-        onInvalid={onInvalid}
-        onInvalidCapture={onInvalidCapture}
-        onKeyDown={onKeyDown}
-        onKeyDownCapture={onKeyDownCapture}
-        onKeyUp={onKeyUp}
-        onKeyUpCapture={onKeyUpCapture}
+        aria-label={ariaLabel}
+        aria-describedby={describedBy}
       />
     </FormInputWrapper>
   );
