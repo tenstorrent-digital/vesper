@@ -55,6 +55,7 @@ export interface SelectProps extends Omit<
   | "form"
   | "placeholder"
   | "type"
+  | (typeof SELECT_RESERVED_PROPS)[number]
 > {
   /** An optional icon rendered at the leading edge of the select trigger. */
   icon?: ReactNode;
@@ -179,6 +180,7 @@ export function Select(props: SelectProps) {
   } = props;
 
   const { controlProps, wrapperProps } = splitFormInputProps(rest, {
+    name: "Select",
     reserved: SELECT_RESERVED_PROPS,
   });
 
@@ -196,6 +198,8 @@ export function Select(props: SelectProps) {
   if (id) inputId = id;
 
   const control = getFormControlProps({
+    name: "Select",
+    ariaErrormessage: controlProps["aria-errormessage"] as string | undefined,
     controlId: inputId,
     messageId,
     label,

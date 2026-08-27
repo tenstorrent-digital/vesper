@@ -39,6 +39,7 @@ export interface RangeProps extends Omit<
   | "name"
   | "disabled"
   | "form"
+  | (typeof RANGE_RESERVED_PROPS)[number]
 > {
   /** The values of each thumb (controlled mode). One thumb is rendered per entry in the array. */
   values?: number[];
@@ -174,6 +175,7 @@ export function Range(props: RangeProps) {
   } = props;
 
   const { controlProps, wrapperProps } = splitFormInputProps(rest, {
+    name: "Range",
     reserved: RANGE_RESERVED_PROPS,
   });
 
@@ -205,6 +207,8 @@ export function Range(props: RangeProps) {
 
   // If an additional aria-describedby is supplied, this ensures that both ids get used
   const control = getFormControlProps({
+    name: "Range",
+    ariaErrormessage: controlProps["aria-errormessage"] as string | undefined,
     controlId: firstThumbRef?.id,
     messageId,
     label,

@@ -121,7 +121,9 @@ export function Checkbox(props: CheckboxProps) {
     ...rest
   } = props;
 
-  const { formProps, controlProps, wrapperProps } = splitFormInputProps(rest);
+  const { formProps, controlProps, wrapperProps } = splitFormInputProps(rest, {
+    name: "Checkbox",
+  });
 
   const innerRef = useRef<HTMLInputElement>(null);
   useLayoutEffect(() => {
@@ -136,6 +138,8 @@ export function Checkbox(props: CheckboxProps) {
   const messageId = useId();
 
   const control = getFormControlProps({
+    name: "Checkbox",
+    ariaErrormessage: controlProps["aria-errormessage"] as string | undefined,
     controlId: inputId,
     messageId,
     label,

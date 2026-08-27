@@ -1,0 +1,128 @@
+---
+title: Prop Forwarding
+description: Where the props you pass to a form input end up, and how to reach an element the rules don't cover.
+order: 3
+---
+
+# Prop Forwarding
+
+Vesper's form inputs render more than one element: a presentational wrapper containing a label, the
+control itself, and an optional message. A prop you pass has to land on exactly one of them, and the
+right destination differs from prop to prop — `className` belongs on the wrapper, `aria-invalid`
+belongs on the control, and putting either in the wrong place breaks something quietly.
+
+This page describes where each prop goes. It applies to `Checkbox`, `TextInput`, `TextArea`,
+`Select`, `Combobox`, `Range`, `Slider`, and `MaskedInput`.
+
+## The elements
+
+```
+┌─ wrapper ──────────────────────────────┐
+│  <label>Email</label>                  │
+│  ┌─ control ─────────────────────────┐ │
+│  │  <input type="email" />           │ │
+│  └───────────────────────────────────┘ │
+│  <p>Enter a valid email address</p>    │
+└────────────────────────────────────────┘
+```
+
+- The **control** is the interactive element: the `<input>`, `<textarea>`, select trigger, or
+  combobox input. It owns accessibility, focus, and keyboard behaviour.
+- The **wrapper** is a presentational `<div>` that lays out the label, control, and message.
+
+## Where props go
+
+| Prop                                                                                                                                             | Destination |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| Native control attributes — `name`, `value`, `checked`, `disabled`, `required`, `readOnly`, `placeholder`, `pattern`, `step`, `min`, `max`, …    | control     |
+| `id`, `tabIndex`, `autoFocus`, `title`, `inputMode`, `enterKeyHint`, `spellCheck`, `autoCapitalize`, `autoCorrect`                               | control     |
+| `ref`                                                                                                                                            | control     |
+| `aria-*`                                                                                                                                         | control     |
+| `aria-live`, `aria-atomic`, `aria-relevant`, `aria-busy`, `aria-posinset`, `aria-setsize`, `aria-level`, `aria-col*`, `aria-row*`                | wrapper     |
+| Focus, keyboard, input, clipboard, and composition handlers — `onFocus`, `onBlur`, `onKeyDown`, `onChange`, `onInput`, `onPaste`, `onInvalid`, … | control     |
+| Mouse, pointer, touch, drag, scroll, and animation handlers — `onClick`, `onMouseEnter`, `onPointerDown`, `onScroll`, …                          | wrapper     |
+| `className`, `style`, `hidden`, `dir`, `lang`                                                                                                    | wrapper     |
+| `data-*`                                                                                                                                         | wrapper     |
+
+Two rules explain most of the table:
+
+- **ARIA describes the control**, so it goes on the control — except for the handful of attributes
+  that describe a _region_ whose content changes, which need the wrapper to cover the message.
+- **Handlers follow the event.** Keyboard and input events happen on the control. Pointer events
+  are usually meant for the whole field, and several of them (`onMouseEnter`, `onPointerEnter`)
+  don't bubble, so their placement is what decides whether they fire at all.
+
+`*Capture` handlers always follow their bubble-phase counterpart.
+
+## Refs
+
+`ref` resolves to the control, so it works with form libraries that spread a ref onto a field:
+
+```tsx
+<TextInput {...register("email")} />
+```
+
+To reach the wrapper, use `wrapperProps`:
+
+```tsx
+<TextInput wrapperProps={{ ref: wrapperRef }} />
+```
+
+## Validation
+
+Setting `variant="error"` marks the control `aria-invalid`, so the error state is reported to
+assistive technology rather than being conveyed by colour alone. Any `message` is associated with
+the control via `aria-describedby`, for every variant.
+
+```tsx
+<TextInput variant="error" message="Enter a valid email address" />
+```
+
+If you need `aria-errormessage` pointing at a specific error node, pass it yourself — it is
+forwarded to the control. It only takes effect when the control is also marked invalid, so pair it
+with `variant="error"` or your own `aria-invalid`.
+
+## Escape hatches
+
+For anything the rules above don't cover — a vendor attribute, a control-scoped `data-testid`, a ref
+to the wrapper — `controlProps` and `wrapperProps` apply props directly to a given element:
+
+```tsx
+<TextInput
+  controlProps={{ "data-1p-ignore": true }}
+  wrapperProps={{ id: "email-field" }}
+/>
+```
+
+`className`, `style`, and event handlers in these bags are merged with the component's own rather
+than replacing them. Everything else replaces.
+
+## Props that aren't forwarded
+
+Some props are refused rather than routed, because no destination is correct. Passing one is a type
+error, and logs a warning in development.
+
+| Prop                                  | Why                                                                                                     |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `role`                                | It would override the control's implicit role, or one the underlying primitive manages.                 |
+| `aria-hidden`                         | It would hide a subtree containing a focusable element, which is invalid ARIA. Use `hidden` or `inert`. |
+| `children`, `dangerouslySetInnerHTML` | These components render their own content.                                                              |
+
+Individual components also reserve the attributes their underlying primitive manages — for example
+`aria-expanded` and `aria-controls` on `Select` and `Combobox`, and the value ARIA attributes on
+`Range` and `Slider`. Each component's page lists its own.
+
+## Testing
+
+Because `data-*` attributes go to the wrapper, `getByTestId` returns the wrapper rather than the
+control. Query the control by role instead:
+
+```tsx
+const input = screen.getByRole("textbox");
+```
+
+Or put the test id on the control directly:
+
+```tsx
+<TextInput controlProps={{ "data-testid": "email" }} />
+```

@@ -91,7 +91,9 @@ export function TextArea(props: TextAreaProps) {
     ...rest
   } = props;
 
-  const { formProps, controlProps, wrapperProps } = splitFormInputProps(rest);
+  const { formProps, controlProps, wrapperProps } = splitFormInputProps(rest, {
+    name: "TextArea",
+  });
 
   const messageId = useId();
 
@@ -99,6 +101,8 @@ export function TextArea(props: TextAreaProps) {
   if (id) inputId = id;
 
   const control = getFormControlProps({
+    name: "TextArea",
+    ariaErrormessage: controlProps["aria-errormessage"] as string | undefined,
     controlId: inputId,
     messageId,
     label,

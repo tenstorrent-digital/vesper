@@ -1,3 +1,5 @@
+import { warnOnce } from "@/utils/warnOnce";
+
 /**
  * How a form input's label is associated with its control.
  *
@@ -36,6 +38,14 @@ export interface GetFormControlPropsOptions {
   ariaDescribedby?: string;
   /** A consumer-supplied `aria-invalid`, which takes precedence over `invalid` */
   ariaInvalid?: boolean | "true" | "false" | "grammar" | "spelling";
+  /**
+   * A consumer-supplied `aria-errormessage`. Not applied by this function — the router forwards it
+   * to the control directly — but used to warn in development when it is supplied without the
+   * control being marked invalid, in which case assistive technology ignores it.
+   */
+  ariaErrormessage?: string;
+  /** The component name used in development warnings */
+  name?: string;
   /** How the label is associated with the control. @default htmlFor */
   labelAssociation?: FormControlLabelAssociation;
 }
@@ -92,12 +102,34 @@ export function getFormControlProps({
   ariaLabelledby,
   ariaDescribedby,
   ariaInvalid,
+  ariaErrormessage,
+  name = "This component",
   labelAssociation = "htmlFor",
 }: GetFormControlPropsOptions): FormControlProps {
   const usesHtmlFor = labelAssociation === "htmlFor";
 
   const labelledBy =
     ariaLabelledby ?? (!usesHtmlFor && label ? labelId : undefined);
+
+  const resolvedAriaInvalid = ariaInvalid ?? (invalid || undefined);
+
+  // `aria-invalid="false"` is a truthy string, but semantically means valid
+  const isInvalid =
+    resolvedAriaInvalid !== undefined &&
+    resolvedAriaInvalid !== false &&
+    resolvedAriaInvalid !== "false";
+
+  if (ariaErrormessage && !isInvalid) {
+    warnOnce(
+      `${name} received \`aria-errormessage\` but is not marked invalid, so assistive technology will ignore it. Set \`variant="error"\` or pass \`aria-invalid\`.`,
+    );
+  }
+
+  if (ariaLabel && ariaLabelledby) {
+    warnOnce(
+      `${name} received both \`aria-label\` and \`aria-labelledby\`. \`aria-labelledby\` wins, so the \`aria-label\` is unused.`,
+    );
+  }
 
   // if an additional aria-describedby is supplied, this ensures that both ids get used
   const describedBy =
@@ -118,7 +150,7 @@ export function getFormControlProps({
     // a supplied aria-labelledby already provides the accessible name, so the default would only
     // compete with it
     ariaLabel: ariaLabel ?? (labelledBy ? undefined : defaultAriaLabel),
-    ariaInvalid: ariaInvalid ?? (invalid || undefined),
+    ariaInvalid: resolvedAriaInvalid,
     labelProps,
     messageProps: message ? { text: message, id: messageId } : undefined,
   };

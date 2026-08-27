@@ -62,6 +62,7 @@ export interface ComboboxProps extends Omit<
   | "form"
   | "id"
   | "placeholder"
+  | (typeof COMBOBOX_RESERVED_PROPS)[number]
 > {
   /** The list of selectable options displayed in the dropdown. Strings are treated as both the label and the value of an option. */
   options: (ComboboxItem | string)[];
@@ -213,6 +214,7 @@ export function Combobox(props: ComboboxProps) {
   } = props;
 
   const { controlProps, wrapperProps } = splitFormInputProps(rest, {
+    name: "Combobox",
     reserved: COMBOBOX_RESERVED_PROPS,
   });
 
@@ -230,6 +232,8 @@ export function Combobox(props: ComboboxProps) {
   const messageId = useId();
 
   const control = getFormControlProps({
+    name: "Combobox",
+    ariaErrormessage: controlProps["aria-errormessage"] as string | undefined,
     controlId: inputId,
     messageId,
     label,

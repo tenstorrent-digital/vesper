@@ -131,7 +131,9 @@ export function TextInput(props: TextInputProps) {
     ...rest
   } = props;
 
-  const { formProps, controlProps, wrapperProps } = splitFormInputProps(rest);
+  const { formProps, controlProps, wrapperProps } = splitFormInputProps(rest, {
+    name: "TextInput",
+  });
 
   const messageId = useId();
 
@@ -139,6 +141,8 @@ export function TextInput(props: TextInputProps) {
   if (id) inputId = id;
 
   const control = getFormControlProps({
+    name: "TextInput",
+    ariaErrormessage: controlProps["aria-errormessage"] as string | undefined,
     controlId: inputId,
     messageId,
     label,

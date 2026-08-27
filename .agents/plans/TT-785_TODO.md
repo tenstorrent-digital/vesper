@@ -170,13 +170,37 @@ omission above, which targets the actual remaining silent no-op. Narrowing the w
 further (dropping legacy React props like `about`, `datatype`, `inlist`, `prefix`) is still
 possible but is now cosmetic, and would remove currently-working props; left undone deliberately.
 
-### PR 4 — P3: polish (`patch`)
+### PR 4 — P3: polish (`patch`) ✅ DONE
 
-- [ ] Dev-only warnings (§3.9): `aria-errormessage` without `aria-invalid`; both `aria-label` and
-      `aria-labelledby`; `role` on a component with a managed role; anything hitting `reserved`.
-      **No warning for `title`** (D-2)
-- [ ] Document the routing matrix in `docs/` and link it from each in-scope component's `.mdx`
-- [ ] Add a `patch` changeset
+- [x] Dev-only warnings (§3.9) via `packages/vesper/src/utils/warnOnce.ts`, stripped from production
+      builds and deduplicated per message (form inputs re-render often enough that an ungated
+      warning would fire on every keystroke):
+      - denied props (`role`, `aria-hidden`, `children`, `dangerouslySetInnerHTML`), each with the
+        reason and a suggested alternative
+      - reserved props, naming the component that manages them
+      - `aria-errormessage` without the control being invalid
+      - `aria-label` and `aria-labelledby` supplied together
+      - **no warning for `title`** (D-2)
+- [x] Make reserved props type errors as well, derived from the same `as const` arrays that drive
+      the runtime `reserved` lists so the two cannot drift. This was not in the original plan: it
+      closes the last silent no-op, since reserved props were type-allowed but dropped at runtime
+- [x] Add `docs/prop-forwarding.mdx` — the routing table, the two rules that explain most of it,
+      refs, validation, escape hatches, refused props, and a note on `getByTestId`. Linked from all
+      seven form input pages. Verified the site builds and prerenders `/prop-forwarding`
+- [x] Add a `patch` changeset (`.changeset/quiet-pianos-repeat.md`)
+
+**Outcome:** full suite green (3029 passed across 56 files), lint + types + format clean, website
+builds.
+
+**A real bug the warning tests caught:** the `aria-errormessage` pairing check originally used a
+truthiness test on the resolved `aria-invalid`. `aria-invalid="false"` is a *truthy string* that
+semantically means valid, so an explicitly-valid control was being treated as invalid and the
+warning was suppressed. Now compared against both `false` and `"false"`.
+
+**Docs scope note.** Items 17–18 were partly pulled forward: P1 and P2 already had to correct the
+prop-forwarding prose in seven `.mdx` files, because leaving statements that were accurate before
+the flip but wrong after would have been worse than the small scope bleed. P3 added the dedicated
+page those sentences now link to.
 
 ---
 

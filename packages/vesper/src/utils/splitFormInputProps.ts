@@ -1,5 +1,7 @@
 import type { AriaAttributes, ComponentProps, ElementType } from "react";
 
+import { warnOnce } from "@/utils/warnOnce";
+
 /**
  * The element a given prop should be applied to.
  *
@@ -187,7 +189,21 @@ export interface SplitFormInputPropsOptions {
    * default bucket, eg. `disabled` on a `fieldset` so the native descendant cascade is preserved.
    */
   overrides?: Readonly<Record<string, FormInputTarget>>;
+  /** The component name used in development warnings */
+  name?: string;
 }
+
+/**
+ * Explains why a dropped prop was dropped, so the warning points at a fix rather than just
+ * reporting that nothing happened.
+ */
+const DENIED_PROP_REASONS: Record<string, string> = {
+  "aria-hidden":
+    "it would hide a subtree containing a focusable element, which is invalid ARIA. Use `hidden` or `inert` to hide the whole field",
+  role: "it would override the control's implicit role, or one the underlying primitive manages itself",
+  children: "this component renders its own content",
+  dangerouslySetInnerHTML: "this component renders its own content",
+};
 
 /**
  * Determines which element a single prop should be applied to.
@@ -245,9 +261,20 @@ export function splitFormInputProps(
   const controlProps: Record<string, unknown> = {};
   const wrapperProps: Record<string, unknown> = {};
 
+  const component = options.name ?? "This component";
+
   for (const prop of Object.keys(props)) {
     const target = classifyFormInputProp(prop, options);
-    if (target === null) continue;
+
+    if (target === null) {
+      const reason = DENIED_PROP_REASONS[prop];
+      warnOnce(
+        reason
+          ? `\`${prop}\` is not forwarded, because ${reason}.`
+          : `\`${prop}\` is not forwarded: ${component} manages it internally.`,
+      );
+      continue;
+    }
 
     if (target === "form") formProps[prop] = props[prop];
     else if (target === "control") controlProps[prop] = props[prop];
