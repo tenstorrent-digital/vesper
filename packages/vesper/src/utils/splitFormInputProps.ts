@@ -197,22 +197,22 @@ export type FormInputProps<
 
 export function splitFormInputProps<A, O extends string = never>(
   props: A,
-  omit = [] as O[],
+  options?: { omit?: O[] },
 ) {
   const [propsWithoutControl, controlProps] = splitProps(
     props,
     CONTROL_PROPS,
-    omit,
+    options,
   );
   const [propsWithoutForm, formProps] = splitProps(
     propsWithoutControl,
     INPUT_FORM_PROPS,
-    omit,
+    options,
   );
   const [wrapperProps, ariaProps] = splitProps(
     propsWithoutForm,
     ARIA_PROPS,
-    omit,
+    options,
   );
 
   return {
@@ -226,7 +226,7 @@ export function splitFormInputProps<A, O extends string = never>(
 function splitProps<A, K extends string, O extends string = never>(
   props: A,
   keys: readonly K[],
-  omit = [] as O[],
+  { omit = [] } = {} as { omit?: O[] },
 ) {
   const a = {} as Omit<A, K | O>;
   // @ts-expect-error ts not smart enough to do this
@@ -236,9 +236,9 @@ function splitProps<A, K extends string, O extends string = never>(
     // @ts-expect-error ts not smart enough to do this
     if (omit.includes(prop)) continue;
     // @ts-expect-error ts not smart enough to do this
-    if (keys.includes(prop)) b[prop] = prop;
+    if (keys.includes(prop)) b[prop] = props[prop];
     // @ts-expect-error ts not smart enough to do this
-    else a[prop] = [prop];
+    else a[prop] = props[prop];
   }
 
   return [a, b] as const;
