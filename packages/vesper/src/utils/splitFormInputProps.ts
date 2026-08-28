@@ -165,15 +165,6 @@ const TEXTAREA_FORM_PROPS = [
   "autoComplete",
 ] as const satisfies (keyof ComponentProps<"textarea">)[];
 
-const disallowedPropsSet: ReadonlySet<string> = new Set(DISALLOWED_PROPS);
-const controlPropsSet: ReadonlySet<string> = new Set(CONTROL_PROPS);
-const ariaPropsSet: ReadonlySet<string> = new Set(ARIA_PROPS);
-const formPropsSet: ReadonlySet<string> = new Set([
-  ...BUTTON_FORM_PROPS,
-  ...INPUT_FORM_PROPS,
-  ...TEXTAREA_FORM_PROPS,
-]);
-
 type ControlElementType = "textarea" | "button" | "input";
 
 type ControlProp = (typeof CONTROL_PROPS)[number];
@@ -204,57 +195,25 @@ export type FormInputProps<
   C extends ControlElementType,
 > = WrapperProps<W, C> & ControlProps<C> & FormProps<C> & AriaAttributes;
 
-type FormInputProp<
-  W extends ElementType,
-  C extends ControlElementType,
-> = keyof FormInputProps<W, C>;
-
-type SplitFormInputPropsResult<
-  W extends ElementType,
-  C extends ControlElementType,
-> = {
-  ariaProps: AriaAttributes;
-  controlProps: ControlProps<C>;
-  formProps: FormProps<C>;
-  wrapperProps: WrapperProps<W, C>;
-};
-
-export function splitFormInputProps<
-  W extends ElementType,
-  C extends ControlElementType,
->(
-  props: FormInputProps<W, C>,
-  { exclude = [] } = {} as {
-    exclude?: FormInputProp<W, C>[];
-  },
-): SplitFormInputPropsResult<W, C> {
-  const controlProps: ControlProps<C> = {};
-  const wrapperProps = {} as WrapperProps<W, C>;
-  const ariaProps: AriaAttributes = {};
-  const formProps: FormProps<C> = {};
-
-  for (const prop in props) {
-    const value = props[prop as keyof typeof props];
-    if (
-      exclude.includes(prop as FormInputProp<W, C>) ||
-      disallowedPropsSet.has(prop)
-    ) {
-      continue;
-    }
-    if (ariaPropsSet.has(prop)) {
-      ariaProps[prop as keyof AriaAttributes] = value;
-      continue;
-    }
-    if (controlPropsSet.has(prop)) {
-      controlProps[prop as ControlProp] = value;
-      continue;
-    }
-    if (formPropsSet.has(prop)) {
-      formProps[prop as FormProp<C>] = value;
-      continue;
-    }
-    wrapperProps[prop as keyof WrapperProps<W, C>] = value;
-  }
+export function splitFormInputProps<A, O extends string = never>(
+  props: A,
+  omit = [] as O[],
+) {
+  const [propsWithoutControl, controlProps] = splitProps(
+    props,
+    CONTROL_PROPS,
+    omit,
+  );
+  const [propsWithoutForm, formProps] = splitProps(
+    propsWithoutControl,
+    INPUT_FORM_PROPS,
+    omit,
+  );
+  const [wrapperProps, ariaProps] = splitProps(
+    propsWithoutForm,
+    ARIA_PROPS,
+    omit,
+  );
 
   return {
     ariaProps,
@@ -262,4 +221,25 @@ export function splitFormInputProps<
     formProps,
     wrapperProps,
   };
+}
+
+function splitProps<A, K extends string, O extends string = never>(
+  props: A,
+  keys: readonly K[],
+  omit = [] as O[],
+) {
+  const a = {} as Omit<A, K | O>;
+  // @ts-expect-error ts not smart enough to do this
+  const b = {} as Omit<Pick<A, K>, O>;
+
+  for (const prop in props) {
+    // @ts-expect-error ts not smart enough to do this
+    if (omit.includes(prop)) continue;
+    // @ts-expect-error ts not smart enough to do this
+    if (keys.includes(prop)) b[prop] = prop;
+    // @ts-expect-error ts not smart enough to do this
+    else a[prop] = [prop];
+  }
+
+  return [a, b] as const;
 }
