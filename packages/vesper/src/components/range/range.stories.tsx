@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { Range, RANGE_VARIANTS } from "@/components/range/range";
+import { Range } from "@/components/range/range";
 
 const meta = {
   component: Range,
@@ -14,7 +14,6 @@ const meta = {
     valueLabels: { table: { disable: true } },
     name: { table: { disable: true } },
     form: { table: { disable: true } },
-    variant: { control: "radio", options: RANGE_VARIANTS },
   },
 } satisfies Meta<typeof Range>;
 
@@ -33,9 +32,6 @@ export const Playground: Story = {
     minStepsBetweenThumbs: 1,
     disabled: false,
     thumbAriaLabels: ["Volume (min)", "Volume (max)"],
-    label: "Label",
-    message: "Optional message",
-    variant: "default",
   },
 };
 Playground.storyName = "range";
