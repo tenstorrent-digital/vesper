@@ -95,9 +95,6 @@ const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
  * />
  */
 export function TextInput(props: TextInputProps) {
-  const { ariaProps, controlProps, formProps, wrapperProps } =
-    splitFormInputProps(props);
-
   const {
     iconLeft,
     iconLeftAction,
@@ -107,22 +104,16 @@ export function TextInput(props: TextInputProps) {
     size = "md",
     type = "text",
     className,
-    ...restWrapperProps
-  } = wrapperProps;
+    placeholder = " ",
+    ...rest
+  } = props;
 
-  const { placeholder = " ", ...restFormProps } = formProps;
-
-  const {
-    "aria-label": ariaLabel,
-    "aria-labelledby": ariaLabelledBy,
-    "aria-describedby": ariaDescribedBy,
-    "aria-invalid": ariaInvalid,
-    "aria-errormessage": ariaErrorMessage,
-  } = ariaProps;
+  const { ariaProps, controlProps, formProps, wrapperProps } =
+    splitFormInputProps(rest);
 
   return (
     <div
-      {...restWrapperProps}
+      {...wrapperProps}
       className={cn(
         "vesper-text-input",
         `vesper-text-input-${size}`,
@@ -140,8 +131,9 @@ export function TextInput(props: TextInputProps) {
         </TextInputIcon>
       )}
       <Typography
+        {...ariaProps}
         {...controlProps}
-        {...restFormProps}
+        {...formProps}
         as="input"
         variant={TEXT_INPUT_TYPOGRAPHY[size]}
         className="vesper-text-input-field"
@@ -151,11 +143,6 @@ export function TextInput(props: TextInputProps) {
             ? `${placeholder.trim()} *`
             : placeholder
         }
-        aria-describedby={ariaDescribedBy}
-        aria-label={ariaLabel}
-        aria-labelledby={ariaLabelledBy}
-        aria-invalid={ariaInvalid}
-        aria-errormessage={ariaErrorMessage}
       />
       {iconRight && (
         <TextInputIcon
