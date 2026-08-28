@@ -4,9 +4,10 @@ import { Switch } from "@/components/switch/switch";
 
 const meta = {
   component: Switch,
-  argTypes: {
-    label: { control: "text" },
-    inputRef: { table: { disable: true } },
+  parameters: {
+    controls: {
+      include: ["size", "label", "disabled"],
+    },
   },
 } satisfies Meta<typeof Switch>;
 
