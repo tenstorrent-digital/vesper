@@ -147,9 +147,6 @@ export interface ComboboxProps extends FormInputProps<
  * />
  */
 export function Combobox(props: ComboboxProps) {
-  const { ariaProps, controlProps, formProps, wrapperProps } =
-    splitFormInputProps(props);
-
   const {
     options,
     size = "md",
@@ -166,10 +163,12 @@ export function Combobox(props: ComboboxProps) {
     defaultInputValue,
     onInputValueChange,
     container,
-    ...restWrapperProps
-  } = wrapperProps;
+    placeholder = "Search...",
+    ...rest
+  } = props;
 
-  const { placeholder = "Search...", ...restFormProps } = formProps;
+  const { ariaProps, controlProps, formProps, wrapperProps } =
+    splitFormInputProps(rest);
 
   const [innerRef, setInnerRef] = useState<HTMLDivElement | null>(null);
 
@@ -206,7 +205,7 @@ export function Combobox(props: ComboboxProps) {
 
   return (
     <BaseCombobox.Root
-      {...restFormProps}
+      {...formProps}
       items={values}
       itemToStringLabel={itemToStringLabel}
       open={open}
@@ -218,7 +217,7 @@ export function Combobox(props: ComboboxProps) {
       onInputValueChange={onInputValueChange}
     >
       <BaseCombobox.InputGroup
-        {...restWrapperProps}
+        {...wrapperProps}
         ref={setInnerRef}
         className={cn(
           "vesper-combobox",
