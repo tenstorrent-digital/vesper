@@ -4,7 +4,7 @@ exports[`range [snapshot] > default 1`] = `
 <div
   class="vesper-range"
   data-orientation="horizontal"
-  id="base-ui-_r_85_"
+  id="base-ui-_r_6k_"
   role="group"
 >
   <div
@@ -26,7 +26,7 @@ exports[`range [snapshot] > default 1`] = `
         class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
         data-index="0"
         data-orientation="horizontal"
-        id="base-ui-_r_86_"
+        id="base-ui-_r_6l_"
         style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 0%; visibility: hidden;"
       >
         <input
@@ -34,7 +34,7 @@ exports[`range [snapshot] > default 1`] = `
           aria-orientation="horizontal"
           aria-valuenow="0"
           aria-valuetext="0"
-          id="base-ui-_r_87_"
+          id="base-ui-_r_6m_"
           max="100"
           min="0"
           step="1"
@@ -47,7 +47,7 @@ exports[`range [snapshot] > default 1`] = `
         class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
         data-index="1"
         data-orientation="horizontal"
-        id="base-ui-_r_89_"
+        id="base-ui-_r_6o_"
         style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 0%; visibility: hidden;"
       >
         <input
@@ -55,7 +55,7 @@ exports[`range [snapshot] > default 1`] = `
           aria-orientation="horizontal"
           aria-valuenow="100"
           aria-valuetext="100"
-          id="base-ui-_r_8a_"
+          id="base-ui-_r_6p_"
           max="100"
           min="0"
           step="1"
@@ -74,7 +74,7 @@ exports[`range [snapshot] > disabled 1`] = `
   class="vesper-range"
   data-disabled=""
   data-orientation="horizontal"
-  id="base-ui-_r_9e_"
+  id="base-ui-_r_7t_"
   role="group"
 >
   <div
@@ -100,7 +100,7 @@ exports[`range [snapshot] > disabled 1`] = `
         data-disabled=""
         data-index="0"
         data-orientation="horizontal"
-        id="base-ui-_r_9f_"
+        id="base-ui-_r_7u_"
         style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 0%; visibility: hidden;"
       >
         <input
@@ -109,7 +109,7 @@ exports[`range [snapshot] > disabled 1`] = `
           aria-valuenow="0"
           aria-valuetext="0"
           disabled=""
-          id="base-ui-_r_9g_"
+          id="base-ui-_r_7v_"
           max="100"
           min="0"
           step="1"
@@ -123,7 +123,7 @@ exports[`range [snapshot] > disabled 1`] = `
         data-disabled=""
         data-index="1"
         data-orientation="horizontal"
-        id="base-ui-_r_9i_"
+        id="base-ui-_r_81_"
         style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 0%; visibility: hidden;"
       >
         <input
@@ -132,7 +132,7 @@ exports[`range [snapshot] > disabled 1`] = `
           aria-valuenow="100"
           aria-valuetext="100"
           disabled=""
-          id="base-ui-_r_9j_"
+          id="base-ui-_r_82_"
           max="100"
           min="0"
           step="1"
@@ -150,7 +150,7 @@ exports[`range [snapshot] > with custom min/max/step 1`] = `
 <div
   class="vesper-range"
   data-orientation="horizontal"
-  id="base-ui-_r_8c_"
+  id="base-ui-_r_6r_"
   role="group"
 >
   <div
@@ -172,7 +172,7 @@ exports[`range [snapshot] > with custom min/max/step 1`] = `
         class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
         data-index="0"
         data-orientation="horizontal"
-        id="base-ui-_r_8d_"
+        id="base-ui-_r_6s_"
         style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 0%; visibility: hidden;"
       >
         <input
@@ -180,7 +180,7 @@ exports[`range [snapshot] > with custom min/max/step 1`] = `
           aria-orientation="horizontal"
           aria-valuenow="0"
           aria-valuetext="0"
-          id="base-ui-_r_8e_"
+          id="base-ui-_r_6t_"
           max="10"
           min="0"
           step="2"
@@ -193,7 +193,7 @@ exports[`range [snapshot] > with custom min/max/step 1`] = `
         class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
         data-index="1"
         data-orientation="horizontal"
-        id="base-ui-_r_8g_"
+        id="base-ui-_r_6v_"
         style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 0%; visibility: hidden;"
       >
         <input
@@ -201,7 +201,7 @@ exports[`range [snapshot] > with custom min/max/step 1`] = `
           aria-orientation="horizontal"
           aria-valuenow="10"
           aria-valuetext="10"
-          id="base-ui-_r_8h_"
+          id="base-ui-_r_70_"
           max="10"
           min="0"
           step="2"
@@ -219,7 +219,7 @@ exports[`range [snapshot] > with multiple values 1`] = `
 <div
   class="vesper-range vesper-range-labeled"
   data-orientation="horizontal"
-  id="base-ui-_r_91_"
+  id="base-ui-_r_7g_"
   role="group"
 >
   <div
@@ -241,7 +241,7 @@ exports[`range [snapshot] > with multiple values 1`] = `
         class="vesper-typography vesper-typography-label-xs vesper-range-thumb vesper-range-thumb-labeled"
         data-index="0"
         data-orientation="horizontal"
-        id="base-ui-_r_92_"
+        id="base-ui-_r_7h_"
         style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 0%; visibility: hidden; --vesper-range-thumb-label: "A";"
       >
         <input
@@ -249,7 +249,7 @@ exports[`range [snapshot] > with multiple values 1`] = `
           aria-orientation="horizontal"
           aria-valuenow="20"
           aria-valuetext="A"
-          id="base-ui-_r_93_"
+          id="base-ui-_r_7i_"
           max="100"
           min="0"
           step="1"
@@ -262,7 +262,7 @@ exports[`range [snapshot] > with multiple values 1`] = `
         class="vesper-typography vesper-typography-label-xs vesper-range-thumb vesper-range-thumb-labeled"
         data-index="1"
         data-orientation="horizontal"
-        id="base-ui-_r_95_"
+        id="base-ui-_r_7k_"
         style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 0%; visibility: hidden; --vesper-range-thumb-label: "B";"
       >
         <input
@@ -270,7 +270,7 @@ exports[`range [snapshot] > with multiple values 1`] = `
           aria-orientation="horizontal"
           aria-valuenow="40"
           aria-valuetext="B"
-          id="base-ui-_r_96_"
+          id="base-ui-_r_7l_"
           max="100"
           min="0"
           step="1"
@@ -283,14 +283,14 @@ exports[`range [snapshot] > with multiple values 1`] = `
         class="vesper-typography vesper-typography-label-xs vesper-range-thumb vesper-range-thumb-labeled"
         data-index="2"
         data-orientation="horizontal"
-        id="base-ui-_r_98_"
+        id="base-ui-_r_7n_"
         style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 0%; visibility: hidden; --vesper-range-thumb-label: "C";"
       >
         <input
           aria-orientation="horizontal"
           aria-valuenow="60"
           aria-valuetext="C"
-          id="base-ui-_r_99_"
+          id="base-ui-_r_7o_"
           max="100"
           min="0"
           step="1"
@@ -303,14 +303,14 @@ exports[`range [snapshot] > with multiple values 1`] = `
         class="vesper-typography vesper-typography-label-xs vesper-range-thumb vesper-range-thumb-labeled"
         data-index="3"
         data-orientation="horizontal"
-        id="base-ui-_r_9b_"
+        id="base-ui-_r_7q_"
         style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 0%; visibility: hidden; --vesper-range-thumb-label: "D";"
       >
         <input
           aria-orientation="horizontal"
           aria-valuenow="80"
           aria-valuetext="D"
-          id="base-ui-_r_9c_"
+          id="base-ui-_r_7r_"
           max="100"
           min="0"
           step="1"
@@ -328,7 +328,7 @@ exports[`range [snapshot] > with ticks 1`] = `
 <div
   class="vesper-range"
   data-orientation="horizontal"
-  id="base-ui-_r_8j_"
+  id="base-ui-_r_72_"
   role="group"
 >
   <div
@@ -366,7 +366,7 @@ exports[`range [snapshot] > with ticks 1`] = `
         class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
         data-index="0"
         data-orientation="horizontal"
-        id="base-ui-_r_8k_"
+        id="base-ui-_r_73_"
         style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 0%; visibility: hidden;"
       >
         <input
@@ -374,7 +374,7 @@ exports[`range [snapshot] > with ticks 1`] = `
           aria-orientation="horizontal"
           aria-valuenow="0"
           aria-valuetext="0"
-          id="base-ui-_r_8l_"
+          id="base-ui-_r_74_"
           max="5"
           min="0"
           step="1"
@@ -387,7 +387,7 @@ exports[`range [snapshot] > with ticks 1`] = `
         class="vesper-typography vesper-typography-label-xs vesper-range-thumb"
         data-index="1"
         data-orientation="horizontal"
-        id="base-ui-_r_8n_"
+        id="base-ui-_r_76_"
         style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 0%; visibility: hidden;"
       >
         <input
@@ -395,7 +395,7 @@ exports[`range [snapshot] > with ticks 1`] = `
           aria-orientation="horizontal"
           aria-valuenow="5"
           aria-valuetext="5"
-          id="base-ui-_r_8o_"
+          id="base-ui-_r_77_"
           max="5"
           min="0"
           step="1"
@@ -413,7 +413,7 @@ exports[`range [snapshot] > with value labels 1`] = `
 <div
   class="vesper-range vesper-range-labeled"
   data-orientation="horizontal"
-  id="base-ui-_r_8q_"
+  id="base-ui-_r_79_"
   role="group"
 >
   <div
@@ -435,7 +435,7 @@ exports[`range [snapshot] > with value labels 1`] = `
         class="vesper-typography vesper-typography-label-xs vesper-range-thumb vesper-range-thumb-labeled"
         data-index="0"
         data-orientation="horizontal"
-        id="base-ui-_r_8r_"
+        id="base-ui-_r_7a_"
         style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 0%; visibility: hidden; --vesper-range-thumb-label: "Min";"
       >
         <input
@@ -443,7 +443,7 @@ exports[`range [snapshot] > with value labels 1`] = `
           aria-orientation="horizontal"
           aria-valuenow="0"
           aria-valuetext="Min"
-          id="base-ui-_r_8s_"
+          id="base-ui-_r_7b_"
           max="100"
           min="0"
           step="1"
@@ -456,7 +456,7 @@ exports[`range [snapshot] > with value labels 1`] = `
         class="vesper-typography vesper-typography-label-xs vesper-range-thumb vesper-range-thumb-labeled"
         data-index="1"
         data-orientation="horizontal"
-        id="base-ui-_r_8u_"
+        id="base-ui-_r_7d_"
         style="position: absolute; inset-inline-start: var(--position); top: 50%; translate: -50% -50%; --position: 0%; visibility: hidden; --vesper-range-thumb-label: "Max";"
       >
         <input
@@ -464,7 +464,7 @@ exports[`range [snapshot] > with value labels 1`] = `
           aria-orientation="horizontal"
           aria-valuenow="100"
           aria-valuetext="Max"
-          id="base-ui-_r_8v_"
+          id="base-ui-_r_7e_"
           max="100"
           min="0"
           step="1"
