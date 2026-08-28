@@ -96,7 +96,7 @@ const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
  */
 export function TextInput(props: TextInputProps) {
   const { ariaProps, controlProps, formProps, wrapperProps } =
-    splitFormInputProps<typeof TextInput, "input">(props);
+    splitFormInputProps(props);
 
   const {
     iconLeft,

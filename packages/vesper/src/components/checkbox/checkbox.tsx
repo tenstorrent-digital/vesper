@@ -80,7 +80,7 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
  */
 export function Checkbox(props: CheckboxProps) {
   const { ariaProps, controlProps, wrapperProps, formProps } =
-    splitFormInputProps<typeof Checkbox, "input">(props);
+    splitFormInputProps(props);
 
   const {
     text,
