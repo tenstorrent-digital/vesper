@@ -90,40 +90,14 @@ describe("splitFormProps", () => {
     onBlur,
   };
 
-  test("form props get bucketed when the control element is a button", () => {
-    const [formProps, restProps] = splitFormProps(source, "button");
-    expect(formProps).toEqual({ name: "biography" });
-    expect(restProps).toEqual({
-      multiple: true,
-      minLength: 17,
-      id: "identifier",
-      onChange,
-      onBlur,
-    });
-  });
-
-  test("form props get bucketed when the control element is an input", () => {
-    const [formProps, restProps] = splitFormProps(source, "input");
+  test("form props get bucketed", () => {
+    const [formProps, restProps] = splitFormProps(source);
     expect(formProps).toEqual({
       name: "biography",
       multiple: true,
       minLength: 17,
     });
     expect(restProps).toEqual({
-      id: "identifier",
-      onChange,
-      onBlur,
-    });
-  });
-
-  test("form props get bucketed when the control element is a textarea", () => {
-    const [formProps, restProps] = splitFormProps(source, "textarea");
-    expect(formProps).toEqual({
-      name: "biography",
-      minLength: 17,
-    });
-    expect(restProps).toEqual({
-      multiple: true,
       id: "identifier",
       onChange,
       onBlur,
@@ -145,19 +119,8 @@ describe("splitFormInputProps", () => {
     "aria-hidden": true,
   };
 
-  test("form input props get bucketed when the control is a button", () => {
-    const result = splitFormInputProps(source, "button");
-
-    expect(result).toEqual({
-      ariaProps: { "aria-hidden": true },
-      controlProps: { id: "identifier", onBlur, onChange },
-      formProps: { name: "biography" },
-      wrapperProps: { multiple: true, minLength: 17 },
-    });
-  });
-
-  test("form input props get bucketed when the control is an input", () => {
-    const result = splitFormInputProps(source, "input");
+  test("form input props get bucketed", () => {
+    const result = splitFormInputProps(source);
 
     expect(result).toEqual({
       ariaProps: { "aria-hidden": true },
@@ -168,20 +131,6 @@ describe("splitFormInputProps", () => {
         minLength: 17,
       },
       wrapperProps: {},
-    });
-  });
-
-  test("form input props get bucketed when the control is a textarea", () => {
-    const result = splitFormInputProps(source, "textarea");
-
-    expect(result).toEqual({
-      ariaProps: { "aria-hidden": true },
-      controlProps: { id: "identifier", onBlur, onChange },
-      formProps: {
-        name: "biography",
-        minLength: 17,
-      },
-      wrapperProps: { multiple: true },
     });
   });
 });

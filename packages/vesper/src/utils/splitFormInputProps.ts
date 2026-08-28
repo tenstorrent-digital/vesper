@@ -206,8 +206,8 @@ export type FormInputProps<
   O
 >;
 
-export function splitFormInputProps<A>(props: A, control: ControlElementType) {
-  const [formProps, _props] = splitFormProps(props, control);
+export function splitFormInputProps<A>(props: A) {
+  const [formProps, _props] = splitFormProps(props);
   const [controlProps, __props] = splitControlProps(_props);
   const [ariaProps, wrapperProps] = splitAriaProps(__props);
 
@@ -222,21 +222,18 @@ export function splitFormInputProps<A>(props: A, control: ControlElementType) {
 const disallowedPropsSet = new Set(DISALLOWED_PROPS);
 const ariaPropsSet = new Set(ARIA_PROPS);
 const controlPropsSet = new Set(CONTROL_PROPS);
-const formPropsSets = {
-  input: new Set(INPUT_FORM_PROPS),
-  button: new Set(BUTTON_FORM_PROPS),
-  textarea: new Set(TEXTAREA_FORM_PROPS),
-};
+const formPropsSet = new Set([
+  ...INPUT_FORM_PROPS,
+  ...TEXTAREA_FORM_PROPS,
+  ...BUTTON_FORM_PROPS,
+]);
 
 export function splitControlProps<A>(props: A) {
   return splitProps(props, controlPropsSet);
 }
 
-export function splitFormProps<A, C extends ControlElementType>(
-  props: A,
-  control: C,
-) {
-  return splitProps(props, formPropsSets[control]);
+export function splitFormProps<A>(props: A) {
+  return splitProps(props, formPropsSet);
 }
 
 export function splitAriaProps<A>(props: A) {
