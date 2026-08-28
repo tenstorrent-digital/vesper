@@ -5,6 +5,7 @@ import {
   FocusEvent,
   KeyboardEvent,
   type ReactNode,
+  Ref,
   useCallback,
   useEffect,
   useRef,
@@ -17,7 +18,6 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
-import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 export const TOGGLE_SIZES = ["sm", "md", "lg"] as const;
 
@@ -41,10 +41,13 @@ export type ToggleOption =
       ariaLabel: string;
     };
 
-export interface ToggleProps extends Omit<
-  ComponentProps<"div">,
-  "children" | "dir"
-> {
+export interface ToggleProps
+  extends
+    Omit<
+      ComponentProps<"div">,
+      "children" | "role" | "dangerouslySetInnerHTML" | "dir" | "ref"
+    >,
+    Pick<ComponentProps<"select">, "ref"> {
   /** The list of toggle options to render. Each option can display either text or an icon. */
   options: ToggleOption[];
   /** The size of the toggle and its options. Affects padding and typography. @default md */
@@ -61,6 +64,8 @@ export interface ToggleProps extends Omit<
   name?: string;
   /** When `true`, makes the underlying input required when rendered inside of a form. @default false */
   required?: boolean;
+  /** A ref forwarded to the underlying `<select>` element for direct DOM access. */
+  ref?: Ref<HTMLSelectElement>;
 }
 
 const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
@@ -130,7 +135,6 @@ export function Toggle(props: ToggleProps) {
   } = props;
 
   const innerRef = useRef<HTMLDivElement>(null);
-  const mergedRef = useMergedRefs(ref, innerRef);
 
   const [innerValue, setInnerValue] = useState(value ?? defaultValue);
 
@@ -232,7 +236,8 @@ export function Toggle(props: ToggleProps) {
 
   return (
     <div
-      ref={mergedRef}
+      {...rest}
+      ref={innerRef}
       role="radiogroup"
       aria-required={required}
       className={cn(
@@ -243,10 +248,10 @@ export function Toggle(props: ToggleProps) {
       )}
       onKeyDown={handleKeyDown}
       onBlur={handleBlur}
-      {...rest}
     >
       <select
         aria-hidden
+        ref={ref}
         tabIndex={-1}
         id={id}
         name={name}
