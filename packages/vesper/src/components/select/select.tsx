@@ -1,16 +1,8 @@
 "use client";
 
-import {
-  type ComponentProps,
-  type ReactNode,
-  type Ref,
-  useId,
-  useMemo,
-  useState,
-} from "react";
+import { type ReactNode, useMemo, useState } from "react";
 import { Select as BaseSelect } from "@base-ui/react/select";
 
-import { FormInputWrapper } from "@/components/form-input-wrapper/form-input-wrapper";
 import { CaretDown, CaretUp, Checkmark } from "@/components/icons/icons";
 import {
   Typography,
@@ -24,6 +16,10 @@ import {
 } from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
 import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
+import {
+  FormInputProps,
+  splitFormInputProps,
+} from "@/utils/splitFormInputProps";
 
 export const SELECT_VARIANTS = [
   "default",
@@ -45,9 +41,10 @@ export interface SelectItem {
   label: string;
 }
 
-export interface SelectProps extends Omit<
-  ComponentProps<"button">,
-  "children" | "defaultValue" | "value"
+export interface SelectProps extends FormInputProps<
+  "button",
+  "button",
+  "value" | "defaultValue"
 > {
   /** An optional icon rendered at the leading edge of the select trigger. */
   icon?: ReactNode;
@@ -67,8 +64,6 @@ export interface SelectProps extends Omit<
   onValueChange?(value: string | null): void;
   /** When `true`, marks the underlying select as required for form validation */
   required?: boolean;
-  /** Associates the select with a `<form>` element by its `id`, allowing submission from outside the form */
-  form?: string;
   /** Specify the element or shadow root to portal the dropdown into */
   container?: PortalContainer;
   /** A ref forwarded to the underlying select trigger `<button>` element for direct DOM access. */
@@ -96,7 +91,7 @@ const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
  * @param {(value: string) => void} [props.onValueChange] - (optional) Callback invoked with the new value whenever the selection changes
  * @param {boolean} [props.required] - (optional) Marks the select as required for form validation
  * @param {PortalContainer} [props.container] - (optional) Specify the element or shadow root to portal the dropdown into
- * @param {Ref<HTMLButtonElement>} [props.triggerRef] - (optional) A ref forwarded to the underlying select trigger `<button>` element
+ * @param {Ref<HTMLButtonElement>} [props.ref] - (optional) A ref forwarded to the select trigger `<button>` element
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  *
  * You may also pass any additional props to the underlying `div` element
@@ -127,27 +122,19 @@ const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
 export function Select(props: SelectProps) {
   const {
     className,
-    disabled,
-    placeholder = "Select an option",
     options,
-    value,
-    defaultValue,
     onValueChange,
     size = "md",
     variant = "default",
     icon,
-    name,
-    required,
-    form,
     container,
-    "aria-label": ariaLabel,
-    "aria-describedby": ariaDescribedBy,
-    "aria-labelledby": ariaLabelledBy,
-    "aria-invalid": ariaInvalid,
+    placeholder = "Select an option",
     ref,
-    id,
     ...rest
   } = props;
+
+  const { ariaProps, controlProps, formProps, wrapperProps } =
+    splitFormInputProps(rest);
 
   const [trigger, setTrigger] = useState<HTMLButtonElement | null>(null);
 
@@ -167,30 +154,21 @@ export function Select(props: SelectProps) {
 
   return (
     <BaseSelect.Root
+      {...formProps}
       items={items}
-      value={value}
-      defaultValue={defaultValue}
       onValueChange={(next) => onValueChange?.(next)}
-      disabled={disabled}
-      name={name}
-      required={required}
-      form={form}
     >
       <BaseSelect.Trigger
-        {...rest}
+        {...ariaProps}
+        {...wrapperProps}
+        {...controlProps}
+        ref={mergedTriggerRef}
         className={cn(
           "vesper-select",
           `vesper-select-${size}`,
           `vesper-select-${variant}`,
           className,
         )}
-        disabled={disabled}
-        aria-label={ariaLabel}
-        aria-describedby={ariaDescribedBy}
-        aria-labelledby={ariaLabelledBy}
-        aria-invalid={ariaInvalid}
-        ref={mergedTriggerRef}
-        id={id}
       >
         {icon && <span className="vesper-select-icon">{icon}</span>}
         <Typography as="span" variant={SELECT_TRIGGER_TYPOGRAPHY[size]}>
