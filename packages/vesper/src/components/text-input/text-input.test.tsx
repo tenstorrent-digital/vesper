@@ -1,9 +1,8 @@
 import { cleanup, render } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
-import { userEvent } from "vitest/browser";
 
-import { Close, Globe } from "@/components/icons/icons";
+import { Close, Globe, Search } from "@/components/icons/icons";
 import {
   TEXT_INPUT_SIZES,
   TEXT_INPUT_VARIANTS,
@@ -13,54 +12,38 @@ import {
 
 import "@/styles/test.css";
 
-const TEXT_INPUT_SNAPSHOT_PERMUTATIONS: (TextInputProps & { name: string })[] =
-  [
-    // One per variant
-    ...TEXT_INPUT_VARIANTS.map((variant) => ({
-      name: `variant: ${variant}`,
-      variant,
-      size: "lg" as const,
-      message: "Message text",
-    })),
-    // One per size
-    ...TEXT_INPUT_SIZES.map((size) => ({
-      name: `size: ${size}`,
-      size,
-    })),
-    // Meaningful feature combos
-    { name: "with icon", iconLeft: <Globe />, size: "lg" as const },
-    { name: "with label", label: "Label text", size: "lg" as const },
-    { name: "disabled", disabled: true, size: "lg" as const },
-    {
-      name: "full options",
-      variant: "error",
-      size: "lg" as const,
-      label: "Label text",
-      message: "Message text",
-      disabled: true,
-    },
-  ];
+type TextInputPermutation = TextInputProps & { permutationName: string };
 
-const TEXT_INPUT_PERMUTATIONS = TEXT_INPUT_VARIANTS.flatMap((variant) =>
-  TEXT_INPUT_SIZES.flatMap((size) => [
-    {
-      name: `${variant}, ${size}`,
-      variant,
-      label: "Label text",
-      message: "Message text",
-      disabled: false,
-      size,
-    },
-    {
-      name: `${variant}, ${size}, disabled`,
-      variant,
-      label: "Label text",
-      message: "Message text",
-      disabled: true,
-      size,
-    },
-  ]),
-);
+const TEXT_INPUT_PERMUTATIONS: TextInputPermutation[] =
+  TEXT_INPUT_SIZES.flatMap((size) =>
+    TEXT_INPUT_VARIANTS.flatMap((variant) => [
+      {
+        permutationName: `${size}, ${variant}`,
+        size,
+        variant,
+        defaultValue: "banana",
+        "aria-label": "Label",
+      },
+      {
+        permutationName: `${size}, ${variant}, disabled`,
+        size,
+        variant,
+        disabled: true,
+        "aria-label": "Label",
+      },
+      {
+        permutationName: `${size}, ${variant}, full options`,
+        size,
+        variant,
+        defaultValue: "banana",
+        placeholder: "Placeholder text",
+        name: "field-name",
+        iconLeft: <Search />,
+        iconRight: <Close />,
+        "aria-label": "Label",
+      },
+    ]),
+  );
 
 const TEXT_INPUT_A11Y_FAILING_PERMUTATIONS: (Pick<
   TextInputProps,
@@ -113,57 +96,10 @@ describe("text-input [unit]", () => {
     expect(result.getByRole("textbox")).toBeDisabled();
   });
 
-  test("renders a label when supplied", () => {
-    const result = render(<TextInput label="Username" />);
-
-    const label = result.container.querySelector(
-      ".vesper-form-input-wrapper-label",
-    );
-    expect(label).not.toBeNull();
-    expect(label!.tagName).toBe("LABEL");
-    expect(label).toHaveTextContent("Username");
-  });
-
-  test("label htmlFor matches the id prop", () => {
-    const result = render(<TextInput label="Email" id="email-input" />);
-
-    const label = result.container.querySelector(
-      ".vesper-form-input-wrapper-label",
-    );
-    expect(label).toHaveAttribute("for", "email-input");
-  });
-
-  test("clicking the label focuses the input", async () => {
-    const result = render(<TextInput label="Username" id="username-input" />);
-
-    const label = result.container.querySelector(
-      ".vesper-form-input-wrapper-label",
-    )!;
-    await userEvent.click(label);
-
-    expect(result.getByRole("textbox")).toHaveFocus();
-  });
-
   test("the id prop is forwarded to the input", () => {
     const result = render(<TextInput id="email-input" />);
 
     expect(result.getByRole("textbox")).toHaveAttribute("id", "email-input");
-  });
-
-  test("an id is generated when the id prop is omitted", () => {
-    const result = render(<TextInput label="Username" />);
-
-    const input = result.getByRole("textbox");
-    expect(input.id).not.toBe("");
-    expect(
-      result.container.querySelector(".vesper-form-input-wrapper-label"),
-    ).toHaveAttribute("for", input.id);
-  });
-
-  test("the generated id associates the label with the input", () => {
-    const result = render(<TextInput label="Username" />);
-
-    expect(result.getByLabelText("Username")).toBe(result.getByRole("textbox"));
   });
 
   test("renders an icon to the left when provided", () => {
@@ -255,10 +191,10 @@ describe("text-input [unit]", () => {
 });
 
 describe("text-input [snapshot]", () => {
-  TEXT_INPUT_SNAPSHOT_PERMUTATIONS.forEach((permutation) => {
-    const { name, ...props } = permutation;
+  TEXT_INPUT_PERMUTATIONS.forEach((permutation) => {
+    const { permutationName, ...props } = permutation;
 
-    test(name, () => {
+    test(permutationName, () => {
       const { container } = render(<TextInput {...props} />);
       expect(container.firstChild).toMatchSnapshot();
     });
@@ -278,23 +214,12 @@ describe("text-input [a11y]", () => {
     });
 
     TEXT_INPUT_PERMUTATIONS.forEach((permutation) => {
-      const { name, ...props } = permutation;
-      const label = `wcag2aaa (${name}, ${theme})`;
+      const { permutationName, ...props } = permutation;
 
-      const testFn = async () => {
+      test(`wcag2aaa (${permutationName}, ${theme})`, async () => {
         const { container } = render(<TextInput {...props} />);
         expect(await axe.run(container.firstChild!)).toHaveNoViolations();
-      };
-
-      const failsA11y = TEXT_INPUT_A11Y_FAILING_PERMUTATIONS.some(
-        (p) =>
-          p.variant === props.variant &&
-          p.disabled === props.disabled &&
-          p.theme === theme,
-      );
-
-      if (failsA11y) test.todo(label, testFn);
-      else test(label, testFn);
+      });
     });
   });
 });
