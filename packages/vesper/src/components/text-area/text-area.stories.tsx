@@ -9,10 +9,8 @@ import {
 const meta = {
   component: TextArea,
   argTypes: {
-    height: {
-      control: "number",
-      name: "height",
-    },
+    style: { table: { disable: true } },
+    height: { control: "number" },
     size: { control: "radio", options: TEXT_AREA_SIZES },
     variant: { control: "radio", options: TEXT_AREA_VARIANTS },
   },
@@ -27,11 +25,10 @@ export const Playground: Story = {
     variant: "default",
     size: "md",
     disabled: false,
-    label: "Label",
     placeholder: "Tell us about yourself",
-    message: "This is a message you can display under the input.",
     height: 104,
-    resizeable: true,
+    resizeable: false,
+    style: { width: "min(calc(100vw - 4rem), 20rem)" },
   },
 };
 Playground.storyName = "text-area";
