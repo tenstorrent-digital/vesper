@@ -42,8 +42,6 @@ export const Playground: Story = {
       { value: "oh_my", label: "Oh my" },
     ],
     icon: false as unknown as boolean,
-    label: "Animal",
-    message: "Optional message",
     required: false,
   },
 };

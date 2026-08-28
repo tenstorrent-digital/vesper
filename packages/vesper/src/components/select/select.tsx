@@ -45,20 +45,16 @@ export interface SelectItem {
   label: string;
 }
 
-export interface SelectProps
-  extends
-    Omit<ComponentProps<"div">, "children" | "defaultValue">,
-    Pick<ComponentProps<"button">, "name" | "disabled"> {
+export interface SelectProps extends Omit<
+  ComponentProps<"button">,
+  "children" | "defaultValue" | "value"
+> {
   /** An optional icon rendered at the leading edge of the select trigger. */
   icon?: ReactNode;
   /** The size variant of the select trigger. Affects padding, height, and typography. @default md */
   size?: SelectSize;
   /** The visual variant of the select trigger, which determines its color scheme and message icon. @default default */
   variant?: SelectVariant;
-  /** An optional message displayed below the input, paired with a variant-specific icon. Also linked to the input via `aria-describedby`. */
-  message?: string;
-  /** An optional label displayed above the input. An asterisk is appended when `required` is `true`. */
-  label?: string;
   /** Placeholder text shown in the trigger when no value is selected. @default Select an option */
   placeholder?: string;
   /** The list of selectable options displayed in the dropdown */
@@ -76,7 +72,6 @@ export interface SelectProps
   /** Specify the element or shadow root to portal the dropdown into */
   container?: PortalContainer;
   /** A ref forwarded to the underlying select trigger `<button>` element for direct DOM access. */
-  triggerRef?: Ref<HTMLButtonElement>;
 }
 
 const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
@@ -145,12 +140,9 @@ export function Select(props: SelectProps) {
     required,
     form,
     container,
-    message,
-    label,
-    triggerRef,
-    "aria-label": ariaLabel = label,
-    "aria-describedby": ariaDescribedby,
-    "aria-labelledby": ariaLabelledby,
+    "aria-label": ariaLabel,
+    "aria-describedby": ariaDescribedBy,
+    "aria-labelledby": ariaLabelledBy,
     "aria-invalid": ariaInvalid,
     ref,
     id,
@@ -159,22 +151,11 @@ export function Select(props: SelectProps) {
 
   const [trigger, setTrigger] = useState<HTMLButtonElement | null>(null);
 
-  const mergedTriggerRef = useMergedRefs(setTrigger, triggerRef);
+  const mergedTriggerRef = useMergedRefs(setTrigger, ref);
 
   const portalContainer = getPortalContainer(container, trigger);
 
   const baseRemSize = useBaseRemSize();
-
-  const messageId = useId();
-
-  let inputId = useId();
-  if (id) inputId = id;
-
-  // If an additional aria-describedby is supplied, this ensures that both ids get used
-  const describedBy =
-    [ariaDescribedby, message ? messageId : undefined]
-      .filter(Boolean)
-      .join(" ") || undefined;
 
   const items = useMemo(
     () =>
@@ -185,81 +166,70 @@ export function Select(props: SelectProps) {
   );
 
   return (
-    <FormInputWrapper
-      variant={variant}
-      label={
-        label
-          ? { text: required ? `${label} *` : label, htmlFor: inputId }
-          : undefined
-      }
-      message={message ? { text: message, id: messageId } : undefined}
-      ref={ref}
-      className={className}
-      {...rest}
+    <BaseSelect.Root
+      items={items}
+      value={value}
+      defaultValue={defaultValue}
+      onValueChange={(next) => onValueChange?.(next)}
+      disabled={disabled}
+      name={name}
+      required={required}
+      form={form}
     >
-      <BaseSelect.Root
-        items={items}
-        value={value}
-        defaultValue={defaultValue}
-        onValueChange={(next) => onValueChange?.(next)}
+      <BaseSelect.Trigger
+        {...rest}
+        className={cn(
+          "vesper-select",
+          `vesper-select-${size}`,
+          `vesper-select-${variant}`,
+          className,
+        )}
         disabled={disabled}
-        name={name}
-        required={required}
-        form={form}
+        aria-label={ariaLabel}
+        aria-describedby={ariaDescribedBy}
+        aria-labelledby={ariaLabelledBy}
+        aria-invalid={ariaInvalid}
+        ref={mergedTriggerRef}
+        id={id}
       >
-        <BaseSelect.Trigger
-          className={cn(
-            "vesper-select",
-            `vesper-select-${size}`,
-            `vesper-select-${variant}`,
-          )}
-          disabled={disabled}
-          aria-label={ariaLabel}
-          aria-describedby={describedBy}
-          aria-labelledby={ariaLabelledby}
-          aria-invalid={ariaInvalid}
-          ref={mergedTriggerRef}
-          id={inputId}
+        {icon && <span className="vesper-select-icon">{icon}</span>}
+        <Typography as="span" variant={SELECT_TRIGGER_TYPOGRAPHY[size]}>
+          <BaseSelect.Value placeholder={placeholder} />
+        </Typography>
+        <span className="vesper-select-state-indicator">
+          <CaretDown className="vesper-select-state-indicator-closed" />
+          <CaretUp className="vesper-select-state-indicator-open" />
+        </span>
+      </BaseSelect.Trigger>
+      <BaseSelect.Portal container={portalContainer}>
+        <BaseSelect.Positioner
+          side="bottom"
+          align="start"
+          alignItemWithTrigger={false}
+          sideOffset={12 * (baseRemSize / 16)}
         >
-          {icon && <span className="vesper-select-icon">{icon}</span>}
-          <Typography as="span" variant={SELECT_TRIGGER_TYPOGRAPHY[size]}>
-            <BaseSelect.Value placeholder={placeholder} />
-          </Typography>
-          <span className="vesper-select-state-indicator">
-            <CaretDown className="vesper-select-state-indicator-closed" />
-            <CaretUp className="vesper-select-state-indicator-open" />
-          </span>
-        </BaseSelect.Trigger>
-        <BaseSelect.Portal container={portalContainer}>
-          <BaseSelect.Positioner
-            side="bottom"
-            align="start"
-            alignItemWithTrigger={false}
-            sideOffset={12 * (baseRemSize / 16)}
-          >
-            <BaseSelect.Popup className="vesper-select-popup">
-              <BaseSelect.List className="vesper-select-viewport">
-                {items.map((o) => (
-                  <BaseSelect.Item
-                    key={o.value}
-                    value={o.value}
-                    className="vesper-select-item"
+          <BaseSelect.Popup className="vesper-select-popup">
+            <BaseSelect.List className="vesper-select-viewport">
+              {items.map((o) => (
+                <BaseSelect.Item
+                  key={o.value}
+                  value={o.value}
+                  className="vesper-select-item"
+                >
+                  <BaseSelect.ItemText
+                    render={<Typography variant="label-md" />}
                   >
-                    <BaseSelect.ItemText
-                      render={<Typography variant="label-md" />}
-                    >
-                      {o.label}
-                    </BaseSelect.ItemText>
-                    <BaseSelect.ItemIndicator className="vesper-select-item-checkmark">
-                      <Checkmark />
-                    </BaseSelect.ItemIndicator>
-                  </BaseSelect.Item>
-                ))}
-              </BaseSelect.List>
-            </BaseSelect.Popup>
-          </BaseSelect.Positioner>
-        </BaseSelect.Portal>
-      </BaseSelect.Root>
-    </FormInputWrapper>
+                    {o.label}
+                  </BaseSelect.ItemText>
+                  <BaseSelect.ItemIndicator className="vesper-select-item-checkmark">
+                    <Checkmark />
+                  </BaseSelect.ItemIndicator>
+                </BaseSelect.Item>
+              ))}
+            </BaseSelect.List>
+          </BaseSelect.Popup>
+        </BaseSelect.Positioner>
+      </BaseSelect.Portal>
+    </BaseSelect.Root>
   );
 }
