@@ -243,7 +243,7 @@ export function splitAriaProps<A>(props: A) {
   return splitProps(props, ariaPropsSet);
 }
 
-function splitProps<A, K extends string>(props: A, keys: Set<K>) {
+export function splitProps<A, K extends string>(props: A, keys: Set<K>) {
   const a = {} as OmitUnknown<Omit<A, K | DisallowedProp>>;
   // @ts-expect-error ts not smart enough to do this
   const b = {} as OmitUnknown<Pick<A, K | DisallowedProp>>;
