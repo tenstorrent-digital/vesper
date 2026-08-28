@@ -168,7 +168,7 @@ export function Combobox(props: ComboboxProps) {
   } = props;
 
   const { ariaProps, controlProps, formProps, wrapperProps } =
-    splitFormInputProps(rest);
+    splitFormInputProps(rest, "input");
 
   const [innerRef, setInnerRef] = useState<HTMLDivElement | null>(null);
 

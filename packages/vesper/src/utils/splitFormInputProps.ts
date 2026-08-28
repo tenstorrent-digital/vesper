@@ -206,9 +206,9 @@ export type FormInputProps<
   O
 >;
 
-export function splitFormInputProps<A>(props: A) {
-  const [_props, controlProps] = splitControlProps(props);
-  const [__props, formProps] = splitFormProps(_props);
+export function splitFormInputProps<A>(props: A, control: ControlElementType) {
+  const [_props, formProps] = splitFormProps(props, control);
+  const [__props, controlProps] = splitControlProps(_props);
   const [wrapperProps, ariaProps] = splitAriaProps(__props);
 
   return {
@@ -219,27 +219,41 @@ export function splitFormInputProps<A>(props: A) {
   };
 }
 
+const disallowedPropsSet = new Set(DISALLOWED_PROPS);
+const ariaPropsSet = new Set(ARIA_PROPS);
+const controlPropsSet = new Set(CONTROL_PROPS);
+const formPropsSets = {
+  input: new Set(INPUT_FORM_PROPS),
+  button: new Set(BUTTON_FORM_PROPS),
+  textarea: new Set(TEXTAREA_FORM_PROPS),
+};
+
 export function splitControlProps<A>(props: A) {
-  return splitProps(props, CONTROL_PROPS);
+  return splitProps(props, controlPropsSet);
 }
 
-export function splitFormProps<A>(props: A) {
-  return splitProps(props, INPUT_FORM_PROPS);
+export function splitFormProps<A, C extends ControlElementType>(
+  props: A,
+  control: C,
+) {
+  return splitProps(props, formPropsSets[control]);
 }
 
 export function splitAriaProps<A>(props: A) {
-  return splitProps(props, ARIA_PROPS);
+  return splitProps(props, ariaPropsSet);
 }
 
-function splitProps<A, K extends string>(props: A, keys: readonly K[]) {
-  const a = {} as OmitUnknown<Omit<A, K>>;
+function splitProps<A, K extends string>(props: A, keys: Set<K>) {
+  const a = {} as OmitUnknown<Omit<A, K | DisallowedProp>>;
   // @ts-expect-error ts not smart enough to do this
-  const b = {} as OmitUnknown<Pick<A, K>>;
+  const b = {} as OmitUnknown<Pick<A, K | DisallowedProp>>;
 
   for (const prop in props) {
-    // @ts-expect-error ts not smart enough to do this
-    if (keys.includes(prop)) b[prop] = props[prop];
-    // @ts-expect-error ts not smart enough to do this
+    // @ts-expect-error ts is not smart enough to do this
+    if (disallowedPropsSet.has(prop)) continue;
+    // @ts-expect-error ts is not smart enough to do this
+    if (keys.has(prop)) b[prop] = props[prop];
+    // @ts-expect-error ts is not smart enough to do this
     else a[prop] = props[prop];
   }
 

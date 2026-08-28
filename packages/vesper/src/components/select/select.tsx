@@ -134,7 +134,7 @@ export function Select(props: SelectProps) {
   } = props;
 
   const { ariaProps, controlProps, formProps, wrapperProps } =
-    splitFormInputProps(rest);
+    splitFormInputProps(rest, "button");
 
   const [trigger, setTrigger] = useState<HTMLButtonElement | null>(null);
 

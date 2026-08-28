@@ -82,7 +82,7 @@ export function Checkbox(props: CheckboxProps) {
   const { text, size = "md", indeterminate, className, ...rest } = props;
 
   const { ariaProps, controlProps, wrapperProps, formProps } =
-    splitFormInputProps(rest);
+    splitFormInputProps(rest, "input");
 
   const innerRef = useRef<HTMLInputElement>(null);
   useLayoutEffect(() => {

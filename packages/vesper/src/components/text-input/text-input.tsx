@@ -109,7 +109,7 @@ export function TextInput(props: TextInputProps) {
   } = props;
 
   const { ariaProps, controlProps, formProps, wrapperProps } =
-    splitFormInputProps(rest);
+    splitFormInputProps(rest, "input");
 
   return (
     <div
