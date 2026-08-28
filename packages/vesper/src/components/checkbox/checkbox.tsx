@@ -97,6 +97,7 @@ export function Checkbox(props: CheckboxProps) {
       className={cn("vesper-checkbox", `vesper-checkbox-${size}`, className)}
     >
       <input
+        aria-label={text}
         {...ariaProps}
         {...controlProps}
         {...formProps}
