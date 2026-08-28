@@ -1,6 +1,10 @@
 import type { AriaAttributes, ComponentProps, ElementType } from "react";
 
-const DISALLOWED_PROPS = ["children", "dangerouslySetInnerHTML"] as const;
+const DISALLOWED_PROPS = [
+  "role",
+  "children",
+  "dangerouslySetInnerHTML",
+] as const;
 
 const CONTROL_PROPS = [
   // base set of props
@@ -125,6 +129,16 @@ const FORM_PROPS = [
   "name",
   "required",
   "value",
+  "min",
+  "max",
+  "multiple",
+  "pattern",
+  "list",
+  "minLength",
+  "maxLength",
+  "readOnly",
+  "placeholder",
+  "autoComplete",
 ] as const satisfies (keyof ComponentProps<"input">)[];
 
 const disallowedPropsSet: ReadonlySet<string> = new Set(DISALLOWED_PROPS);
