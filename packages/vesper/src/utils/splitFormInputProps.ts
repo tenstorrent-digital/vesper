@@ -194,7 +194,11 @@ type WrapperProps<W extends ElementType, C extends ControlElementType> = Omit<
 export type FormInputProps<
   W extends ElementType,
   C extends ControlElementType,
-> = WrapperProps<W, C> & ControlProps<C> & FormProps<C> & AriaAttributes;
+  O extends string = never,
+> = Omit<
+  WrapperProps<W, C> & ControlProps<C> & FormProps<C> & AriaAttributes,
+  O
+>;
 
 export function splitFormInputProps<A>(props: A) {
   const [_props, controlProps] = splitControlProps(props);
