@@ -79,25 +79,10 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
  * />
  */
 export function Checkbox(props: CheckboxProps) {
+  const { text, size = "md", indeterminate, className, ...rest } = props;
+
   const { ariaProps, controlProps, wrapperProps, formProps } =
-    splitFormInputProps(props);
-
-  const {
-    text,
-    size = "md",
-    indeterminate,
-    className,
-    ...restWrapperProps
-  } = wrapperProps;
-
-  const {
-    "aria-describedby": ariaDescribedBy,
-    "aria-labelledby": ariaLabelledBy,
-    "aria-errormessage": ariaErrorMessage,
-    "aria-invalid": ariaInvalid,
-    "aria-hidden": ariaHidden,
-    ...restAriaProps
-  } = ariaProps;
+    splitFormInputProps(rest);
 
   const innerRef = useRef<HTMLInputElement>(null);
   useLayoutEffect(() => {
@@ -108,19 +93,14 @@ export function Checkbox(props: CheckboxProps) {
 
   return (
     <label
-      {...restWrapperProps}
-      {...restAriaProps}
+      {...wrapperProps}
       className={cn("vesper-checkbox", `vesper-checkbox-${size}`, className)}
-      aria-hidden={ariaHidden}
     >
       <input
+        {...ariaProps}
         {...controlProps}
         {...formProps}
         ref={mergedInputRef}
-        aria-labelledby={ariaLabelledBy}
-        aria-describedby={ariaDescribedBy}
-        aria-invalid={ariaInvalid}
-        aria-errormessage={ariaErrorMessage}
         type="checkbox"
         className="vesper-checkbox-input"
       />
