@@ -14,6 +14,7 @@ const meta = {
     valueLabel: { table: { disable: true } },
     name: { table: { disable: true } },
     form: { table: { disable: true } },
+    ref: { table: { disable: true } },
     variant: { control: "radio", options: SLIDER_VARIANTS },
   },
 } satisfies Meta<typeof Slider>;
@@ -32,8 +33,6 @@ export const Playground: Story = {
     showValueLabel: false,
     disabled: false,
     thumbAriaLabel: "Volume",
-    label: "Label",
-    message: "Optional message",
     variant: "default",
   },
 };
