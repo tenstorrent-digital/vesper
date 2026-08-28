@@ -4,7 +4,7 @@ const DISALLOWED_PROPS = [
   "role",
   "children",
   "dangerouslySetInnerHTML",
-] as const;
+] as const satisfies (keyof ComponentProps<"div">)[];
 
 const CONTROL_PROPS = [
   // base set of props
@@ -62,7 +62,7 @@ const CONTROL_PROPS = [
   "onScrollEndCapture",
   "onWheel",
   "onWheelCapture",
-] as const;
+] as const satisfies (keyof ComponentProps<"div">)[];
 
 const ARIA_PROPS = [
   "aria-activedescendant",
@@ -118,7 +118,13 @@ const ARIA_PROPS = [
   "aria-valuemin",
   "aria-valuenow",
   "aria-valuetext",
-] as const;
+] as const satisfies (keyof AriaAttributes)[];
+
+type AssertNever<T extends never> = T;
+
+export type AssertAllAriaAttributesAccountedFor = AssertNever<
+  Exclude<keyof AriaAttributes, (typeof ARIA_PROPS)[number]>
+>;
 
 const BUTTON_FORM_PROPS = [
   "defaultChecked",
