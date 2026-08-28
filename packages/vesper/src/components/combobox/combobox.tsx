@@ -1,6 +1,6 @@
 "use client";
 
-import { ComponentProps, Ref, useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
 
 import { CaretDown, Checkmark, Close, Search } from "@/components/icons/icons";
@@ -15,7 +15,10 @@ import {
   type PortalContainer,
 } from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
-import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
+import {
+  type FormInputProps,
+  splitFormInputProps,
+} from "@/utils/splitFormInputProps";
 
 export const COMBOBOX_SIZES = ["sm", "md", "lg"] as const;
 
@@ -44,8 +47,8 @@ export interface ComboboxItem {
 }
 
 export interface ComboboxProps extends Omit<
-  ComponentProps<"div">,
-  "children" | "defaultValue"
+  FormInputProps<"div", "input">,
+  "value" | "defaultValue"
 > {
   /** The list of selectable options displayed in the dropdown. Strings are treated as both the label and the value of an option. */
   options: (ComboboxItem | string)[];
@@ -89,8 +92,7 @@ export interface ComboboxProps extends Omit<
   onInputValueChange?(value: string): void;
   /** Specify the element or shadow root to portal the menu into */
   container?: PortalContainer;
-  /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
-  inputRef?: Ref<HTMLInputElement>;
+
   /** Accessible label for the button that clears the currently selected value. @default Clear selection */
   clearButtonAriaLabel?: string;
   /** Accessible label for the button that opens the dropdown. @default Show options */
@@ -144,41 +146,31 @@ export interface ComboboxProps extends Omit<
  * />
  */
 export function Combobox(props: ComboboxProps) {
+  const { ariaProps, controlProps, formProps, wrapperProps } =
+    splitFormInputProps(props, { omit: ["multiple"] });
+
   const {
     options,
-    disabled,
     size = "md",
     variant = "default",
     emptyStateText = "No results",
-    placeholder = "Search...",
     clearButtonAriaLabel = "Clear selection",
     dropdownTriggerAriaLabel = "Show options",
     className,
     open,
     defaultOpen,
     onOpenChange,
-    value,
-    defaultValue,
     onValueChange,
     inputValue,
     defaultInputValue,
     onInputValueChange,
-    readOnly,
-    required,
-    name,
-    form,
-    id,
     container,
-    inputRef,
-    ref,
-    "aria-describedby": ariaDescribedby,
-    "aria-label": ariaLabel,
-    "aria-labelledby": ariaLabelledBy,
-    "aria-invalid": ariaInvalid,
-    ...rest
-  } = props;
+    ...restWrapperProps
+  } = wrapperProps;
+
+  const { placeholder = "Search...", ...restFormProps } = formProps;
+
   const [innerRef, setInnerRef] = useState<HTMLDivElement | null>(null);
-  const mergedRef = useMergedRefs(setInnerRef, inputRef);
 
   const baseRemSize = useBaseRemSize();
 
@@ -213,26 +205,20 @@ export function Combobox(props: ComboboxProps) {
 
   return (
     <BaseCombobox.Root
+      {...restFormProps}
       items={values}
       itemToStringLabel={itemToStringLabel}
       open={open}
       defaultOpen={defaultOpen}
       onOpenChange={onOpenChange}
-      value={value}
-      defaultValue={defaultValue}
       onValueChange={handleValueChange}
       inputValue={inputValue}
       defaultInputValue={defaultInputValue}
       onInputValueChange={onInputValueChange}
-      disabled={disabled}
-      required={required}
-      name={name}
-      form={form}
-      readOnly={readOnly}
     >
       <BaseCombobox.InputGroup
-        {...rest}
-        ref={ref}
+        {...restWrapperProps}
+        ref={setInnerRef}
         className={cn(
           "vesper-combobox",
           `vesper-combobox-${size}`,
@@ -242,16 +228,12 @@ export function Combobox(props: ComboboxProps) {
       >
         <Search className="vesper-combobox-search-icon" />
         <Typography
+          {...ariaProps}
+          {...controlProps}
           as={BaseCombobox.Input}
-          ref={mergedRef}
-          id={id}
           variant={COMBOBOX_TYPOGRAPHY[size]}
           placeholder={placeholder}
           className="vesper-combobox-input"
-          aria-describedby={ariaDescribedby}
-          aria-label={ariaLabel}
-          aria-labelledby={ariaLabelledBy}
-          aria-invalid={ariaInvalid}
         />
         <BaseCombobox.Clear
           className="vesper-combobox-clear"

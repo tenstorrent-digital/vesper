@@ -8,27 +8,12 @@ import {
 
 const meta = {
   component: Combobox,
+  parameters: {
+    controls: {
+      include: ["size", "variant", "placeholder", "disabled", "emptyStateText"],
+    },
+  },
   argTypes: {
-    options: { table: { disable: true } },
-    style: { table: { disable: true } },
-    open: { table: { disable: true } },
-    defaultOpen: { table: { disable: true } },
-    onOpenChange: { table: { disable: true } },
-    value: { table: { disable: true } },
-    defaultValue: { table: { disable: true } },
-    onValueChange: { table: { disable: true } },
-    inputValue: { table: { disable: true } },
-    defaultInputValue: { table: { disable: true } },
-    onInputValueChange: { table: { disable: true } },
-    name: { table: { disable: true } },
-    id: { table: { disable: true } },
-    form: { table: { disable: true } },
-    container: { table: { disable: true } },
-    inputRef: { table: { disable: true } },
-    required: { table: { disable: true } },
-    readOnly: { table: { disable: true } },
-    clearButtonAriaLabel: { table: { disable: true } },
-    dropdownTriggerAriaLabel: { table: { disable: true } },
     size: { control: "radio", options: COMBOBOX_SIZES },
     variant: { control: "radio", options: COMBOBOX_VARIANTS },
   },
