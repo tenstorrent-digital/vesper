@@ -104,8 +104,6 @@ export interface RangeProps extends Omit<
  * />
  */
 export function Range(props: RangeProps) {
-  const [baseProps, ariaProps] = splitAriaProps(props);
-
   const {
     className,
     thumbAriaLabels,
@@ -123,8 +121,10 @@ export function Range(props: RangeProps) {
     name,
     form,
     defaultValues = [min, max],
-    ...restBaseProps
-  } = baseProps;
+    ...rest
+  } = props;
+
+  const [wrapperProps, ariaProps] = splitAriaProps(rest);
 
   const {
     "aria-describedby": ariaDescribedBy,
@@ -155,7 +155,7 @@ export function Range(props: RangeProps) {
   return (
     <BaseSlider.Root
       {...restAriaProps}
-      {...restBaseProps}
+      {...wrapperProps}
       className={cn(
         "vesper-range",
         showValueLabels && "vesper-range-labeled",
