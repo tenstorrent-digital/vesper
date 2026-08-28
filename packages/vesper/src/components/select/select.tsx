@@ -66,7 +66,6 @@ export interface SelectProps extends FormInputProps<
   required?: boolean;
   /** Specify the element or shadow root to portal the dropdown into */
   container?: PortalContainer;
-  /** A ref forwarded to the underlying select trigger `<button>` element for direct DOM access. */
 }
 
 const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
