@@ -11,7 +11,6 @@ const meta = {
     iconRight: { control: "boolean" },
     iconRightAction: { table: { disable: true } },
     type: { table: { disable: true } },
-    inputRef: { table: { disable: true } },
   },
 } satisfies Meta<typeof TextInput>;
 
@@ -24,11 +23,9 @@ export const Playground: Story = {
     variant: "default",
     size: "md",
     disabled: false,
-    label: "Label",
     placeholder: "This is placeholder text",
     iconLeft: false,
     iconRight: false,
-    message: "This is a message you can display under the input.",
   },
   render: (props) => {
     return (

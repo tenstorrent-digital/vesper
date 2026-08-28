@@ -85,7 +85,7 @@ export interface MaskedInputProps extends Omit<TextInputProps, "type"> {
  */
 export function MaskedInput({
   mask,
-  inputRef,
+  ref,
   formatOnMount = false,
   formatOnMaskChange = false,
   ...props
@@ -115,7 +115,7 @@ export function MaskedInput({
 
   const maskitoRef = useMaskito(maskitoConfig);
 
-  const mergedInputRef = useMergedRefs(inputRef, maskitoRef);
+  const mergedInputRef = useMergedRefs(ref, maskitoRef);
 
-  return <TextInput inputRef={mergedInputRef} {...props} />;
+  return <TextInput ref={mergedInputRef} {...props} />;
 }
