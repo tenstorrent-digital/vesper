@@ -2,6 +2,7 @@
 
 exports[`toggle [snapshot] > disabled 1`] = `
 <div
+  aria-disabled="true"
   class="vesper-toggle vesper-toggle-md vesper-toggle-disabled"
   role="radiogroup"
 >

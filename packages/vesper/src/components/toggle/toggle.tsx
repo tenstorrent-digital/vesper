@@ -18,6 +18,7 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 export const TOGGLE_SIZES = ["sm", "md", "lg"] as const;
 
@@ -41,13 +42,10 @@ export type ToggleOption =
       ariaLabel: string;
     };
 
-export interface ToggleProps
-  extends
-    Omit<
-      ComponentProps<"div">,
-      "children" | "role" | "dangerouslySetInnerHTML" | "dir" | "ref"
-    >,
-    Pick<ComponentProps<"select">, "ref"> {
+export interface ToggleProps extends Omit<
+  ComponentProps<"div">,
+  "children" | "role" | "dangerouslySetInnerHTML" | "dir"
+> {
   /** The list of toggle options to render. Each option can display either text or an icon. */
   options: ToggleOption[];
   /** The size of the toggle and its options. Affects padding and typography. @default md */
@@ -64,8 +62,8 @@ export interface ToggleProps
   name?: string;
   /** When `true`, makes the underlying input required when rendered inside of a form. @default false */
   required?: boolean;
-  /** A ref forwarded to the underlying `<select>` element for direct DOM access. */
-  ref?: Ref<HTMLSelectElement>;
+  /** A ref forwarded to the enclosing `<div>` element for direct DOM access. */
+  ref?: Ref<HTMLDivElement>;
 }
 
 const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
@@ -135,6 +133,8 @@ export function Toggle(props: ToggleProps) {
   } = props;
 
   const innerRef = useRef<HTMLDivElement>(null);
+
+  const mergedRef = useMergedRefs(innerRef, ref);
 
   const [innerValue, setInnerValue] = useState(value ?? defaultValue);
 
@@ -237,9 +237,10 @@ export function Toggle(props: ToggleProps) {
   return (
     <div
       {...rest}
-      ref={innerRef}
+      ref={mergedRef}
       role="radiogroup"
       aria-required={required}
+      aria-disabled={disabled}
       className={cn(
         "vesper-toggle",
         `vesper-toggle-${size}`,
@@ -251,7 +252,6 @@ export function Toggle(props: ToggleProps) {
     >
       <select
         aria-hidden
-        ref={ref}
         tabIndex={-1}
         id={id}
         name={name}
