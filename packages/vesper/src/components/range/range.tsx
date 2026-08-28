@@ -1,6 +1,6 @@
 "use client";
 
-import { type ComponentProps, type CSSProperties, Ref, useMemo } from "react";
+import { ComponentProps, type CSSProperties, type Ref, useMemo } from "react";
 import {
   Slider as BaseSlider,
   type SliderThumbState,
@@ -9,6 +9,7 @@ import {
 import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import { splitAriaProps } from "@/utils/splitFormInputProps";
 
 const toValues = (value: number | number[]) =>
   Array.isArray(value) ? value : [value];
@@ -47,6 +48,8 @@ export interface RangeProps extends Omit<
   minStepsBetweenThumbs?: number;
   /** The `id` of the `<form>` element this input belongs to, allowing association with a form outside the input's DOM hierarchy. */
   form?: string;
+  /** A ref forwarded to the wrapping `<div>` element for direct DOM access. */
+  ref?: Ref<HTMLDivElement>;
 }
 
 /**
@@ -101,6 +104,8 @@ export interface RangeProps extends Omit<
  * />
  */
 export function Range(props: RangeProps) {
+  const [baseProps, ariaProps] = splitAriaProps(props);
+
   const {
     className,
     thumbAriaLabels,
@@ -114,17 +119,18 @@ export function Range(props: RangeProps) {
     min = 0,
     max = 100,
     step = 1,
-    defaultValues = [min, max],
     disabled,
     name,
     form,
-    "aria-errormessage": ariaErrorMessage,
-    "aria-invalid": ariaInvalid,
+    defaultValues = [min, max],
+    ...restBaseProps
+  } = baseProps;
+
+  const {
     "aria-describedby": ariaDescribedBy,
     "aria-labelledby": ariaLabelledBy,
-    "aria-label": ariaLabel,
-    ...rest
-  } = props;
+    ...restAriaProps
+  } = ariaProps;
 
   const tickPositions = useMemo(() => {
     if (!showTicks) return [];
@@ -148,7 +154,8 @@ export function Range(props: RangeProps) {
 
   return (
     <BaseSlider.Root
-      {...rest}
+      {...restAriaProps}
+      {...restBaseProps}
       className={cn(
         "vesper-range",
         showValueLabels && "vesper-range-labeled",
@@ -171,9 +178,6 @@ export function Range(props: RangeProps) {
       minStepsBetweenValues={minStepsBetweenThumbs}
       thumbAlignment="edge"
       thumbCollisionBehavior="none"
-      aria-label={ariaLabel}
-      aria-errormessage={ariaErrorMessage}
-      aria-invalid={ariaInvalid}
     >
       <BaseSlider.Control>
         <BaseSlider.Track className="vesper-range-track">

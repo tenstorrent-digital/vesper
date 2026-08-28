@@ -14,6 +14,7 @@ const meta = {
     valueLabels: { table: { disable: true } },
     name: { table: { disable: true } },
     form: { table: { disable: true } },
+    ref: { table: { disable: true } },
   },
 } satisfies Meta<typeof Range>;
 
