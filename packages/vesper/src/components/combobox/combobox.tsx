@@ -48,7 +48,7 @@ export interface ComboboxItem {
 
 export interface ComboboxProps extends Omit<
   FormInputProps<"div", "input">,
-  "value" | "defaultValue"
+  "value" | "defaultValue" | "multiple"
 > {
   /** The list of selectable options displayed in the dropdown. Strings are treated as both the label and the value of an option. */
   options: (ComboboxItem | string)[];
@@ -147,7 +147,7 @@ export interface ComboboxProps extends Omit<
  */
 export function Combobox(props: ComboboxProps) {
   const { ariaProps, controlProps, formProps, wrapperProps } =
-    splitFormInputProps(props, { omit: ["multiple"] });
+    splitFormInputProps(props);
 
   const {
     options,

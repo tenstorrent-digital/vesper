@@ -140,6 +140,7 @@ const INPUT_FORM_PROPS = [
   "value",
   "min",
   "max",
+  "step",
   "multiple",
   "pattern",
   "list",
@@ -195,25 +196,10 @@ export type FormInputProps<
   C extends ControlElementType,
 > = WrapperProps<W, C> & ControlProps<C> & FormProps<C> & AriaAttributes;
 
-export function splitFormInputProps<A, O extends string = never>(
-  props: A,
-  options?: { omit?: O[] },
-) {
-  const [propsWithoutControl, controlProps] = splitProps(
-    props,
-    CONTROL_PROPS,
-    options,
-  );
-  const [propsWithoutForm, formProps] = splitProps(
-    propsWithoutControl,
-    INPUT_FORM_PROPS,
-    options,
-  );
-  const [wrapperProps, ariaProps] = splitProps(
-    propsWithoutForm,
-    ARIA_PROPS,
-    options,
-  );
+export function splitFormInputProps<A>(props: A) {
+  const [_props, controlProps] = splitControlProps(props);
+  const [__props, formProps] = splitFormProps(_props);
+  const [wrapperProps, ariaProps] = splitAriaProps(__props);
 
   return {
     ariaProps,
@@ -223,18 +209,24 @@ export function splitFormInputProps<A, O extends string = never>(
   };
 }
 
-function splitProps<A, K extends string, O extends string = never>(
-  props: A,
-  keys: readonly K[],
-  { omit = [] } = {} as { omit?: O[] },
-) {
-  const a = {} as Omit<A, K | O>;
+export function splitControlProps<A>(props: A) {
+  return splitProps(props, CONTROL_PROPS);
+}
+
+export function splitFormProps<A>(props: A) {
+  return splitProps(props, INPUT_FORM_PROPS);
+}
+
+export function splitAriaProps<A>(props: A) {
+  return splitProps(props, ARIA_PROPS);
+}
+
+function splitProps<A, K extends string>(props: A, keys: readonly K[]) {
+  const a = {} as OmitUnknown<Omit<A, K>>;
   // @ts-expect-error ts not smart enough to do this
-  const b = {} as Omit<Pick<A, K>, O>;
+  const b = {} as OmitUnknown<Pick<A, K>>;
 
   for (const prop in props) {
-    // @ts-expect-error ts not smart enough to do this
-    if (omit.includes(prop)) continue;
     // @ts-expect-error ts not smart enough to do this
     if (keys.includes(prop)) b[prop] = props[prop];
     // @ts-expect-error ts not smart enough to do this
@@ -243,3 +235,13 @@ function splitProps<A, K extends string, O extends string = never>(
 
   return [a, b] as const;
 }
+
+type OmitUnknown<T> = {
+  [
+    K in keyof T as unknown extends T[K]
+      ? T[K] extends unknown
+        ? never
+        : K
+      : K
+  ]: T[K];
+};
