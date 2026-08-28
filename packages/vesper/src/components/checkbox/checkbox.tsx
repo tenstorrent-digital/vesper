@@ -1,14 +1,7 @@
 "use client";
 
-import {
-  type ComponentProps,
-  Ref,
-  useId,
-  useLayoutEffect,
-  useRef,
-} from "react";
+import { useLayoutEffect, useRef } from "react";
 
-import { FormInputWrapper } from "@/components/form-input-wrapper/form-input-wrapper";
 import { Checkmark, Minus } from "@/components/icons/icons";
 import {
   Typography,
@@ -17,78 +10,22 @@ import {
 
 import { cn } from "@/utils/cn";
 import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
+import {
+  type FormInputProps,
+  splitFormInputProps,
+} from "@/utils/splitFormInputProps";
 
 export const CHECKBOX_SIZES = ["sm", "md"] as const;
 
-export const CHECKBOX_VARIANTS = [
-  "default",
-  "warning",
-  "error",
-  "success",
-] as const;
-
 export type CheckboxSize = (typeof CHECKBOX_SIZES)[number];
 
-export type CheckboxVariant = (typeof CHECKBOX_VARIANTS)[number];
-
-/**
- * Union of all the prop types that should be forwarded to the input element, and excluded from the containing label element
- */
-type ForwardedPropTypes =
-  | "id"
-  | "form"
-  | "value"
-  | "autoFocus"
-  | "disabled"
-  | "name"
-  | "required"
-  | "checked"
-  | "defaultChecked"
-  | "role"
-  | "tabIndex"
-  | "aria-label"
-  | "aria-labelledby"
-  | "aria-describedby"
-  | "aria-invalid"
-  | "onFocus"
-  | "onFocusCapture"
-  | "onBlur"
-  | "onBlurCapture"
-  | "onChange"
-  | "onChangeCapture"
-  | "onBeforeInput"
-  | "onBeforeInputCapture"
-  | "onInput"
-  | "onInputCapture"
-  | "onReset"
-  | "onResetCapture"
-  | "onSubmit"
-  | "onSubmitCapture"
-  | "onInvalid"
-  | "onInvalidCapture"
-  | "onKeyDown"
-  | "onKeyDownCapture"
-  | "onKeyUp"
-  | "onKeyUpCapture";
-
-export interface CheckboxProps
-  extends
-    Omit<ComponentProps<"div">, "children" | "onChange" | ForwardedPropTypes>,
-    Pick<ComponentProps<"input">, ForwardedPropTypes> {
+export interface CheckboxProps extends FormInputProps<"label", "input"> {
   /** The text displayed next to the checkbox, also used as the input's default `aria-label`. An asterisk is appended when `required` is `true` and no `label` is supplied, and is not included in the accessible name. */
   text: string;
   /** When true, renders the checkbox in an indeterminate (mixed) state, displaying a dash icon instead of a checkmark. @default false */
   indeterminate?: boolean;
   /** The size of the checkbox and its label. @default md */
   size?: CheckboxSize;
-  /** The visual variant of the input, which determines its message's color scheme and icon. @default default */
-  variant?: CheckboxVariant;
-  /** An optional label displayed above the checkbox. An asterisk is appended when `required` is `true`, and is not included in the accessible name. */
-  label?: string;
-  /** An optional message displayed below the checkbox, paired with a variant-specific icon. Also linked to the input via `aria-describedby`. */
-  message?: string;
-  /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
-  inputRef?: Ref<HTMLInputElement>;
 }
 
 const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
@@ -142,144 +79,44 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
  * />
  */
 export function Checkbox(props: CheckboxProps) {
-  const {
-    // component-specific props
-    text,
-    size = "md",
-    variant = "default",
-    label,
-    message,
-    indeterminate,
-    inputRef,
-    // props forwarded to the inner input
-    id,
-    form,
-    value,
-    autoFocus,
-    disabled,
-    name,
-    required,
-    checked,
-    defaultChecked,
-    role,
-    tabIndex,
-    "aria-label": ariaLabel = text,
-    "aria-labelledby": ariaLabelledby,
-    "aria-describedby": ariaDescribedby,
-    "aria-invalid": ariaInvalid,
-    onFocus,
-    onFocusCapture,
-    onBlur,
-    onBlurCapture,
-    onChange,
-    onChangeCapture,
-    onBeforeInput,
-    onBeforeInputCapture,
-    onInput,
-    onInputCapture,
-    onReset,
-    onResetCapture,
-    onSubmit,
-    onSubmitCapture,
-    onInvalid,
-    onInvalidCapture,
-    onKeyDown,
-    onKeyDownCapture,
-    onKeyUp,
-    onKeyUpCapture,
-    // props spread onto the wrapper div
-    className,
-    ...rest
-  } = props;
+  const { text, size = "md", indeterminate, className, ...rest } = props;
+
+  const { ariaProps, controlProps, wrapperProps, formProps } =
+    splitFormInputProps(rest);
 
   const innerRef = useRef<HTMLInputElement>(null);
   useLayoutEffect(() => {
     if (innerRef.current) innerRef.current.indeterminate = !!indeterminate;
   }, [indeterminate]);
 
-  const mergedInputRef = useMergedRefs(inputRef, innerRef);
-
-  let inputId = useId();
-  if (id) inputId = id;
-
-  const messageId = useId();
-
-  // If an additional aria-describedby is supplied, this ensures that both ids get used
-  const describedBy =
-    [ariaDescribedby, message ? messageId : undefined]
-      .filter(Boolean)
-      .join(" ") || undefined;
+  const mergedInputRef = useMergedRefs(controlProps.ref, innerRef);
 
   return (
-    <FormInputWrapper
-      label={
-        label
-          ? {
-              text: required ? `${label} *` : label,
-              htmlFor: inputId,
-            }
-          : undefined
-      }
-      message={message ? { text: message, id: messageId } : undefined}
-      variant={variant}
-      className={className}
-      {...rest}
+    <label
+      {...wrapperProps}
+      className={cn("vesper-checkbox", `vesper-checkbox-${size}`, className)}
     >
-      <label className={cn("vesper-checkbox", `vesper-checkbox-${size}`)}>
-        <input
-          ref={mergedInputRef}
-          type="checkbox"
-          className="vesper-checkbox-input"
-          id={inputId}
-          form={form}
-          value={value}
-          autoFocus={autoFocus}
-          disabled={disabled}
-          name={name}
-          required={required}
-          checked={checked}
-          defaultChecked={defaultChecked}
-          role={role}
-          tabIndex={tabIndex}
-          aria-label={ariaLabel}
-          aria-labelledby={ariaLabelledby}
-          aria-describedby={describedBy}
-          aria-invalid={ariaInvalid}
-          onChange={onChange}
-          onFocus={onFocus}
-          onFocusCapture={onFocusCapture}
-          onBlur={onBlur}
-          onBlurCapture={onBlurCapture}
-          onChangeCapture={onChangeCapture}
-          onBeforeInput={onBeforeInput}
-          onBeforeInputCapture={onBeforeInputCapture}
-          onInput={onInput}
-          onInputCapture={onInputCapture}
-          onReset={onReset}
-          onResetCapture={onResetCapture}
-          onSubmit={onSubmit}
-          onSubmitCapture={onSubmitCapture}
-          onInvalid={onInvalid}
-          onInvalidCapture={onInvalidCapture}
-          onKeyDown={onKeyDown}
-          onKeyDownCapture={onKeyDownCapture}
-          onKeyUp={onKeyUp}
-          onKeyUpCapture={onKeyUpCapture}
-        />
-        <div className="vesper-checkbox-box">
-          <div className="vesper-checkbox-indicator">
-            <Checkmark className="vesper-checkbox-checked-icon" />
-            <Minus className="vesper-checkbox-indeterminate-icon" />
-          </div>
+      <input
+        {...ariaProps}
+        {...controlProps}
+        {...formProps}
+        ref={mergedInputRef}
+        type="checkbox"
+        className="vesper-checkbox-input"
+      />
+      <div className="vesper-checkbox-box">
+        <div className="vesper-checkbox-indicator">
+          <Checkmark className="vesper-checkbox-checked-icon" />
+          <Minus className="vesper-checkbox-indeterminate-icon" />
         </div>
-        <Typography
-          variant={CHECKBOX_TYPOGRAPHY[size]}
-          className="vesper-checkbox-label"
-          as="span"
-        >
-          {required && !label ? `${text} *` : text}
-        </Typography>
-      </label>
-    </FormInputWrapper>
+      </div>
+      <Typography
+        variant={CHECKBOX_TYPOGRAPHY[size]}
+        className="vesper-checkbox-label"
+        as="span"
+      >
+        {formProps.required ? `${text} *` : text}
+      </Typography>
+    </label>
   );
 }
