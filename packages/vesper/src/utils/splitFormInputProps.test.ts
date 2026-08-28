@@ -11,7 +11,7 @@ import {
 describe("splitProps", () => {
   test("props get bucketed according to the provided Set<string>", () => {
     const source = { a: 0, b: 0, c: 0, d: 0 };
-    const [cd, ab] = splitProps(source, new Set(["a", "b"]));
+    const [ab, cd] = splitProps(source, new Set(["a", "b"]));
     expect(ab).toEqual({ a: 0, b: 0 });
     expect(cd).toEqual({ c: 0, d: 0 });
   });
@@ -25,8 +25,8 @@ describe("splitProps", () => {
     const [propsA, propsB] = splitProps(source, new Set(["role", "value"]));
     expect(propsA).not.toHaveProperty("role");
     expect(propsB).not.toHaveProperty("role");
-    expect(propsA).toEqual({ message: "Hello, world!" });
-    expect(propsB).toEqual({ value: 42 });
+    expect(propsA).toEqual({ value: 42 });
+    expect(propsB).toEqual({ message: "Hello, world!" });
   });
 });
 
@@ -37,7 +37,7 @@ describe("splitAriaProps", () => {
       "aria-label": "The meaning of life",
       "aria-invalid": true,
     };
-    const [restProps, ariaProps] = splitAriaProps(source);
+    const [ariaProps, restProps] = splitAriaProps(source);
     expect(ariaProps).toEqual({
       "aria-label": "The meaning of life",
       "aria-invalid": true,
@@ -61,18 +61,18 @@ describe("splitControlProps", () => {
       onChange,
       onBlur,
     };
-    const [restProps, controlProps] = splitControlProps(source);
-    expect(controlProps).toEqual({
-      id: "identifier",
-      onChange,
-      onBlur,
-    });
+    const [controlProps, restProps] = splitControlProps(source);
     expect(restProps).toEqual({
       message: "Hello, world!",
       value: 42,
       defaultChecked: true,
       defaultValue: true,
       disabled: true,
+    });
+    expect(controlProps).toEqual({
+      id: "identifier",
+      onChange,
+      onBlur,
     });
   });
 });
@@ -91,7 +91,8 @@ describe("splitFormProps", () => {
   };
 
   test("form props get bucketed when the control element is a button", () => {
-    const [restProps, formProps] = splitFormProps(source, "button");
+    const [formProps, restProps] = splitFormProps(source, "button");
+    expect(formProps).toEqual({ name: "biography" });
     expect(restProps).toEqual({
       multiple: true,
       minLength: 17,
@@ -99,34 +100,33 @@ describe("splitFormProps", () => {
       onChange,
       onBlur,
     });
-    expect(formProps).toEqual({ name: "biography" });
   });
 
   test("form props get bucketed when the control element is an input", () => {
-    const [restProps, formProps] = splitFormProps(source, "input");
-    expect(restProps).toEqual({
-      id: "identifier",
-      onChange,
-      onBlur,
-    });
+    const [formProps, restProps] = splitFormProps(source, "input");
     expect(formProps).toEqual({
       name: "biography",
       multiple: true,
       minLength: 17,
+    });
+    expect(restProps).toEqual({
+      id: "identifier",
+      onChange,
+      onBlur,
     });
   });
 
   test("form props get bucketed when the control element is a textarea", () => {
-    const [restProps, formProps] = splitFormProps(source, "textarea");
+    const [formProps, restProps] = splitFormProps(source, "textarea");
+    expect(formProps).toEqual({
+      name: "biography",
+      minLength: 17,
+    });
     expect(restProps).toEqual({
       multiple: true,
       id: "identifier",
       onChange,
       onBlur,
-    });
-    expect(formProps).toEqual({
-      name: "biography",
-      minLength: 17,
     });
   });
 });

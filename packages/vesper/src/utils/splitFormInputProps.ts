@@ -207,9 +207,9 @@ export type FormInputProps<
 >;
 
 export function splitFormInputProps<A>(props: A, control: ControlElementType) {
-  const [_props, formProps] = splitFormProps(props, control);
-  const [__props, controlProps] = splitControlProps(_props);
-  const [wrapperProps, ariaProps] = splitAriaProps(__props);
+  const [formProps, _props] = splitFormProps(props, control);
+  const [controlProps, __props] = splitControlProps(_props);
+  const [ariaProps, wrapperProps] = splitAriaProps(__props);
 
   return {
     ariaProps,
@@ -257,7 +257,7 @@ export function splitProps<A, K extends string>(props: A, keys: Set<K>) {
     else a[prop] = props[prop];
   }
 
-  return [a, b] as const;
+  return [b, a] as const;
 }
 
 type OmitUnknown<T> = {
