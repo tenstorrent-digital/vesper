@@ -158,7 +158,9 @@ type WrapperProps<W extends ElementType> = Omit<
 export type FormInputProps<
   W extends ElementType,
   C extends ControlElementType,
-> = Omit<ComponentProps<W>, ControlProp> & Pick<ComponentProps<C>, ControlProp>;
+> = Omit<ComponentProps<W>, ControlProp | FormProp> &
+  Pick<ComponentProps<C>, ControlProp> &
+  (C extends "input" ? Pick<ComponentProps<C>, FormProp> : never);
 
 type FormInputProp<
   W extends ElementType,
