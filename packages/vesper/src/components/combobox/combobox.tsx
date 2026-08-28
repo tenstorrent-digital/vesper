@@ -46,8 +46,9 @@ export interface ComboboxItem {
   value: string;
 }
 
-export interface ComboboxProps extends Omit<
-  FormInputProps<"div", "input">,
+export interface ComboboxProps extends FormInputProps<
+  "div",
+  "input",
   "value" | "defaultValue" | "multiple"
 > {
   /** The list of selectable options displayed in the dropdown. Strings are treated as both the label and the value of an option. */
