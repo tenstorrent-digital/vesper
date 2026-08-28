@@ -42,9 +42,7 @@ export const Playground: Story = {
   args: {
     size: "md",
     variant: "default",
-    label: "Fruit",
     placeholder: "e.g. Apple",
-    message: "This is a message you can display under the input.",
     disabled: false,
     emptyStateText: "No results",
     style: { width: "min(calc(100vw - 4rem), 400px)" },

@@ -1,16 +1,8 @@
 "use client";
 
-import {
-  ComponentProps,
-  Ref,
-  useCallback,
-  useId,
-  useMemo,
-  useState,
-} from "react";
+import { ComponentProps, Ref, useCallback, useMemo, useState } from "react";
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
 
-import { FormInputWrapper } from "@/components/form-input-wrapper/form-input-wrapper";
 import { CaretDown, Checkmark, Close, Search } from "@/components/icons/icons";
 import {
   Typography,
@@ -69,12 +61,8 @@ export interface ComboboxProps extends Omit<
   variant?: ComboboxVariant;
   /** The text displayed in the dropdown when no options match the input's value. @default No results */
   emptyStateText?: string;
-  /** An optional message displayed below the input, paired with a variant-specific icon. */
-  message?: string;
   /** Placeholder text shown in the input when it is empty. @default Search... */
   placeholder?: string;
-  /** An optional label displayed above the input. An asterisk is appended when `required` is `true`. */
-  label?: string;
   /** The form field name submitted with form data. */
   name?: string;
   /** Associates the combobox with a `<form>` element by its `id`, allowing submission from outside the form. */
@@ -183,29 +171,16 @@ export function Combobox(props: ComboboxProps) {
     container,
     inputRef,
     ref,
-    label,
-    message,
     "aria-describedby": ariaDescribedby,
-    "aria-label": ariaLabel = label,
+    "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledBy,
     "aria-invalid": ariaInvalid,
     ...rest
   } = props;
   const [innerRef, setInnerRef] = useState<HTMLDivElement | null>(null);
-  const mergedRef = useMergedRefs(setInnerRef, ref);
+  const mergedRef = useMergedRefs(setInnerRef, inputRef);
 
   const baseRemSize = useBaseRemSize();
-
-  let inputId = useId();
-  if (id) inputId = id;
-
-  const messageId = useId();
-
-  // If an additional aria-describedby is supplied, this ensures that both ids get used
-  const describedBy =
-    [ariaDescribedby, message ? messageId : undefined]
-      .filter(Boolean)
-      .join(" ") || undefined;
 
   const { values, labels } = useMemo(() => {
     const labels: Map<string, string> = new Map();
@@ -255,52 +230,42 @@ export function Combobox(props: ComboboxProps) {
       form={form}
       readOnly={readOnly}
     >
-      <FormInputWrapper
-        variant={variant}
-        label={
-          label
-            ? { text: required ? `${label} *` : label, htmlFor: inputId }
-            : undefined
-        }
-        message={message ? { text: message, id: messageId } : undefined}
-        className={className}
-        ref={mergedRef}
+      <BaseCombobox.InputGroup
         {...rest}
+        ref={ref}
+        className={cn(
+          "vesper-combobox",
+          `vesper-combobox-${size}`,
+          `vesper-combobox-${variant}`,
+          className,
+        )}
       >
-        <BaseCombobox.InputGroup
-          className={cn(
-            "vesper-combobox",
-            `vesper-combobox-${size}`,
-            `vesper-combobox-${variant}`,
-          )}
+        <Search className="vesper-combobox-search-icon" />
+        <Typography
+          as={BaseCombobox.Input}
+          ref={mergedRef}
+          id={id}
+          variant={COMBOBOX_TYPOGRAPHY[size]}
+          placeholder={placeholder}
+          className="vesper-combobox-input"
+          aria-describedby={ariaDescribedby}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
+          aria-invalid={ariaInvalid}
+        />
+        <BaseCombobox.Clear
+          className="vesper-combobox-clear"
+          aria-label={clearButtonAriaLabel}
         >
-          <Search className="vesper-combobox-search-icon" />
-          <Typography
-            as={BaseCombobox.Input}
-            ref={inputRef}
-            aria-describedby={describedBy}
-            aria-label={ariaLabel}
-            aria-labelledby={ariaLabelledBy}
-            aria-invalid={ariaInvalid}
-            id={inputId}
-            variant={COMBOBOX_TYPOGRAPHY[size]}
-            placeholder={placeholder}
-            className="vesper-combobox-input"
-          />
-          <BaseCombobox.Clear
-            className="vesper-combobox-clear"
-            aria-label={clearButtonAriaLabel}
-          >
-            <Close />
-          </BaseCombobox.Clear>
-          <BaseCombobox.Trigger
-            className="vesper-combobox-trigger"
-            aria-label={dropdownTriggerAriaLabel}
-          >
-            <CaretDown />
-          </BaseCombobox.Trigger>
-        </BaseCombobox.InputGroup>
-      </FormInputWrapper>
+          <Close />
+        </BaseCombobox.Clear>
+        <BaseCombobox.Trigger
+          className="vesper-combobox-trigger"
+          aria-label={dropdownTriggerAriaLabel}
+        >
+          <CaretDown />
+        </BaseCombobox.Trigger>
+      </BaseCombobox.InputGroup>
       <BaseCombobox.Portal container={portalContainer}>
         <BaseCombobox.Positioner
           side="bottom"
