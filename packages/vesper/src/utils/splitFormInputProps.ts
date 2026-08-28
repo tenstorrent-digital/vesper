@@ -209,6 +209,16 @@ type FormInputProp<
   C extends ControlElementType,
 > = keyof FormInputProps<W, C>;
 
+type SplitFormInputPropsResult<
+  W extends ElementType,
+  C extends ControlElementType,
+> = {
+  ariaProps: AriaAttributes;
+  controlProps: ControlProps<C>;
+  formProps: FormProps<C>;
+  wrapperProps: WrapperProps<W, C>;
+};
+
 export function splitFormInputProps<
   W extends ElementType,
   C extends ControlElementType,
@@ -217,7 +227,7 @@ export function splitFormInputProps<
   { exclude = [] } = {} as {
     exclude?: FormInputProp<W, C>[];
   },
-) {
+): SplitFormInputPropsResult<W, C> {
   const controlProps: ControlProps<C> = {};
   const wrapperProps = {} as WrapperProps<W, C>;
   const ariaProps: AriaAttributes = {};
