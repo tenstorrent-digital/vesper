@@ -120,7 +120,16 @@ const ARIA_PROPS = [
   "aria-valuetext",
 ] as const;
 
-const FORM_PROPS = [
+const BUTTON_FORM_PROPS = [
+  "defaultChecked",
+  "defaultValue",
+  "disabled",
+  "form",
+  "name",
+  "value",
+] as const satisfies (keyof ComponentProps<"button">)[];
+
+const INPUT_FORM_PROPS = [
   "checked",
   "defaultChecked",
   "defaultValue",
@@ -141,10 +150,29 @@ const FORM_PROPS = [
   "autoComplete",
 ] as const satisfies (keyof ComponentProps<"input">)[];
 
+const TEXTAREA_FORM_PROPS = [
+  "defaultChecked",
+  "defaultValue",
+  "disabled",
+  "form",
+  "name",
+  "required",
+  "value",
+  "minLength",
+  "maxLength",
+  "readOnly",
+  "placeholder",
+  "autoComplete",
+] as const satisfies (keyof ComponentProps<"textarea">)[];
+
 const disallowedPropsSet: ReadonlySet<string> = new Set(DISALLOWED_PROPS);
 const controlPropsSet: ReadonlySet<string> = new Set(CONTROL_PROPS);
 const ariaPropsSet: ReadonlySet<string> = new Set(ARIA_PROPS);
-const formPropsSet: ReadonlySet<string> = new Set(FORM_PROPS);
+const formPropsSet: ReadonlySet<string> = new Set([
+  ...BUTTON_FORM_PROPS,
+  ...INPUT_FORM_PROPS,
+  ...TEXTAREA_FORM_PROPS,
+]);
 
 type ControlElementType = "textarea" | "button" | "input";
 
@@ -152,29 +180,29 @@ type ControlProp = (typeof CONTROL_PROPS)[number];
 
 type DisallowedProp = (typeof DISALLOWED_PROPS)[number];
 
-type FormProp = (typeof FORM_PROPS)[number];
+type FormProp<C extends ControlElementType> = {
+  button: (typeof BUTTON_FORM_PROPS)[number];
+  input: (typeof INPUT_FORM_PROPS)[number];
+  textarea: (typeof TEXTAREA_FORM_PROPS)[number];
+}[C];
 
-type FormProps = {
-  [key in FormProp]?: ComponentProps<"input">[key];
+type FormProps<C extends ControlElementType> = {
+  [key in FormProp<C>]?: ComponentProps<"input">[key];
 };
 
 type ControlProps<C extends ControlElementType> = {
   [key in ControlProp]?: ComponentProps<C>[key];
 };
 
-type AriaAttribute = keyof AriaAttributes;
-
-type WrapperProps<W extends ElementType> = Omit<
+type WrapperProps<W extends ElementType, C extends ControlElementType> = Omit<
   ComponentProps<W>,
-  FormProp | ControlProp | AriaAttribute | DisallowedProp
+  FormProp<C> | ControlProp | DisallowedProp | keyof AriaAttributes
 >;
 
 export type FormInputProps<
   W extends ElementType,
   C extends ControlElementType,
-> = Omit<ComponentProps<W>, ControlProp | FormProp> &
-  Pick<ComponentProps<C>, ControlProp> &
-  (C extends "input" ? Pick<ComponentProps<C>, FormProp> : never);
+> = WrapperProps<W, C> & ControlProps<C> & FormProps<C> & AriaAttributes;
 
 type FormInputProp<
   W extends ElementType,
@@ -191,11 +219,12 @@ export function splitFormInputProps<
   },
 ) {
   const controlProps: ControlProps<C> = {};
-  const wrapperProps = {} as WrapperProps<W>;
+  const wrapperProps = {} as WrapperProps<W, C>;
   const ariaProps: AriaAttributes = {};
-  const formProps: FormProps = {};
+  const formProps: FormProps<C> = {};
 
   for (const prop in props) {
+    const value = props[prop as keyof typeof props];
     if (
       exclude.includes(prop as FormInputProp<W, C>) ||
       disallowedPropsSet.has(prop)
@@ -203,24 +232,24 @@ export function splitFormInputProps<
       continue;
     }
     if (ariaPropsSet.has(prop)) {
-      ariaProps[prop as AriaAttribute] = props[prop];
+      ariaProps[prop as keyof AriaAttributes] = value;
       continue;
     }
     if (controlPropsSet.has(prop)) {
-      controlProps[prop as ControlProp] = props[prop];
+      controlProps[prop as ControlProp] = value;
       continue;
     }
     if (formPropsSet.has(prop)) {
-      formProps[prop as FormProp] = props[prop];
+      formProps[prop as FormProp<C>] = value;
       continue;
     }
-    wrapperProps[prop as keyof WrapperProps<W>] = props[prop];
+    wrapperProps[prop as keyof WrapperProps<W, C>] = value;
   }
 
   return {
-    controlProps,
-    wrapperProps,
     ariaProps,
+    controlProps,
     formProps,
+    wrapperProps,
   };
 }
