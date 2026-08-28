@@ -1,20 +1,17 @@
 "use client";
 
-import {
-  type ComponentProps,
-  MouseEvent,
-  type ReactNode,
-  type Ref,
-  useId,
-} from "react";
+import { type MouseEvent, type ReactNode } from "react";
 
-import { FormInputWrapper } from "@/components/form-input-wrapper/form-input-wrapper";
 import {
   Typography,
   type TypographyVariant,
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
+import {
+  FormInputProps,
+  splitFormInputProps,
+} from "@/utils/splitFormInputProps";
 
 export const TEXT_INPUT_SIZES = ["sm", "md", "lg"] as const;
 
@@ -29,74 +26,11 @@ export type TextInputSize = (typeof TEXT_INPUT_SIZES)[number];
 
 export type TextInputVariant = (typeof TEXT_INPUT_VARIANTS)[number];
 
-/**
- * Union of all the prop types that should be forwarded to the `input` element, and excluded from the containing div element
- * */
-type ForwardedPropTypes =
-  | "defaultValue"
-  | "inputMode"
-  | "enterKeyHint"
-  | "form"
-  | "disabled"
-  | "spellCheck"
-  | "name"
-  | "minLength"
-  | "maxLength"
-  | "readOnly"
-  | "id"
-  | "placeholder"
-  | "value"
-  | "required"
-  | "autoFocus"
-  | "autoComplete"
-  | "autoCorrect"
-  | "role"
-  | "tabIndex"
-  | "aria-label"
-  | "aria-labelledby"
-  | "aria-describedby"
-  | "aria-invalid"
-  | "onFocus"
-  | "onFocusCapture"
-  | "onBlur"
-  | "onBlurCapture"
-  | "onChange"
-  | "onChangeCapture"
-  | "onBeforeInput"
-  | "onBeforeInputCapture"
-  | "onInput"
-  | "onInputCapture"
-  | "onPaste"
-  | "onReset"
-  | "onResetCapture"
-  | "onSubmit"
-  | "onSubmitCapture"
-  | "onInvalid"
-  | "onInvalidCapture"
-  | "onKeyDown"
-  | "onKeyDownCapture"
-  | "onKeyUp"
-  | "onKeyUpCapture"
-  | "min"
-  | "max"
-  | "multiple"
-  | "pattern"
-  | "list";
-
-export interface TextInputProps
-  extends
-    Omit<ComponentProps<"div">, ForwardedPropTypes>,
-    Pick<ComponentProps<"input">, ForwardedPropTypes> {
+export interface TextInputProps extends FormInputProps<"div", "input"> {
   /** The size of the text input. Affects padding and typography. @default md */
   size?: TextInputSize;
   /** The visual variant of the text input, which determines its color scheme and message icon. @default default */
   variant?: TextInputVariant;
-  /** An optional message displayed below the input, paired with a variant-specific icon. Also linked to the input via `aria-describedby`. */
-  message?: string;
-  /** An optional label displayed above the input. An asterisk is appended when `required` is `true`. */
-  label?: string;
-  /** A ref forwarded to the underlying `<input>` element for direct DOM access. */
-  inputRef?: Ref<HTMLInputElement>;
   /** An optional icon element rendered to the left of the input field. */
   iconLeft?: ReactNode;
   /** Optional click handler for the left icon. When provided, the icon is rendered as a `<button>` instead of a `<span>`. */
@@ -130,7 +64,6 @@ export interface TextInputProps
     | "month"
     | "time";
 }
-
 const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
   sm: "copy-xs",
   md: "copy-sm",
@@ -142,8 +75,6 @@ const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
  *
  * @param {TextInputSize} [props.size] - (optional) The size of the text input. @default md
  * @param {TextInputVariant} [props.variant] - (optional) The visual variant determining color scheme and message icon. @default default
- * @param {string} [props.label] - (optional) A label displayed above the input
- * @param {string} [props.message] - (optional) A message displayed below the input with a variant-specific icon
  * @param {ReactNode} [props.iconLeft] - (optional) An element rendered to the left of the input field
  * @param {ReactNode} [props.iconRight] - (optional) An element rendered to the right of the input field
  * @param {string} [props.type] - (optional) The HTML input type. @default text
@@ -165,182 +96,64 @@ const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
  */
 export function TextInput(props: TextInputProps) {
   const {
-    // component-specific props
     iconLeft,
     iconLeftAction,
     iconRight,
     iconRightAction,
-    inputRef,
-    message,
-    label,
     variant = "default",
     size = "md",
-    // props that should get forwarded to the input element
     type = "text",
-    min,
-    max,
-    multiple,
-    pattern,
-    list,
-    defaultValue,
-    inputMode,
-    enterKeyHint,
-    form,
-    disabled,
-    spellCheck,
-    name,
-    minLength,
-    maxLength,
-    readOnly,
-    id,
-    placeholder = " ",
-    value,
-    required,
-    autoFocus,
-    autoComplete,
-    autoCorrect,
-    role,
-    tabIndex,
-    "aria-label": ariaLabel = label,
-    "aria-labelledby": ariaLabelledby,
-    "aria-describedby": ariaDescribedby,
-    "aria-invalid": ariaInvalid,
-    onFocus,
-    onFocusCapture,
-    onBlur,
-    onBlurCapture,
-    onChange,
-    onChangeCapture,
-    onBeforeInput,
-    onBeforeInputCapture,
-    onInput,
-    onInputCapture,
-    onPaste,
-    onReset,
-    onResetCapture,
-    onSubmit,
-    onSubmitCapture,
-    onInvalid,
-    onInvalidCapture,
-    onKeyDown,
-    onKeyDownCapture,
-    onKeyUp,
-    onKeyUpCapture,
-    // props that should get spread onto the wrapper div
     className,
+    placeholder = " ",
     ...rest
   } = props;
 
-  const messageId = useId();
-
-  let inputId = useId();
-  if (id) inputId = id;
-
-  // If an additional aria-describedby is supplied, this ensures that both ids get used
-  const describedBy =
-    [ariaDescribedby, message ? messageId : undefined]
-      .filter(Boolean)
-      .join(" ") || undefined;
+  const { ariaProps, controlProps, formProps, wrapperProps } =
+    splitFormInputProps(rest);
 
   return (
-    <FormInputWrapper
-      variant={variant}
-      label={
-        label
-          ? { text: required ? `${label} *` : label, htmlFor: inputId }
-          : undefined
-      }
-      message={message ? { text: message, id: messageId } : undefined}
-      className={className}
-      {...rest}
+    <div
+      {...wrapperProps}
+      className={cn(
+        "vesper-text-input",
+        `vesper-text-input-${size}`,
+        `vesper-text-input-${variant}`,
+        className,
+      )}
     >
-      <div
-        className={cn(
-          "vesper-text-input",
-          `vesper-text-input-${size}`,
-          `vesper-text-input-${variant}`,
-        )}
-      >
-        {iconLeft && (
-          <TextInputIcon
-            ariaLabel={iconLeftAction?.ariaLabel}
-            onClick={iconLeftAction?.handler}
-            disabled={disabled}
-          >
-            {iconLeft}
-          </TextInputIcon>
-        )}
-        <Typography
-          className="vesper-text-input-field"
-          as="input"
-          ref={inputRef}
-          variant={TEXT_INPUT_TYPOGRAPHY[size]}
-          aria-describedby={describedBy}
-          aria-label={ariaLabel}
-          aria-labelledby={ariaLabelledby}
-          aria-invalid={ariaInvalid}
-          role={role}
-          tabIndex={tabIndex}
-          type={type}
-          min={min}
-          max={max}
-          multiple={multiple}
-          pattern={pattern}
-          list={list}
-          defaultValue={defaultValue}
-          inputMode={inputMode}
-          enterKeyHint={enterKeyHint}
-          form={form}
-          disabled={disabled}
-          spellCheck={spellCheck}
-          name={name}
-          minLength={minLength}
-          maxLength={maxLength}
-          readOnly={readOnly}
-          id={inputId}
-          placeholder={
-            required && !label && placeholder.trim()
-              ? `${placeholder.trim()} *`
-              : placeholder
-          }
-          value={value}
-          required={required}
-          autoFocus={autoFocus}
-          autoComplete={autoComplete}
-          autoCorrect={autoCorrect}
-          onFocus={onFocus}
-          onFocusCapture={onFocusCapture}
-          onBlur={onBlur}
-          onBlurCapture={onBlurCapture}
-          onChange={onChange}
-          onChangeCapture={onChangeCapture}
-          onBeforeInput={onBeforeInput}
-          onBeforeInputCapture={onBeforeInputCapture}
-          onInput={onInput}
-          onInputCapture={onInputCapture}
-          onPaste={onPaste}
-          onReset={onReset}
-          onResetCapture={onResetCapture}
-          onSubmit={onSubmit}
-          onSubmitCapture={onSubmitCapture}
-          onInvalid={onInvalid}
-          onInvalidCapture={onInvalidCapture}
-          onKeyDown={onKeyDown}
-          onKeyDownCapture={onKeyDownCapture}
-          onKeyUp={onKeyUp}
-          onKeyUpCapture={onKeyUpCapture}
-        />
-        {iconRight && (
-          <TextInputIcon
-            ariaLabel={iconRightAction?.ariaLabel}
-            onClick={iconRightAction?.handler}
-            disabled={disabled}
-          >
-            {iconRight}
-          </TextInputIcon>
-        )}
-      </div>
-    </FormInputWrapper>
+      {iconLeft && (
+        <TextInputIcon
+          ariaLabel={iconLeftAction?.ariaLabel}
+          onClick={iconLeftAction?.handler}
+          disabled={formProps.disabled}
+        >
+          {iconLeft}
+        </TextInputIcon>
+      )}
+      <Typography
+        {...ariaProps}
+        {...controlProps}
+        {...formProps}
+        as="input"
+        variant={TEXT_INPUT_TYPOGRAPHY[size]}
+        className="vesper-text-input-field"
+        type={type}
+        placeholder={
+          formProps.required && placeholder.trim()
+            ? `${placeholder.trim()} *`
+            : placeholder
+        }
+      />
+      {iconRight && (
+        <TextInputIcon
+          ariaLabel={iconRightAction?.ariaLabel}
+          onClick={iconRightAction?.handler}
+          disabled={formProps.disabled}
+        >
+          {iconRight}
+        </TextInputIcon>
+      )}
+    </div>
   );
 }
 
