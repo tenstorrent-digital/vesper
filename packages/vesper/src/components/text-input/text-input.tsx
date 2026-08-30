@@ -29,7 +29,7 @@ export type TextInputVariant = (typeof TEXT_INPUT_VARIANTS)[number];
 export interface TextInputProps extends FormInputProps<"div", "input"> {
   /** The size of the text input. Affects padding and typography. @default md */
   size?: TextInputSize;
-  /** The visual variant of the text input, which determines its color scheme and message icon. @default default */
+  /** The visual variant of the text input, which determines its color scheme. @default default */
   variant?: TextInputVariant;
   /** An optional icon element rendered to the left of the input field. */
   iconLeft?: ReactNode;
@@ -71,10 +71,10 @@ const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
 };
 
 /**
- * A form-ready text input component supporting labels, icons, validation messages, and variants.
+ * A text input component supporting different visual variants, as well as leading and trailing icons.
  *
  * @param {TextInputSize} [props.size] - (optional) The size of the text input. @default md
- * @param {TextInputVariant} [props.variant] - (optional) The visual variant determining color scheme and message icon. @default default
+ * @param {TextInputVariant} [props.variant] - (optional) The visual variant determining color scheme. @default default
  * @param {ReactNode} [props.iconLeft] - (optional) An element rendered to the left of the input field
  * @param {ReactNode} [props.iconRight] - (optional) An element rendered to the right of the input field
  * @param {string} [props.type] - (optional) The HTML input type. @default text
@@ -83,13 +83,12 @@ const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
  * You may also pass any additional props to the underlying `div` wrapper or `input` element
  *
  * @example
- * <TextInput label="Email" name="email" type="email" required />
+ * <TextInput aria-label="Email" name="email" type="email" required />
  *
  * @example
  * <TextInput
  *   variant="error"
- *   message="This field is required"
- *   label="Username"
+ *   aria-label="Username"
  *   value={username}
  *   onChange={(e) => setUsername(e.target.value)}
  * />
