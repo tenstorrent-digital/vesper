@@ -1,0 +1,117 @@
+---
+title: Scroll Area
+description: A native scroll container with custom scrollbars.
+---
+
+# Scroll Area
+
+A native scroll container with custom scrollbars. Supports both horizontal and vertical overflow, scrollbar thumb variants, custom scrollbar visibility behavior, and polymorphic rendering.
+
+<ScrollAreaDemo kind="intro-example" />
+
+## Options
+
+| Prop       | Type       | Description      | Default        |
+| ---------- | ---------- | ---------------- | -------------- |
+| `propName` | `propType` | Prop description | `defaultValue` |
+
+## Examples
+
+### Basic usage
+
+The easiest way to use `ScrollArea` is to render it with a fixed width and/or height, and render children inside of it. `ScrollArea` will render scrollbars automatically when it has content that overflows:
+
+<ScrollAreaDemo kind="basic-usage" />
+
+```tsx
+import { ScrollArea } from "@tenstorrent/vesper/scroll-area";
+
+<ScrollArea style={{ maxWidth: "24rem", height: "10rem" }}>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  <br />
+  <br />
+  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+  in culpa qui officia deserunt mollit anim id est laborum
+  <br />
+  <br />
+  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+  doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+  veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+  ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+  consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+</ScrollArea>;
+```
+
+### Scrollbar thumb variants
+
+The scrollbar's thumb can be rendered in one of two variants, `"default"` and `"inverse"`. The default variant is `"default"`, which renders the thumb using the `vesper-tint-neutral-400` color token. The `"inverse"` variant renders the thumb with the `vesper-tint-inverse-400` color token:
+
+<ScrollAreaDemo kind="thumb-variants" />
+
+```tsx
+import { ScrollArea } from "@tenstorrent/vesper/scroll-area";
+
+<ScrollArea
+  thumbVariant="inverse"
+  style={{
+    maxWidth: "24rem",
+    height: "10rem",
+    background: "var(--vesper-stone-300)",
+  }}
+>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  <br />
+  <br />
+  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+  in culpa qui officia deserunt mollit anim id est laborum
+  <br />
+  <br />
+  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+  doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+  veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+  ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+  consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+</ScrollArea>;
+```
+
+### Scrollbar thumb visibility
+
+You can customize when the scrollbar thumbs are visible via the `thumbVisibility` prop. `thumbVisibility` can be one of two values: `"always"` or `"on-interaction"`. `"always"` means the scrollbar thumbs will always be visible when there is content that overflows. `"on-interaction"` means the scrollbar thumbs will only be visible when there is content that overflows **and** the user is interacting with the `ScrollArea`. The default value is `"always"`.
+
+The example below shows how `"on-interaction"` hides scrollbar thumbs until you are interacting with the `ScrollArea`:
+
+<ScrollAreaDemo kind="thumb-visibility" />
+
+```tsx
+<ScrollArea
+  thumbVariant="inverse"
+  thumbVisibility="on-interaction"
+  style={{
+    maxWidth: "24rem",
+    height: "10rem",
+    background: "var(--vesper-stone-300)",
+  }}
+>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  <br />
+  <br />
+  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+  eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+  in culpa qui officia deserunt mollit anim id est laborum
+  <br />
+  <br />
+  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+  doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+  veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+  ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+  consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+</ScrollArea>
+```
