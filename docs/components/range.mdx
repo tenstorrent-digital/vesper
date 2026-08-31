@@ -32,11 +32,7 @@ A multi-thumb range input for selecting a span of numeric values between a minim
 | `name`                  | `string`                     | The form field name submitted with form data. Every thumb submits its value under this name.                 | —            |
 | `form`                  | `string`                     | Associates the range with a `<form>` element by its `id`.                                                    | —            |
 
-Additional props are forwarded as follows:
-
-- `aria-labelledby` is forwarded to the first range thumb. This ensures that clicking the element corresponding to `aria-labelledby` brings focus inside the range to the first thumb.
-- `aria-describedby` is forwarded to **all** range thumbs. This ensures that an element describing the range is announced no matter which thumb is currently being interacted with.
-- All other props are forwarded to the wrapping `<div>` element.
+All other props are forwarded to the wrapping `<div>` element.
 
 If you only need to select a single value, reach for [the `Slider` component](./slider.mdx) instead: it renders the same track, ticks, and labels, but exposes a single-value API.
 

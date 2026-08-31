@@ -210,13 +210,22 @@ describe("slider [unit]", () => {
 
   test("additional props are passed through to the wrapper", async () => {
     const result = render(
-      <Slider thumbAriaLabel="Volume" value={50} data-testid="my-slider" />,
+      <Slider
+        thumbAriaLabel="Volume"
+        value={50}
+        data-testid="my-slider"
+        aria-label="Range slider"
+      />,
     );
     await result.findByRole("slider");
 
     expect(result.container.firstElementChild).toHaveAttribute(
       "data-testid",
       "my-slider",
+    );
+    expect(result.container.firstElementChild).toHaveAttribute(
+      "aria-label",
+      "Range slider",
     );
   });
 });

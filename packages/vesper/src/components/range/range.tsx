@@ -9,7 +9,6 @@ import {
 import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
-import { splitAriaProps } from "@/utils/splitFormInputProps";
 
 const toValues = (value: number | number[]) =>
   Array.isArray(value) ? value : [value];
@@ -122,14 +121,6 @@ export function Range(props: RangeProps) {
     ...rest
   } = props;
 
-  const [ariaProps, wrapperProps] = splitAriaProps(rest);
-
-  const {
-    "aria-describedby": ariaDescribedBy,
-    "aria-labelledby": ariaLabelledBy,
-    ...restAriaProps
-  } = ariaProps;
-
   const tickPositions = useMemo(() => {
     if (!showTicks) return [];
 
@@ -152,8 +143,7 @@ export function Range(props: RangeProps) {
 
   return (
     <BaseSlider.Root
-      {...restAriaProps}
-      {...wrapperProps}
+      {...rest}
       className={cn(
         "vesper-range",
         showValueLabels && "vesper-range-labeled",
@@ -206,8 +196,6 @@ export function Range(props: RangeProps) {
                 e.currentTarget.setPointerCapture(e.pointerId);
               }}
               aria-label={thumbAriaLabels[index]}
-              aria-labelledby={index === 0 ? ariaLabelledBy : undefined}
-              aria-describedby={ariaDescribedBy}
               getAriaValueText={(_, value, index) =>
                 valueLabels?.[index] ?? `${value}`
               }

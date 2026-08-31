@@ -67,13 +67,21 @@ describe("range [unit]", () => {
 
   test("additional props are passed through to the wrapper", async () => {
     const result = render(
-      <Range thumbAriaLabels={THUMB_ARIA_LABELS} data-testid="range-slider" />,
+      <Range
+        thumbAriaLabels={THUMB_ARIA_LABELS}
+        data-testid="range-slider"
+        aria-label="Range slider"
+      />,
     );
     await result.findAllByRole("slider");
 
     expect(result.container.firstElementChild).toHaveAttribute(
       "data-testid",
       "range-slider",
+    );
+    expect(result.container.firstElementChild).toHaveAttribute(
+      "aria-label",
+      "Range slider",
     );
   });
 
@@ -152,38 +160,6 @@ describe("range [unit]", () => {
 
     expect(sliders[0]).toHaveAttribute("aria-valuenow", "25");
     expect(sliders[1]).toHaveAttribute("aria-valuenow", "75");
-  });
-
-  test("aria-labelledby is forwarded to the first thumb", async () => {
-    const result = render(
-      <Range thumbAriaLabels={THUMB_ARIA_LABELS} aria-labelledby="label-id" />,
-    );
-    const sliders = await getRangeSliders(result);
-    expect(sliders[0]).toHaveAttribute("aria-labelledby", "label-id");
-    expect(sliders[1]).not.toHaveAttribute("aria-labelledby", "label-id");
-  });
-
-  test("aria-describedby is forwarded to all thumbs", async () => {
-    const result = render(
-      <Range
-        thumbAriaLabels={THUMB_ARIA_LABELS}
-        aria-describedby="description-id"
-      />,
-    );
-    const sliders = await getRangeSliders(result);
-    sliders.forEach((thumb) => {
-      expect(thumb).toHaveAttribute("aria-describedby", "description-id");
-    });
-  });
-
-  test("other aria attributes are forwarded to the slider root", async () => {
-    const result = render(
-      <Range thumbAriaLabels={THUMB_ARIA_LABELS} aria-label="Price range" />,
-    );
-    expect(result.container.firstChild).toHaveAttribute(
-      "aria-label",
-      "Price range",
-    );
   });
 
   test("showTicks renders tick marks", async () => {
