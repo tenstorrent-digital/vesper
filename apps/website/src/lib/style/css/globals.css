@@ -5,8 +5,10 @@
 */
 @import "tailwindcss" source("../../..");
 @source "../../../../../../docs/";
-@import "@tenstorrent/vesper/tailwind.css";
+
+/* other stylesheets */
 @import "./animations.css";
+@import "@tenstorrent/vesper/tailwind.css";
 
 /* tailwind theme for docs */
 @theme {
@@ -71,7 +73,7 @@ body {
   grid-auto-rows: auto;
   min-height: 100vh;
 
-  @media (width > 768px) {
+  @media (width >= 768px) {
     grid-template-areas:
       "nav nav nav nav"
       "sidebar main main main";
@@ -114,7 +116,7 @@ nav#nav {
     min-width: 0;
 
     #home {
-      @media (width > 768px) {
+      @media (width >= 768px) {
         /*
           reserve the sidebar's width so `#breadcrumbs` optically aligns with
           the content column.
@@ -185,12 +187,12 @@ nav#nav {
         flex-shrink: 0;
       }
 
-      @media (width > 768px) {
+      @media (width >= 768px) {
         gap: calc(var(--spacing) / 2);
       }
     }
 
-    @media (width > 768px) {
+    @media (width >= 768px) {
       width: auto;
     }
   }
@@ -200,28 +202,28 @@ nav#nav {
     flex-shrink: 0;
 
     gap: calc(var(--spacing) / 4);
-    @media (width > 768px) {
+    @media (width >= 768px) {
       gap: var(--spacing);
     }
 
     .playground-link {
       .desktop {
         display: none;
-        @media (width > 768px) {
+        @media (width >= 768px) {
           display: flex;
         }
       }
 
       .mobile {
         display: flex;
-        @media (width > 768px) {
+        @media (width >= 768px) {
           display: none;
         }
       }
     }
 
     #menu-link {
-      @media (width > 768px) {
+      @media (width >= 768px) {
         display: none;
       }
     }
@@ -242,7 +244,7 @@ nav#sidebar {
     gap: calc(var(--spacing));
     border-top: 1px solid var(--vesper-alpha-black-50);
 
-    @media (width > 768px) {
+    @media (width >= 768px) {
       padding: calc(var(--spacing));
       border-top: none;
     }
@@ -273,12 +275,12 @@ nav#sidebar {
   }
 
   .back-to-top {
-    @media (width > 768px) {
+    @media (width >= 768px) {
       display: none;
     }
   }
 
-  @media (width > 768px) {
+  @media (width >= 768px) {
     width: 12rem;
   }
 }
@@ -428,7 +430,7 @@ table {
     grid-template-columns: 1fr;
     gap: calc(var(--spacing));
 
-    @media (width > 768px) {
+    @media (width >= 768px) {
       grid-template-columns: repeat(2, 1fr);
     }
 
