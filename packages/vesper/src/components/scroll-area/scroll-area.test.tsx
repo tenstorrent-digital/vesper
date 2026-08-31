@@ -1,4 +1,4 @@
-import { cleanup, render, RenderResult } from "@testing-library/react";
+import { cleanup, render, RenderResult, waitFor } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
@@ -59,6 +59,13 @@ const getScrollbars = (result: RenderResult) =>
 
 const getScrollbarThumbs = (result: RenderResult) =>
   result.container.querySelectorAll<HTMLElement>(".vesper-scroll-area-thumb");
+
+const getExpectedThumbCount = (permutationName: string) => {
+  if (permutationName.includes("x & y overflow")) return 2;
+  if (permutationName.includes("x overflow")) return 1;
+  if (permutationName.includes("y overflow")) return 1;
+  return 0;
+};
 
 describe("scroll-area [unit]", () => {
   test("renders a div", () => {
@@ -163,6 +170,11 @@ describe("scroll-area [snapshot]", () => {
     test(permutationName, async () => {
       const { container } = render(<ScrollArea {...props} />);
       await flushEffects();
+      await waitFor(() => {
+        expect(
+          container.querySelectorAll(".vesper-scroll-area-thumb").length,
+        ).toBe(getExpectedThumbCount(permutationName));
+      });
 
       expect(container.firstChild).toMatchSnapshot();
     });
