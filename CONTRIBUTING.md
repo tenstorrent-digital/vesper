@@ -66,11 +66,11 @@ Issue IDs are optional but preferred. Ideally, if there is no issue, open one fi
 
 ## Submitting PRs
 
-As mentioned in [the vouching and denouncement system section](#vouchingdenouncement-system), you will not be able to submit a PR until you are vouched for. Once you have been approved by a Vesper admin, you will be able to submit PRs.
+As mentioned in [the vouching and denouncement system section](#vouchdenounce-system), you will not be able to submit a PR until you are vouched for. Once you have been approved by a Vesper admin, you will be able to submit PRs.
 
 When submitting a PR, it is imperative that **you must understand the code you are submitting.** Low-quality contributions that are obviously AI-generated and not understood by the contributor will not be accepted and you may be denounced. AI-assisted contributions are welcome, but having a human-in-the-loop to edit and refine AI output is crucial. If you cannot explain and document the changes you are submitting without the help of an LLM, we cannot accept your contribution.
 
-Prior to submitting a PR, it's highly preferred that you first [open an issue](#opening-an-issue), unless you are referencing an existing one in your PRs description.
+Prior to submitting a PR, it's highly preferred that you first [open an issue](#opening-issues), unless you are referencing an existing one in your PRs description.
 
 For information on developing Vesper locally, as well as what is expected when making changes to the `@tenstorrent/vesper` package, please refer to the [README.md](README.md) in the root of this monorepo.
 
