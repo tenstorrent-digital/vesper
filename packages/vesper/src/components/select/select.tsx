@@ -93,7 +93,7 @@ const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
  * @param {Ref<HTMLButtonElement>} [props.ref] - (optional) A ref forwarded to the select trigger `<button>` element
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  *
- * You may also pass any additional props to the underlying `div` element
+ * You may also pass any additional props to the underlying trigger `<button>` element
  *
  * @example
  * <Select

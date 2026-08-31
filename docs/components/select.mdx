@@ -39,7 +39,7 @@ A form-ready dropdown select component supporting controlled and uncontrolled us
 | `required`      | `boolean`                                                                           | When `true`, marks the select as required for native form validation.                                          | `false`              |
 | `disabled`      | `boolean`                                                                           | When `true`, prevents interaction with the trigger and dropdown.                                               | `false`              |
 | `container`     | `HTMLElement \| ShadowRoot \| null \| RefObject<HTMLElement \| ShadowRoot \| null>` | Specify the element or shadow root to portal the dropdown into.                                                | —                    |
-| `triggerRef`    | `Ref<HTMLButtonElement>`                                                            | A ref forwarded to the underlying select trigger `<button>` element.                                           | —                    |
+| `ref`           | `Ref<HTMLButtonElement>`                                                            | A ref forwarded to the underlying select trigger `<button>` element.                                           | —                    |
 
 Form props (`value`, `disabled`, `name`, `form`, etc.) are forwarded to the hidden `<input>` element that holds the selected value. All other props are forwarded to the underlying `<button>` element.
 
@@ -230,7 +230,7 @@ import { Globe } from "@tenstorrent/vesper/icons";
 import { Select } from "@tenstorrent/vesper/select";
 
 <Select
-  label="Region"
+  aria-label="Region"
   icon={<Globe />}
   placeholder="Select a region"
   options={[
