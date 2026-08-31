@@ -248,7 +248,7 @@ export type FormInputProps<
  *   wrapperProps
  * } = splitFormInputProps(props)
  */
-export function splitFormInputProps<A>(props: A) {
+export function splitFormInputProps<A extends object>(props: A) {
   const [formProps, _props] = splitFormProps(props);
   const [controlProps, __props] = splitControlProps(_props);
   const [ariaProps, wrapperProps] = splitAriaProps(__props);
@@ -278,7 +278,7 @@ const formPropsSet = new Set([
  * @example
  * const [controlProps, restProps] = splitControlProps(props)
  * */
-export function splitControlProps<A>(props: A) {
+export function splitControlProps<A extends object>(props: A) {
   return splitProps(props, controlPropsSet);
 }
 
@@ -292,7 +292,7 @@ export function splitControlProps<A>(props: A) {
  * @example
  * const [formProps, restProps] = splitFormProps(props)
  * */
-export function splitFormProps<A>(props: A) {
+export function splitFormProps<A extends object>(props: A) {
   return splitProps(props, formPropsSet);
 }
 
@@ -304,7 +304,7 @@ export function splitFormProps<A>(props: A) {
  * @example
  * const [ariaProps, restProps] = splitAriaProps(props)
  * */
-export function splitAriaProps<A>(props: A) {
+export function splitAriaProps<A extends object>(props: A) {
   return splitProps(props, ariaPropsSet);
 }
 
@@ -319,12 +319,17 @@ export function splitAriaProps<A>(props: A) {
  *   new Set(["foo"] as const),
  * )
  * */
-export function splitProps<A, K extends string>(props: A, keys: Set<K>) {
+export function splitProps<A extends object, K extends string>(
+  props: A,
+  keys: Set<K>,
+) {
   const a = {} as OmitUnknown<Omit<A, K | DisallowedProp>>;
   // @ts-expect-error ts not smart enough to do this
   const b = {} as OmitUnknown<Pick<A, K | DisallowedProp>>;
 
   for (const prop in props) {
+    // reject inherited props like prototype methods, etc
+    if (!Object.hasOwn(props, prop)) continue;
     // @ts-expect-error ts is not smart enough to do this
     if (disallowedPropsSet.has(prop)) continue;
     // @ts-expect-error ts is not smart enough to do this
