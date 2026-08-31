@@ -42,6 +42,7 @@ export const Playground: Story = {
     height: 104,
     resizeable: false,
     style: { width: "min(calc(100vw - 4rem), 20rem)" },
+    "aria-label": "Textarea example",
   },
 };
 Playground.storyName = "text-area";
