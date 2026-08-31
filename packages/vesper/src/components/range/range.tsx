@@ -144,6 +144,7 @@ export function Range(props: RangeProps) {
   return (
     <BaseSlider.Root
       {...rest}
+      role="group"
       className={cn(
         "vesper-range",
         showValueLabels && "vesper-range-labeled",
