@@ -65,7 +65,6 @@ export function ScrollArea(props: ScrollAreaProps) {
         thumbVariant={thumbVariant}
         thumbVisibility={thumbVisibility}
       />
-      <BaseScrollArea.Corner />
     </BaseScrollArea.Root>
   );
 }

@@ -29,7 +29,7 @@ exports[`scroll-area [snapshot] > default, always, x & y overflow 1`] = `
   data-overflow-x-end=""
   data-overflow-y-end=""
   role="presentation"
-  style="position: relative; --scroll-area-corner-height: 16px; --scroll-area-corner-width: 16px; width: 200px; height: 200px;"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
 >
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
@@ -89,9 +89,6 @@ exports[`scroll-area [snapshot] > default, always, x & y overflow 1`] = `
       style="width: var(--scroll-area-thumb-width); transform: translate3d(0px, 0px, 0px);"
     />
   </div>
-  <div
-    style="position: absolute; bottom: 0px; inset-inline-end: 0px; width: 16px; height: 16px;"
-  />
 </div>
 `;
 
@@ -216,7 +213,7 @@ exports[`scroll-area [snapshot] > default, on-interaction, x & y overflow 1`] = 
   data-overflow-x-end=""
   data-overflow-y-end=""
   role="presentation"
-  style="position: relative; --scroll-area-corner-height: 16px; --scroll-area-corner-width: 16px; width: 200px; height: 200px;"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
 >
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
@@ -276,9 +273,6 @@ exports[`scroll-area [snapshot] > default, on-interaction, x & y overflow 1`] = 
       style="width: var(--scroll-area-thumb-width); transform: translate3d(0px, 0px, 0px);"
     />
   </div>
-  <div
-    style="position: absolute; bottom: 0px; inset-inline-end: 0px; width: 16px; height: 16px;"
-  />
 </div>
 `;
 
@@ -403,7 +397,7 @@ exports[`scroll-area [snapshot] > inverse, always, x & y overflow 1`] = `
   data-overflow-x-end=""
   data-overflow-y-end=""
   role="presentation"
-  style="position: relative; --scroll-area-corner-height: 16px; --scroll-area-corner-width: 16px; width: 200px; height: 200px;"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
 >
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
@@ -463,9 +457,6 @@ exports[`scroll-area [snapshot] > inverse, always, x & y overflow 1`] = `
       style="width: var(--scroll-area-thumb-width); transform: translate3d(0px, 0px, 0px);"
     />
   </div>
-  <div
-    style="position: absolute; bottom: 0px; inset-inline-end: 0px; width: 16px; height: 16px;"
-  />
 </div>
 `;
 
@@ -504,7 +495,7 @@ exports[`scroll-area [snapshot] > inverse, always, x overflow 1`] = `
     data-orientation="horizontal"
     data-overflow-x-end=""
     data-visibility="always"
-    style="position: absolute; touch-action: none; user-select: none; inset-inline-start: 0px; inset-inline-end: var(--scroll-area-corner-width); bottom: 0px; --scroll-area-thumb-width: 96px;"
+    style="position: absolute; touch-action: none; user-select: none; inset-inline-start: 0px; inset-inline-end: var(--scroll-area-corner-width); bottom: 0px; --scroll-area-thumb-width: 100px;"
   >
     <div
       class="vesper-scroll-area-thumb vesper-scroll-area-thumb-inverse"
@@ -550,7 +541,7 @@ exports[`scroll-area [snapshot] > inverse, always, y overflow 1`] = `
     data-orientation="vertical"
     data-overflow-y-end=""
     data-visibility="always"
-    style="position: absolute; touch-action: none; user-select: none; top: 0px; bottom: var(--scroll-area-corner-height); inset-inline-end: 0px; --scroll-area-thumb-height: 100px;"
+    style="position: absolute; touch-action: none; user-select: none; top: 0px; bottom: var(--scroll-area-corner-height); inset-inline-end: 0px; --scroll-area-thumb-height: 96px;"
   >
     <div
       class="vesper-scroll-area-thumb vesper-scroll-area-thumb-inverse"
@@ -590,7 +581,7 @@ exports[`scroll-area [snapshot] > inverse, on-interaction, x & y overflow 1`] = 
   data-overflow-x-end=""
   data-overflow-y-end=""
   role="presentation"
-  style="position: relative; --scroll-area-corner-height: 16px; --scroll-area-corner-width: 16px; width: 200px; height: 200px;"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
 >
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
@@ -650,9 +641,6 @@ exports[`scroll-area [snapshot] > inverse, on-interaction, x & y overflow 1`] = 
       style="width: var(--scroll-area-thumb-width); transform: translate3d(0px, 0px, 0px);"
     />
   </div>
-  <div
-    style="position: absolute; bottom: 0px; inset-inline-end: 0px; width: 16px; height: 16px;"
-  />
 </div>
 `;
 
