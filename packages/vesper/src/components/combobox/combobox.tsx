@@ -71,8 +71,6 @@ export interface ComboboxProps extends FormInputProps<
   name?: string;
   /** Associates the combobox with a `<form>` element by its `id`, allowing submission from outside the form. */
   form?: string;
-  /** An identifier applied to the underlying form control, used to reference it from form validation errors. */
-  id?: string;
   /** Controls the open state of the dropdown (controlled mode). */
   open?: boolean;
   /** Whether the dropdown is open by default (uncontrolled mode). */
