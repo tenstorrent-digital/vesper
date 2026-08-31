@@ -8,7 +8,7 @@ As Vesper is an open-source project, we welcome outside contributions. This docu
 >
 > **The most important rule for contributing to Vesper is that you must understand your code.** If you cannot explain the changes you have made on your own without the use of AI tools, then we cannot accept your contribution.
 
-Using AI tools to contribute to and gain understanding of the codebase is encouraged, but submitting agent-generated code without understanding it yourself is not.
+Using AI tools to contribute to and gain understanding of the codebase is allowed, but submitting agent-generated code without understanding it yourself is not.
 
 For more information, please read our [AI policy](AI_POLICY.md).
 
