@@ -1,11 +1,13 @@
 import Link from "next/link";
 
-import { Button } from "@tenstorrent/vesper/button";
+import { IconButton } from "@tenstorrent/vesper/icon-button";
+import { Menu } from "@tenstorrent/vesper/icons";
 import { Typography } from "@tenstorrent/vesper/typography";
 
 import { docs } from "@/lib/filesystem/docs";
 
 import { Breadcrumbs } from "./breadcrumbs";
+import { PlaygroundLink } from "./playground-link";
 
 /**
  * document titles by route, so the (client) breadcrumbs can label a segment
@@ -26,19 +28,17 @@ export const Nav = () => {
         </Typography>
         <Breadcrumbs titles={titles} />
       </div>
-      <div className="nav-group">
-        <Button
+      <div className="nav-group nav-right">
+        <PlaygroundLink />
+        <IconButton
+          aria-label="Scroll to component list at bottom of page"
+          id="menu-link"
           as="a"
-          href={
-            process.env.NODE_ENV === "development"
-              ? "http://localhost:5173"
-              : "/storybook"
-          }
-          variant="tertiary"
+          href="#sidebar"
           size="sm"
-        >
-          Playground
-        </Button>
+          variant="ghost"
+          icon={<Menu />}
+        />
       </div>
     </nav>
   );

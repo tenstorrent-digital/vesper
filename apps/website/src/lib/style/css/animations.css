@@ -1,0 +1,31 @@
+/*
+  `#breadcrumbs` fade sides in/out if scrolled
+  @see implementation in `./globals.css`
+*/
+@property --left-fade {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --right-fade {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@keyframes breadcrumbs-fade-start {
+  from {
+    --left-fade: 0px;
+  }
+  to {
+    --left-fade: 3rem;
+  }
+}
+@keyframes breadcrumbs-fade-end {
+  from {
+    --right-fade: 3rem;
+  }
+  to {
+    --right-fade: 0px;
+  }
+}

@@ -20,6 +20,7 @@ export default function RootLayout({
         ibm_plex_mono.variable,
         "antialiased",
       )}
+      data-scroll-behavior="smooth"
     >
       <body>
         <div className="layout">

@@ -1,3 +1,5 @@
+import { Typography } from "@tenstorrent/vesper/typography";
+
 import { getDocTree } from "@/lib/filesystem/docs";
 
 import { Tree } from "./tree";
@@ -19,9 +21,19 @@ const groups = getDocTree().map(({ folder, docs }) => ({
 export const Sidebar = ({ className }: { className?: string }) => {
   return (
     <nav id="sidebar" aria-label="Sidebar" className={className}>
-      {groups.map(({ folder, pages }) => (
-        <Tree key={folder ?? "root"} folder={folder} pages={pages} />
-      ))}
+      <div className="tree">
+        {groups.map(({ folder, pages }) => (
+          <Tree key={folder ?? "root"} folder={folder} pages={pages} />
+        ))}
+        <Typography
+          className="back-to-top"
+          as="a"
+          href="#"
+          variant="heading-xs"
+        >
+          Back to Top ↑
+        </Typography>
+      </div>
     </nav>
   );
 };
