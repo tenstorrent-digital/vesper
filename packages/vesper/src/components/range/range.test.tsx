@@ -330,9 +330,9 @@ describe("range [unit]", () => {
       />,
     );
 
-    const sliders = await getRangeSliders(result);
+    const thumbs = await getRangeThumbs(result);
 
-    sliders.forEach((thumb) => {
+    thumbs.forEach((thumb) => {
       expect(thumb.style.getPropertyValue("--vesper-range-thumb-label")).toBe(
         "",
       );
