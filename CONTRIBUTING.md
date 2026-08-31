@@ -2,6 +2,22 @@
 
 As Vesper is an open-source project, we welcome outside contributions. This document is meant to guide outside contributors who wish to participate in Vesper's development.
 
+<details>
+<summary><h5>Table of Contents</h5></summary>
+
+- [Baseline Requirements](#baseline-requirements)
+- [Vouch/Denounce System](#vouchdenounce-system)
+- [Opening Issues](#opening-issues)
+- [Branch Naming Conventions](#branch-naming-conventions)
+- [Submitting PRs](#submitting-prs)
+  - [Generating changesets](#generating-changesets)
+    - [PRs requiring multiple changesets](#prs-requiring-multiple-changesets)
+  - [Reviews](#reviews)
+
+<br/>
+
+</details>
+
 ## Baseline Requirements
 
 > [!IMPORTANT]
