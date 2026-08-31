@@ -67,8 +67,8 @@ The `Switch` component can be rendered at `sm` or `md` size, defaulting to `md`.
 ```tsx
 import { Switch } from "@tenstorrent/vesper/switch"
 
-<Switch size="sm" text="A small switch" />
-<Switch size="md" text="A medium switch" />
+<Switch size="sm" label="A small switch" />
+<Switch size="md" label="A medium switch" />
 ```
 
 ### Disabling the switch
@@ -102,7 +102,7 @@ import { Switch } from "@tenstorrent/vesper/switch";
     required
     name="terms"
     value="accepted"
-    text="I agree to the terms and conditions"
+    label="I agree to the terms and conditions"
   />
   <Button type="submit">Submit</Button>
 </form>;
@@ -142,7 +142,7 @@ const ref = useRef<HTMLInputElement>(null)
 
 <Switch
   required
-  text="I agree to the terms"
+  label="I agree to the terms"
   ref={ref}
   onInvalid={() =>
     ref.current?.setCustomValidity("Please accept the terms to continue.")
