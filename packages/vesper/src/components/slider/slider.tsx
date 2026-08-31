@@ -89,7 +89,6 @@ export interface SliderProps extends Omit<
  * @example
  * <Slider
  *   variant="error"
- *   label="Workers"
  *   message="Your plan allows a maximum of 8 workers."
  *   value={workers}
  *   onValueChange={setWorkers}

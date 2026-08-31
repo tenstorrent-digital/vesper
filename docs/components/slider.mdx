@@ -5,33 +5,30 @@ description: A single-thumb slider for selecting a numeric value within a range.
 
 # Slider
 
-A single-thumb slider for selecting a numeric value within a range. It is built on top of [the `Range` component](./range.mdx), and exposes the same track, ticks, labels, messages, and variants through a single-value API.
+A single-thumb slider for selecting a numeric value within a range. It is built on top of [the `Range` component](./range.mdx), and exposes the same behavior through a single-value API.
 
 <Slider label="Volume" thumbAriaLabel="Volume" defaultValue={50} />
 
 ## Options
 
-| Prop             | Type                                             | Description                                                                                       | Default     |
-| ---------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------- | ----------- |
-| `thumbAriaLabel` | `string`                                         | The accessible `aria-label` for the thumb. Required.                                              | —           |
-| `value`          | `number`                                         | The value of the thumb (controlled mode).                                                         | —           |
-| `defaultValue`   | `number`                                         | The initial thumb value (uncontrolled mode).                                                      | `min`       |
-| `onValueChange`  | `(value: number) => void`                        | Callback fired as the thumb value changes during interaction.                                     | —           |
-| `onValueCommit`  | `(value: number) => void`                        | Callback fired when the thumb interaction is completed, eg. on pointer up.                        | —           |
-| `min`            | `number`                                         | The minimum allowed value.                                                                        | `0`         |
-| `max`            | `number`                                         | The maximum allowed value.                                                                        | `100`       |
-| `step`           | `number`                                         | The stepping interval between selectable values.                                                  | `1`         |
-| `showTicks`      | `boolean`                                        | When `true`, renders tick marks along the track at each step interval.                            | `false`     |
-| `showValueLabel` | `boolean`                                        | When `true`, displays a value label above the thumb.                                              | `false`     |
-| `valueLabel`     | `string`                                         | A custom display label for the thumb. When unset, it falls back to the thumb's current value.     | —           |
-| `variant`        | `"default" \| "warning" \| "success" \| "error"` | The visual variant, which determines the colour scheme and icon of the message.                   | `"default"` |
-| `label`          | `string`                                         | An optional label displayed above the track, and used as the accessible name of the slider group. | —           |
-| `message`        | `string`                                         | An optional message displayed below the track, paired with a variant-specific icon.               | —           |
-| `disabled`       | `boolean`                                        | When `true`, prevents interaction.                                                                | `false`     |
-| `name`           | `string`                                         | The form field name submitted with form data.                                                     | —           |
-| `form`           | `string`                                         | Associates the slider with a `<form>` element by its `id`.                                        | —           |
+| Prop             | Type                      | Description                                                                                   | Default |
+| ---------------- | ------------------------- | --------------------------------------------------------------------------------------------- | ------- |
+| `thumbAriaLabel` | `string`                  | The accessible `aria-label` for the thumb. Required.                                          | —       |
+| `value`          | `number`                  | The value of the thumb (controlled mode).                                                     | —       |
+| `defaultValue`   | `number`                  | The initial thumb value (uncontrolled mode).                                                  | `min`   |
+| `onValueChange`  | `(value: number) => void` | Callback fired as the thumb value changes during interaction.                                 | —       |
+| `onValueCommit`  | `(value: number) => void` | Callback fired when the thumb interaction is completed, eg. on pointer up.                    | —       |
+| `min`            | `number`                  | The minimum allowed value.                                                                    | `0`     |
+| `max`            | `number`                  | The maximum allowed value.                                                                    | `100`   |
+| `step`           | `number`                  | The stepping interval between selectable values.                                              | `1`     |
+| `showTicks`      | `boolean`                 | When `true`, renders tick marks along the track at each step interval.                        | `false` |
+| `showValueLabel` | `boolean`                 | When `true`, displays a value label above the thumb.                                          | `false` |
+| `valueLabel`     | `string`                  | A custom display label for the thumb. When unset, it falls back to the thumb's current value. | —       |
+| `disabled`       | `boolean`                 | When `true`, prevents interaction.                                                            | `false` |
+| `name`           | `string`                  | The form field name submitted with form data.                                                 | —       |
+| `form`           | `string`                  | Associates the slider with a `<form>` element by its `id`.                                    | —       |
 
-Any other props are forwarded to the wrapping `<div>` element.
+`aria-labelledby` and `aria-describedby` are forwarded to the slider thumb. All other props are forwarded to the wrapping `<div>` element.
 
 If you need to select a span of values rather than a single one, reach for [the `Range` component](./range.mdx) instead: it renders the same track, but with a thumb per value.
 
@@ -41,12 +38,12 @@ If you need to select a span of values rather than a single one, reach for [the 
 
 The simplest way to use the `Slider` component is to render it in an **uncontrolled** fashion, where the component keeps track of its own value. Pass `defaultValue` if the thumb should start somewhere other than `min`:
 
-<Slider label="Volume" thumbAriaLabel="Volume" defaultValue={30} />
+<Slider thumbAriaLabel="Volume" defaultValue={30} />
 
 ```tsx
 import { Slider } from "@tenstorrent/vesper/slider";
 
-<Slider label="Volume" defaultValue={30} thumbAriaLabel="Volume" />;
+<Slider defaultValue={30} thumbAriaLabel="Volume" />;
 ```
 
 If you need to control the value, use the `value` and `onValueChange` props. `onValueChange` fires continuously as the thumb is dragged:
@@ -60,7 +57,6 @@ import { Slider } from "@tenstorrent/vesper/slider"
 const [volume, setVolume] = useState(75)
 
 <Slider
-  label="Volume"
   value={volume}
   onValueChange={setVolume}
   thumbAriaLabel="Volume"
@@ -73,7 +69,6 @@ Use `onValueCommit` when you only care about the final value of an interaction, 
 import { Slider } from "@tenstorrent/vesper/slider";
 
 <Slider
-  label="Volume"
   defaultValue={50}
   onValueCommit={(volume) => savePreference({ volume })}
   thumbAriaLabel="Volume"
@@ -85,7 +80,6 @@ import { Slider } from "@tenstorrent/vesper/slider";
 `min`, `max`, and `step` describe the values the thumb can take, defaulting to `0`, `100`, and `1`. A `step` of `100` on a range of `0-1000` restricts the thumb to multiples of 100:
 
 <Slider
-  label="Budget"
   min={0}
   max={1000}
   step={100}
@@ -98,7 +92,6 @@ import { Slider } from "@tenstorrent/vesper/slider";
 import { Slider } from "@tenstorrent/vesper/slider";
 
 <Slider
-  label="Budget"
   min={0}
   max={1000}
   step={100}
@@ -119,7 +112,6 @@ The `step` also determines how far the thumb moves per arrow key press when it i
 Pass `showTicks` to mark each step along the track. Ticks are rendered between `min` and `max`, so a range of `0-10` with a `step` of `1` renders nine of them:
 
 <Slider
-  label="Rating"
   min={0}
   max={10}
   step={1}
@@ -132,7 +124,6 @@ Pass `showTicks` to mark each step along the track. Ticks are rendered between `
 import { Slider } from "@tenstorrent/vesper/slider";
 
 <Slider
-  label="Rating"
   min={0}
   max={10}
   step={1}
@@ -150,22 +141,12 @@ import { Slider } from "@tenstorrent/vesper/slider";
 
 Pass `showValueLabel` to render the thumb's current value above it as you drag:
 
-<Slider
-  label="Volume"
-  showValueLabel
-  defaultValue={40}
-  thumbAriaLabel="Volume"
-/>
+<Slider showValueLabel defaultValue={40} thumbAriaLabel="Volume" />
 
 ```tsx
 import { Slider } from "@tenstorrent/vesper/slider";
 
-<Slider
-  label="Volume"
-  showValueLabel
-  defaultValue={40}
-  thumbAriaLabel="Volume"
-/>;
+<Slider showValueLabel defaultValue={40} thumbAriaLabel="Volume" />;
 ```
 
 Use `valueLabel` to display something other than the raw value, such as a formatted or unit-suffixed one. It is only rendered when `showValueLabel` is also passed:
@@ -179,7 +160,6 @@ import { Slider } from "@tenstorrent/vesper/slider"
 const [volume, setVolume] = useState(40)
 
 <Slider
-  label="Volume"
   showValueLabel
   value={volume}
   onValueChange={setVolume}
@@ -193,180 +173,6 @@ const [volume, setVolume] = useState(40)
 > Value label is presentational, and is not announced by assistive technology.
 >
 > Screen readers announce the underlying numeric value of a thumb instead. If a label carries meaning that the number alone doesn't, such as a currency or a unit, include it in the `thumbAriaLabel` too.
-
-### Message
-
-You can render an additional line of text under the track via the `message` prop. Combine it with the `variant` prop to indicate the tone of the message to the user.
-
-<Slider
-  label="Volume"
-  message="Applies to notification sounds only."
-  defaultValue={50}
-  thumbAriaLabel="Volume"
-/>
-
-```tsx
-import { Slider } from "@tenstorrent/vesper/slider";
-
-<Slider
-  label="Volume"
-  message="Applies to notification sounds only."
-  defaultValue={50}
-  thumbAriaLabel="Volume"
-/>;
-```
-
-The message is linked to the slider via `aria-describedby`, so it is announced along with the field by assistive technology.
-
-### Variants
-
-The `Slider` component can be rendered in one of four variants: `default`, `warning`, `success`, or `error`. The variant determines the colour scheme of the message, as well as the icon paired with it.
-
-#### Default variant
-
-A `Slider` renders with the `default` variant when no `variant` prop is specified. Its `message` is best suited for neutral hints:
-
-<Slider
-  label="Volume"
-  message="You can change this later in your settings."
-  defaultValue={50}
-  thumbAriaLabel="Volume"
-/>
-
-```tsx
-import { Slider } from "@tenstorrent/vesper/slider";
-
-<Slider
-  label="Volume"
-  message="You can change this later in your settings."
-  defaultValue={50}
-  thumbAriaLabel="Volume"
-/>;
-```
-
-#### Warning variant
-
-Use the `warning` variant to flag a value that needs attention, but that doesn't prevent the form from being submitted:
-
-<Slider
-  variant="warning"
-  label="Volume"
-  message="Sustained volumes above 85 can damage hearing."
-  defaultValue={95}
-  showValueLabel
-  thumbAriaLabel="Volume"
-/>
-
-```tsx
-import { useState } from "react";
-import { Slider } from "@tenstorrent/vesper/slider";
-
-const [volume, setVolume] = useState(95);
-
-<Slider
-  variant="warning"
-  label="Volume"
-  message="Sustained volumes above 85 can damage hearing."
-  value={volume}
-  onValueChange={setVolume}
-  showValueLabel
-  thumbAriaLabel="Volume"
-/>;
-```
-
-#### Success variant
-
-The `success` variant is best suited for confirming that a value has been validated as expected:
-
-<Slider
-  variant="success"
-  label="Workers"
-  min={1}
-  max={16}
-  message="This fits comfortably within your quota."
-  defaultValue={4}
-  showValueLabel
-  thumbAriaLabel="Workers"
-/>
-
-```tsx
-import { useState } from "react";
-import { Slider } from "@tenstorrent/vesper/slider";
-
-const [workers, setWorkers] = useState(4);
-
-<Slider
-  variant="success"
-  label="Workers"
-  min={1}
-  max={16}
-  message="This fits comfortably within your quota."
-  value={workers}
-  onValueChange={setWorkers}
-  showValueLabel
-  thumbAriaLabel="Workers"
-/>;
-```
-
-#### Error variant
-
-The `error` variant highlights an invalid value that must be corrected before the form can be submitted:
-
-<Slider
-  variant="error"
-  label="Workers"
-  min={1}
-  max={16}
-  message="Your plan allows a maximum of 8 workers."
-  defaultValue={12}
-  showValueLabel
-  thumbAriaLabel="Workers"
-/>
-
-```tsx
-import { useState } from "react";
-import { Slider } from "@tenstorrent/vesper/slider";
-
-const [workers, setWorkers] = useState(12);
-
-<Slider
-  variant="error"
-  label="Workers"
-  min={1}
-  max={16}
-  message="Your plan allows a maximum of 8 workers."
-  value={workers}
-  onValueChange={setWorkers}
-  showValueLabel
-  thumbAriaLabel="Workers"
-/>;
-```
-
-### Labels and accessible names
-
-> [!IMPORTANT]
->
-> `thumbAriaLabel` is required, and names the thumb the user actually interacts with. Without it, the thumb is announced with no indication of what it controls.
-
-The optional `label` prop names the slider as a whole. When provided, it is rendered above the track and associated with the thumb, so clicking it focuses the thumb:
-
-<Slider label="Volume" defaultValue={50} thumbAriaLabel="Volume" />
-
-```tsx
-import { Slider } from "@tenstorrent/vesper/slider";
-
-<Slider label="Volume" defaultValue={50} thumbAriaLabel="Volume" />;
-```
-
-If you don't want a visible label, pass an `aria-label` instead to name the slider group:
-
-<Slider aria-label="Volume" defaultValue={50} thumbAriaLabel="Volume" />
-
-```tsx
-import { Slider } from "@tenstorrent/vesper/slider";
-
-<Slider aria-label="Volume" defaultValue={50} thumbAriaLabel="Volume" />;
-```
 
 ### Keyboard interaction
 
@@ -385,12 +191,12 @@ The thumb is a native `<input type="range">`, so a `Slider` is fully keyboard op
 
 Pass `disabled` to prevent all interaction. A disabled `Slider` still displays its current value, but its thumb is skipped in the tab order and excluded from form data:
 
-<Slider disabled label="Volume" defaultValue={50} thumbAriaLabel="Volume" />
+<Slider disabled defaultValue={50} thumbAriaLabel="Volume" />
 
 ```tsx
 import { Slider } from "@tenstorrent/vesper/slider";
 
-<Slider disabled label="Volume" defaultValue={50} thumbAriaLabel="Volume" />;
+<Slider disabled defaultValue={50} thumbAriaLabel="Volume" />;
 ```
 
 ### Usage in forms
@@ -404,12 +210,7 @@ import { Button } from "@tenstorrent/vesper/button";
 import { Slider } from "@tenstorrent/vesper/slider";
 
 <form action="/api/preferences" method="post">
-  <Slider
-    name="volume"
-    label="Volume"
-    defaultValue={50}
-    thumbAriaLabel="Volume"
-  />
+  <Slider name="volume" defaultValue={50} thumbAriaLabel="Volume" />
   <Button type="submit">Submit</Button>
 </form>;
 ```

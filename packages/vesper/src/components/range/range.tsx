@@ -96,8 +96,6 @@ export interface RangeProps extends Omit<
  * @example
  * <Range
  *   variant="error"
- *   label="Price"
- *   message="The range must span at least $50."
  *   values={price}
  *   onValuesChange={setPrice}
  *   thumbAriaLabels={["Price (min)", "Price (max)"]}
