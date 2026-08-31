@@ -42,6 +42,9 @@ html {
   line-height: var(--base-line-height);
   font-family: var(--font-inter-tight);
   scroll-behavior: smooth;
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
 }
 
 html,
