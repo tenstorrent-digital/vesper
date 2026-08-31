@@ -550,7 +550,7 @@ exports[`scroll-area [snapshot] > inverse, always, y overflow 1`] = `
     data-orientation="vertical"
     data-overflow-y-end=""
     data-visibility="always"
-    style="position: absolute; touch-action: none; user-select: none; top: 0px; bottom: var(--scroll-area-corner-height); inset-inline-end: 0px; --scroll-area-thumb-height: 96px;"
+    style="position: absolute; touch-action: none; user-select: none; top: 0px; bottom: var(--scroll-area-corner-height); inset-inline-end: 0px; --scroll-area-thumb-height: 100px;"
   >
     <div
       class="vesper-scroll-area-thumb vesper-scroll-area-thumb-inverse"
