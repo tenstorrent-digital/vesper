@@ -4,15 +4,6 @@ import { useCallback } from "react";
 
 import { Range, type RangeProps } from "@/components/range/range";
 
-export const SLIDER_VARIANTS = [
-  "default",
-  "warning",
-  "error",
-  "success",
-] as const;
-
-export type SliderVariant = (typeof SLIDER_VARIANTS)[number];
-
 export interface SliderProps extends Omit<
   RangeProps,
   | "values"
@@ -39,8 +30,6 @@ export interface SliderProps extends Omit<
   onValueCommit?(value: number): void;
   /** The accessible `aria-label` attribute for the thumb. */
   thumbAriaLabel: string;
-  /** The visual variant of the input, which determines its message's color scheme and icon. @default default */
-  variant?: SliderVariant;
 }
 
 /**
@@ -57,7 +46,6 @@ export interface SliderProps extends Omit<
  * @param {boolean} [props.showTicks] - (optional) Whether to render tick marks at each step interval. @default false
  * @param {boolean} [props.showValueLabel] - (optional) Whether to display the value label above the thumb. @default false
  * @param {string} [props.valueLabel] - (optional) A custom display label for the thumb, falling back to its current value
- * @param {SliderVariant} [props.variant] - (optional) The visual variant, which determines the color scheme and icon of the message. @default default
  * @param {string} [props.label] - (optional) A label displayed above the track, also used as the accessible name of the slider group
  * @param {string} [props.message] - (optional) A message displayed below the track, linked to the slider via `aria-describedby`
  * @param {boolean} [props.disabled] - (optional) Whether to prevent interaction. @default false
@@ -88,8 +76,6 @@ export interface SliderProps extends Omit<
  *
  * @example
  * <Slider
- *   variant="error"
- *   message="Your plan allows a maximum of 8 workers."
  *   value={workers}
  *   onValueChange={setWorkers}
  *   aria-invalid
