@@ -1,11 +1,22 @@
 import type { AriaAttributes, ComponentProps, ElementType } from "react";
 
+/**
+ * These props may not be forwarded at all. `role` should not be overridden for
+ * accessibility reasons, while `children` and `dangerouslySetInnerHTML` should
+ * not be allowed as each of our form input components render their own content
+ * */
 const DISALLOWED_PROPS = [
   "role",
   "children",
   "dangerouslySetInnerHTML",
 ] as const satisfies (keyof ComponentProps<"div">)[];
 
+/**
+ * Props which get forwarded to the underlying control element. Typically the
+ * underlying control will be a `button`, `input`, or `textarea` element.
+ *
+ * Other event handlers are omitted so they may be forwarded to wrappers.
+ * */
 const CONTROL_PROPS = [
   // base set of props
   "autoCapitalize",
@@ -64,6 +75,7 @@ const CONTROL_PROPS = [
   "onWheelCapture",
 ] as const satisfies (keyof ComponentProps<"div">)[];
 
+/** List of all aria attributes */
 const ARIA_PROPS = [
   "aria-activedescendant",
   "aria-atomic",
@@ -122,10 +134,12 @@ const ARIA_PROPS = [
 
 type AssertNever<T extends never> = T;
 
+/** This will cause builds to fail if the ARIA_PROPS list does not contain all aria-attributes */
 export type AssertAllAriaAttributesAccountedFor = AssertNever<
   Exclude<keyof AriaAttributes, (typeof ARIA_PROPS)[number]>
 >;
 
+/** Form-related props for when the underlying control is a `button` */
 const BUTTON_FORM_PROPS = [
   "defaultChecked",
   "defaultValue",
@@ -135,6 +149,7 @@ const BUTTON_FORM_PROPS = [
   "value",
 ] as const satisfies (keyof ComponentProps<"button">)[];
 
+/** Form-related props for when the underlying control is an `input` */
 const INPUT_FORM_PROPS = [
   "checked",
   "defaultChecked",
@@ -157,6 +172,7 @@ const INPUT_FORM_PROPS = [
   "autoComplete",
 ] as const satisfies (keyof ComponentProps<"input">)[];
 
+/** Form-related props for when the underlying control is a `textarea` */
 const TEXTAREA_FORM_PROPS = [
   "defaultChecked",
   "defaultValue",
@@ -197,6 +213,16 @@ type WrapperProps<W extends ElementType, C extends ControlElementType> = Omit<
   FormProp<C> | ControlProp | DisallowedProp | keyof AriaAttributes
 >;
 
+/**
+ * Helper generic that lets us define a form input component's prop surface
+ *
+ * `W` represents the element type of the wrapping component. Typically this
+ * will be a `div`.
+ *
+ * `C` represents the element type of the underlying control element. One of `button`, `input`, or `textarea`.
+ *
+ * `O` represents any remaining props we want to omit from the result
+ * */
 export type FormInputProps<
   W extends ElementType,
   C extends ControlElementType,
@@ -206,6 +232,22 @@ export type FormInputProps<
   O
 >;
 
+/**
+ * Splits a given `props` object into four buckets: `ariaProps`, `controlProps`,
+ * `formProps`, and `wrapperProps`.
+ *
+ * @see splitFormProps
+ * @see splitControlProps
+ * @see splitAriaProps
+ *
+ * @example
+ * const {
+ *   ariaProps,
+ *   controlProps,
+ *   formProps,
+ *   wrapperProps
+ * } = splitInputFormProps(props)
+ */
 export function splitFormInputProps<A>(props: A) {
   const [formProps, _props] = splitFormProps(props);
   const [controlProps, __props] = splitControlProps(_props);
@@ -228,18 +270,55 @@ const formPropsSet = new Set([
   ...BUTTON_FORM_PROPS,
 ]);
 
+/**
+ * Splits a given `props` object into two buckets based on whether a prop is a control prop or not
+ *
+ * @see CONTROL_PROPS
+ *
+ * @example
+ * const [controlProps, restProps] = splitControlProps(props)
+ * */
 export function splitControlProps<A>(props: A) {
   return splitProps(props, controlPropsSet);
 }
 
+/**
+ * Splits a given `props` object into two buckets based on whether a prop is a form prop or not
+ *
+ * @see INPUT_FORM_PROPS
+ * @see BUTTON_FORM_PROPS
+ * @see TEXTAREA_FORM_PROPS
+ *
+ * @example
+ * const [formProps, restProps] = splitFormProps(props)
+ * */
 export function splitFormProps<A>(props: A) {
   return splitProps(props, formPropsSet);
 }
 
+/**
+ * Splits a given `props` object into two buckets based on whether a prop is an aria-attribute or not
+ *
+ * @see ARIA_PROPS
+ *
+ * @example
+ * const [ariaProps, restProps] = splitAriaProps(props)
+ * */
 export function splitAriaProps<A>(props: A) {
   return splitProps(props, ariaPropsSet);
 }
 
+/**
+ * Splits a given `props` object into two buckets based on a given set of keys, ignoring disallowed props
+ *
+ * @see DISALLOWED_PROPS
+ *
+ * @example
+ * const [propsWithFoo, propsWithBat] = splitProps(
+ *   { foo: "bar", bat: "baz" },
+ *   new Set(["foo"] as const),
+ * )
+ * */
 export function splitProps<A, K extends string>(props: A, keys: Set<K>) {
   const a = {} as OmitUnknown<Omit<A, K | DisallowedProp>>;
   // @ts-expect-error ts not smart enough to do this
