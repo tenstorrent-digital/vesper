@@ -40,7 +40,12 @@ export const Breadcrumbs = ({ titles }: { titles: Record<string, string> }) => {
               {titles[href] ?? convertKebabToTitleCase(path)}
             </Typography>
             {index !== paths.length - 1 && (
-              <Typography as="span" className="divider" variant="copy-md-bold">
+              <Typography
+                as="span"
+                className="divider"
+                variant="copy-md-bold"
+                aria-hidden="true"
+              >
                 /
               </Typography>
             )}
