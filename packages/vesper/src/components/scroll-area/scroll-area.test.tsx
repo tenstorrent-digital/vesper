@@ -21,6 +21,7 @@ afterEach(cleanup);
 
 interface ScrollAreaPermutation extends ScrollAreaProps {
   permutationName: string;
+  scrollThumbCount: number;
 }
 
 const SCROLL_AREA_PERMUTATIONS: ScrollAreaPermutation[] =
@@ -28,12 +29,14 @@ const SCROLL_AREA_PERMUTATIONS: ScrollAreaPermutation[] =
     SCROLL_THUMB_VISIBILITIES.flatMap((thumbVisibility) => [
       {
         permutationName: `${thumbVariant}, ${thumbVisibility}, no overflow`,
+        scrollThumbCount: 0,
         thumbVariant,
         thumbVisibility,
         style: { width: 200, height: 200 },
       },
       {
         permutationName: `${thumbVariant}, ${thumbVisibility}, y overflow`,
+        scrollThumbCount: 1,
         thumbVariant,
         thumbVisibility,
         style: { width: 200, height: 200 },
@@ -41,6 +44,7 @@ const SCROLL_AREA_PERMUTATIONS: ScrollAreaPermutation[] =
       },
       {
         permutationName: `${thumbVariant}, ${thumbVisibility}, x overflow`,
+        scrollThumbCount: 1,
         thumbVariant,
         thumbVisibility,
         style: { width: 200, height: 200 },
@@ -48,6 +52,7 @@ const SCROLL_AREA_PERMUTATIONS: ScrollAreaPermutation[] =
       },
       {
         permutationName: `${thumbVariant}, ${thumbVisibility}, x & y overflow`,
+        scrollThumbCount: 2,
         thumbVariant,
         thumbVisibility,
         style: { width: 200, height: 200 },
@@ -55,8 +60,6 @@ const SCROLL_AREA_PERMUTATIONS: ScrollAreaPermutation[] =
       },
     ]),
   );
-
-const flushEffects = () => new Promise((r) => setTimeout(r, 0));
 
 const getScrollbars = (result: RenderResult) =>
   result.container.querySelectorAll<HTMLElement>(
@@ -66,15 +69,15 @@ const getScrollbars = (result: RenderResult) =>
 const getScrollbarThumbs = (result: RenderResult) =>
   result.container.querySelectorAll<HTMLElement>(".vesper-scroll-area-thumb");
 
-const getExpectedThumbCount = (permutationName: string) => {
-  if (permutationName.includes("x & y overflow")) return 2;
-  if (permutationName.includes("x overflow")) return 1;
-  if (permutationName.includes("y overflow")) return 1;
-  return 0;
-};
+/** Wait for base-ui scrollbar rendering to settle */
+const settleScrollbars = async (result: RenderResult, scrollThumbCount = 0) => {
+  await waitFor(() => {
+    expect(
+      result.container.querySelectorAll(".vesper-scroll-area-thumb").length,
+    ).toBe(scrollThumbCount);
+  });
 
-const clearScrollbarHoverState = (container: HTMLElement) => {
-  container
+  result.container
     .querySelectorAll<HTMLElement>(".vesper-scroll-area-scrollbar")
     .forEach((scrollbar) => {
       fireEvent.pointerLeave(scrollbar);
@@ -121,7 +124,7 @@ describe("scroll-area [unit]", () => {
       </ScrollArea>,
     );
 
-    await flushEffects();
+    await settleScrollbars(result);
 
     const thumbs = getScrollbarThumbs(result);
     expect(thumbs.length).toBe(0);
@@ -134,7 +137,7 @@ describe("scroll-area [unit]", () => {
       </ScrollArea>,
     );
 
-    await flushEffects();
+    await settleScrollbars(result);
 
     const thumbs = getScrollbarThumbs(result);
     expect(thumbs.length).toBe(2);
@@ -148,7 +151,7 @@ describe("scroll-area [unit]", () => {
         </ScrollArea>,
       );
 
-      await flushEffects();
+      await settleScrollbars(result);
 
       const thumbs = getScrollbarThumbs(result);
       thumbs.forEach((thumb) => {
@@ -168,7 +171,7 @@ describe("scroll-area [unit]", () => {
         </ScrollArea>,
       );
 
-      await flushEffects();
+      await settleScrollbars(result);
 
       const scrollbars = getScrollbars(result);
       scrollbars.forEach((thumb) =>
@@ -180,19 +183,13 @@ describe("scroll-area [unit]", () => {
 
 describe("scroll-area [snapshot]", () => {
   SCROLL_AREA_PERMUTATIONS.forEach((permutation) => {
-    const { permutationName, ...props } = permutation;
+    const { permutationName, scrollThumbCount, ...props } = permutation;
 
     test(permutationName, async () => {
-      const { container } = render(<ScrollArea {...props} />);
-      await flushEffects();
-      await waitFor(() => {
-        expect(
-          container.querySelectorAll(".vesper-scroll-area-thumb").length,
-        ).toBe(getExpectedThumbCount(permutationName));
-      });
-      clearScrollbarHoverState(container);
+      const result = render(<ScrollArea {...props} />);
+      await settleScrollbars(result, scrollThumbCount);
 
-      expect(container.firstChild).toMatchSnapshot();
+      expect(result.container.firstChild).toMatchSnapshot();
     });
   });
 });
@@ -210,13 +207,13 @@ describe("scroll-area [a11y]", () => {
     });
 
     SCROLL_AREA_PERMUTATIONS.forEach((permutation) => {
-      const { permutationName, ...props } = permutation;
+      const { permutationName, scrollThumbCount, ...props } = permutation;
 
       test(`a11y (${theme}) ${permutationName}`, async () => {
-        const { container } = render(<ScrollArea {...props} />);
-        await flushEffects();
+        const result = render(<ScrollArea {...props} />);
+        await settleScrollbars(result, scrollThumbCount);
 
-        expect(await axe.run(container)).toHaveNoViolations();
+        expect(await axe.run(result.container)).toHaveNoViolations();
       });
     });
   });
