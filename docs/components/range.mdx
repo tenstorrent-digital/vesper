@@ -310,7 +310,7 @@ import { Range } from "@tenstorrent/vesper/range";
 
 Each thumb renders a native `<input type="range">`, so passing a `name` includes every thumb's value in form submissions under that name.
 
-Since every thumb submits under the same `name`, the form above submits `price=20&price=80`. Read both values with `FormData.getAll`:
+Since every thumb submits under the same `name`, the form below submits `price=20&price=80`. Read both values with `FormData.getAll`:
 
 ```tsx
 const data = new FormData(form);
