@@ -2,17 +2,33 @@
 
 As Vesper is an open-source project, we welcome outside contributions. This document is meant to guide outside contributors who wish to participate in Vesper's development.
 
-## Baseline requirements
+<details>
+<summary><h5>Table of Contents</h5></summary>
+
+- [Baseline Requirements](#baseline-requirements)
+- [Vouch/Denounce System](#vouchdenounce-system)
+- [Opening Issues](#opening-issues)
+- [Branch Naming Conventions](#branch-naming-conventions)
+- [Submitting PRs](#submitting-prs)
+  - [Generating changesets](#generating-changesets)
+    - [PRs requiring multiple changesets](#prs-requiring-multiple-changesets)
+  - [Reviews](#reviews)
+
+<br/>
+
+</details>
+
+## Baseline Requirements
 
 > [!IMPORTANT]
 >
 > **The most important rule for contributing to Vesper is that you must understand your code.** If you cannot explain the changes you have made on your own without the use of AI tools, then we cannot accept your contribution.
 
-Using AI tools to contribute to and gain understanding of the codebase is encouraged, but submitting agent-generated code without understanding it yourself is not.
+Using AI tools to contribute to and gain understanding of the codebase is allowed, but submitting agent-generated code without understanding it yourself is not.
 
 For more information, please read our [AI policy](AI_POLICY.md).
 
-## Vouching/denouncement system
+## Vouch/Denounce System
 
 We use a vouching system to establish trust amongst contributors. If you have not been vouched for, you cannot contribute, and your pull requests will automatically be closed. If you have not been vouched and wish to contribute, please do the following:
 
@@ -24,7 +40,7 @@ We use a vouching system to establish trust amongst contributors. If you have no
 >
 > If you repeatedly submit low-quality contributions or otherwise do not respect the rules outlined in this document, you will be **denounced.** This adds your username to a public list of users that have not respected the contribution guidelines. If you are denounced, all future interactions with the Vesper project will be automatically closed by bots.
 
-## Opening an issue
+## Opening Issues
 
 Typically issues will fall into one of three categories, each of which have issue templates:
 
@@ -38,17 +54,27 @@ Typically issues will fall into one of three categories, each of which have issu
 >
 > If you'd like to propose a design change, please open a [discussion](https://github.com/tenstorrent-digital/vesper/discussions) instead. A maintainer must bring the request upstream to the design team first.
 
-## Submitting a PR
+## Branch Naming Conventions
 
-As mentioned in [the vouching and denouncement system section](#vouchingdenouncement-system), you will not be able to submit a PR until you are vouched for. Once you have been approved by a Vesper admin, you will be able to submit PRs.
+Branch names follow the convention `<username>/[<issue-id>-]<branch-name>`, where:
 
-When submitting a PR, it is imperative that **you must understand the code you are submitting.** Low-quality contributions that are obviously AI-generated and not understood by the contributor will not be accepted and you may be denounced. AI-assisted contributions are welcome, but having a human-in-the-loop to edit and refine AI output is crucial. If you cannot explain and document the changes you are submitting without the help of an LLM, we cannot accept your contribution.
+- `<username>`: contributor's name, username, etc.
+- `<issue-id>`: issue ID (optional but preferred)
+- `<branch-name>`: descriptive branch name
 
-Prior to submitting a PR, it's highly preferred that you first [open an issue](#opening-an-issue), unless you are referencing an existing one in your PRs description.
+Issue IDs are optional but preferred. Ideally, if there is no issue, open one first and then use the issue ID in your branch name. In the case where your PR addresses multiple issues, use the issue ID for the main issue and then make sure to reference all of the related issues in your PR description.
+
+## Submitting PRs
+
+As mentioned in [the vouching and denouncement system section](#vouchdenounce-system), you will not be able to submit a PR until you are vouched for. Once you have been approved by a Vesper admin, you will be able to submit PRs.
+
+When submitting a PR, it is imperative that **you understand the code you are submitting.** Low-quality contributions that are obviously AI-generated and not understood by the contributor will not be accepted and you may be denounced. AI-assisted contributions are welcome, but having a human-in-the-loop to edit and refine AI output is crucial. If you cannot explain and document the changes you are submitting without the help of an LLM, we cannot accept your contribution.
+
+Prior to submitting a PR, it's highly preferred that you first [open an issue](#opening-issues), unless you are referencing an existing one in your PR's description.
 
 For information on developing Vesper locally, as well as what is expected when making changes to the `@tenstorrent/vesper` package, please refer to the [README.md](README.md) in the root of this monorepo.
 
-### Generating a changeset
+### Generating changesets
 
 Vesper uses [changesets](https://changesets.dev) to manage git tags, releases, changelogs, and publishing the `@tenstorrent/vesper` package to the npm registry. Whenever you make a contribution that impacts end-users who install Vesper, you _must_ generate a changeset or your PR will not pass checks and cannot be merged.
 
@@ -72,6 +98,6 @@ Sometimes you will want to generate multiple changesets for a PR. It is recommen
 
 An example of when this could happen is if a change to module `A` depends on a change to module `B`, with both changes happening in a single PR.
 
-### Code review
+### Reviews
 
 Prior to merging your PR, any code changes you made must be reviewed. PRs require approvals from two contributors with write access, at least one of which must be a Vesper admin. All checks must also pass.
