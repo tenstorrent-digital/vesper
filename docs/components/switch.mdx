@@ -15,44 +15,138 @@ A toggle switch input with an optional label. Uses the native `switch` ARIA role
 | ---------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------- | ------- |
 | `label`          | `string`                               | The text label displayed next to the switch. An asterisk is appended when `required` is `true`. | —       |
 | `size`           | `"sm" \| "md"`                         | The size of the switch and its label.                                                           | `"md"`  |
-| `inputRef`       | `Ref<HTMLInputElement>`                | A ref forwarded to the underlying `<input>` element.                                            | —       |
+| `ref`            | `Ref<HTMLInputElement>`                | A ref forwarded to the underlying `<input>` element.                                            | —       |
 | `checked`        | `boolean`                              | Controls the checked state (controlled mode).                                                   | —       |
 | `defaultChecked` | `boolean`                              | The initial checked state (uncontrolled mode).                                                  | `false` |
 | `disabled`       | `boolean`                              | When `true`, prevents interaction.                                                              | `false` |
 | `required`       | `boolean`                              | When `true`, marks the input as required and appends an asterisk to the label.                  | `false` |
 | `onChange`       | `ChangeEventHandler<HTMLInputElement>` | Callback fired when the switch is toggled.                                                      | —       |
 
+Form and accessibility props such as `autoFocus`, `tabIndex`, `aria-label`, `aria-labelledby`, `aria-describedby`, `aria-invalid`, and event handlers like `onFocus`, `onBlur`, and `onKeyDown` are forwarded to the underlying `<input>` element, as is `ref`. Any other props, including `className`, are forwarded to the wrapping `<div>` element.
+
+Use the `Switch` component when toggling a setting on and off takes effect immediately. Reach for [the `Checkbox` component](./checkbox.mdx) instead when building form fields, such as accepting terms or opting into a mailing list, or when you need to represent an indeterminate state.
+
 ## Examples
+
+### Controlled vs uncontrolled
+
+The simplest way to use the `Switch` component is to render it in an uncontrolled fashion, where the component is responsible for keeping track of its own checked state. Pass `defaultChecked` if it should start out checked:
+
+<Switch label="Allow notifications" defaultChecked />
 
 ```tsx
 import { Switch } from "@tenstorrent/vesper/switch";
 
-// Basic usage
-<Switch label="Dark mode" />;
+<Switch label="Allow notifications" defaultChecked />;
 ```
 
-```tsx
-// Default checked
-<Switch label="Auto-save" defaultChecked />
-```
+If you need to control whether the switch is checked, you can do so via the `checked` and `onChange` props. The new state is read from the event's `target.checked`:
+
+<SwitchDemo kind="controlled" />
 
 ```tsx
-// Small size
-<Switch label="Compact" size="sm" />
-```
+import { useState } from "react"
+import { Switch } from "@tenstorrent/vesper/switch"
 
-```tsx
-// Required
-<Switch label="Accept terms" required />
-```
-
-```tsx
-// Controlled
-const [enabled, setEnabled] = useState(false);
+const [notificationsEnabled, setNotificationsEnabled] = useState(false)
 
 <Switch
-  label="Feature flag"
-  checked={enabled}
-  onChange={(e) => setEnabled(e.target.checked)}
+  label="Allow notifications"
+  checked={notificationsEnabled}
+  onChange={e => setNotificationsEnabled(e.target.checked)}
+/>
+```
+
+### Different sizes
+
+The `Switch` component can be rendered at `sm` or `md` size, defaulting to `md`. Size affects the dimensions of the switch itself, as well as the text styles of the text rendered beside it.
+
+<Switch size="sm" label="A small switch" />
+<Switch size="md" label="A medium switch" />
+
+```tsx
+import { Switch } from "@tenstorrent/vesper/switch"
+
+<Switch size="sm" text="A small switch" />
+<Switch size="md" text="A medium switch" />
+```
+
+### Disabling the switch
+
+You can disable a `Switch` by passing `disabled={true}` or just `disabled` as a prop. A disabled switch still displays its current state, but it cannot be toggled by pointer or keyboard, is skipped in the tab order, and is excluded from form data:
+
+<Switch label="Sign up for our newsletter" disabled />
+<Switch label="Sign up for our newsletter" defaultChecked disabled />
+
+```tsx
+import { Switch } from "@tenstorrent/vesper/switch"
+
+<Switch label="Sign up for our newsletter" disabled />
+<Switch label="Sign up for our newsletter" defaultChecked disabled />
+```
+
+### Usage in forms
+
+`Switch` renders a native `<input type="checkbox">`, so it works with regular form submission and native validation via props like `name`, `value`, `form`, and `required`. A switch that has been turned on its `value` (defaulting to `"on"`), and a turned off switch is omitted from form data entirely.
+
+Pass `required` when the switch must be turned on before the form can be submitted:
+
+<SwitchDemo kind="form" />
+
+```tsx
+import { Button } from "@tenstorrent/vesper/button";
+import { Switch } from "@tenstorrent/vesper/switch";
+
+<form action="/api/signup" method="post">
+  <Switch
+    required
+    name="terms"
+    value="accepted"
+    text="I agree to the terms and conditions"
+  />
+  <Button type="submit">Submit</Button>
+</form>;
+```
+
+The form above submits `terms=accepted` once the box is checked, and refuses to submit at all while it is unchecked.
+
+Use the `form` prop to associate the field with a `<form>` rendered elsewhere on the page:
+
+```tsx
+import { Button } from "@tenstorrent/vesper/button";
+import { Switch } from "@tenstorrent/vesper/switch";
+
+<form id="signup" action="/api/signup" method="post">
+  <Button type="submit">Create account</Button>
+</form>;
+
+// rendered outside of the form, but submitted with it
+<Switch
+  required
+  form="signup"
+  name="terms"
+  value="accepted"
+  label="I agree to the terms"
 />;
+```
+
+### Accessing the underlying element
+
+Use the `ref` prop when you need direct access to the underlying `<input>` element, eg. to focus it or report a custom validation message:
+
+```tsx
+import { useRef } from "react"
+import { Switch } from "@tenstorrent/vesper/switch"
+
+const ref = useRef<HTMLInputElement>(null)
+
+<Switch
+  required
+  text="I agree to the terms"
+  ref={ref}
+  onInvalid={() =>
+    ref.current?.setCustomValidity("Please accept the terms to continue.")
+  }
+  onChange={() => ref.current?.setCustomValidity("")}
+/>
 ```
