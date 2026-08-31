@@ -15,6 +15,10 @@ A single-select toggle group that allows the user to choose one option from a se
   ]}
 />
 
+> [!IMPORTANT]
+>
+> Always give a `Toggle` an accessible name by either [pairing it with a `<label>` via `htmlFor`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) or giving it an `aria-label`. Without one, assistive technology announces the field with no indication of what it is for.
+
 ## Options
 
 | Prop            | Type                      | Description                                                                                           | Default |
@@ -28,6 +32,8 @@ A single-select toggle group that allows the user to choose one option from a se
 | `name`          | `string`                  | The name of the underlying select, used as the field name when submitted with form data.              | —       |
 | `required`      | `boolean`                 | When `true`, makes the underlying input required when rendered inside of a form.                      | `false` |
 
+Any other props are forwarded to the wrapping `<div>` element.
+
 ### ToggleOption
 
 | Prop        | Type        | Description                                                 | Default |
@@ -39,50 +45,296 @@ A single-select toggle group that allows the user to choose one option from a se
 
 ## Examples
 
+### Controlled vs uncontrolled
+
+The simplest way to use the `Toggle` component is to render it in an uncontrolled fashion, where the component is responsible for keeping track of its own state. Pass `defaultValue` if it should start out with value pre-selected:
+
+<Toggle
+  aria-label="Display options"
+  defaultValue="grid"
+  options={[
+    { value: "grid", icon: <Grid />, ariaLabel: "Grid view" },
+    { value: "list", icon: <List />, ariaLabel: "List view" },
+  ]}
+/>
+
 ```tsx
 import { Toggle } from "@tenstorrent/vesper/toggle";
 
-// Basic text options
 <Toggle
-  defaultValue="list"
-  options={[
-    { value: "list", text: "List" },
-    { value: "grid", text: "Grid" },
-  ]}
-/>;
-```
-
-```tsx
-// Icon options
-import { Grid, List } from "@tenstorrent/vesper/icons";
-
-<Toggle
+  aria-label="Display options"
   defaultValue="grid"
   options={[
-    { value: "list", icon: <List />, ariaLabel: "List view" },
     { value: "grid", icon: <Grid />, ariaLabel: "Grid view" },
+    { value: "list", icon: <List />, ariaLabel: "List view" },
   ]}
 />;
 ```
 
-```tsx
-// Sizes
-<Toggle size="sm" options={[...]} defaultValue="a" />
-<Toggle size="md" options={[...]} defaultValue="a" />
-<Toggle size="lg" options={[...]} defaultValue="a" />
-```
+If you need to control the toggle's state, you can do so via the `value` and `onValueChange` props:
+
+<ToggleDemo kind="controlled" />
 
 ```tsx
-// Controlled
-const [view, setView] = useState("list");
+import { useState } from "react";
+import { Toggle } from "@tenstorrent/vesper/toggle";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+const [value, setValue] = useState("");
+
+<div>
+  <Toggle
+    aria-label="Display options"
+    value={value}
+    onValueChange={setValue}
+    options={[
+      { value: "list", icon: <List />, ariaLabel: "List view" },
+      { value: "grid", icon: <Grid />, ariaLabel: "Grid view" },
+    ]}
+  />
+  <Typography variant="copy-sm">
+    Value: {value || "nothing selected"}
+  </Typography>
+</div>;
+```
+
+### Text and icon options
+
+You can render both text and icon options in a `Toggle`. To render text options, you would pass an array of `options` objects that each have `value` and `text` properties:
 
 <Toggle
-  value={view}
-  onValueChange={setView}
+  aria-label="Membership tier"
   options={[
-    { value: "list", text: "List" },
-    { value: "grid", text: "Grid" },
-    { value: "board", text: "Board" },
+    { value: "free", text: "Free" },
+    { value: "basic", text: "Basic" },
+    { value: "pro", text: "Pro" },
+  ]}
+  defaultValue="free"
+/>
+
+```tsx
+import { Toggle } from "@tesntorrent/vesper/toggle";
+
+<Toggle
+  aria-label="Membership tier"
+  options={[
+    { value: "free", text: "Free" },
+    { value: "basic", text: "Basic" },
+    { value: "pro", text: "Pro" },
+  ]}
+  defaultValue="free"
+/>;
+```
+
+To render icon options, pass an array of `options` objects that each have `value`, `icon`, and `ariaLabel` properties:
+
+<Toggle
+  aria-label="Project visibility"
+  options={[
+    { value: "public", icon: <Globe />, ariaLabel: "Public" },
+    { value: "private", icon: <Lock />, ariaLabel: "Private" },
+  ]}
+  defaultValue="public"
+/>
+
+```tsx
+import { Toggle } from "@tesntorrent/vesper/toggle";
+
+<Toggle
+  aria-label="Project visibility"
+  options={[
+    { value: "public", icon: <Globe />, ariaLabel: "Public" },
+    { value: "private", icon: <Lock />, ariaLabel: "Private" },
+  ]}
+  defaultValue="public"
+/>;
+```
+
+### Different sizes
+
+`Toggle` can be rendered in one of three sizes; `"sm"`, `"md"`, or `"lg"`. The default size is `"md"`.
+
+<Toggle
+  size="sm"
+  defaultValue="monthly"
+  aria-label="Billing period"
+  options={[
+    { value: "monthly", text: "Monthly" },
+    { value: "yearly", text: "Yearly" },
+  ]}
+/>
+<Toggle
+  size="md"
+  defaultValue="monthly"
+  aria-label="Billing period"
+  options={[
+    { value: "monthly", text: "Monthly" },
+    { value: "yearly", text: "Yearly" },
+  ]}
+/>
+<Toggle
+  size="lg"
+  defaultValue="monthly"
+  aria-label="Billing period"
+  options={[
+    { value: "monthly", text: "Monthly" },
+    { value: "yearly", text: "Yearly" },
+  ]}
+/>
+
+```tsx
+<Toggle
+  size="sm"
+  defaultValue="monthly"
+  aria-label="Billing period"
+  options={[
+    { value: "monthly", text: "Monthly" },
+    { value: "yearly", text: "Yearly" },
+  ]}
+/>
+<Toggle
+  size="md"
+  defaultValue="monthly"
+  aria-label="Billing period"
+  options={[
+    { value: "monthly", text: "Monthly" },
+    { value: "yearly", text: "Yearly" },
+  ]}
+/>
+<Toggle
+  size="lg"
+  defaultValue="monthly"
+  aria-label="Billing period"
+  options={[
+    { value: "monthly", text: "Monthly" },
+    { value: "yearly", text: "Yearly" },
+  ]}
+/>
+```
+
+### Required fields
+
+Passing `required` marks the toggle as required for native form validation:
+
+```tsx
+import { Toggle } from "@tenstorrent/vesper/toggle";
+
+<Toggle
+  required
+  name="billing_period"
+  aria-label="Billing period"
+  defaultValue="monthly"
+  options={[
+    { value: "weekly", text: "Weekly" },
+    { value: "monthly", text: "Monthly" },
+    { value: "yearly", text: "Yearly" },
   ]}
 />;
+```
+
+### Disabling the toggle
+
+You can disable a `Toggle` by passing `disabled={true}` or just `disabled` as a prop. A disabled toggle still displays its current state, but it cannot be toggled by pointer or keyboard, is skipped in the tab order, and is excluded from form data:
+
+<Toggle
+  disabled
+  name="billing_period"
+  aria-label="Billing period"
+  defaultValue="monthly"
+  options={[
+    { value: "weekly", text: "Weekly" },
+    { value: "monthly", text: "Monthly" },
+    { value: "yearly", text: "Yearly" },
+  ]}
+/>
+
+```tsx
+import { Toggle } from "@tenstorrent/vesper/toggle";
+
+<Toggle
+  disabled
+  name="billing_period"
+  aria-label="Billing period"
+  defaultValue="monthly"
+  options={[
+    { value: "weekly", text: "Weekly" },
+    { value: "monthly", text: "Monthly" },
+    { value: "yearly", text: "Yearly" },
+  ]}
+/>;
+```
+
+### Usage in forms
+
+`Toggle` renders a native `<select>`, so it works with regular form submission and native validation via props like `name`, `value`, `form`, and `required`.
+
+Pass `required` when the toggle must have an option selected before the form can be submitted, such as a terms and conditions agreement:
+
+<ToggleDemo kind="form" />
+
+```tsx
+import { Button } from "@tenstorrent/vesper/button";
+import { Toggle } from "@tenstorrent/vesper/toggle";
+
+<form action="/api/signup" method="post">
+  <Toggle
+    required
+    name="billing_period"
+    aria-label="Billing period"
+    options={[
+      { value: "weekly", text: "Weekly" },
+      { value: "monthly", text: "Monthly" },
+      { value: "yearly", text: "Yearly" },
+    ]}
+  />
+  <Button type="submit">Submit</Button>
+</form>;
+```
+
+The form above submits `billing_period=monthly` when the "Monthly" toggle option is selected, and refuses to submit at all while the toggle is empty.
+
+Use the `form` prop to associate the field with a `<form>` rendered elsewhere on the page:
+
+```tsx
+import { Button } from "@tenstorrent/vesper/button";
+import { Toggle } from "@tenstorrent/vesper/toggle";
+
+<form id="signup" action="/api/signup" method="post">
+  <Button type="submit">Create account</Button>
+</form>;
+
+// rendered outside of the form, but submitted with it
+<Toggle
+  required
+  form="signup"
+  name="billing_period"
+  aria-label="Billing period"
+  options={[
+    { value: "weekly", text: "Weekly" },
+    { value: "monthly", text: "Monthly" },
+    { value: "yearly", text: "Yearly" },
+  ]}
+/>;
+```
+
+### Accessing the underlying element
+
+Use the `ref` prop when you need direct access to the underlying `<div>` element:
+
+```tsx
+import { useRef } from "react"
+import { Toggle } from "@tenstorrent/vesper/toggle"
+
+const ref = useRef<HTMLDivElement>(null)
+
+<Toggle
+  ref={ref}
+  name="billing_period"
+  aria-label="Billing period"
+  options={[
+    { value: "weekly", text: "Weekly" },
+    { value: "monthly", text: "Monthly" },
+    { value: "yearly", text: "Yearly" },
+  ]}
+/>
 ```
