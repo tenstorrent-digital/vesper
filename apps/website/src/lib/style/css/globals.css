@@ -40,6 +40,7 @@ html {
   font-size: var(--base-font-size); /* set 1rem */
   line-height: var(--base-line-height);
   font-family: var(--font-inter-tight);
+  scroll-behavior: smooth;
 }
 
 html,
@@ -85,7 +86,7 @@ nav#nav {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: var(--spacing);
+  gap: calc(var(--spacing) / 2) var(--spacing);
 
   .nav-group {
     display: flex;
