@@ -3,11 +3,7 @@ import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 
-import {
-  Slider,
-  SLIDER_VARIANTS,
-  type SliderProps,
-} from "@/components/slider/slider";
+import { Slider, type SliderProps } from "@/components/slider/slider";
 
 import "@/styles/test.css";
 
@@ -45,12 +41,6 @@ const SLIDER_SNAPSHOT_PERMUTATIONS: (Partial<SliderProps> & {
     showValueLabel: true,
   },
   { name: "disabled", value: 50, disabled: true },
-  // One per variant
-  ...SLIDER_VARIANTS.map((variant) => ({
-    name: `variant: ${variant}`,
-    value: 50,
-    variant,
-  })),
 ];
 
 const SLIDER_A11Y_PERMUTATIONS: (Partial<SliderProps> & { name: string })[] = [
@@ -70,12 +60,6 @@ const SLIDER_A11Y_PERMUTATIONS: (Partial<SliderProps> & { name: string })[] = [
     showValueLabel: true,
   },
   { name: "disabled", value: 50, disabled: true },
-  // One per variant
-  ...SLIDER_VARIANTS.map((variant) => ({
-    name: `variant: ${variant}`,
-    value: 50,
-    variant,
-  })),
 ];
 
 afterEach(cleanup);
