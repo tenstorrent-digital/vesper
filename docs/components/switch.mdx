@@ -97,18 +97,18 @@ Pass `required` when the switch must be turned on before the form can be submitt
 import { Button } from "@tenstorrent/vesper/button";
 import { Switch } from "@tenstorrent/vesper/switch";
 
-<form action="/api/signup" method="post">
+<form action="/api/settings" method="post">
   <Switch
     required
-    name="terms"
-    value="accepted"
-    label="I agree to the terms and conditions"
+    name="notifications"
+    value="enabled"
+    label="Enable notifications"
   />
   <Button type="submit">Submit</Button>
 </form>;
 ```
 
-The form above submits `terms=accepted` once the box is checked, and refuses to submit at all while it is unchecked.
+The form above submits `notifications=enabled` once the box is checked, and refuses to submit at all while it is unchecked.
 
 Use the `form` prop to associate the field with a `<form>` rendered elsewhere on the page:
 
@@ -116,17 +116,17 @@ Use the `form` prop to associate the field with a `<form>` rendered elsewhere on
 import { Button } from "@tenstorrent/vesper/button";
 import { Switch } from "@tenstorrent/vesper/switch";
 
-<form id="signup" action="/api/signup" method="post">
-  <Button type="submit">Create account</Button>
+<form id="signup" action="/api/settings" method="post">
+  <Button type="submit">Submit</Button>
 </form>;
 
 // rendered outside of the form, but submitted with it
 <Switch
   required
   form="signup"
-  name="terms"
-  value="accepted"
-  label="I agree to the terms"
+  name="notifications"
+  value="enabled"
+  label="Enable notifications"
 />;
 ```
 
@@ -142,11 +142,13 @@ const ref = useRef<HTMLInputElement>(null)
 
 <Switch
   required
-  label="I agree to the terms"
+  label="Enable telemetry"
   ref={ref}
-  onInvalid={() =>
-    ref.current?.setCustomValidity("Please accept the terms to continue.")
-  }
   onChange={() => ref.current?.setCustomValidity("")}
+  onInvalid={() =>
+    ref.current?.setCustomValidity(
+      "Telemetry must be enabled when opting into nightly builds"
+    )
+  }
 />
 ```
