@@ -15,7 +15,12 @@ export const Breadcrumbs = ({ titles }: { titles: Record<string, string> }) => {
   return (
     <div id="breadcrumbs" aria-label="Breadcrumbs">
       {pathname !== "/" && (
-        <Typography as="span" className="divider" variant="copy-md-bold">
+        <Typography
+          as="span"
+          className="divider"
+          variant="copy-md-bold"
+          aria-hidden="true"
+        >
           /
         </Typography>
       )}
