@@ -58,8 +58,8 @@ Typically issues will fall into one of three categories, each of which have issu
 
 Branch names follow the convention `<username>/[<issue-id>-]<branch-name>`, where:
 
-- `<username>`: contributor's name, username, etc
-- `<issue-id>`: Github issue ID (optional but preferred)
+- `<username>`: contributor's name, username, etc.
+- `<issue-id>`: issue ID (optional but preferred)
 - `<branch-name>`: descriptive branch name
 
 Issue IDs are optional but preferred. Ideally, if there is no issue, open one first and then use the issue ID in your branch name. In the case where your PR addresses multiple issues, use the issue ID for the main issue and then make sure to reference all of the related issues in your PR description.
