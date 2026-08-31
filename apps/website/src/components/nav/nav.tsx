@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { IconButton } from "@tenstorrent/vesper/icon-button";
+import { Menu } from "@tenstorrent/vesper/icons";
 import { Typography } from "@tenstorrent/vesper/typography";
 
 import { docs } from "@/lib/filesystem/docs";
@@ -26,8 +28,16 @@ export const Nav = () => {
         </Typography>
         <Breadcrumbs titles={titles} />
       </div>
-      <div className="nav-group">
+      <div className="nav-group nav-right">
         <PlaygroundLink />
+        <IconButton
+          id="menu-link"
+          as="a"
+          href="#sidebar"
+          size="sm"
+          variant="ghost"
+          icon={<Menu />}
+        />
       </div>
     </nav>
   );

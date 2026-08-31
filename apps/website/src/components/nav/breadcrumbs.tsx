@@ -14,15 +14,18 @@ export const Breadcrumbs = ({ titles }: { titles: Record<string, string> }) => {
 
   return (
     <div id="breadcrumbs" aria-label="Breadcrumbs">
-      <Typography as="span" className="divider" variant="copy-md-bold">
-        /
-      </Typography>
+      {pathname !== "/" && (
+        <Typography as="span" className="divider" variant="copy-md-bold">
+          /
+        </Typography>
+      )}
       {paths.map((path, index) => {
         const href = `/${paths.slice(0, index + 1).join("/")}`;
 
         return (
           <Fragment key={href}>
             <Typography
+              className="segment"
               as={Link}
               href={href}
               aria-current={index === paths.length - 1 ? "page" : undefined}
