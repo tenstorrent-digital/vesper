@@ -31,6 +31,7 @@ export const Nav = () => {
       <div className="nav-group nav-right">
         <PlaygroundLink />
         <IconButton
+          aria-label="Scroll to component list at bottom of page"
           id="menu-link"
           as="a"
           href="#sidebar"
