@@ -27,6 +27,7 @@ const COMBOBOX_PERMUTATIONS: ComboboxPermutation[] = COMBOBOX_SIZES.flatMap(
     COMBOBOX_VARIANTS.flatMap((variant) => [
       {
         permutationName: `${size}, ${variant}`,
+        ["aria-label"]: "Fruit",
         size,
         variant,
         options: OPTIONS,
@@ -34,6 +35,7 @@ const COMBOBOX_PERMUTATIONS: ComboboxPermutation[] = COMBOBOX_SIZES.flatMap(
       },
       {
         permutationName: `${size}, ${variant}, disabled`,
+        ["aria-label"]: "Fruit",
         size,
         variant,
         options: OPTIONS,
@@ -41,6 +43,7 @@ const COMBOBOX_PERMUTATIONS: ComboboxPermutation[] = COMBOBOX_SIZES.flatMap(
       },
       {
         permutationName: `${size}, ${variant}, full options`,
+        ["aria-label"]: "Fruit",
         size,
         variant,
         options: OPTIONS,
@@ -51,18 +54,6 @@ const COMBOBOX_PERMUTATIONS: ComboboxPermutation[] = COMBOBOX_SIZES.flatMap(
       },
     ]),
 );
-
-// const COMBOBOX_A11Y_FAILING_PERMUTATIONS: (Pick<ComboboxProps, "variant"> & {
-//   theme: string;
-// })[] = [
-//   { variant: "default", theme: "light" },
-//   { variant: "warning", theme: "light" },
-//   { variant: "success", theme: "light" },
-//   { variant: "error", theme: "light" },
-//   { variant: "default", theme: "dark" },
-//   { variant: "success", theme: "dark" },
-//   { variant: "error", theme: "dark" },
-// ];
 
 /** Renders a `Combobox` and returns the render result alongside its most commonly asserted elements */
 function renderCombobox(props: Partial<ComboboxProps> = {}) {
