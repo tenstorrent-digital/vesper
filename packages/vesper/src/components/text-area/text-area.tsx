@@ -28,7 +28,7 @@ export interface TextAreaProps extends FormInputProps<"textarea", "textarea"> {
   resizeable?: boolean;
   /** The size of the textarea. Affects padding and typography. @default md */
   size?: TextAreaSize;
-  /** The visual variant of the text input, which determines its color scheme and message icon. @default default */
+  /** The visual variant of the text input, which determines its color scheme. @default default */
   variant?: TextAreaVariant;
 }
 
@@ -39,17 +39,22 @@ const TEXTAREA_TYPOGRAPHY: { [S in TextAreaSize]: TypographyVariant } = {
 };
 
 /**
- * A form-ready textarea component supporting labels, validation messages, and variants.
+ * A form-ready textarea component supporting different visual variants.
  *
  * @param {TextAreaSize} [props.size] - (optional) The size of the text input. @default md
  * @param {TextAreaVariant} [props.variant] - (optional) The visual variant determining color scheme and message icon. @default default
  * @param {string} [props.placeholder] - (optional) Placeholder text for the input
  * @param {number} [props.height] - (optional) The fixed height of the textarea in pixels, scaling with base rem size. @default 104
  *
- * You may also pass any additional props to the underlying `div` wrapper or `textarea` element
+ * You may also pass any additional props to the underlying `textarea` element
 
  * @example
- * <TextArea label="Bio" height={120} maxLength={500} />
+ * <TextArea
+ *  aria-label="Bio"
+ *  placeholder="Tell us about yourself"
+ *  height={120}
+ *  maxLength={500}
+ * />
  */
 export function TextArea(props: TextAreaProps) {
   const {
