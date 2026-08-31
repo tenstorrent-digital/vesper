@@ -59,25 +59,25 @@ export interface MaskedInputProps extends Omit<TextInputProps, "type"> {
  * You may also pass any additional props supported by the `TextInput` component including `size`, `variant`, `iconLeft`, `iconRight`, and `dropdown`
  *
  * @example
- * <MaskedInput label="Activation code" mask="____-____-____" />
+ * <MaskedInput aria-label="Activation code" mask="____-____-____" />
  *
  * @example
  * <MaskedInput
- *   label="Phone number"
+ *   aria-label="Phone number"
  *   placeholder="ex: +1 (222) 333-4444"
  *   mask={{ format: "+1 (___) ___-____", replace: /\d/ }}
  * />
  *
  * @example
  * <MaskedInput
- *   label="Postal code"
+ *   aria-label="Postal code"
  *   placeholder="ex: A0A 1B1"
  *   mask={{ format: "ABA BAB", replace: { A: /[a-zA-Z]/, B: /\d/ } }}
  * />
  *
  * @example
  * <MaskedInput
- *   label="Activation code"
+ *   aria-label="Activation code"
  *   mask="____-____-____"
  *   defaultValue="123456789012"
  *   formatOnMount
