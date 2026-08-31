@@ -14,6 +14,9 @@ export const Breadcrumbs = ({ titles }: { titles: Record<string, string> }) => {
 
   return (
     <div id="breadcrumbs" aria-label="Breadcrumbs">
+      <Typography as="span" className="divider" variant="copy-md-bold">
+        /
+      </Typography>
       {paths.map((path, index) => {
         const href = `/${paths.slice(0, index + 1).join("/")}`;
 
@@ -30,7 +33,7 @@ export const Breadcrumbs = ({ titles }: { titles: Record<string, string> }) => {
             </Typography>
             {index !== paths.length - 1 && (
               <Typography as="span" className="divider" variant="copy-md-bold">
-                →
+                /
               </Typography>
             )}
           </Fragment>
