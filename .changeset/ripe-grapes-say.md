@@ -2,4 +2,4 @@
 "@tenstorrent/vesper": minor
 ---
 
-Decouple `textarea` from `form-input-wrapper` and improve its internal prop-forwarding
+Decouple `text-area` from `form-input-wrapper` and improve its internal prop-forwarding. Remove `label` and `message` props from `text-area`
