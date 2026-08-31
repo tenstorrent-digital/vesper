@@ -27,7 +27,7 @@ A form checkbox input with text, supporting checked, unchecked, and indeterminat
 | `required`       | `boolean`                              | When `true`, marks the input as required and appends an asterisk to the `text`.                       | `false` |
 | `ref`            | `Ref<HTMLInputElement>`                | A ref forwarded to the underlying `<input>` element.                                                  | —       |
 
-Form and accessibility props such as `autoFocus`, `tabIndex`, `aria-label`, `aria-labelledby`, `aria-describedby`, `aria-invalid`, and event handlers like `onFocus`, `onBlur`, and `onKeyDown` are forwarded to the underlying `<input>` element, as is `ref`. Any other props, including `className`, are forwarded to the wrapping `<div>` element.
+Form and accessibility props such as `autoFocus`, `tabIndex`, `aria-label`, `aria-labelledby`, `aria-describedby`, `aria-invalid`, and event handlers like `onFocus`, `onBlur`, and `onKeyDown` are forwarded to the underlying `<input>` element, as is `ref`. Any other props, including `className`, are forwarded to the wrapping `<label>` element.
 
 Use a `Checkbox` for an individual boolean choice, such as accepting terms or opting into a mailing list.
 
