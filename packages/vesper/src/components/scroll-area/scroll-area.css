@@ -21,7 +21,7 @@
   &[data-scrolling] {
     pointer-events: auto;
   }
-  /* data-behavior is owned by us */
+  /* data-visibility is owned by us */
   &[data-visibility="on-interaction"] {
     opacity: 0;
     &[data-scrolling] {
