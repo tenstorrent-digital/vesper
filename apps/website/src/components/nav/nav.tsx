@@ -1,11 +1,11 @@
 import Link from "next/link";
 
-import { Button } from "@tenstorrent/vesper/button";
 import { Typography } from "@tenstorrent/vesper/typography";
 
 import { docs } from "@/lib/filesystem/docs";
 
 import { Breadcrumbs } from "./breadcrumbs";
+import { PlaygroundLink } from "./playground-link";
 
 /**
  * document titles by route, so the (client) breadcrumbs can label a segment
@@ -27,18 +27,7 @@ export const Nav = () => {
         <Breadcrumbs titles={titles} />
       </div>
       <div className="nav-group">
-        <Button
-          as="a"
-          href={
-            process.env.NODE_ENV === "development"
-              ? "http://localhost:5173"
-              : "/storybook"
-          }
-          variant="tertiary"
-          size="sm"
-        >
-          Playground
-        </Button>
+        <PlaygroundLink />
       </div>
     </nav>
   );
