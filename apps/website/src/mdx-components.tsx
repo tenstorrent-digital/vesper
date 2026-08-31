@@ -85,6 +85,7 @@ import { RangeDemo } from "@/demos/range";
 import { ScrollAreaDemo } from "@/demos/scroll-area";
 import { SelectDemo } from "@/demos/select";
 import { ShowMoreDemo } from "@/demos/show-more";
+import { SkeletonDemo } from "@/demos/skeleton";
 import { SliderDemo } from "@/demos/slider";
 import { SplitButtonDemo } from "@/demos/split-button";
 import { ToastDemo } from "@/demos/toast";
@@ -290,6 +291,7 @@ const components = {
   ScrollAreaDemo,
   SelectDemo,
   ShowMoreDemo,
+  SkeletonDemo,
   SliderDemo,
   SplitButtonDemo,
   ToastDemo,

@@ -26,37 +26,123 @@ A placeholder loading component that mimics the shape of content while it loads.
 | `show`     | `boolean`                     | When `true`, renders the skeleton overlay. When `false`, renders only the children without the skeleton. | `true`  |
 | `children` | `ReactNode`                   | Optional content rendered behind the skeleton overlay.                                                   | —       |
 
+Any additional props are forwarding to the wrapping `<div>` element.
+
 ## Examples
+
+### Basic usage
+
+The most straightforward way to render a `Skeleton` is so simply give it a `width` and `height`:
+
+<Skeleton width={200} height={20} />
 
 ```tsx
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
 
-// Basic box
 <Skeleton width={200} height={20} />;
 ```
 
+If the `width` and `height` of the `Skeleton` are the same, you can also use the `size` prop to set both the `width` and `height` at the same time:
+
+<Skeleton size={48} />
+
 ```tsx
-// Circle avatar placeholder
+import { Skeleton } from "@tenstorrent/vesper/skeleton";
+
+<Skeleton size={48} />;
+```
+
+### Skeleton shapes
+
+A `Skeleton` can be rendered in one of three shapes: `"box"`, `"pill"`, or `"circle"`. The default shape is `"box"`, which is a rectangle with slightly rounded corners:
+
+<Skeleton shape="box" width={120} size={48} />
+
+```tsx
+import { Skeleton } from "@tenstorrent/vesper/skeleton";
+
+<Skeleton shape="box" width={120} size={48} />;
+```
+
+Pass `shape="circle"` to render an ellipse:
+
 <Skeleton shape="circle" size={48} />
-```
 
 ```tsx
-// Pill shape
+import { Skeleton } from "@tenstorrent/vesper/skeleton";
+
+<Skeleton shape="circle" size={48} />;
+```
+
+Pass `shape="pill"` to render a rectangle with corners that round to a semicircle:
+
 <Skeleton shape="pill" width={120} height={32} />
-```
 
 ```tsx
-// Conditional loading
-<Skeleton show={isLoading} width={200} height={20}>
-  <span>Loaded content</span>
+import { Skeleton } from "@tenstorrent/vesper/skeleton";
+
+<Skeleton shape="pill" width={120} height={32} />;
+```
+
+### Rendering children
+
+`Skeleton` can be rendered with content, in which case the `Skeleton` takes the dimensions of the bounding box of its children, so you don't need to pass a `width` and `height`:
+
+<Skeleton>
+  <div style={{ width: 100, height: 100 }} />
 </Skeleton>
-```
 
 ```tsx
-// Card skeleton layout
-<div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-  <Skeleton width="100%" height={180} />
-  <Skeleton width="60%" height={20} />
-  <Skeleton width="80%" height={14} />
-</div>
+import { Skeleton } from "@tenstorrent/vesper/skeleton";
+
+<Skeleton>
+  <div style={{ width: 100, height: 100 }} />
+</Skeleton>;
+```
+
+### Conditional rendering
+
+You will typically be using `Skeleton` to conditionally render loading states for your components. The most straightforward way to do this is to simply render the `Skeleton` in place of other elements while they are loading:
+
+```tsx
+import { Skeleton } from "@tenstorrent/vesper/skeleton";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+if (loading) {
+  return <Skeleton width={202} height={48} />;
+}
+
+return <Typography>Content loaded!</Typography>;
+```
+
+You can also use the `show` prop to hide/show `Skeleton` children conditionally. When `show` is set to `true`, the `Skeleton` will mask its children. When `show` is set to `false`, the children are rendered in place with no masking instead:
+
+```tsx
+import { Skeleton } from "@tenstorrent/vesper/skeleton";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+return (
+  <Skeleton show={loading}>
+    <Typography variant="heading-md">
+      Content hidden until loading is false
+    </Typography>
+  </Skeleton>
+);
+```
+
+### Usage with Suspense
+
+`Skeleton` can also be used as a [Suspense](https://react.dev/reference/react/Suspense) fallback. This is useful for when you are reading data from a promise client-side using `use`, streaming data from [Server Components](https://react.dev/reference/rsc/server-components), or lazy-loading component code with [lazy](https://react.dev/reference/react/lazy):
+
+```tsx
+import { use, Suspense } from "react";
+
+function UserAvatar({ userId }: { userId: string }) {
+  const avatar = use(fetchAvatar(userId));
+  return <Avatar size="lg" src={avatar.url} alt={avatar.altText} />;
+}
+
+<Suspense fallback={<Skeleton size="3rem" />}>
+  <UserAvatar />
+</Suspense>;
 ```
