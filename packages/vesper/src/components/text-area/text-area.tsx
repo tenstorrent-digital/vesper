@@ -42,7 +42,7 @@ const TEXTAREA_TYPOGRAPHY: { [S in TextAreaSize]: TypographyVariant } = {
  * A form-ready textarea component supporting different visual variants.
  *
  * @param {TextAreaSize} [props.size] - (optional) The size of the text input. @default md
- * @param {TextAreaVariant} [props.variant] - (optional) The visual variant determining color scheme and message icon. @default default
+ * @param {TextAreaVariant} [props.variant] - (optional) The visual variant determining color scheme. @default default
  * @param {string} [props.placeholder] - (optional) Placeholder text for the input
  * @param {number} [props.height] - (optional) The fixed height of the textarea in pixels, scaling with base rem size. @default 104
  *
