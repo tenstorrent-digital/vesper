@@ -1,4 +1,10 @@
-import { cleanup, render, RenderResult, waitFor } from "@testing-library/react";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  RenderResult,
+  waitFor,
+} from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
@@ -65,6 +71,15 @@ const getExpectedThumbCount = (permutationName: string) => {
   if (permutationName.includes("x overflow")) return 1;
   if (permutationName.includes("y overflow")) return 1;
   return 0;
+};
+
+const clearScrollbarHoverState = (container: HTMLElement) => {
+  container
+    .querySelectorAll<HTMLElement>(".vesper-scroll-area-scrollbar")
+    .forEach((scrollbar) => {
+      fireEvent.pointerLeave(scrollbar);
+      fireEvent.mouseLeave(scrollbar);
+    });
 };
 
 describe("scroll-area [unit]", () => {
@@ -175,6 +190,7 @@ describe("scroll-area [snapshot]", () => {
           container.querySelectorAll(".vesper-scroll-area-thumb").length,
         ).toBe(getExpectedThumbCount(permutationName));
       });
+      clearScrollbarHoverState(container);
 
       expect(container.firstChild).toMatchSnapshot();
     });
