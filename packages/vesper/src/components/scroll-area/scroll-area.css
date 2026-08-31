@@ -1,0 +1,49 @@
+.vesper-scroll-area-viewport {
+  height: 100%;
+}
+
+.vesper-scroll-area-scrollbar {
+  display: flex;
+  position: relative;
+  background: transparent;
+  padding: var(--vesper-spacing-1);
+  pointer-events: none;
+  transition: opacity var(--vesper-transition-duration-fast);
+  /* data-orientation comes from base-ui */
+  &[data-orientation="vertical"] {
+    width: 1rem;
+  }
+  /* data-orientation comes from base-ui */
+  &[data-orientation="horizontal"] {
+    height: 1rem;
+  }
+  &[data-hovering],
+  &[data-scrolling] {
+    pointer-events: auto;
+  }
+  /* data-visibility is owned by us */
+  &[data-visibility="on-interaction"] {
+    opacity: 0;
+    &[data-scrolling] {
+      transition-duration: 0ms;
+    }
+    &[data-hovering],
+    &[data-scrolling] {
+      opacity: 1;
+    }
+  }
+}
+
+.vesper-scroll-area-thumb-default {
+  background: var(--vesper-tint-neutral-400);
+}
+.vesper-scroll-area-thumb-inverse {
+  background: var(--vesper-tint-inverse-400);
+}
+.vesper-scroll-area-thumb {
+  width: 100%;
+  border-radius: var(--vesper-radius-3);
+  @media (forced-colors: active) {
+    background: CanvasText;
+  }
+}

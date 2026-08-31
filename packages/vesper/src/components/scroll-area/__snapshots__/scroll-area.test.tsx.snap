@@ -1,0 +1,737 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`scroll-area [snapshot] > default, always, no overflow 1`] = `
+<div
+  class="vesper-scroll-area"
+  role="presentation"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+>
+  <div
+    class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+    data-id="base-ui-_r_a_-viewport"
+    role="presentation"
+    style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 0px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 0px;"
+    tabindex="-1"
+  >
+    <div
+      role="presentation"
+      style="min-width: fit-content;"
+    />
+  </div>
+</div>
+`;
+
+exports[`scroll-area [snapshot] > default, always, x & y overflow 1`] = `
+<div
+  class="vesper-scroll-area"
+  data-has-overflow-x=""
+  data-has-overflow-y=""
+  data-overflow-x-end=""
+  data-overflow-y-end=""
+  role="presentation"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+>
+  <div
+    class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+    data-has-overflow-x=""
+    data-has-overflow-y=""
+    data-id="base-ui-_r_d_-viewport"
+    data-overflow-x-end=""
+    data-overflow-y-end=""
+    role="presentation"
+    style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 200px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 200px;"
+    tabindex="0"
+  >
+    <div
+      data-has-overflow-x=""
+      data-has-overflow-y=""
+      data-overflow-x-end=""
+      data-overflow-y-end=""
+      role="presentation"
+      style="min-width: fit-content;"
+    >
+      <div
+        style="width: 400px; height: 400px;"
+      />
+    </div>
+  </div>
+  <div
+    class="vesper-scroll-area-scrollbar"
+    data-has-overflow-x=""
+    data-has-overflow-y=""
+    data-id="base-ui-_r_d_-scrollbar"
+    data-orientation="vertical"
+    data-overflow-x-end=""
+    data-overflow-y-end=""
+    data-visibility="always"
+    style="position: absolute; touch-action: none; user-select: none; top: 0px; bottom: var(--scroll-area-corner-height); inset-inline-end: 0px; --scroll-area-thumb-height: 92px;"
+  >
+    <div
+      class="vesper-scroll-area-thumb vesper-scroll-area-thumb-default"
+      data-orientation="vertical"
+      style="height: var(--scroll-area-thumb-height); transform: translate3d(0px, 0px, 0px);"
+    />
+  </div>
+  <div
+    class="vesper-scroll-area-scrollbar"
+    data-has-overflow-x=""
+    data-has-overflow-y=""
+    data-id="base-ui-_r_d_-scrollbar"
+    data-orientation="horizontal"
+    data-overflow-x-end=""
+    data-overflow-y-end=""
+    data-visibility="always"
+    style="position: absolute; touch-action: none; user-select: none; inset-inline-start: 0px; inset-inline-end: var(--scroll-area-corner-width); bottom: 0px; --scroll-area-thumb-width: 92px;"
+  >
+    <div
+      class="vesper-scroll-area-thumb vesper-scroll-area-thumb-default"
+      data-orientation="horizontal"
+      style="width: var(--scroll-area-thumb-width); transform: translate3d(0px, 0px, 0px);"
+    />
+  </div>
+</div>
+`;
+
+exports[`scroll-area [snapshot] > default, always, x overflow 1`] = `
+<div
+  class="vesper-scroll-area"
+  data-has-overflow-x=""
+  data-overflow-x-end=""
+  role="presentation"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+>
+  <div
+    class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+    data-has-overflow-x=""
+    data-id="base-ui-_r_c_-viewport"
+    data-overflow-x-end=""
+    role="presentation"
+    style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 200px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 0px;"
+    tabindex="0"
+  >
+    <div
+      data-has-overflow-x=""
+      data-overflow-x-end=""
+      role="presentation"
+      style="min-width: fit-content;"
+    >
+      <div
+        style="width: 400px; height: 200px;"
+      />
+    </div>
+  </div>
+  <div
+    class="vesper-scroll-area-scrollbar"
+    data-has-overflow-x=""
+    data-id="base-ui-_r_c_-scrollbar"
+    data-orientation="horizontal"
+    data-overflow-x-end=""
+    data-visibility="always"
+    style="position: absolute; touch-action: none; user-select: none; inset-inline-start: 0px; inset-inline-end: var(--scroll-area-corner-width); bottom: 0px; --scroll-area-thumb-width: 96px;"
+  >
+    <div
+      class="vesper-scroll-area-thumb vesper-scroll-area-thumb-default"
+      data-orientation="horizontal"
+      style="width: var(--scroll-area-thumb-width); transform: translate3d(0px, 0px, 0px);"
+    />
+  </div>
+</div>
+`;
+
+exports[`scroll-area [snapshot] > default, always, y overflow 1`] = `
+<div
+  class="vesper-scroll-area"
+  data-has-overflow-y=""
+  data-overflow-y-end=""
+  role="presentation"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+>
+  <div
+    class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+    data-has-overflow-y=""
+    data-id="base-ui-_r_b_-viewport"
+    data-overflow-y-end=""
+    role="presentation"
+    style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 0px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 200px;"
+    tabindex="0"
+  >
+    <div
+      data-has-overflow-y=""
+      data-overflow-y-end=""
+      role="presentation"
+      style="min-width: fit-content;"
+    >
+      <div
+        style="width: 200px; height: 400px;"
+      />
+    </div>
+  </div>
+  <div
+    class="vesper-scroll-area-scrollbar"
+    data-has-overflow-y=""
+    data-id="base-ui-_r_b_-scrollbar"
+    data-orientation="vertical"
+    data-overflow-y-end=""
+    data-visibility="always"
+    style="position: absolute; touch-action: none; user-select: none; top: 0px; bottom: var(--scroll-area-corner-height); inset-inline-end: 0px; --scroll-area-thumb-height: 96px;"
+  >
+    <div
+      class="vesper-scroll-area-thumb vesper-scroll-area-thumb-default"
+      data-orientation="vertical"
+      style="height: var(--scroll-area-thumb-height); transform: translate3d(0px, 0px, 0px);"
+    />
+  </div>
+</div>
+`;
+
+exports[`scroll-area [snapshot] > default, on-interaction, no overflow 1`] = `
+<div
+  class="vesper-scroll-area"
+  role="presentation"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+>
+  <div
+    class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+    data-id="base-ui-_r_e_-viewport"
+    role="presentation"
+    style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 0px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 0px;"
+    tabindex="-1"
+  >
+    <div
+      role="presentation"
+      style="min-width: fit-content;"
+    />
+  </div>
+</div>
+`;
+
+exports[`scroll-area [snapshot] > default, on-interaction, x & y overflow 1`] = `
+<div
+  class="vesper-scroll-area"
+  data-has-overflow-x=""
+  data-has-overflow-y=""
+  data-overflow-x-end=""
+  data-overflow-y-end=""
+  role="presentation"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+>
+  <div
+    class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+    data-has-overflow-x=""
+    data-has-overflow-y=""
+    data-id="base-ui-_r_h_-viewport"
+    data-overflow-x-end=""
+    data-overflow-y-end=""
+    role="presentation"
+    style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 200px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 200px;"
+    tabindex="0"
+  >
+    <div
+      data-has-overflow-x=""
+      data-has-overflow-y=""
+      data-overflow-x-end=""
+      data-overflow-y-end=""
+      role="presentation"
+      style="min-width: fit-content;"
+    >
+      <div
+        style="width: 400px; height: 400px;"
+      />
+    </div>
+  </div>
+  <div
+    class="vesper-scroll-area-scrollbar"
+    data-has-overflow-x=""
+    data-has-overflow-y=""
+    data-id="base-ui-_r_h_-scrollbar"
+    data-orientation="vertical"
+    data-overflow-x-end=""
+    data-overflow-y-end=""
+    data-visibility="on-interaction"
+    style="position: absolute; touch-action: none; user-select: none; top: 0px; bottom: var(--scroll-area-corner-height); inset-inline-end: 0px; --scroll-area-thumb-height: 92px;"
+  >
+    <div
+      class="vesper-scroll-area-thumb vesper-scroll-area-thumb-default"
+      data-orientation="vertical"
+      style="height: var(--scroll-area-thumb-height); transform: translate3d(0px, 0px, 0px);"
+    />
+  </div>
+  <div
+    class="vesper-scroll-area-scrollbar"
+    data-has-overflow-x=""
+    data-has-overflow-y=""
+    data-id="base-ui-_r_h_-scrollbar"
+    data-orientation="horizontal"
+    data-overflow-x-end=""
+    data-overflow-y-end=""
+    data-visibility="on-interaction"
+    style="position: absolute; touch-action: none; user-select: none; inset-inline-start: 0px; inset-inline-end: var(--scroll-area-corner-width); bottom: 0px; --scroll-area-thumb-width: 92px;"
+  >
+    <div
+      class="vesper-scroll-area-thumb vesper-scroll-area-thumb-default"
+      data-orientation="horizontal"
+      style="width: var(--scroll-area-thumb-width); transform: translate3d(0px, 0px, 0px);"
+    />
+  </div>
+</div>
+`;
+
+exports[`scroll-area [snapshot] > default, on-interaction, x overflow 1`] = `
+<div
+  class="vesper-scroll-area"
+  data-has-overflow-x=""
+  data-overflow-x-end=""
+  role="presentation"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+>
+  <div
+    class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+    data-has-overflow-x=""
+    data-id="base-ui-_r_g_-viewport"
+    data-overflow-x-end=""
+    role="presentation"
+    style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 200px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 0px;"
+    tabindex="0"
+  >
+    <div
+      data-has-overflow-x=""
+      data-overflow-x-end=""
+      role="presentation"
+      style="min-width: fit-content;"
+    >
+      <div
+        style="width: 400px; height: 200px;"
+      />
+    </div>
+  </div>
+  <div
+    class="vesper-scroll-area-scrollbar"
+    data-has-overflow-x=""
+    data-id="base-ui-_r_g_-scrollbar"
+    data-orientation="horizontal"
+    data-overflow-x-end=""
+    data-visibility="on-interaction"
+    style="position: absolute; touch-action: none; user-select: none; inset-inline-start: 0px; inset-inline-end: var(--scroll-area-corner-width); bottom: 0px; --scroll-area-thumb-width: 96px;"
+  >
+    <div
+      class="vesper-scroll-area-thumb vesper-scroll-area-thumb-default"
+      data-orientation="horizontal"
+      style="width: var(--scroll-area-thumb-width); transform: translate3d(0px, 0px, 0px);"
+    />
+  </div>
+</div>
+`;
+
+exports[`scroll-area [snapshot] > default, on-interaction, y overflow 1`] = `
+<div
+  class="vesper-scroll-area"
+  data-has-overflow-y=""
+  data-overflow-y-end=""
+  role="presentation"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+>
+  <div
+    class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+    data-has-overflow-y=""
+    data-id="base-ui-_r_f_-viewport"
+    data-overflow-y-end=""
+    role="presentation"
+    style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 0px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 200px;"
+    tabindex="0"
+  >
+    <div
+      data-has-overflow-y=""
+      data-overflow-y-end=""
+      role="presentation"
+      style="min-width: fit-content;"
+    >
+      <div
+        style="width: 200px; height: 400px;"
+      />
+    </div>
+  </div>
+  <div
+    class="vesper-scroll-area-scrollbar"
+    data-has-overflow-y=""
+    data-id="base-ui-_r_f_-scrollbar"
+    data-orientation="vertical"
+    data-overflow-y-end=""
+    data-visibility="on-interaction"
+    style="position: absolute; touch-action: none; user-select: none; top: 0px; bottom: var(--scroll-area-corner-height); inset-inline-end: 0px; --scroll-area-thumb-height: 96px;"
+  >
+    <div
+      class="vesper-scroll-area-thumb vesper-scroll-area-thumb-default"
+      data-orientation="vertical"
+      style="height: var(--scroll-area-thumb-height); transform: translate3d(0px, 0px, 0px);"
+    />
+  </div>
+</div>
+`;
+
+exports[`scroll-area [snapshot] > inverse, always, no overflow 1`] = `
+<div
+  class="vesper-scroll-area"
+  role="presentation"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+>
+  <div
+    class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+    data-id="base-ui-_r_i_-viewport"
+    role="presentation"
+    style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 0px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 0px;"
+    tabindex="-1"
+  >
+    <div
+      role="presentation"
+      style="min-width: fit-content;"
+    />
+  </div>
+</div>
+`;
+
+exports[`scroll-area [snapshot] > inverse, always, x & y overflow 1`] = `
+<div
+  class="vesper-scroll-area"
+  data-has-overflow-x=""
+  data-has-overflow-y=""
+  data-overflow-x-end=""
+  data-overflow-y-end=""
+  role="presentation"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+>
+  <div
+    class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+    data-has-overflow-x=""
+    data-has-overflow-y=""
+    data-id="base-ui-_r_l_-viewport"
+    data-overflow-x-end=""
+    data-overflow-y-end=""
+    role="presentation"
+    style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 200px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 200px;"
+    tabindex="0"
+  >
+    <div
+      data-has-overflow-x=""
+      data-has-overflow-y=""
+      data-overflow-x-end=""
+      data-overflow-y-end=""
+      role="presentation"
+      style="min-width: fit-content;"
+    >
+      <div
+        style="width: 400px; height: 400px;"
+      />
+    </div>
+  </div>
+  <div
+    class="vesper-scroll-area-scrollbar"
+    data-has-overflow-x=""
+    data-has-overflow-y=""
+    data-id="base-ui-_r_l_-scrollbar"
+    data-orientation="vertical"
+    data-overflow-x-end=""
+    data-overflow-y-end=""
+    data-visibility="always"
+    style="position: absolute; touch-action: none; user-select: none; top: 0px; bottom: var(--scroll-area-corner-height); inset-inline-end: 0px; --scroll-area-thumb-height: 92px;"
+  >
+    <div
+      class="vesper-scroll-area-thumb vesper-scroll-area-thumb-inverse"
+      data-orientation="vertical"
+      style="height: var(--scroll-area-thumb-height); transform: translate3d(0px, 0px, 0px);"
+    />
+  </div>
+  <div
+    class="vesper-scroll-area-scrollbar"
+    data-has-overflow-x=""
+    data-has-overflow-y=""
+    data-id="base-ui-_r_l_-scrollbar"
+    data-orientation="horizontal"
+    data-overflow-x-end=""
+    data-overflow-y-end=""
+    data-visibility="always"
+    style="position: absolute; touch-action: none; user-select: none; inset-inline-start: 0px; inset-inline-end: var(--scroll-area-corner-width); bottom: 0px; --scroll-area-thumb-width: 92px;"
+  >
+    <div
+      class="vesper-scroll-area-thumb vesper-scroll-area-thumb-inverse"
+      data-orientation="horizontal"
+      style="width: var(--scroll-area-thumb-width); transform: translate3d(0px, 0px, 0px);"
+    />
+  </div>
+</div>
+`;
+
+exports[`scroll-area [snapshot] > inverse, always, x overflow 1`] = `
+<div
+  class="vesper-scroll-area"
+  data-has-overflow-x=""
+  data-overflow-x-end=""
+  role="presentation"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+>
+  <div
+    class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+    data-has-overflow-x=""
+    data-id="base-ui-_r_k_-viewport"
+    data-overflow-x-end=""
+    role="presentation"
+    style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 200px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 0px;"
+    tabindex="0"
+  >
+    <div
+      data-has-overflow-x=""
+      data-overflow-x-end=""
+      role="presentation"
+      style="min-width: fit-content;"
+    >
+      <div
+        style="width: 400px; height: 200px;"
+      />
+    </div>
+  </div>
+  <div
+    class="vesper-scroll-area-scrollbar"
+    data-has-overflow-x=""
+    data-id="base-ui-_r_k_-scrollbar"
+    data-orientation="horizontal"
+    data-overflow-x-end=""
+    data-visibility="always"
+    style="position: absolute; touch-action: none; user-select: none; inset-inline-start: 0px; inset-inline-end: var(--scroll-area-corner-width); bottom: 0px; --scroll-area-thumb-width: 96px;"
+  >
+    <div
+      class="vesper-scroll-area-thumb vesper-scroll-area-thumb-inverse"
+      data-orientation="horizontal"
+      style="width: var(--scroll-area-thumb-width); transform: translate3d(0px, 0px, 0px);"
+    />
+  </div>
+</div>
+`;
+
+exports[`scroll-area [snapshot] > inverse, always, y overflow 1`] = `
+<div
+  class="vesper-scroll-area"
+  data-has-overflow-y=""
+  data-overflow-y-end=""
+  role="presentation"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+>
+  <div
+    class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+    data-has-overflow-y=""
+    data-id="base-ui-_r_j_-viewport"
+    data-overflow-y-end=""
+    role="presentation"
+    style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 0px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 200px;"
+    tabindex="0"
+  >
+    <div
+      data-has-overflow-y=""
+      data-overflow-y-end=""
+      role="presentation"
+      style="min-width: fit-content;"
+    >
+      <div
+        style="width: 200px; height: 400px;"
+      />
+    </div>
+  </div>
+  <div
+    class="vesper-scroll-area-scrollbar"
+    data-has-overflow-y=""
+    data-id="base-ui-_r_j_-scrollbar"
+    data-orientation="vertical"
+    data-overflow-y-end=""
+    data-visibility="always"
+    style="position: absolute; touch-action: none; user-select: none; top: 0px; bottom: var(--scroll-area-corner-height); inset-inline-end: 0px; --scroll-area-thumb-height: 96px;"
+  >
+    <div
+      class="vesper-scroll-area-thumb vesper-scroll-area-thumb-inverse"
+      data-orientation="vertical"
+      style="height: var(--scroll-area-thumb-height); transform: translate3d(0px, 0px, 0px);"
+    />
+  </div>
+</div>
+`;
+
+exports[`scroll-area [snapshot] > inverse, on-interaction, no overflow 1`] = `
+<div
+  class="vesper-scroll-area"
+  role="presentation"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+>
+  <div
+    class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+    data-id="base-ui-_r_m_-viewport"
+    role="presentation"
+    style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 0px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 0px;"
+    tabindex="-1"
+  >
+    <div
+      role="presentation"
+      style="min-width: fit-content;"
+    />
+  </div>
+</div>
+`;
+
+exports[`scroll-area [snapshot] > inverse, on-interaction, x & y overflow 1`] = `
+<div
+  class="vesper-scroll-area"
+  data-has-overflow-x=""
+  data-has-overflow-y=""
+  data-overflow-x-end=""
+  data-overflow-y-end=""
+  role="presentation"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+>
+  <div
+    class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+    data-has-overflow-x=""
+    data-has-overflow-y=""
+    data-id="base-ui-_r_p_-viewport"
+    data-overflow-x-end=""
+    data-overflow-y-end=""
+    role="presentation"
+    style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 200px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 200px;"
+    tabindex="0"
+  >
+    <div
+      data-has-overflow-x=""
+      data-has-overflow-y=""
+      data-overflow-x-end=""
+      data-overflow-y-end=""
+      role="presentation"
+      style="min-width: fit-content;"
+    >
+      <div
+        style="width: 400px; height: 400px;"
+      />
+    </div>
+  </div>
+  <div
+    class="vesper-scroll-area-scrollbar"
+    data-has-overflow-x=""
+    data-has-overflow-y=""
+    data-id="base-ui-_r_p_-scrollbar"
+    data-orientation="vertical"
+    data-overflow-x-end=""
+    data-overflow-y-end=""
+    data-visibility="on-interaction"
+    style="position: absolute; touch-action: none; user-select: none; top: 0px; bottom: var(--scroll-area-corner-height); inset-inline-end: 0px; --scroll-area-thumb-height: 92px;"
+  >
+    <div
+      class="vesper-scroll-area-thumb vesper-scroll-area-thumb-inverse"
+      data-orientation="vertical"
+      style="height: var(--scroll-area-thumb-height); transform: translate3d(0px, 0px, 0px);"
+    />
+  </div>
+  <div
+    class="vesper-scroll-area-scrollbar"
+    data-has-overflow-x=""
+    data-has-overflow-y=""
+    data-id="base-ui-_r_p_-scrollbar"
+    data-orientation="horizontal"
+    data-overflow-x-end=""
+    data-overflow-y-end=""
+    data-visibility="on-interaction"
+    style="position: absolute; touch-action: none; user-select: none; inset-inline-start: 0px; inset-inline-end: var(--scroll-area-corner-width); bottom: 0px; --scroll-area-thumb-width: 92px;"
+  >
+    <div
+      class="vesper-scroll-area-thumb vesper-scroll-area-thumb-inverse"
+      data-orientation="horizontal"
+      style="width: var(--scroll-area-thumb-width); transform: translate3d(0px, 0px, 0px);"
+    />
+  </div>
+</div>
+`;
+
+exports[`scroll-area [snapshot] > inverse, on-interaction, x overflow 1`] = `
+<div
+  class="vesper-scroll-area"
+  data-has-overflow-x=""
+  data-overflow-x-end=""
+  role="presentation"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+>
+  <div
+    class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+    data-has-overflow-x=""
+    data-id="base-ui-_r_o_-viewport"
+    data-overflow-x-end=""
+    role="presentation"
+    style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 200px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 0px;"
+    tabindex="0"
+  >
+    <div
+      data-has-overflow-x=""
+      data-overflow-x-end=""
+      role="presentation"
+      style="min-width: fit-content;"
+    >
+      <div
+        style="width: 400px; height: 200px;"
+      />
+    </div>
+  </div>
+  <div
+    class="vesper-scroll-area-scrollbar"
+    data-has-overflow-x=""
+    data-id="base-ui-_r_o_-scrollbar"
+    data-orientation="horizontal"
+    data-overflow-x-end=""
+    data-visibility="on-interaction"
+    style="position: absolute; touch-action: none; user-select: none; inset-inline-start: 0px; inset-inline-end: var(--scroll-area-corner-width); bottom: 0px; --scroll-area-thumb-width: 96px;"
+  >
+    <div
+      class="vesper-scroll-area-thumb vesper-scroll-area-thumb-inverse"
+      data-orientation="horizontal"
+      style="width: var(--scroll-area-thumb-width); transform: translate3d(0px, 0px, 0px);"
+    />
+  </div>
+</div>
+`;
+
+exports[`scroll-area [snapshot] > inverse, on-interaction, y overflow 1`] = `
+<div
+  class="vesper-scroll-area"
+  data-has-overflow-y=""
+  data-overflow-y-end=""
+  role="presentation"
+  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+>
+  <div
+    class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+    data-has-overflow-y=""
+    data-id="base-ui-_r_n_-viewport"
+    data-overflow-y-end=""
+    role="presentation"
+    style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 0px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 200px;"
+    tabindex="0"
+  >
+    <div
+      data-has-overflow-y=""
+      data-overflow-y-end=""
+      role="presentation"
+      style="min-width: fit-content;"
+    >
+      <div
+        style="width: 200px; height: 400px;"
+      />
+    </div>
+  </div>
+  <div
+    class="vesper-scroll-area-scrollbar"
+    data-has-overflow-y=""
+    data-id="base-ui-_r_n_-scrollbar"
+    data-orientation="vertical"
+    data-overflow-y-end=""
+    data-visibility="on-interaction"
+    style="position: absolute; touch-action: none; user-select: none; top: 0px; bottom: var(--scroll-area-corner-height); inset-inline-end: 0px; --scroll-area-thumb-height: 96px;"
+  >
+    <div
+      class="vesper-scroll-area-thumb vesper-scroll-area-thumb-inverse"
+      data-orientation="vertical"
+      style="height: var(--scroll-area-thumb-height); transform: translate3d(0px, 0px, 0px);"
+    />
+  </div>
+</div>
+`;
