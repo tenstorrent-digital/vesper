@@ -20,11 +20,11 @@ export const CHECKBOX_SIZES = ["sm", "md"] as const;
 export type CheckboxSize = (typeof CHECKBOX_SIZES)[number];
 
 export interface CheckboxProps extends FormInputProps<"label", "input"> {
-  /** The text displayed next to the checkbox, also used as the input's default `aria-label`. An asterisk is appended when `required` is `true` and no `label` is supplied, and is not included in the accessible name. */
+  /** The text displayed next to the checkbox, also used as the input's default `aria-label`. An asterisk is appended when `required` is `true`. */
   text: string;
   /** When true, renders the checkbox in an indeterminate (mixed) state, displaying a dash icon instead of a checkmark. @default false */
   indeterminate?: boolean;
-  /** The size of the checkbox and its label. @default md */
+  /** The size of the checkbox and its text. @default md */
   size?: CheckboxSize;
 }
 
@@ -44,16 +44,13 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
  * @see packages/vesper/src/components/toggle/toggle.tsx
  * @see packages/vesper/src/components/choicebox/choicebox.tsx
  *
- * @param {string} props.text - The text displayed next to the checkbox, also used as the input's default `aria-label`
+ * @param {string} props.text - The text displayed next to the checkbox
  * @param {CheckboxSize} [props.size] - (optional) The size of the checkbox and its text. @default md
- * @param {CheckboxVariant} [props.variant] - (optional) The visual variant determining the color scheme and icon of the message. @default default
- * @param {string} [props.label] - (optional) A label displayed above the checkbox
- * @param {string} [props.message] - (optional) A message displayed below the checkbox with a variant-specific icon
  * @param {boolean} [props.indeterminate] - (optional) Renders the checkbox in an indeterminate (mixed) state. @default false
  * @param {boolean} [props.checked] - (optional) The controlled checked state
  * @param {boolean} [props.defaultChecked] - (optional) The initial checked state (uncontrolled)
  * @param {boolean} [props.disabled] - (optional) Prevents interaction. @default false
- * @param {boolean} [props.required] - (optional) Marks the checkbox as required for form validation, and appends an asterisk to the `label`, or to `text` when no `label` is supplied. @default false
+ * @param {boolean} [props.required] - (optional) Marks the checkbox as required for form validation, and appends an asterisk to the `text`. @default false
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  *
  * You may also pass any additional props to the wrapping `div` element
@@ -72,7 +69,7 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
  * @example
  * <Checkbox
  *   text="Accept terms"
- *   label="Terms and conditions"
+ *   aria-label="Terms and conditions"
  *   variant="error"
  *   message="You must accept the terms to continue."
  *   required
