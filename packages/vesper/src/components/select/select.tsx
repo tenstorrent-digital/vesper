@@ -98,6 +98,7 @@ const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
  * @example
  * <Select
  *   required
+ *   aria-label="Fruit"
  *   name="fruit"
  *   options={[
  *     { value: "apple", label: "Apple" },
