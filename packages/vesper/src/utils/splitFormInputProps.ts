@@ -246,7 +246,7 @@ export type FormInputProps<
  *   controlProps,
  *   formProps,
  *   wrapperProps
- * } = splitInputFormProps(props)
+ * } = splitFormInputProps(props)
  */
 export function splitFormInputProps<A>(props: A) {
   const [formProps, _props] = splitFormProps(props);
