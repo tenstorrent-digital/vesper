@@ -78,7 +78,7 @@ import { TextArea } from "@tenstorrent/vesper/text-area"
 
 ### Setting the height
 
-The `TextArea` component is not resizable by the user. Instead, you can set a fixed height in pixels via the `height` prop, which defaults to `104`. The value is converted to `rem`, so the rendered height scales with the base font size.
+You can give a `TextArea` a fixed height in pixels via the `height` prop, which defaults to `104`. The value is converted to `rem`, so the rendered height scales with the base font size.
 
 <TextArea
   aria-label="Release notes"
@@ -93,6 +93,26 @@ import { TextArea } from "@tenstorrent/vesper/text-area";
   aria-label="Release notes"
   placeholder="Summarize what changed in this release"
   height={200}
+/>;
+```
+
+### Resizing the `TextArea`
+
+By default, a `TextArea` does not resize. If you want to opt-into resizing behavior, you can pass `resizeable={true}` or just `resizeable`, which allows the `TextArea` to be resized along its block direction.
+
+<TextArea
+  resizeable
+  aria-label="Release notes"
+  placeholder="Summarize what changed in this release"
+/>
+
+```tsx
+import { TextArea } from "@tenstorrent/vesper/text-area";
+
+<TextArea
+  resizeable
+  aria-label="Release notes"
+  placeholder="Summarize what changed in this release"
 />;
 ```
 
