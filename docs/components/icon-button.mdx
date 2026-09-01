@@ -44,15 +44,15 @@ import { Download } from "@tenstorrent/vesper/icons";
 
 An `IconButton` can be rendered in several different variants:
 
-| Variant      | Preview                                                  | When to use                                                                                                   |
-| ------------ | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `"primary"`  | <IconButton variant="primary" icon={<Tenstorrent />} />  | Default variant. Use for the main action a user is expected to take in a given context.                       |
-| `"subtle"`   | <IconButton variant="subtle" icon={<Tenstorrent />} />   | Use for secondary actions that are important but should have less visual prominence than the primary action.  |
-| `"tertiary"` | <IconButton variant="tertiary" icon={<Tenstorrent />} /> | Use for secondary or supporting actions that need a clear boundary from surrounding content.                  |
-| `"contrast"` | <IconButton variant="contrast" icon={<Tenstorrent />} /> | Use when an action needs strong visual contrast against its surrounding content.                              |
-| `"ghost"`    | <IconButton variant="ghost" icon={<Tenstorrent />} />    | Use for low-emphasis actions where a button's presence should be unobtrusive.                                 |
-| `"danger"`   | <IconButton variant="danger" icon={<Tenstorrent />} />   | Use for destructive or potentially irreversible actions that could result in negative consequence.            |
-| `"warning"`  | <IconButton variant="warning" icon={<Tenstorrent />} />  | Use for actions that may have meaningful consequences or require caution, but are not inherently destructive. |
+| Variant      | Preview                                                                        | When to use                                                                                                   |
+| ------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| `"primary"`  | <IconButton aria-label="Primary" variant="primary" icon={<Tenstorrent />} />   | Default variant. Use for the main action a user is expected to take in a given context.                       |
+| `"subtle"`   | <IconButton aria-label="Subtle" variant="subtle" icon={<Tenstorrent />} />     | Use for secondary actions that are important but should have less visual prominence than the primary action.  |
+| `"tertiary"` | <IconButton aria-label="Tertiary" variant="tertiary" icon={<Tenstorrent />} /> | Use for secondary or supporting actions that need a clear boundary from surrounding content.                  |
+| `"contrast"` | <IconButton aria-label="Contrast" variant="contrast" icon={<Tenstorrent />} /> | Use when an action needs strong visual contrast against its surrounding content.                              |
+| `"ghost"`    | <IconButton aria-label="Ghost" variant="ghost" icon={<Tenstorrent />} />       | Use for low-emphasis actions where a button's presence should be unobtrusive.                                 |
+| `"danger"`   | <IconButton aria-label="Danger" variant="danger" icon={<Tenstorrent />} />     | Use for destructive or potentially irreversible actions that could result in negative consequence.            |
+| `"warning"`  | <IconButton aria-label="Warning" variant="warning" icon={<Tenstorrent />} />   | Use for actions that may have meaningful consequences or require caution, but are not inherently destructive. |
 
 ```tsx
 import { IconButton } from "@tenstorrent/vesper/icon-button";
