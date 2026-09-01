@@ -4,6 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
 
 import { CaretDown, Checkmark, Close, Search } from "@/components/icons/icons";
+import { ScrollArea } from "@/components/scroll-area/scroll-area";
 import {
   Typography,
   TypographyVariant,
@@ -253,7 +254,10 @@ export function Combobox(props: ComboboxProps) {
           align="start"
           sideOffset={12 * (baseRemSize / 16)}
         >
-          <BaseCombobox.Popup className="vesper-combobox-popup">
+          <BaseCombobox.Popup
+            className="vesper-combobox-popup"
+            render={ScrollArea}
+          >
             <BaseCombobox.Empty>
               <Typography
                 className="vesper-combobox-empty-state"
@@ -262,7 +266,7 @@ export function Combobox(props: ComboboxProps) {
                 {emptyStateText}
               </Typography>
             </BaseCombobox.Empty>
-            <BaseCombobox.List className="vesper-combobox-viewport">
+            <BaseCombobox.List className="vesper-combobox-list">
               {(itemValue: string) => (
                 <BaseCombobox.Item
                   key={itemValue}

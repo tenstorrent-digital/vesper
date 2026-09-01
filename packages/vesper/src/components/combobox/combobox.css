@@ -170,15 +170,11 @@
   outline: none;
   /* --available-height comes from base-ui */
   max-height: min(var(--available-height), 20rem);
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  display: flex;
+  flex-direction: column;
 }
 
-.vesper-combobox-viewport {
+.vesper-combobox-list {
   display: flex;
   flex-direction: column;
   padding: var(--vesper-spacing-2);
