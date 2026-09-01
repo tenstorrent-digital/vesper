@@ -4,6 +4,7 @@ import { type ReactNode, useMemo, useState } from "react";
 import { Select as BaseSelect } from "@base-ui/react/select";
 
 import { CaretDown, CaretUp, Checkmark } from "@/components/icons/icons";
+import { ScrollArea } from "@/components/scroll-area/scroll-area";
 import {
   Typography,
   type TypographyVariant,
@@ -186,8 +187,8 @@ export function Select(props: SelectProps) {
           alignItemWithTrigger={false}
           sideOffset={12 * (baseRemSize / 16)}
         >
-          <BaseSelect.Popup className="vesper-select-popup">
-            <BaseSelect.List className="vesper-select-viewport">
+          <BaseSelect.Popup className="vesper-select-popup" render={ScrollArea}>
+            <BaseSelect.List className="vesper-select-list">
               {items.map((o) => (
                 <BaseSelect.Item
                   key={o.value}
