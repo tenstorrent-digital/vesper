@@ -42,7 +42,7 @@ The simplest way to use the `TextArea` component is to render it in an uncontrol
 ```tsx
 import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<TextArea placeholder="Enter some text" />;
+<TextArea aria-label="About" placeholder="Enter some text" />;
 ```
 
 If you need to control the value of the `TextArea`, you can do so via the `value` and `onChange` props:
@@ -54,6 +54,7 @@ import { TextArea } from "@tenstorrent/vesper/text-area"
 const [value, setValue] = useState("")
 
 <TextArea
+  aria-label="About"
   placeholder="Enter some text"
   value={value}
   onChange={e => setValue(e.target.value)}
@@ -64,16 +65,16 @@ const [value, setValue] = useState("")
 
 The `TextArea` component can be rendered at `sm`, `md`, or `lg` size, defaulting to `md`. Size affects the padding and text styles of the `textarea`.
 
-<TextArea size="sm" placeholder="A small TextArea" />
-<TextArea size="md" placeholder="A medium TextArea" />
-<TextArea size="lg" placeholder="A large TextArea" />
+<TextArea size="sm" placeholder="A small TextArea" aria-label="About" />
+<TextArea size="md" placeholder="A medium TextArea" aria-label="About" />
+<TextArea size="lg" placeholder="A large TextArea" aria-label="About" />
 
 ```tsx
 import { TextArea } from "@tenstorrent/vesper/text-area"
 
-<TextArea size="sm" placeholder="A small TextArea" />
-<TextArea size="md" placeholder="A medium TextArea" />
-<TextArea size="lg" placeholder="A large TextArea" />
+<TextArea size="sm" placeholder="A small TextArea" aria-label="About" />
+<TextArea size="md" placeholder="A medium TextArea" aria-label="About" />
+<TextArea size="lg" placeholder="A large TextArea" aria-label="About" />
 ```
 
 ### Setting the height
