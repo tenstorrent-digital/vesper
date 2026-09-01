@@ -20,8 +20,13 @@ function AnimatedProgressBarDemo() {
 
   return (
     <div className="gap-vesper-4 flex flex-col">
-      <ProgressBar value={value} animated />
-      <ProgressBar value={value} variant="steps" animated />
+      <ProgressBar aria-label="Default progress bar" value={value} animated />
+      <ProgressBar
+        aria-label="Stepped progress bar"
+        value={value}
+        variant="steps"
+        animated
+      />
       <Button onClick={() => setValue(Math.round(Math.random() * 100))}>
         Change value
       </Button>
