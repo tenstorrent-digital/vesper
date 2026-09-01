@@ -325,7 +325,7 @@ export function splitProps<A extends object, K extends string>(
 ) {
   const a = {} as OmitUnknown<Omit<A, K | DisallowedProp>>;
   // @ts-expect-error ts not smart enough to do this
-  const b = {} as OmitUnknown<Pick<A, K | DisallowedProp>>;
+  const b = {} as OmitUnknown<Pick<Omit<A, DisallowedProp>, K>>;
 
   for (const prop in props) {
     // reject inherited props like prototype methods, etc
