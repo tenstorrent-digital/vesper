@@ -1,3 +1,4 @@
+import { createRef } from "react";
 import {
   cleanup,
   fireEvent,
@@ -6,7 +7,8 @@ import {
   waitFor,
 } from "@testing-library/react";
 import axe from "axe-core";
-import { afterEach, beforeEach, describe, expect, test } from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { userEvent } from "vitest/browser";
 
 import {
   SCROLL_THUMB_VARIANTS,
@@ -65,6 +67,9 @@ const getScrollbars = (result: RenderResult) =>
   result.container.querySelectorAll<HTMLElement>(
     ".vesper-scroll-area-scrollbar",
   );
+
+const getViewport = (result: RenderResult) =>
+  result.container.querySelector<HTMLElement>(".vesper-scroll-area-viewport");
 
 const getScrollbarThumbs = (result: RenderResult) =>
   result.container.querySelectorAll<HTMLElement>(".vesper-scroll-area-thumb");
@@ -141,6 +146,65 @@ describe("scroll-area [unit]", () => {
 
     const thumbs = getScrollbarThumbs(result);
     expect(thumbs.length).toBe(2);
+  });
+
+  test("viewportRef exposes the inner viewport element", async () => {
+    const viewportRef = createRef<HTMLDivElement>();
+    const { container } = render(
+      <ScrollArea viewportRef={viewportRef} style={{ width: 200, height: 200 }}>
+        <div style={{ width: 400, height: 400 }} />
+      </ScrollArea>,
+    );
+
+    const viewport = container.querySelector(".vesper-scroll-area-viewport");
+    expect(viewportRef.current).toBe(viewport);
+  });
+
+  test("viewportRef exposes the inner viewport element", async () => {
+    const viewportRef = createRef<HTMLDivElement>();
+    const result = render(
+      <ScrollArea viewportRef={viewportRef} style={{ width: 200, height: 200 }}>
+        <div style={{ width: 400, height: 400 }} />
+      </ScrollArea>,
+    );
+
+    const viewport = getViewport(result);
+    expect(viewportRef.current).toBe(viewport);
+  });
+
+  test("wheel and scroll handlers are forwarded to the viewport", async () => {
+    const onScroll = vi.fn();
+    const onScrollCapture = vi.fn();
+    const onScrollEnd = vi.fn();
+    const onScrollEndCapture = vi.fn();
+    const onWheel = vi.fn();
+    const onWheelCapture = vi.fn();
+
+    const result = render(
+      <ScrollArea
+        style={{ width: 200, height: 200 }}
+        onScroll={onScroll}
+        onScrollCapture={onScrollCapture}
+        onScrollEnd={onScrollEnd}
+        onScrollEndCapture={onScrollEndCapture}
+        onWheel={onWheel}
+        onWheelCapture={onWheelCapture}
+      >
+        <div style={{ width: 400, height: 400 }} />
+      </ScrollArea>,
+    );
+
+    await settleScrollbars(result);
+
+    const viewport = getViewport(result)!;
+    await userEvent.wheel(viewport, { delta: { y: 100 } });
+
+    expect(onScroll).toHaveBeenCalled();
+    expect(onScrollCapture).toHaveBeenCalled();
+    expect(onScrollEnd).toHaveBeenCalled();
+    expect(onScrollEndCapture).toHaveBeenCalled();
+    expect(onWheel).toHaveBeenCalled();
+    expect(onWheelCapture).toHaveBeenCalled();
   });
 
   SCROLL_THUMB_VARIANTS.forEach((variant) => {

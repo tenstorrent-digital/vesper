@@ -1,5 +1,11 @@
+.vesper-scroll-area {
+  display: flex;
+  flex-direction: column;
+}
+
 .vesper-scroll-area-viewport {
   height: 100%;
+  width: 100%;
 }
 
 .vesper-scroll-area-scrollbar {

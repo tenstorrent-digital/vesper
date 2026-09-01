@@ -11,9 +11,13 @@ A native scroll container with custom scrollbars. Supports both horizontal and v
 
 ## Options
 
-| Prop       | Type       | Description      | Default        |
-| ---------- | ---------- | ---------------- | -------------- |
-| `propName` | `propType` | Prop description | `defaultValue` |
+| Prop              | Type                           | Description                                                           | Default     |
+| ----------------- | ------------------------------ | --------------------------------------------------------------------- | ----------- |
+| `thumbVariant`    | `"default" \| "inverse"`       | Determines the color scheme of the scrollbar thumbs.                  | `"default"` |
+| `thumbVisibility` | `"always" \| "on-interaction"` | Determines the behavior of scrollbar thumb visibility.                | `"always"`  |
+| `viewportRef`     | `Ref<HTMLDivElement>`          | A ref that exposes the inner viewport `<div>` element that overflows. | —           |
+
+Scroll and wheel event handlers (`onScroll` ,`onScrollCapture` ,`onScrollEnd` ,`onScrollEndCapture` ,`onWheel` ,`onWheelCapture`) get forwarded to the inner viewport `<div>` element. All other props get forwarded to the wrapping `<div>` element.
 
 ## Examples
 
@@ -114,4 +118,22 @@ The example below shows how `"on-interaction"` hides scrollbar thumbs until you 
   ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
   consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
 </ScrollArea>
+```
+
+### Accessing the viewport
+
+The element that actually manages `ScrollArea` overflow is an inner viewport `<div>` element. You can access the viewport via the `viewportRef` prop. This can be useful if you want to read the scroll position or programatically scroll the viewport to a specific location:
+
+```tsx
+import { ScrollArea } from "@tenstorrent/vesper/scroll-area";
+
+function ExposedViewport() {
+  const viewport = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    viewport.current?.scrollTo(0, 100);
+  }, []);
+
+  return <ScrollArea ref={viewport}>{/* scroll-area content */}</ScrollArea>;
+}
 ```

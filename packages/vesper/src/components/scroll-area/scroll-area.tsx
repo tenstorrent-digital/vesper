@@ -1,6 +1,6 @@
 "use client";
 
-import type { ComponentProps } from "react";
+import type { ComponentProps, Ref } from "react";
 import { ScrollArea as BaseScrollArea } from "@base-ui/react/scroll-area";
 
 import { cn } from "@/utils/cn";
@@ -22,6 +22,8 @@ export interface ScrollAreaProps extends ComponentProps<"div"> {
    *
    * @default always */
   thumbVisibility?: ScrollThumbVisibility;
+  /** A ref that exposes the inner viewport `<div>` element that overflows */
+  viewportRef?: Ref<HTMLDivElement>;
 }
 
 /**
@@ -44,6 +46,13 @@ export function ScrollArea(props: ScrollAreaProps) {
     children,
     thumbVisibility = "always",
     thumbVariant = "default",
+    viewportRef,
+    onScroll,
+    onScrollCapture,
+    onScrollEnd,
+    onScrollEndCapture,
+    onWheel,
+    onWheelCapture,
     ...rest
   } = props;
 
@@ -52,7 +61,16 @@ export function ScrollArea(props: ScrollAreaProps) {
       {...rest}
       className={cn("vesper-scroll-area", className)}
     >
-      <BaseScrollArea.Viewport className="vesper-scroll-area-viewport">
+      <BaseScrollArea.Viewport
+        className="vesper-scroll-area-viewport"
+        ref={viewportRef}
+        onScroll={onScroll}
+        onScrollCapture={onScrollCapture}
+        onScrollEnd={onScrollEnd}
+        onScrollEndCapture={onScrollEndCapture}
+        onWheel={onWheel}
+        onWheelCapture={onWheelCapture}
+      >
         <BaseScrollArea.Content>{children}</BaseScrollArea.Content>
       </BaseScrollArea.Viewport>
       <ScrollBar
@@ -65,6 +83,7 @@ export function ScrollArea(props: ScrollAreaProps) {
         thumbVariant={thumbVariant}
         thumbVisibility={thumbVisibility}
       />
+      <BaseScrollArea.Corner />
     </BaseScrollArea.Root>
   );
 }

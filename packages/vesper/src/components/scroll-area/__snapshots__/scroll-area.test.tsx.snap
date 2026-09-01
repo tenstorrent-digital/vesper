@@ -8,7 +8,7 @@ exports[`scroll-area [snapshot] > default, always, no overflow 1`] = `
 >
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
-    data-id="base-ui-_r_a_-viewport"
+    data-id="base-ui-_r_d_-viewport"
     role="presentation"
     style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 0px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 0px;"
     tabindex="-1"
@@ -29,13 +29,13 @@ exports[`scroll-area [snapshot] > default, always, x & y overflow 1`] = `
   data-overflow-x-end=""
   data-overflow-y-end=""
   role="presentation"
-  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+  style="position: relative; --scroll-area-corner-height: 16px; --scroll-area-corner-width: 16px; width: 200px; height: 200px;"
 >
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
     data-has-overflow-x=""
     data-has-overflow-y=""
-    data-id="base-ui-_r_d_-viewport"
+    data-id="base-ui-_r_g_-viewport"
     data-overflow-x-end=""
     data-overflow-y-end=""
     role="presentation"
@@ -59,7 +59,7 @@ exports[`scroll-area [snapshot] > default, always, x & y overflow 1`] = `
     class="vesper-scroll-area-scrollbar"
     data-has-overflow-x=""
     data-has-overflow-y=""
-    data-id="base-ui-_r_d_-scrollbar"
+    data-id="base-ui-_r_g_-scrollbar"
     data-orientation="vertical"
     data-overflow-x-end=""
     data-overflow-y-end=""
@@ -76,7 +76,7 @@ exports[`scroll-area [snapshot] > default, always, x & y overflow 1`] = `
     class="vesper-scroll-area-scrollbar"
     data-has-overflow-x=""
     data-has-overflow-y=""
-    data-id="base-ui-_r_d_-scrollbar"
+    data-id="base-ui-_r_g_-scrollbar"
     data-orientation="horizontal"
     data-overflow-x-end=""
     data-overflow-y-end=""
@@ -89,6 +89,9 @@ exports[`scroll-area [snapshot] > default, always, x & y overflow 1`] = `
       style="width: var(--scroll-area-thumb-width); transform: translate3d(0px, 0px, 0px);"
     />
   </div>
+  <div
+    style="position: absolute; bottom: 0px; inset-inline-end: 0px; width: 16px; height: 16px;"
+  />
 </div>
 `;
 
@@ -103,7 +106,7 @@ exports[`scroll-area [snapshot] > default, always, x overflow 1`] = `
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
     data-has-overflow-x=""
-    data-id="base-ui-_r_c_-viewport"
+    data-id="base-ui-_r_f_-viewport"
     data-overflow-x-end=""
     role="presentation"
     style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 200px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 0px;"
@@ -123,7 +126,7 @@ exports[`scroll-area [snapshot] > default, always, x overflow 1`] = `
   <div
     class="vesper-scroll-area-scrollbar"
     data-has-overflow-x=""
-    data-id="base-ui-_r_c_-scrollbar"
+    data-id="base-ui-_r_f_-scrollbar"
     data-orientation="horizontal"
     data-overflow-x-end=""
     data-visibility="always"
@@ -149,7 +152,7 @@ exports[`scroll-area [snapshot] > default, always, y overflow 1`] = `
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
     data-has-overflow-y=""
-    data-id="base-ui-_r_b_-viewport"
+    data-id="base-ui-_r_e_-viewport"
     data-overflow-y-end=""
     role="presentation"
     style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 0px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 200px;"
@@ -169,7 +172,7 @@ exports[`scroll-area [snapshot] > default, always, y overflow 1`] = `
   <div
     class="vesper-scroll-area-scrollbar"
     data-has-overflow-y=""
-    data-id="base-ui-_r_b_-scrollbar"
+    data-id="base-ui-_r_e_-scrollbar"
     data-orientation="vertical"
     data-overflow-y-end=""
     data-visibility="always"
@@ -192,7 +195,7 @@ exports[`scroll-area [snapshot] > default, on-interaction, no overflow 1`] = `
 >
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
-    data-id="base-ui-_r_e_-viewport"
+    data-id="base-ui-_r_h_-viewport"
     role="presentation"
     style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 0px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 0px;"
     tabindex="-1"
@@ -213,13 +216,13 @@ exports[`scroll-area [snapshot] > default, on-interaction, x & y overflow 1`] = 
   data-overflow-x-end=""
   data-overflow-y-end=""
   role="presentation"
-  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+  style="position: relative; --scroll-area-corner-height: 16px; --scroll-area-corner-width: 16px; width: 200px; height: 200px;"
 >
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
     data-has-overflow-x=""
     data-has-overflow-y=""
-    data-id="base-ui-_r_h_-viewport"
+    data-id="base-ui-_r_k_-viewport"
     data-overflow-x-end=""
     data-overflow-y-end=""
     role="presentation"
@@ -243,7 +246,7 @@ exports[`scroll-area [snapshot] > default, on-interaction, x & y overflow 1`] = 
     class="vesper-scroll-area-scrollbar"
     data-has-overflow-x=""
     data-has-overflow-y=""
-    data-id="base-ui-_r_h_-scrollbar"
+    data-id="base-ui-_r_k_-scrollbar"
     data-orientation="vertical"
     data-overflow-x-end=""
     data-overflow-y-end=""
@@ -260,7 +263,7 @@ exports[`scroll-area [snapshot] > default, on-interaction, x & y overflow 1`] = 
     class="vesper-scroll-area-scrollbar"
     data-has-overflow-x=""
     data-has-overflow-y=""
-    data-id="base-ui-_r_h_-scrollbar"
+    data-id="base-ui-_r_k_-scrollbar"
     data-orientation="horizontal"
     data-overflow-x-end=""
     data-overflow-y-end=""
@@ -273,6 +276,9 @@ exports[`scroll-area [snapshot] > default, on-interaction, x & y overflow 1`] = 
       style="width: var(--scroll-area-thumb-width); transform: translate3d(0px, 0px, 0px);"
     />
   </div>
+  <div
+    style="position: absolute; bottom: 0px; inset-inline-end: 0px; width: 16px; height: 16px;"
+  />
 </div>
 `;
 
@@ -287,7 +293,7 @@ exports[`scroll-area [snapshot] > default, on-interaction, x overflow 1`] = `
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
     data-has-overflow-x=""
-    data-id="base-ui-_r_g_-viewport"
+    data-id="base-ui-_r_j_-viewport"
     data-overflow-x-end=""
     role="presentation"
     style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 200px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 0px;"
@@ -307,7 +313,7 @@ exports[`scroll-area [snapshot] > default, on-interaction, x overflow 1`] = `
   <div
     class="vesper-scroll-area-scrollbar"
     data-has-overflow-x=""
-    data-id="base-ui-_r_g_-scrollbar"
+    data-id="base-ui-_r_j_-scrollbar"
     data-orientation="horizontal"
     data-overflow-x-end=""
     data-visibility="on-interaction"
@@ -333,7 +339,7 @@ exports[`scroll-area [snapshot] > default, on-interaction, y overflow 1`] = `
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
     data-has-overflow-y=""
-    data-id="base-ui-_r_f_-viewport"
+    data-id="base-ui-_r_i_-viewport"
     data-overflow-y-end=""
     role="presentation"
     style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 0px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 200px;"
@@ -353,7 +359,7 @@ exports[`scroll-area [snapshot] > default, on-interaction, y overflow 1`] = `
   <div
     class="vesper-scroll-area-scrollbar"
     data-has-overflow-y=""
-    data-id="base-ui-_r_f_-scrollbar"
+    data-id="base-ui-_r_i_-scrollbar"
     data-orientation="vertical"
     data-overflow-y-end=""
     data-visibility="on-interaction"
@@ -376,7 +382,7 @@ exports[`scroll-area [snapshot] > inverse, always, no overflow 1`] = `
 >
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
-    data-id="base-ui-_r_i_-viewport"
+    data-id="base-ui-_r_l_-viewport"
     role="presentation"
     style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 0px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 0px;"
     tabindex="-1"
@@ -397,13 +403,13 @@ exports[`scroll-area [snapshot] > inverse, always, x & y overflow 1`] = `
   data-overflow-x-end=""
   data-overflow-y-end=""
   role="presentation"
-  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+  style="position: relative; --scroll-area-corner-height: 16px; --scroll-area-corner-width: 16px; width: 200px; height: 200px;"
 >
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
     data-has-overflow-x=""
     data-has-overflow-y=""
-    data-id="base-ui-_r_l_-viewport"
+    data-id="base-ui-_r_o_-viewport"
     data-overflow-x-end=""
     data-overflow-y-end=""
     role="presentation"
@@ -427,7 +433,7 @@ exports[`scroll-area [snapshot] > inverse, always, x & y overflow 1`] = `
     class="vesper-scroll-area-scrollbar"
     data-has-overflow-x=""
     data-has-overflow-y=""
-    data-id="base-ui-_r_l_-scrollbar"
+    data-id="base-ui-_r_o_-scrollbar"
     data-orientation="vertical"
     data-overflow-x-end=""
     data-overflow-y-end=""
@@ -444,7 +450,7 @@ exports[`scroll-area [snapshot] > inverse, always, x & y overflow 1`] = `
     class="vesper-scroll-area-scrollbar"
     data-has-overflow-x=""
     data-has-overflow-y=""
-    data-id="base-ui-_r_l_-scrollbar"
+    data-id="base-ui-_r_o_-scrollbar"
     data-orientation="horizontal"
     data-overflow-x-end=""
     data-overflow-y-end=""
@@ -457,6 +463,9 @@ exports[`scroll-area [snapshot] > inverse, always, x & y overflow 1`] = `
       style="width: var(--scroll-area-thumb-width); transform: translate3d(0px, 0px, 0px);"
     />
   </div>
+  <div
+    style="position: absolute; bottom: 0px; inset-inline-end: 0px; width: 16px; height: 16px;"
+  />
 </div>
 `;
 
@@ -471,7 +480,7 @@ exports[`scroll-area [snapshot] > inverse, always, x overflow 1`] = `
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
     data-has-overflow-x=""
-    data-id="base-ui-_r_k_-viewport"
+    data-id="base-ui-_r_n_-viewport"
     data-overflow-x-end=""
     role="presentation"
     style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 200px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 0px;"
@@ -491,7 +500,7 @@ exports[`scroll-area [snapshot] > inverse, always, x overflow 1`] = `
   <div
     class="vesper-scroll-area-scrollbar"
     data-has-overflow-x=""
-    data-id="base-ui-_r_k_-scrollbar"
+    data-id="base-ui-_r_n_-scrollbar"
     data-orientation="horizontal"
     data-overflow-x-end=""
     data-visibility="always"
@@ -517,7 +526,7 @@ exports[`scroll-area [snapshot] > inverse, always, y overflow 1`] = `
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
     data-has-overflow-y=""
-    data-id="base-ui-_r_j_-viewport"
+    data-id="base-ui-_r_m_-viewport"
     data-overflow-y-end=""
     role="presentation"
     style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 0px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 200px;"
@@ -537,7 +546,7 @@ exports[`scroll-area [snapshot] > inverse, always, y overflow 1`] = `
   <div
     class="vesper-scroll-area-scrollbar"
     data-has-overflow-y=""
-    data-id="base-ui-_r_j_-scrollbar"
+    data-id="base-ui-_r_m_-scrollbar"
     data-orientation="vertical"
     data-overflow-y-end=""
     data-visibility="always"
@@ -560,7 +569,7 @@ exports[`scroll-area [snapshot] > inverse, on-interaction, no overflow 1`] = `
 >
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
-    data-id="base-ui-_r_m_-viewport"
+    data-id="base-ui-_r_p_-viewport"
     role="presentation"
     style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 0px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 0px;"
     tabindex="-1"
@@ -581,13 +590,13 @@ exports[`scroll-area [snapshot] > inverse, on-interaction, x & y overflow 1`] = 
   data-overflow-x-end=""
   data-overflow-y-end=""
   role="presentation"
-  style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px; width: 200px; height: 200px;"
+  style="position: relative; --scroll-area-corner-height: 16px; --scroll-area-corner-width: 16px; width: 200px; height: 200px;"
 >
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
     data-has-overflow-x=""
     data-has-overflow-y=""
-    data-id="base-ui-_r_p_-viewport"
+    data-id="base-ui-_r_s_-viewport"
     data-overflow-x-end=""
     data-overflow-y-end=""
     role="presentation"
@@ -611,7 +620,7 @@ exports[`scroll-area [snapshot] > inverse, on-interaction, x & y overflow 1`] = 
     class="vesper-scroll-area-scrollbar"
     data-has-overflow-x=""
     data-has-overflow-y=""
-    data-id="base-ui-_r_p_-scrollbar"
+    data-id="base-ui-_r_s_-scrollbar"
     data-orientation="vertical"
     data-overflow-x-end=""
     data-overflow-y-end=""
@@ -628,7 +637,7 @@ exports[`scroll-area [snapshot] > inverse, on-interaction, x & y overflow 1`] = 
     class="vesper-scroll-area-scrollbar"
     data-has-overflow-x=""
     data-has-overflow-y=""
-    data-id="base-ui-_r_p_-scrollbar"
+    data-id="base-ui-_r_s_-scrollbar"
     data-orientation="horizontal"
     data-overflow-x-end=""
     data-overflow-y-end=""
@@ -641,6 +650,9 @@ exports[`scroll-area [snapshot] > inverse, on-interaction, x & y overflow 1`] = 
       style="width: var(--scroll-area-thumb-width); transform: translate3d(0px, 0px, 0px);"
     />
   </div>
+  <div
+    style="position: absolute; bottom: 0px; inset-inline-end: 0px; width: 16px; height: 16px;"
+  />
 </div>
 `;
 
@@ -655,7 +667,7 @@ exports[`scroll-area [snapshot] > inverse, on-interaction, x overflow 1`] = `
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
     data-has-overflow-x=""
-    data-id="base-ui-_r_o_-viewport"
+    data-id="base-ui-_r_r_-viewport"
     data-overflow-x-end=""
     role="presentation"
     style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 200px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 0px;"
@@ -675,7 +687,7 @@ exports[`scroll-area [snapshot] > inverse, on-interaction, x overflow 1`] = `
   <div
     class="vesper-scroll-area-scrollbar"
     data-has-overflow-x=""
-    data-id="base-ui-_r_o_-scrollbar"
+    data-id="base-ui-_r_r_-scrollbar"
     data-orientation="horizontal"
     data-overflow-x-end=""
     data-visibility="on-interaction"
@@ -701,7 +713,7 @@ exports[`scroll-area [snapshot] > inverse, on-interaction, y overflow 1`] = `
   <div
     class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
     data-has-overflow-y=""
-    data-id="base-ui-_r_n_-viewport"
+    data-id="base-ui-_r_q_-viewport"
     data-overflow-y-end=""
     role="presentation"
     style="overflow: scroll; --scroll-area-overflow-x-start: 0px; --scroll-area-overflow-x-end: 0px; --scroll-area-overflow-y-start: 0px; --scroll-area-overflow-y-end: 200px;"
@@ -721,7 +733,7 @@ exports[`scroll-area [snapshot] > inverse, on-interaction, y overflow 1`] = `
   <div
     class="vesper-scroll-area-scrollbar"
     data-has-overflow-y=""
-    data-id="base-ui-_r_n_-scrollbar"
+    data-id="base-ui-_r_q_-scrollbar"
     data-orientation="vertical"
     data-overflow-y-end=""
     data-visibility="on-interaction"
