@@ -115,19 +115,38 @@ if (loading) {
 return <Typography>Content loaded!</Typography>;
 ```
 
-You can also use the `show` prop to hide/show `Skeleton` children conditionally. When `show` is set to `true`, the `Skeleton` will mask its children. When `show` is set to `false`, the children are rendered in place with no masking instead:
+You can also use the `show` prop to hide/show `Skeleton` children conditionally. When `show` is set to `true`, the `Skeleton` will mask its children. When `show` is set to `false`, the children are rendered in place with no masking instead.
+
+In the example below, we fetch data asynchronously in a `useEffect` callback, masking the `Skeleton`'s children while the request is being made:
 
 ```tsx
+import { useEffect, useState } from "react";
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
 import { Typography } from "@tenstorrent/vesper/typography";
 
-return (
-  <Skeleton show={loading}>
-    <Typography variant="heading-md">
-      Content hidden until loading is false
-    </Typography>
-  </Skeleton>
-);
+function MaskedChildrenExample() {
+  const [data, setData] = useState<string | null>(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    fetch("https://example.com/api/v1/data", { signal })
+      .then((res) => res.json())
+      .then((data) => setData(data))
+      .catch(console.error);
+
+    return () => controller.abort();
+  }, []);
+
+  return (
+    <Skeleton show={data === null}>
+      <Typography variant="heading-md">
+        {data ?? "Fallback text while data is loading"}
+      </Typography>
+    </Skeleton>
+  );
+}
 ```
 
 ### Usage with Suspense
