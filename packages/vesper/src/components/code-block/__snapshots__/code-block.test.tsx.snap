@@ -6,21 +6,36 @@ exports[`code-block [snapshot] > default (no props) 1`] = `
   data-copy-on-hover="false"
 >
   <div
-    class="vesper-typography vesper-typography-copy-xs-mono vesper-code-block-pre-wrapper"
+    class="vesper-scroll-area vesper-typography vesper-typography-copy-xs-mono vesper-code-block-pre-wrapper"
     data-line-numbers="false"
+    role="presentation"
+    style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px;"
   >
-    <pre
-      class="shiki shiki-themes night-owl-light night-owl"
-      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-stone-800); --shiki-dark: var(--vesper-stone-800);"
+    <div
+      class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+      data-id="base-ui-_r_q_-viewport"
+      role="presentation"
+      style="overflow: scroll;"
+      tabindex="-1"
     >
-      <code>
-        <span
-          class="line"
+      <div
+        role="presentation"
+        style="min-width: fit-content;"
+      >
+        <pre
+          class="shiki shiki-themes night-owl-light night-owl"
+          style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-stone-800); --shiki-dark: var(--vesper-stone-800);"
         >
-          <span />
-        </span>
-      </code>
-    </pre>
+          <code>
+            <span
+              class="line"
+            >
+              <span />
+            </span>
+          </code>
+        </pre>
+      </div>
+    </div>
   </div>
   <button
     aria-label="Copy code"
@@ -51,23 +66,38 @@ exports[`code-block [snapshot] > with custom className 1`] = `
   data-copy-on-hover="false"
 >
   <div
-    class="vesper-typography vesper-typography-copy-xs-mono vesper-code-block-pre-wrapper"
+    class="vesper-scroll-area vesper-typography vesper-typography-copy-xs-mono vesper-code-block-pre-wrapper"
     data-line-numbers="false"
+    role="presentation"
+    style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px;"
   >
-    <pre
-      class="shiki shiki-themes night-owl-light night-owl"
-      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-stone-800); --shiki-dark: var(--vesper-stone-800);"
+    <div
+      class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+      data-id="base-ui-_r_u_-viewport"
+      role="presentation"
+      style="overflow: scroll;"
+      tabindex="-1"
     >
-      <code>
-        <span
-          class="line"
+      <div
+        role="presentation"
+        style="min-width: fit-content;"
+      >
+        <pre
+          class="shiki shiki-themes night-owl-light night-owl"
+          style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-stone-800); --shiki-dark: var(--vesper-stone-800);"
         >
-          <span>
-            code
-          </span>
-        </span>
-      </code>
-    </pre>
+          <code>
+            <span
+              class="line"
+            >
+              <span>
+                code
+              </span>
+            </span>
+          </code>
+        </pre>
+      </div>
+    </div>
   </div>
   <button
     aria-label="Copy code"
@@ -98,32 +128,47 @@ exports[`code-block [snapshot] > with multi-line content 1`] = `
   data-copy-on-hover="false"
 >
   <div
-    class="vesper-typography vesper-typography-copy-xs-mono vesper-code-block-pre-wrapper"
+    class="vesper-scroll-area vesper-typography vesper-typography-copy-xs-mono vesper-code-block-pre-wrapper"
     data-line-numbers="false"
+    role="presentation"
+    style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px;"
   >
-    <pre
-      class="shiki shiki-themes night-owl-light night-owl"
-      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-stone-800); --shiki-dark: var(--vesper-stone-800);"
+    <div
+      class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+      data-id="base-ui-_r_t_-viewport"
+      role="presentation"
+      style="overflow: scroll;"
+      tabindex="-1"
     >
-      <code>
-        <span
-          class="line"
+      <div
+        role="presentation"
+        style="min-width: fit-content;"
+      >
+        <pre
+          class="shiki shiki-themes night-owl-light night-owl"
+          style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-stone-800); --shiki-dark: var(--vesper-stone-800);"
         >
-          <span>
-            const a = 1;
-          </span>
-        </span>
-        
+          <code>
+            <span
+              class="line"
+            >
+              <span>
+                const a = 1;
+              </span>
+            </span>
+            
 
-        <span
-          class="line"
-        >
-          <span>
-            const b = 2;
-          </span>
-        </span>
-      </code>
-    </pre>
+            <span
+              class="line"
+            >
+              <span>
+                const b = 2;
+              </span>
+            </span>
+          </code>
+        </pre>
+      </div>
+    </div>
   </div>
   <button
     aria-label="Copy code"
@@ -154,23 +199,38 @@ exports[`code-block [snapshot] > with showLineNumbers 1`] = `
   data-copy-on-hover="false"
 >
   <div
-    class="vesper-typography vesper-typography-copy-xs-mono vesper-code-block-pre-wrapper"
+    class="vesper-scroll-area vesper-typography vesper-typography-copy-xs-mono vesper-code-block-pre-wrapper"
     data-line-numbers="true"
+    role="presentation"
+    style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px;"
   >
-    <pre
-      class="shiki shiki-themes night-owl-light night-owl"
-      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-stone-800); --shiki-dark: var(--vesper-stone-800);"
+    <div
+      class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+      data-id="base-ui-_r_s_-viewport"
+      role="presentation"
+      style="overflow: scroll;"
+      tabindex="-1"
     >
-      <code>
-        <span
-          class="line"
+      <div
+        role="presentation"
+        style="min-width: fit-content;"
+      >
+        <pre
+          class="shiki shiki-themes night-owl-light night-owl"
+          style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-stone-800); --shiki-dark: var(--vesper-stone-800);"
         >
-          <span>
-            const x = 1;
-          </span>
-        </span>
-      </code>
-    </pre>
+          <code>
+            <span
+              class="line"
+            >
+              <span>
+                const x = 1;
+              </span>
+            </span>
+          </code>
+        </pre>
+      </div>
+    </div>
   </div>
   <button
     aria-label="Copy code"
@@ -201,23 +261,38 @@ exports[`code-block [snapshot] > with string children 1`] = `
   data-copy-on-hover="false"
 >
   <div
-    class="vesper-typography vesper-typography-copy-xs-mono vesper-code-block-pre-wrapper"
+    class="vesper-scroll-area vesper-typography vesper-typography-copy-xs-mono vesper-code-block-pre-wrapper"
     data-line-numbers="false"
+    role="presentation"
+    style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px;"
   >
-    <pre
-      class="shiki shiki-themes night-owl-light night-owl"
-      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-stone-800); --shiki-dark: var(--vesper-stone-800);"
+    <div
+      class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+      data-id="base-ui-_r_r_-viewport"
+      role="presentation"
+      style="overflow: scroll;"
+      tabindex="-1"
     >
-      <code>
-        <span
-          class="line"
+      <div
+        role="presentation"
+        style="min-width: fit-content;"
+      >
+        <pre
+          class="shiki shiki-themes night-owl-light night-owl"
+          style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-stone-800); --shiki-dark: var(--vesper-stone-800);"
         >
-          <span>
-            const x = 1;
-          </span>
-        </span>
-      </code>
-    </pre>
+          <code>
+            <span
+              class="line"
+            >
+              <span>
+                const x = 1;
+              </span>
+            </span>
+          </code>
+        </pre>
+      </div>
+    </div>
   </div>
   <button
     aria-label="Copy code"

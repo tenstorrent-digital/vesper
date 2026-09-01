@@ -174,11 +174,9 @@ describe("code-block [unit]", () => {
       });
 
     const { container } = render(<CodeBlock>{streamFactory}</CodeBlock>);
-    const wrapper = container.querySelector(
-      ".vesper-code-block-pre-wrapper",
-    ) as HTMLElement;
+    const pre = container.querySelector("pre.shiki.vesper") as HTMLElement;
 
-    const scrollTopSpy = vi.spyOn(wrapper, "scrollTop", "set");
+    const scrollIntoViewSpy = vi.spyOn(pre, "scrollIntoView");
 
     // Allow the factory to be called (deferred to microtask)
     await new Promise((r) => setTimeout(r, 0));
@@ -188,9 +186,9 @@ describe("code-block [unit]", () => {
     await new Promise((r) => setTimeout(r, 200));
 
     // observer sets scrollTop to scrollHeight on DOM mutation
-    expect(scrollTopSpy).toHaveBeenCalled();
+    expect(scrollIntoViewSpy).toHaveBeenCalled();
 
-    scrollTopSpy.mockRestore();
+    scrollIntoViewSpy.mockRestore();
     close!();
   });
 
@@ -209,8 +207,8 @@ describe("code-block [unit]", () => {
       <CodeBlock style={{ height: 100 }}>{streamFactory}</CodeBlock>,
     );
 
-    const wrapper = container.querySelector(
-      ".vesper-code-block-pre-wrapper",
+    const scrollAreaViewport = container.querySelector(
+      ".vesper-scroll-area-viewport",
     ) as HTMLElement;
 
     // Allow the factory to be called (deferred to microtask)
@@ -221,10 +219,10 @@ describe("code-block [unit]", () => {
     await new Promise((r) => setTimeout(r, 200));
 
     // Sanity: auto-scroll should have placed us at the bottom
-    expect(wrapper.scrollTop).toBeGreaterThan(0);
+    expect(scrollAreaViewport.scrollTop).toBeGreaterThan(0);
 
     // Simulate user scrolling to the top
-    wrapper.scrollTop = 0;
+    scrollAreaViewport.scrollTop = 0;
     await new Promise((r) => setTimeout(r, 50));
 
     // Push more content — auto-scroll should be disabled
@@ -232,7 +230,7 @@ describe("code-block [unit]", () => {
     await new Promise((r) => setTimeout(r, 200));
 
     // scrollTop should still be at 0 (user's scroll position preserved)
-    expect(wrapper.scrollTop).toBe(0);
+    expect(scrollAreaViewport.scrollTop).toBe(0);
   });
 
   test("renders with LanguageRegistration[] lang", () => {

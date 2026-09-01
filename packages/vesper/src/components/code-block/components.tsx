@@ -1,18 +1,19 @@
 "use client";
 
-import { type ComponentProps, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Checkmark, Copy } from "@/components/icons/icons";
+import {
+  ScrollArea,
+  type ScrollAreaProps,
+} from "@/components/scroll-area/scroll-area";
 import { Typography } from "@/components/typography/typography";
 
-export function CodeBlockPreWrapper({
-  children,
-  ...props
-}: ComponentProps<"div">) {
+export function CodeBlockPreWrapper({ children, ...props }: ScrollAreaProps) {
   return (
     <Typography
-      as="div"
+      as={ScrollArea}
       variant="copy-xs-mono"
       className="vesper-code-block-pre-wrapper"
       {...props}

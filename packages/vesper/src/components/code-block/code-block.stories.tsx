@@ -18,6 +18,10 @@ import {
   SAMPLE_CODE_PYTHON,
   SAMPLE_CODE_TYPESCRIPT,
 } from "./fixtures";
+import {
+  SCROLL_THUMB_VISIBILITIES,
+  ScrollThumbVisibility,
+} from "../scroll-area/scroll-area";
 
 const STORY_LANG_OPTIONS = [
   "python",
@@ -69,11 +73,13 @@ function CodeBlockStoryComponent({
   showLineNumbers,
   stream,
   copyOnHover,
+  scrollThumbVisibility,
 }: {
   showLineNumbers: boolean;
   lang: StoryLang;
   stream: boolean;
   copyOnHover: boolean;
+  scrollThumbVisibility: ScrollThumbVisibility;
 }) {
   const params = PARAMS[lang];
 
@@ -82,6 +88,7 @@ function CodeBlockStoryComponent({
       showLineNumbers={showLineNumbers}
       lang={params.lang}
       copyOnHover={copyOnHover}
+      scrollThumbVisibility={scrollThumbVisibility}
       style={{
         width: "min(calc(100vw - 4rem), 720px)",
         maxHeight: "calc(100vh - 4rem)",
@@ -106,7 +113,13 @@ const meta = {
     copyOnHover: {
       control: "boolean",
       description:
-        "Whether only show the copy to clipboard button when CodeBlock is hovered.",
+        "Whether only show the copy to clipboard button when `CodeBlock` is hovered.",
+    },
+    scrollThumbVisibility: {
+      control: "radio",
+      options: SCROLL_THUMB_VISIBILITIES,
+      description:
+        "Determines when to show the scroll thumbs when the `CodeBlock` has overflow",
     },
   },
 } satisfies Meta<typeof CodeBlockStoryComponent>;
@@ -119,6 +132,7 @@ export const Playground: Story = {
     showLineNumbers: false,
     stream: false,
     copyOnHover: false,
+    scrollThumbVisibility: "always",
   },
 };
 Playground.storyName = "code-block";

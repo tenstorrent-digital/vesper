@@ -18,12 +18,13 @@ console.log(greeting);
 
 ## Options
 
-| Prop              | Type                                                                        | Description                                                                                                                                        | Default  |
-| ----------------- | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `children`        | `string \| () => ReadableStream<string> \| Promise<ReadableStream<string>>` | The code to render. Can be a string or a factory function returning a `ReadableStream` for streaming content.                                      | `""`     |
-| `lang`            | `LanguageRegistration[] \| "text" \| "ansi"`                                | The language syntax for highlighting. Import grammar objects from `@shikijs/langs`. Use `"text"` for plain text or `"ansi"` for ANSI escape codes. | `"text"` |
-| `showLineNumbers` | `boolean`                                                                   | Whether to show line numbers on the left-hand side.                                                                                                | `false`  |
-| `copyOnHover`     | `boolean`                                                                   | When `true`, hides the copy-to-clipboard button until the code block is hovered.                                                                   | `false`  |
+| Prop                    | Type                                                                        | Description                                                                                                                                        | Default  |
+| ----------------------- | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| `children`              | `string \| () => ReadableStream<string> \| Promise<ReadableStream<string>>` | The code to render. Can be a string or a factory function returning a `ReadableStream` for streaming content.                                      | `""`     |
+| `lang`                  | `LanguageRegistration[] \| "text" \| "ansi"`                                | The language syntax for highlighting. Import grammar objects from `@shikijs/langs`. Use `"text"` for plain text or `"ansi"` for ANSI escape codes. | `"text"` |
+| `showLineNumbers`       | `boolean`                                                                   | Whether to show line numbers on the left-hand side.                                                                                                | `false`  |
+| `copyOnHover`           | `boolean`                                                                   | When `true`, hides the copy-to-clipboard button until the code block is hovered.                                                                   | `false`  |
+| `scrollThumbVisibility` | `"always" \| "on-interaction"`                                              | Determines the scrollbar thumb visibility when there is overflow. See [ScrollArea](./scroll-area.mdx).                                             | `false`  |
 
 ## Examples
 

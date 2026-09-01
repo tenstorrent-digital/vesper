@@ -1,6 +1,8 @@
 import type { ComponentProps } from "react";
 import type { LanguageRegistration } from "@shikijs/core";
 
+import { type ScrollThumbVisibility } from "@/components/scroll-area/scroll-area";
+
 import { cn } from "@/utils/cn";
 
 import { CodeBlockPreWrapper, CopyToClipboardButton } from "./components";
@@ -32,6 +34,12 @@ export interface CodeBlockProps extends Omit<
   showLineNumbers?: boolean;
   /** Hide the copy-to-clipboard button until CodeBlock is hovered. @default false */
   copyOnHover?: boolean;
+  /** Determines the behavior of scrollbar thumb visibility.
+   * `"always"` means the scrollbar thumbs will always be visible when there is overflow.
+   * `"automatic"` means scrollbars will only be visible when there is overflow *and* the scroll area is being interacted with.
+   *
+   * @default always */
+  scrollThumbVisibility?: ScrollThumbVisibility;
 }
 
 /**
@@ -63,6 +71,7 @@ export function CodeBlock(props: CodeBlockProps) {
     lang = "text",
     showLineNumbers = false,
     copyOnHover = false,
+    scrollThumbVisibility = "always",
     ...rest
   } = props;
 
@@ -75,6 +84,7 @@ export function CodeBlock(props: CodeBlockProps) {
         lang={lang}
         copyOnHover={copyOnHover}
         showLineNumbers={showLineNumbers}
+        scrollThumbVisibility={scrollThumbVisibility}
         {...rest}
       >
         {code}
@@ -88,7 +98,10 @@ export function CodeBlock(props: CodeBlockProps) {
       data-copy-on-hover={copyOnHover}
       {...rest}
     >
-      <CodeBlockPreWrapper data-line-numbers={showLineNumbers}>
+      <CodeBlockPreWrapper
+        data-line-numbers={showLineNumbers}
+        thumbVisibility={scrollThumbVisibility}
+      >
         {codeToJsx(code, lang)}
       </CodeBlockPreWrapper>
       <CopyToClipboardButton />

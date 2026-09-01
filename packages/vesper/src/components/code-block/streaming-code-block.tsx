@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 import { getTokenStyleObject, type ThemedToken } from "@shikijs/core";
 
 import { cn } from "@/utils/cn";
@@ -16,39 +16,14 @@ export function StreamingCodeBlock({
   lang = "text",
   copyOnHover = false,
   showLineNumbers,
+  scrollThumbVisibility,
   ...props
 }: Omit<CodeBlockProps, "children"> & {
   children: () => ReadableStream<string> | Promise<ReadableStream<string>>;
 }) {
   handleLanguageRegistration(lang);
 
-  const ref = useRef<HTMLDivElement>(null);
-
   const shouldAutoScroll = useRef(true);
-
-  useEffect(() => {
-    if (!ref.current) return;
-
-    const observer = new MutationObserver(() => {
-      if (!ref.current || !shouldAutoScroll.current) return;
-      ref.current.scrollTop = ref.current.scrollHeight;
-    });
-
-    const handleScroll = () => {
-      const { scrollTop, scrollHeight, clientHeight } = el;
-      const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
-      shouldAutoScroll.current = distanceFromBottom < 10;
-    };
-
-    const el = ref.current;
-    el.addEventListener("scroll", handleScroll);
-    observer.observe(el, { childList: true, subtree: true });
-
-    return () => {
-      el.removeEventListener("scroll", handleScroll);
-      observer.disconnect();
-    };
-  }, [code]);
 
   return (
     <div
@@ -56,8 +31,20 @@ export function StreamingCodeBlock({
       data-copy-on-hover={copyOnHover}
       {...props}
     >
-      <CodeBlockPreWrapper ref={ref} data-line-numbers={showLineNumbers}>
-        <TokenStreamRenderer code={code} lang={lang} />
+      <CodeBlockPreWrapper
+        thumbVisibility={scrollThumbVisibility}
+        onScroll={(e) => {
+          const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+          const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
+          shouldAutoScroll.current = distanceFromBottom < 10;
+        }}
+        data-line-numbers={showLineNumbers}
+      >
+        <TokenStreamRenderer
+          shouldAutoScroll={shouldAutoScroll}
+          code={code}
+          lang={lang}
+        />
       </CodeBlockPreWrapper>
       <CopyToClipboardButton />
     </div>
@@ -74,10 +61,14 @@ export function StreamingCodeBlock({
 function TokenStreamRenderer({
   code,
   lang,
+  shouldAutoScroll,
 }: {
   code: () => ReadableStream<string> | Promise<ReadableStream<string>>;
   lang: CodeBlockProps["lang"];
+  shouldAutoScroll: RefObject<boolean>;
 }) {
+  const ref = useRef<HTMLPreElement>(null);
+
   // WeakMap for storing references to ThemedToken keys
   // Because WeakMaps garbage collect their own references, we don't have to worry about memory leaks when the tokens array is reset or changes
   const keys = useRef(new WeakMap<ThemedToken, string>());
@@ -112,9 +103,11 @@ function TokenStreamRenderer({
           .pipeTo(
             new WritableStream({
               write(token) {
-                if ("recall" in token)
+                if ("recall" in token) {
                   setTokens((t) => t.slice(0, -token.recall));
-                else setTokens((tokens) => [...tokens, token]);
+                } else {
+                  setTokens((tokens) => [...tokens, token]);
+                }
               },
             }),
             { signal: controller.signal },
@@ -126,8 +119,13 @@ function TokenStreamRenderer({
     return () => controller.abort();
   }, [code, lang]);
 
+  useEffect(() => {
+    if (!shouldAutoScroll.current) return;
+    ref.current?.scrollIntoView(false);
+  }, [tokens, shouldAutoScroll]);
+
   return (
-    <pre className="shiki vesper shiki-stream">
+    <pre ref={ref} className="shiki vesper shiki-stream">
       <code>
         {tokensToLines(tokens).map((line, index) => (
           <span key={index} className="line">
