@@ -97,7 +97,7 @@ The demo below shows how the `side` and `align` props interact with each other:
 
 ### Adjusting the delay
 
-A `Tooltip` does not instantly show when a user hovers its trigger. By default, a half second delay occurs prior to showing a `Tooltip`. This duration can be adjusted via the `delayDuration` prop, which represents the amount of milliseconds to wait before showing a `Tooltip`:
+A `Tooltip` does not instantly show when a user hovers its trigger. By default, a half-second delay occurs prior to showing a `Tooltip`. This duration can be adjusted via the `delayDuration` prop, which represents the amount of milliseconds to wait before showing a `Tooltip`:
 
 <Tooltip
   content="This tooltip appears instantly"
@@ -124,19 +124,6 @@ import { Tooltip } from "@tenstorrent/vesper/tooltip";
 <Tooltip content="This tooltip appears delayed" delayDuration={1000} side="right">
   <Button variant="contrast">1 second delay</Button>
 </Tooltip>
-```
-
-```tsx
-import { Button } from "@tenstorrent/vesper/button";
-import { Tooltip } from "@tenstorrent/vesper/tooltip";
-
-// Wide content with custom max width
-<Tooltip
-  content="This tooltip contains a longer description that will wrap at the specified max width."
-  maxWidth={320}
->
-  <button>Details</button>
-</Tooltip>;
 ```
 
 ### Setting the max width
