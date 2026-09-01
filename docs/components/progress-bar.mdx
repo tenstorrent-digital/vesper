@@ -95,22 +95,22 @@ import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
 import { Typography } from "@tenstorrent/vesper/typography";
 
 function AnimatedProgressBars() {
+  const [value, setValue] = useState(66);
 
-const [value, setValue] = useState(66);
-
-<ProgressBar
-  aria-label="Default progress bar"
-  value={value}
-  animated
-/>
-<ProgressBar
-  aria-label="Stepped progress bar"
-  value={value} variant="steps"
-  animated
-/>
-<Button onClick={() =>setValue(Math.round(Math.random() * 100))}>
-  Change value
-</Button>
-<Typography>Current value: {value}</Typography>
+  return (
+    <div>
+      <ProgressBar aria-label="Default progress bar" value={value} animated />
+      <ProgressBar
+        aria-label="Stepped progress bar"
+        value={value}
+        variant="steps"
+        animated
+      />
+      <Button onClick={() => setValue(Math.round(Math.random() * 100))}>
+        Change value
+      </Button>
+      <Typography>Current value: {value}</Typography>
+    </div>
+  );
 }
 ```
