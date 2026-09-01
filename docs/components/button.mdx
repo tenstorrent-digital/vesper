@@ -39,7 +39,7 @@ import { Button } from "@tenstorrent/vesper/button";
 
 ### Variants
 
-Buttons can be rendered in several different variants:
+A `Button` can be rendered in several different variants:
 
 | Variant      | Preview                                      | When to use                                                                                                   |
 | ------------ | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
@@ -65,15 +65,16 @@ import { Button } from "@tenstorrent/vesper/button";
 
 ### Different sizes
 
-Buttons can be rendered in one of four sizes; `"xs"`, `"sm"`, `"md"`, or `"lg"`. The default size is `"md"`.
+A `Button` can be rendered in one of four sizes; `"xs"`, `"sm"`, `"md"`, or `"lg"`. The default size is `"md"`.
 
-<Button size="lg">Large</Button>
-<Button size="md">Medium</Button>
-<Button size="sm">Small</Button>
 <Button size="xs">Extra small</Button>
+<Button size="sm">Small</Button>
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>
 
 ```tsx
-// Sizes
+import { Button } from "@tenstorrent/vesper/button";
+
 <Button size="xs">Extra Small</Button>
 <Button size="sm">Small</Button>
 <Button size="md">Medium</Button>
@@ -82,7 +83,7 @@ Buttons can be rendered in one of four sizes; `"xs"`, `"sm"`, `"md"`, or `"lg"`.
 
 ### Rendering icons
 
-Buttons can render icons to the left or the right of their content via the `iconLeft` and `iconRight` props. Simply pass your icon as a `ReactNode` to either of these props:
+A `Button` can render icons to the left or the right of its content via the `iconLeft` and `iconRight` props. Simply pass your icon as a `ReactNode` to either of these props:
 
 <Button iconLeft={<Download />}>Download</Button>
 <Button iconRight={<ArrowRight />}>Continue</Button>
@@ -128,6 +129,6 @@ import Link from "next/link";
 import { Button } from "@tenstorrent/vesper/button";
 
 <Button as={Link} prefetch={false} href="/dashboard">
-  Go to Next Page
+  Go to dashboard
 </Button>;
 ```
