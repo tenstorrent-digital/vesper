@@ -2,121 +2,9 @@
 
 exports[`sheet [snapshot] > default (right side) 1`] = `
 <dialog
-  aria-describedby="_r_1v_"
-  aria-labelledby="_r_1u_"
-  class="vesper-sheet vesper-sheet-right"
->
-  <div
-    class="vesper-sheet-content"
-  >
-    <div
-      class="vesper-sheet-header"
-    >
-      <div
-        class="vesper-sheet-title-description"
-      >
-        <p
-          class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_1u_"
-        >
-          Sheet title
-        </p>
-        <p
-          class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_1v_"
-        >
-          This is a description of the sheet content.
-        </p>
-      </div>
-      <button
-        aria-label="Close sheet"
-        class="vesper-button vesper-button-md vesper-button-tertiary vesper-icon-button"
-        type="button"
-      >
-        <span
-          class="vesper-button-icon"
-        >
-          <svg
-            fill="none"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
-      </button>
-    </div>
-    <div
-      class="vesper-sheet-children"
-    />
-  </div>
-</dialog>
-`;
-
-exports[`sheet [snapshot] > left side 1`] = `
-<dialog
-  aria-describedby="_r_21_"
-  aria-labelledby="_r_20_"
-  class="vesper-sheet vesper-sheet-left"
->
-  <div
-    class="vesper-sheet-content"
-  >
-    <div
-      class="vesper-sheet-header"
-    >
-      <div
-        class="vesper-sheet-title-description"
-      >
-        <p
-          class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_20_"
-        >
-          Sheet title
-        </p>
-        <p
-          class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_21_"
-        >
-          This is a description of the sheet content.
-        </p>
-      </div>
-      <button
-        aria-label="Close sheet"
-        class="vesper-button vesper-button-md vesper-button-tertiary vesper-icon-button"
-        type="button"
-      >
-        <span
-          class="vesper-button-icon"
-        >
-          <svg
-            fill="none"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
-      </button>
-    </div>
-    <div
-      class="vesper-sheet-children"
-    />
-  </div>
-</dialog>
-`;
-
-exports[`sheet [snapshot] > left side with buttons and children 1`] = `
-<dialog
   aria-describedby="_r_27_"
   aria-labelledby="_r_26_"
-  class="vesper-sheet vesper-sheet-left"
+  class="vesper-sheet vesper-sheet-right"
 >
   <div
     class="vesper-sheet-content"
@@ -163,106 +51,16 @@ exports[`sheet [snapshot] > left side with buttons and children 1`] = `
     </div>
     <div
       class="vesper-sheet-children"
-    >
-      Sheet body content
-    </div>
-    <div
-      class="vesper-sheet-buttons"
-    >
-      <button
-        class="vesper-button vesper-button-lg vesper-button-tertiary"
-      >
-        Cancel
-      </button>
-      <button
-        class="vesper-button vesper-button-lg vesper-button-contrast"
-      >
-        Save
-      </button>
-    </div>
+    />
   </div>
 </dialog>
 `;
 
-exports[`sheet [snapshot] > popover mode (left side with buttons and children) 1`] = `
-<dialog
-  aria-describedby="_r_2b_"
-  aria-labelledby="_r_2a_"
-  class="vesper-sheet vesper-sheet-left"
-  popover="manual"
->
-  <div
-    class="vesper-sheet-content"
-  >
-    <div
-      class="vesper-sheet-header"
-    >
-      <div
-        class="vesper-sheet-title-description"
-      >
-        <p
-          class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_2a_"
-        >
-          Sheet title
-        </p>
-        <p
-          class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_2b_"
-        >
-          This is a description of the sheet content.
-        </p>
-      </div>
-      <button
-        aria-label="Close sheet"
-        class="vesper-button vesper-button-md vesper-button-tertiary vesper-icon-button"
-        type="button"
-      >
-        <span
-          class="vesper-button-icon"
-        >
-          <svg
-            fill="none"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
-      </button>
-    </div>
-    <div
-      class="vesper-sheet-children"
-    >
-      Sheet body content
-    </div>
-    <div
-      class="vesper-sheet-buttons"
-    >
-      <button
-        class="vesper-button vesper-button-lg vesper-button-tertiary"
-      >
-        Cancel
-      </button>
-      <button
-        class="vesper-button vesper-button-lg vesper-button-contrast"
-      >
-        Save
-      </button>
-    </div>
-  </div>
-</dialog>
-`;
-
-exports[`sheet [snapshot] > popover mode (right side) 1`] = `
+exports[`sheet [snapshot] > left side 1`] = `
 <dialog
   aria-describedby="_r_29_"
   aria-labelledby="_r_28_"
-  class="vesper-sheet vesper-sheet-right"
-  popover="manual"
+  class="vesper-sheet vesper-sheet-left"
 >
   <div
     class="vesper-sheet-content"
@@ -314,10 +112,212 @@ exports[`sheet [snapshot] > popover mode (right side) 1`] = `
 </dialog>
 `;
 
+exports[`sheet [snapshot] > left side with buttons and children 1`] = `
+<dialog
+  aria-describedby="_r_2f_"
+  aria-labelledby="_r_2e_"
+  class="vesper-sheet vesper-sheet-left"
+>
+  <div
+    class="vesper-sheet-content"
+  >
+    <div
+      class="vesper-sheet-header"
+    >
+      <div
+        class="vesper-sheet-title-description"
+      >
+        <p
+          class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
+          id="_r_2e_"
+        >
+          Sheet title
+        </p>
+        <p
+          class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
+          id="_r_2f_"
+        >
+          This is a description of the sheet content.
+        </p>
+      </div>
+      <button
+        aria-label="Close sheet"
+        class="vesper-button vesper-button-md vesper-button-tertiary vesper-icon-button"
+        type="button"
+      >
+        <span
+          class="vesper-button-icon"
+        >
+          <svg
+            fill="none"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      class="vesper-sheet-children"
+    >
+      Sheet body content
+    </div>
+    <div
+      class="vesper-sheet-buttons"
+    >
+      <button
+        class="vesper-button vesper-button-lg vesper-button-tertiary"
+      >
+        Cancel
+      </button>
+      <button
+        class="vesper-button vesper-button-lg vesper-button-contrast"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</dialog>
+`;
+
+exports[`sheet [snapshot] > popover mode (left side with buttons and children) 1`] = `
+<dialog
+  aria-describedby="_r_2j_"
+  aria-labelledby="_r_2i_"
+  class="vesper-sheet vesper-sheet-left"
+  popover="manual"
+>
+  <div
+    class="vesper-sheet-content"
+  >
+    <div
+      class="vesper-sheet-header"
+    >
+      <div
+        class="vesper-sheet-title-description"
+      >
+        <p
+          class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
+          id="_r_2i_"
+        >
+          Sheet title
+        </p>
+        <p
+          class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
+          id="_r_2j_"
+        >
+          This is a description of the sheet content.
+        </p>
+      </div>
+      <button
+        aria-label="Close sheet"
+        class="vesper-button vesper-button-md vesper-button-tertiary vesper-icon-button"
+        type="button"
+      >
+        <span
+          class="vesper-button-icon"
+        >
+          <svg
+            fill="none"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      class="vesper-sheet-children"
+    >
+      Sheet body content
+    </div>
+    <div
+      class="vesper-sheet-buttons"
+    >
+      <button
+        class="vesper-button vesper-button-lg vesper-button-tertiary"
+      >
+        Cancel
+      </button>
+      <button
+        class="vesper-button vesper-button-lg vesper-button-contrast"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</dialog>
+`;
+
+exports[`sheet [snapshot] > popover mode (right side) 1`] = `
+<dialog
+  aria-describedby="_r_2h_"
+  aria-labelledby="_r_2g_"
+  class="vesper-sheet vesper-sheet-right"
+  popover="manual"
+>
+  <div
+    class="vesper-sheet-content"
+  >
+    <div
+      class="vesper-sheet-header"
+    >
+      <div
+        class="vesper-sheet-title-description"
+      >
+        <p
+          class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
+          id="_r_2g_"
+        >
+          Sheet title
+        </p>
+        <p
+          class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
+          id="_r_2h_"
+        >
+          This is a description of the sheet content.
+        </p>
+      </div>
+      <button
+        aria-label="Close sheet"
+        class="vesper-button vesper-button-md vesper-button-tertiary vesper-icon-button"
+        type="button"
+      >
+        <span
+          class="vesper-button-icon"
+        >
+          <svg
+            fill="none"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      class="vesper-sheet-children"
+    />
+  </div>
+</dialog>
+`;
+
 exports[`sheet [snapshot] > with buttons 1`] = `
 <dialog
-  aria-describedby="_r_25_"
-  aria-labelledby="_r_24_"
+  aria-describedby="_r_2d_"
+  aria-labelledby="_r_2c_"
   class="vesper-sheet vesper-sheet-right"
 >
   <div
@@ -331,13 +331,13 @@ exports[`sheet [snapshot] > with buttons 1`] = `
       >
         <p
           class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_24_"
+          id="_r_2c_"
         >
           Sheet title
         </p>
         <p
           class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_25_"
+          id="_r_2d_"
         >
           This is a description of the sheet content.
         </p>
@@ -386,8 +386,8 @@ exports[`sheet [snapshot] > with buttons 1`] = `
 
 exports[`sheet [snapshot] > with children 1`] = `
 <dialog
-  aria-describedby="_r_23_"
-  aria-labelledby="_r_22_"
+  aria-describedby="_r_2b_"
+  aria-labelledby="_r_2a_"
   class="vesper-sheet vesper-sheet-right"
 >
   <div
@@ -401,13 +401,13 @@ exports[`sheet [snapshot] > with children 1`] = `
       >
         <p
           class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_22_"
+          id="_r_2a_"
         >
           Sheet title
         </p>
         <p
           class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_23_"
+          id="_r_2b_"
         >
           This is a description of the sheet content.
         </p>
@@ -439,5 +439,77 @@ exports[`sheet [snapshot] > with children 1`] = `
       Sheet body content
     </div>
   </div>
+</dialog>
+`;
+
+exports[`sheet [snapshot] > with form 1`] = `
+<dialog
+  aria-describedby="_r_2l_"
+  aria-labelledby="_r_2k_"
+  class="vesper-sheet vesper-sheet-right"
+>
+  <form
+    class="vesper-sheet-content"
+    id="modal-form"
+    method="post"
+  >
+    <div
+      class="vesper-sheet-header"
+    >
+      <div
+        class="vesper-sheet-title-description"
+      >
+        <p
+          class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
+          id="_r_2k_"
+        >
+          Sheet title
+        </p>
+        <p
+          class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
+          id="_r_2l_"
+        >
+          This is a description of the sheet content.
+        </p>
+      </div>
+      <button
+        aria-label="Close sheet"
+        class="vesper-button vesper-button-md vesper-button-tertiary vesper-icon-button"
+        type="button"
+      >
+        <span
+          class="vesper-button-icon"
+        >
+          <svg
+            fill="none"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      class="vesper-sheet-children"
+    />
+    <div
+      class="vesper-sheet-buttons"
+    >
+      <button
+        class="vesper-button vesper-button-lg vesper-button-tertiary"
+      >
+        Cancel
+      </button>
+      <button
+        class="vesper-button vesper-button-lg vesper-button-contrast"
+      >
+        Save
+      </button>
+    </div>
+  </form>
 </dialog>
 `;

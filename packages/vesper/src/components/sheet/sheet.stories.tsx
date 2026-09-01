@@ -34,6 +34,9 @@ function SheetStoryComponent({
       >
         <Typography>
           {`Don't be afraid to make decisions. Put your feelings into it, your heart, it's your world. You are just a whisper floating across a mountain.`}
+          {`Don't be afraid to make decisions. Put your feelings into it, your heart, it's your world. You are just a whisper floating across a mountain.`}
+          {`Don't be afraid to make decisions. Put your feelings into it, your heart, it's your world. You are just a whisper floating across a mountain.`}
+          {`Don't be afraid to make decisions. Put your feelings into it, your heart, it's your world. You are just a whisper floating across a mountain.`}
         </Typography>
       </Sheet>
     </>

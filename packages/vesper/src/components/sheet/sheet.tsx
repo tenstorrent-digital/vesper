@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  type ComponentProps,
   type ComponentPropsWithoutRef,
   type Ref,
   useCallback,
@@ -46,6 +47,25 @@ export interface SheetProps extends Omit<
   popover?: boolean;
   /** An optional array of button props to render as action buttons at the bottom of the sheet. The last button defaults to `"contrast"` variant; all others default to `"tertiary"`. */
   buttons?: Omit<ButtonProps, "size" | "as">[];
+  /** When provided, wraps the sheet content in a `<form>` element with the given form attributes, enabling native form submission from within the sheet. @default false */
+  form?: Pick<
+    ComponentProps<"form">,
+    | "id"
+    | "name"
+    | "action"
+    | "method"
+    | "encType"
+    | "acceptCharset"
+    | "autoCapitalize"
+    | "autoComplete"
+    | "autoCorrect"
+    | "spellCheck"
+    | "noValidate"
+    | "onReset"
+    | "onSubmit"
+    | "target"
+    | "rel"
+  >;
 }
 
 /**
@@ -61,6 +81,7 @@ export interface SheetProps extends Omit<
  * @param {boolean} [props.popover] - (optional) Render as a non-modal popover instead of a modal dialog. @default false
  * @param {Ref<SheetRef>} [props.ref] - (optional) A ref exposing imperative `open()` and `close()` methods
  * @param {ButtonProps[]} [props.buttons] - (optional) Action buttons rendered at the bottom of the sheet
+ * @param {object} [props.form] - (optional) Form attributes to wrap the sheet content in a `<form>` element
  *
  * You may also pass any additional props to the underlying `dialog` element
  *
@@ -93,6 +114,7 @@ export function Sheet(props: SheetProps) {
     title,
     description,
     buttons = [],
+    form,
     ...rest
   } = props;
 
@@ -145,6 +167,51 @@ export function Sheet(props: SheetProps) {
     .filter(Boolean)
     .join(" ");
 
+  const sheetContent = (
+    <>
+      <div className="vesper-sheet-header">
+        <div className="vesper-sheet-title-description">
+          <Typography
+            variant="heading-sm"
+            className="vesper-sheet-title"
+            id={titleId}
+          >
+            {title}
+          </Typography>
+          <Typography
+            variant="copy-sm"
+            className="vesper-sheet-description"
+            id={descriptionId}
+          >
+            {description}
+          </Typography>
+        </div>
+        <IconButton
+          aria-label="Close sheet"
+          type="button"
+          icon={<Close />}
+          size="md"
+          variant="tertiary"
+          onClick={close}
+        />
+      </div>
+      <div className="vesper-sheet-children">{children}</div>
+      {buttons.length > 0 && (
+        <div className="vesper-sheet-buttons">
+          {buttons.map((button, index) => {
+            const variant: ButtonVariant =
+              button.variant ||
+              (index === buttons.length - 1 ? "contrast" : "tertiary");
+
+            return (
+              <Button size="lg" key={index} {...button} variant={variant} />
+            );
+          })}
+        </div>
+      )}
+    </>
+  );
+
   return (
     <dialog
       {...(popover && { popover: "manual" })}
@@ -154,48 +221,13 @@ export function Sheet(props: SheetProps) {
       aria-describedby={describedBy}
       {...rest}
     >
-      <div className="vesper-sheet-content">
-        <div className="vesper-sheet-header">
-          <div className="vesper-sheet-title-description">
-            <Typography
-              variant="heading-sm"
-              className="vesper-sheet-title"
-              id={titleId}
-            >
-              {title}
-            </Typography>
-            <Typography
-              variant="copy-sm"
-              className="vesper-sheet-description"
-              id={descriptionId}
-            >
-              {description}
-            </Typography>
-          </div>
-          <IconButton
-            aria-label="Close sheet"
-            type="button"
-            icon={<Close />}
-            size="md"
-            variant="tertiary"
-            onClick={close}
-          />
-        </div>
-        <div className="vesper-sheet-children">{children}</div>
-        {buttons.length > 0 && (
-          <div className="vesper-sheet-buttons">
-            {buttons.map((button, index) => {
-              const variant: ButtonVariant =
-                button.variant ||
-                (index === buttons.length - 1 ? "contrast" : "tertiary");
-
-              return (
-                <Button size="lg" key={index} {...button} variant={variant} />
-              );
-            })}
-          </div>
-        )}
-      </div>
+      {form ? (
+        <form className="vesper-sheet-content" {...form}>
+          {sheetContent}
+        </form>
+      ) : (
+        <div className="vesper-sheet-content">{sheetContent}</div>
+      )}
     </dialog>
   );
 }

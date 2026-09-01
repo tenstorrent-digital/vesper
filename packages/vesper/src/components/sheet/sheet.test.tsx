@@ -1,6 +1,6 @@
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
-import { afterEach, beforeEach, describe, expect, test } from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { Sheet, type SheetProps, useSheet } from "@/components/sheet/sheet";
 
@@ -419,6 +419,67 @@ describe("sheet [unit]", () => {
       });
     });
   });
+
+  describe("form mode", () => {
+    test("renders a form when form prop is provided", () => {
+      const { container } = render(
+        <Sheet
+          title={TITLE}
+          description={DESCRIPTION}
+          form={{ id: "test-form", method: "post" }}
+        />,
+      );
+      const form = container.querySelector("form");
+      expect(form).not.toBeNull();
+      expect(form).toHaveClass("vesper-sheet-content");
+    });
+
+    test("form receives form props", () => {
+      const { container } = render(
+        <Sheet
+          title={TITLE}
+          description={DESCRIPTION}
+          form={{
+            id: "test-form",
+            method: "post",
+            action: "/submit",
+            name: "my-form",
+          }}
+        />,
+      );
+      const form = container.querySelector("form");
+      expect(form).toHaveAttribute("id", "test-form");
+      expect(form).toHaveAttribute("method", "post");
+      expect(form).toHaveAttribute("action", "/submit");
+      expect(form).toHaveAttribute("name", "my-form");
+    });
+
+    test("renders a div when form prop is not provided", () => {
+      const { container } = render(
+        <Sheet title={TITLE} description={DESCRIPTION} />,
+      );
+      const modalContainer = container.querySelector(".vesper-sheet-content");
+      expect(modalContainer?.tagName).toBe("DIV");
+    });
+
+    test("form onSubmit callback fires", () => {
+      const onSubmit = vi.fn((e) => e.preventDefault());
+      const result = render(
+        <SheetWithHook
+          title={TITLE}
+          description={DESCRIPTION}
+          form={{ id: "test-form", onSubmit }}
+          buttons={[{ children: "Submit", type: "submit" }]}
+        />,
+      );
+
+      fireEvent.click(result.getByTestId("open-trigger"));
+
+      const form = result.container.querySelector("form") as HTMLFormElement;
+      fireEvent.submit(form);
+      expect(onSubmit).toHaveBeenCalled();
+    });
+  });
 });
 
 type SheetSnapshotPermutation = SheetProps & { permutationName: string };
@@ -469,6 +530,13 @@ const SHEET_SNAPSHOT_PERMUTATIONS: SheetSnapshotPermutation[] = [
     popover: true,
     buttons: BUTTONS,
     children: "Sheet body content",
+  },
+  {
+    permutationName: "with form",
+    title: TITLE,
+    description: DESCRIPTION,
+    form: { id: "modal-form", method: "post" },
+    buttons: BUTTONS,
   },
 ];
 
