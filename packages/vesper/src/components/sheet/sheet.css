@@ -129,13 +129,8 @@
 }
 
 .vesper-sheet-children {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  overflow-y: scroll;
   flex: 1;
+  min-height: 0;
   color: var(--vesper-text-primary);
 }
 

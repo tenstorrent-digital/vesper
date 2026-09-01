@@ -18,6 +18,7 @@ import {
 } from "@/components/button/button";
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Close } from "@/components/icons/icons";
+import { ScrollArea } from "@/components/scroll-area/scroll-area";
 import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
@@ -195,7 +196,13 @@ export function Sheet(props: SheetProps) {
           onClick={close}
         />
       </div>
-      <div className="vesper-sheet-children">{children}</div>
+      <Typography
+        as={ScrollArea}
+        variant="copy-md"
+        className="vesper-sheet-children"
+      >
+        {children}
+      </Typography>
       {buttons.length > 0 && (
         <div className="vesper-sheet-buttons">
           {buttons.map((button, index) => {

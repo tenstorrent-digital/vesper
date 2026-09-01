@@ -2,8 +2,8 @@
 
 exports[`sheet [snapshot] > default (right side) 1`] = `
 <dialog
-  aria-describedby="_r_27_"
-  aria-labelledby="_r_26_"
+  aria-describedby="_r_3a_"
+  aria-labelledby="_r_39_"
   class="vesper-sheet vesper-sheet-right"
 >
   <div
@@ -17,13 +17,13 @@ exports[`sheet [snapshot] > default (right side) 1`] = `
       >
         <p
           class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_26_"
+          id="_r_39_"
         >
           Sheet title
         </p>
         <p
           class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_27_"
+          id="_r_3a_"
         >
           This is a description of the sheet content.
         </p>
@@ -50,16 +50,31 @@ exports[`sheet [snapshot] > default (right side) 1`] = `
       </button>
     </div>
     <div
-      class="vesper-sheet-children"
-    />
+      class="vesper-scroll-area vesper-typography vesper-typography-copy-md vesper-sheet-children"
+      role="presentation"
+      style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px;"
+    >
+      <div
+        class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+        data-id="base-ui-_r_3b_-viewport"
+        role="presentation"
+        style="overflow: scroll;"
+        tabindex="-1"
+      >
+        <div
+          role="presentation"
+          style="min-width: fit-content;"
+        />
+      </div>
+    </div>
   </div>
 </dialog>
 `;
 
 exports[`sheet [snapshot] > left side 1`] = `
 <dialog
-  aria-describedby="_r_29_"
-  aria-labelledby="_r_28_"
+  aria-describedby="_r_3d_"
+  aria-labelledby="_r_3c_"
   class="vesper-sheet vesper-sheet-left"
 >
   <div
@@ -73,13 +88,13 @@ exports[`sheet [snapshot] > left side 1`] = `
       >
         <p
           class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_28_"
+          id="_r_3c_"
         >
           Sheet title
         </p>
         <p
           class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_29_"
+          id="_r_3d_"
         >
           This is a description of the sheet content.
         </p>
@@ -106,16 +121,31 @@ exports[`sheet [snapshot] > left side 1`] = `
       </button>
     </div>
     <div
-      class="vesper-sheet-children"
-    />
+      class="vesper-scroll-area vesper-typography vesper-typography-copy-md vesper-sheet-children"
+      role="presentation"
+      style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px;"
+    >
+      <div
+        class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+        data-id="base-ui-_r_3e_-viewport"
+        role="presentation"
+        style="overflow: scroll;"
+        tabindex="-1"
+      >
+        <div
+          role="presentation"
+          style="min-width: fit-content;"
+        />
+      </div>
+    </div>
   </div>
 </dialog>
 `;
 
 exports[`sheet [snapshot] > left side with buttons and children 1`] = `
 <dialog
-  aria-describedby="_r_2f_"
-  aria-labelledby="_r_2e_"
+  aria-describedby="_r_3m_"
+  aria-labelledby="_r_3l_"
   class="vesper-sheet vesper-sheet-left"
 >
   <div
@@ -129,13 +159,13 @@ exports[`sheet [snapshot] > left side with buttons and children 1`] = `
       >
         <p
           class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_2e_"
+          id="_r_3l_"
         >
           Sheet title
         </p>
         <p
           class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_2f_"
+          id="_r_3m_"
         >
           This is a description of the sheet content.
         </p>
@@ -162,9 +192,24 @@ exports[`sheet [snapshot] > left side with buttons and children 1`] = `
       </button>
     </div>
     <div
-      class="vesper-sheet-children"
+      class="vesper-scroll-area vesper-typography vesper-typography-copy-md vesper-sheet-children"
+      role="presentation"
+      style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px;"
     >
-      Sheet body content
+      <div
+        class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+        data-id="base-ui-_r_3n_-viewport"
+        role="presentation"
+        style="overflow: scroll;"
+        tabindex="-1"
+      >
+        <div
+          role="presentation"
+          style="min-width: fit-content;"
+        >
+          Sheet body content
+        </div>
+      </div>
     </div>
     <div
       class="vesper-sheet-buttons"
@@ -186,8 +231,8 @@ exports[`sheet [snapshot] > left side with buttons and children 1`] = `
 
 exports[`sheet [snapshot] > popover mode (left side with buttons and children) 1`] = `
 <dialog
-  aria-describedby="_r_2j_"
-  aria-labelledby="_r_2i_"
+  aria-describedby="_r_3s_"
+  aria-labelledby="_r_3r_"
   class="vesper-sheet vesper-sheet-left"
   popover="manual"
 >
@@ -202,13 +247,13 @@ exports[`sheet [snapshot] > popover mode (left side with buttons and children) 1
       >
         <p
           class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_2i_"
+          id="_r_3r_"
         >
           Sheet title
         </p>
         <p
           class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_2j_"
+          id="_r_3s_"
         >
           This is a description of the sheet content.
         </p>
@@ -235,9 +280,24 @@ exports[`sheet [snapshot] > popover mode (left side with buttons and children) 1
       </button>
     </div>
     <div
-      class="vesper-sheet-children"
+      class="vesper-scroll-area vesper-typography vesper-typography-copy-md vesper-sheet-children"
+      role="presentation"
+      style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px;"
     >
-      Sheet body content
+      <div
+        class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+        data-id="base-ui-_r_3t_-viewport"
+        role="presentation"
+        style="overflow: scroll;"
+        tabindex="-1"
+      >
+        <div
+          role="presentation"
+          style="min-width: fit-content;"
+        >
+          Sheet body content
+        </div>
+      </div>
     </div>
     <div
       class="vesper-sheet-buttons"
@@ -259,8 +319,8 @@ exports[`sheet [snapshot] > popover mode (left side with buttons and children) 1
 
 exports[`sheet [snapshot] > popover mode (right side) 1`] = `
 <dialog
-  aria-describedby="_r_2h_"
-  aria-labelledby="_r_2g_"
+  aria-describedby="_r_3p_"
+  aria-labelledby="_r_3o_"
   class="vesper-sheet vesper-sheet-right"
   popover="manual"
 >
@@ -275,13 +335,13 @@ exports[`sheet [snapshot] > popover mode (right side) 1`] = `
       >
         <p
           class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_2g_"
+          id="_r_3o_"
         >
           Sheet title
         </p>
         <p
           class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_2h_"
+          id="_r_3p_"
         >
           This is a description of the sheet content.
         </p>
@@ -308,16 +368,31 @@ exports[`sheet [snapshot] > popover mode (right side) 1`] = `
       </button>
     </div>
     <div
-      class="vesper-sheet-children"
-    />
+      class="vesper-scroll-area vesper-typography vesper-typography-copy-md vesper-sheet-children"
+      role="presentation"
+      style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px;"
+    >
+      <div
+        class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+        data-id="base-ui-_r_3q_-viewport"
+        role="presentation"
+        style="overflow: scroll;"
+        tabindex="-1"
+      >
+        <div
+          role="presentation"
+          style="min-width: fit-content;"
+        />
+      </div>
+    </div>
   </div>
 </dialog>
 `;
 
 exports[`sheet [snapshot] > with buttons 1`] = `
 <dialog
-  aria-describedby="_r_2d_"
-  aria-labelledby="_r_2c_"
+  aria-describedby="_r_3j_"
+  aria-labelledby="_r_3i_"
   class="vesper-sheet vesper-sheet-right"
 >
   <div
@@ -331,13 +406,13 @@ exports[`sheet [snapshot] > with buttons 1`] = `
       >
         <p
           class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_2c_"
+          id="_r_3i_"
         >
           Sheet title
         </p>
         <p
           class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_2d_"
+          id="_r_3j_"
         >
           This is a description of the sheet content.
         </p>
@@ -364,8 +439,23 @@ exports[`sheet [snapshot] > with buttons 1`] = `
       </button>
     </div>
     <div
-      class="vesper-sheet-children"
-    />
+      class="vesper-scroll-area vesper-typography vesper-typography-copy-md vesper-sheet-children"
+      role="presentation"
+      style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px;"
+    >
+      <div
+        class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+        data-id="base-ui-_r_3k_-viewport"
+        role="presentation"
+        style="overflow: scroll;"
+        tabindex="-1"
+      >
+        <div
+          role="presentation"
+          style="min-width: fit-content;"
+        />
+      </div>
+    </div>
     <div
       class="vesper-sheet-buttons"
     >
@@ -386,8 +476,8 @@ exports[`sheet [snapshot] > with buttons 1`] = `
 
 exports[`sheet [snapshot] > with children 1`] = `
 <dialog
-  aria-describedby="_r_2b_"
-  aria-labelledby="_r_2a_"
+  aria-describedby="_r_3g_"
+  aria-labelledby="_r_3f_"
   class="vesper-sheet vesper-sheet-right"
 >
   <div
@@ -401,13 +491,13 @@ exports[`sheet [snapshot] > with children 1`] = `
       >
         <p
           class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_2a_"
+          id="_r_3f_"
         >
           Sheet title
         </p>
         <p
           class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_2b_"
+          id="_r_3g_"
         >
           This is a description of the sheet content.
         </p>
@@ -434,9 +524,24 @@ exports[`sheet [snapshot] > with children 1`] = `
       </button>
     </div>
     <div
-      class="vesper-sheet-children"
+      class="vesper-scroll-area vesper-typography vesper-typography-copy-md vesper-sheet-children"
+      role="presentation"
+      style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px;"
     >
-      Sheet body content
+      <div
+        class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+        data-id="base-ui-_r_3h_-viewport"
+        role="presentation"
+        style="overflow: scroll;"
+        tabindex="-1"
+      >
+        <div
+          role="presentation"
+          style="min-width: fit-content;"
+        >
+          Sheet body content
+        </div>
+      </div>
     </div>
   </div>
 </dialog>
@@ -444,8 +549,8 @@ exports[`sheet [snapshot] > with children 1`] = `
 
 exports[`sheet [snapshot] > with form 1`] = `
 <dialog
-  aria-describedby="_r_2l_"
-  aria-labelledby="_r_2k_"
+  aria-describedby="_r_3v_"
+  aria-labelledby="_r_3u_"
   class="vesper-sheet vesper-sheet-right"
 >
   <form
@@ -461,13 +566,13 @@ exports[`sheet [snapshot] > with form 1`] = `
       >
         <p
           class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_2k_"
+          id="_r_3u_"
         >
           Sheet title
         </p>
         <p
           class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_2l_"
+          id="_r_3v_"
         >
           This is a description of the sheet content.
         </p>
@@ -494,8 +599,23 @@ exports[`sheet [snapshot] > with form 1`] = `
       </button>
     </div>
     <div
-      class="vesper-sheet-children"
-    />
+      class="vesper-scroll-area vesper-typography vesper-typography-copy-md vesper-sheet-children"
+      role="presentation"
+      style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px;"
+    >
+      <div
+        class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+        data-id="base-ui-_r_40_-viewport"
+        role="presentation"
+        style="overflow: scroll;"
+        tabindex="-1"
+      >
+        <div
+          role="presentation"
+          style="min-width: fit-content;"
+        />
+      </div>
+    </div>
     <div
       class="vesper-sheet-buttons"
     >
