@@ -125,6 +125,7 @@ The example below shows how `"on-interaction"` hides scrollbar thumbs until you 
 The element that actually manages `ScrollArea` overflow is an inner viewport `<div>` element. You can access the viewport via the `viewportRef` prop. This can be useful if you want to read the scroll position or programatically scroll the viewport to a specific location:
 
 ```tsx
+import { useEffect, useRef } from "react";
 import { ScrollArea } from "@tenstorrent/vesper/scroll-area";
 
 function ExposedViewport() {
@@ -134,6 +135,8 @@ function ExposedViewport() {
     viewport.current?.scrollTo(0, 100);
   }, []);
 
-  return <ScrollArea ref={viewport}>{/* scroll-area content */}</ScrollArea>;
+  return (
+    <ScrollArea viewportRef={viewport}>{/* scroll-area content */}</ScrollArea>
+  );
 }
 ```
