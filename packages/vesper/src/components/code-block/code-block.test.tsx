@@ -174,9 +174,11 @@ describe("code-block [unit]", () => {
       });
 
     const { container } = render(<CodeBlock>{streamFactory}</CodeBlock>);
-    const pre = container.querySelector("pre.shiki.vesper") as HTMLElement;
+    const scrollAreaViewport = container.querySelector(
+      ".vesper-scroll-area-viewport",
+    ) as HTMLElement;
 
-    const scrollIntoViewSpy = vi.spyOn(pre, "scrollIntoView");
+    const scrollTopSpy = vi.spyOn(scrollAreaViewport, "scrollTop", "set");
 
     // Allow the factory to be called (deferred to microtask)
     await new Promise((r) => setTimeout(r, 0));
@@ -186,9 +188,9 @@ describe("code-block [unit]", () => {
     await new Promise((r) => setTimeout(r, 200));
 
     // observer sets scrollTop to scrollHeight on DOM mutation
-    expect(scrollIntoViewSpy).toHaveBeenCalled();
+    expect(scrollTopSpy).toHaveBeenCalled();
 
-    scrollIntoViewSpy.mockRestore();
+    scrollTopSpy.mockRestore();
     close!();
   });
 
