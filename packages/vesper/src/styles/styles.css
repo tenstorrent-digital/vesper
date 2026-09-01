@@ -19,7 +19,6 @@
 /* components */
 @import "../components/scroll-area/scroll-area.css" layer(vesper);
 @import "../components/combobox/combobox.css" layer(vesper);
-@import "../components/form-input-wrapper/form-input-wrapper.css" layer(vesper);
 @import "../components/text-area/text-area.css" layer(vesper);
 @import "../components/form-input-message/form-input-message.css" layer(vesper);
 @import "../components/select/select.css" layer(vesper);

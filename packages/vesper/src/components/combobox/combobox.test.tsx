@@ -22,66 +22,38 @@ const MIXED_OPTIONS = ["Canada", { value: "jp", label: "Japan" }];
 
 type ComboboxPermutation = ComboboxProps & { permutationName: string };
 
-const COMBOBOX_SNAPSHOT_PERMUTATIONS: ComboboxPermutation[] = [
-  // One per variant, which determines the message icon and colour scheme
-  ...COMBOBOX_VARIANTS.map((variant) => ({
-    permutationName: `variant: ${variant}`,
-    variant,
-    options: OPTIONS,
-    message: "Message text",
-  })),
-  // One per size, which determines the input's typography variant
-  ...COMBOBOX_SIZES.map((size) => ({
-    permutationName: `size: ${size}`,
-    size,
-    options: OPTIONS,
-  })),
-  // Meaningful feature combos
-  { permutationName: "with label", label: "Label text", options: OPTIONS },
-  {
-    permutationName: "required",
-    label: "Label text",
-    required: true,
-    options: OPTIONS,
-  },
-  // A selected value swaps the trigger out for the clear button
-  { permutationName: "with value", options: OPTIONS, defaultValue: "banana" },
-  { permutationName: "disabled", disabled: true, options: OPTIONS },
-  {
-    permutationName: "full options",
-    variant: "error" as const,
-    size: "lg" as const,
-    label: "Label text",
-    message: "Message text",
-    placeholder: "Placeholder text",
-    required: true,
-    name: "field-name",
-    options: OPTIONS,
-    defaultValue: "apple",
-  },
-];
-
-const COMBOBOX_PERMUTATIONS: ComboboxPermutation[] = COMBOBOX_VARIANTS.map(
-  (variant) => ({
-    permutationName: `variant: ${variant}`,
-    variant,
-    label: "Label text",
-    message: "Message text",
-    options: OPTIONS,
-  }),
+const COMBOBOX_PERMUTATIONS: ComboboxPermutation[] = COMBOBOX_SIZES.flatMap(
+  (size) =>
+    COMBOBOX_VARIANTS.flatMap((variant) => [
+      {
+        permutationName: `${size}, ${variant}`,
+        ["aria-label"]: "Fruit",
+        size,
+        variant,
+        options: OPTIONS,
+        defaultValue: "banana",
+      },
+      {
+        permutationName: `${size}, ${variant}, disabled`,
+        ["aria-label"]: "Fruit",
+        size,
+        variant,
+        options: OPTIONS,
+        disabled: true,
+      },
+      {
+        permutationName: `${size}, ${variant}, full options`,
+        ["aria-label"]: "Fruit",
+        size,
+        variant,
+        options: OPTIONS,
+        defaultValue: "banana",
+        disabled: true,
+        placeholder: "Placeholder text",
+        name: "field-name",
+      },
+    ]),
 );
-
-const COMBOBOX_A11Y_FAILING_PERMUTATIONS: (Pick<ComboboxProps, "variant"> & {
-  theme: string;
-})[] = [
-  { variant: "default", theme: "light" },
-  { variant: "warning", theme: "light" },
-  { variant: "success", theme: "light" },
-  { variant: "error", theme: "light" },
-  { variant: "default", theme: "dark" },
-  { variant: "success", theme: "dark" },
-  { variant: "error", theme: "dark" },
-];
 
 /** Renders a `Combobox` and returns the render result alongside its most commonly asserted elements */
 function renderCombobox(props: Partial<ComboboxProps> = {}) {
@@ -119,26 +91,6 @@ describe("combobox [unit]", () => {
     expect(input.tagName).toBe("INPUT");
     expect(input).toHaveAttribute("role", "combobox");
     expect(input).not.toHaveAttribute("aria-describedby");
-  });
-
-  test("the label is associated with the input", () => {
-    const result = renderCombobox({ label: "Fruit" });
-
-    expect(result.getByLabelText("Fruit")).toBe(result.input);
-  });
-
-  test("the input is described by the message, alongside a custom aria-describedby", () => {
-    const { input, message } = renderCombobox({
-      message: "Pick a fruit",
-      "aria-describedby": "custom-description",
-    });
-
-    expect(message).toHaveTextContent("Pick a fruit");
-    expect(message.id).not.toBe("");
-    expect(input.getAttribute("aria-describedby")?.split(" ")).toEqual([
-      "custom-description",
-      message.id,
-    ]);
   });
 
   test("string options are their own label, object options render their label", async () => {
@@ -214,7 +166,7 @@ describe("combobox [unit]", () => {
 });
 
 describe("combobox [snapshot]", () => {
-  COMBOBOX_SNAPSHOT_PERMUTATIONS.forEach((permutation) => {
+  COMBOBOX_PERMUTATIONS.forEach((permutation) => {
     const { permutationName, ...props } = permutation;
 
     test(permutationName, () => {
@@ -239,19 +191,11 @@ describe("combobox [a11y]", () => {
 
     COMBOBOX_PERMUTATIONS.forEach((permutation) => {
       const { permutationName, ...props } = permutation;
-      const label = `wcag2aaa (${permutationName}, ${theme})`;
 
-      const testFn = async () => {
+      test(`wcag2aaa (${permutationName}, ${theme})`, async () => {
         const { container } = render(<Combobox {...props} />);
         expect(await axe.run(container.firstChild!)).toHaveNoViolations();
-      };
-
-      const failsA11y = COMBOBOX_A11Y_FAILING_PERMUTATIONS.some(
-        (p) => p.variant === props.variant && p.theme === theme,
-      );
-
-      if (failsA11y) test.todo(label, testFn);
-      else test(label, testFn);
+      });
     });
   });
 });
