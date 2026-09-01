@@ -22,7 +22,7 @@ A toggle switch input with an optional label. Uses the native `switch` ARIA role
 | `required`       | `boolean`                              | When `true`, marks the input as required and appends an asterisk to the label.                  | `false` |
 | `onChange`       | `ChangeEventHandler<HTMLInputElement>` | Callback fired when the switch is toggled.                                                      | —       |
 
-Form and accessibility props such as `autoFocus`, `tabIndex`, `aria-label`, `aria-labelledby`, `aria-describedby`, `aria-invalid`, and event handlers like `onFocus`, `onBlur`, and `onKeyDown` are forwarded to the underlying `<input>` element, as is `ref`. Any other props, including `className`, are forwarded to the wrapping `<div>` element.
+Form and accessibility props such as `autoFocus`, `tabIndex`, `aria-label`, `aria-labelledby`, `aria-describedby`, `aria-invalid`, and event handlers like `onFocus`, `onBlur`, and `onKeyDown` are forwarded to the underlying `<input>` element, as is `ref`. Any other props, including `className`, are forwarded to the wrapping `<label>` element.
 
 Use the `Switch` component when toggling a setting on and off takes effect immediately. Reach for [the `Checkbox` component](./checkbox.mdx) instead when building form fields, such as accepting terms or opting into a mailing list, or when you need to represent an indeterminate state.
 
