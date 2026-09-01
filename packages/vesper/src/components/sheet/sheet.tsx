@@ -48,7 +48,7 @@ export interface SheetProps extends Omit<
   popover?: boolean;
   /** An optional array of button props to render as action buttons at the bottom of the sheet. The last button defaults to `"contrast"` variant; all others default to `"tertiary"`. */
   buttons?: Omit<ButtonProps, "size" | "as">[];
-  /** When provided, wraps the sheet content in a `<form>` element with the given form attributes, enabling native form submission from within the sheet. @default false */
+  /** When provided, wraps the sheet content in a `<form>` element with the given form attributes, enabling native form submission from within the sheet */
   form?: Pick<
     ComponentProps<"form">,
     | "id"
