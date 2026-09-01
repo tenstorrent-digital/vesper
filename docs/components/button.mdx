@@ -21,25 +21,54 @@ A versatile, polymorphic button component supporting multiple sizes, visual vari
 | `as`        | `ElementType`                                                                           | The root element type for polymorphic rendering.                              | `"button"`  |
 | `children`  | `ReactNode`                                                                             | The content of the button.                                                    | —           |
 
+All other props are forwarded to the underlying `<button>` element, or whichever root element is specified via the `as` prop.
+
 ## Examples
+
+### Basic usage
+
+The most straightforward way to render a `Button` is to give it some children:
 
 ```tsx
 import { Button } from "@tenstorrent/vesper/button";
 
-// Basic usage
 <Button>Submit</Button>;
 ```
 
+### Variants
+
+Buttons can be rendered in several different variants:
+
+| Variant      | Preview                                      | When to use                                                                                                   |
+| ------------ | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `"primary"`  | <Button variant="primary">Primary</Button>   | Default variant. Use for the main action a user is expected to take in a given context.                       |
+| `"subtle"`   | <Button variant="subtle">Subtle</Button>     | Use for secondary actions that are important but should have less visual prominence than the primary action.  |
+| `"tertiary"` | <Button variant="tertiary">Tertiary</Button> | Use for secondary or supporting actions that need a clear boundary from surrounding content.                  |
+| `"contrast"` | <Button variant="contrast">Contrast</Button> | Use when an action needs strong visual contrast against its surrounding content.                              |
+| `"ghost"`    | <Button variant="ghost">Ghost</Button>       | Use for low-emphasis actions where a button's presence should be unobtrusive.                                 |
+| `"danger"`   | <Button variant="danger">Danger</Button>     | Use for destructive or potentially irreversible actions that could result in negative consequence.            |
+| `"warning"`  | <Button variant="warning">Warning</Button>   | Use for actions that may have meaningful consequences or require caution, but are not inherently destructive. |
+
 ```tsx
-// Variants
+import { Button } from "@tenstorrent/vesper/button";
+
 <Button variant="primary">Primary</Button>
-<Button variant="contrast">Contrast</Button>
 <Button variant="subtle">Subtle</Button>
-<Button variant="ghost">Ghost</Button>
 <Button variant="tertiary">Tertiary</Button>
+<Button variant="contrast">Contrast</Button>
+<Button variant="ghost">Ghost</Button>
 <Button variant="danger">Danger</Button>
 <Button variant="warning">Warning</Button>
 ```
+
+### Different sizes
+
+Buttons can be rendered in one of four sizes; `"xs"`, `"sm"`, `"md"`, or `"lg"`. The default size is `"md"`.
+
+<Button size="lg">Large</Button>
+<Button size="md">Medium</Button>
+<Button size="sm">Small</Button>
+<Button size="xs">Extra small</Button>
 
 ```tsx
 // Sizes
@@ -49,17 +78,54 @@ import { Button } from "@tenstorrent/vesper/button";
 <Button size="lg">Large</Button>
 ```
 
+### Rendering icons
+
+Buttons can render icons to the left or the right of their content via the `iconLeft` and `iconRight` props. Simply pass your icon as a `ReactNode` to either of these props:
+
+<Button iconLeft={<Download />}>Download</Button>
+<Button iconRight={<ArrowRight />}>Continue</Button>
+
 ```tsx
-// With icons
+import { Button } from "@tenstorrent/vesper/button";
 import { ArrowRight, Download } from "@tenstorrent/vesper/icons";
 
 <Button iconLeft={<Download />}>Download</Button>
 <Button iconRight={<ArrowRight />}>Continue</Button>
 ```
 
+### Disabling a button
+
+You can disable a `Button` by passing `disabled={true}` or just `disabled` as a prop. Disabling a button prevents interaction and changes the color scheme:
+
+<Button disabled>A disabled button</Button>
+
 ```tsx
-// Rendered as a link
-<Button as="a" href="/next-page">
+import { Button } from "@tenstorrent/vesper/button";
+
+<Button disabled>A disabled button</Button>;
+```
+
+### Polymorphic usage
+
+You can use the `as` prop to specify what underlying element to render. In this case, we are passing `as="a"` to render the `Button` as an anchor link. This is helpful for apps where clicking on a button may navigate to a different page, for example:
+
+<Button as="a" href="#">
   Go to Next Page
 </Button>
+
+```tsx
+<Button as="a" href="#">
+  Go to Next Page
+</Button>
+```
+
+You can also use other components as the underlying `as` element. For example, Next.js comes with a bespoke `Link` component that enables prefetching and client-side navigation between routes, which you may want to use instead of the HTML `<a>` element:
+
+```tsx
+import Link from "next/link";
+import { Button } from "@tenstorrent/vesper/button";
+
+<Button as={Link} prefetch={false} href="/dashboard">
+  Go to Next Page
+</Button>;
 ```
