@@ -70,8 +70,6 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
  * <Checkbox
  *   text="Accept terms"
  *   aria-label="Terms and conditions"
- *   variant="error"
- *   message="You must accept the terms to continue."
  *   required
  * />
  */
