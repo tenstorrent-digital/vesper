@@ -52,33 +52,8 @@ const SELECT_PERMUTATIONS: SelectPermutation[] = SELECT_SIZES.flatMap((size) =>
       options: OPTIONS,
       defaultValue: "tigers",
     },
-    {
-      permutationName: `${size}, ${variant}, with label`,
-      size,
-      variant,
-      options: OPTIONS,
-      label: "Select label",
-    },
-    {
-      permutationName: `${size}, ${variant}, with message`,
-      size,
-      variant,
-      options: OPTIONS,
-      message: "This is the message",
-    },
   ]),
 );
-
-// Combination of variant + theme that fails a11y checks when a message is present
-const SELECT_FAILING_A11Y_PERMUTATIONS = [
-  { variant: "default", theme: "light" },
-  { variant: "warning", theme: "light" },
-  { variant: "error", theme: "light" },
-  { variant: "success", theme: "light" },
-  { variant: "default", theme: "dark" },
-  { variant: "error", theme: "dark" },
-  { variant: "success", theme: "dark" },
-] as const;
 
 afterEach(cleanup);
 
@@ -512,9 +487,9 @@ describe("select [unit]", () => {
     container.remove();
   });
 
-  test("triggerRef is forwarded to the trigger button", () => {
+  test("ref is forwarded to the trigger button", () => {
     const triggerRef = createRef<HTMLButtonElement>();
-    const result = render(<Select options={OPTIONS} triggerRef={triggerRef} />);
+    const result = render(<Select options={OPTIONS} ref={triggerRef} />);
     const trigger = result.getByRole("combobox");
 
     expect(triggerRef.current).toBe(trigger);
@@ -543,22 +518,12 @@ describe("select [a11y]", () => {
     });
 
     SELECT_PERMUTATIONS.forEach(({ permutationName, ...props }) => {
-      const testName = `wcag2aaa (${permutationName}, ${theme})`;
-
-      const testFn = async () => {
+      test(`wcag2aaa (${permutationName}, ${theme})`, async () => {
         const { container } = render(
           <Select {...props} aria-label="Select label" />,
         );
         expect(await axe.run(container)).toHaveNoViolations();
-      };
-
-      const failsA11y = SELECT_FAILING_A11Y_PERMUTATIONS.some(
-        (p) =>
-          p.theme === theme && p.variant === props.variant && !!props.message,
-      );
-
-      if (failsA11y) test.todo(testName, testFn);
-      else test(testName, testFn);
+      });
     });
   });
 });

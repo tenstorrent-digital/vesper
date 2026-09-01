@@ -32,7 +32,6 @@ function ControlledSliderDemo() {
   return (
     <div className="gap-vesper-4 flex flex-col">
       <Slider
-        label="Volume"
         value={volume}
         onValueChange={setVolume}
         thumbAriaLabel="Volume"
@@ -57,12 +56,7 @@ function FormSliderDemo() {
         setSubmitted(String(data.get("volume") ?? ""));
       }}
     >
-      <Slider
-        name="volume"
-        label="Volume"
-        defaultValue={50}
-        thumbAriaLabel="Volume"
-      />
+      <Slider name="volume" defaultValue={50} thumbAriaLabel="Volume" />
       <Button size="sm" type="submit">
         Submit
       </Button>
@@ -78,7 +72,6 @@ function CustomThumbLabelsSliderDemo() {
 
   return (
     <Slider
-      label="Volume"
       showValueLabel
       value={volume}
       onValueChange={setVolume}

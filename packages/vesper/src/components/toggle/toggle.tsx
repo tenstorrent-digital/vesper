@@ -5,6 +5,7 @@ import {
   FocusEvent,
   KeyboardEvent,
   type ReactNode,
+  Ref,
   useCallback,
   useEffect,
   useRef,
@@ -43,7 +44,7 @@ export type ToggleOption =
 
 export interface ToggleProps extends Omit<
   ComponentProps<"div">,
-  "children" | "dir"
+  "children" | "role" | "dangerouslySetInnerHTML" | "dir"
 > {
   /** The list of toggle options to render. Each option can display either text or an icon. */
   options: ToggleOption[];
@@ -61,6 +62,8 @@ export interface ToggleProps extends Omit<
   name?: string;
   /** When `true`, makes the underlying input required when rendered inside of a form. @default false */
   required?: boolean;
+  /** A ref forwarded to the enclosing `<div>` element for direct DOM access. */
+  ref?: Ref<HTMLDivElement>;
 }
 
 const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
@@ -130,7 +133,8 @@ export function Toggle(props: ToggleProps) {
   } = props;
 
   const innerRef = useRef<HTMLDivElement>(null);
-  const mergedRef = useMergedRefs(ref, innerRef);
+
+  const mergedRef = useMergedRefs(innerRef, ref);
 
   const [innerValue, setInnerValue] = useState(value ?? defaultValue);
 
@@ -232,9 +236,11 @@ export function Toggle(props: ToggleProps) {
 
   return (
     <div
+      {...rest}
       ref={mergedRef}
       role="radiogroup"
       aria-required={required}
+      aria-disabled={disabled}
       className={cn(
         "vesper-toggle",
         `vesper-toggle-${size}`,
@@ -243,7 +249,6 @@ export function Toggle(props: ToggleProps) {
       )}
       onKeyDown={handleKeyDown}
       onBlur={handleBlur}
-      {...rest}
     >
       <select
         aria-hidden

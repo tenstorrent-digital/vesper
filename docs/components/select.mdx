@@ -5,7 +5,7 @@ description: A form-ready dropdown select component supporting controlled and un
 
 # Select
 
-A form-ready dropdown select component supporting controlled and uncontrolled usage. It shares the same sizes, variants, labels, and messages as [the `TextInput` component](./text-input.mdx), and portals its dropdown automatically so it works inside dialogs.
+A form-ready dropdown select component supporting controlled and uncontrolled usage with four visual variants.
 
 <Select
   aria-label="Fruit"
@@ -17,29 +17,31 @@ A form-ready dropdown select component supporting controlled and uncontrolled us
   ]}
 />
 
+> [!IMPORTANT]
+>
+> Always give a `Select` an accessible name by either [pairing it with a `<label>` via `htmlFor`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) or giving it an `aria-label`. Without one, assistive technology announces the field with no indication of what it is for.
+
 ## Options
 
-| Prop            | Type                                                                                | Description                                                                                                                        | Default              |
-| --------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
-| `options`       | `(SelectItem \| string)[]`                                                          | The list of selectable options displayed in the dropdown. Strings are treated as both the label and the value.                     | —                    |
-| `size`          | `"sm" \| "md" \| "lg"`                                                              | The size of the select trigger. Affects height, padding, and typography.                                                           | `"md"`               |
-| `variant`       | `"default" \| "warning" \| "success" \| "error"`                                    | The visual variant, which determines color scheme and message icon.                                                                | `"default"`          |
-| `label`         | `string`                                                                            | An optional label displayed above the trigger, and used as its accessible name. An asterisk is appended when `required` is `true`. | —                    |
-| `message`       | `string`                                                                            | An optional message displayed below the trigger, paired with a variant-specific icon.                                              | —                    |
-| `placeholder`   | `string`                                                                            | Placeholder text shown in the trigger when no value is selected.                                                                   | `"Select an option"` |
-| `icon`          | `ReactNode`                                                                         | An optional icon rendered at the leading edge of the trigger.                                                                      | —                    |
-| `value`         | `string \| null`                                                                    | The currently selected value (controlled mode). Pass `null` to represent no selection.                                             | —                    |
-| `defaultValue`  | `string \| null`                                                                    | The initial selected value (uncontrolled mode).                                                                                    | —                    |
-| `onValueChange` | `(value: string \| null) => void`                                                   | Callback invoked with the new value whenever the selection changes, or `null` when it is cleared.                                  | —                    |
-| `name`          | `string`                                                                            | The form field name submitted with form data.                                                                                      | —                    |
-| `form`          | `string`                                                                            | Associates the select with a `<form>` element by its `id`.                                                                         | —                    |
-| `id`            | `string`                                                                            | An identifier applied to the trigger, used to reference it from form validation errors.                                            | —                    |
-| `required`      | `boolean`                                                                           | When `true`, marks the select as required for native form validation.                                                              | `false`              |
-| `disabled`      | `boolean`                                                                           | When `true`, prevents interaction with the trigger and dropdown.                                                                   | `false`              |
-| `container`     | `HTMLElement \| ShadowRoot \| null \| RefObject<HTMLElement \| ShadowRoot \| null>` | Specify the element or shadow root to portal the dropdown into.                                                                    | —                    |
-| `triggerRef`    | `Ref<HTMLButtonElement>`                                                            | A ref forwarded to the underlying select trigger `<button>` element.                                                               | —                    |
+| Prop            | Type                                                                                | Description                                                                                                    | Default              |
+| --------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------- |
+| `options`       | `(SelectItem \| string)[]`                                                          | The list of selectable options displayed in the dropdown. Strings are treated as both the label and the value. | —                    |
+| `size`          | `"sm" \| "md" \| "lg"`                                                              | The size of the select trigger. Affects height, padding, and typography.                                       | `"md"`               |
+| `variant`       | `"default" \| "warning" \| "success" \| "error"`                                    | The visual variant, which determines color scheme.                                                             | `"default"`          |
+| `placeholder`   | `string`                                                                            | Placeholder text shown in the trigger when no value is selected.                                               | `"Select an option"` |
+| `icon`          | `ReactNode`                                                                         | An optional icon rendered at the leading edge of the trigger.                                                  | —                    |
+| `value`         | `string \| null`                                                                    | The currently selected value (controlled mode). Pass `null` to represent no selection.                         | —                    |
+| `defaultValue`  | `string \| null`                                                                    | The initial selected value (uncontrolled mode).                                                                | —                    |
+| `onValueChange` | `(value: string \| null) => void`                                                   | Callback invoked with the new value whenever the selection changes, or `null` when it is cleared.              | —                    |
+| `name`          | `string`                                                                            | The form field name submitted with form data.                                                                  | —                    |
+| `form`          | `string`                                                                            | Associates the select with a `<form>` element by its `id`.                                                     | —                    |
+| `id`            | `string`                                                                            | An identifier applied to the trigger, used to reference it from form validation errors.                        | —                    |
+| `required`      | `boolean`                                                                           | When `true`, marks the select as required for native form validation.                                          | `false`              |
+| `disabled`      | `boolean`                                                                           | When `true`, prevents interaction with the trigger and dropdown.                                               | `false`              |
+| `container`     | `HTMLElement \| ShadowRoot \| null \| RefObject<HTMLElement \| ShadowRoot \| null>` | Specify the element or shadow root to portal the dropdown into.                                                | —                    |
+| `ref`           | `Ref<HTMLButtonElement>`                                                            | A ref forwarded to the underlying select trigger `<button>` element.                                           | —                    |
 
-`aria-label`, `aria-labelledby`, `aria-describedby`, and `aria-invalid` are all forwarded to the select trigger. Any other props are forwarded to the wrapping `<div>` element.
+Form props (`value`, `disabled`, `name`, `form`, etc.) are forwarded to the hidden `<input>` element that holds the selected value. All other props are forwarded to the underlying `<button>` element.
 
 ### `SelectItem` options
 
@@ -59,7 +61,8 @@ If your list is long enough that users will want to search it, reach for [the `C
 Each entry in the `options` array can either be a `SelectItem`, or a plain string. Use `SelectItem` objects when the value associated with each item differs from the text you want to display:
 
 <Select
-  label="Region"
+  aria-label="Region"
+  placeholder="Select a region"
   options={[
     { label: "United States", value: "us" },
     { label: "Europe", value: "eu" },
@@ -71,7 +74,8 @@ Each entry in the `options` array can either be a `SelectItem`, or a plain strin
 import { Select } from "@tenstorrent/vesper/select";
 
 <Select
-  label="Region"
+  aria-label="Region"
+  placeholder="Select a region"
   options={[
     { label: "United States", value: "us" },
     { label: "Europe", value: "eu" },
@@ -83,7 +87,7 @@ import { Select } from "@tenstorrent/vesper/select";
 When the displayed text is the same as the value of the item, a string option is a convenient shorthand:
 
 <Select
-  label="Country"
+  aria-label="Country"
   placeholder="Select a country"
   options={["Canada", "Japan", "Norway"]}
 />
@@ -92,7 +96,7 @@ When the displayed text is the same as the value of the item, a string option is
 import { Select } from "@tenstorrent/vesper/select";
 
 <Select
-  label="Country"
+  aria-label="Country"
   placeholder="Select a country"
   options={["Canada", "Japan", "Norway"]}
 />;
@@ -105,7 +109,8 @@ Both shapes can be mixed in the same `options` array. Options are rendered in th
 The simplest way to use the `Select` component is to render it in an uncontrolled fashion, where the component keeps track of its own selection. Pass `defaultValue` if you need an option to be selected initially:
 
 <Select
-  label="Region"
+  aria-label="Region"
+  placeholder="Select a region"
   defaultValue="eu"
   options={[
     { label: "United States", value: "us" },
@@ -118,7 +123,8 @@ The simplest way to use the `Select` component is to render it in an uncontrolle
 import { Select } from "@tenstorrent/vesper/select";
 
 <Select
-  label="Region"
+  aria-label="Region"
+  placeholder="Select a region"
   defaultValue="eu"
   options={[
     { label: "United States", value: "us" },
@@ -140,7 +146,7 @@ import { Button } from "@tenstorrent/vesper/button"
 const [fruit, setFruit] = useState<string | null>("apple")
 
 <Select
-  label="Fruit"
+  aria-label="Fruit"
   placeholder="Select a fruit"
   value={fruit}
   onValueChange={setFruit}
@@ -209,7 +215,7 @@ const options = [
 You can render an icon at the leading edge of the trigger via the `icon` prop. The icon is decorative, and stays in place as the selection changes:
 
 <Select
-  label="Region"
+  aria-label="Region"
   icon={<Globe />}
   placeholder="Select a region"
   options={[
@@ -224,7 +230,7 @@ import { Globe } from "@tenstorrent/vesper/icons";
 import { Select } from "@tenstorrent/vesper/select";
 
 <Select
-  label="Region"
+  aria-label="Region"
   icon={<Globe />}
   placeholder="Select a region"
   options={[
@@ -239,220 +245,14 @@ import { Select } from "@tenstorrent/vesper/select";
 >
 > The trailing caret is rendered by the component itself, and flips between its open and closed states as the dropdown is toggled. Only the leading icon is configurable.
 
-### Message
-
-You can render an additional line of text under the trigger via the `message` prop. Combine it with the `variant` prop to indicate the tone of the message to the user.
-
-<Select
-  label="Region"
-  placeholder="Select a region"
-  message="Only regions available on your plan are listed."
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>
-
-```tsx
-import { Select } from "@tenstorrent/vesper/select";
-
-<Select
-  label="Region"
-  placeholder="Select a region"
-  message="Only regions available on your plan are listed."
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>;
-```
-
-The message is linked to the trigger via `aria-describedby`, so it is announced along with the field by assistive technology.
-
-### Variants
-
-The `Select` component can be rendered in one of four variants: `default`, `warning`, `success`, or `error`. The variant determines the colour scheme of the trigger, as well as the icon paired with its `message`.
-
-#### Default variant
-
-A `Select` renders with the `default` variant when no `variant` prop is specified. Its `message` is best suited for neutral hints:
-
-<Select
-  label="Region"
-  placeholder="Select a region"
-  message="You can change this later in your settings."
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>
-
-```tsx
-import { Select } from "@tenstorrent/vesper/select";
-
-<Select
-  label="Region"
-  placeholder="Select a region"
-  message="You can change this later in your settings."
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>;
-```
-
-#### Warning variant
-
-Use the `warning` variant to flag a selection that needs attention, but that doesn't prevent the form from being submitted:
-
-<Select
-  variant="warning"
-  label="Region"
-  defaultValue="ap"
-  message="This region has limited availability."
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>
-
-```tsx
-import { Select } from "@tenstorrent/vesper/select";
-
-<Select
-  variant="warning"
-  label="Region"
-  defaultValue="ap"
-  message="This region has limited availability."
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>;
-```
-
-#### Success variant
-
-The `success` variant is best suited for confirming that a selection has been validated as expected:
-
-<Select
-  variant="success"
-  label="Region"
-  defaultValue="eu"
-  message="This region is available."
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>
-
-```tsx
-import { Select } from "@tenstorrent/vesper/select";
-
-<Select
-  variant="success"
-  label="Region"
-  defaultValue="eu"
-  message="This region is available."
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>;
-```
-
-#### Error variant
-
-The `error` variant highlights a missing or invalid selection that must be corrected before the form can be submitted:
-
-<Select
-  required
-  variant="error"
-  label="Region"
-  placeholder="Select a region"
-  message="Please select a region."
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>
-
-```tsx
-import { Select } from "@tenstorrent/vesper/select";
-
-<Select
-  required
-  variant="error"
-  label="Region"
-  placeholder="Select a region"
-  message="Please select a region."
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>;
-```
-
-### Labels and required fields
-
-> [!IMPORTANT]
->
-> Always give a `Select` an accessible name by passing a `label`, an `aria-label`, or an `aria-labelledby` that points at existing visible text. A `Select` with none of these is announced with no indication of what it is for.
-
-When a `label` is provided, it is rendered above the trigger and associated with it via the trigger's `id`. It becomes the trigger's accessible name, and clicking it opens the dropdown:
-
-<Select
-  required
-  label="Region"
-  placeholder="Select a region"
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>
-
-```tsx
-import { Select } from "@tenstorrent/vesper/select";
-
-// Visible label — preferred
-<Select
-  required
-  label="Region"
-  placeholder="Select a region"
-  options={REGIONS}
-/>;
-
-// No visible label — provide an `aria-label` instead
-<Select
-  required
-  aria-label="Region"
-  placeholder="Select a region"
-  options={REGIONS}
-/>;
-```
-
-Passing `required` marks the field as required for native form validation, and appends an asterisk to the `label`. When rendering without a visible `label`, nothing marks the field as required on screen, so mention it in the `message` if users need to know before submitting.
-
-An `id` is generated for the trigger for you, but you can provide your own via the `id` prop if you need to reference the field elsewhere. Any `aria-describedby` you pass is merged with the automatically generated `message` id, so both remain announced by assistive technology.
-
 ### Disabling the select
 
 Pass `disabled` to prevent all interaction with the trigger and its dropdown. A disabled `Select` still displays its current selection, but is skipped in the tab order and excluded from form data:
 
 <Select
   disabled
-  label="Region"
+  aria-label="Region"
+  placeholder="Select a region"
   defaultValue="eu"
   options={[
     { label: "United States", value: "us" },
@@ -466,7 +266,8 @@ import { Select } from "@tenstorrent/vesper/select";
 
 <Select
   disabled
-  label="Region"
+  aria-label="Region"
+  placeholder="Select a region"
   defaultValue="eu"
   options={[
     { label: "United States", value: "us" },
@@ -490,7 +291,7 @@ import { Select } from "@tenstorrent/vesper/select";
   <Select
     required
     name="fruit"
-    label="Fruit"
+    aria-label="Fruit"
     placeholder="Select a fruit"
     options={[
       { label: "Apple", value: "apple" },
@@ -502,26 +303,26 @@ import { Select } from "@tenstorrent/vesper/select";
 </form>;
 ```
 
-The value submitted is the `value` of the selected option, not the `label` displayed in the trigger — the form above submits `fruit=apple` when "Apple" is selected.
+The value submitted is the `value` of the selected option, not the `label` displayed in the trigger. The form above submits `fruit=apple` when "Apple" is selected.
 
 ### Accessing the underlying element
 
-Use the `triggerRef` prop when you need direct access to the underlying trigger `<button>` element, eg. to focus it when a page loads:
+Use the `ref` prop when you need direct access to the underlying trigger `<button>` element, eg. to focus it when a page loads:
 
 ```tsx
 import { useEffect, useRef } from "react"
 import { Select } from "@tenstorrent/vesper/select"
 
-const triggerRef = useRef<HTMLButtonElement>(null)
+const ref = useRef<HTMLButtonElement>(null)
 
 useEffect(() => {
-  triggerRef.current?.focus()
+  ref.current?.focus()
 }, [])
 
 <Select
-  label="Region"
+  aria-label="Region"
   placeholder="Select a region"
   options={["United States", "Europe", "Asia Pacific"]}
-  triggerRef={triggerRef}
+  ref={ref}
 />
 ```

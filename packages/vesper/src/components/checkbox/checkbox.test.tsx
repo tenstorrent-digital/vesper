@@ -7,14 +7,12 @@ import { userEvent } from "vitest/browser";
 import {
   Checkbox,
   CHECKBOX_SIZES,
-  CHECKBOX_VARIANTS,
   type CheckboxProps,
-  type CheckboxVariant,
 } from "@/components/checkbox/checkbox";
 
 import "@/styles/test.css";
 
-const CHECKBOX_SIZE_PERMUTATIONS = [true, false].flatMap((checked) =>
+const CHECKBOX_PERMUTATIONS = [true, false].flatMap((checked) =>
   [true, false].flatMap((indeterminate) =>
     CHECKBOX_SIZES.flatMap((size): (CheckboxProps & { name: string })[] => [
       {
@@ -56,42 +54,6 @@ const CHECKBOX_SIZE_PERMUTATIONS = [true, false].flatMap((checked) =>
     ]),
   ),
 );
-
-const CHECKBOX_VARIANT_PERMUTATIONS: (CheckboxProps & { name: string })[] =
-  CHECKBOX_VARIANTS.map((variant) => ({
-    name: `variant: ${variant}, with message`,
-    variant,
-    text: "Checkbox text",
-    message: "Message text",
-  }));
-
-const CHECKBOX_LABEL_PERMUTATIONS: (CheckboxProps & { name: string })[] = [
-  {
-    name: `with label`,
-    text: "Checkbox text",
-    label: "Label text",
-  },
-  {
-    name: `with label, required`,
-    text: "Checkbox text",
-    label: "Label text",
-    required: true,
-  },
-];
-
-// Combination of variant + theme that fails a11y checks when a message is present
-const CHECKBOX_A11Y_FAILING_PERMUTATIONS: {
-  variant: CheckboxVariant;
-  theme: string;
-}[] = [
-  { variant: "default", theme: "light" },
-  { variant: "warning", theme: "light" },
-  { variant: "error", theme: "light" },
-  { variant: "success", theme: "light" },
-  { variant: "default", theme: "dark" },
-  { variant: "error", theme: "dark" },
-  { variant: "success", theme: "dark" },
-];
 
 afterEach(cleanup);
 
@@ -144,59 +106,22 @@ describe("checkbox [unit]", () => {
     expect(input).toHaveAttribute("aria-describedby", "help-text");
   });
 
-  test("renders a label when supplied", () => {
-    const { container } = render(
-      <Checkbox text="Checkbox text" label="Label text" />,
-    );
-
-    const label = container.querySelector(".vesper-form-input-wrapper-label");
-    expect(label).not.toBeNull();
-    expect(label!.tagName).toBe("LABEL");
-    expect(label).toHaveTextContent("Label text");
-  });
-
-  test("renders the label with an asterisk when marked as required", () => {
-    const result = render(
-      <Checkbox text="Checkbox text" label="Label text" required />,
-    );
-    expect(result.getByText("Label text *")).not.toBeNull();
-  });
-
-  test("renders the label without an asterisk when not marked as required", () => {
-    const { container } = render(
-      <Checkbox text="Checkbox text" label="Label text" />,
-    );
-    expect(
-      container.querySelector(".vesper-form-input-wrapper-label"),
-    ).toHaveTextContent(/^Label text$/);
-  });
-
-  test("renders the checkbox text with an asterisk when required and no label is supplied", () => {
+  test("renders the checkbox text with an asterisk when required", () => {
     const result = render(<Checkbox text="Checkbox text" required />);
     expect(result.getByText("Checkbox text *")).not.toBeNull();
   });
 
-  test("renders the checkbox text without an asterisk when required and a label is supplied", () => {
-    const { container } = render(
-      <Checkbox text="Checkbox text" label="Label text" required />,
-    );
-    expect(container.querySelector(".vesper-checkbox-label")).toHaveTextContent(
-      /^Checkbox text$/,
-    );
+  test("the accessible text does not contain an asterisk when the checkbox is required", () => {
+    const result = render(<Checkbox text="Checkbox text" required />);
+    expect(result.getByText("Checkbox text *")).not.toBeNull();
+    expect(result.getByLabelText(/^Checkbox text$/)).not.toBeNull();
   });
 
-  test("renders the checkbox text without an asterisk when not marked as required", () => {
+  test("renders the checkbox text without an asterisk when not required", () => {
     const { container } = render(<Checkbox text="Checkbox text" />);
     expect(container.querySelector(".vesper-checkbox-label")).toHaveTextContent(
       /^Checkbox text$/,
     );
-  });
-
-  test("no label is rendered when the label prop is omitted", () => {
-    const { container } = render(<Checkbox text="Checkbox text" />);
-    expect(
-      container.querySelector(".vesper-form-input-wrapper-label"),
-    ).toBeNull();
   });
 
   test("the id prop is forwarded to the input", () => {
@@ -204,150 +129,11 @@ describe("checkbox [unit]", () => {
     expect(result.getByRole("checkbox")).toHaveAttribute("id", "terms");
   });
 
-  test("label htmlFor matches the id prop", () => {
-    const { container } = render(
-      <Checkbox text="Checkbox text" label="Label text" id="terms" />,
-    );
-    expect(
-      container.querySelector(".vesper-form-input-wrapper-label"),
-    ).toHaveAttribute("for", "terms");
-  });
-
-  test("an id is generated when the id prop is omitted", () => {
-    const { container, getByRole } = render(
-      <Checkbox text="Checkbox text" label="Label text" />,
-    );
-
-    const checkbox = getByRole("checkbox");
-    expect(checkbox.id).not.toBe("");
-    expect(
-      container.querySelector(".vesper-form-input-wrapper-label"),
-    ).toHaveAttribute("for", checkbox.id);
-  });
-
-  test("clicking the label toggles the checkbox", async () => {
-    const { container, getByRole } = render(
-      <Checkbox text="Checkbox text" label="Label text" />,
-    );
-
-    const label = container.querySelector(".vesper-form-input-wrapper-label")!;
-    const checkbox = getByRole("checkbox");
-
-    await userEvent.click(label);
-    expect(checkbox).toBeChecked();
-  });
-
   test("checkbox text is used as the input's accessible name", () => {
     const result = render(<Checkbox text="Checkbox text" />);
     expect(
       result.getByRole("checkbox", { name: "Checkbox text" }),
     ).not.toBeNull();
-  });
-
-  test("the required asterisk is not part of the accessible name", () => {
-    const result = render(<Checkbox text="Checkbox text" required />);
-    expect(
-      result.getByRole("checkbox", { name: "Checkbox text" }),
-    ).not.toBeNull();
-  });
-
-  test("aria-label defaults to the text prop", () => {
-    const result = render(
-      <Checkbox text="Checkbox text" label="Label text" required />,
-    );
-    expect(result.getByRole("checkbox")).toHaveAttribute(
-      "aria-label",
-      "Checkbox text",
-    );
-  });
-
-  test("an explicit aria-label takes precedence over the text prop", () => {
-    const result = render(
-      <Checkbox
-        text="Checkbox text"
-        label="Label text"
-        aria-label="Custom label"
-      />,
-    );
-    expect(result.getByRole("checkbox")).toHaveAttribute(
-      "aria-label",
-      "Custom label",
-    );
-  });
-
-  test("a supplied aria-labelledby is forwarded as-is alongside the label", () => {
-    const result = render(
-      <Checkbox
-        text="Checkbox text"
-        label="Label text"
-        aria-labelledby="external-label"
-      />,
-    );
-    expect(result.getByRole("checkbox")).toHaveAttribute(
-      "aria-labelledby",
-      "external-label",
-    );
-  });
-
-  test("aria-labelledby is forwarded when supplied", () => {
-    const result = render(
-      <Checkbox text="Checkbox text" aria-labelledby="external-label" />,
-    );
-    expect(result.getByRole("checkbox")).toHaveAttribute(
-      "aria-labelledby",
-      "external-label",
-    );
-  });
-
-  test("renders a message when supplied", () => {
-    const result = render(
-      <Checkbox text="Checkbox text" message="Message text" />,
-    );
-    expect(result.getByText("Message text")).not.toBeNull();
-  });
-
-  test("message is linked to the input via aria-describedby", () => {
-    const result = render(
-      <Checkbox text="Checkbox text" message="Message text" />,
-    );
-    const checkbox = result.getByRole("checkbox");
-    const messageId = checkbox.getAttribute("aria-describedby");
-
-    expect(messageId).not.toBeNull();
-    expect(document.getElementById(messageId!)).toHaveTextContent(
-      "Message text",
-    );
-  });
-
-  test("an additional aria-describedby is preserved alongside the message", () => {
-    const result = render(
-      <Checkbox
-        text="Checkbox text"
-        message="Message text"
-        aria-describedby="help-text"
-      />,
-    );
-    const describedBy = result
-      .getByRole("checkbox")
-      .getAttribute("aria-describedby");
-
-    expect(describedBy?.split(" ")).toHaveLength(2);
-    expect(describedBy?.split(" ")[0]).toBe("help-text");
-  });
-
-  CHECKBOX_VARIANTS.forEach((variant) => {
-    test(`${variant} variant applies to the message`, () => {
-      const { container } = render(
-        <Checkbox
-          text="Checkbox text"
-          message="Message text"
-          variant={variant}
-        />,
-      );
-      expect(container.querySelector(".vesper-form-input-message")).toHaveClass(
-        `vesper-form-input-message-${variant}`,
-      );
-    });
   });
 
   test("defaultChecked sets initial checked state", () => {
@@ -474,22 +260,16 @@ describe("checkbox [unit]", () => {
     expect(checkbox).toBeChecked();
   });
 
-  test("inputRef exposes the input element", () => {
-    const inputRef = createRef<HTMLInputElement>();
-    const result = render(
-      <Checkbox text="Checkbox text" inputRef={inputRef} />,
-    );
+  test("ref exposes the input element", () => {
+    const ref = createRef<HTMLInputElement>();
+    const result = render(<Checkbox text="Checkbox text" ref={ref} />);
     const checkbox = result.getByRole("checkbox");
-    expect(inputRef.current).toBe(checkbox);
+    expect(ref.current).toBe(checkbox);
   });
 });
 
 describe("checkbox [snapshot]", () => {
-  [
-    ...CHECKBOX_SIZE_PERMUTATIONS,
-    ...CHECKBOX_VARIANT_PERMUTATIONS,
-    ...CHECKBOX_LABEL_PERMUTATIONS,
-  ].forEach(({ name, ...props }) => {
+  CHECKBOX_PERMUTATIONS.forEach(({ name, ...props }) => {
     test(name, () => {
       const { container } = render(<Checkbox {...props} />);
       expect(container.firstChild).toMatchSnapshot();
@@ -509,27 +289,11 @@ describe("checkbox [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    [
-      ...CHECKBOX_SIZE_PERMUTATIONS,
-      ...CHECKBOX_VARIANT_PERMUTATIONS,
-      ...CHECKBOX_LABEL_PERMUTATIONS,
-    ].forEach(({ name, ...props }) => {
-      const label = `a11y (${name}, ${theme})`;
-
-      const testFn = async () => {
+    CHECKBOX_PERMUTATIONS.forEach(({ name, ...props }) => {
+      test(`a11y (${name}, ${theme})`, async () => {
         const { container } = render(<Checkbox {...props} />);
         expect(await axe.run(container)).toHaveNoViolations();
-      };
-
-      const failsA11y =
-        !!props.message &&
-        CHECKBOX_A11Y_FAILING_PERMUTATIONS.some(
-          (p) =>
-            p.variant === (props.variant ?? "default") && p.theme === theme,
-        );
-
-      if (failsA11y) test.todo(label, testFn);
-      else test(label, testFn);
+      });
     });
   });
 });
