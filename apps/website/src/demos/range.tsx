@@ -34,7 +34,7 @@ function ControlledRangeDemo() {
   return (
     <div className="gap-vesper-4 flex flex-col">
       <Range
-        label="Price"
+        aria-label="Price"
         values={price}
         onValuesChange={setPrice}
         thumbAriaLabels={PRICE_THUMB_LABELS}
@@ -63,7 +63,7 @@ function FormRangeDemo() {
     >
       <Range
         name="price"
-        label="Price"
+        aria-label="Price"
         defaultValues={[20, 80]}
         thumbAriaLabels={PRICE_THUMB_LABELS}
       />
@@ -84,7 +84,7 @@ function CustomThumbLabelsRangeDemo() {
 
   return (
     <Range
-      label="Price"
+      aria-label="Price"
       showValueLabels
       values={price}
       onValuesChange={setPrice}

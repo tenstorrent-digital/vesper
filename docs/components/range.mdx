@@ -5,38 +5,34 @@ description: A multi-thumb range input for selecting a span of numeric values be
 
 # Range
 
-A multi-thumb range input for selecting a span of numeric values between a minimum and maximum. It supports the same labels, messages, and variants as [the `TextInput` component](./text-input.mdx), and adds tick marks, value labels, and configurable stepping.
+A multi-thumb range input for selecting a span of numeric values between a minimum and maximum. It supports tick marks, value labels, and configurable stepping.
 
 <Range
-  label="Price"
   thumbAriaLabels={["Price (min)", "Price (max)"]}
   defaultValues={[25, 75]}
 />
 
 ## Options
 
-| Prop                    | Type                                             | Description                                                                                                  | Default      |
-| ----------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------ |
-| `thumbAriaLabels`       | `string[]`                                       | Accessible `aria-label` attributes for each thumb, in the same order as the values. Required.                | —            |
-| `values`                | `number[]`                                       | The values of each thumb (controlled mode). The number of thumbs matches the length of this array.           | —            |
-| `defaultValues`         | `number[]`                                       | The initial thumb values (uncontrolled mode).                                                                | `[min, max]` |
-| `onValuesChange`        | `(values: number[]) => void`                     | Callback fired as thumb values change during interaction. Receives the full array of current values.         | —            |
-| `onValuesCommit`        | `(values: number[]) => void`                     | Callback fired when a thumb interaction is completed, eg. on pointer up. Receives the final array of values. | —            |
-| `min`                   | `number`                                         | The minimum allowed value.                                                                                   | `0`          |
-| `max`                   | `number`                                         | The maximum allowed value.                                                                                   | `100`        |
-| `step`                  | `number`                                         | The stepping interval between selectable values.                                                             | `1`          |
-| `minStepsBetweenThumbs` | `number`                                         | The minimum number of steps required between thumbs, preventing them from overlapping.                       | `1`          |
-| `showTicks`             | `boolean`                                        | When `true`, renders tick marks along the track at each step interval.                                       | `false`      |
-| `showValueLabels`       | `boolean`                                        | When `true`, displays a value label above each thumb.                                                        | `false`      |
-| `valueLabels`           | `string[]`                                       | Custom display labels for each thumb. When unset, each label falls back to that thumb's current value.       | —            |
-| `variant`               | `"default" \| "warning" \| "success" \| "error"` | The visual variant, which determines the colour scheme and icon of the message.                              | `"default"`  |
-| `label`                 | `string`                                         | An optional label displayed above the track, and used as the accessible name of the range group.             | —            |
-| `message`               | `string`                                         | An optional message displayed below the track, paired with a variant-specific icon.                          | —            |
-| `disabled`              | `boolean`                                        | When `true`, prevents interaction.                                                                           | `false`      |
-| `name`                  | `string`                                         | The form field name submitted with form data. Every thumb submits its value under this name.                 | —            |
-| `form`                  | `string`                                         | Associates the range with a `<form>` element by its `id`.                                                    | —            |
+| Prop                    | Type                         | Description                                                                                                  | Default      |
+| ----------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------ |
+| `thumbAriaLabels`       | `string[]`                   | Accessible `aria-label` attributes for each thumb, in the same order as the values. Required.                | —            |
+| `values`                | `number[]`                   | The values of each thumb (controlled mode). The number of thumbs matches the length of this array.           | —            |
+| `defaultValues`         | `number[]`                   | The initial thumb values (uncontrolled mode).                                                                | `[min, max]` |
+| `onValuesChange`        | `(values: number[]) => void` | Callback fired as thumb values change during interaction. Receives the full array of current values.         | —            |
+| `onValuesCommit`        | `(values: number[]) => void` | Callback fired when a thumb interaction is completed, eg. on pointer up. Receives the final array of values. | —            |
+| `min`                   | `number`                     | The minimum allowed value.                                                                                   | `0`          |
+| `max`                   | `number`                     | The maximum allowed value.                                                                                   | `100`        |
+| `step`                  | `number`                     | The stepping interval between selectable values.                                                             | `1`          |
+| `minStepsBetweenThumbs` | `number`                     | The minimum number of steps required between thumbs, preventing them from overlapping.                       | `1`          |
+| `showTicks`             | `boolean`                    | When `true`, renders tick marks along the track at each step interval.                                       | `false`      |
+| `showValueLabels`       | `boolean`                    | When `true`, displays a value label above each thumb.                                                        | `false`      |
+| `valueLabels`           | `string[]`                   | Custom display labels for each thumb. When unset, each label falls back to that thumb's current value.       | —            |
+| `disabled`              | `boolean`                    | When `true`, prevents interaction.                                                                           | `false`      |
+| `name`                  | `string`                     | The form field name submitted with form data. Every thumb submits its value under this name.                 | —            |
+| `form`                  | `string`                     | Associates the range with a `<form>` element by its `id`.                                                    | —            |
 
-Any other props are forwarded to the wrapping `<div>` element.
+All other props are forwarded to the wrapping `<div>` element.
 
 If you only need to select a single value, reach for [the `Slider` component](./slider.mdx) instead: it renders the same track, ticks, and labels, but exposes a single-value API.
 
@@ -47,7 +43,6 @@ If you only need to select a single value, reach for [the `Slider` component](./
 The simplest way to use the `Range` component is to render it in an uncontrolled fashion, where the component keeps track of its own values. Pass `defaultValues` if the thumbs should start somewhere other than `min` and `max`:
 
 <Range
-  label="Price"
   thumbAriaLabels={["Price (min)", "Price (max)"]}
   defaultValues={[20, 80]}
 />
@@ -56,7 +51,6 @@ The simplest way to use the `Range` component is to render it in an uncontrolled
 import { Range } from "@tenstorrent/vesper/range";
 
 <Range
-  label="Price"
   defaultValues={[20, 80]}
   thumbAriaLabels={["Price (min)", "Price (max)"]}
 />;
@@ -73,7 +67,6 @@ import { Range } from "@tenstorrent/vesper/range"
 const [price, setPrice] = useState([25, 75])
 
 <Range
-  label="Price"
   values={price}
   onValuesChange={setPrice}
   thumbAriaLabels={["Price (min)", "Price (max)"]}
@@ -86,7 +79,6 @@ Use `onValuesCommit` when you only care about the final values of an interaction
 import { Range } from "@tenstorrent/vesper/range";
 
 <Range
-  label="Price"
   defaultValues={[20, 80]}
   onValuesCommit={([min, max]) => fetchResults({ min, max })}
   thumbAriaLabels={["Price (min)", "Price (max)"]}
@@ -98,7 +90,7 @@ import { Range } from "@tenstorrent/vesper/range";
 `min`, `max`, and `step` describe the values a thumb can take, defaulting to `0`, `100`, and `1`. A `step` of `50` on a range of `0-1000` restricts thumbs to multiples of 50:
 
 <Range
-  label="Budget"
+  aria-label="Budget"
   min={0}
   max={1000}
   step={50}
@@ -111,7 +103,6 @@ import { Range } from "@tenstorrent/vesper/range";
 import { Range } from "@tenstorrent/vesper/range";
 
 <Range
-  label="Budget"
   min={0}
   max={1000}
   step={50}
@@ -128,7 +119,6 @@ The `step` also determines how far a thumb moves per arrow key press when it is 
 By default, thumbs must stay at least one step apart. Raise `minStepsBetweenThumbs` when a range needs a wider minimum span. The range below keeps its thumbs at least 20 apart:
 
 <Range
-  label="Temperature"
   minStepsBetweenThumbs={20}
   defaultValues={[30, 70]}
   showValueLabels
@@ -139,7 +129,6 @@ By default, thumbs must stay at least one step apart. Raise `minStepsBetweenThum
 import { Range } from "@tenstorrent/vesper/range";
 
 <Range
-  label="Temperature"
   minStepsBetweenThumbs={20}
   defaultValues={[30, 70]}
   showValueLabels
@@ -154,7 +143,6 @@ The value is measured in steps, not in units, so a `minStepsBetweenThumbs` of `2
 Pass `showTicks` to mark each step along the track. Ticks are rendered between `min` and `max`, so a range of `0-10` with a `step` of `1` renders nine of them:
 
 <Range
-  label="Rating"
   min={0}
   max={10}
   step={1}
@@ -167,7 +155,6 @@ Pass `showTicks` to mark each step along the track. Ticks are rendered between `
 import { Range } from "@tenstorrent/vesper/range";
 
 <Range
-  label="Rating"
   min={0}
   max={10}
   step={1}
@@ -186,7 +173,6 @@ import { Range } from "@tenstorrent/vesper/range";
 Pass `showValueLabels` to render each thumb's current value above it as you drag:
 
 <Range
-  label="Price"
   showValueLabels
   defaultValues={[30, 70]}
   thumbAriaLabels={["Price (min)", "Price (max)"]}
@@ -196,7 +182,6 @@ Pass `showValueLabels` to render each thumb's current value above it as you drag
 import { Range } from "@tenstorrent/vesper/range";
 
 <Range
-  label="Price"
   showValueLabels
   defaultValues={[30, 70]}
   thumbAriaLabels={["Price (min)", "Price (max)"]}
@@ -214,7 +199,6 @@ import { Range } from "@tenstorrent/vesper/range"
 const [price, setPrice] = useState([30, 70])
 
 <Range
-  label="Price"
   showValueLabels
   values={price}
   onValuesChange={setPrice}
@@ -234,7 +218,6 @@ const [price, setPrice] = useState([30, 70])
 A `Range` renders one thumb per entry in `values` or `defaultValues`, so it isn't limited to two. Give every thumb an entry in `thumbAriaLabels`, and in `valueLabels` when you are customising labels:
 
 <Range
-  label="Thresholds"
   showValueLabels
   defaultValues={[20, 50, 80]}
   valueLabels={["Low", "Mid", "High"]}
@@ -245,145 +228,10 @@ A `Range` renders one thumb per entry in `values` or `defaultValues`, so it isn'
 import { Range } from "@tenstorrent/vesper/range";
 
 <Range
-  label="Thresholds"
   showValueLabels
   defaultValues={[20, 50, 80]}
   valueLabels={["Low", "Mid", "High"]}
   thumbAriaLabels={["Low threshold", "Mid threshold", "High threshold"]}
-/>;
-```
-
-### Message
-
-You can render an additional line of text under the track via the `message` prop. Combine it with the `variant` prop to indicate the tone of the message to the user.
-
-<Range
-  label="Price"
-  message="Prices are shown in USD."
-  defaultValues={[25, 75]}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>
-
-```tsx
-import { Range } from "@tenstorrent/vesper/range";
-
-<Range
-  label="Price"
-  message="Prices are shown in USD."
-  defaultValues={[25, 75]}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>;
-```
-
-The message is linked to the range via `aria-describedby`, so it is announced along with the field by assistive technology.
-
-### Variants
-
-The `Range` component can be rendered in one of four variants: `default`, `warning`, `success`, or `error`. The variant determines the colour scheme of the message, as well as the icon paired with it.
-
-#### Default variant
-
-A `Range` renders with the `default` variant when no `variant` prop is specified. Its `message` is best suited for neutral hints, such as how the range is applied:
-
-<Range
-  label="Price"
-  message="Both ends of the range are inclusive."
-  defaultValues={[25, 75]}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>
-
-```tsx
-import { Range } from "@tenstorrent/vesper/range";
-
-<Range
-  label="Price"
-  message="Both ends of the range are inclusive."
-  defaultValues={[25, 75]}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>;
-```
-
-#### Warning variant
-
-Use the `warning` variant to flag a range that needs attention, but that doesn't prevent the form from being submitted:
-
-<Range
-  variant="warning"
-  label="Price"
-  message="This range matches very few results."
-  defaultValues={[90, 95]}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>
-
-```tsx
-import { useState } from "react";
-import { Range } from "@tenstorrent/vesper/range";
-
-const [price, setPrice] = useState([90, 95]);
-
-<Range
-  variant="warning"
-  label="Price"
-  message="This range matches very few results."
-  values={price}
-  onValuesChange={setPrice}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>;
-```
-
-#### Success variant
-
-The `success` variant is best suited for confirming that a range has been validated as expected:
-
-<Range
-  variant="success"
-  label="Price"
-  message="248 results match this range."
-  defaultValues={[20, 60]}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>
-
-```tsx
-import { useState } from "react";
-import { Range } from "@tenstorrent/vesper/range";
-
-const [price, setPrice] = useState([20, 60]);
-
-<Range
-  variant="success"
-  label="Price"
-  message="248 results match this range."
-  values={price}
-  onValuesChange={setPrice}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>;
-```
-
-#### Error variant
-
-The `error` variant highlights an invalid range that must be corrected before the form can be submitted:
-
-<Range
-  variant="error"
-  label="Price"
-  message="The range must span at least $50."
-  defaultValues={[40, 60]}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>
-
-```tsx
-import { useState } from "react";
-import { Range } from "@tenstorrent/vesper/range";
-
-const [price, setPrice] = useState([40, 60]);
-
-<Range
-  variant="error"
-  label="Price"
-  message="The range must span at least $50."
-  values={price}
-  onValuesChange={setPrice}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
 />;
 ```
 
@@ -396,7 +244,6 @@ const [price, setPrice] = useState([40, 60]);
 `thumbAriaLabels` names the individual thumbs, while the optional `label` prop names the range as a whole. When a `label` is provided, it is rendered above the track and associated with the first thumb, so clicking it focuses that thumb:
 
 <Range
-  label="Price"
   defaultValues={[25, 75]}
   thumbAriaLabels={["Price (min)", "Price (max)"]}
 />
@@ -405,7 +252,6 @@ const [price, setPrice] = useState([40, 60]);
 import { Range } from "@tenstorrent/vesper/range";
 
 <Range
-  label="Price"
   defaultValues={[25, 75]}
   thumbAriaLabels={["Price (min)", "Price (max)"]}
 />;
@@ -414,7 +260,6 @@ import { Range } from "@tenstorrent/vesper/range";
 If you don't want a visible label, pass an `aria-label` instead to name the range group:
 
 <Range
-  aria-label="Price"
   defaultValues={[25, 75]}
   thumbAriaLabels={["Price (min)", "Price (max)"]}
 />
@@ -423,7 +268,6 @@ If you don't want a visible label, pass an `aria-label` instead to name the rang
 import { Range } from "@tenstorrent/vesper/range";
 
 <Range
-  aria-label="Price"
   defaultValues={[25, 75]}
   thumbAriaLabels={["Price (min)", "Price (max)"]}
 />;
@@ -448,7 +292,6 @@ Pass `disabled` to prevent all interaction. A disabled `Range` still displays it
 
 <Range
   disabled
-  label="Price"
   defaultValues={[25, 75]}
   thumbAriaLabels={["Price (min)", "Price (max)"]}
 />
@@ -458,7 +301,6 @@ import { Range } from "@tenstorrent/vesper/range";
 
 <Range
   disabled
-  label="Price"
   defaultValues={[25, 75]}
   thumbAriaLabels={["Price (min)", "Price (max)"]}
 />;
@@ -466,7 +308,14 @@ import { Range } from "@tenstorrent/vesper/range";
 
 ### Usage in forms
 
-Each thumb renders a native `<input type="range">`, so passing a `name` includes every thumb's value in form submissions under that name. Use the `form` prop to associate the field with a `<form>` rendered elsewhere on the page:
+Each thumb renders a native `<input type="range">`, so passing a `name` includes every thumb's value in form submissions under that name.
+
+Since every thumb submits under the same `name`, the form below submits `price=20&price=80`. Read both values with `FormData.getAll`:
+
+```tsx
+const data = new FormData(form);
+data.getAll("price"); // ["20", "80"]
+```
 
 <RangeDemo kind="form" />
 
@@ -477,17 +326,9 @@ import { Range } from "@tenstorrent/vesper/range";
 <form action="/api/search" method="post">
   <Range
     name="price"
-    label="Price"
     defaultValues={[20, 80]}
     thumbAriaLabels={["Price (min)", "Price (max)"]}
   />
   <Button type="submit">Submit</Button>
 </form>;
-```
-
-Since every thumb submits under the same `name`, the form above submits `price=20&price=80`. Read both values with `FormData.getAll`:
-
-```tsx
-const data = new FormData(form);
-data.getAll("price"); // ["20", "80"]
 ```

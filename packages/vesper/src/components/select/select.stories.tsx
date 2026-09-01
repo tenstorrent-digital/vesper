@@ -8,12 +8,11 @@ const meta = {
   argTypes: {
     size: { control: "radio", options: SELECT_SIZES },
     icon: { control: "select", options: ICON_KINDS },
-    options: { table: { disable: true } },
-    value: { table: { disable: true } },
-    form: { table: { disable: true } },
-    container: { table: { disable: true } },
-    defaultValue: { table: { disable: true } },
-    onValueChange: { table: { disable: true } },
+  },
+  parameters: {
+    controls: {
+      include: ["size", "placeholder", "disabled", "icon", "required"],
+    },
   },
   render: function Render(props) {
     return (
@@ -42,8 +41,6 @@ export const Playground: Story = {
       { value: "oh_my", label: "Oh my" },
     ],
     icon: false as unknown as boolean,
-    label: "Animal",
-    message: "Optional message",
     required: false,
   },
 };

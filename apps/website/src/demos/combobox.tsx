@@ -41,7 +41,11 @@ interface ComboboxDemoProps {
 export function ComboboxDemo(props: ComboboxDemoProps) {
   if (props.kind === "fruits") {
     return (
-      <Combobox aria-label="Fruit" placeholder="e.g. Apple" options={FRUITS} />
+      <Combobox
+        aria-label="Fruit"
+        placeholder="Select a fruit"
+        options={FRUITS}
+      />
     );
   }
 
@@ -62,8 +66,8 @@ function ControlledComboboxDemo() {
   return (
     <div className="gap-vesper-4 flex flex-col">
       <Combobox
-        label="Fruit"
-        placeholder="e.g. Apple"
+        aria-label="Fruit"
+        placeholder="Select a fruit"
         options={FRUITS}
         value={fruit}
         onValueChange={setFruit}
@@ -92,9 +96,9 @@ function FormComboboxDemo() {
     >
       <Combobox
         required
+        aria-label="Fruit"
         name="fruit"
-        label="Fruit"
-        placeholder="e.g. Apple"
+        placeholder="Select a fruit"
         options={FRUITS}
       />
       <Button size="sm" type="submit">

@@ -1,33 +1,35 @@
 ---
 title: Text Area
-description: A multi-line text input component supporting optional labels and validation messages.
+description: A multi-line text input component that supports different visual variants.
 ---
 
 # Text Area
 
-A multi-line text input component supporting optional labels and validation messages. Built on the native `<textarea>` element for full form compatibility.
+A multi-line text input component that supports different visual variants.
 
-<TextArea label="Bio" placeholder="Tell us about yourself" resizeable />
+<TextArea aria-label="Bio" placeholder="Tell us about yourself" resizeable />
+
+> [!IMPORTANT]
+>
+> Always give a `TextArea` an accessible name by either [pairing it with a `<label>` via `htmlFor`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) or giving it an `aria-label`. Without one, assistive technology announces the field with no indication of what it is for.
 
 ## Options
 
-| Prop          | Type                                             | Description                                                                                        | Default     |
-| ------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------- | ----------- |
-| `size`        | `"sm" \| "md" \| "lg"`                           | The size of the textarea. Affects padding and typography.                                          | `"md"`      |
-| `variant`     | `"default" \| "warning" \| "success" \| "error"` | The visual variant, which determines color scheme and message icon.                                | `"default"` |
-| `label`       | `string`                                         | An optional label displayed above the textarea. An asterisk is appended when `required` is `true`. | —           |
-| `message`     | `string`                                         | An optional message displayed below the textarea, paired with a variant-specific icon.             | —           |
-| `height`      | `number`                                         | The fixed height of the textarea in pixels, scaling with base rem size.                            | `104`       |
-| `textareaRef` | `Ref<HTMLTextAreaElement>`                       | A ref forwarded to the underlying `<textarea>` element.                                            | —           |
-| `placeholder` | `string`                                         | Placeholder text for the textarea.                                                                 | `" "`       |
-| `maxLength`   | `number`                                         | The maximum number of characters the user can enter.                                               | —           |
-| `minLength`   | `number`                                         | The minimum number of characters required for the field to be valid.                               | —           |
-| `disabled`    | `boolean`                                        | When `true`, prevents interaction.                                                                 | `false`     |
-| `required`    | `boolean`                                        | When `true`, marks the textarea as required.                                                       | `false`     |
-| `readOnly`    | `boolean`                                        | When `true`, makes the textarea read-only.                                                         | `false`     |
-| `resizeable`  | `boolean`                                        | When `true`, enables resizing the textarea.                                                        | `false`     |
+| Prop          | Type                                             | Description                                                                                  | Default     |
+| ------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------- | ----------- |
+| `size`        | `"sm" \| "md" \| "lg"`                           | The size of the textarea. Affects padding and typography.                                    | `"md"`      |
+| `variant`     | `"default" \| "warning" \| "success" \| "error"` | The visual variant, which determines color scheme.                                           | `"default"` |
+| `height`      | `number`                                         | The fixed height of the textarea in pixels, scaling with base rem size.                      | `104`       |
+| `ref`         | `Ref<HTMLTextAreaElement>`                       | A ref forwarded to the underlying `<textarea>` element.                                      | —           |
+| `placeholder` | `string`                                         | Placeholder text for the textarea.                                                           | `" "`       |
+| `maxLength`   | `number`                                         | The maximum number of characters the user can enter.                                         | —           |
+| `minLength`   | `number`                                         | The minimum number of characters required for the field to be valid.                         | —           |
+| `disabled`    | `boolean`                                        | When `true`, prevents interaction.                                                           | `false`     |
+| `required`    | `boolean`                                        | When `true`, marks the textarea as required and appends an asterisk to the placeholder text. | `false`     |
+| `readOnly`    | `boolean`                                        | When `true`, makes the textarea read-only.                                                   | `false`     |
+| `resizeable`  | `boolean`                                        | When `true`, enables resizing the textarea.                                                  | `false`     |
 
-Any other props are forwarded either to the underlying `<textarea>` element or to the wrapping `<div>`, depending on the prop.
+Any other props are forwarded to the underlying `<textarea>` element.
 
 Unlike [the `TextInput` component](./text-input.mdx), `TextArea` does not support icons or a `type` prop, since neither of them apply to multi-line text.
 
@@ -40,7 +42,7 @@ The simplest way to use the `TextArea` component is to render it in an uncontrol
 ```tsx
 import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<TextArea placeholder="Enter some text" />;
+<TextArea aria-label="About" placeholder="Enter some text" />;
 ```
 
 If you need to control the value of the `TextArea`, you can do so via the `value` and `onChange` props:
@@ -52,6 +54,7 @@ import { TextArea } from "@tenstorrent/vesper/text-area"
 const [value, setValue] = useState("")
 
 <TextArea
+  aria-label="About"
   placeholder="Enter some text"
   value={value}
   onChange={e => setValue(e.target.value)}
@@ -62,24 +65,24 @@ const [value, setValue] = useState("")
 
 The `TextArea` component can be rendered at `sm`, `md`, or `lg` size, defaulting to `md`. Size affects the padding and text styles of the `textarea`.
 
-<TextArea size="sm" placeholder="A small TextArea" />
-<TextArea size="md" placeholder="A medium TextArea" />
-<TextArea size="lg" placeholder="A large TextArea" />
+<TextArea size="sm" placeholder="A small TextArea" aria-label="About" />
+<TextArea size="md" placeholder="A medium TextArea" aria-label="About" />
+<TextArea size="lg" placeholder="A large TextArea" aria-label="About" />
 
 ```tsx
 import { TextArea } from "@tenstorrent/vesper/text-area"
 
-<TextArea size="sm" placeholder="A small TextArea" />
-<TextArea size="md" placeholder="A medium TextArea" />
-<TextArea size="lg" placeholder="A large TextArea" />
+<TextArea size="sm" placeholder="A small TextArea" aria-label="About" />
+<TextArea size="md" placeholder="A medium TextArea" aria-label="About" />
+<TextArea size="lg" placeholder="A large TextArea" aria-label="About" />
 ```
 
 ### Setting the height
 
-The `TextArea` component is not resizable by the user. Instead, you can set a fixed height in pixels via the `height` prop, which defaults to `104`. The value is converted to `rem`, so the rendered height scales with the base font size.
+You can give a `TextArea` a fixed height in pixels via the `height` prop, which defaults to `104`. The value is converted to `rem`, so the rendered height scales with the base font size.
 
 <TextArea
-  label="Release notes"
+  aria-label="Release notes"
   placeholder="Summarise what changed in this release"
   height={200}
 />
@@ -88,9 +91,29 @@ The `TextArea` component is not resizable by the user. Instead, you can set a fi
 import { TextArea } from "@tenstorrent/vesper/text-area";
 
 <TextArea
-  label="Release notes"
+  aria-label="Release notes"
   placeholder="Summarize what changed in this release"
   height={200}
+/>;
+```
+
+### Resizing the `TextArea`
+
+By default, a `TextArea` does not resize. If you want to opt-into resizing behavior, you can pass `resizeable={true}` or just `resizeable`, which allows the `TextArea` to be resized along its block direction.
+
+<TextArea
+  resizeable
+  aria-label="Release notes"
+  placeholder="Summarize what changed in this release"
+/>
+
+```tsx
+import { TextArea } from "@tenstorrent/vesper/text-area";
+
+<TextArea
+  resizeable
+  aria-label="Release notes"
+  placeholder="Summarize what changed in this release"
 />;
 ```
 
@@ -99,7 +122,7 @@ import { TextArea } from "@tenstorrent/vesper/text-area";
 You can disable the underlying textarea by passing `disabled={true}` or just `disabled` as a prop:
 
 <TextArea
-  label="Overview"
+  aria-label="Overview"
   placeholder="Add a brief outline of your project"
   disabled
 />
@@ -108,154 +131,11 @@ You can disable the underlying textarea by passing `disabled={true}` or just `di
 import { TextArea } from "@tenstorrent/vesper/text-area";
 
 <TextArea
-  label="Overview"
+  aria-label="Overview"
   placeholder="Add a brief outline of your project"
   disabled
 />;
 ```
-
-### Message
-
-You can render an additional line of text under the input element via the `message` prop. Combine with the `variant` prop to indicate the tone of the message to the user.
-
-<TextArea
-  label="Bio"
-  placeholder="Tell us about yourself"
-  message="This will be displayed on your public profile."
-/>
-
-```tsx
-import { TextArea } from "@tenstorrent/vesper/text-area";
-
-<TextArea
-  label="Bio"
-  placeholder="Tell us about yourself"
-  message="This will be displayed on your public profile."
-/>;
-```
-
-### Variants
-
-The `TextArea` component can be rendered in one of four variants: `default`, `warning`, `success`, or `error`. The variant determines the colour scheme of the `textarea` element, as well as the icon paired with its `message`.
-
-#### Default variant
-
-A `TextArea` renders with the `default` variant when no `variant` prop is specified. Its `message` is best suited for neutral hints, such as formatting requirements:
-
-<TextArea
-  label="Bio"
-  placeholder="Tell us about yourself"
-  message="Markdown is supported, up to 500 characters."
-  maxLength={500}
-/>
-
-```tsx
-import { TextArea } from "@tenstorrent/vesper/text-area";
-
-<TextArea
-  label="Bio"
-  placeholder="Tell us about yourself"
-  message="Markdown is supported, up to 500 characters."
-  maxLength={500}
-/>;
-```
-
-#### Warning variant
-
-Use the `warning` variant to flag a value that needs attention, but that doesn't prevent the form from being submitted:
-
-<TextArea
-  variant="warning"
-  label="Commit message"
-  defaultValue="fix stuff"
-  message="This commit message is quite short."
-/>
-
-```tsx
-import { TextArea } from "@tenstorrent/vesper/text-area";
-
-<TextArea
-  variant="warning"
-  label="Commit message"
-  value={commitMessage}
-  onChange={(e) => setCommitMessage(e.target.value)}
-  message="This commit message is quite short."
-/>;
-```
-
-#### Success variant
-
-The `success` variant is best suited for confirming that a value has been validated as expected:
-
-<TextArea
-  variant="success"
-  label="SSH public key"
-  defaultValue="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL4rT9m2 you@example.com"
-  message="This key is valid and ready to be added."
-/>
-
-```tsx
-import { TextArea } from "@tenstorrent/vesper/text-area";
-
-<TextArea
-  variant="success"
-  label="SSH public key"
-  value={publicKey}
-  onChange={(e) => setPublicKey(e.target.value)}
-  message="This key is valid and ready to be added."
-/>;
-```
-
-#### Error variant
-
-The `error` variant highlights an invalid value that must be corrected before the form can be submitted:
-
-<TextArea
-  variant="error"
-  label="Feedback"
-  defaultValue="No"
-  message="Please provide at least 20 characters of feedback."
-  minLength={20}
-  required
-/>
-
-```tsx
-import { TextArea } from "@tenstorrent/vesper/text-area";
-
-<TextArea
-  variant="error"
-  label="Feedback"
-  value={feedback}
-  onChange={(e) => setFeedback(e.target.value)}
-  message="Please provide at least 20 characters of feedback."
-  minLength={20}
-  required
-/>;
-```
-
-### Labels and required fields
-
-When a `label` is provided, it is rendered above the textarea and associated with it, so clicking the label focuses the field. Passing `required` appends an asterisk to the label:
-
-<TextArea label="Feedback" placeholder="What could we do better?" required />
-
-```tsx
-import { TextArea } from "@tenstorrent/vesper/text-area";
-
-<TextArea label="Feedback" placeholder="What could we do better?" required />;
-```
-
-If you render a required `TextArea` without a `label`, the asterisk is appended to the `placeholder` instead:
-
-<TextArea placeholder="What could we do better?" required />
-
-```tsx
-import { TextArea } from "@tenstorrent/vesper/text-area";
-
-<TextArea placeholder="What could we do better?" required />;
-```
-
-An `id` is generated for you, but you can provide your own if you need to reference the field elsewhere. Any `aria-describedby` you pass is merged with the automatically generated `message` id, so both remain announced by assistive technology.
 
 ### Usage in forms
 
@@ -268,7 +148,7 @@ import { TextArea } from "@tenstorrent/vesper/text-area";
 <form action="/api/feedback" method="post">
   <TextArea
     name="feedback"
-    label="Feedback"
+    aria-label="Feedback"
     placeholder="What could we do better?"
     minLength={20}
     maxLength={500}
@@ -280,17 +160,17 @@ import { TextArea } from "@tenstorrent/vesper/text-area";
 
 ### Accessing the underlying element
 
-Use the `textareaRef` prop when you need direct access to the underlying `<textarea>` element, eg. to focus it or read its selection:
+Use the `ref` prop when you need direct access to the underlying `<textarea>` element, eg. to focus it or read its selection:
 
 ```tsx
 import { useRef } from "react"
 import { TextArea } from "@tenstorrent/vesper/text-area"
 
-const textareaRef = useRef<HTMLTextAreaElement>(null)
+const ref = useRef<HTMLTextAreaElement>(null)
 
 <TextArea
-  label="Bio"
+  aria-label="Bio"
   placeholder="Tell us about yourself"
-  textareaRef={textareaRef}
+  ref={ref}
 />
 ```

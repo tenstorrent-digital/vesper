@@ -40,8 +40,11 @@ import {
   Close,
   Gear,
   Globe,
+  Grid,
   Icon,
   Info,
+  List,
+  Lock,
   Search,
   Tenstorrent,
 } from "@tenstorrent/vesper/icons";
@@ -87,7 +90,9 @@ import { SelectDemo } from "@/demos/select";
 import { ShowMoreDemo } from "@/demos/show-more";
 import { SliderDemo } from "@/demos/slider";
 import { SplitButtonDemo } from "@/demos/split-button";
+import { SwitchDemo } from "@/demos/switch";
 import { ToastDemo } from "@/demos/toast";
+import { ToggleDemo } from "@/demos/toggle";
 
 /**
  * github alert types (`> [!NOTE]`), as picked up by
@@ -275,6 +280,9 @@ const components = {
   Close,
   Gear,
   Globe,
+  Grid,
+  List,
+  Lock,
   Info,
   Search,
   Tenstorrent,
@@ -292,7 +300,9 @@ const components = {
   ShowMoreDemo,
   SliderDemo,
   SplitButtonDemo,
+  SwitchDemo,
   ToastDemo,
+  ToggleDemo,
 } satisfies MDXComponents;
 
 export function useMDXComponents(): MDXComponents {
