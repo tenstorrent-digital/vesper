@@ -121,9 +121,11 @@ You can use the `as` prop to specify what underlying element to render. In this 
 </Button>
 
 ```tsx
+import { Button } from "@tenstorrent/vesper/button";
+
 <Button as="a" href="#">
   Go to Next Page
-</Button>
+</Button>;
 ```
 
 You can also use other components as the underlying `as` element. For example, Next.js comes with a bespoke `Link` component that enables prefetching and client-side navigation between routes, which you may want to use instead of the HTML `<a>` element:
