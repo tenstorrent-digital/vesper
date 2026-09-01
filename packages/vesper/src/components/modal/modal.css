@@ -89,16 +89,16 @@
   margin-top: var(--vesper-spacing-2);
 }
 
+.vesper-modal-scroll-area {
+  color: var(--vesper-text-primary);
+  min-height: 0;
+  .vesper-scroll-area-scrollbar {
+    transform: translateX(calc(var(--vesper-spacing-6) * -1));
+  }
+}
+
 .vesper-modal-content {
   padding: 0 var(--vesper-spacing-6);
-  color: var(--vesper-text-primary);
-  flex-shrink: 1;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 }
 
 .vesper-modal-buttons {

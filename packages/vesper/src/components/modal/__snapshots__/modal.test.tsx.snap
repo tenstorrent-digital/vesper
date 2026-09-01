@@ -2,8 +2,8 @@
 
 exports[`modal [snapshot] > custom width and maxHeight 1`] = `
 <dialog
-  aria-describedby="_r_2r_"
-  aria-labelledby="_r_2q_"
+  aria-describedby="_r_2u_"
+  aria-labelledby="_r_2t_"
   class="vesper-modal"
 >
   <div
@@ -16,13 +16,13 @@ exports[`modal [snapshot] > custom width and maxHeight 1`] = `
       <div>
         <h2
           class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_2q_"
+          id="_r_2t_"
         >
           Are you absolutely sure?
         </h2>
         <p
           class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_2r_"
+          id="_r_2u_"
         >
           This action cannot be undone. This will permanently delete your account from our servers.
         </p>
@@ -54,8 +54,8 @@ exports[`modal [snapshot] > custom width and maxHeight 1`] = `
 
 exports[`modal [snapshot] > default 1`] = `
 <dialog
-  aria-describedby="_r_2d_"
-  aria-labelledby="_r_2c_"
+  aria-describedby="_r_2f_"
+  aria-labelledby="_r_2e_"
   class="vesper-modal"
 >
   <div
@@ -68,13 +68,13 @@ exports[`modal [snapshot] > default 1`] = `
       <div>
         <h2
           class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_2c_"
+          id="_r_2e_"
         >
           Are you absolutely sure?
         </h2>
         <p
           class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_2d_"
+          id="_r_2f_"
         >
           This action cannot be undone. This will permanently delete your account from our servers.
         </p>
@@ -106,8 +106,8 @@ exports[`modal [snapshot] > default 1`] = `
 
 exports[`modal [snapshot] > with buttons (between alignment) 1`] = `
 <dialog
-  aria-describedby="_r_2n_"
-  aria-labelledby="_r_2m_"
+  aria-describedby="_r_2q_"
+  aria-labelledby="_r_2p_"
   class="vesper-modal"
 >
   <div
@@ -120,13 +120,13 @@ exports[`modal [snapshot] > with buttons (between alignment) 1`] = `
       <div>
         <h2
           class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_2m_"
+          id="_r_2p_"
         >
           Are you absolutely sure?
         </h2>
         <p
           class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_2n_"
+          id="_r_2q_"
         >
           This action cannot be undone. This will permanently delete your account from our servers.
         </p>
@@ -171,6 +171,204 @@ exports[`modal [snapshot] > with buttons (between alignment) 1`] = `
 `;
 
 exports[`modal [snapshot] > with buttons (end alignment) 1`] = `
+<dialog
+  aria-describedby="_r_2k_"
+  aria-labelledby="_r_2j_"
+  class="vesper-modal"
+>
+  <div
+    class="vesper-modal-container"
+    style="width: calc(28.25rem); max-height: min(calc(100vh - var(--vesper-spacing-16)), calc(640 * (1rem / 16)));"
+  >
+    <div
+      class="vesper-modal-header"
+    >
+      <div>
+        <h2
+          class="vesper-typography vesper-typography-heading-md vesper-modal-title"
+          id="_r_2j_"
+        >
+          Are you absolutely sure?
+        </h2>
+        <p
+          class="vesper-typography vesper-typography-copy-md vesper-modal-description"
+          id="_r_2k_"
+        >
+          This action cannot be undone. This will permanently delete your account from our servers.
+        </p>
+      </div>
+      <button
+        aria-label="Close modal"
+        class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
+        type="button"
+      >
+        <span
+          class="vesper-button-icon"
+        >
+          <svg
+            fill="none"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      class="vesper-modal-buttons vesper-modal-buttons-end"
+    >
+      <button
+        class="vesper-button vesper-button-lg vesper-button-tertiary"
+      >
+        Cancel
+      </button>
+      <button
+        class="vesper-button vesper-button-lg vesper-button-primary"
+      >
+        Continue
+      </button>
+    </div>
+  </div>
+</dialog>
+`;
+
+exports[`modal [snapshot] > with buttons (fill alignment) 1`] = `
+<dialog
+  aria-describedby="_r_2o_"
+  aria-labelledby="_r_2n_"
+  class="vesper-modal"
+>
+  <div
+    class="vesper-modal-container"
+    style="width: calc(28.25rem); max-height: min(calc(100vh - var(--vesper-spacing-16)), calc(640 * (1rem / 16)));"
+  >
+    <div
+      class="vesper-modal-header"
+    >
+      <div>
+        <h2
+          class="vesper-typography vesper-typography-heading-md vesper-modal-title"
+          id="_r_2n_"
+        >
+          Are you absolutely sure?
+        </h2>
+        <p
+          class="vesper-typography vesper-typography-copy-md vesper-modal-description"
+          id="_r_2o_"
+        >
+          This action cannot be undone. This will permanently delete your account from our servers.
+        </p>
+      </div>
+      <button
+        aria-label="Close modal"
+        class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
+        type="button"
+      >
+        <span
+          class="vesper-button-icon"
+        >
+          <svg
+            fill="none"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      class="vesper-modal-buttons vesper-modal-buttons-fill"
+    >
+      <button
+        class="vesper-button vesper-button-lg vesper-button-tertiary"
+      >
+        Cancel
+      </button>
+      <button
+        class="vesper-button vesper-button-lg vesper-button-primary"
+      >
+        Continue
+      </button>
+    </div>
+  </div>
+</dialog>
+`;
+
+exports[`modal [snapshot] > with buttons (start alignment) 1`] = `
+<dialog
+  aria-describedby="_r_2m_"
+  aria-labelledby="_r_2l_"
+  class="vesper-modal"
+>
+  <div
+    class="vesper-modal-container"
+    style="width: calc(28.25rem); max-height: min(calc(100vh - var(--vesper-spacing-16)), calc(640 * (1rem / 16)));"
+  >
+    <div
+      class="vesper-modal-header"
+    >
+      <div>
+        <h2
+          class="vesper-typography vesper-typography-heading-md vesper-modal-title"
+          id="_r_2l_"
+        >
+          Are you absolutely sure?
+        </h2>
+        <p
+          class="vesper-typography vesper-typography-copy-md vesper-modal-description"
+          id="_r_2m_"
+        >
+          This action cannot be undone. This will permanently delete your account from our servers.
+        </p>
+      </div>
+      <button
+        aria-label="Close modal"
+        class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
+        type="button"
+      >
+        <span
+          class="vesper-button-icon"
+        >
+          <svg
+            fill="none"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+    <div
+      class="vesper-modal-buttons vesper-modal-buttons-start"
+    >
+      <button
+        class="vesper-button vesper-button-lg vesper-button-tertiary"
+      >
+        Cancel
+      </button>
+      <button
+        class="vesper-button vesper-button-lg vesper-button-primary"
+      >
+        Continue
+      </button>
+    </div>
+  </div>
+</dialog>
+`;
+
+exports[`modal [snapshot] > with children 1`] = `
 <dialog
   aria-describedby="_r_2h_"
   aria-labelledby="_r_2g_"
@@ -219,207 +417,28 @@ exports[`modal [snapshot] > with buttons (end alignment) 1`] = `
       </button>
     </div>
     <div
-      class="vesper-modal-buttons vesper-modal-buttons-end"
+      class="vesper-scroll-area vesper-typography vesper-typography-copy-md vesper-modal-scroll-area"
+      role="presentation"
+      style="position: relative; --scroll-area-corner-height: 0px; --scroll-area-corner-width: 0px;"
     >
-      <button
-        class="vesper-button vesper-button-lg vesper-button-tertiary"
+      <div
+        class="vesper-scroll-area-viewport base-ui-disable-scrollbar"
+        data-id="base-ui-_r_2i_-viewport"
+        role="presentation"
+        style="overflow: scroll;"
+        tabindex="-1"
       >
-        Cancel
-      </button>
-      <button
-        class="vesper-button vesper-button-lg vesper-button-primary"
-      >
-        Continue
-      </button>
-    </div>
-  </div>
-</dialog>
-`;
-
-exports[`modal [snapshot] > with buttons (fill alignment) 1`] = `
-<dialog
-  aria-describedby="_r_2l_"
-  aria-labelledby="_r_2k_"
-  class="vesper-modal"
->
-  <div
-    class="vesper-modal-container"
-    style="width: calc(28.25rem); max-height: min(calc(100vh - var(--vesper-spacing-16)), calc(640 * (1rem / 16)));"
-  >
-    <div
-      class="vesper-modal-header"
-    >
-      <div>
-        <h2
-          class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_2k_"
+        <div
+          role="presentation"
+          style="min-width: fit-content;"
         >
-          Are you absolutely sure?
-        </h2>
-        <p
-          class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_2l_"
-        >
-          This action cannot be undone. This will permanently delete your account from our servers.
-        </p>
-      </div>
-      <button
-        aria-label="Close modal"
-        class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
-        type="button"
-      >
-        <span
-          class="vesper-button-icon"
-        >
-          <svg
-            fill="none"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            class="vesper-modal-content"
           >
-            <path
-              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
-      </button>
-    </div>
-    <div
-      class="vesper-modal-buttons vesper-modal-buttons-fill"
-    >
-      <button
-        class="vesper-button vesper-button-lg vesper-button-tertiary"
-      >
-        Cancel
-      </button>
-      <button
-        class="vesper-button vesper-button-lg vesper-button-primary"
-      >
-        Continue
-      </button>
-    </div>
-  </div>
-</dialog>
-`;
-
-exports[`modal [snapshot] > with buttons (start alignment) 1`] = `
-<dialog
-  aria-describedby="_r_2j_"
-  aria-labelledby="_r_2i_"
-  class="vesper-modal"
->
-  <div
-    class="vesper-modal-container"
-    style="width: calc(28.25rem); max-height: min(calc(100vh - var(--vesper-spacing-16)), calc(640 * (1rem / 16)));"
-  >
-    <div
-      class="vesper-modal-header"
-    >
-      <div>
-        <h2
-          class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_2i_"
-        >
-          Are you absolutely sure?
-        </h2>
-        <p
-          class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_2j_"
-        >
-          This action cannot be undone. This will permanently delete your account from our servers.
-        </p>
+            Some body content
+          </div>
+        </div>
       </div>
-      <button
-        aria-label="Close modal"
-        class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
-        type="button"
-      >
-        <span
-          class="vesper-button-icon"
-        >
-          <svg
-            fill="none"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
-      </button>
-    </div>
-    <div
-      class="vesper-modal-buttons vesper-modal-buttons-start"
-    >
-      <button
-        class="vesper-button vesper-button-lg vesper-button-tertiary"
-      >
-        Cancel
-      </button>
-      <button
-        class="vesper-button vesper-button-lg vesper-button-primary"
-      >
-        Continue
-      </button>
-    </div>
-  </div>
-</dialog>
-`;
-
-exports[`modal [snapshot] > with children 1`] = `
-<dialog
-  aria-describedby="_r_2f_"
-  aria-labelledby="_r_2e_"
-  class="vesper-modal"
->
-  <div
-    class="vesper-modal-container"
-    style="width: calc(28.25rem); max-height: min(calc(100vh - var(--vesper-spacing-16)), calc(640 * (1rem / 16)));"
-  >
-    <div
-      class="vesper-modal-header"
-    >
-      <div>
-        <h2
-          class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_2e_"
-        >
-          Are you absolutely sure?
-        </h2>
-        <p
-          class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_2f_"
-        >
-          This action cannot be undone. This will permanently delete your account from our servers.
-        </p>
-      </div>
-      <button
-        aria-label="Close modal"
-        class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button"
-        type="button"
-      >
-        <span
-          class="vesper-button-icon"
-        >
-          <svg
-            fill="none"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M20 4.94141L13.7373 11.2041V12.7959L20 19.0586L19.0586 20L12.7959 13.7373H11.2041L4.94141 20L4 19.0586L10.2627 12.7959V11.2041L4 4.94141L4.94141 4L11.2041 10.2627H12.7959L19.0586 4L20 4.94141Z"
-              fill="currentColor"
-            />
-          </svg>
-        </span>
-      </button>
-    </div>
-    <div
-      class="vesper-typography vesper-typography-copy-md vesper-modal-content"
-    >
-      Some body content
     </div>
   </div>
 </dialog>
@@ -427,8 +446,8 @@ exports[`modal [snapshot] > with children 1`] = `
 
 exports[`modal [snapshot] > with form 1`] = `
 <dialog
-  aria-describedby="_r_2p_"
-  aria-labelledby="_r_2o_"
+  aria-describedby="_r_2s_"
+  aria-labelledby="_r_2r_"
   class="vesper-modal"
 >
   <form
@@ -443,13 +462,13 @@ exports[`modal [snapshot] > with form 1`] = `
       <div>
         <h2
           class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_2o_"
+          id="_r_2r_"
         >
           Are you absolutely sure?
         </h2>
         <p
           class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_2p_"
+          id="_r_2s_"
         >
           This action cannot be undone. This will permanently delete your account from our servers.
         </p>

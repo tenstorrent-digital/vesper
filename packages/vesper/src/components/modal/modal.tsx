@@ -14,6 +14,7 @@ import {
 import { Button, type ButtonProps } from "@/components/button/button";
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Close } from "@/components/icons/icons";
+import { ScrollArea } from "@/components/scroll-area/scroll-area";
 import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
@@ -195,8 +196,12 @@ export function Modal(props: ModalProps) {
         />
       </div>
       {children && (
-        <Typography as="div" variant="copy-md" className="vesper-modal-content">
-          {children}
+        <Typography
+          as={ScrollArea}
+          variant="copy-md"
+          className="vesper-modal-scroll-area"
+        >
+          <div className="vesper-modal-content">{children}</div>
         </Typography>
       )}
       {!!buttons?.length && (
