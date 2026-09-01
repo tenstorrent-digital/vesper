@@ -33,8 +33,13 @@ function ModalStoryComponent({
             marginBottom: "var(--vesper-spacing-1)",
           }}
         >
-          <TextInput placeholder="Enter your name" name="name" />
           <TextInput
+            aria-label="Name"
+            placeholder="Enter your name"
+            name="name"
+          />
+          <TextInput
+            aria-label="Username"
             placeholder="Enter your desired username"
             name="username"
           />
