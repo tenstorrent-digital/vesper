@@ -221,66 +221,66 @@ describe("masked-input [unit]", () => {
     expect(input).toHaveValue("123-456");
   });
 
-  test("an object inputRef receives the input element", () => {
-    const inputRef = createRef<HTMLInputElement>();
-    const { input } = renderMaskedInput({ inputRef, mask: "___-___" });
+  test("an object ref receives the input element", () => {
+    const ref = createRef<HTMLInputElement>();
+    const { input } = renderMaskedInput({ ref, mask: "___-___" });
 
-    expect(inputRef.current).toBe(input);
+    expect(ref.current).toBe(input);
   });
 
-  test("a function inputRef is called with the input element", () => {
-    const inputRef = vi.fn();
-    const { input } = renderMaskedInput({ inputRef, mask: "___-___" });
+  test("a function ref is called with the input element", () => {
+    const ref = vi.fn();
+    const { input } = renderMaskedInput({ ref, mask: "___-___" });
 
-    expect(inputRef).toHaveBeenCalledWith(input);
+    expect(ref).toHaveBeenCalledWith(input);
   });
 
-  test("masking still applies when an inputRef is supplied", async () => {
-    const inputRef = createRef<HTMLInputElement>();
-    const { input } = renderMaskedInput({ inputRef, mask: "___-___" });
+  test("masking still applies when an ref is supplied", async () => {
+    const ref = createRef<HTMLInputElement>();
+    const { input } = renderMaskedInput({ ref, mask: "___-___" });
 
     await userEvent.fill(input, "123456");
 
     expect(input).toHaveValue("123-456");
-    expect(inputRef.current).toHaveValue("123-456");
+    expect(ref.current).toHaveValue("123-456");
   });
 
-  test("an object inputRef is cleared on unmount", () => {
-    const inputRef = createRef<HTMLInputElement>();
-    const { unmount } = renderMaskedInput({ inputRef });
+  test("an object ref is cleared on unmount", () => {
+    const ref = createRef<HTMLInputElement>();
+    const { unmount } = renderMaskedInput({ ref });
 
     unmount();
 
-    expect(inputRef.current).toBeNull();
+    expect(ref.current).toBeNull();
   });
 
-  test("a function inputRef is called with null on unmount", () => {
-    const inputRef = vi.fn();
-    const { unmount } = renderMaskedInput({ inputRef });
+  test("a function ref is called with null on unmount", () => {
+    const ref = vi.fn();
+    const { unmount } = renderMaskedInput({ ref });
 
     unmount();
 
-    expect(inputRef).toHaveBeenLastCalledWith(null);
+    expect(ref).toHaveBeenLastCalledWith(null);
   });
 
-  test("a function inputRef's cleanup function is called when the ref is detached", () => {
-    const cleanupInputRef = vi.fn();
-    const inputRef = vi.fn(() => cleanupInputRef);
-    const { input, unmount } = renderMaskedInput({ inputRef, mask: "___-___" });
+  test("a function ref's cleanup function is called when the ref is detached", () => {
+    const cleanupref = vi.fn();
+    const ref = vi.fn(() => cleanupref);
+    const { input, unmount } = renderMaskedInput({ ref, mask: "___-___" });
 
-    expect(inputRef).toHaveBeenCalledWith(input);
-    expect(cleanupInputRef).not.toHaveBeenCalled();
+    expect(ref).toHaveBeenCalledWith(input);
+    expect(cleanupref).not.toHaveBeenCalled();
 
     unmount();
 
-    expect(cleanupInputRef).toHaveBeenCalledOnce();
+    expect(cleanupref).toHaveBeenCalledOnce();
     // React 19 does not call a ref with null when it returns a cleanup function
-    expect(inputRef).not.toHaveBeenCalledWith(null);
+    expect(ref).not.toHaveBeenCalledWith(null);
   });
 
-  test("masking still applies when a function inputRef returns a cleanup function", async () => {
-    const inputRef = vi.fn(() => vi.fn());
-    const { input } = renderMaskedInput({ inputRef, mask: "___-___" });
+  test("masking still applies when a function ref returns a cleanup function", async () => {
+    const ref = vi.fn(() => vi.fn());
+    const { input } = renderMaskedInput({ ref, mask: "___-___" });
 
     await userEvent.fill(input, "123456");
 
@@ -291,7 +291,7 @@ describe("masked-input [unit]", () => {
     const destroy = vi.spyOn(Maskito.prototype, "destroy");
     const { unmount } = renderMaskedInput({
       mask: "___-___",
-      inputRef: vi.fn(() => vi.fn()),
+      ref: vi.fn(() => vi.fn()),
     });
 
     expect(destroy).not.toHaveBeenCalled();
@@ -310,7 +310,7 @@ describe("masked-input [snapshot]", () => {
 
   test("renders correctly with a mask", async () => {
     const { container } = render(
-      <MaskedInput label="Activation code" mask="____-____-____" />,
+      <MaskedInput aria-label="Activation code" mask="____-____-____" />,
     );
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -330,7 +330,7 @@ describe("masked-input [a11y]", () => {
 
     test(`a11y (${theme})`, async () => {
       const { container } = render(
-        <MaskedInput label="Activation code" mask="____-____-____" />,
+        <MaskedInput aria-label="Activation code" mask="____-____-____" />,
       );
       expect(await axe.run(container)).toHaveNoViolations();
     });

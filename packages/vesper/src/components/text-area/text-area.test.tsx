@@ -18,7 +18,6 @@ const TEXTAREA_SNAPSHOT_PERMUTATIONS: (TextAreaProps & { name: string })[] = [
     name: `variant: ${variant}`,
     variant,
     size: "lg" as const,
-    message: "Message text",
   })),
   // One per size
   ...TEXT_AREA_SIZES.map((size) => ({
@@ -27,14 +26,11 @@ const TEXTAREA_SNAPSHOT_PERMUTATIONS: (TextAreaProps & { name: string })[] = [
   })),
   // Meaningful feature combos
   { name: "with icon", size: "lg" as const },
-  { name: "with label", label: "Label text", size: "lg" as const },
   { name: "disabled", disabled: true, size: "lg" as const },
   {
     name: "full options",
     variant: "error",
     size: "lg" as const,
-    label: "Label text",
-    message: "Message text",
     disabled: true,
   },
 ];
@@ -59,26 +55,6 @@ const TEXT_AREA_PERMUTATIONS = TEXT_AREA_VARIANTS.flatMap((variant) =>
     },
   ]),
 );
-
-const TEXTAREA_A11Y_FAILING_PERMUTATIONS: (Pick<
-  TextAreaProps,
-  "variant" | "disabled"
-> & { theme: string })[] = [
-  { variant: "default", disabled: false, theme: "light" },
-  { variant: "default", disabled: true, theme: "light" },
-  { variant: "warning", disabled: false, theme: "light" },
-  { variant: "warning", disabled: true, theme: "light" },
-  { variant: "success", disabled: false, theme: "light" },
-  { variant: "success", disabled: true, theme: "light" },
-  { variant: "error", disabled: false, theme: "light" },
-  { variant: "error", disabled: true, theme: "light" },
-  { variant: "default", disabled: false, theme: "dark" },
-  { variant: "default", disabled: true, theme: "dark" },
-  { variant: "success", disabled: false, theme: "dark" },
-  { variant: "success", disabled: true, theme: "dark" },
-  { variant: "error", disabled: false, theme: "dark" },
-  { variant: "error", disabled: true, theme: "dark" },
-];
 
 afterEach(cleanup);
 
@@ -133,59 +109,6 @@ describe("text-area [unit]", () => {
     expect(result.getByRole("textbox").style.resize).toBe("block");
   });
 
-  test("renders a label when supplied", () => {
-    const result = render(<TextArea label="Username" />);
-
-    const label = result.container.querySelector(
-      ".vesper-form-input-wrapper-label",
-    );
-    expect(label).not.toBeNull();
-    expect(label!.tagName).toBe("LABEL");
-    expect(label).toHaveTextContent("Username");
-  });
-
-  test("label htmlFor matches the id prop", () => {
-    const result = render(<TextArea label="Bio" id="bio" />);
-
-    const label = result.container.querySelector(
-      ".vesper-form-input-wrapper-label",
-    );
-    expect(label).toHaveAttribute("for", "bio");
-  });
-
-  test("clicking the label focuses the textarea", async () => {
-    const result = render(<TextArea label="Bio" id="bio" />);
-
-    const label = result.container.querySelector(
-      ".vesper-form-input-wrapper-label",
-    )!;
-    await userEvent.click(label);
-
-    expect(result.getByRole("textbox")).toHaveFocus();
-  });
-
-  test("the id prop is forwarded to the textarea", () => {
-    const result = render(<TextArea label="Bio" id="bio" />);
-
-    expect(result.getByRole("textbox")).toHaveAttribute("id", "bio");
-  });
-
-  test("an id is generated when the id prop is omitted", () => {
-    const result = render(<TextArea label="Bio" />);
-
-    const textarea = result.getByRole("textbox");
-    expect(textarea.id).not.toBe("");
-    expect(
-      result.container.querySelector(".vesper-form-input-wrapper-label"),
-    ).toHaveAttribute("for", textarea.id);
-  });
-
-  test("the generated id associates the label with the textarea", () => {
-    const result = render(<TextArea label="Username" />);
-
-    expect(result.getByLabelText("Username")).toBe(result.getByRole("textbox"));
-  });
-
   test("additional prop passthrough", () => {
     const result = render(<TextArea aria-label="custom label" />);
     const textarea = result.getByRole("textbox");
@@ -227,22 +150,12 @@ describe("text-area [a11y]", () => {
 
     TEXT_AREA_PERMUTATIONS.forEach((permutation) => {
       const { name, ...props } = permutation;
-      const label = `wcag2aaa (${name}, ${theme})`;
-
-      const testFn = async () => {
-        const { container } = render(<TextArea {...props} />);
+      test(`wcag2aaa (${name}, ${theme})`, async () => {
+        const { container } = render(
+          <TextArea aria-label="Label" {...props} />,
+        );
         expect(await axe.run(container.firstChild!)).toHaveNoViolations();
-      };
-
-      const failsA11y = TEXTAREA_A11Y_FAILING_PERMUTATIONS.some(
-        (p) =>
-          p.variant === props.variant &&
-          p.disabled === props.disabled &&
-          p.theme === theme,
-      );
-
-      if (failsA11y) test.todo(label, testFn);
-      else test(label, testFn);
+      });
     });
   });
 });

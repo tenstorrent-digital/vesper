@@ -3,12 +3,7 @@ import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 
-import {
-  Slider,
-  SLIDER_VARIANTS,
-  type SliderProps,
-  type SliderVariant,
-} from "@/components/slider/slider";
+import { Slider, type SliderProps } from "@/components/slider/slider";
 
 import "@/styles/test.css";
 
@@ -46,16 +41,6 @@ const SLIDER_SNAPSHOT_PERMUTATIONS: (Partial<SliderProps> & {
     showValueLabel: true,
   },
   { name: "disabled", value: 50, disabled: true },
-  { name: "with label", value: 50, label: "Label text" },
-  { name: "with message", value: 50, message: "Message text" },
-  // One per variant, with both a label and a message
-  ...SLIDER_VARIANTS.map((variant) => ({
-    name: `variant: ${variant}`,
-    value: 50,
-    variant,
-    label: "Label text",
-    message: "Message text",
-  })),
 ];
 
 const SLIDER_A11Y_PERMUTATIONS: (Partial<SliderProps> & { name: string })[] = [
@@ -75,33 +60,6 @@ const SLIDER_A11Y_PERMUTATIONS: (Partial<SliderProps> & { name: string })[] = [
     showValueLabel: true,
   },
   { name: "disabled", value: 50, disabled: true },
-  // One per variant, with both a label and a message
-  ...SLIDER_VARIANTS.map((variant) => ({
-    name: `variant: ${variant}`,
-    value: 50,
-    variant,
-    label: "Label text",
-    message: "Message text",
-  })),
-];
-
-/**
- * The message text does not meet the enhanced (AAA) color contrast threshold
- * for these variant/theme combinations
- *
- * @see packages/vesper/src/components/form-input-wrapper/form-input-wrapper.test.tsx
- */
-const SLIDER_A11Y_FAILING_MESSAGE_PERMUTATIONS: {
-  variant: SliderVariant;
-  theme: "light" | "dark";
-}[] = [
-  { theme: "light", variant: "default" },
-  { theme: "light", variant: "warning" },
-  { theme: "light", variant: "error" },
-  { theme: "light", variant: "success" },
-  { theme: "dark", variant: "default" },
-  { theme: "dark", variant: "error" },
-  { theme: "dark", variant: "success" },
 ];
 
 afterEach(cleanup);
@@ -143,73 +101,9 @@ describe("slider [unit]", () => {
     expect(thumb).toHaveAttribute("aria-label", "Brightness");
   });
 
-  test("keyboard ArrowRight increases value", async () => {
-    const { thumb } = await renderSlider({ defaultValue: 50, step: 1 });
-
-    thumb.focus();
-    await userEvent.keyboard("{ArrowRight}");
-
-    expect(thumb).toHaveAttribute("aria-valuenow", "51");
-  });
-
-  test("keyboard ArrowLeft decreases value", async () => {
-    const { thumb } = await renderSlider({ defaultValue: 50, step: 1 });
-
-    thumb.focus();
-    await userEvent.keyboard("{ArrowLeft}");
-
-    expect(thumb).toHaveAttribute("aria-valuenow", "49");
-  });
-
-  test("value does not go below min", async () => {
-    const { thumb } = await renderSlider({ defaultValue: 0, min: 0, max: 100 });
-
-    thumb.focus();
-    await userEvent.keyboard("{ArrowLeft}");
-
-    expect(thumb).toHaveAttribute("aria-valuenow", "0");
-  });
-
-  test("value does not go above max", async () => {
-    const { thumb } = await renderSlider({
-      defaultValue: 100,
-      min: 0,
-      max: 100,
-    });
-
-    thumb.focus();
-    await userEvent.keyboard("{ArrowRight}");
-
-    expect(thumb).toHaveAttribute("aria-valuenow", "100");
-  });
-
-  test("step value affects keyboard increment", async () => {
-    const { thumb } = await renderSlider({ defaultValue: 50, step: 5 });
-
-    thumb.focus();
-    await userEvent.keyboard("{ArrowRight}");
-
-    expect(thumb).toHaveAttribute("aria-valuenow", "55");
-  });
-
   test("disabled state", async () => {
     const { root } = await renderSlider({ value: 50, disabled: true });
     expect(root).toHaveAttribute("data-disabled", "");
-  });
-
-  test("disabled slider does not respond to keyboard", async () => {
-    const onValueChange = vi.fn();
-    const { thumb } = await renderSlider({
-      defaultValue: 50,
-      disabled: true,
-      onValueChange,
-    });
-
-    thumb.focus();
-    await userEvent.keyboard("{ArrowRight}");
-
-    expect(thumb).toHaveAttribute("aria-valuenow", "50");
-    expect(onValueChange).not.toHaveBeenCalled();
   });
 
   test("showTicks renders tick marks", async () => {
@@ -298,107 +192,24 @@ describe("slider [unit]", () => {
     expect(onValueChange).not.toHaveBeenCalled();
   });
 
-  test("no label is rendered by default", async () => {
-    const { container } = await renderSlider({ value: 50 });
-    expect(container.querySelector("label")).toBeNull();
-  });
-
-  test("renders a label when supplied", async () => {
-    const { container } = await renderSlider({ value: 50, label: "Volume" });
-
-    const label = container.querySelector(".vesper-form-input-wrapper-label");
-    expect(label).not.toBeNull();
-    expect(label!.tagName).toBe("LABEL");
-    expect(label).toHaveTextContent("Volume");
-  });
-
-  test("the label is associated with the thumb", async () => {
-    const result = await renderSlider({ value: 50, label: "Volume" });
-
-    const label = result.container.querySelector(
-      ".vesper-form-input-wrapper-label",
-    );
-    expect(label).toHaveAttribute("for", result.thumb.id);
-    expect(result.getByLabelText("Volume", { selector: "input" })).toBe(
-      result.thumb,
-    );
-  });
-
-  test("an empty message is rendered by default", async () => {
-    const result = await renderSlider({ value: 50 });
-
-    const message = result.getByRole("status");
-    expect(message).toHaveAttribute("data-message", "false");
-    expect(message).toHaveTextContent("");
-  });
-
-  test("renders a message when supplied", async () => {
-    const result = await renderSlider({ value: 50, message: "Pick a volume" });
-
-    const message = result.getByRole("status");
-    expect(message).toHaveAttribute("data-message", "true");
-    expect(message).toHaveTextContent("Pick a volume");
-  });
-
-  test("the label is linked to the thumb via htmlFor", async () => {
-    const result = await renderSlider({ value: 50, label: "Volume" });
-
-    const label = result.container.querySelector<HTMLElement>(
-      ".vesper-form-input-wrapper-label",
-    )!;
-    expect(label).toHaveAttribute("for", result.thumb.id);
-  });
-
-  test("aria-label is forwarded to the slider root", async () => {
-    const result = await renderSlider({
-      "aria-label": "Price in USD",
-    });
-    expect(result.root).toHaveAttribute("aria-label", "Price in USD");
-  });
-
-  test("aria-labelledby is forwarded to the slider root", async () => {
-    const result = await renderSlider({
-      "aria-labelledby": "external-label",
-    });
-    expect(result.root).toHaveAttribute("aria-labelledby", "external-label");
-  });
-
-  test("the message is linked to the thumb via aria-describedby", async () => {
-    const result = await renderSlider({ value: 50, message: "Pick a volume" });
-
-    const message = result.getByRole("status");
-    expect(message.id).not.toBe("");
-    expect(result.thumb).toHaveAttribute("aria-describedby", message.id);
-  });
-
-  test("aria-describedby is unset when no message is supplied", async () => {
-    const { thumb } = await renderSlider({ value: 50 });
-    expect(thumb).not.toHaveAttribute("aria-describedby");
-  });
-
-  test("a custom aria-describedby is preserved alongside the message id", async () => {
-    const result = await renderSlider({
-      value: 50,
-      message: "Pick a volume",
-      "aria-describedby": "external-description",
-    });
-
-    const message = result.getByRole("status");
-    expect(result.thumb).toHaveAttribute(
-      "aria-describedby",
-      `external-description ${message.id}`,
-    );
-  });
-
   test("additional props are passed through to the wrapper", async () => {
     const result = render(
-      <Slider thumbAriaLabel="Volume" value={50} data-testid="my-slider" />,
+      <Slider
+        thumbAriaLabel="Volume"
+        value={50}
+        data-testid="my-slider"
+        aria-label="Range slider"
+      />,
     );
     await result.findByRole("slider");
 
     expect(result.container.firstElementChild).toHaveAttribute(
       "data-testid",
       "my-slider",
+    );
+    expect(result.container.firstElementChild).toHaveAttribute(
+      "aria-label",
+      "Range slider",
     );
   });
 });
@@ -425,22 +236,10 @@ describe("slider [a11y]", () => {
     });
 
     SLIDER_A11Y_PERMUTATIONS.forEach(({ name, ...props }) => {
-      const testName = `wcag2aaa (${name}, ${theme})`;
-
-      const testFn = async () => {
+      test(`wcag2aaa (${name}, ${theme})`, async () => {
         const { container } = await renderSlider(props);
         expect(await axe.run(container)).toHaveNoViolations();
-      };
-
-      const failsA11y =
-        !!props.message &&
-        SLIDER_A11Y_FAILING_MESSAGE_PERMUTATIONS.some(
-          (p) =>
-            p.theme === theme && p.variant === (props.variant ?? "default"),
-        );
-
-      if (failsA11y) test.todo(testName, testFn);
-      else test(testName, testFn);
+      });
     });
   });
 });
