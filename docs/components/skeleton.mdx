@@ -26,7 +26,7 @@ A placeholder loading component that mimics the shape of content while it loads.
 | `show`     | `boolean`                     | When `true`, renders the skeleton overlay. When `false`, renders only the children without the skeleton. | `true`  |
 | `children` | `ReactNode`                   | Optional content rendered behind the skeleton overlay.                                                   | —       |
 
-Any additional props are forwarding to the wrapping `<div>` element.
+Any additional props are forwarded to the wrapping `<div>` element.
 
 ## Examples
 
@@ -56,12 +56,12 @@ import { Skeleton } from "@tenstorrent/vesper/skeleton";
 
 A `Skeleton` can be rendered in one of three shapes: `"box"`, `"pill"`, or `"circle"`. The default shape is `"box"`, which is a rectangle with slightly rounded corners:
 
-<Skeleton shape="box" width={120} size={48} />
+<Skeleton shape="box" width={120} height={48} />
 
 ```tsx
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
 
-<Skeleton shape="box" width={120} size={48} />;
+<Skeleton shape="box" width={120} height={48} />;
 ```
 
 Pass `shape="circle"` to render an ellipse:
@@ -136,6 +136,8 @@ return (
 
 ```tsx
 import { use, Suspense } from "react";
+import { Avatar } from "@tenstorrent/vesper/avatar";
+import { Skeleton } from "@tenstorrent/vesper/skeleton";
 
 function UserAvatar({ userId }: { userId: string }) {
   const avatar = use(fetchAvatar(userId));
@@ -143,6 +145,6 @@ function UserAvatar({ userId }: { userId: string }) {
 }
 
 <Suspense fallback={<Skeleton size="3rem" />}>
-  <UserAvatar />
+  <UserAvatar userId="abc123" />
 </Suspense>;
 ```
