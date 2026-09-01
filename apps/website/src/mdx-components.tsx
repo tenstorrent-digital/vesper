@@ -38,6 +38,7 @@ import {
   CaretDown,
   Checkmark,
   Close,
+  Download,
   Gear,
   Globe,
   Icon,
@@ -88,6 +89,7 @@ import { ShowMoreDemo } from "@/demos/show-more";
 import { SliderDemo } from "@/demos/slider";
 import { SplitButtonDemo } from "@/demos/split-button";
 import { ToastDemo } from "@/demos/toast";
+import { TooltipDemo } from "@/demos/tooltip";
 
 /**
  * github alert types (`> [!NOTE]`), as picked up by
@@ -273,6 +275,7 @@ const components = {
   CaretDown,
   Checkmark,
   Close,
+  Download,
   Gear,
   Globe,
   Info,
@@ -293,6 +296,7 @@ const components = {
   SliderDemo,
   SplitButtonDemo,
   ToastDemo,
+  TooltipDemo,
 } satisfies MDXComponents;
 
 export function useMDXComponents(): MDXComponents {
