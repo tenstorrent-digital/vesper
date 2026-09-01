@@ -20,38 +20,66 @@ A horizontal progress indicator that visualizes completion as a percentage. Supp
 | `stepRoundingStrategy` | `(n: number) => number` | Determines how to clamp progress to the nearest tick value.                                   | `Math.round` |
 | `animated`             | `boolean`               | Whether to animate progress bar value changes.                                                | `false`      |
 
+All other props are forwarded to the wrapping `<div>` element.
+
 ## Examples
+
+### Basic usage
+
+The most straightforward way to render a `ProgressBar` is by giving it a numeric `value` prop from `0` to `100`:
+
+<ProgressBar value={50} />
 
 ```tsx
 import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
 
-// Basic usage
 <ProgressBar value={50} />;
 ```
 
-```tsx
-// Sizes
-<ProgressBar value={40} size="sm" />
-<ProgressBar value={40} size="md" />
-<ProgressBar value={40} size="lg" />
-```
+### Different sizes
+
+A `ProgressBar` can be rendered in one of three sizes, `"sm"`, `"md"`, or `"lg"`. The default size is `"md"`.
+
+<ProgressBar value={41} size="sm" />
+<ProgressBar value={17} size="md" />
+<ProgressBar value={88} size="lg" />
 
 ```tsx
-// Steps variant
-<ProgressBar value={73} variant="steps" steps={10} />
+import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
+
+<ProgressBar value={41} size="sm" />
+<ProgressBar value={17} size="md" />
+<ProgressBar value={88} size="lg" />
 ```
 
-```tsx
-// Animated
-<ProgressBar value={progress} animated />
-```
+### Rendering step intervals
+
+A `ProgressBar` can be rendered in one of two variants, `"default"` or `"steps"`. The default variant is `"default"`, which renders a `ProgressBar` with no step intervals. To render a `ProgressBar` with step intervals, use the `"steps"` variant:
+
+<ProgressBar value={30} variant="steps" />
 
 ```tsx
-// Custom step rounding (always round up)
-<ProgressBar
-  value={33}
-  variant="steps"
-  steps={5}
-  stepRoundingStrategy={Math.ceil}
-/>
+import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
+
+<ProgressBar value={30} variant="steps" />;
 ```
+
+A `"steps"` variant `ProgressBar` will visually snap the progress indicator to the nearest interval, using `Math.round` by default. To adjust how step-rounding is calculated, you can pass a custom rounding function to the component via the `stepRoundingStrategy` prop:
+
+<ProgressBar value={73} variant="steps" stepRoundingStrategy={Math.ceil} />
+<ProgressBar value={73} variant="steps" stepRoundingStrategy={Math.floor} />
+
+```tsx
+import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
+
+// rounds with `Math.ceil` intead of `Math.round`
+<ProgressBar value={73} variant="steps" stepRoundingStrategy={Math.ceil} />
+// rounds with `Math.floor` intead of `Math.round`
+<ProgressBar value={73} variant="steps" stepRoundingStrategy={Math.floor} />
+```
+
+By default, when rendering a stepped `ProgressBar`, it will render with `10` steps. To modify the number of steps rendered, pass any positive integer value to the `steps` prop:
+
+<ProgressBar value={27} variant="steps" steps={5} />
+
+### Animating progress
