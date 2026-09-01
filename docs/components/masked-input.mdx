@@ -51,7 +51,7 @@ Every character in `format` that is not a placeholder is treated as a literal an
 A plain string mask is the simplest way to enable text masking for a `TextInput`. A plain string mask might look something like `"____-____-____"`. Underscores (`_`) in plain string masks are treated as the masked values, and accept any character:
 
 <MaskedInput
-  label="Masked text"
+  aria-label="Masked text"
   placeholder="Every other character will be masked"
   mask="_-_-_-_-_-_-_-_-_-_-_-_"
 />
@@ -60,7 +60,7 @@ A plain string mask is the simplest way to enable text masking for a `TextInput`
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 
 <MaskedInput
-  label="Masked text"
+  aria-label="Masked text"
   placeholder="Every other character will be masked"
   mask="_-_-_-_-_-_-_-_-_-_-_-_"
 />;
@@ -80,8 +80,8 @@ If you wanted to modify which character gets masked, you can pass a single chara
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 
 <MaskedInput
-  label="Masked input"
-  placeholder="ex. 1a2-b3c-4d5"
+  aria-label="Masked input"
+  placeholder="Masked input, ex. 1a2-b3c-4d5"
   mask={{
     format: "xxx-xxx-xxx",
     replace: "x",
@@ -99,7 +99,7 @@ If you wanted to change the kind of character that can be accepted as a masked v
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 
 <MaskedInput
-  label="Phone number"
+  aria-label="Phone number"
   placeholder="ex: +1 (222) 333-4444"
   mask={{ format: "+1 (___) ___-____", replace: /\d/ }}
 />;
@@ -117,8 +117,8 @@ For example, Canadian postal codes follow the format `ABA BAB`, where `A` is a l
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 
 <MaskedInput
-  label="Postal code"
-  placeholder="ex: A0A 1B1"
+  aria-label="Postal code"
+  placeholder="Enter your postal code, ex: A0A 1B1"
   mask={{
     format: "ABA BAB",
     replace: { A: /[a-zA-Z]/, B: /\d/ },
@@ -156,7 +156,7 @@ const mask = maskitoPhone({
 function PhoneNumberInput() {
   return (
     <MaskedInput
-      label="Phone number"
+      aria-label="Phone number"
       placeholder="Enter your phone number"
       mask={mask}
     />

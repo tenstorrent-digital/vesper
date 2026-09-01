@@ -40,7 +40,6 @@ function ControlledCheckboxDemo() {
     <div className="gap-vesper-4 flex flex-col">
       <Checkbox
         text="Sign up for our newsletter"
-        label="Newsletter"
         checked={checked}
         onChange={(event) => setChecked(event.target.checked)}
       />
@@ -101,8 +100,7 @@ function FormCheckboxDemo() {
         required
         name="terms"
         value="accepted"
-        text="I agree to the terms"
-        label="Terms and conditions"
+        text="I agree to the terms and conditions"
       />
       <Button size="sm" type="submit">
         Submit

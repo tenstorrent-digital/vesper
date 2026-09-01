@@ -36,7 +36,7 @@ function ControlledSelectDemo() {
   return (
     <div className="gap-vesper-4 flex flex-col">
       <Select
-        label="Fruit"
+        aria-label="Fruit"
         placeholder="Select a fruit"
         options={FRUITS}
         value={fruit}
@@ -67,7 +67,7 @@ function FormSelectDemo() {
       <Select
         required
         name="fruit"
-        label="Fruit"
+        aria-label="Fruit"
         placeholder="Select a fruit"
         options={FRUITS}
       />
