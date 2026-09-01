@@ -18,7 +18,7 @@ export interface ScrollAreaProps extends ComponentProps<"div"> {
   thumbVariant?: ScrollThumbVariant;
   /** Determines the behavior of scrollbar thumb visibility.
    * `"always"` means the scrollbar thumbs will always be visible when there is overflow.
-   * `"automatic"` means scrollbars will only be visible when there is overflow *and* the scroll area is being interacted with.
+   * `"on-interaction"` means scrollbars will only be visible when there is overflow *and* the scroll area is being interacted with.
    *
    * @default always */
   thumbVisibility?: ScrollThumbVisibility;
@@ -33,7 +33,7 @@ export interface ScrollAreaProps extends ComponentProps<"div"> {
  * @param {ParamType} [props.thumbVisibility] - (optional) Determines the behavior of scrollbar thumb visibility. @default always
  * `"always"` means the scrollbar thumbs will always be visible when there is overflow.
  * `"on-interaction"` means scrollbars will only be visible when there is overflow *and* the scroll area is being interacted with.
- * @default automatic
+ * @default always
  *
  * @example
  * <ScrollArea behavior="always">

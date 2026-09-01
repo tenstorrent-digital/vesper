@@ -36,7 +36,7 @@ export interface CodeBlockProps extends Omit<
   copyOnHover?: boolean;
   /** Determines the behavior of scrollbar thumb visibility.
    * `"always"` means the scrollbar thumbs will always be visible when there is overflow.
-   * `"automatic"` means scrollbars will only be visible when there is overflow *and* the scroll area is being interacted with.
+   * `"on-interaction"` means scrollbars will only be visible when there is overflow *and* the scroll area is being interacted with.
    *
    * @default always */
   scrollThumbVisibility?: ScrollThumbVisibility;
