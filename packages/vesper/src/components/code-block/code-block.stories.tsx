@@ -113,13 +113,13 @@ const meta = {
     copyOnHover: {
       control: "boolean",
       description:
-        "Whether only show the copy to clipboard button when `CodeBlock` is hovered.",
+        "Whether to only show the copy to clipboard button when `CodeBlock` is hovered.",
     },
     scrollThumbVisibility: {
       control: "radio",
       options: SCROLL_THUMB_VISIBILITIES,
       description:
-        "Determines when to show the scroll thumbs when the `CodeBlock` has overflow",
+        "Determines when to show the scroll thumbs when the `CodeBlock` has overflow.",
     },
   },
 } satisfies Meta<typeof CodeBlockStoryComponent>;
