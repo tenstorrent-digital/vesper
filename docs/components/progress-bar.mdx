@@ -38,7 +38,7 @@ import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
 
 ### Different sizes
 
-A `ProgressBar` can be rendered in one of three sizes, `"sm"`, `"md"`, or `"lg"`. The default size is `"md"`.
+A `ProgressBar` can be rendered in one of three sizes, `"sm"`, `"md"`, or `"lg"`. The default size is `"md"`:
 
 <ProgressBar value={41} size="sm" />
 <ProgressBar value={17} size="md" />
@@ -83,3 +83,23 @@ By default, when rendering a stepped `ProgressBar`, it will render with `10` ste
 <ProgressBar value={27} variant="steps" steps={5} />
 
 ### Animating progress
+
+To animate a `ProgressBar` as its `value` changes, you can pass `animated={true}` or just `animated` as a prop:
+
+<ProgressBarDemo kind="animated" />
+
+```tsx
+import { useState } from "react";
+import { Button } from "@tenstorrent/vesper/button";
+import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+const [value, setValue] = useState(66);
+
+<ProgressBar value={value} animated />
+<ProgressBar value={value} variant="steps" animated />
+<Button onClick={() =>setValue(Math.round(Math.random() * 100))}>
+  Change value
+</Button>
+<Typography>Current value: {value}</Typography>
+```
