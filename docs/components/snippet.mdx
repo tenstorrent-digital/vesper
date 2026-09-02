@@ -16,23 +16,47 @@ A compact code display component with a built-in copy-to-clipboard button. Ideal
 | `children` | `string`                  | The code text to display. Also used as the value copied to the clipboard when the copy button is clicked. | `""`        |
 | `variant`  | `"default" \| "contrast"` | The visual style variant of the snippet.                                                                  | `"default"` |
 
+Any additional props are forwarded to the underlying `<div>` element.
+
 ## Examples
+
+### Basic usage
+
+The most straightforward way to use `Snippet` is to simply render it with some text children:
+
+<Snippet>yarn add @tenstorrent/vesper</Snippet>
 
 ```tsx
 import { Snippet } from "@tenstorrent/vesper/snippet";
 
-// Basic usage
-<Snippet>npm install @tenstorrent/vesper</Snippet>;
+<Snippet>yarn add @tenstorrent/vesper</Snippet>;
 ```
 
+### Variants
+
+A `Snippet` can be rendered in one of two variants: `"default"` or `"contrast"`. The default variant is `"default"`. Use the `"contrast"` variant to render a `Snippet` using a color palette that contrasts with the current theme:
+
+<Snippet variant="default">curl https://api.example.com/data</Snippet>
+<Snippet variant="contrast">curl https://api.example.com/data</Snippet>
+
 ```tsx
-// Contrast variant
+import { Snippet } from "@tenstorrent/vesper/snippet";
+
+<Snippet variant="default">curl https://api.example.com/data</Snippet>
 <Snippet variant="contrast">curl https://api.example.com/data</Snippet>
 ```
 
+### Multiline snippets
+
+`Snippet` preserves newlines in the content it renders, so you can also pass string children with line breaks if you want to render multiline snippets:
+
+<Snippet>
+  nvm use 24
+  node -v >> .nvmrc
+</Snippet>
+
 ```tsx
-// Multi-line
-<Snippet>{`cd my-project
-yarn install
-yarn dev`}</Snippet>
+import { Snippet } from "@tenstorrent/vesper/snippet";
+
+<Snippet>{"nvm use 24 node\n-v >> .nvmrc"}</Snippet>;
 ```

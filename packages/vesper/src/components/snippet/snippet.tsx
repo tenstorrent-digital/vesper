@@ -26,7 +26,7 @@ export interface SnippetProps extends Omit<ComponentProps<"div">, "children"> {
  * @param {SnippetVariant} [props.variant] - (optional) The visual style variant of the snippet. @default default`
  * @param {string} [props.className] - (optional) Additional CSS class names to apply
  *
- * You may also pass any additional props to the underlying `div` element
+ * You may also pass any additional props to the underlying `<div>` element
  *
  * @example
  * <Snippet>yarn add some-package</Snippet>
