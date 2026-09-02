@@ -35,6 +35,7 @@ import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import {
   Add,
+  ArrowRight,
   CaretDown,
   Checkmark,
   Close,
@@ -278,6 +279,7 @@ const components = {
 
   // icons will need to be added here too if we want to use them directly
   Add,
+  ArrowRight,
   CaretDown,
   Checkmark,
   Close,
