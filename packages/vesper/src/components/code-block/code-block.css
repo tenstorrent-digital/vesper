@@ -6,6 +6,7 @@
   border: var(--vesper-stroke-base) solid var(--vesper-stone-200);
   background: var(--vesper-alpha-stone-0);
   box-shadow: var(--vesper-shadow-inset-100);
+  overflow: hidden;
 
   .vesper-icon-button {
     position: absolute;
@@ -48,12 +49,7 @@
   }
   width: 100%;
   overflow: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
   border-radius: var(--vesper-radius-2);
-  &::-webkit-scrollbar {
-    display: none;
-  }
   pre.shiki {
     min-width: max-content;
     margin: 0;
