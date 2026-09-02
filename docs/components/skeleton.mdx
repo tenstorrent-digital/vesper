@@ -134,7 +134,9 @@ function MaskedChildrenExample() {
     fetch("https://example.com/api/v1/data", { signal })
       .then((res) => res.json())
       .then((data) => setData(data))
-      .catch(console.error);
+      .catch(() => {
+        if (!signal.aborted) setData("Failed to fetch data");
+      });
 
     return () => controller.abort();
   }, []);
