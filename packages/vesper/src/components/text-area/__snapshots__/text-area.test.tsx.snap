@@ -1,83 +1,133 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`text-area [snapshot] > disabled 1`] = `
-<textarea
-  class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-default"
-  disabled=""
-  placeholder=" "
-  style="height: 6.5rem; resize: none;"
-/>
+<div
+  class="vesper-text-area vesper-text-area-lg vesper-text-area-default"
+  style="height: 6.5rem;"
+>
+  <textarea
+    class="vesper-typography vesper-typography-copy-md"
+    disabled=""
+    placeholder=" "
+    style="resize: none;"
+  />
+</div>
 `;
 
 exports[`text-area [snapshot] > full options 1`] = `
-<textarea
-  class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-error"
-  disabled=""
-  placeholder=" "
-  style="height: 6.5rem; resize: none;"
-/>
+<div
+  class="vesper-text-area vesper-text-area-lg vesper-text-area-error"
+  style="height: 6.5rem;"
+>
+  <textarea
+    class="vesper-typography vesper-typography-copy-md"
+    disabled=""
+    placeholder=" "
+    style="resize: none;"
+  />
+</div>
 `;
 
 exports[`text-area [snapshot] > size: lg 1`] = `
-<textarea
-  class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-default"
-  placeholder=" "
-  style="height: 6.5rem; resize: none;"
-/>
+<div
+  class="vesper-text-area vesper-text-area-lg vesper-text-area-default"
+  style="height: 6.5rem;"
+>
+  <textarea
+    class="vesper-typography vesper-typography-copy-md"
+    placeholder=" "
+    style="resize: none;"
+  />
+</div>
 `;
 
 exports[`text-area [snapshot] > size: md 1`] = `
-<textarea
-  class="vesper-typography vesper-typography-copy-sm vesper-text-area vesper-text-area-md vesper-text-area-default"
-  placeholder=" "
-  style="height: 6.5rem; resize: none;"
-/>
+<div
+  class="vesper-text-area vesper-text-area-md vesper-text-area-default"
+  style="height: 6.5rem;"
+>
+  <textarea
+    class="vesper-typography vesper-typography-copy-sm"
+    placeholder=" "
+    style="resize: none;"
+  />
+</div>
 `;
 
 exports[`text-area [snapshot] > size: sm 1`] = `
-<textarea
-  class="vesper-typography vesper-typography-copy-xs vesper-text-area vesper-text-area-sm vesper-text-area-default"
-  placeholder=" "
-  style="height: 6.5rem; resize: none;"
-/>
+<div
+  class="vesper-text-area vesper-text-area-sm vesper-text-area-default"
+  style="height: 6.5rem;"
+>
+  <textarea
+    class="vesper-typography vesper-typography-copy-xs"
+    placeholder=" "
+    style="resize: none;"
+  />
+</div>
 `;
 
 exports[`text-area [snapshot] > variant: default 1`] = `
-<textarea
-  class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-default"
-  placeholder=" "
-  style="height: 6.5rem; resize: none;"
-/>
+<div
+  class="vesper-text-area vesper-text-area-lg vesper-text-area-default"
+  style="height: 6.5rem;"
+>
+  <textarea
+    class="vesper-typography vesper-typography-copy-md"
+    placeholder=" "
+    style="resize: none;"
+  />
+</div>
 `;
 
 exports[`text-area [snapshot] > variant: error 1`] = `
-<textarea
-  class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-error"
-  placeholder=" "
-  style="height: 6.5rem; resize: none;"
-/>
+<div
+  class="vesper-text-area vesper-text-area-lg vesper-text-area-error"
+  style="height: 6.5rem;"
+>
+  <textarea
+    class="vesper-typography vesper-typography-copy-md"
+    placeholder=" "
+    style="resize: none;"
+  />
+</div>
 `;
 
 exports[`text-area [snapshot] > variant: success 1`] = `
-<textarea
-  class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-success"
-  placeholder=" "
-  style="height: 6.5rem; resize: none;"
-/>
+<div
+  class="vesper-text-area vesper-text-area-lg vesper-text-area-success"
+  style="height: 6.5rem;"
+>
+  <textarea
+    class="vesper-typography vesper-typography-copy-md"
+    placeholder=" "
+    style="resize: none;"
+  />
+</div>
 `;
 
 exports[`text-area [snapshot] > variant: warning 1`] = `
-<textarea
-  class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-warning"
-  placeholder=" "
-  style="height: 6.5rem; resize: none;"
-/>
+<div
+  class="vesper-text-area vesper-text-area-lg vesper-text-area-warning"
+  style="height: 6.5rem;"
+>
+  <textarea
+    class="vesper-typography vesper-typography-copy-md"
+    placeholder=" "
+    style="resize: none;"
+  />
+</div>
 `;
 
 exports[`text-area [snapshot] > with icon 1`] = `
-<textarea
-  class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-default"
-  placeholder=" "
-  style="height: 6.5rem; resize: none;"
-/>
+<div
+  class="vesper-text-area vesper-text-area-lg vesper-text-area-default"
+  style="height: 6.5rem;"
+>
+  <textarea
+    class="vesper-typography vesper-typography-copy-md"
+    placeholder=" "
+    style="resize: none;"
+  />
+</div>
 `;

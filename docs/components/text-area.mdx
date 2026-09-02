@@ -29,7 +29,7 @@ A multi-line text input component that supports different visual variants.
 | `readOnly`    | `boolean`                                        | When `true`, makes the textarea read-only.                                                   | `false`     |
 | `resizeable`  | `boolean`                                        | When `true`, enables resizing the textarea.                                                  | `false`     |
 
-Any other props are forwarded to the underlying `<textarea>` element.
+Form props (`value`, `disabled`, `name`, `form`, etc.), input props (`autoCorrect`, `spellCheck`, `autoFocus`, etc.), `aria-*` attributes, `ref`, and event handlers related to `focus`, `blur`, `scroll`, `input`, and `change` events are forwarded to the underlying `<textarea>` element. All other props are forwarded to the wrapping `<div>` element.
 
 Unlike [the `TextInput` component](./text-input.mdx), `TextArea` does not support icons or a `type` prop, since neither of them apply to multi-line text.
 

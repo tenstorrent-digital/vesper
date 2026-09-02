@@ -6,7 +6,10 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
-import { FormInputProps } from "@/utils/splitFormInputProps";
+import {
+  FormInputProps,
+  splitFormInputProps,
+} from "@/utils/splitFormInputProps";
 
 export const TEXT_AREA_SIZES = ["sm", "md", "lg"] as const;
 
@@ -21,7 +24,7 @@ export type TextAreaSize = (typeof TEXT_AREA_SIZES)[number];
 
 export type TextAreaVariant = (typeof TEXT_AREA_VARIANTS)[number];
 
-export interface TextAreaProps extends FormInputProps<"textarea", "textarea"> {
+export interface TextAreaProps extends FormInputProps<"div", "textarea"> {
   /** The fixed height of the textarea in pixels, scaling with base rem size. @default 104 */
   height?: number;
   /** Whether to allow vertical resizing of the underling `textarea` element. @default false */
@@ -46,8 +49,6 @@ const TEXTAREA_TYPOGRAPHY: { [S in TextAreaSize]: TypographyVariant } = {
  * @param {string} [props.placeholder] - (optional) Placeholder text for the input
  * @param {number} [props.height] - (optional) The fixed height of the textarea in pixels, scaling with base rem size. @default 104
  *
- * You may also pass any additional props to the underlying `textarea` element
-
  * @example
  * <TextArea
  *  aria-label="Bio"
@@ -69,27 +70,33 @@ export function TextArea(props: TextAreaProps) {
     ...rest
   } = props;
 
+  const { ariaProps, controlProps, formProps, wrapperProps } =
+    splitFormInputProps(rest);
+
   return (
-    <Typography
-      {...rest}
+    <div
+      {...wrapperProps}
       className={cn(
         "vesper-text-area",
         `vesper-text-area-${size}`,
         `vesper-text-area-${variant}`,
         className,
       )}
-      as="textarea"
-      variant={TEXTAREA_TYPOGRAPHY[size]}
-      placeholder={
-        props.required && placeholder.trim()
-          ? `${placeholder.trim()} *`
-          : placeholder
-      }
-      style={{
-        height: `${height / 16}rem`,
-        resize: resizeable ? "block" : "none",
-        ...style,
-      }}
-    />
+      style={{ height: `${height / 16}rem`, ...style }}
+    >
+      <Typography
+        {...ariaProps}
+        {...controlProps}
+        {...formProps}
+        as="textarea"
+        variant={TEXTAREA_TYPOGRAPHY[size]}
+        placeholder={
+          props.required && placeholder.trim()
+            ? `${placeholder.trim()} *`
+            : placeholder
+        }
+        style={{ resize: resizeable ? "block" : "none" }}
+      />
+    </div>
   );
 }

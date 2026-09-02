@@ -1,7 +1,6 @@
 import { cleanup, render } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
-import { userEvent } from "vitest/browser";
 
 import {
   TEXT_AREA_SIZES,
@@ -68,8 +67,9 @@ describe("text-area [unit]", () => {
     test(`${variant} variant`, () => {
       const result = render(<TextArea variant={variant} />);
 
-      const textarea = result.getByRole("textbox");
-      expect(textarea).toHaveClass(`vesper-text-area-${variant}`);
+      expect(result.container.firstChild).toHaveClass(
+        `vesper-text-area-${variant}`,
+      );
     });
   });
 
@@ -77,8 +77,9 @@ describe("text-area [unit]", () => {
     test(`${size} size`, () => {
       const result = render(<TextArea size={size} />);
 
-      const textarea = result.getByRole("textbox");
-      expect(textarea).toHaveClass(`vesper-text-area-${size}`);
+      expect(result.container.firstChild).toHaveClass(
+        `vesper-text-area-${size}`,
+      );
     });
   });
 
@@ -90,17 +91,20 @@ describe("text-area [unit]", () => {
   test("applies the default height to the textarea", () => {
     const result = render(<TextArea />);
 
-    expect(result.getByRole("textbox").style.height).toBe("6.5rem");
+    const wrapper = result.container.firstElementChild as HTMLDivElement;
+    expect(wrapper.style.height).toBe("6.5rem");
   });
 
   test("height prop overrides the default height", () => {
     const result = render(<TextArea height={200} />);
 
-    expect(result.getByRole("textbox").style.height).toBe("12.5rem");
+    const wrapper = result.container.firstElementChild as HTMLDivElement;
+    expect(wrapper.style.height).toBe("12.5rem");
   });
 
   test("textarea is not resizeable by default", () => {
     const result = render(<TextArea />);
+
     expect(result.getByRole("textbox").style.resize).toBe("none");
   });
 
