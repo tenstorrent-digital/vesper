@@ -37,7 +37,7 @@ export interface SnippetProps extends Omit<ComponentProps<"div">, "children"> {
  * </Snippet>
  */
 export function Snippet(props: SnippetProps) {
-  const { className, children = "", variant = "default", ...rest } = props;
+  const { className, children, variant = "default", ...rest } = props;
 
   const [copied, setCopied] = useState(false);
   useEffect(() => {
@@ -53,7 +53,7 @@ export function Snippet(props: SnippetProps) {
     >
       <pre>
         <Typography as="code" variant="copy-xs-mono">
-          {children.split("\n").map((line, index) => (
+          {(children ?? "").split("\n").map((line, index) => (
             <span key={index} className="line">
               {line}
             </span>
