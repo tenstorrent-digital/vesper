@@ -1,6 +1,7 @@
 .vesper-skeleton {
   position: relative;
   overflow: hidden;
+  width: fit-content;
 }
 
 .vesper-skeleton-overlay {
