@@ -1,9 +1,9 @@
 "use client";
 
-import { type ComponentProps } from "react";
+import { type ComponentProps, useEffect, useState } from "react";
 
 import { IconButton } from "@/components/icon-button/icon-button";
-import { Copy } from "@/components/icons/icons";
+import { Checkmark, Copy } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
@@ -39,6 +39,13 @@ export interface SnippetProps extends Omit<ComponentProps<"div">, "children"> {
 export function Snippet(props: SnippetProps) {
   const { className, children = "", variant = "default", ...rest } = props;
 
+  const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    if (!copied) return;
+    const id = setTimeout(() => setCopied(false), 2000);
+    return () => clearTimeout(id);
+  }, [copied]);
+
   return (
     <div
       className={cn("vesper-snippet", `vesper-snippet-${variant}`, className)}
@@ -55,11 +62,16 @@ export function Snippet(props: SnippetProps) {
       </pre>
       <IconButton
         variant={variant === "default" ? "ghost" : "contrast"}
-        icon={<Copy />}
+        icon={copied ? <Checkmark /> : <Copy />}
         aria-label="Copy code"
         size="xs"
         type="button"
-        onClick={() => navigator.clipboard.writeText(children)}
+        onClick={() =>
+          navigator.clipboard
+            ?.writeText(children)
+            .then(() => setCopied(true))
+            .catch(() => {})
+        }
       />
     </div>
   );
