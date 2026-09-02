@@ -7,13 +7,12 @@ description: A compact status label with a colored dot that communicates the cur
 
 A compact status label with a colored dot that communicates the current state of a process or resource. Supports five states and an optional pulsing animation.
 
-<div style={{ display: "flex", gap: "16px" }}>
-  <StatusIndicator label="Ready" state="ready" />
-  <StatusIndicator label="In Progress" state="progress" animated />
-  <StatusIndicator label="Queued" state="queued" />
-  <StatusIndicator label="Error" state="error" />
-  <StatusIndicator label="Cancelled" state="cancelled" />
-</div>
+<StatusIndicator
+  label="In Progress"
+  state="progress"
+  variant="badge"
+  animated
+/>
 
 ## Options
 
@@ -25,17 +24,51 @@ A compact status label with a colored dot that communicates the current state of
 | `animated` | `boolean`                                                     | When `true`, applies a pulsing animation to the status dot.                | `false`     |
 | `as`       | `ElementType`                                                 | The root element type for polymorphic rendering.                           | `"div"`     |
 
+Any additional props are forwarded to the wrapping `<div>` element, or whichever element is specified by the `as` prop.
+
 ## Examples
+
+### Basic Usage
+
+The most straightforward way of rendering a `StatusIndicator` is to give it a `state` and a `label`:
+
+<StatusIndicator state="queued" label="Build queued" />
 
 ```tsx
 import { StatusIndicator } from "@tenstorrent/vesper/status-indicator";
 
-// Basic usage
-<StatusIndicator label="Ready" state="ready" />;
+<StatusIndicator state="queued" label="Build queued" />;
 ```
 
+### Variants
+
+A `StatusIndicator` can be rendered in one of two visual variants: `"default"`, or `"badge"`. The default variant is `"default"`. When rendered using the `"badge"` variant, the `StatusIndicator` receives a subtle border, visually separating it from its surrounding content:
+
+<StatusIndicator label="Deployed to production" state="ready" variant="badge" />
+
 ```tsx
-// All states
+import { StatusIndicator } from "@tenstorrent/vesper/status-indicator";
+
+<StatusIndicator
+  label="Deployed to production"
+  state="ready"
+  variant="badge"
+/>;
+```
+
+### States
+
+`StatusIndicator` can be rendered with one of five states: `"queued"`, `"progress"`, `"error"`, `"ready"`, or `"cancelled"`. Use a `state` which corresponds with the status of the resource it describes.
+
+<StatusIndicator label="Queued" state="queued" />
+<StatusIndicator label="In Progress" state="progress" />
+<StatusIndicator label="Ready" state="ready" />
+<StatusIndicator label="Error" state="error" />
+<StatusIndicator label="Cancelled" state="cancelled" />
+
+```tsx
+import { StatusIndicator } from "@tenstorrent/vesper/status-indicator";
+
 <StatusIndicator label="Queued" state="queued" />
 <StatusIndicator label="In Progress" state="progress" />
 <StatusIndicator label="Ready" state="ready" />
@@ -43,12 +76,14 @@ import { StatusIndicator } from "@tenstorrent/vesper/status-indicator";
 <StatusIndicator label="Cancelled" state="cancelled" />
 ```
 
-```tsx
-// Animated progress
+### Animating the indicator dot
+
+The colored dot next to the label can be rendered with a gentle pulsing animation by passing `animated={true}` or just `animated` as a prop:
+
 <StatusIndicator label="Processing..." state="progress" animated />
-```
 
 ```tsx
-// Badge variant
-<StatusIndicator label="Online" state="ready" variant="badge" />
+import { StatusIndicator } from "@tenstorrent/vesper/status-indicator";
+
+<StatusIndicator label="Processing..." state="progress" animated />;
 ```
