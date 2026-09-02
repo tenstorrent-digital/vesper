@@ -19,7 +19,7 @@ export interface CodeProps extends ComponentProps<"code"> {
  * @param {CodeVariant} [props.variant] - (optional) The visual style variant. @default default`
  * @param {string} [props.className] - (optional) Additional CSS class names to apply
  *
- * You may also pass any additional props to the underlying `code` element
+ * You may also pass any additional props to the underlying `<code>` element
  *
  * @example
  * <Code>npm install vesper</Code>
