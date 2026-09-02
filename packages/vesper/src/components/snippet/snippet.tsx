@@ -68,7 +68,7 @@ export function Snippet(props: SnippetProps) {
         type="button"
         onClick={() =>
           navigator.clipboard
-            ?.writeText(children)
+            ?.writeText(children ?? "")
             .then(() => setCopied(true))
             .catch(() => {})
         }
