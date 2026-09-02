@@ -23,10 +23,6 @@
     "dist"
   ],
   "exports": {
-    "./scroll-area": {
-      "types": "./dist/components/scroll-area/scroll-area.d.ts",
-      "import": "./dist/components/scroll-area/scroll-area.js"
-    },
     "./combobox": {
       "types": "./dist/components/combobox/combobox.d.ts",
       "import": "./dist/components/combobox/combobox.js"
