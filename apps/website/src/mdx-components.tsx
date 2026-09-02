@@ -86,6 +86,7 @@ import { ComboboxDemo } from "@/demos/combobox";
 import { IconsDemo } from "@/demos/icons";
 import { MaskedInputDemo } from "@/demos/masked-input";
 import { MenuDemo } from "@/demos/menu";
+import { ProgressBarDemo } from "@/demos/progress-bar";
 import { RangeDemo } from "@/demos/range";
 import { ScrollAreaDemo } from "@/demos/scroll-area";
 import { SelectDemo } from "@/demos/select";
@@ -298,6 +299,7 @@ const components = {
   IconsDemo,
   MaskedInputDemo,
   MenuDemo,
+  ProgressBarDemo,
   RangeDemo,
   ScrollAreaDemo,
   SelectDemo,
