@@ -30,36 +30,179 @@ A popup overlay that displays additional information when hovering over or focus
 
 ## Examples
 
+### Basic usage
+
+Render a `Tooltip` by wrapping children with it and giving it `content`. `content` can be any `ReactNode`, though it is highly advisable to just render plain text:
+
+<Tooltip content="Download documents">
+  <IconButton aria-label="Download" variant="contrast" icon={<Download />} />
+</Tooltip>
+
 ```tsx
+import { IconButton } from "@tenstorrent/vesper/icon-button";
+import { Download } from "@tenstorrent/vesper/icons";
 import { Tooltip } from "@tenstorrent/vesper/tooltip";
 
-// Basic usage
-<Tooltip content="Save your changes">
-  <button>Save</button>
+<Tooltip content="Download documents">
+  <IconButton aria-label="Download" variant="contrast" icon={<Download />} />
 </Tooltip>;
 ```
 
-```tsx
-// Different sides
-<Tooltip content="Top" side="top"><button>Top</button></Tooltip>
-<Tooltip content="Bottom" side="bottom"><button>Bottom</button></Tooltip>
-<Tooltip content="Left" side="left"><button>Left</button></Tooltip>
-<Tooltip content="Right" side="right"><button>Right</button></Tooltip>
-```
+> [!IMPORTANT]
+>
+> A `Tooltip`'s children must be a single React element and able to receive event handlers to listen for hover events. A `Tooltip`'s content will not render otherwise.
+
+### Positioning the tooltip
+
+By default, a `Tooltip` floats above and is aligned to the center of its trigger. You can adjust the positioning of a `Tooltip` via the `side`, `sideOffset`, `align`, and `alignOffset` props.
+
+The `side` prop determines which trigger edge the `Tooltip` sits against. Possible values are `"top"`, `"right"`, `"bottom"`, and `"left"`. The default value is `"top"`.
+
+The `sideOffset` prop determines how far away in pixels the `Tooltip` is from its trigger's edge. The default value is `4`. This value scales with the base rem size.
+
+The `align` prop determines which end of the `side` to align the `Tooltip` to. Possible values are `"start"`, `"end"`, and `"center"`. The default value is `"center"`.
+
+The `alignOffset` prop adjusts how many pixels the `Tooltip` is offset from its alignment. The default value is `0`. This value scales with the base rem size.
+
+In the example below, we render a `Tooltip` on the bottom side of a button, aligning it to the starting edge. We then give it a `sideOffset` of `12` to move it further away from the button, and an `alignOffset` of `12` to move it further from the starting edge:
+
+<Tooltip
+  content="The tooltip content"
+  side="bottom"
+  align="start"
+  sideOffset={12}
+  alignOffset={12}
+>
+  <Button variant="contrast">Hover me</Button>
+</Tooltip>
 
 ```tsx
-// Instant tooltip (no delay)
-<Tooltip content="No delay" delayDuration={0}>
-  <button>Hover me</button>
+import { Button } from "@tenstorrent/vesper/button";
+import { Tooltip } from "@tenstorrent/vesper/tooltip";
+
+<Tooltip
+  content="The tooltip content"
+  side="bottom"
+  align="start"
+  sideOffset={12}
+  alignOffset={12}
+>
+  <Button variant="contrast">Hover me</Button>
+</Tooltip>;
+```
+
+The demo below shows how the `side` and `align` props interact with each other:
+
+<TooltipDemo kind="position" />
+
+### Adjusting the delay
+
+A `Tooltip` does not instantly show when a user hovers its trigger. By default, a half-second delay occurs prior to showing a `Tooltip`. This duration can be adjusted via the `delayDuration` prop, which represents the amount of milliseconds to wait before showing a `Tooltip`:
+
+<Tooltip
+  content="This tooltip appears instantly"
+  delayDuration={0}
+  side="right"
+>
+  <Button variant="contrast">No delay</Button>
+</Tooltip>
+<Tooltip
+  content="This tooltip appears delayed"
+  delayDuration={1000}
+  side="right"
+>
+  <Button variant="contrast">1 second delay</Button>
+</Tooltip>
+
+```tsx
+import { Button } from "@tenstorrent/vesper/button";
+import { Tooltip } from "@tenstorrent/vesper/tooltip";
+
+<Tooltip content="This tooltip appears instantly" delayDuration={0} side="right">
+  <Button variant="contrast">No delay</Button>
+</Tooltip>
+<Tooltip content="This tooltip appears delayed" delayDuration={1000} side="right">
+  <Button variant="contrast">1 second delay</Button>
 </Tooltip>
 ```
 
-```tsx
-// Wide content with custom max width
+### Setting the max width
+
+The default maximum width a `Tooltip` can render at before its content wraps is `240` pixels. You can adjust this by passing a numeric value to the `maxWidth` prop. This value scales with the base rem size:
+
 <Tooltip
   content="This tooltip contains a longer description that will wrap at the specified max width."
   maxWidth={320}
+  side="right"
 >
-  <button>Details</button>
+  <Button variant="contrast">Details</Button>
 </Tooltip>
+
+```tsx
+import { Button } from "@tenstorrent/vesper/button";
+import { Tooltip } from "@tenstorrent/vesper/tooltip";
+
+<Tooltip
+  content="This tooltip contains a longer description that will wrap at the specified max width."
+  maxWidth={320}
+  side="right"
+>
+  <Button variant="contrast">Details</Button>
+</Tooltip>;
+```
+
+### Controlling the open state
+
+By default, a `Tooltip` tracks its own open state. If you need to control the open state of a `Tooltip`, you can do so via the `open` prop:
+
+<Tooltip content="This tooltip is always showing" side="right" open>
+  <Button variant="subtle">Hover me</Button>
+</Tooltip>
+<Tooltip content="This tooltip never shows" side="right" open={false}>
+  <Button variant="subtle">Hover me</Button>
+</Tooltip>
+
+```tsx
+import { Button } from "@tenstorrent/vesper/button";
+import { Tooltip } from "@tenstorrent/vesper/tooltip";
+
+<Tooltip content="This tooltip is always showing" side="right" open>
+  <Button variant="subtle">Hover me</Button>
+</Tooltip>
+<Tooltip content="This tooltip never shows" side="right" open={false}>
+  <Button variant="subtle">Hover me</Button>
+</Tooltip>
+```
+
+### Listening for `open`'s value changing
+
+You can respond to `open`'s value changing via the `onOpenChange` prop:
+
+```tsx
+import { Button } from "@tenstorrent/vesper/button";
+import { Tooltip } from "@tenstorrent/vesper/tooltip";
+
+<Tooltip
+  content="The tooltip content"
+  onOpenChange={(open) => console.log(`open state changed to ${open}`)}
+>
+  <Button variant="subtle">Hover me</Button>
+</Tooltip>;
+```
+
+### Showing by default
+
+Pass `defaultOpen` to show a `Tooltip` before the first user interaction. Because this is uncontrolled mode, normal interactions can subsequently close it (pressing Escape or moving the pointer away after hovering, for example):
+
+<Tooltip content="This tooltip shows by default" side="right" defaultOpen>
+  <Button variant="subtle">Hover me</Button>
+</Tooltip>
+
+```tsx
+import { Button } from "@tenstorrent/vesper/button";
+import { Tooltip } from "@tenstorrent/vesper/tooltip";
+
+<Tooltip content="This tooltip shows by default" side="right" defaultOpen>
+  <Button variant="subtle">Hover me</Button>
+</Tooltip>;
 ```

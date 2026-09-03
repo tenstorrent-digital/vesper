@@ -94,6 +94,7 @@ import { SplitButtonDemo } from "@/demos/split-button";
 import { SwitchDemo } from "@/demos/switch";
 import { ToastDemo } from "@/demos/toast";
 import { ToggleDemo } from "@/demos/toggle";
+import { TooltipDemo } from "@/demos/tooltip";
 
 /**
  * github alert types (`> [!NOTE]`), as picked up by
@@ -305,6 +306,7 @@ const components = {
   SwitchDemo,
   ToastDemo,
   ToggleDemo,
+  TooltipDemo,
 } satisfies MDXComponents;
 
 export function useMDXComponents(): MDXComponents {
