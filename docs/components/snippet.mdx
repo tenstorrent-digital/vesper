@@ -34,7 +34,7 @@ import { Snippet } from "@tenstorrent/vesper/snippet";
 
 ### Variants
 
-A `Snippet` can be rendered in one of two variants: `"default"` or `"contrast"`. The default variant is `"default"`. Use the `"contrast"` variant to render a `Snippet` using a color palette that contrasts with the current theme:
+A `Snippet` can be rendered in one of two variants: `"default"` or `"contrast"`. Use the `"contrast"` variant to render a `Snippet` with increased contrast:
 
 <Snippet variant="default">{"curl https://api.example.com/data"}</Snippet>
 <Snippet variant="contrast">{"curl https://api.example.com/data"}</Snippet>
@@ -48,7 +48,9 @@ import { Snippet } from "@tenstorrent/vesper/snippet";
 
 ### Multiline snippets
 
-`Snippet` preserves newlines in the content it renders, so you can also pass string children with line breaks if you want to render multiline snippets:
+`Snippet` preserves newlines in the content it renders, so you can also pass string with line breaks to render multiline snippets.
+
+You can use escaped newline characters with `\n`:
 
 <Snippet>{"nvm use 24\nnode -v >> .nvmrc"}</Snippet>
 
@@ -56,4 +58,17 @@ import { Snippet } from "@tenstorrent/vesper/snippet";
 import { Snippet } from "@tenstorrent/vesper/snippet";
 
 <Snippet>{"nvm use 24\nnode -v >> .nvmrc"}</Snippet>;
+```
+
+You can also use template literals:
+
+<Snippet>{"nvm use 24\nnode -v >> .nvmrc"}</Snippet>
+
+```tsx
+import { Snippet } from "@tenstorrent/vesper/snippet";
+
+const INSTALL_COMMAND = `nvm use 24
+node -v >> .nvmrc`
+
+<Snippet>{INSTALL_COMMAND}</Snippet>;
 ```
