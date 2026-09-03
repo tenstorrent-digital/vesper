@@ -85,6 +85,18 @@ const withMDX = createMDX({
       path.join(appRoot, "src/lib/mdx/remark-doc-links.mts"),
 
       /**
+       * gives every heading a stable `id`, so the table of contents, the
+       * command palette, and `#fragment` links all have something to point at
+       */
+      path.join(appRoot, "src/lib/mdx/remark-heading-ids.mts"),
+
+      /**
+       * drops the `# Title` and repeated description a document in `docs/`
+       * opens with — the website renders both itself, above the document body
+       */
+      path.join(appRoot, "src/lib/mdx/remark-doc-lede.mts"),
+
+      /**
        * adds support for github's alert syntax (`> [!NOTE]`, `> [!WARNING]`,
        * etc.), so a blockquote written as a callout renders as the matching
        * `Admonition` variant on the site and as a callout on GitHub

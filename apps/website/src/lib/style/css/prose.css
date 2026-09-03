@@ -1,0 +1,227 @@
+/*
+  prose — everything rendered from a `docs/**` markdown file
+
+  the element -> component mapping lives in `src/mdx-components.tsx`; this file
+  only handles rhythm, and the bits markdown produces that no component owns
+  (tables, lists, hr, heading anchors)
+*/
+
+.prose {
+  --content-width: var(--content-max);
+  --flow: var(--vesper-spacing-4);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--flow);
+  width: 100%;
+  min-width: 0;
+
+  /* headings ---------------------------------------------------------- */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    position: relative;
+    scroll-margin-top: calc(var(--topbar-height) + var(--vesper-spacing-6));
+    letter-spacing: var(--vesper-tracking-tight);
+    text-wrap: pretty;
+    word-break: auto-phrase;
+    margin-top: var(--vesper-spacing-6);
+    margin-bottom: calc(
+      var(--vesper-spacing-2) * -1 + var(--flow) * -1 + var(--vesper-spacing-3)
+    );
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h1 {
+    letter-spacing: var(--vesper-tracking-tighter);
+  }
+
+  /*
+    `##` opens a new top-level section, so it gets a hairline above it and a
+    little more air — this is what gives a long component page its rhythm
+  */
+  h2 {
+    margin-top: var(--vesper-spacing-12);
+    padding-top: var(--vesper-spacing-6);
+    border-top: var(--vesper-stroke-base) solid var(--hairline);
+
+    &:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
+    }
+  }
+
+  h3 {
+    margin-top: var(--vesper-spacing-8);
+  }
+
+  /* the `#` anchor revealed when a heading is hovered or focused */
+  .heading-anchor {
+    position: absolute;
+    right: 100%;
+    top: 0;
+    padding-right: var(--vesper-spacing-2);
+
+    font-family: var(--font-plex-mono);
+    font-weight: 400;
+    color: var(--vesper-text-tertiary);
+    text-decoration: none;
+    opacity: 0;
+
+    transition: opacity var(--vesper-transition-duration-fast) ease;
+
+    @media (width < 80rem) {
+      /*
+        no margin to hang it in — and it is a pointer affordance anyway, so
+        it is dropped rather than moved inline (which would indent every
+        heading by the width of an invisible `#`)
+      */
+      display: none;
+    }
+  }
+
+  :is(h2, h3, h4, h5, h6):hover .heading-anchor,
+  .heading-anchor:focus-visible {
+    opacity: 1;
+  }
+
+  /* body copy --------------------------------------------------------- */
+
+  & > p {
+    max-width: var(--content-width);
+    line-height: var(--base-line-height);
+    text-wrap: pretty;
+  }
+
+  ul,
+  ol {
+    max-width: var(--content-width);
+    margin-block: 0;
+    padding-inline-start: 1.35em;
+    line-height: var(--base-line-height);
+    display: flex;
+    flex-direction: column;
+    gap: var(--vesper-spacing-2);
+  }
+
+  ul {
+    list-style: none;
+
+    & > li {
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: -1.1em;
+        top: 0.62em;
+        width: 0.3125rem;
+        height: 0.3125rem;
+        border-radius: var(--vesper-radius-half);
+        background: var(--vesper-border-strong);
+      }
+    }
+  }
+
+  ol {
+    list-style: decimal;
+
+    & > li::marker {
+      color: var(--vesper-text-tertiary);
+      font-family: var(--font-plex-mono);
+      font-size: 0.85em;
+    }
+  }
+
+  li {
+    line-height: var(--base-line-height);
+  }
+
+  hr {
+    width: 100%;
+    height: var(--vesper-stroke-base);
+    border: 0;
+    margin-block: var(--vesper-spacing-4);
+    background: var(--hairline);
+  }
+
+  /* a snippet/codeblock reads better with a touch more air around it */
+  .vesper-code-block,
+  .vesper-snippet {
+    width: 100%;
+  }
+
+  /* tables ------------------------------------------------------------ */
+
+  .table-scroll {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    border: var(--vesper-stroke-base) solid var(--hairline);
+    border-radius: var(--vesper-radius-3);
+    background: color-mix(
+      in oklab,
+      var(--vesper-background-secondary) 60%,
+      transparent
+    );
+    scrollbar-width: thin;
+  }
+}
+
+/*
+  tables are also used outside `.prose` (the agent cheat sheet), so they are
+  styled at the top level
+*/
+table {
+  width: 100%;
+  min-width: 32rem;
+  border-collapse: collapse;
+  text-align: left;
+
+  thead {
+    background: var(--vesper-background-tertiary);
+  }
+
+  th {
+    padding: var(--vesper-spacing-3) var(--vesper-spacing-4);
+    text-align: left;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    font-family: var(--font-plex-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: var(--vesper-leading-none);
+    letter-spacing: var(--vesper-tracking-widest);
+    color: var(--vesper-text-tertiary);
+
+    border-bottom: var(--vesper-stroke-base) solid var(--hairline);
+  }
+
+  td {
+    padding: var(--vesper-spacing-3) var(--vesper-spacing-4);
+    vertical-align: top;
+    font-size: 0.9375rem;
+    line-height: var(--vesper-leading-normal);
+  }
+
+  tbody tr {
+    transition: background-color var(--vesper-transition-duration-fast) ease;
+
+    &:not(:last-child) {
+      border-bottom: var(--vesper-stroke-base) solid var(--hairline);
+    }
+
+    &:hover {
+      background: var(--vesper-state-neutral-hover);
+    }
+  }
+}

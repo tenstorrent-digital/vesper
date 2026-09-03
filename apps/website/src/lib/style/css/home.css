@@ -1,0 +1,369 @@
+/*
+  home — the loud one
+
+  the home page is a showcase rather than a document, so it gets its own
+  vocabulary: the control deck, the component wall, and the type specimen
+*/
+
+/* ------------------------------------------------------------------------ *
+ * hero
+ * ------------------------------------------------------------------------ */
+
+.hero-wordmark {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  font-size: clamp(3.5rem, 15vw, 11rem);
+  line-height: 0.82;
+  letter-spacing: -0.055em;
+  font-weight: 500;
+}
+
+/*
+  each letter is its own element so it can react on hover — a small reward for
+  anyone who runs their pointer across the wordmark
+*/
+.hero-letter {
+  display: inline-block;
+  transition:
+    translate 320ms cubic-bezier(0.2, 1.4, 0.4, 1),
+    color 320ms ease,
+    rotate 320ms cubic-bezier(0.2, 1.4, 0.4, 1);
+
+  &:hover {
+    translate: 0 -0.06em;
+    rotate: -4deg;
+    color: var(--vesper-text-brand-mint);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &:hover {
+      translate: none;
+      rotate: none;
+    }
+  }
+}
+
+.hero-readout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vesper-spacing-2) var(--vesper-spacing-4);
+  font-family: var(--font-plex-mono);
+  font-size: 0.6875rem;
+  letter-spacing: var(--vesper-tracking-wide);
+  text-transform: uppercase;
+  color: var(--vesper-text-tertiary);
+}
+
+.hero-install {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vesper-spacing-3);
+  width: 100%;
+  max-width: 42rem;
+}
+
+/* ------------------------------------------------------------------------ *
+ * control deck
+ * ------------------------------------------------------------------------ */
+
+.deck {
+  overflow: hidden;
+}
+
+.deck-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vesper-spacing-3);
+  padding: var(--vesper-spacing-3) var(--vesper-spacing-4);
+  border-bottom: var(--vesper-stroke-base) solid var(--hairline);
+  background: var(--vesper-background-tertiary);
+
+  .deck-title {
+    font-family: var(--font-plex-mono);
+    color: var(--vesper-text-secondary);
+  }
+
+  .deck-head-end {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--vesper-spacing-3);
+  }
+}
+
+.deck-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+
+  @media (width >= 60rem) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.deck-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-5);
+  padding: var(--vesper-spacing-6);
+  min-width: 0;
+
+  & + .deck-column {
+    border-top: var(--vesper-stroke-base) solid var(--hairline);
+
+    @media (width >= 60rem) {
+      border-top: 0;
+      border-left: var(--vesper-stroke-base) solid var(--hairline);
+    }
+  }
+}
+
+.deck-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-2);
+
+  .deck-field-label {
+    display: flex;
+    align-items: baseline;
+    gap: var(--vesper-spacing-2);
+    text-transform: uppercase;
+    letter-spacing: var(--vesper-tracking-widest);
+    color: var(--vesper-text-tertiary);
+
+    .deck-field-value {
+      margin-left: auto;
+      font-family: var(--font-plex-mono);
+      font-variant-numeric: tabular-nums;
+      color: var(--vesper-text-primary);
+      text-transform: none;
+      letter-spacing: normal;
+    }
+  }
+}
+
+.deck-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vesper-spacing-3);
+}
+
+/* the big number readout */
+.deck-gauge {
+  display: flex;
+  align-items: baseline;
+  gap: var(--vesper-spacing-2);
+
+  .deck-gauge-value {
+    font-family: var(--font-plex-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: clamp(3rem, 9vw, 4.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+
+  .deck-gauge-unit {
+    color: var(--vesper-text-tertiary);
+    font-family: var(--font-plex-mono);
+  }
+}
+
+.deck-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vesper-spacing-3);
+  padding: var(--vesper-spacing-4);
+  border-top: var(--vesper-stroke-base) solid var(--hairline);
+  background: var(--vesper-background-secondary);
+
+  .deck-foot-end {
+    margin-left: auto;
+  }
+}
+
+/* when the deck is pushed past its limits */
+.deck[data-critical] {
+  --tick: var(--vesper-border-error-base);
+  border-color: var(--vesper-border-error-base);
+  animation: deck-shake 420ms ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------------ *
+ * component wall
+ * ------------------------------------------------------------------------ */
+
+.wall {
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  border: var(--vesper-stroke-base) solid var(--hairline);
+  border-radius: var(--vesper-radius-3);
+  overflow: hidden;
+  background: var(--vesper-bg-dot-pattern-primary);
+}
+
+.wall-cell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 8rem;
+  padding: var(--vesper-spacing-5);
+  border-right: var(--vesper-stroke-base) solid var(--hairline);
+  border-bottom: var(--vesper-stroke-base) solid var(--hairline);
+  overflow: hidden;
+
+  transition: background-color var(--vesper-transition-duration-default) ease;
+
+  & > * {
+    max-width: 100%;
+  }
+
+  &:hover {
+    background: color-mix(
+      in oklab,
+      var(--vesper-background-secondary) 85%,
+      transparent
+    );
+    z-index: 1;
+  }
+
+  /* the component's name, revealed on hover */
+  .wall-name {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    padding: var(--vesper-spacing-1) var(--vesper-spacing-3);
+    font-family: var(--font-plex-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: var(--vesper-tracking-widest);
+    color: var(--vesper-text-on-color);
+    background: var(--vesper-background-inverse-primary);
+    text-decoration: none;
+
+    translate: 0 100%;
+    transition: translate var(--vesper-transition-duration-default)
+      cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  &:hover .wall-name,
+  &:focus-within .wall-name {
+    translate: 0 0;
+  }
+}
+
+/* ------------------------------------------------------------------------ *
+ * type + colour specimen
+ * ------------------------------------------------------------------------ */
+
+.specimen {
+  display: grid;
+  gap: var(--vesper-spacing-4);
+  grid-template-columns: minmax(0, 1fr);
+
+  @media (width >= 60rem) {
+    grid-template-columns: 1.4fr 1fr;
+  }
+}
+
+.type-ramp {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-3);
+  padding: var(--vesper-spacing-6);
+  overflow: hidden;
+}
+
+.type-ramp-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--vesper-spacing-4);
+  min-width: 0;
+
+  .type-ramp-name {
+    flex-shrink: 0;
+    width: 7.5rem;
+    color: var(--vesper-text-tertiary);
+  }
+
+  .type-ramp-sample {
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.swatches {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-3);
+  padding: var(--vesper-spacing-6);
+}
+
+.swatch-row {
+  display: flex;
+  gap: 0;
+  border-radius: var(--vesper-radius-1);
+  overflow: hidden;
+}
+
+.swatch {
+  flex: 1;
+  height: 2.25rem;
+  transition: flex var(--vesper-transition-duration-default) ease;
+
+  &:hover {
+    flex: 2.4;
+  }
+}
+
+/* ------------------------------------------------------------------------ *
+ * agents teaser
+ * ------------------------------------------------------------------------ */
+
+.agents-teaser {
+  display: grid;
+  gap: var(--vesper-spacing-6);
+  padding: var(--vesper-spacing-8);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+
+  @media (width >= 60rem) {
+    grid-template-columns: 1fr 1.15fr;
+  }
+}
+
+.agents-teaser-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-3);
+  align-items: flex-start;
+}
+
+/* ------------------------------------------------------------------------ *
+ * closing call to action
+ * ------------------------------------------------------------------------ */
+
+.outro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--vesper-spacing-5);
+  padding: var(--vesper-spacing-20) var(--vesper-spacing-6);
+  text-align: center;
+  border-radius: var(--vesper-radius-4);
+  border: var(--vesper-stroke-base) solid var(--hairline);
+  background: var(--vesper-bg-dot-pattern-secondary);
+}

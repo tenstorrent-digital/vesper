@@ -1,14 +1,21 @@
 /*
-  setup tailwind
+  vesper docs — global styles
+
   - `source("../../..")` tells Tailwind where to set base path for automatic className detection
   - `@source "../../../../../../docs/"` adds the repo's `docs/` mdx files, which live outside of this app
 */
 @import "tailwindcss" source("../../..");
 @source "../../../../../../docs/";
 
-/* other stylesheets */
-@import "./animations.css";
+/* vesper tokens + component styles + tailwind bridge */
 @import "@tenstorrent/vesper/tailwind.css";
+
+/* app stylesheets */
+@import "./animations.css";
+@import "./prose.css";
+@import "./surfaces.css";
+@import "./home.css";
+@import "./agents.css";
 
 /* tailwind theme for docs */
 @theme {
@@ -20,30 +27,48 @@
   navigation: auto;
 }
 
+/* ------------------------------------------------------------------------ *
+ * base
+ * ------------------------------------------------------------------------ */
+
 :root {
   --base-font-size: 16px;
   --base-line-height: var(--vesper-leading-normal);
 
+  /*
+    NOTE: tailwind derives its whole spacing scale from `--spacing`, so this
+    makes `gap-1` = 1rem (not 0.25rem) throughout the app *and* inside
+    `docs/**`, which relies on it. prefer the `*-vesper-*` utilities (which are
+    absolute) or plain CSS with `--vesper-spacing-*` over the numeric scale
+  */
   --spacing: 1rem;
 
-  /*
-    variables for --font-inter-tight and --font-plex-sans are
-    set via `next/fonts/google`
+  /* shell metrics */
+  --topbar-height: 3.5rem;
+  --rail-width: 15.5rem;
+  --toc-width: 14rem;
+  --page-gutter: var(--vesper-spacing-6);
+  --content-max: 48rem;
 
-    these variables also include fallback fonts: system-ui, sans-serif
+  /* hairlines, used everywhere instead of heavier borders */
+  --hairline: var(--vesper-border-primary);
+  --hairline-strong: var(--vesper-border-secondary);
 
-    @see: @apps/website/src/lib/style/fonts.ts
-    @see: @apps/website/src/app/layout.tsx
-  */
+  /* the accent used for active states, focus glows, and the logo mark */
+  --accent: var(--vesper-mint-400);
+  --accent-text: var(--vesper-text-brand-mint);
+  --accent-wash: color-mix(in oklab, var(--vesper-mint-400) 14%, transparent);
 
   color-scheme: light dark;
 }
 
 html {
-  font-size: var(--base-font-size); /* set 1rem */
+  font-size: var(--base-font-size);
   line-height: var(--base-line-height);
   font-family: var(--font-inter-tight);
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--topbar-height) + var(--vesper-spacing-6));
+
   @media (prefers-reduced-motion: reduce) {
     scroll-behavior: auto;
   }
@@ -51,414 +76,630 @@ html {
 
 html,
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
+  position: relative;
+  min-height: 100dvh;
   background: var(--vesper-background-primary);
   color: var(--vesper-text-primary);
+
   &:where([inert], :has(dialog[open]:modal)) {
     overflow-y: clip;
   }
 }
 
-.layout {
+/*
+  the "sky": a fixed dot grid plus two soft brand glows behind everything
+
+  fixed rather than scrolled so the page reads as content moving across a
+  static instrument panel
+*/
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      60rem 26rem at 12% -8%,
+      color-mix(in oklab, var(--vesper-purple-300) 22%, transparent),
+      transparent 72%
+    ),
+    radial-gradient(
+      48rem 24rem at 88% -4%,
+      color-mix(in oklab, var(--vesper-mint-300) 20%, transparent),
+      transparent 70%
+    ),
+    var(--vesper-bg-dot-pattern-primary);
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 32%, transparent);
+}
+
+:focus-visible {
+  outline: var(--vesper-stroke-strong) solid var(--vesper-border-focus);
+  outline-offset: 2px;
+  border-radius: var(--vesper-radius-1);
+}
+
+/* ------------------------------------------------------------------------ *
+ * shell
+ * ------------------------------------------------------------------------ */
+
+.site {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.site-body {
+  flex: 1;
   display: grid;
-  grid-template-areas:
-    "nav"
-    "main"
-    "sidebar";
+  grid-template-columns: minmax(0, 1fr);
 
-  grid-template-columns: 1fr;
-  grid-auto-rows: auto;
-  min-height: 100vh;
-
-  @media (width >= 768px) {
-    grid-template-areas:
-      "nav nav nav nav"
-      "sidebar main main main";
-    grid-template-rows: auto 1fr;
-    grid-template-columns: auto 1fr;
+  @media (width >= 60rem) {
+    grid-template-columns: var(--rail-width) minmax(0, 1fr);
   }
 }
 
-nav#nav {
-  grid-area: nav;
-  width: 100%;
-  /*
-    `nav#nav` is a grid item, so it defaults to `min-width: auto` — its width is
-    floored at its min-content size and `width: 100%` is ignored. On mobile that
-    floor is wider than the column, so the nav overflows and `.nav-right` is
-    pushed past the viewport edge (and clipped by `overflow-x: hidden` on body)
-  */
+.site-main {
   min-width: 0;
-  padding: var(--spacing);
-  border-bottom: 1px solid var(--vesper-alpha-black-50);
+  padding-bottom: var(--vesper-spacing-24);
+}
+
+/* ------------------------------------------------------------------------ *
+ * top bar
+ * ------------------------------------------------------------------------ */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  min-width: 0;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: calc(var(--spacing) / 2) var(--spacing);
+  gap: var(--vesper-spacing-3);
+  height: var(--topbar-height);
+  padding-inline: var(--vesper-spacing-4);
 
-  .nav-group {
-    display: flex;
-    gap: var(--spacing);
-    align-items: center;
-  }
-
-  .nav-left {
-    /*
-      same problem one level down: `.nav-left` is a flex item, so `min-width:
-      auto` floors it at its own min-content size, which includes the full width
-      of the breadcrumb trail. Without this it never shrinks, so `#breadcrumbs`
-      never scrolls and the overflow is pushed onto `.nav-right` instead
-    */
-    min-width: 0;
-
-    #home {
-      @media (width >= 768px) {
-        /*
-          reserve the sidebar's width so `#breadcrumbs` optically aligns with
-          the content column.
-          `12rem` is the full sidebar width: it is `box-sizing: border-box`,
-          so its own padding is already included.
-        */
-        width: calc(
-          12rem /* width of sidebar */ + var(--spacing) /* prose padding */ -
-            var(--spacing) /* padding in `nav#nav` */ - var(--spacing)
-            /* gap in `.nav-left` */
-        );
-        /*
-          without this, `#home` is shrunk by an amount proportional to the
-          width of the current breadcrumb trail, so the breadcrumbs shift
-          horizontally on every navigation
-        */
-        flex-shrink: 0;
-      }
-    }
-
-    #breadcrumbs {
-      /*
-        must not be `100%`: `.nav-left` is sized by its content, so a percentage
-        width resolves against a width it also contributes to, overflowing
-        `.nav-left` and forcing `#home` to shrink
-      */
-      height: 3rem;
-      width: 100%;
-      min-width: 0;
-      padding: var(--spacing) 0;
-      display: flex;
-      gap: var(--spacing);
-      align-items: center;
-      /* allow breadcrumbs to shrink and scroll */
-      flex: 1;
-      overflow-x: scroll;
-      overflow-y: hidden;
-
-      scrollbar-width: none;
-      &::-webkit-scrollbar {
-        display: none;
-      }
-
-      /* fade sides in/out if scrolled (and supported) */
-      @supports (animation-timeline: scroll()) {
-        animation-name: breadcrumbs-fade-start, breadcrumbs-fade-end;
-        animation-duration: auto;
-        animation-timing-function: linear;
-        animation-fill-mode: both;
-        animation-timeline: scroll(self inline);
-        animation-range: /* start, end */
-          0 3rem,
-          calc(100% - 3rem) 100%;
-        mask-image: linear-gradient(
-          to right,
-          transparent,
-          #000 var(--left-fade),
-          #000 calc(100% - var(--right-fade)),
-          transparent
-        );
-      }
-
-      .divider {
-        opacity: 0.5;
-      }
-
-      .segment {
-        flex-shrink: 0;
-      }
-
-      @media (width >= 768px) {
-        gap: calc(var(--spacing) / 2);
-      }
-    }
-
-    @media (width >= 768px) {
-      width: auto;
-    }
-  }
-
-  .nav-right {
-    width: fit-content;
-    flex-shrink: 0;
-
-    gap: calc(var(--spacing) / 4);
-    @media (width >= 768px) {
-      gap: var(--spacing);
-    }
-
-    .playground-link {
-      .desktop {
-        display: none;
-        @media (width >= 768px) {
-          display: flex;
-        }
-      }
-
-      .mobile {
-        display: flex;
-        @media (width >= 768px) {
-          display: none;
-        }
-      }
-    }
-
-    #menu-link {
-      @media (width >= 768px) {
-        display: none;
-      }
-    }
-  }
+  border-bottom: var(--vesper-stroke-base) solid var(--hairline);
+  background: color-mix(
+    in oklab,
+    var(--vesper-background-primary) 78%,
+    transparent
+  );
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
 }
 
-nav#sidebar {
-  grid-area: sidebar;
-  width: 100%;
-  min-width: fit-content;
-
-  .tree {
-    width: 100%;
-    min-width: fit-content;
-    padding: calc(var(--spacing) * 2) var(--spacing);
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--spacing));
-    border-top: 1px solid var(--vesper-alpha-black-50);
-
-    @media (width >= 768px) {
-      padding: calc(var(--spacing));
-      border-top: none;
-    }
-  }
-
-  .sidebar-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .sidebar-group-label {
-    padding: calc(var(--spacing) / 2);
-    text-transform: uppercase;
-    color: var(--color-vesper-alpha-black-600);
-  }
-
-  a {
-    padding: calc(var(--spacing) / 2);
-    margin: calc(var(--spacing) / 8 * -1) 0; /* so hover can take up adjacent space */
-    border-radius: calc(var(--spacing) / 2);
-    &:hover {
-      background-color: var(--vesper-state-neutral-hover);
-    }
-    &[data-active] {
-      background-color: var(--vesper-state-neutral-active);
-    }
-  }
-
-  .back-to-top {
-    @media (width >= 768px) {
-      display: none;
-    }
-  }
-
-  @media (width >= 768px) {
-    width: 12rem;
-  }
-}
-
-.content {
-  grid-area: main;
-  width: 100%;
-  min-width: 0;
-  padding-bottom: calc(var(--spacing) * 2);
-}
-
-.prose {
-  --spacing: 1rem;
-  --content-width: 82ch;
-  --font-size: 1rem;
-  --gap: 1rem;
-
+.topbar-brand {
   display: flex;
-  flex-direction: column;
-  gap: var(--gap);
-  padding: var(--spacing);
-  margin-right: auto;
-  width: 100%;
-  max-width: var(--content-width);
-  &:has(.no-max-width) {
-    max-width: unset;
-  }
-  overflow-x: hidden;
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    scroll-margin-top: calc(var(--spacing) * 4);
-    letter-spacing: -2.5%;
-
-    text-wrap: pretty;
-    word-break: auto-phrase;
-
-    &:first-child {
-      margin-top: 0;
-    }
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin-top: calc(var(--spacing) * 2);
-    margin-bottom: 0;
-  }
-
-  h1,
-  h2,
-  h3 {
-    margin-bottom: calc(var(--spacing) / 4);
-    margin-left: calc(var(--spacing) / 12 * -1); /* optically align w content */
-  }
-
-  & > p {
-    max-width: var(--content-width);
-    line-height: var(
-      --base-line-height
-    ); /* overrides `--vesper-leading-snug` applied by Typography */
-  }
-
-  ul,
-  ol {
-    max-width: var(--content-width);
-    margin-block: 0;
-    padding-inline-start: 1.5em;
-    line-height: var(--base-line-height);
-  }
-
-  ul {
-    list-style: disc;
-  }
-
-  ol {
-    list-style: decimal;
-  }
-
-  li {
-    line-height: var(--base-line-height);
-  }
-}
-
-table {
-  min-width: 100%;
-  width: 100%;
-  border-collapse: collapse;
+  align-items: center;
+  gap: var(--vesper-spacing-2);
+  flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
   border-radius: var(--vesper-radius-2);
-  overflow-x: scroll;
 
-  th {
+  /* reserve the rail's width so breadcrumbs align with the content column */
+  @media (width >= 60rem) {
+    width: calc(var(--rail-width) - var(--vesper-spacing-4));
+  }
+
+  .topbar-mark {
+    display: grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    flex-shrink: 0;
+    border-radius: var(--vesper-radius-2);
+    background: var(--vesper-background-inverse-primary);
+    color: var(--vesper-icon-inverse-primary);
+    transition: transform var(--vesper-transition-duration-default) ease;
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  &:hover .topbar-mark {
+    transform: rotate(-90deg);
+  }
+
+  .topbar-wordmark {
+    letter-spacing: var(--vesper-tracking-tight);
+  }
+
+  .topbar-version {
+    color: var(--vesper-text-tertiary);
+    padding-block: 0.125rem;
+    padding-inline: var(--vesper-spacing-1);
+    border: var(--vesper-stroke-base) solid var(--hairline);
+    border-radius: var(--vesper-radius-1);
+  }
+}
+
+.topbar-crumbs {
+  flex: 1;
+  min-width: 0;
+  display: none;
+  align-items: center;
+  gap: var(--vesper-spacing-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (width >= 48rem) {
+    display: flex;
+  }
+
+  .crumb {
+    flex-shrink: 0;
+    color: var(--vesper-text-secondary);
+    text-decoration: none;
+    border-radius: var(--vesper-radius-1);
+
+    &:hover {
+      color: var(--vesper-text-primary);
+    }
+
+    &[aria-current="page"] {
+      color: var(--vesper-text-primary);
+    }
+  }
+
+  .crumb-divider {
+    flex-shrink: 0;
+    color: var(--vesper-text-tertiary);
+    opacity: 0.6;
+  }
+}
+
+.topbar-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--vesper-spacing-2);
+  flex-shrink: 0;
+}
+
+/*
+  visibility helpers for the top bar
+
+  scoped to `.topbar` on purpose: the elements they are applied to are Vesper
+  components (`.vesper-button`, `.vesper-icon-button`) and the search pill,
+  all of which set `display` themselves at the same specificity
+*/
+.topbar .topbar-only-wide {
+  display: none;
+
+  @media (width >= 60rem) {
+    display: flex;
+  }
+}
+
+.topbar .topbar-only-narrow {
+  display: flex;
+
+  @media (width >= 60rem) {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------------ *
+ * search trigger (⌘K)
+ * ------------------------------------------------------------------------ */
+
+.search-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--vesper-spacing-2);
+  height: 2rem;
+  width: 13rem;
+  padding-inline: var(--vesper-spacing-2);
+
+  border: var(--vesper-stroke-base) solid var(--hairline);
+  border-radius: var(--vesper-radius-2);
+  background: var(--vesper-background-secondary);
+  color: var(--vesper-text-tertiary);
+  cursor: pointer;
+
+  transition:
+    border-color var(--vesper-transition-duration-fast) ease,
+    color var(--vesper-transition-duration-fast) ease;
+
+  &:hover {
+    border-color: var(--hairline-strong);
+    color: var(--vesper-text-secondary);
+  }
+
+  svg {
+    width: 0.875rem;
+    height: 0.875rem;
+    flex-shrink: 0;
+  }
+
+  .search-trigger-label {
+    flex: 1;
     text-align: left;
-    border-bottom: 1px solid var(--vesper-alpha-black-400);
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    font-family: var(--font-inter-tight);
-    font-size: 0.75rem;
-    line-height: var(--vesper-leading-none);
-    letter-spacing: var(--vesper-tracking-wide);
-    font-weight: 700;
+  }
+}
+
+kbd.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.125rem;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding-inline: 0.3rem;
+
+  font-family: var(--font-plex-mono);
+  font-size: 0.6875rem;
+  line-height: 1;
+  color: var(--vesper-text-tertiary);
+
+  background: var(--vesper-background-tertiary);
+  border: var(--vesper-stroke-base) solid var(--hairline);
+  border-radius: var(--vesper-radius-1);
+}
+
+/* ------------------------------------------------------------------------ *
+ * left rail (docs navigation)
+ * ------------------------------------------------------------------------ */
+
+.rail {
+  display: none;
+
+  @media (width >= 60rem) {
+    display: block;
+    position: sticky;
+    top: var(--topbar-height);
+    align-self: start;
+    height: calc(100dvh - var(--topbar-height));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-right: var(--vesper-stroke-base) solid var(--hairline);
+    scrollbar-width: thin;
+  }
+}
+
+.rail-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-6);
+  padding: var(--vesper-spacing-6) var(--vesper-spacing-4)
+    var(--vesper-spacing-16);
+}
+
+.rail-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-1);
+}
+
+.rail-section-label {
+  display: flex;
+  align-items: center;
+  gap: var(--vesper-spacing-2);
+  padding-inline: var(--vesper-spacing-2);
+  margin-bottom: var(--vesper-spacing-1);
+  text-transform: uppercase;
+  color: var(--vesper-text-tertiary);
+  letter-spacing: var(--vesper-tracking-widest);
+
+  &::after {
+    content: "";
+    flex: 1;
+    height: var(--vesper-stroke-base);
+    background: var(--hairline);
+  }
+}
+
+.rail-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--vesper-spacing-2);
+  padding: 0.3125rem var(--vesper-spacing-2);
+  border-radius: var(--vesper-radius-2);
+  color: var(--vesper-text-secondary);
+  text-decoration: none;
+
+  transition:
+    background-color var(--vesper-transition-duration-fast) ease,
+    color var(--vesper-transition-duration-fast) ease;
+
+  /* the active marker: a short accent bar in the rail's left padding */
+  &::before {
+    content: "";
+    position: absolute;
+    left: calc(var(--vesper-spacing-2) * -1 + 0.125rem);
+    top: 50%;
+    translate: 0 -50%;
+    width: 0.125rem;
+    height: 0;
+    border-radius: var(--vesper-radius-half);
+    background: var(--accent);
+    transition: height var(--vesper-transition-duration-default) ease;
   }
 
-  th,
-  td {
-    padding: var(--spacing);
+  &:hover {
+    background: var(--vesper-state-neutral-hover);
+    color: var(--vesper-text-primary);
   }
 
-  tr {
-    &:not(:last-child) {
-      border-bottom: 1px solid var(--vesper-alpha-black-50);
+  &[data-active] {
+    background: var(--vesper-state-neutral-active);
+    color: var(--vesper-text-primary);
+
+    &::before {
+      height: 1rem;
     }
   }
 }
 
-.component-grid {
+/* ------------------------------------------------------------------------ *
+ * document page: article + table of contents
+ * ------------------------------------------------------------------------ */
+
+.doc {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--vesper-spacing-10);
+  padding: var(--vesper-spacing-8) var(--page-gutter) 0;
+
+  @media (width >= 80rem) {
+    grid-template-columns: minmax(0, 1fr) var(--toc-width);
+  }
+}
+
+.doc-article {
+  min-width: 0;
+  max-width: var(--content-max);
+}
+
+.doc[data-width="wide"] .doc-article {
+  max-width: none;
+}
+
+.doc-aside {
+  display: none;
+
+  @media (width >= 80rem) {
+    display: block;
+    position: sticky;
+    top: calc(var(--topbar-height) + var(--vesper-spacing-8));
+    align-self: start;
+    max-height: calc(100dvh - var(--topbar-height) - var(--vesper-spacing-12));
+    overflow-y: auto;
+  }
+}
+
+/* document header — eyebrow / title / description / actions */
+.doc-header {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--spacing) * 4);
-  width: 100%;
+  gap: var(--vesper-spacing-3);
+  padding-bottom: var(--vesper-spacing-6);
+  margin-bottom: var(--vesper-spacing-8);
+  border-bottom: var(--vesper-stroke-base) solid var(--hairline);
+}
 
-  .component-grid-header {
-    display: flex;
-    flex-direction: column;
+.doc-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--vesper-spacing-2);
+  color: var(--vesper-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: var(--vesper-tracking-widest);
+}
 
-    .component-grid-subtitle {
-      margin-top: calc(var(--spacing) * 2);
-      color: var(--vesper-text-secondary);
-    }
+.doc-title {
+  letter-spacing: var(--vesper-tracking-tighter);
+  text-wrap: balance;
+}
+
+.doc-description {
+  color: var(--vesper-text-secondary);
+  max-width: var(--content-max);
+  text-wrap: pretty;
+}
+
+.doc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vesper-spacing-2);
+  margin-top: var(--vesper-spacing-1);
+}
+
+/* table of contents */
+.toc {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-2);
+}
+
+.toc-label {
+  text-transform: uppercase;
+  letter-spacing: var(--vesper-tracking-widest);
+  color: var(--vesper-text-tertiary);
+  padding-left: var(--vesper-spacing-3);
+}
+
+.toc-list {
+  display: flex;
+  flex-direction: column;
+  border-left: var(--vesper-stroke-base) solid var(--hairline);
+}
+
+.toc-link {
+  position: relative;
+  padding: 0.25rem var(--vesper-spacing-3);
+  color: var(--vesper-text-tertiary);
+  text-decoration: none;
+  text-wrap: pretty;
+
+  transition: color var(--vesper-transition-duration-fast) ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: calc(var(--vesper-stroke-base) * -1);
+    top: 0.3rem;
+    bottom: 0.3rem;
+    width: 0.125rem;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity var(--vesper-transition-duration-fast) ease;
   }
 
-  .component-grid-items {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: calc(var(--spacing));
-
-    @media (width >= 768px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media (min-width: 1280px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    @media (min-width: 1920px) {
-      grid-template-columns: repeat(4, 1fr);
-    }
+  &[data-depth="3"] {
+    padding-left: calc(var(--vesper-spacing-3) + var(--vesper-spacing-3));
   }
 
-  .component-grid-cell {
+  &:hover {
+    color: var(--vesper-text-secondary);
+  }
+
+  &[data-active] {
+    color: var(--vesper-text-primary);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+/* prev / next */
+.doc-footer {
+  display: grid;
+  gap: var(--vesper-spacing-3);
+  margin-top: var(--vesper-spacing-16);
+  padding-top: var(--vesper-spacing-8);
+  border-top: var(--vesper-stroke-base) solid var(--hairline);
+
+  @media (width >= 40rem) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.doc-footer-link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-1);
+  padding: var(--vesper-spacing-4);
+  border: var(--vesper-stroke-base) solid var(--hairline);
+  border-radius: var(--vesper-radius-3);
+  text-decoration: none;
+  color: inherit;
+
+  transition:
+    border-color var(--vesper-transition-duration-fast) ease,
+    background-color var(--vesper-transition-duration-fast) ease;
+
+  &:hover {
+    border-color: var(--hairline-strong);
+    background: var(--vesper-state-neutral-hover);
+  }
+
+  .doc-footer-direction {
+    color: var(--vesper-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: var(--vesper-tracking-widest);
+  }
+
+  &[data-direction="next"] {
+    text-align: right;
+    grid-column: 2;
+  }
+}
+
+/* ------------------------------------------------------------------------ *
+ * mobile navigation drawer
+ * ------------------------------------------------------------------------ */
+
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  grid-template-columns: minmax(0, 20rem) 1fr;
+
+  @media (width >= 60rem) {
+    display: none;
+  }
+}
+
+.drawer-scrim {
+  grid-area: 1 / 1 / 2 / 3;
+  background: var(--vesper-scrim-contrast-base);
+  border: 0;
+  padding: 0;
+  animation: fade-in var(--vesper-transition-duration-default) ease both;
+}
+
+.drawer-panel {
+  grid-area: 1 / 1 / 2 / 2;
+  z-index: 1;
+  overflow-y: auto;
+  background: var(--vesper-background-primary);
+  border-right: var(--vesper-stroke-base) solid var(--hairline);
+  box-shadow: var(--vesper-shadow-400);
+  animation: slide-in-left var(--vesper-transition-duration-default)
+    cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.drawer-header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--vesper-spacing-2);
+  height: var(--topbar-height);
+  padding-inline: var(--vesper-spacing-4);
+  border-bottom: var(--vesper-stroke-base) solid var(--hairline);
+  background: var(--vesper-background-primary);
+}
+
+/* ------------------------------------------------------------------------ *
+ * site footer
+ * ------------------------------------------------------------------------ */
+
+.site-footer {
+  border-top: var(--vesper-stroke-base) solid var(--hairline);
+  padding: var(--vesper-spacing-8) var(--page-gutter);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--vesper-spacing-4);
+  color: var(--vesper-text-tertiary);
+
+  .site-footer-links {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    gap: calc(var(--spacing) * 3);
-    padding: calc(var(--spacing) * 2);
-    border-radius: var(--vesper-radius-2);
-    border: 1px solid var(--vesper-alpha-black-50);
-    overflow: hidden;
-    min-width: 0;
-
-    .component-grid-cell-preview {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 4rem;
-      width: 100%;
-      overflow: visible;
-    }
+    gap: var(--vesper-spacing-4);
 
     a {
-      text-decoration-line: none;
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        color: var(--vesper-text-primary);
+      }
     }
   }
 }

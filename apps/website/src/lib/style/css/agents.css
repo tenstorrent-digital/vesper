@@ -1,0 +1,302 @@
+/*
+  agents — the parts of this site that exist for the machines
+
+  two things live here:
+
+  1. `.agent-*` — the styling for `/agents`, the console page
+  2. `[data-agent-mode]` — a site-wide skin that any visitor can switch on, but
+     that is really there for the agents reading these docs (hello!)
+*/
+
+/* ------------------------------------------------------------------------ *
+ * /agents — the console
+ * ------------------------------------------------------------------------ */
+
+.agent-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-12);
+  padding: var(--vesper-spacing-8) var(--page-gutter) 0;
+  max-width: 72rem;
+}
+
+.agent-banner {
+  position: relative;
+  overflow: hidden;
+  padding: var(--vesper-spacing-8);
+  border-radius: var(--vesper-radius-4);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-brand-mint-subtle);
+  background:
+    radial-gradient(
+      36rem 18rem at 12% 0%,
+      color-mix(in oklab, var(--vesper-mint-400) 16%, transparent),
+      transparent 70%
+    ),
+    var(--vesper-bg-dot-pattern-secondary);
+}
+
+.agent-ascii {
+  margin: 0;
+  font-family: var(--font-plex-mono);
+  font-size: clamp(0.3rem, 1.35vw, 0.75rem);
+  line-height: 1.15;
+  color: var(--vesper-text-brand-mint);
+  white-space: pre;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.agent-banner-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-3);
+  margin-top: var(--vesper-spacing-6);
+  max-width: 46rem;
+}
+
+/* a fake terminal transcript, used for the greeting and the oath */
+.terminal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-1);
+  padding: var(--vesper-spacing-4);
+  border-radius: var(--vesper-radius-3);
+  border: var(--vesper-stroke-base) solid var(--hairline);
+  background: var(--vesper-background-static-black);
+  color: var(--vesper-text-static-white);
+  font-family: var(--font-plex-mono);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.terminal-line {
+  white-space: pre-wrap;
+
+  &[data-kind="prompt"]::before {
+    content: "$ ";
+    color: var(--vesper-mint-300);
+  }
+
+  &[data-kind="comment"] {
+    color: var(--vesper-stone-600);
+  }
+
+  &[data-kind="ok"] {
+    color: var(--vesper-mint-300);
+  }
+
+  &[data-kind="warn"] {
+    color: var(--vesper-yellow-300);
+  }
+}
+
+/* the blinking block cursor at the end of a transcript */
+.terminal-cursor::after {
+  content: "▋";
+  margin-left: 0.15em;
+  color: var(--vesper-mint-300);
+  animation: blink 1.1s steps(2, start) infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.agent-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-4);
+}
+
+.agent-endpoints {
+  display: grid;
+  gap: var(--vesper-spacing-3);
+  grid-template-columns: minmax(0, 1fr);
+
+  @media (width >= 48rem) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.agent-endpoint {
+  display: flex;
+  flex-direction: column;
+  gap: var(--vesper-spacing-1);
+  padding: var(--vesper-spacing-4);
+
+  .agent-endpoint-path {
+    display: flex;
+    align-items: center;
+    gap: var(--vesper-spacing-2);
+    font-family: var(--font-plex-mono);
+    color: var(--accent-text);
+    word-break: break-all;
+  }
+
+  .agent-endpoint-copy {
+    color: var(--vesper-text-secondary);
+    text-wrap: pretty;
+  }
+}
+
+.agent-note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--vesper-spacing-3);
+  padding: var(--vesper-spacing-4);
+  border-radius: var(--vesper-radius-3);
+  border: var(--vesper-stroke-base) dashed var(--vesper-border-brand-mint-base);
+  background: var(--vesper-background-brand-mint-subtle);
+  color: var(--vesper-text-primary);
+}
+
+/* ------------------------------------------------------------------------ *
+ * [data-agent-mode] — the phosphor skin
+ * ------------------------------------------------------------------------ */
+
+html[data-agent-mode] {
+  /*
+    the whole site is drawn with vesper tokens, so switching the skin is mostly
+    a matter of re-pointing a handful of them
+  */
+  --vesper-font-sans: var(--font-plex-mono);
+  --font-inter-tight: var(--font-plex-mono);
+
+  --accent: var(--vesper-mint-300);
+  --accent-text: var(--vesper-mint-300);
+  --accent-wash: color-mix(in oklab, var(--vesper-mint-300) 22%, transparent);
+
+  --hairline: color-mix(in oklab, var(--vesper-mint-400) 26%, transparent);
+  --hairline-strong: color-mix(
+    in oklab,
+    var(--vesper-mint-400) 45%,
+    transparent
+  );
+
+  --vesper-background-primary: #030a09;
+  --vesper-background-secondary: #061210;
+  --vesper-background-tertiary: #081917;
+
+  --vesper-text-primary: #b8f5e4;
+  --vesper-text-secondary: #7fd8c2;
+  --vesper-text-tertiary: #4e9c8a;
+
+  --vesper-border-primary: color-mix(
+    in oklab,
+    var(--vesper-mint-400) 26%,
+    transparent
+  );
+  --vesper-border-secondary: color-mix(
+    in oklab,
+    var(--vesper-mint-400) 40%,
+    transparent
+  );
+  --vesper-border-strong: var(--vesper-mint-400);
+
+  --vesper-radius-1: 0;
+  --vesper-radius-2: 0;
+  --vesper-radius-3: 0;
+  --vesper-radius-4: 0;
+
+  color-scheme: dark;
+
+  /* tighten the rhythm — agents do not need whitespace */
+  --vesper-spacing-6: 0.875rem;
+  --vesper-spacing-8: 1.125rem;
+  --vesper-spacing-12: 1.5rem;
+  --vesper-spacing-16: 2rem;
+  --vesper-spacing-24: 2.5rem;
+
+  body::before {
+    background:
+      radial-gradient(
+        50rem 22rem at 50% -10%,
+        color-mix(in oklab, var(--vesper-mint-400) 12%, transparent),
+        transparent 70%
+      ),
+      var(--vesper-bg-dot-pattern-primary);
+  }
+
+  /* scanlines */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0.55;
+    background: repeating-linear-gradient(
+      to bottom,
+      color-mix(in oklab, #000 22%, transparent) 0 1px,
+      transparent 1px 3px
+    );
+  }
+
+  /* everything gets a faint phosphor bloom */
+  .panel,
+  .rail-link[data-active],
+  .topbar {
+    text-shadow: 0 0 0.6rem
+      color-mix(in oklab, var(--vesper-mint-400) 35%, transparent);
+  }
+
+  .hero-title,
+  .gradient-text {
+    background: none;
+    color: var(--vesper-mint-300);
+    -webkit-text-fill-color: currentColor;
+    animation: none;
+    text-shadow: 0 0 1.2rem
+      color-mix(in oklab, var(--vesper-mint-400) 55%, transparent);
+  }
+}
+
+/* the readout pinned to the bottom of the viewport while the skin is on */
+.agent-mode-readout {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 70;
+
+  display: flex;
+  align-items: center;
+  gap: var(--vesper-spacing-4);
+  padding: var(--vesper-spacing-1) var(--vesper-spacing-4);
+
+  font-family: var(--font-plex-mono);
+  font-size: 0.6875rem;
+  letter-spacing: var(--vesper-tracking-wide);
+  text-transform: uppercase;
+
+  color: var(--vesper-static-black);
+  background: var(--vesper-mint-300);
+  border-top: var(--vesper-stroke-base) solid var(--vesper-mint-400);
+
+  .agent-mode-readout-end {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--vesper-spacing-3);
+  }
+
+  button {
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-transform: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+/* keep the readout from covering the last line of a page */
+html[data-agent-mode] body {
+  padding-bottom: 1.75rem;
+}
