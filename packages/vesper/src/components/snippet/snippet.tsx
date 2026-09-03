@@ -13,7 +13,7 @@ export const SNIPPET_VARIANTS = ["default", "contrast"] as const;
 export type SnippetVariant = (typeof SNIPPET_VARIANTS)[number];
 
 export interface SnippetProps extends Omit<ComponentProps<"div">, "children"> {
-  /** The code text to display in the snippet. Also used as the value copied to the clipboard when the copy button is clicked. */
+  /** The code snippet text to display in the snippet. Also used as the value copied to the clipboard when the copy button is clicked. */
   children?: string;
   /** The visual style variant of the snippet. @default fault */
   variant?: SnippetVariant;
@@ -22,7 +22,7 @@ export interface SnippetProps extends Omit<ComponentProps<"div">, "children"> {
 /**
  * A copyable code snippet component that displays monospace text with a built-in copy-to-clipboard button.
  *
- * @param {string} [props.children] - (optional) The code text to display and copy to clipboard
+ * @param {string} [props.children] - (optional) The code snippet text to display and copy to clipboard
  * @param {SnippetVariant} [props.variant] - (optional) The visual style variant of the snippet. @default default`
  * @param {string} [props.className] - (optional) Additional CSS class names to apply
  *
