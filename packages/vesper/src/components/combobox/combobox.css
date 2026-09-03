@@ -154,7 +154,7 @@
   }
 }
 
-.vesper-combobox-popup {
+.vesper-combobox-positioner {
   min-width: var(--anchor-width);
   border-radius: var(--vesper-radius-3);
   border: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
@@ -166,16 +166,15 @@
     ),
     var(--vesper-background-primary);
   box-shadow: var(--vesper-shadow-200);
+  overflow: hidden;
+}
+
+.vesper-combobox-popup {
   color: var(--vesper-text-primary);
   outline: none;
   /* --available-height comes from base-ui */
   max-height: min(var(--available-height), 20rem);
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  overflow-y: auto;
 }
 
 .vesper-combobox-viewport {

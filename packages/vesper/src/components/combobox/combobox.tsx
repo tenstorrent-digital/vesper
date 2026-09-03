@@ -248,6 +248,7 @@ export function Combobox(props: ComboboxProps) {
       </BaseCombobox.InputGroup>
       <BaseCombobox.Portal container={portalContainer}>
         <BaseCombobox.Positioner
+          className="vesper-combobox-positioner"
           side="bottom"
           collisionAvoidance={{ side: "none" }}
           align="start"
