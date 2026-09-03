@@ -81,7 +81,7 @@ describe("snippet [unit]", () => {
     const { container } = render(<Snippet>code</Snippet>);
     const button = container.querySelector("button");
     expect(button).not.toBeNull();
-    expect(button).toHaveAttribute("aria-label", "Copy code");
+    expect(button).toHaveAttribute("aria-label", "Copy to clipboard");
   });
 
   test("copy button uses ghost variant for default snippet", () => {

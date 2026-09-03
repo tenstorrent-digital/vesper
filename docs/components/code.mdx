@@ -16,20 +16,48 @@ Use the <Code>Code</Code> component to highlight inline code.
 | `variant`  | `"default" \| "contrast"` | The visual style variant to render. | `"default"` |
 | `children` | `ReactNode`               | The inline code content.            | —           |
 
+Any additional props are forwarded to the underlying `<code>` element.
+
 ## Examples
+
+### Basic usage
+
+Use `<Code>` as you would use the `<code>` element by wrapping inline code strings:
+
+<Typography variant="copy-md">
+  Run <Code>yarn install</Code> to get started.
+</Typography>
 
 ```tsx
 import { Code } from "@tenstorrent/vesper/code";
+import { Typography } from "@tenstorrent/vesper/typography";
 
-// Basic usage
-<p>
+<Typography variant="copy-md">
   Run <Code>yarn install</Code> to get started.
-</p>;
+</Typography>;
 ```
 
+### Variants
+
+`Code` can be rendered in one of two variants: `"default"` or `"contrast"`. Use the `"contrast"` variant to render inline `Code` with increased contrast:
+
+<Typography variant="copy-md">
+  Run <Code variant="default">yarn install</Code> to get started.
+</Typography>
+
+<Typography variant="copy-md">
+  Run <Code variant="contrast">yarn install</Code> to get started.
+</Typography>
+
 ```tsx
-// Contrast variant
-<p>
-  Set the <Code variant="contrast">NODE_ENV</Code> variable.
-</p>
+import { Code } from "@tenstorrent/vesper/code";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+<Typography variant="copy-md">
+  Run <Code variant="default">yarn install</Code> to get started.
+</Typography>
+
+<Typography variant="copy-md">
+  Run <Code variant="contrast">yarn install</Code> to get started.
+</Typography>
 ```

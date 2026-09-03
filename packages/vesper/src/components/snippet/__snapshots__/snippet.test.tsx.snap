@@ -14,7 +14,8 @@ exports[`snippet [snapshot] > empty content 1`] = `
     </code>
   </pre>
   <button
-    aria-label="Copy code"
+    aria-label="Copy to clipboard"
+    aria-live="polite"
     class="vesper-button vesper-button-xs vesper-button-ghost vesper-icon-button"
     type="button"
   >
@@ -57,7 +58,8 @@ exports[`snippet [snapshot] > multi-line content 1`] = `
     </code>
   </pre>
   <button
-    aria-label="Copy code"
+    aria-label="Copy to clipboard"
+    aria-live="polite"
     class="vesper-button vesper-button-xs vesper-button-ghost vesper-icon-button"
     type="button"
   >
@@ -95,7 +97,8 @@ exports[`snippet [snapshot] > variant: contrast 1`] = `
     </code>
   </pre>
   <button
-    aria-label="Copy code"
+    aria-label="Copy to clipboard"
+    aria-live="polite"
     class="vesper-button vesper-button-xs vesper-button-contrast vesper-icon-button"
     type="button"
   >
@@ -133,7 +136,8 @@ exports[`snippet [snapshot] > variant: default 1`] = `
     </code>
   </pre>
   <button
-    aria-label="Copy code"
+    aria-label="Copy to clipboard"
+    aria-live="polite"
     class="vesper-button vesper-button-xs vesper-button-ghost vesper-icon-button"
     type="button"
   >
