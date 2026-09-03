@@ -36,6 +36,7 @@ import { IconButton } from "@tenstorrent/vesper/icon-button";
 import {
   Add,
   ArrowRight,
+  Bolt,
   CaretDown,
   Checkmark,
   Close,
@@ -47,7 +48,9 @@ import {
   Info,
   List,
   Lock,
+  Monitor,
   Search,
+  Tensix,
   Tenstorrent,
 } from "@tenstorrent/vesper/icons";
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";
@@ -76,6 +79,8 @@ import { Typography } from "@tenstorrent/vesper/typography";
 
 // docs-only components (not part of the design system)
 import { ColorChip } from "@/components/color-chip";
+
+import { slugify } from "@/lib/slug";
 
 // named demos for components w non-serializable props (event handlers,
 // refs, state) that are used inside `docs/` documents
@@ -116,18 +121,22 @@ const components = {
       {props.children}
     </Typography>
   ),
+  /**
+   * `h2`–`h4` are given an id derived from their text, so they can be linked
+   * to directly and picked up by the table of contents rail
+   */
   h2: (props) => (
-    <Typography as="h2" variant="heading-xl">
+    <Typography as="h2" variant="heading-xl" id={slugify(props.children)}>
       {props.children}
     </Typography>
   ),
   h3: (props) => (
-    <Typography as="h3" variant="heading-lg">
+    <Typography as="h3" variant="heading-lg" id={slugify(props.children)}>
       {props.children}
     </Typography>
   ),
   h4: (props) => (
-    <Typography as="h4" variant="heading-md">
+    <Typography as="h4" variant="heading-md" id={slugify(props.children)}>
       {props.children}
     </Typography>
   ),
@@ -151,7 +160,7 @@ const components = {
   ),
   a: (props) => (
     <Link
-      className="underline-offset-[calc(var(--base-font-size)_/_12)] underline decoration-from-font"
+      className="underline decoration-from-font underline-offset-[calc(var(--base-font-size)_/_12)]"
       target={props.href.startsWith("http") ? "_blank" : undefined}
       rel={props.href.startsWith("http") ? "noopener noreferrer" : undefined}
       href={props.href}
@@ -278,6 +287,7 @@ const components = {
   // icons will need to be added here too if we want to use them directly
   Add,
   ArrowRight,
+  Bolt,
   CaretDown,
   Checkmark,
   Close,
@@ -288,7 +298,9 @@ const components = {
   List,
   Lock,
   Info,
+  Monitor,
   Search,
+  Tensix,
   Tenstorrent,
 
   // demos

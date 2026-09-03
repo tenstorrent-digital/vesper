@@ -34,3 +34,17 @@ export const STORYBOOK_URL =
   process.env.NODE_ENV === "development"
     ? `http://localhost:${STORYBOOK_PORT}`
     : `${BASE_URL}/storybook`;
+
+/**
+ * the repository Vesper is developed in
+ */
+export const GITHUB_URL = "https://github.com/tenstorrent-digital/vesper";
+
+/**
+ * `localStorage` key the visitor's chosen theme is stored under
+ *
+ * lives here rather than next to the switcher itself: the inline script in
+ * `src/app/layout.tsx` runs on the server, and a server component cannot read
+ * plain values exported from a `"use client"` module
+ */
+export const THEME_STORAGE_KEY = "vesper-docs-theme";
