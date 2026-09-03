@@ -100,7 +100,11 @@ export function Home() {
       />
       <Toasts />
       <div>
-        {expanded && <Button variant="contrast">Learn More</Button>}
+        {expanded && (
+          <Button variant="contrast" as="a" href="/getting-started">
+            Learn More
+          </Button>
+        )}
         <div className="py-2">
           <ShowMore
             expanded={expanded}
