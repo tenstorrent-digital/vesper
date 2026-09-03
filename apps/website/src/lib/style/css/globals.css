@@ -24,7 +24,12 @@
   --base-font-size: 16px;
   --base-line-height: var(--vesper-leading-normal);
 
-  --spacing: 1rem;
+  /*
+    NOTE: intentionally not named `--spacing` — that's a reserved Tailwind v4
+    theme variable that scales every spacing utility (p-*, gap-*, w-*, etc.);
+    redefining it here would silently 4x every spacing utility class site-wide.
+  */
+  --doc-spacing: 1rem;
 
   /*
     variables for --font-inter-tight and --font-plex-sans are
@@ -95,7 +100,7 @@ body {
 }
 
 .prose {
-  --spacing: 1rem;
+  --doc-spacing: 1rem;
   --content-width: 82ch;
   --font-size: 1rem;
   --gap: 1rem;
@@ -103,7 +108,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
-  padding: var(--spacing);
+  padding: var(--doc-spacing);
   margin-right: auto;
   width: 100%;
   max-width: var(--content-width);
@@ -118,7 +123,7 @@ body {
   h4,
   h5,
   h6 {
-    scroll-margin-top: calc(var(--spacing) * 4);
+    scroll-margin-top: calc(var(--doc-spacing) * 4);
     letter-spacing: -2.5%;
 
     text-wrap: pretty;
@@ -135,15 +140,15 @@ body {
   h4,
   h5,
   h6 {
-    margin-top: calc(var(--spacing) * 2);
+    margin-top: calc(var(--doc-spacing) * 2);
     margin-bottom: 0;
   }
 
   h1,
   h2,
   h3 {
-    margin-bottom: calc(var(--spacing) / 4);
-    margin-left: calc(var(--spacing) / 12 * -1); /* optically align w content */
+    margin-bottom: calc(var(--doc-spacing) / 4);
+    margin-left: calc(var(--doc-spacing) / 12 * -1); /* optically align w content */
   }
 
   & > p {
@@ -195,7 +200,7 @@ table {
 
   th,
   td {
-    padding: var(--spacing);
+    padding: var(--doc-spacing);
   }
 
   tr {
@@ -208,7 +213,7 @@ table {
 .component-grid {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--spacing) * 4);
+  gap: calc(var(--doc-spacing) * 4);
   width: 100%;
 
   .component-grid-header {
@@ -216,7 +221,7 @@ table {
     flex-direction: column;
 
     .component-grid-subtitle {
-      margin-top: calc(var(--spacing) * 2);
+      margin-top: calc(var(--doc-spacing) * 2);
       color: var(--vesper-text-secondary);
     }
   }
@@ -224,7 +229,7 @@ table {
   .component-grid-items {
     display: grid;
     grid-template-columns: 1fr;
-    gap: calc(var(--spacing));
+    gap: calc(var(--doc-spacing));
 
     @media (width >= 768px) {
       grid-template-columns: repeat(2, 1fr);
@@ -243,8 +248,8 @@ table {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: calc(var(--spacing) * 3);
-    padding: calc(var(--spacing) * 2);
+    gap: calc(var(--doc-spacing) * 3);
+    padding: calc(var(--doc-spacing) * 2);
     border-radius: var(--vesper-radius-2);
     border: 1px solid var(--vesper-alpha-black-50);
     overflow: hidden;
