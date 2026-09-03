@@ -181,6 +181,7 @@ export function Select(props: SelectProps) {
       </BaseSelect.Trigger>
       <BaseSelect.Portal container={portalContainer}>
         <BaseSelect.Positioner
+          className="vesper-select-positioner"
           side="bottom"
           align="start"
           alignItemWithTrigger={false}

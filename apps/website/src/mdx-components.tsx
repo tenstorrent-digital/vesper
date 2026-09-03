@@ -56,7 +56,6 @@ import { Modal } from "@tenstorrent/vesper/modal";
 import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
 import { RadioGroup } from "@tenstorrent/vesper/radio-group";
 import { Range } from "@tenstorrent/vesper/range";
-import { ScrollArea } from "@tenstorrent/vesper/scroll-area";
 import { Select } from "@tenstorrent/vesper/select";
 import { Sheet } from "@tenstorrent/vesper/sheet";
 import { ShowMore } from "@tenstorrent/vesper/show-more";
@@ -88,7 +87,6 @@ import { MaskedInputDemo } from "@/demos/masked-input";
 import { MenuDemo } from "@/demos/menu";
 import { ProgressBarDemo } from "@/demos/progress-bar";
 import { RangeDemo } from "@/demos/range";
-import { ScrollAreaDemo } from "@/demos/scroll-area";
 import { SelectDemo } from "@/demos/select";
 import { ShowMoreDemo } from "@/demos/show-more";
 import { SliderDemo } from "@/demos/slider";
@@ -254,7 +252,6 @@ const components = {
   ProgressBar,
   RadioGroup,
   Range,
-  ScrollArea,
   Select,
   Sheet,
   ShowMore,
@@ -301,7 +298,6 @@ const components = {
   MenuDemo,
   ProgressBarDemo,
   RangeDemo,
-  ScrollAreaDemo,
   SelectDemo,
   ShowMoreDemo,
   SliderDemo,
