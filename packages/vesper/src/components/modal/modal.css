@@ -93,7 +93,7 @@
   padding: 0 var(--vesper-spacing-6);
   color: var(--vesper-text-primary);
   flex-shrink: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .vesper-modal-buttons {

@@ -132,7 +132,7 @@
 
 .vesper-sheet-children {
   padding: 0 var(--vesper-spacing-6);
-  overflow-y: scroll;
+  overflow-y: auto;
   flex: 1;
   color: var(--vesper-text-primary);
 }

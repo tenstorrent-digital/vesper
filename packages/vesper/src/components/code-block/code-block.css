@@ -48,7 +48,7 @@
     }
   }
   width: 100%;
-  overflow: scroll;
+  overflow: auto;
   border-radius: var(--vesper-radius-2);
   pre.shiki {
     min-width: max-content;
