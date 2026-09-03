@@ -101,16 +101,6 @@ const withMDX = createMDX({
         path.join(appRoot, "src/lib/mdx/remark-jsx-text-children.mts"),
         { ignore: [] },
       ],
-
-      /**
-       * skip parsing phrasing content for specified flow elements, so
-       * `<Snippet>` and `<Code>` can render their children as strings instead
-       * of parsing any phrasing content into html tags
-       */
-      [
-        path.join(appRoot, "src/lib/mdx/remark-jsx-skip-phrasing.mts"),
-        { include: ["Snippet", "Code"] },
-      ],
     ],
 
     rehypePlugins: [
