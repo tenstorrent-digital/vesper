@@ -156,8 +156,9 @@ export const CommandPalette = ({ entries }: { entries: SearchEntry[] }) => {
 
       // "/" is the other muscle memory for search, but not while typing
       const target = event.target as HTMLElement | null;
-      const typing =
-        target?.closest("input, textarea, select, [contenteditable]") !== null;
+      const typing = Boolean(
+        target?.closest("input, textarea, select, [contenteditable]"),
+      );
 
       if (event.key === "/" && !typing && !dialog.current?.open) {
         event.preventDefault();

@@ -614,14 +614,41 @@ kbd.kbd {
   }
 
   .doc-footer-direction {
+    /*
+      tailwind's preflight sets `svg { display: block }`, so the arrow would
+      otherwise break onto a line of its own inside this label
+    */
+    display: flex;
+    align-items: center;
+    gap: var(--vesper-spacing-1);
     color: var(--vesper-text-tertiary);
     text-transform: uppercase;
     letter-spacing: var(--vesper-tracking-widest);
+
+    svg {
+      transition: transform var(--vesper-transition-duration-fast) ease;
+    }
+  }
+
+  &[data-direction="previous"]:hover svg {
+    transform: translateX(-0.125rem);
   }
 
   &[data-direction="next"] {
     text-align: right;
-    grid-column: 2;
+
+    .doc-footer-direction {
+      justify-content: flex-end;
+    }
+
+    /* keep "next" on the right, even when there is no "previous" beside it */
+    @media (width >= 40rem) {
+      grid-column: 2;
+    }
+
+    &:hover svg {
+      transform: translateX(0.125rem);
+    }
   }
 }
 

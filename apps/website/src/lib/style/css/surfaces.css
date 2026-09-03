@@ -539,7 +539,15 @@ dialog.palette {
 }
 
 .palette-results {
-  flex: 1;
+  /*
+    `flex: 1` would resolve to `flex-basis: 0%`, and because the dialog has no
+    definite height (it sizes to its content up to `max-height`), WebKit gives
+    this a used height of zero and the whole result list disappears. Chrome is
+    more forgiving. `flex-basis: auto` sizes it to its content, `min-height: 0`
+    lets it shrink and scroll once the dialog hits `max-height`
+  */
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
   padding: var(--vesper-spacing-2);
