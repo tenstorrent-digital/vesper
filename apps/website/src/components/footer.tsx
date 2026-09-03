@@ -78,8 +78,8 @@ export const Footer = () => {
 
       <div className="footer-baseline">
         <Typography variant="copy-xs" className="footer-copyright">
-          © {new Date().getFullYear()} Tenstorrent. Released under the Apache
-          2.0 license.
+          © {new Date().getFullYear()} Tenstorrent Inc. Released under the MIT
+          license.
         </Typography>
         <Typography
           as="a"
