@@ -22,11 +22,6 @@
   &:-webkit-autofill {
     transition: background-color 2147483647s step-end;
   }
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 }
 
 .vesper-text-area-success {
