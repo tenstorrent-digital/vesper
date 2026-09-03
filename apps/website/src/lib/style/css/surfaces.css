@@ -611,6 +611,32 @@ dialog.palette {
     text-overflow: ellipsis;
   }
 
+  /* the page a content match was found on, next to the heading it matched */
+  .palette-item-page {
+    font-weight: 400;
+    color: var(--vesper-text-tertiary);
+  }
+
+  /*
+    two lines of context, unlike the single-line `sub`: a snippet is the reason
+    the result is here at all, so it is worth the vertical space
+  */
+  .palette-item-snippet {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    color: var(--vesper-text-tertiary);
+  }
+
+  mark {
+    background: var(--vesper-background-accent-subtle);
+    color: var(--vesper-text-primary);
+    border-radius: var(--vesper-radius-1);
+    padding-inline: 0.0625rem;
+  }
+
   .palette-item-enter {
     margin-left: auto;
     opacity: 0;

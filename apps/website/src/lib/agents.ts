@@ -9,6 +9,7 @@
  * - `/llms.txt`            — the index (see https://llmstxt.org)
  * - `/llms-full.txt`       — every document, concatenated
  * - `/<any-page>.md`       — one document's raw markdown
+ * - `/api/search?q=`       — the same search the site's ⌘K palette runs
  * - `/agents/manifest.json`— a machine-readable description of all of the above
  */
 
@@ -67,6 +68,7 @@ export const llmsTxt = (): string => {
     `## Optional`,
     ``,
     `- [Everything, concatenated](${BASE_URL}/llms-full.txt): all ${docs.length} documents in one file`,
+    `- [Search](${BASE_URL}/api/search?q=QUERY): ranked results as JSON, across titles, headings, and body text`,
     `- [Agent console](${BASE_URL}/agents): cheat sheets, prompt packs, and house rules`,
     `- [Manifest](${BASE_URL}/agents/manifest.json): these endpoints, as JSON`,
     `- [Source](${GITHUB_URL}): the repository this site is generated from`,
@@ -140,6 +142,8 @@ export const agentManifest = () => ({
   endpoints: {
     index: `${BASE_URL}/llms.txt`,
     full: `${BASE_URL}/llms-full.txt`,
+    search: `${BASE_URL}/api/search?q={query}`,
+    searchIndex: `${BASE_URL}/api/search/index.json`,
     manifest: `${BASE_URL}/agents/manifest.json`,
     console: `${BASE_URL}/agents`,
     markdown: `${BASE_URL}/{path}.md`,

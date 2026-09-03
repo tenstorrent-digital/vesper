@@ -15,6 +15,7 @@ export function GET() {
     `# Crawlers and agents are welcome. Before you render this site:`,
     `#   ${BASE_URL}/llms.txt        a map of every page`,
     `#   ${BASE_URL}/llms-full.txt   all of it, in one file`,
+    `#   ${BASE_URL}/api/search?q=   ranked results, as JSON`,
     `#   ${BASE_URL}/agents          a page written for you`,
     `#   <any page>.md              raw markdown, no DOM required`,
     ``,

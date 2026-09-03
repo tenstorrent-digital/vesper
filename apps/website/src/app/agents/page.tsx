@@ -60,6 +60,11 @@ const ENDPOINTS = [
     copy: "These endpoints plus import conventions, theming, and a component index — as JSON. Mirrored at /.well-known/agents.json.",
   },
   {
+    path: "/api/search?q=",
+    title: "Search",
+    copy: "Ranked JSON results across titles, headings, and body text — the same index and ranking the ⌘K palette uses. Every result carries a .md URL.",
+  },
+  {
     path: "/sitemap.xml",
     title: "Sitemap",
     copy: "The boring one. Included for completeness, because someone's crawler will ask for it anyway.",
@@ -200,8 +205,9 @@ export default function Page() {
           variant="copy-md"
           style={{ color: "var(--vesper-text-secondary)", maxWidth: "52ch" }}
         >
-          All static, all generated from the same <code>docs/</code> folder the
-          rendered pages come from. They cannot drift.
+          All generated from the same <code>docs/</code> folder the rendered
+          pages come from — most of them at build time, and all of them from the
+          same source. They cannot drift.
         </Typography>
 
         <div className="agent-endpoints">
@@ -223,6 +229,7 @@ export default function Page() {
         </div>
 
         <Snippet>{`curl -s ${BASE_URL}/llms-full.txt`}</Snippet>
+        <Snippet>{`curl -s "${BASE_URL}/api/search?q=toast&limit=3"`}</Snippet>
       </section>
 
       {/* ------------------------------------------------------- cheat sheet */}

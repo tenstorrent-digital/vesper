@@ -49,6 +49,7 @@ src/
     raw/[...doc]/         raw markdown, reached as `<any-page>.md`
     llms.txt/             site map for language models
     llms-full.txt/        every document, concatenated
+    api/search/           search as JSON (+ the prebuilt index)
   components/
     shell/                top bar, rail, mobile drawer, footer
     doc/                  document header, table of contents, prev/next
@@ -59,7 +60,7 @@ src/
   lib/
     nav.ts                the navigation model every surface reads from
     agents.ts             everything served to machines
-    search.ts             the palette's index
+    search/               the index, the ranking, and the text extractor
     filesystem/docs/      the `docs/` index, loader, and raw source reader
     mdx/                  remark/rehype plugins
     style/css/            globals, prose, surfaces, home, agents
@@ -76,13 +77,15 @@ A good share of the traffic to a component library's docs is a crawler or a
 coding agent. Rather than make them parse the rendered HTML, the same content
 is served as plain text:
 
-| Route                   | What it is                                                |
-| ----------------------- | --------------------------------------------------------- |
-| `/llms.txt`             | one line per page, linking to markdown (llmstxt.org)      |
-| `/llms-full.txt`        | every document in `docs/`, concatenated                   |
-| `/<any-page>.md`        | that page's raw markdown source                           |
-| `/agents`               | cheat sheet, prompt packs, and house rules                |
-| `/agents/manifest.json` | the above as JSON, mirrored at `/.well-known/agents.json` |
+| Route                    | What it is                                                   |
+| ------------------------ | ------------------------------------------------------------ |
+| `/llms.txt`              | one line per page, linking to markdown (llmstxt.org)         |
+| `/llms-full.txt`         | every document in `docs/`, concatenated                      |
+| `/<any-page>.md`         | that page's raw markdown source                              |
+| `/api/search?q=`         | ranked results as JSON, with a snippet and a `.md` URL       |
+| `/api/search/index.json` | the whole search index, if you would rather rank it yourself |
+| `/agents`                | cheat sheet, prompt packs, and house rules                   |
+| `/agents/manifest.json`  | the above as JSON, mirrored at `/.well-known/agents.json`    |
 
 All of them are generated at build time from `docs/`, so they cannot drift from
 the rendered pages. The `.md` and `/.well-known/` routes are rewrites — see
@@ -90,3 +93,22 @@ the rendered pages. The `.md` and `/.well-known/` routes are rewrites — see
 
 There is also **agent mode** (⌥A, or the robot in the top bar): a site-wide
 phosphor skin built entirely by re-pointing Vesper tokens.
+
+## Search
+
+There is no search service. [`src/lib/search/`](./src/lib/search/) builds an
+index from `docs/` at build time and ranks against it in plain JavaScript:
+
+- [`plain.ts`](./src/lib/search/plain.ts) flattens markdown to prose. Fenced
+  code is dropped (prop tables carry the same names, at a fraction of the
+  bytes); everything else — including tables — is kept.
+- [`index.ts`](./src/lib/search/index.ts) builds two indexes: a small one
+  (titles, descriptions, headings) inlined into every page, and a full-text one
+  served from `/api/search/index.json`. The palette fetches the second when the
+  browser goes idle, so ⌘K works on the first keystroke and gets better a
+  moment later.
+- [`query.ts`](./src/lib/search/query.ts) is the ranking, and is shared
+  verbatim by the palette and by `/api/search`. Fields are weighted (a title is
+  worth a heading and a half, a heading about two paragraphs), an exact phrase
+  beats a fuzzy match, and multi-word queries are scored by inverse document
+  frequency, so the rare word in a question does the work.

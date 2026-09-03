@@ -13,106 +13,51 @@ import {
 } from "@tenstorrent/vesper/icons";
 import { Typography } from "@tenstorrent/vesper/typography";
 
-import type { SearchEntry } from "@/lib/search";
+import {
+  search,
+  SEARCH_INDEX_PATH,
+  type SearchEntry,
+  type SearchResult,
+  terms,
+} from "@/lib/search/query";
 
 import { OPEN_PALETTE_EVENT } from "./open-palette";
 
-interface Result {
-  href: string;
-  title: string;
-  /** the page a heading result belongs to, or the page's own description */
-  sub?: string;
-  section: string;
-  score: number;
-  kind: "page" | "heading";
-}
-
-/**
- * scores `query` against `text`
- *
- * exact substring matches win, then prefix-of-a-word matches, then a plain
- * subsequence match (so "tgl" still finds "Toggle"). returns `0` for no match
- */
-const score = (query: string, text: string): number => {
-  const haystack = text.toLowerCase();
-  const index = haystack.indexOf(query);
-
-  if (index === 0) return 100;
-  if (index > 0) return haystack[index - 1] === " " ? 80 : 60;
-
-  // subsequence: every character of the query appears, in order
-  let cursor = 0;
-  for (const character of query) {
-    cursor = haystack.indexOf(character, cursor);
-    if (cursor === -1) return 0;
-    cursor += 1;
-  }
-
-  return 20;
-};
-
-const search = (entries: SearchEntry[], raw: string): Result[] => {
-  const query = raw.trim().toLowerCase();
-
-  if (!query) {
-    return entries.slice(0, 8).map((entry) => ({
-      href: entry.href,
-      title: entry.title,
-      sub: entry.description,
-      section: entry.section,
-      score: 0,
-      kind: "page" as const,
-    }));
-  }
-
-  const results: Result[] = [];
-
-  for (const entry of entries) {
-    const titleScore = score(query, entry.title);
-    const descriptionScore = entry.description
-      ? score(query, entry.description) * 0.35
-      : 0;
-
-    const best = Math.max(titleScore, descriptionScore);
-
-    if (best > 0) {
-      results.push({
-        href: entry.href,
-        title: entry.title,
-        sub: entry.description,
-        section: entry.section,
-        // a page always outranks one of its own headings
-        score: best + 10,
-        kind: "page",
-      });
-    }
-
-    for (const heading of entry.headings) {
-      const headingScore = score(query, heading.text);
-
-      if (headingScore > 40) {
-        results.push({
-          href: `${entry.href}#${heading.id}`,
-          title: heading.text,
-          sub: entry.title,
-          section: entry.section,
-          score: headingScore,
-          kind: "heading",
-        });
-      }
-    }
-  }
-
-  return results.sort((a, b) => b.score - a.score).slice(0, 24);
-};
-
-const iconFor = (result: Result) => {
-  if (result.kind === "heading") return <CaretRight />;
+const iconFor = (result: SearchResult) => {
+  if (result.kind === "heading" || result.kind === "content")
+    return <CaretRight />;
   if (result.href === "/agents") return <AIAgent />;
   if (result.href.startsWith("/components")) return <Grid />;
   return <Document />;
 };
 
+/**
+ * marks every part of `text` that the query matched on
+ *
+ * built from {@link terms}, so it highlights the phrase, its words, and the
+ * stems those words matched on — and does it by splitting the string rather
+ * than by setting any inner HTML
+ */
+const highlight = (text: string, query: string) => {
+  const words = terms(query);
+  if (words.length === 0) return text;
+
+  const pattern = new RegExp(
+    `(${words
+      // longest first, so "toasts" wins over the "toast" inside it
+      .sort((a, b) => b.length - a.length)
+      .map((word) => word.replace(/[.*+?^${}()|[\]\\-]/g, "\\$&"))
+      .join("|")})`,
+    "gi",
+  );
+
+  // splitting on one capturing group alternates text, match, text, match…
+  return text
+    .split(pattern)
+    .map((part, index) =>
+      index % 2 === 1 ? <mark key={index}>{part}</mark> : part,
+    );
+};
 /**
  * the ⌘K command palette
  *
@@ -127,15 +72,45 @@ export const CommandPalette = ({ entries }: { entries: SearchEntry[] }) => {
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState(0);
 
-  const results = useMemo(() => search(entries, query), [entries, query]);
+  /**
+   * the full-text half of the index
+   *
+   * `entries` (titles, descriptions, headings) arrives with the page, so the
+   * palette is useful on the first keystroke; the prose is a few hundred
+   * kilobytes, so it is fetched once in the background and swapped in
+   */
+  const [fullText, setFullText] = useState<SearchEntry[] | null>(null);
+  const loading = useRef(false);
+
+  const loadFullText = useCallback(async () => {
+    if (loading.current) return;
+    loading.current = true;
+
+    try {
+      const response = await fetch(SEARCH_INDEX_PATH);
+      if (response.ok) setFullText((await response.json()) as SearchEntry[]);
+    } catch {
+      // the lite index still works — full text is an upgrade, not a dependency
+    }
+  }, []);
+
+  const results = useMemo(
+    () => search(fullText ?? entries, query),
+    [entries, fullText, query],
+  );
 
   const close = useCallback(() => dialog.current?.close(), []);
 
-  const open = useCallback((next = "") => {
-    setQuery(next);
-    setSelected(0);
-    if (!dialog.current?.open) dialog.current?.showModal();
-  }, []);
+  const open = useCallback(
+    (next = "") => {
+      setQuery(next);
+      setSelected(0);
+      if (!dialog.current?.open) dialog.current?.showModal();
+      // in case the browser never got around to being idle
+      void loadFullText();
+    },
+    [loadFullText],
+  );
 
   const go = useCallback(
     (href: string) => {
@@ -178,6 +153,23 @@ export const CommandPalette = ({ entries }: { entries: SearchEntry[] }) => {
       window.removeEventListener(OPEN_PALETTE_EVENT, onOpen);
     };
   }, [close, open]);
+
+  /**
+   * pull the full-text index down once the browser has nothing better to do —
+   * by the time ⌘K is pressed it is usually already here
+   */
+  useEffect(() => {
+    if (typeof requestIdleCallback !== "function") {
+      const timer = setTimeout(loadFullText, 2_000);
+      return () => clearTimeout(timer);
+    }
+
+    const handle = requestIdleCallback(() => void loadFullText(), {
+      timeout: 5_000,
+    });
+
+    return () => cancelIdleCallback(handle);
+  }, [loadFullText]);
 
   // keep the highlighted row in view as the selection moves
   useEffect(() => {
@@ -274,16 +266,29 @@ export const CommandPalette = ({ entries }: { entries: SearchEntry[] }) => {
                     variant="copy-sm-bold"
                     className="palette-item-title"
                   >
-                    {result.title}
+                    {highlight(result.title, query)}
+                    {result.snippet && result.sub && (
+                      <span className="palette-item-page"> · {result.sub}</span>
+                    )}
                   </Typography>
-                  {result.sub && (
+                  {result.snippet ? (
                     <Typography
                       as="span"
                       variant="copy-xs"
-                      className="palette-item-sub"
+                      className="palette-item-snippet"
                     >
-                      {result.sub}
+                      {highlight(result.snippet, query)}
                     </Typography>
+                  ) : (
+                    result.sub && (
+                      <Typography
+                        as="span"
+                        variant="copy-xs"
+                        className="palette-item-sub"
+                      >
+                        {result.sub}
+                      </Typography>
+                    )
                   )}
                 </span>
 
@@ -309,7 +314,8 @@ export const CommandPalette = ({ entries }: { entries: SearchEntry[] }) => {
           variant="label-xs-mono"
           className="palette-hint palette-footer-end"
         >
-          {entries.length} pages indexed
+          {entries.length} pages
+          {fullText ? ", full text" : " indexed"}
         </Typography>
       </div>
     </dialog>
