@@ -12,12 +12,12 @@ import { CodeBlock } from "@tenstorrent/vesper/code-block";
 import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
 import { RadioGroup } from "@tenstorrent/vesper/radio-group";
 import { ShowMore } from "@tenstorrent/vesper/show-more";
-import { Skeleton } from "@tenstorrent/vesper/skeleton";
 import { SplitButton } from "@tenstorrent/vesper/split-button";
 import { StatusIndicator } from "@tenstorrent/vesper/status-indicator";
 import { Switch } from "@tenstorrent/vesper/switch";
 import { Tabs } from "@tenstorrent/vesper/tabs";
 import { TextInput } from "@tenstorrent/vesper/text-input";
+import { ThemeSwitcher } from "@tenstorrent/vesper/theme-switcher";
 import { addToast, Toasts } from "@tenstorrent/vesper/toast";
 import { Typography } from "@tenstorrent/vesper/typography";
 
@@ -32,7 +32,6 @@ export function Home() {
       <div className="w-1/4! py-4">
         <ProgressBar size="sm" value={56} variant="steps" steps={5} animated />
       </div>
-
       <SplitButton
         onClick={() => alert("Ok!")}
         menuItems={[
@@ -80,12 +79,12 @@ export function Home() {
           },
         ]}
       />
-      <Skeleton width={200} height={20} />
+      <ThemeSwitcher />
       <br />
       <Switch label="Enough talk" defaultChecked />
       <StatusIndicator label="Ready to get started" state="ready" />
       <br />
-      <CodeBlock className="w-3/4!" lang={bash}>
+      <CodeBlock className="w-full md:w-3/4!" lang={bash}>
         npm install @tenstorrent/vesper
       </CodeBlock>
       <br />
@@ -109,7 +108,6 @@ export function Home() {
           />
         </div>
       </div>
-
       <AvatarGroup
         avatars={[
           {
