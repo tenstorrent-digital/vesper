@@ -24,11 +24,11 @@ export const Tree = ({
   const pathname = usePathname();
 
   return (
-    <div className="sidebar-group">
+    <div className="flex flex-col gap-0">
       {folder && (
         <Typography
           as="span"
-          className="sidebar-group-label"
+          className="p-2 uppercase text-vesper-alpha-black-600"
           variant="label-xs-mono"
         >
           {convertKebabToTitleCase(folder)}
@@ -43,6 +43,7 @@ export const Tree = ({
           aria-current={pathname === href ? "page" : undefined}
           key={href}
           variant="heading-xs"
+          className="-my-0.5 rounded-vesper-2 p-2 hover:bg-vesper-state-neutral-hover data-[active]:bg-vesper-state-neutral-active"
         >
           {title ?? convertKebabToTitleCase(href.split("/").pop() ?? "")}
         </Typography>
