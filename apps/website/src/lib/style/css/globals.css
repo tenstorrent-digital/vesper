@@ -351,12 +351,6 @@ nav#sidebar {
     ); /* overrides `--vesper-leading-snug` applied by Typography */
   }
 
-  a {
-    text-decoration-line: underline;
-    text-decoration-thickness: from-font;
-    text-underline-offset: calc(var(--base-font-size) / 12);
-  }
-
   ul,
   ol {
     max-width: var(--content-width);
