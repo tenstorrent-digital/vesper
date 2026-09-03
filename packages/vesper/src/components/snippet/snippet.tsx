@@ -75,6 +75,7 @@ export function Snippet(props: SnippetProps) {
         variant={variant === "default" ? "ghost" : "contrast"}
         icon={copied ? <Checkmark /> : <Copy />}
         aria-label={copied ? "Copied to clipboard" : "Copy to clipboard"}
+        aria-live="polite"
         size="xs"
         type="button"
         onClick={copyToClipboard}
