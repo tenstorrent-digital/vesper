@@ -1,6 +1,6 @@
 "use client";
 
-import { type ComponentProps, useEffect, useState } from "react";
+import { type ComponentProps, useCallback, useRef, useState } from "react";
 
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Checkmark, Copy } from "@/components/icons/icons";
@@ -40,11 +40,22 @@ export function Snippet(props: SnippetProps) {
   const { className, children, variant = "default", ...rest } = props;
 
   const [copied, setCopied] = useState(false);
-  useEffect(() => {
-    if (!copied) return;
-    const id = setTimeout(() => setCopied(false), 2000);
-    return () => clearTimeout(id);
-  }, [copied]);
+
+  const timeout = useRef<NodeJS.Timeout | null>(null);
+
+  const copyToClipboard = useCallback(() => {
+    if (timeout.current !== null) {
+      clearTimeout(timeout.current);
+    }
+
+    navigator.clipboard
+      ?.writeText(children ?? "")
+      .then(() => {
+        setCopied(true);
+        timeout.current = setTimeout(() => setCopied(false), 2000);
+      })
+      .catch(() => {});
+  }, [children]);
 
   return (
     <div
@@ -66,12 +77,7 @@ export function Snippet(props: SnippetProps) {
         aria-label={copied ? "Code copied" : "Copy code"}
         size="xs"
         type="button"
-        onClick={() =>
-          navigator.clipboard
-            ?.writeText(children ?? "")
-            .then(() => setCopied(true))
-            .catch(() => {})
-        }
+        onClick={copyToClipboard}
       />
     </div>
   );
