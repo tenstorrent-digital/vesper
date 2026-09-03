@@ -192,7 +192,7 @@ import { Tooltip } from "@tenstorrent/vesper/tooltip";
 
 ### Showing by default
 
-You can force a `Tooltip`'s content to show by default prior to user interaction by passing `defaultOpen={true}` or just `defaultOpen`. The `Tooltip` will stay visible until the user hovers over and leaves the trigger, or if the user clicks somewhere on the page:
+Pass `defaultOpen` to show a `Tooltip` before the first user interaction. Because this is uncontrolled mode, normal interactions can subsequently close it (pressing Escape or moving the pointer away after hovering, for example):
 
 <Tooltip content="This tooltip shows by default" side="right" defaultOpen>
   <Button variant="subtle">Hover me</Button>
