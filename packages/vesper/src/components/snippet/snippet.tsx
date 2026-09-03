@@ -63,7 +63,7 @@ export function Snippet(props: SnippetProps) {
       <IconButton
         variant={variant === "default" ? "ghost" : "contrast"}
         icon={copied ? <Checkmark /> : <Copy />}
-        aria-label="Copy code"
+        aria-label={copied ? "Code copied" : "Copy code"}
         size="xs"
         type="button"
         onClick={() =>
