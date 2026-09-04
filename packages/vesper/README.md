@@ -41,9 +41,11 @@ export default function App() {
 <td>
 
 ```
-"Please follow the instructions at
-vesper.tenstorrent.com/agent-install.md
-to setup Vesper"
+Please use Vesper, Tenstorrent's
+design system components by running
+npm install @tenstorrent/vesper
+
+I want to build:
 ```
 
 </td>
