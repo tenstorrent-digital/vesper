@@ -1,6 +1,6 @@
 {
   "name": "@tenstorrent/vesper",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React component library for the Vesper design system",
   "license": "MIT",
   "repository": {

@@ -1,5 +1,11 @@
 # @tenstorrent/vesper
 
+## 0.1.1
+
+### Patch Changes
+
+- 78f735b: Update `README.md` install instructions
+
 ## 0.1.0
 
 Initial release
