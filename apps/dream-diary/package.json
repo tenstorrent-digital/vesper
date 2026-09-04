@@ -1,0 +1,45 @@
+{
+  "name": "dream-diary",
+  "version": "0.1.0",
+  "description": "An example dream journal built with Vesper TUI",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "dream-diary": "./dist/dream-diary.cjs"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "vesper-tui build src/main.tsx --outfile dist/dream-diary.cjs",
+    "check-types": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "dev": "vesper-tui dev src/main.tsx",
+    "format": "prettier --write --ignore-unknown .",
+    "format:check": "prettier --check --ignore-unknown .",
+    "lint": "eslint --max-warnings 0",
+    "lint:fix": "eslint --fix",
+    "package:macos": "yarn build && mkdir -p ../../artifacts && tar -czf ../../artifacts/dream-diary-macos-arm64.tar.gz -C dist dream-diary.cjs",
+    "test": "tsx --test src/*.test.ts"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@tenstorrent/vesper": "*",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "vesper-tui": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "@types/react": "^19.2.17",
+    "eslint": "^9.39.1",
+    "globals": "^16.5.0",
+    "tsx": "^4.22.3",
+    "typescript": "5.9.2"
+  }
+}
