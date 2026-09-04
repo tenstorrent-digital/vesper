@@ -26,6 +26,13 @@
 
   --spacing: 1rem;
 
+  /* height of the sticky `nav#nav`, used to offset everything that sticks below it */
+  --nav-height: 4rem;
+  /* full width of the sidebar rail, referenced by `nav#nav` to align breadcrumbs */
+  --sidebar-width: 14rem;
+  /* width of the on-page table of contents rail */
+  --toc-width: 15rem;
+
   /*
     variables for --font-inter-tight and --font-plex-sans are
     set via `next/fonts/google`
@@ -44,6 +51,8 @@ html {
   line-height: var(--base-line-height);
   font-family: var(--font-inter-tight);
   scroll-behavior: smooth;
+  /* nothing should come to rest underneath the sticky nav */
+  scroll-padding-top: calc(var(--nav-height) + var(--spacing));
   @media (prefers-reduced-motion: reduce) {
     scroll-behavior: auto;
   }
@@ -62,6 +71,27 @@ body {
   }
 }
 
+::selection {
+  background: var(--vesper-background-accent-subtle);
+  color: var(--vesper-text-primary);
+}
+
+/*
+  keep keyboard focus visible everywhere using the design system's own focus
+  ring rather than each browser's default outline
+*/
+:where(a, button, summary, [tabindex]):focus-visible {
+  outline: none;
+  border-radius: var(--vesper-radius-1);
+  box-shadow: var(--vesper-shadow-focus-ring);
+}
+
+/* slim, themed scrollbars for the panes that scroll on their own */
+:where(nav#sidebar, nav#toc) {
+  scrollbar-width: thin;
+  scrollbar-color: var(--vesper-border-primary) transparent;
+}
+
 .layout {
   display: grid;
   grid-template-areas:
@@ -75,10 +105,10 @@ body {
 
   @media (width >= 768px) {
     grid-template-areas:
-      "nav nav nav nav"
-      "sidebar main main main";
+      "nav nav nav"
+      "sidebar main toc";
     grid-template-rows: auto 1fr;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr auto;
   }
 }
 
@@ -92,8 +122,33 @@ nav#nav {
     pushed past the viewport edge (and clipped by `overflow-x: hidden` on body)
   */
   min-width: 0;
-  padding: var(--spacing);
-  border-bottom: 1px solid var(--vesper-alpha-black-50);
+  height: var(--nav-height);
+  padding: 0 var(--spacing);
+
+  /*
+    the nav follows the page, so the breadcrumbs, theme switcher and playground
+    link stay reachable from anywhere in a long document
+  */
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  /*
+    a translucent, blurred surface over the content scrolling underneath, with
+    the opaque background token as the fallback where `backdrop-filter` is
+    unsupported
+  */
+  background: var(--vesper-background-primary);
+  border-bottom: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
+
+  @supports (backdrop-filter: blur(1px)) {
+    background: color-mix(
+      in srgb,
+      var(--vesper-background-primary) 80%,
+      transparent
+    );
+    backdrop-filter: blur(12px) saturate(180%);
+  }
 
   display: flex;
   align-items: center;
@@ -116,17 +171,36 @@ nav#nav {
     min-width: 0;
 
     #home {
+      display: flex;
+      align-items: center;
+      gap: calc(var(--spacing) / 2);
+      text-decoration: none;
+      color: var(--vesper-text-primary);
+
+      .home-mark {
+        width: 1.5rem;
+        height: 1.5rem;
+        flex-shrink: 0;
+        color: var(--vesper-text-accent);
+        transition: transform var(--vesper-transition-duration-default)
+          cubic-bezier(0.2, 0.9, 0.3, 1.3);
+      }
+
+      &:hover .home-mark {
+        transform: rotate(-90deg);
+      }
+
       @media (width >= 768px) {
         /*
           reserve the sidebar's width so `#breadcrumbs` optically aligns with
           the content column.
-          `12rem` is the full sidebar width: it is `box-sizing: border-box`,
-          so its own padding is already included.
+          `--sidebar-width` is the full sidebar width: it is `box-sizing:
+          border-box`, so its own padding is already included.
         */
         width: calc(
-          12rem /* width of sidebar */ + var(--spacing) /* prose padding */ -
-            var(--spacing) /* padding in `nav#nav` */ - var(--spacing)
-            /* gap in `.nav-left` */
+          var(--sidebar-width) /* width of sidebar */ + var(--spacing)
+            /* prose padding */ - var(--spacing) /* padding in `nav#nav` */ -
+            var(--spacing) /* gap in `.nav-left` */
         );
         /*
           without this, `#home` is shrunk by an amount proportional to the
@@ -143,10 +217,9 @@ nav#nav {
         width resolves against a width it also contributes to, overflowing
         `.nav-left` and forcing `#home` to shrink
       */
-      height: 3rem;
+      height: var(--nav-height);
       width: 100%;
       min-width: 0;
-      padding: var(--spacing) 0;
       display: flex;
       gap: var(--spacing);
       align-items: center;
@@ -185,6 +258,14 @@ nav#nav {
 
       .segment {
         flex-shrink: 0;
+        text-decoration: none;
+        color: var(--vesper-text-secondary);
+        transition: color var(--vesper-transition-duration-fast) ease;
+
+        &:hover,
+        &[aria-current="page"] {
+          color: var(--vesper-text-primary);
+        }
       }
 
       @media (width >= 768px) {
@@ -203,7 +284,16 @@ nav#nav {
 
     gap: calc(var(--spacing) / 4);
     @media (width >= 768px) {
-      gap: var(--spacing);
+      gap: calc(var(--spacing) / 2);
+    }
+
+    /* the theme switcher and repository link are desktop-only affordances */
+    .theme-toggle,
+    #github-link {
+      display: none;
+      @media (width >= 768px) {
+        display: flex;
+      }
     }
 
     .playground-link {
@@ -241,47 +331,157 @@ nav#sidebar {
     padding: calc(var(--spacing) * 2) var(--spacing);
     display: flex;
     flex-direction: column;
-    gap: calc(var(--spacing));
-    border-top: 1px solid var(--vesper-alpha-black-50);
+    gap: calc(var(--spacing) * 1.5);
+    border-top: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
 
     @media (width >= 768px) {
-      padding: calc(var(--spacing));
+      padding: calc(var(--spacing) * 1.5) var(--spacing);
       border-top: none;
+      border-right: var(--vesper-stroke-base) solid
+        var(--vesper-border-tertiary);
+      min-height: calc(100vh - var(--nav-height));
     }
   }
 
   .sidebar-group {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: calc(var(--spacing) / 8);
   }
 
   .sidebar-group-label {
     padding: calc(var(--spacing) / 2);
+    margin-bottom: calc(var(--spacing) / 4);
     text-transform: uppercase;
-    color: var(--color-vesper-alpha-black-600);
+    color: var(--vesper-text-tertiary);
+    letter-spacing: var(--vesper-tracking-wide);
   }
 
   a {
+    position: relative;
     padding: calc(var(--spacing) / 2);
     margin: calc(var(--spacing) / 8 * -1) 0; /* so hover can take up adjacent space */
     border-radius: calc(var(--spacing) / 2);
+    text-decoration: none;
+    color: var(--vesper-text-secondary);
+    transition:
+      background-color var(--vesper-transition-duration-fast) ease,
+      color var(--vesper-transition-duration-fast) ease;
+
     &:hover {
       background-color: var(--vesper-state-neutral-hover);
+      color: var(--vesper-text-primary);
     }
+
+    /* an accent rail marks the page you are on */
+    &::before {
+      content: "";
+      position: absolute;
+      inset-block: 20%;
+      left: calc(var(--spacing) / -2);
+      width: 2px;
+      border-radius: var(--vesper-radius-half);
+      background: var(--vesper-background-accent-base);
+      opacity: 0;
+      transform: scaleY(0.4);
+      transition:
+        opacity var(--vesper-transition-duration-fast) ease,
+        transform var(--vesper-transition-duration-fast) ease;
+    }
+
     &[data-active] {
       background-color: var(--vesper-state-neutral-active);
+      color: var(--vesper-text-primary);
+
+      &::before {
+        opacity: 1;
+        transform: scaleY(1);
+      }
     }
   }
 
   .back-to-top {
+    color: var(--vesper-text-tertiary);
+
     @media (width >= 768px) {
       display: none;
     }
   }
 
   @media (width >= 768px) {
-    width: 12rem;
+    width: var(--sidebar-width);
+    /* the rail keeps its own scroll, so a long tree never drags the page down */
+    position: sticky;
+    top: var(--nav-height);
+    max-height: calc(100vh - var(--nav-height));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+nav#toc {
+  grid-area: toc;
+
+  /* the rail only earns its space once the viewport is wide enough for it */
+  display: none;
+
+  @media (width >= 1280px) {
+    display: block;
+    width: var(--toc-width);
+    position: sticky;
+    top: var(--nav-height);
+    max-height: calc(100vh - var(--nav-height));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .toc-inner {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing) / 2);
+    padding: calc(var(--spacing) * 1.5) var(--spacing);
+  }
+
+  .toc-label {
+    text-transform: uppercase;
+    color: var(--vesper-text-tertiary);
+    letter-spacing: var(--vesper-tracking-wide);
+  }
+
+  .toc-list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* the rail the active marker travels along */
+    border-left: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
+
+    li[data-level="3"] a {
+      padding-left: calc(var(--spacing) * 1.5);
+    }
+
+    a {
+      display: block;
+      padding: calc(var(--spacing) / 4) var(--spacing);
+      margin-left: -1px;
+      border-left: 1px solid transparent;
+      color: var(--vesper-text-tertiary);
+      text-decoration: none;
+      text-wrap: pretty;
+      transition:
+        color var(--vesper-transition-duration-fast) ease,
+        border-color var(--vesper-transition-duration-fast) ease;
+
+      &:hover {
+        color: var(--vesper-text-primary);
+      }
+
+      &[data-active] {
+        color: var(--vesper-text-accent);
+        border-left-color: var(--vesper-background-accent-base);
+      }
+    }
   }
 }
 
@@ -289,6 +489,8 @@ nav#sidebar {
   grid-area: main;
   width: 100%;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
   padding-bottom: calc(var(--spacing) * 2);
 }
 
@@ -301,7 +503,7 @@ nav#sidebar {
   display: flex;
   flex-direction: column;
   gap: var(--gap);
-  padding: var(--spacing);
+  padding: calc(var(--spacing) * 2) var(--spacing);
   margin-right: auto;
   width: 100%;
   max-width: var(--content-width);
@@ -316,7 +518,7 @@ nav#sidebar {
   h4,
   h5,
   h6 {
-    scroll-margin-top: calc(var(--spacing) * 4);
+    scroll-margin-top: calc(var(--nav-height) + var(--spacing));
     letter-spacing: -2.5%;
 
     text-wrap: pretty;
@@ -344,6 +546,16 @@ nav#sidebar {
     margin-left: calc(var(--spacing) / 12 * -1); /* optically align w content */
   }
 
+  /*
+    linkable headings — the anchor mark only appears on hover, so it never
+    competes with the heading itself
+  */
+  :where(h2, h3, h4)[id]:hover::after {
+    content: "#";
+    margin-left: 0.35em;
+    color: var(--vesper-text-tertiary);
+  }
+
   & > p {
     max-width: var(--content-width);
     line-height: var(
@@ -369,6 +581,10 @@ nav#sidebar {
 
   li {
     line-height: var(--base-line-height);
+
+    &::marker {
+      color: var(--vesper-text-tertiary);
+    }
   }
 }
 
@@ -381,7 +597,7 @@ table {
 
   th {
     text-align: left;
-    border-bottom: 1px solid var(--vesper-alpha-black-400);
+    border-bottom: var(--vesper-stroke-base) solid var(--vesper-border-primary);
     text-transform: uppercase;
     font-size: 0.75rem;
     font-family: var(--font-inter-tight);
@@ -398,15 +614,139 @@ table {
 
   tr {
     &:not(:last-child) {
-      border-bottom: 1px solid var(--vesper-alpha-black-50);
+      border-bottom: var(--vesper-stroke-base) solid
+        var(--vesper-border-tertiary);
     }
+  }
+
+  /* rows light up on hover, so a wide prop table stays readable across columns */
+  tbody tr {
+    transition: background-color var(--vesper-transition-duration-fast) ease;
+
+    &:hover {
+      background-color: var(--vesper-state-neutral-hover);
+    }
+  }
+}
+
+/*
+  homepage hero
+
+  built from design system tokens only: the dot pattern, radii, strokes and
+  brand colors all come from `@tenstorrent/vesper`
+*/
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing);
+  padding: calc(var(--spacing) * 3) calc(var(--spacing) * 2);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
+  border-radius: var(--vesper-radius-3);
+  background: var(--vesper-bg-dot-pattern-secondary);
+  overflow: hidden;
+
+  /* a soft brand wash bleeding in from the corners */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        60% 80% at 100% 0%,
+        var(--vesper-background-brand-purple-subtle),
+        transparent 70%
+      ),
+      radial-gradient(
+        50% 70% at 0% 100%,
+        var(--vesper-background-brand-mint-subtle),
+        transparent 70%
+      );
+  }
+
+  /* keep the hero's own content above the wash */
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-title {
+    margin: 0;
+    text-wrap: balance;
+    /*
+      `display-md` is sized for a full-width canvas — step it down on narrow
+      viewports so the headline does not eat the whole screen
+    */
+    font-size: clamp(2.25rem, 7vw + 1rem, 4rem);
+    background: linear-gradient(
+      120deg,
+      var(--vesper-text-primary) 30%,
+      var(--vesper-text-brand-purple) 65%,
+      var(--vesper-text-brand-mint) 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .hero-tagline {
+    max-width: 56ch;
+    color: var(--vesper-text-secondary);
+    white-space: normal;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: calc(var(--spacing) / 2);
+  }
+
+  .hero-snippet {
+    width: 100%;
+    max-width: 26rem;
+  }
+
+  @media (width >= 768px) {
+    padding: calc(var(--spacing) * 4);
+  }
+}
+
+/* cards in the homepage's "start here" grid */
+.home-card {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) / 4);
+  padding: calc(var(--spacing) * 1.5);
+  text-decoration: none;
+  transition:
+    transform var(--vesper-transition-duration-fast) ease,
+    box-shadow var(--vesper-transition-duration-fast) ease;
+
+  .home-card-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-bottom: calc(var(--spacing) / 2);
+    color: var(--vesper-text-accent);
+  }
+
+  .home-card-description {
+    color: var(--vesper-text-secondary);
+    white-space: normal;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--vesper-shadow-200);
   }
 }
 
 .component-grid {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--spacing) * 4);
+  gap: calc(var(--spacing) * 2);
   width: 100%;
 
   .component-grid-header {
@@ -414,7 +754,7 @@ table {
     flex-direction: column;
 
     .component-grid-subtitle {
-      margin-top: calc(var(--spacing) * 2);
+      margin-top: var(--spacing);
       color: var(--vesper-text-secondary);
     }
   }
@@ -440,25 +780,153 @@ table {
   .component-grid-cell {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: calc(var(--spacing) * 3);
-    padding: calc(var(--spacing) * 2);
+    gap: 0;
+    padding: 0;
     border-radius: var(--vesper-radius-2);
-    border: 1px solid var(--vesper-alpha-black-50);
     overflow: hidden;
     min-width: 0;
+    transition:
+      transform var(--vesper-transition-duration-fast) ease,
+      box-shadow var(--vesper-transition-duration-fast) ease;
 
     .component-grid-cell-preview {
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 4rem;
+      min-height: 9rem;
+      padding: calc(var(--spacing) * 2);
       width: 100%;
-      overflow: visible;
+      overflow: hidden;
+      /* the dot grid separates a component preview from the page behind it */
+      background: var(--vesper-bg-dot-pattern-secondary);
+      border-bottom: var(--vesper-stroke-base) solid
+        var(--vesper-border-tertiary);
+    }
+
+    .component-grid-cell-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: calc(var(--spacing) / 2);
+      padding: var(--spacing);
+
+      .component-grid-cell-arrow {
+        width: 1rem;
+        height: 1rem;
+        flex-shrink: 0;
+        color: var(--vesper-text-tertiary);
+        opacity: 0;
+        transform: translateX(-0.25rem);
+        transition:
+          opacity var(--vesper-transition-duration-fast) ease,
+          transform var(--vesper-transition-duration-fast) ease;
+      }
     }
 
     a {
       text-decoration-line: none;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--vesper-shadow-200);
+
+      .component-grid-cell-arrow {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  }
+}
+
+#footer {
+  width: 100%;
+  max-width: calc(82ch + var(--spacing) * 2);
+  /* pins the footer to the bottom of short pages */
+  margin-top: auto;
+  padding: 0 var(--spacing);
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: calc(var(--spacing) * 2);
+    padding: calc(var(--spacing) * 2) 0;
+    border-top: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
+
+    @media (width >= 768px) {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: calc(var(--spacing) / 4);
+
+    .footer-mark {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-bottom: calc(var(--spacing) / 4);
+      color: var(--vesper-text-accent);
+    }
+
+    .footer-tagline {
+      color: var(--vesper-text-secondary);
+      text-wrap: pretty;
+    }
+  }
+
+  .footer-group {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing) / 4);
+
+    .footer-group-label {
+      margin-bottom: calc(var(--spacing) / 4);
+      text-transform: uppercase;
+      color: var(--vesper-text-tertiary);
+      letter-spacing: var(--vesper-tracking-wide);
+    }
+
+    a {
+      width: fit-content;
+      color: var(--vesper-text-secondary);
+      text-decoration: none;
+      transition: color var(--vesper-transition-duration-fast) ease;
+
+      &:hover {
+        color: var(--vesper-text-primary);
+      }
+    }
+  }
+
+  .footer-baseline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: calc(var(--spacing) / 2);
+    padding: var(--spacing) 0;
+    border-top: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
+
+    .footer-copyright {
+      color: var(--vesper-text-tertiary);
+    }
+
+    .footer-social {
+      display: flex;
+      color: var(--vesper-text-tertiary);
+      transition: color var(--vesper-transition-duration-fast) ease;
+
+      &:hover {
+        color: var(--vesper-text-primary);
+      }
+
+      svg {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
     }
   }
 }

@@ -15,7 +15,9 @@ import { Code } from "@tenstorrent/vesper/code";
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
 import { Combobox } from "@tenstorrent/vesper/combobox";
 import { IconButton } from "@tenstorrent/vesper/icon-button";
+import { ArrowRight } from "@tenstorrent/vesper/icons";
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";
+import { Material } from "@tenstorrent/vesper/material";
 import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
 import { RadioGroup } from "@tenstorrent/vesper/radio-group";
 import { Range } from "@tenstorrent/vesper/range";
@@ -50,16 +52,19 @@ const Cell = ({
   children: React.ReactNode;
 }) => {
   return (
-    <div className="component-grid-cell">
+    <Material variant="interactive" className="component-grid-cell">
       <div className="component-grid-cell-preview">{children}</div>
-      <Typography
-        as={Link}
-        href={`/components/${convertPascalToKebabCase(name)}`}
-        variant="copy-md-bold"
-      >
-        {convertPascalToTitleCase(name)}
-      </Typography>
-    </div>
+      <div className="component-grid-cell-label">
+        <Typography
+          as={Link}
+          href={`/components/${convertPascalToKebabCase(name)}`}
+          variant="copy-md-bold"
+        >
+          {convertPascalToTitleCase(name)}
+        </Typography>
+        <ArrowRight className="component-grid-cell-arrow" aria-hidden="true" />
+      </div>
+    </Material>
   );
 };
 

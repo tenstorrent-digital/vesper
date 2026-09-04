@@ -5,15 +5,36 @@ export const metadata = {
   description: "Vesper is Tenstorrent's design system for React",
 };
 
-# Vesper
+<div className="hero">
+  <div className="gap-vesper-2 flex flex-wrap items-center">
+    <Badge variant="purple">React 19</Badge>
+    <Badge variant="mint">Tailwind v4</Badge>
+    <Badge variant="accent" subtle>
+      WCAG 2 AA
+    </Badge>
+  </div>
 
-<Typography variant="copy-lg" className="whitespace-normal">
+<Typography as="h1" variant="display-md" className="hero-title">
+  Build Tenstorrent interfaces, fast.
+</Typography>
+
+<Typography variant="copy-lg" className="hero-tagline">
   Vesper is Tenstorrent's design system for the web: a React component library
   built on a shared set of design tokens, with light and dark themes, an icon
   set, and first-class Tailwind support.
 </Typography>
 
-<Snippet>npm install @tenstorrent/vesper</Snippet>
+<Snippet className="hero-snippet">npm install @tenstorrent/vesper</Snippet>
+
+  <div className="hero-actions">
+    <Button as={Link} href="/getting-started" iconRight={<ArrowRight />}>
+      Get started
+    </Button>
+    <Button as={Link} href="/components" variant="tertiary" iconLeft={<Grid />}>
+      Browse components
+    </Button>
+  </div>
+</div>
 
 ## Start here
 
@@ -22,13 +43,11 @@ export const metadata = {
     as={Link}
     href="/getting-started"
     variant="interactive"
-    className="gap-vesper-1 p-vesper-6 flex flex-col"
+    className="home-card"
   >
+    <Bolt className="home-card-icon" aria-hidden="true" />
     <Typography variant="heading-sm">Getting Started</Typography>
-    <Typography
-      variant="copy-sm"
-      className="home-card-description text-vesper-text-secondary whitespace-normal"
-    >
+    <Typography variant="copy-sm" className="home-card-description">
       Install the package, import the styles, and load the fonts.
     </Typography>
   </Material>
@@ -36,13 +55,11 @@ export const metadata = {
     as={Link}
     href="/components"
     variant="interactive"
-    className="gap-vesper-1 p-vesper-6 flex flex-col"
+    className="home-card"
   >
+    <Grid className="home-card-icon" aria-hidden="true" />
     <Typography variant="heading-sm">Components</Typography>
-    <Typography
-      variant="copy-sm"
-      className="home-card-description text-vesper-text-secondary whitespace-normal"
-    >
+    <Typography variant="copy-sm" className="home-card-description">
       Browse every component, with live examples and prop tables.
     </Typography>
   </Material>
@@ -50,13 +67,11 @@ export const metadata = {
     as={Link}
     href="/tokens"
     variant="interactive"
-    className="gap-vesper-1 p-vesper-6 flex flex-col"
+    className="home-card"
   >
+    <Tensix className="home-card-icon" aria-hidden="true" />
     <Typography variant="heading-sm">Tokens</Typography>
-    <Typography
-      variant="copy-sm"
-      className="home-card-description text-vesper-text-secondary whitespace-normal"
-    >
+    <Typography variant="copy-sm" className="home-card-description">
       The CSS primitives every component is built from.
     </Typography>
   </Material>
@@ -66,13 +81,11 @@ export const metadata = {
     target="_blank"
     rel="noopener noreferrer"
     variant="interactive"
-    className="gap-vesper-1 p-vesper-6 flex flex-col"
+    className="home-card"
   >
+    <Monitor className="home-card-icon" aria-hidden="true" />
     <Typography variant="heading-sm">Playground</Typography>
-    <Typography
-      variant="copy-sm"
-      className="home-card-description text-vesper-text-secondary whitespace-normal"
-    >
+    <Typography variant="copy-sm" className="home-card-description">
       Try every component and prop combination in Storybook.
     </Typography>
   </Material>
