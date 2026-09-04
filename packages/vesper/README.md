@@ -67,7 +67,7 @@ I want to build:
 
 ## Install
 
-You can install the `@tenstorrent/vesper` package from the npm registry using your package manager of choice:
+Install Vesper with your package manager of choice:
 
 ```sh
 yarn add @tenstorrent/vesper
