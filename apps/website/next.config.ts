@@ -101,6 +101,8 @@ const withMDX = createMDX({
         path.join(appRoot, "src/lib/mdx/remark-jsx-text-children.mts"),
         { ignore: [] },
       ],
+
+      path.join(appRoot, "src/lib/mdx/remark-tsx-demos.mts"),
     ],
 
     rehypePlugins: [

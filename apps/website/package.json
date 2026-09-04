@@ -11,7 +11,8 @@
     "clean": "rimraf .next",
     "lint": "eslint --max-warnings 0",
     "lint:fix": "eslint --fix",
-    "check-types": "next typegen && tsc --noEmit"
+    "check-types": "next typegen && tsc --noEmit",
+    "generate:demos": "tsx scripts/generate-demos.ts"
   },
   "dependencies": {
     "@maskito/kit": "^5.4.0",
@@ -48,6 +49,7 @@
     "mdast-util-to-hast": "^13.2.1",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwind-merge": "^3.6.0",
+    "tsx": "^4.23.13",
     "typescript": "5.9.2",
     "unified": "^11.0.5"
   }

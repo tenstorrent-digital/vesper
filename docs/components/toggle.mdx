@@ -58,44 +58,55 @@ The simplest way to use the `Toggle` component is to render it in an uncontrolle
   ]}
 />
 
-```tsx
+```tsx demo
+import { Grid, List } from "@tenstorrent/vesper/icons";
 import { Toggle } from "@tenstorrent/vesper/toggle";
 
-<Toggle
-  aria-label="Display options"
-  defaultValue="grid"
-  options={[
-    { value: "grid", icon: <Grid />, ariaLabel: "Grid view" },
-    { value: "list", icon: <List />, ariaLabel: "List view" },
-  ]}
-/>;
+export default function UncontrolledToggle() {
+  return (
+    <Toggle
+      aria-label="Display options"
+      defaultValue="grid"
+      options={[
+        { value: "grid", icon: <Grid />, ariaLabel: "Grid view" },
+        { value: "list", icon: <List />, ariaLabel: "List view" },
+      ]}
+    />
+  );
+}
 ```
 
 If you need to control the toggle's state, you can do so via the `value` and `onValueChange` props:
 
 <ToggleDemo kind="controlled" />
 
-```tsx
+```tsx demo
 import { useState } from "react";
+
+import { Grid, List } from "@tenstorrent/vesper/icons";
 import { Toggle } from "@tenstorrent/vesper/toggle";
 import { Typography } from "@tenstorrent/vesper/typography";
 
-const [value, setValue] = useState("");
+export default function ControlledToggle() {
+  const [value, setValue] = useState("");
 
-<div>
-  <Toggle
-    aria-label="Display options"
-    value={value}
-    onValueChange={setValue}
-    options={[
-      { value: "list", icon: <List />, ariaLabel: "List view" },
-      { value: "grid", icon: <Grid />, ariaLabel: "Grid view" },
-    ]}
-  />
-  <Typography variant="copy-sm">
-    Value: {value || "nothing selected"}
-  </Typography>
-</div>;
+  return (
+    <div>
+      <Toggle
+        aria-label="Display options"
+        value={value}
+        onValueChange={setValue}
+        options={[
+          { value: "list", icon: <List />, ariaLabel: "List view" },
+          { value: "grid", icon: <Grid />, ariaLabel: "Grid view" },
+        ]}
+      />
+      <Typography variant="copy-sm">
+        Value: {value || "nothing selected"}
+      </Typography>
+    </div>
+  );
+}
 ```
 
 ### Text and icon options
@@ -112,18 +123,22 @@ You can render both text and icon options in a `Toggle`. To render text options,
   defaultValue="free"
 />
 
-```tsx
-import { Toggle } from "@tesntorrent/vesper/toggle";
+```tsx demo
+import { Toggle } from "@tenstorrent/vesper/toggle";
 
-<Toggle
-  aria-label="Membership tier"
-  options={[
-    { value: "free", text: "Free" },
-    { value: "basic", text: "Basic" },
-    { value: "pro", text: "Pro" },
-  ]}
-  defaultValue="free"
-/>;
+export default function TextOptionsToggle() {
+  return (
+    <Toggle
+      aria-label="Membership tier"
+      options={[
+        { value: "free", text: "Free" },
+        { value: "basic", text: "Basic" },
+        { value: "pro", text: "Pro" },
+      ]}
+      defaultValue="free"
+    />
+  );
+}
 ```
 
 To render icon options, pass an array of `options` objects that each have `value`, `icon`, and `ariaLabel` properties:
@@ -137,17 +152,22 @@ To render icon options, pass an array of `options` objects that each have `value
   defaultValue="public"
 />
 
-```tsx
-import { Toggle } from "@tesntorrent/vesper/toggle";
+```tsx demo
+import { Globe, Lock } from "@tenstorrent/vesper/icons";
+import { Toggle } from "@tenstorrent/vesper/toggle";
 
-<Toggle
-  aria-label="Project visibility"
-  options={[
-    { value: "public", icon: <Globe />, ariaLabel: "Public" },
-    { value: "private", icon: <Lock />, ariaLabel: "Private" },
-  ]}
-  defaultValue="public"
-/>;
+export default function IconOptionsToggle() {
+  return (
+    <Toggle
+      aria-label="Project visibility"
+      options={[
+        { value: "public", icon: <Globe />, ariaLabel: "Public" },
+        { value: "private", icon: <Lock />, ariaLabel: "Private" },
+      ]}
+      defaultValue="public"
+    />
+  );
+}
 ```
 
 ### Different sizes
@@ -182,34 +202,42 @@ import { Toggle } from "@tesntorrent/vesper/toggle";
   ]}
 />
 
-```tsx
-<Toggle
-  size="sm"
-  defaultValue="monthly"
-  aria-label="Billing period"
-  options={[
-    { value: "monthly", text: "Monthly" },
-    { value: "yearly", text: "Yearly" },
-  ]}
-/>
-<Toggle
-  size="md"
-  defaultValue="monthly"
-  aria-label="Billing period"
-  options={[
-    { value: "monthly", text: "Monthly" },
-    { value: "yearly", text: "Yearly" },
-  ]}
-/>
-<Toggle
-  size="lg"
-  defaultValue="monthly"
-  aria-label="Billing period"
-  options={[
-    { value: "monthly", text: "Monthly" },
-    { value: "yearly", text: "Yearly" },
-  ]}
-/>
+```tsx demo
+import { Toggle } from "@tenstorrent/vesper/toggle";
+
+export default function AllToggleSizes() {
+  return (
+    <div>
+      <Toggle
+        size="sm"
+        defaultValue="monthly"
+        aria-label="Billing period"
+        options={[
+          { value: "monthly", text: "Monthly" },
+          { value: "yearly", text: "Yearly" },
+        ]}
+      />
+      <Toggle
+        size="md"
+        defaultValue="monthly"
+        aria-label="Billing period"
+        options={[
+          { value: "monthly", text: "Monthly" },
+          { value: "yearly", text: "Yearly" },
+        ]}
+      />
+      <Toggle
+        size="lg"
+        defaultValue="monthly"
+        aria-label="Billing period"
+        options={[
+          { value: "monthly", text: "Monthly" },
+          { value: "yearly", text: "Yearly" },
+        ]}
+      />
+    </div>
+  );
+}
 ```
 
 ### Required fields
@@ -248,20 +276,24 @@ You can disable a `Toggle` by passing `disabled={true}` or just `disabled` as a 
   ]}
 />
 
-```tsx
+```tsx demo
 import { Toggle } from "@tenstorrent/vesper/toggle";
 
-<Toggle
-  disabled
-  name="billing_period"
-  aria-label="Billing period"
-  defaultValue="monthly"
-  options={[
-    { value: "weekly", text: "Weekly" },
-    { value: "monthly", text: "Monthly" },
-    { value: "yearly", text: "Yearly" },
-  ]}
-/>;
+export default function DisabledToggle() {
+  return (
+    <Toggle
+      disabled
+      name="billing_period"
+      aria-label="Billing period"
+      defaultValue="monthly"
+      options={[
+        { value: "weekly", text: "Weekly" },
+        { value: "monthly", text: "Monthly" },
+        { value: "yearly", text: "Yearly" },
+      ]}
+    />
+  );
+}
 ```
 
 ### Usage in forms
