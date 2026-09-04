@@ -73,7 +73,7 @@ jobs:
           # so they can't be chained. `changeset version` already formats the generated
           # CHANGELOG.md files with prettier using this repo's prettier config.
           version: yarn changeset version
-          publish: yarn build:vesper && changeset publish
+          publish: yarn changeset:publish
           # Commits, branch and tags go through the GitHub API instead of the git
           # CLI, so no credential is needed on disk (see `persist-credentials` above).
           # Also signs them with GitHub's GPG key, attributed to `github-actions[bot]`.
