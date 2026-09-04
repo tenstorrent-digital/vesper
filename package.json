@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "build:dream-diary": "turbo run build --filter=dream-diary",
+    "build:tui": "turbo run build --filter=vesper-tui",
     "build:vesper": "turbo run build --filter=@tenstorrent/vesper",
     "build:website": "turbo run build --filter=website",
     "dev": "turbo run dev",
+    "dev:dream-diary": "turbo run dev --filter=dream-diary",
     "dev:vesper": "turbo run dev --filter=@tenstorrent/vesper",
     "dev:website": "turbo run dev --filter=website",
     "build:storybook": "turbo run build:storybook --filter=@tenstorrent/vesper",
