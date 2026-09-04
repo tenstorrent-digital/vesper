@@ -2,8 +2,32 @@
   "$schema": "https://turborepo.dev/schema.json",
   "extends": ["//"],
   "tasks": {
+    /**
+     * extracts the ` ```tsx demo ` code blocks in the monorepo `docs/` folder
+     * into `src/generated-demos`, which `src/lib/mdx/remark-tsx-demos.mts`
+     * imports back into each document to render a demo above its code block
+     */
+    "generate:demos": {
+      "inputs": [
+        "scripts/generate-demos.ts",
+        "src/lib/mdx/demos.mts",
+        "$TURBO_ROOT$/docs/**" // monorepo docs
+      ],
+      "outputs": ["src/generated-demos/**"]
+    },
+
+    // regenerates demos as the monorepo docs are edited (see `dev` below)
+    "generate:demos:watch": {
+      "cache": false,
+      "persistent": true
+    },
+
     "build": {
-      "dependsOn": ["^build", "@tenstorrent/vesper#build:storybook"],
+      "dependsOn": [
+        "^build",
+        "@tenstorrent/vesper#build:storybook",
+        "generate:demos"
+      ],
       "inputs": [
         "$TURBO_DEFAULT$",
         ".env*",
@@ -17,7 +41,7 @@
        * running `build` here is required so `packages/vesper/src`
        * is built into `dist` so we can use them here
        */
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "generate:demos"],
       /**
        * and then we also need:
        *
@@ -30,8 +54,17 @@
        *
        * storybook on localhost:5173, proxied at `/storybook`
        * in dev by `apps/website/src/proxy.ts`
+       *
+       * (3) `generate:demos:watch`
+       *
+       * keeps `src/generated-demos` in sync with the ` ```tsx demo ` code
+       * blocks in the monorepo docs while they are being written
        */
-      "with": ["@tenstorrent/vesper#watch", "@tenstorrent/vesper#dev"],
+      "with": [
+        "@tenstorrent/vesper#watch",
+        "@tenstorrent/vesper#dev",
+        "generate:demos:watch"
+      ],
       "cache": false,
       "persistent": true
     }

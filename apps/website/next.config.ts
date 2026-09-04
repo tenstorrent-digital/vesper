@@ -102,6 +102,14 @@ const withMDX = createMDX({
         { ignore: [] },
       ],
 
+      /**
+       * renders the component a ` ```tsx demo ` code block exports right above
+       * the code block itself, by importing the module
+       * `apps/website/scripts/generate-demos.ts` extracted it into
+       *
+       * runs last so it only ever sees the code blocks the plugins above are
+       * done with
+       */
       path.join(appRoot, "src/lib/mdx/remark-tsx-demos.mts"),
     ],
 
