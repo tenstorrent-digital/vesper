@@ -27,7 +27,8 @@
     "agent:skills:remove": "DISABLE_TELEMETRY=true npx skills remove --yes --agent '*'",
     "agent:skills:update": "DISABLE_TELEMETRY=true npx skills update --yes --project",
     "clean": "turbo run clean && rimraf --glob .turbo '{apps,packages}/*/.turbo'",
-    "clean-install": "yarn workspaces run rimraf node_modules && yarn rimraf node_modules && rm -f yarn.lock && yarn cache clean && yarn"
+    "clean-install": "yarn workspaces run rimraf node_modules && yarn rimraf node_modules && rm -f yarn.lock && yarn cache clean && yarn",
+    "changeset:publish": "yarn build:vesper && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.1",
@@ -41,7 +42,7 @@
     "typescript": "5.9.2"
   },
   "resolutions": {
-    "prettier": "^3.7.4"
+    "prettier": "3.9.5"
   },
   "engines": {
     "node": ">=22"

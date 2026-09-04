@@ -41,9 +41,11 @@ export default function App() {
 <td>
 
 ```
-"Please follow the instructions at
-vesper.tenstorrent.com/agent-install.md
-to setup Vesper"
+Please use Vesper, Tenstorrent's
+design system components by running
+npm install @tenstorrent/vesper
+
+I want to build:
 ```
 
 </td>
@@ -65,7 +67,7 @@ to setup Vesper"
 
 ## Install
 
-You can install the `@tenstorrent/vesper` package from the npm registry using your package manager of choice:
+Install Vesper with your package manager of choice:
 
 ```sh
 yarn add @tenstorrent/vesper
