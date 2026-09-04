@@ -5,7 +5,6 @@ exports[`menu [snapshot] > closed 1`] = `null`;
 exports[`menu [snapshot] > open 1`] = `
 <div
   aria-labelledby="base-ui-_r_53_"
-  aria-orientation="vertical"
   class="vesper-menu"
   data-align="start"
   data-base-ui-focusable=""
