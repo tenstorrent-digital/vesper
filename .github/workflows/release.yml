@@ -22,6 +22,9 @@ permissions:
   contents: write
   # open/update the "Version Packages" pull request
   pull-requests: write
+  # mint the OIDC token that npm exchanges for a short-lived registry
+  # credential (trusted publishing), and sign the provenance attestation
+  id-token: write
 
 jobs:
   release:
@@ -70,7 +73,7 @@ jobs:
           # so they can't be chained. `changeset version` already formats the generated
           # CHANGELOG.md files with prettier using this repo's prettier config.
           version: yarn changeset version
-          publish: yarn changeset tag
+          publish: yarn build:vesper && changeset publish
           # Commits, branch and tags go through the GitHub API instead of the git
           # CLI, so no credential is needed on disk (see `persist-credentials` above).
           # Also signs them with GitHub's GPG key, attributed to `github-actions[bot]`.
