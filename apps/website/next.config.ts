@@ -34,6 +34,19 @@ const nextConfig: NextConfig = {
     turbopackFileSystemCacheForDev: false,
   },
 
+  /**
+   * every other route reads `docs/` at build time and is emitted as a static
+   * file, but `/api/search` takes a query and so runs per request — on a
+   * serverless deployment its bundle needs the documents it searches, which
+   * live outside this app's directory and are therefore not traced by default
+   *
+   * @see https://nextjs.org/docs/app/api-reference/config/next-config-js/output
+   */
+  outputFileTracingRoot: monorepoRoot,
+  outputFileTracingIncludes: {
+    "/api/search": ["../../docs/**/*.md", "../../docs/**/*.mdx"],
+  },
+
   pageExtensions: [
     "ts",
     "tsx",
@@ -83,6 +96,18 @@ const withMDX = createMDX({
        * path resolves against `node_modules/@next/mdx` and is not found
        */
       path.join(appRoot, "src/lib/mdx/remark-doc-links.mts"),
+
+      /**
+       * gives every heading a stable `id`, so the table of contents, the
+       * command palette, and `#fragment` links all have something to point at
+       */
+      path.join(appRoot, "src/lib/mdx/remark-heading-ids.mts"),
+
+      /**
+       * drops the `# Title` and repeated description a document in `docs/`
+       * opens with — the website renders both itself, above the document body
+       */
+      path.join(appRoot, "src/lib/mdx/remark-doc-lede.mts"),
 
       /**
        * adds support for github's alert syntax (`> [!NOTE]`, `> [!WARNING]`,

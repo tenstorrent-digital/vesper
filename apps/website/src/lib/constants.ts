@@ -34,3 +34,9 @@ export const STORYBOOK_URL =
   process.env.NODE_ENV === "development"
     ? `http://localhost:${STORYBOOK_PORT}`
     : `${BASE_URL}/storybook`;
+
+/** where Vesper is developed */
+export const GITHUB_URL = "https://github.com/tenstorrent-digital/vesper";
+
+/** the npm package name, used in install snippets */
+export const PACKAGE_NAME = "@tenstorrent/vesper";

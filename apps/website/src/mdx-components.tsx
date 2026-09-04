@@ -72,7 +72,10 @@ import { TextInput } from "@tenstorrent/vesper/text-input";
 import { ThemeSwitcher } from "@tenstorrent/vesper/theme-switcher";
 import { Toggle } from "@tenstorrent/vesper/toggle";
 import { Tooltip } from "@tenstorrent/vesper/tooltip";
-import { Typography } from "@tenstorrent/vesper/typography";
+import {
+  Typography,
+  type TypographyVariant,
+} from "@tenstorrent/vesper/typography";
 
 // docs-only components (not part of the design system)
 import { ColorChip } from "@/components/color-chip";
@@ -110,37 +113,44 @@ const ALERT_VARIANTS = {
 
 type BlockquoteAlert = keyof typeof ALERT_VARIANTS;
 
+/**
+ * builds the component for one heading level
+ *
+ * the `id` comes from `src/lib/mdx/remark-heading-ids.mts`, and is what the
+ * table of contents and the command palette link to — when a heading has one,
+ * a `#` anchor is rendered in the margin beside it (revealed on hover)
+ */
+const heading = (
+  as: `h${1 | 2 | 3 | 4 | 5 | 6}`,
+  variant: TypographyVariant,
+) => {
+  const Heading = ({ id, children }: React.ComponentProps<"h1">) => (
+    <Typography as={as} id={id} variant={variant}>
+      {id && (
+        <a
+          className="heading-anchor"
+          href={`#${id}`}
+          aria-label="Permalink to this section"
+        >
+          #
+        </a>
+      )}
+      {children}
+    </Typography>
+  );
+
+  Heading.displayName = `Mdx(${as})`;
+
+  return Heading;
+};
+
 const components = {
-  h1: (props) => (
-    <Typography as="h1" variant="heading-2xl">
-      {props.children}
-    </Typography>
-  ),
-  h2: (props) => (
-    <Typography as="h2" variant="heading-xl">
-      {props.children}
-    </Typography>
-  ),
-  h3: (props) => (
-    <Typography as="h3" variant="heading-lg">
-      {props.children}
-    </Typography>
-  ),
-  h4: (props) => (
-    <Typography as="h4" variant="heading-md">
-      {props.children}
-    </Typography>
-  ),
-  h5: (props) => (
-    <Typography as="h5" variant="heading-sm">
-      {props.children}
-    </Typography>
-  ),
-  h6: (props) => (
-    <Typography as="h6" variant="heading-xs">
-      {props.children}
-    </Typography>
-  ),
+  h1: heading("h1", "heading-2xl"),
+  h2: heading("h2", "heading-xl"),
+  h3: heading("h3", "heading-lg"),
+  h4: heading("h4", "heading-md"),
+  h5: heading("h5", "heading-sm"),
+  h6: heading("h6", "heading-xs"),
   p: (props) => (
     <Typography as="p" variant="copy-md">
       {props.children}
@@ -151,7 +161,7 @@ const components = {
   ),
   a: (props) => (
     <Link
-      className="underline-offset-[calc(var(--base-font-size)_/_12)] underline decoration-from-font"
+      className="underline decoration-from-font underline-offset-[calc(var(--base-font-size)_/_12)]"
       target={props.href.startsWith("http") ? "_blank" : undefined}
       rel={props.href.startsWith("http") ? "noopener noreferrer" : undefined}
       href={props.href}
@@ -160,6 +170,15 @@ const components = {
     </Link>
   ),
   code: (props) => <Code>{props.children}</Code>,
+  /**
+   * markdown tables are wide and the content column is not — wrapping the
+   * table lets it scroll horizontally instead of blowing out the page
+   */
+  table: (props) => (
+    <div className="table-scroll">
+      <table>{props.children}</table>
+    </div>
+  ),
   /**
    * blockquote children arrive as phrasing content (see
    * `src/lib/mdx/rehype-blockquote-text-children.mts`), so they can be
