@@ -13,11 +13,15 @@ export const Breadcrumbs = ({ titles }: { titles: Record<string, string> }) => {
   const paths = pathname.split("/").filter(Boolean);
 
   return (
-    <div id="breadcrumbs" aria-label="Breadcrumbs">
+    <div
+      id="breadcrumbs"
+      aria-label="Breadcrumbs"
+      className="breadcrumbs-scroll flex h-12 w-full min-w-0 flex-1 items-center gap-4 overflow-x-scroll overflow-y-hidden py-4 md:gap-2"
+    >
       {pathname !== "/" && (
         <Typography
           as="span"
-          className="divider"
+          className="opacity-50"
           variant="copy-md-bold"
           aria-hidden="true"
         >
@@ -30,7 +34,7 @@ export const Breadcrumbs = ({ titles }: { titles: Record<string, string> }) => {
         return (
           <Fragment key={href}>
             <Typography
-              className="segment"
+              className="shrink-0"
               as={Link}
               href={href}
               aria-current={index === paths.length - 1 ? "page" : undefined}
@@ -42,7 +46,7 @@ export const Breadcrumbs = ({ titles }: { titles: Record<string, string> }) => {
             {index !== paths.length - 1 && (
               <Typography
                 as="span"
-                className="divider"
+                className="opacity-50"
                 variant="copy-md-bold"
                 aria-hidden="true"
               >

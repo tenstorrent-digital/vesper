@@ -23,10 +23,10 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body>
-        <div className="layout">
+        <div className="grid min-h-screen grid-cols-1 md:grid-cols-[auto_1fr]">
           <Nav />
-          <Sidebar className="desktop" />
-          <main className="content">
+          <Sidebar />
+          <main className="order-2 w-full min-w-0 pb-8 md:order-none md:col-start-2 md:row-start-2">
             <Prose>{children}</Prose>
           </main>
         </div>
