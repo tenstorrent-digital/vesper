@@ -24,8 +24,8 @@ import remarkParse from "remark-parse";
 import { unified } from "unified";
 
 import {
-  demosRoot,
-  docsRoot,
+  DEMOS_ROOT,
+  DOCS_ROOT,
   getDemoDocPath,
   getDemoModulePath,
   isDemoCodeBlock,
@@ -47,11 +47,11 @@ const AUTO_GENERATED_WARNING = [
 
 /** Every `.mdx` file in `docs/`, as absolute paths */
 const getMdxFiles = async (): Promise<string[]> => {
-  const entries = await readdir(docsRoot, { recursive: true });
+  const entries = await readdir(DOCS_ROOT, { recursive: true });
 
   return entries
     .filter((entry) => entry.endsWith(".mdx"))
-    .map((entry) => path.join(docsRoot, entry));
+    .map((entry) => path.join(DOCS_ROOT, entry));
 };
 
 // Documents are parsed here, not compiled, so
@@ -107,7 +107,7 @@ const generateDemos = async (): Promise<{
     } catch (error) {
       failedDemos.add(mdxFile);
 
-      const relativeDocPath = path.relative(docsRoot, mdxFile);
+      const relativeDocPath = path.relative(DOCS_ROOT, mdxFile);
       const errorMessage = error instanceof Error ? error.message : error;
       console.error(`skipped ${relativeDocPath} - ${errorMessage}`);
 
@@ -126,7 +126,7 @@ const generateDemos = async (): Promise<{
     }
   }
 
-  const demoFiles = await readdir(demosRoot, {
+  const demoFiles = await readdir(DEMOS_ROOT, {
     recursive: true,
     withFileTypes: true,
   }).catch(() => []);
@@ -201,12 +201,12 @@ await run();
 if (isDevMode) {
   let timeout: NodeJS.Timeout | undefined;
 
-  watch(docsRoot, { recursive: true }, (_event, filename) => {
+  watch(DOCS_ROOT, { recursive: true }, (_event, filename) => {
     if (!filename?.endsWith(".mdx")) return;
 
     clearTimeout(timeout);
     timeout = setTimeout(run, 50);
   });
 
-  console.log(`Watching ${path.relative(process.cwd(), docsRoot)} for demos`);
+  console.log(`Watching ${path.relative(process.cwd(), DOCS_ROOT)} for demos`);
 }

@@ -20,8 +20,9 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export const docsRoot = path.resolve(__dirname, "../../../../../docs");
-export const demosRoot = path.resolve(__dirname, "../../generated-demos");
+export const DOCS_ROOT = path.resolve(__dirname, "../../../../../docs");
+
+export const DEMOS_ROOT = path.resolve(__dirname, "../../generated-demos");
 
 export const isDemoCodeBlock = (node: Nodes): node is Code =>
   node.type === "code" && node.lang === "tsx" && node.meta === "demo";
@@ -36,13 +37,13 @@ export const getDemoModulePath = (
 ): string | null => {
   if (!docPath || !docPath.endsWith(".mdx")) return null;
 
-  const relativePath = path.relative(docsRoot, docPath);
+  const relativePath = path.relative(DOCS_ROOT, docPath);
 
   // outside `docs/`
   if (!relativePath || relativePath.startsWith("..")) return null;
   if (path.isAbsolute(relativePath)) return null;
 
-  return path.join(demosRoot, `${relativePath.slice(0, -4)}-${index}.tsx`);
+  return path.join(DEMOS_ROOT, `${relativePath.slice(0, -4)}-${index}.tsx`);
 };
 
 /**
@@ -54,7 +55,7 @@ export const getDemoModulePath = (
  * traced back to the document that owns it
  */
 export const getDemoDocPath = (modulePath: string): string | null => {
-  const relativePath = path.relative(demosRoot, modulePath);
+  const relativePath = path.relative(DEMOS_ROOT, modulePath);
 
   // outside `generated-demos/`
   if (!relativePath || relativePath.startsWith("..")) return null;
@@ -64,5 +65,5 @@ export const getDemoDocPath = (modulePath: string): string | null => {
   const docName = /^(.+)-\d+\.tsx$/.exec(relativePath)?.[1];
   if (!docName) return null;
 
-  return path.join(docsRoot, `${docName}.mdx`);
+  return path.join(DOCS_ROOT, `${docName}.mdx`);
 };
