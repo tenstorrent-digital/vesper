@@ -184,7 +184,7 @@ const run = (): Promise<void> => {
       console.log(`Generated demos: ${generated}`);
 
       if (failed) {
-        console.log(`Failed demos: ${generated}`);
+        console.log(`Failed demos: ${failed}`);
         failProductionBuild();
       }
     } catch (error) {
