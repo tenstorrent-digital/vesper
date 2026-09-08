@@ -1,0 +1,105 @@
+name: Unexpected Agent Output
+description: Report AI agents producing unexpected results when building with Vesper.
+title: Unexpected Agent Output
+labels: ["bug", "agent"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file an issue!
+
+        This form is for reporting problems when **AI coding agents** (Claude Code, Cursor, Codex, Copilot, etc.) build with `@tenstorrent/vesper`.
+
+        When an agent produces unexpected results with Vesper components, such as inventing components or props that don't exist or using a component in a way our docs don't support, report it using this template.
+
+        Please search the [existing issues](https://github.com/tenstorrent-digital/vesper/issues?q=is%3Aissue) first — if you find a match, add your details to that thread instead of opening a new one.
+
+        > [!IMPORTANT]
+        > If you can reproduce the problem in hand-written code, it's a component bug. Please use the **Bug Report** form instead. If you want a component to behave differently than it does today, use the **Feature Request** form.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: "Before you file"
+      description: |
+        Per our [AI usage policy](https://github.com/tenstorrent-digital/vesper/blob/main/AI_POLICY.md), issues may be AI-assisted but must have a human in the loop.
+      options:
+        - label: >-
+            I have read the agent's output myself and confirmed the problem is with Vesper
+            (or with how Vesper is documented/typed), not with the rest of my application.
+          required: true
+        - label: >-
+            This report was written and edited by me, not pasted verbatim from an agent.
+          required: true
+  - type: input
+    id: agent
+    attributes:
+      label: Coding Agent (Model)
+      description: |
+        The name of the coding agent or tool used, along with the model.
+      placeholder: "Claude Code (claude-sonnet-4-5)"
+    validations:
+      required: true
+  - type: textarea
+    id: prompt
+    attributes:
+      label: What did you ask the agent to do?
+      description: |
+        The instructions you gave the agent, as close to verbatim as you can. Include any follow-up prompts that led to the problem, and mention if it took several turns to get there.
+      placeholder: |
+        1. "Build me a note-taking app with Vesper. Notes should be listed in a sidebar and editable in the main panel."
+        2. "Add a way to tag notes."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+      description: What you expected the agent to produce, or how you expected Vesper to behave.
+      placeholder: |
+        I expected the tag input to use `Combobox` with a `multiple` selection, since that's what the docs show for tagging.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened instead?
+      description: |
+        What the agent actually did, and how it went wrong. Screenshots or a screen recording help if the result rendered incorrectly.
+      placeholder: |
+        The agent imported `<TagInput>` from `@tenstorrent/vesper`, which doesn't exist, so the app failed to build. When I told it the import was wrong, it replaced it with a `Select` and passed a `tags` prop that the component ignores.
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Code the agent produced
+      description: |
+        The relevant part of the generated code, just enough to show the problem. Trim it down rather than pasting whole files.
+      render: tsx
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: Vesper version
+      description: |
+        The version of `@tenstorrent/vesper` you are using. You can find this in your `package.json`.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        Most coding agent tools have a way to export a conversation to a `.md` or `.html` file with a command like `/export`. Optionally, you can attach an exported conversation below.
+
+        Exported agent conversations are useful helping us diagnose _why_ an agent might be interpreting our code and instructions in a way that produces unexpected results.
+
+        > [!IMPORTANT]
+        >
+        > Please **make sure to remove sensitive data from your exported conversations before uploading them**. This includes:
+        > - environment variables and secrets
+        > - personal data
+  - type: upload
+    id: export
+    attributes:
+      label: Conversation Export (Max 25 MB)
