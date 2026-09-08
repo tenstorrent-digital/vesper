@@ -25,6 +25,7 @@ import { unified } from "unified";
 
 import {
   DEMOS_ROOT,
+  DOC_FILE_EXT,
   DOCS_ROOT,
   getDemoDocPath,
   getDemoModulePath,
@@ -45,12 +46,12 @@ const AUTO_GENERATED_WARNING = [
   "",
 ].join("\n");
 
-/** Every `.mdx` file in `docs/`, as absolute paths */
-const getMdxFiles = async (): Promise<string[]> => {
+/** Every `.md`/`.mdx` file in `docs/`, as absolute paths */
+const getDocsPaths = async (): Promise<string[]> => {
   const entries = await readdir(DOCS_ROOT, { recursive: true });
 
   return entries
-    .filter((entry) => entry.endsWith(".mdx"))
+    .filter((entry) => DOC_FILE_EXT.test(entry))
     .map((entry) => path.join(DOCS_ROOT, entry));
 };
 
@@ -97,17 +98,17 @@ const generateDemos = async (): Promise<{
   const generatedDemos = new Set<string>();
   const failedDemos = new Set<string>();
 
-  for (const mdxFile of await getMdxFiles()) {
-    const markdown = await readFile(mdxFile, "utf-8");
+  for (const docFilePath of await getDocsPaths()) {
+    const markdown = await readFile(docFilePath, "utf-8");
 
     let demosSources: string[];
 
     try {
       demosSources = getDemosSources(markdown);
     } catch (error) {
-      failedDemos.add(mdxFile);
+      failedDemos.add(docFilePath);
 
-      const relativeDocPath = path.relative(DOCS_ROOT, mdxFile);
+      const relativeDocPath = path.relative(DOCS_ROOT, docFilePath);
       const errorMessage = error instanceof Error ? error.message : error;
       console.error(`skipped ${relativeDocPath} - ${errorMessage}`);
 
@@ -115,7 +116,7 @@ const generateDemos = async (): Promise<{
     }
 
     for (const [index, source] of demosSources.entries()) {
-      const modulePath = getDemoModulePath(mdxFile, index);
+      const modulePath = getDemoModulePath(docFilePath, index);
       if (!modulePath) continue;
 
       generatedDemos.add(modulePath);
@@ -202,7 +203,7 @@ if (isDevMode) {
   let timeout: NodeJS.Timeout | undefined;
 
   watch(DOCS_ROOT, { recursive: true }, (_event, filename) => {
-    if (!filename?.endsWith(".mdx")) return;
+    if (!filename || !DOC_FILE_EXT.test(filename)) return;
 
     clearTimeout(timeout);
     timeout = setTimeout(run, 50);

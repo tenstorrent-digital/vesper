@@ -20,6 +20,8 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+export const DOC_FILE_EXT = /\.(md|mdx)$/;
+
 export const DOCS_ROOT = path.resolve(__dirname, "../../../../../docs");
 
 export const DEMOS_ROOT = path.resolve(__dirname, "../../generated-demos");
@@ -35,7 +37,7 @@ export const getDemoModulePath = (
   docPath: string | undefined,
   index: number,
 ): string | null => {
-  if (!docPath || !docPath.endsWith(".mdx")) return null;
+  if (!docPath || !DOC_FILE_EXT.test(docPath)) return null;
 
   const relativePath = path.relative(DOCS_ROOT, docPath);
 
@@ -43,7 +45,7 @@ export const getDemoModulePath = (
   if (!relativePath || relativePath.startsWith("..")) return null;
   if (path.isAbsolute(relativePath)) return null;
 
-  return path.join(DEMOS_ROOT, `${relativePath.slice(0, -4)}-${index}.tsx`);
+  return path.join(DEMOS_ROOT, `${relativePath}.${index}.tsx`);
 };
 
 /**
@@ -61,9 +63,9 @@ export const getDemoDocPath = (modulePath: string): string | null => {
   if (!relativePath || relativePath.startsWith("..")) return null;
   if (path.isAbsolute(relativePath)) return null;
 
-  // strip the `-<index>.tsx` suffix `getDemoModulePath` appends
-  const docName = /^(.+)-\d+\.tsx$/.exec(relativePath)?.[1];
+  // strip the `.{index}.tsx` suffix `getDemoModulePath` appends
+  const docName = /^(.+)\.\d+\.tsx$/.exec(relativePath)?.[1];
   if (!docName) return null;
 
-  return path.join(DOCS_ROOT, `${docName}.mdx`);
+  return path.join(DOCS_ROOT, docName);
 };
