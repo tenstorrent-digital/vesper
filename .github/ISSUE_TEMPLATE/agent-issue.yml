@@ -8,7 +8,7 @@ body:
       value: |
         Thanks for taking the time to file an issue!
 
-        This form is for problems that show up when an **AI coding agent** (Claude Code, Cursor, Codex, Copilot, etc.) builds with `@tenstorrent/vesper`. When an agent invents components or props that don't exist, uses a component in a way our docs don't support, otherwise produces unexpected results using Vesper, report it using this template.
+        This form is for problems that show up when an **AI coding agent** (Claude Code, Cursor, Codex, Copilot, etc.) builds with `@tenstorrent/vesper`. When an agent invents components or props that don't exist, uses a component in a way our docs don't support, or otherwise produces unexpected results when using Vesper, report it using this template.
 
         Please search the [existing issues](https://github.com/tenstorrent-digital/vesper/issues?q=is%3Aissue) first — if you find a match, add your details to that thread instead of opening a new one.
 
