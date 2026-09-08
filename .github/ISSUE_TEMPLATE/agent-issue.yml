@@ -1,6 +1,6 @@
-name: Agent Issue
-description: Report a problem you hit while building with Vesper using an AI coding agent.
-title: "[Agent]: "
+name: Unexpected Agent Output
+description: Report AI agents producing unexpected results when building with Vesper.
+title: Unexpected Agent Output
 labels: ["bug", "agent"]
 body:
   - type: markdown
@@ -8,7 +8,9 @@ body:
       value: |
         Thanks for taking the time to file an issue!
 
-        This form is for problems that show up when an **AI coding agent** (Claude Code, Cursor, Codex, Copilot, etc.) builds with `@tenstorrent/vesper`. When an agent invents components or props that don't exist, uses a component in a way our docs don't support, or otherwise produces unexpected results when using Vesper, report it using this template.
+        This form is for reporting problems when **AI coding agents** (Claude Code, Cursor, Codex, Copilot, etc.) build with `@tenstorrent/vesper`.
+
+        When an agent produces unexpected results with Vesper components, such as inventing components or props that don't exist or using a component in a way our docs don't support, report it using this template.
 
         Please search the [existing issues](https://github.com/tenstorrent-digital/vesper/issues?q=is%3Aissue) first — if you find a match, add your details to that thread instead of opening a new one.
 
@@ -31,27 +33,10 @@ body:
   - type: input
     id: agent
     attributes:
-      label: Agent
+      label: Codeing Agent (Model)
       description: |
-        The agent or tool you were using, and the model behind it if you know it.
+        The name of the coding agent or tool used, along with the model.
       placeholder: "Claude Code (claude-sonnet-4-5)"
-    validations:
-      required: true
-  - type: dropdown
-    id: context
-    attributes:
-      label: How did the agent know about Vesper?
-      description: |
-        Select everything the agent had access to when it wrote the code. If you're not sure what your tool pulls in automatically, pick "I'm not sure".
-      multiple: true
-      options:
-        - Nothing (it worked from its own training data)
-        - The documentation site (https://vesper.tenstorrent.com)
-        - The package README / Getting Started guide
-        - A rules file I wrote (AGENTS.md, CLAUDE.md, .cursor/rules, etc.)
-        - The installed package's TypeScript types or source
-        - I'm not sure
-        - Other (described below)
     validations:
       required: true
   - type: textarea
@@ -102,3 +87,19 @@ body:
       placeholder: "0.1.0"
     validations:
       required: true
+  - type: markdown
+    attributes:
+      value: |
+        Most coding agent tools have a way to export a conversation to a `.md` or `.html` file with a command like `/export`. Optionally, you can attach an exported conversation below.
+
+        Exported agent conversations are useful helping us diagnose _why_ an agent might be interpretting our code and instructions in a way that produces unexpected results.
+
+        > [!IMPORTANT]
+        >
+        > Please **make sure to remove sensitive data from your exported conversations before uploading them**. This includes:
+        > - environment variables and secrets
+        > - personal data
+  - type: upload
+    id: export
+    attributes:
+      label: Conversation Export (Max 25 MB)
