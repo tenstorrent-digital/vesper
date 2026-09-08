@@ -92,7 +92,7 @@ body:
       value: |
         Most coding agent tools have a way to export a conversation to a `.md` or `.html` file with a command like `/export`. Optionally, you can attach an exported conversation below.
 
-        Exported agent conversations are useful helping us diagnose _why_ an agent might be interpretting our code and instructions in a way that produces unexpected results.
+        Exported agent conversations are useful helping us diagnose _why_ an agent might be interpreting our code and instructions in a way that produces unexpected results.
 
         > [!IMPORTANT]
         >
