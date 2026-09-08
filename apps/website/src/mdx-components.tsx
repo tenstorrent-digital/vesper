@@ -93,7 +93,6 @@ import { SliderDemo } from "@/demos/slider";
 import { SplitButtonDemo } from "@/demos/split-button";
 import { SwitchDemo } from "@/demos/switch";
 import { ToastDemo } from "@/demos/toast";
-import { ToggleDemo } from "@/demos/toggle";
 import { TooltipDemo } from "@/demos/tooltip";
 
 /**
@@ -151,7 +150,7 @@ const components = {
   ),
   a: (props) => (
     <Link
-      className="underline-offset-[calc(var(--base-font-size)_/_12)] underline decoration-from-font"
+      className="underline decoration-from-font underline-offset-[calc(var(--base-font-size)_/_12)]"
       target={props.href.startsWith("http") ? "_blank" : undefined}
       rel={props.href.startsWith("http") ? "noopener noreferrer" : undefined}
       href={props.href}
@@ -306,7 +305,6 @@ const components = {
   SplitButtonDemo,
   SwitchDemo,
   ToastDemo,
-  ToggleDemo,
   TooltipDemo,
 } satisfies MDXComponents;
 
