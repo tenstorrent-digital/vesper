@@ -81,7 +81,6 @@ import { ColorChip } from "@/components/color-chip";
 // refs, state) that are used inside `docs/` documents
 import { CheckboxDemo } from "@/demos/checkbox";
 import { ComboboxDemo } from "@/demos/combobox";
-import { IconsDemo } from "@/demos/icons";
 import { MaskedInputDemo } from "@/demos/masked-input";
 import { MenuDemo } from "@/demos/menu";
 import { ProgressBarDemo } from "@/demos/progress-bar";
@@ -292,7 +291,6 @@ const components = {
   // demos
   CheckboxDemo,
   ComboboxDemo,
-  IconsDemo,
   MaskedInputDemo,
   MenuDemo,
   ProgressBarDemo,
