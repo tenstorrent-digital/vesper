@@ -37,3 +37,6 @@ next-env.d.ts
 
 # storybook static build
 /public/storybook
+
+# generated component demos
+/src/generated-demos

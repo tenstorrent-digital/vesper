@@ -7,6 +7,13 @@
       }
     ],
     "strictNullChecks": true,
+    /**
+     * the MDX plugins in `next.config.ts` are loaded by node's type stripping,
+     * which does not resolve extensionless imports, so a plugin importing
+     * another module (eg. `src/lib/mdx/demos.mts`) has to spell out its real
+     * `.mts` extension
+     */
+    "allowImportingTsExtensions": true,
     "paths": {
       "@/*": ["./src/*"],
       "@docs/*": ["../../docs/*"] // monorepo docs
