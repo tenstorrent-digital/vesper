@@ -109,7 +109,10 @@ export default function remarkTsxDemos(): Transformer<Root> {
         // Turn current demo index into a PascalCase component name, eg. "TsxDemo1"
         const demoName = `TsxDemo${demoImportStatements.length}`;
 
-        await createOrUpdateFile(demoModulePath, child.value.trim());
+        await createOrUpdateFile(
+          demoModulePath,
+          `"use client"\n\n${child.value.trim()}`,
+        );
 
         // Get the relative import path for the demo component's module
         let demoImportPath = path
