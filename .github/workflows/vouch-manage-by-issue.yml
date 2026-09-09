@@ -19,6 +19,7 @@ jobs:
   manage:
     name: Manage Vouch List
     runs-on: ubuntu-latest
+    environment: vouch
 
     # Cheap pre-filter so the action only spins up for comments that could be a
     # command. The action still does the real parsing and permission check.
