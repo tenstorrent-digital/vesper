@@ -72,15 +72,17 @@ Each entry in the `options` array can either be a `SelectItem`, or a plain strin
 import { Select } from "@tenstorrent/vesper/select";
 
 export default function ObjectOptionsSelect() {
-  <Select
-    aria-label="Region"
-    placeholder="Select a region"
-    options={[
-      { label: "United States", value: "us" },
-      { label: "Europe", value: "eu" },
-      { label: "Asia Pacific", value: "ap" },
-    ]}
-  />;
+  return (
+    <Select
+      aria-label="Region"
+      placeholder="Select a region"
+      options={[
+        { label: "United States", value: "us" },
+        { label: "Europe", value: "eu" },
+        { label: "Asia Pacific", value: "ap" },
+      ]}
+    />
+  );
 }
 ```
 
