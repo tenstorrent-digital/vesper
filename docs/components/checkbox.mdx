@@ -7,7 +7,13 @@ description: A form checkbox input with text, supporting checked, unchecked, and
 
 A form checkbox input with text, supporting checked, unchecked, and indeterminate states. Built on a native `<input type="checkbox">` for full form compatibility and accessibility.
 
-<Checkbox text="Accept terms and conditions" />
+```tsx demo
+import { Checkbox } from "@tenstorrent/vesper/checkbox";
+
+export default function CheckboxDemo() {
+  return <Checkbox text="Accept terms and conditions" />;
+}
+```
 
 ## Options
 
@@ -41,59 +47,79 @@ For other related alternatives, use [the `Switch` component](./switch.mdx) when 
 
 The simplest way to use the `Checkbox` component is to render it in an uncontrolled fashion, where the component is responsible for keeping track of its own checked state. Pass `defaultChecked` if it should start out checked:
 
-<Checkbox text="Sign up for our newsletter" defaultChecked />
-
-```tsx
+```tsx demo
 import { Checkbox } from "@tenstorrent/vesper/checkbox";
 
-<Checkbox text="Sign up for our newsletter" defaultChecked />;
+export default function UncontrolledCheckbox() {
+  return <Checkbox text="Sign up for our newsletter" defaultChecked />;
+}
 ```
 
 If you need to control whether the checkbox is checked, you can do so via the `checked` and `onChange` props. The new state is read from the event's `target.checked`:
 
-<CheckboxDemo kind="controlled" />
+```tsx demo
+import { useState } from "react";
 
-```tsx
-import { useState } from "react"
-import { Checkbox } from "@tenstorrent/vesper/checkbox"
+import { Checkbox } from "@tenstorrent/vesper/checkbox";
 
-const [checked, setChecked] = useState(false)
+export default function ControlledCheckbox() {
+  const [checked, setChecked] = useState(false);
 
-<Checkbox
-  text="Sign up for our newsletter"
-  checked={checked}
-  onChange={e => setChecked(e.target.checked)}
-/>
+  return (
+    <Checkbox
+      text="Sign up for our newsletter"
+      checked={checked}
+      onChange={(e) => setChecked(e.target.checked)}
+    />
+  );
+}
 ```
 
 ### Different sizes
 
 The `Checkbox` component can be rendered at `sm` or `md` size, defaulting to `md`. Size affects the dimensions of the checkbox itself, as well as the text styles of the text rendered beside it.
 
-<Checkbox size="sm" text="A small checkbox" />
-<Checkbox size="md" text="A medium checkbox" />
+```tsx demo
+import { Checkbox } from "@tenstorrent/vesper/checkbox";
 
-```tsx
-import { Checkbox } from "@tenstorrent/vesper/checkbox"
-
-<Checkbox size="sm" text="A small checkbox" />
-<Checkbox size="md" text="A medium checkbox" />
+export default function CheckboxSizes() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Checkbox size="sm" text="A small checkbox" />
+      <Checkbox size="md" text="A medium checkbox" />
+    </div>
+  );
+}
 ```
 
 ### Indeterminate state
 
 Pass `indeterminate` to render the checkbox in a mixed state, displayed as a dash instead of a checkmark:
 
-<Checkbox text="Unchecked" />
-<Checkbox text="Checked" defaultChecked />
-<Checkbox text="Indeterminate" indeterminate />
+```tsx demo
+import { Checkbox } from "@tenstorrent/vesper/checkbox";
 
-```tsx
-import { Checkbox } from "@tenstorrent/vesper/checkbox"
-
-<Checkbox text="Unchecked" />
-<Checkbox text="Checked" defaultChecked />
-<Checkbox text="Indeterminate" indeterminate />
+export default function CheckboxStates() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Checkbox text="Unchecked" />
+      <Checkbox text="Checked" defaultChecked />
+      <Checkbox text="Indeterminate" indeterminate />
+    </div>
+  );
+}
 ```
 
 > [!NOTE]
@@ -104,31 +130,37 @@ import { Checkbox } from "@tenstorrent/vesper/checkbox"
 
 Passing `required` marks the input as required for native form validation, and appends an asterisk to the `text`:
 
-<Checkbox text="I agree to the terms and conditions" required />
-
-```tsx
+```tsx demo
 import { Checkbox } from "@tenstorrent/vesper/checkbox";
 
-// asterisk is appended to the text
-<Checkbox text="I agree to the terms and conditions" required />;
+export default function RequiredCheckbox() {
+  // asterisk is appended to the text
+  return <Checkbox text="I agree to the terms and conditions" required />;
+}
 ```
-
-The asterisk is visual only — it is never part of the accessible name, so assistive technology announces `"I agree to the terms and conditions"` rather than `"I agree to the terms and conditions star"`.
 
 ### Disabling the checkbox
 
 You can disable a `Checkbox` by passing `disabled={true}` or just `disabled` as a prop. A disabled checkbox still displays its current state, but it cannot be toggled by pointer or keyboard, is skipped in the tab order, and is excluded from form data:
 
-<Checkbox text="Sign up for our newsletter" disabled />
-<Checkbox text="Sign up for our newsletter" defaultChecked disabled />
-<Checkbox text="Sign up for our newsletter" indeterminate disabled />
+```tsx demo
+import { Checkbox } from "@tenstorrent/vesper/checkbox";
 
-```tsx
-import { Checkbox } from "@tenstorrent/vesper/checkbox"
-
-<Checkbox text="Sign up for our newsletter" disabled />
-<Checkbox text="Sign up for our newsletter" defaultChecked disabled />
-<Checkbox text="Sign up for our newsletter" indeterminate disabled />
+export default function DisabledCheckboxes() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Checkbox text="Sign up for our newsletter" disabled />
+      <Checkbox text="Sign up for our newsletter" defaultChecked disabled />
+      <Checkbox text="Sign up for our newsletter" indeterminate disabled />
+    </div>
+  );
+}
 ```
 
 ### Usage in forms
@@ -137,21 +169,46 @@ import { Checkbox } from "@tenstorrent/vesper/checkbox"
 
 Pass `required` when the checkbox must be checked before the form can be submitted, such as a terms and conditions agreement:
 
-<CheckboxDemo kind="form" />
+```tsx demo
+import { useState } from "react";
 
-```tsx
 import { Button } from "@tenstorrent/vesper/button";
 import { Checkbox } from "@tenstorrent/vesper/checkbox";
+import { Typography } from "@tenstorrent/vesper/typography";
 
-<form action="/api/signup" method="post">
-  <Checkbox
-    required
-    name="terms"
-    value="accepted"
-    text="I agree to the terms and conditions"
-  />
-  <Button type="submit">Submit</Button>
-</form>;
+export default function FormCheckboxDemo() {
+  const [submitted, setSubmitted] = useState<string | null>(null);
+
+  return (
+    <form
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+      onSubmit={(event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        setSubmitted(String(data.get("terms") ?? ""));
+      }}
+    >
+      <Checkbox
+        required
+        name="terms"
+        value="accepted"
+        text="I agree to the terms and conditions"
+      />
+      <Button size="sm" type="submit">
+        Submit
+      </Button>
+      {submitted !== null && (
+        <Typography variant="copy-sm">
+          Submitted value: terms={submitted}
+        </Typography>
+      )}
+    </form>
+  );
+}
 ```
 
 The form above submits `terms=accepted` once the box is checked, and refuses to submit at all while it is unchecked.
@@ -162,18 +219,24 @@ Use the `form` prop to associate the field with a `<form>` rendered elsewhere on
 import { Button } from "@tenstorrent/vesper/button";
 import { Checkbox } from "@tenstorrent/vesper/checkbox";
 
-<form id="signup" action="/api/signup" method="post">
-  <Button type="submit">Create account</Button>
-</form>;
-
-// rendered outside of the form, but submitted with it
-<Checkbox
-  required
-  form="signup"
-  name="terms"
-  value="accepted"
-  text="I agree to the terms"
-/>;
+export default function CheckboxFormPropDemo() {
+  return (
+    <div>
+      <form id="signup" action="/api/signup" method="post">
+        <Button type="submit">Create account</Button>
+      </form>
+      ;{/* rendered outside of the form, but submitted with it */}
+      <Checkbox
+        required
+        form="signup"
+        name="terms"
+        value="accepted"
+        text="I agree to the terms"
+      />
+      ;
+    </div>
+  );
+}
 ```
 
 > [!NOTE]
@@ -187,18 +250,22 @@ import { Checkbox } from "@tenstorrent/vesper/checkbox";
 Use the `ref` prop when you need direct access to the underlying `<input>` element, eg. to focus it or report a custom validation message:
 
 ```tsx
-import { useRef } from "react"
-import { Checkbox } from "@tenstorrent/vesper/checkbox"
+import { useRef } from "react";
+import { Checkbox } from "@tenstorrent/vesper/checkbox";
 
-const ref = useRef<HTMLInputElement>(null)
+export default function CheckboxRefDemo() {
+  const ref = useRef<HTMLInputElement>(null);
 
-<Checkbox
-  required
-  text="I agree to the terms"
-  ref={ref}
-  onInvalid={() =>
-    ref.current?.setCustomValidity("Please accept the terms to continue.")
-  }
-  onChange={() => ref.current?.setCustomValidity("")}
-/>
+  return (
+    <Checkbox
+      required
+      text="I agree to the terms"
+      ref={ref}
+      onInvalid={() =>
+        ref.current?.setCustomValidity("Please accept the terms to continue.")
+      }
+      onChange={() => ref.current?.setCustomValidity("")}
+    />
+  );
+}
 ```
