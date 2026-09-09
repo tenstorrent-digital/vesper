@@ -80,7 +80,6 @@ import { ColorChip } from "@/components/color-chip";
 // named demos for components w non-serializable props (event handlers,
 // refs, state) that are used inside `docs/` documents
 import { MenuDemo } from "@/demos/menu";
-import { ProgressBarDemo } from "@/demos/progress-bar";
 import { ShowMoreDemo } from "@/demos/show-more";
 import { SplitButtonDemo } from "@/demos/split-button";
 
@@ -281,7 +280,6 @@ const components = {
 
   // demos
   MenuDemo,
-  ProgressBarDemo,
   ShowMoreDemo,
   SplitButtonDemo,
 } satisfies MDXComponents;
