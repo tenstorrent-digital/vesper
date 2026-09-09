@@ -85,7 +85,6 @@ import { ProgressBarDemo } from "@/demos/progress-bar";
 import { ShowMoreDemo } from "@/demos/show-more";
 import { SplitButtonDemo } from "@/demos/split-button";
 import { SwitchDemo } from "@/demos/switch";
-import { TooltipDemo } from "@/demos/tooltip";
 
 /**
  * github alert types (`> [!NOTE]`), as picked up by
@@ -289,7 +288,6 @@ const components = {
   ShowMoreDemo,
   SplitButtonDemo,
   SwitchDemo,
-  TooltipDemo,
 } satisfies MDXComponents;
 
 export function useMDXComponents(): MDXComponents {
