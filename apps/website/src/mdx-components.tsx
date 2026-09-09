@@ -85,7 +85,6 @@ import { MaskedInputDemo } from "@/demos/masked-input";
 import { MenuDemo } from "@/demos/menu";
 import { ProgressBarDemo } from "@/demos/progress-bar";
 import { ShowMoreDemo } from "@/demos/show-more";
-import { SliderDemo } from "@/demos/slider";
 import { SplitButtonDemo } from "@/demos/split-button";
 import { SwitchDemo } from "@/demos/switch";
 import { TooltipDemo } from "@/demos/tooltip";
@@ -292,7 +291,6 @@ const components = {
   MenuDemo,
   ProgressBarDemo,
   ShowMoreDemo,
-  SliderDemo,
   SplitButtonDemo,
   SwitchDemo,
   TooltipDemo,

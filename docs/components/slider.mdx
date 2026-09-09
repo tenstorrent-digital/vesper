@@ -7,7 +7,13 @@ description: A single-thumb slider for selecting a numeric value within a range.
 
 A single-thumb slider for selecting a numeric value within a range. It is built on top of [the `Range` component](./range.mdx), and exposes the same behavior through a single-value API.
 
-<Slider thumbAriaLabel="Volume" defaultValue={50} />
+```tsx demo
+import { Slider } from "@tenstorrent/vesper/slider";
+
+export default function SliderDemo() {
+  return <Slider thumbAriaLabel="Volume" defaultValue={50} />;
+}
+```
 
 ## Options
 
@@ -38,29 +44,28 @@ If you need to select a span of values rather than a single one, reach for [the 
 
 The simplest way to use the `Slider` component is to render it in an **uncontrolled** fashion, where the component keeps track of its own value. Pass `defaultValue` if the thumb should start somewhere other than `min`:
 
-<Slider thumbAriaLabel="Volume" defaultValue={30} />
-
-```tsx
+```tsx demo
 import { Slider } from "@tenstorrent/vesper/slider";
 
-<Slider defaultValue={30} thumbAriaLabel="Volume" />;
+export default function UncontrolledSlider() {
+  return <Slider defaultValue={30} thumbAriaLabel="Volume" />;
+}
 ```
 
 If you need to control the value, use the `value` and `onValueChange` props. `onValueChange` fires continuously as the thumb is dragged:
 
-<SliderDemo kind="controlled" />
+```tsx demo
+import { useState } from "react";
 
-```tsx
-import { useState } from "react"
-import { Slider } from "@tenstorrent/vesper/slider"
+import { Slider } from "@tenstorrent/vesper/slider";
 
-const [volume, setVolume] = useState(75)
+export default function ControlledSlider() {
+  const [volume, setVolume] = useState(75);
 
-<Slider
-  value={volume}
-  onValueChange={setVolume}
-  thumbAriaLabel="Volume"
-/>
+  return (
+    <Slider value={volume} onValueChange={setVolume} thumbAriaLabel="Volume" />
+  );
+}
 ```
 
 Use `onValueCommit` when you only care about the final value of an interaction, eg. to avoid firing a request on every pointer move:
@@ -79,26 +84,21 @@ import { Slider } from "@tenstorrent/vesper/slider";
 
 `min`, `max`, and `step` describe the values the thumb can take, defaulting to `0`, `100`, and `1`. A `step` of `100` on a range of `0-1000` restricts the thumb to multiples of 100:
 
-<Slider
-  min={0}
-  max={1000}
-  step={100}
-  defaultValue={500}
-  showValueLabel
-  thumbAriaLabel="Budget"
-/>
-
-```tsx
+```tsx demo
 import { Slider } from "@tenstorrent/vesper/slider";
 
-<Slider
-  min={0}
-  max={1000}
-  step={100}
-  defaultValue={500}
-  showValueLabel
-  thumbAriaLabel="Budget"
-/>;
+export default function LargeStepSlider() {
+  return (
+    <Slider
+      min={0}
+      max={1000}
+      step={100}
+      defaultValue={500}
+      showValueLabel
+      thumbAriaLabel="Budget"
+    />
+  );
+}
 ```
 
 The `step` also determines how far the thumb moves per arrow key press when it is focused.
@@ -111,26 +111,21 @@ The `step` also determines how far the thumb moves per arrow key press when it i
 
 Pass `showTicks` to mark each step along the track. Ticks are rendered between `min` and `max`, so a range of `0-10` with a `step` of `1` renders nine of them:
 
-<Slider
-  min={0}
-  max={10}
-  step={1}
-  showTicks
-  defaultValue={3}
-  thumbAriaLabel="Rating"
-/>
-
-```tsx
+```tsx demo
 import { Slider } from "@tenstorrent/vesper/slider";
 
-<Slider
-  min={0}
-  max={10}
-  step={1}
-  showTicks
-  defaultValue={3}
-  thumbAriaLabel="Rating"
-/>;
+export default function SliderWithTicks() {
+  return (
+    <Slider
+      min={0}
+      max={10}
+      step={1}
+      showTicks
+      defaultValue={3}
+      thumbAriaLabel="Rating"
+    />
+  );
+}
 ```
 
 > [!NOTE]
@@ -141,31 +136,33 @@ import { Slider } from "@tenstorrent/vesper/slider";
 
 Pass `showValueLabel` to render the thumb's current value above it as you drag:
 
-<Slider showValueLabel defaultValue={40} thumbAriaLabel="Volume" />
-
-```tsx
+```tsx demo
 import { Slider } from "@tenstorrent/vesper/slider";
 
-<Slider showValueLabel defaultValue={40} thumbAriaLabel="Volume" />;
+export default function SliderWithVisibleValueLabel() {
+  return <Slider showValueLabel defaultValue={40} thumbAriaLabel="Volume" />;
+}
 ```
 
 Use `valueLabel` to display something other than the raw value, such as a formatted or unit-suffixed one. It is only rendered when `showValueLabel` is also passed:
 
-<SliderDemo kind="custom-thumb-labels" />
+```tsx demo
+import { useState } from "react";
+import { Slider } from "@tenstorrent/vesper/slider";
 
-```tsx
-import { useState } from "react"
-import { Slider } from "@tenstorrent/vesper/slider"
+export default function SliderWithCustomValueLabel() {
+  const [volume, setVolume] = useState(40);
 
-const [volume, setVolume] = useState(40)
-
-<Slider
-  showValueLabel
-  value={volume}
-  onValueChange={setVolume}
-  valueLabel={`${volume}%`}
-  thumbAriaLabel="Volume"
-/>
+  return (
+    <Slider
+      showValueLabel
+      value={volume}
+      onValueChange={setVolume}
+      valueLabel={`${volume}%`}
+      thumbAriaLabel="Volume"
+    />
+  );
+}
 ```
 
 > [!IMPORTANT]
@@ -191,28 +188,51 @@ The thumb is a native `<input type="range">`, so a `Slider` is fully keyboard op
 
 Pass `disabled` to prevent all interaction. A disabled `Slider` still displays its current value, but its thumb is skipped in the tab order and excluded from form data:
 
-<Slider disabled defaultValue={50} thumbAriaLabel="Volume" />
-
-```tsx
+```tsx demo
 import { Slider } from "@tenstorrent/vesper/slider";
 
-<Slider disabled defaultValue={50} thumbAriaLabel="Volume" />;
+export default function DisabledSlider() {
+  return <Slider disabled defaultValue={50} thumbAriaLabel="Volume" />;
+}
 ```
 
 ### Usage in forms
 
 The thumb renders a native `<input type="range">`, so passing a `name` includes its value in form submissions. Use the `form` prop to associate the field with a `<form>` rendered elsewhere on the page:
 
-<SliderDemo kind="form" />
+```tsx demo
+import { useState } from "react";
 
-```tsx
 import { Button } from "@tenstorrent/vesper/button";
 import { Slider } from "@tenstorrent/vesper/slider";
+import { Typography } from "@tenstorrent/vesper/typography";
 
-<form action="/api/preferences" method="post">
-  <Slider name="volume" defaultValue={50} thumbAriaLabel="Volume" />
-  <Button type="submit">Submit</Button>
-</form>;
+export default function FormSliderDemo() {
+  const [submitted, setSubmitted] = useState<string | null>(null);
+
+  return (
+    <form
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+      onSubmit={(event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        setSubmitted(String(data.get("volume") ?? ""));
+      }}
+    >
+      <Slider name="volume" defaultValue={50} thumbAriaLabel="Volume" />
+      <Button size="sm" type="submit">
+        Submit
+      </Button>
+      {submitted !== null && (
+        <Typography variant="copy-sm">Submitted value: {submitted}</Typography>
+      )}
+    </form>
+  );
+}
 ```
 
 A range input always has a value, so a `Slider` submits its current value even if the user never touches it. The form above submits `volume=50` on an untouched slider.
