@@ -21,6 +21,7 @@
     "format:check:root": "sh -c 'prettier --check --ignore-unknown \"${@:-.}\"' _",
     "check-types": "turbo run check-types",
     "generate:icons": "turbo run generate:icons --filter=@tenstorrent/vesper",
+    "generate:demos": "turbo run generate:demos --filter=website",
     "scaffold:component": "yarn workspace @tenstorrent/vesper scaffold:component",
     "scaffold:documentation": "turbo gen vesper-component-documentation",
     "agent:skills:add": "DISABLE_TELEMETRY=true npx skills add --yes --agent pi claude-code codex --",

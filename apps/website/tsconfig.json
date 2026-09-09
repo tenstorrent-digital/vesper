@@ -7,6 +7,12 @@
       }
     ],
     "strictNullChecks": true,
+    /**
+     * `src/lib/mdx/*.mts` and `scripts/*.mts` are run by node's type stripping,
+     * which resolves imports the way node does: with the extension of the file
+     * on disk (`.mts`), not the one it would be compiled to
+     */
+    "allowImportingTsExtensions": true,
     "paths": {
       "@/*": ["./src/*"],
       "@docs/*": ["../../docs/*"] // monorepo docs
