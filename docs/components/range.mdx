@@ -7,10 +7,18 @@ description: A multi-thumb range input for selecting a span of numeric values be
 
 A multi-thumb range input for selecting a span of numeric values between a minimum and maximum. It supports tick marks, value labels, and configurable stepping.
 
-<Range
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-  defaultValues={[25, 75]}
-/>
+```tsx demo
+import { Range } from "@tenstorrent/vesper/range";
+
+export default function RangeDemo() {
+  return (
+    <Range
+      thumbAriaLabels={["Price (min)", "Price (max)"]}
+      defaultValues={[25, 75]}
+    />
+  );
+}
+```
 
 ## Options
 
@@ -42,35 +50,54 @@ If you only need to select a single value, reach for [the `Slider` component](./
 
 The simplest way to use the `Range` component is to render it in an uncontrolled fashion, where the component keeps track of its own values. Pass `defaultValues` if the thumbs should start somewhere other than `min` and `max`:
 
-<Range
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-  defaultValues={[20, 80]}
-/>
-
-```tsx
+```tsx demo
 import { Range } from "@tenstorrent/vesper/range";
 
-<Range
-  defaultValues={[20, 80]}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>;
+export default function UncontrolledRange() {
+  return (
+    <Range
+      defaultValues={[20, 80]}
+      thumbAriaLabels={["Price (min)", "Price (max)"]}
+    />
+  );
+}
 ```
 
 If you need to control the values, use the `values` and `onValuesChange` props. `onValuesChange` fires continuously as a thumb is dragged, and always receives the full array of values:
 
-<RangeDemo kind="controlled" />
+```tsx demo
+import { useState } from "react";
 
-```tsx
-import { useState } from "react"
-import { Range } from "@tenstorrent/vesper/range"
+import { Button } from "@tenstorrent/vesper/button";
+import { Range } from "@tenstorrent/vesper/range";
+import { Typography } from "@tenstorrent/vesper/typography";
 
-const [price, setPrice] = useState([25, 75])
+export default function ControlledRange() {
+  const [price, setPrice] = useState([25, 75]);
 
-<Range
-  values={price}
-  onValuesChange={setPrice}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Range
+        aria-label="Price"
+        values={price}
+        onValuesChange={setPrice}
+        thumbAriaLabels={["Price (min)", "Price (max)"]}
+      />
+      <Typography variant="copy-sm">
+        Selected values: {price.join(", ")}
+      </Typography>
+      <Button size="sm" onClick={() => setPrice([0, 100])}>
+        Reset
+      </Button>
+    </div>
+  );
+}
 ```
 
 Use `onValuesCommit` when you only care about the final values of an interaction, eg. to avoid firing a request on every pointer move:
@@ -89,27 +116,21 @@ import { Range } from "@tenstorrent/vesper/range";
 
 `min`, `max`, and `step` describe the values a thumb can take, defaulting to `0`, `100`, and `1`. A `step` of `50` on a range of `0-1000` restricts thumbs to multiples of 50:
 
-<Range
-  aria-label="Budget"
-  min={0}
-  max={1000}
-  step={50}
-  defaultValues={[200, 800]}
-  showValueLabels
-  thumbAriaLabels={["Budget (min)", "Budget (max)"]}
-/>
-
-```tsx
+```tsx demo
 import { Range } from "@tenstorrent/vesper/range";
 
-<Range
-  min={0}
-  max={1000}
-  step={50}
-  defaultValues={[200, 800]}
-  showValueLabels
-  thumbAriaLabels={["Budget (min)", "Budget (max)"]}
-/>;
+export default function LargeStepRange() {
+  return (
+    <Range
+      min={0}
+      max={1000}
+      step={50}
+      defaultValues={[200, 800]}
+      showValueLabels
+      thumbAriaLabels={["Budget (min)", "Budget (max)"]}
+    />
+  );
+}
 ```
 
 The `step` also determines how far a thumb moves per arrow key press when it is focused.
@@ -118,22 +139,19 @@ The `step` also determines how far a thumb moves per arrow key press when it is 
 
 By default, thumbs must stay at least one step apart. Raise `minStepsBetweenThumbs` when a range needs a wider minimum span. The range below keeps its thumbs at least 20 apart:
 
-<Range
-  minStepsBetweenThumbs={20}
-  defaultValues={[30, 70]}
-  showValueLabels
-  thumbAriaLabels={["Temperature (min)", "Temperature (max)"]}
-/>
-
-```tsx
+```tsx demo
 import { Range } from "@tenstorrent/vesper/range";
 
-<Range
-  minStepsBetweenThumbs={20}
-  defaultValues={[30, 70]}
-  showValueLabels
-  thumbAriaLabels={["Temperature (min)", "Temperature (max)"]}
-/>;
+export default function CustomStepBetweenThumbsRange() {
+  return (
+    <Range
+      minStepsBetweenThumbs={20}
+      defaultValues={[30, 70]}
+      showValueLabels
+      thumbAriaLabels={["Temperature (min)", "Temperature (max)"]}
+    />
+  );
+}
 ```
 
 The value is measured in steps, not in units, so a `minStepsBetweenThumbs` of `2` on a range with a `step` of `5` keeps thumbs at least 10 apart.
@@ -142,26 +160,21 @@ The value is measured in steps, not in units, so a `minStepsBetweenThumbs` of `2
 
 Pass `showTicks` to mark each step along the track. Ticks are rendered between `min` and `max`, so a range of `0-10` with a `step` of `1` renders nine of them:
 
-<Range
-  min={0}
-  max={10}
-  step={1}
-  showTicks
-  defaultValues={[1, 4]}
-  thumbAriaLabels={["Rating (min)", "Rating (max)"]}
-/>
-
-```tsx
+```tsx demo
 import { Range } from "@tenstorrent/vesper/range";
 
-<Range
-  min={0}
-  max={10}
-  step={1}
-  showTicks
-  defaultValues={[1, 4]}
-  thumbAriaLabels={["Rating (min)", "Rating (max)"]}
-/>;
+export default function RangeWithTicks() {
+  return (
+    <Range
+      min={0}
+      max={10}
+      step={1}
+      showTicks
+      defaultValues={[1, 4]}
+      thumbAriaLabels={["Rating (min)", "Rating (max)"]}
+    />
+  );
+}
 ```
 
 > [!NOTE]
@@ -172,39 +185,41 @@ import { Range } from "@tenstorrent/vesper/range";
 
 Pass `showValueLabels` to render each thumb's current value above it as you drag:
 
-<Range
-  showValueLabels
-  defaultValues={[30, 70]}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>
-
-```tsx
+```tsx demo
 import { Range } from "@tenstorrent/vesper/range";
 
-<Range
-  showValueLabels
-  defaultValues={[30, 70]}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>;
+export default function RangeShowingValueLabels() {
+  return (
+    <Range
+      showValueLabels
+      defaultValues={[30, 70]}
+      thumbAriaLabels={["Price (min)", "Price (max)"]}
+    />
+  );
+}
 ```
 
 Use `valueLabels` to display something other than the raw value, such as a formatted or unit-suffixed one. Labels are matched to thumbs by index, and are only rendered when `showValueLabels` is also passed:
 
-<RangeDemo kind="custom-thumb-labels" />
+```tsx demo
+import { useState } from "react";
 
-```tsx
-import { useState } from "react"
-import { Range } from "@tenstorrent/vesper/range"
+import { Range } from "@tenstorrent/vesper/range";
 
-const [price, setPrice] = useState([30, 70])
+export default function CustomThumbLabelsRange() {
+  const [price, setPrice] = useState([30, 70]);
 
-<Range
-  showValueLabels
-  values={price}
-  onValuesChange={setPrice}
-  valueLabels={price.map(value => `$${value}`)}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>
+  return (
+    <Range
+      aria-label="Price"
+      showValueLabels
+      values={price}
+      onValuesChange={setPrice}
+      valueLabels={price.map((value) => `$${value}`)}
+      thumbAriaLabels={["Price (min)", "Price (max)"]}
+    />
+  );
+}
 ```
 
 > [!IMPORTANT]
@@ -217,60 +232,36 @@ const [price, setPrice] = useState([30, 70])
 
 A `Range` renders one thumb per entry in `values` or `defaultValues`, so it isn't limited to two. Give every thumb an entry in `thumbAriaLabels`, and in `valueLabels` when you are customising labels:
 
-<Range
-  showValueLabels
-  defaultValues={[20, 50, 80]}
-  valueLabels={["Low", "Mid", "High"]}
-  thumbAriaLabels={["Low threshold", "Mid threshold", "High threshold"]}
-/>
-
-```tsx
+```tsx demo
 import { Range } from "@tenstorrent/vesper/range";
 
-<Range
-  showValueLabels
-  defaultValues={[20, 50, 80]}
-  valueLabels={["Low", "Mid", "High"]}
-  thumbAriaLabels={["Low threshold", "Mid threshold", "High threshold"]}
-/>;
+export default function ThreeThumbsRange() {
+  return (
+    <Range
+      showValueLabels
+      defaultValues={[20, 50, 80]}
+      valueLabels={["Low", "Mid", "High"]}
+      thumbAriaLabels={["Low threshold", "Mid threshold", "High threshold"]}
+    />
+  );
+}
 ```
 
 ### Labels and accessible names
 
-> [!IMPORTANT]
->
-> `thumbAriaLabels` is required, and each thumb needs its own entry. A thumb without a label is announced with no indication of which end of the range it controls.
+`thumbAriaLabels` names the individual thumbs. It is required, and each thumb needs its own entry. A thumb without a label is announced with no indication of which end of the range it controls.
 
-`thumbAriaLabels` names the individual thumbs, while the optional `label` prop names the range as a whole. When a `label` is provided, it is rendered above the track and associated with the first thumb, so clicking it focuses that thumb:
-
-<Range
-  defaultValues={[25, 75]}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>
-
-```tsx
+```tsx demo
 import { Range } from "@tenstorrent/vesper/range";
 
-<Range
-  defaultValues={[25, 75]}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>;
-```
-
-If you don't want a visible label, pass an `aria-label` instead to name the range group:
-
-<Range
-  defaultValues={[25, 75]}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>
-
-```tsx
-import { Range } from "@tenstorrent/vesper/range";
-
-<Range
-  defaultValues={[25, 75]}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>;
+export default function RangeDemo() {
+  return (
+    <Range
+      defaultValues={[25, 75]}
+      thumbAriaLabels={["Price (min)", "Price (max)"]}
+    />
+  );
+}
 ```
 
 ### Keyboard interaction
@@ -290,20 +281,18 @@ Each thumb is a native `<input type="range">`, so a `Range` is fully keyboard op
 
 Pass `disabled` to prevent all interaction. A disabled `Range` still displays its current values, but its thumbs are skipped in the tab order and excluded from form data:
 
-<Range
-  disabled
-  defaultValues={[25, 75]}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>
-
-```tsx
+```tsx demo
 import { Range } from "@tenstorrent/vesper/range";
 
-<Range
-  disabled
-  defaultValues={[25, 75]}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>;
+export default function DisabledRange() {
+  return (
+    <Range
+      disabled
+      defaultValues={[25, 75]}
+      thumbAriaLabels={["Price (min)", "Price (max)"]}
+    />
+  );
+}
 ```
 
 ### Usage in forms
@@ -317,18 +306,44 @@ const data = new FormData(form);
 data.getAll("price"); // ["20", "80"]
 ```
 
-<RangeDemo kind="form" />
+```tsx demo
+import { useState } from "react";
 
-```tsx
 import { Button } from "@tenstorrent/vesper/button";
 import { Range } from "@tenstorrent/vesper/range";
+import { Typography } from "@tenstorrent/vesper/typography";
 
-<form action="/api/search" method="post">
-  <Range
-    name="price"
-    defaultValues={[20, 80]}
-    thumbAriaLabels={["Price (min)", "Price (max)"]}
-  />
-  <Button type="submit">Submit</Button>
-</form>;
+export default function FormRangeDemo() {
+  const [submitted, setSubmitted] = useState<string[] | null>(null);
+
+  return (
+    <form
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+      onSubmit={(event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        setSubmitted(data.getAll("price").map(String));
+      }}
+    >
+      <Range
+        name="price"
+        aria-label="Price"
+        defaultValues={[20, 80]}
+        thumbAriaLabels={["Price (min)", "Price (max)"]}
+      />
+      <Button size="sm" type="submit">
+        Submit
+      </Button>
+      {submitted !== null && (
+        <Typography variant="copy-sm">
+          Submitted values: {submitted.join(", ")}
+        </Typography>
+      )}
+    </form>
+  );
+}
 ```
