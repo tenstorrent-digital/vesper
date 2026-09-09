@@ -11,6 +11,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { useControlled } from "@base-ui/utils/useControlled";
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 
 import {
@@ -136,26 +137,18 @@ export function Toggle(props: ToggleProps) {
 
   const mergedRef = useMergedRefs(innerRef, ref);
 
-  const [innerValue, setInnerValue] = useState(value ?? defaultValue);
-
-  const initial = useRef(true);
-  useEffect(() => {
-    if (initial.current) {
-      initial.current = false;
-      return;
-    }
-    if (value !== innerValue) {
-      setInnerValue(value);
-    }
-    // eslint-disable-next-line
-  }, [value]);
+  const [selectedOption, setSelectedOption] = useControlled({
+    controlled: value,
+    default: defaultValue,
+    name: "Toggle",
+  });
 
   const handleChangeValue = useCallback(
     (nextValue: string) => {
-      setInnerValue(nextValue);
+      setSelectedOption(nextValue);
       onValueChange?.(nextValue);
     },
-    [onValueChange],
+    [setSelectedOption, onValueChange],
   );
 
   // update inner value when parent form resets
@@ -224,7 +217,7 @@ export function Toggle(props: ToggleProps) {
     undefined,
   );
   const focusedIndex = options.findIndex((o) => o.value === focusedValue);
-  const selectedIndex = options.findIndex((o) => o.value === innerValue);
+  const selectedIndex = options.findIndex((o) => o.value === selectedOption);
 
   /**
    * roving tabindex: the group only ever exposes a single tab stop, which
@@ -259,7 +252,7 @@ export function Toggle(props: ToggleProps) {
         disabled={disabled}
         className="vesper-toggle-select"
         onChange={(event) => handleChangeValue(event.target.value)}
-        value={innerValue ?? ""}
+        value={selectedOption ?? ""}
       >
         {/**
          * an empty placeholder label option must come first so that the select
@@ -272,7 +265,7 @@ export function Toggle(props: ToggleProps) {
         ))}
       </select>
       {options.map((option, index) => {
-        const isSelected = innerValue === option.value;
+        const isSelected = selectedOption === option.value;
 
         return (
           <Typography
