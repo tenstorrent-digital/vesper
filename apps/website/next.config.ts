@@ -104,8 +104,7 @@ const withMDX = createMDX({
 
       /**
        * renders the component a `tsx demo` code block exports right above the
-       * code block itself, by importing the module `generate-demos.ts`
-       * extracted it into
+       * code block itself
        *
        * runs last so it only ever sees the code blocks the plugins above are
        * done with
