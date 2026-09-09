@@ -85,6 +85,12 @@ export default function remarkTsxDemos(): Transformer<Root> {
     const injectDemos = async (node: Nodes): Promise<void> => {
       if (!("children" in node)) return;
 
+      if (node.type !== "root") {
+        // Only recurse into children without injecting demos
+        for (const child of node.children) await injectDemos(child);
+        return;
+      }
+
       const transformedChildren: RootContent[] = [];
 
       for (const child of node.children) {
