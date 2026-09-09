@@ -79,7 +79,6 @@ import { ColorChip } from "@/components/color-chip";
 
 // named demos for components w non-serializable props (event handlers,
 // refs, state) that are used inside `docs/` documents
-import { MaskedInputDemo } from "@/demos/masked-input";
 import { MenuDemo } from "@/demos/menu";
 import { ProgressBarDemo } from "@/demos/progress-bar";
 import { ShowMoreDemo } from "@/demos/show-more";
@@ -282,7 +281,6 @@ const components = {
   Tenstorrent,
 
   // demos
-  MaskedInputDemo,
   MenuDemo,
   ProgressBarDemo,
   ShowMoreDemo,
