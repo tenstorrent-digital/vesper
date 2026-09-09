@@ -9,3 +9,8 @@ turbo/generators/**/*.hbs
 
 # docs app public folder
 apps/website/public
+
+# docs app generated component demos
+# (extracted from `docs/**` verbatim, so formatting them here would only be
+# undone the next time the demos are generated)
+apps/website/generated

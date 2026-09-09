@@ -8,7 +8,7 @@
     "dev": "next dev --port 3000",
     "build": "next build",
     "start": "next start",
-    "clean": "rimraf .next",
+    "clean": "rimraf .next generated",
     "lint": "eslint --max-warnings 0",
     "lint:fix": "eslint --fix",
     "check-types": "next typegen && tsc --noEmit"
@@ -44,9 +44,13 @@
     "@types/react-dom": "^19.2.3",
     "clsx": "^2.1.1",
     "eslint": "^9.39.1",
+    "mdast": "^3.0.0",
     "mdast-util-mdx-jsx": "^3.2.0",
+    "mdast-util-mdxjs-esm": "^2.0.1",
     "mdast-util-to-hast": "^13.2.1",
     "prettier-plugin-tailwindcss": "^0.8.1",
+    "remark-mdx": "^3.1.1",
+    "remark-parse": "^11.0.0",
     "tailwind-merge": "^3.6.0",
     "typescript": "5.9.2",
     "unified": "^11.0.5"

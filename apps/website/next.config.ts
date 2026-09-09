@@ -101,6 +101,15 @@ const withMDX = createMDX({
         path.join(appRoot, "src/lib/mdx/remark-jsx-text-children.mts"),
         { ignore: [] },
       ],
+
+      /**
+       * renders the component a `tsx demo` code block exports right above the
+       * code block itself
+       *
+       * runs last so it only ever sees the code blocks the plugins above are
+       * done with
+       */
+      path.join(appRoot, "src/lib/mdx/remark-tsx-demos.mts"),
     ],
 
     rehypePlugins: [

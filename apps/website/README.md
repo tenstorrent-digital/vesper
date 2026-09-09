@@ -36,3 +36,37 @@ To clean the (whole monorepo's) cache and start fresh you can run:
 ```bash
 yarn clean      # removes .next, dist, and turbo caches across the repo
 ```
+
+### Component demos
+
+A `tsx` code block in `docs/**` tagged `demo` is rendered as a live example directly above the
+code block itself, so an example and the code shown for it can never drift apart:
+
+````mdx
+```tsx demo
+import { Toggle } from "@tenstorrent/vesper/toggle";
+
+export default function UncontrolledToggle() {
+  return (
+    <Toggle
+      aria-label="Display options"
+      defaultValue="grid"
+      options={[
+        { value: "grid", text: "Grid" },
+        { value: "list", text: "List" },
+      ]}
+    />
+  );
+}
+```
+````
+
+A demo is a self-contained module: it imports what it uses and default exports the component to
+render, which is also what makes it a complete, copyable example on GitHub (where it is only ever
+a code block).
+
+Each demo is extracted into a real module under `generated/demos/` (git ignored, rewritten on
+every build) and imported back into the document, so it is compiled and type checked like any
+other file in this app.
+
+See also [`src/lib/mdx/remark-tsx-demos.mts`](./src/lib/mdx/remark-tsx-demos.mts).
