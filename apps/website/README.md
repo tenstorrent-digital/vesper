@@ -65,18 +65,4 @@ A demo is a self-contained module: it imports what it uses and default exports t
 render, which is also what makes it a complete, copyable example on GitHub (where it is only ever
 a code block).
 
-How it works:
-
-1. Demos are extracted into `src/generated-demos`, which is gitignored. The [`generate-demos`](./scripts/generate-demos.ts)
-   script contains the code responsible for this step.
-2. Generated demos are imported and rendered back into their source documents, above the code blocks they are defined by.
-   The [`remark-tsx-demos`](./src/lib/mdx/remark-tsx-demos.mts) remark plugin does this for us when compiling the docs.
-
-Shared utilities and variables used in both steps live at [`src/lib/mdx/demos.mts`](./src/lib/mdx/demos.mts).
-
-`yarn dev` generates demos before it starts and regenerates them as documents are edited, and
-`yarn build` generates them prior to building, so there is nothing extra to run. To regenerate them by hand, run:
-
-```bash
-yarn workspace website generate:demos
-```
+See also [`src/lib/mdx/remark-tsx-demos.mts`](./src/lib/mdx/remark-tsx-demos.mts).
