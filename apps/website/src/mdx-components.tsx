@@ -89,7 +89,6 @@ import { ShowMoreDemo } from "@/demos/show-more";
 import { SliderDemo } from "@/demos/slider";
 import { SplitButtonDemo } from "@/demos/split-button";
 import { SwitchDemo } from "@/demos/switch";
-import { ToastDemo } from "@/demos/toast";
 import { TooltipDemo } from "@/demos/tooltip";
 
 /**
@@ -298,7 +297,6 @@ const components = {
   SliderDemo,
   SplitButtonDemo,
   SwitchDemo,
-  ToastDemo,
   TooltipDemo,
 } satisfies MDXComponents;
 
