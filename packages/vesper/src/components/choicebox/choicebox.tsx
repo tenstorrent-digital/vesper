@@ -8,12 +8,12 @@ import {
   useEffect,
   useRef,
 } from "react";
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 
 import { Checkmark } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
-import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 export type ChoiceboxItem = {
   /** The value associated with this option. */

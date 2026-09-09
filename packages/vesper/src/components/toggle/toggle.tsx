@@ -11,6 +11,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 
 import {
   Typography,
@@ -18,7 +19,6 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
-import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 export const TOGGLE_SIZES = ["sm", "md", "lg"] as const;
 
