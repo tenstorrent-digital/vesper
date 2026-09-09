@@ -21,7 +21,13 @@ export const DOC_FILE_EXT = /\.(md|mdx)$/;
 
 export const DOCS_ROOT = path.resolve(__dirname, "../../../../../docs");
 
-export const DEMOS_ROOT = path.resolve(__dirname, "../../generated-demos");
+/**
+ * Where the demos extracted from `docs/**` are written
+ *
+ * They are generated build artifacts, so they are kept out of `src/`, but they
+ * stay inside the app so next can compile them as part of this project
+ */
+export const DEMOS_ROOT = path.resolve(__dirname, "../../../generated/demos");
 
 /**
  * Write to a file, skipping the write when it is already up to date

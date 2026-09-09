@@ -38,5 +38,5 @@ next-env.d.ts
 # storybook static build
 /public/storybook
 
-# generated component demos
-/src/generated-demos
+# generated component demos (see src/lib/mdx/remark-tsx-demos.mts)
+/generated

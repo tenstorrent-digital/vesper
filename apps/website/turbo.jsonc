@@ -9,7 +9,15 @@
         ".env*",
         "$TURBO_ROOT$/docs/**" // monorepo docs
       ],
-      "outputs": [".next/**", "!.next/cache/**"]
+      /**
+       * `generated/**` holds the demo modules extracted from `docs/**` by
+       * `src/lib/mdx/remark-tsx-demos.mts` while the mdx is compiled
+       *
+       * caching them with `.next` keeps a restored build complete, so tasks
+       * that read them (eg. `check-types`) see the same files a fresh build
+       * would have written
+       */
+      "outputs": [".next/**", "!.next/cache/**", "generated/**"]
     },
 
     "dev": {
