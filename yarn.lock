@@ -4960,7 +4960,7 @@ mdast-util-mdx@^3.0.0:
     mdast-util-mdxjs-esm "^2.0.0"
     mdast-util-to-markdown "^2.0.0"
 
-mdast-util-mdxjs-esm@^2.0.0:
+mdast-util-mdxjs-esm@^2.0.0, mdast-util-mdxjs-esm@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/mdast-util-mdxjs-esm/-/mdast-util-mdxjs-esm-2.0.1.tgz#019cfbe757ad62dd557db35a695e7314bcc9fa97"
   integrity sha512-EcmOpxsZ96CvlP03NghtH1EsLtr0n9Tm4lPUJUBccV9RwUOneqSycg19n5HGzCf+10LozMRSObtVr3ee1WoHtg==
@@ -5016,6 +5016,11 @@ mdast-util-to-string@^4.0.0:
   integrity sha512-0H44vDimn51F0YwvxSJSm0eCDOJTRlmN0R1yBh4HLj9wiV1Dn0QoXGbvFAWj2hSItVTlCmBF1hqKlIyUBVFLPg==
   dependencies:
     "@types/mdast" "^4.0.0"
+
+mdast@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/mdast/-/mdast-3.0.0.tgz#626bce9603ed43fb6fb053245a6e4a17f4457aa8"
+  integrity sha512-xySmf8g4fPKMeC07jXGz971EkLbWAJ83s4US2Tj9lEdnZ142UP5grN73H1Xd3HzrdbU5o9GYYP/y8F9ZSwLE9g==
 
 mdn-data@2.0.28:
   version "2.0.28"
@@ -6221,7 +6226,7 @@ remark-mdx-frontmatter@^5.2.0:
     unist-util-mdx-define "^1.0.0"
     yaml "^2.0.0"
 
-remark-mdx@^3.0.0:
+remark-mdx@^3.0.0, remark-mdx@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/remark-mdx/-/remark-mdx-3.1.1.tgz#047f97038bc7ec387aebb4b0a4fe23779999d845"
   integrity sha512-Pjj2IYlUY3+D8x00UJsIOg5BEvfMyeI+2uLPn9VO9Wg4MEtN/VTIq2NEJQfde9PnX15KgtHyl9S0BcTnWrIuWg==
