@@ -7,7 +7,24 @@ description: A dropdown menu component that displays a list of actionable items 
 
 A dropdown menu component that displays a list of actionable items when triggered. Supports icons, descriptions, selected state, locked items, and disabled items. Built on Radix UI's dropdown menu primitive.
 
-<MenuDemo />
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+import { Menu } from "@tenstorrent/vesper/menu";
+
+export default function MenuDemo() {
+  return (
+    <Menu
+      items={[
+        { text: "Edit", onSelect: () => {} },
+        { text: "Duplicate", onSelect: () => {} },
+        { text: "Delete", style: "danger", onSelect: () => {} },
+      ]}
+    >
+      <Button variant="subtle">Open Menu</Button>
+    </Menu>
+  );
+}
+```
 
 ## Options
 
@@ -39,55 +56,76 @@ A dropdown menu component that displays a list of actionable items when triggere
 ## Examples
 
 ```tsx
-import { Menu } from "@tenstorrent/vesper/menu";
 import { Button } from "@tenstorrent/vesper/button";
+import { Menu } from "@tenstorrent/vesper/menu";
 
 // Basic menu
-<Menu
-  items={[
-    { text: "Copy", onSelect: handleCopy },
-    { text: "Paste", onSelect: handlePaste },
-    { text: "Delete", style: "danger", onSelect: handleDelete },
-  ]}
->
-  <Button>Actions</Button>
-</Menu>;
+export default function BasicMenu() {
+  return (
+    <Menu
+      items={[
+        { text: "Copy", onSelect: () => console.log("Copy") },
+        { text: "Paste", onSelect: () => console.log("Paste") },
+        {
+          text: "Delete",
+          style: "danger",
+          onSelect: () => console.log("Delete"),
+        },
+      ]}
+    >
+      <Button>Actions</Button>
+    </Menu>
+  );
+}
 ```
 
 ```tsx
+import { Button } from "@tenstorrent/vesper/button";
+import { Copy, Gear, Trash } from "@tenstorrent/vesper/icons";
+import { Menu } from "@tenstorrent/vesper/menu";
+
 // With icons and descriptions
-import { Copy, Trash, Gear } from "@tenstorrent/vesper/icons";
-
-<Menu
-  items={[
-    { text: "Copy", icon: <Copy />, onSelect: handleCopy },
-    {
-      text: "Settings",
-      icon: <Gear />,
-      description: "Manage preferences",
-      onSelect: handleSettings,
-    },
-    {
-      text: "Delete",
-      icon: <Trash />,
-      style: "danger",
-      onSelect: handleDelete,
-    },
-  ]}
->
-  <Button>Actions</Button>
-</Menu>;
+export default function MenuWithIconsAndDescriptions() {
+  return (
+    <Menu
+      items={[
+        { text: "Copy", icon: <Copy />, onSelect: () => console.log("Copy") },
+        {
+          text: "Settings",
+          icon: <Gear />,
+          description: "Manage preferences",
+          onSelect: () => console.log("Settings"),
+        },
+        {
+          text: "Delete",
+          icon: <Trash />,
+          style: "danger",
+          onSelect: () => console.log("Delete"),
+        },
+      ]}
+    >
+      <Button>Actions</Button>
+    </Menu>
+  );
+}
 ```
 
 ```tsx
+import { Button } from "@tenstorrent/vesper/button";
+import { Menu } from "@tenstorrent/vesper/menu";
+
 // Selected and locked items
-<Menu
-  items={[
-    { text: "Light mode", style: "selected", onSelect: () => {} },
-    { text: "Dark mode", onSelect: () => {} },
-    { text: "Admin only", style: "locked", onSelect: () => {} },
-  ]}
->
-  <Button>Theme</Button>
-</Menu>
+export default function MenuWithSelectedAndLockedItems() {
+  return (
+    <Menu
+      items={[
+        { text: "Light mode", style: "selected", onSelect: () => {} },
+        { text: "Dark mode", onSelect: () => {} },
+        { text: "Admin only", style: "locked", onSelect: () => {} },
+      ]}
+    >
+      <Button>Theme</Button>
+    </Menu>
+  );
+}
 ```

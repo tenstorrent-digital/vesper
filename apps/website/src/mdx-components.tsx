@@ -3,8 +3,8 @@
  *
  * NOTE: components needing non-serializable props (event handlers, refs, state)
  * can NOT be used in `docs/` directly since documents are rendered from a server
- * component - those live in `@/demos` as client components then are exposed to
- * documents below
+ * component - those are written as ```tsx demo``` code blocks instead, which
+ * `src/lib/mdx/remark-tsx-demos.mts` extracts into client component modules
  */
 
 import type { MDXComponents } from "mdx/types";
@@ -76,12 +76,6 @@ import { Typography } from "@tenstorrent/vesper/typography";
 
 // docs-only components (not part of the design system)
 import { ColorChip } from "@/components/color-chip";
-
-// named demos for components w non-serializable props (event handlers,
-// refs, state) that are used inside `docs/` documents
-import { MenuDemo } from "@/demos/menu";
-import { ShowMoreDemo } from "@/demos/show-more";
-import { SplitButtonDemo } from "@/demos/split-button";
 
 /**
  * github alert types (`> [!NOTE]`), as picked up by
@@ -277,11 +271,6 @@ const components = {
   Info,
   Search,
   Tenstorrent,
-
-  // demos
-  MenuDemo,
-  ShowMoreDemo,
-  SplitButtonDemo,
 } satisfies MDXComponents;
 
 export function useMDXComponents(): MDXComponents {

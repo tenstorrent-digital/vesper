@@ -7,7 +7,22 @@ description: A compound button that combines a primary action button with a drop
 
 A compound button that combines a primary action button with a dropdown menu toggle. The primary button fires an action, while the secondary caret button opens a menu of alternative actions.
 
-<SplitButtonDemo />
+```tsx demo
+import { SplitButton } from "@tenstorrent/vesper/split-button";
+
+export default function SplitButtonDemo() {
+  return (
+    <SplitButton
+      menuItems={[
+        { text: "Save as draft", onSelect: () => {} },
+        { text: "Save and publish", onSelect: () => {} },
+      ]}
+    >
+      Save
+    </SplitButton>
+  );
+}
+```
 
 ## Options
 
@@ -35,35 +50,54 @@ A compound button that combines a primary action button with a dropdown menu tog
 import { SplitButton } from "@tenstorrent/vesper/split-button";
 
 // Basic usage
-<SplitButton
-  onClick={handleSave}
-  menuItems={[
-    { text: "Save as draft", onSelect: handleSaveDraft },
-    { text: "Save and close", onSelect: handleSaveAndClose },
-  ]}
->
-  Save
-</SplitButton>;
+export default function BasicSplitButton() {
+  return (
+    <SplitButton
+      onClick={() => console.log("Save")}
+      menuItems={[
+        { text: "Save as draft", onSelect: () => console.log("Save as draft") },
+        {
+          text: "Save and close",
+          onSelect: () => console.log("Save and close"),
+        },
+      ]}
+    >
+      Save
+    </SplitButton>
+  );
+}
 ```
 
 ```tsx
+import { SplitButton } from "@tenstorrent/vesper/split-button";
+
 // Subtle variant, small size
-<SplitButton
-  variant="subtle"
-  size="sm"
-  onClick={handleAction}
-  menuItems={[
-    { text: "Option A", onSelect: () => {} },
-    { text: "Option B", onSelect: () => {} },
-  ]}
->
-  Actions
-</SplitButton>
+export default function SubtleSplitButton() {
+  return (
+    <SplitButton
+      variant="subtle"
+      size="sm"
+      onClick={() => console.log("Action")}
+      menuItems={[
+        { text: "Option A", onSelect: () => {} },
+        { text: "Option B", onSelect: () => {} },
+      ]}
+    >
+      Actions
+    </SplitButton>
+  );
+}
 ```
 
 ```tsx
+import { SplitButton } from "@tenstorrent/vesper/split-button";
+
 // Disabled
-<SplitButton disabled menuItems={[]}>
-  Disabled
-</SplitButton>
+export default function DisabledSplitButton() {
+  return (
+    <SplitButton disabled menuItems={[]}>
+      Disabled
+    </SplitButton>
+  );
+}
 ```
