@@ -15,7 +15,11 @@
         "$TURBO_DEFAULT$",
         "$TURBO_ROOT$/docs/**" // monorepo docs
       ],
-      "outputs": ["generated/**"]
+      /**
+       * deliberately uncached: the task also *deletes* the demos of code blocks
+       * that are gone, and turbo only extracts cached outputs on a cache hit
+       */
+      "cache": false
     },
 
     "build": {
