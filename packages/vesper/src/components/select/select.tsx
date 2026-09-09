@@ -2,6 +2,7 @@
 
 import { type ReactNode, useMemo, useState } from "react";
 import { Select as BaseSelect } from "@base-ui/react/select";
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 
 import { CaretDown, CaretUp, Checkmark } from "@/components/icons/icons";
 import {
@@ -15,7 +16,6 @@ import {
   type PortalContainer,
 } from "@/utils/getPortalContainer";
 import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
-import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 import {
   FormInputProps,
   splitFormInputProps,

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef } from "react";
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import {
   maskitoInitialCalibrationPlugin,
   type MaskitoOptions,
@@ -11,8 +12,6 @@ import {
   TextInput,
   type TextInputProps,
 } from "@/components/text-input/text-input";
-
-import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 import { getMaskitoOptions } from "./getMaskitoOptions";
 

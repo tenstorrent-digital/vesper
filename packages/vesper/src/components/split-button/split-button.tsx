@@ -7,6 +7,7 @@ import {
   useCallback,
   useRef,
 } from "react";
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 
 import { Button } from "@/components/button/button";
 import { IconButton } from "@/components/icon-button/icon-button";
@@ -18,7 +19,6 @@ import {
 } from "@/components/menu/menu";
 
 import { cn } from "@/utils/cn";
-import { useMergedRefs } from "@/utils/hooks/useMergedRefs";
 
 export const SPLIT_BUTTON_SIZES = ["sm", "md", "lg"] as const;
 
