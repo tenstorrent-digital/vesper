@@ -7,7 +7,13 @@ description: A toggle switch input with an optional label.
 
 A toggle switch input with an optional label. Uses the native `switch` ARIA role for binary on/off states, with no indeterminate state. Supports controlled and uncontrolled modes.
 
-<Switch label="Enable notifications" />
+```tsx demo
+import { Switch } from "@tenstorrent/vesper/switch";
+
+export default function SwitchDemo() {
+  return <Switch label="Enable notifications" />;
+}
+```
 
 ## Options
 
@@ -32,57 +38,94 @@ Use the `Switch` component when toggling a setting on and off takes effect immed
 
 The simplest way to use the `Switch` component is to render it in an uncontrolled fashion, where the component is responsible for keeping track of its own checked state. Pass `defaultChecked` if it should start out checked:
 
-<Switch label="Allow notifications" defaultChecked />
-
-```tsx
+```tsx demo
 import { Switch } from "@tenstorrent/vesper/switch";
 
-<Switch label="Allow notifications" defaultChecked />;
+export default function UncontrolledSwitch() {
+  return <Switch label="Allow notifications" defaultChecked />;
+}
 ```
 
 If you need to control whether the switch is checked, you can do so via the `checked` and `onChange` props. The new state is read from the event's `target.checked`:
 
-<SwitchDemo kind="controlled" />
+```tsx demo
+import { useState } from "react";
 
-```tsx
-import { useState } from "react"
-import { Switch } from "@tenstorrent/vesper/switch"
+import { Button } from "@tenstorrent/vesper/button";
+import { Switch } from "@tenstorrent/vesper/switch";
+import { Typography } from "@tenstorrent/vesper/typography";
 
-const [notificationsEnabled, setNotificationsEnabled] = useState(false)
+export default function ControlledSwitch() {
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
 
-<Switch
-  label="Allow notifications"
-  checked={notificationsEnabled}
-  onChange={e => setNotificationsEnabled(e.target.checked)}
-/>
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Switch
+        label="Allow notifications"
+        checked={notificationsEnabled}
+        onChange={(e) => setNotificationsEnabled(e.target.checked)}
+      />
+      <Typography variant="copy-sm">
+        Checked: {String(notificationsEnabled)}
+      </Typography>
+      <Button size="sm" onClick={() => setNotificationsEnabled(false)}>
+        Reset
+      </Button>
+    </div>
+  );
+}
 ```
 
 ### Different sizes
 
 The `Switch` component can be rendered at `sm` or `md` size, defaulting to `md`. Size affects the dimensions of the switch itself, as well as the text styles of the text rendered beside it.
 
-<Switch size="sm" label="A small switch" />
-<Switch size="md" label="A medium switch" />
+```tsx demo
+import { Switch } from "@tenstorrent/vesper/switch";
 
-```tsx
-import { Switch } from "@tenstorrent/vesper/switch"
-
-<Switch size="sm" label="A small switch" />
-<Switch size="md" label="A medium switch" />
+export default function SwitchSizes() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Switch size="sm" label="A small switch" />
+      <Switch size="md" label="A medium switch" />
+    </div>
+  );
+}
 ```
 
 ### Disabling the switch
 
 You can disable a `Switch` by passing `disabled={true}` or just `disabled` as a prop. A disabled switch still displays its current state, but it cannot be toggled by pointer or keyboard, is skipped in the tab order, and is excluded from form data:
 
-<Switch label="Sign up for our newsletter" disabled />
-<Switch label="Sign up for our newsletter" defaultChecked disabled />
+```tsx demo
+import { Switch } from "@tenstorrent/vesper/switch";
 
-```tsx
-import { Switch } from "@tenstorrent/vesper/switch"
-
-<Switch label="Sign up for our newsletter" disabled />
-<Switch label="Sign up for our newsletter" defaultChecked disabled />
+export default function DisabledSwitches() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Switch label="Sign up for our newsletter" disabled />
+      <Switch label="Sign up for our newsletter" defaultChecked disabled />
+    </div>
+  );
+}
 ```
 
 ### Usage in forms
@@ -91,24 +134,49 @@ import { Switch } from "@tenstorrent/vesper/switch"
 
 Pass `required` when the switch must be turned on before the form can be submitted:
 
-<SwitchDemo kind="form" />
+```tsx demo
+import { useState } from "react";
 
-```tsx
 import { Button } from "@tenstorrent/vesper/button";
 import { Switch } from "@tenstorrent/vesper/switch";
+import { Typography } from "@tenstorrent/vesper/typography";
 
-<form action="/api/settings" method="post">
-  <Switch
-    required
-    name="notifications"
-    value="enabled"
-    label="Enable notifications"
-  />
-  <Button type="submit">Submit</Button>
-</form>;
+export default function FormSwitchDemo() {
+  const [submitted, setSubmitted] = useState<string | null>(null);
+
+  return (
+    <form
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+      onSubmit={(event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        setSubmitted(String(data.get("notifications") ?? ""));
+      }}
+    >
+      <Switch
+        required
+        name="notifications"
+        value="enabled"
+        label="Enable notifications"
+      />
+      <Button size="sm" type="submit">
+        Submit
+      </Button>
+      {submitted !== null && (
+        <Typography variant="copy-sm">
+          Submitted value: notifications={submitted}
+        </Typography>
+      )}
+    </form>
+  );
+}
 ```
 
-The form above submits `notifications=enabled` once the box is checked, and refuses to submit at all while it is unchecked.
+The form above submits `notifications=enabled` once the switch is turned on, and refuses to submit at all while it is turned off.
 
 Use the `form` prop to associate the field with a `<form>` rendered elsewhere on the page:
 
@@ -116,18 +184,23 @@ Use the `form` prop to associate the field with a `<form>` rendered elsewhere on
 import { Button } from "@tenstorrent/vesper/button";
 import { Switch } from "@tenstorrent/vesper/switch";
 
-<form id="signup" action="/api/settings" method="post">
-  <Button type="submit">Submit</Button>
-</form>;
-
-// rendered outside of the form, but submitted with it
-<Switch
-  required
-  form="signup"
-  name="notifications"
-  value="enabled"
-  label="Enable notifications"
-/>;
+export default function SwitchFormPropDemo() {
+  return (
+    <div>
+      <form id="settings" action="/api/settings" method="post">
+        <Button type="submit">Save settings</Button>
+      </form>
+      {/* rendered outside of the form, but submitted with it */}
+      <Switch
+        required
+        form="settings"
+        name="notifications"
+        value="enabled"
+        label="Enable notifications"
+      />
+    </div>
+  );
+}
 ```
 
 ### Accessing the underlying element
@@ -135,20 +208,25 @@ import { Switch } from "@tenstorrent/vesper/switch";
 Use the `ref` prop when you need direct access to the underlying `<input>` element, eg. to focus it or report a custom validation message:
 
 ```tsx
-import { useRef } from "react"
-import { Switch } from "@tenstorrent/vesper/switch"
+import { useRef } from "react";
 
-const ref = useRef<HTMLInputElement>(null)
+import { Switch } from "@tenstorrent/vesper/switch";
 
-<Switch
-  required
-  label="Enable telemetry"
-  ref={ref}
-  onChange={() => ref.current?.setCustomValidity("")}
-  onInvalid={() =>
-    ref.current?.setCustomValidity(
-      "Telemetry must be enabled when opting into nightly builds"
-    )
-  }
-/>
+export default function SwitchRefDemo() {
+  const ref = useRef<HTMLInputElement>(null);
+
+  return (
+    <Switch
+      required
+      ref={ref}
+      label="Enable telemetry"
+      onChange={() => ref.current?.setCustomValidity("")}
+      onInvalid={() =>
+        ref.current?.setCustomValidity(
+          "Telemetry must be enabled when opting into nightly builds",
+        )
+      }
+    />
+  );
+}
 ```
