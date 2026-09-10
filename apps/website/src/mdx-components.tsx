@@ -3,8 +3,8 @@
  *
  * NOTE: components needing non-serializable props (event handlers, refs, state)
  * can NOT be used in `docs/` directly since documents are rendered from a server
- * component - those live in `@/demos` as client components then are exposed to
- * documents below
+ * component - those are written as ```tsx demo``` code blocks instead, which
+ * `src/lib/mdx/remark-tsx-demos.mts` extracts into client component modules
  */
 
 import type { MDXComponents } from "mdx/types";
@@ -77,25 +77,6 @@ import { Typography } from "@tenstorrent/vesper/typography";
 // docs-only components (not part of the design system)
 import { ColorChip } from "@/components/color-chip";
 
-// named demos for components w non-serializable props (event handlers,
-// refs, state) that are used inside `docs/` documents
-import { CheckboxDemo } from "@/demos/checkbox";
-import { ChipDemo } from "@/demos/chip";
-import { ComboboxDemo } from "@/demos/combobox";
-import { IconsDemo } from "@/demos/icons";
-import { MaskedInputDemo } from "@/demos/masked-input";
-import { MenuDemo } from "@/demos/menu";
-import { ProgressBarDemo } from "@/demos/progress-bar";
-import { RangeDemo } from "@/demos/range";
-import { SelectDemo } from "@/demos/select";
-import { ShowMoreDemo } from "@/demos/show-more";
-import { SliderDemo } from "@/demos/slider";
-import { SplitButtonDemo } from "@/demos/split-button";
-import { SwitchDemo } from "@/demos/switch";
-import { ToastDemo } from "@/demos/toast";
-import { ToggleDemo } from "@/demos/toggle";
-import { TooltipDemo } from "@/demos/tooltip";
-
 /**
  * github alert types (`> [!NOTE]`), as picked up by
  * `src/lib/mdx/remark-blockquote-alerts.mts`, mapped to admonition variants
@@ -151,7 +132,7 @@ const components = {
   ),
   a: (props) => (
     <Link
-      className="underline-offset-[calc(var(--base-font-size)_/_12)] underline decoration-from-font"
+      className="underline decoration-from-font underline-offset-[calc(var(--base-font-size)_/_12)]"
       target={props.href.startsWith("http") ? "_blank" : undefined}
       rel={props.href.startsWith("http") ? "noopener noreferrer" : undefined}
       href={props.href}
@@ -290,24 +271,6 @@ const components = {
   Info,
   Search,
   Tenstorrent,
-
-  // demos
-  CheckboxDemo,
-  ChipDemo,
-  ComboboxDemo,
-  IconsDemo,
-  MaskedInputDemo,
-  MenuDemo,
-  ProgressBarDemo,
-  RangeDemo,
-  SelectDemo,
-  ShowMoreDemo,
-  SliderDemo,
-  SplitButtonDemo,
-  SwitchDemo,
-  ToastDemo,
-  ToggleDemo,
-  TooltipDemo,
 } satisfies MDXComponents;
 
 export function useMDXComponents(): MDXComponents {

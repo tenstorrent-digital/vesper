@@ -7,15 +7,23 @@ description: A form-ready dropdown select component supporting controlled and un
 
 A form-ready dropdown select component supporting controlled and uncontrolled usage with four visual variants.
 
-<Select
-  aria-label="Fruit"
-  placeholder="Select a fruit"
-  options={[
-    { value: "apple", label: "Apple" },
-    { value: "banana", label: "Banana" },
-    { value: "cherry", label: "Cherry" },
-  ]}
-/>
+```tsx demo
+import { Select } from "@tenstorrent/vesper/select";
+
+export default function SelectDemo() {
+  return (
+    <Select
+      aria-label="Fruit"
+      placeholder="Select a fruit"
+      options={[
+        { value: "apple", label: "Apple" },
+        { value: "banana", label: "Banana" },
+        { value: "cherry", label: "Cherry" },
+      ]}
+    />
+  );
+}
+```
 
 > [!IMPORTANT]
 >
@@ -60,46 +68,38 @@ If your list is long enough that users will want to search it, reach for [the `C
 
 Each entry in the `options` array can either be a `SelectItem`, or a plain string. Use `SelectItem` objects when the value associated with each item differs from the text you want to display:
 
-<Select
-  aria-label="Region"
-  placeholder="Select a region"
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>
-
-```tsx
+```tsx demo
 import { Select } from "@tenstorrent/vesper/select";
 
-<Select
-  aria-label="Region"
-  placeholder="Select a region"
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>;
+export default function ObjectOptionsSelect() {
+  return (
+    <Select
+      aria-label="Region"
+      placeholder="Select a region"
+      options={[
+        { label: "United States", value: "us" },
+        { label: "Europe", value: "eu" },
+        { label: "Asia Pacific", value: "ap" },
+      ]}
+    />
+  );
+}
 ```
 
 When the displayed text is the same as the value of the item, a string option is a convenient shorthand:
 
-<Select
-  aria-label="Country"
-  placeholder="Select a country"
-  options={["Canada", "Japan", "Norway"]}
-/>
-
-```tsx
+```tsx demo
 import { Select } from "@tenstorrent/vesper/select";
 
-<Select
-  aria-label="Country"
-  placeholder="Select a country"
-  options={["Canada", "Japan", "Norway"]}
-/>;
+export default function StringOptionsSelect() {
+  return (
+    <Select
+      aria-label="Country"
+      placeholder="Select a country"
+      options={["Canada", "Japan", "Norway"]}
+    />
+  );
+}
 ```
 
 Both shapes can be mixed in the same `options` array. Options are rendered in the order they are provided, and the selected one is marked with a checkmark when the dropdown is open.
@@ -108,137 +108,137 @@ Both shapes can be mixed in the same `options` array. Options are rendered in th
 
 The simplest way to use the `Select` component is to render it in an uncontrolled fashion, where the component keeps track of its own selection. Pass `defaultValue` if you need an option to be selected initially:
 
-<Select
-  aria-label="Region"
-  placeholder="Select a region"
-  defaultValue="eu"
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>
-
-```tsx
+```tsx demo
 import { Select } from "@tenstorrent/vesper/select";
 
-<Select
-  aria-label="Region"
-  placeholder="Select a region"
-  defaultValue="eu"
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>;
+export default function UncontrolledSelect() {
+  return (
+    <Select
+      aria-label="Region"
+      placeholder="Select a region"
+      defaultValue="eu"
+      options={[
+        { label: "United States", value: "us" },
+        { label: "Europe", value: "eu" },
+        { label: "Asia Pacific", value: "ap" },
+      ]}
+    />
+  );
+}
 ```
 
 If you need to control which option is selected, use the `value` and `onValueChange` props. `value` is the `value` of the selected option, and is `null` when nothing is selected. There is no built-in way for a user to clear a selection, so pass `null` when you need to return the select to its placeholder state:
 
-<SelectDemo kind="controlled" />
+```tsx demo
+import { useState } from "react";
+import { Select } from "@tenstorrent/vesper/select";
+import { Button } from "@tenstorrent/vesper/button";
+import { Typography } from "@tenstorrent/vesper/typography";
 
-```tsx
-import { useState } from "react"
-import { Select } from "@tenstorrent/vesper/select"
-import { Button } from "@tenstorrent/vesper/button"
+const FRUITS = [
+  { label: "Apple", value: "apple" },
+  { label: "Banana", value: "banana" },
+  { label: "Cherry", value: "cherry" },
+  { label: "Mango", value: "mango" },
+  { label: "Peach", value: "peach" },
+];
 
-const [fruit, setFruit] = useState<string | null>("apple")
+export default function ControlledSelect() {
+  const [fruit, setFruit] = useState<string | null>("apple");
 
-<Select
-  aria-label="Fruit"
-  placeholder="Select a fruit"
-  value={fruit}
-  onValueChange={setFruit}
-  options={[
-    { label: "Apple", value: "apple" },
-    { label: "Banana", value: "banana" },
-    { label: "Cherry", value: "cherry" },
-  ]}
-/>
-
-// clearing the selection shows the placeholder again
-<Button onClick={() => setFruit(null)}>Reset</Button>
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Select
+        aria-label="Fruit"
+        placeholder="Select a fruit"
+        options={FRUITS}
+        value={fruit}
+        onValueChange={setFruit}
+      />
+      <Typography variant="copy-sm">
+        Selected value: {fruit ?? "null"}
+      </Typography>
+      <Button size="sm" onClick={() => setFruit(null)}>
+        Reset
+      </Button>
+    </div>
+  );
+}
 ```
 
 ### Different sizes
 
 The `Select` component can be rendered at `sm`, `md`, or `lg` size, defaulting to `md`. Size affects the height, padding, and text styles of the trigger, as well as the size of its icons.
 
-<Select
-  size="sm"
-  aria-label="Country"
-  placeholder="A small select"
-  options={[
-    { label: "Canada", value: "ca" },
-    { label: "Japan", value: "jp" },
-    { label: "Norway", value: "no" },
-  ]}
-/>
-<Select
-  size="md"
-  aria-label="Country"
-  placeholder="A medium select"
-  options={[
-    { label: "Canada", value: "ca" },
-    { label: "Japan", value: "jp" },
-    { label: "Norway", value: "no" },
-  ]}
-/>
-<Select
-  size="lg"
-  aria-label="Country"
-  placeholder="A large select"
-  options={[
-    { label: "Canada", value: "ca" },
-    { label: "Japan", value: "jp" },
-    { label: "Norway", value: "no" },
-  ]}
-/>
+```tsx demo
+import { Select } from "@tenstorrent/vesper/select";
 
-```tsx
-import { Select } from "@tenstorrent/vesper/select"
-
-const options = [
+const COUNTRIES = [
   { label: "Canada", value: "ca" },
   { label: "Japan", value: "jp" },
   { label: "Norway", value: "no" },
-]
+];
 
-<Select size="sm" aria-label="Country" placeholder="A small select" options={options} />
-<Select size="md" aria-label="Country" placeholder="A medium select" options={options} />
-<Select size="lg" aria-label="Country" placeholder="A large select" options={options} />
+export default function SelectSizes() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Select
+        size="sm"
+        aria-label="Country"
+        placeholder="A small select"
+        options={COUNTRIES}
+      />
+      <Select
+        size="md"
+        aria-label="Country"
+        placeholder="A medium select"
+        options={COUNTRIES}
+      />
+      <Select
+        size="lg"
+        aria-label="Country"
+        placeholder="A large select"
+        options={COUNTRIES}
+      />
+    </div>
+  );
+}
 ```
 
 ### Rendering an icon
 
 You can render an icon at the leading edge of the trigger via the `icon` prop. The icon is decorative, and stays in place as the selection changes:
 
-<Select
-  aria-label="Region"
-  icon={<Globe />}
-  placeholder="Select a region"
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>
-
-```tsx
+```tsx demo
 import { Globe } from "@tenstorrent/vesper/icons";
 import { Select } from "@tenstorrent/vesper/select";
 
-<Select
-  aria-label="Region"
-  icon={<Globe />}
-  placeholder="Select a region"
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>;
+export default function SelectWithIcon() {
+  return (
+    <Select
+      aria-label="Region"
+      icon={<Globe />}
+      placeholder="Select a region"
+      options={[
+        { label: "United States", value: "us" },
+        { label: "Europe", value: "eu" },
+        { label: "Asia Pacific", value: "ap" },
+      ]}
+    />
+  );
+}
 ```
 
 > [!NOTE]
@@ -249,58 +249,73 @@ import { Select } from "@tenstorrent/vesper/select";
 
 Pass `disabled` to prevent all interaction with the trigger and its dropdown. A disabled `Select` still displays its current selection, but is skipped in the tab order and excluded from form data:
 
-<Select
-  disabled
-  aria-label="Region"
-  placeholder="Select a region"
-  defaultValue="eu"
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>
-
 ```tsx
 import { Select } from "@tenstorrent/vesper/select";
 
-<Select
-  disabled
-  aria-label="Region"
-  placeholder="Select a region"
-  defaultValue="eu"
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>;
+export default function DisabledSelect() {
+  return (
+    <Select
+      disabled
+      aria-label="Region"
+      placeholder="Select a region"
+      defaultValue="eu"
+      options={[
+        { label: "United States", value: "us" },
+        { label: "Europe", value: "eu" },
+        { label: "Asia Pacific", value: "ap" },
+      ]}
+    />
+  );
+}
 ```
 
 ### Usage in forms
 
-`Select` renders a hidden form control alongside its trigger, so passing a `name` includes the selected value in form submissions, and `required` participates in native form validation. Use the `form` prop to associate the field with a `<form>` rendered elsewhere on the page:
+`Select` renders a hidden form control alongside its trigger, so passing a `name` includes the selected value in form submissions, and `required` participates in native form validation. Use the `form` prop to associate the field with a `<form>` rendered elsewhere on the page.
 
-<SelectDemo kind="form" />
+```tsx demo
+import { useState } from "react";
 
-```tsx
 import { Button } from "@tenstorrent/vesper/button";
 import { Select } from "@tenstorrent/vesper/select";
+import { Typography } from "@tenstorrent/vesper/typography";
 
-<form action="/api/preferences" method="post">
-  <Select
-    required
-    name="fruit"
-    aria-label="Fruit"
-    placeholder="Select a fruit"
-    options={[
-      { label: "Apple", value: "apple" },
-      { label: "Banana", value: "banana" },
-      { label: "Cherry", value: "cherry" },
-    ]}
-  />
-  <Button type="submit">Submit</Button>
-</form>;
+const FRUITS = [
+  { label: "Apple", value: "apple" },
+  { label: "Banana", value: "banana" },
+  { label: "Cherry", value: "cherry" },
+  { label: "Mango", value: "mango" },
+  { label: "Peach", value: "peach" },
+];
+
+export default function FormSelectDemo() {
+  const [submitted, setSubmitted] = useState<string | null>(null);
+
+  return (
+    <form
+      className="gap-vesper-4 flex flex-col"
+      onSubmit={(event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        setSubmitted(String(data.get("fruit") ?? ""));
+      }}
+    >
+      <Select
+        required
+        name="fruit"
+        aria-label="Fruit"
+        placeholder="Select a fruit"
+        options={FRUITS}
+      />
+      <Button size="sm" type="submit">
+        Submit
+      </Button>
+      {submitted !== null && (
+        <Typography variant="copy-sm">Submitted value: {submitted}</Typography>
+      )}
+    </form>
+  );
+}
 ```
 
 The value submitted is the `value` of the selected option, not the `label` displayed in the trigger. The form above submits `fruit=apple` when "Apple" is selected.

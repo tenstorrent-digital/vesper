@@ -1,3 +1,5 @@
+import { Toasts } from "@tenstorrent/vesper/toast";
+
 import { Nav } from "@/components/nav/nav";
 import { Sidebar } from "@/components/nav/sidebar";
 import { Prose } from "@/components/prose";
@@ -30,6 +32,7 @@ export default function RootLayout({
             <Prose>{children}</Prose>
           </main>
         </div>
+        <Toasts />
       </body>
     </html>
   );

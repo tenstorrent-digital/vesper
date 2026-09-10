@@ -7,7 +7,32 @@ description: A form-ready, searchable select component that filters a list of op
 
 A form-ready, searchable select component that filters a list of options as the user types. It supports both controlled and uncontrolled usage.
 
-<ComboboxDemo kind="fruits" />
+```tsx demo
+import { Combobox } from "@tenstorrent/vesper/combobox";
+
+const FRUITS = [
+  { label: "Apple", value: "apple" },
+  { label: "Banana", value: "banana" },
+  { label: "Cherry", value: "cherry" },
+  { label: "Grape", value: "grape" },
+  { label: "Mango", value: "mango" },
+  { label: "Orange", value: "orange" },
+  { label: "Peach", value: "peach" },
+  { label: "Pear", value: "pear" },
+  { label: "Pineapple", value: "pineapple" },
+  { label: "Strawberry", value: "strawberry" },
+];
+
+export default function ComboboxDemo() {
+  return (
+    <Combobox
+      aria-label="Fruit"
+      placeholder="Select a fruit"
+      options={FRUITS}
+    />
+  );
+}
+```
 
 > [!IMPORTANT]
 >
@@ -57,46 +82,38 @@ Form props (`value`, `disabled`, `name`, `form`, etc.) are forwarded to the hidd
 
 The most straightforward way to render a `Combobox` is by supplying an array of `options`. Each `option` can either be a `ComboboxItem`, or a plain string. Use `ComboboxItem` objects when the value associated with each item differs from the text you want to display:
 
-<Combobox
-  aria-label="Country"
-  placeholder="Select your country"
-  options={[
-    { label: "Canada", value: "ca" },
-    { label: "Japan", value: "jp" },
-    { label: "Norway", value: "no" },
-  ]}
-/>
-
-```tsx
+```tsx demo
 import { Combobox } from "@tenstorrent/vesper/combobox";
 
-<Combobox
-  aria-label="Country"
-  placeholder="Select your country"
-  options={[
-    { label: "Canada", value: "ca" },
-    { label: "Japan", value: "jp" },
-    { label: "Norway", value: "no" },
-  ]}
-/>;
+export default function ObjectOptionsCombobox() {
+  return (
+    <Combobox
+      aria-label="Country"
+      placeholder="Select your country"
+      options={[
+        { label: "Canada", value: "ca" },
+        { label: "Japan", value: "jp" },
+        { label: "Norway", value: "no" },
+      ]}
+    />
+  );
+}
 ```
 
 When the displayed text is the same as the value of the item, a string option is a convenient shorthand:
 
-<Combobox
-  aria-label="Country"
-  placeholder="Select your country"
-  options={["Canada", "Japan", "Norway"]}
-/>
-
-```tsx
+```tsx demo
 import { Combobox } from "@tenstorrent/vesper/combobox";
 
-<Combobox
-  aria-label="Country"
-  placeholder="Select your country"
-  options={["Canada", "Japan", "Norway"]}
-/>;
+export default function StringOptionsCombobox() {
+  return (
+    <Combobox
+      aria-label="Country"
+      placeholder="Select your country"
+      options={["Canada", "Japan", "Norway"]}
+    />
+  );
+}
 ```
 
 Both shapes can be mixed in the same `options` array. Options are filtered against their `label` as the user types, and selecting an option fills the input with that option's `label` while reporting its `value`.
@@ -105,65 +122,133 @@ Both shapes can be mixed in the same `options` array. Options are filtered again
 
 The simplest way to use the `Combobox` component is to render it in an uncontrolled fashion, where the component keeps track of its own selection. Pass `defaultValue` if you need an option to be selected initially:
 
-<Combobox
-  aria-label="Country"
-  placeholder="Select your country"
-  defaultValue="Japan"
-  options={["Canada", "Japan", "Norway"]}
-/>
-
-```tsx
+```tsx demo
 import { Combobox } from "@tenstorrent/vesper/combobox";
 
-<Combobox
-  aria-label="Country"
-  placeholder="Select your country"
-  defaultValue="Japan"
-  options={["Canada", "Japan", "Norway"]}
-/>;
+export default function UncontrolledCombobox() {
+  return (
+    <Combobox
+      aria-label="Country"
+      placeholder="Select your country"
+      defaultValue="Japan"
+      options={["Canada", "Japan", "Norway"]}
+    />
+  );
+}
 ```
 
 If you need to control which option is selected, use the `value` and `onValueChange` props. `value` is the `value` of the selected option, and is `null` when nothing is selected. Clearing the selection with the clear button calls `onValueChange` with `null`:
 
-<ComboboxDemo kind="controlled" />
+```tsx demo
+import { useState } from "react";
 
-```tsx
-import { useState } from "react"
-import { Combobox } from "@tenstorrent/vesper/combobox"
+import { Button } from "@tenstorrent/vesper/button";
+import { Combobox } from "@tenstorrent/vesper/combobox";
+import { Typography } from "@tenstorrent/vesper/typography";
 
-const [fruit, setFruit] = useState<string | null>("apple")
+const FRUITS = [
+  { label: "Apple", value: "apple" },
+  { label: "Banana", value: "banana" },
+  { label: "Cherry", value: "cherry" },
+];
 
-<Combobox
-  aria-label="Fruit"
-  placeholder="Select a fruit"
-  value={fruit}
-  onValueChange={setFruit}
-  options={[
-    { label: "Apple", value: "apple" },
-    { label: "Banana", value: "banana" },
-    { label: "Cherry", value: "cherry" },
-  ]}
-/>
+export default function ControlledCombobox() {
+  const [fruit, setFruit] = useState<string | null>("apple");
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Combobox
+        aria-label="Fruit"
+        placeholder="Select a fruit"
+        options={FRUITS}
+        value={fruit}
+        onValueChange={setFruit}
+      />
+      <Typography variant="copy-sm">
+        Selected value: {fruit ?? "null"}
+      </Typography>
+      <Button size="sm" onClick={() => setFruit(null)}>
+        Reset
+      </Button>
+    </div>
+  );
+}
 ```
 
 ### Controlling the input's text
 
-The text typed into the input is tracked separately from the selected value. Use `defaultInputValue` to seed the input's text, or `inputValue` and `onInputValueChange` to control it. For example, to fetch options from a server as the user types:
+The text typed into the input is tracked separately from the selected value. Use `defaultInputValue` to seed the input's text, or `inputValue` and `onInputValueChange` to control it:
+
+```tsx demo
+import { useState } from "react";
+
+import { Combobox } from "@tenstorrent/vesper/combobox";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function ControlledInputValueCombobox() {
+  const [query, setQuery] = useState("");
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Combobox
+        aria-label="Country"
+        placeholder="Select your country"
+        options={["Canada", "Japan", "Norway"]}
+        inputValue={query}
+        onInputValueChange={setQuery}
+      />
+      <Typography variant="copy-sm">Input value: {query || "empty"}</Typography>
+    </div>
+  );
+}
+```
+
+Controlling the input's text is most useful when the options themselves depend on what the user typed, eg. when they are fetched from a server:
 
 ```tsx
-import { useState } from "react"
-import { Combobox } from "@tenstorrent/vesper/combobox"
+import { useEffect, useState } from "react";
 
-const [query, setQuery] = useState("")
-const options = useSearchResults(query)
+import { Combobox } from "@tenstorrent/vesper/combobox";
 
-<Combobox
-  aria-label="Repositories"
-  placeholder="Search repositories"
-  options={options}
-  inputValue={query}
-  onInputValueChange={setQuery}
-/>
+export default function AsyncCombobox() {
+  const [query, setQuery] = useState("");
+  const [options, setOptions] = useState<string[]>([]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    fetch(`/api/repositories?q=${encodeURIComponent(query)}`, {
+      signal: controller.signal,
+    })
+      .then((response) => response.json())
+      .then((repositories: string[]) => setOptions(repositories))
+      .catch(() => {});
+
+    return () => controller.abort();
+  }, [query]);
+
+  return (
+    <Combobox
+      aria-label="Repositories"
+      placeholder="Search repositories"
+      options={options}
+      inputValue={query}
+      onInputValueChange={setQuery}
+    />
+  );
+}
 ```
 
 > [!NOTE]
@@ -174,48 +259,41 @@ const options = useSearchResults(query)
 
 The `Combobox` component can be rendered at `sm`, `md`, or `lg` size, defaulting to `md`. Size affects the height, padding, and text styles of the input, as well as the size of its icons.
 
-<Combobox
-  aria-label="Country"
-  size="sm"
-  placeholder="A small combobox"
-  options={["Canada", "Japan", "Norway"]}
-/>
-<Combobox
-  aria-label="Country"
-  size="md"
-  placeholder="A medium combobox"
-  options={["Canada", "Japan", "Norway"]}
-/>
-<Combobox
-  aria-label="Country"
-  size="lg"
-  placeholder="A large combobox"
-  options={["Canada", "Japan", "Norway"]}
-/>
+```tsx demo
+import { Combobox } from "@tenstorrent/vesper/combobox";
 
-```tsx
-import { Combobox } from "@tenstorrent/vesper/combobox"
+const COUNTRIES = ["Canada", "Japan", "Norway"];
 
-const options = ["Canada", "Japan", "Norway"]
-
-<Combobox
-  aria-label="Country"
-  size="sm"
-  placeholder="A small combobox"
-  options={options}
-/>
-<Combobox
-  aria-label="Country"
-  size="md"
-  placeholder="A medium combobox"
-  options={options}
-/>
-<Combobox
-  aria-label="Country"
-  size="lg"
-  placeholder="A large combobox"
-  options={options}
-/>
+export default function ComboboxSizes() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Combobox
+        size="sm"
+        aria-label="Country"
+        placeholder="A small combobox"
+        options={COUNTRIES}
+      />
+      <Combobox
+        size="md"
+        aria-label="Country"
+        placeholder="A medium combobox"
+        options={COUNTRIES}
+      />
+      <Combobox
+        size="lg"
+        aria-label="Country"
+        placeholder="A large combobox"
+        options={COUNTRIES}
+      />
+    </div>
+  );
+}
 ```
 
 ### Variants
@@ -226,244 +304,287 @@ The `Combobox` component can be rendered in one of four variants: `default`, `wa
 
 A `Combobox` renders with the `default` variant when no `variant` prop is specified.
 
-<Combobox
-  aria-label="Country"
-  label="Country"
-  placeholder="Select your country"
-  options={["Canada", "Japan", "Norway"]}
-/>
-
-```tsx
+```tsx demo
 import { Combobox } from "@tenstorrent/vesper/combobox";
 
-<Combobox
-  aria-label="Country"
-  label="Country"
-  placeholder="Select your country"
-  options={["Canada", "Japan", "Norway"]}
-/>;
+export default function DefaultCombobox() {
+  return (
+    <Combobox
+      aria-label="Country"
+      placeholder="Select your country"
+      options={["Canada", "Japan", "Norway"]}
+    />
+  );
+}
 ```
 
 #### Warning variant
 
 Use the `warning` variant to flag a selection that needs attention, but that doesn't prevent the form from being submitted:
 
-<Combobox
-  aria-label="Region"
-  variant="warning"
-  defaultValue="ap"
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>
-
-```tsx
+```tsx demo
 import { Combobox } from "@tenstorrent/vesper/combobox";
 
-<Combobox
-  aria-label="Region"
-  variant="warning"
-  defaultValue="ap"
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>;
+export default function WarningCombobox() {
+  return (
+    <Combobox
+      aria-label="Region"
+      variant="warning"
+      defaultValue="ap"
+      options={[
+        { label: "United States", value: "us" },
+        { label: "Europe", value: "eu" },
+        { label: "Asia Pacific", value: "ap" },
+      ]}
+    />
+  );
+}
 ```
 
 #### Success variant
 
 The `success` variant is best suited for confirming that a selection has been validated as expected:
 
-<Combobox
-  aria-label="Region"
-  variant="success"
-  defaultValue="eu"
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>
-
-```tsx
+```tsx demo
 import { Combobox } from "@tenstorrent/vesper/combobox";
 
-<Combobox
-  aria-label="Region"
-  variant="success"
-  defaultValue="eu"
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>;
+export default function SuccessCombobox() {
+  return (
+    <Combobox
+      aria-label="Region"
+      variant="success"
+      defaultValue="eu"
+      options={[
+        { label: "United States", value: "us" },
+        { label: "Europe", value: "eu" },
+        { label: "Asia Pacific", value: "ap" },
+      ]}
+    />
+  );
+}
 ```
 
 #### Error variant
 
 The `error` variant highlights a missing or invalid selection that must be corrected before the form can be submitted:
 
-<Combobox
-  required
-  aria-label="Country"
-  variant="error"
-  placeholder="Select your country"
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>
-
-```tsx
+```tsx demo
 import { Combobox } from "@tenstorrent/vesper/combobox";
 
-<Combobox
-  required
-  aria-label="Country"
-  variant="error"
-  placeholder="Select your country"
-  options={[
-    { label: "United States", value: "us" },
-    { label: "Europe", value: "eu" },
-    { label: "Asia Pacific", value: "ap" },
-  ]}
-/>;
+export default function ErrorCombobox() {
+  return (
+    <Combobox
+      required
+      aria-label="Region"
+      variant="error"
+      placeholder="Select a region"
+      options={[
+        { label: "United States", value: "us" },
+        { label: "Europe", value: "eu" },
+        { label: "Asia Pacific", value: "ap" },
+      ]}
+    />
+  );
+}
 ```
 
 ### Customising the empty state
 
 When no option matches the text in the input, the dropdown renders a short empty state message. Use `emptyStateText` to tailor it to the data being searched:
 
-<Combobox
-  aria-label="Country"
-  placeholder="Select your country"
-  options={["Canada", "Japan", "Norway"]}
-  emptyStateText="No matching countries"
-/>
-
-```tsx
+```tsx demo
 import { Combobox } from "@tenstorrent/vesper/combobox";
 
-<Combobox
-  aria-label="Country"
-  placeholder="Select your country"
-  options={["Canada", "Japan", "Norway"]}
-  emptyStateText="No matching countries"
-/>;
+export default function ComboboxWithCustomEmptyState() {
+  return (
+    <Combobox
+      aria-label="Country"
+      placeholder="Select your country"
+      options={["Canada", "Japan", "Norway"]}
+      emptyStateText="No matching countries"
+    />
+  );
+}
 ```
 
 ### Disabled and read-only
 
 Pass `disabled` to prevent all interaction with the input and its dropdown:
 
-<Combobox
-  disabled
-  aria-label="Country"
-  defaultValue="Japan"
-  options={["Canada", "Japan", "Norway"]}
-/>
-
-```tsx
+```tsx demo
 import { Combobox } from "@tenstorrent/vesper/combobox";
 
-<Combobox
-  disabled
-  aria-label="Country"
-  defaultValue="Japan"
-  options={["Canada", "Japan", "Norway"]}
-/>;
+export default function DisabledCombobox() {
+  return (
+    <Combobox
+      disabled
+      aria-label="Country"
+      defaultValue="Japan"
+      options={["Canada", "Japan", "Norway"]}
+    />
+  );
+}
 ```
 
 Pass `readOnly` when the value should be visible and submitted with the form, but not editable:
 
-<Combobox
-  readOnly
-  aria-label="Country"
-  defaultValue="Japan"
-  options={["Canada", "Japan", "Norway"]}
-/>
-
-```tsx
+```tsx demo
 import { Combobox } from "@tenstorrent/vesper/combobox";
 
-<Combobox
-  readOnly
-  aria-label="Country"
-  defaultValue="Japan"
-  options={["Canada", "Japan", "Norway"]}
-/>;
+export default function ReadOnlyCombobox() {
+  return (
+    <Combobox
+      readOnly
+      aria-label="Country"
+      defaultValue="Japan"
+      options={["Canada", "Japan", "Norway"]}
+    />
+  );
+}
 ```
 
 ### Controlling the dropdown
 
 The dropdown opens when the input or the caret is clicked, and as the user types. You can open it initially with `defaultOpen`, or control it entirely with `open` and `onOpenChange`:
 
-```tsx
-import { useState } from "react"
-import { Combobox } from "@tenstorrent/vesper/combobox"
+```tsx demo
+import { useState } from "react";
 
-const [open, setOpen] = useState(false)
+import { Button } from "@tenstorrent/vesper/button";
+import { Combobox } from "@tenstorrent/vesper/combobox";
 
-<Combobox
-  aria-label="Country"
-  options={["Canada", "Japan", "Norway"]}
-  open={open}
-  onOpenChange={setOpen}
-/>
+export default function ControlledDropdownCombobox() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Combobox
+        aria-label="Country"
+        placeholder="Select your country"
+        options={["Canada", "Japan", "Norway"]}
+        open={open}
+        onOpenChange={setOpen}
+      />
+      <Button size="sm" onClick={() => setOpen((isOpen) => !isOpen)}>
+        {open ? "Close" : "Open"} dropdown
+      </Button>
+    </div>
+  );
+}
 ```
 
 ### Usage in forms
 
-`Combobox` renders a form control, so passing a `name` includes the selected value in form submissions, and `required` participates in native form validation. Use the `form` prop to associate the field with a `<form>` rendered elsewhere on the page:
+`Combobox` renders a form control, so passing a `name` includes the selected value in form submissions, and `required` participates in native form validation:
 
-<ComboboxDemo kind="form" />
+```tsx demo
+import { useState } from "react";
+
+import { Button } from "@tenstorrent/vesper/button";
+import { Combobox } from "@tenstorrent/vesper/combobox";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+const FRUITS = [
+  { label: "Apple", value: "apple" },
+  { label: "Banana", value: "banana" },
+  { label: "Cherry", value: "cherry" },
+];
+
+export default function FormComboboxDemo() {
+  const [submitted, setSubmitted] = useState<string | null>(null);
+
+  return (
+    <form
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+      onSubmit={(event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        setSubmitted(String(data.get("fruit") ?? ""));
+      }}
+    >
+      <Combobox
+        required
+        name="fruit"
+        aria-label="Fruit"
+        placeholder="Select a fruit"
+        options={FRUITS}
+      />
+      <Button size="sm" type="submit">
+        Submit
+      </Button>
+      {submitted !== null && (
+        <Typography variant="copy-sm">Submitted value: {submitted}</Typography>
+      )}
+    </form>
+  );
+}
+```
+
+The value submitted is the `value` of the selected option, not the text displayed in the input. The form above submits `fruit=apple` when "Apple" is selected.
+
+Use the `form` prop to associate the field with a `<form>` rendered elsewhere on the page:
 
 ```tsx
 import { Button } from "@tenstorrent/vesper/button";
 import { Combobox } from "@tenstorrent/vesper/combobox";
 
-<form action="/api/preferences" method="post">
-  <Combobox
-    required
-    aria-label="Fruit"
-    name="fruit"
-    placeholder="Select a fruit"
-    options={[
-      { label: "Apple", value: "apple" },
-      { label: "Banana", value: "banana" },
-      { label: "Cherry", value: "cherry" },
-    ]}
-  />
-  <Button type="submit">Submit</Button>
-</form>;
+export default function ComboboxFormPropDemo() {
+  return (
+    <div>
+      <form id="preferences" action="/api/preferences" method="post">
+        <Button type="submit">Save preferences</Button>
+      </form>
+      {/* rendered outside of the form, but submitted with it */}
+      <Combobox
+        required
+        form="preferences"
+        name="fruit"
+        aria-label="Fruit"
+        placeholder="Select a fruit"
+        options={[
+          { label: "Apple", value: "apple" },
+          { label: "Banana", value: "banana" },
+          { label: "Cherry", value: "cherry" },
+        ]}
+      />
+    </div>
+  );
+}
 ```
-
-The value submitted is the `value` of the selected option, not the text displayed in the input. The form above submits `fruit=apple` when "Apple" is selected.
 
 ### Accessing the underlying element
 
 Use the `ref` prop when you need direct access to the underlying `<input>` element, eg. to focus it when a page loads:
 
 ```tsx
-import { useEffect, useRef } from "react"
-import { Combobox } from "@tenstorrent/vesper/combobox"
+import { useEffect, useRef } from "react";
 
-const ref = useRef<HTMLInputElement>(null)
+import { Combobox } from "@tenstorrent/vesper/combobox";
 
-useEffect(() => {
-  ref.current?.focus()
-}, [])
+export default function ComboboxRefDemo() {
+  const ref = useRef<HTMLInputElement>(null);
 
-<Combobox
-  aria-label="Country"
-  placeholder="Select your country"
-  options={["Canada", "Japan", "Norway"]}
-  ref={ref}
-/>
+  useEffect(() => {
+    ref.current?.focus();
+  }, []);
+
+  return (
+    <Combobox
+      ref={ref}
+      aria-label="Country"
+      placeholder="Select your country"
+      options={["Canada", "Japan", "Norway"]}
+    />
+  );
+}
 ```

@@ -7,7 +7,23 @@ description: A toggle button that switches between "Show more" and "Show less" l
 
 A toggle button that switches between "Show more" and "Show less" labels with a caret icon. Used to expand and collapse content sections.
 
-<ShowMoreDemo type="without-content" />
+```tsx demo
+import { useState } from "react";
+
+import { ShowMore } from "@tenstorrent/vesper/show-more";
+
+export default function ShowMoreDemo() {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <ShowMore
+      style={{ width: "100%" }}
+      expanded={expanded}
+      onClick={() => setExpanded(!expanded)}
+    />
+  );
+}
+```
 
 ## Options
 
@@ -23,29 +39,32 @@ A toggle button that switches between "Show more" and "Show less" labels with a 
 
 `ShowMore` is fully controlled: pass the current `expanded` state to set the button's label and caret direction, and use `onClick` to toggle the content you're revealing:
 
-<ShowMoreDemo type="with-content" />
-
-```tsx
+```tsx demo
 import { useState } from "react";
+
 import { ShowMore } from "@tenstorrent/vesper/show-more";
 import { Typography } from "@tenstorrent/vesper/typography";
 
-const [expanded, setExpanded] = useState(false);
+export default function ShowMoreWithContent() {
+  const [expanded, setExpanded] = useState(false);
 
-<div>
-  {expanded && <Typography>Additional content revealed here.</Typography>}
-  <ShowMore expanded={expanded} onClick={() => setExpanded(!expanded)} />
-</div>;
+  return (
+    <div style={{ width: "100%" }}>
+      {expanded && <Typography>Additional content revealed here.</Typography>}
+      <ShowMore expanded={expanded} onClick={() => setExpanded(!expanded)} />
+    </div>
+  );
+}
 ```
 
 ### Disabled
 
 Passing `disabled` prevents interaction:
 
-<ShowMore disabled />
-
-```tsx
+```tsx demo
 import { ShowMore } from "@tenstorrent/vesper/show-more";
 
-<ShowMore disabled />;
+export default function DisabledShowMore() {
+  return <ShowMore disabled />;
+}
 ```

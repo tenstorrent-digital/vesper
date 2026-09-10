@@ -7,7 +7,13 @@ description: A horizontal progress indicator that visualizes completion as a per
 
 A horizontal progress indicator that visualizes completion as a percentage. Supports a smooth default mode and a stepped mode that snaps to discrete intervals.
 
-<ProgressBar value={65} />
+```tsx demo
+import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
+
+export default function ProgressBarDemo() {
+  return <ProgressBar value={65} />;
+}
+```
 
 ## Options
 
@@ -22,83 +28,125 @@ A horizontal progress indicator that visualizes completion as a percentage. Supp
 
 All other props are forwarded to the wrapping `<div>` element.
 
+> [!NOTE]
+>
+> A `ProgressBar` is announced with an `aria-label` of `"Progress"` by default. Pass your own `aria-label` when a page renders more than one, so that each is announced with what it is tracking.
+
 ## Examples
 
 ### Basic usage
 
 The most straightforward way to render a `ProgressBar` is by giving it a numeric `value` prop from `0` to `100`:
 
-<ProgressBar value={50} />
-
-```tsx
+```tsx demo
 import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
 
-<ProgressBar value={50} />;
+export default function BasicProgressBar() {
+  return <ProgressBar value={50} />;
+}
 ```
 
 ### Different sizes
 
 A `ProgressBar` can be rendered in one of three sizes, `"sm"`, `"md"`, or `"lg"`. The default size is `"md"`:
 
-<ProgressBar value={41} size="sm" />
-<ProgressBar value={17} size="md" />
-<ProgressBar value={88} size="lg" />
-
-```tsx
+```tsx demo
 import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
 
-<ProgressBar value={41} size="sm" />
-<ProgressBar value={17} size="md" />
-<ProgressBar value={88} size="lg" />
+export default function ProgressBarSizes() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <ProgressBar aria-label="A small progress bar" value={41} size="sm" />
+      <ProgressBar aria-label="A medium progress bar" value={17} size="md" />
+      <ProgressBar aria-label="A large progress bar" value={88} size="lg" />
+    </div>
+  );
+}
 ```
 
 ### Rendering step intervals
 
 A `ProgressBar` can be rendered in one of two variants, `"default"` or `"steps"`. The default variant is `"default"`, which renders a `ProgressBar` with no step intervals. To render a `ProgressBar` with step intervals, use the `"steps"` variant:
 
-<ProgressBar value={30} variant="steps" />
-
-```tsx
+```tsx demo
 import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
 
-<ProgressBar value={30} variant="steps" />;
+export default function SteppedProgressBar() {
+  return <ProgressBar value={30} variant="steps" />;
+}
 ```
 
 A `"steps"` variant `ProgressBar` will visually snap the progress indicator to the nearest interval, using `Math.round` by default. To adjust how step-rounding is calculated, you can pass a custom rounding function to the component via the `stepRoundingStrategy` prop:
 
-<ProgressBar value={73} variant="steps" stepRoundingStrategy={Math.ceil} />
-<ProgressBar value={73} variant="steps" stepRoundingStrategy={Math.floor} />
-
-```tsx
+```tsx demo
 import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
 
-// rounds with `Math.ceil` instead of `Math.round`
-<ProgressBar value={73} variant="steps" stepRoundingStrategy={Math.ceil} />
-// rounds with `Math.floor` instead of `Math.round`
-<ProgressBar value={73} variant="steps" stepRoundingStrategy={Math.floor} />
+export default function StepRoundingStrategies() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      {/* rounds with `Math.ceil` instead of `Math.round` */}
+      <ProgressBar
+        aria-label="Progress rounded up"
+        value={73}
+        variant="steps"
+        stepRoundingStrategy={Math.ceil}
+      />
+      {/* rounds with `Math.floor` instead of `Math.round` */}
+      <ProgressBar
+        aria-label="Progress rounded down"
+        value={73}
+        variant="steps"
+        stepRoundingStrategy={Math.floor}
+      />
+    </div>
+  );
+}
 ```
 
 By default, when rendering a stepped `ProgressBar`, it will render with `10` steps. To modify the number of steps rendered, pass any positive integer value to the `steps` prop:
 
-<ProgressBar value={27} variant="steps" steps={5} />
+```tsx demo
+import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
+
+export default function FiveStepProgressBar() {
+  return <ProgressBar value={27} variant="steps" steps={5} />;
+}
+```
 
 ### Animating progress
 
 To animate a `ProgressBar` as its `value` changes, you can pass `animated={true}` or just `animated` as a prop:
 
-<ProgressBarDemo kind="animated" />
-
-```tsx
+```tsx demo
 import { useState } from "react";
+
 import { Button } from "@tenstorrent/vesper/button";
 import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
 import { Typography } from "@tenstorrent/vesper/typography";
 
-function AnimatedProgressBars() {
+export default function AnimatedProgressBars() {
   const [value, setValue] = useState(66);
 
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
       <ProgressBar aria-label="Default progress bar" value={value} animated />
       <ProgressBar
         aria-label="Stepped progress bar"
@@ -106,10 +154,13 @@ function AnimatedProgressBars() {
         variant="steps"
         animated
       />
-      <Button onClick={() => setValue(Math.round(Math.random() * 100))}>
+      <Button
+        size="sm"
+        onClick={() => setValue(Math.round(Math.random() * 100))}
+      >
         Change value
       </Button>
-      <Typography>Current value: {value}</Typography>
+      <Typography variant="copy-sm">Current value: {value}</Typography>
     </div>
   );
 }

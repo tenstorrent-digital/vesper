@@ -7,12 +7,26 @@ description: A compact, interactive element used for filtering, tagging, or togg
 
 A compact, interactive element used for filtering, tagging, or toggling selections. Supports two sizes and color variants, selected and disabled states, optional leading and trailing icons, and polymorphic rendering.
 
-<div className="flex flex-wrap items-center gap-0.5">
-  <Chip>All</Chip>
-  <Chip selected>Models</Chip>
-  <Chip>Datasets</Chip>
-  <Chip iconRight={<CaretDown />}>More</Chip>
-</div>
+```tsx demo
+import { Chip } from "@tenstorrent/vesper/chip";
+import { CaretDown } from "@tenstorrent/vesper/icons";
+
+export default function ChipDemo() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Chip>All</Chip>
+      <Chip selected>Models</Chip>
+      <Chip>Datasets</Chip>
+      <Chip iconRight={<CaretDown />}>More</Chip>
+    </div>
+  );
+}
+```
 
 > A `Chip` represents a toggleable selection, which sets it apart from the components it resembles: use a [Tag](./tag.mdx) to categorize content, and a [Badge](./badge.mdx) to describe the content next to it.
 
@@ -38,74 +52,92 @@ You may also pass additional props to the underlying element. For example, you m
 
 By default, a `Chip` renders as a `button` using the `default` variant at `md` size:
 
-<Chip>Label</Chip>
-
-```tsx
+```tsx demo
 import { Chip } from "@tenstorrent/vesper/chip";
 
-<Chip>Label</Chip>;
+export default function BasicChip() {
+  return <Chip>Label</Chip>;
+}
 ```
 
 ### Sizes
 
 A `Chip` can be rendered in one of two sizes: `sm` and `md`:
 
-<div className="flex flex-wrap items-center gap-0.5">
-  <Chip size="sm">Small</Chip>
-  <Chip size="md">Medium</Chip>
-</div>
-
-```tsx
+```tsx demo
 import { Chip } from "@tenstorrent/vesper/chip";
 
-<Chip size="sm">Small</Chip>
-<Chip size="md">Medium</Chip>
+export default function ChipSizes() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Chip size="sm">Small</Chip>
+      <Chip size="md">Medium</Chip>
+    </div>
+  );
+}
 ```
 
 ### Variants
 
 A `Chip` can be rendered in one of two variants. The `default` variant sits on your app's regular surfaces, while the `contrast` variant inverts the chip's colors so it stands out against a subdued or tinted background:
 
-<div className="flex flex-wrap items-center gap-0.5">
-  <Chip>Default</Chip>
-  <Chip variant="contrast">Contrast</Chip>
-</div>
-
-```tsx
+```tsx demo
 import { Chip } from "@tenstorrent/vesper/chip";
 
-<Chip>Default</Chip>
-<Chip variant="contrast">Contrast</Chip>
+export default function ChipVariants() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Chip>Default</Chip>
+      <Chip variant="contrast">Contrast</Chip>
+    </div>
+  );
+}
 ```
 
 ### Selected state
 
 Passing `selected` renders a chip in its selected state, which inverts the chip's colors. Both variants support this state:
 
-<div className="flex flex-wrap items-center gap-0.5">
-  <Chip selected>Default</Chip>
-  <Chip variant="contrast" selected>
-    Contrast
-  </Chip>
-</div>
-
-```tsx
+```tsx demo
 import { Chip } from "@tenstorrent/vesper/chip";
 
-<Chip selected>Default</Chip>
-<Chip variant="contrast" selected>Contrast</Chip>
+export default function SelectedChips() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Chip selected>Default</Chip>
+      <Chip variant="contrast" selected>
+        Contrast
+      </Chip>
+    </div>
+  );
+}
 ```
 
 ### Disabled
 
 Passing `disabled` prevents interaction and renders the chip with a muted appearance:
 
-<Chip disabled>Disabled</Chip>
-
-```tsx
+```tsx demo
 import { Chip } from "@tenstorrent/vesper/chip";
 
-<Chip disabled>Disabled</Chip>;
+export default function DisabledChip() {
+  return <Chip disabled>Disabled</Chip>;
+}
 ```
 
 When a `Chip` renders as a `button`, `disabled` maps to the native `disabled` attribute. When it renders as any other element, it is marked with `aria-disabled`, removed from the tab order, and its pointer, keyboard, and focus events are suppressed.
@@ -114,23 +146,26 @@ When a `Chip` renders as a `button`, `disabled` maps to the native `disabled` at
 
 The `iconLeft` and `iconRight` props render an icon before or after the chip's content. A leading icon is useful for hinting at what the chip filters, while a trailing icon typically signals that more options are available:
 
-<div className="flex flex-wrap items-center gap-0.5">
-  <Chip iconLeft={<Search />}>Search</Chip>
-  <Chip iconRight={<CaretDown />}>Sort by</Chip>
-  <Chip iconLeft={<Globe />} iconRight={<Close />} selected>
-    Region
-  </Chip>
-</div>
-
-```tsx
+```tsx demo
 import { Chip } from "@tenstorrent/vesper/chip";
 import { CaretDown, Close, Globe, Search } from "@tenstorrent/vesper/icons";
 
-<Chip iconLeft={<Search />}>Search</Chip>
-<Chip iconRight={<CaretDown />}>Sort by</Chip>
-<Chip iconLeft={<Globe />} iconRight={<Close />} selected>
-  Region
-</Chip>
+export default function ChipsWithIcons() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Chip iconLeft={<Search />}>Search</Chip>
+      <Chip iconRight={<CaretDown />}>Sort by</Chip>
+      <Chip iconLeft={<Globe />} iconRight={<Close />} selected>
+        Region
+      </Chip>
+    </div>
+  );
+}
 ```
 
 > Icons are part of the chip's click target rather than separate controls, so clicking one fires the chip's `onChange` handler like any other part of the chip. If you need a dedicated action (dismissing a filter, for example), render a separate control next to the chip instead.
@@ -139,48 +174,39 @@ import { CaretDown, Close, Globe, Search } from "@tenstorrent/vesper/icons";
 
 A `Chip` does not manage its own selected state. Clicking one fires `onChange` with the next selected state, which you store and pass back in via the `selected` prop:
 
-<ChipDemo>Toggle me</ChipDemo>
-
-```tsx
+```tsx demo
 import { useState } from "react";
+
 import { Chip } from "@tenstorrent/vesper/chip";
 
-const [selected, setSelected] = useState(false);
+export default function ControlledChip() {
+  const [selected, setSelected] = useState(false);
 
-<Chip selected={selected} onChange={setSelected}>
-  Toggle me
-</Chip>;
+  return (
+    <Chip selected={selected} onChange={setSelected}>
+      Toggle me
+    </Chip>
+  );
+}
 ```
 
-Since chips are clickable, they also accept an `onClick` handler. Both `onChange` and `onClick` fire when a chip is clicked:
-
-```tsx
-import { Chip } from "@tenstorrent/vesper/chip";
-
-<Chip
-  selected={selected}
-  onChange={setSelected}
-  onClick={() => track("filter_clicked")}
->
-  Toggle me
-</Chip>;
-```
+Since chips are clickable, they also accept an `onClick` handler. Both `onChange` and `onClick` fire when a chip is clicked.
 
 ### Polymorphic usage
 
 You can use the `as` prop to specify what underlying element to render. In this case, we are passing `as="a"` to render the `Chip` as an anchor link, which is helpful when a chip navigates to a filtered view rather than toggling state in place:
 
-<Chip as="a" href="#polymorphic-usage" iconLeft={<Globe />}>
-  Browse all regions
-</Chip>
-
-```tsx
+```tsx demo
 import { Chip } from "@tenstorrent/vesper/chip";
 import { Globe } from "@tenstorrent/vesper/icons";
 
-<Chip as="a" href="/regions" iconLeft={<Globe />}>
-  Browse all regions
-</Chip>;
+export default function ChipAsLink() {
+  return (
+    <Chip as="a" href="#polymorphic-usage" iconLeft={<Globe />}>
+      Browse all regions
+    </Chip>
+  );
+}
 ```
 
 > `aria-pressed` is only applied when a `Chip` renders as a `button`. When rendering as another element, add the semantics that match its behaviour — for example `aria-current="page"` on a link that points at the currently active filter.

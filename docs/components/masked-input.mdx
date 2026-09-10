@@ -7,7 +7,19 @@ description: A superset of the `TextInput` component that supports text masking.
 
 `MaskedInput` is a thin wrapper around [the `TextInput` component](./text-input.mdx) that enables text masking via [maskito](https://maskito.dev). Text masks restrict and format what can be typed into the field automatically as the user types.
 
-<MaskedInputDemo kind="product-license" />
+```tsx demo
+import { MaskedInput } from "@tenstorrent/vesper/masked-input";
+
+export default function MaskedInputDemo() {
+  return (
+    <MaskedInput
+      aria-label="Product license"
+      placeholder="Enter a product license, ex: jDf8-Kl32-CmX0-iU6v"
+      mask={{ format: "____-____-____-____", replace: /[a-zA-Z\d]/ }}
+    />
+  );
+}
+```
 
 ## Options
 
@@ -50,20 +62,18 @@ Every character in `format` that is not a placeholder is treated as a literal an
 
 A plain string mask is the simplest way to enable text masking for a `TextInput`. A plain string mask might look something like `"____-____-____"`. Underscores (`_`) in plain string masks are treated as the masked values, and accept any character:
 
-<MaskedInput
-  aria-label="Masked text"
-  placeholder="Every other character will be masked"
-  mask="_-_-_-_-_-_-_-_-_-_-_-_"
-/>
-
-```tsx
+```tsx demo
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 
-<MaskedInput
-  aria-label="Masked text"
-  placeholder="Every other character will be masked"
-  mask="_-_-_-_-_-_-_-_-_-_-_-_"
-/>;
+export default function StringMaskedInput() {
+  return (
+    <MaskedInput
+      aria-label="Masked text"
+      placeholder="Every other character will be masked"
+      mask="_-_-_-_-_-_-_-_-_-_-_-_"
+    />
+  );
+}
 ```
 
 ### `{ format, replace }` masks
@@ -74,35 +84,39 @@ If you need more control over what characters to treat as maskable, you can pass
 
 If you wanted to modify which character gets masked, you can pass a single character string to override the default behavior of masking underscores. In this example, we mask the `"x"` character instead of an underscore:
 
-<MaskedInputDemo kind="replace-string" />
-
-```tsx
+```tsx demo
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 
-<MaskedInput
-  aria-label="Masked input"
-  placeholder="Masked input, ex. 1a2-b3c-4d5"
-  mask={{
-    format: "xxx-xxx-xxx",
-    replace: "x",
-  }}
-/>;
+export default function ReplaceStringMaskedInput() {
+  return (
+    <MaskedInput
+      aria-label="Masked input"
+      placeholder="Masked input, ex. 1a2-b3c-4d5"
+      mask={{
+        format: "xxx-xxx-xxx",
+        replace: "x",
+      }}
+    />
+  );
+}
 ```
 
 #### `replace: RegExp`
 
 If you wanted to change the kind of character that can be accepted as a masked value, you would set the `replace` attribute to a regular expression. In this example, we use the regular expression `/\d/` to ensure that only digits may replace the masked value:
 
-<MaskedInputDemo kind="replace-regex" />
-
-```tsx
+```tsx demo
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 
-<MaskedInput
-  aria-label="Phone number"
-  placeholder="ex: +1 (222) 333-4444"
-  mask={{ format: "+1 (___) ___-____", replace: /\d/ }}
-/>;
+export default function ReplaceRegExpMaskedInput() {
+  return (
+    <MaskedInput
+      aria-label="Phone number"
+      placeholder="Enter a phone number, ex: +1 (222) 333-4444"
+      mask={{ format: "+1 (___) ___-____", replace: /\d/ }}
+    />
+  );
+}
 ```
 
 #### `replace: Record<string, RegExp>`
@@ -111,19 +125,21 @@ If you want to modify both the masked character and the accepted values of that 
 
 For example, Canadian postal codes follow the format `ABA BAB`, where `A` is a letter, and `B` is a number. You could write a masked input following this format like so:
 
-<MaskedInputDemo kind="replace-record" />
-
-```tsx
+```tsx demo
 import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 
-<MaskedInput
-  aria-label="Postal code"
-  placeholder="Enter your postal code, ex: A0A 1B1"
-  mask={{
-    format: "ABA BAB",
-    replace: { A: /[a-zA-Z]/, B: /\d/ },
-  }}
-/>;
+export default function PostalCodeInput() {
+  return (
+    <MaskedInput
+      aria-label="Postal code"
+      placeholder="Enter your postal code, ex: A0A 1B1"
+      mask={{
+        format: "ABA BAB",
+        replace: { A: /[a-zA-Z]/, B: /\d/ },
+      }}
+    />
+  );
+}
 ```
 
 ### `MaskitoOptions` masks
@@ -140,12 +156,11 @@ For more information about `Maskito` and the kinds of things you can do with it,
 
 A good use-case for using a `MaskitoOptions` object is when you need to build a phone number input that supports text masking for international phone numbers. Maskito has a [phone input addon](https://maskito.dev/addons/phone) that you can use to build out this kind of input.
 
-<MaskedInputDemo kind="intl-phone-number" />
-
-```tsx
-import { MaskedInput } from "@tenstorrent/vesper/masked-input";
+```tsx demo
 import { maskitoPhone } from "@maskito/phone";
 import metadata from "libphonenumber-js/min/metadata";
+
+import { MaskedInput } from "@tenstorrent/vesper/masked-input";
 
 const mask = maskitoPhone({
   metadata,
@@ -153,7 +168,7 @@ const mask = maskitoPhone({
   strict: true,
 });
 
-function PhoneNumberInput() {
+export default function PhoneNumberInput() {
   return (
     <MaskedInput
       aria-label="Phone number"
@@ -172,6 +187,80 @@ A mask normally only formats a value as it is edited, so a value that is already
 
 By default, an initial `value` or `defaultValue` is left exactly as it was provided, since formatting it on mount would change the value of the field without the user doing anything. Pass `formatOnMount` when the initial value is known to be unformatted, eg. a raw value read from an API.
 
+Both inputs below are given the same unformatted `defaultValue`, but only the second one formats it to match its mask on mount:
+
+```tsx demo
+import { MaskedInput } from "@tenstorrent/vesper/masked-input";
+
+export default function FormatOnMountMaskedInput() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <MaskedInput
+        aria-label="Product license (unformatted)"
+        mask="____-____-____-____"
+        defaultValue="jDf8Kl32CmX0iU6v"
+      />
+      <MaskedInput
+        formatOnMount
+        aria-label="Product license (formatted on mount)"
+        mask="____-____-____-____"
+        defaultValue="jDf8Kl32CmX0iU6v"
+      />
+    </div>
+  );
+}
+```
+
 #### `formatOnMaskChange`
 
 Setting `formatOnMaskChange` to `true` reformats the input's value when the `mask` prop changes. This keeps the value consistent with the mask that is currently applied.
+
+Type a phone number into the input below, then switch the country to see its value reformatted against the newly applied mask:
+
+```tsx demo
+import { useState } from "react";
+
+import { MaskedInput } from "@tenstorrent/vesper/masked-input";
+import { Toggle } from "@tenstorrent/vesper/toggle";
+
+const MASKS = {
+  ca: { format: "+1 (___) ___-____", replace: /\d/ },
+  uk: { format: "+44 ____ ______", replace: /\d/ },
+};
+
+export default function FormatOnMaskChangeMaskedInput() {
+  const [country, setCountry] = useState<keyof typeof MASKS>("ca");
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Toggle
+        aria-label="Country"
+        value={country}
+        onValueChange={(value) => setCountry(value as keyof typeof MASKS)}
+        options={[
+          { value: "ca", text: "Canada" },
+          { value: "uk", text: "United Kingdom" },
+        ]}
+      />
+      <MaskedInput
+        formatOnMaskChange
+        aria-label="Phone number"
+        placeholder="Enter your phone number"
+        mask={MASKS[country]}
+      />
+    </div>
+  );
+}
+```
