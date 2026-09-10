@@ -106,6 +106,9 @@ const withMDX = createMDX({
        * renders the component a `tsx demo` code block exports right above the
        * code block itself
        *
+       * the modules it imports are written before next runs, by
+       * `scripts/generate-demos.mts` (see `turbo.jsonc`)
+       *
        * runs last so it only ever sees the code blocks the plugins above are
        * done with
        */

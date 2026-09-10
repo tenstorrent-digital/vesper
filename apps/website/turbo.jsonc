@@ -2,22 +2,54 @@
   "$schema": "https://turborepo.dev/schema.json",
   "extends": ["//"],
   "tasks": {
+    /**
+     * writes `generated/**`: the demo modules extracted from the `tsx demo`
+     * code blocks in `docs/**`
+     *
+     * every task that compiles or type checks a document depends on it,
+     * because the modules `src/lib/mdx/remark-tsx-demos.mts` imports into a
+     * document have to exist before next (or `tsc`) reads it
+     */
+    "generate:demos": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/docs/**" // monorepo docs
+      ],
+      /**
+       * deliberately uncached: the task also *deletes* the demos of code blocks
+       * that are gone, and turbo only extracts cached outputs on a cache hit
+       */
+      "cache": false
+    },
+
     "build": {
-      "dependsOn": ["^build", "@tenstorrent/vesper#build:storybook"],
+      "dependsOn": [
+        "^build",
+        "generate:demos",
+        "@tenstorrent/vesper#build:storybook"
+      ],
       "inputs": [
         "$TURBO_DEFAULT$",
         ".env*",
         "$TURBO_ROOT$/docs/**" // monorepo docs
       ],
-      /**
-       * `generated/**` holds the demo modules extracted from `docs/**` by
-       * `src/lib/mdx/remark-tsx-demos.mts` while the mdx is compiled
-       *
-       * caching them with `.next` keeps a restored build complete, so tasks
-       * that read them (eg. `check-types`) see the same files a fresh build
-       * would have written
-       */
-      "outputs": [".next/**", "!.next/cache/**", "generated/**"]
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+
+    // `tsc` compiles `generated/**` along with the rest of the app
+    "check-types": {
+      "dependsOn": ["^build", "generate:demos"]
+    },
+
+    // eslint lints `generated/**` along with the rest of the app, so the demos
+    // written from `docs/**` are held to the same rules as everything else
+    "lint": {
+      "dependsOn": ["transit", "generate:demos"]
+    },
+
+    "lint:fix": {
+      "dependsOn": ["transit", "generate:demos"],
+      "cache": false
     },
 
     "dev": {
@@ -25,7 +57,7 @@
        * running `build` here is required so `packages/vesper/src`
        * is built into `dist` so we can use them here
        */
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "generate:demos"],
       /**
        * and then we also need:
        *
