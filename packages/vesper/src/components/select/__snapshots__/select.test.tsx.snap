@@ -12,13 +12,9 @@ exports[`select [snapshot] > lg, default 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-md"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -63,13 +59,9 @@ exports[`select [snapshot] > lg, default, disabled 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-md"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -164,13 +156,9 @@ exports[`select [snapshot] > lg, default, with icon 1`] = `
     </svg>
   </span>
   <span
-    class="vesper-typography vesper-typography-copy-md"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -211,12 +199,8 @@ exports[`select [snapshot] > lg, default, with value 1`] = `
   tabindex="0"
   type="button"
 >
-  <span
-    class="vesper-typography vesper-typography-copy-md"
-  >
-    <span>
-      Tigers
-    </span>
+  <span>
+    Tigers
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -259,13 +243,9 @@ exports[`select [snapshot] > lg, error 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-md"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -310,13 +290,9 @@ exports[`select [snapshot] > lg, error, disabled 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-md"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -411,13 +387,9 @@ exports[`select [snapshot] > lg, error, with icon 1`] = `
     </svg>
   </span>
   <span
-    class="vesper-typography vesper-typography-copy-md"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -458,12 +430,8 @@ exports[`select [snapshot] > lg, error, with value 1`] = `
   tabindex="0"
   type="button"
 >
-  <span
-    class="vesper-typography vesper-typography-copy-md"
-  >
-    <span>
-      Tigers
-    </span>
+  <span>
+    Tigers
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -506,13 +474,9 @@ exports[`select [snapshot] > lg, success 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-md"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -557,13 +521,9 @@ exports[`select [snapshot] > lg, success, disabled 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-md"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -658,13 +618,9 @@ exports[`select [snapshot] > lg, success, with icon 1`] = `
     </svg>
   </span>
   <span
-    class="vesper-typography vesper-typography-copy-md"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -705,12 +661,8 @@ exports[`select [snapshot] > lg, success, with value 1`] = `
   tabindex="0"
   type="button"
 >
-  <span
-    class="vesper-typography vesper-typography-copy-md"
-  >
-    <span>
-      Tigers
-    </span>
+  <span>
+    Tigers
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -753,13 +705,9 @@ exports[`select [snapshot] > lg, warning 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-md"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -804,13 +752,9 @@ exports[`select [snapshot] > lg, warning, disabled 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-md"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -905,13 +849,9 @@ exports[`select [snapshot] > lg, warning, with icon 1`] = `
     </svg>
   </span>
   <span
-    class="vesper-typography vesper-typography-copy-md"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -952,12 +892,8 @@ exports[`select [snapshot] > lg, warning, with value 1`] = `
   tabindex="0"
   type="button"
 >
-  <span
-    class="vesper-typography vesper-typography-copy-md"
-  >
-    <span>
-      Tigers
-    </span>
+  <span>
+    Tigers
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -1000,13 +936,9 @@ exports[`select [snapshot] > md, default 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-sm"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -1051,13 +983,9 @@ exports[`select [snapshot] > md, default, disabled 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-sm"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -1152,13 +1080,9 @@ exports[`select [snapshot] > md, default, with icon 1`] = `
     </svg>
   </span>
   <span
-    class="vesper-typography vesper-typography-copy-sm"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -1199,12 +1123,8 @@ exports[`select [snapshot] > md, default, with value 1`] = `
   tabindex="0"
   type="button"
 >
-  <span
-    class="vesper-typography vesper-typography-copy-sm"
-  >
-    <span>
-      Tigers
-    </span>
+  <span>
+    Tigers
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -1247,13 +1167,9 @@ exports[`select [snapshot] > md, error 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-sm"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -1298,13 +1214,9 @@ exports[`select [snapshot] > md, error, disabled 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-sm"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -1399,13 +1311,9 @@ exports[`select [snapshot] > md, error, with icon 1`] = `
     </svg>
   </span>
   <span
-    class="vesper-typography vesper-typography-copy-sm"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -1446,12 +1354,8 @@ exports[`select [snapshot] > md, error, with value 1`] = `
   tabindex="0"
   type="button"
 >
-  <span
-    class="vesper-typography vesper-typography-copy-sm"
-  >
-    <span>
-      Tigers
-    </span>
+  <span>
+    Tigers
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -1494,13 +1398,9 @@ exports[`select [snapshot] > md, success 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-sm"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -1545,13 +1445,9 @@ exports[`select [snapshot] > md, success, disabled 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-sm"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -1646,13 +1542,9 @@ exports[`select [snapshot] > md, success, with icon 1`] = `
     </svg>
   </span>
   <span
-    class="vesper-typography vesper-typography-copy-sm"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -1693,12 +1585,8 @@ exports[`select [snapshot] > md, success, with value 1`] = `
   tabindex="0"
   type="button"
 >
-  <span
-    class="vesper-typography vesper-typography-copy-sm"
-  >
-    <span>
-      Tigers
-    </span>
+  <span>
+    Tigers
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -1741,13 +1629,9 @@ exports[`select [snapshot] > md, warning 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-sm"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -1792,13 +1676,9 @@ exports[`select [snapshot] > md, warning, disabled 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-sm"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -1893,13 +1773,9 @@ exports[`select [snapshot] > md, warning, with icon 1`] = `
     </svg>
   </span>
   <span
-    class="vesper-typography vesper-typography-copy-sm"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -1940,12 +1816,8 @@ exports[`select [snapshot] > md, warning, with value 1`] = `
   tabindex="0"
   type="button"
 >
-  <span
-    class="vesper-typography vesper-typography-copy-sm"
-  >
-    <span>
-      Tigers
-    </span>
+  <span>
+    Tigers
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -1988,13 +1860,9 @@ exports[`select [snapshot] > sm, default 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-xs"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -2039,13 +1907,9 @@ exports[`select [snapshot] > sm, default, disabled 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-xs"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -2140,13 +2004,9 @@ exports[`select [snapshot] > sm, default, with icon 1`] = `
     </svg>
   </span>
   <span
-    class="vesper-typography vesper-typography-copy-xs"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -2187,12 +2047,8 @@ exports[`select [snapshot] > sm, default, with value 1`] = `
   tabindex="0"
   type="button"
 >
-  <span
-    class="vesper-typography vesper-typography-copy-xs"
-  >
-    <span>
-      Tigers
-    </span>
+  <span>
+    Tigers
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -2235,13 +2091,9 @@ exports[`select [snapshot] > sm, error 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-xs"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -2286,13 +2138,9 @@ exports[`select [snapshot] > sm, error, disabled 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-xs"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -2387,13 +2235,9 @@ exports[`select [snapshot] > sm, error, with icon 1`] = `
     </svg>
   </span>
   <span
-    class="vesper-typography vesper-typography-copy-xs"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -2434,12 +2278,8 @@ exports[`select [snapshot] > sm, error, with value 1`] = `
   tabindex="0"
   type="button"
 >
-  <span
-    class="vesper-typography vesper-typography-copy-xs"
-  >
-    <span>
-      Tigers
-    </span>
+  <span>
+    Tigers
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -2482,13 +2322,9 @@ exports[`select [snapshot] > sm, success 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-xs"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -2533,13 +2369,9 @@ exports[`select [snapshot] > sm, success, disabled 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-xs"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -2634,13 +2466,9 @@ exports[`select [snapshot] > sm, success, with icon 1`] = `
     </svg>
   </span>
   <span
-    class="vesper-typography vesper-typography-copy-xs"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -2681,12 +2509,8 @@ exports[`select [snapshot] > sm, success, with value 1`] = `
   tabindex="0"
   type="button"
 >
-  <span
-    class="vesper-typography vesper-typography-copy-xs"
-  >
-    <span>
-      Tigers
-    </span>
+  <span>
+    Tigers
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -2729,13 +2553,9 @@ exports[`select [snapshot] > sm, warning 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-xs"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -2780,13 +2600,9 @@ exports[`select [snapshot] > sm, warning, disabled 1`] = `
   type="button"
 >
   <span
-    class="vesper-typography vesper-typography-copy-xs"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -2881,13 +2697,9 @@ exports[`select [snapshot] > sm, warning, with icon 1`] = `
     </svg>
   </span>
   <span
-    class="vesper-typography vesper-typography-copy-xs"
+    data-placeholder=""
   >
-    <span
-      data-placeholder=""
-    >
-      Select an option
-    </span>
+    Select an option
   </span>
   <span
     class="vesper-select-state-indicator"
@@ -2928,12 +2740,8 @@ exports[`select [snapshot] > sm, warning, with value 1`] = `
   tabindex="0"
   type="button"
 >
-  <span
-    class="vesper-typography vesper-typography-copy-xs"
-  >
-    <span>
-      Tigers
-    </span>
+  <span>
+    Tigers
   </span>
   <span
     class="vesper-select-state-indicator"

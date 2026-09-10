@@ -47,6 +47,10 @@
 }
 
 .vesper-select-lg {
+  font-family: var(--vesper-font-sans);
+  font-size: 1rem;
+  line-height: var(--vesper-leading-snug);
+  letter-spacing: var(--vesper-tracking-normal);
   padding: 0 var(--vesper-spacing-3);
   gap: var(--vesper-spacing-2);
   border-radius: var(--vesper-radius-2);
@@ -59,7 +63,12 @@
     height: 1.25rem;
   }
 }
+
 .vesper-select-md {
+  font-family: var(--vesper-font-sans);
+  font-size: 0.875rem;
+  line-height: var(--vesper-leading-normal);
+  letter-spacing: var(--vesper-tracking-normal);
   padding: 0 var(--vesper-spacing-3);
   gap: var(--vesper-spacing-2);
   border-radius: var(--vesper-radius-2);
@@ -72,7 +81,12 @@
     height: 1rem;
   }
 }
+
 .vesper-select-sm {
+  font-family: var(--vesper-font-sans);
+  font-size: 0.8125rem;
+  line-height: var(--vesper-leading-normal);
+  letter-spacing: var(--vesper-tracking-normal);
   padding: 0 var(--vesper-spacing-2);
   gap: var(--vesper-spacing-1);
   border-radius: var(--vesper-radius-1);
@@ -83,6 +97,23 @@
     display: block;
     width: 0.875rem;
     height: 0.875rem;
+  }
+  @media (width < 768px) {
+    font-family: var(--vesper-font-sans);
+    font-size: 0.875rem;
+    line-height: var(--vesper-leading-normal);
+    letter-spacing: var(--vesper-tracking-normal);
+    padding: 0 var(--vesper-spacing-3);
+    gap: var(--vesper-spacing-2);
+    border-radius: var(--vesper-radius-2);
+    height: 2.5rem;
+    .vesper-select-icon,
+    .vesper-select-state-indicator {
+      color: var(--vesper-icon-secondary);
+      display: block;
+      width: 1rem;
+      height: 1rem;
+    }
   }
 }
 

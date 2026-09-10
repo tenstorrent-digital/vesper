@@ -5,10 +5,7 @@ import { Select as BaseSelect } from "@base-ui/react/select";
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 
 import { CaretDown, CaretUp, Checkmark } from "@/components/icons/icons";
-import {
-  Typography,
-  type TypographyVariant,
-} from "@/components/typography/typography";
+import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
 import {
@@ -67,12 +64,6 @@ export interface SelectProps extends FormInputProps<
   /** Specify the element or shadow root to portal the dropdown into */
   container?: PortalContainer;
 }
-
-const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
-  sm: "copy-xs",
-  md: "copy-sm",
-  lg: "copy-md",
-};
 
 /**
  * A form-ready dropdown select component, supporting both controlled and uncontrolled usage patterns with options for:
@@ -171,9 +162,7 @@ export function Select(props: SelectProps) {
         )}
       >
         {icon && <span className="vesper-select-icon">{icon}</span>}
-        <Typography as="span" variant={SELECT_TRIGGER_TYPOGRAPHY[size]}>
-          <BaseSelect.Value placeholder={placeholder} />
-        </Typography>
+        <BaseSelect.Value placeholder={placeholder} />
         <span className="vesper-select-state-indicator">
           <CaretDown className="vesper-select-state-indicator-closed" />
           <CaretUp className="vesper-select-state-indicator-open" />
