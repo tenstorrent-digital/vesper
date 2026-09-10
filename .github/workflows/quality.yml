@@ -1,0 +1,44 @@
+# Run `quality` (linting, formatting, and type checking), and run unit tests
+
+name: Quality
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+  # Empty `workflow_dispatch` allows this workflow to be run manually from the Actions tab:
+  workflow_dispatch:
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Quality
+    runs-on: ubuntu-latest
+    env:
+      DO_NOT_TRACK: 1
+      CI: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: ./.github/actions/setup
+        id: setup
+
+      # lint, format, check-types
+      - name: Check linting, formatting and types
+        run: yarn quality:agent
+
+      # run unit tests too
+      - name: Run unit tests
+        # run even if `quality` above fails (this way, a lint error doesn't hide a failing test),
+        # but not if setup failed - there'd be no dependencies to run them with
+        if: ${{ !cancelled() && steps.setup.outcome == 'success' }}
+        run: yarn test:unit

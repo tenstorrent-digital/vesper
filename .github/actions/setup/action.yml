@@ -1,0 +1,111 @@
+# reusable setup action for the monorepo
+#
+# does its best to restore `node_modules` from the cache, and falls back to a full
+# `yarn install` if the cache is not available
+#
+# can be used for any workflow that needs to setup node, run `install` for monorepo
+# dependencies, or install and use playwright browsers
+
+name: Setup
+description: Set up Node, install monorepo dependencies (cached) and (optionally) install Playwright browsers
+
+inputs:
+  playwright:
+    # pass "true" to install Playwright browsers and their system deps
+    description: Install Playwright's chromium browser and its system dependencies
+    required: false
+    default: "false"
+
+runs:
+  using: composite
+  steps:
+    # try restoring `node_modules` from the cache, instead of letting yarn re-link it
+    # every workflow run - `restore-keys` gives us a warm `node_modules` on a cache miss,
+    # so the `yarn install` below ends up being cheaper
+    - name: Restore node_modules
+      id: node-modules
+      uses: actions/cache@v4
+      with:
+        path: |
+          node_modules
+          apps/*/node_modules
+          packages/*/node_modules
+        key: node-modules-${{ runner.os }}-${{ hashFiles('.nvmrc', 'yarn.lock', 'package.json', 'apps/*/package.json', 'packages/*/package.json') }}
+        restore-keys: |
+          node-modules-${{ runner.os }}-
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version-file: ".nvmrc"
+        # only restore (and save) yarn's download cache if we need to install
+        # note: the truthy value has to come first - `x && '' || 'yarn'` would _always_ be `yarn`,
+        # because GitHub's pseudo-ternary falls through to the `||` branch on any falsy value
+        cache: ${{ steps.node-modules.outputs.cache-hit != 'true' && 'yarn' || '' }}
+
+    - name: Install dependencies
+      if: steps.node-modules.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        # yarn 1 intermittently leaves a cache entry for a platform-specific optional dependency
+        # half-written and then fails to read it back, e.g.
+        # `ENOENT: no such file or directory, open '.../@esbuild/linux-s390x/.yarn-metadata.json'`
+        # so retry once from a clean slate before failing the job
+        # ref: https://github.com/yarnpkg/yarn/issues/3923
+        if ! yarn install --frozen-lockfile; then
+          echo "::warning::\`yarn install\` failed - clearing caches and retrying"
+          yarn cache clean
+          rm -rf node_modules apps/*/node_modules packages/*/node_modules
+          yarn install --frozen-lockfile
+        fi
+
+    - name: Resolve Playwright version
+      if: inputs.playwright == 'true'
+      id: playwright-version
+      shell: bash
+      run: |
+        echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+
+    # restore playwright from cache too
+    - name: Restore Playwright browsers
+      if: inputs.playwright == 'true'
+      id: playwright-browsers
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/ms-playwright
+        key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
+
+    # both of the steps below shell out to `apt-get update`, which fails the whole job on any
+    # unreachable or inconsistent apt source (`playwright install-deps` exits 100)
+    #
+    # the runner image ships a Google Chrome apt source that intermittently serves a `Packages.gz`
+    # that doesn't match its freshly published `Release` file ("Hash Sum mismatch"), and we don't
+    # need it to install Playwright's system libraries, so drop it before we install anything
+    - name: Remove unneeded apt sources
+      if: inputs.playwright == 'true'
+      shell: bash
+      run: |
+        sudo rm -f /etc/apt/sources.list.d/google-chrome.list
+        sudo rm -rf /var/lib/apt/lists/*
+
+    - name: Install Playwright browsers
+      if: inputs.playwright == 'true' && steps.playwright-browsers.outputs.cache-hit != 'true'
+      shell: bash
+      # apt mirrors can also fail transiently, so clear the (partial) package lists and retry once
+      run: |
+        if ! npx playwright install --with-deps chromium; then
+          echo "::warning::\`playwright install\` failed - clearing apt lists and retrying"
+          sudo rm -rf /var/lib/apt/lists/*
+          npx playwright install --with-deps chromium
+        fi
+
+    # while the browsers are cached, the system libraries they need aren't part of the runner
+    # image so we do need to install them
+    - name: Install Playwright system dependencies
+      if: inputs.playwright == 'true' && steps.playwright-browsers.outputs.cache-hit == 'true'
+      shell: bash
+      run: |
+        if ! npx playwright install-deps chromium; then
+          echo "::warning::\`playwright install-deps\` failed - clearing apt lists and retrying"
+          sudo rm -rf /var/lib/apt/lists/*
+          npx playwright install-deps chromium
+        fi
