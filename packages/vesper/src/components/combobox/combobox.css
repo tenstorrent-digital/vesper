@@ -66,6 +66,9 @@
   &::placeholder {
     color: var(--vesper-text-tertiary);
   }
+  @media (width < 768px) {
+    font-size: 1rem;
+  }
 }
 
 .vesper-combobox-search-icon {

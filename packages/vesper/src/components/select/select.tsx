@@ -158,10 +158,12 @@ export function Select(props: SelectProps) {
       items={items}
       onValueChange={(next) => onValueChange?.(next)}
     >
-      <BaseSelect.Trigger
+      <Typography
         {...ariaProps}
         {...wrapperProps}
         {...controlProps}
+        as={BaseSelect.Trigger}
+        variant={SELECT_TRIGGER_TYPOGRAPHY[size]}
         ref={mergedTriggerRef}
         className={cn(
           "vesper-select",
@@ -171,14 +173,12 @@ export function Select(props: SelectProps) {
         )}
       >
         {icon && <span className="vesper-select-icon">{icon}</span>}
-        <Typography as="span" variant={SELECT_TRIGGER_TYPOGRAPHY[size]}>
-          <BaseSelect.Value placeholder={placeholder} />
-        </Typography>
+        <BaseSelect.Value placeholder={placeholder} />
         <span className="vesper-select-state-indicator">
           <CaretDown className="vesper-select-state-indicator-closed" />
           <CaretUp className="vesper-select-state-indicator-open" />
         </span>
-      </BaseSelect.Trigger>
+      </Typography>
       <BaseSelect.Portal container={portalContainer}>
         <BaseSelect.Positioner
           className="vesper-select-positioner"

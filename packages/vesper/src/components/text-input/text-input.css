@@ -1,4 +1,5 @@
 .vesper-text-input {
+  overflow: hidden;
   display: flex;
   align-items: center;
   border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
@@ -47,6 +48,10 @@
 
 .vesper-text-input-field {
   width: 100%;
+  color: var(--vesper-text-primary);
+  &::placeholder {
+    color: var(--vesper-text-tertiary);
+  }
   &:focus-visible {
     outline: none;
     box-shadow: none;
@@ -69,6 +74,17 @@
     -webkit-appearance: none;
     appearance: none;
     display: none; /* Secondary fallback to guarantee removal */
+  }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &[type="number"] {
+    appearance: textfield;
+  }
+  @media (width < 768px) {
+    font-size: 1rem;
   }
 }
 
@@ -111,20 +127,5 @@
   }
   .vesper-text-input-field {
     padding: 0.9rem 0;
-  }
-}
-
-.vesper-text-input-field {
-  color: var(--vesper-text-primary);
-  &::placeholder {
-    color: var(--vesper-text-tertiary);
-  }
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  &[type="number"] {
-    appearance: textfield;
   }
 }
