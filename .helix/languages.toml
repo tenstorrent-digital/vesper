@@ -6,7 +6,7 @@
 # note: the relative command paths assume helix is started from the repo root
 #
 # `%{buffer_name}` passes the real file path to oxfmt, which matters because
-# config is resolved per file - `apps/tenstorrent-ui` has its own
+# config is resolved per file - `apps/website` has its own
 # `.oxfmtrc.json` (adds tailwind class sorting) and each app has its own
 # `oxlint.config.mts`
 
