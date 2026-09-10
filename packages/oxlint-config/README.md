@@ -81,7 +81,3 @@ We deliberately do **not** enable oxlint's `--type-check` / `options.typeCheck`:
 `Oxlint` resolves `ignorePatterns` relative to the directory containing the config file that declares them, and rejects patterns containing `..`. Patterns declared in this package would therefore only ever match files inside `packages/oxlint-config/`.
 
 This is why `sharedIgnorePatterns` is exported as a plain array for each app to spread into its own `ignorePatterns`, instead of being set in `base`.
-
-### Why `.mts` and not `.ts`
-
-`oxlint.config.ts` works, but Node only treats a `.ts` file as ESM when the nearest `package.json` has `"type": "module"`. Only `tenstorrent-ui` does, so the repo root and `tenstorrent-cms` would print a `MODULE_TYPELESS_PACKAGE_JSON` warning on every lint run
