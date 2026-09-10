@@ -1,0 +1,65 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "trailingComma": "all",
+  "tabWidth": 2,
+  "semi": true,
+  "bracketSpacing": true,
+  "printWidth": 80,
+  "sortPackageJson": false,
+  "sortImports": {
+    "customGroups": [
+      {
+        "groupName": "monorepo",
+        "elementNamePattern": ["@repo/**"]
+      }
+    ],
+    "groups": [
+      "type-import",
+      ["value-builtin", "value-external"],
+      "monorepo",
+      ["value-internal", "type-internal"],
+      ["type-parent", "type-sibling", "type-index"],
+      ["value-parent", "value-sibling", "value-index"],
+      "unknown"
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.json", "*.jsonc"],
+      "options": {
+        "trailingComma": "none"
+      }
+    },
+    {
+      // disable prose wrapping for markdown files
+      "files": ["*.md", "*.mdx"],
+      "options": {
+        "proseWrap": "never"
+      }
+    },
+    {
+      // docs website
+      "files": ["apps/website"],
+      "options": {
+        "sortTailwindcss": {
+          "stylesheet": "apps/website/src/lib/style/css/globals.css",
+          "functions": ["clsx", "cn"]
+        }
+      }
+    }
+  ],
+  "ignorePatterns": [
+    ".agents/skills/**",
+
+    // ignore turbo generator templates
+    "turbo/generators/**/*.hbs",
+
+    // docs app public folder
+    "apps/website/public/**",
+
+    // docs app generated component demos
+    // (extracted from `docs/**` verbatim, so formatting them here would only be
+    // undone the next time the demos are generated)
+    "apps/website/generated/**"
+  ]
+}
