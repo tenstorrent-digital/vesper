@@ -107,6 +107,12 @@
   height: 2rem;
   padding: 0 var(--vesper-spacing-2);
   gap: var(--vesper-spacing-1);
+  .vesper-combobox-input {
+    font-family: var(--vesper-font-sans);
+    font-size: 0.8125rem;
+    line-height: var(--vesper-leading-normal);
+    letter-spacing: var(--vesper-tracking-normal);
+  }
   .vesper-combobox-search-icon,
   .vesper-combobox-clear svg,
   .vesper-combobox-trigger svg {
@@ -118,12 +124,42 @@
       inset: -0.5rem;
     }
   }
+  @media (width < 768px) {
+    border-radius: var(--vesper-radius-2);
+    height: 2.5rem;
+    padding: 0 var(--vesper-spacing-2);
+    gap: var(--vesper-spacing-2);
+    .vesper-combobox-input {
+      font-family: var(--vesper-font-sans);
+      font-size: 0.875rem;
+      line-height: var(--vesper-leading-normal);
+      letter-spacing: var(--vesper-tracking-normal);
+    }
+    .vesper-combobox-search-icon,
+    .vesper-combobox-clear svg,
+    .vesper-combobox-trigger svg {
+      width: 1rem;
+    }
+    .vesper-combobox-clear,
+    .vesper-combobox-trigger {
+      &::before {
+        inset: -0.75rem -0.5rem;
+      }
+    }
+  }
 }
+
 .vesper-combobox-md {
   border-radius: var(--vesper-radius-2);
   height: 2.5rem;
   padding: 0 var(--vesper-spacing-2);
   gap: var(--vesper-spacing-2);
+  .vesper-combobox-input {
+    font-family: var(--vesper-font-sans);
+    font-size: 0.875rem;
+    line-height: var(--vesper-leading-normal);
+    letter-spacing: var(--vesper-tracking-normal);
+  }
   .vesper-combobox-search-icon,
   .vesper-combobox-clear svg,
   .vesper-combobox-trigger svg {
@@ -136,11 +172,18 @@
     }
   }
 }
+
 .vesper-combobox-lg {
   border-radius: var(--vesper-radius-2);
   height: 3rem;
   padding: 0 var(--vesper-spacing-3);
   gap: var(--vesper-spacing-2);
+  .vesper-combobox-input {
+    font-family: var(--vesper-font-sans);
+    font-size: 1rem;
+    line-height: var(--vesper-leading-snug);
+    letter-spacing: var(--vesper-tracking-normal);
+  }
   .vesper-combobox-search-icon,
   .vesper-combobox-clear svg,
   .vesper-combobox-trigger svg {

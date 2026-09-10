@@ -4,10 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
 
 import { CaretDown, Checkmark, Close, Search } from "@/components/icons/icons";
-import {
-  Typography,
-  TypographyVariant,
-} from "@/components/typography/typography";
+import { Typography } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
 import {
@@ -32,12 +29,6 @@ export const COMBOBOX_VARIANTS = [
 export type ComboboxSize = (typeof COMBOBOX_SIZES)[number];
 
 export type ComboboxVariant = (typeof COMBOBOX_VARIANTS)[number];
-
-const COMBOBOX_TYPOGRAPHY: Record<ComboboxSize, TypographyVariant> = {
-  lg: "copy-md",
-  md: "copy-sm",
-  sm: "copy-xs",
-};
 
 export interface ComboboxItem {
   /** The text displayed for this option in the dropdown list, and used to filter options as the user types. */
@@ -225,11 +216,9 @@ export function Combobox(props: ComboboxProps) {
         )}
       >
         <Search className="vesper-combobox-search-icon" />
-        <Typography
+        <BaseCombobox.Input
           {...ariaProps}
           {...controlProps}
-          as={BaseCombobox.Input}
-          variant={COMBOBOX_TYPOGRAPHY[size]}
           placeholder={placeholder}
           className="vesper-combobox-input"
         />
