@@ -76,10 +76,10 @@ export const getDemoModulePath = (
 };
 
 /**
- * The source a demo is written to disk as
+ * Gets the source code of a demo code block
  *
- * Demos are interactive, so they are always client components - the documents
- * that render them are not
+ * Demos are interactive, so they are always client components, while the documents
+ * that render them are not, so we prepend the source code with "use client"
  */
 export const getDemoModuleSource = (demo: Code): string =>
   `"use client"\n\n${demo.value.trim()}`;
