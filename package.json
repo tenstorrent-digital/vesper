@@ -32,6 +32,7 @@
     "changeset:publish": "yarn build:vesper && changeset publish"
   },
   "devDependencies": {
+    "@repo/typescript-config": "*",
     "@changesets/cli": "^2.31.1",
     "@turbo/gen": "^2.9.14",
     "@types/inquirer-autocomplete-prompt": "^3.0.3",
@@ -39,8 +40,7 @@
     "inquirer-autocomplete-prompt": "^3.0.1",
     "prettier": "^3.7.4",
     "rimraf": "^6.1.3",
-    "turbo": "^2.9.14",
-    "typescript": "5.9.2"
+    "turbo": "^2.9.14"
   },
   "resolutions": {
     "prettier": "3.9.5"
