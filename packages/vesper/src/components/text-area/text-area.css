@@ -22,6 +22,9 @@
   &:-webkit-autofill {
     transition: background-color 2147483647s step-end;
   }
+  @media (width < 768px) {
+    font-size: 1rem;
+  }
 }
 
 .vesper-text-area-success {
@@ -37,9 +40,6 @@
 .vesper-text-area-sm {
   border-radius: var(--vesper-radius-1);
   padding: 0.43125rem var(--vesper-spacing-2);
-  @media (width < 768px) {
-    font-size: 1rem;
-  }
 }
 .vesper-text-area-md {
   border-radius: var(--vesper-radius-2);
