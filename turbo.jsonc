@@ -14,91 +14,96 @@
      * see: https://turborepo.dev/docs/core-concepts/package-and-task-graph#transit-nodes
      */
     "transit": {
-      "dependsOn": ["^transit"]
+      "dependsOn": ["^transit"],
     },
     "build": {
       "dependsOn": ["^build"],
       "env": ["NEXT_PUBLIC_*", "NEXT_RUNTIME", "VERCEL_*"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
     },
     "build:storybook": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", "storybook/**"],
-      "outputs": ["$TURBO_ROOT$/apps/website/public/storybook/**"]
+      "outputs": ["$TURBO_ROOT$/apps/website/public/storybook/**"],
     },
     "check-types": {
       // NOT a transit node: `docs` resolves `@tenstorrent/vesper` subpaths to
       // declaration files under `dist`, so this is a real build-output
       // dependency and `tsc` cannot run until vesper has been built
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build", "website#generate:demos"],
+      // since we have `"incremental": true` in our tsconfigs,
+      // add *.tsbuildinfo to outputs so turbo can cache it
+      "outputs": ["**/*.tsbuildinfo"]
     },
     "dev": {
       // ensure workspace deps are built (turbo restores `dist` from cache) so
       // we never boot against a missing or half-written `dist`
       "dependsOn": ["^build"],
       "cache": false,
-      "persistent": true
+      "persistent": true,
     },
     "watch": {
       // depends on `build` because `dev` above pulls `^build` into the dev graph
       // (otherwise concurrent writes write over each other)
       "dependsOn": ["build"],
       "cache": false,
-      "persistent": true
+      "persistent": true,
     },
     "clean": {
-      "cache": false
+      "cache": false,
     },
     "test": {
-      "dependsOn": ["transit"]
+      "dependsOn": ["transit"],
     },
     "test:update": {
-      "dependsOn": ["transit"]
+      "dependsOn": ["transit"],
     },
     "test:watch": {
-      "persistent": true
+      "persistent": true,
     },
     "generate:icons": {
       "inputs": [
         "$TURBO_ROOT$/packages/vesper/assets/icons/**",
-        "$TURBO_ROOT$/packages/vesper/scripts/generate-icons.ts"
+        "$TURBO_ROOT$/packages/vesper/scripts/generate-icons.ts",
       ],
-      "outputs": ["$TURBO_ROOT$/packages/vesper/src/components/Icon/**"]
+      "outputs": ["$TURBO_ROOT$/packages/vesper/src/components/Icon/**"],
     },
-    "lint": {
-      // eslint is not type-aware here (no `parserOptions.project`), so it
-      // never needs a dependency's built output - only its hash
-      "dependsOn": ["transit"]
+
+    "quality": {
+      // note: we pass `--continue` to the `quality` script in `package.json` so
+      // turbo doesn't cancel in-flight task as soon as one fails - this way a
+      // failure in one task (e.g. format) doesn't hide the results of the other tasks
+      "dependsOn": ["//#lint", "//#format", "check-types"]
     },
-    "lint:fix": {
-      "dependsOn": ["transit"],
+    "quality:fix": {
+      // similar to above, `quality:fix` uses `--continue=always` so that formatting
+      // is still applied if `oxlint --fix` exits non-zero because some problems
+      // were not auto-fixable
+      "dependsOn": ["//#lint:fix", "//#format:fix"],
       "cache": false
     },
-    "format": {
-      "dependsOn": ["transit"],
-      "cache": false
+
+    // oxlint and oxfmt are fast enough to cover the whole monorepo in a single
+    // pass, so they are registered as root tasks instead of per-package ones
+    // see: https://turborepo.dev/docs/guides/tools/oxc
+    //
+    // a root task hashes every file in the repo - including the shared configs
+    // in `packages/oxlint-config` and the `.oxfmtrc.json`/`oxlint.config.mts`
+    // files each app owns - so neither task needs extra `inputs` to be cached
+    // correctly, and neither needs `transit` since nothing is scoped to a
+    // single package
+    "//#lint": {},
+    // TODO: lint depends on generate:demos from inside website (this will need a re-think)
+    "//#lint:fix": {
+      "cache": false,
     },
-    "format:check": {
-      "dependsOn": ["transit"],
-      "cache": false
+    "//#format": {},
+    "//#format:fix": {
+      // formatting runs after lint fixes so the two tools never write to the
+      // same file at once
+      "dependsOn": ["//#lint:fix"],
+      "cache": false,
     },
-    "//#format:root": {
-      // root task to allow running `format` from root
-      // see: https://turborepo.dev/docs/crafting-your-repository/configuring-tasks#registering-root-tasks
-      //
-      // accepts optional file arguments (`yarn format <files>`), and formats
-      // every file in the repository when no arguments are passed
-      "cache": false
-    },
-    "//#format:check:root": {
-      // root task to allow running `format:check` from root
-      //
-      // accepts optional file arguments (`yarn format:check <files>`), and
-      // checks every file in the repository when no arguments are passed
-      //
-      // used by the pre-commit formatting hook (see `.hooks/pre-commit`)
-      "cache": false
-    }
-  }
+  },
 }

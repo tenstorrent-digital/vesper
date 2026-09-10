@@ -3,12 +3,13 @@
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "outDir": "dist",
+    "rootDir": "./src",
+    "outDir": "./dist",
     "strictNullChecks": true,
     "sourceMap": true,
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "*": ["./*"],
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"],

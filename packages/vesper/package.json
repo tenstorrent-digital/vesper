@@ -16,7 +16,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=22"
+    "node": "24.x"
   },
   "type": "module",
   "files": [
@@ -205,30 +205,29 @@
     "dev": "storybook dev -p 5173 -c storybook --ci --exact-port",
     "clean": "rimraf dist",
     "build:storybook": "storybook build -c storybook -o ../../apps/website/public/storybook",
-    "lint": "eslint --max-warnings 0",
-    "lint:fix": "eslint --fix",
     "scaffold:component": "turbo gen vesper-component",
-    "generate:icons": "tsx scripts/generate-icons.ts && eslint src/components/icons/*.{ts,tsx} --fix && prettier --write src/components/icons/*.{ts,tsx}",
+    "generate:icons": "tsx scripts/generate-icons.ts && oxlint src/components/icons/*.{ts,tsx} --fix && prettier --write src/components/icons/*.{ts,tsx}",
     "test": "vitest run --coverage",
     "test:update": "vitest run --coverage --update",
     "test:watch": "vitest",
-    "check-types": "tsc --noEmit -p tsconfig.build.json"
+    "check-types": "tsc --noEmit --project tsconfig.build.json --incremental false"
   },
   "peerDependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
+    "@repo/oxlint-config": "*",
     "@repo/typescript-config": "*",
     "@storybook/addon-a11y": "^10.4.3",
     "@storybook/react-vite": "^10.4.3",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
-    "@types/node": "^22.15.3",
+    "@types/node": "^24",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "@vitest/browser": "^4.1.8",
     "@vitest/browser-playwright": "^4.1.8",
     "@vitest/coverage-v8": "^4.1.9",
@@ -236,8 +235,9 @@
     "browserslist": "^4.28.4",
     "chokidar": "^4.0.3",
     "concurrently": "^9.2.1",
-    "eslint": "^9.39.1",
     "lightningcss": "^1.32.0",
+    "oxlint": "^1.82.0",
+    "oxlint-tsgolint": "^7.0.2001",
     "playwright": "^1.60.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
@@ -247,7 +247,7 @@
     "svgo": "^4.0.1",
     "tsc-alias": "^1.8.16",
     "tsx": "^4.22.3",
-    "typescript": "5.9.2",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.1.0",
     "vitest": "^4.1.8",
