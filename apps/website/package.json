@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "next dev --port 3000",
     "build": "next build",
+    "generate:demos": "node scripts/generate-demos.mts",
     "start": "next start",
     "clean": "rimraf .next generated",
     "lint": "eslint --max-warnings 0",
@@ -14,6 +15,7 @@
     "check-types": "next typegen && tsc --noEmit"
   },
   "dependencies": {
+    "@maskito/core": "^5.4.0",
     "@maskito/kit": "^5.4.0",
     "@maskito/phone": "^5.4.0",
     "@mdx-js/loader": "^3.1.1",
