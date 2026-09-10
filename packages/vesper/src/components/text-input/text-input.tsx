@@ -2,11 +2,6 @@
 
 import { type MouseEvent, type ReactNode } from "react";
 
-import {
-  Typography,
-  type TypographyVariant,
-} from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 import {
   FormInputProps,
@@ -64,11 +59,6 @@ export interface TextInputProps extends FormInputProps<"div", "input"> {
     | "month"
     | "time";
 }
-const TEXT_INPUT_TYPOGRAPHY: { [S in TextInputSize]: TypographyVariant } = {
-  sm: "copy-xs",
-  md: "copy-sm",
-  lg: "copy-md",
-};
 
 /**
  * A text input component supporting different visual variants, as well as leading and trailing icons.
@@ -129,12 +119,10 @@ export function TextInput(props: TextInputProps) {
           {iconLeft}
         </TextInputIcon>
       )}
-      <Typography
+      <input
         {...ariaProps}
         {...controlProps}
         {...formProps}
-        as="input"
-        variant={TEXT_INPUT_TYPOGRAPHY[size]}
         className="vesper-text-input-field"
         type={type}
         placeholder={

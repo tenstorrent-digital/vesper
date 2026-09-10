@@ -47,9 +47,12 @@
 
 .vesper-text-input-field {
   width: 100%;
+  color: var(--vesper-text-primary);
+  &::placeholder {
+    color: var(--vesper-text-tertiary);
+  }
   &:focus-visible {
     outline: none;
-    box-shadow: none;
   }
   /* https://css-tricks.com/snippets/css/change-autocomplete-styles-webkit-browsers/ */
   &:autofill,
@@ -61,6 +64,14 @@
     &::placeholder {
       color: var(--vesper-text-disabled);
     }
+  }
+  &[type="number"] {
+    appearance: textfield;
+  }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
   &::-webkit-search-decoration,
   &::-webkit-search-cancel-button,
@@ -83,6 +94,27 @@
   }
   .vesper-text-input-field {
     padding: 0.43125rem 0;
+    font-family: var(--vesper-font-sans);
+    font-size: 0.8125rem;
+    line-height: var(--vesper-leading-normal);
+    letter-spacing: var(--vesper-tracking-normal);
+  }
+  @media (width < 768px) {
+    gap: var(--vesper-spacing-2);
+    padding: 0 var(--vesper-spacing-3);
+    border-radius: var(--vesper-radius-2);
+    height: 2.5rem;
+    .vesper-text-input-icon {
+      width: 1rem;
+      height: 1rem;
+    }
+    .vesper-text-input-field {
+      padding: 0.6375rem 0;
+      font-family: var(--vesper-font-sans);
+      font-size: 0.875rem;
+      line-height: var(--vesper-leading-normal);
+      letter-spacing: var(--vesper-tracking-normal);
+    }
   }
 }
 
@@ -97,6 +129,10 @@
   }
   .vesper-text-input-field {
     padding: 0.6375rem 0;
+    font-family: var(--vesper-font-sans);
+    font-size: 0.875rem;
+    line-height: var(--vesper-leading-normal);
+    letter-spacing: var(--vesper-tracking-normal);
   }
 }
 
@@ -111,20 +147,9 @@
   }
   .vesper-text-input-field {
     padding: 0.9rem 0;
-  }
-}
-
-.vesper-text-input-field {
-  color: var(--vesper-text-primary);
-  &::placeholder {
-    color: var(--vesper-text-tertiary);
-  }
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  &[type="number"] {
-    appearance: textfield;
+    font-family: var(--vesper-font-sans);
+    font-size: 1rem;
+    line-height: var(--vesper-leading-snug);
+    letter-spacing: var(--vesper-tracking-normal);
   }
 }

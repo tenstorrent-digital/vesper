@@ -5,7 +5,7 @@ exports[`masked-input [snapshot] > renders correctly 1`] = `
   class="vesper-text-input vesper-text-input-md vesper-text-input-default"
 >
   <input
-    class="vesper-typography vesper-typography-copy-sm vesper-text-input-field"
+    class="vesper-text-input-field"
     placeholder=" "
     type="text"
   />
@@ -18,7 +18,7 @@ exports[`masked-input [snapshot] > renders correctly with a mask 1`] = `
 >
   <input
     aria-label="Activation code"
-    class="vesper-typography vesper-typography-copy-sm vesper-text-input-field"
+    class="vesper-text-input-field"
     placeholder=" "
     type="text"
   />
