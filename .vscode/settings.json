@@ -1,0 +1,58 @@
+{
+  // git
+  "git.autofetch": true,
+  "git.branchProtection": ["main"],
+
+  // linting and formatting
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": false,
+  "oxc.enable": true,
+  "oxc.run": "onSave",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "explicit",
+    "source.fixAll.ts": "explicit"
+  },
+  // oxlint discovers the nested `oxlint.config.mts` in each workspace on its
+  // own, so it needs no equivalent of `eslint.workingDirectories`
+
+  // tailwind
+  "tailwindCSS.experimental.classRegex": [
+    ["clsx\\(([^)]*)\\)", "cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+
+  // turbo
+  "turbo.useLocalTurbo": true,
+  "json.format.enable": true,
+  "json.validate.enable": false,
+  "[jsonc]": {
+    "files.trimTrailingWhitespace": false
+  },
+
+  // editor
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnpm": true,
+    "**/package-lock.json": true,
+    "**/pnpm-lock.yaml": true,
+    "**/yarn.lock": true,
+    "**/LICENSE*": true,
+    "**/node_modules": true,
+    "**/.git": true,
+    "**/.github": false,
+    "**/.next": true,
+    "**/.turbo": true,
+    "**/.vercel": true,
+    "**/.vscode": true,
+    "**/.sanity": true,
+    "**/.e2e-results": true,
+    "**/.playwright-report": true,
+    "**/.blob-report": true,
+    "**/.playwright/.cache": true,
+    "**/next-env.d.ts": true
+  }
+}

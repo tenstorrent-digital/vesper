@@ -1,75 +1,111 @@
-// Folder-specific settings
-//
-// For a full list of overridable settings, and general information
-// on folder-specific settings, documentation:
-// https://zed.dev/docs/configuring-zed#settings-files
 {
-  // Zed format on save is not "off" by default
+  // for oxlint and oxfmt support in zed you will need
+  // download this extension:
+  // https://github.com/oxc-project/oxc-zed
   //
-  // Add "format_on_save": "on" to your global Zed settings to
-  // enable it:
-  // ~/.config/zed/settings.json
-  // cmd-,
+  // since we have oxlint and oxfmt in the monorepo
+  // package.json, oxc-zed resolves the binaries
+  // from node_modules
+
+  // keep this here so zed doesn't fall back to
+  // using it's built-in prettier
+  "prettier": { "allowed": false },
+
+  "lsp": {
+    "oxlint": {
+      "initialization_options": {
+        "settings": {
+          // leave null so nested `oxlint.config.mts` files are discovered
+          "configPath": null,
+          "disableNestedConfig": false,
+          "run": "onType",
+          "fixKind": "safe_fix",
+          "unusedDisableDirectives": "warn",
+        },
+      },
+    },
+    "oxfmt": {
+      "initialization_options": {
+        "settings": {
+          // leave null so nested `.oxfmtrc.json` files are discovered
+          "fmt.configPath": null,
+          "run": "onSave",
+        },
+      },
+    },
+  },
 
   "languages": {
-    "CSS": {
-      // use both tailwind LSP and css LSP
+    // `language_servers` REPLACES zed's default list rather than extending it,
+    // so the default entries have to be repeated verbatim:
+    //   ["!typescript-language-server", "vtsls", "..."]
+    // `!eslint` is ours: this repo migrated to oxlint and has no eslint config,
+    // so zed's bundled eslint server only ever emits `eslint/noLibrary` errors.
+    // `"..."` still pulls in oxlint, oxfmt and tailwindcss-language-server
+    "TypeScript": {
       "language_servers": [
-        "tailwindcss-language-server",
-        "vscode-css-language-server"
-      ]
+        "!typescript-language-server",
+        "!eslint",
+        "vtsls",
+        "oxlint",
+        "...",
+      ],
+      "formatter": [
+        { "language_server": { "name": "oxfmt" } },
+        { "code_action": "source.fixAll.oxc" },
+      ],
     },
     "TSX": {
-      "code_actions_on_format": {
-        "source.fixAll.eslint": true
-      }
+      "language_servers": [
+        "!typescript-language-server",
+        "!eslint",
+        "vtsls",
+        "oxlint",
+        "...",
+      ],
+      "formatter": [
+        { "language_server": { "name": "oxfmt" } },
+        { "code_action": "source.fixAll.oxc" },
+      ],
     },
-    "TypeScript": {
-      "code_actions_on_format": {
-        "source.fixAll.eslint": true
-      }
-    }
-  },
-  "lsp": {
-    "tailwindcss-language-server": {
-      "settings": {
-        "classFunctions": ["cn", "clsx", "tw"],
-        "lint": {
-          // don't suggest canonical classes since
-          // it flags our custom spacing utilities
-          // eg. w-* (in px)
-          "suggestCanonicalClasses": "ignore"
-        }
-      }
+    "JavaScript": {
+      "language_servers": [
+        "!typescript-language-server",
+        "!eslint",
+        "vtsls",
+        "oxlint",
+        "...",
+      ],
+      "formatter": [
+        { "language_server": { "name": "oxfmt" } },
+        { "code_action": "source.fixAll.oxc" },
+      ],
     },
-    "vscode-css-language-server": {
-      "settings": {
-        "css": {
-          "lint": {
-            // ignore @_ rules from tailwind that conflict
-            // with css spec
-            "unknownAtRules": "ignore"
-          }
-        }
-      }
+    "JSON": {
+      "formatter": [{ "language_server": { "name": "oxfmt" } }],
     },
-    "mdx-analyzer": {
-      "initialization_options": {
-        // enable typescript support for Zed MDX
-        // https://github.com/srazzak/zed-mdx#typescript-configuration
-        // note: Zed MDX is not a built-in ext - search 'mdx' in
-        // zed's extensions panel to install
-        "typescript": {
-          "enabled": true
-        }
-      }
-    }
+    "JSONC": {
+      "formatter": [{ "language_server": { "name": "oxfmt" } }],
+    },
+    "Markdown": {
+      "formatter": [{ "language_server": { "name": "oxfmt" } }],
+    },
+    "YAML": {
+      "formatter": [{ "language_server": { "name": "oxfmt" } }],
+    },
+    "TOML": {
+      "formatter": [{ "language_server": { "name": "oxfmt" } }],
+    },
+    "HTML": {
+      "formatter": [{ "language_server": { "name": "oxfmt" } }],
+    },
+    "CSS": {
+      "formatter": [{ "language_server": { "name": "oxfmt" } }],
+    },
   },
 
   "file_scan_exclusions": [
-    // defaults - specifying any exclusions overrides the
-    // default exclusions so we add them back here
-    // see: https://zed.dev/docs/reference/all-settings#file-scan-exclusions
+    // defaults
     "**/.git",
     "**/.svn",
     "**/.hg",
@@ -85,13 +121,15 @@
     // node_modules
     "**/node_modules/**",
 
+    "**/.env.example",
+
     // exclude contents of agent skills
     ".agents/skills/**/scripts/**",
     ".agents/skills/**/references/**",
     ".agents/skills/**/rules/**",
 
     // all files in `.claude` (symlinks to .agents)
-    ".claude/**"
+    ".claude/**",
   ],
-  "read_only_files": ["yarn.lock", "skills-lock.json"]
+  "read_only_files": ["yarn.lock", "skills-lock.json"],
 }

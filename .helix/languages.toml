@@ -1,0 +1,103 @@
+# project-local helix config
+#
+# both binaries are this project's pinned versions from node_modules, so the
+# editor and `yarn lint` / `yarn format` always agree
+#
+# note: the relative command paths assume helix is started from the repo root
+#
+# `%{buffer_name}` passes the real file path to oxfmt, which matters because
+# config is resolved per file - `apps/tenstorrent-ui` has its own
+# `.oxfmtrc.json` (adds tailwind class sorting) and each app has its own
+# `oxlint.config.mts`
+
+[language-server.oxlint]
+command = "node_modules/oxlint/bin/oxlint"
+args = ["--lsp"]
+
+# note: oxfmt is wired up per-language as a `formatter` rather than as a
+# language server, because an explicit `formatter` entry is the only way to
+# displace the global prettier formatters
+
+[[language]]
+name = "typescript"
+language-servers = ["typescript-language-server", "oxlint"]
+formatter = { command = "node_modules/oxfmt/bin/oxfmt", args = [
+  "--stdin-filepath",
+  "%{buffer_name}",
+] }
+auto-format = true
+
+[[language]]
+name = "tsx"
+language-servers = ["typescript-language-server", "oxlint"]
+formatter = { command = "node_modules/oxfmt/bin/oxfmt", args = [
+  "--stdin-filepath",
+  "%{buffer_name}",
+] }
+auto-format = true
+
+[[language]]
+name = "javascript"
+language-servers = ["typescript-language-server", "oxlint"]
+formatter = { command = "node_modules/oxfmt/bin/oxfmt", args = [
+  "--stdin-filepath",
+  "%{buffer_name}",
+] }
+auto-format = true
+
+[[language]]
+name = "jsx"
+language-servers = ["typescript-language-server", "oxlint"]
+formatter = { command = "node_modules/oxfmt/bin/oxfmt", args = [
+  "--stdin-filepath",
+  "%{buffer_name}",
+] }
+auto-format = true
+
+[[language]]
+name = "json"
+formatter = { command = "node_modules/oxfmt/bin/oxfmt", args = [
+  "--stdin-filepath",
+  "%{buffer_name}",
+] }
+auto-format = true
+
+[[language]]
+name = "jsonc"
+formatter = { command = "node_modules/oxfmt/bin/oxfmt", args = [
+  "--stdin-filepath",
+  "%{buffer_name}",
+] }
+auto-format = true
+
+[[language]]
+name = "css"
+formatter = { command = "node_modules/oxfmt/bin/oxfmt", args = [
+  "--stdin-filepath",
+  "%{buffer_name}",
+] }
+auto-format = true
+
+[[language]]
+name = "yaml"
+formatter = { command = "node_modules/oxfmt/bin/oxfmt", args = [
+  "--stdin-filepath",
+  "%{buffer_name}",
+] }
+auto-format = true
+
+[[language]]
+name = "markdown"
+formatter = { command = "node_modules/oxfmt/bin/oxfmt", args = [
+  "--stdin-filepath",
+  "%{buffer_name}",
+] }
+auto-format = true
+
+[[language]]
+name = "toml"
+formatter = { command = "node_modules/oxfmt/bin/oxfmt", args = [
+  "--stdin-filepath",
+  "%{buffer_name}",
+] }
+auto-format = true
