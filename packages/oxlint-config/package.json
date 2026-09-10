@@ -1,0 +1,29 @@
+{
+  "name": "@repo/oxlint-config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./base": "./base.ts",
+    "./next": "./next.ts",
+    "./react-internal": "./react-internal.ts",
+    "./ignore-patterns": "./ignore-patterns.ts"
+  },
+  "files": [
+    "base.ts",
+    "next.ts",
+    "studio.ts",
+    "react-internal.ts",
+    "ignore-patterns.ts",
+    "plugins"
+  ],
+  "devDependencies": {
+    "@repo/typescript-config": "*",
+    "@types/node": "^24",
+    "eslint-plugin-turbo": "^2.10.5",
+    "oxlint": "^1.77.0"
+  },
+  "peerDependencies": {
+    "oxlint": "^1.0.0"
+  }
+}

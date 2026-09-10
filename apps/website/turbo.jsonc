@@ -13,43 +13,32 @@
     "generate:demos": {
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/docs/**" // monorepo docs
+        "$TURBO_ROOT$/docs/**", // monorepo docs
       ],
       /**
        * deliberately uncached: the task also *deletes* the demos of code blocks
        * that are gone, and turbo only extracts cached outputs on a cache hit
        */
-      "cache": false
+      "cache": false,
     },
 
     "build": {
       "dependsOn": [
         "^build",
         "generate:demos",
-        "@tenstorrent/vesper#build:storybook"
+        "@tenstorrent/vesper#build:storybook",
       ],
       "inputs": [
         "$TURBO_DEFAULT$",
         ".env*",
-        "$TURBO_ROOT$/docs/**" // monorepo docs
+        "$TURBO_ROOT$/docs/**", // monorepo docs
       ],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**"],
     },
 
     // `tsc` compiles `generated/**` along with the rest of the app
     "check-types": {
-      "dependsOn": ["^build", "generate:demos"]
-    },
-
-    // eslint lints `generated/**` along with the rest of the app, so the demos
-    // written from `docs/**` are held to the same rules as everything else
-    "lint": {
-      "dependsOn": ["transit", "generate:demos"]
-    },
-
-    "lint:fix": {
-      "dependsOn": ["transit", "generate:demos"],
-      "cache": false
+      "dependsOn": ["^build", "generate:demos"],
     },
 
     "dev": {
@@ -73,7 +62,7 @@
        */
       "with": ["@tenstorrent/vesper#watch", "@tenstorrent/vesper#dev"],
       "cache": false,
-      "persistent": true
-    }
-  }
+      "persistent": true,
+    },
+  },
 }
