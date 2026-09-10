@@ -37,6 +37,7 @@
     "@repo/typescript-config": "*",
     "@turbo/gen": "^2.9.14",
     "@types/inquirer-autocomplete-prompt": "^3.0.3",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "inquirer": "^9.3.7",
     "inquirer-autocomplete-prompt": "^3.0.1",
     "oxfmt": "^0.67.0",
