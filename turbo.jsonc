@@ -31,7 +31,10 @@
       // NOT a transit node: `docs` resolves `@tenstorrent/vesper` subpaths to
       // declaration files under `dist`, so this is a real build-output
       // dependency and `tsc` cannot run until vesper has been built
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "website#generate:demos"],
+      // since we have `"incremental": true` in our tsconfigs,
+      // add *.tsbuildinfo to outputs so turbo can cache it
+      "outputs": ["**/*.tsbuildinfo"]
     },
     "dev": {
       // ensure workspace deps are built (turbo restores `dist` from cache) so
@@ -65,6 +68,20 @@
         "$TURBO_ROOT$/packages/vesper/scripts/generate-icons.ts",
       ],
       "outputs": ["$TURBO_ROOT$/packages/vesper/src/components/Icon/**"],
+    },
+
+    "quality": {
+      // note: we pass `--continue` to the `quality` script in `package.json` so
+      // turbo doesn't cancel in-flight task as soon as one fails - this way a
+      // failure in one task (e.g. format) doesn't hide the results of the other tasks
+      "dependsOn": ["//#lint", "//#format", "check-types"]
+    },
+    "quality:fix": {
+      // similar to above, `quality:fix` uses `--continue=always` so that formatting
+      // is still applied if `oxlint --fix` exits non-zero because some problems
+      // were not auto-fixable
+      "dependsOn": ["//#lint:fix", "//#format:fix"],
+      "cache": false
     },
 
     // oxlint and oxfmt are fast enough to cover the whole monorepo in a single
