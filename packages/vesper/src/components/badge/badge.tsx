@@ -36,6 +36,8 @@ export type BadgeProps<E extends ElementType = "div"> = Polymorphic<
     subtle?: boolean;
     /** An optional icon element rendered to the left of the badge text. */
     icon?: ReactNode;
+    /** The badge text. Rendered inside the badge's `Typography` element. */
+    children?: ReactNode;
   },
   E
 >;
@@ -58,6 +60,7 @@ const BADGE_TYPOGRAPHY_VARIANTS: { [S in BadgeSize]: TypographyVariant } = {
  * @param {BadgeVariant} [props.variant] - (optional) The color variant of the badge. @default accent
  * @param {boolean} [props.subtle] - (optional) Renders the badge with a more subdued appearance. @default false
  * @param {ReactNode} [props.icon] - (optional) An icon element rendered to the left of the badge text
+ * @param {ReactNode} [props.children] - (optional) The badge text, rendered inside the badge's `Typography` element
  * @param {React.ElementType} [props.as] - (optional) Element type to render. @default div
  *
  * You may also pass any additional props to the underlying element
