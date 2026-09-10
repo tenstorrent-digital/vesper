@@ -37,12 +37,34 @@
 .vesper-text-area-sm {
   border-radius: var(--vesper-radius-1);
   padding: 0.43125rem var(--vesper-spacing-2);
+  font-family: var(--vesper-font-sans);
+  font-size: 0.8125rem;
+  line-height: var(--vesper-leading-normal);
+  letter-spacing: var(--vesper-tracking-normal);
+  @media (width < 768px) {
+    border-radius: var(--vesper-radius-2);
+    padding: 0.6375rem var(--vesper-spacing-3);
+    font-family: var(--vesper-font-sans);
+    font-size: 0.875rem;
+    line-height: var(--vesper-leading-normal);
+    letter-spacing: var(--vesper-tracking-normal);
+  }
 }
+
 .vesper-text-area-md {
   border-radius: var(--vesper-radius-2);
   padding: 0.6375rem var(--vesper-spacing-3);
+  font-family: var(--vesper-font-sans);
+  font-size: 0.875rem;
+  line-height: var(--vesper-leading-normal);
+  letter-spacing: var(--vesper-tracking-normal);
 }
+
 .vesper-text-area-lg {
   border-radius: var(--vesper-radius-2);
   padding: 0.9rem var(--vesper-spacing-3);
+  font-family: var(--vesper-font-sans);
+  font-size: 1rem;
+  line-height: var(--vesper-leading-snug);
+  letter-spacing: var(--vesper-tracking-normal);
 }

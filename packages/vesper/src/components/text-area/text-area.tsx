@@ -1,10 +1,5 @@
 "use client";
 
-import {
-  Typography,
-  type TypographyVariant,
-} from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 import { FormInputProps } from "@/utils/splitFormInputProps";
 
@@ -31,12 +26,6 @@ export interface TextAreaProps extends FormInputProps<"textarea", "textarea"> {
   /** The visual variant of the text input, which determines its color scheme. @default default */
   variant?: TextAreaVariant;
 }
-
-const TEXTAREA_TYPOGRAPHY: { [S in TextAreaSize]: TypographyVariant } = {
-  sm: "copy-xs",
-  md: "copy-sm",
-  lg: "copy-md",
-};
 
 /**
  * A form-ready textarea component supporting different visual variants.
@@ -70,7 +59,7 @@ export function TextArea(props: TextAreaProps) {
   } = props;
 
   return (
-    <Typography
+    <textarea
       {...rest}
       className={cn(
         "vesper-text-area",
@@ -78,8 +67,6 @@ export function TextArea(props: TextAreaProps) {
         `vesper-text-area-${variant}`,
         className,
       )}
-      as="textarea"
-      variant={TEXTAREA_TYPOGRAPHY[size]}
       placeholder={
         props.required && placeholder.trim()
           ? `${placeholder.trim()} *`

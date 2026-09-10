@@ -2,7 +2,7 @@
 
 exports[`text-area [snapshot] > disabled 1`] = `
 <textarea
-  class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-default"
+  class="vesper-text-area vesper-text-area-lg vesper-text-area-default"
   disabled=""
   placeholder=" "
   style="height: 6.5rem; resize: none;"
@@ -11,7 +11,7 @@ exports[`text-area [snapshot] > disabled 1`] = `
 
 exports[`text-area [snapshot] > full options 1`] = `
 <textarea
-  class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-error"
+  class="vesper-text-area vesper-text-area-lg vesper-text-area-error"
   disabled=""
   placeholder=" "
   style="height: 6.5rem; resize: none;"
@@ -20,7 +20,7 @@ exports[`text-area [snapshot] > full options 1`] = `
 
 exports[`text-area [snapshot] > size: lg 1`] = `
 <textarea
-  class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-default"
+  class="vesper-text-area vesper-text-area-lg vesper-text-area-default"
   placeholder=" "
   style="height: 6.5rem; resize: none;"
 />
@@ -28,7 +28,7 @@ exports[`text-area [snapshot] > size: lg 1`] = `
 
 exports[`text-area [snapshot] > size: md 1`] = `
 <textarea
-  class="vesper-typography vesper-typography-copy-sm vesper-text-area vesper-text-area-md vesper-text-area-default"
+  class="vesper-text-area vesper-text-area-md vesper-text-area-default"
   placeholder=" "
   style="height: 6.5rem; resize: none;"
 />
@@ -36,7 +36,7 @@ exports[`text-area [snapshot] > size: md 1`] = `
 
 exports[`text-area [snapshot] > size: sm 1`] = `
 <textarea
-  class="vesper-typography vesper-typography-copy-xs vesper-text-area vesper-text-area-sm vesper-text-area-default"
+  class="vesper-text-area vesper-text-area-sm vesper-text-area-default"
   placeholder=" "
   style="height: 6.5rem; resize: none;"
 />
@@ -44,7 +44,7 @@ exports[`text-area [snapshot] > size: sm 1`] = `
 
 exports[`text-area [snapshot] > variant: default 1`] = `
 <textarea
-  class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-default"
+  class="vesper-text-area vesper-text-area-lg vesper-text-area-default"
   placeholder=" "
   style="height: 6.5rem; resize: none;"
 />
@@ -52,7 +52,7 @@ exports[`text-area [snapshot] > variant: default 1`] = `
 
 exports[`text-area [snapshot] > variant: error 1`] = `
 <textarea
-  class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-error"
+  class="vesper-text-area vesper-text-area-lg vesper-text-area-error"
   placeholder=" "
   style="height: 6.5rem; resize: none;"
 />
@@ -60,7 +60,7 @@ exports[`text-area [snapshot] > variant: error 1`] = `
 
 exports[`text-area [snapshot] > variant: success 1`] = `
 <textarea
-  class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-success"
+  class="vesper-text-area vesper-text-area-lg vesper-text-area-success"
   placeholder=" "
   style="height: 6.5rem; resize: none;"
 />
@@ -68,7 +68,7 @@ exports[`text-area [snapshot] > variant: success 1`] = `
 
 exports[`text-area [snapshot] > variant: warning 1`] = `
 <textarea
-  class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-warning"
+  class="vesper-text-area vesper-text-area-lg vesper-text-area-warning"
   placeholder=" "
   style="height: 6.5rem; resize: none;"
 />
@@ -76,7 +76,7 @@ exports[`text-area [snapshot] > variant: warning 1`] = `
 
 exports[`text-area [snapshot] > with icon 1`] = `
 <textarea
-  class="vesper-typography vesper-typography-copy-md vesper-text-area vesper-text-area-lg vesper-text-area-default"
+  class="vesper-text-area vesper-text-area-lg vesper-text-area-default"
   placeholder=" "
   style="height: 6.5rem; resize: none;"
 />
