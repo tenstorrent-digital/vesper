@@ -210,7 +210,7 @@
     "test": "vitest run --coverage",
     "test:update": "vitest run --coverage --update",
     "test:watch": "vitest",
-    "check-types": "tsc --noEmit -p tsconfig.build.json"
+    "check-types": "tsc --noEmit --project tsconfig.build.json --incremental false"
   },
   "peerDependencies": {
     "react": "^19.0.0",

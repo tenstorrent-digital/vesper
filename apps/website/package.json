@@ -10,7 +10,7 @@
     "generate:demos": "node scripts/generate-demos.mts",
     "start": "next start",
     "clean": "rimraf .next generated",
-    "check-types": "next typegen && tsc --noEmit"
+    "check-types": "next typegen && tsc --noEmit --incremental false"
   },
   "dependencies": {
     "@maskito/core": "^5.4.0",
