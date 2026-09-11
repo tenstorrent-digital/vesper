@@ -33,6 +33,23 @@
       box-shadow: var(--vesper-shadow-focus-ring);
     }
   }
+  /*
+  When a text input has a font-size smaller than 16px on mobile Safari, the
+  browser zooms in automatically. We set the font-size here to 16px (or the
+  base rem size, whichever is larger) on mobile. This prevents the browser
+  from automatically zooming in.
+
+  Note that although `select` does not contain a text input, this component's
+  visual styles match other components like `combobox`, `text-input`, and
+  `text-area`, which do contain text inputs. We apply the font-scaling here
+  to retain visual consistency between the four components.
+
+  The base font-size for this element is normally set by the `typography`
+  component, which renders itself as the `@base-ui` select trigger
+  */
+  @media (width < 768px) {
+    font-size: max(16px, 1rem);
+  }
 }
 
 .vesper-select-item-checkmark {

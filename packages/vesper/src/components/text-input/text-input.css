@@ -1,4 +1,5 @@
 .vesper-text-input {
+  overflow: hidden;
   display: flex;
   align-items: center;
   border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
@@ -47,6 +48,10 @@
 
 .vesper-text-input-field {
   width: 100%;
+  color: var(--vesper-text-primary);
+  &::placeholder {
+    color: var(--vesper-text-tertiary);
+  }
   &:focus-visible {
     outline: none;
     box-shadow: none;
@@ -69,6 +74,26 @@
     -webkit-appearance: none;
     appearance: none;
     display: none; /* Secondary fallback to guarantee removal */
+  }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &[type="number"] {
+    appearance: textfield;
+  }
+  /*
+  When a text input has a font-size smaller than 16px on mobile Safari, the
+  browser zooms in automatically. We set the font-size here to 16px (or the
+  base rem size, whichever is larger) on mobile. This prevents the browser
+  from automatically zooming in.
+
+  The base font-size for this element is normally set by the `typography`
+  component, which renders itself as the `input` element
+  */
+  @media (width < 768px) {
+    font-size: max(16px, 1rem);
   }
 }
 
@@ -111,20 +136,5 @@
   }
   .vesper-text-input-field {
     padding: 0.9rem 0;
-  }
-}
-
-.vesper-text-input-field {
-  color: var(--vesper-text-primary);
-  &::placeholder {
-    color: var(--vesper-text-tertiary);
-  }
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  &[type="number"] {
-    appearance: textfield;
   }
 }
