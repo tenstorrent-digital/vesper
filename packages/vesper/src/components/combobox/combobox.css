@@ -66,8 +66,17 @@
   &::placeholder {
     color: var(--vesper-text-tertiary);
   }
+  /*
+  When a text input has a font-size smaller than 16px on mobile Safari, the
+  browser zooms in automatically. We set the font-size here to 16px (or the
+  base rem size, whichever is larger) on mobile. This prevents the browser
+  from automatically zooming in.
+
+  The base font-size for this element is normally set by the `typography`
+  component, which renders itself as the `@base-ui` combobox input
+  */
   @media (width < 768px) {
-    font-size: 1rem;
+    font-size: max(16px, 1rem);
   }
 }
 
