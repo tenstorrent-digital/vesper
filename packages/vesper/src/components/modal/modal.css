@@ -94,6 +94,14 @@
   color: var(--vesper-text-primary);
   flex-shrink: 1;
   overflow-y: auto;
+  &:focus-visible {
+    @media (forced-colors: active) {
+      outline: var(--vesper-stroke-strong) solid CanvasText;
+    }
+    @media not (forced-colors: active) {
+      box-shadow: var(--vesper-shadow-focus-ring);
+    }
+  }
 }
 
 .vesper-modal-buttons {

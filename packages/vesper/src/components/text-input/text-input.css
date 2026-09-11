@@ -47,10 +47,6 @@
 
 .vesper-text-input-field {
   width: 100%;
-  &:focus-visible {
-    outline: none;
-    box-shadow: none;
-  }
   /* https://css-tricks.com/snippets/css/change-autocomplete-styles-webkit-browsers/ */
   &:autofill,
   &:-webkit-autofill {

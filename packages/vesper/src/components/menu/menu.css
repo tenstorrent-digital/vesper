@@ -17,7 +17,6 @@
   gap: var(--vesper-spacing-2);
   border-radius: var(--vesper-radius-1);
   cursor: pointer;
-  outline: none;
   @media (forced-colors: active) {
     &:focus-visible {
       outline: var(--vesper-stroke-strong) solid CanvasText;

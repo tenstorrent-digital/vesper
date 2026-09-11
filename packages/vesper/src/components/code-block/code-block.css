@@ -39,14 +39,6 @@
 }
 
 .vesper-code-block-pre-wrapper {
-  &:focus-visible {
-    @media (forced-colors: active) {
-      outline: none;
-    }
-    @media not (forced-colors: active) {
-      box-shadow: none;
-    }
-  }
   width: 100%;
   overflow: auto;
   border-radius: var(--vesper-radius-2);

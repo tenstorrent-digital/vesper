@@ -7,16 +7,6 @@
   widows: 2;
   orphans: 2;
   white-space: pre-wrap;
-  @media (forced-colors: active) {
-    &:focus-visible {
-      outline: var(--vesper-stroke-strong) solid CanvasText;
-    }
-  }
-  @media not (forced-colors: active) {
-    &:focus-visible {
-      box-shadow: var(--vesper-shadow-focus-ring);
-    }
-  }
 }
 
 /* Display styles */

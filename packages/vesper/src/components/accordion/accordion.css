@@ -34,8 +34,6 @@
     content: "";
   }
   &:focus-visible {
-    outline: none;
-    box-shadow: none;
     color: var(--vesper-text-primary);
     &::before {
       box-shadow: var(--vesper-shadow-focus-ring);

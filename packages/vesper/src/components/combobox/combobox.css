@@ -58,10 +58,6 @@
 
 .vesper-combobox-input {
   width: 100%;
-  &:focus-visible {
-    outline: none;
-    box-shadow: none;
-  }
   color: var(--vesper-text-primary);
   &::placeholder {
     color: var(--vesper-text-tertiary);
@@ -171,7 +167,6 @@
 
 .vesper-combobox-popup {
   color: var(--vesper-text-primary);
-  outline: none;
   /* --available-height comes from base-ui */
   max-height: min(var(--available-height), 20rem);
   overflow-y: auto;
