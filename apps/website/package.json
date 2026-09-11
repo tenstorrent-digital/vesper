@@ -22,7 +22,6 @@
     "@repo/typescript-config": "*",
     "@tailwindcss/postcss": "^4.3.0",
     "@tenstorrent/vesper": "*",
-    "libphonenumber-js": "^1.13.11",
     "next": "^16.2.10",
     "postcss": "^8.5.15",
     "react": "^19.2.7",
