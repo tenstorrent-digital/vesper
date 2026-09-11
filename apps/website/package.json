@@ -15,9 +15,6 @@
     "check-types": "next typegen && tsc --noEmit"
   },
   "dependencies": {
-    "@maskito/core": "^5.4.0",
-    "@maskito/kit": "^5.4.0",
-    "@maskito/phone": "^5.4.0",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^16.2.10",
