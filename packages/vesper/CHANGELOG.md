@@ -2,6 +2,10 @@
 
 ## 0.2.0
 
+Post-public-pre-internal-launch jitters settled.
+
+This minor release ships with accessibility improvements, and contains our first **breaking change** (‼️), where we remove `MaskedInput` completely ahead of wider adoption (forgive us if you were among the 3 people who downloaded the last release and have already vibecoded your way to 1M MAU and series A funding!!).
+
 ### Minor Changes
 
 - f3905b1: Accessibility update: `text-area`, `text-input`, `combobox`, and `select` components now render their inputs with a minimum font size of 16px on mobile screens.
