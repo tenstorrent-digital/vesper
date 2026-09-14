@@ -80,7 +80,7 @@ jobs:
       cancel-in-progress: false
 
     permissions:
-      # push version commits and git tags, and create GitHub releases
+      # push git tags and create GitHub releases
       contents: write
       # mint the OIDC token that npm exchanges for a short-lived registry
       # credential (trusted publishing), and sign the provenance attestation
