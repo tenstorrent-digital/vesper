@@ -34,7 +34,9 @@ The most straightforward way to use the `CodeBlock` component is to pass in plai
 ```tsx
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
 
-<CodeBlock>Hello, world!</CodeBlock>;
+export default function BasicCodeBlock() {
+  return <CodeBlock>Hello, world!</CodeBlock>;
+}
 ```
 
 ### Syntax highlighting
@@ -42,12 +44,17 @@ import { CodeBlock } from "@tenstorrent/vesper/code-block";
 `CodeBlock` ships without any built-in grammars, and expects you to provide them yourself. Individual grammars can be imported from `@shikijs/langs/*` and supplied to the component. For example, to achieve `javascript` syntax highlighting you would import the grammar and pass it to the component via the `lang` prop:
 
 ```tsx
-import { CodeBlock } from "@tenstorrent/vesper/code-block";
 import javascript from "@shikijs/langs/javascript";
 
-<CodeBlock lang={javascript}>
-  {"const count = 42;\nconsole.log(count);"}
-</CodeBlock>;
+import { CodeBlock } from "@tenstorrent/vesper/code-block";
+
+export default function HighlightedCodeBlock() {
+  return (
+    <CodeBlock lang={javascript}>
+      {"const count = 42;\nconsole.log(count);"}
+    </CodeBlock>
+  );
+}
 ```
 
 #### Plain text and ANSI
@@ -57,7 +64,9 @@ Plain text and ANSI come prebundled and don't require supplying any grammar obje
 ```tsx
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
 
-<CodeBlock lang="ansi">{buildLogs}</CodeBlock>;
+export default function BuildLogs({ buildLogs }: { buildLogs: string }) {
+  return <CodeBlock lang="ansi">{buildLogs}</CodeBlock>;
+}
 ```
 
 #### Custom grammars
@@ -66,9 +75,12 @@ You can provide your own custom grammars by passing them into the `lang` prop as
 
 ```tsx
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
+
 import customGrammar from "./custom-grammar.json";
 
-<CodeBlock lang={[customGrammar]}>{/* your custom language code */}</CodeBlock>;
+export default function CustomGrammarCodeBlock({ code }: { code: string }) {
+  return <CodeBlock lang={[customGrammar]}>{code}</CodeBlock>;
+}
 ```
 
 [tm-grammars package on GitHub](https://github.com/shikijs/textmate-grammars-themes/tree/main/packages/tm-grammars)
@@ -78,12 +90,21 @@ import customGrammar from "./custom-grammar.json";
 Passing `showLineNumbers` renders a line number gutter down the left-hand side of the code block:
 
 ```tsx
-import { CodeBlock } from "@tenstorrent/vesper/code-block";
 import typescript from "@shikijs/langs/typescript";
 
-<CodeBlock lang={typescript} showLineNumbers>
-  {codeContent}
-</CodeBlock>;
+import { CodeBlock } from "@tenstorrent/vesper/code-block";
+
+export default function NumberedCodeBlock({
+  codeContent,
+}: {
+  codeContent: string;
+}) {
+  return (
+    <CodeBlock lang={typescript} showLineNumbers>
+      {codeContent}
+    </CodeBlock>
+  );
+}
 ```
 
 ### Streaming content
@@ -91,10 +112,17 @@ import typescript from "@shikijs/langs/typescript";
 To stream code as it arrives (build logs, LLM output, etc.), pass a factory function that returns a `ReadableStream<string>` instead of a string:
 
 ```tsx
-import { CodeBlock } from "@tenstorrent/vesper/code-block";
 import typescript from "@shikijs/langs/typescript";
 
-<CodeBlock lang={typescript}>{() => getCodeStream()}</CodeBlock>;
+import { CodeBlock } from "@tenstorrent/vesper/code-block";
+
+export default function StreamedCodeBlock({
+  getCodeStream,
+}: {
+  getCodeStream: () => ReadableStream<string>;
+}) {
+  return <CodeBlock lang={typescript}>{() => getCodeStream()}</CodeBlock>;
+}
 ```
 
 ### Showing clipboard button on hover
@@ -102,10 +130,19 @@ import typescript from "@shikijs/langs/typescript";
 The copy-to-clipboard button is always visible by default; pass `copyOnHover` to hide it until the code block is hovered:
 
 ```tsx
-import { CodeBlock } from "@tenstorrent/vesper/code-block";
 import typescript from "@shikijs/langs/typescript";
 
-<CodeBlock lang={typescript} copyOnHover>
-  {codeContent}
-</CodeBlock>;
+import { CodeBlock } from "@tenstorrent/vesper/code-block";
+
+export default function HoverCopyCodeBlock({
+  codeContent,
+}: {
+  codeContent: string;
+}) {
+  return (
+    <CodeBlock lang={typescript} copyOnHover>
+      {codeContent}
+    </CodeBlock>
+  );
+}
 ```

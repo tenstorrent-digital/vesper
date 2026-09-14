@@ -105,11 +105,15 @@ Use `onValuesCommit` when you only care about the final values of an interaction
 ```tsx
 import { Range } from "@tenstorrent/vesper/range";
 
-<Range
-  defaultValues={[20, 80]}
-  onValuesCommit={([min, max]) => fetchResults({ min, max })}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>;
+export default function PriceRange() {
+  return (
+    <Range
+      defaultValues={[20, 80]}
+      onValuesCommit={([min, max]) => fetchResults({ min, max })}
+      thumbAriaLabels={["Price (min)", "Price (max)"]}
+    />
+  );
+}
 ```
 
 ### Bounds and stepping

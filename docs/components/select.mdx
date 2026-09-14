@@ -325,19 +325,24 @@ The value submitted is the `value` of the selected option, not the `label` displ
 Use the `ref` prop when you need direct access to the underlying trigger `<button>` element, eg. to focus it when a page loads:
 
 ```tsx
-import { useEffect, useRef } from "react"
-import { Select } from "@tenstorrent/vesper/select"
+import { useEffect, useRef } from "react";
 
-const ref = useRef<HTMLButtonElement>(null)
+import { Select } from "@tenstorrent/vesper/select";
 
-useEffect(() => {
-  ref.current?.focus()
-}, [])
+export default function RegionSelect() {
+  const ref = useRef<HTMLButtonElement>(null);
 
-<Select
-  aria-label="Region"
-  placeholder="Select a region"
-  options={["United States", "Europe", "Asia Pacific"]}
-  ref={ref}
-/>
+  useEffect(() => {
+    ref.current?.focus();
+  }, []);
+
+  return (
+    <Select
+      aria-label="Region"
+      placeholder="Select a region"
+      options={["United States", "Europe", "Asia Pacific"]}
+      ref={ref}
+    />
+  );
+}
 ```

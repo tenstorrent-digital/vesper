@@ -73,11 +73,15 @@ Use `onValueCommit` when you only care about the final value of an interaction, 
 ```tsx
 import { Slider } from "@tenstorrent/vesper/slider";
 
-<Slider
-  defaultValue={50}
-  onValueCommit={(volume) => savePreference({ volume })}
-  thumbAriaLabel="Volume"
-/>;
+export default function VolumeSlider() {
+  return (
+    <Slider
+      defaultValue={50}
+      onValueCommit={(volume) => savePreference({ volume })}
+      thumbAriaLabel="Volume"
+    />
+  );
+}
 ```
 
 ### Bounds and stepping
