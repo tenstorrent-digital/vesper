@@ -7,7 +7,15 @@ description: A text input component supporting different visual variants, as wel
 
 A text input component supporting different visual variants, as well as leading and trailing icons. Built on the native `<input>` element for full form compatibility.
 
-<TextInput aria-label="Email" placeholder="you@example.com" type="email" />
+```tsx demo
+import { TextInput } from "@tenstorrent/vesper/text-input";
+
+export default function TextInputDemo() {
+  return (
+    <TextInput aria-label="Email" placeholder="you@example.com" type="email" />
+  );
+}
+```
 
 > [!IMPORTANT]
 >
@@ -38,98 +46,128 @@ Form props (`value`, `disabled`, `name`, `form`, etc.), input props (`autoCorrec
 
 The simplest way to use the `TextInput` component is to render it in an uncontrolled fashion, where the component is responsible for keeping track of its own value:
 
-```tsx
+```tsx demo
 import { TextInput } from "@tenstorrent/vesper/text-input";
 
-<TextInput placeholder="Enter some text" />;
+export default function UncontrolledTextInput() {
+  return <TextInput aria-label="About" placeholder="Enter some text" />;
+}
 ```
 
 If you need to control the value of the `TextInput`, you can do so via the `value` and `onChange` props:
 
-```tsx
-import { useState } from "react"
-import { TextInput } from "@tenstorrent/vesper/text-input"
+```tsx demo
+import { useState } from "react";
 
-const [value, setValue] = useState("")
+import { TextInput } from "@tenstorrent/vesper/text-input";
 
-<TextInput
-  aria-label="About"
-  placeholder="Enter some text"
-  value={value}
-  onChange={e => setValue(e.target.value)}
-/>
+export default function ControlledTextInput() {
+  const [value, setValue] = useState("");
+
+  return (
+    <TextInput
+      aria-label="About"
+      placeholder="Enter some text"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+    />
+  );
+}
 ```
 
 ### Different sizes
 
 The `TextInput` component can be rendered at `sm`, `md`, or `lg` size, defaulting to `md`. Size affects the padding and text styles of the input, as well as the size of the rendered icons.
 
-<TextInput aria-label="Username" size="sm" placeholder="A small text input" />
-<TextInput aria-label="Username" size="md" placeholder="A medium text input" />
-<TextInput aria-label="Username" size="lg" placeholder="A large text input" />
+```tsx demo
+import { TextInput } from "@tenstorrent/vesper/text-input";
 
-```tsx
-import { TextInput } from "@tenstorrent/vesper/text-input"
-
-<TextInput aria-label="Username" size="sm" placeholder="A small text input" />
-<TextInput aria-label="Username" size="md" placeholder="A medium text input" />
-<TextInput aria-label="Username" size="lg" placeholder="A large text input" />
+export default function TextInputSizes() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <TextInput
+        aria-label="Username"
+        size="sm"
+        placeholder="A small text input"
+      />
+      <TextInput
+        aria-label="Username"
+        size="md"
+        placeholder="A medium text input"
+      />
+      <TextInput
+        aria-label="Username"
+        size="lg"
+        placeholder="A large text input"
+      />
+    </div>
+  );
+}
 ```
 
 ### Rendering icons
 
 You can render icons to the left or the right of the input via the `iconLeft` and `iconRight` props:
 
-<TextInput
-  aria-label="Search"
-  placeholder="Enter some text"
-  iconLeft={<Globe />}
-  iconRight={<Search />}
-/>
-
-```tsx
-import { Search, Globe } from "@tenstorrent/vesper/icons";
+```tsx demo
+import { Globe, Search } from "@tenstorrent/vesper/icons";
 import { TextInput } from "@tenstorrent/vesper/text-input";
 
-<TextInput
-  aria-label="Search"
-  placeholder="Enter some text"
-  iconLeft={<Globe />}
-  iconRight={<Search />}
-/>;
+export default function TextInputWithIcons() {
+  return (
+    <TextInput
+      aria-label="Search"
+      placeholder="Enter some text"
+      iconLeft={<Globe />}
+      iconRight={<Search />}
+    />
+  );
+}
 ```
 
 Rendered icons can be treated as buttons by passing the `iconLeftAction` and `iconRightAction` props. Each action takes a `handler` that is called when the icon is clicked, and an `ariaLabel` that gives the resulting button an accessible label:
 
-```tsx
+```tsx demo
 import { Search } from "@tenstorrent/vesper/icons";
 import { TextInput } from "@tenstorrent/vesper/text-input";
 
-<TextInput
-  aria-label="Search term"
-  placeholder="Enter some text"
-  iconLeft={<Search />}
-  iconLeftAction={{
-    handler: () => searchLogs(),
-    ariaLabel: "Search logs",
-  }}
-/>;
+export default function TextInputWithIconAction() {
+  return (
+    <TextInput
+      aria-label="Search term"
+      placeholder="Enter some text"
+      iconLeft={<Search />}
+      iconLeftAction={{
+        handler: () => console.log("Search logs"),
+        ariaLabel: "Search logs",
+      }}
+    />
+  );
+}
 ```
 
 ### Disabling the input
 
 You can disable a `TextInput` by passing `disabled={true}` or just `disabled` as a prop:
 
-<TextInput aria-label="Byline" placeholder="Who wrote this article?" disabled />
-
-```tsx
+```tsx demo
 import { TextInput } from "@tenstorrent/vesper/text-input";
 
-<TextInput
-  aria-label="Byline"
-  placeholder="Who wrote this article?"
-  disabled
-/>;
+export default function DisabledTextInput() {
+  return (
+    <TextInput
+      aria-label="Byline"
+      placeholder="Who wrote this article?"
+      disabled
+    />
+  );
+}
 ```
 
 ### Variants
@@ -140,85 +178,87 @@ The `TextInput` component can be rendered in one of four variants: `default`, `w
 
 A `TextInput` renders with the `default` variant when no `variant` prop is specified:
 
-<TextInput aria-label="Username" placeholder="Enter your desired username" />
-
-```tsx
+```tsx demo
 import { TextInput } from "@tenstorrent/vesper/text-input";
 
-<TextInput aria-label="Username" placeholder="Enter your desired username" />;
+export default function DefaultTextInput() {
+  return (
+    <TextInput
+      aria-label="Username"
+      placeholder="Enter your desired username"
+    />
+  );
+}
 ```
 
 #### Warning variant
 
 Use the `warning` variant to flag a value that needs attention, but that doesn't prevent the form from being submitted:
 
-<TextInput
-  aria-label="Password"
-  placeholder="Enter your password"
-  variant="warning"
-  type="password"
-  defaultValue="password1"
-/>
-
-```tsx
+```tsx demo
 import { TextInput } from "@tenstorrent/vesper/text-input";
 
-<TextInput
-  aria-label="Password"
-  placeholder="Enter your password"
-  variant="warning"
-  type="password"
-/>;
+export default function WarningTextInput() {
+  return (
+    <TextInput
+      aria-label="Password"
+      placeholder="Enter your password"
+      variant="warning"
+      type="password"
+      defaultValue="password1"
+    />
+  );
+}
 ```
 
 #### Success variant
 
 The `success` variant is best suited for confirming that a value has been validated as expected:
 
-<TextInput
-  aria-label="Workspace"
-  placeholder="Enter the name of your workspace"
-  variant="success"
-  defaultValue="vesper"
-/>
+```tsx demo
+import { useState } from "react";
 
-```tsx
 import { TextInput } from "@tenstorrent/vesper/text-input";
 
-<TextInput
-  aria-label="Workspace"
-  placeholder="Enter the name of your workspace"
-  variant="success"
-  value={workspace}
-  onChange={(e) => setWorkspace(e.target.value)}
-/>;
+export default function SuccessTextInput() {
+  const [workspace, setWorkspace] = useState("vesper");
+
+  return (
+    <TextInput
+      aria-label="Workspace"
+      placeholder="Enter the name of your workspace"
+      variant="success"
+      value={workspace}
+      onChange={(e) => setWorkspace(e.target.value)}
+    />
+  );
+}
 ```
 
 #### Error variant
 
 The `error` variant highlights an invalid value that must be corrected before the form can be submitted:
 
-<TextInput
-  aria-label="Email"
-  placeholder="Enter your email"
-  variant="error"
-  type="email"
-  defaultValue="you@example.com"
-  required
-/>
+```tsx demo
+import { useState } from "react";
 
-```tsx
 import { TextInput } from "@tenstorrent/vesper/text-input";
 
-<TextInput
-  aria-label="Email"
-  placeholder="Enter your email"
-  variant="error"
-  type="email"
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-  required
-/>;
+export default function ErrorTextInput() {
+  const [email, setEmail] = useState("you@example.com");
+
+  return (
+    <TextInput
+      aria-label="Email"
+      placeholder="Enter your email"
+      variant="error"
+      type="email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      required
+    />
+  );
+}
 ```
 
 ### Usage in forms

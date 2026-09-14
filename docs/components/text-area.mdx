@@ -7,7 +7,19 @@ description: A multi-line text input component that supports different visual va
 
 A multi-line text input component that supports different visual variants.
 
-<TextArea aria-label="Bio" placeholder="Tell us about yourself" resizeable />
+```tsx demo
+import { TextArea } from "@tenstorrent/vesper/text-area";
+
+export default function TextAreaDemo() {
+  return (
+    <TextArea
+      aria-label="Bio"
+      placeholder="Tell us about yourself"
+      resizeable
+    />
+  );
+}
+```
 
 > [!IMPORTANT]
 >
@@ -39,102 +51,111 @@ Unlike [the `TextInput` component](./text-input.mdx), `TextArea` does not suppor
 
 The simplest way to use the `TextArea` component is to render it in an uncontrolled fashion, where the component is responsible for keeping track of its own value:
 
-```tsx
+```tsx demo
 import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<TextArea aria-label="About" placeholder="Enter some text" />;
+export default function UncontrolledTextArea() {
+  return <TextArea aria-label="About" placeholder="Enter some text" />;
+}
 ```
 
 If you need to control the value of the `TextArea`, you can do so via the `value` and `onChange` props:
 
-```tsx
-import { useState } from "react"
-import { TextArea } from "@tenstorrent/vesper/text-area"
+```tsx demo
+import { useState } from "react";
 
-const [value, setValue] = useState("")
+import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<TextArea
-  aria-label="About"
-  placeholder="Enter some text"
-  value={value}
-  onChange={e => setValue(e.target.value)}
-/>
+export default function ControlledTextArea() {
+  const [value, setValue] = useState("");
+
+  return (
+    <TextArea
+      aria-label="About"
+      placeholder="Enter some text"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+    />
+  );
+}
 ```
 
 ### Different sizes
 
 The `TextArea` component can be rendered at `sm`, `md`, or `lg` size, defaulting to `md`. Size affects the padding and text styles of the `textarea`.
 
-<TextArea size="sm" placeholder="A small TextArea" aria-label="About" />
-<TextArea size="md" placeholder="A medium TextArea" aria-label="About" />
-<TextArea size="lg" placeholder="A large TextArea" aria-label="About" />
+```tsx demo
+import { TextArea } from "@tenstorrent/vesper/text-area";
 
-```tsx
-import { TextArea } from "@tenstorrent/vesper/text-area"
-
-<TextArea size="sm" placeholder="A small TextArea" aria-label="About" />
-<TextArea size="md" placeholder="A medium TextArea" aria-label="About" />
-<TextArea size="lg" placeholder="A large TextArea" aria-label="About" />
+export default function TextAreaSizes() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <TextArea size="sm" placeholder="A small TextArea" aria-label="About" />
+      <TextArea size="md" placeholder="A medium TextArea" aria-label="About" />
+      <TextArea size="lg" placeholder="A large TextArea" aria-label="About" />
+    </div>
+  );
+}
 ```
 
 ### Setting the height
 
 You can give a `TextArea` a fixed height in pixels via the `height` prop, which defaults to `104`. The value is converted to `rem`, so the rendered height scales with the base font size.
 
-<TextArea
-  aria-label="Release notes"
-  placeholder="Summarise what changed in this release"
-  height={200}
-/>
-
-```tsx
+```tsx demo
 import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<TextArea
-  aria-label="Release notes"
-  placeholder="Summarize what changed in this release"
-  height={200}
-/>;
+export default function TextAreaHeight() {
+  return (
+    <TextArea
+      aria-label="Release notes"
+      placeholder="Summarize what changed in this release"
+      height={200}
+    />
+  );
+}
 ```
 
 ### Resizing the `TextArea`
 
 By default, a `TextArea` does not resize. If you want to opt-into resizing behavior, you can pass `resizeable={true}` or just `resizeable`, which allows the `TextArea` to be resized along its block direction.
 
-<TextArea
-  resizeable
-  aria-label="Release notes"
-  placeholder="Summarize what changed in this release"
-/>
-
-```tsx
+```tsx demo
 import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<TextArea
-  resizeable
-  aria-label="Release notes"
-  placeholder="Summarize what changed in this release"
-/>;
+export default function ResizeableTextArea() {
+  return (
+    <TextArea
+      resizeable
+      aria-label="Release notes"
+      placeholder="Summarize what changed in this release"
+    />
+  );
+}
 ```
 
 ### Disabling the textarea
 
 You can disable the underlying textarea by passing `disabled={true}` or just `disabled` as a prop:
 
-<TextArea
-  aria-label="Overview"
-  placeholder="Add a brief outline of your project"
-  disabled
-/>
-
-```tsx
+```tsx demo
 import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<TextArea
-  aria-label="Overview"
-  placeholder="Add a brief outline of your project"
-  disabled
-/>;
+export default function DisabledTextArea() {
+  return (
+    <TextArea
+      aria-label="Overview"
+      placeholder="Add a brief outline of your project"
+      disabled
+    />
+  );
+}
 ```
 
 ### Usage in forms

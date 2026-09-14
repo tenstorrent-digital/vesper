@@ -7,7 +7,14 @@ description: A button component that renders a single icon without text.
 
 A button component that renders a single icon without text. Built on top of `Button`, it inherits all size and variant options while enforcing an icon-only layout.
 
-<IconButton icon={<Gear />} aria-label="Settings" />
+```tsx demo
+import { IconButton } from "@tenstorrent/vesper/icon-button";
+import { Gear } from "@tenstorrent/vesper/icons";
+
+export default function IconButtonDemo() {
+  return <IconButton icon={<Gear />} aria-label="Settings" />;
+}
+```
 
 > [!IMPORTANT]
 >
@@ -31,13 +38,13 @@ All other props are forwarded to the underlying `<button>` element, or whichever
 
 The most straightforward way to render an `IconButton` is to pass it an icon as a `ReactNode`:
 
-<IconButton aria-label="Download" icon={<Download />} />
-
-```tsx
+```tsx demo
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import { Download } from "@tenstorrent/vesper/icons";
 
-<IconButton aria-label="Download" icon={<Download />} />;
+export default function BasicIconButton() {
+  return <IconButton aria-label="Download" icon={<Download />} />;
+}
 ```
 
 ### Variants
@@ -71,45 +78,59 @@ import { Tenstorrent } from "@tenstorrent/vesper/icons";
 
 An `IconButton` can be rendered in one of four sizes; `"xs"`, `"sm"`, `"md"`, or `"lg"`. The default size is `"md"`.
 
-<IconButton aria-label="Extra Small" size="xs" icon={<Tenstorrent />} />
-<IconButton aria-label="Small" size="sm" icon={<Tenstorrent />} />
-<IconButton aria-label="Medium" size="md" icon={<Tenstorrent />} />
-<IconButton aria-label="Large" size="lg" icon={<Tenstorrent />} />
-
-```tsx
+```tsx demo
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import { Tenstorrent } from "@tenstorrent/vesper/icons";
 
-<IconButton aria-label="Extra Small" size="xs" icon={<Tenstorrent />} />
-<IconButton aria-label="Small" size="sm" icon={<Tenstorrent />} />
-<IconButton aria-label="Medium" size="md" icon={<Tenstorrent />} />
-<IconButton aria-label="Large" size="lg" icon={<Tenstorrent />} />
+export default function IconButtonSizes() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <IconButton aria-label="Extra small" size="xs" icon={<Tenstorrent />} />
+      <IconButton aria-label="Small" size="sm" icon={<Tenstorrent />} />
+      <IconButton aria-label="Medium" size="md" icon={<Tenstorrent />} />
+      <IconButton aria-label="Large" size="lg" icon={<Tenstorrent />} />
+    </div>
+  );
+}
 ```
 
 ### Disabling an icon button
 
 You can disable an `IconButton` by passing `disabled={true}` or just `disabled` as a prop. Disabling a button prevents interaction and changes the color scheme:
 
-<IconButton aria-label="Increment count" disabled icon={<Add />} />
-
-```tsx
+```tsx demo
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import { Add } from "@tenstorrent/vesper/icons";
 
-<IconButton aria-label="Increment count" disabled icon={<Add />} />;
+export default function DisabledIconButton() {
+  return <IconButton aria-label="Increment count" disabled icon={<Add />} />;
+}
 ```
 
 ### Polymorphic usage
 
 You can use the `as` prop to specify what underlying element to render. In this case, we are passing `as="a"` to render the `IconButton` as an anchor link. This is helpful for apps where clicking on a button may navigate to a different page, for example:
 
-<IconButton as="a" href="#" aria-label="Next page" icon={<ArrowRight />} />
-
-```tsx
+```tsx demo
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import { ArrowRight } from "@tenstorrent/vesper/icons";
 
-<IconButton icon={<ArrowRight />} as="a" href="#" aria-label="Next page" />;
+export default function IconButtonAsLink() {
+  return (
+    <IconButton
+      icon={<ArrowRight />}
+      as="a"
+      href="#polymorphic-usage"
+      aria-label="Next page"
+    />
+  );
+}
 ```
 
 You can also use other components as the underlying `as` element. For example, Next.js comes with a bespoke `Link` component that enables prefetching and client-side navigation between routes, which you may want to use instead of the HTML `<a>` element:
