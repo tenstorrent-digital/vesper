@@ -180,6 +180,14 @@ For more information on the docs folder and how our documentation files map to r
 
 ## Releasing `@tenstorrent/vesper`
 
-Releasing the `@tenstorrent/vesper` package happens through CI via [the release GitHub workflow](.github/workflows/release.yml). We use [changesets](https://changesets.dev) to automate changelog generation, package version incrementing, and release tagging.
+Releasing the `@tenstorrent/vesper` package happens through CI via two GitHub workflows. We use [changesets](https://changesets.dev) to automate changelog generation, package version incrementing, and release tagging.
 
-When there are changesets present on the `main` branch of this monorepo, there will be a `Version Packages` PR open on the vesper repository's Pull Requests tab on GitHub. When merged, this PR aggregates the changeset notes, buckets them into categories (patch/minor/major), appends them to the changelog, clears existing changesets, creates Git tags and GitHub releases, and publishes the `@tenstorrent/vesper` package to npm. When new changesets are added, a new `Version Packages` PR automatically opens again.
+### Versioning
+
+[The version workflow](.github/workflows/version.yml) runs automatically on every push to `main`. When there are changesets present on the `main` branch of this monorepo, it opens (or updates) a `Version Packages` PR on the vesper repository's Pull Requests tab on GitHub. That PR aggregates the changeset notes, buckets them into categories (patch/minor/major), appends them to the changelog, and clears the existing changesets. When new changesets are added, a new `Version Packages` PR automatically opens again.
+
+### Releasing
+
+[The release workflow](.github/workflows/release.yml) also runs on every push to `main`, but its first job just checks whether a release is actually pending (no changesets remain, and the version in `packages/vesper/package.json` has no git tag yet).
+
+When a release is pending, the publishing job pauses and waits for manual approval from a reviewer on the `release` GitHub environment. This is intentional friction around publishing to npm. Once approved, it creates Git tags and GitHub releases and publishes the `@tenstorrent/vesper` package to npm.
