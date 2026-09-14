@@ -52,7 +52,7 @@ Any additional props are forwarded to the wrapping `<div>` element.
 
 ### Basic usage
 
-The most straightforward way to render a `Skeleton` is so simply give it a `width` and `height`:
+Render a `Skeleton` by giving it a `width` and `height`:
 
 ```tsx demo
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
@@ -122,7 +122,7 @@ export default function SkeletonWithChildren() {
 
 ### Conditional rendering
 
-You will typically be using `Skeleton` to conditionally render loading states for your components. The most straightforward way to do this is to simply render the `Skeleton` in place of other elements while they are loading:
+You will typically be using `Skeleton` to conditionally render loading states for your components. The easiest way to do this is to simply render the `Skeleton` in place of other elements while they are loading:
 
 ```tsx
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
