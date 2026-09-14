@@ -65,13 +65,35 @@ An `IconButton` can be rendered in several different variants:
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import { Tenstorrent } from "@tenstorrent/vesper/icons";
 
-<IconButton aria-label="Primary" variant="primary" icon={<Tenstorrent />} />
-<IconButton aria-label="Subtle" variant="subtle" icon={<Tenstorrent />} />
-<IconButton aria-label="Tertiary" variant="tertiary" icon={<Tenstorrent />} />
-<IconButton aria-label="Contrast" variant="contrast" icon={<Tenstorrent />} />
-<IconButton aria-label="Ghost" variant="ghost" icon={<Tenstorrent />} />
-<IconButton aria-label="Danger" variant="danger" icon={<Tenstorrent />} />
-<IconButton aria-label="Warning" variant="warning" icon={<Tenstorrent />} />
+export default function IconButtonVariants() {
+  return (
+    <>
+      <IconButton
+        aria-label="Primary"
+        variant="primary"
+        icon={<Tenstorrent />}
+      />
+      <IconButton aria-label="Subtle" variant="subtle" icon={<Tenstorrent />} />
+      <IconButton
+        aria-label="Tertiary"
+        variant="tertiary"
+        icon={<Tenstorrent />}
+      />
+      <IconButton
+        aria-label="Contrast"
+        variant="contrast"
+        icon={<Tenstorrent />}
+      />
+      <IconButton aria-label="Ghost" variant="ghost" icon={<Tenstorrent />} />
+      <IconButton aria-label="Danger" variant="danger" icon={<Tenstorrent />} />
+      <IconButton
+        aria-label="Warning"
+        variant="warning"
+        icon={<Tenstorrent />}
+      />
+    </>
+  );
+}
 ```
 
 ### Different sizes
@@ -137,14 +159,19 @@ You can also use other components as the underlying `as` element. For example, N
 
 ```tsx
 import Link from "next/link";
+
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import { ArrowRight } from "@tenstorrent/vesper/icons";
 
-<IconButton
-  icon={<ArrowRight />}
-  as={Link}
-  preload={false}
-  href="/dashboard"
-  aria-label="Go to dashboard"
-/>;
+export default function IconButtonAsNextLink() {
+  return (
+    <IconButton
+      icon={<ArrowRight />}
+      as={Link}
+      prefetch={false}
+      href="/dashboard"
+      aria-label="Go to dashboard"
+    />
+  );
+}
 ```

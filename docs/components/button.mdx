@@ -64,13 +64,19 @@ A `Button` can be rendered in several different variants:
 ```tsx
 import { Button } from "@tenstorrent/vesper/button";
 
-<Button variant="primary">Primary</Button>
-<Button variant="subtle">Subtle</Button>
-<Button variant="tertiary">Tertiary</Button>
-<Button variant="contrast">Contrast</Button>
-<Button variant="ghost">Ghost</Button>
-<Button variant="danger">Danger</Button>
-<Button variant="warning">Warning</Button>
+export default function ButtonVariants() {
+  return (
+    <>
+      <Button variant="primary">Primary</Button>
+      <Button variant="subtle">Subtle</Button>
+      <Button variant="tertiary">Tertiary</Button>
+      <Button variant="contrast">Contrast</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="danger">Danger</Button>
+      <Button variant="warning">Warning</Button>
+    </>
+  );
+}
 ```
 
 ### Different sizes
@@ -153,9 +159,14 @@ You can also use other components as the underlying `as` element. For example, N
 
 ```tsx
 import Link from "next/link";
+
 import { Button } from "@tenstorrent/vesper/button";
 
-<Button as={Link} prefetch={false} href="/dashboard">
-  Go to dashboard
-</Button>;
+export default function ButtonAsNextLink() {
+  return (
+    <Button as={Link} prefetch={false} href="/dashboard">
+      Go to dashboard
+    </Button>
+  );
+}
 ```

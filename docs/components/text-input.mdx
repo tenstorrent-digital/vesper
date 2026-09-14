@@ -269,17 +269,21 @@ export default function ErrorTextInput() {
 import { Button } from "@tenstorrent/vesper/button";
 import { TextInput } from "@tenstorrent/vesper/text-input";
 
-<form action="/api/contact" method="post">
-  <TextInput
-    aria-label="Phone number"
-    name="phone"
-    type="tel"
-    placeholder="555-555-5555"
-    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-    required
-  />
-  <Button type="submit">Submit</Button>
-</form>;
+export default function ContactForm() {
+  return (
+    <form action="/api/contact" method="post">
+      <TextInput
+        aria-label="Phone number"
+        name="phone"
+        type="tel"
+        placeholder="555-555-5555"
+        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+        required
+      />
+      <Button type="submit">Submit</Button>
+    </form>
+  );
+}
 ```
 
 ### Accessing the underlying element
@@ -287,20 +291,25 @@ import { TextInput } from "@tenstorrent/vesper/text-input";
 Use the `ref` prop when you need direct access to the underlying `<input>` element, eg. to focus it or read its selection:
 
 ```tsx
-import { useRef } from "react"
-import { Search } from "@tenstorrent/vesper/icons"
-import { TextInput } from "@tenstorrent/vesper/text-input"
+import { useRef } from "react";
 
-const ref = useRef<HTMLInputElement>(null)
+import { Search } from "@tenstorrent/vesper/icons";
+import { TextInput } from "@tenstorrent/vesper/text-input";
 
-<TextInput
-  aria-label="Search term"
-  placeholder="Search logs"
-  ref={ref}
-  iconLeft={<Search />}
-  iconLeftAction={{
-    handler: () => ref.current?.focus(),
-    ariaLabel: "Search logs",
-  }}
-/>
+export default function SearchField() {
+  const ref = useRef<HTMLInputElement>(null);
+
+  return (
+    <TextInput
+      aria-label="Search term"
+      placeholder="Search logs"
+      ref={ref}
+      iconLeft={<Search />}
+      iconLeftAction={{
+        handler: () => ref.current?.focus(),
+        ariaLabel: "Search logs",
+      }}
+    />
+  );
+}
 ```

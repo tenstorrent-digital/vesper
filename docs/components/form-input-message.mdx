@@ -136,16 +136,19 @@ This is deliberate, and is what makes validation messages announce reliably. An 
 > Don't conditionally render `FormInputMessage`. Keep it mounted at all times so the live region is always in place when the `message` changes.
 
 ```tsx
-import { useState } from "react"
-import { FormInputMessage } from "@tenstorrent/vesper/form-input-message"
+import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
 
-const [error, setError] = useState<string>()
+export default function ValidationMessage({ error }: { error?: string }) {
+  return (
+    <>
+      {/* 👍 the output is mounted up front, so `error` is announced when it is set */}
+      <FormInputMessage variant="error" message={error} />
 
-// 👍 the output is mounted up front, so `error` is announced when it is set
-<FormInputMessage variant="error" message={error} />
-
-// 👎 the output is mounted alongside its content, so it may not be announced
-{error && <FormInputMessage variant="error" message={error} />}
+      {/* 👎 the output is mounted alongside its content, so it may not be announced */}
+      {error && <FormInputMessage variant="error" message={error} />}
+    </>
+  );
+}
 ```
 
 The element exposes a `data-message` attribute (`"true"` or `"false"`) reflecting whether it currently has a message, which is useful if you need to style or query the empty state.
@@ -157,13 +160,17 @@ To associate a message with an input, give the `FormInputMessage` an `id` and re
 ```tsx
 import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
 
-<div>
-  <label htmlFor="api-key">API key</label>
-  <input id="api-key" name="apiKey" aria-describedby="api-key-message" />
-  <FormInputMessage
-    id="api-key-message"
-    variant="error"
-    message="Invalid key"
-  />
-</div>;
+export default function ApiKeyField() {
+  return (
+    <div>
+      <label htmlFor="api-key">API key</label>
+      <input id="api-key" name="apiKey" aria-describedby="api-key-message" />
+      <FormInputMessage
+        id="api-key-message"
+        variant="error"
+        message="Invalid key"
+      />
+    </div>
+  );
+}
 ```

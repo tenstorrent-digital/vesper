@@ -166,17 +166,21 @@ export default function DisabledTextArea() {
 import { Button } from "@tenstorrent/vesper/button";
 import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<form action="/api/feedback" method="post">
-  <TextArea
-    name="feedback"
-    aria-label="Feedback"
-    placeholder="What could we do better?"
-    minLength={20}
-    maxLength={500}
-    required
-  />
-  <Button type="submit">Submit</Button>
-</form>;
+export default function FeedbackForm() {
+  return (
+    <form action="/api/feedback" method="post">
+      <TextArea
+        name="feedback"
+        aria-label="Feedback"
+        placeholder="What could we do better?"
+        minLength={20}
+        maxLength={500}
+        required
+      />
+      <Button type="submit">Submit</Button>
+    </form>
+  );
+}
 ```
 
 ### Accessing the underlying element
@@ -184,14 +188,15 @@ import { TextArea } from "@tenstorrent/vesper/text-area";
 Use the `ref` prop when you need direct access to the underlying `<textarea>` element, eg. to focus it or read its selection:
 
 ```tsx
-import { useRef } from "react"
-import { TextArea } from "@tenstorrent/vesper/text-area"
+import { useRef } from "react";
 
-const ref = useRef<HTMLTextAreaElement>(null)
+import { TextArea } from "@tenstorrent/vesper/text-area";
 
-<TextArea
-  aria-label="Bio"
-  placeholder="Tell us about yourself"
-  ref={ref}
-/>
+export default function BioField() {
+  const ref = useRef<HTMLTextAreaElement>(null);
+
+  return (
+    <TextArea aria-label="Bio" placeholder="Tell us about yourself" ref={ref} />
+  );
+}
 ```
