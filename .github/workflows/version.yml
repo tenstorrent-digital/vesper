@@ -1,0 +1,75 @@
+name: Version
+
+on:
+  push:
+    branches: [main]
+    # The vouch workflows push `.github/VOUCHED.td` to `main` using a GitHub App
+    # token, which (unlike `GITHUB_TOKEN`) does trigger workflows. Those commits
+    # never carry a changeset, so skip them instead of starting a version run.
+    paths-ignore:
+      - ".github/VOUCHED.td"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # Cancelling mid-flight can leave the `changeset-release/main` branch
+  # in a half-updated state
+  cancel-in-progress: false
+
+permissions:
+  # push the `changeset-release/main` branch and its version commit
+  contents: write
+  # open/update the "Version Packages" pull request
+  pull-requests: write
+  # note: no `id-token` - this workflow never talks to npm
+
+jobs:
+  version:
+    name: Version
+    runs-on: ubuntu-latest
+    # Deliberately no `environment:`. Managing the "Version Packages" PR is a
+    # routine, reversible bookkeeping step, so it shouldn't sit behind the
+    # manual approval gate that `release.yml` uses to publish to npm.
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          # changesets reads git history, so the default shallow clone isn't enough
+          fetch-depth: 0
+          # Keeps the write-scoped token out of `.git/config`, where dependency
+          # install scripts could reuse it. Safe because `commitMode: github-api`
+          # below means the action never runs `git push`.
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: "24"
+          cache: "yarn"
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      # Only `version` is passed (no `publish`), so this workflow is structurally
+      # incapable of publishing to npm regardless of repo state:
+      #
+      # - changesets present on `main` -> open/update the "Version Packages" PR
+      #   with bumped versions and generated changelogs.
+      # - none present (ie. the "Version Packages" PR was just merged) -> the
+      #   action logs "No changesets found" and exits cleanly. Publishing is
+      #   `release.yml`'s job.
+      - name: Create or Update Version PR
+        # Pinning third-party actions to a specific SHA is recommended by GitHub Actions secure use reference:
+        # https://docs.github.com/en/actions/reference/security/secure-use#using-third-party-actions
+        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
+        with:
+          # This is split on whitespace and exec'd directly by the action (no shell),
+          # so it can't be chained. `changeset version` already formats the generated
+          # CHANGELOG.md files with prettier using this repo's prettier config.
+          version: yarn changeset version
+          # Commits and branch go through the GitHub API instead of the git CLI,
+          # so no credential is needed on disk (see `persist-credentials` above).
+          # Also signs them with GitHub's GPG key, attributed to `github-actions[bot]`.
+          commitMode: github-api
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
