@@ -78,6 +78,9 @@ jobs:
       # Cancelling mid-flight can leave the pushed git tags
       # or the npm publish in a half-updated state
       cancel-in-progress: false
+      # `queue: max` holds pending releases in a FIFO queue, so every
+      # version is published, in ascending order
+      queue: max
 
     permissions:
       # push git tags and create GitHub releases
