@@ -19,7 +19,7 @@ jobs:
     name: Changeset Check
     runs-on: ubuntu-latest
 
-    # The "Version Packages" PR opened by `release.yml` consumes every
+    # The "Version Packages" PR opened by `version.yml` consumes every
     # `.changeset/*.md` file, so `changeset status` fails on it by design.
     # Skip the job there: a job skipped by an `if` still reports a check run,
     # and a `skipped` conclusion satisfies required status checks.
