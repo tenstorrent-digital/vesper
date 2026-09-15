@@ -39,6 +39,7 @@ const docEntries = (dir: string, segments: string[] = []): DocEntry[] =>
 
     return [
       {
+        raw,
         slug,
         href: `/${slug.join("/")}`,
         ext: ext as DocExtension,

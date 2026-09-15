@@ -23,6 +23,8 @@ export interface Frontmatter {
 }
 
 export interface DocEntry {
+  /** raw text content of the doc file */
+  raw: string;
   /**
    * array of path segments relative to `docs/`
    *
