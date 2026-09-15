@@ -8,6 +8,7 @@ import { Typography } from "@tenstorrent/vesper/typography";
 
 import type { DocGroup } from "@/lib/filesystem/docs";
 import { convertKebabToTitleCase } from "@/lib/filesystem/utils";
+import { cn } from "@/lib/tailwind/cn";
 
 export function Sidebar({ tree }: { tree: DocGroup[] }) {
   const pathname = usePathname();
@@ -29,7 +30,10 @@ export function Sidebar({ tree }: { tree: DocGroup[] }) {
   return (
     <nav
       id="sidebar"
-      className="p-vesper-4 w-3xs scroll-mt-(--nav-scroll-margin)"
+      className={cn(
+        "p-vesper-4 overflow-auto md:h-(--below-nav-height) md:w-3xs",
+        "scroll-mt-(--nav-scroll-margin) md:sticky md:top-(--nav-height)"
+      )}
     >
       {groups.map(({ folder, pages }) => (
         <div key={folder ?? "root"} className="gap-vesper-micro flex flex-col">
