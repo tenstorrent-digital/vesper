@@ -31,9 +31,8 @@ export default function RootLayout({
             <Sidebar tree={getDocTree()} />
             <div
               className={cn(
-                "p-vesper-4 w-full min-w-0 flex-1",
-                "border-vesper-border-tertiary border-b md:border-b-0",
-                "md:pb-0 pb-vesper-12 md:mb-0 mb-vesper-4"
+                "p-vesper-4 pb-vesper-12 md:mb-0 mb-vesper-4 w-full min-w-0 flex-1",
+                "border-vesper-border-tertiary border-b md:border-b-0"
               )}
             >
               {children}
