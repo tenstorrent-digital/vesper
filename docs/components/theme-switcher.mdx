@@ -7,10 +7,24 @@ description: A three-way toggle for switching between system, light, and dark co
 
 A three-way toggle for switching between system, light, and dark color themes. Sets the `data-vesper-theme` attribute on the document element to control the active theme.
 
-<div className="flex gap-1">
-  <ThemeSwitcher size="lg" />
-  <ThemeSwitcher size="sm" />
-</div>
+```tsx demo
+import { ThemeSwitcher } from "@tenstorrent/vesper/theme-switcher";
+
+export default function ThemeSwitcherDemo() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <ThemeSwitcher size="lg" />
+      <ThemeSwitcher size="sm" />
+    </div>
+  );
+}
+```
 
 ## Options
 
@@ -20,19 +34,33 @@ A three-way toggle for switching between system, light, and dark color themes. S
 
 ## Examples
 
-The most straightforward way to use `ThemeSwitcher` is to render it without any props. By default it renders at `lg` size:
+Render a `ThemeSwitcher` without any props. By default it renders at `lg` size:
 
-```tsx
+```tsx demo
 import { ThemeSwitcher } from "@tenstorrent/vesper/theme-switcher";
 
-<ThemeSwitcher />;
+export default function BasicThemeSwitcher() {
+  return <ThemeSwitcher />;
+}
 ```
 
 To specify a size, pass `size="sm"` or `size="lg"`:
 
-```tsx
+```tsx demo
 import { ThemeSwitcher } from "@tenstorrent/vesper/theme-switcher";
 
-<ThemeSwitcher size="sm" />;
-<ThemeSwitcher size="lg" />;
+export default function ThemeSwitcherSizes() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <ThemeSwitcher size="sm" />
+      <ThemeSwitcher size="lg" />
+    </div>
+  );
+}
 ```

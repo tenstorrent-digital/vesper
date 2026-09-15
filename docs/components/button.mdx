@@ -7,7 +7,13 @@ description: A versatile, polymorphic button component supporting multiple sizes
 
 A versatile, polymorphic button component supporting multiple sizes, visual variants, and optional leading or trailing icons.
 
-<Button>Click me</Button>
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+
+export default function ButtonDemo() {
+  return <Button>Click me</Button>;
+}
+```
 
 > [!IMPORTANT]
 >
@@ -31,14 +37,14 @@ All other props are forwarded to the underlying `<button>` element, or whichever
 
 ### Basic usage
 
-The most straightforward way to render a `Button` is to give it some children:
+Render a `Button` by giving it some children:
 
-<Button>Submit</Button>
-
-```tsx
+```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
 
-<Button>Submit</Button>;
+export default function BasicButton() {
+  return <Button>Submit</Button>;
+}
 ```
 
 ### Variants
@@ -58,83 +64,109 @@ A `Button` can be rendered in several different variants:
 ```tsx
 import { Button } from "@tenstorrent/vesper/button";
 
-<Button variant="primary">Primary</Button>
-<Button variant="subtle">Subtle</Button>
-<Button variant="tertiary">Tertiary</Button>
-<Button variant="contrast">Contrast</Button>
-<Button variant="ghost">Ghost</Button>
-<Button variant="danger">Danger</Button>
-<Button variant="warning">Warning</Button>
+export default function ButtonVariants() {
+  return (
+    <>
+      <Button variant="primary">Primary</Button>
+      <Button variant="subtle">Subtle</Button>
+      <Button variant="tertiary">Tertiary</Button>
+      <Button variant="contrast">Contrast</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="danger">Danger</Button>
+      <Button variant="warning">Warning</Button>
+    </>
+  );
+}
 ```
 
 ### Different sizes
 
 A `Button` can be rendered in one of four sizes; `"xs"`, `"sm"`, `"md"`, or `"lg"`. The default size is `"md"`.
 
-<Button size="xs">Extra small</Button>
-<Button size="sm">Small</Button>
-<Button size="md">Medium</Button>
-<Button size="lg">Large</Button>
-
-```tsx
+```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
 
-<Button size="xs">Extra Small</Button>
-<Button size="sm">Small</Button>
-<Button size="md">Medium</Button>
-<Button size="lg">Large</Button>
+export default function ButtonSizes() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Button size="xs">Extra small</Button>
+      <Button size="sm">Small</Button>
+      <Button size="md">Medium</Button>
+      <Button size="lg">Large</Button>
+    </div>
+  );
+}
 ```
 
 ### Rendering icons
 
 A `Button` can render icons to the left or the right of its content via the `iconLeft` and `iconRight` props. Simply pass your icon as a `ReactNode` to either of these props:
 
-<Button iconLeft={<Download />}>Download</Button>
-<Button iconRight={<ArrowRight />}>Continue</Button>
-
-```tsx
+```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
 import { ArrowRight, Download } from "@tenstorrent/vesper/icons";
 
-<Button iconLeft={<Download />}>Download</Button>
-<Button iconRight={<ArrowRight />}>Continue</Button>
+export default function ButtonsWithIcons() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Button iconLeft={<Download />}>Download</Button>
+      <Button iconRight={<ArrowRight />}>Continue</Button>
+    </div>
+  );
+}
 ```
 
 ### Disabling a button
 
 You can disable a `Button` by passing `disabled={true}` or just `disabled` as a prop. Disabling a button prevents interaction and changes the color scheme:
 
-<Button disabled>A disabled button</Button>
-
-```tsx
+```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
 
-<Button disabled>A disabled button</Button>;
+export default function DisabledButton() {
+  return <Button disabled>A disabled button</Button>;
+}
 ```
 
 ### Polymorphic usage
 
 You can use the `as` prop to specify what underlying element to render. In this case, we are passing `as="a"` to render the `Button` as an anchor link. This is helpful for apps where clicking on a button may navigate to a different page, for example:
 
-<Button as="a" href="#">
-  Go to Next Page
-</Button>
-
-```tsx
+```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
 
-<Button as="a" href="#">
-  Go to Next Page
-</Button>;
+export default function ButtonAsLink() {
+  return (
+    <Button as="a" href="#polymorphic-usage">
+      Go to Next Page
+    </Button>
+  );
+}
 ```
 
 You can also use other components as the underlying `as` element. For example, Next.js comes with a bespoke `Link` component that enables prefetching and client-side navigation between routes, which you may want to use instead of the HTML `<a>` element:
 
 ```tsx
 import Link from "next/link";
+
 import { Button } from "@tenstorrent/vesper/button";
 
-<Button as={Link} prefetch={false} href="/dashboard">
-  Go to dashboard
-</Button>;
+export default function ButtonAsNextLink() {
+  return (
+    <Button as={Link} prefetch={false} href="/dashboard">
+      Go to dashboard
+    </Button>
+  );
+}
 ```

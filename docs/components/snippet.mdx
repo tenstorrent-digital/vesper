@@ -7,7 +7,13 @@ description: A compact code display component with a built-in copy-to-clipboard 
 
 A compact code display component with a built-in copy-to-clipboard button. Ideal for displaying short commands, installation instructions, or single-line code snippets.
 
-<Snippet>yarn add @tenstorrent/vesper</Snippet>
+```tsx demo
+import { Snippet } from "@tenstorrent/vesper/snippet";
+
+export default function SnippetDemo() {
+  return <Snippet>yarn add @tenstorrent/vesper</Snippet>;
+}
+```
 
 ## Options
 
@@ -24,26 +30,35 @@ Any additional props are forwarded to the underlying `<div>` element.
 
 Render a `Snippet` by wrapping string children with it:
 
-<Snippet>yarn add @tenstorrent/vesper</Snippet>
-
-```tsx
+```tsx demo
 import { Snippet } from "@tenstorrent/vesper/snippet";
 
-<Snippet>yarn add @tenstorrent/vesper</Snippet>;
+export default function BasicSnippet() {
+  return <Snippet>yarn add @tenstorrent/vesper</Snippet>;
+}
 ```
 
 ### Variants
 
 A `Snippet` can be rendered in one of two variants: `"default"` or `"contrast"`. Use the `"contrast"` variant to render a `Snippet` with increased contrast:
 
-<Snippet variant="default">{"curl https://api.example.com/data"}</Snippet>
-<Snippet variant="contrast">{"curl https://api.example.com/data"}</Snippet>
-
-```tsx
+```tsx demo
 import { Snippet } from "@tenstorrent/vesper/snippet";
 
-<Snippet variant="default">curl https://api.example.com/data</Snippet>
-<Snippet variant="contrast">curl https://api.example.com/data</Snippet>
+export default function SnippetVariants() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Snippet variant="default">curl https://api.example.com/data</Snippet>
+      <Snippet variant="contrast">curl https://api.example.com/data</Snippet>
+    </div>
+  );
+}
 ```
 
 ### Multiline snippets
@@ -52,23 +67,23 @@ import { Snippet } from "@tenstorrent/vesper/snippet";
 
 You can use escaped newline characters with `\n`:
 
-<Snippet>{"nvm use 24\nnode -v >> .nvmrc"}</Snippet>
-
-```tsx
+```tsx demo
 import { Snippet } from "@tenstorrent/vesper/snippet";
 
-<Snippet>{"nvm use 24\nnode -v >> .nvmrc"}</Snippet>;
+export default function MultilineSnippet() {
+  return <Snippet>{"nvm use 24\nnode -v >> .nvmrc"}</Snippet>;
+}
 ```
 
 You can also use template literals:
 
-<Snippet>{"nvm use 24\nnode -v >> .nvmrc"}</Snippet>
-
-```tsx
+```tsx demo
 import { Snippet } from "@tenstorrent/vesper/snippet";
 
 const INSTALL_COMMAND = `nvm use 24
-node -v >> .nvmrc`
+node -v >> .nvmrc`;
 
-<Snippet>{INSTALL_COMMAND}</Snippet>;
+export default function TemplateLiteralSnippet() {
+  return <Snippet>{INSTALL_COMMAND}</Snippet>;
+}
 ```
