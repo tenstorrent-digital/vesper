@@ -176,6 +176,15 @@ const components = {
     />
   ),
   li: (props) => <Typography {...props} as="li" variant="copy-md" />,
+  /**
+   * `overflow` is ignored on `display: table`, so we wrap it in a scroll container
+   * that keeps wide tables inside the content column instead of overflowing it
+   */
+  table: (props) => (
+    <div className="w-full max-w-full overflow-x-auto overscroll-x-contain">
+      <table {...props} />
+    </div>
+  ),
 
   // components below can be used in any `docs/**/*.mdx` file without an import
   Accordion,

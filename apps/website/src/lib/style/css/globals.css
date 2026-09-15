@@ -60,10 +60,6 @@ body {
   margin-right: auto;
   width: 100%;
   max-width: var(--content-width);
-  &:has(.no-max-width) {
-    max-width: unset;
-  }
-  overflow-x: hidden;
 
   h1,
   h2,
@@ -122,7 +118,6 @@ table {
   width: 100%;
   border-collapse: collapse;
   border-radius: var(--vesper-radius-2);
-  overflow-x: scroll;
 
   th {
     text-align: left;
