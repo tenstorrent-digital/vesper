@@ -33,18 +33,17 @@ const docEntries = (dir: string, segments: string[] = []): DocEntry[] =>
 
     const slug = [...segments, name];
 
+    const raw = fs.readFileSync(path.join(entry.parentPath, entry.name), {
+      encoding: "utf-8",
+    });
+
     return [
       {
         slug,
         href: `/${slug.join("/")}`,
         ext: ext as DocExtension,
-        frontmatter: readFrontmatter(entryPath),
-        toc: getToC(
-          fs.readFileSync(path.join(entry.parentPath, entry.name), {
-            encoding: "utf-8",
-          }),
-          ext as DocExtension
-        ),
+        frontmatter: readFrontmatter(raw),
+        toc: getToC(raw, ext as DocExtension),
       },
     ];
   });
