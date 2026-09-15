@@ -1,10 +1,3 @@
-/**
- * renders every `.md`/`.mdx` file in the monorepo root `docs/` folder
- *
- * (page routes declared explicitly in `src/app` (eg. `/components`) will
- * take precedence over this catch-all route)
- */
-
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -20,19 +13,14 @@ export function generateStaticParams() {
   return docs.map(({ slug }) => ({ doc: slug }));
 }
 
-export async function generateMetadata(
-  props: PageProps<"/[...doc]">
-): Promise<Metadata> {
-  const { doc } = await props.params;
-  const { title, description } = getDoc(doc)?.frontmatter ?? {};
+export async function generateMetadata(): Promise<Metadata> {
+  const { title, description } = getDoc(["index"])?.frontmatter ?? {};
 
   return { title, description };
 }
 
-export default async function Page(props: PageProps<"/[...doc]">) {
-  const { doc } = await props.params;
-
-  const entry = getDoc(doc);
+export default async function Page() {
+  const entry = getDoc(["index"]);
   if (!entry) notFound();
 
   const { default: Doc } = await loadDoc(entry);

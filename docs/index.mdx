@@ -1,9 +1,8 @@
-import Link from "next/link";
-
-export const metadata = {
-  title: "Vesper",
-  description: "Vesper is Tenstorrent's design system for React",
-};
+---
+title: Vesper
+description: Vesper is Tenstorrent's design system for React
+order: 0
+---
 
 # Vesper
 
@@ -18,9 +17,8 @@ export const metadata = {
 ## Start here
 
 <div className="gap-vesper-4 grid sm:grid-cols-2">
+    <Link href="/getting-started">
   <Material
-    as={Link}
-    href="/getting-started"
     variant="interactive"
     className="gap-vesper-1 p-vesper-6 flex flex-col"
   >
@@ -32,9 +30,9 @@ export const metadata = {
       Install the package, import the styles, and load the fonts.
     </Typography>
   </Material>
+    </Link>
+  <Link href="/components">
   <Material
-    as={Link}
-    href="/components"
     variant="interactive"
     className="gap-vesper-1 p-vesper-6 flex flex-col"
   >
@@ -46,11 +44,12 @@ export const metadata = {
       Browse every component, with live examples and prop tables.
     </Typography>
   </Material>
+  </Link>
+  <Link href="/tokens">
+
   <Material
-    as={Link}
-    href="/tokens"
     variant="interactive"
-    className="gap-vesper-1 p-vesper-6 flex flex-col"
+    className="gap-vesper-1 p-vesper-6 flex flex-col h-full"
   >
     <Typography variant="heading-sm">Tokens</Typography>
     <Typography
@@ -60,11 +59,10 @@ export const metadata = {
       The CSS primitives every component is built from.
     </Typography>
   </Material>
+  </Link>
+  <Link href="/storybook" target="_blank"
+  rel="noopener noreferrer">
   <Material
-    as="a"
-    href="/storybook"
-    target="_blank"
-    rel="noopener noreferrer"
     variant="interactive"
     className="gap-vesper-1 p-vesper-6 flex flex-col"
   >
@@ -76,6 +74,7 @@ export const metadata = {
       Try every component and prop combination in Storybook.
     </Typography>
   </Material>
+  </Link>
 </div>
 
 ## A quick look

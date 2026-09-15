@@ -234,6 +234,9 @@ const components = {
   Info,
   Search,
   Tenstorrent,
+
+  // other components
+  Link,
 } satisfies MDXComponents;
 
 export function useMDXComponents(): MDXComponents {

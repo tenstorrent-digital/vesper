@@ -1,9 +1,9 @@
 import { Toasts } from "@tenstorrent/vesper/toast";
 
-import { Nav } from "@/components/nav/nav";
-import { Sidebar } from "@/components/nav/sidebar";
-import { Prose } from "@/components/prose";
+import { Nav } from "@/components/nav";
+import { Sidebar } from "@/components/sidebar";
 
+import { getDocTree } from "@/lib/filesystem/docs";
 import { ibm_plex_mono, inter_tight } from "@/lib/style/fonts";
 import { cn } from "@/lib/tailwind/cn";
 
@@ -20,17 +20,25 @@ export default function RootLayout({
       className={cn(
         inter_tight.variable,
         ibm_plex_mono.variable,
-        "antialiased",
+        "antialiased"
       )}
       data-scroll-behavior="smooth"
     >
       <body>
-        <div className="layout">
+        <div className="flex min-h-svh flex-col">
           <Nav />
-          <Sidebar className="desktop" />
-          <main className="content">
-            <Prose>{children}</Prose>
-          </main>
+          <div className="flex flex-1 flex-col-reverse items-start md:flex-row">
+            <Sidebar tree={getDocTree()} />
+            <div
+              className={cn(
+                "p-vesper-4 w-full min-w-0 flex-1",
+                "border-vesper-border-tertiary border-b md:border-b-0",
+                "md:pb-0 pb-vesper-12 md:mb-0 mb-vesper-4"
+              )}
+            >
+              {children}
+            </div>
+          </div>
         </div>
         <Toasts />
       </body>
