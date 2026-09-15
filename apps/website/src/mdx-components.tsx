@@ -91,55 +91,24 @@ const ALERT_VARIANTS = {
 type BlockquoteAlert = keyof typeof ALERT_VARIANTS;
 
 const components = {
-  h1: (props) => (
-    <Typography as="h1" variant="heading-2xl">
-      {props.children}
-    </Typography>
-  ),
-  h2: (props) => (
-    <Typography as="h2" variant="heading-xl">
-      {props.children}
-    </Typography>
-  ),
-  h3: (props) => (
-    <Typography as="h3" variant="heading-lg">
-      {props.children}
-    </Typography>
-  ),
-  h4: (props) => (
-    <Typography as="h4" variant="heading-md">
-      {props.children}
-    </Typography>
-  ),
-  h5: (props) => (
-    <Typography as="h5" variant="heading-sm">
-      {props.children}
-    </Typography>
-  ),
-  h6: (props) => (
-    <Typography as="h6" variant="heading-xs">
-      {props.children}
-    </Typography>
-  ),
-  p: (props) => (
-    <Typography as="p" variant="copy-md">
-      {props.children}
-    </Typography>
-  ),
-  strong: (props) => (
-    <strong style={{ fontWeight: 500 }}>{props.children}</strong>
-  ),
+  h1: (props) => <Typography {...props} as="h1" variant="heading-2xl" />,
+  h2: (props) => <Typography {...props} as="h2" variant="heading-xl" />,
+  h3: (props) => <Typography {...props} as="h3" variant="heading-lg" />,
+  h4: (props) => <Typography {...props} as="h4" variant="heading-md" />,
+  h5: (props) => <Typography {...props} as="h5" variant="heading-sm" />,
+  h6: (props) => <Typography {...props} as="h6" variant="heading-xs" />,
+  p: (props) => <Typography {...props} as="p" variant="copy-md" />,
+  strong: (props) => <strong {...props} style={{ fontWeight: 500 }} />,
   a: (props) => (
     <Link
+      {...props}
       className="underline decoration-from-font underline-offset-[calc(var(--base-font-size)_/_12)]"
       target={props.href.startsWith("http") ? "_blank" : undefined}
       rel={props.href.startsWith("http") ? "noopener noreferrer" : undefined}
       href={props.href}
-    >
-      {props.children}
-    </Link>
+    />
   ),
-  code: (props) => <Code>{props.children}</Code>,
+  code: (props) => <Code {...props} />,
   /**
    * blockquote children arrive as phrasing content (see
    * `src/lib/mdx/rehype-blockquote-text-children.mts`), so they can be
@@ -206,11 +175,7 @@ const components = {
       {...props}
     />
   ),
-  li: (props) => (
-    <Typography as="li" variant="copy-md">
-      {props.children}
-    </Typography>
-  ),
+  li: (props) => <Typography {...props} as="li" variant="copy-md" />,
 
   // components below can be used in any `docs/**/*.mdx` file without an import
   Accordion,

@@ -17,12 +17,8 @@
 import type { Root } from "mdast";
 import { readdir, readFile, rm, rmdir } from "node:fs/promises";
 import path from "node:path";
-import remarkFrontmatter from "remark-frontmatter";
-import remarkGfm from "remark-gfm";
-import remarkMdx from "remark-mdx";
-import remarkParse from "remark-parse";
-import { unified } from "unified";
 
+import { getMarkdownParser } from "../src/lib/mdx/markdown.mts";
 import {
   createOrUpdateFile,
   DEMOS_ROOT,
@@ -32,17 +28,6 @@ import {
   getDemoModulePath,
   getDemoModuleSource,
 } from "../src/lib/mdx/tsx-demos.mts";
-
-/**
- * mirrors the markdown half of the pipeline `next.config.ts` configures, so a
- * demo lands at the same index here as it does when the document is compiled
- */
-const markdownParser = unified()
-  .use(remarkParse)
-  .use(remarkGfm)
-  .use(remarkFrontmatter);
-
-const mdxParser = markdownParser().use(remarkMdx);
 
 /** Every `.md`/`.mdx` document in the monorepo's `docs/` folder */
 const getDocPaths = async (): Promise<string[]> => {
@@ -72,7 +57,7 @@ const getDemoModulePaths = async (): Promise<string[]> => {
 /** Writes a document's demos, returning the modules it was written into */
 const writeDemoModules = async (docPath: string): Promise<string[]> => {
   const contents = await readFile(docPath, "utf-8");
-  const parser = docPath.endsWith(".mdx") ? mdxParser : markdownParser;
+  const parser = getMarkdownParser(docPath.endsWith(".mdx") ? "mdx" : "md");
   const tree = parser.parse(contents) as Root;
 
   const demoModulePaths: string[] = [];
@@ -95,11 +80,11 @@ const writeDemoModules = async (docPath: string): Promise<string[]> => {
  * cached as part of a build that no document imports it into
  */
 const removeStaleDemoModules = async (
-  demoModulePaths: string[],
+  demoModulePaths: string[]
 ): Promise<number> => {
   const current = new Set(demoModulePaths);
   const stale = (await getDemoModulePaths()).filter(
-    (demoModulePath) => !current.has(demoModulePath),
+    (demoModulePath) => !current.has(demoModulePath)
   );
 
   await Promise.all(stale.map((demoModulePath) => rm(demoModulePath)));
@@ -127,5 +112,5 @@ const staleCount = await removeStaleDemoModules(demoModulePaths);
 
 console.log(
   `Generated ${demoModulePaths.length} demos from ${docPaths.length} documents` +
-    (staleCount ? ` (removed ${staleCount} stale)` : ""),
+    (staleCount ? ` (removed ${staleCount} stale)` : "")
 );

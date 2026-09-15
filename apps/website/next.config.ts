@@ -129,6 +129,9 @@ const withMDX = createMDX({
        * absolute path for the same reason as the plugins above
        */
       path.join(appRoot, "src/lib/mdx/rehype-blockquote-text-children.mts"),
+
+      /** adds ids to heading tags */
+      path.join(appRoot, "src/lib/mdx/rehype-heading-ids.mts"),
     ],
   },
 });

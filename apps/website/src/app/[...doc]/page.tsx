@@ -11,6 +11,8 @@ import { notFound } from "next/navigation";
 import { docs, getDoc } from "@/lib/filesystem/docs";
 import { loadDoc } from "@/lib/filesystem/docs/load";
 
+import { ToC } from "./ToC";
+
 // 404 paths not found at build time
 export const dynamicParams = false;
 
@@ -19,7 +21,7 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata(
-  props: PageProps<"/[...doc]">,
+  props: PageProps<"/[...doc]">
 ): Promise<Metadata> {
   const { doc } = await props.params;
   const { title, description } = getDoc(doc)?.frontmatter ?? {};
@@ -38,6 +40,7 @@ export default async function Page(props: PageProps<"/[...doc]">) {
   return (
     <>
       <Doc />
+      <ToC toc={entry.toc} />
     </>
   );
 }

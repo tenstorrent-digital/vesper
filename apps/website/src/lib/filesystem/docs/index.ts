@@ -1,63 +1,16 @@
 import fs from "node:fs";
 import path from "node:path";
-import { parse } from "yaml";
+
+import { readFrontmatter } from "./frontmatter";
+import { getToC } from "./toc";
+import { DocEntry, DocExtension } from "./types";
 
 export const DOCS_DIR = path.join(
   process.cwd(), // `apps/website/`
   "..",
   "..",
-  "docs",
+  "docs"
 );
-
-export type DocExtension = "md" | "mdx";
-
-/**
- * frontmatter fields
- *
- * every field is optional so missing values don't fail builds
- */
-export interface Frontmatter {
-  /** page title, used for `<title>`, the sidebar, and breadcrumbs */
-  title?: string;
-  /** short summary, used for `<meta name="description">` */
-  description?: string;
-  /** sort weight within the doc's folder - unordered docs sort alphabetically */
-  order?: number;
-}
-
-export interface DocEntry {
-  /**
-   * array of path segments relative to `docs/`
-   *
-   * for example, for `docs/components/accordion.mdx`, the slug would
-   * be `["components", "accordion"]`
-   */
-  slug: string[];
-  /** route for this doc, eg. `/components/accordion` */
-  href: string;
-  /** doc's file extension (we need to resolve the right dynamic import) */
-  ext: DocExtension;
-  frontmatter: Frontmatter;
-}
-
-/**
- * regex for frontmatter
- */
-const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---/;
-
-/**
- * read frontmatter straight off disk rather than from the compiled MDX module
- * (keeps out of the module graph)
- */
-const readFrontmatter = (filePath: string): Frontmatter => {
-  const match = FRONTMATTER.exec(fs.readFileSync(filePath, "utf8"));
-  if (!match?.[1]) return {};
-
-  const parsed: unknown = parse(match[1]);
-  return typeof parsed === "object" && parsed !== null
-    ? (parsed as Frontmatter)
-    : {};
-};
 
 /**
  * recursively walks the `docs/` directory, returning an array of `DocEntry` objects
@@ -86,6 +39,12 @@ const docEntries = (dir: string, segments: string[] = []): DocEntry[] =>
         href: `/${slug.join("/")}`,
         ext: ext as DocExtension,
         frontmatter: readFrontmatter(entryPath),
+        toc: getToC(
+          fs.readFileSync(path.join(entry.parentPath, entry.name), {
+            encoding: "utf-8",
+          }),
+          ext as DocExtension
+        ),
       },
     ];
   });
