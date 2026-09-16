@@ -7,7 +7,13 @@ description: A small labeling component used to highlight status, categories, or
 
 A small labeling component used to highlight status, categories, or metadata. Supports multiple color variants, sizes, and an optional leading icon.
 
-<Badge variant="accent">New</Badge>
+```tsx demo
+import { Badge } from "@tenstorrent/vesper/badge";
+
+export default function BadgeDemo() {
+  return <Badge variant="accent">New</Badge>;
+}
+```
 
 ## Options
 
@@ -26,104 +32,114 @@ A small labeling component used to highlight status, categories, or metadata. Su
 
 By default, a `Badge` will render using the `accent` variant at `md` size when no `variant` or `size` prop is supplied:
 
-<Badge>Default</Badge>
-
-```tsx
+```tsx demo
 import { Badge } from "@tenstorrent/vesper/badge";
 
-<Badge>Default</Badge>;
+export default function BasicBadge() {
+  return <Badge>Default</Badge>;
+}
 ```
 
 ### Color variants
 
 A `Badge` can be rendered in one of nine color variants matching the meaning of the content it describes:
 
-<Badge variant="accent">Accent</Badge>
-<Badge variant="success">Success</Badge>
-<Badge variant="warning">Warning</Badge>
-<Badge variant="danger">Danger</Badge>
-<Badge variant="info">Info</Badge>
-<Badge variant="purple">Purple</Badge>
-<Badge variant="pink">Pink</Badge>
-<Badge variant="mint">Mint</Badge>
-<Badge variant="contrast">Contrast</Badge>
-
-```tsx
+```tsx demo
 import { Badge } from "@tenstorrent/vesper/badge";
 
-<Badge variant="accent">Accent</Badge>
-<Badge variant="success">Success</Badge>
-<Badge variant="warning">Warning</Badge>
-<Badge variant="danger">Danger</Badge>
-<Badge variant="info">Info</Badge>
-<Badge variant="purple">Purple</Badge>
-<Badge variant="pink">Pink</Badge>
-<Badge variant="mint">Mint</Badge>
-<Badge variant="contrast">Contrast</Badge>
+export default function BadgeVariants() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Badge variant="accent">Accent</Badge>
+      <Badge variant="success">Success</Badge>
+      <Badge variant="warning">Warning</Badge>
+      <Badge variant="danger">Danger</Badge>
+      <Badge variant="info">Info</Badge>
+      <Badge variant="purple">Purple</Badge>
+      <Badge variant="pink">Pink</Badge>
+      <Badge variant="mint">Mint</Badge>
+      <Badge variant="contrast">Contrast</Badge>
+    </div>
+  );
+}
 ```
 
 ### Sizes
 
 A `Badge` can be rendered in one of three sizes: `sm`, `md`, and `lg`:
 
-<Badge size="sm">Small</Badge>
-<Badge size="md">Medium</Badge>
-<Badge size="lg">Large</Badge>
-
-```tsx
+```tsx demo
 import { Badge } from "@tenstorrent/vesper/badge";
 
-<Badge size="sm">Small</Badge>
-<Badge size="md">Medium</Badge>
-<Badge size="lg">Large</Badge>
+export default function BadgeSizes() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Badge size="sm">Small</Badge>
+      <Badge size="md">Medium</Badge>
+      <Badge size="lg">Large</Badge>
+    </div>
+  );
+}
 ```
 
 ### Subtle appearance
 
 The `subtle` prop renders any variant with a more subdued appearance:
 
-<Badge variant="success" subtle>
-  Completed
-</Badge>
-
-```tsx
+```tsx demo
 import { Badge } from "@tenstorrent/vesper/badge";
 
-<Badge variant="success" subtle>
-  Completed
-</Badge>;
+export default function SubtleBadge() {
+  return (
+    <Badge variant="success" subtle>
+      Completed
+    </Badge>
+  );
+}
 ```
 
 ### With icon
 
 Supplying an `icon` prop renders an icon to the left of the badge's text:
 
-<Badge variant="success" icon={<Checkmark />}>
-  Verified
-</Badge>
-
-```tsx
+```tsx demo
 import { Badge } from "@tenstorrent/vesper/badge";
 import { Checkmark } from "@tenstorrent/vesper/icons";
 
-<Badge variant="success" icon={<Checkmark />}>
-  Verified
-</Badge>;
+export default function BadgeWithIcon() {
+  return (
+    <Badge variant="success" icon={<Checkmark />}>
+      Verified
+    </Badge>
+  );
+}
 ```
 
 ### Polymorphic usage
 
 You can use the `as` prop to specify what underlying element to render. In this case, we are passing `as="a"` to render the `Badge` as an anchor link:
 
-<Badge variant="info" icon={<Globe />} as="a" href="/archive">
-  Archived
-</Badge>
-
-```tsx
+```tsx demo
 import { Badge } from "@tenstorrent/vesper/badge";
 import { Globe } from "@tenstorrent/vesper/icons";
 
-<Badge variant="info" icon={<Globe />} as="a" href="/archive">
-  Archived
-</Badge>;
+export default function BadgeAsLink() {
+  return (
+    <Badge variant="info" icon={<Globe />} as="a" href="#polymorphic-usage">
+      Archived
+    </Badge>
+  );
+}
 ```

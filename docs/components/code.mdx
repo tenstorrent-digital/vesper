@@ -7,7 +7,18 @@ description: An inline code component for displaying short code snippets or tech
 
 An inline code component for displaying short code snippets or technical terms within running text. Renders as a styled `<code>` element with monospace typography.
 
-Use the <Code>Code</Code> component to highlight inline code.
+```tsx demo
+import { Code } from "@tenstorrent/vesper/code";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function CodeDemo() {
+  return (
+    <Typography variant="copy-md">
+      Use the <Code>Code</Code> component to highlight inline code.
+    </Typography>
+  );
+}
+```
 
 ## Options
 
@@ -24,40 +35,43 @@ Any additional props are forwarded to the underlying `<code>` element.
 
 Use `<Code>` as you would use the `<code>` element by wrapping inline code strings:
 
-<Typography variant="copy-md">
-  Run <Code>yarn install</Code> to get started.
-</Typography>
-
-```tsx
+```tsx demo
 import { Code } from "@tenstorrent/vesper/code";
 import { Typography } from "@tenstorrent/vesper/typography";
 
-<Typography variant="copy-md">
-  Run <Code>yarn install</Code> to get started.
-</Typography>;
+export default function BasicCode() {
+  return (
+    <Typography variant="copy-md">
+      Run <Code>yarn install</Code> to get started.
+    </Typography>
+  );
+}
 ```
 
 ### Variants
 
 `Code` can be rendered in one of two variants: `"default"` or `"contrast"`. Use the `"contrast"` variant to render inline `Code` with increased contrast:
 
-<Typography variant="copy-md">
-  Run <Code variant="default">yarn install</Code> to get started.
-</Typography>
-
-<Typography variant="copy-md">
-  Run <Code variant="contrast">yarn install</Code> to get started.
-</Typography>
-
-```tsx
+```tsx demo
 import { Code } from "@tenstorrent/vesper/code";
 import { Typography } from "@tenstorrent/vesper/typography";
 
-<Typography variant="copy-md">
-  Run <Code variant="default">yarn install</Code> to get started.
-</Typography>
-
-<Typography variant="copy-md">
-  Run <Code variant="contrast">yarn install</Code> to get started.
-</Typography>
+export default function CodeVariants() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Typography variant="copy-md">
+        Run <Code variant="default">yarn install</Code> to get started.
+      </Typography>
+      <Typography variant="copy-md">
+        Run <Code variant="contrast">yarn install</Code> to get started.
+      </Typography>
+    </div>
+  );
+}
 ```

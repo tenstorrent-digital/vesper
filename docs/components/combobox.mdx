@@ -80,7 +80,7 @@ Form props (`value`, `disabled`, `name`, `form`, etc.) are forwarded to the hidd
 
 ### Basic usage
 
-The most straightforward way to render a `Combobox` is by supplying an array of `options`. Each `option` can either be a `ComboboxItem`, or a plain string. Use `ComboboxItem` objects when the value associated with each item differs from the text you want to display:
+Render a `Combobox` by supplying an array of `options`. Each `option` can either be a `ComboboxItem`, or a plain string. Use `ComboboxItem` objects when the value associated with each item differs from the text you want to display:
 
 ```tsx demo
 import { Combobox } from "@tenstorrent/vesper/combobox";
@@ -120,7 +120,7 @@ Both shapes can be mixed in the same `options` array. Options are filtered again
 
 ### Uncontrolled vs controlled
 
-The simplest way to use the `Combobox` component is to render it in an uncontrolled fashion, where the component keeps track of its own selection. Pass `defaultValue` if you need an option to be selected initially:
+Render a `Combobox` in an uncontrolled fashion to let it keep track of its own selection. Pass `defaultValue` if you need an option to be selected initially:
 
 ```tsx demo
 import { Combobox } from "@tenstorrent/vesper/combobox";

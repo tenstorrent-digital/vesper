@@ -7,7 +7,15 @@ description: A callout component for highlighting important information, warning
 
 A callout component for highlighting important information, warnings, errors, or success messages. Supports multiple color variants and an optional call-to-action button.
 
-<Admonition variant="info">This is an informational admonition.</Admonition>
+```tsx demo
+import { Admonition } from "@tenstorrent/vesper/admonition";
+
+export default function AdmonitionDemo() {
+  return (
+    <Admonition variant="info">This is an informational admonition.</Admonition>
+  );
+}
+```
 
 ## Options
 
@@ -28,111 +36,112 @@ You may also pass additional props to the underlying element. For example, you m
 
 An `Admonition` renders with the `info` variant at `sm` size when no `variant` or `size` prop is specified:
 
-<Admonition>Helpful information goes here.</Admonition>
-
-```tsx
+```tsx demo
 import { Admonition } from "@tenstorrent/vesper/admonition";
 
-<Admonition>Helpful information goes here.</Admonition>;
+export default function BasicAdmonition() {
+  return <Admonition>Helpful information goes here.</Admonition>;
+}
 ```
 
 ### Warning variant, `md` size
 
 Use the `warning` variant to flag content that needs attention, and `size="md"` to give it more padding and larger typography:
 
-<Admonition variant="warning" size="md">
-  Please review before continuing.
-</Admonition>
-
-```tsx
+```tsx demo
 import { Admonition } from "@tenstorrent/vesper/admonition";
 
-<Admonition variant="warning" size="md">
-  Please review before continuing.
-</Admonition>;
+export default function WarningAdmonition() {
+  return (
+    <Admonition variant="warning" size="md">
+      Please review before continuing.
+    </Admonition>
+  );
+}
 ```
 
 ### Danger variant, with CTA
 
 The `danger` variant highlights destructive or error states, and the `cta` prop renders a call-to-action button alongside the content:
 
-<Admonition variant="danger" cta={{ children: "Undo" }}>
-  This action cannot be reversed.
-</Admonition>
-
-```tsx
+```tsx demo
 import { Admonition } from "@tenstorrent/vesper/admonition";
 
-<Admonition variant="danger" cta={{ children: "Undo", onClick: handleUndo }}>
-  This action cannot be reversed.
-</Admonition>;
+export default function DangerAdmonition() {
+  return (
+    <Admonition
+      variant="danger"
+      cta={{ children: "Undo", onClick: () => console.log("Undo") }}
+    >
+      This action cannot be reversed.
+    </Admonition>
+  );
+}
 ```
 
 ### Success variant
 
 The `success` variant is best suited for confirming an action completed as expected:
 
-<Admonition variant="success">Operation completed successfully.</Admonition>
-
-```tsx
+```tsx demo
 import { Admonition } from "@tenstorrent/vesper/admonition";
 
-<Admonition variant="success">Operation completed successfully.</Admonition>;
+export default function SuccessAdmonition() {
+  return (
+    <Admonition variant="success">Operation completed successfully.</Admonition>
+  );
+}
 ```
 
 ### Secondary variant
 
 The `secondary` variant provides a neutral color scheme for supplementary information that doesn't need to stand out:
 
-<Admonition variant="secondary">
-  This admonition details some information.
-</Admonition>
-
-```tsx
+```tsx demo
 import { Admonition } from "@tenstorrent/vesper/admonition";
 
-<Admonition variant="secondary">
-  This admonition details some information.
-</Admonition>;
+export default function SecondaryAdmonition() {
+  return (
+    <Admonition variant="secondary">
+      This admonition details some information.
+    </Admonition>
+  );
+}
 ```
 
 ### Subtle
 
 Passing `subtle` renders a variant with a more subdued appearance:
 
-<Admonition variant="warning" subtle>
-  Subtle warning variant
-</Admonition>
-
-```tsx
+```tsx demo
 import { Admonition } from "@tenstorrent/vesper/admonition";
 
-<Admonition variant="warning" subtle>
-  Subtle warning variant
-</Admonition>;
+export default function SubtleAdmonition() {
+  return (
+    <Admonition variant="warning" subtle>
+      Subtle warning variant
+    </Admonition>
+  );
+}
 ```
 
 ### Polymorphic CTA
 
 You can use the `ctaAs` prop to specify what underlying element to render for the call-to-action. In this case, we are passing `ctaAs="a"` to render the call-to-action as an anchor link:
 
-<Admonition
-  variant="warning"
-  ctaAs="a"
-  cta={{ children: "Read docs", href: "#" }}
->
-  This option will be deprecated in <Code>v2.0</Code>.
-</Admonition>
-
-```tsx
+```tsx demo
 import { Admonition } from "@tenstorrent/vesper/admonition";
 import { Code } from "@tenstorrent/vesper/code";
 
-<Admonition
-  variant="warning"
-  ctaAs="a"
-  cta={{ children: "Read docs", href: "#" }}
->
-  This option will be deprecated in <Code>v2.0</Code>.
-</Admonition>;
+export default function PolymorphicCtaAdmonition() {
+  return (
+    <Admonition
+      variant="warning"
+      ctaAs="a"
+      cta={{ children: "Read docs", href: "#polymorphic-cta" }}
+    >
+      This option will be deprecated in <Code>v2.0</Code>.
+    </Admonition>
+  );
+}
 ```

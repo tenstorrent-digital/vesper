@@ -7,13 +7,33 @@ description: A placeholder loading component that mimics the shape of content wh
 
 A placeholder loading component that mimics the shape of content while it loads. Supports box, pill, and circle shapes with configurable dimensions.
 
-<div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-  <Skeleton size={48} />
-  <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-    <Skeleton width={200} height={16} />
-    <Skeleton width={140} height={16} />
-  </div>
-</div>
+```tsx demo
+import { Skeleton } from "@tenstorrent/vesper/skeleton";
+
+export default function SkeletonDemo() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Skeleton size={48} />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--vesper-spacing-2)",
+        }}
+      >
+        <Skeleton width={200} height={16} />
+        <Skeleton width={140} height={16} />
+      </div>
+    </div>
+  );
+}
+```
 
 ## Options
 
@@ -32,87 +52,89 @@ Any additional props are forwarded to the wrapping `<div>` element.
 
 ### Basic usage
 
-The most straightforward way to render a `Skeleton` is so simply give it a `width` and `height`:
+Render a `Skeleton` by giving it a `width` and `height`:
 
-<Skeleton width={200} height={20} />
-
-```tsx
+```tsx demo
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
 
-<Skeleton width={200} height={20} />;
+export default function BasicSkeleton() {
+  return <Skeleton width={200} height={20} />;
+}
 ```
 
 If the `width` and `height` of the `Skeleton` are the same, you can also use the `size` prop to set both the `width` and `height` at the same time:
 
-<Skeleton size={48} />
-
-```tsx
+```tsx demo
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
 
-<Skeleton size={48} />;
+export default function SizedSkeleton() {
+  return <Skeleton size={48} />;
+}
 ```
 
 ### Skeleton shapes
 
 A `Skeleton` can be rendered in one of three shapes: `"box"`, `"pill"`, or `"circle"`. The default shape is `"box"`, which is a rectangle with slightly rounded corners:
 
-<Skeleton shape="box" width={120} height={48} />
-
-```tsx
+```tsx demo
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
 
-<Skeleton shape="box" width={120} height={48} />;
+export default function BoxSkeleton() {
+  return <Skeleton shape="box" width={120} height={48} />;
+}
 ```
 
 Pass `shape="circle"` to render an ellipse:
 
-<Skeleton shape="circle" size={48} />
-
-```tsx
+```tsx demo
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
 
-<Skeleton shape="circle" size={48} />;
+export default function CircleSkeleton() {
+  return <Skeleton shape="circle" size={48} />;
+}
 ```
 
 Pass `shape="pill"` to render a rectangle with corners that round to a semicircle:
 
-<Skeleton shape="pill" width={120} height={32} />
-
-```tsx
+```tsx demo
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
 
-<Skeleton shape="pill" width={120} height={32} />;
+export default function PillSkeleton() {
+  return <Skeleton shape="pill" width={120} height={32} />;
+}
 ```
 
 ### Rendering children
 
 `Skeleton` can be rendered with content, in which case the `Skeleton` takes the dimensions of the bounding box of its children, so you don't need to pass a `width` and `height`:
 
-<Skeleton>
-  <div style={{ width: 100, height: 100 }} />
-</Skeleton>
-
-```tsx
+```tsx demo
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
 
-<Skeleton>
-  <div style={{ width: 100, height: 100 }} />
-</Skeleton>;
+export default function SkeletonWithChildren() {
+  return (
+    <Skeleton>
+      <div style={{ width: 100, height: 100 }} />
+    </Skeleton>
+  );
+}
 ```
 
 ### Conditional rendering
 
-You will typically be using `Skeleton` to conditionally render loading states for your components. The most straightforward way to do this is to simply render the `Skeleton` in place of other elements while they are loading:
+You will typically be using `Skeleton` to conditionally render loading states for your components. The easiest way to do this is to simply render the `Skeleton` in place of other elements while they are loading:
 
 ```tsx
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
 import { Typography } from "@tenstorrent/vesper/typography";
 
-if (loading) {
-  return <Skeleton width={202} height={48} />;
-}
+export default function LoadingContent({ loading }: { loading: boolean }) {
+  if (loading) {
+    return <Skeleton width={202} height={48} />;
+  }
 
-return <Typography>Content loaded!</Typography>;
+  return <Typography>Content loaded!</Typography>;
+}
 ```
 
 You can also use the `show` prop to hide/show `Skeleton` children conditionally. When `show` is set to `true`, the `Skeleton` will mask its children. When `show` is set to `false`, the children are rendered in place with no masking instead.
@@ -121,10 +143,11 @@ In the example below, we fetch data asynchronously in a `useEffect` callback, ma
 
 ```tsx
 import { useEffect, useState } from "react";
+
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
 import { Typography } from "@tenstorrent/vesper/typography";
 
-function MaskedChildrenExample() {
+export default function MaskedChildrenExample() {
   const [data, setData] = useState<string | null>(null);
 
   useEffect(() => {
@@ -156,7 +179,8 @@ function MaskedChildrenExample() {
 `Skeleton` can also be used as a [Suspense](https://react.dev/reference/react/Suspense) fallback. This is useful for when you are reading data from a promise client-side using `use`, streaming data from [Server Components](https://react.dev/reference/rsc/server-components), or lazy-loading component code with [lazy](https://react.dev/reference/react/lazy):
 
 ```tsx
-import { use, Suspense } from "react";
+import { Suspense, use } from "react";
+
 import { Avatar } from "@tenstorrent/vesper/avatar";
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
 
@@ -165,7 +189,11 @@ function UserAvatar({ userId }: { userId: string }) {
   return <Avatar size="lg" src={avatar.url} alt={avatar.altText} />;
 }
 
-<Suspense fallback={<Skeleton size="3rem" />}>
-  <UserAvatar userId="abc123" />
-</Suspense>;
+export default function UserProfile() {
+  return (
+    <Suspense fallback={<Skeleton size="3rem" />}>
+      <UserAvatar userId="abc123" />
+    </Suspense>
+  );
+}
 ```

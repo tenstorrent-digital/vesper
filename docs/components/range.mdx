@@ -48,7 +48,7 @@ If you only need to select a single value, reach for [the `Slider` component](./
 
 ### Uncontrolled vs controlled
 
-The simplest way to use the `Range` component is to render it in an uncontrolled fashion, where the component keeps track of its own values. Pass `defaultValues` if the thumbs should start somewhere other than `min` and `max`:
+Render a `Range` in an uncontrolled fashion to let it keep track of its own values. Pass `defaultValues` if the thumbs should start somewhere other than `min` and `max`:
 
 ```tsx demo
 import { Range } from "@tenstorrent/vesper/range";
@@ -105,11 +105,15 @@ Use `onValuesCommit` when you only care about the final values of an interaction
 ```tsx
 import { Range } from "@tenstorrent/vesper/range";
 
-<Range
-  defaultValues={[20, 80]}
-  onValuesCommit={([min, max]) => fetchResults({ min, max })}
-  thumbAriaLabels={["Price (min)", "Price (max)"]}
-/>;
+export default function PriceRange() {
+  return (
+    <Range
+      defaultValues={[20, 80]}
+      onValuesCommit={([min, max]) => fetchResults({ min, max })}
+      thumbAriaLabels={["Price (min)", "Price (max)"]}
+    />
+  );
+}
 ```
 
 ### Bounds and stepping

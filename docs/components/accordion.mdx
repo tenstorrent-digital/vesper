@@ -7,9 +7,17 @@ description: A collapsible content panel that toggles between expanded and colla
 
 A collapsible content panel that toggles between expanded and collapsed states. Useful for organizing long-form content into manageable sections.
 
-<Accordion title="Click to expand">
-  This is the accordion content. It can contain any text or elements.
-</Accordion>
+```tsx demo
+import { Accordion } from "@tenstorrent/vesper/accordion";
+
+export default function AccordionDemo() {
+  return (
+    <Accordion title="Click to expand">
+      This is the accordion content. It can contain any text or elements.
+    </Accordion>
+  );
+}
+```
 
 ## Options
 
@@ -27,45 +35,48 @@ You may also pass additional props to the underlying `div` element. For example,
 
 ### Basic usage
 
-The simplest way to use an `Accordion` is to render it with a `title` and `children` without controlling its open/closed state:
+Render an `Accordion` by giving it a `title` and `children`, leaving it to keep track of its own open/closed state:
 
-<Accordion title="Section Title">Content goes here.</Accordion>
-
-```tsx
+```tsx demo
 import { Accordion } from "@tenstorrent/vesper/accordion";
 
-<Accordion title="Section Title">Content goes here.</Accordion>;
+export default function BasicAccordion() {
+  return <Accordion title="Section Title">Content goes here.</Accordion>;
+}
 ```
 
 ### Default open state
 
 You can render an `Accordion` in a default opened state by passing `defaultOpen`:
 
-<Accordion title="Already Open" defaultOpen>
-  This accordion starts expanded.
-</Accordion>
-
-```tsx
+```tsx demo
 import { Accordion } from "@tenstorrent/vesper/accordion";
 
-<Accordion title="Already Open" defaultOpen>
-  This accordion starts expanded.
-</Accordion>;
+export default function DefaultOpenAccordion() {
+  return (
+    <Accordion title="Already Open" defaultOpen>
+      This accordion starts expanded.
+    </Accordion>
+  );
+}
 ```
 
 ### Controlled usage
 
 If you need to control the open/closed state of the `Accordion`, you can do so via the `open` and `onOpenChange` props:
 
-<Accordion title="Controlled">Controlled accordion content.</Accordion>
-
-```tsx
+```tsx demo
 import { useState } from "react";
+
 import { Accordion } from "@tenstorrent/vesper/accordion";
 
-const [open, setOpen] = useState(false);
+export default function ControlledAccordion() {
+  const [open, setOpen] = useState(false);
 
-<Accordion title="Controlled" open={open} onOpenChange={setOpen}>
-  Controlled accordion content.
-</Accordion>;
+  return (
+    <Accordion title="Controlled" open={open} onOpenChange={setOpen}>
+      Controlled accordion content.
+    </Accordion>
+  );
+}
 ```
