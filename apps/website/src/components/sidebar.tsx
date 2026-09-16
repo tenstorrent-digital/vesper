@@ -17,12 +17,10 @@ export function Sidebar({ tree }: { tree: DocGroup[] }) {
     () =>
       tree.map(({ folder, docs }) => ({
         folder,
-        pages: docs
-          .filter((doc) => !(doc.slug.length === 1 && doc.slug[0] === "index"))
-          .map(({ href, frontmatter }) => ({
-            href,
-            title: frontmatter.title,
-          })),
+        pages: docs.map(({ href, frontmatter }) => ({
+          href,
+          title: frontmatter.title,
+        })),
       })),
     [tree]
   );
