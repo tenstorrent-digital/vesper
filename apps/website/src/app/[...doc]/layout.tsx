@@ -1,12 +1,10 @@
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 
-import { Typography } from "@tenstorrent/vesper/typography";
-
 import { CopyToClipboardButton } from "@/components/copy-to-clipboard-button";
+import TableOfContents from "@/components/table-of-contents";
 
 import { getDoc, markdownFileAsPrompt } from "@/lib/filesystem/docs";
-import { cn } from "@/lib/tailwind/cn";
 
 export default async function Layout({
   children,
@@ -45,31 +43,7 @@ export default async function Layout({
           </CopyToClipboardButton>
         </div>
       </div>
-      <aside
-        className={cn(
-          "sticky top-(--nav-scroll-margin)",
-          "gap-vesper-1 hidden flex-col lg:flex",
-          "pl-vesper-4 w-[14rem] shrink-0",
-        )}
-      >
-        <Typography variant="label-lg-bold" className="mb-vesper-4">
-          On this page
-        </Typography>
-        {entry.toc.map((item) => (
-          <Typography
-            key={item.id}
-            as="a"
-            variant="copy-xs"
-            href={`#${item.id}`}
-            className="text-vesper-text-tertiary hover:underline"
-            style={{
-              marginLeft: `calc(var(--vesper-spacing-3) * ${item.depth - 1})`,
-            }}
-          >
-            {item.text}
-          </Typography>
-        ))}
-      </aside>
+      <TableOfContents items={entry.toc} />
     </div>
   );
 }
