@@ -20,7 +20,7 @@ export function Nav() {
       className="border-vesper-border-tertiary bg-vesper-background-primary sticky top-0 z-20 h-(--nav-height) shrink-0 border-b"
     >
       <div className="pr-vesper-4 flex h-full items-center">
-        <div className="px-vesper-4 md:w-3xs">
+        <div className="px-vesper-4 md:w-[12.5rem]">
           <Typography
             as={Link}
             href="/"

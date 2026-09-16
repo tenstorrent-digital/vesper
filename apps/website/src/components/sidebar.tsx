@@ -17,7 +17,7 @@ export function Sidebar({ data }: { data: ReturnType<typeof getSidebarData> }) {
       id="sidebar"
       aria-label="Sidebar"
       className={cn(
-        "p-vesper-4 w-full overflow-auto md:h-(--below-nav-height) md:w-3xs",
+        "p-vesper-4 w-full overflow-auto md:h-(--below-nav-height) md:w-[12.5rem]",
         "scroll-mt-(--nav-scroll-margin) md:sticky md:top-(--nav-height)",
       )}
     >

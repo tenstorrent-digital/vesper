@@ -48,8 +48,8 @@ export default async function Layout({
       <aside
         className={cn(
           "sticky top-(--nav-scroll-margin)",
-          "gap-vesper-1 hidden flex-col xl:flex",
-          "pl-vesper-4 w-3xs shrink-0",
+          "gap-vesper-1 hidden flex-col lg:flex",
+          "pl-vesper-4 w-[14rem] shrink-0",
         )}
       >
         <Typography variant="label-lg-bold" className="mb-vesper-4">
