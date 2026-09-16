@@ -1,29 +1,16 @@
 "use client";
 
-import { useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { Typography } from "@tenstorrent/vesper/typography";
 
-import type { DocGroup } from "@/lib/filesystem/docs";
+import type { getSidebarData } from "@/lib/filesystem/docs";
 import { convertKebabToTitleCase } from "@/lib/filesystem/utils";
 import { cn } from "@/lib/tailwind/cn";
 
-export function Sidebar({ tree }: { tree: DocGroup[] }) {
+export function Sidebar({ data }: { data: ReturnType<typeof getSidebarData> }) {
   const pathname = usePathname();
-
-  const groups = useMemo(
-    () =>
-      tree.map(({ folder, docs }) => ({
-        folder,
-        pages: docs.map(({ href, frontmatter }) => ({
-          href,
-          title: frontmatter.title,
-        })),
-      })),
-    [tree]
-  );
 
   return (
     <nav
@@ -33,7 +20,7 @@ export function Sidebar({ tree }: { tree: DocGroup[] }) {
         "scroll-mt-(--nav-scroll-margin) md:sticky md:top-(--nav-height)"
       )}
     >
-      {groups.map(({ folder, pages }) => (
+      {data.map(({ folder, pages }) => (
         <div key={folder ?? "root"} className="gap-vesper-micro flex flex-col">
           {folder && (
             <Typography

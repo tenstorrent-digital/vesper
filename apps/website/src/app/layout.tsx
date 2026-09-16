@@ -3,7 +3,7 @@ import { Toasts } from "@tenstorrent/vesper/toast";
 import { Nav } from "@/components/nav";
 import { Sidebar } from "@/components/sidebar";
 
-import { getDocTree } from "@/lib/filesystem/docs";
+import { getSidebarData } from "@/lib/filesystem/docs";
 import { ibm_plex_mono, inter_tight } from "@/lib/style/fonts";
 import { cn } from "@/lib/tailwind/cn";
 
@@ -28,10 +28,10 @@ export default function RootLayout({
         <div className="flex min-h-svh flex-col">
           <Nav />
           <div className="flex flex-1 flex-col-reverse items-start md:flex-row">
-            <Sidebar tree={getDocTree()} />
+            <Sidebar data={getSidebarData()} />
             <div
               className={cn(
-                "p-vesper-4 pb-vesper-12 md:mb-0 mb-vesper-4 w-full min-w-0 flex-1",
+                "p-vesper-4 pb-vesper-12 mb-vesper-4 w-full min-w-0 flex-1 md:mb-0",
                 "border-vesper-border-tertiary border-b md:border-b-0"
               )}
             >

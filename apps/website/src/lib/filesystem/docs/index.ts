@@ -113,3 +113,12 @@ export const getDocTree = (): DocGroup[] => {
       .map(([folder, docs]) => ({ folder: folder || undefined, docs }))
   );
 };
+
+export const getSidebarData = () =>
+  getDocTree().map(({ folder, docs }) => ({
+    folder,
+    pages: docs.map(({ href, frontmatter }) => ({
+      href,
+      title: frontmatter.title,
+    })),
+  }));
