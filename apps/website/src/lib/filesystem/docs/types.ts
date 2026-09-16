@@ -2,7 +2,7 @@ import type { ComponentType } from "react";
 
 export type DocExtension = "md" | "mdx";
 
-export type ToCItem = {
+export type TOCItem = {
   id: string;
   text: string;
   depth: 1 | 2 | 3 | 4 | 5 | 6;
@@ -37,7 +37,7 @@ export interface DocEntry {
   /** doc's file extension (we need to resolve the right dynamic import) */
   ext: DocExtension;
   frontmatter: Frontmatter;
-  toc: ToCItem[];
+  toc: TOCItem[];
 }
 
 export interface DocModule {

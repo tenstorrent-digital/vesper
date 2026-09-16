@@ -2,14 +2,14 @@ import fs from "node:fs";
 import path from "node:path";
 
 import { readFrontmatter } from "./frontmatter";
-import { getToC } from "./toc";
+import { getTOC } from "./toc";
 import { DocEntry, DocExtension } from "./types";
 
 export const DOCS_DIR = path.join(
   process.cwd(), // `apps/website/`
   "..",
   "..",
-  "docs"
+  "docs",
 );
 
 /**
@@ -44,7 +44,7 @@ const docEntries = (dir: string, segments: string[] = []): DocEntry[] =>
         href: `/${slug.join("/")}`,
         ext: ext as DocExtension,
         frontmatter: readFrontmatter(raw),
-        toc: getToC(raw, ext as DocExtension),
+        toc: getTOC(raw, ext as DocExtension),
       },
     ];
   });
@@ -126,6 +126,6 @@ export const getSidebarData = () =>
 export const getPageTitles = () =>
   Object.fromEntries(
     docs.flatMap(({ href, frontmatter }) =>
-      frontmatter.title ? [[href, frontmatter.title]] : []
-    )
+      frontmatter.title ? [[href, frontmatter.title]] : [],
+    ),
   );
