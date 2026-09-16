@@ -122,3 +122,10 @@ export const getSidebarData = () =>
       title: frontmatter.title,
     })),
   }));
+
+export const getPageTitles = () =>
+  Object.fromEntries(
+    docs.flatMap(({ href, frontmatter }) =>
+      frontmatter.title ? [[href, frontmatter.title]] : []
+    )
+  );

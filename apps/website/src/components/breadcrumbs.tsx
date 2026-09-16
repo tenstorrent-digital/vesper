@@ -1,25 +1,18 @@
 "use client";
 
-import { Fragment, useMemo } from "react";
+import { Fragment } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { Typography } from "@tenstorrent/vesper/typography";
 
-import type { DocEntry } from "@/lib/filesystem/docs/types";
 import { convertKebabToTitleCase } from "@/lib/filesystem/utils";
 
-export function Breadcrumbs({ docs }: { docs: DocEntry[] }) {
-  const titles = useMemo(
-    () =>
-      Object.fromEntries(
-        docs.flatMap(({ href, frontmatter }) =>
-          frontmatter.title ? [[href, frontmatter.title]] : []
-        )
-      ),
-    [docs]
-  );
-
+export function Breadcrumbs({
+  pageTitles,
+}: {
+  pageTitles: Record<string, string>;
+}) {
   const pathname = usePathname();
   const paths = pathname.split("/").filter(Boolean);
 
@@ -42,7 +35,7 @@ export function Breadcrumbs({ docs }: { docs: DocEntry[] }) {
               className="shrink-0"
             >
               {/* a document's own title otherwise the slug for the app route (ex: `/components`) */}
-              {titles[href] ?? convertKebabToTitleCase(path)}
+              {pageTitles[href] ?? convertKebabToTitleCase(path)}
             </Typography>
             {index !== paths.length - 1 && <Separator />}
           </Fragment>

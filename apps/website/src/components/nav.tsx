@@ -7,7 +7,7 @@ import { Typography } from "@tenstorrent/vesper/typography";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PlaygroundLink } from "@/components/playground-link";
 
-import { docs } from "@/lib/filesystem/docs";
+import { getPageTitles } from "@/lib/filesystem/docs";
 
 import "@/lib/style/css/globals.css";
 
@@ -20,13 +20,13 @@ export function Nav() {
             as={Link}
             href="/"
             variant="heading-sm"
-            className="gap-vesper-2 flex h-full w-fit pb-vesper-half items-center"
+            className="gap-vesper-2 pb-vesper-half flex h-full w-fit items-center"
           >
             <Tenstorrent width={24} color="var(--vesper-teal-500)" />
             Vesper
           </Typography>
         </div>
-        <Breadcrumbs docs={docs} />
+        <Breadcrumbs pageTitles={getPageTitles()} />
         <PlaygroundLink />
         <IconButton
           size="sm"
@@ -34,7 +34,7 @@ export function Nav() {
           icon={<Menu />}
           as="a"
           href="#sidebar"
-          className="md:hidden flex ml-vesper-2"
+          className="ml-vesper-2 flex md:hidden"
         />
       </div>
     </div>
