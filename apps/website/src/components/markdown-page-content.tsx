@@ -1,21 +1,31 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
 
 import { Typography } from "@tenstorrent/vesper/typography";
+
+import { CopyToClipboardButton } from "@/components/copy-to-clipboard-button";
 
 import type { ToCItem } from "@/lib/filesystem/docs/types";
 import { cn } from "@/lib/tailwind/cn";
 
 export function MarkdownPageContent({
+  raw,
   toc,
   children,
 }: {
+  raw: string;
   toc: ToCItem[];
   children: ReactNode;
 }) {
   return (
     <div className="flex items-start justify-between">
-      <main className="prose min-w-0">{children}</main>
+      <div className="gap-vesper-12 flex min-w-0 flex-col">
+        <main className="prose">{children}</main>
+        <div className="border-vesper-border-tertiary pt-vesper-12 flex justify-end border-t">
+          <CopyToClipboardButton textToCopy={raw} size="xs" variant="tertiary">
+            copy page as markdown
+          </CopyToClipboardButton>
+        </div>
+      </div>
       <aside
         className={cn(
           "sticky top-(--nav-scroll-margin)",
@@ -29,7 +39,7 @@ export function MarkdownPageContent({
         {toc.map((item) => (
           <Typography
             key={item.id}
-            as={Link}
+            as="a"
             variant="copy-xs"
             href={`#${item.id}`}
             className="text-vesper-text-tertiary hover:underline"

@@ -38,7 +38,7 @@ export default async function Page(props: PageProps<"/[...doc]">) {
   const { default: Doc } = await loadDoc(entry);
 
   return (
-    <MarkdownPageContent toc={entry.toc}>
+    <MarkdownPageContent toc={entry.toc} raw={entry.raw}>
       <Doc />
     </MarkdownPageContent>
   );

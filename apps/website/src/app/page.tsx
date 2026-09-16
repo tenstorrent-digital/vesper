@@ -26,7 +26,7 @@ export default async function Page() {
   const { default: Doc } = await loadDoc(entry);
 
   return (
-    <MarkdownPageContent toc={entry.toc}>
+    <MarkdownPageContent toc={entry.toc} raw={entry.raw}>
       <Doc />
     </MarkdownPageContent>
   );
