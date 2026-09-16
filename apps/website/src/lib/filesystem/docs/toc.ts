@@ -1,7 +1,7 @@
 import { Heading } from "mdast";
 import { toString } from "mdast-util-to-string";
 
-import { getHeadingId, getMarkdownParser } from "../../mdx/utils.mts";
+import { getHeadingId, getMarkdownParser } from "@/lib/mdx/utils.mts";
 
 import type { DocExtension, ToCItem } from "./types";
 
