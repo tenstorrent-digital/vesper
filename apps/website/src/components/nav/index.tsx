@@ -4,10 +4,10 @@ import { IconButton } from "@tenstorrent/vesper/icon-button";
 import { Menu, Tenstorrent } from "@tenstorrent/vesper/icons";
 import { Typography } from "@tenstorrent/vesper/typography";
 
-import { Breadcrumbs } from "@/components/breadcrumbs";
-import { PlaygroundLink } from "@/components/playground-link";
-
 import { getPageTitles } from "@/lib/filesystem/docs";
+
+import { Breadcrumbs } from "./breadcrumbs";
+import { PlaygroundLink } from "./playground-link";
 
 import "@/lib/style/css/globals.css";
 

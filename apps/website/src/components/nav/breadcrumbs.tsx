@@ -18,7 +18,7 @@ export function Breadcrumbs({
 
   return (
     <nav
-      className="gap-vesper-4 flex flex-1 md:pl-vesper-4 pr-vesper-4 overflow-auto scrollbar-none"
+      className="gap-vesper-4 md:pl-vesper-4 pr-vesper-4 flex flex-1 scrollbar-none overflow-auto"
       aria-label="Main Navigation"
     >
       {pathname !== "/" && <Separator />}

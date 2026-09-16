@@ -32,8 +32,8 @@ export const PlaygroundLink = () => {
       variant="tertiary"
       size="sm"
     >
-      <span className="md:inline hidden">Playground</span>
-      <span className="md:hidden inline">Play</span>
+      <span className="hidden md:inline">Playground</span>
+      <span className="inline md:hidden">Play</span>
     </Button>
   );
 };
