@@ -1,17 +1,10 @@
 import { Typography } from "@tenstorrent/vesper/typography";
 
 import type { TOCItem } from "@/lib/filesystem/docs/types";
-import { cn } from "@/lib/tailwind/cn";
 
 export default async function TableOfContents({ items }: { items: TOCItem[] }) {
   return (
-    <aside
-      className={cn(
-        "sticky top-(--nav-scroll-margin)",
-        "gap-vesper-1 hidden flex-col lg:flex",
-        "pl-vesper-4 w-[14rem] shrink-0",
-      )}
-    >
+    <aside className="gap-vesper-1 pl-vesper-4 sticky top-(--nav-scroll-margin) hidden w-[14rem] shrink-0 flex-col lg:flex">
       <Typography variant="label-lg-bold" className="mb-vesper-4">
         On this page
       </Typography>
