@@ -29,6 +29,7 @@ export function Nav() {
         <Breadcrumbs pageTitles={getPageTitles()} />
         <PlaygroundLink />
         <IconButton
+          aria-label="Scroll to documentation navigation"
           size="sm"
           variant="ghost"
           icon={<Menu />}
