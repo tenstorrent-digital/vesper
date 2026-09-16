@@ -11,6 +11,8 @@ import { PlaygroundLink } from "./playground-link";
 
 import "@/lib/style/css/globals.css";
 
+const pageTitles = getPageTitles();
+
 export function Nav() {
   return (
     <nav
@@ -29,7 +31,7 @@ export function Nav() {
             Vesper
           </Typography>
         </div>
-        <Breadcrumbs pageTitles={getPageTitles()} />
+        <Breadcrumbs pageTitles={pageTitles} />
         <PlaygroundLink />
         <IconButton
           aria-label="Scroll to documentation navigation"
