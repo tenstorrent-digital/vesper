@@ -17,8 +17,8 @@ export function Sidebar({ data }: { data: ReturnType<typeof getSidebarData> }) {
       id="sidebar"
       aria-label="Sidebar"
       className={cn(
-        "p-vesper-4 overflow-auto md:h-(--below-nav-height) md:w-3xs",
-        "scroll-mt-(--nav-scroll-margin) md:sticky md:top-(--nav-height)"
+        "p-vesper-4 w-full overflow-auto md:h-(--below-nav-height) md:w-3xs",
+        "scroll-mt-(--nav-scroll-margin) md:sticky md:top-(--nav-height)",
       )}
     >
       {data.map(({ folder, pages }) => (
