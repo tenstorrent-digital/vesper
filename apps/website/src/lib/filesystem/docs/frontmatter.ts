@@ -1,4 +1,3 @@
-import fs from "node:fs";
 import { parse } from "yaml";
 
 import type { Frontmatter } from "./types";
