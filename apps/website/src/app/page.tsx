@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="prose">
+    <main className="prose">
       <Typography as="h1" variant="heading-2xl">
         Vesper
       </Typography>
@@ -82,6 +82,6 @@ export default function Page() {
           </Typography>
         </Material>
       </div>
-    </div>
+    </main>
   );
 }
