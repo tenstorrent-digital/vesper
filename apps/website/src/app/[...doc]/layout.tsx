@@ -21,7 +21,7 @@ export default async function Layout({
     <div className="flex items-start justify-between">
       <div className="gap-vesper-12 flex min-w-0 flex-col">
         <main className="prose">{children}</main>
-        <div className="border-vesper-border-tertiary pt-vesper-12 gap-vesper-4 flex justify-end border-t">
+        <div className="border-vesper-border-tertiary pt-vesper-12 gap-vesper-4 flex justify-center border-t md:justify-end">
           {entry.frontmatter.title && (
             <CopyToClipboardButton
               textToCopy={markdownFileAsPrompt(
