@@ -102,7 +102,7 @@ const components = {
   a: (props) => (
     <Link
       {...props}
-      className="underline decoration-from-font underline-offset-[calc(var(--base-font-size)_/_12)]"
+      className="underline decoration-from-font underline-offset-[calc(1rem_/_12)]"
       target={props.href.startsWith("http") ? "_blank" : undefined}
       rel={props.href.startsWith("http") ? "noopener noreferrer" : undefined}
       href={props.href}
