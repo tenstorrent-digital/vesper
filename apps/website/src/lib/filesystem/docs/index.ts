@@ -129,3 +129,14 @@ export const getPageTitles = () =>
       frontmatter.title ? [[href, frontmatter.title]] : [],
     ),
   );
+
+export const markdownFileAsPrompt = (title: string, markdown: string) =>
+  [
+    `You are helping me use Vesper, Tenstorrent's React design system.`,
+    `Below is the full documentation for "${title}".`,
+    `Answer using only these APIs, and prefer the documented defaults.`,
+    ``,
+    `---`,
+    ``,
+    markdown,
+  ].join("\n");

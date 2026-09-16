@@ -5,19 +5,8 @@ import { Typography } from "@tenstorrent/vesper/typography";
 
 import { CopyToClipboardButton } from "@/components/copy-to-clipboard-button";
 
-import { getDoc } from "@/lib/filesystem/docs";
+import { getDoc, markdownFileAsPrompt } from "@/lib/filesystem/docs";
 import { cn } from "@/lib/tailwind/cn";
-
-const markdownFileAsPrompt = (title: string, markdown: string) =>
-  [
-    `You are helping me use Vesper, Tenstorrent's React design system.`,
-    `Below is the full documentation for "${title}".`,
-    `Answer using only these APIs, and prefer the documented defaults.`,
-    ``,
-    `---`,
-    ``,
-    markdown,
-  ].join("\n");
 
 export default async function Layout({
   children,
@@ -39,7 +28,7 @@ export default async function Layout({
             <CopyToClipboardButton
               textToCopy={markdownFileAsPrompt(
                 entry.frontmatter.title,
-                entry.raw
+                entry.raw,
               )}
               size="xs"
               variant="tertiary"
@@ -60,7 +49,7 @@ export default async function Layout({
         className={cn(
           "sticky top-(--nav-scroll-margin)",
           "gap-vesper-1 hidden flex-col xl:flex",
-          "pl-vesper-4 w-3xs shrink-0"
+          "pl-vesper-4 w-3xs shrink-0",
         )}
       >
         <Typography variant="label-lg-bold" className="mb-vesper-4">
