@@ -69,7 +69,7 @@ const cssLang = (await bundledLanguages["css" as BundledLanguage]()).default;
 
 export default function Page() {
   return (
-    <div className="gap-vesper-16 flex w-full flex-col">
+    <main className="gap-vesper-16 flex w-full flex-col">
       <div className="component-grid-header">
         <Typography variant="heading-2xl" as="h1">
           Components
@@ -279,6 +279,6 @@ export default function Page() {
           <Typography variant="heading-sm">Aa</Typography>
         </Cell>
       </div>
-    </div>
+    </main>
   );
 }

@@ -6,7 +6,7 @@ import { Typography } from "@tenstorrent/vesper/typography";
 
 export default function NotFound() {
   return (
-    <div>
+    <main>
       <Typography variant="heading-2xl" as="h1">
         Not Found
       </Typography>
@@ -16,6 +16,6 @@ export default function NotFound() {
       <Button iconLeft={<ArrowLeft />} as={Link} href="/" variant="subtle">
         Back to docs
       </Button>
-    </div>
+    </main>
   );
 }
