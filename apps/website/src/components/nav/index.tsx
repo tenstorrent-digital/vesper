@@ -19,7 +19,7 @@ export function Nav() {
       aria-label="Main Navigation"
       className="border-vesper-border-tertiary bg-vesper-background-primary sticky top-0 z-20 h-(--nav-height) shrink-0 border-b"
     >
-      <div className="pr-vesper-4 flex h-full items-center">
+      <div className="px-vesper-4 mx-auto flex h-full w-full max-w-7xl items-center">
         <div className="px-vesper-4 md:w-[12.5rem]">
           <Typography
             as={Link}

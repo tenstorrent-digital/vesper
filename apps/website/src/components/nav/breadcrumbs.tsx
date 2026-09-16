@@ -19,7 +19,7 @@ export function Breadcrumbs({
   return (
     <div
       id="breadcrumbs"
-      className="md:gap-vesper-2 gap-vesper-4 md:pl-vesper-4 pr-vesper-4 flex flex-1 scrollbar-none overflow-auto"
+      className="md:gap-vesper-2 gap-vesper-4 pr-vesper-4 flex flex-1 scrollbar-none overflow-auto"
     >
       {pathname !== "/" && <Separator />}
       {paths.map((path, index) => {
