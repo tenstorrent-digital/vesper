@@ -29,3 +29,24 @@
     --right-fade: 0px;
   }
 }
+
+#breadcrumbs {
+  /* fade sides in/out if scrolled (and supported) */
+  @supports (animation-timeline: scroll()) {
+    animation-name: breadcrumbs-fade-start, breadcrumbs-fade-end;
+    animation-duration: auto;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: scroll(self inline);
+    animation-range: /* start, end */
+      0 3rem,
+      calc(100% - 3rem) 100%;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 var(--left-fade),
+      #000 calc(100% - var(--right-fade)),
+      transparent
+    );
+  }
+}
