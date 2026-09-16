@@ -34,7 +34,7 @@ export function CopyToClipboardButton({
       if (e.defaultPrevented) return;
       copyToClipboard();
     },
-    [onClick, copyToClipboard]
+    [onClick, copyToClipboard],
   );
 
   return (

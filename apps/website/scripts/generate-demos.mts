@@ -80,11 +80,11 @@ const writeDemoModules = async (docPath: string): Promise<string[]> => {
  * cached as part of a build that no document imports it into
  */
 const removeStaleDemoModules = async (
-  demoModulePaths: string[]
+  demoModulePaths: string[],
 ): Promise<number> => {
   const current = new Set(demoModulePaths);
   const stale = (await getDemoModulePaths()).filter(
-    (demoModulePath) => !current.has(demoModulePath)
+    (demoModulePath) => !current.has(demoModulePath),
   );
 
   await Promise.all(stale.map((demoModulePath) => rm(demoModulePath)));
@@ -112,5 +112,5 @@ const staleCount = await removeStaleDemoModules(demoModulePaths);
 
 console.log(
   `Generated ${demoModulePaths.length} demos from ${docPaths.length} documents` +
-    (staleCount ? ` (removed ${staleCount} stale)` : "")
+    (staleCount ? ` (removed ${staleCount} stale)` : ""),
 );

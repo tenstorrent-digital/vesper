@@ -18,7 +18,7 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata(
-  props: PageProps<"/[...doc]">
+  props: PageProps<"/[...doc]">,
 ): Promise<Metadata> {
   const { doc } = await props.params;
   const { title, description } = getDoc(doc)?.frontmatter ?? {};
