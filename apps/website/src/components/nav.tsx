@@ -13,7 +13,10 @@ import "@/lib/style/css/globals.css";
 
 export function Nav() {
   return (
-    <div className="border-vesper-border-tertiary bg-vesper-background-primary sticky top-0 z-20 h-(--nav-height) shrink-0 border-b">
+    <nav
+      aria-label="Main Navigation"
+      className="border-vesper-border-tertiary bg-vesper-background-primary sticky top-0 z-20 h-(--nav-height) shrink-0 border-b"
+    >
       <div className="pr-vesper-4 flex h-full items-center">
         <div className="px-vesper-4 md:w-3xs">
           <Typography
@@ -38,6 +41,6 @@ export function Nav() {
           className="ml-vesper-2 flex md:hidden"
         />
       </div>
-    </div>
+    </nav>
   );
 }
