@@ -17,10 +17,7 @@ export function Breadcrumbs({
   const paths = pathname.split("/").filter(Boolean);
 
   return (
-    <nav
-      className="gap-vesper-4 md:pl-vesper-4 pr-vesper-4 flex flex-1 scrollbar-none overflow-auto"
-      aria-label="Main Navigation"
-    >
+    <div className="gap-vesper-4 md:pl-vesper-4 pr-vesper-4 flex flex-1 scrollbar-none overflow-auto">
       {pathname !== "/" && <Separator />}
       {paths.map((path, index) => {
         const href = `/${paths.slice(0, index + 1).join("/")}`;
@@ -41,7 +38,7 @@ export function Breadcrumbs({
           </Fragment>
         );
       })}
-    </nav>
+    </div>
   );
 }
 
