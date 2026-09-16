@@ -2,7 +2,7 @@ import type { Root } from "hast";
 import { toString } from "mdast-util-to-string";
 import type { Transformer } from "unified";
 
-import { getHeadingId } from "./markdown.mts";
+import { getHeadingId } from "./utils.mts";
 
 export default function rehypeHeadingIds(): Transformer<Root> {
   return (tree) => {

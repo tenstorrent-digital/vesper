@@ -18,7 +18,6 @@ import type { Root } from "mdast";
 import { readdir, readFile, rm, rmdir } from "node:fs/promises";
 import path from "node:path";
 
-import { getMarkdownParser } from "../src/lib/mdx/markdown.mts";
 import {
   createOrUpdateFile,
   DEMOS_ROOT,
@@ -28,6 +27,7 @@ import {
   getDemoModulePath,
   getDemoModuleSource,
 } from "../src/lib/mdx/tsx-demos.mts";
+import { getMarkdownParser } from "../src/lib/mdx/utils.mts";
 
 /** Every `.md`/`.mdx` document in the monorepo's `docs/` folder */
 const getDocPaths = async (): Promise<string[]> => {
