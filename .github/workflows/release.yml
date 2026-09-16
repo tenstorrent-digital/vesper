@@ -5,32 +5,89 @@ on:
     branches: [main]
     # The vouch workflows push `.github/VOUCHED.td` to `main` using a GitHub App
     # token, which (unlike `GITHUB_TOKEN`) does trigger workflows. Those commits
-    # never carry a changeset, so skip them instead of starting a release run.
+    # never version anything, so skip them instead of starting a release run.
     paths-ignore:
       - ".github/VOUCHED.td"
     # no `workflow_dispatch` for running from UI
     # a manual run from any ref could version, tag, and release unmerged code
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  # Cancelling mid-flight can leave the version PR branch
-  # or the pushed git tags in a half-updated state
-  cancel-in-progress: false
+# Concurrency is scoped to the `release` job rather than the whole workflow, so
+# routine merges to `main` don't queue behind a run sitting in the approval queue.
 
 permissions:
-  # push the `changeset-release/main` branch, version commits and git tags
-  contents: write
-  # open/update the "Version Packages" pull request
-  pull-requests: write
-  # mint the OIDC token that npm exchanges for a short-lived registry
-  # credential (trusted publishing), and sign the provenance attestation
-  id-token: write
+  contents: read
 
 jobs:
+  check:
+    name: Check for Pending Release
+    runs-on: ubuntu-latest
+    # Ungated on purpose: cheap and read-only. Its whole reason for existing is
+    # to decide whether the gated `release` job below should even ask a human
+    # for approval, so most merges to `main` never page an admin at all.
+    outputs:
+      publish: ${{ steps.check.outputs.publish }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          # `fetch-depth: 0` also fetches tags, which the check below needs
+          fetch-depth: 0
+          persist-credentials: false
+
+      # A release is pending when both are true:
+      #
+      # 1. no `.changeset/*.md` files remain, ie. the "Version Packages" PR
+      #    consumed them and has been merged.
+      # 2. the version currently in `packages/vesper/package.json` has no git
+      #    tag yet, ie. it hasn't already been released.
+      #
+      # This is an exact check rather than a heuristic on the commit message,
+      # which would differ between squash merges and merge commits.
+      - name: Check for Pending Release
+        id: check
+        run: |
+          set -euo pipefail
+
+          pending="$(find .changeset -maxdepth 1 -name '*.md' ! -name 'README.md' | wc -l | tr -d ' ')"
+          version="$(node -p "require('./packages/vesper/package.json').version")"
+          tag="@tenstorrent/vesper@${version}"
+
+          if [ "$pending" -ne 0 ]; then
+            echo "Changesets still pending - waiting on the \"Version Packages\" PR."
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+          elif git rev-parse -q --verify "refs/tags/${tag}" >/dev/null; then
+            echo "${tag} is already tagged - nothing to release."
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "${tag} is untagged and no changesets remain - release pending."
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          fi
+
   release:
     name: Release
+    needs: check
+    if: needs.check.outputs.publish == 'true'
     runs-on: ubuntu-latest
+    # Requires manual approval from an environment reviewer before it runs.
+    # This is the intentional friction around publishing to npm.
     environment: release
+
+    concurrency:
+      group: release-${{ github.ref }}
+      # Cancelling mid-flight can leave the pushed git tags
+      # or the npm publish in a half-updated state
+      cancel-in-progress: false
+      # `queue: max` holds pending releases in a FIFO queue, so every
+      # version is published, in ascending order
+      queue: max
+
+    permissions:
+      # push git tags and create GitHub releases
+      contents: write
+      # mint the OIDC token that npm exchanges for a short-lived registry
+      # credential (trusted publishing), and sign the provenance attestation
+      id-token: write
 
     steps:
       - name: Checkout
@@ -52,25 +109,22 @@ jobs:
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
 
-      # Two modes, picked by the action based on whether `.changeset/*.md` files
-      # exist on `main`:
+      # Only `publish` is passed (no `version`), so the action skips version PR
+      # handling entirely and goes straight to creating git tags, GitHub
+      # releases, and publishing to npm. Opening the "Version Packages" PR is
+      # `version.yml`'s job.
       #
-      # 1. changesets present -> `version`: open/update the "Version Packages" PR
-      #    with bumped versions and generated changelogs.
-      # 2. none present (ie. "Version Packages" PR was just merged) -> `publish`, which
-      #    creates git tags, GitHub releases, and publishes to npm.
-      - name: Create Version PR or Tag Release
+      # Because this is a `push` run, the checkout is pinned to the pushed SHA:
+      # what gets published is exactly what the approver signed off on, even if
+      # other commits land on `main` while the run waits for approval.
+      - name: Tag and Publish
         # Pinning third-party actions to a specific SHA is recommended by GitHub Actions secure use reference:
         # https://docs.github.com/en/actions/reference/security/secure-use#using-third-party-actions
         uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
         with:
-          # These are split on whitespace and exec'd directly by the action (no shell),
-          # so they can't be chained. `changeset version` already formats the generated
-          # CHANGELOG.md files with prettier using this repo's prettier config.
-          version: yarn changeset version
           publish: yarn changeset:publish
-          # Commits, branch and tags go through the GitHub API instead of the git
-          # CLI, so no credential is needed on disk (see `persist-credentials` above).
+          # Tags go through the GitHub API instead of the git CLI, so no
+          # credential is needed on disk (see `persist-credentials` above).
           # Also signs them with GitHub's GPG key, attributed to `github-actions[bot]`.
           commitMode: github-api
         env:
