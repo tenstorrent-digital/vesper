@@ -19,17 +19,6 @@ const BUTTON_PERMUTATIONS: ButtonProps[] = BUTTON_VARIANTS.flatMap((variant) =>
   ]),
 );
 
-const BUTTON_A11Y_FAILING_PERMUTATIONS: (ButtonProps & {
-  theme: string;
-})[] = [
-  ...BUTTON_SIZES.flatMap((size) => [
-    { size, variant: "warning" as const, disabled: false, theme: "light" },
-    { size, variant: "danger" as const, disabled: false, theme: "light" },
-    { size, variant: "danger" as const, disabled: false, theme: "dark" },
-    { size, variant: "warning" as const, disabled: false, theme: "dark" },
-  ]),
-];
-
 afterEach(cleanup);
 
 describe("button [unit]", () => {
@@ -277,24 +266,12 @@ describe("button [a11y]", () => {
 
     BUTTON_PERMUTATIONS.forEach((permutation) => {
       const { size, variant, disabled } = permutation;
-      const testName = `wcag2aaa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`;
 
-      const testFn = async () => {
+      test(`wcag2aaa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`, async () => {
         const result = render(<Button {...permutation}>Button Text</Button>);
 
         expect(await axe.run(result.container)).toHaveNoViolations();
-      };
-
-      const failsA11y = BUTTON_A11Y_FAILING_PERMUTATIONS.some(
-        (p) =>
-          p.size === size &&
-          p.variant === variant &&
-          p.disabled === disabled &&
-          p.theme === theme,
-      );
-
-      if (failsA11y) test.todo(testName, testFn);
-      else test(testName, testFn);
+      });
     });
   });
 });
