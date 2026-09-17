@@ -210,16 +210,6 @@ describe("split-button [snapshot]", () => {
   });
 });
 
-const SPLIT_BUTTON_A11Y_FAILING_PERMUTATIONS: {
-  variant: (typeof SPLIT_BUTTON_VARIANTS)[number];
-  theme: string;
-}[] = [
-  { variant: "subtle", theme: "light" },
-  { variant: "contrast", theme: "light" },
-  { variant: "subtle", theme: "dark" },
-  { variant: "contrast", theme: "dark" },
-];
-
 describe("split-button [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
@@ -244,22 +234,23 @@ describe("split-button [a11y]", () => {
         .filter(Boolean)
         .join(", ");
 
-      const testFn = async () => {
+      test(testName, async () => {
         const result = render(
           <SplitButton {...permutation}>button text</SplitButton>,
         );
 
+        // the menu content is portaled outside of the render container, so
+        // a11y is checked at the document level
+        //
+        // the page-level `region` rule is disabled here: it flags content that
+        // isn't contained by a landmark, which is an artifact of rendering a
+        // component in isolation rather than a menu accessibility issue
         expect(
-          await axe.run(result.container.ownerDocument),
+          await axe.run(result.container.ownerDocument, {
+            rules: { region: { enabled: false } },
+          }),
         ).toHaveNoViolations();
-      };
-
-      const failsA11y = SPLIT_BUTTON_A11Y_FAILING_PERMUTATIONS.some(
-        (p) => p.variant === variant && p.theme === theme,
-      );
-
-      if (failsA11y) test.todo(testName, testFn);
-      else test(testName, testFn);
+      });
     });
   });
 });
