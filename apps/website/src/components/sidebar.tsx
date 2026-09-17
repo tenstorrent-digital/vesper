@@ -40,7 +40,7 @@ export function Sidebar({ data }: { data: ReturnType<typeof getSidebarData> }) {
               aria-current={pathname === href ? "page" : undefined}
               key={href}
               className="p-vesper-2 rounded-vesper-2 hover:bg-vesper-background-tertiary data-active:bg-vesper-background-tertiary"
-              variant="label-lg-bold"
+              variant="label-md-bold"
             >
               {title ?? convertKebabToTitleCase(href.split("/").pop() ?? "")}
             </Typography>

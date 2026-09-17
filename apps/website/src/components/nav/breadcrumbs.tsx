@@ -31,7 +31,7 @@ export function Breadcrumbs({
               as={Link}
               href={href}
               aria-current={index === paths.length - 1 ? "page" : undefined}
-              variant="copy-md-bold"
+              variant="label-md-bold"
               className="shrink-0"
             >
               {/* a document's own title otherwise the slug for the app route (ex: `/components`) */}
@@ -48,7 +48,7 @@ export function Breadcrumbs({
 const Separator = () => (
   <Typography
     as="span"
-    variant="copy-md-bold"
+    variant="label-md-bold"
     className="text-vesper-text-tertiary"
     aria-hidden
   >
