@@ -14,9 +14,9 @@ export default async function TableOfContents({ items }: { items: TOCItem[] }) {
       {items.map((item) => (
         <Typography
           key={item.id}
+          className="p-vesper-2 rounded-vesper-2 hover:bg-vesper-background-tertiary data-active:bg-vesper-background-tertiary"
           as="a"
           href={`#${item.id}`}
-          className="p-vesper-2 rounded-vesper-2 hover:bg-vesper-background-tertiary data-active:bg-vesper-background-tertiary"
           variant="label-md-bold"
           style={{
             marginLeft: `calc(var(--vesper-spacing-3) * ${item.depth - 1})`,
