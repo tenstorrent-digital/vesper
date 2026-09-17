@@ -201,7 +201,7 @@ describe("form-input-message [a11y]", () => {
     FORM_INPUT_MESSAGE_PERMUTATIONS.forEach((permutation) => {
       const { name, ...props } = permutation;
 
-      test(`wcag2aaa (${name}, ${theme})`, async () => {
+      test(`wcag2aa (${name}, ${theme})`, async () => {
         const { container } = render(<FormInputMessage {...props} />);
 
         expect(await axe.run(container)).toHaveNoViolations();

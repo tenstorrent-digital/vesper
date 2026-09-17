@@ -125,7 +125,7 @@ describe("admonition [a11y]", () => {
     ADMONITION_PERMUTATIONS.forEach((permutation) => {
       const { size, variant, subtle } = permutation;
 
-      test(`wcag2aaa (${variant}, ${size},${subtle ? " subtle," : ""} ${theme})`, async () => {
+      test(`wcag2aa (${variant}, ${size},${subtle ? " subtle," : ""} ${theme})`, async () => {
         const result = render(
           <Admonition {...permutation}>content</Admonition>,
         );

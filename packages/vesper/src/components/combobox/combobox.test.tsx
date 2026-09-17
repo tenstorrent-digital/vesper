@@ -192,7 +192,7 @@ describe("combobox [a11y]", () => {
     COMBOBOX_PERMUTATIONS.forEach((permutation) => {
       const { permutationName, ...props } = permutation;
 
-      test(`wcag2aaa (${permutationName}, ${theme})`, async () => {
+      test(`wcag2aa (${permutationName}, ${theme})`, async () => {
         const { container } = render(<Combobox {...props} />);
         expect(await axe.run(container.firstChild!)).toHaveNoViolations();
       });

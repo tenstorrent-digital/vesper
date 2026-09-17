@@ -150,7 +150,7 @@ describe("text-area [a11y]", () => {
 
     TEXT_AREA_PERMUTATIONS.forEach((permutation) => {
       const { name, ...props } = permutation;
-      test(`wcag2aaa (${name}, ${theme})`, async () => {
+      test(`wcag2aa (${name}, ${theme})`, async () => {
         const { container } = render(
           <TextArea aria-label="Label" {...props} />,
         );

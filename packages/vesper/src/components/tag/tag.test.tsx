@@ -211,7 +211,7 @@ describe("tag [a11y]", () => {
     TAG_PERMUTATIONS.forEach((permutation) => {
       const { size, variant, disabled } = permutation;
 
-      test(`wcag2aaa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`, async () => {
+      test(`wcag2aa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`, async () => {
         const result = render(<Tag {...permutation}>Tag Text</Tag>);
 
         expect(await axe.run(result.container)).toHaveNoViolations();

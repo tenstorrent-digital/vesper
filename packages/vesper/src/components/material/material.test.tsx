@@ -228,7 +228,7 @@ describe("material [a11y]", () => {
     });
 
     MATERIAL_PERMUTATIONS.forEach(({ label, ...props }) => {
-      test(`wcag2aaa (${label}, ${theme})`, async () => {
+      test(`wcag2aa (${label}, ${theme})`, async () => {
         const result = render(
           <Material {...props} style={{ width: 100, height: 100 }} />,
         );

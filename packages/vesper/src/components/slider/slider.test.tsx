@@ -236,7 +236,7 @@ describe("slider [a11y]", () => {
     });
 
     SLIDER_A11Y_PERMUTATIONS.forEach(({ name, ...props }) => {
-      test(`wcag2aaa (${name}, ${theme})`, async () => {
+      test(`wcag2aa (${name}, ${theme})`, async () => {
         const { container } = await renderSlider(props);
         expect(await axe.run(container)).toHaveNoViolations();
       });

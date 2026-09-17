@@ -518,7 +518,7 @@ describe("select [a11y]", () => {
     });
 
     SELECT_PERMUTATIONS.forEach(({ permutationName, ...props }) => {
-      test(`wcag2aaa (${permutationName}, ${theme})`, async () => {
+      test(`wcag2aa (${permutationName}, ${theme})`, async () => {
         const { container } = render(
           <Select {...props} aria-label="Select label" />,
         );

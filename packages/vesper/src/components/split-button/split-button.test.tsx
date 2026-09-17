@@ -225,7 +225,7 @@ describe("split-button [a11y]", () => {
     SPLIT_BUTTON_PERMUTATIONS.forEach((permutation) => {
       const { disabled, variant, size, menuOpen } = permutation;
       const testName = [
-        "wcag2aaa (" + variant,
+        "wcag2aa (" + variant,
         size,
         disabled && "disabled",
         menuOpen && "open",

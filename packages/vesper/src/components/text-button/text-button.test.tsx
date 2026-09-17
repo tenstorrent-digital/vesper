@@ -261,7 +261,7 @@ describe("text-button [a11y]", () => {
     TEXT_BUTTON_PERMUTATIONS.forEach((permutation) => {
       const { size, variant, disabled } = permutation;
 
-      test(`wcag2aaa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`, async () => {
+      test(`wcag2aa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`, async () => {
         const result = render(
           <TextButton {...permutation}>Button Text</TextButton>,
         );
