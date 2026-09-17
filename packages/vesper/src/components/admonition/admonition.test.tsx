@@ -18,26 +18,6 @@ const ADMONITION_PERMUTATIONS = ADMONITION_VARIANTS.flatMap((variant) =>
   ]),
 );
 
-const ADMONITION_A11Y_FAILING_PERMUTATIONS: (AdmonitionProps & {
-  theme: string;
-})[] = [
-  ...ADMONITION_SIZES.flatMap((size) => [
-    { size, variant: "info" as const, subtle: true, theme: "light" },
-    { size, variant: "info" as const, subtle: false, theme: "light" },
-    { size, variant: "success" as const, subtle: true, theme: "light" },
-    { size, variant: "success" as const, subtle: false, theme: "light" },
-    { size, variant: "warning" as const, subtle: true, theme: "light" },
-    { size, variant: "warning" as const, subtle: false, theme: "light" },
-    { size, variant: "danger" as const, subtle: true, theme: "light" },
-    { size, variant: "danger" as const, subtle: false, theme: "light" },
-    { size, variant: "info" as const, subtle: true, theme: "dark" },
-    { size, variant: "info" as const, subtle: false, theme: "dark" },
-    { size, variant: "success" as const, subtle: true, theme: "dark" },
-    { size, variant: "danger" as const, subtle: true, theme: "dark" },
-    { size, variant: "danger" as const, subtle: false, theme: "dark" },
-  ]),
-];
-
 afterEach(cleanup);
 
 describe("admonition [unit]", () => {
@@ -144,26 +124,14 @@ describe("admonition [a11y]", () => {
 
     ADMONITION_PERMUTATIONS.forEach((permutation) => {
       const { size, variant, subtle } = permutation;
-      const label = `wcag2aaa (${variant}, ${size},${subtle ? " subtle," : ""} ${theme})`;
 
-      const testFn = async () => {
+      test(`wcag2aa (${variant}, ${size},${subtle ? " subtle," : ""} ${theme})`, async () => {
         const result = render(
           <Admonition {...permutation}>content</Admonition>,
         );
 
         expect(await axe.run(result.container)).toHaveNoViolations();
-      };
-
-      const failsA11y = ADMONITION_A11Y_FAILING_PERMUTATIONS.some(
-        (p) =>
-          p.size === size &&
-          p.variant === variant &&
-          p.subtle === subtle &&
-          p.theme === theme,
-      );
-
-      if (failsA11y) test.todo(label, testFn);
-      else test(label, testFn);
+      });
     });
   });
 });

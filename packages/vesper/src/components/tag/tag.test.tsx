@@ -19,26 +19,6 @@ const TAG_PERMUTATIONS = TAG_VARIANTS.flatMap((variant) =>
   ]),
 );
 
-const TAG_A11Y_FAILING_PERMUTATIONS: (TagProps & { theme: string })[] = [
-  ...TAG_SIZES.flatMap((size): (TagProps & { theme: string })[] => [
-    { size, variant: "accent-subtle", disabled: false, theme: "light" },
-    { size, variant: "danger-subtle", disabled: false, theme: "light" },
-    { size, variant: "danger-bold", disabled: false, theme: "light" },
-    { size, variant: "success-bold", disabled: false, theme: "light" },
-    { size, variant: "success-subtle", disabled: false, theme: "light" },
-    { size, variant: "info-bold", disabled: false, theme: "light" },
-    { size, variant: "info-subtle", disabled: false, theme: "light" },
-    { size, variant: "warning-bold", disabled: false, theme: "light" },
-    { size, variant: "warning-subtle", disabled: false, theme: "light" },
-    { size, variant: "accent-subtle", disabled: false, theme: "dark" },
-    { size, variant: "danger-bold", disabled: false, theme: "dark" },
-    { size, variant: "danger-subtle", disabled: false, theme: "dark" },
-    { size, variant: "success-subtle", disabled: false, theme: "dark" },
-    { size, variant: "info-bold", disabled: false, theme: "dark" },
-    { size, variant: "info-subtle", disabled: false, theme: "dark" },
-  ]),
-];
-
 afterEach(cleanup);
 
 describe("tag [unit]", () => {
@@ -230,24 +210,12 @@ describe("tag [a11y]", () => {
 
     TAG_PERMUTATIONS.forEach((permutation) => {
       const { size, variant, disabled } = permutation;
-      const label = `wcag2aaa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`;
 
-      const testFn = async () => {
+      test(`wcag2aa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`, async () => {
         const result = render(<Tag {...permutation}>Tag Text</Tag>);
 
         expect(await axe.run(result.container)).toHaveNoViolations();
-      };
-
-      const failsA11y = TAG_A11Y_FAILING_PERMUTATIONS.some(
-        (p) =>
-          p.size === size &&
-          p.variant === variant &&
-          p.disabled === disabled &&
-          p.theme === theme,
-      );
-
-      if (failsA11y) test.todo(label, testFn);
-      else test(label, testFn);
+      });
     });
   });
 });

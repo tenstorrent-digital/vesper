@@ -180,7 +180,7 @@ describe("switch [a11y]", () => {
     });
 
     SWITCH_PERMUTATIONS.forEach(({ name, ...props }) => {
-      test(`wcag2aaa (${name}, ${theme})`, async () => {
+      test(`wcag2aa (${name}, ${theme})`, async () => {
         const result = render(<Switch {...props} />);
 
         expect(await axe.run(result.container)).toHaveNoViolations();

@@ -109,7 +109,7 @@
 }
 
 .vesper-button-danger {
-  color: var(--vesper-text-inverse-primary);
+  color: var(--vesper-text-static-white);
   background: var(--vesper-background-error-base);
   &:hover {
     background:
@@ -123,7 +123,7 @@
 }
 
 .vesper-button-warning {
-  color: var(--vesper-text-primary);
+  color: var(--vesper-text-inverse-primary);
   background: var(--vesper-background-warning-base);
   &:hover {
     background:

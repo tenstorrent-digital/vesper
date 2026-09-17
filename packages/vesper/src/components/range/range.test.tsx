@@ -418,7 +418,7 @@ describe("range [a11y]", () => {
     });
 
     RANGE_A11Y_PERMUTATIONS.forEach(({ name, ...props }) => {
-      test(`wcag2aaa (${name}, ${theme})`, async () => {
+      test(`wcag2aa (${name}, ${theme})`, async () => {
         const { container } = render(
           <Range thumbAriaLabels={THUMB_ARIA_LABELS} {...props} />,
         );

@@ -16,7 +16,6 @@ const ENABLED_TAGS = [
   "wcag21aa",
   "wcag22aa",
   "best-practice",
-  "wcag2aaa",
 ];
 
 /**

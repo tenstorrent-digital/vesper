@@ -216,7 +216,7 @@ describe("text-input [a11y]", () => {
     TEXT_INPUT_PERMUTATIONS.forEach((permutation) => {
       const { permutationName, ...props } = permutation;
 
-      test(`wcag2aaa (${permutationName}, ${theme})`, async () => {
+      test(`wcag2aa (${permutationName}, ${theme})`, async () => {
         const { container } = render(<TextInput {...props} />);
         expect(await axe.run(container.firstChild!)).toHaveNoViolations();
       });

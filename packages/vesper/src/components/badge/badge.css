@@ -91,7 +91,7 @@
 
 .vesper-badge-warning {
   background: var(--vesper-background-warning-base);
-  color: var(--vesper-text-primary);
+  color: var(--vesper-text-inverse-primary);
 }
 .vesper-badge-warning-subtle {
   background: var(--vesper-background-warning-subtle);
@@ -100,7 +100,7 @@
 
 .vesper-badge-danger {
   background: var(--vesper-background-error-base);
-  color: var(--vesper-text-inverse-primary);
+  color: var(--vesper-text-static-white);
 }
 .vesper-badge-danger-subtle {
   background: var(--vesper-background-error-subtle);
