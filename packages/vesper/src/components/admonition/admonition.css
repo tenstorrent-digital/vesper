@@ -3,9 +3,6 @@
   align-items: center;
   gap: var(--vesper-spacing-4);
   border-radius: var(--vesper-radius-2);
-  &.vesper-admonition-subtle {
-    background: var(--vesper-background-primary);
-  }
   .vesper-button {
     align-self: flex-start;
   }
@@ -56,31 +53,61 @@
 }
 
 .vesper-admonition-info {
-  background: var(--vesper-background-info-subtle);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-info-subtle);
-  color: var(--vesper-text-info);
+  background: var(--vesper-background-info-base);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-info-base);
+  color: var(--vesper-text-inverse-primary);
+  &.vesper-admonition-subtle {
+    background: var(--vesper-background-info-subtle);
+    border-color: var(--vesper-border-info-subtle);
+    color: var(--vesper-text-info);
+  }
 }
 
 .vesper-admonition-success {
-  background: var(--vesper-background-success-subtle);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-success-subtle);
-  color: var(--vesper-text-success);
+  background: var(--vesper-background-success-base);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-success-base);
+  color: var(--vesper-text-inverse-primary);
+  &.vesper-admonition-subtle {
+    background: var(--vesper-background-success-subtle);
+    border-color: var(--vesper-border-success-subtle);
+    color: var(--vesper-text-success);
+  }
 }
 
 .vesper-admonition-warning {
-  background: var(--vesper-background-warning-subtle);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-warning-subtle);
-  color: var(--vesper-text-warning);
+  background: var(--vesper-background-warning-base);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-warning-base);
+  color: var(--vesper-text-inverse-primary);
+  &.vesper-admonition-subtle {
+    background: var(--vesper-background-warning-subtle);
+    border-color: var(--vesper-border-warning-subtle);
+    color: var(--vesper-text-warning);
+  }
 }
 
 .vesper-admonition-danger {
-  background: var(--vesper-background-error-subtle);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-error-subtle);
-  color: var(--vesper-text-error);
+  background: var(--vesper-background-error-base);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-error-base);
+  color: var(--vesper-text-inverse-primary);
+  &.vesper-admonition-subtle {
+    background: var(--vesper-background-error-subtle);
+    border-color: var(--vesper-border-error-subtle);
+    color: var(--vesper-text-error);
+  }
 }
 
 .vesper-admonition-secondary {
-  background: var(--vesper-tint-contrast-200);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
-  color: var(--vesper-text-primary);
+  background: var(--vesper-background-inverse-primary);
+  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+  color: var(--vesper-text-inverse-primary);
+  &.vesper-admonition-subtle {
+    background:
+      linear-gradient(
+        0deg,
+        var(--vesper-tint-contrast-100) 0%,
+        var(--vesper-tint-contrast-100) 100%
+      ),
+      var(--vesper-background-tertiary);
+    color: var(--vesper-text-primary);
+  }
 }
