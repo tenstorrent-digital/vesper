@@ -25,7 +25,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body>
-        <div className="flex min-h-svh flex-col">
+        <div className="bg-vesper-dot-pattern-primary flex min-h-svh flex-col bg-fixed">
           <Nav />
           <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col-reverse items-start md:flex-row">
             <Sidebar data={getSidebarData()} />
