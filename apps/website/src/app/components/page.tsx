@@ -15,6 +15,7 @@ import { Code } from "@tenstorrent/vesper/code";
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
 import { Combobox } from "@tenstorrent/vesper/combobox";
 import { IconButton } from "@tenstorrent/vesper/icon-button";
+import { Material } from "@tenstorrent/vesper/material";
 import { ProgressBar } from "@tenstorrent/vesper/progress-bar";
 import { RadioGroup } from "@tenstorrent/vesper/radio-group";
 import { Range } from "@tenstorrent/vesper/range";
@@ -49,8 +50,10 @@ const Cell = ({
   children: React.ReactNode;
 }) => {
   return (
-    <div className="component-grid-cell">
-      <div className="component-grid-cell-preview">{children}</div>
+    <Material className="gap-vesper-12 p-vesper-8 flex min-w-0 flex-col items-center">
+      <div className="min-h-vesper-16 flex w-full items-center justify-center overflow-visible">
+        {children}
+      </div>
       <Typography
         as={Link}
         href={`/components/${convertPascalToKebabCase(name)}`}
@@ -58,7 +61,7 @@ const Cell = ({
       >
         {convertPascalToTitleCase(name)}
       </Typography>
-    </div>
+    </Material>
   );
 };
 
@@ -66,17 +69,20 @@ const cssLang = (await bundledLanguages["css" as BundledLanguage]()).default;
 
 export default function Page() {
   return (
-    <div className="no-max-width component-grid">
+    <main className="gap-vesper-16 flex w-full flex-col">
       <div className="component-grid-header">
-        <Typography variant="heading-lg" as="h1">
+        <Typography variant="heading-2xl" as="h1">
           Components
         </Typography>
-        <Typography variant="copy-md" className="component-grid-subtitle">
+        <Typography
+          variant="copy-md"
+          className="mt-vesper-8 text-vesper-text-secondary"
+        >
           All available components in the Vesper design system.
         </Typography>
       </div>
 
-      <div className="component-grid-items">
+      <div className="gap-vesper-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         <Cell name="Accordion">
           <Accordion title="Expand me">Hidden content</Accordion>
         </Cell>
@@ -273,6 +279,6 @@ export default function Page() {
           <Typography variant="heading-sm">Aa</Typography>
         </Cell>
       </div>
-    </div>
+    </main>
   );
 }

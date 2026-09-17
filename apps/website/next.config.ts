@@ -44,6 +44,26 @@ const nextConfig: NextConfig = {
   ],
 
   skipTrailingSlashRedirect: true,
+
+  async rewrites() {
+    return [
+      /**
+       * serves the source of a doc next to the page that renders it
+       * @see [`src/app/raw/[...doc]/route.ts`](apps/website/src/app/raw/[...doc]/route.ts)
+       */
+      { source: "/:doc+.md", destination: "/raw/:doc+" },
+    ];
+  },
+
+  async redirects() {
+    return [
+      /**
+       * redirects requests to `/raw/*` to their `.md`-extended rewrites
+       * @see [`src/app/raw/[...doc]/route.ts`](apps/website/src/app/raw/[...doc]/route.ts)
+       */
+      { source: "/raw/:doc+", destination: "/:doc+.md", permanent: false },
+    ];
+  },
 };
 
 const withMDX = createMDX({
@@ -129,6 +149,9 @@ const withMDX = createMDX({
        * absolute path for the same reason as the plugins above
        */
       path.join(appRoot, "src/lib/mdx/rehype-blockquote-text-children.mts"),
+
+      /** adds ids to heading tags */
+      path.join(appRoot, "src/lib/mdx/rehype-heading-ids.mts"),
     ],
   },
 });

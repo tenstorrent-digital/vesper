@@ -6,7 +6,6 @@
  */
 
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 
 import { docs, getDoc } from "@/lib/filesystem/docs";
 import { loadDoc } from "@/lib/filesystem/docs/load";
@@ -31,13 +30,7 @@ export default async function Page(props: PageProps<"/[...doc]">) {
   const { doc } = await props.params;
 
   const entry = getDoc(doc);
-  if (!entry) notFound();
+  const { default: Doc } = await loadDoc(entry!);
 
-  const { default: Doc } = await loadDoc(entry);
-
-  return (
-    <>
-      <Doc />
-    </>
-  );
+  return <Doc />;
 }

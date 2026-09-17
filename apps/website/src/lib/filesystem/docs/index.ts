@@ -1,6 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
-import { parse } from "yaml";
+
+import { readFrontmatter } from "./frontmatter";
+import { getTOC } from "./toc";
+import { DocEntry, DocExtension } from "./types";
 
 export const DOCS_DIR = path.join(
   process.cwd(), // `apps/website/`
@@ -8,56 +11,6 @@ export const DOCS_DIR = path.join(
   "..",
   "docs",
 );
-
-export type DocExtension = "md" | "mdx";
-
-/**
- * frontmatter fields
- *
- * every field is optional so missing values don't fail builds
- */
-export interface Frontmatter {
-  /** page title, used for `<title>`, the sidebar, and breadcrumbs */
-  title?: string;
-  /** short summary, used for `<meta name="description">` */
-  description?: string;
-  /** sort weight within the doc's folder - unordered docs sort alphabetically */
-  order?: number;
-}
-
-export interface DocEntry {
-  /**
-   * array of path segments relative to `docs/`
-   *
-   * for example, for `docs/components/accordion.mdx`, the slug would
-   * be `["components", "accordion"]`
-   */
-  slug: string[];
-  /** route for this doc, eg. `/components/accordion` */
-  href: string;
-  /** doc's file extension (we need to resolve the right dynamic import) */
-  ext: DocExtension;
-  frontmatter: Frontmatter;
-}
-
-/**
- * regex for frontmatter
- */
-const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---/;
-
-/**
- * read frontmatter straight off disk rather than from the compiled MDX module
- * (keeps out of the module graph)
- */
-const readFrontmatter = (filePath: string): Frontmatter => {
-  const match = FRONTMATTER.exec(fs.readFileSync(filePath, "utf8"));
-  if (!match?.[1]) return {};
-
-  const parsed: unknown = parse(match[1]);
-  return typeof parsed === "object" && parsed !== null
-    ? (parsed as Frontmatter)
-    : {};
-};
 
 /**
  * recursively walks the `docs/` directory, returning an array of `DocEntry` objects
@@ -80,12 +33,18 @@ const docEntries = (dir: string, segments: string[] = []): DocEntry[] =>
 
     const slug = [...segments, name];
 
+    const raw = fs.readFileSync(path.join(entry.parentPath, entry.name), {
+      encoding: "utf-8",
+    });
+
     return [
       {
+        raw,
         slug,
         href: `/${slug.join("/")}`,
         ext: ext as DocExtension,
-        frontmatter: readFrontmatter(entryPath),
+        frontmatter: readFrontmatter(raw),
+        toc: getTOC(raw, ext as DocExtension),
       },
     ];
   });
@@ -154,3 +113,30 @@ export const getDocTree = (): DocGroup[] => {
       .map(([folder, docs]) => ({ folder: folder || undefined, docs }))
   );
 };
+
+export const getSidebarData = () =>
+  getDocTree().map(({ folder, docs }) => ({
+    folder,
+    pages: docs.map(({ href, frontmatter }) => ({
+      href,
+      title: frontmatter.title,
+    })),
+  }));
+
+export const getPageTitles = () =>
+  Object.fromEntries(
+    docs.flatMap(({ href, frontmatter }) =>
+      frontmatter.title ? [[href, frontmatter.title]] : [],
+    ),
+  );
+
+export const markdownFileAsPrompt = (title: string, markdown: string) =>
+  [
+    `You are helping me use Vesper, Tenstorrent's React design system.`,
+    `Below is the full documentation for "${title}".`,
+    `Answer using only these APIs, and prefer the documented defaults.`,
+    ``,
+    `---`,
+    ``,
+    markdown,
+  ].join("\n");

@@ -26,15 +26,14 @@ export const PlaygroundLink = () => {
 
   return (
     <Button
-      className="playground-link"
       as="a"
       target="_blank"
       href={storybookUrl.toString()}
       variant="tertiary"
       size="sm"
     >
-      <span className="mobile">Play</span>
-      <span className="desktop">Playground</span>
+      <span className="hidden md:inline">Playground</span>
+      <span className="inline md:hidden">Play</span>
     </Button>
   );
 };

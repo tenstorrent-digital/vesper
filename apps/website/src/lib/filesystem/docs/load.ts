@@ -1,11 +1,4 @@
-import type { ComponentType } from "react";
-
-import type { DocEntry, Frontmatter } from "@/lib/filesystem/docs";
-
-interface DocModule {
-  default: ComponentType;
-  frontmatter?: Frontmatter;
-}
+import type { DocEntry, DocModule } from "./types";
 
 /**
  * compiles and loads a single document from the monorepo root `docs/` folder
