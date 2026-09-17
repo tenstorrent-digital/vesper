@@ -357,7 +357,7 @@ describe("menu [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    test.todo("a11y (open)", async () => {
+    test("a11y (open)", async () => {
       const result = render(
         <Menu items={MENU_ITEMS} open>
           <TextButton variant="contrast">trigger</TextButton>
@@ -368,8 +368,16 @@ describe("menu [a11y]", () => {
         expect(document.querySelector(".vesper-menu")).not.toBeNull(),
       );
 
+      // the menu content is portaled outside of the render container, so
+      // a11y is checked at the document level
+      //
+      // the page-level `region` rule is disabled here: it flags content that
+      // isn't contained by a landmark, which is an artifact of rendering a
+      // component in isolation rather than a menu accessibility issue
       expect(
-        await axe.run(result.container.ownerDocument),
+        await axe.run(result.container.ownerDocument, {
+          rules: { region: { enabled: false } },
+        }),
       ).toHaveNoViolations();
     });
 
