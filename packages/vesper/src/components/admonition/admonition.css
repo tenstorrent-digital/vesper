@@ -88,7 +88,7 @@
 .vesper-admonition-danger {
   background: var(--vesper-background-error-base);
   border: var(--vesper-stroke-base) solid var(--vesper-border-error-base);
-  color: var(--vesper-text-inverse-primary);
+  color: var(--vesper-text-static-white);
   &.vesper-admonition-subtle {
     background: var(--vesper-background-error-subtle);
     border-color: var(--vesper-border-error-subtle);
