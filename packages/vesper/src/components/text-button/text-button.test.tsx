@@ -20,24 +20,6 @@ const TEXT_BUTTON_PERMUTATIONS: TextButtonProps[] =
     ]),
   );
 
-const TEXT_BUTTON_A11Y_FAILING_PERMUTATIONS: (TextButtonProps & {
-  theme: string;
-})[] = [
-  // lg text buttons render as large text, which passes wcag2aaa at a lower
-  // contrast ratio than sm and md text buttons
-  ...(["sm", "md"] as const).flatMap((size) => [
-    { size, variant: "subtle" as const, disabled: false, theme: "light" },
-    { size, variant: "accent" as const, disabled: false, theme: "light" },
-    { size, variant: "success" as const, disabled: false, theme: "light" },
-    { size, variant: "warning" as const, disabled: false, theme: "light" },
-    { size, variant: "info" as const, disabled: false, theme: "light" },
-    { size, variant: "subtle" as const, disabled: false, theme: "dark" },
-    { size, variant: "danger" as const, disabled: false, theme: "dark" },
-    { size, variant: "info" as const, disabled: false, theme: "dark" },
-    { size, variant: "pink" as const, disabled: false, theme: "dark" },
-  ]),
-];
-
 afterEach(cleanup);
 
 describe("text-button [unit]", () => {
@@ -278,26 +260,14 @@ describe("text-button [a11y]", () => {
 
     TEXT_BUTTON_PERMUTATIONS.forEach((permutation) => {
       const { size, variant, disabled } = permutation;
-      const testName = `wcag2aaa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`;
 
-      const testFn = async () => {
+      test(`wcag2aaa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`, async () => {
         const result = render(
           <TextButton {...permutation}>Button Text</TextButton>,
         );
 
         expect(await axe.run(result.container)).toHaveNoViolations();
-      };
-
-      const failsA11y = TEXT_BUTTON_A11Y_FAILING_PERMUTATIONS.some(
-        (p) =>
-          p.size === size &&
-          p.variant === variant &&
-          p.disabled === disabled &&
-          p.theme === theme,
-      );
-
-      if (failsA11y) test.todo(testName, testFn);
-      else test(testName, testFn);
+      });
     });
   });
 });

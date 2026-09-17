@@ -33,21 +33,6 @@ const FORM_INPUT_MESSAGE_PERMUTATIONS = FORM_INPUT_MESSAGE_VARIANTS.flatMap(
   ],
 );
 
-// message text renders at 10px, which must meet a 7:1 contrast ratio to pass
-// wcag2aaa. permutations without a message are visually hidden, so they pass
-const FORM_INPUT_MESSAGE_A11Y_FAILING_PERMUTATIONS: {
-  variant: FormInputMessageVariant;
-  theme: string;
-}[] = [
-  { variant: "default", theme: "light" },
-  { variant: "warning", theme: "light" },
-  { variant: "success", theme: "light" },
-  { variant: "error", theme: "light" },
-  { variant: "default", theme: "dark" },
-  { variant: "success", theme: "dark" },
-  { variant: "error", theme: "dark" },
-];
-
 afterEach(cleanup);
 
 describe("form-input-message [unit]", () => {
@@ -215,22 +200,12 @@ describe("form-input-message [a11y]", () => {
 
     FORM_INPUT_MESSAGE_PERMUTATIONS.forEach((permutation) => {
       const { name, ...props } = permutation;
-      const label = `wcag2aaa (${name}, ${theme})`;
 
-      const testFn = async () => {
+      test(`wcag2aaa (${name}, ${theme})`, async () => {
         const { container } = render(<FormInputMessage {...props} />);
 
         expect(await axe.run(container)).toHaveNoViolations();
-      };
-
-      const failsA11y =
-        !!props.message &&
-        FORM_INPUT_MESSAGE_A11Y_FAILING_PERMUTATIONS.some(
-          (p) => p.variant === props.variant && p.theme === theme,
-        );
-
-      if (failsA11y) test.todo(label, testFn);
-      else test(label, testFn);
+      });
     });
   });
 });

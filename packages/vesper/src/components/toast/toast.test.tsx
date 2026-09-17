@@ -667,17 +667,6 @@ describe("toast [snapshot]", () => {
   });
 });
 
-const TOAST_A11Y_FAILING_PERMUTATIONS: {
-  variant: ToastVariant;
-  theme: string;
-}[] = [
-  { variant: "success", theme: "light" },
-  { variant: "success", theme: "dark" },
-  { variant: "warning", theme: "light" },
-  { variant: "danger", theme: "light" },
-  { variant: "danger", theme: "dark" },
-];
-
 describe("toast [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
@@ -697,23 +686,14 @@ describe("toast [a11y]", () => {
     });
 
     TOAST_VARIANTS.forEach((variant) => {
-      const label = `variant: ${variant} (${theme})`;
-
-      const testFn = async () => {
+      test(`variant: ${variant} (${theme})`, async () => {
         render(<Toasts />);
 
         addToast({ content: `${variant} toast message`, variant });
         await waitForActiveToasts(1);
 
         expect(await axe.run(document.body)).toHaveNoViolations();
-      };
-
-      const failsA11y = TOAST_A11Y_FAILING_PERMUTATIONS.some(
-        (p) => p.variant === variant && p.theme === theme,
-      );
-
-      if (failsA11y) test.todo(label, testFn);
-      else test(label, testFn);
+      });
     });
 
     test(`with action (${theme})`, async () => {
