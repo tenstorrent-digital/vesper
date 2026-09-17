@@ -48,7 +48,7 @@ export function Sidebar({ data }: { data: ReturnType<typeof getSidebarData> }) {
         </div>
       ))}
       <Typography
-        className="mt-vesper-micro p-vesper-2 rounded-vesper-2 hover:bg-vesper-background-tertiary data-active:bg-vesper-background-tertiary block md:hidden"
+        className="mt-vesper-8 p-vesper-2 rounded-vesper-2 hover:bg-vesper-background-tertiary data-active:bg-vesper-background-tertiary block md:hidden"
         as="a"
         href="#"
         variant="label-lg-bold"
