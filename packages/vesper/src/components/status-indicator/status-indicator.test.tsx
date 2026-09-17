@@ -182,7 +182,7 @@ describe("status-indicator [a11y]", () => {
     STATUS_INDICATOR_PERMUTATIONS.forEach((permutation) => {
       const { name, ...props } = permutation;
 
-      test(`wcag2aaa (${name}, ${theme})`, async () => {
+      test(`wcag2aa (${name}, ${theme})`, async () => {
         const { container } = render(<StatusIndicator {...props} />);
         expect(await axe.run(container)).toHaveNoViolations();
       });

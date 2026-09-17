@@ -914,7 +914,7 @@ describe("choicebox [a11y]", () => {
     });
 
     CHOICEBOX_PERMUTATIONS.forEach(({ permutationName, ...props }) => {
-      test(`wcag2aaa (${permutationName}, ${theme})`, async () => {
+      test(`wcag2aa (${permutationName}, ${theme})`, async () => {
         const { container } = render(<Choicebox {...props} />);
         expect(await axe.run(container)).toHaveNoViolations();
       });

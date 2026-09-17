@@ -19,35 +19,6 @@ const BADGE_PERMUTATIONS = BADGE_VARIANTS.flatMap((variant) =>
   ]),
 );
 
-const BADGE_A11Y_FAILING_PERMUTATIONS: (BadgeProps & { theme: string })[] = [
-  ...BADGE_SIZES.flatMap((size) => [
-    { size, variant: "accent" as const, subtle: true, theme: "light" },
-    { size, variant: "success" as const, subtle: true, theme: "light" },
-    { size, variant: "success" as const, subtle: false, theme: "light" },
-    { size, variant: "warning" as const, subtle: true, theme: "light" },
-    { size, variant: "warning" as const, subtle: false, theme: "light" },
-    { size, variant: "danger" as const, subtle: true, theme: "light" },
-    { size, variant: "danger" as const, subtle: false, theme: "light" },
-    { size, variant: "info" as const, subtle: true, theme: "light" },
-    { size, variant: "info" as const, subtle: false, theme: "light" },
-    { size, variant: "pink" as const, subtle: true, theme: "light" },
-    { size, variant: "mint" as const, subtle: true, theme: "light" },
-    { size, variant: "mint" as const, subtle: false, theme: "light" },
-    { size, variant: "accent" as const, subtle: true, theme: "dark" },
-    { size, variant: "success" as const, subtle: true, theme: "dark" },
-    { size, variant: "warning" as const, subtle: false, theme: "dark" },
-    { size, variant: "danger" as const, subtle: true, theme: "dark" },
-    { size, variant: "danger" as const, subtle: false, theme: "dark" },
-    { size, variant: "info" as const, subtle: true, theme: "dark" },
-    { size, variant: "info" as const, subtle: false, theme: "dark" },
-    { size, variant: "pink" as const, subtle: true, theme: "dark" },
-    { size, variant: "pink" as const, subtle: false, theme: "dark" },
-    { size, variant: "mint" as const, subtle: true, theme: "dark" },
-    { size, variant: "purple" as const, subtle: true, theme: "dark" },
-    { size, variant: "purple" as const, subtle: false, theme: "dark" },
-  ]),
-];
-
 afterEach(cleanup);
 
 describe("badge [unit]", () => {
@@ -156,24 +127,12 @@ describe("badge [a11y]", () => {
 
     BADGE_PERMUTATIONS.forEach((permutation) => {
       const { size, variant, subtle } = permutation;
-      const label = `wcag2aaa (${variant}, ${size},${subtle ? " subtle," : ""} ${theme})`;
 
-      const testFn = async () => {
+      test(`wcag2aa (${variant}, ${size},${subtle ? " subtle," : ""} ${theme})`, async () => {
         const result = render(<Badge {...permutation}>Badge Text</Badge>);
 
         expect(await axe.run(result.container)).toHaveNoViolations();
-      };
-
-      const failsA11y = BADGE_A11Y_FAILING_PERMUTATIONS.some(
-        (p) =>
-          p.size === size &&
-          p.variant === variant &&
-          p.subtle === subtle &&
-          p.theme === theme,
-      );
-
-      if (failsA11y) test.todo(label, testFn);
-      else test(label, testFn);
+      });
     });
   });
 });
