@@ -28,10 +28,12 @@ function ModalStoryComponent({
           <TextInput
             aria-label="Name"
             name="name"
+            autoComplete="username"
             placeholder="Enter your name"
           />
           <TextInput
             aria-label="Username"
+            autoComplete="username"
             name="username"
             placeholder="Enter your desired username"
             style={{ marginTop: "var(--vesper-spacing-4)" }}
