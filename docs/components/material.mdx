@@ -7,7 +7,18 @@ description: A surface component that provides visual depth and structure throug
 
 A surface component that provides visual depth and structure through different elevation and border styles. Supports both static and interactive variants, making it the foundational container for cards, panels, and interactive surfaces.
 
-<Material style={{ padding: "24px" }}>This is a material surface.</Material>
+```tsx demo
+import { Material } from "@tenstorrent/vesper/material";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function MaterialDemo() {
+  return (
+    <Material variant="raised" style={{ padding: "var(--vesper-spacing-4)" }}>
+      <Typography variant="copy-md">This is a material surface.</Typography>
+    </Material>
+  );
+}
+```
 
 ## Options
 
@@ -18,34 +29,155 @@ A surface component that provides visual depth and structure through different e
 | `as`       | `ElementType`                                                                                                        | The root element type for polymorphic rendering.                                  | `"div"`      |
 | `children` | `ReactNode`                                                                                                          | The content rendered inside the material surface.                                 | —            |
 
+All other props are forwarded to the underlying `<div>` element, or whichever root element is specified via the `as` prop.
+
+A `Material` only provides the surface treatment (border, background, shadow, and radius); it does not apply any padding or layout of its own, so spacing is left up to you.
+
 ## Examples
 
-```tsx
+### Basic usage
+
+Render a `Material` by giving it some children:
+
+```tsx demo
 import { Material } from "@tenstorrent/vesper/material";
+import { Typography } from "@tenstorrent/vesper/typography";
 
-// Default outlined surface
-<Material>Card content</Material>;
+export default function BasicMaterial() {
+  return (
+    <Material style={{ padding: "var(--vesper-spacing-4)" }}>
+      <Typography variant="copy-md">Card content</Typography>
+    </Material>
+  );
+}
 ```
 
-```tsx
-// Different surface variants
-<Material variant="raised">Raised surface</Material>
-<Material variant="floating">Floating surface</Material>
-<Material variant="inset">Inset surface</Material>
-<Material variant="modal">Modal surface</Material>
+### Variants
+
+A `Material` can be rendered in several different variants:
+
+| Variant             | When to use                                                                            |
+| ------------------- | -------------------------------------------------------------------------------------- |
+| `"outlined"`        | Default variant. Use for surfaces that sit flat on the page, such as cards and panels. |
+| `"outlined-strong"` | Use when a surface needs a more defined boundary than the default outline provides.    |
+| `"raised"`          | Use for surfaces that should read as slightly lifted off the page.                     |
+| `"floating"`        | Use for transient surfaces layered above page content, such as dropdowns and popovers. |
+| `"modal"`           | Use for the topmost layer of the interface, such as dialogs and sheets.                |
+| `"inset"`           | Use for surfaces that should read as recessed into the page, such as code areas.       |
+| `"inset-strong"`    | Use when a recessed surface needs more depth than `"inset"` provides.                  |
+| `"interactive"`     | Use for surfaces the user can act on, such as selectable cards.                        |
+
+```tsx demo
+import { Material, MATERIAL_VARIANTS } from "@tenstorrent/vesper/material";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function MaterialVariants() {
+  return (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(10rem, 1fr))",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      {MATERIAL_VARIANTS.map((variant) => (
+        <Material
+          key={variant}
+          variant={variant}
+          style={{ padding: "var(--vesper-spacing-4)" }}
+        >
+          <Typography variant="label-sm">{variant}</Typography>
+        </Material>
+      ))}
+    </div>
+  );
+}
 ```
 
-```tsx
-// Interactive variant with states
-<Material variant="interactive">Default interactive</Material>
-<Material variant="interactive" state="active">Active</Material>
-<Material variant="interactive" state="selected">Selected</Material>
-<Material variant="interactive" state="disabled">Disabled</Material>
+### Interactive surfaces
+
+Setting `variant="interactive"` adds hover and focus treatments to the surface. The `state` prop then describes the surface's current interaction state, and is only accepted by this variant:
+
+```tsx demo
+import { Material } from "@tenstorrent/vesper/material";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function InteractiveMaterials() {
+  return (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(10rem, 1fr))",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Material
+        variant="interactive"
+        style={{ padding: "var(--vesper-spacing-4)" }}
+      >
+        <Typography variant="label-sm">Default</Typography>
+      </Material>
+      <Material
+        variant="interactive"
+        state="active"
+        style={{ padding: "var(--vesper-spacing-4)" }}
+      >
+        <Typography variant="label-sm">Active</Typography>
+      </Material>
+      <Material
+        variant="interactive"
+        state="selected"
+        style={{ padding: "var(--vesper-spacing-4)" }}
+      >
+        <Typography variant="label-sm">Selected</Typography>
+      </Material>
+      <Material
+        variant="interactive"
+        state="disabled"
+        style={{ padding: "var(--vesper-spacing-4)" }}
+      >
+        <Typography variant="label-sm">Disabled</Typography>
+      </Material>
+    </div>
+  );
+}
 ```
 
-```tsx
-// Rendered as a button
-<Material as="button" variant="interactive" onClick={handleClick}>
-  Clickable surface
-</Material>
+### Polymorphic usage
+
+You can use the `as` prop to specify what underlying element to render. Pair it with `variant="interactive"` when the surface itself is the control, so it is focusable and operable by keyboard:
+
+```tsx demo
+import { useState } from "react";
+
+import { Material } from "@tenstorrent/vesper/material";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function SelectableMaterials() {
+  const [selected, setSelected] = useState("standard");
+
+  return (
+    <div style={{ display: "flex", gap: "var(--vesper-spacing-4)" }}>
+      {["standard", "priority"].map((value) => (
+        <Material
+          key={value}
+          as="button"
+          type="button"
+          variant="interactive"
+          state={selected === value ? "selected" : undefined}
+          onClick={() => setSelected(value)}
+          style={{ padding: "var(--vesper-spacing-4)", cursor: "pointer" }}
+        >
+          <Typography as="span" variant="label-md">
+            {value === "standard" ? "Standard shipping" : "Priority shipping"}
+          </Typography>
+        </Material>
+      ))}
+    </div>
+  );
+}
 ```
+
+> [!NOTE]
+>
+> When `state="disabled"` is passed alongside an `as` prop that renders a natively disableable element (such as `button`), the underlying element is disabled for you. For any other element, `aria-disabled` is applied instead, along with `tabIndex={-1}` and handlers that suppress pointer, keyboard, and focus events.
