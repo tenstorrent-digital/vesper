@@ -7,14 +7,17 @@ description: A polymorphic text component that applies consistent typographic st
 
 A polymorphic text component that applies consistent typographic styles from the Vesper design system. Supports a wide range of display, heading, copy, and label variants.
 
-<div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-  <Typography variant="display-lg">Display Large</Typography>
-  <Typography variant="heading-md">Heading Medium</Typography>
-  <Typography variant="copy-md">
-    Body copy for paragraphs and general content.
-  </Typography>
-  <Typography variant="label-sm">Label Small</Typography>
-</div>
+```tsx demo
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function TypographyDemo() {
+  return (
+    <Typography as="h2" variant="heading-lg">
+      The quick brown fox
+    </Typography>
+  );
+}
+```
 
 ## Options
 
@@ -23,6 +26,8 @@ A polymorphic text component that applies consistent typographic styles from the
 | `variant`  | `TypographyVariant` | The typographic style variant to apply. See the full list of variants below. | `"copy-md"` |
 | `as`       | `ElementType`       | The root element type for polymorphic rendering.                             | `"p"`       |
 | `children` | `ReactNode`         | The text content.                                                            | —           |
+
+All other props are forwarded to the underlying `<p>` element, or whichever root element is specified via the `as` prop.
 
 ### Available Variants
 
@@ -33,44 +38,217 @@ A polymorphic text component that applies consistent typographic styles from the
 | Copy     | `copy-xs`, `copy-xs-bold`, `copy-xs-mono`, `copy-sm`, `copy-sm-bold`, `copy-md`, `copy-md-bold`, `copy-lg`, `copy-lg-bold`, `copy-xl`, `copy-xl-bold`                 |
 | Label    | `label-xs`, `label-xs-bold`, `label-xs-mono`, `label-sm`, `label-sm-bold`, `label-sm-mono`, `label-md`, `label-md-bold`, `label-md-mono`, `label-lg`, `label-lg-bold` |
 
+A `variant` only controls how text looks; it has no bearing on the element that gets rendered. Pair it with the `as` prop so the rendered element matches the meaning of the text, eg. `as="h1"` for a page title, `as="a"` for inline links, etc.
+
 ## Examples
 
-```tsx
+### Basic usage
+
+Render `Typography` by giving it some children. Without a `variant` or `as` prop, it renders a `<p>` element styled with the `copy-md` variant:
+
+```tsx demo
 import { Typography } from "@tenstorrent/vesper/typography";
 
-// Basic paragraph
-<Typography>Default copy-md text.</Typography>;
+export default function BasicTypography() {
+  return <Typography>Body copy for paragraphs and general content.</Typography>;
+}
 ```
 
-```tsx
-// Display heading
-<Typography as="h1" variant="display-lg">
-  Welcome to Vesper
-</Typography>
+### Display variants
+
+`display-*` variants are the largest text styles available, meant for hero sections and marketing pages:
+
+```tsx demo
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function DisplayTypography() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Typography variant="display-sm">Display small</Typography>
+      <Typography variant="display-md">Display medium</Typography>
+      <Typography variant="display-lg">Display large</Typography>
+    </div>
+  );
+}
 ```
 
-```tsx
-// Heading
-<Typography as="h2" variant="heading-lg">
-  Section Title
-</Typography>
+### Heading variants
+
+`heading-*` variants cover the six levels of section titles you'll reach for within an interface:
+
+```tsx demo
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function HeadingTypography() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Typography as="h6" variant="heading-xs">
+        Heading xs
+      </Typography>
+      <Typography as="h5" variant="heading-sm">
+        Heading sm
+      </Typography>
+      <Typography as="h4" variant="heading-md">
+        Heading md
+      </Typography>
+      <Typography as="h3" variant="heading-lg">
+        Heading lg
+      </Typography>
+      <Typography as="h2" variant="heading-xl">
+        Heading xl
+      </Typography>
+      <Typography as="h1" variant="heading-2xl">
+        Heading 2xl
+      </Typography>
+    </div>
+  );
+}
 ```
 
-```tsx
-// Monospace text
-<Typography variant="copy-xs-mono">const x = 42;</Typography>
+### Copy variants
+
+`copy-*` variants are for running text: paragraphs, descriptions, and anything else a user reads as prose:
+
+```tsx demo
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function CopyTypography() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--vesper-spacing-2)",
+        }}
+      >
+        <Typography variant="copy-xs">Copy xs</Typography>
+        <Typography variant="copy-xs-bold">Copy xs bold</Typography>
+        <Typography variant="copy-sm">Copy sm</Typography>
+        <Typography variant="copy-sm-bold">Copy sm bold</Typography>
+        <Typography variant="copy-md">Copy md</Typography>
+        <Typography variant="copy-md-bold">Copy md bold</Typography>
+        <Typography variant="copy-lg">Copy lg</Typography>
+        <Typography variant="copy-lg-bold">Copy lg bold</Typography>
+        <Typography variant="copy-xl">Copy xl</Typography>
+        <Typography variant="copy-xl-bold">Copy xl bold</Typography>
+      </div>
+    </div>
+  );
+}
 ```
 
-```tsx
-// Label
-<Typography as="label" variant="label-md-bold">
-  Email Address
-</Typography>
+### Label variants
+
+`label-*` variants are for UI text rather than prose: form labels, buttons, table headers, and other short strings that annotate a control:
+
+```tsx demo
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function LabelTypography() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Typography as="span" variant="label-xs">
+        Label xs
+      </Typography>
+      <Typography as="span" variant="label-sm">
+        Label sm
+      </Typography>
+      <Typography as="span" variant="label-md">
+        Label md
+      </Typography>
+      <Typography as="span" variant="label-lg">
+        Label lg
+      </Typography>
+      <Typography as="span" variant="label-md-bold">
+        Label md bold
+      </Typography>
+    </div>
+  );
+}
 ```
 
-```tsx
-// Rendered as a span
-<Typography as="span" variant="copy-md-bold">
-  Bold inline text
-</Typography>
+### Monospace variants
+
+The `-mono` variants render in the design system's monospace font, which is useful for values where character alignment matters, such as identifiers, measurements, and timestamps:
+
+```tsx demo
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function MonoTypography() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Typography variant="copy-xs-mono">build-4f2c19a</Typography>
+      <Typography as="span" variant="label-sm-mono">
+        128.0 GB/s
+      </Typography>
+      <Typography as="span" variant="label-md-mono">
+        2025-09-17T12:37:04Z
+      </Typography>
+    </div>
+  );
+}
+```
+
+> [!NOTE]
+>
+> To render a snippet of code inline with other text, reach for [the `Code` component](./code.mdx) instead, which renders monospaced text on a tinted background, sized to match the surrounding font size.
+
+### Polymorphic usage
+
+You can use the `as` prop to specify what underlying element to render:
+
+```tsx demo
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function PolymorphicTypography() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Typography as="h1" variant="display-sm">
+        Welcome to Vesper
+      </Typography>
+      <Typography as="label" htmlFor="email" variant="label-md-bold">
+        Email address
+      </Typography>
+      <Typography as="span" variant="copy-md-bold">
+        Bold inline text
+      </Typography>
+    </div>
+  );
+}
 ```
