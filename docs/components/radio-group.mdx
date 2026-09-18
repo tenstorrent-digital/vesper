@@ -7,15 +7,24 @@ description: A group of mutually exclusive radio inputs with labels.
 
 A group of mutually exclusive radio inputs with labels. Supports horizontal and vertical layouts, controlled and uncontrolled modes, and individual option disabling.
 
-<RadioGroup
-  name="demo-color"
-  defaultValue="blue"
-  options={[
-    { value: "red", label: "Red" },
-    { value: "blue", label: "Blue" },
-    { value: "green", label: "Green" },
-  ]}
-/>
+```tsx demo
+import { RadioGroup } from "@tenstorrent/vesper/radio-group";
+
+export default function RadioGroupDemo() {
+  return (
+    <RadioGroup
+      aria-label="Color"
+      name="color"
+      defaultValue="blue"
+      options={[
+        { value: "red", label: "Red" },
+        { value: "blue", label: "Blue" },
+        { value: "green", label: "Green" },
+      ]}
+    />
+  );
+}
+```
 
 ## Options
 
@@ -31,59 +40,267 @@ A group of mutually exclusive radio inputs with labels. Supports horizontal and 
 | `required`     | `boolean`                    | When `true`, a selection is required for form validation.                           | `false`      |
 | `disabled`     | `boolean`                    | When `true`, disables all options.                                                  | `false`      |
 
+All other props are forwarded to the wrapping `<fieldset>` element.
+
+### `RadioGroupItem` options
+
+| Property   | Type      | Description                                                                              |
+| ---------- | --------- | ---------------------------------------------------------------------------------------- |
+| `value`    | `string`  | The value submitted with form data and passed to `onChange`. Must be unique.             |
+| `label`    | `string`  | The text displayed next to the radio input.                                              |
+| `disabled` | `boolean` | When `true`, prevents this individual option from being selected. Defaults to `false`.   |
+| `id`       | `string`  | An `id` applied to this option's `<input>`, used to reference it from validation errors. |
+
+Use a `RadioGroup` when exactly one option out of many must be chosen. Reach for [the `Choicebox` component](./choicebox.mdx) when each option needs a description or a card-style target, [the `Toggle` component](./toggle.mdx) when a compact segmented control fits better, or [the `Select` component](./select.mdx) when the list is long enough that it should collapse into a dropdown.
+
 ## Examples
 
-```tsx
+### Defining options
+
+Each entry in the `options` array describes a single radio input. `value` is what gets submitted and reported to `onChange`, while `label` is the text rendered beside the input:
+
+```tsx demo
 import { RadioGroup } from "@tenstorrent/vesper/radio-group";
 
-// Basic usage
-<RadioGroup
-  name="size"
-  defaultValue="md"
-  options={[
-    { value: "sm", label: "Small" },
-    { value: "md", label: "Medium" },
-    { value: "lg", label: "Large" },
-  ]}
-/>;
+export default function BasicRadioGroup() {
+  return (
+    <RadioGroup
+      aria-label="Shipping"
+      name="shipping"
+      options={[
+        { value: "standard", label: "Standard shipping" },
+        { value: "express", label: "Express shipping" },
+        { value: "overnight", label: "Overnight shipping" },
+      ]}
+    />
+  );
+}
 ```
 
-```tsx
-// Horizontal layout
-<RadioGroup
-  name="alignment"
-  orientation="horizontal"
-  options={[
-    { value: "left", label: "Left" },
-    { value: "center", label: "Center" },
-    { value: "right", label: "Right" },
-  ]}
-/>
+Options are rendered in the order they are provided, and they all share the `name` you pass to the group, which is what makes the selection mutually exclusive.
+
+### Uncontrolled vs controlled
+
+Render a `RadioGroup` in an uncontrolled fashion to let it keep track of its own selection. Pass `defaultValue` if one of the options should be selected initially:
+
+```tsx demo
+import { RadioGroup } from "@tenstorrent/vesper/radio-group";
+
+export default function UncontrolledRadioGroup() {
+  return (
+    <RadioGroup
+      aria-label="Size"
+      name="size"
+      defaultValue="md"
+      options={[
+        { value: "sm", label: "Small" },
+        { value: "md", label: "Medium" },
+        { value: "lg", label: "Large" },
+      ]}
+    />
+  );
+}
 ```
 
-```tsx
-// With disabled option
-<RadioGroup
-  name="plan"
-  options={[
-    { value: "free", label: "Free" },
-    { value: "pro", label: "Pro" },
-    { value: "enterprise", label: "Enterprise", disabled: true },
-  ]}
-/>
+If you need to control which option is selected, you can do so via the `value` and `onChange` props. `onChange` receives the newly selected value directly:
+
+```tsx demo
+import { useState } from "react";
+
+import { RadioGroup } from "@tenstorrent/vesper/radio-group";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function ControlledRadioGroup() {
+  const [value, setValue] = useState("md");
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <RadioGroup
+        aria-label="Size"
+        name="size"
+        value={value}
+        onChange={setValue}
+        options={[
+          { value: "sm", label: "Small" },
+          { value: "md", label: "Medium" },
+          { value: "lg", label: "Large" },
+        ]}
+      />
+      <Typography variant="copy-sm">Selected value: {value}</Typography>
+    </div>
+  );
+}
 ```
 
-```tsx
-// Controlled
-const [value, setValue] = useState("opt-a");
+### Orientation
 
-<RadioGroup
-  name="controlled"
-  value={value}
-  onChange={setValue}
-  options={[
-    { value: "opt-a", label: "Option A" },
-    { value: "opt-b", label: "Option B" },
-  ]}
-/>;
+Options are stacked vertically by default. Pass `orientation="horizontal"` to lay them out in a row, which suits short labels and small option sets:
+
+```tsx demo
+import { RadioGroup } from "@tenstorrent/vesper/radio-group";
+
+export default function HorizontalRadioGroup() {
+  return (
+    <RadioGroup
+      aria-label="Alignment"
+      name="alignment"
+      orientation="horizontal"
+      defaultValue="center"
+      options={[
+        { value: "left", label: "Left" },
+        { value: "center", label: "Center" },
+        { value: "right", label: "Right" },
+      ]}
+    />
+  );
+}
 ```
+
+### Different sizes
+
+A `RadioGroup` can be rendered at `sm` or `md` size, defaulting to `md`. Size affects the dimensions of the radio inputs as well as the text styles of their labels:
+
+```tsx demo
+import { RadioGroup } from "@tenstorrent/vesper/radio-group";
+
+export default function RadioGroupSizes() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "var(--vesper-spacing-8)",
+      }}
+    >
+      <RadioGroup
+        aria-label="Small group"
+        name="small-group"
+        size="sm"
+        defaultValue="a"
+        options={[
+          { value: "a", label: "Small option A" },
+          { value: "b", label: "Small option B" },
+        ]}
+      />
+      <RadioGroup
+        aria-label="Medium group"
+        name="medium-group"
+        size="md"
+        defaultValue="a"
+        options={[
+          { value: "a", label: "Medium option A" },
+          { value: "b", label: "Medium option B" },
+        ]}
+      />
+    </div>
+  );
+}
+```
+
+### Disabling options
+
+Pass `disabled` to an individual option to prevent it from being selected while leaving the rest of the group interactive:
+
+```tsx demo
+import { RadioGroup } from "@tenstorrent/vesper/radio-group";
+
+export default function RadioGroupWithDisabledOption() {
+  return (
+    <RadioGroup
+      aria-label="Payment plan"
+      name="plan"
+      defaultValue="free"
+      options={[
+        { value: "free", label: "Free" },
+        { value: "pro", label: "Pro" },
+        {
+          value: "enterprise",
+          label: "Enterprise (contact sales)",
+          disabled: true,
+        },
+      ]}
+    />
+  );
+}
+```
+
+Passing `disabled` to the group itself disables every option at once, which is useful while a form is submitting:
+
+```tsx demo
+import { RadioGroup } from "@tenstorrent/vesper/radio-group";
+
+export default function DisabledRadioGroup() {
+  return (
+    <RadioGroup
+      aria-label="Payment plan"
+      name="plan"
+      disabled
+      defaultValue="pro"
+      options={[
+        { value: "free", label: "Free" },
+        { value: "pro", label: "Pro" },
+      ]}
+    />
+  );
+}
+```
+
+### Usage in forms
+
+`RadioGroup` renders native `<input type="radio">` elements inside a `<fieldset>`, so it works with regular form submission and native validation. The selected option submits its `value` under the group's `name`, and passing `required` refuses submission until one of the options is picked:
+
+```tsx demo
+import { useState } from "react";
+
+import { Button } from "@tenstorrent/vesper/button";
+import { RadioGroup } from "@tenstorrent/vesper/radio-group";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function FormRadioGroupDemo() {
+  const [submitted, setSubmitted] = useState<string | null>(null);
+
+  return (
+    <form
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+        alignItems: "flex-start",
+      }}
+      onSubmit={(event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        setSubmitted(String(data.get("contact") ?? ""));
+      }}
+    >
+      <RadioGroup
+        required
+        aria-label="Contact"
+        name="contact"
+        options={[
+          { value: "email", label: "Email" },
+          { value: "phone", label: "Phone" },
+          { value: "post", label: "Post" },
+        ]}
+      />
+      <Button size="sm" type="submit">
+        Submit
+      </Button>
+      {submitted !== null && (
+        <Typography variant="copy-sm">
+          Submitted value: contact={submitted}
+        </Typography>
+      )}
+    </form>
+  );
+}
+```
+
+> [!NOTE]
+>
+> Give the group an accessible name so assistive technology can announce what the options belong to. `RadioGroup` renders a `<fieldset>`, so you can either pass it an `aria-label`, or point `aria-labelledby` at the heading or label that already names the group.
