@@ -32,7 +32,7 @@ export type AdmonitionVariant = (typeof ADMONITION_VARIANTS)[number];
 export interface AdmonitionProps<
   C extends ElementType = "button",
 > extends ComponentProps<"div"> {
-  /** The size of the admonition. Affects padding and typography. @default sm */
+  /** The size of the admonition. Affects padding and typography. @default md */
   size?: AdmonitionSize;
   /** The visual variant of the admonition, which determines its color scheme and icon. @default info */
   variant?: AdmonitionVariant;
@@ -85,7 +85,7 @@ export function Admonition<C extends ElementType = "button">(
 ) {
   const {
     className,
-    size = "sm",
+    size = "md",
     variant = "info",
     ctaAs = "button",
     cta,
