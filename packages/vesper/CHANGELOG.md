@@ -1,5 +1,12 @@
 # @tenstorrent/vesper
 
+## 0.2.1
+
+### Patch Changes
+
+- a594d7d: Update the styling of `admonition.tsx` to match updated designs in Figma
+- ec340f7: Adjust styling in `badge`, `button`, and `tag` components to meet wcag2aa a11y requirements
+
 ## 0.2.0
 
 Post-public-pre-internal-launch jitters settled.
