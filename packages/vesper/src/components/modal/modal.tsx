@@ -56,7 +56,7 @@ export interface ModalProps extends Omit<
   ref?: Ref<ModalRef>;
   /** When `true`, clicking the backdrop outside the modal will close it. Defaults to `false`. */
   closeOnClickOutside?: boolean;
-  /** When provided, wraps the modal content in a `<form>` element with the given form attributes, enabling native form submission from within the modal. @default false */
+  /** When provided, wraps the modal content in a `<form>` element with the given form attributes, enabling native form submission from within the modal */
   form?: Pick<
     ComponentProps<"form">,
     | "id"

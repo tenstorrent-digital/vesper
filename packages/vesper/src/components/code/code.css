@@ -5,7 +5,6 @@
 }
 .vesper-code-default {
   background: var(--vesper-tint-neutral-100);
-  color: var(--vesper-text-primary);
   border: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
 }
 .vesper-code-contrast {

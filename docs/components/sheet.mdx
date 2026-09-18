@@ -5,7 +5,7 @@ description: A slide-in panel that appears from the left or right edge of the vi
 
 # Sheet
 
-A slide-in panel that appears from the left or right edge of the viewport. Can operate as a modal dialog with a backdrop or as a popover that allows interaction with content behind it. Controlled via an imperative ref with `open()` and `close()` methods.
+A slide-in panel that appears from the left or right edge of the viewport. Can operate as a modal dialog with a backdrop or as a popover that allows interaction with content behind it. Supports a title, description, action buttons, and optional form wrapping. Controlled via an imperative ref with `open()` and `close()` methods.
 
 ```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
@@ -43,6 +43,7 @@ export default function SheetDemo() {
 | `popover`     | `boolean`           | When `true`, renders as a popover without a backdrop, allowing interaction behind it.                                                   | `false`   |
 | `buttons`     | `ButtonProps[]`     | An optional array of button props for action buttons. The last button defaults to `"contrast"` variant; others default to `"tertiary"`. | —         |
 | `ref`         | `Ref<SheetRef>`     | A ref exposing imperative `open()` and `close()` methods.                                                                               | —         |
+| `form`        | `FormProps`         | When provided, wraps the sheet content in a `<form>` element with the given form attributes.                                            | —         |
 | `children`    | `ReactNode`         | The content displayed inside the sheet body.                                                                                            | —         |
 
 All other props are forwarded to the underlying `<dialog>` element.
@@ -170,3 +171,72 @@ export default function SheetWithButtons() {
   );
 }
 ```
+
+### Usage in forms
+
+Passing the `form` prop wraps the sheet's contents in a `<form>` element, so the action buttons can submit it natively with `type="submit"`, and native validation runs before the submit handler fires:
+
+```tsx demo
+import { useState } from "react";
+
+import { Button } from "@tenstorrent/vesper/button";
+import { Sheet, useSheet } from "@tenstorrent/vesper/sheet";
+import { TextInput } from "@tenstorrent/vesper/text-input";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function FormSheet() {
+  const sheet = useSheet();
+  const [submitted, setSubmitted] = useState<string | null>(null);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+        alignItems: "flex-start",
+      }}
+    >
+      <Button onClick={sheet.open}>Invite teammate</Button>
+      {submitted && (
+        <Typography variant="copy-sm">Invited: {submitted}</Typography>
+      )}
+      <Sheet
+        ref={sheet.ref}
+        title="Invite teammate"
+        description="Send an invitation to join your workspace."
+        form={{
+          onSubmit: (event) => {
+            event.preventDefault();
+            const data = new FormData(event.currentTarget);
+            setSubmitted(String(data.get("email") ?? ""));
+            sheet.close();
+          },
+        }}
+        buttons={[
+          { children: "Cancel", type: "button", onClick: sheet.close },
+          { children: "Send invite", type: "submit" },
+        ]}
+      >
+        <Typography
+          variant="label-sm"
+          style={{ marginBottom: "var(--vesper-spacing-2)" }}
+        >
+          Enter your teammate's email
+        </Typography>
+        <TextInput
+          required
+          type="email"
+          aria-label="Email address"
+          placeholder="Email address"
+          name="email"
+        />
+      </Sheet>
+    </div>
+  );
+}
+```
+
+> [!NOTE]
+>
+> Buttons rendered inside a `form` default to `type="submit"`, so give any button that should not submit an explicit `type="button"`, as the cancel button above does.

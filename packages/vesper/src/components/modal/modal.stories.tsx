@@ -24,12 +24,19 @@ function ModalStoryComponent({
   switch (contents) {
     case "inputs":
       children = (
-        <div>
-          <TextInput label="Name" name="name" />
+        <div style={{ margin: "var(--vesper-spacing-1) 0" }}>
           <TextInput
-            label="Username"
+            aria-label="Name"
+            name="name"
+            autoComplete="username"
+            placeholder="Enter your name"
+          />
+          <TextInput
+            aria-label="Username"
+            autoComplete="username"
             name="username"
-            style={{ marginTop: "var(--vesper-spacing-4)", marginBottom: 3 }}
+            placeholder="Enter your desired username"
+            style={{ marginTop: "var(--vesper-spacing-4)" }}
           />
         </div>
       );
