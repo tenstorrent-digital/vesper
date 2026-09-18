@@ -7,7 +7,13 @@ description: A minimal, text-only button without background or border.
 
 A minimal, text-only button without background or border. Supports multiple color variants, sizes, and optional leading or trailing icons. Ideal for inline actions and links.
 
-<TextButton>Learn more</TextButton>
+```tsx demo
+import { TextButton } from "@tenstorrent/vesper/text-button";
+
+export default function TextButtonDemo() {
+  return <TextButton>Learn more</TextButton>;
+}
+```
 
 ## Options
 
@@ -21,41 +27,126 @@ A minimal, text-only button without background or border. Supports multiple colo
 | `as`        | `ElementType`                                                                                              | The root element type for polymorphic rendering.                   | `"button"` |
 | `children`  | `ReactNode`                                                                                                | The text content of the button.                                    | —          |
 
+All other props are forwarded to the underlying `<button>` element, or whichever root element is specified via the `as` prop.
+
+Use a `TextButton` for low-emphasis actions that sit inline with surrounding content. When an action needs a filled or outlined background, reach for [the `Button` component](./button.mdx); when it is represented by a single icon, reach for [the `IconButton` component](./icon-button.mdx).
+
 ## Examples
 
-```tsx
+### Basic usage
+
+Render a `TextButton` by giving it some children:
+
+```tsx demo
 import { TextButton } from "@tenstorrent/vesper/text-button";
 
-// Basic usage
-<TextButton>Learn more</TextButton>;
+export default function BasicTextButton() {
+  return <TextButton onClick={() => console.log("clicked")}>Edit</TextButton>;
+}
 ```
 
-```tsx
-// Color variants
-<TextButton variant="accent">Accent</TextButton>
-<TextButton variant="danger">Delete</TextButton>
-<TextButton variant="success">Approve</TextButton>
-<TextButton variant="subtle">Dismiss</TextButton>
+### Variants
+
+A `TextButton` can be rendered in one of nine color variants. Pick the one that matches the meaning and/or urgency of the action. The default variant is `"accent"`:
+
+```tsx demo
+import { TextButton } from "@tenstorrent/vesper/text-button";
+
+export default function TextButtonVariants() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <TextButton variant="subtle">Subtle</TextButton>
+      <TextButton variant="contrast">Contrast</TextButton>
+      <TextButton variant="accent">Accent</TextButton>
+      <TextButton variant="success">Success</TextButton>
+      <TextButton variant="warning">Warning</TextButton>
+      <TextButton variant="danger">Danger</TextButton>
+      <TextButton variant="info">Info</TextButton>
+      <TextButton variant="purple">Purple</TextButton>
+      <TextButton variant="pink">Pink</TextButton>
+    </div>
+  );
+}
 ```
 
-```tsx
-// Sizes
-<TextButton size="sm">Small</TextButton>
-<TextButton size="md">Medium</TextButton>
-<TextButton size="lg">Large</TextButton>
+### Different sizes
+
+A `TextButton` can be rendered in one of three sizes; `"sm"`, `"md"`, or `"lg"`. The default size is `"md"`:
+
+```tsx demo
+import { TextButton } from "@tenstorrent/vesper/text-button";
+
+export default function TextButtonSizes() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <TextButton size="sm">Small</TextButton>
+      <TextButton size="md">Medium</TextButton>
+      <TextButton size="lg">Large</TextButton>
+    </div>
+  );
+}
 ```
 
-```tsx
-// With icons
+### Rendering icons
+
+A `TextButton` can render icons to the left or the right of its content via the `iconLeft` and `iconRight` props. Simply pass your icon as a `ReactNode` to either of these props:
+
+```tsx demo
 import { ArrowRight, Download } from "@tenstorrent/vesper/icons";
+import { TextButton } from "@tenstorrent/vesper/text-button";
 
-<TextButton iconRight={<ArrowRight />}>Continue</TextButton>
-<TextButton iconLeft={<Download />}>Download</TextButton>
+export default function TextButtonsWithIcons() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <TextButton iconLeft={<Download />}>Download</TextButton>
+      <TextButton iconRight={<ArrowRight />}>Continue</TextButton>
+    </div>
+  );
+}
 ```
 
-```tsx
-// Rendered as a link
-<TextButton as="a" href="/docs">
-  View documentation
-</TextButton>
+### Disabling a text button
+
+You can disable a `TextButton` by passing `disabled={true}` or just `disabled` as a prop. Disabling a button prevents interaction and changes the color scheme:
+
+```tsx demo
+import { TextButton } from "@tenstorrent/vesper/text-button";
+
+export default function DisabledTextButton() {
+  return <TextButton disabled>A disabled text button</TextButton>;
+}
+```
+
+### Polymorphic usage
+
+You can use the `as` prop to specify what underlying element to render. In this case, we are passing `as="a"` to render the `TextButton` as an anchor link, which is helpful when the action navigates somewhere instead of running a handler:
+
+```tsx demo
+import { ArrowRight } from "@tenstorrent/vesper/icons";
+import { TextButton } from "@tenstorrent/vesper/text-button";
+
+export default function TextButtonAsLink() {
+  return (
+    <TextButton as="a" href="#polymorphic-usage" iconRight={<ArrowRight />}>
+      View documentation
+    </TextButton>
+  );
+}
 ```

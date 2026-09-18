@@ -8,8 +8,8 @@ description: A notification system for displaying temporary messages at the bott
 A notification system for displaying temporary messages at the bottom of the screen. Toasts support multiple variants, optional action buttons, auto-dismiss timeouts, and keyboard navigation. Render the `Toasts` container once in your app and use `addToast()` to trigger notifications.
 
 ```tsx demo
-import { addToast } from "@tenstorrent/vesper/toast";
 import { Button } from "@tenstorrent/vesper/button";
+import { addToast } from "@tenstorrent/vesper/toast";
 
 export default function ToastDemo() {
   return (
@@ -96,8 +96,8 @@ Toasts can be spawned with one of five variants: `"default"`, `"loading"`, `"suc
 For example, to spawn a warning variant toast that self-dismisses after 5 seconds, you would call `addToast` like so:
 
 ```tsx demo
-import { addToast } from "@tenstorrent/vesper/toast";
 import { Button } from "@tenstorrent/vesper/button";
+import { addToast } from "@tenstorrent/vesper/toast";
 
 export default function WarningToast() {
   return (
@@ -123,8 +123,8 @@ Toasts by default do not dismiss themselves; you must specify a timeout duration
 To spawn a self-dismissing toast, you must provide a `timeout`, which represents the duration in milliseconds the toast will be visible for:
 
 ```tsx demo
-import { addToast } from "@tenstorrent/vesper/toast";
 import { Button } from "@tenstorrent/vesper/button";
+import { addToast } from "@tenstorrent/vesper/toast";
 
 export default function SelfDismissingToast() {
   return (
@@ -147,8 +147,8 @@ export default function SelfDismissingToast() {
 You may spawn a toast with an associated call-to-action by passing an `action` object in the toast options:
 
 ```tsx demo
-import { addToast } from "@tenstorrent/vesper/toast";
 import { Button } from "@tenstorrent/vesper/button";
+import { addToast } from "@tenstorrent/vesper/toast";
 
 export default function ToastWithAction() {
   return (
@@ -192,8 +192,8 @@ interface ToastHandle {
 Calling `dismiss()` will dismiss the toast, and calling `update()` will update the toast. For example, you could have a `"loading"` variant toast show while a network request is being made, then transition to either a `"success"` or `"warning"` variant and dismiss itself after a 5 second timeout when the request completes:
 
 ```tsx demo
-import { addToast } from "@tenstorrent/vesper/toast";
 import { Button } from "@tenstorrent/vesper/button";
+import { addToast } from "@tenstorrent/vesper/toast";
 
 export default function UpdatingToastDemo() {
   return (
