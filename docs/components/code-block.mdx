@@ -7,9 +7,18 @@ description: A syntax-highlighted code block component powered by Shiki.
 
 A syntax-highlighted code block component powered by Shiki. Supports static code strings and streaming content, line numbers, and copy-to-clipboard.
 
-```tsx
-const greeting = "Hello, world!";
-console.log(greeting);
+```tsx demo
+import typescript from "@shikijs/langs/typescript";
+
+import { CodeBlock } from "@tenstorrent/vesper/code-block";
+
+export default function CodeBlockDemo() {
+  return (
+    <CodeBlock lang={typescript}>
+      {'const greeting = "Hello, world!";\nconsole.log(greeting);'}
+    </CodeBlock>
+  );
+}
 ```
 
 > [!NOTE]
@@ -25,13 +34,17 @@ console.log(greeting);
 | `showLineNumbers` | `boolean`                                                                   | Whether to show line numbers on the left-hand side.                                                                                                | `false`  |
 | `copyOnHover`     | `boolean`                                                                   | When `true`, hides the copy-to-clipboard button until the code block is hovered.                                                                   | `false`  |
 
+All other props are forwarded to the underlying `<div>` element.
+
+To render a short snippet of code inline with other text, reach for [the `Code` component](./code.mdx), and for a single copyable command, [the `Snippet` component](./snippet.mdx).
+
 ## Examples
 
 ### Basic usage
 
-Render a `CodeBlock` by passing it plain text:
+Render a `CodeBlock` by passing it plain text. Without a `lang`, the code is rendered as-is with no syntax highlighting. Every code block renders a copy-to-clipboard button in its top-right corner, which copies the code exactly as it was passed in:
 
-```tsx
+```tsx demo
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
 
 export default function BasicCodeBlock() {
@@ -43,7 +56,7 @@ export default function BasicCodeBlock() {
 
 `CodeBlock` ships without any built-in grammars, and expects you to provide them yourself. Individual grammars can be imported from `@shikijs/langs/*` and supplied to the component. For example, to achieve `javascript` syntax highlighting you would import the grammar and pass it to the component via the `lang` prop:
 
-```tsx
+```tsx demo
 import javascript from "@shikijs/langs/javascript";
 
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
@@ -57,17 +70,30 @@ export default function HighlightedCodeBlock() {
 }
 ```
 
+> [!NOTE]
+>
+> Importing grammars individually keeps your bundle to only the languages you actually render.
+
 #### Plain text and ANSI
 
 Plain text and ANSI come prebundled and don't require supplying any grammar objects. You can simply set the `lang` prop to `"text"` or `"ansi"`:
 
-```tsx
+```tsx demo
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
 
-export default function BuildLogs({ buildLogs }: { buildLogs: string }) {
-  return <CodeBlock lang="ansi">{buildLogs}</CodeBlock>;
+const BUILD_LOGS = [
+  "\u001b[1;36m● vesper\u001b[0m \u001b[2mv0.2.0\u001b[0m",
+  "\u001b[32m✓\u001b[0m compiled 42 modules",
+  "\u001b[33m!\u001b[0m 1 warning found",
+  "\u001b[31m✗\u001b[0m failed to resolve \u001b[1m./missing-module\u001b[0m",
+].join("\n");
+
+export default function AnsiCodeBlock() {
+  return <CodeBlock lang="ansi">{BUILD_LOGS}</CodeBlock>;
 }
 ```
+
+This is what you want for output captured from a terminal, such as build logs or test runs, where the color information is already encoded in the text itself.
 
 #### Custom grammars
 
@@ -89,39 +115,85 @@ export default function CustomGrammarCodeBlock({ code }: { code: string }) {
 
 Passing `showLineNumbers` renders a line number gutter down the left-hand side of the code block:
 
-```tsx
-import typescript from "@shikijs/langs/typescript";
+```tsx demo
+import python from "@shikijs/langs/python";
 
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
 
-export default function NumberedCodeBlock({
-  codeContent,
-}: {
-  codeContent: string;
-}) {
+const CODE = `def greet(name: str) -> str:
+    message = f"Hello, {name}!"
+    print(message)
+    return message
+
+
+greet("world")`;
+
+export default function NumberedCodeBlock() {
   return (
-    <CodeBlock lang={typescript} showLineNumbers>
-      {codeContent}
+    <CodeBlock lang={python} showLineNumbers>
+      {CODE}
     </CodeBlock>
   );
 }
 ```
 
+Line numbers are rendered decoratively, so they are never included in the text copied to the clipboard.
+
 ### Streaming content
 
-To stream code as it arrives (build logs, LLM output, etc.), pass a factory function that returns a `ReadableStream<string>` instead of a string:
+To stream code as it arrives (build logs, LLM output, etc.), pass a factory function that returns a `ReadableStream<string>` instead of a string. Tokens are highlighted as they arrive, and the block scrolls to follow the output unless the user scrolls away from the bottom:
 
-```tsx
+```tsx demo
+import { useState } from "react";
 import typescript from "@shikijs/langs/typescript";
 
+import { Button } from "@tenstorrent/vesper/button";
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
 
-export default function StreamedCodeBlock({
-  getCodeStream,
-}: {
-  getCodeStream: () => ReadableStream<string>;
-}) {
-  return <CodeBlock lang={typescript}>{() => getCodeStream()}</CodeBlock>;
+const CODE = `async function getUser(id: string) {
+  const response = await fetch(\`/api/users/\${id}\`);
+  if (!response.ok) throw new Error("Request failed");
+  return response.json();
+}`;
+
+/**
+ * A factory is used instead of a raw stream because a stream can only be read
+ * once: this way the component can create a fresh one whenever it needs to
+ */
+function createCodeStream() {
+  let remaining = CODE;
+
+  return new ReadableStream<string>({
+    async start(controller) {
+      while (remaining.length) {
+        controller.enqueue(remaining.slice(0, 8));
+        remaining = remaining.slice(8);
+        await new Promise((resolve) => setTimeout(resolve, 60));
+      }
+      controller.close();
+    },
+  });
+}
+
+export default function StreamedCodeBlock() {
+  const [run, setRun] = useState(0);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Button size="sm" onClick={() => setRun((run) => run + 1)}>
+        Replay stream
+      </Button>
+      <CodeBlock key={run} lang={typescript}>
+        {createCodeStream}
+      </CodeBlock>
+    </div>
+  );
 }
 ```
 
@@ -129,19 +201,20 @@ export default function StreamedCodeBlock({
 
 The copy-to-clipboard button is always visible by default; pass `copyOnHover` to hide it until the code block is hovered:
 
-```tsx
-import typescript from "@shikijs/langs/typescript";
+```tsx demo
+import json from "@shikijs/langs/json";
 
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
 
-export default function HoverCopyCodeBlock({
-  codeContent,
-}: {
-  codeContent: string;
-}) {
+const CODE = `{
+  "name": "@tenstorrent/vesper",
+  "version": "0.2.0"
+}`;
+
+export default function HoverCopyCodeBlock() {
   return (
-    <CodeBlock lang={typescript} copyOnHover>
-      {codeContent}
+    <CodeBlock lang={json} copyOnHover>
+      {CODE}
     </CodeBlock>
   );
 }
