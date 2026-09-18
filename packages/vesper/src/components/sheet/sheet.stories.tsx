@@ -62,7 +62,6 @@ export const Playground: Story = {
     side: "right",
     withButtons: false,
     popover: false,
-    form: {},
   },
 };
 Playground.storyName = "sheet";
