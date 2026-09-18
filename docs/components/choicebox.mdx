@@ -1,21 +1,38 @@
 ---
 title: Choicebox
-description: A card-style selection component supporting both single-select (radio) and multi-select (checkbox) modes.
+description: A card-style selection component supporting both single-select and multi-select modes.
 ---
 
 # Choicebox
 
-A card-style selection component supporting both single-select (radio) and multi-select (checkbox) modes. Each option displays a label and optional description with a visual checkmark indicator.
+A card-style selection component supporting both single-select and multi-select modes. Each option displays a label and optional description with a visual checkmark indicator.
 
-<Choicebox
-  name="demo"
-  defaultValue="option-1"
-  options={[
-    { value: "option-1", label: "Option One", description: "First option" },
-    { value: "option-2", label: "Option Two", description: "Second option" },
-    { value: "option-3", label: "Option Three", description: "Third option" },
-  ]}
-/>
+```tsx demo
+import { Choicebox } from "@tenstorrent/vesper/choicebox";
+
+export default function ChoiceboxDemo() {
+  return (
+    <Choicebox
+      aria-label="Payment plan"
+      name="plan"
+      defaultValue="pro"
+      options={[
+        { value: "starter", label: "Starter", description: "For individuals" },
+        { value: "pro", label: "Pro", description: "For small teams" },
+        {
+          value: "enterprise",
+          label: "Enterprise",
+          description: "Custom solutions",
+        },
+      ]}
+    />
+  );
+}
+```
+
+> [!NOTE]
+>
+> Give the group an accessible name so assistive technology can announce what the options belong to. `Choicebox` renders a `<fieldset>`, so you can either pass it an `aria-label`, or point `aria-labelledby` at the heading or label that already names the group.
 
 ## Options
 
@@ -34,52 +51,302 @@ A card-style selection component supporting both single-select (radio) and multi
 | `min`           | `number`                                                | Minimum selections required (multi-select only).                                                        | `0`        |
 | `max`           | `number`                                                | Maximum selections allowed (multi-select only).                                                         | `Infinity` |
 
+All other props are forwarded to the wrapping `<fieldset>` element.
+
+### `ChoiceboxItem` options
+
+| Property      | Type      | Description                                                                              |
+| ------------- | --------- | ---------------------------------------------------------------------------------------- |
+| `value`       | `string`  | The value submitted with form data and passed to `onChange`. Must be unique.             |
+| `label`       | `string`  | The text displayed for this option.                                                      |
+| `description` | `string`  | An optional secondary line of text displayed below the label.                            |
+| `disabled`    | `boolean` | When `true`, prevents this option from being selected. Defaults to `false`.              |
+| `id`          | `string`  | An `id` applied to this option's `<input>`, used to reference it from validation errors. |
+
+Use a `Choicebox` when each option benefits from a description and a large, card-style target. For a plain list of mutually exclusive options, reach for [the `RadioGroup` component](./radio-group.mdx), and for a single boolean choice, reach for [the `Checkbox` component](./checkbox.mdx).
+
 ## Examples
 
-```tsx
+### Defining options
+
+Render a `Choicebox` by passing an array of `ChoiceboxItem` objects as the `options` prop. Each item describes a single card. `value` is what gets submitted and reported to `onChange`, `label` is the text displayed on the card, and the optional `description` adds a secondary line below it:
+
+```tsx demo
 import { Choicebox } from "@tenstorrent/vesper/choicebox";
 
-// Single select
-<Choicebox
-  name="plan"
-  defaultValue="starter"
-  options={[
-    { value: "starter", label: "Starter", description: "For individuals" },
-    { value: "pro", label: "Pro", description: "For teams" },
-    {
-      value: "enterprise",
-      label: "Enterprise",
-      description: "Custom solutions",
-    },
-  ]}
-/>;
+export default function ChoiceboxOptions() {
+  return (
+    <Choicebox
+      aria-label="Region"
+      name="region"
+      options={[
+        {
+          value: "us",
+          label: "United States",
+          description: "Lowest latency in North America",
+        },
+        {
+          value: "eu",
+          label: "Europe",
+          description: "Data stays within the EU",
+        },
+        { value: "ap", label: "Asia Pacific" },
+      ]}
+    />
+  );
+}
 ```
 
-```tsx
-// Multi-select
-<Choicebox
-  name="features"
-  multiselect
-  defaultValues={["dark-mode"]}
-  options={[
-    { value: "dark-mode", label: "Dark Mode" },
-    { value: "notifications", label: "Notifications" },
-    { value: "analytics", label: "Analytics" },
-  ]}
-/>
+Options without a `description` render as a more compact card, as seen with the `"Asia Pacific"` option above.
+
+### Single-select
+
+By default, a `Choicebox` operates in single-select mode, rendering each option as a radio input so that picking one deselects the others. Pass `defaultValue` to select an option initially:
+
+```tsx demo
+import { Choicebox } from "@tenstorrent/vesper/choicebox";
+
+export default function UncontrolledChoicebox() {
+  return (
+    <Choicebox
+      aria-label="Payment plan"
+      name="plan"
+      defaultValue="monthly"
+      options={[
+        { value: "monthly", label: "Monthly", description: "$12 per month" },
+        {
+          value: "yearly",
+          label: "Yearly",
+          description: "$120 per year, two months free",
+        },
+      ]}
+    />
+  );
+}
 ```
 
-```tsx
-// Controlled single select
-const [value, setValue] = useState("a");
+To control the selection, pass `value` alongside `onChange`, which receives the newly selected value:
 
-<Choicebox
-  name="controlled"
-  value={value}
-  onChange={setValue}
-  options={[
-    { value: "a", label: "Option A" },
-    { value: "b", label: "Option B" },
-  ]}
-/>;
+```tsx demo
+import { useState } from "react";
+
+import { Choicebox } from "@tenstorrent/vesper/choicebox";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function ControlledChoicebox() {
+  const [value, setValue] = useState("monthly");
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Choicebox
+        aria-label="Payment plan"
+        name="plan"
+        value={value}
+        onChange={setValue}
+        options={[
+          { value: "monthly", label: "Monthly", description: "$12 per month" },
+          { value: "yearly", label: "Yearly", description: "$120 per year" },
+        ]}
+      />
+      <Typography variant="copy-sm">Selected value: {value}</Typography>
+    </div>
+  );
+}
+```
+
+### Multi-select
+
+Passing `multiselect` renders each option as a checkbox, allowing any number of them to be selected. In this mode the uncontrolled prop is `defaultValues`, and `onChange` receives the full array of selected values:
+
+```tsx demo
+import { Choicebox } from "@tenstorrent/vesper/choicebox";
+
+export default function MultiSelectChoicebox() {
+  return (
+    <Choicebox
+      multiselect
+      aria-label="Features"
+      name="features"
+      defaultValues={["dark-mode"]}
+      options={[
+        {
+          value: "dark-mode",
+          label: "Dark mode",
+          description: "Follow the system colour scheme",
+        },
+        {
+          value: "notifications",
+          label: "Notifications",
+          description: "Email me when a job finishes",
+        },
+        {
+          value: "analytics",
+          label: "Analytics",
+          description: "Share anonymous usage data",
+        },
+      ]}
+    />
+  );
+}
+```
+
+Controlled multi-select works the same way as single-select, except that you pass `values` instead of `value`:
+
+```tsx demo
+import { useState } from "react";
+
+import { Choicebox } from "@tenstorrent/vesper/choicebox";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function ControlledMultiSelectChoicebox() {
+  const [values, setValues] = useState<string[]>(["analytics"]);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Choicebox
+        multiselect
+        aria-label="Features"
+        name="features"
+        values={values}
+        onChange={setValues}
+        options={[
+          { value: "notifications", label: "Notifications" },
+          { value: "analytics", label: "Analytics" },
+        ]}
+      />
+      <Typography variant="copy-sm">
+        Selected values: {values.join(", ") || "none"}
+      </Typography>
+    </div>
+  );
+}
+```
+
+### Disabling options
+
+Pass `disabled` to an individual option to prevent it from being selected while leaving the rest of the group interactive. You can also pass `disabled` to the `Choicebox` component itself to disable every option at once:
+
+```tsx demo
+import { Choicebox } from "@tenstorrent/vesper/choicebox";
+
+export default function DisabledChoiceboxOptions() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-8)",
+      }}
+    >
+      <Choicebox
+        aria-label="Payment plan"
+        name="disabled-option"
+        defaultValue="pro"
+        options={[
+          { value: "pro", label: "Pro", description: "Available now" },
+          {
+            value: "enterprise",
+            label: "Enterprise",
+            description: "Contact sales to enable",
+            disabled: true,
+          },
+        ]}
+      />
+      <Choicebox
+        disabled
+        aria-label="Payment plan"
+        name="disabled-group"
+        defaultValue="pro"
+        options={[
+          { value: "pro", label: "Pro", description: "Available now" },
+          { value: "starter", label: "Starter", description: "Available now" },
+        ]}
+      />
+    </div>
+  );
+}
+```
+
+### Usage in forms
+
+`Choicebox` renders native inputs inside a `<fieldset>`, so it works with regular form submission and native validation. Every selected option submits its `value` under the group's `name`, which means a multi-select group can submit several values at once:
+
+```tsx demo
+import { useState } from "react";
+
+import { Button } from "@tenstorrent/vesper/button";
+import { Choicebox } from "@tenstorrent/vesper/choicebox";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function FormChoiceboxDemo() {
+  const [submitted, setSubmitted] = useState<string | null>(null);
+
+  return (
+    <form
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+      onSubmit={(event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        setSubmitted(data.getAll("addons").join(", ") || "none");
+      }}
+    >
+      <Choicebox
+        multiselect
+        aria-label="Addons"
+        min={1}
+        max={2}
+        name="addons"
+        options={[
+          { value: "support", label: "Priority support" },
+          { value: "backups", label: "Daily backups" },
+          { value: "sso", label: "Single sign-on" },
+        ]}
+      />
+      <Button size="sm" type="submit">
+        Submit
+      </Button>
+      {submitted !== null && (
+        <Typography variant="copy-sm">
+          Submitted values: addons={submitted}
+        </Typography>
+      )}
+    </form>
+  );
+}
+```
+
+The `min` and `max` props set a custom validation message on the group, so the form above refuses to submit until between one and two add-ons are selected. In single-select mode, pass `required` instead to require that one of the options is picked:
+
+```tsx demo
+import { Choicebox } from "@tenstorrent/vesper/choicebox";
+
+export default function RequiredChoicebox() {
+  return (
+    <Choicebox
+      required
+      aria-label="Payment plan"
+      name="required-plan"
+      options={[
+        { value: "monthly", label: "Monthly" },
+        { value: "yearly", label: "Yearly" },
+      ]}
+    />
+  );
+}
 ```

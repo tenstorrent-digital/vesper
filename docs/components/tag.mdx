@@ -7,61 +7,165 @@ description: A small label component for categorizing or annotating content.
 
 A small label component for categorizing or annotating content. Supports a wide range of color variants, three sizes, and an optional leading icon.
 
-<div style={{ display: "flex", gap: "8px" }}>
-  <Tag>Default</Tag>
-  <Tag variant="accent-bold">Accent</Tag>
-  <Tag variant="success-bold">Success</Tag>
-  <Tag variant="danger-bold">Danger</Tag>
-</div>
+```tsx demo
+import { Tag } from "@tenstorrent/vesper/tag";
+
+export default function TagDemo() {
+  return <Tag variant="accent-bold">Design</Tag>;
+}
+```
 
 ## Options
 
 | Prop       | Type                                                                                                                                                                                                          | Description                                                                | Default     |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ----------- |
-| `size`     | `"sm" \| "md" \| "lg"`                                                                                                                                                                                        | The size of the tag. Affects padding and font size.                        | `"md"`      |
+| `size`     | `"sm" \| "md" \| "lg"`                                                                                                                                                                                        | The size of the tag. Affects height, padding, and icon size.               | `"md"`      |
 | `variant`  | `"default" \| "contrast" \| "accent-bold" \| "accent-subtle" \| "danger-bold" \| "danger-subtle" \| "success-bold" \| "success-subtle" \| "info-bold" \| "info-subtle" \| "warning-bold" \| "warning-subtle"` | The color variant of the tag.                                              | `"default"` |
 | `disabled` | `boolean`                                                                                                                                                                                                     | When `true`, renders the tag in a disabled state and prevents interaction. | `false`     |
 | `icon`     | `ReactNode`                                                                                                                                                                                                   | An optional icon element rendered to the left of the tag text.             | —           |
 | `as`       | `ElementType`                                                                                                                                                                                                 | The root element type for polymorphic rendering.                           | `"div"`     |
 | `children` | `ReactNode`                                                                                                                                                                                                   | The text content of the tag.                                               | —           |
 
+All other props are forwarded to the underlying `<div>` element, or whichever root element is specified via the `as` prop.
+
+Use a `Tag` to classify content into categories, such as topics on an article or labels on an issue. Reach for [the `Badge` component](./badge.mdx) when describing the content next to it (a plan tier, a role, a status), or [the `Chip` component](./chip.mdx) when the label represents a selection the user can toggle on and off.
+
 ## Examples
 
-```tsx
+### Basic usage
+
+Render a `Tag` by giving it some children:
+
+```tsx demo
 import { Tag } from "@tenstorrent/vesper/tag";
 
-// Basic usage
-<Tag>Label</Tag>;
+export default function BasicTag() {
+  return <Tag>Documentation</Tag>;
+}
 ```
 
-```tsx
-// Color variants
-<Tag variant="accent-bold">Feature</Tag>
-<Tag variant="success-subtle">Completed</Tag>
-<Tag variant="danger-bold">Critical</Tag>
-<Tag variant="warning-subtle">Review</Tag>
-<Tag variant="info-bold">Note</Tag>
+### Variants
+
+`Tag` ships with two neutral variants and five colored variants. Each colored variant has both a bold and a subtle version (eg. `"accent-bold"`, `"accent-subtle"`). The default variant is `"default"`.
+
+Use bold color variants or the `"contrast"` variant when the tag should stand out from its surroundings. Use subtle color variants or the `"default"` variant when it should sit quietly alongside other content:
+
+```tsx demo
+import { Tag } from "@tenstorrent/vesper/tag";
+
+export default function TagVariants() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Tag variant="default">Default</Tag>
+      <Tag variant="contrast">Contrast</Tag>
+      <Tag variant="accent-bold">Accent bold</Tag>
+      <Tag variant="accent-subtle">Accent subtle</Tag>
+      <Tag variant="success-bold">Success bold</Tag>
+      <Tag variant="success-subtle">Success subtle</Tag>
+      <Tag variant="warning-bold">Warning bold</Tag>
+      <Tag variant="warning-subtle">Warning subtle</Tag>
+      <Tag variant="danger-bold">Danger bold</Tag>
+      <Tag variant="danger-subtle">Danger subtle</Tag>
+      <Tag variant="info-bold">Info bold</Tag>
+      <Tag variant="info-subtle">Info subtle</Tag>
+    </div>
+  );
+}
 ```
 
-```tsx
-// Sizes
-<Tag size="sm">Small</Tag>
-<Tag size="md">Medium</Tag>
-<Tag size="lg">Large</Tag>
+### Different sizes
+
+A `Tag` can be rendered in one of three sizes; `"sm"`, `"md"`, or `"lg"`. The default size is `"md"`. Size affects the height and padding of the tag, as well as the dimensions of its icon:
+
+```tsx demo
+import { Tag } from "@tenstorrent/vesper/tag";
+
+export default function TagSizes() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Tag size="sm">Small</Tag>
+      <Tag size="md">Medium</Tag>
+      <Tag size="lg">Large</Tag>
+    </div>
+  );
+}
 ```
 
-```tsx
-// With icon
-import { Bolt } from "@tenstorrent/vesper/icons";
+### Rendering an icon
 
-<Tag icon={<Bolt />} variant="accent-bold">
-  Performance
-</Tag>;
+Pass an icon as a `ReactNode` to the `icon` prop to render it to the left of the tag's text:
+
+```tsx demo
+import { Bolt, Bug } from "@tenstorrent/vesper/icons";
+import { Tag } from "@tenstorrent/vesper/tag";
+
+export default function TagsWithIcons() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Tag icon={<Bolt />} variant="accent-bold">
+        Performance
+      </Tag>
+      <Tag icon={<Bug />} variant="danger-subtle">
+        Bug
+      </Tag>
+    </div>
+  );
+}
 ```
 
-```tsx
-// Rendered as a link
-<Tag as="a" href="/category/design" variant="contrast">
-  Design
-</Tag>
+### Disabling a tag
+
+You can disable a `Tag` by passing `disabled={true}` or just `disabled` as a prop. A disabled tag renders with a muted color scheme that takes precedence over its `variant`, and prevents interaction when rendered as an interactive element:
+
+```tsx demo
+import { Tag } from "@tenstorrent/vesper/tag";
+
+export default function DisabledTag() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Tag variant="accent-bold">Enabled</Tag>
+      <Tag variant="accent-bold" disabled>
+        Disabled
+      </Tag>
+    </div>
+  );
+}
+```
+
+### Polymorphic usage
+
+You can use the `as` prop to specify what underlying element to render. In this case, we are passing `as="a"` to render the `Tag` as an anchor link, which is useful when a tag navigates to a filtered list of everything sharing that category:
+
+```tsx demo
+import { Tag } from "@tenstorrent/vesper/tag";
+
+export default function TagAsLink() {
+  return (
+    <Tag as="a" href="#polymorphic-usage" variant="contrast">
+      Design
+    </Tag>
+  );
+}
 ```

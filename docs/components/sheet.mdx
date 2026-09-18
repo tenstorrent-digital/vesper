@@ -7,86 +7,166 @@ description: A slide-in panel that appears from the left or right edge of the vi
 
 A slide-in panel that appears from the left or right edge of the viewport. Can operate as a modal dialog with a backdrop or as a popover that allows interaction with content behind it. Controlled via an imperative ref with `open()` and `close()` methods.
 
-<Sheet
-  title="Sheet Panel"
-  description="This is a slide-in panel."
-  buttons={[{ children: "Cancel", variant: "tertiary" }, { children: "Save" }]}
->
-  Sheet content goes here.
-</Sheet>
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+import { Sheet, useSheet } from "@tenstorrent/vesper/sheet";
+
+export default function SheetDemo() {
+  const sheet = useSheet();
+
+  return (
+    <>
+      <Button onClick={sheet.open}>Open sheet</Button>
+      <Sheet
+        ref={sheet.ref}
+        title="Sheet panel"
+        description="This is a slide-in panel."
+        buttons={[
+          { children: "Cancel", onClick: sheet.close },
+          { children: "Save", onClick: sheet.close },
+        ]}
+      >
+        Sheet content goes here.
+      </Sheet>
+    </>
+  );
+}
+```
 
 ## Options
 
 | Prop          | Type                | Description                                                                                                                             | Default   |
 | ------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| `title`       | `string`            | The title text displayed in the sheet header. Used for `aria-labelledby`.                                                               | —         |
-| `description` | `string`            | A description displayed below the title. Used for `aria-describedby`.                                                                   | —         |
+| `title`       | `string`            | The title text displayed in the sheet header. Used for `aria-labelledby`. **Required.**                                                 | —         |
+| `description` | `string`            | A description displayed below the title. Used for `aria-describedby`. **Required.**                                                     | —         |
 | `side`        | `"left" \| "right"` | The side of the viewport the sheet slides in from.                                                                                      | `"right"` |
 | `popover`     | `boolean`           | When `true`, renders as a popover without a backdrop, allowing interaction behind it.                                                   | `false`   |
 | `buttons`     | `ButtonProps[]`     | An optional array of button props for action buttons. The last button defaults to `"contrast"` variant; others default to `"tertiary"`. | —         |
 | `ref`         | `Ref<SheetRef>`     | A ref exposing imperative `open()` and `close()` methods.                                                                               | —         |
 | `children`    | `ReactNode`         | The content displayed inside the sheet body.                                                                                            | —         |
 
+All other props are forwarded to the underlying `<dialog>` element.
+
+Use a `Sheet` for supplementary content alongside the current view, such as filters, settings, or the details of a selected row. When the content demands the user's full attention before they can carry on, reach for [the `Modal` component](./modal.mdx) instead.
+
 ## Examples
 
-```tsx
-import { Sheet } from "@tenstorrent/vesper/sheet";
+### Opening and closing a sheet
+
+A `Sheet` renders closed, and is opened imperatively. The `useSheet` hook returns everything needed for this: a `ref` to forward to the sheet, plus `open()` and `close()` functions:
+
+```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
-import { useRef } from "react";
+import { Sheet, useSheet } from "@tenstorrent/vesper/sheet";
 
-// Basic usage
-const sheetRef = useRef(null);
+export default function BasicSheet() {
+  const sheet = useSheet();
 
-<Button onClick={() => sheetRef.current?.open()}>Open Sheet</Button>
-
-<Sheet
-  ref={sheetRef}
-  title="Settings"
-  description="Manage your preferences."
->
-  <p>Sheet content goes here.</p>
-</Sheet>
+  return (
+    <>
+      <Button onClick={sheet.open}>Open settings</Button>
+      <Sheet
+        ref={sheet.ref}
+        title="Settings"
+        description="Manage your preferences."
+      >
+        Sheet content goes here.
+      </Sheet>
+    </>
+  );
+}
 ```
 
-```tsx
-// Left-side sheet
-<Sheet
-  ref={sheetRef}
-  title="Navigation"
-  description="Browse sections."
-  side="left"
->
-  <nav>...</nav>
-</Sheet>
+A sheet closes when the user presses `Escape`, clicks the close button in its header, or (in the default modal mode) clicks the backdrop behind it.
+
+### Choosing a side
+
+A sheet slides in from the right by default. Pass `side="left"` to have it slide in from the left instead, which tends to suit navigation:
+
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+import { Sheet, useSheet } from "@tenstorrent/vesper/sheet";
+
+export default function LeftSheet() {
+  const sheet = useSheet();
+
+  return (
+    <>
+      <Button onClick={sheet.open}>Open navigation</Button>
+      <Sheet
+        ref={sheet.ref}
+        side="left"
+        title="Navigation"
+        description="Browse sections."
+      >
+        Sheet content goes here.
+      </Sheet>
+    </>
+  );
+}
 ```
 
-```tsx
-// Popover mode (no backdrop)
-<Sheet
-  ref={sheetRef}
-  title="Details"
-  description="Additional information."
-  popover
->
-  <p>This sheet doesn't block interaction with the page behind it.</p>
-</Sheet>
+### Popover mode
+
+By default a `Sheet` behaves like a modal dialog: it renders a backdrop, traps focus, and blocks interaction with the rest of the page. Passing `popover` renders it as a popover instead, with no backdrop, so the user can keep working with the content behind it:
+
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+import { Sheet, useSheet } from "@tenstorrent/vesper/sheet";
+
+export default function PopoverSheet() {
+  const sheet = useSheet();
+
+  return (
+    <>
+      <Button onClick={sheet.open}>Open details</Button>
+      <Sheet
+        ref={sheet.ref}
+        popover
+        title="Details"
+        description="Additional information."
+      >
+        This sheet does not block interaction with the page behind it, so you
+        can keep scrolling and clicking while it is open.
+      </Sheet>
+    </>
+  );
+}
 ```
 
-```tsx
-// With action buttons
-<Sheet
-  ref={sheetRef}
-  title="Edit Profile"
-  description="Update your information."
-  buttons={[
-    {
-      children: "Cancel",
-      variant: "tertiary",
-      onClick: () => sheetRef.current?.close(),
-    },
-    { children: "Save Changes", variant: "contrast" },
-  ]}
->
-  <form>...</form>
-</Sheet>
+Use popover mode for panels the user consults while working, such as inspectors and help content, and stick with the default modal mode when the panel's task should be finished before anything else happens.
+
+### Action buttons
+
+Pass an array of button props to `buttons` to render action buttons along the bottom of the sheet. The last button defaults to the `contrast` variant and the rest default to `tertiary`, which can be overridden with the `variant` prop:
+
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+import { Sheet, useSheet } from "@tenstorrent/vesper/sheet";
+import { TextInput } from "@tenstorrent/vesper/text-input";
+
+export default function SheetWithButtons() {
+  const sheet = useSheet();
+
+  return (
+    <>
+      <Button onClick={sheet.open}>Edit profile</Button>
+      <Sheet
+        ref={sheet.ref}
+        title="Edit profile"
+        description="Update your information."
+        buttons={[
+          { children: "Cancel", onClick: sheet.close },
+          { children: "Save changes", onClick: sheet.close },
+        ]}
+      >
+        <TextInput
+          aria-label="Display name"
+          placeholder="Display name"
+          name="name"
+        />
+      </Sheet>
+    </>
+  );
+}
 ```

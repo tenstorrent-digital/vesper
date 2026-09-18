@@ -7,25 +7,40 @@ description: A dialog overlay component for displaying focused content that requ
 
 A dialog overlay component for displaying focused content that requires user attention or interaction. Supports a title, description, action buttons, and optional form wrapping. Controlled via an imperative ref with `open()` and `close()` methods.
 
-<Modal
-  title="Confirm Action"
-  description="Are you sure you want to proceed?"
-  buttons={[
-    { children: "Cancel", variant: "tertiary" },
-    { children: "Confirm" },
-  ]}
->
-  Additional content can be placed here.
-</Modal>
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+import { Modal, useModal } from "@tenstorrent/vesper/modal";
+
+export default function ModalDemo() {
+  const modal = useModal();
+
+  return (
+    <>
+      <Button onClick={modal.open}>Open modal</Button>
+      <Modal
+        ref={modal.ref}
+        title="Confirm action"
+        description="Are you sure you want to proceed?"
+        buttons={[
+          { children: "Cancel", onClick: modal.close },
+          { children: "Confirm", onClick: modal.close },
+        ]}
+      >
+        Additional content can be placed here.
+      </Modal>
+    </>
+  );
+}
+```
 
 ## Options
 
 | Prop                  | Type                                      | Description                                                                                                                            | Default |
 | --------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| `title`               | `string`                                  | The title text displayed in the modal header. Used for `aria-labelledby`.                                                              | —       |
-| `description`         | `string`                                  | A description displayed below the title. Used for `aria-describedby`.                                                                  | —       |
-| `width`               | `number \| string`                        | The width of the modal container.                                                                                                      | `452`   |
-| `maxHeight`           | `number \| string`                        | The maximum height of the modal container.                                                                                             | `640`   |
+| `title`               | `string`                                  | The title text displayed in the modal header. Used for `aria-labelledby`. **Required.**                                                | —       |
+| `description`         | `string`                                  | A description displayed below the title. Used for `aria-describedby`. **Required.**                                                    | —       |
+| `width`               | `number \| string`                        | The width of the modal container. A number is interpreted as pixels.                                                                   | `452`   |
+| `maxHeight`           | `number \| string`                        | The maximum height of the modal container. A number is interpreted as pixels.                                                          | `640`   |
 | `buttons`             | `ButtonProps[]`                           | An optional array of button props for action buttons. The last button defaults to `"primary"` variant; others default to `"tertiary"`. | —       |
 | `buttonsAlignment`    | `"start" \| "end" \| "fill" \| "between"` | Controls the horizontal alignment of the action buttons.                                                                               | `"end"` |
 | `ref`                 | `Ref<ModalRef>`                           | A ref exposing imperative `open()` and `close()` methods.                                                                              | —       |
@@ -33,57 +48,212 @@ A dialog overlay component for displaying focused content that requires user att
 | `form`                | `FormProps`                               | When provided, wraps the modal content in a `<form>` element with the given form attributes.                                           | —       |
 | `children`            | `ReactNode`                               | The content displayed inside the modal body.                                                                                           | —       |
 
+All other props are forwarded to the underlying `<dialog>` element.
+
+A `Modal` always blocks interaction with the rest of the page while it is open. When the user should be able to keep working with the content behind the panel, reach for [the `Sheet` component](./sheet.mdx) in `popover` mode instead.
+
 ## Examples
 
-```tsx
-import { Modal } from "@tenstorrent/vesper/modal";
-import { useRef } from "react";
+### Opening and closing a modal
 
-// Basic usage with imperative ref
-const modalRef = useRef(null);
+A `Modal` renders closed, and is opened imperatively. The `useModal` hook returns everything needed for this: a `ref` to pass to the modal, plus `open()` and `close()` functions:
 
-<Button onClick={() => modalRef.current?.open()}>Open Modal</Button>
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+import { Modal, useModal } from "@tenstorrent/vesper/modal";
 
-<Modal
-  ref={modalRef}
-  title="Welcome"
-  description="Thanks for signing up."
-  buttons={[{ children: "Get Started" }]}
+export default function BasicModal() {
+  const modal = useModal();
+
+  return (
+    <>
+      <Button onClick={modal.open}>Open modal</Button>
+      <Modal
+        ref={modal.ref}
+        title="Welcome"
+        description="Thanks for signing up."
+      >
+        You can start exploring features right away.
+      </Modal>
+    </>
+  );
+}
+```
+
+`Modal` renders a native `<dialog>`, so an open modal traps focus, blocks interaction with the rest of the page, and closes when the user presses `Escape`. The close button in the header closes it too.
+
+### Action buttons
+
+Pass an array of button props to `buttons` to render action buttons along the bottom of the modal. The last button defaults to the `primary` variant and the rest default to `tertiary`, which can be overridden with the `variant` prop:
+
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+import { Modal, useModal } from "@tenstorrent/vesper/modal";
+
+export default function ModalWithButtons() {
+  const modal = useModal();
+
+  return (
+    <>
+      <Button variant="danger" onClick={modal.open}>
+        Delete item
+      </Button>
+      <Modal
+        ref={modal.ref}
+        title="Delete item"
+        description="This action cannot be undone."
+        buttons={[
+          { children: "Cancel", onClick: modal.close },
+          { children: "Delete", variant: "danger", onClick: modal.close },
+        ]}
+      />
+    </>
+  );
+}
+```
+
+Buttons are aligned to the end of the modal by default. Use `buttonsAlignment` to lay them out differently; use `"start"` to render buttons towards the left edge of the modal, `"between"` to space buttons as far apart from each other as possible, or `"fill"` to have buttons occupy as much available space as possible:
+
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+import { Modal, useModal } from "@tenstorrent/vesper/modal";
+
+export default function ModalButtonsAlignment() {
+  const modal = useModal();
+
+  return (
+    <>
+      <Button onClick={modal.open}>Open modal</Button>
+      <Modal
+        ref={modal.ref}
+        title="Save changes"
+        description="Your changes have not been saved yet."
+        buttonsAlignment="fill"
+        buttons={[
+          { children: "Discard", onClick: modal.close },
+          { children: "Save", onClick: modal.close },
+        ]}
+      />
+    </>
+  );
+}
+```
+
+### Sizing
+
+A modal is `452px` wide and at most `640px` tall by default. Pass `width` and `maxHeight` to change that, either as numbers (interpreted as pixels) or as any CSS length string:
+
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+import { Modal, useModal } from "@tenstorrent/vesper/modal";
+
+export default function WideModal() {
+  const modal = useModal();
+
+  return (
+    <>
+      <Button onClick={modal.open}>Open wide modal</Button>
+      <Modal
+        ref={modal.ref}
+        width={640}
+        maxHeight="20rem"
+        title="Release notes"
+        description="Everything that changed in this release."
+        buttons={[{ children: "Close", onClick: modal.close }]}
+      >
+        Content taller than the modal scrolls within its body, keeping the
+        header and action buttons in place.
+      </Modal>
+    </>
+  );
+}
+```
+
+### Closing on click outside
+
+Clicking the backdrop does nothing by default, which keeps users from dismissing a modal by accident. Pass `closeOnClickOutside` to allow users to dismiss a modal by clicking the backdrop:
+
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+import { Modal, useModal } from "@tenstorrent/vesper/modal";
+
+export default function DismissibleModal() {
+  const modal = useModal();
+
+  return (
+    <>
+      <Button onClick={modal.open}>Open modal</Button>
+      <Modal
+        ref={modal.ref}
+        closeOnClickOutside
+        title="Keyboard shortcuts"
+        description="Press Escape or click outside to dismiss."
+      >
+        This modal can be dismissed by clicking the backdrop behind it.
+      </Modal>
+    </>
+  );
+}
+```
+
+### Usage in forms
+
+Passing the `form` prop wraps the modal's contents in a `<form>` element, so the action buttons can submit it natively with `type="submit"`, and native validation runs before the submit handler fires:
+
+```tsx demo
+import { useState } from "react";
+
+import { Button } from "@tenstorrent/vesper/button";
+import { Modal, useModal } from "@tenstorrent/vesper/modal";
+import { TextInput } from "@tenstorrent/vesper/text-input";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function FormModal() {
+  const modal = useModal();
+  const [submitted, setSubmitted] = useState<string | null>(null);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+        alignItems: "flex-start",
+      }}
+    >
+      <Button onClick={modal.open}>Create project</Button>
+      {submitted && (
+        <Typography variant="copy-sm">Created project: {submitted}</Typography>
+      )}
+      <Modal
+        ref={modal.ref}
+        title="Create project"
+        description="Enter the details for your new project."
+        form={{
+          onSubmit: (event) => {
+            event.preventDefault();
+            const data = new FormData(event.currentTarget);
+            setSubmitted(String(data.get("name") ?? ""));
+            modal.close();
+          },
+        }}
+        buttons={[
+          { children: "Cancel", type: "button", onClick: modal.close },
+          { children: "Create", type: "submit" },
+        ]}
+      >
+        <TextInput
+          required
+          aria-label="Project name"
+          placeholder="Project name"
+          name="name"
+        />
+      </Modal>
+    </div>
+  );
+}
+```
+
+> [!NOTE]
 >
-  You can start exploring features right away.
-</Modal>
-```
-
-```tsx
-// Confirmation dialog
-<Modal
-  ref={modalRef}
-  title="Delete Item"
-  description="This action cannot be undone."
-  buttons={[
-    {
-      children: "Cancel",
-      variant: "tertiary",
-      onClick: () => modalRef.current?.close(),
-    },
-    { children: "Delete", variant: "danger" },
-  ]}
-  closeOnClickOutside
-/>
-```
-
-```tsx
-// With form
-<Modal
-  ref={modalRef}
-  title="Create Project"
-  description="Enter the details for your new project."
-  form={{ onSubmit: handleSubmit }}
-  buttons={[
-    { children: "Cancel", variant: "tertiary" },
-    { children: "Create", type: "submit" },
-  ]}
->
-  <TextInput label="Project name" name="name" required />
-</Modal>
-```
+> Buttons rendered inside a `form` default to `type="submit"`, so give any button that should not submit an explicit `type="button"`, as the cancel button above does.
