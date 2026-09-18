@@ -7,26 +7,35 @@ description: A tabbed interface component for organizing content into switchable
 
 A tabbed interface component for organizing content into switchable panels. Supports primary and secondary visual styles, icons in tab triggers, and controlled or uncontrolled selection.
 
-<Tabs
-  defaultValue="overview"
-  items={[
-    {
-      label: "Overview",
-      value: "overview",
-      content: <p>Overview content goes here.</p>,
-    },
-    {
-      label: "Settings",
-      value: "settings",
-      content: <p>Settings content goes here.</p>,
-    },
-    {
-      label: "Activity",
-      value: "activity",
-      content: <p>Activity content goes here.</p>,
-    },
-  ]}
-/>
+```tsx demo
+import { Tabs } from "@tenstorrent/vesper/tabs";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function TabsDemo() {
+  return (
+    <Tabs
+      defaultValue="overview"
+      items={[
+        {
+          label: "Overview",
+          value: "overview",
+          content: <Typography>Overview content.</Typography>,
+        },
+        {
+          label: "Settings",
+          value: "settings",
+          content: <Typography>Settings content.</Typography>,
+        },
+        {
+          label: "Activity",
+          value: "activity",
+          content: <Typography>Activity content.</Typography>,
+        },
+      ]}
+    />
+  );
+}
+```
 
 ## Options
 
@@ -39,6 +48,8 @@ A tabbed interface component for organizing content into switchable panels. Supp
 | `onValueChange`  | `(value: string) => void`  | Callback fired when a new tab is selected.                                        | —             |
 | `activationMode` | `"automatic" \| "manual"`  | Whether a tab is activated on focus (`automatic`) or on click (`manual`).         | `"automatic"` |
 
+All other props are forwarded to the underlying `<div>` element, which wraps the tab list and its panels.
+
 ### TabItem
 
 | Prop      | Type        | Description                                                | Default |
@@ -50,64 +61,177 @@ A tabbed interface component for organizing content into switchable panels. Supp
 
 ## Examples
 
-```tsx
+### Defining items
+
+Each entry in the `items` array describes a tab and the panel it reveals: `label` is the text in the trigger, `value` identifies the tab, and `content` is whatever should be rendered when it is active. Tabs are rendered in the order they are provided:
+
+```tsx demo
 import { Tabs } from "@tenstorrent/vesper/tabs";
+import { Typography } from "@tenstorrent/vesper/typography";
 
-// Basic usage
-<Tabs
-  defaultValue="tab1"
-  items={[
-    { label: "Tab 1", value: "tab1", content: <p>First panel</p> },
-    { label: "Tab 2", value: "tab2", content: <p>Second panel</p> },
-  ]}
-/>;
+export default function BasicTabs() {
+  return (
+    <Tabs
+      defaultValue="details"
+      items={[
+        {
+          label: "Details",
+          value: "details",
+          content: (
+            <Typography>
+              Everything you need to know about this item.
+            </Typography>
+          ),
+        },
+        {
+          label: "History",
+          value: "history",
+          content: (
+            <Typography>A log of every change made to this item.</Typography>
+          ),
+        },
+      ]}
+    />
+  );
+}
 ```
 
-```tsx
-// Secondary variant
-<Tabs
-  variant="secondary"
-  defaultValue="code"
-  items={[
-    { label: "Code", value: "code", content: <pre>...</pre> },
-    { label: "Preview", value: "preview", content: <div>...</div> },
-  ]}
-/>
+### Variants
+
+`Tabs` can be rendered in one of two variants. The default `primary` variant is meant for page-level navigation, while the more compact `secondary` variant suits switching between views inside a smaller container, such as a card or a panel:
+
+```tsx demo
+import { Tabs } from "@tenstorrent/vesper/tabs";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function TabsVariants() {
+  const items = [
+    {
+      label: "Preview",
+      value: "preview",
+      content: <Typography>The rendered output.</Typography>,
+    },
+    {
+      label: "Code",
+      value: "code",
+      content: <Typography>The source code.</Typography>,
+    },
+  ];
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-8)",
+      }}
+    >
+      <Tabs variant="primary" defaultValue="preview" items={items} />
+      <Tabs variant="secondary" defaultValue="preview" items={items} />
+    </div>
+  );
+}
 ```
 
-```tsx
-// With icons
+### Rendering icons
+
+Pass an icon as a `ReactNode` to an item's `icon` prop to render it before that tab's label:
+
+```tsx demo
 import { Gear, Globe } from "@tenstorrent/vesper/icons";
+import { Tabs } from "@tenstorrent/vesper/tabs";
+import { Typography } from "@tenstorrent/vesper/typography";
 
-<Tabs
-  defaultValue="general"
-  items={[
-    {
-      label: "General",
-      value: "general",
-      icon: <Globe />,
-      content: <p>General settings</p>,
-    },
-    {
-      label: "Advanced",
-      value: "advanced",
-      icon: <Gear />,
-      content: <p>Advanced settings</p>,
-    },
-  ]}
-/>;
+export default function TabsWithIcons() {
+  return (
+    <Tabs
+      defaultValue="general"
+      items={[
+        {
+          label: "General",
+          value: "general",
+          icon: <Globe />,
+          content: <Typography>General settings.</Typography>,
+        },
+        {
+          label: "Advanced",
+          value: "advanced",
+          icon: <Gear />,
+          content: <Typography>Advanced settings.</Typography>,
+        },
+      ]}
+    />
+  );
+}
 ```
 
-```tsx
-// Controlled
-const [tab, setTab] = useState("first");
+### Uncontrolled vs controlled
 
-<Tabs
-  value={tab}
-  onValueChange={setTab}
-  items={[
-    { label: "First", value: "first", content: <p>First</p> },
-    { label: "Second", value: "second", content: <p>Second</p> },
-  ]}
-/>;
+Render `Tabs` in an uncontrolled fashion to let them keep track of their own selection, passing `defaultValue` to choose which tab is active initially. If you omit `defaultValue`, no tab is selected until the user picks one.
+
+If you need to control which tab is selected, pass `value` alongside `onValueChange`:
+
+```tsx demo
+import { useState } from "react";
+
+import { Tabs } from "@tenstorrent/vesper/tabs";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function ControlledTabs() {
+  const [tab, setTab] = useState("first");
+
+  return (
+    <Tabs
+      value={tab}
+      onValueChange={setTab}
+      items={[
+        {
+          label: "First",
+          value: "first",
+          content: <Typography>First panel.</Typography>,
+        },
+        {
+          label: "Second",
+          value: "second",
+          content: <Typography>Second panel.</Typography>,
+        },
+      ]}
+    />
+  );
+}
+```
+
+### Activation mode
+
+By default, moving focus between tab triggers with the arrow keys activates each tab as it receives focus. Pass `activationMode="manual"` to require `Enter`, `Space`, or a click before the panel changes, which is the better choice when a panel's content is expensive to render or fetch:
+
+```tsx demo
+import { Tabs } from "@tenstorrent/vesper/tabs";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function ManualTabs() {
+  return (
+    <Tabs
+      activationMode="manual"
+      defaultValue="metrics"
+      items={[
+        {
+          label: "Metrics",
+          value: "metrics",
+          content: (
+            <Typography>
+              Focus the tabs and use the arrow keys: the panel only changes once
+              you press Enter or Space.
+            </Typography>
+          ),
+        },
+        {
+          label: "Logs",
+          value: "logs",
+          content: <Typography>Logs panel.</Typography>,
+        },
+      ]}
+    />
+  );
+}
 ```
