@@ -59,7 +59,7 @@ const ADMONITION_TYPOGRAPHY_VARIANTS: {
  * A callout component for displaying informational, success, warning, or error messages with an optional call-to-action button.
  *
  * @param {AdmonitionVariant} [props.variant] - (optional) The visual variant determining color and icon. @default info
- * @param {AdmonitionSize} [props.size] - (optional) The size of the admonition. @default sm
+ * @param {AdmonitionSize} [props.size] - (optional) The size of the admonition. @default md
  * @param {boolean} [props.subtle] - (optional) Renders the admonition with a more subdued appearance
  * @param {ButtonProps} [props.cta] - (optional) Props for an action button rendered alongside the content
  * @param {React.ElementType} [props.ctaAs] - (optional) Element type to render for the cta. @default button
