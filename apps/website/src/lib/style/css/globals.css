@@ -62,12 +62,12 @@ body {
   width: 100%;
   max-width: var(--content-width);
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  & > h1,
+  & > h2,
+  & > h3,
+  & > h4,
+  & > h5,
+  & > h6 {
     scroll-margin-top: var(--nav-scroll-margin);
     text-wrap: pretty;
     word-break: auto-phrase;
@@ -76,18 +76,18 @@ body {
     }
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  & > h1,
+  & > h2,
+  & > h3,
+  & > h4,
+  & > h5,
+  & > h6 {
     margin-top: var(--vesper-spacing-8);
     margin-bottom: 0;
   }
-  h1,
-  h2,
-  h3 {
+  & > h1,
+  & > h2,
+  & > h3 {
     margin-bottom: var(--vesper-spacing-1);
   }
 
