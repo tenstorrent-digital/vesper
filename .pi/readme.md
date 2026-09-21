@@ -8,16 +8,16 @@ Team settings are available in [`.pi/settings.json`](https://github.com/tenstorr
 
 Here we set the default provider and model that will be set when Pi opens in this repository.
 
-The default **provider** is currently configured to be Github Copilot, with access provided through Tenstorrent IT[^1].
+The default **provider** is currently configured to be Github Copilot.
 
 The default **model** is arbitrary, but must be set in order to start Pi using our default provider (We can update the model here whenever we like).
 
 ### Provider Setup
 
 > [!NOTE]
-> To use Github Copilot as a provider, you must have access to Github Copilot[^1].
+> To use Github Copilot as a provider, you must have access to Github Copilot.
 
-Run `/login` from inside Pi, then select Github Copilot, and login with your Github account[^2].
+Run `/login` from inside Pi, then select Github Copilot, and login with your Github account.
 
 If you don't have access to Github Copilot, or you have not authenticated with Github with `/login`, pi will fallback to your global settings.
 
