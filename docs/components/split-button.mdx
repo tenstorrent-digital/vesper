@@ -24,42 +24,296 @@ export default function SplitButtonDemo() {
 }
 ```
 
+> [!IMPORTANT]
+>
+> Keep the content of the action button short (1-3 words) and descriptive of the action being taken, the same way you would for [a `Button`](./button.mdx). The menu items beside it should be variations on that action, not unrelated ones.
+
 ## Options
 
-| Prop                  | Type                                     | Description                                                     | Default         |
-| --------------------- | ---------------------------------------- | --------------------------------------------------------------- | --------------- |
-| `size`                | `"sm" \| "md" \| "lg"`                   | The size of both the action button and the menu toggle.         | `"md"`          |
-| `variant`             | `"subtle" \| "contrast"`                 | The visual style variant applied to both buttons.               | `"subtle"`      |
-| `menuItems`           | `MenuItemProps[]`                        | The list of menu items rendered in the dropdown.                | —               |
-| `onClick`             | `MouseEventHandler<HTMLButtonElement>`   | Callback fired when the primary action button is clicked.       | —               |
-| `menuButtonAriaLabel` | `string`                                 | An accessible `aria-label` for the menu toggle button.          | `"Toggle menu"` |
-| `menuWidth`           | `number`                                 | The width of the dropdown menu in pixels.                       | `200`           |
-| `menuSide`            | `"top" \| "bottom" \| "left" \| "right"` | The preferred side to render the dropdown menu.                 | `"bottom"`      |
-| `menuSideOffset`      | `number`                                 | The distance in pixels from the button to the dropdown menu.    | `8`             |
-| `menuAlign`           | `"start" \| "center" \| "end"`           | The alignment of the dropdown menu relative to the button.      | `"start"`       |
-| `menuAlignOffset`     | `number`                                 | An offset in pixels from the aligned edge.                      | —               |
-| `menuOpen`            | `boolean`                                | Controls the open state of the dropdown menu (controlled mode). | —               |
-| `onMenuOpenChange`    | `(open: boolean) => void`                | Callback fired when the dropdown's open state changes.          | —               |
-| `defaultMenuOpen`     | `boolean`                                | Whether the dropdown is open by default (uncontrolled mode).    | —               |
-| `disabled`            | `boolean`                                | When `true`, disables both buttons.                             | `false`         |
-| `children`            | `ReactNode`                              | The label content of the primary action button.                 | —               |
+| Prop                  | Type                                     | Description                                                                 | Default         |
+| --------------------- | ---------------------------------------- | --------------------------------------------------------------------------- | --------------- |
+| `children`            | `ReactNode`                              | The content of the primary action button.                                   | —               |
+| `menuItems`           | `MenuItemProps[]`                        | The list of menu items rendered in the dropdown. **Required.**              | —               |
+| `onClick`             | `MouseEventHandler<HTMLButtonElement>`   | Callback fired when the primary action button is clicked.                   | —               |
+| `size`                | `"sm" \| "md" \| "lg"`                   | The size of both the action button and the menu toggle.                     | `"md"`          |
+| `variant`             | `"subtle" \| "contrast"`                 | The visual style variant applied to both buttons.                           | `"contrast"`    |
+| `disabled`            | `boolean`                                | When `true`, disables both buttons.                                         | `false`         |
+| `menuButtonAriaLabel` | `string`                                 | An accessible `aria-label` for the menu toggle button.                      | `"Toggle menu"` |
+| `menuWidth`           | `number`                                 | The width of the dropdown menu in pixels. Scales with the base rem size.    | `200`           |
+| `menuSide`            | `"top" \| "bottom" \| "left" \| "right"` | The preferred side of the split button to render the dropdown menu against. | `"bottom"`      |
+| `menuSideOffset`      | `number`                                 | The distance in pixels from the split button to the dropdown menu.          | `8`             |
+| `menuAlign`           | `"start" \| "center" \| "end"`           | The alignment of the dropdown menu relative to the split button.            | `"start"`       |
+| `menuAlignOffset`     | `number`                                 | An offset in pixels from the aligned edge of the split button.              | `0`             |
+| `menuOpen`            | `boolean`                                | Controls the open state of the dropdown menu (controlled mode).             | —               |
+| `defaultMenuOpen`     | `boolean`                                | Whether the dropdown menu is open by default (uncontrolled mode).           | `false`         |
+| `onMenuOpenChange`    | `(open: boolean) => void`                | Callback fired when the dropdown menu's open state changes.                 | —               |
+
+All other props are forwarded to the underlying `<div>` element that wraps the two buttons.
+
+Use a `SplitButton` when one action is the obvious default, but closely related variations of it should stay within reach. When there is no default action to promote, reach for [the `Menu` component](./menu.mdx) on its own; when there are no alternatives to offer, reach for [the `Button` component](./button.mdx).
 
 ## Examples
 
-```tsx
+### Basic usage
+
+Render a `SplitButton` by giving it some children to label the action button, an `onClick` handler for that action, and the `menuItems` that make up its dropdown:
+
+```tsx demo
+import { useState } from "react";
+
+import { SplitButton } from "@tenstorrent/vesper/split-button";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function BasicSplitButton() {
+  const [lastAction, setLastAction] = useState<string | null>(null);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <SplitButton
+        onClick={() => setLastAction("Save")}
+        menuItems={[
+          { text: "Save as draft", onSelect: () => setLastAction("Draft") },
+          {
+            text: "Save and publish",
+            onSelect: () => setLastAction("Publish"),
+          },
+        ]}
+      >
+        Save
+      </SplitButton>
+      <Typography variant="copy-sm">
+        Last action: {lastAction ?? "none"}
+      </Typography>
+    </div>
+  );
+}
+```
+
+The two halves are independent controls: clicking the action button fires `onClick` without ever opening the menu, and clicking the caret button opens the menu without firing `onClick`. Both are reachable by keyboard, and the caret flips from pointing down to pointing up while the menu is open.
+
+### Menu items
+
+`menuItems` takes the same items as [the `Menu` component](./menu.mdx), so each one can render an `icon`, a `description`, and one of the `"default"`, `"selected"`, `"danger"`, `"locked"`, or `"disabled"` styles:
+
+```tsx demo
+import { Copy, Download, Trash } from "@tenstorrent/vesper/icons";
 import { SplitButton } from "@tenstorrent/vesper/split-button";
 
-// Basic usage
-export default function BasicSplitButton() {
+export default function SplitButtonMenuItems() {
   return (
     <SplitButton
-      onClick={() => console.log("Save")}
+      menuWidth={260}
+      onClick={() => {}}
       menuItems={[
-        { text: "Save as draft", onSelect: () => console.log("Save as draft") },
         {
-          text: "Save and close",
-          onSelect: () => console.log("Save and close"),
+          text: "Export as CSV",
+          icon: <Download />,
+          description: "Includes every visible column",
+          onSelect: () => {},
         },
+        {
+          text: "Copy to clipboard",
+          icon: <Copy />,
+          onSelect: () => {},
+        },
+        {
+          text: "Delete export",
+          icon: <Trash />,
+          style: "danger",
+          onSelect: () => {},
+        },
+      ]}
+    >
+      Export
+    </SplitButton>
+  );
+}
+```
+
+### Variants
+
+A `SplitButton` can be rendered in one of two variants, which is applied to both of its buttons at once:
+
+| Variant      | When to use                                                                                                                              |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `"contrast"` | Default variant. Use when the action needs strong visual contrast against its surrounding content, such as the main action of a toolbar. |
+| `"subtle"`   | Use when the action should sit alongside surrounding content without dominating it, such as a row-level action in a table.               |
+
+```tsx demo
+import { SplitButton } from "@tenstorrent/vesper/split-button";
+
+const MENU_ITEMS = [
+  { text: "Save as draft", onSelect: () => {} },
+  { text: "Save and publish", onSelect: () => {} },
+];
+
+export default function SplitButtonVariants() {
+  return (
+    <div style={{ display: "flex", gap: "var(--vesper-spacing-4)" }}>
+      <SplitButton variant="contrast" menuItems={MENU_ITEMS}>
+        Contrast
+      </SplitButton>
+      <SplitButton variant="subtle" menuItems={MENU_ITEMS}>
+        Subtle
+      </SplitButton>
+    </div>
+  );
+}
+```
+
+### Different sizes
+
+A `SplitButton` can be rendered in one of three sizes; `"sm"`, `"md"`, or `"lg"`. The default size is `"md"`. Both buttons are sized together, so the caret button always matches the height of the action button beside it.
+
+```tsx demo
+import { SplitButton } from "@tenstorrent/vesper/split-button";
+
+const MENU_ITEMS = [
+  { text: "Save as draft", onSelect: () => {} },
+  { text: "Save and publish", onSelect: () => {} },
+];
+
+export default function SplitButtonSizes() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <SplitButton size="sm" menuItems={MENU_ITEMS}>
+        Small
+      </SplitButton>
+      <SplitButton size="md" menuItems={MENU_ITEMS}>
+        Medium
+      </SplitButton>
+      <SplitButton size="lg" menuItems={MENU_ITEMS}>
+        Large
+      </SplitButton>
+    </div>
+  );
+}
+```
+
+### Positioning the menu
+
+The dropdown is positioned against the split button as a whole, not just the caret button that opens it, so a menu aligned to `"end"` lines up with the right edge of the action button. The `menuSide`, `menuSideOffset`, `menuAlign`, and `menuAlignOffset` props map onto [the `Menu` component](./menu.mdx)'s `side`, `sideOffset`, `align`, and `alignOffset` props:
+
+```tsx demo
+import { SplitButton } from "@tenstorrent/vesper/split-button";
+
+const MENU_ITEMS = [
+  { text: "Save as draft", onSelect: () => {} },
+  { text: "Save and publish", onSelect: () => {} },
+];
+
+export default function SplitButtonMenuPlacement() {
+  return (
+    <div style={{ display: "flex", gap: "var(--vesper-spacing-4)" }}>
+      <SplitButton menuItems={MENU_ITEMS}>Aligned to start</SplitButton>
+      <SplitButton menuAlign="end" menuItems={MENU_ITEMS}>
+        Aligned to end
+      </SplitButton>
+      <SplitButton menuSide="top" menuItems={MENU_ITEMS}>
+        Above the button
+      </SplitButton>
+    </div>
+  );
+}
+```
+
+Pass `menuWidth` when the default `200px` dropdown is too narrow for its items. Like the offsets, this value scales with the base rem size.
+
+### Controlling the menu's open state
+
+By default, a `SplitButton` tracks its own menu state. Pass `defaultMenuOpen` to render with the menu already open, or use `menuOpen` and `onMenuOpenChange` together to own the state yourself:
+
+```tsx demo
+import { useState } from "react";
+
+import { SplitButton } from "@tenstorrent/vesper/split-button";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function ControlledSplitButtonMenu() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <SplitButton
+        menuOpen={menuOpen}
+        onMenuOpenChange={setMenuOpen}
+        onClick={() => setMenuOpen(true)}
+        menuItems={[
+          { text: "Save as draft", onSelect: () => {} },
+          { text: "Save and publish", onSelect: () => {} },
+        ]}
+      >
+        Save
+      </SplitButton>
+      <Typography variant="copy-sm">
+        Menu open state: {String(menuOpen)}
+      </Typography>
+    </div>
+  );
+}
+```
+
+The action button above opens the menu too, which is a useful pattern when the primary action needs confirmation before it runs.
+
+### Labelling the menu toggle
+
+The caret button has no visible text, so it is labelled `"Toggle menu"` for assistive technology by default. Pass `menuButtonAriaLabel` to describe what the menu contains when that generic label is not clear enough:
+
+```tsx demo
+import { SplitButton } from "@tenstorrent/vesper/split-button";
+
+export default function LabelledSplitButton() {
+  return (
+    <SplitButton
+      variant="subtle"
+      menuButtonAriaLabel="Show export options"
+      onClick={() => {}}
+      menuItems={[
+        { text: "Export as CSV", onSelect: () => {} },
+        { text: "Export as JSON", onSelect: () => {} },
+      ]}
+    >
+      Export
+    </SplitButton>
+  );
+}
+```
+
+### Disabling a split button
+
+Pass `disabled` to disable both halves at once. The action button stops firing `onClick`, and the caret button no longer opens its menu:
+
+```tsx demo
+import { SplitButton } from "@tenstorrent/vesper/split-button";
+
+export default function DisabledSplitButton() {
+  return (
+    <SplitButton
+      disabled
+      onClick={() => {}}
+      menuItems={[
+        { text: "Save as draft", onSelect: () => {} },
+        { text: "Save and publish", onSelect: () => {} },
       ]}
     >
       Save
@@ -68,36 +322,6 @@ export default function BasicSplitButton() {
 }
 ```
 
-```tsx
-import { SplitButton } from "@tenstorrent/vesper/split-button";
-
-// Subtle variant, small size
-export default function SubtleSplitButton() {
-  return (
-    <SplitButton
-      variant="subtle"
-      size="sm"
-      onClick={() => console.log("Action")}
-      menuItems={[
-        { text: "Option A", onSelect: () => {} },
-        { text: "Option B", onSelect: () => {} },
-      ]}
-    >
-      Actions
-    </SplitButton>
-  );
-}
-```
-
-```tsx
-import { SplitButton } from "@tenstorrent/vesper/split-button";
-
-// Disabled
-export default function DisabledSplitButton() {
-  return (
-    <SplitButton disabled menuItems={[]}>
-      Disabled
-    </SplitButton>
-  );
-}
-```
+> [!NOTE]
+>
+> There is no way to disable only one half of a `SplitButton`. When the alternatives are unavailable but the main action is not (or the other way around), render the individual items as `"disabled"` or `"locked"` [menu items](./menu.mdx) instead, so the reason stays visible to the user.
