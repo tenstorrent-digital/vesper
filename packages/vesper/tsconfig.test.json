@@ -9,6 +9,9 @@
     "rootDir": ".",
     // (type-check only)
     "noEmit": true,
+    // for side-effect import `@/styles/test.css`
+    // see also: `src/styles/test.d.css.ts`
+    "allowArbitraryExtensions": true,
     "incremental": true,
     "composite": true
   }
