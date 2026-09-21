@@ -26,7 +26,7 @@ export default async function Layout({
             <CopyToClipboardButton
               textToCopy={markdownFileAsPrompt(
                 entry.frontmatter.title,
-                entry.raw,
+                entry.markdown,
               )}
               size="xs"
               variant="tertiary"
@@ -35,7 +35,7 @@ export default async function Layout({
             </CopyToClipboardButton>
           )}
           <CopyToClipboardButton
-            textToCopy={entry.raw}
+            textToCopy={entry.markdown}
             size="xs"
             variant="tertiary"
           >

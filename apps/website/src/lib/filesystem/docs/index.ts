@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { readFrontmatter } from "./frontmatter";
+import { readFrontmatter, stripFrontmatter } from "./frontmatter";
 import { getTOC } from "./toc";
 import { DocEntry, DocExtension } from "./types";
 
@@ -37,14 +37,16 @@ const docEntries = (dir: string, segments: string[] = []): DocEntry[] =>
       encoding: "utf-8",
     });
 
+    const markdown = stripFrontmatter(raw);
+
     return [
       {
-        raw,
+        markdown,
         slug,
         href: `/${slug.join("/")}`,
         ext: ext as DocExtension,
         frontmatter: readFrontmatter(raw),
-        toc: getTOC(raw, ext as DocExtension),
+        toc: getTOC(markdown, ext as DocExtension),
       },
     ];
   });
