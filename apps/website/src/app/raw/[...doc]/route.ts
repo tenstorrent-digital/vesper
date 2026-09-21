@@ -1,4 +1,5 @@
 import { docs, getDoc } from "@/lib/filesystem/docs";
+import { stripFrontmatter } from "@/lib/filesystem/docs/frontmatter";
 
 export const dynamic = "force-static";
 
@@ -16,7 +17,7 @@ export async function GET(_: Request, context: RouteContext<"/raw/[...doc]">) {
   const entry = getDoc(doc);
   if (!entry) return new Response("Not found", { status: 404 });
 
-  return new Response(entry.raw, {
+  return new Response(stripFrontmatter(entry.raw), {
     headers: {
       // `text/plain` so browsers (and agents) display it instead of downloading
       "content-type": "text/plain; charset=utf-8",

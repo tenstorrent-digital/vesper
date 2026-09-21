@@ -20,3 +20,7 @@ export const readFrontmatter = (markdown: string): Frontmatter => {
     ? (parsed as Frontmatter)
     : {};
 };
+
+/** removes the frontmatter block from a doc's raw Markdown */
+export const stripFrontmatter = (markdown: string): string =>
+  markdown.replace(FRONTMATTER, "").trimStart();
