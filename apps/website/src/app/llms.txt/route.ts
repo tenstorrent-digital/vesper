@@ -21,7 +21,14 @@ const getDocLink = ({ frontmatter, slug, href }: DocEntry) => {
  * @see https://llmstxt.org
  */
 export function GET() {
-  const intro = [`# Vesper`, "", `> ${VESPER_SUMMARY}`].join("\n");
+  const intro = [
+    `# Vesper`,
+    "",
+    `> ${VESPER_SUMMARY}`,
+    "",
+    `Each link below returns the raw Markdown source of a documentation page.`,
+    `For the full text of every page in a single request, see ${BASE_URL}/llms-full.txt`,
+  ].join("\n");
 
   const sections = getDocTree().map(({ folder, docs }) =>
     [
