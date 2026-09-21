@@ -5,7 +5,7 @@ description: A dropdown menu component that displays a list of actionable items 
 
 # Menu
 
-A dropdown menu component that displays a list of actionable items when triggered. Supports icons, descriptions, selected state, locked items, and disabled items. Built on Radix UI's dropdown menu primitive.
+A dropdown menu component that displays a list of actionable items when triggered. Supports icons, descriptions, selected state, locked items, and disabled items.
 
 ```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
@@ -26,106 +26,423 @@ export default function MenuDemo() {
 }
 ```
 
+> [!IMPORTANT]
+>
+> A `Menu`'s children must be a single React element that can receive a ref and event handlers, since that element becomes the menu's trigger. Passing a fragment, plain text, or multiple elements renders the children as-is, without a menu attached to them.
+
 ## Options
 
-| Prop           | Type                                                                                | Description                                                                                                      | Default    |
-| -------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------- |
-| `items`        | `MenuItemProps[]`                                                                   | The list of menu items to render. Each item has `text`, optional `description`, `icon`, `style`, and `onSelect`. | —          |
-| `children`     | `ReactElement`                                                                      | The trigger element that opens the menu.                                                                         | —          |
-| `side`         | `"top" \| "bottom" \| "left" \| "right"`                                            | The preferred side to render the menu against.                                                                   | `"bottom"` |
-| `sideOffset`   | `number`                                                                            | The distance in pixels from the trigger to the menu.                                                             | `8`        |
-| `align`        | `"start" \| "center" \| "end"`                                                      | The alignment of the menu relative to the trigger.                                                               | `"start"`  |
-| `alignOffset`  | `number`                                                                            | An offset in pixels from the aligned edge of the trigger.                                                        | —          |
-| `width`        | `number`                                                                            | The width of the menu dropdown in pixels.                                                                        | `200`      |
-| `open`         | `boolean`                                                                           | Controls the open state of the menu (controlled mode).                                                           | —          |
-| `defaultOpen`  | `boolean`                                                                           | Whether the menu is open by default (uncontrolled mode).                                                         | `false`    |
-| `onOpenChange` | `(open: boolean) => void`                                                           | Callback fired when the open state changes.                                                                      | —          |
-| `container`    | `HTMLElement \| ShadowRoot \| null \| RefObject<HTMLElement \| ShadowRoot \| null>` | Specify the element or shadow root to portal the menu into.                                                      | –          |
-| `anchor`       | `HTMLElement \| RefObject<HTMLElement \| null>`                                     | Specify the element to anchor the menu against. Default behavior anchors the menu to the triggering element      | –          |
+| Prop           | Type                                                                                | Description                                                                                                 | Default    |
+| -------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------- |
+| `items`        | `MenuItemProps[]`                                                                   | The list of menu items rendered in the dropdown, in the order they are provided.                            | —          |
+| `children`     | `ReactElement`                                                                      | The trigger element that opens the menu.                                                                    | —          |
+| `width`        | `number`                                                                            | The width of the menu dropdown in pixels. Scales with the base rem size.                                    | `200`      |
+| `side`         | `"top" \| "bottom" \| "left" \| "right"`                                            | The preferred side of the trigger to render the menu against.                                               | `"bottom"` |
+| `sideOffset`   | `number`                                                                            | The distance in pixels from the trigger to the menu. Scales with the base rem size.                         | `8`        |
+| `align`        | `"start" \| "center" \| "end"`                                                      | The alignment of the menu relative to the trigger along the perpendicular axis.                             | `"start"`  |
+| `alignOffset`  | `number`                                                                            | An offset in pixels from the aligned edge of the trigger. Scales with the base rem size.                    | `0`        |
+| `open`         | `boolean`                                                                           | Controls the open state of the menu (controlled mode).                                                      | —          |
+| `defaultOpen`  | `boolean`                                                                           | Whether the menu is open by default (uncontrolled mode).                                                    | `false`    |
+| `onOpenChange` | `(open: boolean) => void`                                                           | Callback fired when the open state changes.                                                                 | —          |
+| `container`    | `HTMLElement \| ShadowRoot \| null \| RefObject<HTMLElement \| ShadowRoot \| null>` | Specify the element or shadow root to portal the menu into.                                                 | —          |
+| `anchor`       | `HTMLElement \| null \| RefObject<HTMLElement \| null>`                             | Specify the element to position the menu against. Default behavior anchors the menu to the trigger element. | —          |
 
-### MenuItemProps
+### `MenuItemProps` options
 
-| Prop          | Type                                                            | Description                                                       | Default     |
+| Property      | Type                                                            | Description                                                       | Default     |
 | ------------- | --------------------------------------------------------------- | ----------------------------------------------------------------- | ----------- |
 | `text`        | `string`                                                        | The text label displayed for the menu item.                       | —           |
 | `description` | `string`                                                        | An optional secondary description displayed below the text label. | —           |
-| `icon`        | `ReactNode`                                                     | An optional icon element rendered to the left of the text.        | —           |
+| `icon`        | `ReactNode`                                                     | An optional icon element rendered to the left of the text label.  | —           |
 | `style`       | `"default" \| "danger" \| "locked" \| "selected" \| "disabled"` | The visual and behavioral style of the menu item.                 | `"default"` |
-| `onSelect`    | `() => void`                                                    | Callback fired when the menu item is selected.                    | —           |
+| `onSelect`    | `() => void`                                                    | Callback fired when the menu item is selected. **Required.**      | —           |
 
 ## Examples
 
-```tsx
+### Basic usage
+
+Render a `Menu` by passing it an array of `items` and a single element to use as its trigger. Every item needs `text` to display and an `onSelect` callback to run when it is chosen:
+
+```tsx demo
+import { useState } from "react";
+
 import { Button } from "@tenstorrent/vesper/button";
 import { Menu } from "@tenstorrent/vesper/menu";
+import { Typography } from "@tenstorrent/vesper/typography";
 
-// Basic menu
 export default function BasicMenu() {
+  const [selected, setSelected] = useState<string | null>(null);
+
   return (
-    <Menu
-      items={[
-        { text: "Copy", onSelect: () => console.log("Copy") },
-        { text: "Paste", onSelect: () => console.log("Paste") },
-        {
-          text: "Delete",
-          style: "danger",
-          onSelect: () => console.log("Delete"),
-        },
-      ]}
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        gap: "var(--vesper-spacing-4)",
+      }}
     >
-      <Button>Actions</Button>
-    </Menu>
+      <Menu
+        items={[
+          { text: "Rename", onSelect: () => setSelected("Rename") },
+          { text: "Duplicate", onSelect: () => setSelected("Duplicate") },
+          {
+            text: "Delete",
+            style: "danger",
+            onSelect: () => setSelected("Delete"),
+          },
+        ]}
+      >
+        <Button variant="subtle">Actions</Button>
+      </Menu>
+      <Typography variant="copy-sm">
+        Last selected item: {selected ?? "none"}
+      </Typography>
+    </div>
   );
 }
 ```
 
-```tsx
-import { Button } from "@tenstorrent/vesper/button";
-import { Copy, Gear, Trash } from "@tenstorrent/vesper/icons";
+Clicking the trigger opens the menu, and choosing an item fires its `onSelect` callback function and closes the menu. Any element that can be focused and receive a ref works as a trigger.
+
+### Describing items
+
+Each item can render an `icon` to the left of its label, and a `description` underneath it for the items whose outcome is not obvious from their label alone. Descriptions are optional, and can be mixed with items that only have a label:
+
+```tsx demo
+import { IconButton } from "@tenstorrent/vesper/icon-button";
+import { Copy, Download, Ellipses, Gear } from "@tenstorrent/vesper/icons";
 import { Menu } from "@tenstorrent/vesper/menu";
 
-// With icons and descriptions
-export default function MenuWithIconsAndDescriptions() {
+export default function DescriptiveMenu() {
   return (
     <Menu
+      width={260}
       items={[
-        { text: "Copy", icon: <Copy />, onSelect: () => console.log("Copy") },
+        {
+          text: "Copy link",
+          icon: <Copy />,
+          description: "Anyone with the link can view",
+          onSelect: () => {},
+        },
+        {
+          text: "Download",
+          icon: <Download />,
+          description: "Exports the current view as a CSV",
+          onSelect: () => {},
+        },
         {
           text: "Settings",
           icon: <Gear />,
-          description: "Manage preferences",
-          onSelect: () => console.log("Settings"),
-        },
-        {
-          text: "Delete",
-          icon: <Trash />,
-          style: "danger",
-          onSelect: () => console.log("Delete"),
+          onSelect: () => {},
         },
       ]}
     >
-      <Button>Actions</Button>
+      <IconButton
+        aria-label="Share options"
+        variant="subtle"
+        icon={<Ellipses />}
+      />
     </Menu>
   );
 }
 ```
+
+### Item styles
+
+Each item can be rendered in one of five styles via its `style` prop:
+
+| Style        | When to use                                                                                                                                |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `"default"`  | Default style. Use for regular actions.                                                                                                    |
+| `"selected"` | Use when the item represents the currently active option out of a set. Renders a checkmark at the end of the item.                         |
+| `"danger"`   | Use for destructive or potentially irreversible actions. Renders the item in the error color scheme.                                       |
+| `"locked"`   | Use for actions the user could take, but currently cannot, eg. because of their permissions. Renders a lock icon and prevents interaction. |
+| `"disabled"` | Use for actions that do not apply in the current context, eg. pasting with an empty clipboard. Dims the item and prevents interaction.     |
+
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+import { Blackhole, Globe, Tenstorrent } from "@tenstorrent/vesper/icons";
+import { Menu } from "@tenstorrent/vesper/menu";
+
+export default function MenuItemStyles() {
+  return (
+    <Menu
+      width={240}
+      items={[
+        { text: "Default item", icon: <Tenstorrent />, onSelect: () => {} },
+        {
+          text: "Selected item",
+          icon: <Globe />,
+          style: "selected",
+          onSelect: () => {},
+        },
+        {
+          text: "Danger item",
+          icon: <Blackhole />,
+          style: "danger",
+          onSelect: () => {},
+        },
+        { text: "Locked item", style: "locked", onSelect: () => {} },
+        { text: "Disabled item", style: "disabled", onSelect: () => {} },
+      ]}
+    >
+      <Button variant="subtle">Item styles</Button>
+    </Menu>
+  );
+}
+```
+
+> [!NOTE]
+>
+> `"locked"` and `"disabled"` items cannot be activated: their `onSelect` never fires, and the menu stays open when one of them is clicked. They remain reachable with the keyboard, so assistive technology can still announce them and their state.
+
+### Setting the width
+
+A menu is `200px` wide by default. Pass a `number` to the `width` prop to render it with a different width. The value passed scales with the base rem size:
+
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+import { Menu } from "@tenstorrent/vesper/menu";
+
+const ITEMS = [
+  { text: "Rename", onSelect: () => {} },
+  { text: "Duplicate", onSelect: () => {} },
+];
+
+export default function MenuWidths() {
+  return (
+    <Menu width={320} items={ITEMS}>
+      <Button variant="subtle">320px width menu</Button>
+    </Menu>
+  );
+}
+```
+
+### Positioning the menu
+
+By default, a `Menu` opens below its trigger and is aligned to its starting edge. You can adjust this via the `side`, `sideOffset`, `align`, and `alignOffset` props.
+
+The `side` prop determines which trigger edge the menu sits against. Possible values are `"top"`, `"bottom"`, `"left"`, and `"right"`. The default value is `"bottom"`.
+
+The `sideOffset` prop determines how far away in pixels the menu is from its trigger's edge. The default value is `8`. This value scales with the base rem size.
+
+The `align` prop determines which end of the `side` to align the menu to. Possible values are `"start"`, `"center"`, and `"end"`. The default value is `"start"`.
+
+The `alignOffset` prop adjusts how many pixels the menu is offset from its alignment. The default value is `0`. This value scales with the base rem size.
+
+These props express a preference rather than a guarantee: a menu that would otherwise overflow the viewport is flipped and shifted to stay on screen.
+
+The demo below shows how the `side` and `align` props interact with each other:
+
+```tsx demo
+import { useState } from "react";
+
+import { Button } from "@tenstorrent/vesper/button";
+import { Menu, type MenuProps } from "@tenstorrent/vesper/menu";
+import { Select } from "@tenstorrent/vesper/select";
+
+type MenuSide = NonNullable<MenuProps["side"]>;
+type MenuAlign = NonNullable<MenuProps["align"]>;
+
+const SIDES = ["top", "bottom", "left", "right"] as const;
+const ALIGNMENTS = ["start", "center", "end"] as const;
+
+export default function MenuPositionPlayground() {
+  const [side, setSide] = useState<MenuSide>("bottom");
+  const [align, setAlign] = useState<MenuAlign>("start");
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <div style={{ display: "flex", gap: "var(--vesper-spacing-4)" }}>
+        <Select
+          value={side}
+          aria-label="Menu side"
+          onValueChange={(side) => setSide(side as MenuSide)}
+          options={[...SIDES]}
+          style={{ width: "var(--vesper-spacing-28)" }}
+        />
+        <Select
+          value={align}
+          aria-label="Menu align"
+          onValueChange={(align) => setAlign(align as MenuAlign)}
+          options={[...ALIGNMENTS]}
+          style={{ width: "var(--vesper-spacing-28)" }}
+        />
+      </div>
+      <Menu
+        side={side}
+        align={align}
+        width={160}
+        items={[
+          { text: "Rename", onSelect: () => {} },
+          { text: "Duplicate", onSelect: () => {} },
+        ]}
+      >
+        <Button
+          variant="contrast"
+          style={{
+            marginTop: "var(--vesper-spacing-20)",
+            marginBottom: "var(--vesper-spacing-20)",
+          }}
+        >
+          Open menu
+        </Button>
+      </Menu>
+    </div>
+  );
+}
+```
+
+### Controlling the open state
+
+By default, a `Menu` tracks its own open state. Pass `defaultOpen` when a menu should already be open on first render, while still letting it manage itself afterwards:
 
 ```tsx
 import { Button } from "@tenstorrent/vesper/button";
 import { Menu } from "@tenstorrent/vesper/menu";
 
-// Selected and locked items
-export default function MenuWithSelectedAndLockedItems() {
+export default function DefaultOpenMenu() {
   return (
     <Menu
+      defaultOpen
       items={[
-        { text: "Light mode", style: "selected", onSelect: () => {} },
-        { text: "Dark mode", onSelect: () => {} },
-        { text: "Admin only", style: "locked", onSelect: () => {} },
+        { text: "Rename", onSelect: () => {} },
+        { text: "Duplicate", onSelect: () => {} },
       ]}
     >
-      <Button>Theme</Button>
+      <Button variant="subtle">Actions</Button>
     </Menu>
   );
 }
 ```
+
+If you need to own the open state, use the `open` and `onOpenChange` props together. `onOpenChange` fires with the menu's next open state value:
+
+```tsx demo
+import { useState } from "react";
+
+import { Button } from "@tenstorrent/vesper/button";
+import { Menu } from "@tenstorrent/vesper/menu";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function ControlledMenu() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <div style={{ display: "flex", gap: "var(--vesper-spacing-4)" }}>
+        <Menu
+          open={open}
+          onOpenChange={setOpen}
+          items={[
+            { text: "Rename", onSelect: () => {} },
+            { text: "Duplicate", onSelect: () => {} },
+          ]}
+        >
+          <Button variant="subtle">Actions</Button>
+        </Menu>
+        <Button variant="tertiary" onClick={() => setOpen((open) => !open)}>
+          Toggle from outside
+        </Button>
+      </div>
+      <Typography variant="copy-sm">Open state: {String(open)}</Typography>
+    </div>
+  );
+}
+```
+
+### Anchoring the menu elsewhere
+
+A menu is positioned against its trigger by default. Pass the `anchor` prop an element or an element ref to position it against something else. The menu below is aligned to the end of the card rather than its trigger:
+
+```tsx demo
+import { useRef } from "react";
+
+import { IconButton } from "@tenstorrent/vesper/icon-button";
+import { Ellipses } from "@tenstorrent/vesper/icons";
+import { Material } from "@tenstorrent/vesper/material";
+import { Menu } from "@tenstorrent/vesper/menu";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function AnchoredMenu() {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <Material
+      ref={cardRef}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: "var(--vesper-spacing-4)",
+        padding: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Typography variant="label-md-bold">Inference cluster</Typography>
+      <Menu
+        anchor={cardRef}
+        align="end"
+        items={[
+          { text: "Restart", onSelect: () => {} },
+          { text: "View logs", onSelect: () => {} },
+          { text: "Delete", style: "danger", onSelect: () => {} },
+        ]}
+      >
+        <IconButton
+          aria-label="More actions"
+          variant="ghost"
+          icon={<Ellipses />}
+        />
+      </Menu>
+    </Material>
+  );
+}
+```
+
+### Rendering the menu in another container
+
+A menu renders in a portal, attached to `document.body`, so it is never clipped by the overflow of the elements it sits in. Pass the `container` prop an element, a shadow root, or a ref to either when it needs to be portalled somewhere else:
+
+```tsx
+import { useRef } from "react";
+
+import { Button } from "@tenstorrent/vesper/button";
+import { Menu } from "@tenstorrent/vesper/menu";
+
+export default function PortalledMenu() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div ref={containerRef}>
+      <Menu
+        container={containerRef}
+        items={[
+          { text: "Rename", onSelect: () => {} },
+          { text: "Duplicate", onSelect: () => {} },
+        ]}
+      >
+        <Button variant="subtle">Actions</Button>
+      </Menu>
+    </div>
+  );
+}
+```
+
+> [!NOTE]
+>
+> A `Menu` rendered inside a `<dialog>` (which [Modal](./modal.mdx) and [Sheet](./sheet.mdx) both use) is portalled into that dialog automatically, so its items stay above the dialog's content. Passing `container` explicitly always takes precedence over this behavior.
