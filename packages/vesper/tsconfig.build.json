@@ -1,16 +1,18 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "outDir": "dist",
+    "rootDir": "./src",
+    "outDir": "./dist",
     "strictNullChecks": true,
     "sourceMap": true,
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
-    }
+      "*": ["./*"],
+      "@/*": ["./src/*"],
+    },
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "src/**/*.test.*", "src/**/*.stories.*"]
+  "exclude": ["node_modules", "dist", "src/**/*.test.*", "src/**/*.stories.*"],
 }

@@ -1,0 +1,14 @@
+{
+  "extends": "@repo/typescript-config/base.json",
+  "compilerOptions": {
+    "noEmit": true,
+  },
+  "include": [
+    // .ts and .mts files in monorepo root
+    // note: ignores dotfiles in root
+    "*.ts",
+    "*.mts",
+    // turbo folder contents
+    "turbo/**/*",
+  ],
+}

@@ -31,7 +31,10 @@
       // NOT a transit node: `docs` resolves `@tenstorrent/vesper` subpaths to
       // declaration files under `dist`, so this is a real build-output
       // dependency and `tsc` cannot run until vesper has been built
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build", "website#generate:demos"],
+      // since we have `"incremental": true` in our tsconfigs,
+      // add *.tsbuildinfo to outputs so turbo can cache it
+      "outputs": ["**/*.tsbuildinfo"]
     },
     "dev": {
       // ensure workspace deps are built (turbo restores `dist` from cache) so

@@ -16,6 +16,32 @@ const config: StorybookConfig = {
   addons: [getAbsolutePath("@storybook/addon-a11y")],
   framework: getAbsolutePath("@storybook/react-vite"),
   typescript: {
+    /**
+     * NOTE:
+     *
+     * `react-docgen-typescript` needs the typescript JS compiler API,
+     * which typescript 7 does not ship (it is expected to return in 7.1 - see
+     * links below). In order to use `react-docgen-typescript`, we've had to
+     * alias the `typescript` dependency to the compatibility package:
+     * `@typescript/typescript6`
+     *
+     * `tsc` still comes from `@typescript/native` (typescript v7)
+     *
+     * Later, when:
+     *
+     * 1. typescript v7.x adds the API that `react-docgen-typescript` needs to support v7
+     * 2. `react-docgen-typescript` supports typescript v7 natively
+     * 3. storybook (and it's bundled dependencies) support typescript v7
+     *
+     * we can remove the alias and just use the typescript v7 package directly
+     * with `"typescript"` in our package.json
+     *
+     * @see `package.json`
+     * @see `packages/vesper/package.json`
+     * @see `apps/website/package.json`
+     * @see https://github.com/storybookjs/storybook/discussions/35515
+     * @see https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/#running-side-by-side-with-typescript-6.0
+     */
     reactDocgen: "react-docgen-typescript",
     reactDocgenTypescriptOptions: {
       tsconfigPath: resolve(__dirname, "../tsconfig.storybook.json"),
