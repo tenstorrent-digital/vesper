@@ -54,6 +54,14 @@ Typically issues will fall into one of three categories, each of which have issu
 >
 > If you'd like to propose a design change, please open a [discussion](https://github.com/tenstorrent-digital/vesper/discussions) instead. A maintainer must bring the request upstream to the design team first.
 
+## Package Manager
+
+We use `yarn` (classic) to manage dependencies and to run workspace commands across the monorepo.
+
+If you do not have `yarn` installed on your machine you can download it here: [Yarn (Classic) Installation](https://classic.yarnpkg.com/en/docs/install).
+
+Please do not use other package managers in the monorepo, as they handle peer dependencies differently and may cause issues.
+
 ## Branch Naming Conventions
 
 Branch names follow the convention `<username>/[<issue-id>-]<branch-name>`, where:
