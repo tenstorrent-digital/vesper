@@ -19,17 +19,17 @@
     "allowImportingTsExtensions": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@docs/*": ["../../docs/*"], // monorepo docs
+      "@docs/*": ["../../docs/*"] // monorepo docs
     },
     "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
-        "name": "next",
-      },
+        "name": "next"
+      }
     ],
     "target": "ES2020",
-    "types": ["node"],
+    "types": ["node"]
   },
   "include": [
     "**/*.ts",
@@ -38,7 +38,7 @@
     "next-env.d.ts",
     "next.config.ts",
     ".next/dev/types/**/*.ts",
-    ".next/types/**/*.ts",
+    ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules"]
 }
