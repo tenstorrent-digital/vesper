@@ -7,9 +7,16 @@ export function getMetadata({
 }: {
   title?: string;
   description?: string;
-  /** The path to the page, without the preceding slash, eg. `"components/admonition"` */
+  /** The path to the page, with the preceding slash, eg. `"/components/admonition"` */
   path: string;
 }): Metadata {
+  // Throw so this fails when metadata paths are configured incorrectly at build time
+  if (!path.startsWith("/")) {
+    throw new Error(
+      `paths passed to getMetadata must start with a slash. Received: "${path}"`,
+    );
+  }
+
   return {
     title,
     description,
@@ -18,7 +25,7 @@ export function getMetadata({
       description,
       type: "website",
       siteName: "Vesper",
-      url: `https://vesper.tenstorrent.com/${path}`,
+      url: `https://vesper.tenstorrent.com${path}`,
     },
   };
 }
