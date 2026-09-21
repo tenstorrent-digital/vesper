@@ -34,3 +34,10 @@ export const STORYBOOK_URL =
   process.env.NODE_ENV === "development"
     ? `http://localhost:${STORYBOOK_PORT}`
     : `${BASE_URL}/storybook`;
+
+/**
+ * Short summary of the project. This exists as a constant so the the homepage
+ * copy in `src/app/page.tsx` stays in sync with what gets served at `/llms.txt`
+ */
+export const VESPER_SUMMARY =
+  "Vesper is Tenstorrent's design system for the web: a React component library built on a shared set of design tokens, with light and dark themes, an icon set, and first-class Tailwind support.";

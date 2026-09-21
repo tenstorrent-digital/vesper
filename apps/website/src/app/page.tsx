@@ -5,6 +5,8 @@ import { Material } from "@tenstorrent/vesper/material";
 import { Snippet } from "@tenstorrent/vesper/snippet";
 import { Typography } from "@tenstorrent/vesper/typography";
 
+import { VESPER_SUMMARY } from "@/lib/constants";
+
 export const metadata: Metadata = {
   title: "Vesper",
   description: "Vesper is Tenstorrent's design system for React",
@@ -17,9 +19,7 @@ export default function Page() {
         Vesper
       </Typography>
       <Typography variant="copy-lg" className="whitespace-normal">
-        Vesper is Tenstorrent's design system for the web: a React component
-        library built on a shared set of design tokens, with light and dark
-        themes, an icon set, and first-class Tailwind support.
+        {VESPER_SUMMARY}
       </Typography>
       <Snippet>npm install @tenstorrent/vesper</Snippet>
       <div className="gap-vesper-4 grid sm:grid-cols-2">
