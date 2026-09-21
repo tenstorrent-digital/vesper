@@ -11,6 +11,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "noUncheckedIndexedAccess": true,
     /**
      * `src/lib/mdx/*.mts` and `scripts/*.mts` are run by node's type stripping,
      * which resolves imports the way node does: with the extension of the file
