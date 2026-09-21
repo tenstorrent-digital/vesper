@@ -45,6 +45,28 @@ const nextConfig: NextConfig = {
 
   skipTrailingSlashRedirect: true,
 
+  async headers() {
+    return [
+      /**
+       * advertises the agent-facing resources on every response, so an agent
+       * that lands on any URL can find them without knowing where to look
+       *
+       * @see [`/llms.txt`](apps/website/src/app/llms.txt/route.ts)
+       * @see [`/llms-full.txt`](apps/website/src/app/llms-full.txt/route.ts)
+       */
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Link",
+            value: `</llms.txt>; rel="llms-txt", </llms-full.txt>; rel="llms-full-txt"`,
+          },
+          { key: "X-Llms-Txt", value: "/llms.txt" },
+        ],
+      },
+    ];
+  },
+
   async rewrites() {
     return [
       /**
@@ -52,6 +74,14 @@ const nextConfig: NextConfig = {
        * @see [`src/app/raw/[...doc]/route.ts`](apps/website/src/app/raw/[...doc]/route.ts)
        */
       { source: "/:doc+.md", destination: "/raw/:doc+" },
+
+      /**
+       * mirrors `/llms.txt` under `/.well-known/` for agents that look there
+       * first, per the `.well-known` URI convention (RFC 8615)
+       *
+       * @see [`/llms.txt`](apps/website/src/app/llms.txt/route.ts)
+       */
+      { source: "/.well-known/llms.txt", destination: "/llms.txt" },
     ];
   },
 
