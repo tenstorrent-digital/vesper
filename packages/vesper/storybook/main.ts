@@ -31,7 +31,7 @@ const config: StorybookConfig = {
      *
      * 1. typescript v7.x adds the API that `react-docgen-typescript` needs to support v7
      * 2. `react-docgen-typescript` supports typescript v7 natively
-     * 3. storybook (and it's bundled dependencies) support typescript v7
+     * 3. storybook (and its bundled dependencies) support typescript v7
      *
      * we can remove the alias and just use the typescript v7 package directly
      * with `"typescript"` in our package.json
