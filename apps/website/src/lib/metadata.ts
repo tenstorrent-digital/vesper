@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { BASE_URL } from "./constants";
+
 export function getMetadata({
   title,
   description,
@@ -17,15 +19,33 @@ export function getMetadata({
     );
   }
 
-  return {
-    title,
-    description,
+  const metadata: Metadata = {
+    metadataBase: new URL(BASE_URL),
     openGraph: {
-      title,
-      description,
       type: "website",
       siteName: "Vesper",
-      url: `https://vesper.tenstorrent.com${path}`,
+      url: new URL(`${BASE_URL}${path}`),
+      images: [
+        {
+          url: "/opengraph-image",
+          width: 1200,
+          height: 630,
+          alt: "Vesper",
+          type: "image/png",
+        },
+      ],
     },
   };
+
+  if (title) {
+    metadata.title = title;
+    metadata.openGraph!.title = title;
+  }
+
+  if (description) {
+    metadata.description = description;
+    metadata.openGraph!.description = description;
+  }
+
+  return metadata;
 }
