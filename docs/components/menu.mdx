@@ -57,8 +57,6 @@ export default function MenuDemo() {
 | `style`       | `"default" \| "danger" \| "locked" \| "selected" \| "disabled"` | The visual and behavioral style of the menu item.                 | `"default"` |
 | `onSelect`    | `() => void`                                                    | Callback fired when the menu item is selected. **Required.**      | —           |
 
-Use a `Menu` for a list of actions a user can take, such as the overflow actions of a row or a card. When the user is picking a value rather than performing an action, reach for [the `Select` component](./select.mdx), or [the `Combobox` component](./combobox.mdx) if the list is long enough to warrant searching it. When one action is common enough that it deserves a button of its own, reach for [the `SplitButton` component](./split-button.mdx), which pairs a primary action with a menu of related ones.
-
 ## Examples
 
 ### Basic usage
@@ -105,37 +103,11 @@ export default function BasicMenu() {
 }
 ```
 
-Clicking the trigger opens the menu, and choosing an item fires its `onSelect` and closes the menu again. A `Menu` is also fully keyboard operable: `Enter` or `Space` opens it from the trigger, the arrow keys move between items, typing jumps to the item whose `text` matches, and `Escape` closes the menu and returns focus to the trigger.
-
-Any element that can be focused and receive a ref works as a trigger, which makes an [Icon Button](./icon-button.mdx) a natural fit for overflow menus:
-
-```tsx demo
-import { IconButton } from "@tenstorrent/vesper/icon-button";
-import { Ellipses } from "@tenstorrent/vesper/icons";
-import { Menu } from "@tenstorrent/vesper/menu";
-
-export default function IconTriggerMenu() {
-  return (
-    <Menu
-      items={[
-        { text: "Share", onSelect: () => {} },
-        { text: "Move to folder", onSelect: () => {} },
-        { text: "Archive", onSelect: () => {} },
-      ]}
-    >
-      <IconButton
-        aria-label="More actions"
-        variant="ghost"
-        icon={<Ellipses />}
-      />
-    </Menu>
-  );
-}
-```
+Clicking the trigger opens the menu, and choosing an item fires its `onSelect` callback function and closes the menu. Any element that can be focused and receive a ref works as a trigger.
 
 ### Describing items
 
-Each item can render an `icon` to the left of its label, and a `description` underneath it for the items whose outcome is not obvious from their label alone:
+Each item can render an `icon` to the left of its label, and a `description` underneath it for the items whose outcome is not obvious from their label alone. Descriptions are optional, and can be mixed with items that only have a label:
 
 ```tsx demo
 import { IconButton } from "@tenstorrent/vesper/icon-button";
@@ -175,8 +147,6 @@ export default function DescriptiveMenu() {
   );
 }
 ```
-
-Descriptions are optional, and can be mixed with items that only have a label. Keep them to a single short sentence: the menu does not grow to fit its content, so anything longer wraps onto several lines.
 
 ### Item styles
 
@@ -225,11 +195,11 @@ export default function MenuItemStyles() {
 
 > [!NOTE]
 >
-> `"locked"` and `"disabled"` items cannot be activated: their `onSelect` never fires, and the menu stays open when one of them is clicked. They remain reachable with the keyboard, so assistive technology can still announce them and their state. `onSelect` is required for them all the same, since the same item usually becomes selectable again as the user's context changes.
+> `"locked"` and `"disabled"` items cannot be activated: their `onSelect` never fires, and the menu stays open when one of them is clicked. They remain reachable with the keyboard, so assistive technology can still announce them and their state.
 
 ### Setting the width
 
-A menu is `200px` wide by default. Pass `width` to change that, which is useful when items carry descriptions or unusually long labels. This value scales with the base rem size:
+A menu is `200px` wide by default. Pass a `number` to the `width` prop to render it with a different width. The value passed scales with the base rem size:
 
 ```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
@@ -242,14 +212,9 @@ const ITEMS = [
 
 export default function MenuWidths() {
   return (
-    <div style={{ display: "flex", gap: "var(--vesper-spacing-4)" }}>
-      <Menu items={ITEMS}>
-        <Button variant="subtle">Default width</Button>
-      </Menu>
-      <Menu width={320} items={ITEMS}>
-        <Button variant="subtle">320px wide</Button>
-      </Menu>
-    </div>
+    <Menu width={320} items={ITEMS}>
+      <Button variant="subtle">320px width menu</Button>
+    </Menu>
   );
 }
 ```
@@ -265,6 +230,8 @@ The `sideOffset` prop determines how far away in pixels the menu is from its tri
 The `align` prop determines which end of the `side` to align the menu to. Possible values are `"start"`, `"center"`, and `"end"`. The default value is `"start"`.
 
 The `alignOffset` prop adjusts how many pixels the menu is offset from its alignment. The default value is `0`. This value scales with the base rem size.
+
+These props express a preference rather than a guarantee: a menu that would otherwise overflow the viewport is flipped and shifted to stay on screen.
 
 The demo below shows how the `side` and `align` props interact with each other:
 
@@ -322,8 +289,8 @@ export default function MenuPositionPlayground() {
         <Button
           variant="contrast"
           style={{
-            marginTop: "var(--vesper-spacing-16)",
-            marginBottom: "var(--vesper-spacing-16)",
+            marginTop: "var(--vesper-spacing-20)",
+            marginBottom: "var(--vesper-spacing-20)",
           }}
         >
           Open menu
@@ -333,8 +300,6 @@ export default function MenuPositionPlayground() {
   );
 }
 ```
-
-These props express a preference rather than a guarantee: a menu that would otherwise overflow the viewport is flipped and shifted to stay on screen.
 
 ### Controlling the open state
 
@@ -359,7 +324,7 @@ export default function DefaultOpenMenu() {
 }
 ```
 
-If you need to own the open state, use the `open` and `onOpenChange` props together. `onOpenChange` fires with the state the menu wants to move to, which keeps the usual interactions (clicking the trigger, selecting an item, pressing `Escape`) working while you stay in control:
+If you need to own the open state, use the `open` and `onOpenChange` props together. `onOpenChange` fires with the menu's next open state value:
 
 ```tsx demo
 import { useState } from "react";
@@ -403,7 +368,7 @@ export default function ControlledMenu() {
 
 ### Anchoring the menu elsewhere
 
-A menu is positioned against its trigger by default. Pass `anchor` an element (or a ref to one) to position it against something else, which is handy when the trigger is part of a larger control that the menu should line up with:
+A menu is positioned against its trigger by default. Pass the `anchor` prop an element or an element ref to position it against something else. The menu below is aligned to the end of the card rather its trigger:
 
 ```tsx demo
 import { useRef } from "react";
@@ -426,8 +391,6 @@ export default function AnchoredMenu() {
         justifyContent: "space-between",
         gap: "var(--vesper-spacing-4)",
         padding: "var(--vesper-spacing-4)",
-        width: "100%",
-        boxSizing: "border-box",
       }}
     >
       <Typography variant="label-md-bold">Inference cluster</Typography>
@@ -451,11 +414,9 @@ export default function AnchoredMenu() {
 }
 ```
 
-The menu above is aligned to the end of the card rather than the end of the small icon button that opens it. This is exactly how [the `SplitButton` component](./split-button.mdx) positions its own menu.
-
 ### Rendering the menu in another container
 
-A menu renders in a portal, attached to `document.body`, so it is never clipped by the overflow of the elements it sits in. Pass `container` an element, a shadow root, or a ref to either when it needs to be portalled somewhere else, eg. into a shadow root that holds your app's styles:
+A menu renders in a portal, attached to `document.body`, so it is never clipped by the overflow of the elements it sits in. Pass the `container` prop an element, a shadow root, or a ref to either when it needs to be portalled somewhere else:
 
 ```tsx
 import { useRef } from "react";
