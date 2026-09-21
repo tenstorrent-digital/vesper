@@ -96,7 +96,7 @@ export default function BasicSplitButton() {
 }
 ```
 
-The two halves are independent controls: clicking the action button fires `onClick` without ever opening the menu, and clicking the caret button opens the menu without firing `onClick`. Both are reachable by keyboard, and the caret flips from pointing down to pointing up while the menu is open.
+Clicking the action button fires `onClick` without ever opening the menu, and clicking the caret button opens the menu without firing `onClick`.
 
 ### Menu items
 
@@ -141,10 +141,10 @@ export default function SplitButtonMenuItems() {
 
 A `SplitButton` can be rendered in one of two variants, which is applied to both of its buttons at once:
 
-| Variant      | When to use                                                                                                                              |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `"contrast"` | Default variant. Use when the action needs strong visual contrast against its surrounding content, such as the main action of a toolbar. |
-| `"subtle"`   | Use when the action should sit alongside surrounding content without dominating it, such as a row-level action in a table.               |
+| Variant      | When to use                                                                                                                                             |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `"contrast"` | Default variant. Use when the action needs strong visual contrast against its surrounding content, such as the main action of a toolbar.                |
+| `"subtle"`   | Use when the action should sit alongside surrounding content without dominating it, such as a row-level action in a table. This is the default variant. |
 
 ```tsx demo
 import { SplitButton } from "@tenstorrent/vesper/split-button";
@@ -170,7 +170,7 @@ export default function SplitButtonVariants() {
 
 ### Different sizes
 
-A `SplitButton` can be rendered in one of three sizes; `"sm"`, `"md"`, or `"lg"`. The default size is `"md"`. Both buttons are sized together, so the caret button always matches the height of the action button beside it.
+A `SplitButton` can be rendered in one of three sizes; `"sm"`, `"md"`, or `"lg"`. The default size is `"md"`.
 
 ```tsx demo
 import { SplitButton } from "@tenstorrent/vesper/split-button";
@@ -185,7 +185,7 @@ export default function SplitButtonSizes() {
     <div
       style={{
         display: "flex",
-        alignItems: "center",
+        flexDirection: "column",
         gap: "var(--vesper-spacing-4)",
       }}
     >
@@ -217,7 +217,13 @@ const MENU_ITEMS = [
 
 export default function SplitButtonMenuPlacement() {
   return (
-    <div style={{ display: "flex", gap: "var(--vesper-spacing-4)" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
       <SplitButton menuItems={MENU_ITEMS}>Aligned to start</SplitButton>
       <SplitButton menuAlign="end" menuItems={MENU_ITEMS}>
         Aligned to end
@@ -255,9 +261,10 @@ export default function ControlledSplitButtonMenu() {
       }}
     >
       <SplitButton
+        menuSide="top"
         menuOpen={menuOpen}
         onMenuOpenChange={setMenuOpen}
-        onClick={() => setMenuOpen(true)}
+        onClick={() => {}}
         menuItems={[
           { text: "Save as draft", onSelect: () => {} },
           { text: "Save and publish", onSelect: () => {} },
@@ -273,11 +280,9 @@ export default function ControlledSplitButtonMenu() {
 }
 ```
 
-The action button above opens the menu too, which is a useful pattern when the primary action needs confirmation before it runs.
-
 ### Labelling the menu toggle
 
-The caret button has no visible text, so it is labelled `"Toggle menu"` for assistive technology by default. Pass `menuButtonAriaLabel` to describe what the menu contains when that generic label is not clear enough:
+The caret button has no visible text, so it is labelled `"Toggle menu"` for assistive technology by default. Pass `menuButtonAriaLabel` to override the default arial label:
 
 ```tsx demo
 import { SplitButton } from "@tenstorrent/vesper/split-button";
@@ -301,7 +306,7 @@ export default function LabelledSplitButton() {
 
 ### Disabling a split button
 
-Pass `disabled` to disable both halves at once. The action button stops firing `onClick`, and the caret button no longer opens its menu:
+Pass `disabled` to disable both the action button and the caret button at the same time. The action button stops firing `onClick`, and the caret button no longer opens its menu:
 
 ```tsx demo
 import { SplitButton } from "@tenstorrent/vesper/split-button";
