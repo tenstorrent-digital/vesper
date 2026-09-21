@@ -37,6 +37,8 @@ export type TagProps<E extends ElementType = "div"> = Polymorphic<
     disabled?: boolean;
     /** An optional icon element rendered to the left of the tag text. */
     icon?: ReactNode;
+    /** The tag text. Rendered inside the tag's `Typography` element. */
+    children?: ReactNode;
   },
   E
 >;
@@ -53,6 +55,7 @@ export type TagProps<E extends ElementType = "div"> = Polymorphic<
  * @param {TagVariant} [props.variant] - (optional) The color variant of the tag. @default default
  * @param {boolean} [props.disabled] - (optional) Renders the tag in a disabled state
  * @param {ReactNode} [props.icon] - (optional) An icon element rendered to the left of the tag text
+ * @param {ReactNode} [props.children] - (optional) The tag text, rendered inside the tag's `Typography` element
  * @param {React.ElementType} [props.as] - (optional) Element type to render. @default div
  *
  * You may also pass any additional props to the underlying element
