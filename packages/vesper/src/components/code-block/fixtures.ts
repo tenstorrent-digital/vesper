@@ -281,7 +281,7 @@ export const SAMPLE_CODE_JSON = `{
   },
   "license": "MIT",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=24.13.1"
   },
   "config": {
     "port": 5173,
