@@ -1,13 +1,22 @@
+import type { Metadata } from "next";
+
 import { Toasts } from "@tenstorrent/vesper/toast";
 
 import { Nav } from "@/components/nav";
 import { Sidebar } from "@/components/sidebar";
 
 import { getSidebarData } from "@/lib/filesystem/docs";
+import { getMetadata } from "@/lib/metadata";
 import { ibm_plex_mono, inter_tight } from "@/lib/style/fonts";
 import { cn } from "@/lib/tailwind/cn";
 
 import "@/lib/style/css/globals.css";
+
+export const metadata: Metadata = getMetadata({
+  title: "Vesper",
+  description: "Vesper is Tenstorrent's design system for React",
+  path: "/",
+});
 
 export default function RootLayout({
   children,
