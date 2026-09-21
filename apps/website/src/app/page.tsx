@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { Code } from "@tenstorrent/vesper/code";
 import { Material } from "@tenstorrent/vesper/material";
 import { Snippet } from "@tenstorrent/vesper/snippet";
 import { Typography } from "@tenstorrent/vesper/typography";
@@ -82,6 +83,22 @@ export default function Page() {
           </Typography>
         </Material>
       </div>
+      <Typography as="h2" variant="heading-xl">
+        Building with an agent?
+      </Typography>
+      <Typography variant="copy-md" className="whitespace-normal">
+        Every page of this documentation is also published as plain Markdown,
+        alongside <Code>/llms.txt</Code> and <Code>/llms-full.txt</Code>, so a
+        coding agent can work from Vesper&apos;s real component APIs instead of
+        guessing at them. See{" "}
+        <Link
+          href="/agents"
+          className="underline decoration-from-font underline-offset-[calc(1rem_/_12)]"
+        >
+          resources for agents
+        </Link>
+        .
+      </Typography>
     </main>
   );
 }
