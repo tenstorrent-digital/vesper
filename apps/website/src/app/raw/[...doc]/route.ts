@@ -1,5 +1,4 @@
 import { docs, getDoc } from "@/lib/filesystem/docs";
-import { stripFrontmatter } from "@/lib/filesystem/docs/frontmatter";
 
 export const dynamic = "force-static";
 
