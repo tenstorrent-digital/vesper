@@ -46,7 +46,7 @@
     "prettier": "3.9.5"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=24.13.1"
   },
   "packageManager": "yarn@1.22.22",
   "workspaces": [
