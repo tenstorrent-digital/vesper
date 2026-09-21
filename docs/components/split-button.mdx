@@ -36,7 +36,7 @@ export default function SplitButtonDemo() {
 | `menuItems`           | `MenuItemProps[]`                        | The list of menu items rendered in the dropdown. **Required.**              | —               |
 | `onClick`             | `MouseEventHandler<HTMLButtonElement>`   | Callback fired when the primary action button is clicked.                   | —               |
 | `size`                | `"sm" \| "md" \| "lg"`                   | The size of both the action button and the menu toggle.                     | `"md"`          |
-| `variant`             | `"subtle" \| "contrast"`                 | The visual style variant applied to both buttons.                           | `"contrast"`    |
+| `variant`             | `"subtle" \| "contrast"`                 | The visual style variant applied to both buttons.                           | `"subtle"`      |
 | `disabled`            | `boolean`                                | When `true`, disables both buttons.                                         | `false`         |
 | `menuButtonAriaLabel` | `string`                                 | An accessible `aria-label` for the menu toggle button.                      | `"Toggle menu"` |
 | `menuWidth`           | `number`                                 | The width of the dropdown menu in pixels. Scales with the base rem size.    | `200`           |
@@ -141,10 +141,10 @@ export default function SplitButtonMenuItems() {
 
 A `SplitButton` can be rendered in one of two variants, which is applied to both of its buttons at once:
 
-| Variant      | When to use                                                                                                                                             |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `"contrast"` | Default variant. Use when the action needs strong visual contrast against its surrounding content, such as the main action of a toolbar.                |
-| `"subtle"`   | Use when the action should sit alongside surrounding content without dominating it, such as a row-level action in a table. This is the default variant. |
+| Variant      | When to use                                                                                                                                 |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `"contrast"` | Use when the action needs strong visual contrast against its surrounding content, such as the main action of a toolbar.                     |
+| `"subtle"`   | Default variant. Use when the action should sit alongside surrounding content without dominating it, such as a row-level action in a table. |
 
 ```tsx demo
 import { SplitButton } from "@tenstorrent/vesper/split-button";
@@ -301,7 +301,7 @@ export default function ControlledSplitButtonMenu() {
 
 ### Labelling the menu toggle
 
-The caret button has no visible text, so it is labelled `"Toggle menu"` for assistive technology by default. Pass `menuButtonAriaLabel` to override the default arial label:
+The caret button has no visible text, so it is labelled `"Toggle menu"` for assistive technology by default. Pass `menuButtonAriaLabel` to override the default ARIA label:
 
 ```tsx demo
 import { SplitButton } from "@tenstorrent/vesper/split-button";
