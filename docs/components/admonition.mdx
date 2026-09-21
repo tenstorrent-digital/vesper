@@ -21,7 +21,7 @@ export default function AdmonitionDemo() {
 
 | Prop       | Type                                                          | Description                                                                       | Default    |
 | ---------- | ------------------------------------------------------------- | --------------------------------------------------------------------------------- | ---------- |
-| `size`     | `"sm" \| "md"`                                                | The size of the admonition. Affects padding and typography.                       | `"sm"`     |
+| `size`     | `"sm" \| "md"`                                                | The size of the admonition. Affects padding and typography.                       | `"md"`     |
 | `variant`  | `"info" \| "success" \| "warning" \| "danger" \| "secondary"` | The visual variant, which determines color scheme and icon.                       | `"info"`   |
 | `subtle`   | `boolean`                                                     | When `true`, renders the admonition with a more subdued appearance.               | `false`    |
 | `cta`      | `ButtonProps`                                                 | Props passed to an optional call-to-action button rendered alongside the content. | —          |
@@ -34,7 +34,7 @@ You may also pass additional props to the underlying element. For example, you m
 
 ### Info variant (default)
 
-An `Admonition` renders with the `info` variant at `sm` size when no `variant` or `size` prop is specified:
+An `Admonition` renders with the `info` variant at `md` size when no `variant` or `size` prop is specified:
 
 ```tsx demo
 import { Admonition } from "@tenstorrent/vesper/admonition";
@@ -44,16 +44,16 @@ export default function BasicAdmonition() {
 }
 ```
 
-### Warning variant, `md` size
+### Warning variant, `sm` size
 
-Use the `warning` variant to flag content that needs attention, and `size="md"` to give it more padding and larger typography:
+Use the `warning` variant to flag content that needs attention, and `size="sm"` to give it less padding and smaller typography:
 
 ```tsx demo
 import { Admonition } from "@tenstorrent/vesper/admonition";
 
 export default function WarningAdmonition() {
   return (
-    <Admonition variant="warning" size="md">
+    <Admonition variant="warning" size="sm">
       Please review before continuing.
     </Admonition>
   );

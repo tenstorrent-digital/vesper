@@ -105,7 +105,7 @@ export interface SplitButtonProps extends Omit<
 export function SplitButton(props: SplitButtonProps) {
   const {
     size = "md",
-    variant = "contrast",
+    variant = "subtle",
     children,
     className,
     onClick,

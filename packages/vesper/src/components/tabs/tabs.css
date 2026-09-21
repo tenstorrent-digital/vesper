@@ -73,7 +73,7 @@
     background: var(--vesper-tint-neutral-300);
     color: var(--vesper-text-primary);
     &:hover,
-    &[data-state="active"] {
+    &[data-active] {
       background: var(--vesper-background-inverse-primary);
       color: var(--vesper-text-inverse-primary);
       @media (forced-colors: active) {
