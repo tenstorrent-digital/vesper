@@ -203,6 +203,27 @@ export default function SplitButtonSizes() {
 }
 ```
 
+### Setting the menu width
+
+The dropdown is `200px` wide by default. Pass `menuWidth` when that is too narrow for its items, such as when they carry descriptions or unusually long labels. Like the menu offsets, this value scales with the base rem size:
+
+```tsx demo
+import { SplitButton } from "@tenstorrent/vesper/split-button";
+
+const MENU_ITEMS = [
+  { text: "Export as CSV", onSelect: () => {} },
+  { text: "Export as JSON", onSelect: () => {} },
+];
+
+export default function SplitButtonMenuWidth() {
+  return (
+    <SplitButton variant="subtle" menuWidth={320} menuItems={MENU_ITEMS}>
+      320px width menu
+    </SplitButton>
+  );
+}
+```
+
 ### Positioning the menu
 
 The dropdown is positioned against the split button as a whole, not just the caret button that opens it, so a menu aligned to `"end"` lines up with the right edge of the action button. The `menuSide`, `menuSideOffset`, `menuAlign`, and `menuAlignOffset` props map onto [the `Menu` component](./menu.mdx)'s `side`, `sideOffset`, `align`, and `alignOffset` props:
@@ -235,8 +256,6 @@ export default function SplitButtonMenuPlacement() {
   );
 }
 ```
-
-Pass `menuWidth` when the default `200px` dropdown is too narrow for its items. Like the offsets, this value scales with the base rem size.
 
 ### Controlling the menu's open state
 
