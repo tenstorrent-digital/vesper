@@ -24,7 +24,11 @@ export async function generateMetadata(
   const { doc } = await props.params;
   const { title, description } = getDoc(doc)?.frontmatter ?? {};
 
-  return getMetadata({ title, description, path: `/${doc.join("/")}` });
+  return getMetadata({
+    title: `Vesper | ${title}`,
+    description,
+    path: `/${doc.join("/")}`,
+  });
 }
 
 export default async function Page(props: PageProps<"/[...doc]">) {
