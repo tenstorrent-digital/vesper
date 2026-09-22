@@ -1,13 +1,30 @@
+import type { Metadata } from "next";
+
 import { Toasts } from "@tenstorrent/vesper/toast";
 
 import { Nav } from "@/components/nav";
 import { Sidebar } from "@/components/sidebar";
 
 import { getSidebarData } from "@/lib/filesystem/docs";
+import {
+  getMetadata,
+  METADATA_DESCRIPTION_DEFAULT,
+  METADATA_TITLE_DEFAULT,
+  METADATA_TITLE_TEMPLATE,
+} from "@/lib/metadata";
 import { ibm_plex_mono, inter_tight } from "@/lib/style/fonts";
 import { cn } from "@/lib/tailwind/cn";
 
 import "@/lib/style/css/globals.css";
+
+export const metadata: Metadata = getMetadata({
+  title: {
+    template: METADATA_TITLE_TEMPLATE,
+    default: METADATA_TITLE_DEFAULT,
+  },
+  description: METADATA_DESCRIPTION_DEFAULT,
+  path: "/",
+});
 
 export default function RootLayout({
   children,

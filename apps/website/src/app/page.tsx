@@ -1,14 +1,8 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Material } from "@tenstorrent/vesper/material";
 import { Snippet } from "@tenstorrent/vesper/snippet";
 import { Typography } from "@tenstorrent/vesper/typography";
-
-export const metadata: Metadata = {
-  title: "Vesper",
-  description: "Vesper is Tenstorrent's design system for React",
-};
 
 export default function Page() {
   return (
