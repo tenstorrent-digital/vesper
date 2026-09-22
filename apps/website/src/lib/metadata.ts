@@ -2,16 +2,22 @@ import type { Metadata } from "next";
 
 import { BASE_URL } from "./constants";
 
+interface GetMetadataParams extends Omit<
+  Metadata,
+  "title" | "description" | "openGraph" | "metadataBase"
+  > {
+  title?: Metadata["title"];
+  description?: string;
+  /** The path to the page, with the preceding slash, eg. `"/components/admonition"` */
+  path: string;
+}
+
 export function getMetadata({
   title,
   description,
   path,
-}: {
-  title?: Metadata['title'];
-  description?: string;
-  /** The path to the page, with the preceding slash, eg. `"/components/admonition"` */
-  path: string;
-}): Metadata {
+  ...extra
+}: GetMetadataParams): Metadata {
   // Throw so this fails when metadata paths are configured incorrectly at build time
   if (!path.startsWith("/")) {
     throw new Error(
@@ -33,6 +39,7 @@ export function getMetadata({
           alt: "Vesper",
           type: "image/png",
         },
+
       ],
     },
   };
@@ -47,11 +54,12 @@ export function getMetadata({
     metadata.openGraph!.description = description;
   }
 
-  return metadata;
+  return { ...extra, ...metadata };
 }
 
-export const METADATA_TITLE_DEFAULT = "Vesper"
+export const METADATA_TITLE_DEFAULT = "Vesper";
 
-export const METADATA_DESCRIPTION_DEFAULT = "Vesper is Tenstorrent's design system for React"
+export const METADATA_DESCRIPTION_DEFAULT =
+  "Vesper is Tenstorrent's design system for React";
 
-export const METADATA_TITLE_TEMPLATE = "Vesper | %s"
+export const METADATA_TITLE_TEMPLATE = "Vesper | %s";
