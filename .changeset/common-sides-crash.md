@@ -2,4 +2,4 @@
 "@tenstorrent/vesper": patch
 ---
 
-decremenet minimum supported node version
+decrement minimum supported node version
