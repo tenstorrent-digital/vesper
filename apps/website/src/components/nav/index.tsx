@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { Button } from "@tenstorrent/vesper/button";
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import { Menu, Tenstorrent } from "@tenstorrent/vesper/icons";
 import { Typography } from "@tenstorrent/vesper/typography";
@@ -25,14 +26,26 @@ export function Nav() {
             as={Link}
             href="/"
             variant="heading-sm"
+            aria-label="Go to Vesper documentation homepage"
             className="gap-vesper-2 pb-vesper-half flex h-full w-fit items-center"
           >
             <Tenstorrent width={24} color="var(--vesper-teal-500)" />
-            Vesper
+            <span className="hidden sm:inline">Vesper</span>
           </Typography>
         </div>
         <Breadcrumbs pageTitles={pageTitles} />
-        <PlaygroundLink />
+        <div className="gap-vesper-2 flex">
+          <PlaygroundLink />
+          <Button
+            as="a"
+            target="_blank"
+            href="/llms.txt"
+            variant="tertiary"
+            size="sm"
+          >
+            llms.txt
+          </Button>
+        </div>
         <IconButton
           aria-label="Scroll to documentation navigation"
           size="sm"
