@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-import { Button } from "@tenstorrent/vesper/button";
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import { Menu, Tenstorrent } from "@tenstorrent/vesper/icons";
 import { Typography } from "@tenstorrent/vesper/typography";
 
+import { BASE_URL } from "@/lib/constants";
 import { getPageTitles } from "@/lib/filesystem/docs";
 
 import { Breadcrumbs } from "./breadcrumbs";
@@ -30,22 +30,11 @@ export function Nav() {
             className="gap-vesper-2 pb-vesper-half flex h-full w-fit items-center"
           >
             <Tenstorrent width={24} color="var(--vesper-teal-500)" />
-            <span className="hidden sm:inline">Vesper</span>
+            Vesper
           </Typography>
         </div>
         <Breadcrumbs pageTitles={pageTitles} />
-        <div className="gap-vesper-2 flex">
-          <PlaygroundLink />
-          <Button
-            as="a"
-            target="_blank"
-            href="/llms.txt"
-            variant="tertiary"
-            size="sm"
-          >
-            llms.txt
-          </Button>
-        </div>
+        <PlaygroundLink />
         <IconButton
           aria-label="Scroll to documentation navigation"
           size="sm"
@@ -55,6 +44,17 @@ export function Nav() {
           href="#sidebar"
           className="ml-vesper-2 flex md:hidden"
         />
+        <span className="sr-only">
+          Are you an agent? Check out{" "}
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            href={BASE_URL + "/llms.txt"}
+          >
+            llms.txt
+          </Link>{" "}
+          for agent-friendly docs
+        </span>
       </div>
     </nav>
   );
