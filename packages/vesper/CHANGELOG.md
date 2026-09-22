@@ -1,5 +1,24 @@
 # @tenstorrent/vesper
 
+## 0.3.0
+
+### Minor Changes
+
+- a1ddb25: Update `SplitButton` default variant to be `"subtle"` instead of `"contrast"`
+- a1ddb25: Update `Admonition` default size to be `"md"` instead of `"sm"`
+- 75fa75d: Allow `Sheet` content to be rendered inside of a `<form>` by exposing a `form` prop in the same way the `Modal` component does
+
+### Patch Changes
+
+- 041cc5d: decrement minimum supported node version
+- 041cc5d: Fix: Declare optional `children` prop for `Badge` and `Tag`
+- 5207d64: Bug fix: ensure `<Toasts />` renders with max z-index so its content gets placed above everything else in its stacking context
+- 6f98fb5: Update the default variant for `Code` to inherit its text color
+- a594d7d: Update the styling of `admonition.tsx` to match updated designs in Figma
+- ec340f7: Adjust styling in `badge`, `button`, and `tag` components to meet wcag2aa a11y requirements
+- 6f98fb5: Update `bg-vesper-dot-pattern-*` tailwind utilities so the individual CSS properties they are composed of can be overridden by other tailwind utility classes
+- df39ec0: Fix a bug where `<Tabs>` was not correctly rendering the active tab when `variant="secondary"`
+
 ## 0.2.0
 
 Post-public-pre-internal-launch jitters settled.
