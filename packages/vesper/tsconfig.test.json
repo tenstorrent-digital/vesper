@@ -1,8 +1,17 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "./tsconfig.build.json",
   "include": ["src", "vitest.setup.ts", "vitest.shims.d.ts"],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
+    // the build config sets `rootDir: ./src`, but this project also type-checks
+    // setup/shim files that live at the package root
+    "rootDir": ".",
+    // (type-check only)
+    "noEmit": true,
+    // for side-effect import `@/styles/test.css`
+    // see also: `src/styles/test.d.css.ts`
+    "allowArbitraryExtensions": true,
     "incremental": true,
     "composite": true
   }

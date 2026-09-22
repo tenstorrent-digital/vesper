@@ -4,7 +4,7 @@ This monorepo houses the project code for Tenstorrent's software design system l
 
 ## Prerequisites
 
-- This monorepo requires using `node >= 22`. If you are using node version manager, you can run `nvm use` to match the version specified in [.nvmrc](.nvmrc).
+- This monorepo requires using `node` v24, with a minimum version specified in [.nvmrc](.nvmrc) and [package.json](package.json). If you are using node version manager, you can run `nvm use` to match the version specified in [.nvmrc](.nvmrc).
 - Our package manager of choice is `yarn` classic (1.x) to handle dependencies and workspace commands across the monorepo.
 
 ## Installing
