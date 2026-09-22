@@ -46,3 +46,6 @@ storybook-static
 # Agents (other)
 .pi/todos
 .playwright-cli
+
+# TypeScript
+*.tsbuildinfo
