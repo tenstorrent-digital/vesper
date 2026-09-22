@@ -9,6 +9,7 @@ import type { Metadata } from "next";
 
 import { docs, getDoc } from "@/lib/filesystem/docs";
 import { loadDoc } from "@/lib/filesystem/docs/load";
+import { getMetadata } from "@/lib/metadata";
 
 // 404 paths not found at build time
 export const dynamicParams = false;
@@ -23,7 +24,11 @@ export async function generateMetadata(
   const { doc } = await props.params;
   const { title, description } = getDoc(doc)?.frontmatter ?? {};
 
-  return { title, description };
+  return getMetadata({
+    title,
+    description,
+    path: `/${doc.join("/")}`,
+  });
 }
 
 export default async function Page(props: PageProps<"/[...doc]">) {
