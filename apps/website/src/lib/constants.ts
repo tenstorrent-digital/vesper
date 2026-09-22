@@ -36,7 +36,7 @@ export const STORYBOOK_URL =
     : `${BASE_URL}/storybook`;
 
 /**
- * Short summary of the project. This exists as a constant so the the homepage
+ * Short summary of the project. This exists as a constant so the homepage
  * copy in `src/app/page.tsx` stays in sync with what gets served at `/llms.txt`
  */
 export const VESPER_SUMMARY =
