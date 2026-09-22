@@ -38,7 +38,8 @@ const normalizeLinks = (markdown: string, slug: DocEntry["slug"]) =>
     const route = resolveDocUrl(url, slug);
     if (!route) return match;
 
-    return `](${getMarkdownUrl(route)}${title})`;
+    const titlePart = title ? ` "${title}"` : "";
+    return `](${getMarkdownUrl(route)}${titlePart})`;
   });
 
 /**
