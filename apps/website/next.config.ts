@@ -61,7 +61,6 @@ const nextConfig: NextConfig = {
             key: "Link",
             value: `</llms.txt>; rel="llms-txt", </llms-full.txt>; rel="llms-full-txt"`,
           },
-          { key: "X-Llms-Txt", value: "/llms.txt" },
         ],
       },
     ];
@@ -74,14 +73,6 @@ const nextConfig: NextConfig = {
        * @see [`src/app/raw/[...doc]/route.ts`](apps/website/src/app/raw/[...doc]/route.ts)
        */
       { source: "/:doc+.md", destination: "/raw/:doc+" },
-
-      /**
-       * mirrors `/llms.txt` under `/.well-known/` for agents that look there
-       * first, per the `.well-known` URI convention (RFC 8615)
-       *
-       * @see [`/llms.txt`](apps/website/src/app/llms.txt/route.ts)
-       */
-      { source: "/.well-known/llms.txt", destination: "/llms.txt" },
     ];
   },
 
