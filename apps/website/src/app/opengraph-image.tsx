@@ -25,7 +25,9 @@ export default async function OpenGraphImage() {
         alignItems: "center",
         justifyContent: "center",
         padding: PADDING,
+        // vesper-background-primary
         background: "#f8fcfb",
+        // vesper-teal-500
         color: "#32ABD2",
       }}
     >
