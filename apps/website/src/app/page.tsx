@@ -5,6 +5,8 @@ import { Material } from "@tenstorrent/vesper/material";
 import { Snippet } from "@tenstorrent/vesper/snippet";
 import { Typography } from "@tenstorrent/vesper/typography";
 
+import { VESPER_SUMMARY } from "@/lib/constants";
+
 export default function Page() {
   return (
     <main className="prose">
