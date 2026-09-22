@@ -45,27 +45,6 @@ const nextConfig: NextConfig = {
 
   skipTrailingSlashRedirect: true,
 
-  async headers() {
-    return [
-      /**
-       * advertises the agent-facing resources on every response, so an agent
-       * that lands on any URL can find them without knowing where to look
-       *
-       * @see [`/llms.txt`](apps/website/src/app/llms.txt/route.ts)
-       * @see [`/llms-full.txt`](apps/website/src/app/llms-full.txt/route.ts)
-       */
-      {
-        source: "/:path*",
-        headers: [
-          {
-            key: "Link",
-            value: `</llms.txt>; rel="llms-txt", </llms-full.txt>; rel="llms-full-txt"`,
-          },
-        ],
-      },
-    ];
-  },
-
   async rewrites() {
     return [
       /**
