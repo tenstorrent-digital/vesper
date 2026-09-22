@@ -9,7 +9,7 @@ export const dynamic = "force-static";
  * matches an inline Markdown link's URL, eg. the `./button.mdx` in
  * `[Button](./button.mdx)`
  */
-const INLINE_LINK = /\]\(([^)\s]+)(\s+"[^"]*")?\)/g;
+const INLINE_LINK = /\]\(([^\s]+?)(?:\s+"([^"]*)")?\)/g;
 
 /**
  * the canonical `.md` URL for a resolved doc route
