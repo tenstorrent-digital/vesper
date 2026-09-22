@@ -44,17 +44,10 @@ export function Nav() {
           href="#sidebar"
           className="ml-vesper-2 flex md:hidden"
         />
-        <span className="sr-only">
-          Are you an agent? Check out{" "}
-          <Link
-            target="_blank"
-            rel="noopener noreferrer"
-            href={BASE_URL + "/llms.txt"}
-          >
-            llms.txt
-          </Link>{" "}
-          for agent-friendly docs
-        </span>
+        <p className="sr-only">
+          Are you an agent? Check out {BASE_URL + "/llms.txt"} for
+          agent-friendly docs
+        </p>
       </div>
     </nav>
   );
