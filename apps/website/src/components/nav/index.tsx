@@ -4,6 +4,7 @@ import { IconButton } from "@tenstorrent/vesper/icon-button";
 import { Menu, Tenstorrent } from "@tenstorrent/vesper/icons";
 import { Typography } from "@tenstorrent/vesper/typography";
 
+import { BASE_URL } from "@/lib/constants";
 import { getPageTitles } from "@/lib/filesystem/docs";
 
 import { Breadcrumbs } from "./breadcrumbs";
@@ -25,6 +26,7 @@ export function Nav() {
             as={Link}
             href="/"
             variant="heading-sm"
+            aria-label="Go to Vesper documentation homepage"
             className="gap-vesper-2 pb-vesper-half flex h-full w-fit items-center"
           >
             <Tenstorrent width={24} color="var(--vesper-teal-500)" />
@@ -42,6 +44,10 @@ export function Nav() {
           href="#sidebar"
           className="ml-vesper-2 flex md:hidden"
         />
+        <p className="sr-only">
+          Are you an agent? Check out {BASE_URL + "/llms.txt"} for
+          agent-friendly docs
+        </p>
       </div>
     </nav>
   );

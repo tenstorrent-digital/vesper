@@ -7,6 +7,7 @@
 
 import type { Metadata } from "next";
 
+import { BASE_URL } from "@/lib/constants";
 import { docs, getDoc } from "@/lib/filesystem/docs";
 import { loadDoc } from "@/lib/filesystem/docs/load";
 import { getMetadata } from "@/lib/metadata";
@@ -24,10 +25,17 @@ export async function generateMetadata(
   const { doc } = await props.params;
   const { title, description } = getDoc(doc)?.frontmatter ?? {};
 
+  const path = `/${doc.join("/")}`;
+
   return getMetadata({
     title,
     description,
-    path: `/${doc.join("/")}`,
+    path,
+    alternates: {
+      types: {
+        "text/markdown": `${BASE_URL}${path}.md`,
+      },
+    },
   });
 }
 

@@ -54,7 +54,7 @@ const documentSlug = (filePath: string | undefined): DocumentSlug | null => {
 };
 
 /** only rewrite relative links that point at a document */
-const isRelativeDoc = (url: string): boolean =>
+export const isRelativeDoc = (url: string): boolean =>
   /^\.{1,2}\//.test(url) && /\.mdx?($|[#?])/.test(url);
 
 /**
@@ -63,7 +63,10 @@ const isRelativeDoc = (url: string): boolean =>
  * - `./theming.mdx` -> `/theming`
  * - `../components/button.mdx#props` -> `/components/button#props`
  */
-const resolveDocUrl = (url: string, slug: DocumentSlug): string | null => {
+export const resolveDocUrl = (
+  url: string,
+  slug: DocumentSlug,
+): string | null => {
   // split the url into path and hash/query (if any)
   const splitAt = url.search(/[#?]/);
   // url path is before the splitAt
