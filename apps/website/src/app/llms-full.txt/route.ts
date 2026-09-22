@@ -17,9 +17,12 @@ const INLINE_LINK = /\]\(([^)\s]+)(\s+"[^"]*")?\)/g;
  */
 const getMarkdownUrl = (route: string) => {
   const splitAt = route.search(/[#?]/);
-  const path = splitAt === -1 ? route : route.slice(0, splitAt);
+  const [path, suffix] =
+    splitAt === -1
+      ? [route, ""]
+      : [route.slice(0, splitAt), route.slice(splitAt)];
 
-  return `${BASE_URL}${path}.md`;
+  return `${BASE_URL}${path}.md${suffix}`;
 };
 
 /**
