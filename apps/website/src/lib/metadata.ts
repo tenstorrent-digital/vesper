@@ -7,7 +7,7 @@ export function getMetadata({
   description,
   path,
 }: {
-  title?: string;
+  title?: Metadata['title'];
   description?: string;
   /** The path to the page, with the preceding slash, eg. `"/components/admonition"` */
   path: string;
@@ -49,3 +49,9 @@ export function getMetadata({
 
   return metadata;
 }
+
+export const METADATA_TITLE_DEFAULT = "Vesper"
+
+export const METADATA_DESCRIPTION_DEFAULT = "Vesper is Tenstorrent's design system for React"
+
+export const METADATA_TITLE_TEMPLATE = "Vesper | %s"

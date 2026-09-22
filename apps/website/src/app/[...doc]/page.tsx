@@ -25,7 +25,7 @@ export async function generateMetadata(
   const { title, description } = getDoc(doc)?.frontmatter ?? {};
 
   return getMetadata({
-    title: `Vesper | ${title}`,
+    title,
     description,
     path: `/${doc.join("/")}`,
   });
