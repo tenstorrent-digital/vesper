@@ -92,10 +92,9 @@
 
     // all files in `.claude` (symlinks to .agents)
     ".claude/**",
+
+    // vale styles (rules)
+    ".vale/**",
   ],
-  "read_only_files": [
-    "yarn.lock",
-    "skills-lock.json",
-    "packages/vale-config/styles",
-  ],
+  "read_only_files": ["yarn.lock", "skills-lock.json"],
 }
