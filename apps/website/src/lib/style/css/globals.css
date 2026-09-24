@@ -23,7 +23,7 @@
 :root {
   color-scheme: light dark;
   /*
-    height of the sticky top nav — sticky columns (sidebar, ToC) offset
+    height of the sticky top nav - sticky columns (sidebar, ToC) offset
     themselves by this so they pin directly underneath it
   */
   --nav-height: var(--vesper-spacing-20);

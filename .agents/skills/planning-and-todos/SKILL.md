@@ -38,10 +38,10 @@ All plan and todo files live in:
 
 A plan should include:
 
-1. **Current State** — What exists today (context for the agent picking this up)
-2. **Problems Identified** — What needs to change and why
-3. **Proposed Changes** — Concrete implementation steps with code examples where helpful
-4. **Implementation Priority** — Ordered by priority (P0 = do first, P3 = do last)
+1. **Current State** - What exists today (context for the agent picking this up)
+2. **Problems Identified** - What needs to change and why
+3. **Proposed Changes** - Concrete implementation steps with code examples where helpful
+4. **Implementation Priority** - Ordered by priority (P0 = do first, P3 = do last)
 
 ## Creating a TODO from a Plan
 

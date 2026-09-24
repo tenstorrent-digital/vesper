@@ -12,7 +12,7 @@ body:
 
         When an agent produces unexpected results with Vesper components, such as inventing components or props that don't exist or using a component in a way our docs don't support, report it using this template.
 
-        Please search the [existing issues](https://github.com/tenstorrent-digital/vesper/issues?q=is%3Aissue) first — if you find a match, add your details to that thread instead of opening a new one.
+        Please search the [existing issues](https://github.com/tenstorrent-digital/vesper/issues?q=is%3Aissue) first - if you find a match, add your details to that thread instead of opening a new one.
 
         > [!IMPORTANT]
         > If you can reproduce the problem in hand-written code, it's a component bug. Please use the **Bug Report** form instead. If you want a component to behave differently than it does today, use the **Feature Request** form.

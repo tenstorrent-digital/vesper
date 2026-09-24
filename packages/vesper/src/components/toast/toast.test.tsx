@@ -515,7 +515,7 @@ describe("toast [unit]", () => {
     outsideButton.focus();
     expect(document.activeElement).toBe(outsideButton);
 
-    // move focus into the toast region — captures previouslyFocused
+    // move focus into the toast region - captures previouslyFocused
     const toast = document.querySelector<HTMLElement>(".vesper-toast")!;
     toast.focus();
     expect(document.activeElement).toBe(toast);
@@ -552,7 +552,7 @@ describe("toast [unit]", () => {
     // disable the outside button so it's no longer focusable
     outsideButton.setAttribute("disabled", "");
 
-    // blur the toast — focus should NOT restore to the disabled button
+    // blur the toast - focus should NOT restore to the disabled button
     toast.blur();
     await flush();
 
@@ -573,7 +573,7 @@ describe("toast [unit]", () => {
     toasts[1]!.focus();
     expect(document.activeElement).toBe(toasts[1]);
 
-    // dismiss the middle toast — focus should move to the previous (first) toast
+    // dismiss the middle toast - focus should move to the previous (first) toast
     store.dismissToast(store.getSnapshot().toasts[1]!.id);
     await flush();
 
@@ -597,7 +597,7 @@ describe("toast [unit]", () => {
     toasts[0]!.focus();
     expect(document.activeElement).toBe(toasts[0]);
 
-    // dismiss the first toast — focus should move to the next (second) toast
+    // dismiss the first toast - focus should move to the next (second) toast
     store.dismissToast(store.getSnapshot().toasts[0]!.id);
     await flush();
 

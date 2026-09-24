@@ -14,7 +14,7 @@ export interface CodeBlockProps extends Omit<
   /**
    * The code to render. Can be a `string`, or a factory `() => ReadableStream<string>` if you wish to stream something like build logs, output from an LLM, etc.
    *
-   * A factory is used instead of a raw `ReadableStream` because streams are single-use — once piped they are locked and cannot be re-read. Passing a factory allows the component to create a fresh stream whenever it needs one (e.g. on React Strict Mode remounts or language changes).
+   * A factory is used instead of a raw `ReadableStream` because streams are single-use - once piped they are locked and cannot be re-read. Passing a factory allows the component to create a fresh stream whenever it needs one (e.g. on React Strict Mode remounts or language changes).
    *
    * The factory may be asynchronous, returning a `Promise<ReadableStream<string>>`, which is useful when the stream source itself requires an async setup step (e.g. making a network request).
    */

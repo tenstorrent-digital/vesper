@@ -8,7 +8,7 @@ body:
       value: |
         Thanks for taking the time to file an issue!
 
-        Please search the [existing issues](https://github.com/tenstorrent-digital/vesper/issues?q=is%3Aissue) first — if you find a match, add your details to that thread instead of opening a new one.
+        Please search the [existing issues](https://github.com/tenstorrent-digital/vesper/issues?q=is%3Aissue) first - if you find a match, add your details to that thread instead of opening a new one.
   - type: textarea
     id: description
     attributes:

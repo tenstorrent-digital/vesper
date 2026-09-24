@@ -12,10 +12,10 @@ Monorepo for Vesper, a design system React component library, with apps and shar
 ### Layout and Apps
 
 - `packages/vesper/` - Design system components
-- `apps/website/` — Design system documentation frontend
-- `docs/` — Design system documentation source (`.md`/`.mdx`)
-- `packages/oxlint-config/` — Shared Oxlint configurations
-- `packages/typescript-config/` — Shared TypeScript configurations
+- `apps/website/` - Design system documentation frontend
+- `docs/` - Design system documentation source (`.md`/`.mdx`)
+- `packages/oxlint-config/` - Shared Oxlint configurations
+- `packages/typescript-config/` - Shared TypeScript configurations
 
 ## Package Management
 
@@ -65,7 +65,7 @@ yarn install
 The Package Management, Commands, and Setup rules above describe how **you** install packages and run commands in this monorepo. They are not content rules for documentation.
 
 - Do not apply them to `.md` or `.mdx` files
-- Leave package manager commands written in documentation (prose, code blocks, examples, and component demos) exactly as authored — eg. `npm install @repo/vesper` in `docs/` is intentional
+- Leave package manager commands written in documentation (prose, code blocks, examples, and component demos) exactly as authored - eg. `npm install @repo/vesper` in `docs/` is intentional
 - Only change package manager commands in documentation when explicitly asked to
 
 ## Testing and Quality
@@ -119,7 +119,7 @@ Linting is handled by Oxlint
 
 Formatting is handled by Oxfmt
 
-- `yarn format` and `yarn format:fix` run `oxfmt --check` and `yarn format:fix`, respectively — both cover the entire codebase from the monorepo root
+- `yarn format` and `yarn format:fix` run `oxfmt --check` and `yarn format:fix`, respectively - both cover the entire codebase from the monorepo root
 
 ## Linear and Github Pull Requests
 

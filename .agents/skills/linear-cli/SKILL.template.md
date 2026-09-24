@@ -92,8 +92,8 @@ Each command has detailed help output describing all available flags and options
 
 Some commands have required flags that aren't obvious. Notable examples:
 
-- `issue list` requires a sort order — provide it via `--sort` (valid values: `manual`, `priority`), the `issue_sort` config option, or the `LINEAR_ISSUE_SORT` env var. Also requires `--team <key>` unless the team can be inferred from the directory — if unknown, run `linear team list` first.
-- `--no-pager` is only supported on `issue list` — passing it to other commands like `project list` will error.
+- `issue list` requires a sort order - provide it via `--sort` (valid values: `manual`, `priority`), the `issue_sort` config option, or the `LINEAR_ISSUE_SORT` env var. Also requires `--team <key>` unless the team can be inferred from the directory - if unknown, run `linear team list` first.
+- `--no-pager` is only supported on `issue list` - passing it to other commands like `project list` will error.
 
 ## Using the Linear GraphQL API Directly
 
@@ -117,7 +117,7 @@ grep -A 30 "^type Issue " "${TMPDIR:-/tmp}/linear-schema.graphql"
 # Simple query (no type markers, so inline is fine)
 linear api '{ viewer { id name email } }'
 
-# Query with variables — use heredoc to avoid escaping issues
+# Query with variables - use heredoc to avoid escaping issues
 linear api --variable teamId=abc123 <<'GRAPHQL'
 query($teamId: String!) { team(id: $teamId) { name } }
 GRAPHQL
