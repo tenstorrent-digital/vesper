@@ -113,6 +113,11 @@
     "lint": {
       "dependsOn": ["^build"]
     },
+    "//#lint:prose": {
+      // run vale
+      "dependsOn": ["transit"],
+      "cache": false
+    },
     "lint:fix": {
       "dependsOn": ["^build"],
       "cache": false
