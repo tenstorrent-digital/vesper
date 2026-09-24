@@ -49,3 +49,6 @@ storybook-static
 
 # TypeScript
 *.tsbuildinfo
+
+# vale styles (rules)
+.vale
