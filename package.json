@@ -13,7 +13,7 @@
     "test:vesper": "turbo run test --filter=@tenstorrent/vesper --",
     "test:vesper:update": "turbo run test:update --filter=@tenstorrent/vesper --",
     "test:watch:vesper": "turbo run test:watch --filter=@tenstorrent/vesper --",
-    "lint": "turbo run lint lint:prose --",
+    "lint": "turbo run lint lint:prose --continue --",
     "lint:prose": "vale sync && vale .",
     "lint:fix": "turbo run lint:fix --",
     "format": "turbo run format format:root --",
