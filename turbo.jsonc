@@ -4,7 +4,7 @@
   "globalEnv": ["NODE_ENV"],
   "tasks": {
     /**
-     * no-op task — no package defines a `transit` script
+     * no-op task - no package defines a `transit` script
      *
      * tasks that read a dependency's *source* but do not consume its build
      * *output* should depend on `transit` rather than `^<task>`: the hash still

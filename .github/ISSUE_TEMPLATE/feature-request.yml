@@ -12,7 +12,7 @@ body:
         add to the discussion there.
 
         > [!IMPORTANT]
-        > This form is for the `@tenstorrent/vesper` package only, and is limited to **component behavior and API changes** — new props, new variants of existing props, event handling, accessibility behavior, ref forwarding, exported types, and similar.
+        > This form is for the `@tenstorrent/vesper` package only, and is limited to **component behavior and API changes** - new props, new variants of existing props, event handling, accessibility behavior, ref forwarding, exported types, and similar.
         >
         > **Design changes and requests for new components are out of scope.** Vesper implements a design system that is owned by the Tenstorrent design team, so those requests can't be resolved in this repository. A maintainer must bring them upstream to the design team first, and only once they are approved can they be implemented. If your request falls into that category, please open a [discussion](https://github.com/tenstorrent-digital/vesper/discussions) instead.
   - type: checkboxes
@@ -59,7 +59,7 @@ body:
       placeholder: |
         Add an `interactive` prop to `Tooltip`:
 
-        - `interactive?: boolean` — when `true`, the tooltip stays open while the pointer is over its
+        - `interactive?: boolean` - when `true`, the tooltip stays open while the pointer is over its
           content, and closes on pointer leave of both trigger and content. Defaults to `false`.
     validations:
       required: true

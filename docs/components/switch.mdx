@@ -19,14 +19,14 @@ export default function SwitchDemo() {
 
 | Prop             | Type                                   | Description                                                                                     | Default |
 | ---------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------- | ------- |
-| `label`          | `string`                               | The text label displayed next to the switch. An asterisk is appended when `required` is `true`. | —       |
+| `label`          | `string`                               | The text label displayed next to the switch. An asterisk is appended when `required` is `true`. | -       |
 | `size`           | `"sm" \| "md"`                         | The size of the switch and its label.                                                           | `"md"`  |
-| `ref`            | `Ref<HTMLInputElement>`                | A ref forwarded to the underlying `<input>` element.                                            | —       |
-| `checked`        | `boolean`                              | Controls the checked state (controlled mode).                                                   | —       |
+| `ref`            | `Ref<HTMLInputElement>`                | A ref forwarded to the underlying `<input>` element.                                            | -       |
+| `checked`        | `boolean`                              | Controls the checked state (controlled mode).                                                   | -       |
 | `defaultChecked` | `boolean`                              | The initial checked state (uncontrolled mode).                                                  | `false` |
 | `disabled`       | `boolean`                              | When `true`, prevents interaction.                                                              | `false` |
 | `required`       | `boolean`                              | When `true`, marks the input as required and appends an asterisk to the label.                  | `false` |
-| `onChange`       | `ChangeEventHandler<HTMLInputElement>` | Callback fired when the switch is toggled.                                                      | —       |
+| `onChange`       | `ChangeEventHandler<HTMLInputElement>` | Callback fired when the switch is toggled.                                                      | -       |
 
 Form and accessibility props such as `autoFocus`, `tabIndex`, `aria-label`, `aria-labelledby`, `aria-describedby`, `aria-invalid`, and event handlers like `onFocus`, `onBlur`, and `onKeyDown` are forwarded to the underlying `<input>` element, as is `ref`. Any other props, including `className`, are forwarded to the wrapping `<label>` element.
 

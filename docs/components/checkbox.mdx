@@ -19,19 +19,19 @@ export default function CheckboxDemo() {
 
 | Prop             | Type                                   | Description                                                                                           | Default |
 | ---------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------- |
-| `text`           | `string`                               | The text displayed next to the checkbox, also used as the input's default `aria-label`. **Required.** | —       |
+| `text`           | `string`                               | The text displayed next to the checkbox, also used as the input's default `aria-label`. **Required.** | -       |
 | `size`           | `"sm" \| "md"`                         | The size of the checkbox and its text.                                                                | `"md"`  |
 | `indeterminate`  | `boolean`                              | When `true`, renders the checkbox in an indeterminate (mixed) state with a dash icon.                 | `false` |
-| `checked`        | `boolean`                              | The checked state of the checkbox (controlled mode).                                                  | —       |
+| `checked`        | `boolean`                              | The checked state of the checkbox (controlled mode).                                                  | -       |
 | `defaultChecked` | `boolean`                              | The initial checked state (uncontrolled mode).                                                        | `false` |
-| `onChange`       | `ChangeEventHandler<HTMLInputElement>` | Callback fired when the checked state changes.                                                        | —       |
-| `name`           | `string`                               | The form field name submitted with form data.                                                         | —       |
+| `onChange`       | `ChangeEventHandler<HTMLInputElement>` | Callback fired when the checked state changes.                                                        | -       |
+| `name`           | `string`                               | The form field name submitted with form data.                                                         | -       |
 | `value`          | `string`                               | The value submitted with form data when the checkbox is checked.                                      | `"on"`  |
-| `form`           | `string`                               | Associates the checkbox with a `<form>` element by its `id`.                                          | —       |
-| `id`             | `string`                               | An identifier applied to the underlying `<input>`, used to reference it from form validation errors.  | —       |
+| `form`           | `string`                               | Associates the checkbox with a `<form>` element by its `id`.                                          | -       |
+| `id`             | `string`                               | An identifier applied to the underlying `<input>`, used to reference it from form validation errors.  | -       |
 | `disabled`       | `boolean`                              | When `true`, prevents interaction.                                                                    | `false` |
 | `required`       | `boolean`                              | When `true`, marks the input as required and appends an asterisk to the `text`.                       | `false` |
-| `ref`            | `Ref<HTMLInputElement>`                | A ref forwarded to the underlying `<input>` element.                                                  | —       |
+| `ref`            | `Ref<HTMLInputElement>`                | A ref forwarded to the underlying `<input>` element.                                                  | -       |
 
 Form and accessibility props such as `autoFocus`, `tabIndex`, `aria-label`, `aria-labelledby`, `aria-describedby`, `aria-invalid`, and event handlers like `onFocus`, `onBlur`, and `onKeyDown` are forwarded to the underlying `<input>` element, as is `ref`. Any other props, including `className`, are forwarded to the wrapping `<label>` element.
 

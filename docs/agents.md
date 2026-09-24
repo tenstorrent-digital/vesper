@@ -21,7 +21,7 @@ Every page of this documentation is also published as plain Markdown, so agents 
 3. Going to `/llms-full.txt` for everything in one network call
 
 > [!TIP]
-> 
+>
 > You can also use the **copy as markdown** and **copy as prompt** buttons at the bottom of each page to paste into an agent chat directly.
 
 ## For Agents

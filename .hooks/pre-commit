@@ -149,7 +149,7 @@ command="${green}yarn format$(quote_list "$unformatted")${reset}"
 [ -n "$patch_files" ] && command="$command ${green}&& git add ${magenta}--patch${reset}${green}$(quote_list "$patch_files")${reset}"
 
 # the command above is colored for display, so the color escapes are stripped
-# before it is copied — deriving the plain text from the same string keeps what
+# before it is copied - deriving the plain text from the same string keeps what
 # is pasted identical to what is shown
 #
 # NOTE: the escape character is matched through a variable because `\033` in a

@@ -3,7 +3,7 @@ import type { ElementType, SyntheticEvent } from "react";
 /**
  * Returns the appropriate disabled props for a polymorphic component based on whether the rendered element natively supports the `disabled` attribute.
  *
- * Native form elements (`button`, `input`, `select`, `textarea`, `fieldset`) handle disabled state automatically — the browser suppresses events, removes the element from the tab order, and communicates the state to assistive technologies. For these elements, only `{ disabled: true }` is returned.
+ * Native form elements (`button`, `input`, `select`, `textarea`, `fieldset`) handle disabled state automatically - the browser suppresses events, removes the element from the tab order, and communicates the state to assistive technologies. For these elements, only `{ disabled: true }` is returned.
  *
  * Non-form elements (`div`, `a`, `span`, etc.) have no built-in disabled behavior, so this helper returns `aria-disabled` for assistive technologies, `tabIndex: -1` to remove from the tab order, and capture-phase event handlers that suppress click, pointer, keyboard, and focus events.
  *
