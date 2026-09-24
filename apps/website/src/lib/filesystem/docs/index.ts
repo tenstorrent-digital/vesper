@@ -5,68 +5,47 @@ import { readFrontmatter, stripFrontmatter } from "./frontmatter";
 import { getTOC } from "./toc";
 import { DocEntry, DocExtension } from "./types";
 
-export const DOCS_DIR = path.join(
+const DOCS_DIR = path.join(
   process.cwd(), // `apps/website/`
   "..",
   "..",
   "docs",
 );
 
-/**
- * recursively walks the `docs/` directory, returning an array of `DocEntry` objects
- */
-const docEntries = (dir: string, segments: string[] = []): DocEntry[] =>
-  fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry): DocEntry[] => {
-    const entryPath = path.join(dir, entry.name);
+const getDocsPaths = () =>
+  fs
+    .readdirSync(DOCS_DIR, { withFileTypes: true, recursive: true })
+    .filter(
+      (entry) =>
+        entry.isFile() &&
+        entry.name !== "README.md" &&
+        /\.(md|mdx)$/.test(entry.name),
+    )
+    .map((entry) => path.join(entry.parentPath, entry.name));
 
-    if (entry.isDirectory()) {
-      // `assets/` holds images, not documents
-      if (entry.name === "assets") return [];
-      return docEntries(entryPath, [...segments, entry.name]);
-    }
+const getDocSlug = (path: string) =>
+  path
+    .replace(/\.[^/.]+$/, "")
+    .slice(DOCS_DIR.length + 1)
+    .split("/");
 
-    const [, name, ext] = /^(.*)\.(mdx?)$/.exec(entry.name) ?? [];
-    if (!name || !ext) return [];
+const getDocExt = (path: string) =>
+  path.slice(path.lastIndexOf(".") + 1) as DocExtension;
 
-    // `README.md` documents the `docs/` folder itself on GitHub - it is not a page
-    if (name.toLowerCase() === "readme") return [];
+const getRawDoc = (path: string) =>
+  fs.readFileSync(path, { encoding: "utf-8" });
 
-    const slug = [...segments, name];
+export const parseDoc = (path: string): DocEntry => {
+  const slug = getDocSlug(path);
+  const ext = getDocExt(path);
+  const raw = getRawDoc(path);
+  const markdown = stripFrontmatter(raw);
+  const frontmatter = readFrontmatter(raw);
+  const toc = getTOC(markdown, ext);
+  const href = `/${slug.join("/")}`;
 
-    const raw = fs.readFileSync(path.join(entry.parentPath, entry.name), {
-      encoding: "utf-8",
-    });
-
-    const markdown = stripFrontmatter(raw);
-
-    return [
-      {
-        markdown,
-        slug,
-        href: `/${slug.join("/")}`,
-        ext: ext as DocExtension,
-        frontmatter: readFrontmatter(raw),
-        toc: getTOC(markdown, ext as DocExtension),
-      },
-    ];
-  });
-
-const docSortOrder = (a: DocEntry, b: DocEntry) => {
-  const [x, y] = [a.frontmatter.order, b.frontmatter.order];
-
-  // sort by `order` (if avail)
-  if (x !== undefined && y !== undefined && x !== y) return x - y;
-  if (x !== undefined && y === undefined) return -1;
-  if (y !== undefined && x === undefined) return 1;
-
-  // then by title
-  return a.href.localeCompare(b.href);
+  return { toc, slug, ext, markdown, frontmatter, href };
 };
-
-/**
- * documentation from `docs/` (prerendered at build time)
- */
-export const docs: DocEntry[] = docEntries(DOCS_DIR).sort(docSortOrder);
 
 /**
  * get a single doc by its slug (path relative to `docs/`)
@@ -78,14 +57,30 @@ export const docs: DocEntry[] = docEntries(DOCS_DIR).sort(docSortOrder);
  *
  * @see [`loadDoc`](apps/website/src/lib/filesystem/docs/load.ts) - for _loading_ the doc
  */
-export const getDoc = (slug: string[]): DocEntry | undefined =>
-  docs.find((doc) => doc.href === `/${slug.join("/")}`);
+export const getDoc = (slug: string[]) => {
+  const path = getDocsPaths().find(
+    (path) => slug.join("/") === getDocSlug(path).join("/"),
+  );
+  if (!path) return undefined;
 
-export interface DocGroup {
-  /** the folder these docs came from, or `undefined` for top-level docs */
-  folder?: string;
-  docs: DocEntry[];
-}
+  return parseDoc(path);
+};
+
+export const docsSortOrder = (a: DocEntry, b: DocEntry) => {
+  const [x, y] = [a.frontmatter.order, b.frontmatter.order];
+
+  // sort by `order` (if avail)
+  if (x !== undefined && y !== undefined && x !== y) return x - y;
+  if (x !== undefined && y === undefined) return -1;
+  if (y !== undefined && x === undefined) return 1;
+
+  // then by title
+  return a.href.localeCompare(b.href);
+};
+
+const getAllDocs = () => getDocsPaths().map(parseDoc);
+
+export const getDocsSlugs = () => getDocsPaths().map(getDocSlug);
 
 /**
  * get every doc in `docs/`, grouped by folder for navigation
@@ -99,35 +94,40 @@ export interface DocGroup {
  * const tree = getDocTree();
  * // [{ docs: [getting-started] }, { folder: "components", docs: [...] }]
  */
-export const getDocTree = (): DocGroup[] => {
-  const groups = new Map<string, DocEntry[]>();
+export const getDocTree = () => {
+  const groups = new Map<string, string[]>();
 
-  docs.forEach((doc) => {
+  getDocsPaths().forEach((path) => {
+    const slug = getDocSlug(path);
+
     // only the first segment groups a doc — `docs/a/b/c.mdx` groups under `a`
-    const folder = doc.slug.length > 1 ? doc.slug[0]! : "";
-    groups.set(folder, [...(groups.get(folder) ?? []), doc]);
+    const folder = slug.length > 1 ? slug[0]! : "";
+    groups.set(folder, [...(groups.get(folder) ?? []), path]);
   });
 
   return (
     [...groups.entries()]
       // sort top-level docs first, then folders alphabetically
       .sort(([a], [b]) => (a === "" ? -1 : b === "" ? 1 : a.localeCompare(b)))
-      .map(([folder, docs]) => ({ folder: folder || undefined, docs }))
+      .map(([folder, docPaths]) => ({ folder: folder || undefined, docPaths }))
   );
 };
 
 export const getSidebarData = () =>
-  getDocTree().map(({ folder, docs }) => ({
+  getDocTree().map(({ folder, docPaths }) => ({
     folder,
-    pages: docs.map(({ href, frontmatter }) => ({
-      href,
-      title: frontmatter.title,
-    })),
+    pages: docPaths
+      .map(parseDoc)
+      .sort(docsSortOrder)
+      .map(({ href, frontmatter }) => ({
+        href,
+        title: frontmatter.title,
+      })),
   }));
 
 export const getPageTitles = () =>
   Object.fromEntries(
-    docs.flatMap(({ href, frontmatter }) =>
+    getAllDocs().flatMap(({ href, frontmatter }) =>
       frontmatter.title ? [[href, frontmatter.title]] : [],
     ),
   );

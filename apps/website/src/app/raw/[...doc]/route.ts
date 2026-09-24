@@ -1,4 +1,4 @@
-import { docs, getDoc } from "@/lib/filesystem/docs";
+import { docs, getDoc, getDocsSlugs } from "@/lib/filesystem/docs";
 
 export const dynamic = "force-static";
 
@@ -6,7 +6,7 @@ export const dynamic = "force-static";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return docs.map(({ slug }) => ({ doc: slug }));
+  return getDocsSlugs().map((slug) => ({ doc: slug }));
 }
 
 export async function GET(_: Request, context: RouteContext<"/raw/[...doc]">) {

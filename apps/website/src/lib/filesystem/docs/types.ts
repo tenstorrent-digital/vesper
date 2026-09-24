@@ -44,3 +44,9 @@ export interface DocModule {
   default: ComponentType;
   frontmatter?: Frontmatter;
 }
+
+export interface DocGroup {
+  /** the folder these docs came from, or `undefined` for top-level docs */
+  folder?: string;
+  docs: DocEntry[];
+}
