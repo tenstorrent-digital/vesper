@@ -38,6 +38,7 @@
     "@turbo/gen": "^2.9.14",
     "@types/inquirer-autocomplete-prompt": "^3.0.3",
     "@typescript/native": "npm:typescript@^7.0.2",
+    "@vvago/vale": "^3.22.0",
     "inquirer": "^9.3.7",
     "inquirer-autocomplete-prompt": "^3.0.1",
     "prettier": "^3.7.4",
@@ -54,8 +55,5 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ],
-  "dependencies": {
-    "@vvago/vale": "^3.22.0"
-  }
+  ]
 }
