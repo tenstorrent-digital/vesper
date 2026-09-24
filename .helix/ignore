@@ -4,5 +4,5 @@
 .agents/skills/**
 !.agents/skills/**/SKILL.md
 
-# // vale styles (rules)
+# vale styles (rules)
 .vale/**
