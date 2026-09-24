@@ -73,8 +73,6 @@
     },
     "//#lint:prose": {
       // run vale
-      "dependsOn": ["transit"],
-      "cache": false
     },
     "lint:fix": {
       "dependsOn": ["transit"],
