@@ -14,6 +14,8 @@
     "test:vesper:update": "turbo run test:update --filter=@tenstorrent/vesper --",
     "test:watch:vesper": "turbo run test:watch --filter=@tenstorrent/vesper --",
     "lint": "turbo run lint --",
+    "lint:prose": "vale .",
+    "lint:prose:install": "vale sync",
     "lint:fix": "turbo run lint:fix --",
     "format": "turbo run format format:root --",
     "format:root": "sh -c 'prettier --write --ignore-unknown \"${@:-.}\"' _",
@@ -53,5 +55,8 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@vvago/vale": "^3.22.0"
+  }
 }
