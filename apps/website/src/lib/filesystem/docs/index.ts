@@ -22,7 +22,7 @@ const getDocsPaths = () =>
     .filter(
       (entry) =>
         entry.isFile() &&
-        entry.name !== "README.md" &&
+        entry.name.toLowerCase() !== "readme.md" &&
         /\.(md|mdx)$/.test(entry.name),
     )
     .map((entry) => path.join(entry.parentPath, entry.name));
