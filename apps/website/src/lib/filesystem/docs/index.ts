@@ -28,25 +28,25 @@ const getDocsPaths = () =>
     .map((entry) => path.join(entry.parentPath, entry.name));
 
 /** extracts a doc's slug from its filesystem path */
-const getDocSlug = (path: string) =>
-  path
+const getDocSlug = (docPath: string) =>
+  docPath
     .replace(/\.[^/.]+$/, "")
     .slice(DOCS_DIR.length + 1)
-    .split("/");
+    .split(path.sep);
 
 /** extracts a doc's extension from its filesystem path */
-const getDocExt = (path: string) =>
-  path.slice(path.lastIndexOf(".") + 1) as DocExtension;
+const getDocExt = (docPath: string) =>
+  docPath.slice(docPath.lastIndexOf(".") + 1) as DocExtension;
 
 /** gets the raw text content of a doc file */
-const getRawDoc = (path: string) =>
-  fs.readFileSync(path, { encoding: "utf-8" });
+const getRawDoc = (docPath: string) =>
+  fs.readFileSync(docPath, { encoding: "utf-8" });
 
 /** given a path to a doc, parses the doc into a `DocEntry` */
-export const parseDoc = (path: string): DocEntry => {
-  const slug = getDocSlug(path);
-  const ext = getDocExt(path);
-  const raw = getRawDoc(path);
+export const parseDoc = (docPath: string): DocEntry => {
+  const slug = getDocSlug(docPath);
+  const ext = getDocExt(docPath);
+  const raw = getRawDoc(docPath);
   const markdown = stripFrontmatter(raw);
   const frontmatter = readFrontmatter(raw);
   const toc = getTOC(markdown, ext);
