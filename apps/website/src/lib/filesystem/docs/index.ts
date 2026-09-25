@@ -3,7 +3,7 @@ import path from "node:path";
 
 import { readFrontmatter, stripFrontmatter } from "./frontmatter";
 import { getTOC } from "./toc";
-import { DocEntry, DocExtension } from "./types";
+import type { DocEntry, DocExtension, DocGroup } from "./types";
 
 const DOCS_DIR = path.join(
   process.cwd(), // `apps/website/`
@@ -105,7 +105,7 @@ export const getDocsSlugs = () => getDocsPaths().map(getDocSlug);
  * const tree = getDocTree();
  * // [{ docs: [getting-started] }, { folder: "components", docs: [...] }]
  */
-export const getDocTree = () => {
+export const getDocTree = (): DocGroup[] => {
   const groups = new Map<string, string[]>();
 
   getDocsPaths().forEach((path) => {

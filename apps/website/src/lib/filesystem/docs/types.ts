@@ -48,5 +48,5 @@ export interface DocModule {
 export interface DocGroup {
   /** the folder these docs came from, or `undefined` for top-level docs */
   folder?: string;
-  docs: DocEntry[];
+  docPaths: string[];
 }
