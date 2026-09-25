@@ -12,6 +12,10 @@ const DOCS_DIR = path.join(
   "docs",
 );
 
+/**
+ * returns an array of absolute paths pointing to files on disk that
+ * should be compiled to a `DocEntry` and rendered on the docs website
+ */
 const getDocsPaths = () =>
   fs
     .readdirSync(DOCS_DIR, { withFileTypes: true, recursive: true })
@@ -23,18 +27,22 @@ const getDocsPaths = () =>
     )
     .map((entry) => path.join(entry.parentPath, entry.name));
 
+/** extracts a doc's slug from its filesystem path */
 const getDocSlug = (path: string) =>
   path
     .replace(/\.[^/.]+$/, "")
     .slice(DOCS_DIR.length + 1)
     .split("/");
 
+/** extracts a doc's extension from its filesystem path */
 const getDocExt = (path: string) =>
   path.slice(path.lastIndexOf(".") + 1) as DocExtension;
 
+/** gets the raw text content of a doc file */
 const getRawDoc = (path: string) =>
   fs.readFileSync(path, { encoding: "utf-8" });
 
+/** given a path to a doc, parses the doc into a `DocEntry` */
 export const parseDoc = (path: string): DocEntry => {
   const slug = getDocSlug(path);
   const ext = getDocExt(path);
@@ -66,6 +74,10 @@ export const getDoc = (slug: string[]) => {
   return parseDoc(path);
 };
 
+/**
+ * sort parsed docs according to the `order` property in their frontmatter (if available),
+ * falling back to the doc's href
+ */
 export const docsSortOrder = (a: DocEntry, b: DocEntry) => {
   const [x, y] = [a.frontmatter.order, b.frontmatter.order];
 
@@ -74,12 +86,11 @@ export const docsSortOrder = (a: DocEntry, b: DocEntry) => {
   if (x !== undefined && y === undefined) return -1;
   if (y !== undefined && x === undefined) return 1;
 
-  // then by title
+  // then by href
   return a.href.localeCompare(b.href);
 };
 
-const getAllDocs = () => getDocsPaths().map(parseDoc);
-
+/** returns an array of slug segments for every doc */
 export const getDocsSlugs = () => getDocsPaths().map(getDocSlug);
 
 /**
@@ -127,9 +138,10 @@ export const getSidebarData = () =>
 
 export const getPageTitles = () =>
   Object.fromEntries(
-    getAllDocs().flatMap(({ href, frontmatter }) =>
-      frontmatter.title ? [[href, frontmatter.title]] : [],
-    ),
+    getDocsPaths().flatMap((doc) => {
+      const { frontmatter, href } = parseDoc(doc);
+      return frontmatter.title ? [[href, frontmatter.title]] : [];
+    }),
   );
 
 export const markdownFileAsPrompt = (title: string, markdown: string) =>
