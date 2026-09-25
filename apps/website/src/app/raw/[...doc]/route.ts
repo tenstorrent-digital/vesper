@@ -1,4 +1,4 @@
-import { docs, getDoc, getDocsSlugs } from "@/lib/filesystem/docs";
+import { getDoc, getDocsSlugs } from "@/lib/filesystem/docs";
 
 export const dynamic = "force-static";
 
