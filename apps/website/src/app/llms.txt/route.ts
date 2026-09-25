@@ -1,5 +1,5 @@
 import { BASE_URL, VESPER_SUMMARY } from "@/lib/constants";
-import { getDocTree } from "@/lib/filesystem/docs";
+import { docsSortOrder, getDocTree, parseDoc } from "@/lib/filesystem/docs";
 import type { DocEntry } from "@/lib/filesystem/docs/types";
 import { convertKebabToTitleCase } from "@/lib/filesystem/utils";
 
@@ -30,15 +30,18 @@ export function GET() {
     `For the full text of every page in a single request, see ${BASE_URL}/llms-full.txt`,
   ].join("\n");
 
-  const sections = getDocTree().map(({ folder, docs }) =>
+  const sections = getDocTree().map(({ folder, docPaths }) =>
     [
       `## ${folder ? convertKebabToTitleCase(folder) : "High-level documentation"}`,
       "",
-      ...docs.map((doc: DocEntry) => {
-        const link = getDocLink(doc);
-        if (!doc.frontmatter.description) return `- ${link}`;
-        return `- ${link}: ${doc.frontmatter.description}`;
-      }),
+      ...docPaths
+        .map(parseDoc)
+        .sort(docsSortOrder)
+        .map((doc) => {
+          const link = getDocLink(doc);
+          if (!doc.frontmatter.description) return `- ${link}`;
+          return `- ${link}: ${doc.frontmatter.description}`;
+        }),
       "",
     ].join("\n"),
   );

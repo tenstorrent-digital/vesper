@@ -8,7 +8,7 @@
 import type { Metadata } from "next";
 
 import { BASE_URL } from "@/lib/constants";
-import { docs, getDoc } from "@/lib/filesystem/docs";
+import { getDoc, getDocsSlugs } from "@/lib/filesystem/docs";
 import { loadDoc } from "@/lib/filesystem/docs/load";
 import { getMetadata } from "@/lib/metadata";
 
@@ -16,7 +16,7 @@ import { getMetadata } from "@/lib/metadata";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return docs.map(({ slug }) => ({ doc: slug }));
+  return getDocsSlugs().map((slug) => ({ doc: slug }));
 }
 
 export async function generateMetadata(

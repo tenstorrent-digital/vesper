@@ -1,5 +1,5 @@
 import { BASE_URL, VESPER_SUMMARY } from "@/lib/constants";
-import { getDocTree } from "@/lib/filesystem/docs";
+import { docsSortOrder, getDocTree, parseDoc } from "@/lib/filesystem/docs";
 import type { DocEntry } from "@/lib/filesystem/docs/types";
 import { isRelativeDoc, resolveDocUrl } from "@/lib/mdx/remark-doc-links.mts";
 
@@ -58,7 +58,7 @@ export function GET() {
   ].join("\n");
 
   const sections = getDocTree()
-    .flatMap(({ docs }) => docs)
+    .flatMap(({ docPaths }) => docPaths.map(parseDoc).sort(docsSortOrder))
     .map(({ markdown, slug, href }) =>
       [
         "---",
