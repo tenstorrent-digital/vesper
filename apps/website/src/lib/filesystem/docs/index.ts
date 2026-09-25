@@ -29,9 +29,9 @@ const getDocsPaths = () =>
 
 /** extracts a doc's slug from its filesystem path */
 const getDocSlug = (docPath: string) =>
-  docPath
+  path
+    .relative(DOCS_DIR, docPath)
     .replace(/\.[^/.]+$/, "")
-    .slice(DOCS_DIR.length + 1)
     .split(path.sep);
 
 /** extracts a doc's extension from its filesystem path */
