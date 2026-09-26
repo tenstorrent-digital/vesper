@@ -32,9 +32,9 @@ export default function SplitButtonDemo() {
 
 | Prop                  | Type                                     | Description                                                                 | Default         |
 | --------------------- | ---------------------------------------- | --------------------------------------------------------------------------- | --------------- |
-| `children`            | `ReactNode`                              | The content of the primary action button.                                   | —               |
-| `menuItems`           | `MenuItemProps[]`                        | The list of menu items rendered in the dropdown. **Required.**              | —               |
-| `onClick`             | `MouseEventHandler<HTMLButtonElement>`   | Callback fired when the primary action button is clicked.                   | —               |
+| `children`            | `ReactNode`                              | The content of the primary action button.                                   | -               |
+| `menuItems`           | `MenuItemProps[]`                        | The list of menu items rendered in the dropdown. **Required.**              | -               |
+| `onClick`             | `MouseEventHandler<HTMLButtonElement>`   | Callback fired when the primary action button is clicked.                   | -               |
 | `size`                | `"sm" \| "md" \| "lg"`                   | The size of both the action button and the menu toggle.                     | `"md"`          |
 | `variant`             | `"subtle" \| "contrast"`                 | The visual style variant applied to both buttons.                           | `"subtle"`      |
 | `disabled`            | `boolean`                                | When `true`, disables both buttons.                                         | `false`         |
@@ -44,9 +44,9 @@ export default function SplitButtonDemo() {
 | `menuSideOffset`      | `number`                                 | The distance in pixels from the split button to the dropdown menu.          | `8`             |
 | `menuAlign`           | `"start" \| "center" \| "end"`           | The alignment of the dropdown menu relative to the split button.            | `"start"`       |
 | `menuAlignOffset`     | `number`                                 | An offset in pixels from the aligned edge of the split button.              | `0`             |
-| `menuOpen`            | `boolean`                                | Controls the open state of the dropdown menu (controlled mode).             | —               |
+| `menuOpen`            | `boolean`                                | Controls the open state of the dropdown menu (controlled mode).             | -               |
 | `defaultMenuOpen`     | `boolean`                                | Whether the dropdown menu is open by default (uncontrolled mode).           | `false`         |
-| `onMenuOpenChange`    | `(open: boolean) => void`                | Callback fired when the dropdown menu's open state changes.                 | —               |
+| `onMenuOpenChange`    | `(open: boolean) => void`                | Callback fired when the dropdown menu's open state changes.                 | -               |
 
 All other props are forwarded to the underlying `<div>` element that wraps the two buttons.
 

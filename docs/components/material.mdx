@@ -25,9 +25,9 @@ export default function MaterialDemo() {
 | Prop       | Type                                                                                                                 | Description                                                                       | Default      |
 | ---------- | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------ |
 | `variant`  | `"outlined" \| "outlined-strong" \| "raised" \| "floating" \| "modal" \| "inset" \| "inset-strong" \| "interactive"` | The visual style variant of the material surface.                                 | `"outlined"` |
-| `state`    | `"disabled" \| "active" \| "selected"`                                                                               | The current interaction state. Only applicable when `variant` is `"interactive"`. | —            |
+| `state`    | `"disabled" \| "active" \| "selected"`                                                                               | The current interaction state. Only applicable when `variant` is `"interactive"`. | -            |
 | `as`       | `ElementType`                                                                                                        | The root element type for polymorphic rendering.                                  | `"div"`      |
-| `children` | `ReactNode`                                                                                                          | The content rendered inside the material surface.                                 | —            |
+| `children` | `ReactNode`                                                                                                          | The content rendered inside the material surface.                                 | -            |
 
 All other props are forwarded to the underlying `<div>` element, or whichever root element is specified via the `as` prop.
 

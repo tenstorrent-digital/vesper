@@ -2,9 +2,9 @@
 
 End-to-end workflow for authoring and maintaining Playwright tests using `playwright-cli`. The three sections below can be used independently:
 
-- **Planning** — explore the app, produce a spec file describing what to test.
-- **Generate** — turn a spec into Playwright test files. Update the spec if it's vague or stale.
-- **Heal** — diagnose failing tests, fix the code, reconcile the spec with reality.
+- **Planning** - explore the app, produce a spec file describing what to test.
+- **Generate** - turn a spec into Playwright test files. Update the spec if it's vague or stale.
+- **Heal** - diagnose failing tests, fix the code, reconcile the spec with reality.
 
 All three lean on the same mechanic: run `npx playwright test --debug=cli` in the background, then `playwright-cli attach tw-XXXX` to drive the paused page interactively. See [playwright-tests.md](playwright-tests.md) for the debug/attach mechanics and [test-generation.md](test-generation.md) for how every `playwright-cli` action emits Playwright TypeScript.
 
@@ -45,7 +45,7 @@ test('seed', async ({ page }) => {
 });
 ```
 
-Preferred — push navigation into a fixture so scenario tests reuse it:
+Preferred - push navigation into a fixture so scenario tests reuse it:
 
 ```ts
 // tests/fixtures.ts
@@ -141,7 +141,7 @@ Save under `specs/<feature>.plan.md`. Use this structure:
 
 Guidelines:
 
-- Each scenario is independent and starts from the seed's fresh state — never chain scenarios.
+- Each scenario is independent and starts from the seed's fresh state - never chain scenarios.
 - Scenario names are kebab-case and match the test file name (`should-add-single-todo` → `should-add-single-todo.spec.ts`).
 - Cover happy path, edge cases, validation, negative flows, persistence.
 - Write steps at the user level ("Type 'Buy milk' into the input"), not the API level ("call `fill`").
@@ -161,7 +161,7 @@ Goal: take a spec file and produce Playwright test files. Optionally update the 
 
 ### 2.2 Generate one scenario
 
-For each target scenario, in sequence (never in parallel — scenarios share the seed session):
+For each target scenario, in sequence (never in parallel - scenarios share the seed session):
 
 ```bash
 PLAYWRIGHT_HTML_OPEN=never npx playwright test <seed-file> --debug=cli   # background
@@ -171,7 +171,7 @@ playwright-cli attach tw-XXXX
 
 **Do not** just open the app url with playwright-cli, always go through the test to capture any custom setup done there.
 
-Walk the scenario's `Steps:` one by one with `playwright-cli`, treating the spec as the plan and the live app as the source of truth. If a step is vague ("click the button" — which button?), references an element that no longer exists, or contradicts the app's actual behaviour, use your judgement: update the spec to match what the app really does, then keep going. Editing the spec mid-generation is expected.
+Walk the scenario's `Steps:` one by one with `playwright-cli`, treating the spec as the plan and the live app as the source of truth. If a step is vague ("click the button" - which button?), references an element that no longer exists, or contradicts the app's actual behaviour, use your judgement: update the spec to match what the app really does, then keep going. Editing the spec mid-generation is expected.
 
 Every action prints the equivalent Playwright TypeScript (see [test-generation.md](test-generation.md)):
 
@@ -244,7 +244,7 @@ Goal: fix failing tests, and update the spec if the app's intended behaviour cha
 PLAYWRIGHT_HTML_OPEN=never npx playwright test
 ```
 
-Record the list of failing `<file>:<line>` entries and process them one at a time. Do not attempt parallel fixes — shared state and the single CLI session make that fragile.
+Record the list of failing `<file>:<line>` entries and process them one at a time. Do not attempt parallel fixes - shared state and the single CLI session make that fragile.
 
 ### 3.2 Debug one failure
 
@@ -267,7 +267,7 @@ playwright-cli show --annotate         # ask the user to point somewhere
 
 Common causes: selector drift, new wrapper element, label/ARIA rename, timing (transition, async load), assertion text updated in the app, test data leaking between runs.
 
-Rehearse the corrected interaction with `playwright-cli` — the generated code in the output is what you paste back into the test.
+Rehearse the corrected interaction with `playwright-cli` - the generated code in the output is what you paste back into the test.
 
 ### 3.3 Apply the fix
 

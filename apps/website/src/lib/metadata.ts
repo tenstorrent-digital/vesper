@@ -5,7 +5,7 @@ import { BASE_URL } from "./constants";
 interface GetMetadataParams extends Omit<
   Metadata,
   "title" | "description" | "openGraph" | "metadataBase"
-  > {
+> {
   title?: Metadata["title"];
   description?: string;
   /** The path to the page, with the preceding slash, eg. `"/components/admonition"` */
@@ -39,7 +39,6 @@ export function getMetadata({
           alt: "Vesper",
           type: "image/png",
         },
-
       ],
     },
   };

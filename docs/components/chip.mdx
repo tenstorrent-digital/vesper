@@ -38,11 +38,11 @@ export default function ChipDemo() {
 | `size`      | `"sm" \| "md"`                | The size of the chip. Affects height and typography.                                              | `"md"`      |
 | `selected`  | `boolean`                     | Whether the chip is currently selected. Reflected via `aria-pressed` when rendered as a `button`. | `false`     |
 | `disabled`  | `boolean`                     | When `true`, renders the chip in a disabled state and prevents interaction.                       | `false`     |
-| `iconLeft`  | `ReactNode`                   | An optional icon element rendered to the left of the chip content.                                | —           |
-| `iconRight` | `ReactNode`                   | An optional icon element rendered to the right of the chip content.                               | —           |
-| `onChange`  | `(selected: boolean) => void` | Callback fired when the chip is clicked. Receives the next selected state.                        | —           |
+| `iconLeft`  | `ReactNode`                   | An optional icon element rendered to the left of the chip content.                                | -           |
+| `iconRight` | `ReactNode`                   | An optional icon element rendered to the right of the chip content.                               | -           |
+| `onChange`  | `(selected: boolean) => void` | Callback fired when the chip is clicked. Receives the next selected state.                        | -           |
 | `as`        | `ElementType`                 | The root element type for polymorphic rendering.                                                  | `"button"`  |
-| `children`  | `ReactNode`                   | The content of the chip.                                                                          | —           |
+| `children`  | `ReactNode`                   | The content of the chip.                                                                          | -           |
 
 You may also pass additional props to the underlying element. For example, you may wish to give the `<Chip>` instance a custom `aria-label`, `type`, `title`, etc.
 
@@ -209,4 +209,4 @@ export default function ChipAsLink() {
 }
 ```
 
-> `aria-pressed` is only applied when a `Chip` renders as a `button`. When rendering as another element, add the semantics that match its behaviour — for example `aria-current="page"` on a link that points at the currently active filter.
+> `aria-pressed` is only applied when a `Chip` renders as a `button`. When rendering as another element, add the semantics that match its behaviour - for example `aria-current="page"` on a link that points at the currently active filter.

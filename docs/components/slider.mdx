@@ -19,20 +19,20 @@ export default function SliderDemo() {
 
 | Prop             | Type                      | Description                                                                                   | Default |
 | ---------------- | ------------------------- | --------------------------------------------------------------------------------------------- | ------- |
-| `thumbAriaLabel` | `string`                  | The accessible `aria-label` for the thumb. Required.                                          | —       |
-| `value`          | `number`                  | The value of the thumb (controlled mode).                                                     | —       |
+| `thumbAriaLabel` | `string`                  | The accessible `aria-label` for the thumb. Required.                                          | -       |
+| `value`          | `number`                  | The value of the thumb (controlled mode).                                                     | -       |
 | `defaultValue`   | `number`                  | The initial thumb value (uncontrolled mode).                                                  | `min`   |
-| `onValueChange`  | `(value: number) => void` | Callback fired as the thumb value changes during interaction.                                 | —       |
-| `onValueCommit`  | `(value: number) => void` | Callback fired when the thumb interaction is completed, eg. on pointer up.                    | —       |
+| `onValueChange`  | `(value: number) => void` | Callback fired as the thumb value changes during interaction.                                 | -       |
+| `onValueCommit`  | `(value: number) => void` | Callback fired when the thumb interaction is completed, eg. on pointer up.                    | -       |
 | `min`            | `number`                  | The minimum allowed value.                                                                    | `0`     |
 | `max`            | `number`                  | The maximum allowed value.                                                                    | `100`   |
 | `step`           | `number`                  | The stepping interval between selectable values.                                              | `1`     |
 | `showTicks`      | `boolean`                 | When `true`, renders tick marks along the track at each step interval.                        | `false` |
 | `showValueLabel` | `boolean`                 | When `true`, displays a value label above the thumb.                                          | `false` |
-| `valueLabel`     | `string`                  | A custom display label for the thumb. When unset, it falls back to the thumb's current value. | —       |
+| `valueLabel`     | `string`                  | A custom display label for the thumb. When unset, it falls back to the thumb's current value. | -       |
 | `disabled`       | `boolean`                 | When `true`, prevents interaction.                                                            | `false` |
-| `name`           | `string`                  | The form field name submitted with form data.                                                 | —       |
-| `form`           | `string`                  | Associates the slider with a `<form>` element by its `id`.                                    | —       |
+| `name`           | `string`                  | The form field name submitted with form data.                                                 | -       |
+| `form`           | `string`                  | Associates the slider with a `<form>` element by its `id`.                                    | -       |
 
 All other props are forwarded to the wrapping `<div>` element.
 

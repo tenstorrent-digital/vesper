@@ -227,7 +227,7 @@ describe("code-block [unit]", () => {
     wrapper.scrollTop = 0;
     await new Promise((r) => setTimeout(r, 50));
 
-    // Push more content — auto-scroll should be disabled
+    // Push more content - auto-scroll should be disabled
     enqueue!("new line\n");
     await new Promise((r) => setTimeout(r, 200));
 
@@ -297,7 +297,7 @@ describe("code-block [unit]", () => {
     // Unmount before the factory resolves
     unmount();
 
-    // Now resolve the factory — the stream should be cancelled, not piped
+    // Now resolve the factory - the stream should be cancelled, not piped
     const stream = new ReadableStream<string>({
       start(controller) {
         controller.enqueue("stale content");

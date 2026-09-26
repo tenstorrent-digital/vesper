@@ -42,10 +42,10 @@ export default function TabsDemo() {
 | Prop             | Type                       | Description                                                                       | Default       |
 | ---------------- | -------------------------- | --------------------------------------------------------------------------------- | ------------- |
 | `variant`        | `"primary" \| "secondary"` | The visual style variant of the tabs.                                             | `"primary"`   |
-| `items`          | `TabItem[]`                | The list of tab items. Each has `label`, `value`, optional `icon`, and `content`. | —             |
-| `value`          | `string`                   | The value for the selected tab (controlled mode).                                 | —             |
-| `defaultValue`   | `string`                   | The value of the tab to select by default (uncontrolled mode).                    | —             |
-| `onValueChange`  | `(value: string) => void`  | Callback fired when a new tab is selected.                                        | —             |
+| `items`          | `TabItem[]`                | The list of tab items. Each has `label`, `value`, optional `icon`, and `content`. | -             |
+| `value`          | `string`                   | The value for the selected tab (controlled mode).                                 | -             |
+| `defaultValue`   | `string`                   | The value of the tab to select by default (uncontrolled mode).                    | -             |
+| `onValueChange`  | `(value: string) => void`  | Callback fired when a new tab is selected.                                        | -             |
 | `activationMode` | `"automatic" \| "manual"`  | Whether a tab is activated on focus (`automatic`) or on click (`manual`).         | `"automatic"` |
 
 All other props are forwarded to the underlying `<div>` element, which wraps the tab list and its panels.
@@ -54,10 +54,10 @@ All other props are forwarded to the underlying `<div>` element, which wraps the
 
 | Prop      | Type        | Description                                                | Default |
 | --------- | ----------- | ---------------------------------------------------------- | ------- |
-| `label`   | `string`    | The text label displayed in the tab trigger.               | —       |
-| `value`   | `string`    | A unique value identifying this tab.                       | —       |
-| `icon`    | `ReactNode` | An optional icon element rendered before the label.        | —       |
-| `content` | `ReactNode` | The content rendered in the panel when this tab is active. | —       |
+| `label`   | `string`    | The text label displayed in the tab trigger.               | -       |
+| `value`   | `string`    | A unique value identifying this tab.                       | -       |
+| `icon`    | `ReactNode` | An optional icon element rendered before the label.        | -       |
+| `content` | `ReactNode` | The content rendered in the panel when this tab is active. | -       |
 
 ## Examples
 

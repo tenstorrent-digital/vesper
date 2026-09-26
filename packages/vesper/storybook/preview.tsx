@@ -4,7 +4,7 @@ import axe from "axe-core";
 import "@/styles/styles.css";
 
 /**
- * axe-core tags we want to test for — mirrors vitest.setup.ts configuration
+ * axe-core tags we want to test for - mirrors vitest.setup.ts configuration
  *
  * @see https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#axe-core-tags for available tags
  * @see https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md for individual rules
