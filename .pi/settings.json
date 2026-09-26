@@ -1,4 +1,4 @@
 {
   "defaultProvider": "github-copilot",
-  "defaultModel": "claude-opus-5"
+  "defaultModel": "claude-opus-5.5"
 }
