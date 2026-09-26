@@ -71,6 +71,9 @@
       // never needs a dependency's built output - only its hash
       "dependsOn": ["transit"]
     },
+    "//#lint:prose": {
+      // run vale
+    },
     "lint:fix": {
       "dependsOn": ["transit"],
       "cache": false

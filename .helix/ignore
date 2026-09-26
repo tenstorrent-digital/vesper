@@ -3,3 +3,6 @@
 # exclude contents of agent skills
 .agents/skills/**
 !.agents/skills/**/SKILL.md
+
+# vale styles (rules)
+.vale/**
