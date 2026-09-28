@@ -1,13 +1,12 @@
 "use client";
 
-import { ComponentProps, ReactNode } from "react";
 import { Tabs as BaseTabs } from "@base-ui/react/tabs";
+import { ComponentProps, ReactNode } from "react";
 
 import {
   Typography,
   TypographyVariant,
 } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 import { isSingleReactElement } from "@/utils/is-single-react-element";
 

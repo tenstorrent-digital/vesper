@@ -12,7 +12,6 @@ import { userEvent } from "vitest/browser";
 import { Blackhole, Globe, Tenstorrent } from "@/components/icons/icons";
 import { Menu, type MenuItemProps } from "@/components/menu/menu";
 import { TextButton } from "@/components/text-button/text-button";
-
 import "@/styles/test.css";
 
 const MENU_ITEMS: MenuItemProps[] = [

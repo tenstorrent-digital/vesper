@@ -1,6 +1,5 @@
-import { ImageResponse } from "next/og";
-
 import { Tenstorrent } from "@tenstorrent/vesper/icons";
+import { ImageResponse } from "next/og";
 
 export const alt = "Vesper";
 

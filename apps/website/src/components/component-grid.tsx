@@ -1,8 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { type BundledLanguage, bundledLanguages } from "shiki/bundle/web";
-
 import { Accordion } from "@tenstorrent/vesper/accordion";
 import { Admonition } from "@tenstorrent/vesper/admonition";
 import { Avatar } from "@tenstorrent/vesper/avatar";
@@ -36,6 +33,8 @@ import { ThemeSwitcher } from "@tenstorrent/vesper/theme-switcher";
 import { Toggle } from "@tenstorrent/vesper/toggle";
 import { Tooltip } from "@tenstorrent/vesper/tooltip";
 import { Typography } from "@tenstorrent/vesper/typography";
+import Link from "next/link";
+import { type BundledLanguage, bundledLanguages } from "shiki/bundle/web";
 
 import {
   convertPascalToKebabCase,

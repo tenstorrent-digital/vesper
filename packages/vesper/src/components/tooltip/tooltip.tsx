@@ -1,10 +1,9 @@
 "use client";
 
-import { type ReactNode, useId, useState } from "react";
 import { Tooltip as BaseTooltip } from "@base-ui/react/tooltip";
+import { type ReactNode, useId, useState } from "react";
 
 import { Typography } from "@/components/typography/typography";
-
 import {
   getPortalContainer,
   type PortalContainer,

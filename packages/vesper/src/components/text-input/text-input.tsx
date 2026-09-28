@@ -6,7 +6,6 @@ import {
   Typography,
   type TypographyVariant,
 } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 import {
   FormInputProps,

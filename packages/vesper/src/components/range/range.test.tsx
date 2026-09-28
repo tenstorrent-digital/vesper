@@ -4,7 +4,6 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 
 import { Range, type RangeProps } from "@/components/range/range";
-
 import "@/styles/test.css";
 
 const THUMB_ARIA_LABELS = ["Range (min)", "Range (max)"];

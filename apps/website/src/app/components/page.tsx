@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Typography } from "@tenstorrent/vesper/typography";
 
 import { ComponentGrid } from "@/components/component-grid";
-
 import { getMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = getMetadata({

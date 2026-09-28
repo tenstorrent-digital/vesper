@@ -1,15 +1,14 @@
 "use client";
 
-import { type ReactNode, useMemo, useState } from "react";
 import { Select as BaseSelect } from "@base-ui/react/select";
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
+import { type ReactNode, useMemo, useState } from "react";
 
 import { CaretDown, CaretUp, Checkmark } from "@/components/icons/icons";
 import {
   Typography,
   type TypographyVariant,
 } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 import {
   getPortalContainer,

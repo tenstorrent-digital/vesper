@@ -13,7 +13,6 @@ import {
   THEME_SWITCHER_SIZES,
   ThemeSwitcher,
 } from "@/components/theme-switcher/theme-switcher";
-
 import "@/styles/test.css";
 
 afterEach(cleanup);

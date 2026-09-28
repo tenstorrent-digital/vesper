@@ -13,27 +13,27 @@
     "generate:demos": {
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/docs/**", // monorepo docs
+        "$TURBO_ROOT$/docs/**" // monorepo docs
       ],
       /**
        * deliberately uncached: the task also *deletes* the demos of code blocks
        * that are gone, and turbo only extracts cached outputs on a cache hit
        */
-      "cache": false,
+      "cache": false
     },
 
     "build": {
       "dependsOn": [
         "^build",
         "generate:demos",
-        "@tenstorrent/vesper#build:storybook",
+        "@tenstorrent/vesper#build:storybook"
       ],
       "inputs": [
         "$TURBO_DEFAULT$",
         ".env*",
-        "$TURBO_ROOT$/docs/**", // monorepo docs
+        "$TURBO_ROOT$/docs/**" // monorepo docs
       ],
-      "outputs": [".next/**", "!.next/cache/**"],
+      "outputs": [".next/**", "!.next/cache/**"]
     },
 
     // `tsc` compiles `generated/**` along with the rest of the app
@@ -42,7 +42,7 @@
     // `generated/**` is gitignored and oxlint always skips gitignored files
     // (even with `--no-ignore`)
     "check-types": {
-      "dependsOn": ["^build", "generate:demos"],
+      "dependsOn": ["^build", "generate:demos"]
     },
 
     "dev": {
@@ -66,7 +66,7 @@
        */
       "with": ["@tenstorrent/vesper#watch", "@tenstorrent/vesper#dev"],
       "cache": false,
-      "persistent": true,
-    },
-  },
+      "persistent": true
+    }
+  }
 }

@@ -1,12 +1,11 @@
-import { createRef } from "react";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
+import { createRef } from "react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 
 import { Globe, Tenstorrent } from "@/components/icons/icons";
 import { Toggle, TOGGLE_SIZES } from "@/components/toggle/toggle";
-
 import "@/styles/test.css";
 
 afterEach(cleanup);

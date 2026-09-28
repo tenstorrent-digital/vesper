@@ -4,7 +4,6 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 
 import { Slider, type SliderProps } from "@/components/slider/slider";
-
 import "@/styles/test.css";
 
 /**

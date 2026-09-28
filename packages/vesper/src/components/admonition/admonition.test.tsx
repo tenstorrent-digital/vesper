@@ -8,7 +8,6 @@ import {
   ADMONITION_VARIANTS,
   type AdmonitionProps,
 } from "@/components/admonition/admonition";
-
 import "@/styles/test.css";
 
 const ADMONITION_PERMUTATIONS = ADMONITION_VARIANTS.flatMap((variant) =>

@@ -1,12 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
 import { getTokenStyleObject, type ThemedToken } from "@shikijs/core";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { cn } from "@/utils/cn";
 import { generateId } from "@/utils/generate-id";
 
 import type { CodeBlockProps } from "./code-block";
+
 import { CodeBlockPreWrapper, CopyToClipboardButton } from "./components";
 import { codeToTokenStream, handleLanguageRegistration } from "./utils";
 

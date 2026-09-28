@@ -4,7 +4,6 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 
 import { Snippet, SNIPPET_VARIANTS } from "@/components/snippet/snippet";
-
 import "@/styles/test.css";
 
 afterEach(cleanup);

@@ -1,4 +1,5 @@
 import type { RefObject } from "react";
+
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
@@ -9,7 +10,6 @@ import {
   type ChoiceboxItem,
   type ChoiceboxProps,
 } from "@/components/choicebox/choicebox";
-
 import "@/styles/test.css";
 
 const CHOICEBOX_OPTIONS: ChoiceboxItem[] = [

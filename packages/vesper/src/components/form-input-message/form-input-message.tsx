@@ -7,7 +7,6 @@ import {
   WarningSolid,
 } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 
 export const FORM_INPUT_MESSAGE_VARIANTS = [

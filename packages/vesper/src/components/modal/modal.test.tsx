@@ -8,7 +8,6 @@ import {
   type ModalProps,
   useModal,
 } from "@/components/modal/modal";
-
 import "@/styles/test.css";
 
 const TITLE = "Are you absolutely sure?";

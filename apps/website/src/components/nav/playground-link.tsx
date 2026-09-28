@@ -1,8 +1,7 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-
 import { Button } from "@tenstorrent/vesper/button";
+import { usePathname } from "next/navigation";
 
 export const PlaygroundLink = () => {
   const pathname = usePathname();

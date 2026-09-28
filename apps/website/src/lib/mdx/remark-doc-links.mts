@@ -11,9 +11,10 @@
  */
 
 import type { Link, Nodes, Root } from "mdast";
+import type { Transformer } from "unified";
+
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import type { Transformer } from "unified";
 
 /**
  * monorepo root `docs/` folder

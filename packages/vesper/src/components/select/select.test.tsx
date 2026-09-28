@@ -1,6 +1,6 @@
-import { createRef } from "react";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import axe from "axe-core";
+import { createRef } from "react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 
@@ -11,7 +11,6 @@ import {
   SELECT_VARIANTS,
   type SelectProps,
 } from "@/components/select/select";
-
 import "@/styles/test.css";
 
 const OPTIONS = [

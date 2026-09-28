@@ -12,7 +12,6 @@ import {
   Typography,
   TypographyVariant,
 } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 
 export const ADMONITION_SIZES = ["sm", "md"] as const;

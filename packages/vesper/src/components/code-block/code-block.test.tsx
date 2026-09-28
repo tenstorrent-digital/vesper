@@ -1,11 +1,10 @@
-import { StrictMode } from "react";
 import jsonLang from "@shikijs/langs/json";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
+import { StrictMode } from "react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { CodeBlock } from "@/components/code-block/code-block";
-
 import "@/styles/test.css";
 
 afterEach(cleanup);

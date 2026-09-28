@@ -3,7 +3,6 @@ import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
 import { Accordion } from "@/components/accordion/accordion";
-
 import "@/styles/test.css";
 
 const TITLE = "This is a title";

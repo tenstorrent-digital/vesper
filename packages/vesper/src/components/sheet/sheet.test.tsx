@@ -3,7 +3,6 @@ import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { Sheet, type SheetProps, useSheet } from "@/components/sheet/sheet";
-
 import "@/styles/test.css";
 
 const TITLE = "Sheet title";

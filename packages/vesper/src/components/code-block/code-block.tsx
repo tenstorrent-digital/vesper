@@ -1,5 +1,5 @@
-import type { ComponentProps } from "react";
 import type { LanguageRegistration } from "@shikijs/core";
+import type { ComponentProps } from "react";
 
 import { cn } from "@/utils/cn";
 
@@ -19,7 +19,8 @@ export interface CodeBlockProps extends Omit<
    * The factory may be asynchronous, returning a `Promise<ReadableStream<string>>`, which is useful when the stream source itself requires an async setup step (e.g. making a network request).
    */
   children?:
-    string | (() => ReadableStream<string> | Promise<ReadableStream<string>>);
+    | string
+    | (() => ReadableStream<string> | Promise<ReadableStream<string>>);
   /**
    * The language syntax of the supplied code. Omitting this prop will render supplied code as plain text with no syntax highlighting.
    *

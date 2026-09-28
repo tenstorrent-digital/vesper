@@ -8,7 +8,6 @@ import {
   TextArea,
   TextAreaProps,
 } from "@/components/text-area/text-area";
-
 import "@/styles/test.css";
 
 const TEXTAREA_SNAPSHOT_PERMUTATIONS: (TextAreaProps & { name: string })[] = [

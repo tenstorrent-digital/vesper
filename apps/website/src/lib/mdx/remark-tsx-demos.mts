@@ -13,8 +13,9 @@
 
 import type { Root, RootContent } from "mdast";
 import type { MdxjsEsm } from "mdast-util-mdxjs-esm";
-import path from "node:path";
 import type { Transformer } from "unified";
+
+import path from "node:path";
 
 import {
   createOrUpdateFile,

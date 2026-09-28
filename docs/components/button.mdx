@@ -21,15 +21,15 @@ export default function ButtonDemo() {
 
 ## Options
 
-| Prop        | Type                                                                                    | Description                                                                   | Default     |
-| ----------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------- |
-| `size`      | `"xs" \| "sm" \| "md" \| "lg"`                                                          | The size of the button. Affects padding and font size.                        | `"md"`      |
-| `variant`   | `"contrast" \| "danger" \| "ghost" \| "primary" \| "subtle" \| "tertiary" \| "warning"` | The visual style variant of the button.                                       | `"primary"` |
-| `disabled`  | `boolean`                                                                               | When `true`, renders the button in a disabled state and prevents interaction. | `false`     |
-| `iconLeft`  | `ReactNode`                                                                             | An optional icon element rendered to the left of the button content.          | —           |
-| `iconRight` | `ReactNode`                                                                             | An optional icon element rendered to the right of the button content.         | —           |
-| `as`        | `ElementType`                                                                           | The root element type for polymorphic rendering.                              | `"button"`  |
-| `children`  | `ReactNode`                                                                             | The content of the button.                                                    | —           |
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `size` | `"xs" \| "sm" \| "md" \| "lg"` | The size of the button. Affects padding and font size. | `"md"` |
+| `variant` | `"contrast" \| "danger" \| "ghost" \| "primary" \| "subtle" \| "tertiary" \| "warning"` | The visual style variant of the button. | `"primary"` |
+| `disabled` | `boolean` | When `true`, renders the button in a disabled state and prevents interaction. | `false` |
+| `iconLeft` | `ReactNode` | An optional icon element rendered to the left of the button content. | — |
+| `iconRight` | `ReactNode` | An optional icon element rendered to the right of the button content. | — |
+| `as` | `ElementType` | The root element type for polymorphic rendering. | `"button"` |
+| `children` | `ReactNode` | The content of the button. | — |
 
 All other props are forwarded to the underlying `<button>` element, or whichever root element is specified via the `as` prop.
 
@@ -51,15 +51,15 @@ export default function BasicButton() {
 
 A `Button` can be rendered in several different variants:
 
-| Variant      | Preview                                      | When to use                                                                                                   |
-| ------------ | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `"primary"`  | <Button variant="primary">Primary</Button>   | Default variant. Use for the main action a user is expected to take in a given context.                       |
-| `"subtle"`   | <Button variant="subtle">Subtle</Button>     | Use for secondary actions that are important but should have less visual prominence than the primary action.  |
-| `"tertiary"` | <Button variant="tertiary">Tertiary</Button> | Use for secondary or supporting actions that need a clear boundary from surrounding content.                  |
-| `"contrast"` | <Button variant="contrast">Contrast</Button> | Use when an action needs strong visual contrast against its surrounding content.                              |
-| `"ghost"`    | <Button variant="ghost">Ghost</Button>       | Use for low-emphasis actions where a button's presence should be unobtrusive.                                 |
-| `"danger"`   | <Button variant="danger">Danger</Button>     | Use for destructive or potentially irreversible actions that could result in negative consequence.            |
-| `"warning"`  | <Button variant="warning">Warning</Button>   | Use for actions that may have meaningful consequences or require caution, but are not inherently destructive. |
+| Variant | Preview | When to use |
+| --- | --- | --- |
+| `"primary"` | <Button variant="primary">Primary</Button> | Default variant. Use for the main action a user is expected to take in a given context. |
+| `"subtle"` | <Button variant="subtle">Subtle</Button> | Use for secondary actions that are important but should have less visual prominence than the primary action. |
+| `"tertiary"` | <Button variant="tertiary">Tertiary</Button> | Use for secondary or supporting actions that need a clear boundary from surrounding content. |
+| `"contrast"` | <Button variant="contrast">Contrast</Button> | Use when an action needs strong visual contrast against its surrounding content. |
+| `"ghost"` | <Button variant="ghost">Ghost</Button> | Use for low-emphasis actions where a button's presence should be unobtrusive. |
+| `"danger"` | <Button variant="danger">Danger</Button> | Use for destructive or potentially irreversible actions that could result in negative consequence. |
+| `"warning"` | <Button variant="warning">Warning</Button> | Use for actions that may have meaningful consequences or require caution, but are not inherently destructive. |
 
 ```tsx
 import { Button } from "@tenstorrent/vesper/button";

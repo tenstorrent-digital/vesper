@@ -12,7 +12,6 @@ import {
   WarningSolid,
 } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 
 import { animateToastEnter, animateToastExit } from "./animations";
@@ -130,7 +129,7 @@ function Toast({
       onPointerLeave={() => setHasPointer(false)}
       onFocus={() => setHasFocus(true)}
       onBlur={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+        if (!e.currentTarget.contains(e.relatedTarget)) {
           setHasFocus(false);
         }
       }}

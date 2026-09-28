@@ -1,14 +1,13 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
+import { useCallback, useMemo, useState } from "react";
 
 import { CaretDown, Checkmark, Close, Search } from "@/components/icons/icons";
 import {
   Typography,
   TypographyVariant,
 } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 import {
   getPortalContainer,

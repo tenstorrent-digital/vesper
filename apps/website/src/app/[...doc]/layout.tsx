@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
+
 import { notFound } from "next/navigation";
 
 import { CopyToClipboardButton } from "@/components/copy-to-clipboard-button";
 import TableOfContents from "@/components/table-of-contents";
-
 import { getDoc, markdownFileAsPrompt } from "@/lib/filesystem/docs";
 
 export default async function Layout({

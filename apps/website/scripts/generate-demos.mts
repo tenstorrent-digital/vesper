@@ -15,6 +15,7 @@
  */
 
 import type { Root } from "mdast";
+
 import { readdir, readFile, rm, rmdir } from "node:fs/promises";
 import path from "node:path";
 
@@ -58,7 +59,7 @@ const getDemoModulePaths = async (): Promise<string[]> => {
 const writeDemoModules = async (docPath: string): Promise<string[]> => {
   const contents = await readFile(docPath, "utf-8");
   const parser = getMarkdownParser(docPath.endsWith(".mdx") ? "mdx" : "md");
-  const tree = parser.parse(contents) as Root;
+  const tree = parser.parse(contents);
 
   const demoModulePaths: string[] = [];
 

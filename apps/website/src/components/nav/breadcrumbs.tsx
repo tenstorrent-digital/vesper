@@ -1,10 +1,9 @@
 "use client";
 
-import { Fragment } from "react";
+import { Typography } from "@tenstorrent/vesper/typography";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-import { Typography } from "@tenstorrent/vesper/typography";
+import { Fragment } from "react";
 
 import { convertKebabToTitleCase } from "@/lib/filesystem/utils";
 

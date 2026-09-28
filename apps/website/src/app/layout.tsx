@@ -4,7 +4,6 @@ import { Toasts } from "@tenstorrent/vesper/toast";
 
 import { Nav } from "@/components/nav";
 import { Sidebar } from "@/components/sidebar";
-
 import { getSidebarData } from "@/lib/filesystem/docs";
 import {
   getMetadata,
@@ -14,7 +13,6 @@ import {
 } from "@/lib/metadata";
 import { ibm_plex_mono, inter_tight } from "@/lib/style/fonts";
 import { cn } from "@/lib/tailwind/cn";
-
 import "@/lib/style/css/globals.css";
 
 export const metadata: Metadata = getMetadata({

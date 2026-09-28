@@ -8,7 +8,6 @@ import {
   ProgressBar,
   type ProgressBarProps,
 } from "@/components/progress-bar/progress-bar";
-
 import "@/styles/test.css";
 
 const PROGRESS_BAR_PERMUTATIONS = PROGRESS_BAR_VARIANTS.flatMap((variant) =>

@@ -1,5 +1,7 @@
 "use client";
 
+import { useControlled } from "@base-ui/utils/useControlled";
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import {
   type ComponentProps,
   FocusEvent,
@@ -11,14 +13,11 @@ import {
   useRef,
   useState,
 } from "react";
-import { useControlled } from "@base-ui/utils/useControlled";
-import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 
 import {
   Typography,
   type TypographyVariant,
 } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 
 export const TOGGLE_SIZES = ["sm", "md", "lg"] as const;

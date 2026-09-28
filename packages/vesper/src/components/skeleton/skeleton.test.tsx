@@ -7,7 +7,6 @@ import {
   SKELETON_SHAPES,
   type SkeletonShape,
 } from "@/components/skeleton/skeleton";
-
 import "@/styles/test.css";
 
 afterEach(cleanup);

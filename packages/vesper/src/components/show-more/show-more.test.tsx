@@ -3,7 +3,6 @@ import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { ShowMore } from "@/components/show-more/show-more";
-
 import "@/styles/test.css";
 
 afterEach(cleanup);

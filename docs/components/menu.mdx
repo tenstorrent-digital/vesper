@@ -32,30 +32,30 @@ export default function MenuDemo() {
 
 ## Options
 
-| Prop           | Type                                                                                | Description                                                                                                 | Default    |
-| -------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------- |
-| `items`        | `MenuItemProps[]`                                                                   | The list of menu items rendered in the dropdown, in the order they are provided.                            | —          |
-| `children`     | `ReactElement`                                                                      | The trigger element that opens the menu.                                                                    | —          |
-| `width`        | `number`                                                                            | The width of the menu dropdown in pixels. Scales with the base rem size.                                    | `200`      |
-| `side`         | `"top" \| "bottom" \| "left" \| "right"`                                            | The preferred side of the trigger to render the menu against.                                               | `"bottom"` |
-| `sideOffset`   | `number`                                                                            | The distance in pixels from the trigger to the menu. Scales with the base rem size.                         | `8`        |
-| `align`        | `"start" \| "center" \| "end"`                                                      | The alignment of the menu relative to the trigger along the perpendicular axis.                             | `"start"`  |
-| `alignOffset`  | `number`                                                                            | An offset in pixels from the aligned edge of the trigger. Scales with the base rem size.                    | `0`        |
-| `open`         | `boolean`                                                                           | Controls the open state of the menu (controlled mode).                                                      | —          |
-| `defaultOpen`  | `boolean`                                                                           | Whether the menu is open by default (uncontrolled mode).                                                    | `false`    |
-| `onOpenChange` | `(open: boolean) => void`                                                           | Callback fired when the open state changes.                                                                 | —          |
-| `container`    | `HTMLElement \| ShadowRoot \| null \| RefObject<HTMLElement \| ShadowRoot \| null>` | Specify the element or shadow root to portal the menu into.                                                 | —          |
-| `anchor`       | `HTMLElement \| null \| RefObject<HTMLElement \| null>`                             | Specify the element to position the menu against. Default behavior anchors the menu to the trigger element. | —          |
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `items` | `MenuItemProps[]` | The list of menu items rendered in the dropdown, in the order they are provided. | — |
+| `children` | `ReactElement` | The trigger element that opens the menu. | — |
+| `width` | `number` | The width of the menu dropdown in pixels. Scales with the base rem size. | `200` |
+| `side` | `"top" \| "bottom" \| "left" \| "right"` | The preferred side of the trigger to render the menu against. | `"bottom"` |
+| `sideOffset` | `number` | The distance in pixels from the trigger to the menu. Scales with the base rem size. | `8` |
+| `align` | `"start" \| "center" \| "end"` | The alignment of the menu relative to the trigger along the perpendicular axis. | `"start"` |
+| `alignOffset` | `number` | An offset in pixels from the aligned edge of the trigger. Scales with the base rem size. | `0` |
+| `open` | `boolean` | Controls the open state of the menu (controlled mode). | — |
+| `defaultOpen` | `boolean` | Whether the menu is open by default (uncontrolled mode). | `false` |
+| `onOpenChange` | `(open: boolean) => void` | Callback fired when the open state changes. | — |
+| `container` | `HTMLElement \| ShadowRoot \| null \| RefObject<HTMLElement \| ShadowRoot \| null>` | Specify the element or shadow root to portal the menu into. | — |
+| `anchor` | `HTMLElement \| null \| RefObject<HTMLElement \| null>` | Specify the element to position the menu against. Default behavior anchors the menu to the trigger element. | — |
 
 ### `MenuItemProps` options
 
-| Property      | Type                                                            | Description                                                       | Default     |
-| ------------- | --------------------------------------------------------------- | ----------------------------------------------------------------- | ----------- |
-| `text`        | `string`                                                        | The text label displayed for the menu item.                       | —           |
-| `description` | `string`                                                        | An optional secondary description displayed below the text label. | —           |
-| `icon`        | `ReactNode`                                                     | An optional icon element rendered to the left of the text label.  | —           |
-| `style`       | `"default" \| "danger" \| "locked" \| "selected" \| "disabled"` | The visual and behavioral style of the menu item.                 | `"default"` |
-| `onSelect`    | `() => void`                                                    | Callback fired when the menu item is selected. **Required.**      | —           |
+| Property | Type | Description | Default |
+| --- | --- | --- | --- |
+| `text` | `string` | The text label displayed for the menu item. | — |
+| `description` | `string` | An optional secondary description displayed below the text label. | — |
+| `icon` | `ReactNode` | An optional icon element rendered to the left of the text label. | — |
+| `style` | `"default" \| "danger" \| "locked" \| "selected" \| "disabled"` | The visual and behavioral style of the menu item. | `"default"` |
+| `onSelect` | `() => void` | Callback fired when the menu item is selected. **Required.** | — |
 
 ## Examples
 
@@ -152,13 +152,13 @@ export default function DescriptiveMenu() {
 
 Each item can be rendered in one of five styles via its `style` prop:
 
-| Style        | When to use                                                                                                                                |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `"default"`  | Default style. Use for regular actions.                                                                                                    |
-| `"selected"` | Use when the item represents the currently active option out of a set. Renders a checkmark at the end of the item.                         |
-| `"danger"`   | Use for destructive or potentially irreversible actions. Renders the item in the error color scheme.                                       |
-| `"locked"`   | Use for actions the user could take, but currently cannot, eg. because of their permissions. Renders a lock icon and prevents interaction. |
-| `"disabled"` | Use for actions that do not apply in the current context, eg. pasting with an empty clipboard. Dims the item and prevents interaction.     |
+| Style | When to use |
+| --- | --- |
+| `"default"` | Default style. Use for regular actions. |
+| `"selected"` | Use when the item represents the currently active option out of a set. Renders a checkmark at the end of the item. |
+| `"danger"` | Use for destructive or potentially irreversible actions. Renders the item in the error color scheme. |
+| `"locked"` | Use for actions the user could take, but currently cannot, eg. because of their permissions. Renders a lock icon and prevents interaction. |
+| `"disabled"` | Use for actions that do not apply in the current context, eg. pasting with an empty clipboard. Dims the item and prevents interaction. |
 
 ```tsx demo
 import { Button } from "@tenstorrent/vesper/button";

@@ -10,26 +10,21 @@
 yarn dev        # docs + storybook + the @tenstorrent/vesper watcher
 ```
 
-| Service                    | URL                                                         |
-| -------------------------- | ----------------------------------------------------------- |
-| Docs site                  | [localhost:3000](http://localhost:3000)                     |
-| Storybook                  | [localhost:5173](http://localhost:5173)                     |
+| Service | URL |
+| --- | --- |
+| Docs site | [localhost:3000](http://localhost:3000) |
+| Storybook | [localhost:5173](http://localhost:5173) |
 | Storybook (proxied in dev) | [localhost:3000/storybook](http://localhost:3000/storybook) |
 
 ### Notes
 
-The docs app imports `@tenstorrent/vesper` from its **built output** (`packages/vesper/dist`), not
-its source. `yarn dev` therefore builds the package first, then keeps it in sync with the
-`@tenstorrent/vesper#watch` task, so edits under `packages/vesper/src` show up here automatically.
+The docs app imports `@tenstorrent/vesper` from its **built output** (`packages/vesper/dist`), not its source. `yarn dev` therefore builds the package first, then keeps it in sync with the `@tenstorrent/vesper#watch` task, so edits under `packages/vesper/src` show up here automatically.
 
-Storybook runs with `--exact-port`, so a process already sitting on port 5173 fails the task
-instead of silently relocating and breaking the `/storybook` rewrite in
-[`src/proxy.ts`](./src/proxy.ts).
+Storybook runs with `--exact-port`, so a process already sitting on port 5173 fails the task instead of silently relocating and breaking the `/storybook` rewrite in [`src/proxy.ts`](./src/proxy.ts).
 
 ### Turbopack caching
 
-Turbopack's persistent dev cache is disabled for this app in
-[`next.config.ts`](./next.config.ts) because `@tenstorrent/vesper` is compiled by a separate watcher and its output changes are outside the Next dev server's lifecycle.
+Turbopack's persistent dev cache is disabled for this app in [`next.config.ts`](./next.config.ts) because `@tenstorrent/vesper` is compiled by a separate watcher and its output changes are outside the Next dev server's lifecycle.
 
 To start fresh, you can clean the cache (along with other caches and generated/dist folders across the monorepo) by running:
 
@@ -45,8 +40,7 @@ yarn clean-install
 
 ### Component demos
 
-A `tsx` code block in `docs/**` tagged `demo` is rendered as a live example directly above the
-code block itself, so an example and the code shown for it can never drift apart:
+A `tsx` code block in `docs/**` tagged `demo` is rendered as a live example directly above the code block itself, so an example and the code shown for it can never drift apart:
 
 ````mdx
 ```tsx demo
@@ -67,14 +61,10 @@ export default function UncontrolledToggle() {
 ```
 ````
 
-A demo is a self-contained module: it imports what it uses and default exports the component to
-render, which is also what makes it a complete, copyable example on GitHub (where it is only ever
-a code block).
+A demo is a self-contained module: it imports what it uses and default exports the component to render, which is also what makes it a complete, copyable example on GitHub (where it is only ever a code block).
 
-Each demo is extracted into a real module under `generated/demos/` by the `generate:demos` task,
-which every task that reads them (`build`, `dev`, `lint`, `check-types`) depends on.
+Each demo is extracted into a real module under `generated/demos/` by the `generate:demos` task, which every task that reads them (`build`, `dev`, `lint`, `check-types`) depends on.
 
 While `yarn dev` is running, editing or adding a demo rewrites its module as the document is recompiled.
 
-See also [`scripts/generate-demos.mts`](./scripts/generate-demos.mts) and
-[`src/lib/mdx/remark-tsx-demos.mts`](./src/lib/mdx/remark-tsx-demos.mts).
+See also [`scripts/generate-demos.mts`](./scripts/generate-demos.mts) and [`src/lib/mdx/remark-tsx-demos.mts`](./src/lib/mdx/remark-tsx-demos.mts).

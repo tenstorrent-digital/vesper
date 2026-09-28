@@ -1,9 +1,9 @@
 import type { ComponentProps } from "react";
+
 import { Collapsible } from "@base-ui/react/collapsible";
 
 import { CaretRight } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 
 export interface AccordionProps extends ComponentProps<"div"> {

@@ -19,10 +19,10 @@ This is the same component used to render the `message` of [Text Input](./text-i
 
 ## Options
 
-| Prop      | Type                                             | Description                                                                                                                   | Default     |
-| --------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `variant` | `"default" \| "warning" \| "success" \| "error"` | The visual variant, which determines the colour scheme and message icon.                                                      | `"default"` |
-| `message` | `string`                                         | The message text to display. When omitted or empty, no content is rendered, but the `<output>` element stays in the document. | —           |
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `variant` | `"default" \| "warning" \| "success" \| "error"` | The visual variant, which determines the colour scheme and message icon. | `"default"` |
+| `message` | `string` | The message text to display. When omitted or empty, no content is rendered, but the `<output>` element stays in the document. | — |
 
 You may also pass any additional props to the underlying `<output>` element. Most commonly, this will be an `id` so the message can be referenced by an input's `aria-describedby`.
 

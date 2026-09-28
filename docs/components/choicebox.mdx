@@ -36,32 +36,32 @@ export default function ChoiceboxDemo() {
 
 ## Options
 
-| Prop            | Type                                                    | Description                                                                                             | Default    |
-| --------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------- |
-| `name`          | `string`                                                | The name attribute shared by all inputs in the group, used for form submission.                         | —          |
-| `options`       | `ChoiceboxItem[]`                                       | The list of options to render. Each has `value`, `label`, optional `description`, `disabled`, and `id`. | —          |
-| `disabled`      | `boolean`                                               | When `true`, disables all options in the group.                                                         | `false`    |
-| `multiselect`   | `boolean`                                               | When `true`, enables multi-select (checkbox) mode. Otherwise single-select (radio).                     | `false`    |
-| `value`         | `string`                                                | The currently selected value (single-select, controlled).                                               | —          |
-| `defaultValue`  | `string`                                                | The initially selected value (single-select, uncontrolled).                                             | —          |
-| `values`        | `string[]`                                              | The currently selected values (multi-select, controlled).                                               | —          |
-| `defaultValues` | `string[]`                                              | The initially selected values (multi-select, uncontrolled).                                             | —          |
-| `onChange`      | `(value: string) => void \| (values: string[]) => void` | Callback fired when the selection changes.                                                              | —          |
-| `required`      | `boolean`                                               | When `true`, a selection is required (single-select only).                                              | `false`    |
-| `min`           | `number`                                                | Minimum selections required (multi-select only).                                                        | `0`        |
-| `max`           | `number`                                                | Maximum selections allowed (multi-select only).                                                         | `Infinity` |
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `name` | `string` | The name attribute shared by all inputs in the group, used for form submission. | — |
+| `options` | `ChoiceboxItem[]` | The list of options to render. Each has `value`, `label`, optional `description`, `disabled`, and `id`. | — |
+| `disabled` | `boolean` | When `true`, disables all options in the group. | `false` |
+| `multiselect` | `boolean` | When `true`, enables multi-select (checkbox) mode. Otherwise single-select (radio). | `false` |
+| `value` | `string` | The currently selected value (single-select, controlled). | — |
+| `defaultValue` | `string` | The initially selected value (single-select, uncontrolled). | — |
+| `values` | `string[]` | The currently selected values (multi-select, controlled). | — |
+| `defaultValues` | `string[]` | The initially selected values (multi-select, uncontrolled). | — |
+| `onChange` | `(value: string) => void \| (values: string[]) => void` | Callback fired when the selection changes. | — |
+| `required` | `boolean` | When `true`, a selection is required (single-select only). | `false` |
+| `min` | `number` | Minimum selections required (multi-select only). | `0` |
+| `max` | `number` | Maximum selections allowed (multi-select only). | `Infinity` |
 
 All other props are forwarded to the wrapping `<fieldset>` element.
 
 ### `ChoiceboxItem` options
 
-| Property      | Type      | Description                                                                              |
-| ------------- | --------- | ---------------------------------------------------------------------------------------- |
-| `value`       | `string`  | The value submitted with form data and passed to `onChange`. Must be unique.             |
-| `label`       | `string`  | The text displayed for this option.                                                      |
-| `description` | `string`  | An optional secondary line of text displayed below the label.                            |
-| `disabled`    | `boolean` | When `true`, prevents this option from being selected. Defaults to `false`.              |
-| `id`          | `string`  | An `id` applied to this option's `<input>`, used to reference it from validation errors. |
+| Property | Type | Description |
+| --- | --- | --- |
+| `value` | `string` | The value submitted with form data and passed to `onChange`. Must be unique. |
+| `label` | `string` | The text displayed for this option. |
+| `description` | `string` | An optional secondary line of text displayed below the label. |
+| `disabled` | `boolean` | When `true`, prevents this option from being selected. Defaults to `false`. |
+| `id` | `string` | An `id` applied to this option's `<input>`, used to reference it from validation errors. |
 
 Use a `Choicebox` when each option benefits from a description and a large, card-style target. For a plain list of mutually exclusive options, reach for [the `RadioGroup` component](./radio-group.mdx), and for a single boolean choice, reach for [the `Checkbox` component](./checkbox.mdx).
 

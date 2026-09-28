@@ -17,7 +17,6 @@ import {
   SplitButton,
   type SplitButtonProps,
 } from "@/components/split-button/split-button";
-
 import "@/styles/test.css";
 
 const MENU_ITEMS: MenuItemProps[] = [

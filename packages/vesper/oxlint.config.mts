@@ -11,6 +11,6 @@ export default defineConfig({
 
     "coverage/**",
     "test-results/**",
-    "vitest.shims.d.ts"
+    "vitest.shims.d.ts",
   ],
 });

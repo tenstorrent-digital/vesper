@@ -1,13 +1,12 @@
 "use client";
 
-import { ComponentProps, type CSSProperties, type Ref, useMemo } from "react";
 import {
   Slider as BaseSlider,
   type SliderThumbState,
 } from "@base-ui/react/slider";
+import { ComponentProps, type CSSProperties, type Ref, useMemo } from "react";
 
 import { Typography } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 
 const toValues = (value: number | number[]) =>

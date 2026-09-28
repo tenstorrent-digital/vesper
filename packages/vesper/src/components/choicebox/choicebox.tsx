@@ -1,5 +1,6 @@
 "use client";
 
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import {
   type ChangeEventHandler,
   type ComponentProps,
@@ -8,11 +9,9 @@ import {
   useEffect,
   useRef,
 } from "react";
-import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 
 import { Checkmark } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 
 export type ChoiceboxItem = {
@@ -69,7 +68,8 @@ export interface ChoiceboxMultiSelectProps extends ChoiceboxBaseProps {
 }
 
 export type ChoiceboxProps =
-  ChoiceboxSingleSelectProps | ChoiceboxMultiSelectProps;
+  | ChoiceboxSingleSelectProps
+  | ChoiceboxMultiSelectProps;
 
 /**
  * A selection group component that supports both single-select (radio) and multi-select (checkbox) modes with card-style options.

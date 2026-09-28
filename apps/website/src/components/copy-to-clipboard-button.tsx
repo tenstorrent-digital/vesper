@@ -1,9 +1,8 @@
 "use client";
 
-import { type MouseEventHandler, useCallback, useRef, useState } from "react";
-
 import { Button, type ButtonProps } from "@tenstorrent/vesper/button";
 import { Checkmark, Copy } from "@tenstorrent/vesper/icons";
+import { type MouseEventHandler, useCallback, useRef, useState } from "react";
 
 export function CopyToClipboardButton({
   textToCopy,

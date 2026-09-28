@@ -1,14 +1,13 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
+import { useLayoutEffect, useRef } from "react";
 
 import { Checkmark, Minus } from "@/components/icons/icons";
 import {
   Typography,
   type TypographyVariant,
 } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 import {
   type FormInputProps,

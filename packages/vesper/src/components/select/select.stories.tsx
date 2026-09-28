@@ -40,7 +40,7 @@ export const Playground: Story = {
       { value: "bears", label: "Bears" },
       { value: "oh_my", label: "Oh my" },
     ],
-    icon: false as unknown as boolean,
+    icon: false,
     required: false,
   },
 };

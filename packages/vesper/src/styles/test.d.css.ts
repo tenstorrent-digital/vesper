@@ -8,4 +8,3 @@
  *
  * see: `tsconfig.test.json`
  */
-export {};

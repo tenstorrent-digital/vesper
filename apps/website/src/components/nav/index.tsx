@@ -1,8 +1,7 @@
-import Link from "next/link";
-
 import { IconButton } from "@tenstorrent/vesper/icon-button";
 import { Menu, Tenstorrent } from "@tenstorrent/vesper/icons";
 import { Typography } from "@tenstorrent/vesper/typography";
+import Link from "next/link";
 
 import { BASE_URL } from "@/lib/constants";
 import { getPageTitles } from "@/lib/filesystem/docs";

@@ -15,7 +15,6 @@ import { Button, type ButtonProps } from "@/components/button/button";
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Close } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 
 export const MODAL_BUTTONS_ALIGNMENTS = [
@@ -206,7 +205,7 @@ export function Modal(props: ModalProps) {
             `vesper-modal-buttons-${buttonsAlignment}`,
           )}
         >
-          {buttons!.map((button, index) => {
+          {buttons.map((button, index) => {
             const variant =
               button.variant ||
               (index === buttons.length - 1 ? "primary" : "tertiary");

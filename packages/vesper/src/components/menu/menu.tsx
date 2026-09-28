@@ -1,11 +1,10 @@
 "use client";
 
-import { type ReactNode, RefObject, useState } from "react";
 import { Menu as DropdownMenu } from "@base-ui/react/menu";
+import { type ReactNode, RefObject, useState } from "react";
 
 import { Checkmark, Lock } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
-
 import {
   getPortalContainer,
   type PortalContainer,

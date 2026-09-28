@@ -9,7 +9,6 @@ import {
   type ButtonProps,
 } from "@/components/button/button";
 import { Tenstorrent } from "@/components/icons/icons";
-
 import "@/styles/test.css";
 
 const BUTTON_PERMUTATIONS: ButtonProps[] = BUTTON_VARIANTS.flatMap((variant) =>

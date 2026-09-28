@@ -16,9 +16,7 @@ export const readFrontmatter = (markdown: string): Frontmatter => {
   if (!match?.[1]) return {};
 
   const parsed: unknown = parse(match[1]);
-  return typeof parsed === "object" && parsed !== null
-    ? (parsed as Frontmatter)
-    : {};
+  return typeof parsed === "object" && parsed !== null ? parsed : {};
 };
 
 /** removes the frontmatter block from a doc's raw Markdown */

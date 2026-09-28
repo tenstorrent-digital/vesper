@@ -21,22 +21,22 @@ export default function TypographyDemo() {
 
 ## Options
 
-| Prop       | Type                | Description                                                                  | Default     |
-| ---------- | ------------------- | ---------------------------------------------------------------------------- | ----------- |
-| `variant`  | `TypographyVariant` | The typographic style variant to apply. See the full list of variants below. | `"copy-md"` |
-| `as`       | `ElementType`       | The root element type for polymorphic rendering.                             | `"p"`       |
-| `children` | `ReactNode`         | The text content.                                                            | —           |
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `variant` | `TypographyVariant` | The typographic style variant to apply. See the full list of variants below. | `"copy-md"` |
+| `as` | `ElementType` | The root element type for polymorphic rendering. | `"p"` |
+| `children` | `ReactNode` | The text content. | — |
 
 All other props are forwarded to the underlying `<p>` element, or whichever root element is specified via the `as` prop.
 
 ### Available Variants
 
-| Category | Variants                                                                                                                                                              |
-| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Display  | `display-sm`, `display-md`, `display-lg`                                                                                                                              |
-| Heading  | `heading-xs`, `heading-sm`, `heading-md`, `heading-lg`, `heading-xl`, `heading-2xl`                                                                                   |
-| Copy     | `copy-xs`, `copy-xs-bold`, `copy-xs-mono`, `copy-sm`, `copy-sm-bold`, `copy-md`, `copy-md-bold`, `copy-lg`, `copy-lg-bold`, `copy-xl`, `copy-xl-bold`                 |
-| Label    | `label-xs`, `label-xs-bold`, `label-xs-mono`, `label-sm`, `label-sm-bold`, `label-sm-mono`, `label-md`, `label-md-bold`, `label-md-mono`, `label-lg`, `label-lg-bold` |
+| Category | Variants |
+| --- | --- |
+| Display | `display-sm`, `display-md`, `display-lg` |
+| Heading | `heading-xs`, `heading-sm`, `heading-md`, `heading-lg`, `heading-xl`, `heading-2xl` |
+| Copy | `copy-xs`, `copy-xs-bold`, `copy-xs-mono`, `copy-sm`, `copy-sm-bold`, `copy-md`, `copy-md-bold`, `copy-lg`, `copy-lg-bold`, `copy-xl`, `copy-xl-bold` |
+| Label | `label-xs`, `label-xs-bold`, `label-xs-mono`, `label-sm`, `label-sm-bold`, `label-sm-mono`, `label-md`, `label-md-bold`, `label-md-mono`, `label-lg`, `label-lg-bold` |
 
 A `variant` only controls how text looks; it has no bearing on the element that gets rendered. Pair it with the `as` prop so the rendered element matches the meaning of the text, eg. `as="h1"` for a page title, `as="a"` for inline links, etc.
 

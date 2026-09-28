@@ -1,9 +1,8 @@
-import Link from "next/link";
-
 import { Code } from "@tenstorrent/vesper/code";
 import { Material } from "@tenstorrent/vesper/material";
 import { Snippet } from "@tenstorrent/vesper/snippet";
 import { Typography } from "@tenstorrent/vesper/typography";
+import Link from "next/link";
 
 import { VESPER_SUMMARY } from "@/lib/constants";
 

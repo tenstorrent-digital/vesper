@@ -9,7 +9,6 @@ import {
   RadioGroup,
   type RadioGroupProps,
 } from "@/components/radio-group/radio-group";
-
 import "@/styles/test.css";
 
 const RADIO_GROUP_OPTIONS = [

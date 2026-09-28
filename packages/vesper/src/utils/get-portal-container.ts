@@ -7,7 +7,10 @@ import { RefObject } from "react";
  * through directly, and is treated the same as omitting the container.
  */
 export type PortalContainer =
-  HTMLElement | ShadowRoot | null | RefObject<HTMLElement | ShadowRoot | null>;
+  | HTMLElement
+  | ShadowRoot
+  | null
+  | RefObject<HTMLElement | ShadowRoot | null>;
 
 /**
  * Resolves the container that portalled content should be rendered into.

@@ -8,7 +8,6 @@ import {
   type ToastVariant,
 } from "@/components/toast/store";
 import { addToast, Toasts } from "@/components/toast/toast";
-
 import "@/styles/test.css";
 
 /**

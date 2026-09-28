@@ -14,8 +14,7 @@ The default **model** is arbitrary, but must be set in order to start Pi using o
 
 ### Provider Setup
 
-> [!NOTE]
-> To use Github Copilot as a provider, you must have access to Github Copilot.
+> [!NOTE] To use Github Copilot as a provider, you must have access to Github Copilot.
 
 Run `/login` from inside Pi, then select Github Copilot, and login with your Github account.
 
