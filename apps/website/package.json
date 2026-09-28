@@ -10,6 +10,8 @@
     "generate:demos": "node scripts/generate-demos.mts",
     "start": "next start",
     "clean": "rimraf .next generated",
+    "lint": "next typegen && oxlint .",
+    "lint:fix": "next typegen && oxlint --fix .",
     "check-types": "next typegen && tsc --noEmit --incremental false"
   },
   "dependencies": {

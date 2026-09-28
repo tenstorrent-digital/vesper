@@ -89,7 +89,7 @@ yarn quality:fix
 yarn quality:agent
 ```
 
-`lint` and `format` are repo-wide turbo root tasks (`//#lint`, `//#format`): running `yarn lint --format agent` or `yarn format` invokes oxlint/oxfmt directly over the whole monorepo in a single pass. `check-types` stays a per-package task so each workspace is checked against its own `tsconfig.json`. `yarn quality` runs all three through turbo, so its results are cached
+`format` is a repo-wide turbo root task (`//#format`): `yarn format` invokes oxfmt directly over the whole monorepo in a single pass. `lint` is split in two: a repo-wide root task (`//#lint:root`) that lints everything except `apps/**` in a single pass, plus a `lint` task per app that runs after the app's dependencies are built (type-aware lint rules read their types from the build output). `yarn lint --format agent` runs both. `check-types` stays a per-package task so each workspace is checked against its own `tsconfig.json`. `yarn quality` runs all three through turbo, so its results are cached
 
 When running tests, set `AGENTS=true` so the browser runs in headless mode:
 
@@ -102,7 +102,8 @@ AGENTS=true yarn test
 Linting is handled by Oxlint
 
 - Shared configs live in `packages/oxlint-config/` and are consumed by name (`@repo/oxlint-config/next`)
-- Each workspace has its own `oxlint.config.mts`, discovered automatically by the repo-wide `oxlint .` run (the `//#lint` root turbo task) — there are no per-package lint scripts
+- Each workspace has its own `oxlint.config.mts`, discovered automatically by oxlint
+- Apps (`apps/*`) have their own `lint` scripts, which run after their dependencies are built (`dependsOn: ["^build"]`), and everything else is linted by the repo-wide `//#lint:root` root turbo task (`oxlint --ignore-pattern 'apps/**' .`)
 
 ### Disabling Lint Rules
 

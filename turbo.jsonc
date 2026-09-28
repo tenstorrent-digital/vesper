@@ -90,19 +90,33 @@
     //
     // a root task hashes every file in the repo - including the shared configs
     // in `packages/oxlint-config` and the `.oxfmtrc.json`/`oxlint.config.mts`
-    // files each app owns - so neither task needs extra `inputs` to be cached
-    // correctly, and neither needs `transit` since nothing is scoped to a
-    // single package
-    "//#lint": {},
-    // TODO: lint depends on generate:demos from inside website (this will need a re-think)
-    "//#lint:fix": {
+    // files each app owns - so these tasks don't need `transit` since nothing
+    // is scoped to a single package
+    //
+    // the exception is linting apps: type-aware lint rules read the types of the
+    // workspace packages an app depends on (eg. `@tenstorrent/vesper`) from their
+    // build output, so each app has its own `lint` task that runs after `^build`,
+    // and the root lint (`lint:root`) skips `apps/**`
+    // see: https://turborepo.dev/docs/guides/tools/oxc (type-aware linting)
+    "lint": {
+      "dependsOn": ["^build"],
+    },
+    "lint:fix": {
+      "dependsOn": ["^build"],
+      "cache": false,
+    },
+    "//#lint:root": {
+      // `apps/**` is linted by each app's own `lint` task
+      "inputs": ["$TURBO_DEFAULT$", "!apps/**"],
+    },
+    "//#lint:fix:root": {
       "cache": false,
     },
     "//#format": {},
     "//#format:fix": {
       // formatting runs after lint fixes so the two tools never write to the
       // same file at once
-      "dependsOn": ["//#lint:fix"],
+      "dependsOn": ["//#lint:fix:root", "website#lint:fix"],
       "cache": false,
     },
   },
