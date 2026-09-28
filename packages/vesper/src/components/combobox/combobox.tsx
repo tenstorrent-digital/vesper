@@ -75,19 +75,19 @@ export interface ComboboxProps extends FormInputProps<
   /** Whether the dropdown is open by default (uncontrolled mode). */
   defaultOpen?: boolean;
   /** Callback fired when the open state changes. Receives the new open state as an argument. */
-  onOpenChange?(value: boolean): void;
+  onOpenChange?: (value: boolean) => void;
   /** The currently selected value for controlled usage. Pass `null` to represent no selection. */
   value?: string | null;
   /** The initial selected value for uncontrolled usage. */
   defaultValue?: string | null;
   /** Callback invoked with the new value whenever the selection changes, or `null` when the selection is cleared. */
-  onValueChange?(value: string | null): void;
+  onValueChange?: (value: string | null) => void;
   /** The current text displayed in the input for controlled usage. */
   inputValue?: string;
   /** The initial text displayed in the input for uncontrolled usage. */
   defaultInputValue?: string;
   /** Callback invoked with the new text whenever the input's value changes. */
-  onInputValueChange?(value: string): void;
+  onInputValueChange?: (value: string) => void;
   /** Specify the element or shadow root to portal the menu into */
   container?: PortalContainer;
 

@@ -55,7 +55,7 @@ export interface ToggleProps extends Omit<
   /** The initially selected value (uncontrolled mode). */
   defaultValue?: string;
   /** Callback fired when the selected value changes. Receives the newly selected value. */
-  onValueChange?(value: string): void;
+  onValueChange?: (value: string) => void;
   /** When `true`, disables all toggle options, preventing interaction. @default false */
   disabled?: boolean;
   /** The name of the underlying select, used as the field name when submitted with form data. */

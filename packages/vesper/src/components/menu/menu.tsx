@@ -22,7 +22,7 @@ export type MenuItemProps = {
   /** The visual and behavioral style of the menu item. `"locked"` and `"disabled"` both prevent interaction; `"selected"` displays a checkmark; `"locked"` displays a lock icon. @default default */
   style?: "default" | "danger" | "locked" | "selected" | "disabled";
   /** Callback fired when the menu item is selected. */
-  onSelect(): void;
+  onSelect: () => void;
 };
 
 export interface MenuProps {
@@ -41,7 +41,7 @@ export interface MenuProps {
   /** Whether the menu is open by default (uncontrolled mode). */
   defaultOpen?: boolean;
   /** Callback fired when the open state changes. Receives the new open state as an argument. */
-  onOpenChange?(open: boolean): void;
+  onOpenChange?: (open: boolean) => void;
   /** The list of menu items to render in the dropdown. */
   items: MenuItemProps[];
   /** The width of the menu dropdown in pixels. @default 200 */

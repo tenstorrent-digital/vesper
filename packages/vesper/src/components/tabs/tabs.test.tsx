@@ -42,7 +42,7 @@ const TabsTestComponent = ({
 }: {
   variant?: TabsVariant;
   defaultValue?: string;
-  onValueChange?(value: string): void;
+  onValueChange?: (value: string) => void;
 }) => (
   <Tabs
     data-testid="tabs"

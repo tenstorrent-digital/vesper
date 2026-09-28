@@ -27,9 +27,9 @@ export interface RangeProps extends Omit<
   /** The initial thumb values (uncontrolled mode). @default [min, max] */
   defaultValues?: number[];
   /** Callback fired as thumb values change during interaction. Receives the full array of current values. */
-  onValuesChange?(value: number[]): void;
+  onValuesChange?: (value: number[]) => void;
   /** Callback fired when a thumb interaction is completed (e.g., on pointer up). Receives the final array of values. */
-  onValuesCommit?(value: number[]): void;
+  onValuesCommit?: (value: number[]) => void;
   /** When `true`, renders tick marks along the track at each step interval. @default false */
   showTicks?: boolean;
   /** The name attribute applied to each thumb's underlying input, used for form submission. Every thumb submits its value under this name. */

@@ -25,9 +25,9 @@ export interface SliderProps extends Omit<
   /** The initial thumb value (uncontrolled mode). @default props.min */
   defaultValue?: number;
   /** Callback fired as the thumb value changes during interaction. Receives the current value. */
-  onValueChange?(value: number): void;
+  onValueChange?: (value: number) => void;
   /** Callback fired when the thumb interaction is completed (e.g., on pointer up). Receives the final value. */
-  onValueCommit?(value: number): void;
+  onValueCommit?: (value: number) => void;
   /** The accessible `aria-label` attribute for the thumb. */
   thumbAriaLabel: string;
 }

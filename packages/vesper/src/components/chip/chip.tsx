@@ -34,7 +34,7 @@ export type ChipProps<E extends ElementType = "button"> = Polymorphic<
     /** When `true`, renders the chip in a disabled state and prevents interaction. @default false */
     disabled?: boolean;
     /** Callback fired when the chip is clicked. Receives the next selected state as an argument. */
-    onChange?(selected: boolean): void;
+    onChange?: (selected: boolean) => void;
   },
   E
 >;

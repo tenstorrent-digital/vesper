@@ -33,7 +33,7 @@ export interface TooltipProps {
   /** Controls the open state of the tooltip (controlled mode). */
   open?: boolean;
   /** Callback fired when the open state changes. Receives the new open state as an argument. */
-  onOpenChange?(value: boolean): void;
+  onOpenChange?: (value: boolean) => void;
   /** The duration in milliseconds to wait before showing the tooltip after the pointer enters the trigger. @default 500 */
   delayDuration?: number;
   /** Whether the tooltip is open by default (uncontrolled mode). */

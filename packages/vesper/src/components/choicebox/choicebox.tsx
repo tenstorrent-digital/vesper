@@ -49,7 +49,7 @@ export interface ChoiceboxSingleSelectProps extends ChoiceboxBaseProps {
   /** The initially selected value (uncontrolled mode). */
   defaultValue?: string;
   /** Callback fired when the selected value changes. Receives the newly selected value. */
-  onChange?(value: string): void;
+  onChange?: (value: string) => void;
 }
 
 export interface ChoiceboxMultiSelectProps extends ChoiceboxBaseProps {
@@ -60,7 +60,7 @@ export interface ChoiceboxMultiSelectProps extends ChoiceboxBaseProps {
   /** The initially selected values (uncontrolled mode). */
   defaultValues?: string[];
   /** Callback fired when the selected values change. Receives the full array of currently selected values. */
-  onChange?(values: string[]): void;
+  onChange?: (values: string[]) => void;
   /** The minimum number of selections required for form validation. @default 0 */
   min?: number;
   /** The maximum number of selections allowed for form validation. @default Infinity */

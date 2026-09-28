@@ -46,7 +46,7 @@ export interface RadioGroupProps extends Omit<
   /** The initially selected value (uncontrolled mode). */
   defaultValue?: string;
   /** Callback fired when the selected value changes. Receives the newly selected value. */
-  onChange?(value: string): void;
+  onChange?: (value: string) => void;
 }
 
 const RADIO_GROUP_ITEM_TYPOGRAPHY: { [S in RadioSize]: TypographyVariant } = {
