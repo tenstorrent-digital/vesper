@@ -3,6 +3,10 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Icon, ICON_KINDS, type IconKind } from "@/components/icons/icons";
 import { Select, SELECT_SIZES } from "@/components/select/select";
 
+// the `icon` control selects an icon kind (instead of the `ReactNode` the prop expects)
+const isIconKind = (value: unknown): value is IconKind =>
+  ICON_KINDS.some((kind) => kind === value);
+
 const meta = {
   component: Select,
   argTypes: {
@@ -19,7 +23,7 @@ const meta = {
       <Select
         style={{ width: "min(calc(100vw - 4rem), 15rem)" }}
         {...props}
-        icon={props.icon ? <Icon kind={props.icon as IconKind} /> : undefined}
+        icon={isIconKind(props.icon) ? <Icon kind={props.icon} /> : undefined}
       />
     );
   },
