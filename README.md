@@ -47,20 +47,20 @@ yarn check-types        # type-check all workspaces
 
 ## Formatting
 
-We use [`prettier`](.prettierrc.ts) for formatting.
+We use [`oxfmt`](.oxfmtrc.json) for formatting.
 
 Please ensure that automatic formatting on save is configured in your editor.
 
 To run formatting manually you can run the following command to format all files in the repository:
 
 ```sh
-yarn format
+yarn format:fix
 ```
 
 You can also format specific files by passing them as arguments:
 
 ```sh
-yarn format path/to/file.ts path/to/other-file.tsx
+yarn format:fix path/to/file.ts path/to/other-file.tsx
 ```
 
 The same arguments work with `yarn format`, which checks formatting without writing any changes (use `yarn format:fix` to apply fixes).
