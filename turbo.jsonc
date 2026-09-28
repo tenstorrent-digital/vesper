@@ -1,7 +1,7 @@
 {
   "$schema": "https://turborepo.dev/schema.json",
   "ui": "stream",
-  "globalEnv": ["NODE_ENV"],
+  "globalEnv": ["NODE_ENV", "CI"],
   "tasks": {
     /**
      * no-op task — no package defines a `transit` script
