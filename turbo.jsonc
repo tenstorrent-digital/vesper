@@ -14,60 +14,60 @@
      * see: https://turborepo.dev/docs/core-concepts/package-and-task-graph#transit-nodes
      */
     "transit": {
-      "dependsOn": ["^transit"],
+      "dependsOn": ["^transit"]
     },
     "build": {
       "dependsOn": ["^build"],
       "env": ["NEXT_PUBLIC_*", "NEXT_RUNTIME", "VERCEL_*"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
     "build:storybook": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", "storybook/**"],
-      "outputs": ["$TURBO_ROOT$/apps/website/public/storybook/**"],
+      "outputs": ["$TURBO_ROOT$/apps/website/public/storybook/**"]
     },
     "check-types": {
       // NOT a transit node: `docs` resolves `@tenstorrent/vesper` subpaths to
       // declaration files under `dist`, so this is a real build-output
       // dependency and `tsc` cannot run until vesper has been built
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build"]
     },
     "dev": {
       // ensure workspace deps are built (turbo restores `dist` from cache) so
       // we never boot against a missing or half-written `dist`
       "dependsOn": ["^build"],
       "cache": false,
-      "persistent": true,
+      "persistent": true
     },
     "watch": {
       // depends on `build` because `dev` above pulls `^build` into the dev graph
       // (otherwise concurrent writes write over each other)
       "dependsOn": ["build"],
       "cache": false,
-      "persistent": true,
+      "persistent": true
     },
     "clean": {
-      "cache": false,
+      "cache": false
     },
     "test": {
       "dependsOn": ["transit"],
-      "passThroughEnv": ["AGENTS"],
+      "passThroughEnv": ["AGENTS"]
     },
     "test:update": {
       "dependsOn": ["transit"],
-      "passThroughEnv": ["AGENTS"],
+      "passThroughEnv": ["AGENTS"]
     },
     "test:watch": {
       "persistent": true,
-      "passThroughEnv": ["AGENTS"],
+      "passThroughEnv": ["AGENTS"]
     },
     "generate:icons": {
       "inputs": [
         "$TURBO_ROOT$/packages/vesper/assets/icons/**",
-        "$TURBO_ROOT$/packages/vesper/scripts/generate-icons.ts",
+        "$TURBO_ROOT$/packages/vesper/scripts/generate-icons.ts"
       ],
-      "outputs": ["$TURBO_ROOT$/packages/vesper/src/components/icons/**"],
+      "outputs": ["$TURBO_ROOT$/packages/vesper/src/components/icons/**"]
     },
 
     "quality": {
@@ -99,25 +99,25 @@
     // and the root lint (`lint:root`) skips `apps/**`
     // see: https://turborepo.dev/docs/guides/tools/oxc (type-aware linting)
     "lint": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build"]
     },
     "lint:fix": {
       "dependsOn": ["^build"],
-      "cache": false,
+      "cache": false
     },
     "//#lint:root": {
       // `apps/**` is linted by each app's own `lint` task
-      "inputs": ["$TURBO_DEFAULT$", "!apps/**"],
+      "inputs": ["$TURBO_DEFAULT$", "!apps/**"]
     },
     "//#lint:fix:root": {
-      "cache": false,
+      "cache": false
     },
     "//#format": {},
     "//#format:fix": {
       // formatting runs after lint fixes so the two tools never write to the
       // same file at once
       "dependsOn": ["//#lint:fix:root", "website#lint:fix"],
-      "cache": false,
-    },
-  },
+      "cache": false
+    }
+  }
 }
