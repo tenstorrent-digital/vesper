@@ -1,7 +1,9 @@
 import type { ElementType, SyntheticEvent } from "react";
 
 // prevent (and stop the propagation of) an event on a disabled element
-function suppressEvent(e: SyntheticEvent) {
+function suppressEvent(
+  e: Pick<SyntheticEvent, "preventDefault" | "stopPropagation">,
+) {
   e.preventDefault();
   e.stopPropagation();
 }

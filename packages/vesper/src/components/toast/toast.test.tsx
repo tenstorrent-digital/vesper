@@ -1,6 +1,14 @@
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import axe from "axe-core";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import {
+  afterEach,
+  assert,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from "vitest";
 
 import {
   store,
@@ -502,7 +510,8 @@ describe("toast [unit]", () => {
 
     const outsideButton = container.querySelector(
       "[data-testid='outside-button']",
-    ) as HTMLElement;
+    );
+    assert.instanceOf(outsideButton, HTMLElement);
     outsideButton.focus();
     expect(document.activeElement).toBe(outsideButton);
 
@@ -532,7 +541,8 @@ describe("toast [unit]", () => {
 
     const outsideButton = container.querySelector(
       "[data-testid='outside-button']",
-    ) as HTMLElement;
+    );
+    assert.instanceOf(outsideButton, HTMLElement);
     outsideButton.focus();
 
     // move focus into the toast region

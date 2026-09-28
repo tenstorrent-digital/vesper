@@ -1,6 +1,14 @@
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import {
+  afterEach,
+  assert,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from "vitest";
 
 import {
   Modal,
@@ -124,9 +132,8 @@ describe("modal [unit]", () => {
     const { container } = render(
       <Modal title={TITLE} description={DESCRIPTION} width={600} />,
     );
-    const modalContainer = container.querySelector(
-      ".vesper-modal-container",
-    ) as HTMLElement;
+    const modalContainer = container.querySelector(".vesper-modal-container");
+    assert.instanceOf(modalContainer, HTMLElement);
     expect(modalContainer.style.width).toBe("calc(37.5rem)");
   });
 
@@ -134,9 +141,8 @@ describe("modal [unit]", () => {
     const { container } = render(
       <Modal title={TITLE} description={DESCRIPTION} width="80vw" />,
     );
-    const modalContainer = container.querySelector(
-      ".vesper-modal-container",
-    ) as HTMLElement;
+    const modalContainer = container.querySelector(".vesper-modal-container");
+    assert.instanceOf(modalContainer, HTMLElement);
     expect(modalContainer.style.width).toBe("80vw");
   });
 
@@ -144,9 +150,8 @@ describe("modal [unit]", () => {
     const { container } = render(
       <Modal title={TITLE} description={DESCRIPTION} />,
     );
-    const modalContainer = container.querySelector(
-      ".vesper-modal-container",
-    ) as HTMLElement;
+    const modalContainer = container.querySelector(".vesper-modal-container");
+    assert.instanceOf(modalContainer, HTMLElement);
     expect(modalContainer.style.width).toBe("calc(28.25rem)");
   });
 
@@ -154,9 +159,8 @@ describe("modal [unit]", () => {
     const { container } = render(
       <Modal title={TITLE} description={DESCRIPTION} maxHeight={800} />,
     );
-    const modalContainer = container.querySelector(
-      ".vesper-modal-container",
-    ) as HTMLElement;
+    const modalContainer = container.querySelector(".vesper-modal-container");
+    assert.instanceOf(modalContainer, HTMLElement);
     expect(modalContainer.style.maxHeight).toBe(
       "min(calc(100vh - var(--vesper-spacing-16)), calc(800 * (1rem / 16)))",
     );
@@ -166,9 +170,8 @@ describe("modal [unit]", () => {
     const { container } = render(
       <Modal title={TITLE} description={DESCRIPTION} maxHeight="90vh" />,
     );
-    const modalContainer = container.querySelector(
-      ".vesper-modal-container",
-    ) as HTMLElement;
+    const modalContainer = container.querySelector(".vesper-modal-container");
+    assert.instanceOf(modalContainer, HTMLElement);
     expect(modalContainer.style.maxHeight).toBe(
       "min(calc(100vh - var(--vesper-spacing-16)), 90vh)",
     );
@@ -179,7 +182,8 @@ describe("modal [unit]", () => {
       const { container } = render(
         <Modal title={TITLE} description={DESCRIPTION} />,
       );
-      const dialog = container.firstElementChild as HTMLDialogElement;
+      const dialog = container.firstElementChild;
+      assert.instanceOf(dialog, HTMLDialogElement);
       const titleEl = container.querySelector(".vesper-modal-title");
       const labelledBy = dialog.getAttribute("aria-labelledby");
       expect(labelledBy).toContain(titleEl?.id);
@@ -189,7 +193,8 @@ describe("modal [unit]", () => {
       const { container } = render(
         <Modal title={TITLE} description={DESCRIPTION} />,
       );
-      const dialog = container.firstElementChild as HTMLDialogElement;
+      const dialog = container.firstElementChild;
+      assert.instanceOf(dialog, HTMLDialogElement);
       const descEl = container.querySelector(".vesper-modal-description");
       const describedBy = dialog.getAttribute("aria-describedby");
       expect(describedBy).toContain(descEl?.id);
@@ -203,7 +208,8 @@ describe("modal [unit]", () => {
           aria-labelledby="custom-label"
         />,
       );
-      const dialog = container.firstElementChild as HTMLDialogElement;
+      const dialog = container.firstElementChild;
+      assert.instanceOf(dialog, HTMLDialogElement);
       const titleEl = container.querySelector(".vesper-modal-title");
       const labelledBy = dialog.getAttribute("aria-labelledby");
       expect(labelledBy).toContain("custom-label");
@@ -218,7 +224,8 @@ describe("modal [unit]", () => {
           aria-describedby="custom-desc"
         />,
       );
-      const dialog = container.firstElementChild as HTMLDialogElement;
+      const dialog = container.firstElementChild;
+      assert.instanceOf(dialog, HTMLDialogElement);
       const descEl = container.querySelector(".vesper-modal-description");
       const describedBy = dialog.getAttribute("aria-describedby");
       expect(describedBy).toContain("custom-desc");
@@ -341,9 +348,8 @@ describe("modal [unit]", () => {
       const result = render(
         <ModalWithHook title={TITLE} description={DESCRIPTION} />,
       );
-      const dialog = result.container.querySelector(
-        "dialog",
-      ) as HTMLDialogElement;
+      const dialog = result.container.querySelector("dialog");
+      assert.instanceOf(dialog, HTMLDialogElement);
 
       fireEvent.click(result.getByTestId("open-trigger"));
       expect(dialog.open).toBe(true);
@@ -356,16 +362,16 @@ describe("modal [unit]", () => {
       const result = render(
         <ModalWithHook title={TITLE} description={DESCRIPTION} />,
       );
-      const dialog = result.container.querySelector(
-        "dialog",
-      ) as HTMLDialogElement;
+      const dialog = result.container.querySelector("dialog");
+      assert.instanceOf(dialog, HTMLDialogElement);
 
       fireEvent.click(result.getByTestId("open-trigger"));
       expect(dialog.open).toBe(true);
 
       const closeBtn = result.container.querySelector(
         ".vesper-modal-header .vesper-button",
-      ) as HTMLButtonElement;
+      );
+      assert.instanceOf(closeBtn, HTMLButtonElement);
       fireEvent.click(closeBtn);
       expect(dialog.open).toBe(false);
     });
@@ -376,9 +382,8 @@ describe("modal [unit]", () => {
       const result = render(
         <ModalWithHook title={TITLE} description={DESCRIPTION} />,
       );
-      const dialog = result.container.querySelector(
-        "dialog",
-      ) as HTMLDialogElement;
+      const dialog = result.container.querySelector("dialog");
+      assert.instanceOf(dialog, HTMLDialogElement);
 
       fireEvent.click(result.getByTestId("open-trigger"));
       expect(dialog.open).toBe(true);
@@ -395,9 +400,8 @@ describe("modal [unit]", () => {
           closeOnClickOutside
         />,
       );
-      const dialog = result.container.querySelector(
-        "dialog",
-      ) as HTMLDialogElement;
+      const dialog = result.container.querySelector("dialog");
+      assert.instanceOf(dialog, HTMLDialogElement);
 
       fireEvent.click(result.getByTestId("open-trigger"));
       expect(dialog.open).toBe(true);
@@ -416,16 +420,14 @@ describe("modal [unit]", () => {
           <p>Inner content</p>
         </ModalWithHook>,
       );
-      const dialog = result.container.querySelector(
-        "dialog",
-      ) as HTMLDialogElement;
+      const dialog = result.container.querySelector("dialog");
+      assert.instanceOf(dialog, HTMLDialogElement);
 
       fireEvent.click(result.getByTestId("open-trigger"));
       expect(dialog.open).toBe(true);
 
-      const content = result.container.querySelector(
-        ".vesper-modal-container",
-      ) as HTMLElement;
+      const content = result.container.querySelector(".vesper-modal-container");
+      assert.instanceOf(content, HTMLElement);
       fireEvent.click(content);
       expect(dialog.open).toBe(true);
     });
@@ -486,7 +488,8 @@ describe("modal [unit]", () => {
 
       fireEvent.click(result.getByTestId("open-trigger"));
 
-      const form = result.container.querySelector("form") as HTMLFormElement;
+      const form = result.container.querySelector("form");
+      assert.instanceOf(form, HTMLFormElement);
       fireEvent.submit(form);
       expect(onSubmit).toHaveBeenCalled();
     });
@@ -611,9 +614,8 @@ describe("modal [a11y]", () => {
           <ModalWithHook {...props}>{children}</ModalWithHook>,
         );
         fireEvent.click(result.getByTestId("open-trigger"));
-        const dialog = result.container.querySelector(
-          "dialog",
-        ) as HTMLDialogElement;
+        const dialog = result.container.querySelector("dialog");
+        assert.instanceOf(dialog, HTMLDialogElement);
         expect(dialog.open).toBe(true);
         expect(await axe.run(result.container)).toHaveNoViolations();
       });

@@ -1,6 +1,14 @@
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import {
+  afterEach,
+  assert,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from "vitest";
 
 import { Sheet, type SheetProps, useSheet } from "@/components/sheet/sheet";
 import "@/styles/test.css";
@@ -42,7 +50,8 @@ describe("sheet [unit]", () => {
     const { container } = render(
       <Sheet title={TITLE} description={DESCRIPTION} />,
     );
-    const dialog = container.firstElementChild as HTMLDialogElement;
+    const dialog = container.firstElementChild;
+    assert.instanceOf(dialog, HTMLDialogElement);
     expect(dialog).not.toHaveAttribute("popover");
   });
 
@@ -50,7 +59,8 @@ describe("sheet [unit]", () => {
     const { container } = render(
       <Sheet title={TITLE} description={DESCRIPTION} popover />,
     );
-    const dialog = container.firstElementChild as HTMLDialogElement;
+    const dialog = container.firstElementChild;
+    assert.instanceOf(dialog, HTMLDialogElement);
     expect(dialog).toHaveAttribute("popover", "manual");
   });
 
@@ -87,9 +97,8 @@ describe("sheet [unit]", () => {
     const { container } = render(
       <Sheet title={TITLE} description={DESCRIPTION} />,
     );
-    const closeBtn = container.querySelector(
-      '[aria-label="Close sheet"]',
-    ) as HTMLButtonElement;
+    const closeBtn = container.querySelector('[aria-label="Close sheet"]');
+    assert.instanceOf(closeBtn, HTMLButtonElement);
     expect(closeBtn).not.toBeNull();
     expect(closeBtn).toHaveAttribute("type", "button");
   });
@@ -152,7 +161,8 @@ describe("sheet [unit]", () => {
       const { container } = render(
         <Sheet title={TITLE} description={DESCRIPTION} />,
       );
-      const dialog = container.firstElementChild as HTMLDialogElement;
+      const dialog = container.firstElementChild;
+      assert.instanceOf(dialog, HTMLDialogElement);
       const titleEl = container.querySelector(".vesper-sheet-title");
       const labelledBy = dialog.getAttribute("aria-labelledby");
       expect(labelledBy).toContain(titleEl?.id);
@@ -162,7 +172,8 @@ describe("sheet [unit]", () => {
       const { container } = render(
         <Sheet title={TITLE} description={DESCRIPTION} />,
       );
-      const dialog = container.firstElementChild as HTMLDialogElement;
+      const dialog = container.firstElementChild;
+      assert.instanceOf(dialog, HTMLDialogElement);
       const descEl = container.querySelector(".vesper-sheet-description");
       const describedBy = dialog.getAttribute("aria-describedby");
       expect(describedBy).toContain(descEl?.id);
@@ -176,7 +187,8 @@ describe("sheet [unit]", () => {
           aria-labelledby="custom-label"
         />,
       );
-      const dialog = container.firstElementChild as HTMLDialogElement;
+      const dialog = container.firstElementChild;
+      assert.instanceOf(dialog, HTMLDialogElement);
       const titleEl = container.querySelector(".vesper-sheet-title");
       const labelledBy = dialog.getAttribute("aria-labelledby");
       expect(labelledBy).toContain("custom-label");
@@ -191,7 +203,8 @@ describe("sheet [unit]", () => {
           aria-describedby="custom-desc"
         />,
       );
-      const dialog = container.firstElementChild as HTMLDialogElement;
+      const dialog = container.firstElementChild;
+      assert.instanceOf(dialog, HTMLDialogElement);
       const descEl = container.querySelector(".vesper-sheet-description");
       const describedBy = dialog.getAttribute("aria-describedby");
       expect(describedBy).toContain("custom-desc");
@@ -299,9 +312,8 @@ describe("sheet [unit]", () => {
         const result = render(
           <SheetWithHook title={TITLE} description={DESCRIPTION} />,
         );
-        const dialog = result.container.querySelector(
-          "dialog",
-        ) as HTMLDialogElement;
+        const dialog = result.container.querySelector("dialog");
+        assert.instanceOf(dialog, HTMLDialogElement);
 
         expect(dialog.open).toBe(false);
 
@@ -316,16 +328,16 @@ describe("sheet [unit]", () => {
         const result = render(
           <SheetWithHook title={TITLE} description={DESCRIPTION} />,
         );
-        const dialog = result.container.querySelector(
-          "dialog",
-        ) as HTMLDialogElement;
+        const dialog = result.container.querySelector("dialog");
+        assert.instanceOf(dialog, HTMLDialogElement);
 
         fireEvent.click(result.getByTestId("open-trigger"));
         expect(dialog.open).toBe(true);
 
         const closeBtn = result.container.querySelector(
           '[aria-label="Close sheet"]',
-        ) as HTMLButtonElement;
+        );
+        assert.instanceOf(closeBtn, HTMLButtonElement);
         fireEvent.click(closeBtn);
         expect(dialog.open).toBe(false);
       });
@@ -334,9 +346,8 @@ describe("sheet [unit]", () => {
         const result = render(
           <SheetWithHook title={TITLE} description={DESCRIPTION} />,
         );
-        const dialog = result.container.querySelector(
-          "dialog",
-        ) as HTMLDialogElement;
+        const dialog = result.container.querySelector("dialog");
+        assert.instanceOf(dialog, HTMLDialogElement);
 
         fireEvent.click(result.getByTestId("open-trigger"));
         expect(dialog.open).toBe(true);
@@ -351,16 +362,14 @@ describe("sheet [unit]", () => {
             <p>Inner content</p>
           </SheetWithHook>,
         );
-        const dialog = result.container.querySelector(
-          "dialog",
-        ) as HTMLDialogElement;
+        const dialog = result.container.querySelector("dialog");
+        assert.instanceOf(dialog, HTMLDialogElement);
 
         fireEvent.click(result.getByTestId("open-trigger"));
         expect(dialog.open).toBe(true);
 
-        const content = result.container.querySelector(
-          ".vesper-sheet-content",
-        ) as HTMLElement;
+        const content = result.container.querySelector(".vesper-sheet-content");
+        assert.instanceOf(content, HTMLElement);
         fireEvent.click(content);
         expect(dialog.open).toBe(true);
       });
@@ -371,9 +380,8 @@ describe("sheet [unit]", () => {
         const result = render(
           <SheetWithHook title={TITLE} description={DESCRIPTION} popover />,
         );
-        const dialog = result.container.querySelector(
-          "dialog",
-        ) as HTMLDialogElement;
+        const dialog = result.container.querySelector("dialog");
+        assert.instanceOf(dialog, HTMLDialogElement);
 
         expect(dialog.matches(":popover-open")).toBe(false);
 
@@ -388,16 +396,16 @@ describe("sheet [unit]", () => {
         const result = render(
           <SheetWithHook title={TITLE} description={DESCRIPTION} popover />,
         );
-        const dialog = result.container.querySelector(
-          "dialog",
-        ) as HTMLDialogElement;
+        const dialog = result.container.querySelector("dialog");
+        assert.instanceOf(dialog, HTMLDialogElement);
 
         fireEvent.click(result.getByTestId("open-trigger"));
         expect(dialog.matches(":popover-open")).toBe(true);
 
         const closeBtn = result.container.querySelector(
           '[aria-label="Close sheet"]',
-        ) as HTMLButtonElement;
+        );
+        assert.instanceOf(closeBtn, HTMLButtonElement);
         fireEvent.click(closeBtn);
         expect(dialog.matches(":popover-open")).toBe(false);
       });
@@ -406,9 +414,8 @@ describe("sheet [unit]", () => {
         const result = render(
           <SheetWithHook title={TITLE} description={DESCRIPTION} popover />,
         );
-        const dialog = result.container.querySelector(
-          "dialog",
-        ) as HTMLDialogElement;
+        const dialog = result.container.querySelector("dialog");
+        assert.instanceOf(dialog, HTMLDialogElement);
 
         fireEvent.click(result.getByTestId("open-trigger"));
         expect(dialog.matches(":popover-open")).toBe(true);
@@ -474,7 +481,8 @@ describe("sheet [unit]", () => {
 
       fireEvent.click(result.getByTestId("open-trigger"));
 
-      const form = result.container.querySelector("form") as HTMLFormElement;
+      const form = result.container.querySelector("form");
+      assert.instanceOf(form, HTMLFormElement);
       fireEvent.submit(form);
       expect(onSubmit).toHaveBeenCalled();
     });
@@ -600,9 +608,8 @@ describe("sheet [a11y]", () => {
           <SheetWithHook {...props}>{children}</SheetWithHook>,
         );
         fireEvent.click(result.getByTestId("open-trigger"));
-        const dialog = result.container.querySelector(
-          "dialog",
-        ) as HTMLDialogElement;
+        const dialog = result.container.querySelector("dialog");
+        assert.instanceOf(dialog, HTMLDialogElement);
         if (props.popover) {
           expect(dialog.matches(":popover-open")).toBe(true);
         } else {

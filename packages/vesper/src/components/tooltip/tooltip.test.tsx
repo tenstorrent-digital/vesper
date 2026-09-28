@@ -1,6 +1,14 @@
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import axe from "axe-core";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import {
+  afterEach,
+  assert,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from "vitest";
 
 import { Tooltip } from "@/components/tooltip/tooltip";
 import { Typography } from "@/components/typography/typography";
@@ -36,7 +44,8 @@ describe("tooltip [unit]", () => {
       </Tooltip>,
     );
 
-    const trigger = result.container.firstChild as HTMLElement;
+    const trigger = result.container.firstChild;
+    assert.instanceOf(trigger, HTMLElement);
     fireEvent.mouseEnter(trigger);
 
     await waitFor(() => {
@@ -100,7 +109,8 @@ describe("tooltip [unit]", () => {
       </Tooltip>,
     );
 
-    const trigger = result.container.firstChild as HTMLElement;
+    const trigger = result.container.firstChild;
+    assert.instanceOf(trigger, HTMLElement);
     fireEvent.mouseEnter(trigger);
 
     await waitFor(() => {
@@ -127,7 +137,8 @@ describe("tooltip [unit]", () => {
       </Tooltip>,
     );
 
-    const trigger = result.container.firstChild as HTMLElement;
+    const trigger = result.container.firstChild;
+    assert.instanceOf(trigger, HTMLElement);
     const tooltip = document.querySelector(".vesper-tooltip")!;
 
     expect(trigger).toHaveAttribute("aria-describedby", tooltip.id);
@@ -146,7 +157,8 @@ describe("tooltip [unit]", () => {
       </Tooltip>,
     );
 
-    const trigger = result.container.firstChild as HTMLElement;
+    const trigger = result.container.firstChild;
+    assert.instanceOf(trigger, HTMLElement);
     expect(trigger).not.toHaveAttribute("aria-describedby");
 
     fireEvent.mouseEnter(trigger);
@@ -246,7 +258,8 @@ describe("tooltip [unit]", () => {
       </Tooltip>,
     );
 
-    const trigger = result.container.firstChild as HTMLElement;
+    const trigger = result.container.firstChild;
+    assert.instanceOf(trigger, HTMLElement);
     fireEvent.mouseEnter(trigger);
 
     await waitFor(() => {

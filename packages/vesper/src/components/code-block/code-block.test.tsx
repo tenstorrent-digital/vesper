@@ -2,7 +2,15 @@ import jsonLang from "@shikijs/langs/json";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
 import { StrictMode } from "react";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import {
+  afterEach,
+  assert,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from "vitest";
 
 import { CodeBlock } from "@/components/code-block/code-block";
 import "@/styles/test.css";
@@ -24,7 +32,7 @@ const createAsyncStreamFactory = (code: string) => async () =>
   createStream(code);
 
 // a stream factory that throws instead of returning a stream
-const throwingStreamFactory = () => {
+const throwingStreamFactory = (): ReadableStream<string> => {
   throw new Error("factory error");
 };
 
@@ -182,9 +190,8 @@ describe("code-block [unit]", () => {
       });
 
     const { container } = render(<CodeBlock>{streamFactory}</CodeBlock>);
-    const wrapper = container.querySelector(
-      ".vesper-code-block-pre-wrapper",
-    ) as HTMLElement;
+    const wrapper = container.querySelector(".vesper-code-block-pre-wrapper");
+    assert.instanceOf(wrapper, HTMLElement);
 
     const scrollTopSpy = vi.spyOn(wrapper, "scrollTop", "set");
 
@@ -217,9 +224,8 @@ describe("code-block [unit]", () => {
       <CodeBlock style={{ height: 100 }}>{streamFactory}</CodeBlock>,
     );
 
-    const wrapper = container.querySelector(
-      ".vesper-code-block-pre-wrapper",
-    ) as HTMLElement;
+    const wrapper = container.querySelector(".vesper-code-block-pre-wrapper");
+    assert.instanceOf(wrapper, HTMLElement);
 
     // Allow the factory to be called (deferred to microtask)
     await new Promise((r) => setTimeout(r, 0));
@@ -402,9 +408,7 @@ describe("code-block [unit]", () => {
   test("factory that throws synchronously does not crash the component", async () => {
     // Should not throw during render or effect execution
     const { container } = render(
-      <CodeBlock>
-        {throwingStreamFactory as unknown as () => ReadableStream<string>}
-      </CodeBlock>,
+      <CodeBlock>{throwingStreamFactory}</CodeBlock>,
     );
 
     await new Promise((r) => setTimeout(r, 100));

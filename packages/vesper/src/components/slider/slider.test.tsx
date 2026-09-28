@@ -1,6 +1,14 @@
 import { cleanup, render } from "@testing-library/react";
 import axe from "axe-core";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import {
+  afterEach,
+  assert,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from "vitest";
 import { userEvent } from "vitest/browser";
 
 import { Slider, type SliderProps } from "@/components/slider/slider";
@@ -14,7 +22,8 @@ async function renderSlider(props: Partial<SliderProps> = {}) {
   const result = render(<Slider thumbAriaLabel="Volume" {...props} />);
 
   const thumb = await result.findByRole("slider");
-  const wrapper = result.container.firstElementChild as HTMLElement;
+  const wrapper = result.container.firstElementChild;
+  assert.instanceOf(wrapper, HTMLElement);
   const root = result.container.querySelector<HTMLElement>(".vesper-range")!;
 
   return { ...result, thumb, wrapper, root };

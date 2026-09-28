@@ -1,11 +1,6 @@
-import { SyntheticEvent } from "react";
-import { describe, expect, test, vi } from "vitest";
+import { assert, describe, expect, test, vi } from "vitest";
 
 import { getDisabledProps } from "@/utils/get-disabled-props";
-
-type SuppressEventFn = (
-  e: Pick<SyntheticEvent, "preventDefault" | "stopPropagation">,
-) => void;
 
 describe("getDisabledProps", () => {
   test("returns empty object when isDisabled is false", () => {
@@ -49,10 +44,8 @@ describe("getDisabledProps", () => {
   });
 
   test("suppressEvent handlers call preventDefault and stopPropagation", () => {
-    const result = getDisabledProps("div", true) as Record<
-      string,
-      SuppressEventFn
-    >;
+    const result = getDisabledProps("div", true);
+    assert("onClickCapture" in result);
 
     const mockEvent = {
       preventDefault: vi.fn(),
@@ -65,10 +58,8 @@ describe("getDisabledProps", () => {
   });
 
   test("all capture handlers reference the same suppressEvent function", () => {
-    const result = getDisabledProps("div", true) as Record<
-      string,
-      SuppressEventFn
-    >;
+    const result = getDisabledProps("div", true);
+    assert("onClickCapture" in result);
     const handlers = [
       result.onClickCapture,
       result.onMouseDownCapture,

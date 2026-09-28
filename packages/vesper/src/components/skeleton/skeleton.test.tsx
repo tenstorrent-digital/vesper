@@ -1,6 +1,6 @@
 import { cleanup, render } from "@testing-library/react";
 import axe from "axe-core";
-import { afterEach, beforeEach, describe, expect, test } from "vitest";
+import { afterEach, assert, beforeEach, describe, expect, test } from "vitest";
 
 import {
   Skeleton,
@@ -57,20 +57,23 @@ describe("skeleton [unit]", () => {
   describe("dimensions", () => {
     test("size prop sets width and height", () => {
       const { container } = render(<Skeleton size={100} />);
-      const el = container.firstElementChild as HTMLElement;
+      const el = container.firstElementChild;
+      assert.instanceOf(el, HTMLElement);
       expect(el.style.width).toBe("100px");
       expect(el.style.height).toBe("100px");
     });
 
     test("width prop sets width", () => {
       const { container } = render(<Skeleton width={200} />);
-      const el = container.firstElementChild as HTMLElement;
+      const el = container.firstElementChild;
+      assert.instanceOf(el, HTMLElement);
       expect(el.style.width).toBe("200px");
     });
 
     test("height prop sets height", () => {
       const { container } = render(<Skeleton height={150} />);
-      const el = container.firstElementChild as HTMLElement;
+      const el = container.firstElementChild;
+      assert.instanceOf(el, HTMLElement);
       expect(el.style.height).toBe("150px");
     });
 
@@ -78,33 +81,38 @@ describe("skeleton [unit]", () => {
       const { container } = render(
         <Skeleton size={80} width={200} height={150} />,
       );
-      const el = container.firstElementChild as HTMLElement;
+      const el = container.firstElementChild;
+      assert.instanceOf(el, HTMLElement);
       expect(el.style.width).toBe("80px");
       expect(el.style.height).toBe("80px");
     });
 
     test("string size prop", () => {
       const { container } = render(<Skeleton size="50%" />);
-      const el = container.firstElementChild as HTMLElement;
+      const el = container.firstElementChild;
+      assert.instanceOf(el, HTMLElement);
       expect(el.style.width).toBe("50%");
       expect(el.style.height).toBe("50%");
     });
 
     test("string width prop", () => {
       const { container } = render(<Skeleton width="100%" />);
-      const el = container.firstElementChild as HTMLElement;
+      const el = container.firstElementChild;
+      assert.instanceOf(el, HTMLElement);
       expect(el.style.width).toBe("100%");
     });
 
     test("string height prop", () => {
       const { container } = render(<Skeleton height="2rem" />);
-      const el = container.firstElementChild as HTMLElement;
+      const el = container.firstElementChild;
+      assert.instanceOf(el, HTMLElement);
       expect(el.style.height).toBe("2rem");
     });
 
     test("no inline width or height when no dimension props provided", () => {
       const { container } = render(<Skeleton />);
-      const el = container.firstElementChild as HTMLElement;
+      const el = container.firstElementChild;
+      assert.instanceOf(el, HTMLElement);
       expect(el.style.width).toBe("");
       expect(el.style.height).toBe("");
     });
@@ -114,7 +122,8 @@ describe("skeleton [unit]", () => {
     const { container } = render(
       <Skeleton size={80} style={{ backgroundColor: "red" }} />,
     );
-    const el = container.firstElementChild as HTMLElement;
+    const el = container.firstElementChild;
+    assert.instanceOf(el, HTMLElement);
     expect(el.style.width).toBe("80px");
     expect(el.style.backgroundColor).toBe("red");
   });
@@ -123,7 +132,8 @@ describe("skeleton [unit]", () => {
     const { container } = render(
       <Skeleton style={{ opacity: "0.5", margin: "8px" }} />,
     );
-    const el = container.firstElementChild as HTMLElement;
+    const el = container.firstElementChild;
+    assert.instanceOf(el, HTMLElement);
     expect(el.style.opacity).toBe("0.5");
     expect(el.style.margin).toBe("8px");
   });
