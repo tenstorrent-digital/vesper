@@ -184,7 +184,11 @@
       "import": "./dist/components/icons/icons.js"
     },
     "./styles.css": "./dist/styles/styles.css",
-    "./tailwind.css": "./dist/styles/tailwind.css"
+    "./tailwind.css": "./dist/styles/tailwind.css",
+    "./tailwind-merge": {
+      "types": "./dist/utils/tailwind-merge.d.ts",
+      "import": "./dist/utils/tailwind-merge.js"
+    }
   },
   "sideEffects": [
     "**/*.css"
