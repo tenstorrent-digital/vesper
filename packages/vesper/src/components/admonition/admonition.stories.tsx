@@ -5,7 +5,6 @@ import { Admonition } from "@/components/admonition/admonition";
 const meta = {
   component: Admonition,
   argTypes: {
-    as: { table: { disable: true } },
     ctaAs: { table: { disable: true } },
     cta: { control: "boolean" },
   },
