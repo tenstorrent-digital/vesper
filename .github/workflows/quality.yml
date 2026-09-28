@@ -31,6 +31,9 @@ jobs:
 
       - uses: ./.github/actions/setup
         id: setup
+        with:
+          # vesper's unit tests run in (playwright's) chromium
+          playwright: "true"
 
       # lint, format, check-types
       - name: Check linting, formatting and types
