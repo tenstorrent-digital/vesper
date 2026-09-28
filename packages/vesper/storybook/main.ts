@@ -12,6 +12,10 @@ function getAbsolutePath(value: string) {
 }
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+// `Array.isArray` doesn't narrow readonly arrays (eg. vite's `readonly Alias[]`)
+const isArray = (value: unknown): value is readonly unknown[] =>
+  Array.isArray(value);
+
 const config: StorybookConfig = {
   stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [getAbsolutePath("@storybook/addon-a11y")],
@@ -59,7 +63,7 @@ const config: StorybookConfig = {
     }
     config.resolve = config.resolve || {};
 
-    if (Array.isArray(config.resolve.alias)) {
+    if (isArray(config.resolve.alias)) {
       config.resolve.alias = [
         ...config.resolve.alias,
         { find: "@", replacement: resolve(__dirname, "../src") },
