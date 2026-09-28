@@ -74,13 +74,13 @@
       // note: we pass `--continue` to the `quality` script in `package.json` so
       // turbo doesn't cancel in-flight task as soon as one fails - this way a
       // failure in one task (e.g. format) doesn't hide the results of the other tasks
-      "dependsOn": ["//#lint", "//#format", "check-types"]
+      "dependsOn": ["//#lint:root", "lint", "//#format", "check-types"]
     },
     "quality:fix": {
       // similar to above, `quality:fix` uses `--continue=always` so that formatting
       // is still applied if `oxlint --fix` exits non-zero because some problems
       // were not auto-fixable
-      "dependsOn": ["//#lint:fix", "//#format:fix"],
+      "dependsOn": ["//#lint:fix:root", "lint:fix", "//#format:fix"],
       "cache": false
     },
 

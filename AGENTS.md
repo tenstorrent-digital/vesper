@@ -72,17 +72,33 @@ The Package Management, Commands, and Setup rules above describe how **you** ins
 You can use the following commands from the repository root to validate your work:
 
 ```bash
-yarn lint         # check for linting and type errors
-yarn format       # format code
-yarn check-types  # check for type errors
+yarn quality:agent          # check everything: linting, formatting and types
+yarn lint --format agent    # check for linting problems only (oxlint, does not write)
+yarn format                 # check formatting only (oxfmt --check, does not write)
+yarn check-types            # check for type errors only (tsc --noEmit, per workspace)
 ```
 
+<<<<<<< HEAD
 When running tests, set `AGENTS=true` so the browser runs in headless mode:
 
 ```bash
 AGENTS=true yarn test
 ```
 
+=======
+Before you commit any changes, run the following commands to ensure your code is free of linting and type errors, and properly formatted:
+
+```bash
+# fix any auto-fixable linting problems, then format code
+yarn quality:fix
+
+# then check whatever couldn't be fixed automatically (lint, format, types)
+yarn quality:agent
+```
+
+`lint` and `format` are repo-wide turbo root tasks (`//#lint`, `//#format`): running `yarn lint --format agent` or `yarn format` invokes oxlint/oxfmt directly over the whole monorepo in a single pass. `check-types` stays a per-package task so each workspace is checked against its own `tsconfig.json`. `yarn quality` runs all three through turbo, so its results are cached
+
+>>>>>>> ebc42faf (update lint/format/quality agent guidance)
 ## Linear and Github Pull Requests
 
 Linear
