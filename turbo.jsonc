@@ -67,7 +67,7 @@
         "$TURBO_ROOT$/packages/vesper/assets/icons/**",
         "$TURBO_ROOT$/packages/vesper/scripts/generate-icons.ts",
       ],
-      "outputs": ["$TURBO_ROOT$/packages/vesper/src/components/Icon/**"],
+      "outputs": ["$TURBO_ROOT$/packages/vesper/src/components/icons/**"],
     },
 
     "quality": {
