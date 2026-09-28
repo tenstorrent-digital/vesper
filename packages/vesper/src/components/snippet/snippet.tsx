@@ -64,6 +64,8 @@ export function Snippet(props: SnippetProps) {
       <pre>
         <Typography as="code" variant="copy-xs-mono">
           {(children ?? "").split("\n").map((line, index) => (
+            // lines have no identity other than their position
+            // oxlint-disable-next-line react/no-array-index-key
             <span key={index} className="line">
               {line}
             </span>

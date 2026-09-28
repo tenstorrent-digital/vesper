@@ -202,6 +202,8 @@ export function Sheet(props: SheetProps) {
               (index === buttons.length - 1 ? "contrast" : "tertiary");
 
             return (
+              // buttons have no unique id and are rendered in a static order
+              // oxlint-disable-next-line react/no-array-index-key
               <Button size="lg" key={index} {...button} variant={variant} />
             );
           })}

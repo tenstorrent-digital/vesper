@@ -170,9 +170,9 @@ export function Range(props: RangeProps) {
       <BaseSlider.Control>
         <BaseSlider.Track className="vesper-range-track">
           {showTicks &&
-            tickPositions.map((position, i) => (
+            tickPositions.map((position) => (
               <span
-                key={i}
+                key={position}
                 className="vesper-range-tick"
                 style={
                   {
@@ -184,6 +184,8 @@ export function Range(props: RangeProps) {
           <BaseSlider.Indicator className="vesper-range-range" />
           {thumbValues.map((_, index) => (
             <Typography
+              // each thumb is identified by its index (see `BaseSlider.Thumb` `index` prop)
+              // oxlint-disable-next-line react/no-array-index-key
               key={index}
               as={BaseSlider.Thumb}
               variant="label-xs"

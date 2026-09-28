@@ -131,6 +131,8 @@ function TokenStreamRenderer({
     <pre className="shiki vesper shiki-stream">
       <code>
         {tokensToLines(tokens).map((line, index) => (
+          // lines have no identity other than their position
+          // oxlint-disable-next-line react/no-array-index-key
           <span key={index} className="line">
             {line.map((token) => (
               <span

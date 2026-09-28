@@ -211,6 +211,8 @@ export function Modal(props: ModalProps) {
               (index === buttons.length - 1 ? "primary" : "tertiary");
 
             return (
+              // buttons have no unique id and are rendered in a static order
+              // oxlint-disable-next-line react/no-array-index-key
               <Button key={index} {...button} size="lg" variant={variant} />
             );
           })}

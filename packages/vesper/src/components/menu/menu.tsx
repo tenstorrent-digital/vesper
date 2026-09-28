@@ -125,6 +125,8 @@ export function Menu(props: MenuProps) {
             style={{ width: `calc(${width} * (1rem / 16))` }}
           >
             {items.map((item, index) => (
+              // menu items have no unique id and are rendered in a static order
+              // oxlint-disable-next-line react/no-array-index-key
               <MenuItem key={index} {...item} />
             ))}
           </DropdownMenu.Popup>
