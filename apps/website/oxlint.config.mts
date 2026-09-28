@@ -30,7 +30,7 @@ export default defineConfig({
     react: {
       // oxlint's "react" plugin doesn't support "detect" mode, so
       // this needs to be kept in step with the `react` dependency
-      version: "19.2",
+      version: "19.3",
     },
   },
 });
