@@ -36,8 +36,8 @@ const getDocSlug = (docPath: string) =>
     .split(path.sep);
 
 /** extracts a doc's extension from its filesystem path */
-const getDocExt = (docPath: string) =>
-  docPath.slice(docPath.lastIndexOf(".") + 1) as DocExtension;
+const getDocExt = (docPath: string): DocExtension =>
+  docPath.endsWith(".mdx") ? "mdx" : "md";
 
 /** gets the raw text content of a doc file */
 const getRawDoc = (docPath: string) =>

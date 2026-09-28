@@ -82,6 +82,8 @@ const toPhrasingContent = (
     previousWasParagraph = true;
   });
 
+  // cast phrasing content back to flow content (see above)
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   return phrasing as MdxJsxFlowElement["children"];
 };
 

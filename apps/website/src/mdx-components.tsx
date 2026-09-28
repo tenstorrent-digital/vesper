@@ -73,9 +73,14 @@ import { ThemeSwitcher } from "@tenstorrent/vesper/theme-switcher";
 import { Toggle } from "@tenstorrent/vesper/toggle";
 import { Tooltip } from "@tenstorrent/vesper/tooltip";
 import { Typography } from "@tenstorrent/vesper/typography";
+import { isValidElement } from "react";
 
 // docs-only components (not part of the design system)
 import { ColorChip } from "@/components/color-chip";
+
+// whether a code block's language is one of shiki's bundled languages
+const isBundledLanguage = (lang: string): lang is BundledLanguage =>
+  lang in bundledLanguages;
 
 /**
  * github alert types (`> [!NOTE]`), as picked up by
@@ -129,21 +134,22 @@ const components = {
     </Admonition>
   ),
   pre: async (props) => {
-    const codeElement = props.children as React.ReactElement<{
+    const codeElement = isValidElement<{
       children?: string;
       className?: string;
-    }>;
+    }>(props.children)
+      ? props.children
+      : undefined;
     const code = codeElement?.props?.children?.trim() ?? "";
     const lang = codeElement?.props?.className?.replace("language-", "");
 
     let resolvedLang: LanguageRegistration[] | "text" = "text";
 
     // check if language is included in bundled languages
-    if (lang && lang in bundledLanguages) {
+    if (lang && isBundledLanguage(lang)) {
       // if it is, get the ES module directly and grab the `LanguageRegistration`
       // by using the default export
-      resolvedLang = (await bundledLanguages[lang as BundledLanguage]())
-        .default;
+      resolvedLang = (await bundledLanguages[lang]()).default;
     }
 
     return (
