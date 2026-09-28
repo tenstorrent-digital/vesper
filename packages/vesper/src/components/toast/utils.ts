@@ -17,9 +17,9 @@ export const getNearestActiveToast = (ref: HTMLDivElement) => {
     .filter((e, i) => i < currentIndex && e.dataset.state !== "dismissed")
     .reverse()[0];
 
-  const next = toastElements.filter(
+  const next = toastElements.find(
     (e, i) => i > currentIndex && e.dataset.state !== "dismissed",
-  )[0];
+  );
 
   return prev || next;
 };
