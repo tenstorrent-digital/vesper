@@ -69,6 +69,18 @@
       ],
       "outputs": ["$TURBO_ROOT$/packages/vesper/src/components/Icon/**"]
     },
+    "generate:tailwind-merge": {
+      "inputs": [
+        "$TURBO_ROOT$/packages/vesper/src/styles/tailwind.css",
+        "$TURBO_ROOT$/packages/vesper/src/styles/tailwind-utilities.css",
+        "$TURBO_ROOT$/packages/vesper/scripts/generate-tailwind-merge.ts",
+        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts"
+      ],
+      "outputs": [
+        "$TURBO_ROOT$/packages/vesper/src/utils/tailwind-merge.ts",
+        "$TURBO_ROOT$/packages/vesper/src/utils/tailwind-merge.test.ts"
+      ]
+    },
     "lint": {
       // eslint is not type-aware here (no `parserOptions.project`), so it
       // never needs a dependency's built output - only its hash

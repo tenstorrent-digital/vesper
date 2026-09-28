@@ -22,6 +22,7 @@
     "format:check:root": "sh -c 'prettier --check --ignore-unknown \"${@:-.}\"' _",
     "check-types": "turbo run check-types",
     "generate:icons": "turbo run generate:icons --filter=@tenstorrent/vesper",
+    "generate:tailwind-merge": "turbo run generate:tailwind-merge --filter=@tenstorrent/vesper",
     "generate:demos": "turbo run generate:demos --filter=website",
     "scaffold:component": "yarn workspace @tenstorrent/vesper scaffold:component",
     "scaffold:documentation": "turbo gen vesper-component-documentation",

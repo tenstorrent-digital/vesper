@@ -172,6 +172,18 @@ This updates the generated files in `src/components/icons/`, including:
 - the registry used by `@tenstorrent/vesper/icon`
 - the tree-shakeable barrel used by `@tenstorrent/vesper/icons`
 
+### Regenerating the tailwind-merge plugin
+
+The `withVesper` tailwind-merge plugin (`src/utils/tailwind-merge.ts`) and its tests (`src/utils/tailwind-merge.test.ts`) are generated from the theme variables in `src/styles/tailwind.css` and the utilities in `src/styles/tailwind-utilities.css`, and should not be updated by hand.
+
+When either stylesheet changes, regenerate the plugin and its tests:
+
+```sh
+yarn generate:tailwind-merge
+```
+
+If the script reports an unsupported theme variable namespace or CSS property, add it to `NAMESPACES` or `PROPERTIES` in `scripts/generate-tailwind-merge.ts`, then run the command again.
+
 ### Writing documentation
 
 Every component should have a corresponding documentation file in `docs/components`. If a component is missing documentation, you can scaffold the markdown file for its docs by running `yarn scaffold:documentation` from the workspace root. Doing so will create a new `{component-name}.mdx` file inside of `docs/components`, as well as update the component mappings in `apps/website/src/mdx-components.tsx`.
