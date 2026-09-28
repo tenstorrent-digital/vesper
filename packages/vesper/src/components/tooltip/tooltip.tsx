@@ -8,9 +8,9 @@ import { Typography } from "@/components/typography/typography";
 import {
   getPortalContainer,
   type PortalContainer,
-} from "@/utils/getPortalContainer";
-import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
-import { isSingleReactElement } from "@/utils/isSingleReactElement";
+} from "@/utils/get-portal-container";
+import { useBaseRemSize } from "@/utils/hooks/use-base-rem-size";
+import { isSingleReactElement } from "@/utils/is-single-react-element";
 
 export const TOOLTIP_SIDES = ["top", "right", "bottom", "left"] as const;
 

@@ -13,7 +13,7 @@ import { cn } from "@/utils/cn";
 import {
   type FormInputProps,
   splitFormInputProps,
-} from "@/utils/splitFormInputProps";
+} from "@/utils/split-form-input-props";
 
 export const CHECKBOX_SIZES = ["sm", "md"] as const;
 

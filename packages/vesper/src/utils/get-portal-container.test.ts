@@ -1,7 +1,7 @@
 import { RefObject } from "react";
 import { describe, expect, test } from "vitest";
 
-import { getPortalContainer } from "@/utils/getPortalContainer";
+import { getPortalContainer } from "@/utils/get-portal-container";
 
 describe("getPortalContainer", () => {
   test("returns the container when one is provided", () => {

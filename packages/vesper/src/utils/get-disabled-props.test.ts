@@ -1,7 +1,7 @@
 import { SyntheticEvent } from "react";
 import { describe, expect, test, vi } from "vitest";
 
-import { getDisabledProps } from "@/utils/getDisabledProps";
+import { getDisabledProps } from "@/utils/get-disabled-props";
 
 type SuppressEventFn = (
   e: Pick<SyntheticEvent, "preventDefault" | "stopPropagation">,

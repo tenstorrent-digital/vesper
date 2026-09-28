@@ -9,7 +9,7 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
-import { getDisabledProps } from "@/utils/getDisabledProps";
+import { getDisabledProps } from "@/utils/get-disabled-props";
 import type { Polymorphic } from "@/utils/polymorphic";
 
 export const CHIP_VARIANTS = ["default", "contrast"] as const;

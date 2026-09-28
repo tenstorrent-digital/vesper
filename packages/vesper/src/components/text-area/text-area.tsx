@@ -6,7 +6,7 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
-import { FormInputProps } from "@/utils/splitFormInputProps";
+import { FormInputProps } from "@/utils/split-form-input-props";
 
 export const TEXT_AREA_SIZES = ["sm", "md", "lg"] as const;
 

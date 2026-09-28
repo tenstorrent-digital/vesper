@@ -2,7 +2,7 @@
 
 import { type ReactNode, useSyncExternalStore } from "react";
 
-import { generateId } from "@/utils/generateId";
+import { generateId } from "@/utils/generate-id";
 
 export const TOAST_VARIANTS = [
   "default",
