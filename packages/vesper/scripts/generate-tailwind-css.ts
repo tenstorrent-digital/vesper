@@ -1,9 +1,8 @@
-import { transform } from "lightningcss";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { getTokenVariableNames } from "./get-token-variable-names";
+import { getTokenVariableGroups } from "./get-token-variable-groups";
 import { getGeneratedCodeWarning } from "./utils";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -15,7 +14,7 @@ const AUTO_GENERATED_WARNING = getGeneratedCodeWarning(
 
 const OUTPUT_FILE = "src/styles/tailwind.css";
 
-const variables = getTokenVariableNames();
+const variables = getTokenVariableGroups();
 
 const imports = [
   `@import "./styles.css" layer(components);`,
@@ -75,6 +74,6 @@ const theme = [
   "}",
 ].join("");
 
-const contents = [imports, theme].join("\n\n");
+const contents = [AUTO_GENERATED_WARNING, imports, theme].join("\n\n");
 
 fs.writeFileSync(path.resolve(__dirname, "..", OUTPUT_FILE), contents);

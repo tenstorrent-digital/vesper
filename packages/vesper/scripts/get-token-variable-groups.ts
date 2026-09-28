@@ -25,7 +25,7 @@ type TokenGroup = (typeof TOKEN_GROUPS)[number];
 
 type TokenData = { name: string; parts: string[] };
 
-export const getTokenVariableNames = (): Record<TokenGroup, TokenData[]> => {
+export const getTokenVariableGroups = (): Record<TokenGroup, TokenData[]> => {
   const variables = Object.fromEntries<TokenData[]>(
     TOKEN_GROUPS.map((group) => [group, []]),
   ) as Record<TokenGroup, TokenData[]>;
