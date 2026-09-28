@@ -28,7 +28,7 @@ export function StreamingCodeBlock({
   const shouldAutoScroll = useRef(true);
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current) return undefined;
 
     const observer = new MutationObserver(() => {
       if (!ref.current || !shouldAutoScroll.current) return;

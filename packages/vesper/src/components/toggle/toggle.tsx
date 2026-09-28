@@ -153,7 +153,7 @@ export function Toggle(props: ToggleProps) {
   // update inner value when parent form resets
   useEffect(() => {
     const form = innerRef.current?.closest("form");
-    if (!form) return;
+    if (!form) return undefined;
 
     const handleReset = () => {
       handleChangeValue(defaultValue ?? "");
