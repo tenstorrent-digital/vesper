@@ -14,7 +14,7 @@ Monorepo for Vesper, a design system React component library, with apps and shar
 - `packages/vesper/` - Design system components
 - `apps/website/` — Design system documentation frontend
 - `docs/` — Design system documentation source (`.md`/`.mdx`)
-- `packages/eslint-config/` — Shared ESLint configurations
+- `packages/oxlint-config/` — Shared Oxlint configurations
 - `packages/typescript-config/` — Shared TypeScript configurations
 
 ## Package Management
