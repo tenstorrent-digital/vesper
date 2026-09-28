@@ -22,7 +22,7 @@
     "format": "oxfmt --check",
     "format:fix": "oxfmt",
     "check-types": "turbo run check-types --",
-    "generate:icons": "turbo run generate:icons --filter=@tenstorrent/vesper",
+    "generate:icons": "turbo run generate:icons --filter=@tenstorrent/vesper && oxlint packages/vesper/src/components/icons/*.{ts,tsx} --fix && oxfmt packages/vesper/src/components/icons/*.{ts,tsx}",
     "generate:demos": "turbo run generate:demos --filter=website",
     "scaffold:component": "yarn workspace @tenstorrent/vesper scaffold:component",
     "scaffold:documentation": "turbo gen vesper-component-documentation",
