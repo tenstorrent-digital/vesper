@@ -308,19 +308,19 @@ describe("toast [unit]", () => {
     expect(buttons[0]?.textContent).toContain("Close");
   });
 
-  test("each variant renders correct icon", async () => {
-    render(<Toasts />);
+  test.each(TOAST_VARIANTS)(
+    "%s variant renders correct icon",
+    async (variant) => {
+      render(<Toasts />);
 
-    const variantIconMap: Record<ToastVariant, boolean> = {
-      default: false,
-      loading: true,
-      success: true,
-      warning: true,
-      danger: true,
-    };
+      const variantIconMap: Record<ToastVariant, boolean> = {
+        default: false,
+        loading: true,
+        success: true,
+        warning: true,
+        danger: true,
+      };
 
-    for (const variant of TOAST_VARIANTS) {
-      store.destroyAllToasts();
       addToast({ content: `${variant} toast`, variant });
       await waitForActiveToasts(1);
 
@@ -330,21 +330,21 @@ describe("toast [unit]", () => {
       } else {
         expect(icon, `${variant} should not have an icon`).toBeNull();
       }
-    }
-  });
+    },
+  );
 
-  test("variant classes are applied correctly", async () => {
-    render(<Toasts />);
+  test.each(TOAST_VARIANTS)(
+    "%s variant class is applied correctly",
+    async (variant) => {
+      render(<Toasts />);
 
-    for (const variant of TOAST_VARIANTS) {
-      store.destroyAllToasts();
       addToast({ content: `${variant} toast`, variant });
       await waitForActiveToasts(1);
 
       const toast = document.querySelector(".vesper-toast");
       expect(toast).toHaveClass(`vesper-toast-${variant}`);
-    }
-  });
+    },
+  );
 
   test("container has region role with correct aria-label", () => {
     render(<Toasts ariaLabel="Alerts" />);

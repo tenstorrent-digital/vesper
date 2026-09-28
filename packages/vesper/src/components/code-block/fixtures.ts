@@ -491,6 +491,8 @@ export function createTextStream(code: string) {
     async start(controller) {
       while (str.length) {
         controller.enqueue(getNextChunk());
+        // delay each chunk sequentially to simulate a slow stream
+        // oxlint-disable-next-line no-await-in-loop
         await new Promise((r) => setTimeout(r, 50));
       }
       controller.close();

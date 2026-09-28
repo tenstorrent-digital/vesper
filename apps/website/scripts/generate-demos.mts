@@ -61,17 +61,17 @@ const writeDemoModules = async (docPath: string): Promise<string[]> => {
   const parser = getMarkdownParser(docPath.endsWith(".mdx") ? "mdx" : "md");
   const tree = parser.parse(contents);
 
-  const demoModulePaths: string[] = [];
+  const demoModulePaths = await Promise.all(
+    getDemoCodeBlocks(tree).map(async (demo, index) => {
+      const demoModulePath = getDemoModulePath(docPath, index);
+      if (!demoModulePath) return [];
 
-  for (const [index, demo] of getDemoCodeBlocks(tree).entries()) {
-    const demoModulePath = getDemoModulePath(docPath, index);
-    if (!demoModulePath) continue;
+      await createOrUpdateFile(demoModulePath, getDemoModuleSource(demo));
+      return [demoModulePath];
+    }),
+  );
 
-    await createOrUpdateFile(demoModulePath, getDemoModuleSource(demo));
-    demoModulePaths.push(demoModulePath);
-  }
-
-  return demoModulePaths;
+  return demoModulePaths.flat();
 };
 
 /**
@@ -97,6 +97,8 @@ const removeStaleDemoModules = async (
 
   for (const directory of directories) {
     // fails (and is skipped) while the folder still holds demos
+    // run sequentially so child folders are removed before their parents
+    // oxlint-disable-next-line no-await-in-loop
     await rmdir(directory).catch(() => null);
   }
 
