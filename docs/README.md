@@ -77,7 +77,7 @@ A blockquote renders as an [`Admonition`](./components/admonition.mdx). GitHub's
 
 ```md
 > [!WARNING]
-> 
+>
 > This can not be undone.
 ```
 

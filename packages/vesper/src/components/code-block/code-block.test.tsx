@@ -312,6 +312,96 @@ describe("code-block [unit]", () => {
     cancelSpy.mockRestore();
   });
 
+  test("swapping stream factories clears old tokens and ignores later old chunks", async () => {
+    let enqueueOld!: (chunk: string) => void;
+    let oldCancelled = false;
+
+    const oldFactory = () =>
+      new ReadableStream<string>({
+        start(controller) {
+          enqueueOld = (chunk: string) => controller.enqueue(chunk);
+          controller.enqueue("old content");
+        },
+        cancel() {
+          oldCancelled = true;
+        },
+      });
+
+    const newFactory = () =>
+      new ReadableStream<string>({
+        start(controller) {
+          controller.enqueue("new content");
+          controller.close();
+        },
+      });
+
+    const { container, rerender } = render(<CodeBlock>{oldFactory}</CodeBlock>);
+    const getText = () =>
+      container.querySelector("pre.shiki-stream")?.textContent;
+
+    await vi.waitFor(() => expect(getText()).toContain("old content"));
+
+    rerender(<CodeBlock>{newFactory}</CodeBlock>);
+
+    await vi.waitFor(() => expect(getText()).toContain("new content"));
+    expect(getText()).not.toContain("old content");
+    await vi.waitFor(() => expect(oldCancelled).toBe(true));
+
+    // push to the old stream after the swap (throws if the stream was already cancelled)
+    try {
+      enqueueOld("stale content");
+    } catch {}
+    await new Promise((r) => setTimeout(r, 100));
+
+    expect(getText()).toContain("new content");
+    expect(getText()).not.toContain("old content");
+    expect(getText()).not.toContain("stale content");
+  });
+
+  test("old async factory resolving after a factory swap cannot render stale tokens", async () => {
+    let resolveOld!: (stream: ReadableStream<string>) => void;
+    const oldFactory = () =>
+      new Promise<ReadableStream<string>>((resolve) => {
+        resolveOld = resolve;
+      });
+
+    const newFactory = () =>
+      new ReadableStream<string>({
+        start(controller) {
+          controller.enqueue("new content");
+          controller.close();
+        },
+      });
+
+    const { container, rerender } = render(<CodeBlock>{oldFactory}</CodeBlock>);
+    const getText = () =>
+      container.querySelector("pre.shiki-stream")?.textContent;
+
+    // allow the old factory to be called (deferred to microtask)
+    await new Promise((r) => setTimeout(r, 0));
+
+    rerender(<CodeBlock>{newFactory}</CodeBlock>);
+
+    await vi.waitFor(() => expect(getText()).toContain("new content"));
+
+    // resolve the old factory late, after the new stream has rendered
+    const staleStream = new ReadableStream<string>({
+      start(controller) {
+        controller.enqueue("stale content");
+        controller.close();
+      },
+    });
+    const cancelSpy = vi.spyOn(staleStream, "cancel");
+
+    resolveOld(staleStream);
+    await new Promise((r) => setTimeout(r, 100));
+
+    expect(cancelSpy).toHaveBeenCalled();
+    expect(getText()).toContain("new content");
+    expect(getText()).not.toContain("stale content");
+    cancelSpy.mockRestore();
+  });
+
   test("factory that throws synchronously does not crash the component", async () => {
     const throwingFactory = () => {
       throw new Error("factory error");
