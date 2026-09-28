@@ -323,8 +323,11 @@ export function splitProps<A extends object, K extends string>(
   props: A,
   keys: Set<K>,
 ) {
+  // both buckets start out empty, and are filled in (per prop) by the loop below
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   const a = {} as OmitUnknown<Omit<A, K | DisallowedProp>>;
   // @ts-expect-error ts not smart enough to do this
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   const b = {} as OmitUnknown<Pick<Omit<A, DisallowedProp>, K>>;
 
   for (const prop in props) {

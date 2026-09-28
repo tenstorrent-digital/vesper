@@ -107,6 +107,8 @@ export function Chip<E extends ElementType = "button">(props: ChipProps<E>) {
         onChange?.(!selected);
         onClick?.(e);
       }}
+      // typescript can't relate the generic polymorphic props to `TypographyProps<E>`
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
       {...(rest as TypographyProps<E>)}
       {...getDisabledProps(Component, disabled)}
     >

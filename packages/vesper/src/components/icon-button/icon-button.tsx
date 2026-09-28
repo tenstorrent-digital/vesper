@@ -56,6 +56,8 @@ export function IconButton<E extends ElementType = "button">(
     <Button
       iconLeft={icon}
       className={cn("vesper-icon-button", className)}
+      // typescript can't relate the generic polymorphic props to `ButtonProps<E>`
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
       {...(rest as ButtonProps<E>)}
     />
   );

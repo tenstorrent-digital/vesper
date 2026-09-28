@@ -188,7 +188,7 @@ export function Toggle(props: ToggleProps) {
         ),
       );
 
-      const currentIndex = items.indexOf(e.target as HTMLButtonElement);
+      const currentIndex = items.findIndex((item) => item === e.target);
       if (currentIndex === -1) return;
 
       e.preventDefault();
