@@ -12,6 +12,18 @@ import { getGeneratedCodeWarning } from "./utils";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/**
+ * convert the (html) attribute names of a serialized svg into the props react
+ * expects, eg. `fill-rule` -> `fillRule`
+ *
+ * `aria-*` and `data-*` attributes are left alone, since react expects those
+ * to stay hyphenated
+ */
+const toJsxAttributes = (html: string) =>
+  html.replace(/(?<=\s)(?!aria-|data-)[a-z]+(?:-[a-z]+)+(?==)/g, (attribute) =>
+    attribute.replace(/-([a-z])/g, (_, char: string) => char.toUpperCase()),
+  );
+
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning("yarn generate:icons");
 
 // transform an svg file name into its kind, ie. user-multiple.svg -> user-multiple
@@ -98,7 +110,9 @@ const icons = iconFiles.map((fileName) => {
   });
 
   // serialize tree into a string again now that it's been optimized and patched
-  const markdown = unified().use(rehypeStringify).stringify(tree);
+  const markdown = toJsxAttributes(
+    unified().use(rehypeStringify).stringify(tree),
+  );
 
   return { kind, componentName, markdown };
 });
@@ -193,14 +207,25 @@ fs.writeFileSync(
 );
 
 // create barrel file with exports for each icon component, constants, and types (tree-shakeable)
+// exports are sorted by their module path (neither oxlint nor oxfmt sort exports)
+const barrelExports = [
+  { from: "./icon", statement: "export { Icon } from './icon'" },
+  {
+    from: "./constants",
+    statement: "export { ICON_KINDS } from './constants'",
+  },
+  { from: "./types", statement: "export type { IconKind } from './types'" },
+  ...icons.map((icon) => ({
+    from: `./${icon.kind}`,
+    statement: `export { ${icon.componentName} } from './${icon.kind}'`,
+  })),
+].toSorted((a, b) => (a.from < b.from ? -1 : a.from > b.from ? 1 : 0));
+
 fs.writeFileSync(
   path.resolve(__dirname, `../src/components/icons/icons.ts`),
   `${AUTO_GENERATED_WARNING}
 
-  export { Icon } from './icon'
-  export { ICON_KINDS } from './constants'
-  export type { IconKind } from './types'
-  ${icons.map((icon) => `export { ${icon.componentName} } from './${icon.kind}'`).join("\n")}`,
+  ${barrelExports.map(({ statement }) => statement).join("\n")}`,
 );
 
 // create story file for icon component
