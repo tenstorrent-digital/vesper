@@ -37,6 +37,10 @@
     },
 
     // `tsc` compiles `generated/**` along with the rest of the app
+    //
+    // note: `lint` doesn't depend on `generate:demos` like this does, because
+    // `generated/**` is gitignored and oxlint always skips gitignored files
+    // (even with `--no-ignore`)
     "check-types": {
       "dependsOn": ["^build", "generate:demos"],
     },
