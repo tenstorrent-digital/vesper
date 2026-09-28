@@ -14,8 +14,6 @@
  * Run by turbo before `build`, `dev` and `check-types` (see `turbo.jsonc`)
  */
 
-import type { Root } from "mdast";
-
 import { readdir, readFile, rm, rmdir } from "node:fs/promises";
 import path from "node:path";
 
