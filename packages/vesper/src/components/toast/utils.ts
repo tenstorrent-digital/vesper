@@ -13,9 +13,12 @@ export const getNearestActiveToast = (ref: HTMLDivElement) => {
 
   const currentIndex = toastElements.indexOf(ref);
 
-  const prev = toastElements
-    .filter((e, i) => i < currentIndex && e.dataset.state !== "dismissed")
-    .reverse()[0];
+  // the last active toast before the current one (`findLast` is es2023)
+  const prev = toastElements.reduce<HTMLDivElement | undefined>(
+    (nearest, e, i) =>
+      i < currentIndex && e.dataset.state !== "dismissed" ? e : nearest,
+    undefined,
+  );
 
   const next = toastElements.find(
     (e, i) => i > currentIndex && e.dataset.state !== "dismissed",
