@@ -70,7 +70,7 @@ runs:
     - name: Restore Playwright browsers
       if: inputs.playwright == 'true'
       id: playwright-browsers
-      uses: actions/cache@v4
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
       with:
         path: ~/.cache/ms-playwright
         key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
