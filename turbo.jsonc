@@ -51,13 +51,16 @@
       "cache": false
     },
     "test": {
-      "dependsOn": ["transit"]
+      "dependsOn": ["transit"],
+      "passThroughEnv": ["AGENTS"]
     },
     "test:update": {
-      "dependsOn": ["transit"]
+      "dependsOn": ["transit"],
+      "passThroughEnv": ["AGENTS"]
     },
     "test:watch": {
-      "persistent": true
+      "persistent": true,
+      "passThroughEnv": ["AGENTS"]
     },
     "generate:icons": {
       "inputs": [
