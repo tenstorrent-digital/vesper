@@ -8,7 +8,7 @@
   // from node_modules
 
   // keep this here so zed doesn't fall back to
-  // using it's built-in prettier
+  // using its built-in prettier
   "prettier": { "allowed": false },
 
   "lsp": {
