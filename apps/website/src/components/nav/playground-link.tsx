@@ -28,7 +28,7 @@ export const PlaygroundLink = () => {
     <Button
       as="a"
       target="_blank"
-      href={storybookUrl.toString()}
+      href={storybookUrl}
       variant="tertiary"
       size="sm"
     >
