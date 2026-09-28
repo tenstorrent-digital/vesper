@@ -45,26 +45,6 @@ const TEXT_INPUT_PERMUTATIONS: TextInputPermutation[] =
     ]),
   );
 
-const TEXT_INPUT_A11Y_FAILING_PERMUTATIONS: (Pick<
-  TextInputProps,
-  "variant" | "disabled"
-> & { theme: string })[] = [
-  { variant: "default", disabled: false, theme: "light" },
-  { variant: "default", disabled: true, theme: "light" },
-  { variant: "warning", disabled: false, theme: "light" },
-  { variant: "warning", disabled: true, theme: "light" },
-  { variant: "success", disabled: false, theme: "light" },
-  { variant: "success", disabled: true, theme: "light" },
-  { variant: "error", disabled: false, theme: "light" },
-  { variant: "error", disabled: true, theme: "light" },
-  { variant: "default", disabled: false, theme: "dark" },
-  { variant: "default", disabled: true, theme: "dark" },
-  { variant: "success", disabled: false, theme: "dark" },
-  { variant: "success", disabled: true, theme: "dark" },
-  { variant: "error", disabled: false, theme: "dark" },
-  { variant: "error", disabled: true, theme: "dark" },
-];
-
 afterEach(cleanup);
 
 describe("text-input [unit]", () => {

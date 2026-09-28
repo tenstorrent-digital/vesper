@@ -9,7 +9,7 @@ import {
 } from "@/components/typography/typography";
 
 import { cn } from "@/utils/cn";
-import { isSingleReactElement } from "@/utils/isSingleReactElement";
+import { isSingleReactElement } from "@/utils/is-single-react-element";
 
 export const TABS_VARIANTS = ["primary", "secondary"] as const;
 

@@ -6,7 +6,7 @@ import {
   splitFormInputProps,
   splitFormProps,
   splitProps,
-} from "./splitFormInputProps";
+} from "./split-form-input-props";
 
 describe("splitProps", () => {
   test("props get bucketed according to the provided Set<string>", () => {

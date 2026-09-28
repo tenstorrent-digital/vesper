@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { getTokenStyleObject, type ThemedToken } from "@shikijs/core";
 
 import { cn } from "@/utils/cn";
-import { generateId } from "@/utils/generateId";
+import { generateId } from "@/utils/generate-id";
 
 import type { CodeBlockProps } from "./code-block";
 import { CodeBlockPreWrapper, CopyToClipboardButton } from "./components";

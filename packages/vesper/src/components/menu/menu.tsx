@@ -9,9 +9,9 @@ import { Typography } from "@/components/typography/typography";
 import {
   getPortalContainer,
   type PortalContainer,
-} from "@/utils/getPortalContainer";
-import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
-import { isSingleReactElement } from "@/utils/isSingleReactElement";
+} from "@/utils/get-portal-container";
+import { useBaseRemSize } from "@/utils/hooks/use-base-rem-size";
+import { isSingleReactElement } from "@/utils/is-single-react-element";
 
 export type MenuItemProps = {
   /** The text label displayed for the menu item. */

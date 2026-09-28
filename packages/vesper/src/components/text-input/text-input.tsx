@@ -11,7 +11,7 @@ import { cn } from "@/utils/cn";
 import {
   FormInputProps,
   splitFormInputProps,
-} from "@/utils/splitFormInputProps";
+} from "@/utils/split-form-input-props";
 
 export const TEXT_INPUT_SIZES = ["sm", "md", "lg"] as const;
 

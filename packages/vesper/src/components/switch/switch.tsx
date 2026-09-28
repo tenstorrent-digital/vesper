@@ -9,7 +9,7 @@ import { cn } from "@/utils/cn";
 import {
   FormInputProps,
   splitFormInputProps,
-} from "@/utils/splitFormInputProps";
+} from "@/utils/split-form-input-props";
 
 export const SWITCH_SIZES = ["sm", "md"] as const;
 

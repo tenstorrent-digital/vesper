@@ -14,12 +14,12 @@ import { cn } from "@/utils/cn";
 import {
   getPortalContainer,
   type PortalContainer,
-} from "@/utils/getPortalContainer";
-import { useBaseRemSize } from "@/utils/hooks/useBaseRemSize";
+} from "@/utils/get-portal-container";
+import { useBaseRemSize } from "@/utils/hooks/use-base-rem-size";
 import {
   FormInputProps,
   splitFormInputProps,
-} from "@/utils/splitFormInputProps";
+} from "@/utils/split-form-input-props";
 
 export const SELECT_VARIANTS = [
   "default",
