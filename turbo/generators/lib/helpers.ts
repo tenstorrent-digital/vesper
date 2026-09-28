@@ -41,7 +41,7 @@ export const getComponentChoices = (
         ),
     )
     .map((entry) => entry.name)
-    .sort();
+    .toSorted();
 
   const isDocumented = (component: string) =>
     fs.existsSync(path.join(root, DOCS_PATH, `${component}.mdx`));
