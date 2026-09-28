@@ -10,7 +10,7 @@
     "customGroups": [
       {
         "groupName": "monorepo",
-        "elementNamePattern": ["@repo/**"]
+        "elementNamePattern": ["@repo/**", "@tenstorrent/**"]
       }
     ],
     "groups": [
