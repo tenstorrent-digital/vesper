@@ -76,7 +76,9 @@ Links resolve to other documents by relative path, so the path resolves on GitHu
 A blockquote renders as an [`Admonition`](./components/admonition.mdx). GitHub's alert syntax sets its variant, so a callout renders as a callout in both places:
 
 ```md
-> [!WARNING] This can not be undone.
+> [!WARNING]
+> 
+> This can not be undone.
 ```
 
 | Marker           | Variant   |
