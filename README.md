@@ -63,7 +63,7 @@ You can also format specific files by passing them as arguments:
 yarn format path/to/file.ts path/to/other-file.tsx
 ```
 
-The same arguments work with `yarn format:check`, which checks formatting without writing any changes.
+The same arguments work with `yarn format`, which checks formatting without writing any changes (use `yarn format:fix` to apply fixes).
 
 ## Developing `@tenstorrent/vesper`
 
