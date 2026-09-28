@@ -1,7 +1,7 @@
 "use client";
 
 import { getTokenStyleObject, type ThemedToken } from "@shikijs/core";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/utils/cn";
 import { generateId } from "@/utils/generate-id";
@@ -51,6 +51,9 @@ export function StreamingCodeBlock({
     };
   }, [code]);
 
+  // remount the renderer (resetting its tokens) whenever a new stream is supplied
+  const streamKey = `${getKey(code)}-${typeof lang === "string" ? lang : getKey(lang)}`;
+
   return (
     <div
       className={cn("vesper-code-block", className)}
@@ -58,7 +61,7 @@ export function StreamingCodeBlock({
       {...props}
     >
       <CodeBlockPreWrapper ref={ref} data-line-numbers={showLineNumbers}>
-        <TokenStreamRenderer code={code} lang={lang} />
+        <TokenStreamRenderer key={streamKey} code={code} lang={lang} />
       </CodeBlockPreWrapper>
       <CopyToClipboardButton />
     </div>
@@ -79,32 +82,16 @@ function TokenStreamRenderer({
   code: () => ReadableStream<string> | Promise<ReadableStream<string>>;
   lang: CodeBlockProps["lang"];
 }) {
-  // WeakMap for storing references to ThemedToken keys
-  // Because WeakMaps garbage collect their own references, we don't have to worry about memory leaks when the tokens array is reset or changes
-  const keys = useRef(new WeakMap<ThemedToken, string>());
-
-  // Gets the associated key in the above WeakMap for a ThemedToken
-  const getKey = useCallback((token: ThemedToken) => {
-    let key = keys.current.get(token);
-    if (!keys.current.has(token)) {
-      key = generateId();
-      keys.current.set(token, key);
-    }
-    return key;
-  }, []);
-
   const [tokens, setTokens] = useState<ThemedToken[]>([]);
 
   useEffect(() => {
-    setTokens((prevTokens) => (prevTokens.length ? [] : prevTokens));
-
     const controller = new AbortController();
 
     Promise.resolve()
       .then(code)
       .then((stream) => {
         if (controller.signal.aborted) {
-          stream.cancel();
+          stream.cancel().catch(() => {});
           return;
         }
 
@@ -148,6 +135,20 @@ function TokenStreamRenderer({
     </pre>
   );
 }
+
+// weakly map objects (tokens, stream factories and languages) to their keys, so keys are
+// garbage collected along with the objects they identify
+const keys = new WeakMap<object, string>();
+
+// get (or create) the key associated with an object
+const getKey = (value: object) => {
+  let key = keys.get(value);
+  if (key === undefined) {
+    key = generateId();
+    keys.set(value, key);
+  }
+  return key;
+};
 
 const tokensToLines = (tokens: ThemedToken[]) =>
   tokens.reduce(
