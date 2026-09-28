@@ -1,15 +1,12 @@
 import { playwright } from "@vitest/browser-playwright";
-import { dirname, resolve } from "path";
-import { fileURLToPath } from "url";
+import { resolve } from "path";
 import { defineConfig } from "vitest/config";
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   resolve: {
     dedupe: ["react", "react-dom", "react/jsx-runtime"],
     alias: {
-      "@": resolve(__dirname, "src"),
+      "@": resolve(import.meta.dirname, "src"),
     },
   },
   test: {

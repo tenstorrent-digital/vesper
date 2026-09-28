@@ -10,8 +10,6 @@ import { fileURLToPath } from "url";
 function getAbsolutePath(value: string) {
   return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
 }
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
 // `Array.isArray` doesn't narrow readonly arrays (eg. vite's `readonly Alias[]`)
 const isArray = (value: unknown): value is readonly unknown[] =>
   Array.isArray(value);
@@ -49,7 +47,7 @@ const config: StorybookConfig = {
      */
     reactDocgen: "react-docgen-typescript",
     reactDocgenTypescriptOptions: {
-      tsconfigPath: resolve(__dirname, "../tsconfig.storybook.json"),
+      tsconfigPath: resolve(import.meta.dirname, "../tsconfig.storybook.json"),
       shouldExtractLiteralValuesFromEnum: true,
       shouldRemoveUndefinedFromOptional: true,
       savePropValueAsString: false,
@@ -66,14 +64,14 @@ const config: StorybookConfig = {
     if (isArray(config.resolve.alias)) {
       config.resolve.alias = [
         ...config.resolve.alias,
-        { find: "@", replacement: resolve(__dirname, "../src") },
+        { find: "@", replacement: resolve(import.meta.dirname, "../src") },
       ];
       return config;
     }
 
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@": resolve(__dirname, "../src"),
+      "@": resolve(import.meta.dirname, "../src"),
     };
     return config;
   },
