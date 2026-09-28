@@ -1,6 +1,6 @@
 {
   // for oxlint and oxfmt support in zed you will need
-  // download this extension:
+  // to download this extension:
   // https://github.com/oxc-project/oxc-zed
   //
   // since we have oxlint and oxfmt in the monorepo
