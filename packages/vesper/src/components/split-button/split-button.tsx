@@ -108,7 +108,7 @@ export function SplitButton(props: SplitButtonProps) {
     children,
     className,
     onClick,
-    menuItems = [],
+    menuItems,
     menuAlign = "start",
     menuAlignOffset,
     menuOpen,

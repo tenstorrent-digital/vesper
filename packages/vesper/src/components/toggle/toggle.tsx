@@ -204,16 +204,16 @@ export function Toggle(props: ToggleProps) {
     [onKeyDown],
   );
 
+  const [focusedValue, setFocusedValue] = useState<string | undefined>(
+    undefined,
+  );
+
   const handleBlur = useCallback(
     (e: FocusEvent<HTMLDivElement>) => {
       onBlur?.(e);
       setFocusedValue(undefined);
     },
     [onBlur],
-  );
-
-  const [focusedValue, setFocusedValue] = useState<string | undefined>(
-    undefined,
   );
   const focusedIndex = options.findIndex((o) => o.value === focusedValue);
   const selectedIndex = options.findIndex((o) => o.value === selectedOption);
