@@ -24,7 +24,7 @@ runs:
     # so the `yarn install` below ends up being cheaper
     - name: Restore node_modules
       id: node-modules
-      uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
       with:
         path: |
           node_modules
