@@ -1,9 +1,10 @@
 "use client";
 
-import { Typography } from "@tenstorrent/vesper/typography";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
+
+import { Typography } from "@tenstorrent/vesper/typography";
 
 import { convertKebabToTitleCase } from "@/lib/filesystem/utils";
 

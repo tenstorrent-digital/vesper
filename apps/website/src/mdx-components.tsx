@@ -9,6 +9,14 @@
 
 import type { MDXComponents } from "mdx/types";
 
+import Image from "next/image";
+import Link from "next/link";
+import {
+  type BundledLanguage,
+  bundledLanguages,
+  type LanguageRegistration,
+} from "shiki/bundle/web";
+
 import { Accordion } from "@tenstorrent/vesper/accordion";
 import {
   Admonition,
@@ -65,13 +73,6 @@ import { ThemeSwitcher } from "@tenstorrent/vesper/theme-switcher";
 import { Toggle } from "@tenstorrent/vesper/toggle";
 import { Tooltip } from "@tenstorrent/vesper/tooltip";
 import { Typography } from "@tenstorrent/vesper/typography";
-import Image from "next/image";
-import Link from "next/link";
-import {
-  type BundledLanguage,
-  bundledLanguages,
-  type LanguageRegistration,
-} from "shiki/bundle/web";
 
 // docs-only components (not part of the design system)
 import { ColorChip } from "@/components/color-chip";

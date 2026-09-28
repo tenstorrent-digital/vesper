@@ -1,8 +1,9 @@
 "use client";
 
-import { Typography } from "@tenstorrent/vesper/typography";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
+import { Typography } from "@tenstorrent/vesper/typography";
 
 import type { getSidebarData } from "@/lib/filesystem/docs";
 import { convertKebabToTitleCase } from "@/lib/filesystem/utils";
