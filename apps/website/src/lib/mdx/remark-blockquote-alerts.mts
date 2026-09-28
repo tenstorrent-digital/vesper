@@ -49,16 +49,16 @@ const ALERT_MARKER = /^\[!([a-z]+)\][^\S\n]*(?:\n|$)/i;
  */
 const takeAlertType = (blockquote: Blockquote): AlertType | undefined => {
   const [paragraph] = blockquote.children;
-  if (paragraph?.type !== "paragraph") return;
+  if (paragraph?.type !== "paragraph") return undefined;
 
   const [text] = paragraph.children;
-  if (text?.type !== "text") return;
+  if (text?.type !== "text") return undefined;
 
   const match = text.value.match(ALERT_MARKER);
-  if (!match) return;
+  if (!match) return undefined;
 
   const type = match[1]?.toLowerCase();
-  if (!type || !isAlertType(type)) return;
+  if (!type || !isAlertType(type)) return undefined;
 
   text.value = text.value.slice(match[0].length);
 
