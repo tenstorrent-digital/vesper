@@ -10,19 +10,13 @@ import { sharedIgnorePatterns } from "@repo/oxlint-config/ignore-patterns";
  * turbo as the `//#lint` root task) is the only lint entry point, there are no
  * per-workspace lint scripts
  *
- * each app still owns an `oxlint.config.mts` of its own, and oxlint discovers
- * those nested configs on its own, so that single run lints each app with its
- * own rules on top of the root files covered here - note that a nested config
- * takes over its whole subtree, so `apps/**` can't be excluded from here
- *
- * `packages/**` is ignored to match the eslint setup this replaced, where the
- * shared packages were never linted
+ * apps may configure their own `oxlint.config.mts` config files - oxlint discovers
+ * these nested configs on its own and uses those rules for the files in those apps
  */
 export default defineConfig({
   extends: [base],
   ignorePatterns: [
     ...sharedIgnorePatterns,
-    "packages/**",
     // agent tooling, not repo source (.claude is a symlink to .agents)
     ".agents/**",
     ".claude/**",
