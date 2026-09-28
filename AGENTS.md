@@ -77,7 +77,7 @@ yarn format       # format code
 yarn check-types  # check for type errors
 ```
 
-To run tests, you must set `AGENTS=true` so the browser runs in headless mode:
+When running tests, set `AGENTS=true` so the browser runs in headless mode:
 
 ```bash
 AGENTS=true yarn test
