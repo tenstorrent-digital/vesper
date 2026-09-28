@@ -12,10 +12,8 @@
   "files": [
     "base.ts",
     "next.ts",
-    "studio.ts",
     "react-internal.ts",
-    "ignore-patterns.ts",
-    "plugins"
+    "ignore-patterns.ts"
   ],
   "devDependencies": {
     "@repo/typescript-config": "*",
