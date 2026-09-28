@@ -49,7 +49,7 @@ export function StreamingCodeBlock({
       el.removeEventListener("scroll", handleScroll);
       observer.disconnect();
     };
-  }, [code]);
+  }, []);
 
   // remount the renderer (resetting its tokens) whenever a new stream is supplied
   const streamKey = `${getKey(code)}-${typeof lang === "string" ? lang : getKey(lang)}`;

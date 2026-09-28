@@ -293,7 +293,7 @@ export function Toasts(props: ToastsProps) {
     };
     window.addEventListener("keydown", handleKeydown);
     return () => window.removeEventListener("keydown", handleKeydown);
-  }, [shortcut, toasts]);
+  }, [shortcut]);
 
   const previouslyFocused = useRef<HTMLElement | null>(null);
   const pointerDown = useRef(false);
