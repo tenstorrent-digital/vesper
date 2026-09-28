@@ -113,20 +113,17 @@ describe("show-more [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    const closedTestFn = async () => {
+    test(`a11y (closed, ${theme})`, async () => {
       const { container } = render(<ShowMore />);
 
       expect(await axe.run(container)).toHaveNoViolations();
-    };
+    });
 
-    const openTestFn = async () => {
+    test(`a11y (open, ${theme})`, async () => {
       const { container } = render(<ShowMore expanded />);
 
       expect(await axe.run(container)).toHaveNoViolations();
-    };
-
-    test(`a11y (closed, ${theme})`, closedTestFn);
-    test(`a11y (open, ${theme})`, openTestFn);
+    });
 
     test(`a11y (disabled, ${theme})`, async () => {
       const { container } = render(<ShowMore disabled />);

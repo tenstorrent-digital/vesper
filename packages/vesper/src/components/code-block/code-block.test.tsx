@@ -7,6 +7,27 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { CodeBlock } from "@/components/code-block/code-block";
 import "@/styles/test.css";
 
+// create a stream that emits `code` in a single chunk
+const createStream = (code: string) =>
+  new ReadableStream<string>({
+    start(controller) {
+      controller.enqueue(code);
+      controller.close();
+    },
+  });
+
+// create a (sync) stream factory to pass as the `children` of a streaming `CodeBlock`
+const createStreamFactory = (code: string) => () => createStream(code);
+
+// create an async stream factory to pass as the `children` of a streaming `CodeBlock`
+const createAsyncStreamFactory = (code: string) => async () =>
+  createStream(code);
+
+// a stream factory that throws instead of returning a stream
+const throwingStreamFactory = () => {
+  throw new Error("factory error");
+};
+
 afterEach(cleanup);
 
 describe("code-block [unit]", () => {
@@ -100,13 +121,7 @@ describe("code-block [unit]", () => {
   });
 
   test("copyOnHover is applied to streaming code blocks", () => {
-    const streamFactory = () =>
-      new ReadableStream<string>({
-        start(controller) {
-          controller.enqueue("streamed code");
-          controller.close();
-        },
-      });
+    const streamFactory = createStreamFactory("streamed code");
 
     const { container } = render(
       <CodeBlock copyOnHover>{streamFactory}</CodeBlock>,
@@ -145,13 +160,7 @@ describe("code-block [unit]", () => {
   });
 
   test("renders ShikiStreamRenderer for ReadableStream children", () => {
-    const streamFactory = () =>
-      new ReadableStream<string>({
-        start(controller) {
-          controller.enqueue("streamed code");
-          controller.close();
-        },
-      });
+    const streamFactory = createStreamFactory("streamed code");
 
     const { container } = render(<CodeBlock>{streamFactory}</CodeBlock>);
     const wrapper = container.querySelector(".vesper-code-block-pre-wrapper");
@@ -244,13 +253,7 @@ describe("code-block [unit]", () => {
   });
 
   test("streams with LanguageRegistration[] lang", async () => {
-    const streamFactory = () =>
-      new ReadableStream<string>({
-        start(controller) {
-          controller.enqueue('{"key": "value"}');
-          controller.close();
-        },
-      });
+    const streamFactory = createStreamFactory('{"key": "value"}');
 
     const { container } = render(
       <CodeBlock lang={jsonLang}>{streamFactory}</CodeBlock>,
@@ -264,13 +267,7 @@ describe("code-block [unit]", () => {
   });
 
   test("renders streamed content from an async factory", async () => {
-    const asyncFactory = async () =>
-      new ReadableStream<string>({
-        start(controller) {
-          controller.enqueue("async content");
-          controller.close();
-        },
-      });
+    const asyncFactory = createAsyncStreamFactory("async content");
 
     const { container } = render(<CodeBlock>{asyncFactory}</CodeBlock>);
 
@@ -403,14 +400,10 @@ describe("code-block [unit]", () => {
   });
 
   test("factory that throws synchronously does not crash the component", async () => {
-    const throwingFactory = () => {
-      throw new Error("factory error");
-    };
-
     // Should not throw during render or effect execution
     const { container } = render(
       <CodeBlock>
-        {throwingFactory as unknown as () => ReadableStream<string>}
+        {throwingStreamFactory as unknown as () => ReadableStream<string>}
       </CodeBlock>,
     );
 
@@ -470,13 +463,7 @@ describe("code-block [snapshot]", () => {
 
   describe("strict mode", () => {
     test("streaming code block does not throw on Strict Mode remount", async () => {
-      const streamFactory = () =>
-        new ReadableStream<string>({
-          start(controller) {
-            controller.enqueue("const x = 1;");
-            controller.close();
-          },
-        });
+      const streamFactory = createStreamFactory("const x = 1;");
 
       const { container } = render(
         <StrictMode>

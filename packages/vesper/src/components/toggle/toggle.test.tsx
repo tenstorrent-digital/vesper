@@ -470,7 +470,7 @@ describe("toggle [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    const testFn = async () => {
+    test(`a11y (text, ${theme})`, async () => {
       const { container } = render(
         <Toggle
           options={[
@@ -481,9 +481,7 @@ describe("toggle [a11y]", () => {
       );
 
       expect(await axe.run(container)).toHaveNoViolations();
-    };
-
-    test(`a11y (text, ${theme})`, testFn);
+    });
 
     test(`a11y (icons, ${theme})`, async () => {
       const { container } = render(

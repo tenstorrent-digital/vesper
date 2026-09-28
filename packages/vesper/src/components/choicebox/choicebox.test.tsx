@@ -12,6 +12,13 @@ import {
 } from "@/components/choicebox/choicebox";
 import "@/styles/test.css";
 
+// get the first checkbox rendered by a (multiselect) `Choicebox`
+const getFirstCheckbox = () => {
+  const fieldset = document.querySelector("fieldset")!;
+  const inputs = fieldset.querySelectorAll<HTMLInputElement>("input");
+  return inputs[0]!;
+};
+
 const CHOICEBOX_OPTIONS: ChoiceboxItem[] = [
   { value: "option-a", label: "Option A" },
   { value: "option-b", label: "Option B" },
@@ -815,12 +822,6 @@ describe("choicebox [unit]", () => {
           />,
         );
 
-        const getFirstCheckbox = () => {
-          const fieldset = document.querySelector("fieldset")!;
-          const inputs = fieldset.querySelectorAll<HTMLInputElement>("input");
-          return inputs[0]!;
-        };
-
         expect(getFirstCheckbox().validationMessage).toBe("");
 
         rerender(
@@ -848,12 +849,6 @@ describe("choicebox [unit]", () => {
             options={CHOICEBOX_OPTIONS}
           />,
         );
-
-        const getFirstCheckbox = () => {
-          const fieldset = document.querySelector("fieldset")!;
-          const inputs = fieldset.querySelectorAll<HTMLInputElement>("input");
-          return inputs[0]!;
-        };
 
         expect(getFirstCheckbox().validationMessage).toBe("");
 
