@@ -50,6 +50,7 @@ Monorepo for Vesper, a design system React component library, with apps and shar
 ## Other Tools
 
 - GitHub CLI `gh` for PRs
+- Github CLI stacked PRs extension `gh stack -h`
 - `linear-cli` for Linear issue tracking
 
 ## Setup
@@ -78,14 +79,6 @@ yarn format                 # check formatting only (oxfmt --check, does not wri
 yarn check-types            # check for type errors only (tsc --noEmit, per workspace)
 ```
 
-<<<<<<< HEAD
-When running tests, set `AGENTS=true` so the browser runs in headless mode:
-
-```bash
-AGENTS=true yarn test
-```
-
-=======
 Before you commit any changes, run the following commands to ensure your code is free of linting and type errors, and properly formatted:
 
 ```bash
@@ -98,7 +91,35 @@ yarn quality:agent
 
 `lint` and `format` are repo-wide turbo root tasks (`//#lint`, `//#format`): running `yarn lint --format agent` or `yarn format` invokes oxlint/oxfmt directly over the whole monorepo in a single pass. `check-types` stays a per-package task so each workspace is checked against its own `tsconfig.json`. `yarn quality` runs all three through turbo, so its results are cached
 
->>>>>>> ebc42faf (update lint/format/quality agent guidance)
+When running tests, set `AGENTS=true` so the browser runs in headless mode:
+
+```bash
+AGENTS=true yarn test
+```
+
+## Linting
+
+Linting is handled by Oxlint
+
+- Shared configs live in `packages/oxlint-config/` and are consumed by name (`@repo/oxlint-config/next`)
+- Each workspace has its own `oxlint.config.mts`, discovered automatically by the repo-wide `oxlint .` run (the `//#lint` root turbo task) — there are no per-package lint scripts
+
+### Disabling Lint Rules
+
+- Use `oxlint-disable-next-line [rule-name]` or `oxlint-disable [rule-name]`
+- Prefer `oxlint-disable-next-line` over `oxlint-disable`
+- When using `oxlint-disable-next-line` or `oxlint-disable` inline comments, you must:
+  - Add the `[rule-name]` for the rule to disable in the inline comment
+  - Add a comment explaining why the rule is disabled
+- If you disable a rule for a block of code using `oxlint-disable [rule-name]`, you must re-enable it using `oxlint-enable [rule-name]`
+- Do not use `eslint-disable-next-line` or `eslint-disable` comments since we use Oxlint
+
+## Formatting
+
+Formatting is handled by Oxfmt
+
+- `yarn format` and `yarn format:fix` run `oxfmt --check` and `yarn format:fix`, respectively — both cover the entire codebase from the monorepo root
+
 ## Linear and Github Pull Requests
 
 Linear
