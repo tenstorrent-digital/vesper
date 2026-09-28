@@ -15,6 +15,9 @@ export default defineConfig({
   test: {
     browser: {
       enabled: true,
+      // run headless in CI (default behaviour) and also allow
+      // agents to run tests with the browser in headless mode
+      headless: Boolean(process.env.CI) || process.env.AGENTS === "true",
       provider: playwright({}),
       instances: [{ browser: "chromium" }],
     },

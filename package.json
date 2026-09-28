@@ -10,6 +10,7 @@
     "dev:vesper": "turbo run dev --filter=@tenstorrent/vesper",
     "dev:website": "turbo run dev --filter=website",
     "build:storybook": "turbo run build:storybook --filter=@tenstorrent/vesper",
+    "test": "turbo run test --",
     "test:vesper": "turbo run test --filter=@tenstorrent/vesper --",
     "test:vesper:update": "turbo run test:update --filter=@tenstorrent/vesper --",
     "test:watch:vesper": "turbo run test:watch --filter=@tenstorrent/vesper --",
