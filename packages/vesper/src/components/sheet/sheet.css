@@ -1,6 +1,5 @@
 .vesper-sheet {
-  transition:
-    display var(--vesper-transition-duration-fast) ease allow-discrete,
+  transition: display var(--vesper-transition-duration-fast) ease allow-discrete,
     overlay var(--vesper-transition-duration-fast) ease allow-discrete;
 }
 
@@ -30,8 +29,7 @@
   bottom: -100vh;
   left: -100vw;
   right: -100vw;
-  transition:
-    background var(--vesper-transition-duration-fast) ease,
+  transition: background var(--vesper-transition-duration-fast) ease,
     display var(--vesper-transition-duration-fast) ease allow-discrete,
     overlay var(--vesper-transition-duration-fast) ease allow-discrete;
 }
@@ -46,15 +44,14 @@
 
 .vesper-sheet-content {
   opacity: 0;
-  transition:
-    opacity var(--vesper-transition-duration-fast) ease,
+  transition: opacity var(--vesper-transition-duration-fast) ease,
     transform var(--vesper-transition-duration-fast) ease;
   display: flex;
   flex-direction: column;
   gap: var(--vesper-spacing-6);
   width: min(calc(100vw - var(--vesper-spacing-12)), 29.5rem);
   background: var(--vesper-background-primary);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+  border: var(--vesper-border-width-base) solid var(--vesper-border-primary);
   border-radius: var(--vesper-radius-3);
   position: fixed;
   top: var(--vesper-spacing-6);

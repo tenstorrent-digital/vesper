@@ -21,7 +21,7 @@
 
 .vesper-radio-group-item-indicator {
   border-radius: 50%;
-  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+  border: var(--vesper-border-width-base) solid var(--vesper-border-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,7 +66,7 @@
     }
   }
   &:focus-visible + .vesper-radio-group-item-indicator {
-    outline: var(--vesper-stroke-base) solid var(--vesper-border-focus);
+    outline: var(--vesper-outline-width-base) solid var(--vesper-border-focus);
     outline-offset: var(--vesper-spacing-micro);
   }
 }

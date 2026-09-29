@@ -2,13 +2,13 @@
   cursor: text;
   display: flex;
   align-items: center;
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
+  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
   background: var(--vesper-tint-neutral-100);
   &[data-popup-open],
   &:has(:focus-visible) {
     border-color: var(--vesper-border-strong);
     @media (forced-colors: active) {
-      outline: var(--vesper-stroke-strong) solid CanvasText;
+      outline: var(--vesper-outline-width-strong) solid CanvasText;
     }
     @media not (forced-colors: active) {
       box-shadow: var(--vesper-shadow-focus-ring);
@@ -33,26 +33,26 @@
 }
 
 .vesper-combobox-success:not(
-  [data-disabled],
-  [data-popup-open],
-  :has(:focus-visible)
-) {
+    [data-disabled],
+    [data-popup-open],
+    :has(:focus-visible)
+  ) {
   border-color: var(--vesper-border-success-base);
 }
 
 .vesper-combobox-warning:not(
-  [data-disabled],
-  [data-popup-open],
-  :has(:focus-visible)
-) {
+    [data-disabled],
+    [data-popup-open],
+    :has(:focus-visible)
+  ) {
   border-color: var(--vesper-border-warning-base);
 }
 
 .vesper-combobox-error:not(
-  [data-disabled],
-  [data-popup-open],
-  :has(:focus-visible)
-) {
+    [data-disabled],
+    [data-popup-open],
+    :has(:focus-visible)
+  ) {
   border-color: var(--vesper-border-error-base);
 }
 
@@ -169,9 +169,8 @@
 .vesper-combobox-positioner {
   min-width: var(--anchor-width);
   border-radius: var(--vesper-radius-3);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
-  background:
-    linear-gradient(
+  border: var(--vesper-border-width-base) solid var(--vesper-border-tertiary);
+  background: linear-gradient(
       0deg,
       var(--vesper-alpha-stone-50) 0%,
       var(--vesper-alpha-stone-50) 100%
@@ -211,7 +210,7 @@
   &[data-highlighted] {
     background: var(--vesper-state-neutral-hover);
     @media (forced-colors: active) {
-      outline: var(--vesper-stroke-base) solid CanvasText;
+      outline: var(--vesper-outline-width-base) solid CanvasText;
     }
   }
   &[data-selected] {

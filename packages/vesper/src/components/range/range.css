@@ -28,7 +28,7 @@
     left: 0;
     right: 0;
     background: var(--vesper-stone-200);
-    border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+    border: var(--vesper-border-width-base) solid var(--vesper-border-primary);
     border-radius: var(--vesper-spacing-1);
   }
 }
@@ -38,12 +38,12 @@
   height: 1rem;
   position: absolute;
   left: calc(
-    var(--vesper-range-thumb-size) / 2 +
-      (100% - var(--vesper-range-thumb-size)) *
+    var(--vesper-range-thumb-size) / 2 + (100% - var(--vesper-range-thumb-size)) *
       var(--vesper-range-tick-position, 0)
   );
   transform: translateX(-0.03125rem);
-  border-left: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+  border-left: var(--vesper-border-width-base) solid
+    var(--vesper-border-primary);
   @media (forced-colors: active) {
     background: CanvasText;
   }
@@ -59,12 +59,13 @@
     left: 0;
     right: 0;
     background: var(--vesper-background-accent-base);
-    border: var(--vesper-stroke-base) solid var(--vesper-border-accent-base);
+    border: var(--vesper-border-width-base) solid
+      var(--vesper-border-accent-base);
     border-radius: var(--vesper-spacing-1);
   }
   &[data-disabled]::before {
     background: var(--vesper-tint-neutral-400);
-    border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+    border: var(--vesper-border-width-base) solid var(--vesper-border-primary);
   }
   @media (forced-colors: active) {
     &::before,
@@ -82,7 +83,7 @@
   justify-content: center;
   cursor: pointer;
   background: var(--vesper-background-tertiary);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-accent-base);
+  border: var(--vesper-border-width-base) solid var(--vesper-border-accent-base);
   border-radius: var(--vesper-spacing-2);
   &.vesper-range-thumb-labeled {
     &::after {
@@ -90,13 +91,14 @@
       content: var(--vesper-range-thumb-label, "");
       color: var(--vesper-text-primary);
       background: var(--vesper-tint-neutral-100);
-      border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
+      border: var(--vesper-border-width-base) solid
+        var(--vesper-border-secondary);
       border-radius: var(--vesper-radius-half);
       padding: var(--vesper-spacing-1);
       position: absolute;
       /* offset by the thumb's border width, as the label is positioned
          against the thumb's padding box */
-      bottom: calc(100% + var(--vesper-stroke-base));
+      bottom: calc(100% + var(--vesper-border-width-base));
       transform: translateY(calc(var(--vesper-spacing-micro) * -1));
     }
   }
@@ -109,7 +111,7 @@
   }
   @media (forced-colors: active) {
     &:has(:focus-visible) {
-      outline: var(--vesper-stroke-strong) solid CanvasText;
+      outline: var(--vesper-outline-width-strong) solid CanvasText;
     }
   }
   @media not (forced-colors: active) {

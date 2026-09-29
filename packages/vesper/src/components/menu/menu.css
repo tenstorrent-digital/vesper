@@ -4,7 +4,7 @@
   padding: var(--vesper-spacing-2);
   gap: var(--vesper-spacing-half);
   border-radius: var(--vesper-radius-3);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
+  border: var(--vesper-border-width-base) solid var(--vesper-border-tertiary);
   background: var(--vesper-background-primary);
   box-shadow: var(--vesper-shadow-200);
 }
@@ -20,7 +20,7 @@
   outline: none;
   @media (forced-colors: active) {
     &:focus-visible {
-      outline: var(--vesper-stroke-strong) solid CanvasText;
+      outline: var(--vesper-outline-width-strong) solid CanvasText;
     }
   }
 }
@@ -46,8 +46,7 @@
   &:hover,
   &:focus-visible,
   &[data-highlighted] {
-    background:
-      linear-gradient(
+    background: linear-gradient(
         0deg,
         var(--vesper-state-neutral-hover) 0%,
         var(--vesper-state-neutral-hover) 100%

@@ -5,10 +5,10 @@
 }
 .vesper-code-default {
   background: var(--vesper-tint-neutral-100);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
+  border: var(--vesper-border-width-base) solid var(--vesper-border-tertiary);
 }
 .vesper-code-contrast {
   background: var(--vesper-background-inverse-primary);
   color: var(--vesper-text-inverse-primary);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
+  border: var(--vesper-border-width-base) solid var(--vesper-border-strong);
 }

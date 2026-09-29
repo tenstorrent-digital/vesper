@@ -10,13 +10,13 @@
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
   cursor: pointer;
-  border-bottom: var(--vesper-stroke-base) solid transparent;
+  border-bottom: var(--vesper-border-width-base) solid transparent;
   &:focus-visible {
     box-shadow: var(--vesper-shadow-focus-ring);
   }
   @media (forced-colors: active) {
     &:focus-visible {
-      outline: var(--vesper-stroke-strong) solid CanvasText;
+      outline: var(--vesper-outline-width-strong) solid CanvasText;
     }
   }
 }
@@ -54,7 +54,8 @@
     color: var(--vesper-icon-tertiary);
   }
   &:hover {
-    border-bottom: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+    border-bottom: var(--vesper-border-width-base) solid
+      var(--vesper-border-primary);
   }
 }
 
@@ -64,7 +65,8 @@
     color: var(--vesper-icon-primary);
   }
   &:hover {
-    border-bottom: var(--vesper-stroke-base) solid var(--vesper-border-strong);
+    border-bottom: var(--vesper-border-width-base) solid
+      var(--vesper-border-strong);
   }
 }
 
@@ -74,7 +76,7 @@
     color: var(--vesper-icon-accent);
   }
   &:hover {
-    border-bottom: var(--vesper-stroke-base) solid
+    border-bottom: var(--vesper-border-width-base) solid
       var(--vesper-border-accent-base);
   }
 }
@@ -85,7 +87,7 @@
     color: var(--vesper-icon-error);
   }
   &:hover {
-    border-bottom: var(--vesper-stroke-base) solid
+    border-bottom: var(--vesper-border-width-base) solid
       var(--vesper-border-error-base);
   }
 }
@@ -96,7 +98,7 @@
     color: var(--vesper-icon-warning);
   }
   &:hover {
-    border-bottom: var(--vesper-stroke-base) solid
+    border-bottom: var(--vesper-border-width-base) solid
       var(--vesper-border-warning-base);
   }
 }
@@ -107,7 +109,7 @@
     color: var(--vesper-icon-success);
   }
   &:hover {
-    border-bottom: var(--vesper-stroke-base) solid
+    border-bottom: var(--vesper-border-width-base) solid
       var(--vesper-border-success-base);
   }
 }
@@ -118,7 +120,7 @@
     color: var(--vesper-icon-info);
   }
   &:hover {
-    border-bottom: var(--vesper-stroke-base) solid
+    border-bottom: var(--vesper-border-width-base) solid
       var(--vesper-border-info-base);
   }
 }
@@ -129,7 +131,7 @@
     color: var(--vesper-icon-brand-purple);
   }
   &:hover {
-    border-bottom: var(--vesper-stroke-base) solid
+    border-bottom: var(--vesper-border-width-base) solid
       var(--vesper-border-brand-purple-base);
   }
 }
@@ -140,7 +142,7 @@
     color: var(--vesper-icon-brand-pink);
   }
   &:hover {
-    border-bottom: var(--vesper-stroke-base) solid
+    border-bottom: var(--vesper-border-width-base) solid
       var(--vesper-border-brand-pink-base);
   }
 }

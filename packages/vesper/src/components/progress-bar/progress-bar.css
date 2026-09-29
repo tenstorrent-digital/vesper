@@ -10,7 +10,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+    border: var(--vesper-border-width-base) solid var(--vesper-border-primary);
   }
 }
 
@@ -62,7 +62,7 @@
 
 .vesper-progress-bar-tick {
   position: relative;
-  border-left: var(--vesper-stroke-base) solid;
+  border-left: var(--vesper-border-width-base) solid;
 }
 
 .vesper-progress-bar-tick-light {

@@ -4,47 +4,47 @@
 }
 
 .vesper-material-outlined {
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
+  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
   background: var(--vesper-background-primary);
 }
 
 .vesper-material-outlined-strong {
-  border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
+  border: var(--vesper-border-width-base) solid var(--vesper-border-strong);
   background: var(--vesper-background-primary);
 }
 
 .vesper-material-raised {
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
+  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
   background: var(--vesper-background-primary);
   box-shadow: var(--vesper-shadow-100);
 }
 
 .vesper-material-floating {
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
+  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
   background: var(--vesper-background-primary);
   box-shadow: var(--vesper-shadow-300);
 }
 
 .vesper-material-modal {
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
+  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
   background: var(--vesper-background-primary);
   box-shadow: var(--vesper-shadow-400);
 }
 
 .vesper-material-inset {
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
+  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
   background: var(--vesper-tint-neutral-100);
   box-shadow: var(--vesper-shadow-inset-100);
 }
 
 .vesper-material-inset-strong {
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
+  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
   background: var(--vesper-tint-neutral-100);
   box-shadow: var(--vesper-shadow-inset-200);
 }
 
 .vesper-material-interactive {
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
+  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
   background: var(--vesper-background-primary);
   &.vesper-material-disabled {
     color: var(--vesper-text-disabled);
@@ -52,8 +52,7 @@
     background: var(--vesper-background-disabled);
   }
   &.vesper-material-active {
-    background:
-      linear-gradient(
+    background: linear-gradient(
         0deg,
         var(--vesper-state-neutral-active) 0%,
         var(--vesper-state-neutral-active) 100%
@@ -68,8 +67,7 @@
   &:not(.vesper-material-disabled) {
     cursor: pointer;
     &:hover {
-      background:
-        linear-gradient(
+      background: linear-gradient(
           0deg,
           var(--vesper-state-neutral-hover) 0%,
           var(--vesper-state-neutral-hover) 100%
@@ -80,7 +78,7 @@
   }
   &:focus-visible:not(.vesper-material-disabled) {
     @media (forced-colors: active) {
-      outline: var(--vesper-stroke-strong) solid CanvasText;
+      outline: var(--vesper-outline-width-strong) solid CanvasText;
     }
     @media not (forced-colors: active) {
       box-shadow: var(--vesper-shadow-focus-ring);

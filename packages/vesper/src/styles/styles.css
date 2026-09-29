@@ -2,16 +2,17 @@
 @import "./globals.css" layer(vesper);
 
 /* css tokens */
-@import "./colors.css" layer(vesper);
-@import "./fonts.css" layer(vesper);
+@import "./color.css" layer(vesper);
+@import "./font.css" layer(vesper);
 @import "./leading.css" layer(vesper);
 @import "./radius.css" layer(vesper);
-@import "./shadows.css" layer(vesper);
+@import "./shadow.css" layer(vesper);
 @import "./spacing.css" layer(vesper);
 @import "./tracking.css" layer(vesper);
-@import "./animation.css" layer(vesper);
+@import "./transition-duration.css" layer(vesper);
 @import "./backgrounds.css" layer(vesper);
-@import "./strokes.css" layer(vesper);
+@import "./border-width.css" layer(vesper);
+@import "./outline-width.css" layer(vesper);
 
 /* typography */
 @import "../components/typography/typography.css" layer(vesper);

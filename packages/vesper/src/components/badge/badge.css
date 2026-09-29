@@ -4,9 +4,9 @@
   align-items: center;
   border-radius: var(--vesper-radius-4);
   @media (forced-colors: active) {
-    border: var(--vesper-stroke-base) solid CanvasText;
+    border: var(--vesper-border-width-base) solid CanvasText;
     &:focus-visible {
-      outline: var(--vesper-stroke-strong) solid CanvasText;
+      outline: var(--vesper-outline-width-strong) solid CanvasText;
     }
   }
   @media not (forced-colors: active) {
@@ -62,7 +62,7 @@
     forced-color-adjust: none;
     &:focus-visible {
       outline-offset: var(--vesper-spacing-micro);
-      outline-width: var(--vesper-stroke-base);
+      outline-width: var(--vesper-outline-width-base);
     }
   }
 }

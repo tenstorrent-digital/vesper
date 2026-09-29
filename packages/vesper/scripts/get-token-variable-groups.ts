@@ -7,26 +7,27 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const TOKEN_GROUPS = [
-  "colors",
-  "fonts",
+  "color",
+  "font",
   "leading",
   "radius",
-  "shadows",
+  "shadow",
   "spacing",
   "tracking",
-  "animation",
-  "strokes",
+  "transition-duration",
+  "border-width",
+  "outline-width",
 ] as const;
 
-const VAR_PREFIX = "--vesper-";
+const VESPER_PREFIX = "--vesper-";
 
 export type TokenGroup = (typeof TOKEN_GROUPS)[number];
 
-type TokenData = { name: string; parts: string[] };
+type TokenData = { name: string; group: string; value: string };
 
 export const getTokenVariableGroups = (): Record<TokenGroup, TokenData[]> => {
   const variables = Object.fromEntries<TokenData[]>(
-    TOKEN_GROUPS.map((group) => [group, []]),
+    TOKEN_GROUPS.map((group) => [group, []])
   ) as Record<TokenGroup, TokenData[]>;
 
   for (const group of TOKEN_GROUPS) {
@@ -39,14 +40,19 @@ export const getTokenVariableGroups = (): Record<TokenGroup, TokenData[]> => {
       visitor: {
         Declaration(declaration) {
           if (declaration.property === "custom") {
-            let name = declaration.value.name;
-            if (!name.startsWith(VAR_PREFIX)) return;
+            const name = declaration.value.name;
+            if (
+              !name.startsWith(VESPER_PREFIX) ||
+              variables[group].some((v) => v.name === name)
+            ) {
+              return;
+            }
 
-            name = name.slice(VAR_PREFIX.length);
-            if (variables[group].some((v) => v.name === name)) return;
-
-            const parts = name.split("-");
-            variables[group].push({ name, parts });
+            variables[group].push({
+              name,
+              group,
+              value: name.slice(VESPER_PREFIX.length + group.length + 1),
+            });
           }
         },
       },
