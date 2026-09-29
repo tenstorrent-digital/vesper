@@ -5,7 +5,7 @@
   "semi": true,
   "bracketSpacing": true,
   "printWidth": 80,
-  "sortPackageJson": false,
+  "sortPackageJson": true,
   "sortImports": {
     "customGroups": [
       {
