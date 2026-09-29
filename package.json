@@ -31,8 +31,9 @@
     "agent:skills:add": "DISABLE_TELEMETRY=true npx skills add --yes --agent pi claude-code codex --",
     "agent:skills:remove": "DISABLE_TELEMETRY=true npx skills remove --yes --agent '*'",
     "agent:skills:update": "DISABLE_TELEMETRY=true npx skills update --yes --project",
-    "clean": "turbo run clean && rimraf --glob .turbo '{apps,packages}/*/.turbo'",
-    "clean-install": "yarn workspaces run rimraf node_modules && yarn rimraf node_modules && rm -f yarn.lock && yarn cache clean && yarn",
+    "clean": "turbo run clean && turbo run clean-caches",
+    "clean-caches": "npx --yes rimraf --glob .turbo '{apps,packages}/*/.turbo'",
+    "clean-install": "npx --yes rimraf --glob node_modules '{apps,packages}/*/node_modules' && rm -f yarn.lock && yarn cache clean && yarn",
     "changeset:publish": "yarn build:vesper && changeset publish"
   },
   "devDependencies": {
@@ -47,7 +48,6 @@
     "oxfmt": "^0.67.0",
     "oxlint": "^1.82.0",
     "oxlint-tsgolint": "^7.0.2001",
-    "rimraf": "^6.1.3",
     "turbo": "^2.9.14"
   },
   "engines": {

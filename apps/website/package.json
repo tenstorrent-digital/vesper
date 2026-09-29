@@ -9,7 +9,7 @@
     "build": "next build",
     "generate:demos": "node scripts/generate-demos.mts",
     "start": "next start",
-    "clean": "rimraf .next generated",
+    "clean": "npx --yes rimraf .next generated public/storybook",
     "lint": "next typegen && oxlint .",
     "lint:fix": "next typegen && oxlint --fix .",
     "check-types": "next typegen && tsc --noEmit --incremental false"

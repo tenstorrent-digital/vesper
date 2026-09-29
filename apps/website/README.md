@@ -31,10 +31,16 @@ instead of silently relocating and breaking the `/storybook` rewrite in
 Turbopack's persistent dev cache is disabled for this app in
 [`next.config.ts`](./next.config.ts) because `@tenstorrent/vesper` is compiled by a separate watcher and its output changes are outside the Next dev server's lifecycle.
 
-To clean the (whole monorepo's) cache and start fresh you can run:
+To start fresh, you can clean the cache (along with other caches and generated/dist folders across the monorepo) by running:
 
-```bash
-yarn clean      # removes .next, dist, and turbo caches across the repo
+```sh
+# from the monorepo root
+
+# remove turbo caches, generated, and dist (incuding .next) folders across the repo
+yarn clean
+
+# remove node_modules and yarn.lock across the repo
+yarn clean-install
 ```
 
 ### Component demos

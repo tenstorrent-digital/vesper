@@ -47,9 +47,6 @@
       "cache": false,
       "persistent": true
     },
-    "clean": {
-      "cache": false
-    },
     "test": {
       "dependsOn": ["transit"],
       "passThroughEnv": ["AGENTS"]
@@ -118,6 +115,18 @@
       // same file at once
       "dependsOn": ["//#lint:fix:root", "website#lint:fix"],
       "cache": false
-    }
+    },
+    "clean": {
+      // clean caches, generated, and dist folders across the repo
+      //
+      // apps and packages in the monorepo have their own `clean` tasks,
+      // and each has different folders that need to be cleaned - see each
+      // app's package.json `clean` script for specific folders that are cleaned
+      "cache": false
+    },
+    "//#clean-caches": {
+      // clean turbo cache folders across the monorepo
+      "cache": false
+    },
   }
 }
