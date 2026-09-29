@@ -1,7 +1,8 @@
+import { jsx, toJs } from "estree-util-to-js";
 import fs from "fs";
+import { toEstree } from "hast-util-to-estree";
 import path from "path";
 import rehypeParse from "rehype-parse";
-import rehypeStringify from "rehype-stringify";
 import { optimize } from "svgo";
 import { unified } from "unified";
 import { visit } from "unist-util-visit";
@@ -11,18 +12,6 @@ import { getGeneratedCodeWarning } from "./utils";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-/**
- * convert the (html) attribute names of a serialized svg into the props react
- * expects, eg. `fill-rule` -> `fillRule`
- *
- * `aria-*` and `data-*` attributes are left alone, since react expects those
- * to stay hyphenated
- */
-const toJsxAttributes = (html: string) =>
-  html.replace(/(?<=\s)(?!aria-|data-)[a-z]+(?:-[a-z]+)+(?==)/g, (attribute) =>
-    attribute.replace(/-([a-z])/g, (_, char: string) => char.toUpperCase()),
-  );
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning("yarn generate:icons");
 
@@ -109,12 +98,33 @@ const icons = iconFiles.map((fileName) => {
     }
   });
 
-  // serialize tree into a string again now that it's been optimized and patched
-  const markdown = toJsxAttributes(
-    unified().use(rehypeStringify).stringify(tree),
+  const svg = tree.children.find(
+    (node) => node.type === "element" && node.tagName === "svg",
   );
+  if (!svg) {
+    throw new Error(`No root <svg> element found in ${fileName}`);
+  }
 
-  return { kind, componentName, markdown };
+  // convert the patched tree into a JSX syntax tree, using the attribute names
+  // react expects, eg. `fill-rule` -> `fillRule`, `xlink:href` -> `xlinkHref`
+  const estree = toEstree(svg, { elementAttributeNameCase: "react" });
+  const [statement] = estree.body;
+  if (
+    statement?.type !== "ExpressionStatement" ||
+    statement.expression.type !== "JSXElement"
+  ) {
+    throw new Error(`Failed to convert ${fileName} to JSX`);
+  }
+
+  // spread {...props} into the opening svg tag
+  statement.expression.openingElement.attributes.push({
+    type: "JSXSpreadAttribute",
+    argument: { type: "Identifier", name: "props" },
+  });
+
+  // serialize the JSX syntax tree into a string, eg. `<svg {...props}>...</svg>;`
+  const componentCode = toJs(estree, { handlers: jsx }).value;
+  return { kind, componentName, componentCode };
 });
 
 // remove existing files in icons component folder
@@ -130,16 +140,13 @@ fs.mkdirSync(path.resolve(__dirname, "../src/components/icons"), {
 
 // create an individual component file for each icon
 icons.forEach((icon) => {
-  // spread {...props} into the opening svg tag
-  const markdown = icon.markdown.replace(/<svg([^>]*)>/s, "<svg$1 {...props}>");
-
   const fileContents = `
 ${AUTO_GENERATED_WARNING}
 
 import type { ComponentProps } from 'react';
 
 export const ${icon.componentName} = (props: ComponentProps<'svg'>) => {
-  return ${markdown}
+  return ${icon.componentCode}
 }
 `;
 
@@ -209,23 +216,24 @@ fs.writeFileSync(
 // create barrel file with exports for each icon component, constants, and types (tree-shakeable)
 // exports are sorted by their module path (neither oxlint nor oxfmt sort exports)
 const barrelExports = [
-  { from: "./icon", statement: "export { Icon } from './icon'" },
-  {
-    from: "./constants",
-    statement: "export { ICON_KINDS } from './constants'",
-  },
-  { from: "./types", statement: "export type { IconKind } from './types'" },
-  ...icons.map((icon) => ({
-    from: `./${icon.kind}`,
-    statement: `export { ${icon.componentName} } from './${icon.kind}'`,
-  })),
-].toSorted((a, b) => (a.from < b.from ? -1 : a.from > b.from ? 1 : 0));
+  "export { Icon } from './icon'",
+  "export { ICON_KINDS } from './constants'",
+  "export type { IconKind } from './types'",
+  ...icons.map(
+    (icon) => `export { ${icon.componentName} } from './${icon.kind}'`,
+  ),
+].toSorted((a, b) => {
+  const fromA = a.slice(a.indexOf("from"));
+  const fromB = b.slice(b.indexOf("from"));
+
+  return fromA < fromB ? -1 : fromB > fromA ? 1 : 0;
+});
 
 fs.writeFileSync(
   path.resolve(__dirname, `../src/components/icons/icons.ts`),
   `${AUTO_GENERATED_WARNING}
 
-  ${barrelExports.map(({ statement }) => statement).join("\n")}`,
+  ${barrelExports.join("\n")}`,
 );
 
 // create story file for icon component
