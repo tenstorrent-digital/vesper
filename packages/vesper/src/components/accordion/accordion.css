@@ -2,16 +2,16 @@
   padding: var(--vesper-spacing-3);
   border-radius: var(--vesper-radius-1);
   &:hover {
-    .vesper-accordion-trigger {
+    > .vesper-accordion-trigger {
       color: var(--vesper-text-primary);
     }
   }
   &[data-open] {
     background: var(--vesper-state-neutral-hover);
-    .vesper-accordion-trigger {
+    > .vesper-accordion-trigger {
       color: var(--vesper-text-primary);
     }
-    .vesper-accordion-trigger-icon {
+    > .vesper-accordion-trigger > .vesper-accordion-trigger-icon {
       transform: rotate(90deg);
     }
   }
