@@ -19,15 +19,15 @@ export const Tenstorrent = (props: ComponentProps<"svg">) => {
       <path
         d="M16.8 13.3698L12 16.1151L7.20002 13.3698V18.8603L12 21.6L16.8 18.8603V13.3698Z"
         fill="currentColor"
-      ></path>
+      />
       <path
         d="M16.8 7.88492L12 10.6301L7.20002 7.88492L7.20002 13.3698L2.40002 10.6301V5.14522L7.20002 2.39999L16.8 7.88492Z"
         fill="currentColor"
-      ></path>
+      />
       <path
         d="M16.8 13.3698L21.6 10.6301V5.14522L16.8 2.39999L16.8 13.3698Z"
         fill="currentColor"
-      ></path>
+      />
     </svg>
   );
 };

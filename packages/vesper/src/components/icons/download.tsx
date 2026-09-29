@@ -19,8 +19,8 @@ export const Download = (props: ComponentProps<"svg">) => {
       <path
         d="M4.05859 9.66992L10.8984 16.5039H11.2363V3H12.7637V16.5039H13.1016L19.9414 9.66992L21 10.7285L13.7217 18H10.2783L3 10.7285L4.05859 9.66992Z"
         fill="currentColor"
-      ></path>
-      <path d="M3 19.5H21V21H3V19.5Z" fill="currentColor"></path>
+      />
+      <path d="M3 19.5H21V21H3V19.5Z" fill="currentColor" />
     </svg>
   );
 };

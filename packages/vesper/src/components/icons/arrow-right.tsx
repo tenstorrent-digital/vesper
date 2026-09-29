@@ -19,7 +19,7 @@ export const ArrowRight = (props: ComponentProps<"svg">) => {
       <path
         d="M12.6758 19.9414L19.5049 13.1016L19.5049 12.7637L3 12.7637L3 11.2363L19.5049 11.2363L19.5049 10.8984L12.6758 4.05859L13.7324 3L21 10.2783L21 13.7217L13.7324 21L12.6758 19.9414Z"
         fill="currentColor"
-      ></path>
+      />
     </svg>
   );
 };

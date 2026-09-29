@@ -19,7 +19,7 @@ export const Checkmark = (props: ComponentProps<"svg">) => {
       <path
         d="M22 6.07124L8.46804 18.9532H6.67287L2 14.5048L3.17444 13.3868L7.36066 17.3719H7.78025L20.8256 4.95322L22 6.07124Z"
         fill="currentColor"
-      ></path>
+      />
     </svg>
   );
 };

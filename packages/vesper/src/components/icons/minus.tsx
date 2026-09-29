@@ -19,7 +19,7 @@ export const Minus = (props: ComponentProps<"svg">) => {
       <path
         d="M22 12.7425H14.0198L12.7498 14H11.2502L9.98017 12.7425H2V11.2575H9.98017L11.2502 10H12.7498L14.0198 11.2575H22V12.7425Z"
         fill="currentColor"
-      ></path>
+      />
     </svg>
   );
 };

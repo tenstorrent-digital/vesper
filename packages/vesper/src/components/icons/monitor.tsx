@@ -19,7 +19,7 @@ export const Monitor = (props: ComponentProps<"svg">) => {
       <path
         d="M21 4H3L2 5V15L3 16H10V19H6.5V20H17.5V19H14V16H21L22 15V5L21 4ZM21 14.5L20.5 15H3.5L3 14.5V5.5L3.5 5H20.5L21 5.5V14.5Z"
         fill="currentColor"
-      ></path>
+      />
     </svg>
   );
 };

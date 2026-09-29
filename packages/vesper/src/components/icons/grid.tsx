@@ -21,25 +21,25 @@ export const Grid = (props: ComponentProps<"svg">) => {
         clipRule="evenodd"
         d="M11 20H4V13H11V20ZM5 19H10V14H5V19Z"
         fill="currentColor"
-      ></path>
+      />
       <path
         fillRule="evenodd"
         clipRule="evenodd"
         d="M20 20H13V13H20V20ZM14 19H19V14H14V19Z"
         fill="currentColor"
-      ></path>
+      />
       <path
         fillRule="evenodd"
         clipRule="evenodd"
         d="M11 11H4V4H11V11ZM5 10H10V5H5V10Z"
         fill="currentColor"
-      ></path>
+      />
       <path
         fillRule="evenodd"
         clipRule="evenodd"
         d="M20 11H13V4H20V11ZM14 10H19V5H14V10Z"
         fill="currentColor"
-      ></path>
+      />
     </svg>
   );
 };

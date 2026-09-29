@@ -21,7 +21,7 @@ export const AIAgentSolid = (props: ComponentProps<"svg">) => {
         clipRule="evenodd"
         d="M12.5 7H18L21 10V18L18 21H6L3 18V10L6 7H11.5V4H9.5V3H12.5V7ZM8 11V17H10V11H8ZM14 11V17H16V11H14Z"
         fill="currentColor"
-      ></path>
+      />
     </svg>
   );
 };
