@@ -15,6 +15,7 @@ export default defineConfig({
   categories: {
     correctness: "error",
     suspicious: "warn",
+    perf: "error",
   },
   rules: {
     "react/react-in-jsx-scope": "off",
