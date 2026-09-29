@@ -2,21 +2,21 @@
   background-image: var(--vesper-image-dot);
   background-repeat: repeat;
   background-position: top;
-  background-color: var(--vesper-background-primary);
+  background-color: var(--vesper-color-background-primary);
 }
 
 @utility bg-vesper-dot-pattern-secondary {
   background-image: var(--vesper-image-dot);
   background-repeat: repeat;
   background-position: top;
-  background-color: var(--vesper-background-secondary);
+  background-color: var(--vesper-color-background-secondary);
 }
 
 @utility bg-vesper-dot-pattern-tertiary {
   background-image: var(--vesper-image-dot);
   background-repeat: repeat;
   background-position: top;
-  background-color: var(--vesper-background-tertiary);
+  background-color: var(--vesper-color-background-tertiary);
 }
 
 /* Dot pattern with a custom background color from vesper color tokens.
@@ -33,7 +33,7 @@
   background-image: var(--vesper-image-dot-inverse);
   background-repeat: repeat;
   background-position: top;
-  background-color: var(--vesper-background-inverse-primary);
+  background-color: var(--vesper-color-background-inverse-primary);
 }
 
 /* Inverse dot pattern with a custom background color from vesper color tokens.

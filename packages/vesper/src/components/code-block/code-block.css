@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   border-radius: var(--vesper-radius-2);
-  border: var(--vesper-border-width-base) solid var(--vesper-stone-200);
-  background: var(--vesper-alpha-stone-0);
+  border: var(--vesper-border-width-base) solid var(--vesper-color-stone-200);
+  background: var(--vesper-color-alpha-stone-0);
   box-shadow: var(--vesper-shadow-inset-100);
   overflow: hidden;
 
@@ -78,7 +78,7 @@
       content: counter(line);
       counter-increment: line;
       width: var(--vesper-spacing-12);
-      color: var(--vesper-stone-500);
+      color: var(--vesper-color-stone-500);
     }
   }
 }

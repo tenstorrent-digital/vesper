@@ -249,7 +249,10 @@ describe("text-button [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
-      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
     });
 
     afterEach(() => {
@@ -260,7 +263,9 @@ describe("text-button [a11y]", () => {
     TEXT_BUTTON_PERMUTATIONS.forEach((permutation) => {
       const { size, variant, disabled } = permutation;
 
-      test(`wcag2aa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`, async () => {
+      test(`wcag2aa (${variant}, ${size},${
+        disabled ? " disabled," : ""
+      } ${theme})`, async () => {
         const result = render(
           <TextButton {...permutation}>Button Text</TextButton>,
         );

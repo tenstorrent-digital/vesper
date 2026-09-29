@@ -81,7 +81,7 @@ exports[`tabs [snapshot] > primary, contentAsPanel 1`] = `
     data-testid="tab-1-content"
     id="base-ui-_r_45_"
     role="tabpanel"
-    style="color: var(--vesper-stone-900);"
+    style="color: var(--vesper-color-stone-900);"
     tabindex="0"
   >
     Tab 1 Content
@@ -355,7 +355,7 @@ exports[`tabs [snapshot] > secondary, contentAsPanel 1`] = `
     data-testid="tab-1-content"
     id="base-ui-_r_4b_"
     role="tabpanel"
-    style="color: var(--vesper-stone-900);"
+    style="color: var(--vesper-color-stone-900);"
     tabindex="0"
   >
     Tab 1 Content

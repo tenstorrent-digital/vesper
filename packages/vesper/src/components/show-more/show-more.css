@@ -7,6 +7,6 @@
     content: "";
     flex: 1;
     border-bottom: var(--vesper-border-width-base) solid
-      var(--vesper-border-tertiary);
+      var(--vesper-color-border-tertiary);
   }
 }

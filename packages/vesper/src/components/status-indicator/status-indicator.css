@@ -7,7 +7,8 @@
 
 .vesper-status-indicator-badge {
   padding: var(--vesper-spacing-1);
-  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-secondary);
   border-radius: var(--vesper-radius-half);
 }
 
@@ -45,49 +46,49 @@
 
 .vesper-status-indicator-dot-queued {
   &::before {
-    background: var(--vesper-sky-300);
+    background: var(--vesper-color-sky-300);
   }
   &::after {
-    background: var(--vesper-sky-700);
+    background: var(--vesper-color-sky-700);
   }
 }
 
 .vesper-status-indicator-dot-progress {
   &::before {
-    background: var(--vesper-amber-400);
+    background: var(--vesper-color-amber-400);
   }
   &::after {
-    background: var(--vesper-amber-700);
+    background: var(--vesper-color-amber-700);
   }
 }
 
 .vesper-status-indicator-dot-error {
   &::before {
-    background: var(--vesper-red-400);
+    background: var(--vesper-color-red-400);
   }
   &::after {
-    background: var(--vesper-red-700);
+    background: var(--vesper-color-red-700);
   }
 }
 
 .vesper-status-indicator-dot-ready {
   &::before {
-    background: var(--vesper-mint-400);
+    background: var(--vesper-color-mint-400);
   }
   &::after {
-    background: var(--vesper-mint-700);
+    background: var(--vesper-color-mint-700);
   }
 }
 
 .vesper-status-indicator-dot-cancelled {
   &::before {
-    background: var(--vesper-stone-400);
+    background: var(--vesper-color-stone-400);
   }
   &::after {
-    background: var(--vesper-stone-700);
+    background: var(--vesper-color-stone-700);
   }
 }
 
 .vesper-status-indicator-label {
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
 }

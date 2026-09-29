@@ -151,9 +151,9 @@ Importing the library's styles also exposes Vesper's underlying css tokens for u
 For example, you could use them in a css file like so:
 
 ```css
-color: var(--vesper-text-primary);
-border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
-background-color: var(--vesper-background-tertiary);
+color: var(--vesper-color-text-primary);
+border: var(--vesper-stroke-base) solid var(--vesper-color-border-secondary);
+background-color: var(--vesper-color-background-tertiary);
 ```
 
 Or you can use them as inline styles in JSX:
@@ -161,9 +161,10 @@ Or you can use them as inline styles in JSX:
 ```tsx
 <div
   style={{
-    color: "var(--vesper-text-primary)",
-    border: "var(--vesper-stroke-base) solid var(--vesper-border-secondary)",
-    backgroundColor: "var(--vesper-background-tertiary)",
+    color: "var(--vesper-color-text-primary)",
+    border:
+      "var(--vesper-stroke-base) solid var(--vesper-color-border-secondary)",
+    backgroundColor: "var(--vesper-color-background-tertiary)",
   }}
 />
 ```

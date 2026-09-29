@@ -4,8 +4,9 @@
   padding: var(--vesper-spacing-2);
   gap: var(--vesper-spacing-half);
   border-radius: var(--vesper-radius-3);
-  border: var(--vesper-border-width-base) solid var(--vesper-border-tertiary);
-  background: var(--vesper-background-primary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-tertiary);
+  background: var(--vesper-color-background-primary);
   box-shadow: var(--vesper-shadow-200);
 }
 
@@ -26,59 +27,60 @@
 }
 
 .vesper-menu-item-default {
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
   .vesper-menu-item-label {
-    color: var(--vesper-text-secondary);
+    color: var(--vesper-color-text-secondary);
   }
   &:hover,
   &:focus-visible,
   &[data-highlighted] {
-    background: var(--vesper-tint-neutral-100);
+    background: var(--vesper-color-tint-neutral-100);
   }
 }
 
 .vesper-menu-item-selected {
-  color: var(--vesper-text-primary);
-  background: var(--vesper-tint-neutral-200);
+  color: var(--vesper-color-text-primary);
+  background: var(--vesper-color-tint-neutral-200);
   .vesper-menu-item-label {
-    color: var(--vesper-text-secondary);
+    color: var(--vesper-color-text-secondary);
   }
   &:hover,
   &:focus-visible,
   &[data-highlighted] {
-    background: linear-gradient(
+    background:
+      linear-gradient(
         0deg,
-        var(--vesper-state-neutral-hover) 0%,
-        var(--vesper-state-neutral-hover) 100%
+        var(--vesper-color-state-neutral-hover) 0%,
+        var(--vesper-color-state-neutral-hover) 100%
       ),
-      var(--vesper-tint-neutral-200);
+      var(--vesper-color-tint-neutral-200);
   }
 }
 
 .vesper-menu-item-danger {
-  color: var(--vesper-text-error);
+  color: var(--vesper-color-text-error);
   &:hover,
   &:focus-visible,
   &[data-highlighted] {
-    background: var(--vesper-background-error-subtle);
+    background: var(--vesper-color-background-error-subtle);
   }
 }
 
 .vesper-menu-item-locked {
   pointer-events: none;
-  color: var(--vesper-text-tertiary);
+  color: var(--vesper-color-text-tertiary);
   .vesper-menu-item-left-icon,
   .vesper-menu-item-right-icon {
-    color: var(--vesper-icon-tertiary);
+    color: var(--vesper-color-icon-tertiary);
   }
 }
 
 .vesper-menu-item-disabled {
   pointer-events: none;
-  color: var(--vesper-text-disabled);
+  color: var(--vesper-color-text-disabled);
   .vesper-menu-item-left-icon,
   .vesper-menu-item-right-icon {
-    color: var(--vesper-icon-disabled);
+    color: var(--vesper-color-icon-disabled);
   }
 }
 

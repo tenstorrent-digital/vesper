@@ -31,18 +31,18 @@
   }
 }
 .vesper-form-input-message-success {
-  background: var(--vesper-background-success-subtle);
-  color: var(--vesper-text-success);
+  background: var(--vesper-color-background-success-subtle);
+  color: var(--vesper-color-text-success);
 }
 .vesper-form-input-message-error {
-  background: var(--vesper-background-error-subtle);
-  color: var(--vesper-text-error);
+  background: var(--vesper-color-background-error-subtle);
+  color: var(--vesper-color-text-error);
 }
 .vesper-form-input-message-default {
-  background: var(--vesper-background-info-subtle);
-  color: var(--vesper-text-info);
+  background: var(--vesper-color-background-info-subtle);
+  color: var(--vesper-color-text-info);
 }
 .vesper-form-input-message-warning {
-  background: var(--vesper-background-warning-subtle);
-  color: var(--vesper-text-warning);
+  background: var(--vesper-color-background-warning-subtle);
+  color: var(--vesper-color-text-warning);
 }

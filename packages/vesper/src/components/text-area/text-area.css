@@ -1,20 +1,23 @@
 .vesper-text-area {
   width: 100%;
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
   &::placeholder {
-    color: var(--vesper-text-tertiary);
+    color: var(--vesper-color-text-tertiary);
   }
-  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-tint-neutral-100);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-secondary);
+  background: var(--vesper-color-tint-neutral-100);
   &:focus-visible {
-    border: var(--vesper-border-width-base) solid var(--vesper-border-strong);
+    border: var(--vesper-border-width-base) solid
+      var(--vesper-color-border-strong);
   }
   &:disabled {
-    border: var(--vesper-border-width-base) solid var(--vesper-border-disabled);
-    background: var(--vesper-tint-neutral-200);
-    color: var(--vesper-text-tertiary);
+    border: var(--vesper-border-width-base) solid
+      var(--vesper-color-border-disabled);
+    background: var(--vesper-color-tint-neutral-200);
+    color: var(--vesper-color-text-tertiary);
     &::placeholder {
-      color: var(--vesper-text-disabled);
+      color: var(--vesper-color-text-disabled);
     }
   }
   /* https://css-tricks.com/snippets/css/change-autocomplete-styles-webkit-browsers/ */
@@ -38,14 +41,15 @@
 
 .vesper-text-area-success {
   border: var(--vesper-border-width-base) solid
-    var(--vesper-border-success-base);
+    var(--vesper-color-border-success-base);
 }
 .vesper-text-area-warning {
   border: var(--vesper-border-width-base) solid
-    var(--vesper-border-warning-base);
+    var(--vesper-color-border-warning-base);
 }
 .vesper-text-area-error {
-  border: var(--vesper-border-width-base) solid var(--vesper-border-error-base);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-error-base);
 }
 
 .vesper-text-area-sm {

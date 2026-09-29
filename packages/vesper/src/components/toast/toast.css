@@ -21,10 +21,12 @@
   width: 100%;
   padding: var(--vesper-spacing-5);
   box-shadow: var(--vesper-shadow-200);
-  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-background-primary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-secondary);
+  background: var(--vesper-color-background-primary);
   border-radius: var(--vesper-radius-2);
-  transition: background-color var(--vesper-transition-duration-fast) ease,
+  transition:
+    background-color var(--vesper-transition-duration-fast) ease,
     border-color var(--vesper-transition-duration-fast) ease;
   @media (forced-colors: active) {
     background: Canvas;
@@ -68,7 +70,7 @@
 .vesper-toast-loading {
   .vesper-toast-icon {
     @media not (forced-colors: active) {
-      color: var(--vesper-icon-tertiary);
+      color: var(--vesper-color-icon-tertiary);
     }
     animation: vesper-toast-icon-spin var(--vesper-transition-duration-slow)
       linear infinite;
@@ -84,40 +86,40 @@
 }
 
 .vesper-toast-success {
-  border-color: var(--vesper-border-success-subtle);
-  background: var(--vesper-background-success-subtle);
+  border-color: var(--vesper-color-border-success-subtle);
+  background: var(--vesper-color-background-success-subtle);
   .vesper-toast-icon,
   .vesper-toast-children {
     @media not (forced-colors: active) {
-      color: var(--vesper-text-success);
+      color: var(--vesper-color-text-success);
     }
   }
 }
 
 .vesper-toast-warning {
-  border-color: var(--vesper-border-warning-subtle);
-  background: var(--vesper-background-warning-subtle);
+  border-color: var(--vesper-color-border-warning-subtle);
+  background: var(--vesper-color-background-warning-subtle);
   .vesper-toast-icon,
   .vesper-toast-children {
     @media not (forced-colors: active) {
-      color: var(--vesper-text-warning);
+      color: var(--vesper-color-text-warning);
     }
   }
 }
 
 .vesper-toast-danger {
-  border-color: var(--vesper-border-error-subtle);
-  background: var(--vesper-background-error-subtle);
+  border-color: var(--vesper-color-border-error-subtle);
+  background: var(--vesper-color-background-error-subtle);
   .vesper-toast-icon,
   .vesper-toast-children {
     @media not (forced-colors: active) {
-      color: var(--vesper-text-error);
+      color: var(--vesper-color-text-error);
     }
   }
 }
 
 .vesper-toast-children {
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
   flex: 1;
   @media (forced-colors: active) {
     color: CanvasText;
@@ -126,7 +128,7 @@
 
 .vesper-toast-close-button {
   cursor: pointer;
-  color: var(--vesper-icon-primary);
+  color: var(--vesper-color-icon-primary);
   width: 1rem;
   height: 1rem;
   border-radius: var(--vesper-radius-half);

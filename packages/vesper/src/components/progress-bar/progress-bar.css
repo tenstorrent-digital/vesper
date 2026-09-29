@@ -1,7 +1,7 @@
 .vesper-progress-bar {
   position: relative;
   width: 100%;
-  background: var(--vesper-tint-neutral-200);
+  background: var(--vesper-color-tint-neutral-200);
   overflow: hidden;
   display: flex;
   align-items: stretch;
@@ -10,7 +10,8 @@
     content: "";
     position: absolute;
     inset: 0;
-    border: var(--vesper-border-width-base) solid var(--vesper-border-primary);
+    border: var(--vesper-border-width-base) solid
+      var(--vesper-color-border-primary);
   }
 }
 
@@ -43,7 +44,7 @@
   top: 0;
   left: 0;
   bottom: 0;
-  background: var(--vesper-background-accent-base);
+  background: var(--vesper-color-background-accent-base);
   @media (forced-colors: active) {
     background: CanvasText;
   }
@@ -66,14 +67,14 @@
 }
 
 .vesper-progress-bar-tick-light {
-  border-color: var(--vesper-background-primary);
+  border-color: var(--vesper-color-background-primary);
   @media (forced-colors: active) {
     border-color: Canvas;
   }
 }
 
 .vesper-progress-bar-tick-dark {
-  border-color: var(--vesper-border-primary);
+  border-color: var(--vesper-color-border-primary);
   @media (forced-colors: active) {
     border-color: CanvasText;
   }

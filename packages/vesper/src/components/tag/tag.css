@@ -42,66 +42,66 @@
 }
 
 .vesper-tag-default {
-  background: var(--vesper-tint-neutral-300);
-  color: var(--vesper-text-primary);
+  background: var(--vesper-color-tint-neutral-300);
+  color: var(--vesper-color-text-primary);
 }
 
 .vesper-tag-contrast {
-  background: var(--vesper-background-inverse-primary);
-  color: var(--vesper-text-inverse-primary);
+  background: var(--vesper-color-background-inverse-primary);
+  color: var(--vesper-color-text-inverse-primary);
 }
 
 .vesper-tag-accent-subtle {
-  color: var(--vesper-text-accent);
-  background: var(--vesper-background-accent-subtle);
+  color: var(--vesper-color-text-accent);
+  background: var(--vesper-color-background-accent-subtle);
 }
 
 .vesper-tag-accent-bold {
-  color: var(--vesper-text-primary);
-  background: var(--vesper-background-accent-base);
+  color: var(--vesper-color-text-primary);
+  background: var(--vesper-color-background-accent-base);
 }
 
 .vesper-tag-danger-subtle {
-  color: var(--vesper-text-error);
-  background: var(--vesper-background-error-subtle);
+  color: var(--vesper-color-text-error);
+  background: var(--vesper-color-background-error-subtle);
 }
 
 .vesper-tag-danger-bold {
-  color: var(--vesper-text-static-white);
-  background: var(--vesper-background-error-base);
+  color: var(--vesper-color-text-static-white);
+  background: var(--vesper-color-background-error-base);
 }
 
 .vesper-tag-warning-subtle {
-  color: var(--vesper-text-warning);
-  background: var(--vesper-background-warning-subtle);
+  color: var(--vesper-color-text-warning);
+  background: var(--vesper-color-background-warning-subtle);
 }
 
 .vesper-tag-warning-bold {
-  color: var(--vesper-text-inverse-primary);
-  background: var(--vesper-background-warning-base);
+  color: var(--vesper-color-text-inverse-primary);
+  background: var(--vesper-color-background-warning-base);
 }
 
 .vesper-tag-success-subtle {
-  color: var(--vesper-text-success);
-  background: var(--vesper-background-success-subtle);
+  color: var(--vesper-color-text-success);
+  background: var(--vesper-color-background-success-subtle);
 }
 
 .vesper-tag-success-bold {
-  color: var(--vesper-text-inverse-primary);
-  background: var(--vesper-background-success-base);
+  color: var(--vesper-color-text-inverse-primary);
+  background: var(--vesper-color-background-success-base);
 }
 
 .vesper-tag-info-subtle {
-  color: var(--vesper-text-info);
-  background: var(--vesper-background-info-subtle);
+  color: var(--vesper-color-text-info);
+  background: var(--vesper-color-background-info-subtle);
 }
 
 .vesper-tag-info-bold {
-  color: var(--vesper-text-inverse-primary);
-  background: var(--vesper-background-info-base);
+  color: var(--vesper-color-text-inverse-primary);
+  background: var(--vesper-color-background-info-base);
 }
 
 .vesper-tag-disabled {
-  color: var(--vesper-text-disabled);
-  background: var(--vesper-background-disabled);
+  color: var(--vesper-color-text-disabled);
+  background: var(--vesper-color-background-disabled);
 }

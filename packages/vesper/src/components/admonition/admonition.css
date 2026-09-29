@@ -53,62 +53,66 @@
 }
 
 .vesper-admonition-info {
-  background: var(--vesper-background-info-base);
-  border: var(--vesper-border-width-base) solid var(--vesper-border-info-base);
-  color: var(--vesper-text-inverse-primary);
+  background: var(--vesper-color-background-info-base);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-info-base);
+  color: var(--vesper-color-text-inverse-primary);
   &.vesper-admonition-subtle {
-    background: var(--vesper-background-info-subtle);
-    border-color: var(--vesper-border-info-subtle);
-    color: var(--vesper-text-info);
+    background: var(--vesper-color-background-info-subtle);
+    border-color: var(--vesper-color-border-info-subtle);
+    color: var(--vesper-color-text-info);
   }
 }
 
 .vesper-admonition-success {
-  background: var(--vesper-background-success-base);
+  background: var(--vesper-color-background-success-base);
   border: var(--vesper-border-width-base) solid
-    var(--vesper-border-success-base);
-  color: var(--vesper-text-inverse-primary);
+    var(--vesper-color-border-success-base);
+  color: var(--vesper-color-text-inverse-primary);
   &.vesper-admonition-subtle {
-    background: var(--vesper-background-success-subtle);
-    border-color: var(--vesper-border-success-subtle);
-    color: var(--vesper-text-success);
+    background: var(--vesper-color-background-success-subtle);
+    border-color: var(--vesper-color-border-success-subtle);
+    color: var(--vesper-color-text-success);
   }
 }
 
 .vesper-admonition-warning {
-  background: var(--vesper-background-warning-base);
+  background: var(--vesper-color-background-warning-base);
   border: var(--vesper-border-width-base) solid
-    var(--vesper-border-warning-base);
-  color: var(--vesper-text-inverse-primary);
+    var(--vesper-color-border-warning-base);
+  color: var(--vesper-color-text-inverse-primary);
   &.vesper-admonition-subtle {
-    background: var(--vesper-background-warning-subtle);
-    border-color: var(--vesper-border-warning-subtle);
-    color: var(--vesper-text-warning);
+    background: var(--vesper-color-background-warning-subtle);
+    border-color: var(--vesper-color-border-warning-subtle);
+    color: var(--vesper-color-text-warning);
   }
 }
 
 .vesper-admonition-danger {
-  background: var(--vesper-background-error-base);
-  border: var(--vesper-border-width-base) solid var(--vesper-border-error-base);
-  color: var(--vesper-text-static-white);
+  background: var(--vesper-color-background-error-base);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-error-base);
+  color: var(--vesper-color-text-static-white);
   &.vesper-admonition-subtle {
-    background: var(--vesper-background-error-subtle);
-    border-color: var(--vesper-border-error-subtle);
-    color: var(--vesper-text-error);
+    background: var(--vesper-color-background-error-subtle);
+    border-color: var(--vesper-color-border-error-subtle);
+    color: var(--vesper-color-text-error);
   }
 }
 
 .vesper-admonition-secondary {
-  background: var(--vesper-background-inverse-primary);
-  border: var(--vesper-border-width-base) solid var(--vesper-border-primary);
-  color: var(--vesper-text-inverse-primary);
+  background: var(--vesper-color-background-inverse-primary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-primary);
+  color: var(--vesper-color-text-inverse-primary);
   &.vesper-admonition-subtle {
-    background: linear-gradient(
+    background:
+      linear-gradient(
         0deg,
-        var(--vesper-tint-contrast-100) 0%,
-        var(--vesper-tint-contrast-100) 100%
+        var(--vesper-color-tint-contrast-100) 0%,
+        var(--vesper-color-tint-contrast-100) 100%
       ),
-      var(--vesper-background-tertiary);
-    color: var(--vesper-text-primary);
+      var(--vesper-color-background-tertiary);
+    color: var(--vesper-color-text-primary);
   }
 }

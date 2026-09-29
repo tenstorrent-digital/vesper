@@ -1,78 +1,88 @@
 .vesper-material {
   border-radius: var(--vesper-radius-2);
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
 }
 
 .vesper-material-outlined {
-  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-background-primary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-secondary);
+  background: var(--vesper-color-background-primary);
 }
 
 .vesper-material-outlined-strong {
-  border: var(--vesper-border-width-base) solid var(--vesper-border-strong);
-  background: var(--vesper-background-primary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-strong);
+  background: var(--vesper-color-background-primary);
 }
 
 .vesper-material-raised {
-  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-background-primary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-secondary);
+  background: var(--vesper-color-background-primary);
   box-shadow: var(--vesper-shadow-100);
 }
 
 .vesper-material-floating {
-  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-background-primary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-secondary);
+  background: var(--vesper-color-background-primary);
   box-shadow: var(--vesper-shadow-300);
 }
 
 .vesper-material-modal {
-  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-background-primary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-secondary);
+  background: var(--vesper-color-background-primary);
   box-shadow: var(--vesper-shadow-400);
 }
 
 .vesper-material-inset {
-  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-tint-neutral-100);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-secondary);
+  background: var(--vesper-color-tint-neutral-100);
   box-shadow: var(--vesper-shadow-inset-100);
 }
 
 .vesper-material-inset-strong {
-  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-tint-neutral-100);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-secondary);
+  background: var(--vesper-color-tint-neutral-100);
   box-shadow: var(--vesper-shadow-inset-200);
 }
 
 .vesper-material-interactive {
-  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-background-primary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-secondary);
+  background: var(--vesper-color-background-primary);
   &.vesper-material-disabled {
-    color: var(--vesper-text-disabled);
-    border-color: var(--vesper-border-disabled);
-    background: var(--vesper-background-disabled);
+    color: var(--vesper-color-text-disabled);
+    border-color: var(--vesper-color-border-disabled);
+    background: var(--vesper-color-background-disabled);
   }
   &.vesper-material-active {
-    background: linear-gradient(
+    background:
+      linear-gradient(
         0deg,
-        var(--vesper-state-neutral-active) 0%,
-        var(--vesper-state-neutral-active) 100%
+        var(--vesper-color-state-neutral-active) 0%,
+        var(--vesper-color-state-neutral-active) 100%
       ),
-      var(--vesper-background-primary);
+      var(--vesper-color-background-primary);
     box-shadow: var(--vesper-shadow-100);
   }
   &.vesper-material-selected {
-    background: var(--vesper-tint-neutral-200);
-    border-color: var(--vesper-border-strong);
+    background: var(--vesper-color-tint-neutral-200);
+    border-color: var(--vesper-color-border-strong);
   }
   &:not(.vesper-material-disabled) {
     cursor: pointer;
     &:hover {
-      background: linear-gradient(
+      background:
+        linear-gradient(
           0deg,
-          var(--vesper-state-neutral-hover) 0%,
-          var(--vesper-state-neutral-hover) 100%
+          var(--vesper-color-state-neutral-hover) 0%,
+          var(--vesper-color-state-neutral-hover) 100%
         ),
-        var(--vesper-background-primary);
+        var(--vesper-color-background-primary);
       box-shadow: var(--vesper-shadow-100);
     }
   }

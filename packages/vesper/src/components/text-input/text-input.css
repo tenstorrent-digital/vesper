@@ -2,21 +2,24 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-tint-neutral-100);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-secondary);
+  background: var(--vesper-color-tint-neutral-100);
   &:has(.vesper-text-input-field:focus-visible),
   &:has(.vesper-text-input-icon:focus-visible) {
-    border: var(--vesper-border-width-base) solid var(--vesper-border-strong);
+    border: var(--vesper-border-width-base) solid
+      var(--vesper-color-border-strong);
     box-shadow: var(--vesper-shadow-focus-ring);
     @media (forced-colors: active) {
       outline: var(--vesper-outline-width-strong) solid CanvasText;
     }
   }
   &:has(.vesper-text-input-field:disabled) {
-    border: var(--vesper-border-width-base) solid var(--vesper-border-disabled);
-    background: var(--vesper-tint-neutral-200);
+    border: var(--vesper-border-width-base) solid
+      var(--vesper-color-border-disabled);
+    background: var(--vesper-color-tint-neutral-200);
     .vesper-text-input-icon {
-      color: var(--vesper-icon-disabled);
+      color: var(--vesper-color-icon-disabled);
       pointer-events: none;
     }
   }
@@ -24,18 +27,19 @@
 
 .vesper-text-input-success {
   border: var(--vesper-border-width-base) solid
-    var(--vesper-border-success-base);
+    var(--vesper-color-border-success-base);
 }
 .vesper-text-input-warning {
   border: var(--vesper-border-width-base) solid
-    var(--vesper-border-warning-base);
+    var(--vesper-color-border-warning-base);
 }
 .vesper-text-input-error {
-  border: var(--vesper-border-width-base) solid var(--vesper-border-error-base);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-error-base);
 }
 
 .vesper-text-input-icon {
-  color: var(--vesper-icon-secondary);
+  color: var(--vesper-color-icon-secondary);
   flex-shrink: 0;
   &:where(button:not(:disabled)) {
     position: relative;
@@ -50,9 +54,9 @@
 
 .vesper-text-input-field {
   width: 100%;
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
   &::placeholder {
-    color: var(--vesper-text-tertiary);
+    color: var(--vesper-color-text-tertiary);
   }
   &:focus-visible {
     outline: none;
@@ -64,9 +68,9 @@
     transition: background-color 2147483647s step-end;
   }
   &:disabled {
-    color: var(--vesper-text-tertiary);
+    color: var(--vesper-color-text-tertiary);
     &::placeholder {
-      color: var(--vesper-text-disabled);
+      color: var(--vesper-color-text-disabled);
     }
   }
   &::-webkit-search-decoration,
