@@ -31,6 +31,15 @@ const createStreamFactory = (code: string) => () => createStream(code);
 const createAsyncStreamFactory = (code: string) => async () =>
   createStream(code);
 
+// create a new stream factory that returns a stream with custom content
+const newFactory = () =>
+  new ReadableStream<string>({
+    start(controller) {
+      controller.enqueue("new content");
+      controller.close();
+    },
+  });
+
 // a stream factory that throws instead of returning a stream
 const throwingStreamFactory = (): ReadableStream<string> => {
   throw new Error("factory error");
@@ -330,14 +339,6 @@ describe("code-block [unit]", () => {
         },
       });
 
-    const newFactory = () =>
-      new ReadableStream<string>({
-        start(controller) {
-          controller.enqueue("new content");
-          controller.close();
-        },
-      });
-
     const { container, rerender } = render(<CodeBlock>{oldFactory}</CodeBlock>);
     const getText = () =>
       container.querySelector("pre.shiki-stream")?.textContent;
@@ -366,14 +367,6 @@ describe("code-block [unit]", () => {
     const oldFactory = () =>
       new Promise<ReadableStream<string>>((resolve) => {
         resolveOld = resolve;
-      });
-
-    const newFactory = () =>
-      new ReadableStream<string>({
-        start(controller) {
-          controller.enqueue("new content");
-          controller.close();
-        },
       });
 
     const { container, rerender } = render(<CodeBlock>{oldFactory}</CodeBlock>);
