@@ -11,6 +11,7 @@ import type { MDXComponents } from "mdx/types";
 
 import Image from "next/image";
 import Link from "next/link";
+import { isValidElement } from "react";
 import {
   type BundledLanguage,
   bundledLanguages,
@@ -73,7 +74,6 @@ import { ThemeSwitcher } from "@tenstorrent/vesper/theme-switcher";
 import { Toggle } from "@tenstorrent/vesper/toggle";
 import { Tooltip } from "@tenstorrent/vesper/tooltip";
 import { Typography } from "@tenstorrent/vesper/typography";
-import { isValidElement } from "react";
 
 // docs-only components (not part of the design system)
 import { ColorChip } from "@/components/color-chip";
