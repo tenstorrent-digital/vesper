@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
 import rehypeParse from "rehype-parse";
-import rehypeStringify from "rehype-stringify";
+import { jsx, toJs } from "estree-util-to-js";
+import { toEstree } from "hast-util-to-estree";
 import { optimize } from "svgo";
 import { unified } from "unified";
 import { visit } from "unist-util-visit";
@@ -11,18 +12,6 @@ import { getGeneratedCodeWarning } from "./utils";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-/**
- * convert the (html) attribute names of a serialized svg into the props react
- * expects, eg. `fill-rule` -> `fillRule`
- *
- * `aria-*` and `data-*` attributes are left alone, since react expects those
- * to stay hyphenated
- */
-const toJsxAttributes = (html: string) =>
-  html.replace(/(?<=\s)(?!aria-|data-)[a-z]+(?:-[a-z]+)+(?==)/g, (attribute) =>
-    attribute.replace(/-([a-z])/g, (_, char: string) => char.toUpperCase()),
-  );
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning("yarn generate:icons");
 
@@ -62,26 +51,28 @@ if (iconFiles.length === 0) {
 }
 
 const icons = iconFiles.map((fileName) => {
-  // get the icon svg as utf-8
+  // get the raw contents of the icon svg as utf-8
   const raw = fs.readFileSync(
     path.resolve(__dirname, "../assets/icons", fileName),
     "utf-8",
   );
 
+  // get the kind of icon and its name
   const kind = getIconKind(fileName);
   const componentName = getIconComponentName(kind);
 
-  // prefix ids using the icon id to prevent collisions between elements inside other svgs
-  const { data } = optimize(raw, {
+  // optimize the raw svg with SVGO, and prefix IDs using the icon id to prevent
+  // collisions between elements inside other svgs
+  const optimizedSvg = optimize(raw, {
     plugins: [{ name: "prefixIds", params: { prefix: kind } }],
-  });
+  }).data;
 
-  // convert the optimized icon svg to a tree
-  const tree = unified().use(rehypeParse, { fragment: true }).parse(data);
+  // convert the optimized icon svg to a syntax tree that we can traverse and manipulate
+  const tree = unified().use(rehypeParse, { fragment: true }).parse(optimizedSvg);
 
-  // traverse and patch the tree
+  // walk through the tree so we can manipulate it
   visit(tree, "element", (node, _, parent) => {
-    // convert the root <svg> element into a <symbol> element and remove extraneous properties
+    // remove extraneous properties from the tree's root svg element
     if (node.tagName === "svg" && parent?.type === "root") {
       delete node.properties.width;
       delete node.properties.height;
@@ -109,12 +100,43 @@ const icons = iconFiles.map((fileName) => {
     }
   });
 
-  // serialize tree into a string again now that it's been optimized and patched
-  const markdown = toJsxAttributes(
-    unified().use(rehypeStringify).stringify(tree),
+  // get the tree for our patched svg element
+  const svg = tree.children.find(
+    (node) => node.type === "element" && node.tagName === "svg",
   );
+  if (!svg) {
+    throw new Error(`No root <svg> element found in ${fileName}`);
+  };
 
-  return { kind, componentName, markdown };
+  // convert the patched svg element tree into a JSX estree syntax tree,
+  // using the attribute names react expects
+  //
+  // eg:
+  // - `fill-rule` → `fillRule`
+  // - `xlink:href` → `xlinkHref`
+  // - etc
+  const estree = toEstree(svg, { elementAttributeNameCase: "react" });
+  const [statement] = estree.body;
+  if (
+    statement?.type !== "ExpressionStatement" ||
+    statement.expression.type !== "JSXElement"
+  ) {
+    throw new Error(`Failed to convert ${fileName} to JSX`);
+  }
+
+  // spread {...props} into the estree syntax tree's opening svg tag
+  statement.expression.openingElement.attributes.push({
+    type: "JSXSpreadAttribute",
+    argument: { type: "Identifier", name: "props" },
+  });
+
+  // serialize the JSX estree syntax tree back into a JS string that
+  // we can write into the generated icon's component file
+  //
+  // eg. `<svg {...props}>...</svg>;`
+  const componentCode = toJs(estree, { handlers: jsx }).value;
+
+  return { kind, componentName, componentCode };
 });
 
 // remove existing files in icons component folder
@@ -130,17 +152,14 @@ fs.mkdirSync(path.resolve(__dirname, "../src/components/icons"), {
 
 // create an individual component file for each icon
 icons.forEach((icon) => {
-  // spread {...props} into the opening svg tag
-  const markdown = icon.markdown.replace(/<svg([^>]*)>/s, "<svg$1 {...props}>");
-
   const fileContents = `
 ${AUTO_GENERATED_WARNING}
 
 import type { ComponentProps } from 'react';
 
 export const ${icon.componentName} = (props: ComponentProps<'svg'>) => {
-  return ${markdown}
-}
+  return ${icon.componentCode}
+};
 `;
 
   fs.writeFileSync(
