@@ -25,11 +25,13 @@ jobs:
       DO_NOT_TRACK: 1
       CI: true
     steps:
-      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Checkout branch
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           persist-credentials: false
 
-      - uses: ./.github/actions/setup
+      - name: Setup Node, install dependencies
+        uses: ./.github/actions/setup
         id: setup
         with:
           # vesper's unit tests run in (playwright's) chromium
