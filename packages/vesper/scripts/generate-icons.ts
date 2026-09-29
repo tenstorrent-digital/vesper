@@ -1,24 +1,29 @@
+import { jsx, toJs } from "estree-util-to-js";
 import fs from "fs";
+import { toEstree } from "hast-util-to-estree";
 import path from "path";
 import rehypeParse from "rehype-parse";
-import { jsx, toJs } from "estree-util-to-js";
-import { toEstree } from "hast-util-to-estree";
 import { optimize } from "svgo";
 import { unified } from "unified";
 import { visit } from "unist-util-visit";
-import { fileURLToPath } from "url";
 
 import { getGeneratedCodeWarning } from "./utils";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const iconDir = import.meta.dirname
+
+// whether a fill/stroke value is a color that should be patched to `currentColor`
+const shouldPatchValue = (value: unknown) =>
+  typeof value === "string" &&
+  value !== "none" &&
+  value !== "currentColor" &&
+  !value.startsWith("url(");
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning("yarn generate:icons");
 
-// transform an svg file name into its kind, ie. user-multiple.svg -> user-multiple
+// transform an svg file name into its kind, ie. user-multiple.svg → user-multiple
 const getIconKind = (fileName: string) => fileName.slice(0, -4);
 
-// transform an svg kind into its component name, ie. model-openai -> ModelOpenAI
+// transform an svg kind into its component name, ie. model-openai → ModelOpenAI
 const getIconComponentName = (iconKind: string) => {
   return iconKind
     .split("-")
@@ -43,7 +48,7 @@ const getIconComponentName = (iconKind: string) => {
 };
 
 const iconFiles = fs
-  .readdirSync(path.resolve(__dirname, "../assets/icons"))
+  .readdirSync(path.resolve(iconDir, "../assets/icons"))
   .filter((file) => file.endsWith(".svg"));
 
 if (iconFiles.length === 0) {
@@ -53,7 +58,7 @@ if (iconFiles.length === 0) {
 const icons = iconFiles.map((fileName) => {
   // get the raw contents of the icon svg as utf-8
   const raw = fs.readFileSync(
-    path.resolve(__dirname, "../assets/icons", fileName),
+    path.resolve(iconDir, "../assets/icons", fileName),
     "utf-8",
   );
 
@@ -68,7 +73,9 @@ const icons = iconFiles.map((fileName) => {
   }).data;
 
   // convert the optimized icon svg to a syntax tree that we can traverse and manipulate
-  const tree = unified().use(rehypeParse, { fragment: true }).parse(optimizedSvg);
+  const tree = unified()
+    .use(rehypeParse, { fragment: true })
+    .parse(optimizedSvg);
 
   // walk through the tree so we can manipulate it
   visit(tree, "element", (node, _, parent) => {
@@ -79,12 +86,6 @@ const icons = iconFiles.map((fileName) => {
       node.properties.fill = "none";
       return;
     }
-
-    const shouldPatchValue = (value: unknown) =>
-      typeof value === "string" &&
-      value !== "none" &&
-      value !== "currentColor" &&
-      !value.startsWith("url(");
 
     // patch non-colored icons so their fills and strokes use currentColor
     if (!kind.endsWith("-color")) {
@@ -106,7 +107,7 @@ const icons = iconFiles.map((fileName) => {
   );
   if (!svg) {
     throw new Error(`No root <svg> element found in ${fileName}`);
-  };
+  }
 
   // convert the patched svg element tree into a JSX estree syntax tree,
   // using the attribute names react expects
@@ -140,13 +141,13 @@ const icons = iconFiles.map((fileName) => {
 });
 
 // remove existing files in icons component folder
-fs.rmSync(path.resolve(__dirname, "../src/components/icons"), {
+fs.rmSync(path.resolve(iconDir, "../src/components/icons"), {
   recursive: true,
   force: true,
 });
 
 // recreate icons component folder
-fs.mkdirSync(path.resolve(__dirname, "../src/components/icons"), {
+fs.mkdirSync(path.resolve(iconDir, "../src/components/icons"), {
   recursive: true,
 });
 
@@ -163,14 +164,17 @@ export const ${icon.componentName} = (props: ComponentProps<'svg'>) => {
 `;
 
   fs.writeFileSync(
-    path.resolve(__dirname, `../src/components/icons/${icon.kind}.tsx`),
+    path.resolve(
+      iconDir,
+      `../src/components/icons/${icon.kind}.tsx`,
+    ),
     fileContents,
   );
 });
 
 // create icons components registry file
 fs.writeFileSync(
-  path.resolve(__dirname, `../src/components/icons/registry.tsx`),
+  path.resolve(iconDir, `../src/components/icons/registry.tsx`),
   `
   ${AUTO_GENERATED_WARNING}
 
@@ -185,7 +189,7 @@ fs.writeFileSync(
 
 // create master component that imports and renders via registry (not tree-shakeable)
 fs.writeFileSync(
-  path.resolve(__dirname, `../src/components/icons/icon.tsx`),
+  path.resolve(iconDir, `../src/components/icons/icon.tsx`),
   `
   ${AUTO_GENERATED_WARNING}
 
@@ -209,7 +213,7 @@ fs.writeFileSync(
 
 // create types file with exported IconType
 fs.writeFileSync(
-  path.resolve(__dirname, `../src/components/icons/types.ts`),
+  path.resolve(iconDir, `../src/components/icons/types.ts`),
   `${AUTO_GENERATED_WARNING}
 
   export type IconKind = ${icons.map((icon) => `"${icon.kind}"`).join("|")}`,
@@ -217,7 +221,7 @@ fs.writeFileSync(
 
 // create constants file with exported ICON_KINDS
 fs.writeFileSync(
-  path.resolve(__dirname, `../src/components/icons/constants.ts`),
+  path.resolve(iconDir, `../src/components/icons/constants.ts`),
   `${AUTO_GENERATED_WARNING}
 
   import type { IconKind } from "./types";
@@ -230,17 +234,19 @@ const barrelExports = [
   "export { Icon } from './icon'",
   "export { ICON_KINDS } from './constants'",
   "export type { IconKind } from './types'",
-  ...icons.map((icon) => `export { ${icon.componentName} } from './${icon.kind}'`),
+  ...icons.map(
+    (icon) => `export { ${icon.componentName} } from './${icon.kind}'`,
+  ),
 ].toSorted((a, b) => {
   // sort exports by their module path
-  const fromA = a.slice(a.indexOf('from'));
-  const fromB = b.slice(b.indexOf('from'));
+  const fromA = a.slice(a.indexOf("from"));
+  const fromB = b.slice(b.indexOf("from"));
 
   return fromA < fromB ? -1 : fromB > fromA ? 1 : 0;
 });
 
 fs.writeFileSync(
-  path.resolve(__dirname, `../src/components/icons/icons.ts`),
+  path.resolve(iconDir, `../src/components/icons/icons.ts`),
   `${AUTO_GENERATED_WARNING}
 
   ${barrelExports.join("\n")}`,
@@ -248,25 +254,28 @@ fs.writeFileSync(
 
 // create story file for icon component
 fs.writeFileSync(
-  path.resolve(__dirname, `../src/components/icons/icons.stories.tsx`),
+  path.resolve(
+    iconDir,
+    `../src/components/icons/icons.stories.tsx`,
+  ),
   `import type { Meta, StoryObj } from "@storybook/react-vite";
 
-  import { Icon } from "@/components/icons/icons";
+import { Icon } from "@/components/icons/icons";
 
-  const meta = {
-    component: Icon,
-  } satisfies Meta<typeof Icon>;
+const meta = {
+  component: Icon,
+} satisfies Meta<typeof Icon>;
 
-  export default meta;
+export default meta;
 
-  type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>;
 
-  export const Playground: Story = {
-    args: { kind: "tenstorrent" },
-    render: (props) => (
-      <Icon width={32} height={32} color="var(--vesper-stone-900)" {...props} />
-    ),
-  };
-  Playground.storyName = "icons";
+export const Playground: Story = {
+  args: { kind: "tenstorrent" },
+  render: (props) => (
+    <Icon width={32} height={32} color="var(--vesper-stone-900)" {...props} />
+  ),
+};
+Playground.storyName = "icons";
 `,
 );
