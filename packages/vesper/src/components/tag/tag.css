@@ -13,7 +13,7 @@
   gap: var(--vesper-spacing-half);
   padding: 0 var(--vesper-spacing-1);
   border-radius: var(--vesper-radius-half);
-  .vesper-tag-icon {
+  > .vesper-tag-icon {
     width: 0.75rem;
     height: 0.75rem;
   }
@@ -24,7 +24,7 @@
   gap: var(--vesper-spacing-1);
   padding: 0 var(--vesper-spacing-2);
   border-radius: var(--vesper-radius-1);
-  .vesper-tag-icon {
+  > .vesper-tag-icon {
     width: 0.875rem;
     height: 0.875rem;
   }
@@ -35,7 +35,7 @@
   gap: var(--vesper-spacing-1);
   padding: 0 var(--vesper-spacing-2);
   border-radius: var(--vesper-radius-1);
-  .vesper-tag-icon {
+  > .vesper-tag-icon {
     width: 1rem;
     height: 1rem;
   }
