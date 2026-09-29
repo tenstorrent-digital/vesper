@@ -15,13 +15,12 @@ const TOKEN_GROUPS = [
   "spacing",
   "tracking",
   "animation",
-  "backgrounds",
   "strokes",
 ] as const;
 
 const VAR_PREFIX = "--vesper-";
 
-type TokenGroup = (typeof TOKEN_GROUPS)[number];
+export type TokenGroup = (typeof TOKEN_GROUPS)[number];
 
 type TokenData = { name: string; parts: string[] };
 

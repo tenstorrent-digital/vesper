@@ -441,9 +441,9 @@ type VesperClassGroupIds = "vesper.bg-vesper-dot-pattern";
  * // combined with your own config extension and/or other plugins
  * const twMerge = extendTailwindMerge({ extend: { ... } }, withVesper);
  */
-export const withVesper = (
-  config: Config<string, string>,
-): Config<string, string> =>
+type AnyConfig = Config<string, string>;
+
+export const withVesper = (config: AnyConfig): AnyConfig =>
   mergeConfigs<
     DefaultClassGroupIds | VesperClassGroupIds,
     DefaultThemeGroupIds
