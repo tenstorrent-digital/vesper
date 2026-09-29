@@ -207,25 +207,24 @@ fs.writeFileSync(
 );
 
 // create barrel file with exports for each icon component, constants, and types (tree-shakeable)
-// exports are sorted by their module path (neither oxlint nor oxfmt sort exports)
 const barrelExports = [
-  { from: "./icon", statement: "export { Icon } from './icon'" },
-  {
-    from: "./constants",
-    statement: "export { ICON_KINDS } from './constants'",
-  },
-  { from: "./types", statement: "export type { IconKind } from './types'" },
-  ...icons.map((icon) => ({
-    from: `./${icon.kind}`,
-    statement: `export { ${icon.componentName} } from './${icon.kind}'`,
-  })),
-].toSorted((a, b) => (a.from < b.from ? -1 : a.from > b.from ? 1 : 0));
+  "export { Icon } from './icon'",
+  "export { ICON_KINDS } from './constants'",
+  "export type { IconKind } from './types'",
+  ...icons.map((icon) => `export { ${icon.componentName} } from './${icon.kind}'`),
+].toSorted((a, b) => {
+  // sort exports by their module path
+  const fromA = a.slice(a.indexOf('from'));
+  const fromB = b.slice(b.indexOf('from'));
+
+  return fromA < fromB ? -1 : fromB > fromA ? 1 : 0;
+});
 
 fs.writeFileSync(
   path.resolve(__dirname, `../src/components/icons/icons.ts`),
   `${AUTO_GENERATED_WARNING}
 
-  ${barrelExports.map(({ statement }) => statement).join("\n")}`,
+  ${barrelExports.join("\n")}`,
 );
 
 // create story file for icon component
