@@ -1,9 +1,9 @@
 {
   "name": "website",
-  "description": "Documentation website for the Vesper design system",
   "version": "0.1.0",
-  "type": "module",
   "private": true,
+  "description": "Documentation website for the Vesper design system",
+  "type": "module",
   "scripts": {
     "dev": "next dev --port 3000",
     "build": "next build",
