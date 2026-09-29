@@ -53,8 +53,8 @@
 
 .vesper-badge-contrast {
   @media not (forced-colors: active) {
-    background: var(--vesper-background-inverse-primary);
-    color: var(--vesper-text-inverse-primary);
+    background: var(--vesper-color-background-inverse-primary);
+    color: var(--vesper-color-text-inverse-primary);
   }
   @media (forced-colors: active) {
     background: CanvasText;
@@ -67,78 +67,78 @@
   }
 }
 .vesper-badge-contrast-subtle {
-  background: var(--vesper-tint-neutral-300);
-  color: var(--vesper-text-primary);
+  background: var(--vesper-color-tint-neutral-300);
+  color: var(--vesper-color-text-primary);
 }
 
 .vesper-badge-accent {
-  background: var(--vesper-background-accent-base);
-  color: var(--vesper-text-primary);
+  background: var(--vesper-color-background-accent-base);
+  color: var(--vesper-color-text-primary);
 }
 .vesper-badge-accent-subtle {
-  background: var(--vesper-background-accent-subtle);
-  color: var(--vesper-text-accent);
+  background: var(--vesper-color-background-accent-subtle);
+  color: var(--vesper-color-text-accent);
 }
 
 .vesper-badge-success {
-  background: var(--vesper-background-success-base);
-  color: var(--vesper-text-inverse-primary);
+  background: var(--vesper-color-background-success-base);
+  color: var(--vesper-color-text-inverse-primary);
 }
 .vesper-badge-success-subtle {
-  background: var(--vesper-background-success-subtle);
-  color: var(--vesper-text-success);
+  background: var(--vesper-color-background-success-subtle);
+  color: var(--vesper-color-text-success);
 }
 
 .vesper-badge-warning {
-  background: var(--vesper-background-warning-base);
-  color: var(--vesper-text-inverse-primary);
+  background: var(--vesper-color-background-warning-base);
+  color: var(--vesper-color-text-inverse-primary);
 }
 .vesper-badge-warning-subtle {
-  background: var(--vesper-background-warning-subtle);
-  color: var(--vesper-text-warning);
+  background: var(--vesper-color-background-warning-subtle);
+  color: var(--vesper-color-text-warning);
 }
 
 .vesper-badge-danger {
-  background: var(--vesper-background-error-base);
-  color: var(--vesper-text-static-white);
+  background: var(--vesper-color-background-error-base);
+  color: var(--vesper-color-text-static-white);
 }
 .vesper-badge-danger-subtle {
-  background: var(--vesper-background-error-subtle);
-  color: var(--vesper-text-error);
+  background: var(--vesper-color-background-error-subtle);
+  color: var(--vesper-color-text-error);
 }
 
 .vesper-badge-info {
-  background: var(--vesper-background-info-base);
-  color: var(--vesper-text-inverse-primary);
+  background: var(--vesper-color-background-info-base);
+  color: var(--vesper-color-text-inverse-primary);
 }
 .vesper-badge-info-subtle {
-  background: var(--vesper-background-info-subtle);
-  color: var(--vesper-text-info);
+  background: var(--vesper-color-background-info-subtle);
+  color: var(--vesper-color-text-info);
 }
 
 .vesper-badge-purple {
-  background: var(--vesper-background-brand-purple-base);
-  color: var(--vesper-text-inverse-primary);
+  background: var(--vesper-color-background-brand-purple-base);
+  color: var(--vesper-color-text-inverse-primary);
 }
 .vesper-badge-purple-subtle {
-  background: var(--vesper-background-brand-purple-subtle);
-  color: var(--vesper-text-brand-purple);
+  background: var(--vesper-color-background-brand-purple-subtle);
+  color: var(--vesper-color-text-brand-purple);
 }
 
 .vesper-badge-mint {
-  background: var(--vesper-background-brand-mint-base);
-  color: var(--vesper-text-inverse-primary);
+  background: var(--vesper-color-background-brand-mint-base);
+  color: var(--vesper-color-text-inverse-primary);
 }
 .vesper-badge-mint-subtle {
-  background: var(--vesper-background-brand-mint-subtle);
-  color: var(--vesper-text-brand-mint);
+  background: var(--vesper-color-background-brand-mint-subtle);
+  color: var(--vesper-color-text-brand-mint);
 }
 
 .vesper-badge-pink {
-  background: var(--vesper-background-brand-pink-base);
-  color: var(--vesper-text-inverse-primary);
+  background: var(--vesper-color-background-brand-pink-base);
+  color: var(--vesper-color-text-inverse-primary);
 }
 .vesper-badge-pink-subtle {
-  background: var(--vesper-background-brand-pink-subtle);
-  color: var(--vesper-text-brand-pink);
+  background: var(--vesper-color-background-brand-pink-subtle);
+  color: var(--vesper-color-text-brand-pink);
 }

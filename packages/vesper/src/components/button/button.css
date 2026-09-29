@@ -70,29 +70,31 @@
 }
 
 .vesper-button-primary {
-  color: var(--vesper-text-primary);
-  background: var(--vesper-background-accent-base);
+  color: var(--vesper-color-text-primary);
+  background: var(--vesper-color-background-accent-base);
   &:hover {
-    background: linear-gradient(
+    background:
+      linear-gradient(
         0deg,
-        var(--vesper-state-inverse-hover) 0%,
-        var(--vesper-state-inverse-hover) 100%
+        var(--vesper-color-state-inverse-hover) 0%,
+        var(--vesper-color-state-inverse-hover) 100%
       ),
-      var(--vesper-background-accent-base);
+      var(--vesper-color-background-accent-base);
   }
 }
 
 .vesper-button-contrast {
   @media not (forced-colors: active) {
-    color: var(--vesper-text-inverse-primary);
-    background: var(--vesper-background-inverse-primary);
+    color: var(--vesper-color-text-inverse-primary);
+    background: var(--vesper-color-background-inverse-primary);
     &:hover {
-      background: linear-gradient(
+      background:
+        linear-gradient(
           0deg,
-          var(--vesper-state-inverse-hover) 0%,
-          var(--vesper-state-inverse-hover) 100%
+          var(--vesper-color-state-inverse-hover) 0%,
+          var(--vesper-color-state-inverse-hover) 100%
         ),
-        var(--vesper-background-inverse-primary);
+        var(--vesper-color-background-inverse-primary);
     }
   }
   @media (forced-colors: active) {
@@ -107,59 +109,62 @@
 }
 
 .vesper-button-danger {
-  color: var(--vesper-text-static-white);
-  background: var(--vesper-background-error-base);
+  color: var(--vesper-color-text-static-white);
+  background: var(--vesper-color-background-error-base);
   &:hover {
-    background: linear-gradient(
+    background:
+      linear-gradient(
         0deg,
-        var(--vesper-state-inverse-hover) 0%,
-        var(--vesper-state-inverse-hover) 100%
+        var(--vesper-color-state-inverse-hover) 0%,
+        var(--vesper-color-state-inverse-hover) 100%
       ),
-      var(--vesper-background-error-base);
+      var(--vesper-color-background-error-base);
   }
 }
 
 .vesper-button-warning {
-  color: var(--vesper-text-inverse-primary);
-  background: var(--vesper-background-warning-base);
+  color: var(--vesper-color-text-inverse-primary);
+  background: var(--vesper-color-background-warning-base);
   &:hover {
-    background: linear-gradient(
+    background:
+      linear-gradient(
         0deg,
-        var(--vesper-state-inverse-hover) 0%,
-        var(--vesper-state-inverse-hover) 100%
+        var(--vesper-color-state-inverse-hover) 0%,
+        var(--vesper-color-state-inverse-hover) 100%
       ),
-      var(--vesper-background-warning-base);
+      var(--vesper-color-background-warning-base);
   }
 }
 
 .vesper-button-subtle {
-  color: var(--vesper-text-primary);
-  background: var(--vesper-tint-neutral-300);
+  color: var(--vesper-color-text-primary);
+  background: var(--vesper-color-tint-neutral-300);
   &:hover {
-    background: var(--vesper-tint-neutral-400);
+    background: var(--vesper-color-tint-neutral-400);
   }
 }
 
 .vesper-button-tertiary {
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
   @media (forced-colors: none) {
-    border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
+    border: var(--vesper-border-width-base) solid
+      var(--vesper-color-border-secondary);
   }
-  background: var(--vesper-tint-inverse-100);
+  background: var(--vesper-color-tint-inverse-100);
   &:hover {
-    background: var(--vesper-tint-neutral-200);
+    background: var(--vesper-color-tint-neutral-200);
   }
 }
 
 .vesper-button-ghost {
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
   &:hover {
-    background: var(--vesper-tint-neutral-200);
+    background: var(--vesper-color-tint-neutral-200);
   }
 }
 
 .vesper-button-disabled {
-  color: var(--vesper-text-disabled);
-  background: var(--vesper-background-disabled);
+  color: var(--vesper-color-text-disabled);
+  background: var(--vesper-color-background-disabled);
   pointer-events: none;
 }

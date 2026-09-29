@@ -51,7 +51,7 @@ const preview: Preview = {
     (Story, { globals }) => {
       const theme = globals.theme || "light";
       document.documentElement.setAttribute("data-vesper-theme", theme);
-      document.body.style.background = "var(--vesper-stone-0)";
+      document.body.style.background = "var(--vesper-color-stone-0)";
 
       return <Story />;
     },

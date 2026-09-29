@@ -256,7 +256,10 @@ describe("button [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
-      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
     });
 
     afterEach(() => {
@@ -267,7 +270,9 @@ describe("button [a11y]", () => {
     BUTTON_PERMUTATIONS.forEach((permutation) => {
       const { size, variant, disabled } = permutation;
 
-      test(`wcag2aa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`, async () => {
+      test(`wcag2aa (${variant}, ${size},${
+        disabled ? " disabled," : ""
+      } ${theme})`, async () => {
         const result = render(<Button {...permutation}>Button Text</Button>);
 
         expect(await axe.run(result.container)).toHaveNoViolations();

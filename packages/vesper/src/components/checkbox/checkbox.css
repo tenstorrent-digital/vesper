@@ -10,7 +10,8 @@
 
 .vesper-checkbox-box {
   border-radius: var(--vesper-radius-half);
-  border: var(--vesper-border-width-base) solid var(--vesper-border-primary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-primary);
   position: relative;
 }
 
@@ -50,8 +51,8 @@
 
   &:checked:not(:indeterminate) {
     &:not(:disabled) + .vesper-checkbox-box {
-      background: var(--vesper-background-accent-base);
-      border-color: var(--vesper-background-accent-base);
+      background: var(--vesper-color-background-accent-base);
+      border-color: var(--vesper-color-background-accent-base);
     }
     + .vesper-checkbox-box .vesper-checkbox-checked-icon {
       visibility: visible;
@@ -59,32 +60,33 @@
   }
   &:focus-visible + .vesper-checkbox-box {
     outline-offset: var(--vesper-spacing-micro);
-    outline: var(--vesper-outline-width-base) solid var(--vesper-border-focus);
+    outline: var(--vesper-outline-width-base) solid
+      var(--vesper-color-border-focus);
     @media (forced-colors: active) {
       outline-color: CanvasText;
     }
   }
   &:indeterminate + .vesper-checkbox-box {
-    background: var(--vesper-background-accent-base);
-    border-color: var(--vesper-background-accent-base);
+    background: var(--vesper-color-background-accent-base);
+    border-color: var(--vesper-color-background-accent-base);
     .vesper-checkbox-indeterminate-icon {
       visibility: visible;
     }
   }
   &:disabled {
     + .vesper-checkbox-box {
-      border-color: var(--vesper-border-disabled);
-      background: var(--vesper-background-disabled);
+      border-color: var(--vesper-color-border-disabled);
+      background: var(--vesper-color-background-disabled);
       .vesper-checkbox-indicator {
-        color: var(--vesper-icon-disabled);
+        color: var(--vesper-color-icon-disabled);
       }
     }
     ~ .vesper-checkbox-label {
-      color: var(--vesper-text-disabled);
+      color: var(--vesper-color-text-disabled);
     }
   }
 }
 
 .vesper-checkbox-label {
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
 }

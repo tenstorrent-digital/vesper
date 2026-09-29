@@ -1,8 +1,9 @@
 .vesper-theme-switcher {
   display: inline-flex;
   width: fit-content;
-  background: var(--vesper-background-primary);
-  outline: var(--vesper-outline-width-base) solid var(--vesper-border-primary);
+  background: var(--vesper-color-background-primary);
+  outline: var(--vesper-outline-width-base) solid
+    var(--vesper-color-border-primary);
   position: relative;
 }
 .vesper-theme-switcher-lg {
@@ -29,7 +30,7 @@
 }
 .vesper-theme-switcher-button {
   cursor: pointer;
-  color: var(--vesper-icon-secondary);
+  color: var(--vesper-color-icon-secondary);
   transition: color var(--vesper-transition-duration-fast) ease;
   height: 100%;
   aspect-ratio: 1;
@@ -50,7 +51,8 @@
   left: calc(var(--vesper-spacing-micro) * -1);
   height: calc(100% + var(--vesper-spacing-half));
   aspect-ratio: 1;
-  border: var(--vesper-border-width-base) solid var(--vesper-border-primary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-primary);
   transition: transform var(--vesper-transition-duration-fast) ease;
   pointer-events: none;
 }
@@ -59,7 +61,7 @@ html[data-vesper-theme="system"] {
     transform: translateX(0rem);
   }
   .vesper-theme-switcher-button-system {
-    color: var(--vesper-icon-primary);
+    color: var(--vesper-color-icon-primary);
   }
 }
 html[data-vesper-theme="light"] {
@@ -67,7 +69,7 @@ html[data-vesper-theme="light"] {
     transform: translateX(calc(100% - var(--vesper-spacing-half)));
   }
   .vesper-theme-switcher-button-light {
-    color: var(--vesper-icon-primary);
+    color: var(--vesper-color-icon-primary);
   }
 }
 html[data-vesper-theme="dark"] {
@@ -75,6 +77,6 @@ html[data-vesper-theme="dark"] {
     transform: translateX(calc(200% - var(--vesper-spacing-1)));
   }
   .vesper-theme-switcher-button-dark {
-    color: var(--vesper-icon-primary);
+    color: var(--vesper-color-icon-primary);
   }
 }

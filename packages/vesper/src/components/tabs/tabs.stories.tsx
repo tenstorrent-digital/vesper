@@ -32,7 +32,7 @@ const TabsStoryComponent = ({
           content: (
             <Typography
               style={{
-                color: "var(--vesper-stone-900)",
+                color: "var(--vesper-color-stone-900)",
                 padding: "var(--vesper-spacing-3) 0",
               }}
             >
@@ -47,7 +47,7 @@ const TabsStoryComponent = ({
           content: (
             <Typography
               style={{
-                color: "var(--vesper-stone-900)",
+                color: "var(--vesper-color-stone-900)",
                 padding: "var(--vesper-spacing-3) 0",
               }}
             >
@@ -62,7 +62,7 @@ const TabsStoryComponent = ({
           content: (
             <Typography
               style={{
-                color: "var(--vesper-stone-900)",
+                color: "var(--vesper-color-stone-900)",
                 padding: "var(--vesper-spacing-3) 0",
               }}
             >

@@ -10,39 +10,42 @@
   justify-content: space-between;
   gap: var(--vesper-spacing-3);
   border-radius: var(--vesper-radius-1);
-  background: var(--vesper-background-primary);
+  background: var(--vesper-color-background-primary);
   padding: var(--vesper-spacing-3);
-  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-secondary);
   &.vesper-choicebox-item-compact {
     padding-top: 0.375rem;
     padding-bottom: 0.375rem;
   }
   &:has(:disabled) {
-    border-color: var(--vesper-border-disabled);
+    border-color: var(--vesper-color-border-disabled);
     .vesper-choicebox-item-label {
-      color: var(--vesper-text-disabled);
+      color: var(--vesper-color-text-disabled);
     }
     .vesper-choicebox-item-description {
-      color: var(--vesper-text-disabled);
+      color: var(--vesper-color-text-disabled);
     }
   }
   &:not(:has(:disabled)) {
     &:hover {
-      background: linear-gradient(
+      background:
+        linear-gradient(
           0deg,
-          var(--vesper-tint-neutral-100) 0%,
-          var(--vesper-tint-neutral-100) 100%
+          var(--vesper-color-tint-neutral-100) 0%,
+          var(--vesper-color-tint-neutral-100) 100%
         ),
-        var(--vesper-background-primary);
+        var(--vesper-color-background-primary);
     }
     &:has(:checked) {
-      border-color: var(--vesper-border-strong);
-      background: linear-gradient(
+      border-color: var(--vesper-color-border-strong);
+      background:
+        linear-gradient(
           0deg,
-          var(--vesper-tint-neutral-200) 0%,
-          var(--vesper-tint-neutral-200) 100%
+          var(--vesper-color-tint-neutral-200) 0%,
+          var(--vesper-color-tint-neutral-200) 100%
         ),
-        var(--vesper-background-primary);
+        var(--vesper-color-background-primary);
     }
     cursor: pointer;
   }
@@ -52,11 +55,11 @@
 }
 
 .vesper-choicebox-item-label {
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
 }
 
 .vesper-choicebox-item-description {
-  color: var(--vesper-text-secondary);
+  color: var(--vesper-color-text-secondary);
   margin-top: var(--vesper-spacing-1);
 }
 
@@ -64,7 +67,8 @@
   width: 0.75rem;
   height: 0.75rem;
   border-radius: 50%;
-  border: var(--vesper-border-width-base) solid var(--vesper-border-primary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,8 +84,9 @@
   width: 0.75rem;
   height: 0.75rem;
   border-radius: var(--vesper-radius-half);
-  border: var(--vesper-border-width-base) solid var(--vesper-border-primary);
-  color: var(--vesper-text-primary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-primary);
+  color: var(--vesper-color-text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,15 +109,15 @@
   border: 0;
   &:checked {
     & + .vesper-choicebox-input-single-indicator {
-      border-color: var(--vesper-background-accent-base);
-      background: var(--vesper-background-accent-base);
+      border-color: var(--vesper-color-background-accent-base);
+      background: var(--vesper-color-background-accent-base);
       &::after {
-        background: var(--vesper-background-primary);
+        background: var(--vesper-color-background-primary);
       }
     }
     & + .vesper-choicebox-input-multi-indicator {
-      border-color: var(--vesper-background-accent-base);
-      background: var(--vesper-background-accent-base);
+      border-color: var(--vesper-color-background-accent-base);
+      background: var(--vesper-color-background-accent-base);
       svg {
         visibility: visible;
       }
@@ -120,19 +125,19 @@
   }
   &:disabled {
     & + .vesper-choicebox-input-single-indicator {
-      border-color: var(--vesper-border-disabled);
-      background: var(--vesper-background-disabled);
+      border-color: var(--vesper-color-border-disabled);
+      background: var(--vesper-color-background-disabled);
     }
     & + .vesper-choicebox-input-multi-indicator {
-      border-color: var(--vesper-border-disabled);
-      background: var(--vesper-background-disabled);
+      border-color: var(--vesper-color-border-disabled);
+      background: var(--vesper-color-background-disabled);
     }
     &:checked {
       & + .vesper-choicebox-input-single-indicator::after {
-        background: var(--vesper-icon-disabled);
+        background: var(--vesper-color-icon-disabled);
       }
       & + .vesper-choicebox-input-multi-indicator {
-        color: var(--vesper-icon-disabled);
+        color: var(--vesper-color-icon-disabled);
       }
     }
   }

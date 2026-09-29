@@ -82,7 +82,7 @@ exports[`tabs [snapshot] > primary, no value 1`] = `
     data-testid="tab-1-content"
     id="base-ui-_r_1r_"
     role="tabpanel"
-    style="color: var(--vesper-stone-900);"
+    style="color: var(--vesper-color-stone-900);"
     tabindex="0"
   >
     Tab 1 Content
@@ -171,7 +171,7 @@ exports[`tabs [snapshot] > primary, value 1`] = `
     data-testid="tab-1-content"
     id="base-ui-_r_21_"
     role="tabpanel"
-    style="color: var(--vesper-stone-900);"
+    style="color: var(--vesper-color-stone-900);"
     tabindex="0"
   >
     Tab 1 Content
@@ -261,7 +261,7 @@ exports[`tabs [snapshot] > secondary, no value 1`] = `
     data-testid="tab-1-content"
     id="base-ui-_r_27_"
     role="tabpanel"
-    style="color: var(--vesper-stone-900);"
+    style="color: var(--vesper-color-stone-900);"
     tabindex="0"
   >
     Tab 1 Content
@@ -350,7 +350,7 @@ exports[`tabs [snapshot] > secondary, value 1`] = `
     data-testid="tab-1-content"
     id="base-ui-_r_2d_"
     role="tabpanel"
-    style="color: var(--vesper-stone-900);"
+    style="color: var(--vesper-color-stone-900);"
     tabindex="0"
   >
     Tab 1 Content

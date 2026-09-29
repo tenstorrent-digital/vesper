@@ -13,7 +13,7 @@ describe("tooltip [unit]", () => {
   test("no interaction", () => {
     render(
       <Tooltip content="Tooltip text">
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+        <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
           tooltip trigger
         </Typography>
       </Tooltip>,
@@ -31,7 +31,7 @@ describe("tooltip [unit]", () => {
         onOpenChange={handleOpenChange}
         content="Tooltip text"
       >
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+        <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
           tooltip trigger
         </Typography>
       </Tooltip>,
@@ -50,7 +50,7 @@ describe("tooltip [unit]", () => {
   test("side prop", async () => {
     render(
       <Tooltip open side="left" content="Tooltip text">
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+        <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
           tooltip trigger
         </Typography>
       </Tooltip>,
@@ -63,7 +63,7 @@ describe("tooltip [unit]", () => {
   test("alignment prop", async () => {
     render(
       <Tooltip open align="end" content="Tooltip text">
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+        <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
           tooltip trigger
         </Typography>
       </Tooltip>,
@@ -76,7 +76,7 @@ describe("tooltip [unit]", () => {
   test("custom max width", async () => {
     render(
       <Tooltip open maxWidth={360} content="Tooltip text">
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+        <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
           tooltip trigger
         </Typography>
       </Tooltip>,
@@ -95,7 +95,7 @@ describe("tooltip [unit]", () => {
         onOpenChange={handleOpenChange}
         content="Tooltip text"
       >
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+        <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
           tooltip trigger
         </Typography>
       </Tooltip>,
@@ -345,7 +345,7 @@ describe("tooltip [snapshot]", () => {
   test("open", async () => {
     render(
       <Tooltip open content="Tooltip text">
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+        <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
           tooltip trigger
         </Typography>
       </Tooltip>,
@@ -357,7 +357,7 @@ describe("tooltip [snapshot]", () => {
   test("closed", async () => {
     const result = render(
       <Tooltip open={false} content="Tooltip text">
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+        <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
           tooltip trigger
         </Typography>
       </Tooltip>,
@@ -371,7 +371,10 @@ describe("tooltip [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
-      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
     });
 
     afterEach(() => {
@@ -382,7 +385,7 @@ describe("tooltip [a11y]", () => {
     test(`a11y (${theme})`, async () => {
       const result = render(
         <Tooltip open content="Tooltip text">
-          <Typography style={{ color: "var(--vesper-stone-900)" }}>
+          <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
             tooltip trigger
           </Typography>
         </Tooltip>,

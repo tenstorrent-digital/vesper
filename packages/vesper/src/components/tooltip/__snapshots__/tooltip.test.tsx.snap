@@ -6,7 +6,7 @@ exports[`tooltip [snapshot] > closed 1`] = `
     class="vesper-typography vesper-typography-copy-md"
     data-base-ui-tooltip-trigger=""
     id="base-ui-_r_29_"
-    style="color: var(--vesper-stone-900);"
+    style="color: var(--vesper-color-stone-900);"
   >
     tooltip trigger
   </p>

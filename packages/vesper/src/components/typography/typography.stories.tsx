@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   args: { variant: "copy-md", children: "Typography" },
   render: (props) => (
-    <Typography style={{ color: "var(--vesper-stone-900)" }} {...props} />
+    <Typography style={{ color: "var(--vesper-color-stone-900)" }} {...props} />
   ),
 };
 Playground.storyName = "typography";

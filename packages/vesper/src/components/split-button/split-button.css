@@ -43,21 +43,21 @@
 
 @media (forced-colors: none) {
   .vesper-split-button-action-button.vesper-button-contrast {
-    border-color: var(--vesper-border-inverse-secondary);
+    border-color: var(--vesper-color-border-inverse-secondary);
   }
   .vesper-split-button-menu-button.vesper-button-contrast {
-    border-color: var(--vesper-border-inverse-secondary);
+    border-color: var(--vesper-color-border-inverse-secondary);
   }
   .vesper-split-button-action-button.vesper-button-subtle {
-    border-color: var(--vesper-border-secondary);
+    border-color: var(--vesper-color-border-secondary);
   }
   .vesper-split-button-menu-button.vesper-button-subtle {
-    border-color: var(--vesper-border-secondary);
+    border-color: var(--vesper-color-border-secondary);
   }
   .vesper-split-button-action-button.vesper-button-disabled {
-    border-color: var(--vesper-border-secondary);
+    border-color: var(--vesper-color-border-secondary);
   }
   .vesper-split-button-menu-button.vesper-button-disabled {
-    border-color: var(--vesper-border-secondary);
+    border-color: var(--vesper-color-border-secondary);
   }
 }

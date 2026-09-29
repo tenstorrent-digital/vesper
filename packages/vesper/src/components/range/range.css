@@ -27,8 +27,9 @@
     bottom: 0.3125rem;
     left: 0;
     right: 0;
-    background: var(--vesper-stone-200);
-    border: var(--vesper-border-width-base) solid var(--vesper-border-primary);
+    background: var(--vesper-color-stone-200);
+    border: var(--vesper-border-width-base) solid
+      var(--vesper-color-border-primary);
     border-radius: var(--vesper-spacing-1);
   }
 }
@@ -38,12 +39,13 @@
   height: 1rem;
   position: absolute;
   left: calc(
-    var(--vesper-range-thumb-size) / 2 + (100% - var(--vesper-range-thumb-size)) *
+    var(--vesper-range-thumb-size) / 2 +
+      (100% - var(--vesper-range-thumb-size)) *
       var(--vesper-range-tick-position, 0)
   );
   transform: translateX(-0.03125rem);
   border-left: var(--vesper-border-width-base) solid
-    var(--vesper-border-primary);
+    var(--vesper-color-border-primary);
   @media (forced-colors: active) {
     background: CanvasText;
   }
@@ -58,14 +60,15 @@
     bottom: 0.3125rem;
     left: 0;
     right: 0;
-    background: var(--vesper-background-accent-base);
+    background: var(--vesper-color-background-accent-base);
     border: var(--vesper-border-width-base) solid
-      var(--vesper-border-accent-base);
+      var(--vesper-color-border-accent-base);
     border-radius: var(--vesper-spacing-1);
   }
   &[data-disabled]::before {
-    background: var(--vesper-tint-neutral-400);
-    border: var(--vesper-border-width-base) solid var(--vesper-border-primary);
+    background: var(--vesper-color-tint-neutral-400);
+    border: var(--vesper-border-width-base) solid
+      var(--vesper-color-border-primary);
   }
   @media (forced-colors: active) {
     &::before,
@@ -82,17 +85,18 @@
   display: flex;
   justify-content: center;
   cursor: pointer;
-  background: var(--vesper-background-tertiary);
-  border: var(--vesper-border-width-base) solid var(--vesper-border-accent-base);
+  background: var(--vesper-color-background-tertiary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-accent-base);
   border-radius: var(--vesper-spacing-2);
   &.vesper-range-thumb-labeled {
     &::after {
       white-space: pre;
       content: var(--vesper-range-thumb-label, "");
-      color: var(--vesper-text-primary);
-      background: var(--vesper-tint-neutral-100);
+      color: var(--vesper-color-text-primary);
+      background: var(--vesper-color-tint-neutral-100);
       border: var(--vesper-border-width-base) solid
-        var(--vesper-border-secondary);
+        var(--vesper-color-border-secondary);
       border-radius: var(--vesper-radius-half);
       padding: var(--vesper-spacing-1);
       position: absolute;
@@ -104,9 +108,9 @@
   }
   &[data-disabled] {
     cursor: auto;
-    border-color: var(--vesper-stone-400);
+    border-color: var(--vesper-color-stone-400);
     &::after {
-      color: var(--vesper-text-disabled);
+      color: var(--vesper-color-text-disabled);
     }
   }
   @media (forced-colors: active) {

@@ -1,9 +1,10 @@
 .vesper-select {
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
   display: flex;
   align-items: center;
-  border: var(--vesper-border-width-base) solid var(--vesper-border-primary);
-  background: var(--vesper-tint-neutral-100);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-primary);
+  background: var(--vesper-color-tint-neutral-100);
   &:not(:disabled) {
     cursor: pointer;
   }
@@ -14,17 +15,17 @@
     display: none;
   }
   &:disabled {
-    border-color: var(--vesper-border-disabled);
-    color: var(--vesper-text-disabled);
-    background: var(--vesper-background-disabled);
+    border-color: var(--vesper-color-border-disabled);
+    color: var(--vesper-color-text-disabled);
+    background: var(--vesper-color-background-disabled);
     .vesper-select-icon,
     .vesper-select-state-indicator {
-      color: var(--vesper-icon-disabled);
+      color: var(--vesper-color-icon-disabled);
     }
   }
   &[data-popup-open],
   &:focus-visible {
-    border-color: var(--vesper-border-strong);
+    border-color: var(--vesper-color-border-strong);
     box-shadow: var(--vesper-shadow-focus-ring);
     @media (forced-colors: active) {
       outline: var(--vesper-outline-width-strong) solid CanvasText;
@@ -53,7 +54,7 @@
 }
 
 .vesper-select-item-checkmark {
-  color: var(--vesper-icon-secondary);
+  color: var(--vesper-color-icon-secondary);
   display: block;
   width: 1.25rem;
   height: 1.25rem;
@@ -70,7 +71,7 @@
   height: 3rem;
   .vesper-select-icon,
   .vesper-select-state-indicator {
-    color: var(--vesper-icon-secondary);
+    color: var(--vesper-color-icon-secondary);
     display: block;
     width: 1.25rem;
     height: 1.25rem;
@@ -83,7 +84,7 @@
   height: 2.5rem;
   .vesper-select-icon,
   .vesper-select-state-indicator {
-    color: var(--vesper-icon-secondary);
+    color: var(--vesper-color-icon-secondary);
     display: block;
     width: 1rem;
     height: 1rem;
@@ -96,7 +97,7 @@
   height: 2rem;
   .vesper-select-icon,
   .vesper-select-state-indicator {
-    color: var(--vesper-icon-secondary);
+    color: var(--vesper-color-icon-secondary);
     display: block;
     width: 0.875rem;
     height: 0.875rem;
@@ -105,32 +106,35 @@
 
 .vesper-select-success {
   border: var(--vesper-border-width-base) solid
-    var(--vesper-border-success-base);
+    var(--vesper-color-border-success-base);
 }
 .vesper-select-warning {
   border: var(--vesper-border-width-base) solid
-    var(--vesper-border-warning-base);
+    var(--vesper-color-border-warning-base);
 }
 .vesper-select-error {
-  border: var(--vesper-border-width-base) solid var(--vesper-border-error-base);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-error-base);
 }
 
 .vesper-select-positioner {
   min-width: var(--anchor-width);
   border-radius: var(--vesper-radius-3);
-  border: var(--vesper-border-width-base) solid var(--vesper-border-tertiary);
-  background: linear-gradient(
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-tertiary);
+  background:
+    linear-gradient(
       0deg,
-      var(--vesper-alpha-stone-50) 0%,
-      var(--vesper-alpha-stone-50) 100%
+      var(--vesper-color-alpha-stone-50) 0%,
+      var(--vesper-color-alpha-stone-50) 100%
     ),
-    var(--vesper-background-primary);
+    var(--vesper-color-background-primary);
   box-shadow: var(--vesper-shadow-200);
   overflow: hidden;
 }
 
 .vesper-select-popup {
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
   outline: none;
   /* --available-height comes from base-ui */
   max-height: min(var(--available-height), 20rem);
@@ -154,12 +158,12 @@
   padding: var(--vesper-spacing-2);
   border-radius: var(--vesper-radius-1);
   &[data-highlighted] {
-    background: var(--vesper-state-neutral-hover);
+    background: var(--vesper-color-state-neutral-hover);
     @media (forced-colors: active) {
       outline: var(--vesper-outline-width-base) solid CanvasText;
     }
   }
   &[data-selected] {
-    background: var(--vesper-tint-neutral-200);
+    background: var(--vesper-color-tint-neutral-200);
   }
 }

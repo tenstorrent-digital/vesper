@@ -21,7 +21,8 @@
 
 .vesper-radio-group-item-indicator {
   border-radius: 50%;
-  border: var(--vesper-border-width-base) solid var(--vesper-border-primary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,7 +43,7 @@
 }
 
 .vesper-radio-group-item-label {
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
 }
 
 .vesper-radio-input {
@@ -56,17 +57,18 @@
   white-space: nowrap;
   border: 0;
   &:checked + .vesper-radio-group-item-indicator {
-    border-color: var(--vesper-background-accent-base);
-    background: var(--vesper-background-accent-base);
+    border-color: var(--vesper-color-background-accent-base);
+    background: var(--vesper-color-background-accent-base);
     &::after {
-      background: var(--vesper-icon-inverse-primary);
+      background: var(--vesper-color-icon-inverse-primary);
       @media (forced-colors: active) {
         background: CanvasText;
       }
     }
   }
   &:focus-visible + .vesper-radio-group-item-indicator {
-    outline: var(--vesper-outline-width-base) solid var(--vesper-border-focus);
+    outline: var(--vesper-outline-width-base) solid
+      var(--vesper-color-border-focus);
     outline-offset: var(--vesper-spacing-micro);
   }
 }
@@ -75,18 +77,18 @@
   cursor: auto;
   .vesper-radio-input {
     & + .vesper-radio-group-item-indicator {
-      border-color: var(--vesper-border-disabled);
-      background: var(--vesper-background-disabled);
+      border-color: var(--vesper-color-border-disabled);
+      background: var(--vesper-color-background-disabled);
     }
     &:checked + .vesper-radio-group-item-indicator::after {
-      background: var(--vesper-icon-disabled);
+      background: var(--vesper-color-icon-disabled);
       @media (forced-colors: active) {
         background: CanvasText;
       }
     }
   }
   .vesper-radio-group-item-label {
-    color: var(--vesper-text-disabled);
+    color: var(--vesper-color-text-disabled);
   }
   @media (forced-colors: active) {
     opacity: 0.35;

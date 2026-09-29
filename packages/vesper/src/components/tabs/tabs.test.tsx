@@ -58,7 +58,7 @@ const TabsTestComponent = ({
         content: (
           <Typography
             data-testid="tab-1-content"
-            style={{ color: "var(--vesper-stone-900)" }}
+            style={{ color: "var(--vesper-color-stone-900)" }}
           >
             Tab 1 Content
           </Typography>
@@ -70,7 +70,7 @@ const TabsTestComponent = ({
         content: (
           <Typography
             data-testid="tab-2-content"
-            style={{ color: "var(--vesper-stone-900)" }}
+            style={{ color: "var(--vesper-color-stone-900)" }}
           >
             Tab 2 Content
           </Typography>
@@ -82,7 +82,7 @@ const TabsTestComponent = ({
         content: (
           <Typography
             data-testid="tab-3-content"
-            style={{ color: "var(--vesper-stone-900)" }}
+            style={{ color: "var(--vesper-color-stone-900)" }}
           >
             Tab 3 Content
           </Typography>
@@ -224,7 +224,10 @@ describe("tabs [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
-      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
     });
 
     afterEach(() => {

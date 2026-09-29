@@ -409,7 +409,10 @@ describe("range [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
-      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
     });
 
     afterEach(() => {

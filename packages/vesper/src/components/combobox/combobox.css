@@ -2,11 +2,12 @@
   cursor: text;
   display: flex;
   align-items: center;
-  border: var(--vesper-border-width-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-tint-neutral-100);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-secondary);
+  background: var(--vesper-color-tint-neutral-100);
   &[data-popup-open],
   &:has(:focus-visible) {
-    border-color: var(--vesper-border-strong);
+    border-color: var(--vesper-color-border-strong);
     @media (forced-colors: active) {
       outline: var(--vesper-outline-width-strong) solid CanvasText;
     }
@@ -16,44 +17,44 @@
   }
   &[data-disabled] {
     pointer-events: none;
-    border-color: var(--vesper-border-disabled);
-    background: var(--vesper-tint-neutral-200);
+    border-color: var(--vesper-color-border-disabled);
+    background: var(--vesper-color-tint-neutral-200);
     .vesper-combobox-search-icon,
     .vesper-combobox-clear,
     .vesper-combobox-trigger {
-      color: var(--vesper-icon-disabled);
+      color: var(--vesper-color-icon-disabled);
     }
     .vesper-combobox-input {
-      color: var(--vesper-text-disabled);
+      color: var(--vesper-color-text-disabled);
       &::placeholder {
-        color: var(--vesper-text-disabled);
+        color: var(--vesper-color-text-disabled);
       }
     }
   }
 }
 
 .vesper-combobox-success:not(
-    [data-disabled],
-    [data-popup-open],
-    :has(:focus-visible)
-  ) {
-  border-color: var(--vesper-border-success-base);
+  [data-disabled],
+  [data-popup-open],
+  :has(:focus-visible)
+) {
+  border-color: var(--vesper-color-border-success-base);
 }
 
 .vesper-combobox-warning:not(
-    [data-disabled],
-    [data-popup-open],
-    :has(:focus-visible)
-  ) {
-  border-color: var(--vesper-border-warning-base);
+  [data-disabled],
+  [data-popup-open],
+  :has(:focus-visible)
+) {
+  border-color: var(--vesper-color-border-warning-base);
 }
 
 .vesper-combobox-error:not(
-    [data-disabled],
-    [data-popup-open],
-    :has(:focus-visible)
-  ) {
-  border-color: var(--vesper-border-error-base);
+  [data-disabled],
+  [data-popup-open],
+  :has(:focus-visible)
+) {
+  border-color: var(--vesper-color-border-error-base);
 }
 
 .vesper-combobox-input {
@@ -62,9 +63,9 @@
     outline: none;
     box-shadow: none;
   }
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
   &::placeholder {
-    color: var(--vesper-text-tertiary);
+    color: var(--vesper-color-text-tertiary);
   }
   /*
   When a text input has a font-size smaller than 16px on mobile Safari, the
@@ -100,7 +101,7 @@
 .vesper-combobox-search-icon,
 .vesper-combobox-clear,
 .vesper-combobox-trigger {
-  color: var(--vesper-icon-primary);
+  color: var(--vesper-color-icon-primary);
 }
 
 .vesper-combobox-trigger[data-popup-open] svg {
@@ -169,19 +170,21 @@
 .vesper-combobox-positioner {
   min-width: var(--anchor-width);
   border-radius: var(--vesper-radius-3);
-  border: var(--vesper-border-width-base) solid var(--vesper-border-tertiary);
-  background: linear-gradient(
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-tertiary);
+  background:
+    linear-gradient(
       0deg,
-      var(--vesper-alpha-stone-50) 0%,
-      var(--vesper-alpha-stone-50) 100%
+      var(--vesper-color-alpha-stone-50) 0%,
+      var(--vesper-color-alpha-stone-50) 100%
     ),
-    var(--vesper-background-primary);
+    var(--vesper-color-background-primary);
   box-shadow: var(--vesper-shadow-200);
   overflow: hidden;
 }
 
 .vesper-combobox-popup {
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
   outline: none;
   /* --available-height comes from base-ui */
   max-height: min(var(--available-height), 20rem);
@@ -208,18 +211,18 @@
   padding: var(--vesper-spacing-2);
   border-radius: var(--vesper-radius-1);
   &[data-highlighted] {
-    background: var(--vesper-state-neutral-hover);
+    background: var(--vesper-color-state-neutral-hover);
     @media (forced-colors: active) {
       outline: var(--vesper-outline-width-base) solid CanvasText;
     }
   }
   &[data-selected] {
-    background: var(--vesper-tint-neutral-200);
+    background: var(--vesper-color-tint-neutral-200);
   }
 }
 
 .vesper-combobox-item-checkmark {
-  color: var(--vesper-icon-secondary);
+  color: var(--vesper-color-icon-secondary);
   display: block;
   width: 1.25rem;
   height: 1.25rem;
@@ -231,5 +234,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--vesper-text-secondary);
+  color: var(--vesper-color-text-secondary);
 }
