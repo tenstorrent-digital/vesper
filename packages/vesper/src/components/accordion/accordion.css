@@ -44,7 +44,7 @@
   @media (forced-colors: active) {
     &:focus-visible {
       &::before {
-        outline: var(--vesper-stroke-strong) solid CanvasText;
+        outline: var(--vesper-outline-width-strong) solid CanvasText;
       }
     }
   }

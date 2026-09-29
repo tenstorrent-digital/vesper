@@ -29,7 +29,8 @@
       bottom: 0;
       left: 0;
       right: 0;
-      border-top: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
+      border-top: var(--vesper-border-width-base) solid
+        var(--vesper-border-secondary);
     }
     & > .vesper-tabs-trigger {
       padding: var(--vesper-spacing-4) 0;
@@ -84,11 +85,11 @@
       }
     }
     @media (forced-colors: active) {
-      border: var(--vesper-stroke-base) solid CanvasText;
+      border: var(--vesper-border-width-base) solid CanvasText;
     }
     @media (forced-colors: active) {
       &:focus-visible {
-        outline: var(--vesper-stroke-base) solid CanvasText;
+        outline: var(--vesper-outline-width-base) solid CanvasText;
         outline-offset: var(--vesper-spacing-micro);
       }
     }

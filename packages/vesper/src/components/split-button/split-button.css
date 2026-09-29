@@ -6,7 +6,7 @@
 .vesper-split-button-action-button {
   width: 100%;
   position: relative;
-  border-width: var(--vesper-stroke-base);
+  border-width: var(--vesper-border-width-base);
   border-style: solid;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -20,7 +20,7 @@
 
 .vesper-split-button-menu-button {
   position: relative;
-  border-width: var(--vesper-stroke-base);
+  border-width: var(--vesper-border-width-base);
   border-style: solid;
   border-left-width: 0;
   border-top-left-radius: 0;
