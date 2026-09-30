@@ -45,7 +45,8 @@ jobs:
       ${{
         github.event.pull_request.stack == null ||
         github.event.pull_request.stack.base.ref == github.event.pull_request.base.ref ||
-        github.event.pull_request.stack.position == github.event.pull_request.stack.size
+        github.event.pull_request.stack.position == github.event.pull_request.stack.size ||
+        github.event.pull_request.number != 191
       }}
     runs-on: ubuntu-latest
     env:
