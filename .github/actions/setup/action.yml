@@ -11,7 +11,7 @@ description: Set up Node, install monorepo dependencies (cached) and (optionally
 
 inputs:
   playwright:
-    # pass "true" to install Playwright browsers and their system deps
+    # pass "true" to install playwright browsers and their system deps
     description: Install Playwright's chromium browser and its system dependencies
     required: false
     default: "false"
@@ -19,6 +19,51 @@ inputs:
 runs:
   using: composite
   steps:
+    # !! extremely linux-pilled accelerationism ahead:
+    #
+    # both of the steps below shell out to `apt-get update`, which will fail the whole job on any
+    # unreachable or inconsistent apt source (`playwright install-deps` exits 100)
+    #
+    # the ubuntu-latest image ships a google chrome apt source that intermittently serves a
+    # `Packages.gz` file that doesn't match its freshly published `Release` file ("Hash Sum
+    # mismatch"), and because your eyes are already glazing over and you're wondering if any human
+    # even understands this, just know:
+    #
+    # we don't need it to install Playwright's system libraries, so we can drop it before we
+    # install anything
+    #
+    # (don't worry)
+    #
+    # note: runs in the background, so it overlaps the cache restores below
+    - name: Refresh apt package lists (in background)
+      if: inputs.playwright == 'true'
+      shell: bash
+      run: |
+        sudo rm -f /etc/apt/sources.list.d/google-chrome.list
+        # keeps running after this step - `Install Playwright` should wait for the status file
+        #
+        # note: `|| status=$?` since bash steps run with `-e` (a failed update would otherwise exit
+        # the subshell before writing the status file), and `timeout` so a hung update can't
+        # still hold the apt lock when Playwright starts
+        #
+        # note: the subshell's output is detached from the step - the runner would otherwise keep
+        # the step open until the update finishes, and nothing would overlap
+        (
+          status=0
+          sudo timeout --kill-after=10s 2m apt-get update || status=$?
+          echo "$status" > "$RUNNER_TEMP/apt-update.status"
+        ) > "$RUNNER_TEMP/apt-update.log" 2>&1 < /dev/null &
+        echo "$!" > "$RUNNER_TEMP/apt-update.pid"
+
+    # note:
+    # node is cached with `node_modules` below, otherwise `setup-node` downloads it
+    # every run
+    - name: Resolve Node version
+      id: node
+      shell: bash
+      run: |
+        echo "version=$(sed 's/^v//' .nvmrc | tr -d '[:space:]')" >> "$GITHUB_OUTPUT"
+
     # try restoring `node_modules` from the cache, instead of letting yarn re-link it
     # every workflow run - `restore-keys` gives us a warm `node_modules` on a cache miss,
     # so the `yarn install` below ends up being cheaper
@@ -30,9 +75,11 @@ runs:
           node_modules
           apps/*/node_modules
           packages/*/node_modules
-        key: node-modules-${{ runner.os }}-${{ hashFiles('.nvmrc', 'yarn.lock', 'package.json', 'apps/*/package.json', 'packages/*/package.json') }}
+          ${{ runner.tool_cache }}/node/${{ steps.node.outputs.version }}
+        # note: bump `v2` if `path` changes, otherwise stale entries may be restored
+        key: node-modules-v2-${{ runner.os }}-${{ hashFiles('.nvmrc', 'yarn.lock', 'package.json', 'apps/*/package.json', 'packages/*/package.json') }}
         restore-keys: |
-          node-modules-${{ runner.os }}-
+          node-modules-v2-${{ runner.os }}-
 
     - name: Setup Node.js
       uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
@@ -54,7 +101,7 @@ runs:
         # half-written and then fails to read it back, e.g.
         # `ENOENT: no such file or directory, open '.../@esbuild/linux-s390x/.yarn-metadata.json'`
         # so retry once from a clean slate before failing the job
-        # ref: https://github.com/yarnpkg/yarn/issues/3923
+        # see: https://github.com/yarnpkg/yarn/issues/3923
         if ! yarn install --frozen-lockfile; then
           echo "::warning::\`yarn install\` failed - clearing caches and retrying"
           yarn cache clean
@@ -70,46 +117,45 @@ runs:
         echo "version=$(node -p "require('playwright/package.json').version")" >> "$GITHUB_OUTPUT"
 
     # restore playwright from cache too
+    #
+    # NOTE:
+    # we're using headless shell only (`--only-shell`) since CI never launches full
+    # chromium anyways (half the size)
     - name: Restore Playwright browsers
       if: inputs.playwright == 'true'
       id: playwright-browsers
       uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
       with:
         path: ~/.cache/ms-playwright
-        key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
-
-    # both of the steps below shell out to `apt-get update`, which fails the whole job on any
-    # unreachable or inconsistent apt source (`playwright install-deps` exits 100)
-    #
-    # the runner image ships a Google Chrome apt source that intermittently serves a `Packages.gz`
-    # that doesn't match its freshly published `Release` file ("Hash Sum mismatch"), and we don't
-    # need it to install Playwright's system libraries, so drop it before we install anything
-    - name: Remove unneeded apt sources
-      if: inputs.playwright == 'true'
-      shell: bash
-      run: |
-        sudo rm -f /etc/apt/sources.list.d/google-chrome.list
-        sudo rm -rf /var/lib/apt/lists/*
-
-    - name: Install Playwright browsers
-      if: inputs.playwright == 'true' && steps.playwright-browsers.outputs.cache-hit != 'true'
-      shell: bash
-      # apt mirrors can also fail transiently, so clear the (partial) package lists and retry once
-      run: |
-        if ! npx playwright install --with-deps chromium; then
-          echo "::warning::\`playwright install\` failed - clearing apt lists and retrying"
-          sudo rm -rf /var/lib/apt/lists/*
-          npx playwright install --with-deps chromium
-        fi
+        key: playwright-headless-shell-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
 
     # while the browsers are cached, the system libraries they need aren't part of the runner
     # image so we do need to install them
-    - name: Install Playwright system dependencies
-      if: inputs.playwright == 'true' && steps.playwright-browsers.outputs.cache-hit == 'true'
+    - name: Install Playwright
+      if: inputs.playwright == 'true'
       shell: bash
+      env:
+        BROWSERS_CACHE_HIT: ${{ steps.playwright-browsers.outputs.cache-hit }}
+      # apt mirrors can also fail transiently, so clear the (partial) package lists and retry once
       run: |
-        if ! npx playwright install-deps chromium; then
-          echo "::warning::\`playwright install-deps\` failed - clearing apt lists and retrying"
+        # the background `apt-get update` should finish first (it's killed after 2m10s at most)
+        pid="$(cat "$RUNNER_TEMP/apt-update.pid")"
+        for _ in $(seq 300); do
+          kill -0 "$pid" 2>/dev/null || break
+          sleep 0.5
+        done
+        echo "::group::Background \`apt-get update\` (exit status: $(cat "$RUNNER_TEMP/apt-update.status" 2>/dev/null || echo "unknown"))"
+        cat "$RUNNER_TEMP/apt-update.log" 2>/dev/null || true
+        echo "::endgroup::"
+
+        if [ "$BROWSERS_CACHE_HIT" = "true" ]; then
+          install=(npx playwright install-deps chromium)
+        else
+          install=(npx playwright install --with-deps --only-shell chromium)
+        fi
+
+        if ! "${install[@]}"; then
+          echo "::warning::\`${install[*]}\` failed - clearing apt lists and retrying"
           sudo rm -rf /var/lib/apt/lists/*
-          npx playwright install-deps chromium
+          "${install[@]}"
         fi
