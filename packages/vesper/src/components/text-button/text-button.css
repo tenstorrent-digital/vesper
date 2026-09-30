@@ -24,7 +24,7 @@
 .vesper-text-button-lg {
   height: 1rem;
   font-size: 1rem;
-  > .vesper-text-button-icon {
+  & > .vesper-text-button-icon {
     width: 1rem;
     height: 1rem;
   }
@@ -33,7 +33,7 @@
 .vesper-text-button-md {
   height: 0.875rem;
   font-size: 0.875rem;
-  > .vesper-text-button-icon {
+  & > .vesper-text-button-icon {
     width: 0.875rem;
     height: 0.875rem;
   }
@@ -42,7 +42,7 @@
 .vesper-text-button-sm {
   height: 0.75rem;
   font-size: 0.75rem;
-  > .vesper-text-button-icon {
+  & > .vesper-text-button-icon {
     width: 0.75rem;
     height: 0.75rem;
   }
@@ -50,7 +50,7 @@
 
 .vesper-text-button-subtle {
   color: var(--vesper-text-tertiary);
-  > .vesper-text-button-icon {
+  & > .vesper-text-button-icon {
     color: var(--vesper-icon-tertiary);
   }
   &:hover {
@@ -60,7 +60,7 @@
 
 .vesper-text-button-contrast {
   color: var(--vesper-text-primary);
-  > .vesper-text-button-icon {
+  & > .vesper-text-button-icon {
     color: var(--vesper-icon-primary);
   }
   &:hover {
@@ -70,7 +70,7 @@
 
 .vesper-text-button-accent {
   color: var(--vesper-text-accent);
-  > .vesper-text-button-icon {
+  & > .vesper-text-button-icon {
     color: var(--vesper-icon-accent);
   }
   &:hover {
@@ -81,7 +81,7 @@
 
 .vesper-text-button-danger {
   color: var(--vesper-text-error);
-  > .vesper-text-button-icon {
+  & > .vesper-text-button-icon {
     color: var(--vesper-icon-error);
   }
   &:hover {
@@ -92,7 +92,7 @@
 
 .vesper-text-button-warning {
   color: var(--vesper-text-warning);
-  > .vesper-text-button-icon {
+  & > .vesper-text-button-icon {
     color: var(--vesper-icon-warning);
   }
   &:hover {
@@ -103,7 +103,7 @@
 
 .vesper-text-button-success {
   color: var(--vesper-text-success);
-  > .vesper-text-button-icon {
+  & > .vesper-text-button-icon {
     color: var(--vesper-icon-success);
   }
   &:hover {
@@ -114,7 +114,7 @@
 
 .vesper-text-button-info {
   color: var(--vesper-text-info);
-  > .vesper-text-button-icon {
+  & > .vesper-text-button-icon {
     color: var(--vesper-icon-info);
   }
   &:hover {
@@ -125,7 +125,7 @@
 
 .vesper-text-button-purple {
   color: var(--vesper-text-brand-purple);
-  > .vesper-text-button-icon {
+  & > .vesper-text-button-icon {
     color: var(--vesper-icon-brand-purple);
   }
   &:hover {
@@ -136,7 +136,7 @@
 
 .vesper-text-button-pink {
   color: var(--vesper-text-brand-pink);
-  > .vesper-text-button-icon {
+  & > .vesper-text-button-icon {
     color: var(--vesper-icon-brand-pink);
   }
   &:hover {
@@ -147,7 +147,7 @@
 
 .vesper-text-button-disabled {
   color: var(--vesper-text-disabled);
-  > .vesper-text-button-icon {
+  & > .vesper-text-button-icon {
     color: var(--vesper-icon-disabled);
   }
   pointer-events: none;

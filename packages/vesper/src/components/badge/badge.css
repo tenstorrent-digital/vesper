@@ -23,7 +23,7 @@
 .vesper-badge-sm {
   height: 1.25rem;
   padding: 0 var(--vesper-spacing-1);
-  > .vesper-badge-icon {
+  & > .vesper-badge-icon {
     width: 0.75rem;
     height: 0.75rem;
   }
@@ -32,7 +32,7 @@
 .vesper-badge-md {
   height: 1.5rem;
   padding: 0 var(--vesper-spacing-2);
-  > .vesper-badge-icon {
+  & > .vesper-badge-icon {
     width: 0.875rem;
     height: 0.875rem;
   }
@@ -41,7 +41,7 @@
 .vesper-badge-lg {
   height: 1.75rem;
   padding: 0 var(--vesper-spacing-2);
-  > .vesper-badge-icon {
+  & > .vesper-badge-icon {
     width: 0.875rem;
     height: 0.875rem;
   }

@@ -81,7 +81,7 @@
   color: var(--vesper-text-disabled);
   background: var(--vesper-background-disabled);
   border: var(--vesper-stroke-base) solid var(--vesper-border-disabled);
-  > .vesper-chip-icon {
+  & > .vesper-chip-icon {
     color: var(--vesper-icon-disabled);
   }
   @media (forced-colors: active) {

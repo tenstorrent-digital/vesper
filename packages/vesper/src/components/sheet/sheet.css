@@ -1,5 +1,6 @@
 .vesper-sheet {
-  transition: display var(--vesper-transition-duration-fast) ease allow-discrete,
+  transition:
+    display var(--vesper-transition-duration-fast) ease allow-discrete,
     overlay var(--vesper-transition-duration-fast) ease allow-discrete;
 }
 
@@ -29,7 +30,8 @@
   bottom: -100vh;
   left: -100vw;
   right: -100vw;
-  transition: background var(--vesper-transition-duration-fast) ease,
+  transition:
+    background var(--vesper-transition-duration-fast) ease,
     display var(--vesper-transition-duration-fast) ease allow-discrete,
     overlay var(--vesper-transition-duration-fast) ease allow-discrete;
 }
@@ -44,7 +46,8 @@
 
 .vesper-sheet-content {
   opacity: 0;
-  transition: opacity var(--vesper-transition-duration-fast) ease,
+  transition:
+    opacity var(--vesper-transition-duration-fast) ease,
     transform var(--vesper-transition-duration-fast) ease;
   display: flex;
   flex-direction: column;
@@ -61,7 +64,7 @@
 
 .vesper-sheet:popover-open,
 .vesper-sheet[open] {
-  > .vesper-sheet-content {
+  & > .vesper-sheet-content {
     opacity: 1;
     transform: translateX(0);
   }
@@ -73,7 +76,7 @@
 .vesper-sheet-right:popover-open,
 .vesper-sheet-right[open] {
   @starting-style {
-    > .vesper-sheet-content {
+    & > .vesper-sheet-content {
       opacity: 0;
       transform: translateX(50%);
     }
@@ -86,7 +89,7 @@
 .vesper-sheet-left:popover-open,
 .vesper-sheet-left[open] {
   @starting-style {
-    > .vesper-sheet-content {
+    & > .vesper-sheet-content {
       opacity: 0;
       transform: translateX(-50%);
     }

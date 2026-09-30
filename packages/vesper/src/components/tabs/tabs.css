@@ -20,7 +20,7 @@
 }
 
 .vesper-tabs-primary {
-  > .vesper-tabs-list {
+  & > .vesper-tabs-list {
     gap: var(--vesper-spacing-6);
     position: relative;
     &::before {
@@ -31,7 +31,7 @@
       right: 0;
       border-top: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
     }
-    > .vesper-tabs-trigger {
+    & > .vesper-tabs-trigger {
       padding: var(--vesper-spacing-4) 0;
       color: var(--vesper-text-secondary);
       position: relative;
@@ -57,7 +57,7 @@
           outline: var(--vesper-stroke-strong) solid CanvasText;
         }
       }
-      > .vesper-tabs-trigger-icon {
+      & > .vesper-tabs-trigger-icon {
         margin: calc(var(--vesper-spacing-micro) * -1) 0;
       }
     }
@@ -65,10 +65,10 @@
 }
 
 .vesper-tabs-secondary {
-  > .vesper-tabs-list {
+  & > .vesper-tabs-list {
     gap: var(--vesper-spacing-2);
   }
-  > .vesper-tabs-list > .vesper-tabs-trigger {
+  & > .vesper-tabs-list > .vesper-tabs-trigger {
     padding: var(--vesper-spacing-2);
     border-radius: var(--vesper-spacing-1);
     background: var(--vesper-tint-neutral-300);
@@ -93,7 +93,7 @@
       }
     }
   }
-  > .vesper-tabs-list > .vesper-tabs-trigger > .vesper-tabs-trigger-icon {
+  & > .vesper-tabs-list > .vesper-tabs-trigger > .vesper-tabs-trigger-icon {
     margin: calc(var(--vesper-spacing-half) * -1) 0;
   }
 }
