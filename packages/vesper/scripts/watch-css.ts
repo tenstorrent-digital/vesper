@@ -1,12 +1,15 @@
 import chokidar from "chokidar";
 import path from "node:path";
 
-import { srcRoot, syncCSS } from "./sync-css";
+import { syncCSS } from "./sync-css";
+import { resolvePackagePath } from "./utils";
+
+const srcDir = resolvePackagePath("./src");
 
 const initial = await syncCSS();
-console.log(`[watch-css] synced ${initial.length} css file(s) from ${srcRoot}`);
+console.log(`[watch-css] synced ${initial.length} css file(s) from ${srcDir}`);
 
-let timeout: NodeJS.Timeout | undefined;
+let timeout: ReturnType<typeof setTimeout> | undefined;
 const scheduleSync = (event: string, filePath: string) => {
   if (timeout) {
     clearTimeout(timeout);
@@ -25,12 +28,12 @@ const scheduleSync = (event: string, filePath: string) => {
     }
 
     console.log(
-      `[watch-css] synced ${changed.length} css file(s) after ${event}: ${path.relative(srcRoot, filePath)}`,
+      `[watch-css] synced ${changed.length} css file(s) after ${event}: ${path.relative(srcDir, filePath)}`,
     );
   }, 50);
 };
 
-const watcher = chokidar.watch(srcRoot, {
+const watcher = chokidar.watch(srcDir, {
   ignored: (filePath, stats) =>
     stats?.isFile() ? !filePath.endsWith(".css") : false,
   ignoreInitial: true,
@@ -45,7 +48,7 @@ watcher
   .on("change", (filePath) => scheduleSync("change", filePath))
   .on("unlink", (filePath) => scheduleSync("unlink", filePath))
   .on("ready", () => {
-    console.log(`[watch-css] watching ${srcRoot} for side-effect files`);
+    console.log(`[watch-css] watching ${srcDir} for side-effect files`);
   })
   .on("error", (error) => {
     console.error("[watch-css] watcher error", error);

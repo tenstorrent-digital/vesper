@@ -1,22 +1,11 @@
 import browserslist from "browserslist";
 import { browserslistToTargets, transform } from "lightningcss";
-import {
-  existsSync,
-  mkdirSync,
-  readdirSync,
-  readFileSync,
-  renameSync,
-  rmSync,
-  writeFileSync,
-} from "node:fs";
+import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { resolvePackagePath } from "./utils";
 
-export const srcRoot = path.resolve(__dirname, "../src");
-export const distRoot = path.resolve(__dirname, "../dist");
+type CSSRoot = "./src" | "./dist";
 
 /**
  * Target browsers with >= 0.25% market share
@@ -25,18 +14,21 @@ export const distRoot = path.resolve(__dirname, "../dist");
  */
 const targets = browserslistToTargets(browserslist(">= 0.25%"));
 
-const getCSSFiles = (root: string, currentDir = root): string[] => {
-  if (!existsSync(currentDir)) {
+// get paths (relative to `root`) of all css files inside `root`
+const getCSSFiles = (root: CSSRoot, relativeDir = ""): string[] => {
+  const dirPath = resolvePackagePath(`${root}/${relativeDir}`);
+
+  if (!fs.existsSync(dirPath)) {
     return [];
   }
 
   const cssFiles: string[] = [];
 
-  for (const entry of readdirSync(currentDir, { withFileTypes: true })) {
-    const entryPath = path.join(currentDir, entry.name);
+  for (const entry of fs.readdirSync(dirPath, { withFileTypes: true })) {
+    const relativePath = path.join(relativeDir, entry.name);
 
     if (entry.isDirectory()) {
-      cssFiles.push(...getCSSFiles(root, entryPath));
+      cssFiles.push(...getCSSFiles(root, relativePath));
       continue;
     }
 
@@ -45,71 +37,77 @@ const getCSSFiles = (root: string, currentDir = root): string[] => {
       entry.name.endsWith(".css") &&
       entry.name !== "test.css"
     ) {
-      cssFiles.push(path.relative(root, entryPath));
+      cssFiles.push(relativePath);
     }
   }
 
   return cssFiles;
 };
 
-const removeEmptyDirectories = (currentDir: string) => {
-  if (!existsSync(currentDir)) {
+// remove empty directories inside `./dist` (relative to `./dist`)
+const removeEmptyDirectories = (relativeDir = "") => {
+  const dirPath = resolvePackagePath(`./dist/${relativeDir}`);
+
+  if (!fs.existsSync(dirPath)) {
     return;
   }
 
-  const entries = readdirSync(currentDir, { withFileTypes: true });
-
-  for (const entry of entries) {
+  for (const entry of fs.readdirSync(dirPath, { withFileTypes: true })) {
     if (entry.isDirectory()) {
-      removeEmptyDirectories(path.join(currentDir, entry.name));
+      removeEmptyDirectories(path.join(relativeDir, entry.name));
     }
   }
 
-  if (currentDir !== distRoot && readdirSync(currentDir).length === 0) {
-    rmSync(currentDir, { recursive: true, force: true });
+  // never remove `./dist` itself
+  if (relativeDir !== "" && fs.readdirSync(dirPath).length === 0) {
+    fs.rmSync(dirPath, { recursive: true, force: true });
   }
 };
 
 /**
- * write `contents` to `destinationPath` only if it differs from what is
+ * write `contents` to `./dist/${relativePath}` only if it differs from what is
  * already on disk
  *
  * @returns whether the file was actually written
  */
-const writeIfChanged = (destinationPath: string, contents: Buffer): boolean => {
+const writeIfChanged = (relativePath: string, contents: Buffer): boolean => {
+  const destinationPath = resolvePackagePath(`./dist/${relativePath}`);
+
   if (
-    existsSync(destinationPath) &&
-    readFileSync(destinationPath).equals(contents)
+    fs.existsSync(destinationPath) &&
+    fs.readFileSync(destinationPath).equals(contents)
   ) {
     return false;
   }
 
-  mkdirSync(path.dirname(destinationPath), { recursive: true });
+  fs.mkdirSync(resolvePackagePath(`./dist/${path.dirname(relativePath)}`), {
+    recursive: true,
+  });
 
   /*
     write + rename so consumers never observe a partially written file
     (`rename` is atomic within the same directory)
   */
-  const temporaryPath = path.join(
-    path.dirname(destinationPath),
-    `.${path.basename(destinationPath)}.tmp`,
+  const temporaryPath = resolvePackagePath(
+    `./dist/${path.join(path.dirname(relativePath), `.${path.basename(relativePath)}.tmp`)}`,
   );
 
-  writeFileSync(temporaryPath, contents);
-  renameSync(temporaryPath, destinationPath);
+  fs.writeFileSync(temporaryPath, contents);
+  fs.renameSync(temporaryPath, destinationPath);
 
   return true;
 };
 
 export const syncCSS = async () => {
-  const sourceCssFiles = new Set(getCSSFiles(srcRoot));
-  const distCssFiles = new Set(getCSSFiles(distRoot));
+  const sourceCssFiles = new Set(getCSSFiles("./src"));
+  const distCssFiles = new Set(getCSSFiles("./dist"));
   const changed: string[] = [];
 
   for (const relativePath of sourceCssFiles) {
-    const sourcePath = path.join(srcRoot, relativePath);
-    const destinationPath = path.join(distRoot, relativePath);
-    const css = readFileSync(sourcePath, "utf-8");
+    const css = fs.readFileSync(
+      resolvePackagePath(`./src/${relativePath}`),
+      "utf-8",
+    );
 
     const result = transform({
       filename: relativePath,
@@ -118,7 +116,7 @@ export const syncCSS = async () => {
       targets,
     });
 
-    if (writeIfChanged(destinationPath, Buffer.from(result.code))) {
+    if (writeIfChanged(relativePath, Buffer.from(result.code))) {
       changed.push(relativePath);
     }
   }
@@ -128,11 +126,11 @@ export const syncCSS = async () => {
       continue;
     }
 
-    rmSync(path.join(distRoot, relativePath), { force: true });
+    fs.rmSync(resolvePackagePath(`./dist/${relativePath}`), { force: true });
     changed.push(relativePath);
   }
 
-  removeEmptyDirectories(distRoot);
+  removeEmptyDirectories();
 
   return changed;
 };
