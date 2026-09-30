@@ -26,6 +26,27 @@ permissions:
 jobs:
   quality:
     name: Quality
+    # Github runs this workflow for every PR in a stack (each one is evaluated as if it targets
+    # the stack's base, eg. `main`), so to save CI, only run the job for stacked PRs where it matters:
+    #
+    # run quality workflow on:
+    # - `push` to `main`
+    # - `workflow_dispatch` runs
+    # - PRs against `main`:
+    #   - all unstacked PRs
+    #   - stacked PRs:
+    #     - for the lowest PR in the stack (which targets `main` directly)
+    #     - for the top PR in the stack (which contains every change in the stack)
+    #     - (middle PRs in a stack are skipped and will report as successful)
+    #       > NOTE:
+    #       > to run quality on a middle PR in a stack, you can run quality manually
+    #       > in the Actions tab
+    if: >-
+      ${{
+        github.event.pull_request.stack == null ||
+        github.event.pull_request.stack.base.ref == github.event.pull_request.base.ref ||
+        github.event.pull_request.stack.position == github.event.pull_request.stack.size
+      }}
     runs-on: ubuntu-latest
     env:
       DO_NOT_TRACK: 1
@@ -37,6 +58,13 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Stacked PR info
+        if: github.event.pull_request.stack != null
+        run: |
+          echo "Stacked PR"
+          echo "Stack base ref: ${{ github.event.pull_request.stack.base.ref }}"
+          echo "☰ PR ${{ github.event.pull_request.stack.position }} of ${{ github.event.pull_request.stack.size }}"
+
       - name: Setup Node, install dependencies
         uses: ./.github/actions/setup
         id: setup
@@ -45,7 +73,7 @@ jobs:
           playwright: "true"
 
       # lint, format, check-types
-      - name: Check linting, formatting and types
+      - name: "Run quality checks"
         run: yarn quality:ci
 
       # run unit tests too
