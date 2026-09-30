@@ -19,7 +19,7 @@ export const CaretRight = (props: ComponentProps<"svg">) => {
       <path
         d="M8 19.9414L14.8291 13.1016L14.8291 10.8984L8 4.05859L9.05664 3L16.3242 10.2783L16.3242 13.7217L9.05664 21L8 19.9414Z"
         fill="currentColor"
-      ></path>
+      />
     </svg>
   );
 };

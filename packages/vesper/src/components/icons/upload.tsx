@@ -16,11 +16,11 @@ export const Upload = (props: ComponentProps<"svg">) => {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <path d="M21 21H3V19.5H21V21Z" fill="currentColor"></path>
+      <path d="M21 21H3V19.5H21V21Z" fill="currentColor" />
       <path
         d="M21 10.2715L19.9414 11.3301L13.1016 4.49609H12.7637V18H11.2363V4.49609H10.8984L4.05859 11.3301L3 10.2715L10.2783 3H13.7217L21 10.2715Z"
         fill="currentColor"
-      ></path>
+      />
     </svg>
   );
 };

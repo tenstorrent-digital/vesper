@@ -19,7 +19,7 @@ export const Chat = (props: ComponentProps<"svg">) => {
       <path
         d="M22 6V15L19 18H8L5 21H3V6L6 3H19L22 6ZM4 6.41406V20H4.58594L7.58594 17H18.5859L21 14.5859V6.41406L18.5859 4H6.41406L4 6.41406ZM9.5 11.5H7.5V9.5H9.5V11.5ZM13.5 11.5H11.5V9.5H13.5V11.5ZM17.5 11.5H15.5V9.5H17.5V11.5Z"
         fill="currentColor"
-      ></path>
+      />
     </svg>
   );
 };

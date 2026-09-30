@@ -19,7 +19,7 @@ export const Bolt = (props: ComponentProps<"svg">) => {
       <path
         d="M13.1667 10.8889L17.8333 2L5 9.77778L10.8333 13.1111L6.16667 22L19 14.2222L13.1667 10.8889Z"
         fill="currentColor"
-      ></path>
+      />
     </svg>
   );
 };
