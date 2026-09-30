@@ -9,7 +9,7 @@ export default defineConfig({
     ...sharedIgnorePatterns,
 
     // ignore generated storybook files
-    "public/storybook/**"
+    "public/storybook/**",
   ],
   rules: {
     // allow unescaped entities (these get caught by typescript)
@@ -24,8 +24,7 @@ export default defineConfig({
       },
     ],
   },
-  overrides: [
-  ],
+  overrides: [],
   settings: {
     react: {
       // oxlint's "react" plugin doesn't support "detect" mode, so

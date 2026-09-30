@@ -12,12 +12,8 @@ export default defineConfig({
     // additional rulesets (extended from `base`)
     "react",
   ],
-  categories: {
-    correctness: "error",
-    suspicious: "warn",
-    perf: "error",
-  },
   rules: {
+    // allow using JSX without React in scope
     "react/react-in-jsx-scope": "off",
   },
 });

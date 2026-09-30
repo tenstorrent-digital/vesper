@@ -12,6 +12,22 @@ export default defineConfig({
    */
   plugins: ["eslint", "typescript", "unicorn"],
   jsPlugins: ["eslint-plugin-turbo"],
+  /**
+   * oxlint rule categories (enables sets of related rules provided by plugins)
+   * @see https://oxc.rs/docs/guide/usage/linter/config.html#enable-groups-of-rules-with-categories
+   */
+  categories: {
+    correctness: "error",
+    suspicious: "warn",
+    perf: "error", // cult of speed
+  },
+
+  options: {
+    // enable type-aware (typescript/*) rules
+    // see: https://oxc.rs/docs/guide/usage/linter/type-aware.html
+    typeAware: true,
+    reportUnusedDisableDirectives: "error",
+  },
   env: {
     builtin: true,
     browser: true,
@@ -21,17 +37,7 @@ export default defineConfig({
     React: "readonly",
     JSX: "readonly",
   },
-  options: {
-    // enable type-aware (typescript/*) rules
-    // see: https://oxc.rs/docs/guide/usage/linter/type-aware.html
-    typeAware: true,
-    reportUnusedDisableDirectives: "error",
-  },
-  categories: {
-    correctness: "error",
-    suspicious: "warn",
-    perf: "error", // cult of speed
-  },
+
   rules: {
     // error on undeclared env vars
     "turbo/no-undeclared-env-vars": "error",

@@ -13,10 +13,6 @@ export default defineConfig({
     "jsx-a11y",
     "nextjs",
   ],
-  categories: {
-    correctness: "error",
-    suspicious: "warn",
-  },
   rules: {
     // allow using JSX without React in scope
     "react/react-in-jsx-scope": "off",
