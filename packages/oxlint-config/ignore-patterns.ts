@@ -1,5 +1,3 @@
-import { type OxlintConfig } from "oxlint";
-
 /**
  * ignore patterns shared by every oxlint config in the monorepo
  *
@@ -25,7 +23,7 @@ import { type OxlintConfig } from "oxlint";
  * ]
  * ```
  */
-export const sharedIgnorePatterns: OxlintConfig["ignorePatterns"] = [
+export const sharedIgnorePatterns: string[] = [
   "**/node_modules/**",
   "**/dist/**",
   "**/.next/**",
