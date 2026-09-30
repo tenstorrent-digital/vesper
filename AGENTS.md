@@ -14,7 +14,7 @@ Monorepo for Vesper, a design system React component library, with apps and shar
 - `packages/vesper/` - Design system components
 - `apps/website/` — Design system documentation frontend
 - `docs/` — Design system documentation source (`.md`/`.mdx`)
-- `packages/eslint-config/` — Shared ESLint configurations
+- `packages/oxlint-config/` — Shared Oxlint configurations
 - `packages/typescript-config/` — Shared TypeScript configurations
 
 ## Package Management
@@ -50,6 +50,7 @@ Monorepo for Vesper, a design system React component library, with apps and shar
 ## Other Tools
 
 - GitHub CLI `gh` for PRs
+- Github CLI stacked PRs extension `gh stack -h`
 - `linear-cli` for Linear issue tracking
 
 ## Setup
@@ -72,16 +73,53 @@ The Package Management, Commands, and Setup rules above describe how **you** ins
 You can use the following commands from the repository root to validate your work:
 
 ```bash
-yarn lint         # check for linting and type errors
-yarn format       # format code
-yarn check-types  # check for type errors
+yarn quality:agent          # check everything: linting, formatting and types
+yarn lint --format agent    # check for linting problems only (oxlint, does not write)
+yarn format                 # check formatting only (oxfmt --check, does not write)
+yarn check-types            # check for type errors only (tsc --noEmit, per workspace)
 ```
+
+Before you commit any changes, run the following commands to ensure your code is free of linting and type errors, and properly formatted:
+
+```bash
+# fix any auto-fixable linting problems, then format code
+yarn quality:fix
+
+# then check whatever couldn't be fixed automatically (lint, format, types)
+yarn quality:agent
+```
+
+`format` is a repo-wide turbo root task (`//#format`): `yarn format` invokes oxfmt directly over the whole monorepo in a single pass. `lint` is split in two: a repo-wide root task (`//#lint:root`) that lints everything except `apps/**` in a single pass, plus a `lint` task per app that runs after the app's dependencies are built (type-aware lint rules read their types from the build output). `yarn lint --format agent` runs both. `check-types` stays a per-package task so each workspace is checked against its own `tsconfig.json`. `yarn quality` runs all three through turbo, so its results are cached
 
 When running tests, set `AGENTS=true` so the browser runs in headless mode:
 
 ```bash
 AGENTS=true yarn test
 ```
+
+## Linting
+
+Linting is handled by Oxlint
+
+- Shared configs live in `packages/oxlint-config/` and are consumed by name (`@repo/oxlint-config/next`)
+- Each workspace has its own `oxlint.config.mts`, discovered automatically by oxlint
+- Apps (`apps/*`) have their own `lint` scripts, which run after their dependencies are built (`dependsOn: ["^build"]`), and everything else is linted by the repo-wide `//#lint:root` root turbo task (`oxlint --ignore-pattern 'apps/**' .`)
+
+### Disabling Lint Rules
+
+- Use `oxlint-disable-next-line [rule-name]` or `oxlint-disable [rule-name]`
+- Prefer `oxlint-disable-next-line` over `oxlint-disable`
+- When using `oxlint-disable-next-line` or `oxlint-disable` inline comments, you must:
+  - Add the `[rule-name]` for the rule to disable in the inline comment
+  - Add a comment explaining why the rule is disabled
+- If you disable a rule for a block of code using `oxlint-disable [rule-name]`, you must re-enable it using `oxlint-enable [rule-name]`
+- Do not use `eslint-disable-next-line` or `eslint-disable` comments since we use Oxlint
+
+## Formatting
+
+Formatting is handled by Oxfmt
+
+- `yarn format` and `yarn format:fix` run `oxfmt --check` and `yarn format:fix`, respectively — both cover the entire codebase from the monorepo root
 
 ## Linear and Github Pull Requests
 

@@ -14,7 +14,7 @@ body:
     attributes:
       label: Description
       description: |
-        What you were trying to do, and what went wrong. Mention the affected workspace if you know it (`@tenstorrent/vesper`, `website`, `@repo/eslint-config`, `@repo/typescript-config`, or the monorepo root).
+        What you were trying to do, and what went wrong. Mention the affected workspace if you know it (`@tenstorrent/vesper`, `website`, `@repo/oxlint-config`, `@repo/typescript-config`, or the monorepo root).
       placeholder: |
         Running the Storybook dev server fails to start. It exits immediately after resolving the config in `packages/vesper/storybook`.
     validations:

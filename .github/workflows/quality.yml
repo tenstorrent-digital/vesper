@@ -1,0 +1,87 @@
+# Run `quality` (linting, formatting, and type checking), and run unit tests
+
+name: Quality
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    # The vouch workflows push `.github/VOUCHED.td` to `main` using a GitHub App
+    # token, which (unlike `GITHUB_TOKEN`) does trigger workflows. That commit
+    # can't affect tests, so don't spend a run on it. Only applies to `push`;
+    # pull request runs are unaffected, so the required check still gates PRs.
+    paths-ignore:
+      - ".github/VOUCHED.td"
+
+  # Empty `workflow_dispatch` allows this workflow to be run manually from the Actions tab:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Quality
+    # Github runs this workflow for every PR in a stack (each one is evaluated as if it targets
+    # the stack's base, eg. `main`), so to save CI, only run the job for stacked PRs where it matters:
+    #
+    # run quality workflow on:
+    # - `push` to `main`
+    # - `workflow_dispatch` runs
+    # - PRs against `main`:
+    #   - all unstacked PRs
+    #   - stacked PRs:
+    #     - for the lowest PR in the stack (which targets `main` directly)
+    #     - for the top PR in the stack (which contains every change in the stack)
+    #     - (middle PRs in a stack are skipped and will report as successful)
+    #       > NOTE:
+    #       > to run quality on a middle PR in a stack, you can run quality manually
+    #       > in the Actions tab
+    if: >-
+      ${{
+        (
+          github.event.pull_request.stack == null ||
+          github.event.pull_request.stack.base.ref == github.event.pull_request.base.ref ||
+          github.event.pull_request.stack.position == github.event.pull_request.stack.size
+        ) &&
+        github.event.pull_request.number != 191
+      }}
+    runs-on: ubuntu-latest
+    env:
+      DO_NOT_TRACK: 1
+      CI: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+
+      - name: Stacked PR info
+        if: github.event.pull_request.stack != null
+        run: |
+          echo "Stacked PR"
+          echo "Stack base ref: ${{ github.event.pull_request.stack.base.ref }}"
+          echo "☰ PR ${{ github.event.pull_request.stack.position }} of ${{ github.event.pull_request.stack.size }}"
+
+      - name: Setup Node, install dependencies
+        uses: ./.github/actions/setup
+        id: setup
+        with:
+          # vesper's unit tests run in (playwright's) chromium
+          playwright: "true"
+
+      # lint, format, check-types
+      - name: "Run quality checks"
+        run: yarn quality:ci
+
+      # run unit tests too
+      - name: Run unit tests
+        # run even if `quality` above fails (this way, a lint error doesn't hide a failing test),
+        # but not if setup failed - there'd be no dependencies to run them with
+        if: ${{ !cancelled() && steps.setup.outcome == 'success' }}
+        run: yarn test:vesper

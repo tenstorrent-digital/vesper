@@ -16,7 +16,7 @@
     "!**/*.stories.tsx",
     "!storybook/**",
     "!tsconfig.storybook.json",
-    "!eslint.config.mjs"
+    "!oxlint.config.mts"
   ],
   "updateInternalDependencies": "patch",
   "ignore": [],
