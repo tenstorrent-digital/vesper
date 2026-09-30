@@ -1,4 +1,3 @@
-import fs from "node:fs";
 import * as nodePath from "node:path";
 
 export const getGeneratedCodeWarning = (command: string) => `/*
@@ -42,14 +41,14 @@ export type PackagePath<T extends string> = T extends `./${infer Rest}`
  *
  * @example
  * ```ts
- * const filePath = resolveFilePath("./src/index.ts");
+ * const filePath = resolvePackagePath("./src/index.ts");
  * fs.readFileSync(filePath);
  * ```
  */
 export const resolvePackagePath = <T extends string>(
   /** the file or directory path to resolve - **must start with `./`** (relative to package root), and may not escape the package root */
   path: PackagePath<T>,
-): fs.PathLike => {
+): string => {
   // for safety, don't allow paths that escape the package root
   if (path.startsWith("..") || path.startsWith("./..")) {
     throw new Error("filePath may not escape the package root");
