@@ -42,6 +42,9 @@ runs:
         # note: the truthy value has to come first - `x && '' || 'yarn'` would _always_ be `yarn`,
         # because GitHub's pseudo-ternary falls through to the `||` branch on any falsy value
         cache: ${{ steps.node-modules.outputs.cache-hit != 'true' && 'yarn' || '' }}
+        # setup-node v5+ auto-enables the yarn cache from the `packageManager` field in
+        # `package.json`, which would ignore the conditional `cache` above
+        package-manager-cache: false
 
     - name: Install dependencies
       if: steps.node-modules.outputs.cache-hit != 'true'
