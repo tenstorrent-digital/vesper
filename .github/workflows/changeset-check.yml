@@ -18,6 +18,7 @@ jobs:
   check-changeset:
     name: Changeset Check
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     # The "Version Packages" PR opened by `version.yml` consumes every
     # `.changeset/*.md` file, so `changeset status` fails on it by design.
@@ -41,14 +42,8 @@ jobs:
           # Runs untrusted PR code, so keep the token out of `.git/config`.
           persist-credentials: false
 
-      - name: Setup Node.js
-        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
-        with:
-          node-version: "24"
-          cache: "yarn"
-
-      - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+      - name: Setup Node, install dependencies
+        uses: ./.github/actions/setup
 
       - name: Check for Changeset
         run: yarn changeset status --since=origin/main

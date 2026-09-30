@@ -26,6 +26,7 @@ jobs:
   version:
     name: Version
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     # Deliberately no `environment:`. Managing the "Version Packages" PR is a
     # routine, reversible bookkeeping step, so it shouldn't sit behind the
     # manual approval gate that `release.yml` uses to publish to npm.
@@ -41,14 +42,8 @@ jobs:
           # below means the action never runs `git push`.
           persist-credentials: false
 
-      - name: Setup Node.js
-        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
-        with:
-          node-version: "24"
-          cache: "yarn"
-
-      - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+      - name: Setup Node, install dependencies
+        uses: ./.github/actions/setup
 
       # Only `version` is passed (no `publish`), so this workflow is structurally
       # incapable of publishing to npm regardless of repo state:
