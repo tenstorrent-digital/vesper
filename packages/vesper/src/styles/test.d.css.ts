@@ -1,3 +1,5 @@
+// this file is intentionally empty (see below)
+// oxlint-disable unicorn/no-empty-file
 /**
  * type declaration for the side-effect import of `@/styles/test.css` in tests
  *
@@ -8,4 +10,4 @@
  *
  * see: `tsconfig.test.json`
  */
-export {};
+// oxlint-enable unicorn/no-empty-file

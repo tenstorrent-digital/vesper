@@ -1,9 +1,9 @@
 import type { ComponentProps } from "react";
+
 import { Collapsible } from "@base-ui/react/collapsible";
 
 import { CaretRight } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 
 export interface AccordionProps extends ComponentProps<"div"> {
@@ -12,7 +12,7 @@ export interface AccordionProps extends ComponentProps<"div"> {
   /** Controls the open state of the accordion (controlled mode). */
   open?: boolean;
   /** Callback fired when the open state changes. Receives the new open state as an argument. */
-  onOpenChange?(open: boolean): void;
+  onOpenChange?: (open: boolean) => void;
   /** The title text displayed in the accordion trigger. */
   title: string;
 }

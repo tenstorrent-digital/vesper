@@ -1,13 +1,12 @@
 "use client";
 
-import { ComponentProps, type CSSProperties, type Ref, useMemo } from "react";
 import {
   Slider as BaseSlider,
   type SliderThumbState,
 } from "@base-ui/react/slider";
+import { ComponentProps, type CSSProperties, type Ref, useMemo } from "react";
 
 import { Typography } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 
 const toValues = (value: number | number[]) =>
@@ -28,9 +27,9 @@ export interface RangeProps extends Omit<
   /** The initial thumb values (uncontrolled mode). @default [min, max] */
   defaultValues?: number[];
   /** Callback fired as thumb values change during interaction. Receives the full array of current values. */
-  onValuesChange?(value: number[]): void;
+  onValuesChange?: (value: number[]) => void;
   /** Callback fired when a thumb interaction is completed (e.g., on pointer up). Receives the final array of values. */
-  onValuesCommit?(value: number[]): void;
+  onValuesCommit?: (value: number[]) => void;
   /** When `true`, renders tick marks along the track at each step interval. @default false */
   showTicks?: boolean;
   /** The name attribute applied to each thumb's underlying input, used for form submission. Every thumb submits its value under this name. */
@@ -171,9 +170,9 @@ export function Range(props: RangeProps) {
       <BaseSlider.Control>
         <BaseSlider.Track className="vesper-range-track">
           {showTicks &&
-            tickPositions.map((position, i) => (
+            tickPositions.map((position) => (
               <span
-                key={i}
+                key={position}
                 className="vesper-range-tick"
                 style={
                   {
@@ -185,6 +184,8 @@ export function Range(props: RangeProps) {
           <BaseSlider.Indicator className="vesper-range-range" />
           {thumbValues.map((_, index) => (
             <Typography
+              // each thumb is identified by its index (see `BaseSlider.Thumb` `index` prop)
+              // oxlint-disable-next-line react/no-array-index-key
               key={index}
               as={BaseSlider.Thumb}
               variant="label-xs"

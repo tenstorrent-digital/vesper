@@ -14,7 +14,6 @@ import {
   SuccessSolid,
   WarningSolid,
 } from "@/components/icons/icons";
-
 import "@/styles/test.css";
 
 const MESSAGE = "The message text";

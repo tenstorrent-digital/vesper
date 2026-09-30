@@ -8,7 +8,6 @@ import {
   type ModalProps,
   useModal,
 } from "@/components/modal/modal";
-
 import "@/styles/test.css";
 
 const TITLE = "Are you absolutely sure?";
@@ -23,16 +22,16 @@ const BUTTONS: ModalProps["buttons"] = [
 afterEach(cleanup);
 
 function ModalWithHook(props: Omit<ModalProps, "ref">) {
-  const modal = useModal();
+  const { ref, open, close } = useModal();
   return (
     <>
-      <button data-testid="open-trigger" onClick={modal.open}>
+      <button data-testid="open-trigger" onClick={open}>
         Open
       </button>
-      <button data-testid="close-trigger" onClick={modal.close}>
+      <button data-testid="close-trigger" onClick={close}>
         Close
       </button>
-      <Modal ref={modal.ref} {...props} />
+      <Modal ref={ref} {...props} />
     </>
   );
 }

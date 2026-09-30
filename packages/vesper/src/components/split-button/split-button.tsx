@@ -1,5 +1,6 @@
 "use client";
 
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import {
   ComponentProps,
   type MouseEventHandler,
@@ -7,7 +8,6 @@ import {
   useCallback,
   useRef,
 } from "react";
-import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 
 import { Button } from "@/components/button/button";
 import { IconButton } from "@/components/icon-button/icon-button";
@@ -17,7 +17,6 @@ import {
   type MenuItemProps,
   type MenuProps,
 } from "@/components/menu/menu";
-
 import { cn } from "@/utils/cn";
 
 export const SPLIT_BUTTON_SIZES = ["sm", "md", "lg"] as const;
@@ -109,7 +108,7 @@ export function SplitButton(props: SplitButtonProps) {
     children,
     className,
     onClick,
-    menuItems = [],
+    menuItems,
     menuAlign = "start",
     menuAlignOffset,
     menuOpen,

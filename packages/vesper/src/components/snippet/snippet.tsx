@@ -5,7 +5,6 @@ import { type ComponentProps, useCallback, useRef, useState } from "react";
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Checkmark, Copy } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 
 export const SNIPPET_VARIANTS = ["default", "contrast"] as const;
@@ -65,6 +64,8 @@ export function Snippet(props: SnippetProps) {
       <pre>
         <Typography as="code" variant="copy-xs-mono">
           {(children ?? "").split("\n").map((line, index) => (
+            // lines have no identity other than their position
+            // oxlint-disable-next-line react/no-array-index-key
             <span key={index} className="line">
               {line}
             </span>

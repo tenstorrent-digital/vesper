@@ -7,7 +7,6 @@ import {
   type TypographyProps,
   TypographyVariant,
 } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 import { getDisabledProps } from "@/utils/get-disabled-props";
 import type { Polymorphic } from "@/utils/polymorphic";
@@ -35,7 +34,7 @@ export type ChipProps<E extends ElementType = "button"> = Polymorphic<
     /** When `true`, renders the chip in a disabled state and prevents interaction. @default false */
     disabled?: boolean;
     /** Callback fired when the chip is clicked. Receives the next selected state as an argument. */
-    onChange?(selected: boolean): void;
+    onChange?: (selected: boolean) => void;
   },
   E
 >;
@@ -104,7 +103,6 @@ export function Chip<E extends ElementType = "button">(props: ChipProps<E>) {
         className,
       )}
       // TypeScript cannot infer the type of onClick because this component is polymorphic
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onClick={(e: any) => {
         onChange?.(!selected);
         onClick?.(e);

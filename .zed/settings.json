@@ -20,19 +20,19 @@
           "disableNestedConfig": false,
           "run": "onType",
           "fixKind": "safe_fix",
-          "unusedDisableDirectives": "warn",
-        },
-      },
+          "unusedDisableDirectives": "warn"
+        }
+      }
     },
     "oxfmt": {
       "initialization_options": {
         "settings": {
           // leave null so nested `.oxfmtrc.json` files are discovered
           "fmt.configPath": null,
-          "run": "onSave",
-        },
-      },
-    },
+          "run": "onSave"
+        }
+      }
+    }
   },
 
   "languages": {
@@ -48,12 +48,12 @@
         "!eslint",
         "vtsls",
         "oxlint",
-        "...",
+        "..."
       ],
       "formatter": [
         { "language_server": { "name": "oxfmt" } },
-        { "code_action": "source.fixAll.oxc" },
-      ],
+        { "code_action": "source.fixAll.oxc" }
+      ]
     },
     "TSX": {
       "language_servers": [
@@ -61,12 +61,12 @@
         "!eslint",
         "vtsls",
         "oxlint",
-        "...",
+        "..."
       ],
       "formatter": [
         { "language_server": { "name": "oxfmt" } },
-        { "code_action": "source.fixAll.oxc" },
-      ],
+        { "code_action": "source.fixAll.oxc" }
+      ]
     },
     "JavaScript": {
       "language_servers": [
@@ -74,34 +74,34 @@
         "!eslint",
         "vtsls",
         "oxlint",
-        "...",
+        "..."
       ],
       "formatter": [
         { "language_server": { "name": "oxfmt" } },
-        { "code_action": "source.fixAll.oxc" },
-      ],
+        { "code_action": "source.fixAll.oxc" }
+      ]
     },
     "JSON": {
-      "formatter": [{ "language_server": { "name": "oxfmt" } }],
+      "formatter": [{ "language_server": { "name": "oxfmt" } }]
     },
     "JSONC": {
-      "formatter": [{ "language_server": { "name": "oxfmt" } }],
+      "formatter": [{ "language_server": { "name": "oxfmt" } }]
     },
     "Markdown": {
-      "formatter": [{ "language_server": { "name": "oxfmt" } }],
+      "formatter": [{ "language_server": { "name": "oxfmt" } }]
     },
     "YAML": {
-      "formatter": [{ "language_server": { "name": "oxfmt" } }],
+      "formatter": [{ "language_server": { "name": "oxfmt" } }]
     },
     "TOML": {
-      "formatter": [{ "language_server": { "name": "oxfmt" } }],
+      "formatter": [{ "language_server": { "name": "oxfmt" } }]
     },
     "HTML": {
-      "formatter": [{ "language_server": { "name": "oxfmt" } }],
+      "formatter": [{ "language_server": { "name": "oxfmt" } }]
     },
     "CSS": {
-      "formatter": [{ "language_server": { "name": "oxfmt" } }],
-    },
+      "formatter": [{ "language_server": { "name": "oxfmt" } }]
+    }
   },
 
   "file_scan_exclusions": [
@@ -129,7 +129,7 @@
     ".agents/skills/**/rules/**",
 
     // all files in `.claude` (symlinks to .agents)
-    ".claude/**",
+    ".claude/**"
   ],
-  "read_only_files": ["yarn.lock", "skills-lock.json"],
+  "read_only_files": ["yarn.lock", "skills-lock.json"]
 }

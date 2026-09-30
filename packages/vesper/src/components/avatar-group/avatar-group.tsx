@@ -1,7 +1,6 @@
 import type { ElementType } from "react";
 
 import { Avatar, type AvatarSize } from "@/components/avatar/avatar";
-
 import { cn } from "@/utils/cn";
 import type { Polymorphic } from "@/utils/polymorphic";
 
@@ -52,6 +51,8 @@ export function AvatarGroup<E extends ElementType = "div">(
   return (
     <Component className={cn("vesper-avatar-group", className)} {...rest}>
       {avatars.slice(0, 3).map(({ src, alt }, index) => (
+        // avatars have no unique id (`src` is optional) and are static
+        // oxlint-disable-next-line react/no-array-index-key
         <Avatar key={index} size={size} src={src} alt={alt} />
       ))}
       {avatars.length > 3 && (

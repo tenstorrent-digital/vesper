@@ -1,10 +1,11 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
+
 import css from "@shikijs/langs/css";
 import json from "@shikijs/langs/json";
 import markdown from "@shikijs/langs/markdown";
 import python from "@shikijs/langs/python";
 import shellscript from "@shikijs/langs/shellscript";
 import typescript from "@shikijs/langs/typescript";
-import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { CodeBlock, CodeBlockProps } from "@/components/code-block/code-block";
 

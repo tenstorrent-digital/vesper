@@ -8,12 +8,11 @@ import {
   SWITCH_SIZES,
   type SwitchProps,
 } from "@/components/switch/switch";
-
 import "@/styles/test.css";
 
 export const SWITCH_PERMUTATIONS = SWITCH_SIZES.flatMap(
   (size): (SwitchProps & { name: string })[] => [
-    { name: `${size}`, size, ["aria-label"]: "Label" },
+    { name: size, size, ["aria-label"]: "Label" },
     {
       name: `${size}, disabled`,
       size,

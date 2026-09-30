@@ -8,7 +8,6 @@ import {
   MATERIAL_VARIANTS,
   type MaterialProps,
 } from "@/components/material/material";
-
 import "@/styles/test.css";
 
 type MaterialPermutation = MaterialProps & { label: string };

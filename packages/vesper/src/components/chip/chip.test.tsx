@@ -10,7 +10,6 @@ import {
   type ChipProps,
 } from "@/components/chip/chip";
 import { Globe } from "@/components/icons/icons";
-
 import "@/styles/test.css";
 
 afterEach(cleanup);

@@ -9,7 +9,6 @@ import {
   TextInput,
   TextInputProps,
 } from "@/components/text-input/text-input";
-
 import "@/styles/test.css";
 
 type TextInputPermutation = TextInputProps & { permutationName: string };

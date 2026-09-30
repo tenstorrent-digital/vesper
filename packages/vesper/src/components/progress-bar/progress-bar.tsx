@@ -115,6 +115,8 @@ function ProgressBarIndicatorSteps({
       <div className="vesper-progress-bar-indicator" style={{ width }} />
       {Array.from({ length: totalSteps - 1 }).map((_, index) => (
         <span
+          // ticks have no identity other than their position
+          // oxlint-disable-next-line react/no-array-index-key
           key={index}
           className={cn(
             "vesper-progress-bar-tick",

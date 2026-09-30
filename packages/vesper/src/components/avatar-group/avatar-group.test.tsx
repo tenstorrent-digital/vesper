@@ -2,16 +2,15 @@ import { cleanup, render, within } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
-import { AVATAR_SIZES } from "@/components/avatar/avatar";
 import { AvatarGroup } from "@/components/avatar-group/avatar-group";
-
+import { AVATAR_SIZES } from "@/components/avatar/avatar";
 import "@/styles/test.css";
 
 afterEach(cleanup);
 
 describe("avatar-group [unit]", () => {
   AVATAR_SIZES.forEach((size) => {
-    test(`${size}`, () => {
+    test(size, () => {
       const result = render(
         <AvatarGroup
           size={size}
@@ -123,7 +122,7 @@ describe("avatar-group [unit]", () => {
 
 describe("avatar-group [snapshot]", () => {
   AVATAR_SIZES.forEach((size) => {
-    test(`${size}`, () => {
+    test(size, () => {
       const result = render(
         <AvatarGroup
           size={size}

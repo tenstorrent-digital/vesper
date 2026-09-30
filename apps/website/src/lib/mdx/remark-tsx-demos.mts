@@ -13,8 +13,9 @@
 
 import type { Root, RootContent } from "mdast";
 import type { MdxjsEsm } from "mdast-util-mdxjs-esm";
-import path from "node:path";
 import type { Transformer } from "unified";
+
+import path from "node:path";
 
 import {
   createOrUpdateFile,
@@ -33,6 +34,9 @@ export default function remarkTsxDemos(): Transformer<Root> {
 
     /** The document's nodes, with each demo inserted before its code block */
     const transformedChildren: RootContent[] = [];
+
+    /** Pending writes of the document's demo modules */
+    const demoModuleWrites: Promise<void>[] = [];
 
     for (const child of tree.children) {
       // If the child is not a demo code block, only inject the child itself
@@ -60,7 +64,9 @@ export default function remarkTsxDemos(): Transformer<Root> {
        *
        * a build has already written every demo, so this is a no-op there
        */
-      await createOrUpdateFile(demoModulePath, getDemoModuleSource(child));
+      demoModuleWrites.push(
+        createOrUpdateFile(demoModulePath, getDemoModuleSource(child)),
+      );
 
       // Get the relative import path for the demo component's module
       let demoImportPath = path
@@ -109,6 +115,8 @@ export default function remarkTsxDemos(): Transformer<Root> {
         child,
       );
     }
+
+    await Promise.all(demoModuleWrites);
 
     // Assign the document its new children with injected demos
     tree.children = transformedChildren;

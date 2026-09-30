@@ -2,25 +2,22 @@
   "name": "@tenstorrent/vesper",
   "version": "0.3.0",
   "description": "React component library for the Vesper design system",
+  "homepage": "https://github.com/tenstorrent-digital/vesper#readme",
+  "bugs": {
+    "url": "https://github.com/tenstorrent-digital/vesper/issues"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tenstorrent-digital/vesper.git",
     "directory": "packages/vesper"
   },
-  "homepage": "https://github.com/tenstorrent-digital/vesper#readme",
-  "bugs": {
-    "url": "https://github.com/tenstorrent-digital/vesper/issues"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "engines": {
-    "node": ">=20.9.0"
-  },
-  "type": "module",
   "files": [
     "dist"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
   ],
   "exports": {
     "./combobox": {
@@ -186,9 +183,9 @@
     "./styles.css": "./dist/styles/styles.css",
     "./tailwind.css": "./dist/styles/tailwind.css"
   },
-  "sideEffects": [
-    "**/*.css"
-  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build:tsc": "tsc -p tsconfig.build.json",
     "build:alias": "tsc-alias -p tsconfig.build.json --resolve-full-paths --resolve-full-extension .js",
@@ -208,9 +205,14 @@
     "test:watch": "vitest",
     "check-types": "tsc --noEmit --project tsconfig.build.json --incremental false && tsc --noEmit --project tsconfig.test.json && tsc --noEmit --project tsconfig.storybook.json --incremental false"
   },
-  "peerDependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+  "dependencies": {
+    "@base-ui/react": "^1.7.0",
+    "@base-ui/utils": "^0.4.0",
+    "@shikijs/core": "^4.3.1",
+    "@shikijs/engine-javascript": "^4.3.1",
+    "@shikijs/langs": "^4.3.1",
+    "@shikijs/stream": "^4.3.1",
+    "hast-util-to-jsx-runtime": "^2.3.6"
   },
   "devDependencies": {
     "@repo/oxlint-config": "*",
@@ -252,13 +254,11 @@
     "vitest": "^4.1.8",
     "vitest-axe": "^0.1.0"
   },
-  "dependencies": {
-    "@base-ui/react": "^1.7.0",
-    "@base-ui/utils": "^0.4.0",
-    "@shikijs/core": "^4.3.1",
-    "@shikijs/engine-javascript": "^4.3.1",
-    "@shikijs/langs": "^4.3.1",
-    "@shikijs/stream": "^4.3.1",
-    "hast-util-to-jsx-runtime": "^2.3.6"
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "engines": {
+    "node": ">=20.9.0"
   }
 }

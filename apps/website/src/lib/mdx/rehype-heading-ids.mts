@@ -1,6 +1,7 @@
 import type { Root } from "hast";
-import { toString } from "mdast-util-to-string";
 import type { Transformer } from "unified";
+
+import { toString } from "mdast-util-to-string";
 
 import { getHeadingId } from "./utils.mts";
 

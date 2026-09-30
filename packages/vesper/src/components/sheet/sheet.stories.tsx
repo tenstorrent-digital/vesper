@@ -13,21 +13,21 @@ function SheetStoryComponent({
   withButtons,
   ...props
 }: SheetProps & { withButtons: boolean }) {
-  const sheet = useSheet();
+  const { ref, open, close } = useSheet();
 
   return (
     <>
-      <Button onClick={sheet.open} variant="contrast">
+      <Button onClick={open} variant="contrast">
         Open sheet
       </Button>
       <Sheet
-        ref={sheet.ref}
+        ref={ref}
         {...props}
         buttons={
           withButtons
             ? [
-                { children: "Close", onClick: sheet.close },
-                { children: "Next", onClick: sheet.close },
+                { children: "Close", onClick: close },
+                { children: "Next", onClick: close },
               ]
             : []
         }

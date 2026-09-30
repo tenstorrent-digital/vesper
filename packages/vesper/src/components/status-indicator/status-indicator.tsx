@@ -1,7 +1,6 @@
 import type { ElementType } from "react";
 
 import { Typography } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 import type { Polymorphic } from "@/utils/polymorphic";
 

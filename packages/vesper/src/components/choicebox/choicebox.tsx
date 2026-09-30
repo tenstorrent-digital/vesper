@@ -1,5 +1,6 @@
 "use client";
 
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import {
   type ChangeEventHandler,
   type ComponentProps,
@@ -8,11 +9,9 @@ import {
   useEffect,
   useRef,
 } from "react";
-import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 
 import { Checkmark } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 
 export type ChoiceboxItem = {
@@ -50,7 +49,7 @@ export interface ChoiceboxSingleSelectProps extends ChoiceboxBaseProps {
   /** The initially selected value (uncontrolled mode). */
   defaultValue?: string;
   /** Callback fired when the selected value changes. Receives the newly selected value. */
-  onChange?(value: string): void;
+  onChange?: (value: string) => void;
 }
 
 export interface ChoiceboxMultiSelectProps extends ChoiceboxBaseProps {
@@ -61,7 +60,7 @@ export interface ChoiceboxMultiSelectProps extends ChoiceboxBaseProps {
   /** The initially selected values (uncontrolled mode). */
   defaultValues?: string[];
   /** Callback fired when the selected values change. Receives the full array of currently selected values. */
-  onChange?(values: string[]): void;
+  onChange?: (values: string[]) => void;
   /** The minimum number of selections required for form validation. @default 0 */
   min?: number;
   /** The maximum number of selections allowed for form validation. @default Infinity */
@@ -69,7 +68,8 @@ export interface ChoiceboxMultiSelectProps extends ChoiceboxBaseProps {
 }
 
 export type ChoiceboxProps =
-  ChoiceboxSingleSelectProps | ChoiceboxMultiSelectProps;
+  | ChoiceboxSingleSelectProps
+  | ChoiceboxMultiSelectProps;
 
 /**
  * A selection group component that supports both single-select (radio) and multi-select (checkbox) modes with card-style options.

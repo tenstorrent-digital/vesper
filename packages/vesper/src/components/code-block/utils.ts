@@ -1,10 +1,11 @@
-import * as jsxRuntime from "react/jsx-runtime";
 import { createHighlighterCoreSync } from "@shikijs/core";
 import { createJavaScriptRegexEngine } from "@shikijs/engine-javascript";
 import { CodeToTokenTransformStream } from "@shikijs/stream";
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
+import * as jsxRuntime from "react/jsx-runtime";
 
 import type { CodeBlockProps } from "./code-block";
+
 import { dark, light } from "./themes";
 
 export const getLangName = (lang: CodeBlockProps["lang"]) =>

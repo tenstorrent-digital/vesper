@@ -1,7 +1,7 @@
 {
   "$schema": "https://turborepo.dev/schema.json",
   "ui": "stream",
-  "globalEnv": ["NODE_ENV"],
+  "globalEnv": ["NODE_ENV", "CI"],
   "tasks": {
     /**
      * no-op task — no package defines a `transit` script
@@ -93,7 +93,7 @@
       //
       // by passing passing `--log-prefix=none` to turbo run we suppress the app/package
       // name annotations so the annotations aren't broken up by the prefixes
-      "dependsOn": ["quality"],
+      "dependsOn": ["quality"]
     },
 
     // oxlint and oxfmt are fast enough to cover the whole monorepo in a single
@@ -142,6 +142,6 @@
     "//#clean-caches": {
       // clean turbo cache folders across the monorepo
       "cache": false
-    },
+    }
   }
 }

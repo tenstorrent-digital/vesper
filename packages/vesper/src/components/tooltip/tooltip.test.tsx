@@ -4,7 +4,6 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { Tooltip } from "@/components/tooltip/tooltip";
 import { Typography } from "@/components/typography/typography";
-
 import "@/styles/test.css";
 
 afterEach(cleanup);

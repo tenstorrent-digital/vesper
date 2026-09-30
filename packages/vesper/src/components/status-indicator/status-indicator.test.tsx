@@ -8,7 +8,6 @@ import {
   StatusIndicator,
   type StatusIndicatorProps,
 } from "@/components/status-indicator/status-indicator";
-
 import "@/styles/test.css";
 
 const STATUS_INDICATOR_PERMUTATIONS = STATUS_INDICATOR_VARIANTS.flatMap(

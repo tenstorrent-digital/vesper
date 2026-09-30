@@ -1,5 +1,6 @@
-import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
+
+import createMDX from "@next/mdx";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 

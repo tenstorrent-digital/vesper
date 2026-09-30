@@ -28,28 +28,28 @@ export default function RadioGroupDemo() {
 
 ## Options
 
-| Prop           | Type                         | Description                                                                         | Default      |
-| -------------- | ---------------------------- | ----------------------------------------------------------------------------------- | ------------ |
-| `name`         | `string`                     | The name attribute shared by all radio inputs, used for form submission.            | —            |
-| `options`      | `RadioGroupItem[]`           | The list of radio options. Each has `value`, `label`, optional `disabled` and `id`. | —            |
-| `size`         | `"sm" \| "md"`               | The size of the radio inputs and labels.                                            | `"md"`       |
-| `orientation`  | `"horizontal" \| "vertical"` | The layout direction of the radio options.                                          | `"vertical"` |
-| `value`        | `string`                     | The currently selected value (controlled mode).                                     | —            |
-| `defaultValue` | `string`                     | The initially selected value (uncontrolled mode).                                   | —            |
-| `onChange`     | `(value: string) => void`    | Callback fired when the selected value changes.                                     | —            |
-| `required`     | `boolean`                    | When `true`, a selection is required for form validation.                           | `false`      |
-| `disabled`     | `boolean`                    | When `true`, disables all options.                                                  | `false`      |
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `name` | `string` | The name attribute shared by all radio inputs, used for form submission. | — |
+| `options` | `RadioGroupItem[]` | The list of radio options. Each has `value`, `label`, optional `disabled` and `id`. | — |
+| `size` | `"sm" \| "md"` | The size of the radio inputs and labels. | `"md"` |
+| `orientation` | `"horizontal" \| "vertical"` | The layout direction of the radio options. | `"vertical"` |
+| `value` | `string` | The currently selected value (controlled mode). | — |
+| `defaultValue` | `string` | The initially selected value (uncontrolled mode). | — |
+| `onChange` | `(value: string) => void` | Callback fired when the selected value changes. | — |
+| `required` | `boolean` | When `true`, a selection is required for form validation. | `false` |
+| `disabled` | `boolean` | When `true`, disables all options. | `false` |
 
 All other props are forwarded to the wrapping `<fieldset>` element.
 
 ### `RadioGroupItem` options
 
-| Property   | Type      | Description                                                                              |
-| ---------- | --------- | ---------------------------------------------------------------------------------------- |
-| `value`    | `string`  | The value submitted with form data and passed to `onChange`. Must be unique.             |
-| `label`    | `string`  | The text displayed next to the radio input.                                              |
-| `disabled` | `boolean` | When `true`, prevents this individual option from being selected. Defaults to `false`.   |
-| `id`       | `string`  | An `id` applied to this option's `<input>`, used to reference it from validation errors. |
+| Property | Type | Description |
+| --- | --- | --- |
+| `value` | `string` | The value submitted with form data and passed to `onChange`. Must be unique. |
+| `label` | `string` | The text displayed next to the radio input. |
+| `disabled` | `boolean` | When `true`, prevents this individual option from being selected. Defaults to `false`. |
+| `id` | `string` | An `id` applied to this option's `<input>`, used to reference it from validation errors. |
 
 Use a `RadioGroup` when exactly one option out of many must be chosen. Reach for [the `Choicebox` component](./choicebox.mdx) when each option needs a description or a card-style target, [the `Toggle` component](./toggle.mdx) when a compact segmented control fits better, or [the `Select` component](./select.mdx) when the list is long enough that it should collapse into a dropdown.
 

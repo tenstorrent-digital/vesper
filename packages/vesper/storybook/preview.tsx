@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/react-vite";
+
 import axe from "axe-core";
 
 import "@/styles/styles.css";

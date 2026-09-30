@@ -6,7 +6,6 @@ import { userEvent } from "vitest/browser";
 import { Globe } from "@/components/icons/icons";
 import { Tabs, type TabsVariant } from "@/components/tabs/tabs";
 import { Typography } from "@/components/typography/typography";
-
 import "@/styles/test.css";
 
 const TABS_PERMUTATIONS: {
@@ -43,7 +42,7 @@ const TabsTestComponent = ({
 }: {
   variant?: TabsVariant;
   defaultValue?: string;
-  onValueChange?(value: string): void;
+  onValueChange?: (value: string) => void;
 }) => (
   <Tabs
     data-testid="tabs"

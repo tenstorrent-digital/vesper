@@ -6,7 +6,6 @@ import {
   Typography,
   type TypographyVariant,
 } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 import {
   FormInputProps,
@@ -36,7 +35,7 @@ export interface TextInputProps extends FormInputProps<"div", "input"> {
   /** Optional click handler for the left icon. When provided, the icon is rendered as a `<button>` instead of a `<span>`. */
   iconLeftAction?: {
     /** The click event handler */
-    handler(e: MouseEvent<HTMLButtonElement>): void;
+    handler: (e: MouseEvent<HTMLButtonElement>) => void;
     /** An accessible aria-label for the icon */
     ariaLabel: string;
   };
@@ -45,7 +44,7 @@ export interface TextInputProps extends FormInputProps<"div", "input"> {
   /** Optional click handler for the right icon. When provided, the icon is rendered as a `<button>` instead of a `<span>`. */
   iconRightAction?: {
     /** The click event handler */
-    handler(e: MouseEvent<HTMLButtonElement>): void;
+    handler: (e: MouseEvent<HTMLButtonElement>) => void;
     /** An accessible aria-label for the icon */
     ariaLabel: string;
   };
@@ -163,7 +162,7 @@ function TextInputIcon({
   disabled,
 }: {
   ariaLabel?: string;
-  onClick?(e: MouseEvent<HTMLButtonElement>): void;
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode;
   disabled?: boolean;
 }) {

@@ -1,7 +1,11 @@
 {
   "name": "vesper",
-  "description": "Monorepo for the Vesper design system",
   "private": true,
+  "description": "Monorepo for the Vesper design system",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "build": "turbo run build",
     "build:vesper": "turbo run build --filter=@tenstorrent/vesper",
@@ -54,9 +58,5 @@
   "engines": {
     "node": ">=24.13.1"
   },
-  "packageManager": "yarn@1.22.22",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+  "packageManager": "yarn@1.22.22"
 }

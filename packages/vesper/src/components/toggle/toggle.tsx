@@ -1,5 +1,7 @@
 "use client";
 
+import { useControlled } from "@base-ui/utils/useControlled";
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import {
   type ComponentProps,
   FocusEvent,
@@ -11,14 +13,11 @@ import {
   useRef,
   useState,
 } from "react";
-import { useControlled } from "@base-ui/utils/useControlled";
-import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 
 import {
   Typography,
   type TypographyVariant,
 } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 
 export const TOGGLE_SIZES = ["sm", "md", "lg"] as const;
@@ -56,7 +55,7 @@ export interface ToggleProps extends Omit<
   /** The initially selected value (uncontrolled mode). */
   defaultValue?: string;
   /** Callback fired when the selected value changes. Receives the newly selected value. */
-  onValueChange?(value: string): void;
+  onValueChange?: (value: string) => void;
   /** When `true`, disables all toggle options, preventing interaction. @default false */
   disabled?: boolean;
   /** The name of the underlying select, used as the field name when submitted with form data. */
@@ -205,16 +204,16 @@ export function Toggle(props: ToggleProps) {
     [onKeyDown],
   );
 
+  const [focusedValue, setFocusedValue] = useState<string | undefined>(
+    undefined,
+  );
+
   const handleBlur = useCallback(
     (e: FocusEvent<HTMLDivElement>) => {
       onBlur?.(e);
       setFocusedValue(undefined);
     },
     [onBlur],
-  );
-
-  const [focusedValue, setFocusedValue] = useState<string | undefined>(
-    undefined,
   );
   const focusedIndex = options.findIndex((o) => o.value === focusedValue);
   const selectedIndex = options.findIndex((o) => o.value === selectedOption);

@@ -1,15 +1,14 @@
 "use client";
 
-import { type ReactNode, useMemo, useState } from "react";
 import { Select as BaseSelect } from "@base-ui/react/select";
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
+import { type ReactNode, useMemo, useState } from "react";
 
 import { CaretDown, CaretUp, Checkmark } from "@/components/icons/icons";
 import {
   Typography,
   type TypographyVariant,
 } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 import {
   getPortalContainer,
@@ -61,7 +60,7 @@ export interface SelectProps extends FormInputProps<
   /** The currently selected value for controlled usage. Pass `null` to represent no selection. */
   value?: string | null;
   /** Callback invoked with the new value whenever the selection changes, or `null` when the selection is cleared. */
-  onValueChange?(value: string | null): void;
+  onValueChange?: (value: string | null) => void;
   /** When `true`, marks the underlying select as required for form validation */
   required?: boolean;
   /** Specify the element or shadow root to portal the dropdown into */

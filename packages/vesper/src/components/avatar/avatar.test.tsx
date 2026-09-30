@@ -3,7 +3,6 @@ import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
 import { Avatar, AVATAR_SIZES } from "@/components/avatar/avatar";
-
 import "@/styles/test.css";
 
 afterEach(cleanup);
@@ -66,7 +65,7 @@ describe("avatar [unit]", () => {
 
 describe("avatar [snapshot]", () => {
   AVATAR_SIZES.forEach((size) => {
-    test(`${size}`, () => {
+    test(size, () => {
       const result = render(<Avatar size={size} />);
 
       expect(result.container.firstChild).toMatchSnapshot();

@@ -6,7 +6,6 @@ import {
   Typography,
   TYPOGRAPHY_VARIANTS,
 } from "@/components/typography/typography";
-
 import "@/styles/test.css";
 
 afterEach(cleanup);
@@ -60,7 +59,7 @@ describe("typography [unit]", () => {
 
 describe("typography [snapshot]", () => {
   TYPOGRAPHY_VARIANTS.forEach((variant) => {
-    test(`${variant}`, () => {
+    test(variant, () => {
       const result = render(
         <Typography variant={variant}>{variant}</Typography>,
       );

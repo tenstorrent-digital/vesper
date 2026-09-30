@@ -23,10 +23,10 @@ export default defineConfig({
 
 For apps and packages to use - these are configs that extend the `base` config.
 
-| Export                               | Purpose                                                        |
-| ------------------------------------ | -------------------------------------------------------------- |
-| `@repo/oxlint-config/base`           | Core + TypeScript + Turborepo rules, shared by everything      |
-| `@repo/oxlint-config/next`           | `base` plus React, React hooks, jsx-a11y, Next.js              |
+| Export | Purpose |
+| --- | --- |
+| `@repo/oxlint-config/base` | Core + TypeScript + Turborepo rules, shared by everything |
+| `@repo/oxlint-config/next` | `base` plus React, React hooks, jsx-a11y, Next.js |
 | `@repo/oxlint-config/react-internal` | `base` plus React and React hooks, for internal react packages |
 
 > [!NOTE]
@@ -35,8 +35,8 @@ For apps and packages to use - these are configs that extend the `base` config.
 
 ### Utilities
 
-| Export                                | Purpose                                                                  |
-| ------------------------------------- | ------------------------------------------------------------------------ |
+| Export | Purpose |
+| --- | --- |
 | `@repo/oxlint-config/ignore-patterns` | `sharedIgnorePatterns` — [see below](#ignore-patterns-are-not-inherited) |
 
 ## Notes

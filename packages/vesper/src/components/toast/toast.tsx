@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 
 import { Button } from "@/components/button/button";
@@ -12,7 +12,6 @@ import {
   WarningSolid,
 } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
-
 import { cn } from "@/utils/cn";
 
 import { animateToastEnter, animateToastExit } from "./animations";
@@ -89,12 +88,12 @@ function Toast({
   useEffect(() => {
     switch (state) {
       case "entering":
-        animateToastEnter(wrapperRef.current, toastRef.current, () =>
+        void animateToastEnter(wrapperRef.current, toastRef.current, () =>
           store.updateToastState(id, "active"),
         );
         break;
       case "dismissed":
-        animateToastExit(wrapperRef.current, toastRef.current, () =>
+        void animateToastExit(wrapperRef.current, toastRef.current, () =>
           store.destroyToast(id),
         );
         break;
@@ -130,7 +129,7 @@ function Toast({
       onPointerLeave={() => setHasPointer(false)}
       onFocus={() => setHasFocus(true)}
       onBlur={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+        if (!e.currentTarget.contains(e.relatedTarget)) {
           setHasFocus(false);
         }
       }}
@@ -310,9 +309,12 @@ export function Toasts(props: ToastsProps) {
     };
   }, []);
 
-  // makes rendering Toasts SSR-safe
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  // makes rendering Toasts SSR-safe (`false` on the server and during hydration)
+  const mounted = useSyncExternalStore(
+    subscribeNoop,
+    () => true,
+    () => false,
+  );
   if (!mounted) return null;
 
   return createPortal(
@@ -368,3 +370,7 @@ export function Toasts(props: ToastsProps) {
     container || document.body,
   );
 }
+
+// there is nothing to subscribe to, `useSyncExternalStore` is only used to
+// tell the server (and hydration) snapshot apart from the client snapshot
+const subscribeNoop = () => () => {};

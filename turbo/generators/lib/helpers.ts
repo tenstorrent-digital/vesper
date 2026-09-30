@@ -1,7 +1,6 @@
+import { PlopTypes } from "@turbo/gen";
 import fs from "node:fs";
 import path from "node:path";
-
-import { PlopTypes } from "@turbo/gen";
 
 /** a component name, or a separator between groups of components */
 type ComponentChoice = string | { type: "separator"; line: string };

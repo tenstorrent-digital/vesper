@@ -38,7 +38,7 @@ import type { ComponentProps, ElementType } from "react";
 export type Polymorphic<
   P,
   E extends ElementType,
-  O extends never | string | number | symbol = never,
+  O extends PropertyKey = never,
 > = P & {
   /** The `ElementType` to render this component as, eg. `as="button"` */
   as?: E;

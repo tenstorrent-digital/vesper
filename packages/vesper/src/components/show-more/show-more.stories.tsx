@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+
 import { useEffect, useState } from "storybook/internal/preview-api";
 
 import { ShowMore } from "@/components/show-more/show-more";

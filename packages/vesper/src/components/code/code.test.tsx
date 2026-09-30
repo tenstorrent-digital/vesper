@@ -3,7 +3,6 @@ import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
 import { Code, CODE_VARIANTS } from "@/components/code/code";
-
 import "@/styles/test.css";
 
 afterEach(cleanup);

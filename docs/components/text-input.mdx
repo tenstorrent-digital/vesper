@@ -23,20 +23,20 @@ export default function TextInputDemo() {
 
 ## Options
 
-| Prop              | Type                                                                                                                                     | Description                                                                                                       | Default     |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
-| `size`            | `"sm" \| "md" \| "lg"`                                                                                                                   | The size of the text input. Affects padding and typography.                                                       | `"md"`      |
-| `variant`         | `"default" \| "warning" \| "success" \| "error"`                                                                                         | The visual variant, which determines color scheme.                                                                | `"default"` |
-| `iconLeft`        | `ReactNode`                                                                                                                              | An optional icon rendered to the left of the input field.                                                         | —           |
-| `iconLeftAction`  | `{ handler: (e: MouseEvent<HTMLButtonElement>) => void; ariaLabel: string }`                                                             | When provided, the left icon renders as a `<button>` that calls `handler` when clicked, labelled by `ariaLabel`.  | —           |
-| `iconRight`       | `ReactNode`                                                                                                                              | An optional icon rendered to the right of the input field.                                                        | —           |
-| `iconRightAction` | `{ handler: (e: MouseEvent<HTMLButtonElement>) => void; ariaLabel: string }`                                                             | When provided, the right icon renders as a `<button>` that calls `handler` when clicked, labelled by `ariaLabel`. | —           |
-| `type`            | `"text" \| "email" \| "password" \| "url" \| "tel" \| "search" \| "number" \| "date" \| "datetime-local" \| "week" \| "month" \| "time"` | The HTML input type.                                                                                              | `"text"`    |
-| `ref`             | `Ref<HTMLInputElement>`                                                                                                                  | A ref forwarded to the underlying `<input>` element.                                                              | —           |
-| `placeholder`     | `string`                                                                                                                                 | Placeholder text for the input.                                                                                   | `" "`       |
-| `disabled`        | `boolean`                                                                                                                                | When `true`, prevents interaction.                                                                                | `false`     |
-| `required`        | `boolean`                                                                                                                                | When `true`, marks the input as required.                                                                         | `false`     |
-| `readOnly`        | `boolean`                                                                                                                                | When `true`, makes the input read-only.                                                                           | `false`     |
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `size` | `"sm" \| "md" \| "lg"` | The size of the text input. Affects padding and typography. | `"md"` |
+| `variant` | `"default" \| "warning" \| "success" \| "error"` | The visual variant, which determines color scheme. | `"default"` |
+| `iconLeft` | `ReactNode` | An optional icon rendered to the left of the input field. | — |
+| `iconLeftAction` | `{ handler: (e: MouseEvent<HTMLButtonElement>) => void; ariaLabel: string }` | When provided, the left icon renders as a `<button>` that calls `handler` when clicked, labelled by `ariaLabel`. | — |
+| `iconRight` | `ReactNode` | An optional icon rendered to the right of the input field. | — |
+| `iconRightAction` | `{ handler: (e: MouseEvent<HTMLButtonElement>) => void; ariaLabel: string }` | When provided, the right icon renders as a `<button>` that calls `handler` when clicked, labelled by `ariaLabel`. | — |
+| `type` | `"text" \| "email" \| "password" \| "url" \| "tel" \| "search" \| "number" \| "date" \| "datetime-local" \| "week" \| "month" \| "time"` | The HTML input type. | `"text"` |
+| `ref` | `Ref<HTMLInputElement>` | A ref forwarded to the underlying `<input>` element. | — |
+| `placeholder` | `string` | Placeholder text for the input. | `" "` |
+| `disabled` | `boolean` | When `true`, prevents interaction. | `false` |
+| `required` | `boolean` | When `true`, marks the input as required. | `false` |
+| `readOnly` | `boolean` | When `true`, makes the input read-only. | `false` |
 
 Form props (`value`, `disabled`, `name`, `form`, etc.), input props (`autoCorrect`, `spellCheck`, `autoFocus`, etc.), `aria-*` attributes, `ref`, and event handlers related to `focus`, `blur`, `scroll`, `input`, and `change` events are forwarded to the underlying `<input>` element. All other props are forwarded to the wrapping `<div>` element.
 

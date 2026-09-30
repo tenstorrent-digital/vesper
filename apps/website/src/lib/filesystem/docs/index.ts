@@ -1,9 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
 
+import type { DocEntry, DocExtension, DocGroup } from "./types";
+
 import { readFrontmatter, stripFrontmatter } from "./frontmatter";
 import { getTOC } from "./toc";
-import type { DocEntry, DocExtension, DocGroup } from "./types";
 
 const DOCS_DIR = path.join(
   process.cwd(), // `apps/website/`

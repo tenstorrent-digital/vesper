@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { ReactNode } from "react";
 
 import { Button } from "@/components/button/button";
 import {
@@ -18,7 +18,7 @@ function ModalStoryComponent({
   withButtons: boolean;
   contents: "none" | "inputs" | "long text";
 }) {
-  const modal = useModal();
+  const { ref, open, close } = useModal();
 
   let children: ReactNode = null;
   switch (contents) {
@@ -53,22 +53,22 @@ function ModalStoryComponent({
 
   return (
     <>
-      <Button onClick={modal.open} variant="contrast">
+      <Button onClick={open} variant="contrast">
         open modal
       </Button>
       <Modal
-        ref={modal.ref}
+        ref={ref}
         {...props}
         buttons={
           withButtons
             ? [
                 {
                   children: "cancel",
-                  onClick: () => modal.close(),
+                  onClick: () => close(),
                 },
                 {
                   children: "continue",
-                  onClick: () => modal.close(),
+                  onClick: () => close(),
                 },
               ]
             : []

@@ -3,7 +3,6 @@ import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { Sheet, type SheetProps, useSheet } from "@/components/sheet/sheet";
-
 import "@/styles/test.css";
 
 const TITLE = "Sheet title";
@@ -17,16 +16,16 @@ const BUTTONS: SheetProps["buttons"] = [
 afterEach(cleanup);
 
 function SheetWithHook(props: Omit<SheetProps, "ref">) {
-  const sheet = useSheet();
+  const { ref, open, close } = useSheet();
   return (
     <>
-      <button data-testid="open-trigger" onClick={sheet.open}>
+      <button data-testid="open-trigger" onClick={open}>
         Open
       </button>
-      <button data-testid="close-trigger" onClick={sheet.close}>
+      <button data-testid="close-trigger" onClick={close}>
         Close
       </button>
-      <Sheet ref={sheet.ref} {...props} />
+      <Sheet ref={ref} {...props} />
     </>
   );
 }
