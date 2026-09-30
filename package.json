@@ -15,6 +15,7 @@
     "test:vesper:update": "turbo run test:update --filter=@tenstorrent/vesper --",
     "test:watch:vesper": "turbo run test:watch --filter=@tenstorrent/vesper --",
     "quality": "turbo run quality --continue --",
+    "quality:ci": "turbo run quality --continue --log-prefix=none --",
     "quality:agent": "turbo run quality --continue --log-order=grouped --output-logs=errors-only --",
     "quality:fix": "turbo run quality:fix --continue=always --",
     "lint": "turbo run lint lint:root --continue --",

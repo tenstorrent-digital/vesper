@@ -33,6 +33,10 @@
       // dependency and `tsc` cannot run until vesper has been built
       "dependsOn": ["^build"]
     },
+    "check-types:ci": {
+      // runs `check-types` with output logs formatted for CI (github actions)
+      "dependsOn": ["^build"]
+    },
     "dev": {
       // ensure workspace deps are built (turbo restores `dist` from cache) so
       // we never boot against a missing or half-written `dist`
@@ -79,6 +83,17 @@
       // were not auto-fixable
       "dependsOn": ["//#lint:fix:root", "lint:fix", "//#format:fix"],
       "cache": false
+    },
+    "quality:ci": {
+      // runs `quality` with output logs formatted for CI (github actions)
+      //
+      // oxlint formats output when run in a github action automatically with github actions
+      // style annotations:
+      // https://oxc.rs/docs/guide/usage/linter/output-formats.html#format-github
+      //
+      // by passing passing `--log-prefix=none` to turbo run we suppress the app/package
+      // name annotations so the annotations aren't broken up by the prefixes
+      "dependsOn": ["quality"],
     },
 
     // oxlint and oxfmt are fast enough to cover the whole monorepo in a single

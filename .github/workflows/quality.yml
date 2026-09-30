@@ -46,7 +46,7 @@ jobs:
 
       # lint, format, check-types
       - name: Check linting, formatting and types
-        run: yarn quality:agent
+        run: yarn quality:ci
 
       # run unit tests too
       - name: Run unit tests
