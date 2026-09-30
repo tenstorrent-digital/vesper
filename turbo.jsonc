@@ -93,7 +93,7 @@
       //
       // by passing passing `--log-prefix=none` to turbo run we suppress the app/package
       // name annotations so the annotations aren't broken up by the prefixes
-      "dependsOn": ["quality"],
+      "dependsOn": ["quality"]
     },
 
     // oxlint and oxfmt are fast enough to cover the whole monorepo in a single
