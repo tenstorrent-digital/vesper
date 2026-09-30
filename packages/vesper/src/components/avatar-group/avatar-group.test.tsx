@@ -62,9 +62,9 @@ describe("avatar-group [unit]", () => {
   test("overflow placeholder with >100 avatars", () => {
     const result = render(
       <AvatarGroup
-        avatars={Array.from<{ src: string }>({ length: 101 }).fill({
+        avatars={Array.from({ length: 101 }, () => ({
           src: "https://unsplash.it/200/200",
-        })}
+        }))}
       />,
     );
     const el = result.container.querySelector(".vesper-avatar-group-overflow");
@@ -156,9 +156,9 @@ describe("avatar-group [snapshot]", () => {
   test(`>100 avatars`, () => {
     const result = render(
       <AvatarGroup
-        avatars={Array.from<{ src: string }>({ length: 101 }).fill({
+        avatars={Array.from({ length: 101 }, () => ({
           src: "https://unsplash.it/200/200",
-        })}
+        }))}
       />,
     );
 

@@ -9,6 +9,10 @@ import { ComponentProps, type CSSProperties, type Ref, useMemo } from "react";
 import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
 
+// `CSSProperties` that also allows css custom properties (eg. `--vesper-range-tick-position`)
+type CSSPropertiesWithVars = CSSProperties &
+  Record<`--${string}`, string | number>;
+
 const toValues = (value: number | number[]) =>
   Array.isArray(value) ? value : [value];
 
@@ -170,17 +174,18 @@ export function Range(props: RangeProps) {
       <BaseSlider.Control>
         <BaseSlider.Track className="vesper-range-track">
           {showTicks &&
-            tickPositions.map((position) => (
-              <span
-                key={position}
-                className="vesper-range-tick"
-                style={
-                  {
-                    ["--vesper-range-tick-position"]: position,
-                  } as CSSProperties
-                }
-              />
-            ))}
+            tickPositions.map((position) => {
+              const style: CSSPropertiesWithVars = {
+                ["--vesper-range-tick-position"]: position,
+              };
+              return (
+                <span
+                  key={position}
+                  className="vesper-range-tick"
+                  style={style}
+                />
+              );
+            })}
           <BaseSlider.Indicator className="vesper-range-range" />
           {thumbValues.map((_, index) => (
             <Typography
@@ -201,14 +206,12 @@ export function Range(props: RangeProps) {
               getAriaValueText={(_, value, index) =>
                 valueLabels?.[index] ?? `${value}`
               }
-              style={(state: SliderThumbState) => {
+              style={(state: SliderThumbState): CSSPropertiesWithVars => {
                 if (!showValueLabels) return {};
 
                 const thumbLabel = `"${valueLabels?.[index] ?? state.values[index]}"`;
 
-                return {
-                  ["--vesper-range-thumb-label"]: thumbLabel,
-                } as CSSProperties;
+                return { ["--vesper-range-thumb-label"]: thumbLabel };
               }}
             />
           ))}

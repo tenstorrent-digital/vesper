@@ -36,8 +36,8 @@ const getDocSlug = (docPath: string) =>
     .split(path.sep);
 
 /** extracts a doc's extension from its filesystem path */
-const getDocExt = (docPath: string) =>
-  docPath.slice(docPath.lastIndexOf(".") + 1) as DocExtension;
+const getDocExt = (docPath: string): DocExtension =>
+  docPath.endsWith(".mdx") ? "mdx" : "md";
 
 /** gets the raw text content of a doc file */
 const getRawDoc = (docPath: string) =>
@@ -120,7 +120,9 @@ export const getDocTree = (): DocGroup[] => {
   return (
     [...groups.entries()]
       // sort top-level docs first, then folders alphabetically
-      .sort(([a], [b]) => (a === "" ? -1 : b === "" ? 1 : a.localeCompare(b)))
+      .toSorted(([a], [b]) =>
+        a === "" ? -1 : b === "" ? 1 : a.localeCompare(b),
+      )
       .map(([folder, docPaths]) => ({ folder: folder || undefined, docPaths }))
   );
 };
@@ -130,7 +132,7 @@ export const getSidebarData = () =>
     folder,
     pages: docPaths
       .map(parseDoc)
-      .sort(docsSortOrder)
+      .toSorted(docsSortOrder)
       .map(({ href, frontmatter }) => ({
         href,
         title: frontmatter.title,

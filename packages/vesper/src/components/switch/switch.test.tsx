@@ -1,6 +1,14 @@
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import {
+  afterEach,
+  assert,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from "vitest";
 import { userEvent } from "vitest/browser";
 
 import {
@@ -85,10 +93,10 @@ describe("switch [unit]", () => {
 
   test("clicking toggles the switch", async () => {
     const { container } = render(<Switch label="toggle" />);
-    const checkbox = container.querySelector(
-      'input[type="checkbox"]',
-    ) as HTMLInputElement;
-    const label = container.firstChild as HTMLLabelElement;
+    const checkbox = container.querySelector('input[type="checkbox"]');
+    assert.instanceOf(checkbox, HTMLInputElement);
+    const label = container.firstChild;
+    assert.instanceOf(label, HTMLLabelElement);
 
     expect(checkbox).not.toBeChecked();
 
@@ -102,7 +110,8 @@ describe("switch [unit]", () => {
   test("onChange callback is called", async () => {
     const onChange = vi.fn();
     const { container } = render(<Switch onChange={onChange} label="toggle" />);
-    const label = container.firstChild as HTMLLabelElement;
+    const label = container.firstChild;
+    assert.instanceOf(label, HTMLLabelElement);
 
     await userEvent.click(label);
     expect(onChange).toHaveBeenCalled();
@@ -114,7 +123,8 @@ describe("switch [unit]", () => {
       <Switch disabled onChange={onChange} label="toggle" />,
     );
     const checkbox = result.getByRole("switch");
-    const label = result.container.firstChild as HTMLLabelElement;
+    const label = result.container.firstChild;
+    assert.instanceOf(label, HTMLLabelElement);
 
     fireEvent.click(label);
     expect(checkbox).not.toBeChecked();

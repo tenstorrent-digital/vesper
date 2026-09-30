@@ -75,14 +75,15 @@ export const resolveDocUrl = (
     splitAt === -1 ? [url, ""] : [url.slice(0, splitAt), url.slice(splitAt)];
 
   const segments = slug.slice(0, -1); // the document's own folder
-  urlPath.split("/").forEach((segment) => {
-    if (segment === "." || segment === "") return; // skip current/parent folder segments
+  for (const segment of urlPath.split("/")) {
+    if (segment === "." || segment === "") continue; // skip current/parent folder segments
     if (segment === "..") {
-      // go up a level for parent folder segments
+      // go up a level for parent folder segments, bailing out of links that
+      // point above the `docs/` folder
       if (segments.length === 0) return null;
       segments.pop();
     } else segments.push(segment.replace(/\.mdx?$/, ""));
-  });
+  }
 
   // then we can return the resolved path and add the hash/queries back
   return `/${segments.join("/")}${hash}`;

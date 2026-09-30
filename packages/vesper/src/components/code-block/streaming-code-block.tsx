@@ -28,7 +28,7 @@ export function StreamingCodeBlock({
   const shouldAutoScroll = useRef(true);
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current) return undefined;
 
     const observer = new MutationObserver(() => {
       if (!ref.current || !shouldAutoScroll.current) return;
@@ -49,7 +49,7 @@ export function StreamingCodeBlock({
       el.removeEventListener("scroll", handleScroll);
       observer.disconnect();
     };
-  }, [code]);
+  }, []);
 
   // remount the renderer (resetting its tokens) whenever a new stream is supplied
   const streamKey = `${getKey(code)}-${typeof lang === "string" ? lang : getKey(lang)}`;

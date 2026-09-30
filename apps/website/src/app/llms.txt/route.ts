@@ -36,7 +36,7 @@ export function GET() {
       "",
       ...docPaths
         .map(parseDoc)
-        .sort(docsSortOrder)
+        .toSorted(docsSortOrder)
         .map((doc) => {
           const link = getDocLink(doc);
           if (!doc.frontmatter.description) return `- ${link}`;

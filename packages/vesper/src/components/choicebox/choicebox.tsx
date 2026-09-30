@@ -199,7 +199,7 @@ function ChoiceboxMultiSelect({
         ),
       );
 
-      const currentIndex = inputs.indexOf(e.target as HTMLInputElement);
+      const currentIndex = inputs.findIndex((input) => input === e.target);
       if (currentIndex === -1) return;
 
       e.preventDefault();

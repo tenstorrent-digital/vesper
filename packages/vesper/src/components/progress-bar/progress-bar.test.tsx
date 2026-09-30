@@ -1,6 +1,6 @@
 import { cleanup, render } from "@testing-library/react";
 import axe from "axe-core";
-import { afterEach, beforeEach, describe, expect, test } from "vitest";
+import { afterEach, assert, beforeEach, describe, expect, test } from "vitest";
 
 import {
   PROGRESS_BAR_SIZES,
@@ -44,7 +44,8 @@ describe("progress-bar [unit]", () => {
 
     const indicator = result.container.querySelector(
       ".vesper-progress-bar-indicator",
-    ) as HTMLElement;
+    );
+    assert.instanceOf(indicator, HTMLElement);
 
     expect(indicator.style.width).toBe("23%");
   });
@@ -61,7 +62,8 @@ describe("progress-bar [unit]", () => {
 
     const indicator = result.container.querySelector(
       ".vesper-progress-bar-indicator",
-    ) as HTMLElement;
+    );
+    assert.instanceOf(indicator, HTMLElement);
 
     expect(indicator.style.width).toBe("20%");
   });

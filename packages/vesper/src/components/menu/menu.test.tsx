@@ -6,7 +6,15 @@ import {
   within,
 } from "@testing-library/react";
 import axe from "axe-core";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import {
+  afterEach,
+  assert,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from "vitest";
 import { userEvent } from "vitest/browser";
 
 import { Blackhole, Globe, Tenstorrent } from "@/components/icons/icons";
@@ -163,7 +171,9 @@ describe("menu [unit]", () => {
     await waitFor(() =>
       expect(document.querySelector(".vesper-menu-item")).not.toBeNull(),
     );
-    (document.querySelector(".vesper-menu-item") as HTMLElement).click();
+    const menuItem = document.querySelector(".vesper-menu-item");
+    assert.instanceOf(menuItem, HTMLElement);
+    menuItem.click();
     expect(onSelect).not.toHaveBeenCalled();
     expect(document.querySelector(".vesper-menu")).not.toBeNull();
   });
@@ -183,7 +193,9 @@ describe("menu [unit]", () => {
     await waitFor(() =>
       expect(document.querySelector(".vesper-menu-item")).not.toBeNull(),
     );
-    (document.querySelector(".vesper-menu-item") as HTMLElement).click();
+    const menuItem = document.querySelector(".vesper-menu-item");
+    assert.instanceOf(menuItem, HTMLElement);
+    menuItem.click();
     expect(onSelect).not.toHaveBeenCalled();
     expect(document.querySelector(".vesper-menu")).not.toBeNull();
   });

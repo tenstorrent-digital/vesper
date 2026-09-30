@@ -14,8 +14,6 @@
  * Run by turbo before `build`, `dev` and `check-types` (see `turbo.jsonc`)
  */
 
-import type { Root } from "mdast";
-
 import { readdir, readFile, rm, rmdir } from "node:fs/promises";
 import path from "node:path";
 
@@ -40,7 +38,7 @@ const getDocPaths = async (): Promise<string[]> => {
   return entries
     .filter((entry) => entry.isFile() && DOC_FILE_EXT.test(entry.name))
     .map((entry) => path.join(entry.parentPath, entry.name))
-    .sort();
+    .toSorted();
 };
 
 /** Every file currently under `generated/demos` */
@@ -93,7 +91,7 @@ const removeStaleDemoModules = async (
   // clean up the folders the removed demos leave behind, deepest first
   const directories = [
     ...new Set(stale.map((demoModulePath) => path.dirname(demoModulePath))),
-  ].sort((a, b) => b.length - a.length);
+  ].toSorted((a, b) => b.length - a.length);
 
   for (const directory of directories) {
     // fails (and is skipped) while the folder still holds demos

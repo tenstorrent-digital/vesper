@@ -25,7 +25,7 @@ export function CodeBlockPreWrapper({
 export function CopyToClipboardButton() {
   const [copied, setCopied] = useState(false);
   useEffect(() => {
-    if (!copied) return;
+    if (!copied) return undefined;
     const id = setTimeout(() => setCopied(false), 2000);
     return () => clearTimeout(id);
   }, [copied]);

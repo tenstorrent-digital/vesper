@@ -58,7 +58,7 @@ export function GET() {
   ].join("\n");
 
   const sections = getDocTree()
-    .flatMap(({ docPaths }) => docPaths.map(parseDoc).sort(docsSortOrder))
+    .flatMap(({ docPaths }) => docPaths.map(parseDoc).toSorted(docsSortOrder))
     .map(({ markdown, slug, href }) =>
       [
         "---",

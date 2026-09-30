@@ -1,8 +1,21 @@
 import type { RefObject } from "react";
 
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  type RenderResult,
+} from "@testing-library/react";
 import axe from "axe-core";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import {
+  afterEach,
+  assert,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from "vitest";
 import { userEvent } from "vitest/browser";
 
 import {
@@ -11,6 +24,20 @@ import {
   type ChoiceboxProps,
 } from "@/components/choicebox/choicebox";
 import "@/styles/test.css";
+
+// get every checkbox `<input>` rendered by a (multiselect) `Choicebox`
+const getCheckboxInputs = (result: RenderResult) =>
+  result.getAllByRole("checkbox").map((item) => {
+    assert.instanceOf(item, HTMLInputElement);
+    return item;
+  });
+
+// get the first checkbox rendered by a (multiselect) `Choicebox`
+const getFirstCheckbox = () => {
+  const fieldset = document.querySelector("fieldset")!;
+  const inputs = fieldset.querySelectorAll<HTMLInputElement>("input");
+  return inputs[0]!;
+};
 
 const CHOICEBOX_OPTIONS: ChoiceboxItem[] = [
   { value: "option-a", label: "Option A" },
@@ -617,7 +644,8 @@ describe("choicebox [unit]", () => {
       const { container } = render(
         <Choicebox name="test" multiselect options={CHOICEBOX_OPTIONS} />,
       );
-      const fieldset = container.firstElementChild as HTMLFieldSetElement;
+      const fieldset = container.firstElementChild;
+      assert.instanceOf(fieldset, HTMLFieldSetElement);
       const items = container.querySelectorAll<HTMLInputElement>("input");
 
       // Fire keydown directly on the fieldset (not an input)
@@ -666,7 +694,7 @@ describe("choicebox [unit]", () => {
             options={CHOICEBOX_OPTIONS}
           />,
         );
-        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+        const items = getCheckboxInputs(result);
         expect(items[0]!.validationMessage).toBe(
           "Please select at least 2 items",
         );
@@ -683,7 +711,7 @@ describe("choicebox [unit]", () => {
             options={CHOICEBOX_OPTIONS}
           />,
         );
-        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+        const items = getCheckboxInputs(result);
         expect(items[0]!.validationMessage).toBe("");
       });
 
@@ -697,7 +725,7 @@ describe("choicebox [unit]", () => {
             options={CHOICEBOX_OPTIONS}
           />,
         );
-        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+        const items = getCheckboxInputs(result);
 
         expect(items[0]!.validationMessage).toBe(
           "Please select at least 1 item",
@@ -719,7 +747,7 @@ describe("choicebox [unit]", () => {
             options={CHOICEBOX_OPTIONS}
           />,
         );
-        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+        const items = getCheckboxInputs(result);
 
         await userEvent.click(result.getByText("Option A"));
         expect(items[0]!.validationMessage).toBe("");
@@ -740,7 +768,7 @@ describe("choicebox [unit]", () => {
             options={CHOICEBOX_OPTIONS}
           />,
         );
-        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+        const items = getCheckboxInputs(result);
 
         expect(items[0]!.validationMessage).toBe(
           "Please select 1 or fewer items",
@@ -761,7 +789,7 @@ describe("choicebox [unit]", () => {
             options={CHOICEBOX_OPTIONS}
           />,
         );
-        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+        const items = getCheckboxInputs(result);
 
         expect(items[0]!.validationMessage).toBe("");
 
@@ -779,7 +807,7 @@ describe("choicebox [unit]", () => {
             options={CHOICEBOX_OPTIONS}
           />,
         );
-        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+        const items = getCheckboxInputs(result);
         expect(items[0]!.validationMessage).toBe(
           "Please select at least 1 item",
         );
@@ -796,7 +824,7 @@ describe("choicebox [unit]", () => {
             options={CHOICEBOX_OPTIONS}
           />,
         );
-        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+        const items = getCheckboxInputs(result);
 
         await userEvent.click(result.getByText("Option C"));
         expect(items[0]!.validationMessage).toBe(
@@ -814,12 +842,6 @@ describe("choicebox [unit]", () => {
             options={CHOICEBOX_OPTIONS}
           />,
         );
-
-        const getFirstCheckbox = () => {
-          const fieldset = document.querySelector("fieldset")!;
-          const inputs = fieldset.querySelectorAll<HTMLInputElement>("input");
-          return inputs[0]!;
-        };
 
         expect(getFirstCheckbox().validationMessage).toBe("");
 
@@ -849,12 +871,6 @@ describe("choicebox [unit]", () => {
           />,
         );
 
-        const getFirstCheckbox = () => {
-          const fieldset = document.querySelector("fieldset")!;
-          const inputs = fieldset.querySelectorAll<HTMLInputElement>("input");
-          return inputs[0]!;
-        };
-
         expect(getFirstCheckbox().validationMessage).toBe("");
 
         rerender(
@@ -881,7 +897,7 @@ describe("choicebox [unit]", () => {
             options={CHOICEBOX_OPTIONS}
           />,
         );
-        const items = result.getAllByRole("checkbox") as HTMLInputElement[];
+        const items = getCheckboxInputs(result);
 
         // Only the last checkbox should have the validity message
         expect(items[0]!.validationMessage).toBe(

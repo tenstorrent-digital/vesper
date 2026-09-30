@@ -3,6 +3,10 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Icon, ICON_KINDS, type IconKind } from "@/components/icons/icons";
 
+// the `icon` control selects an icon kind (instead of the `ReactNode` the prop expects)
+const isIconKind = (value: unknown): value is IconKind =>
+  ICON_KINDS.some((kind) => kind === value);
+
 const meta = {
   component: IconButton,
   argTypes: {
@@ -23,7 +27,10 @@ export const Playground: Story = {
     disabled: false,
   },
   render: ({ icon = "tenstorrent", ...props }) => (
-    <IconButton {...props} icon={icon && <Icon kind={icon as IconKind} />} />
+    <IconButton
+      {...props}
+      icon={isIconKind(icon) ? <Icon kind={icon} /> : icon}
+    />
   ),
 };
 Playground.storyName = "icon-button";

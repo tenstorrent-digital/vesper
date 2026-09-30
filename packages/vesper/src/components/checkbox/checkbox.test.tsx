@@ -1,7 +1,15 @@
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
 import { createRef } from "react";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import {
+  afterEach,
+  assert,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from "vitest";
 import { userEvent } from "vitest/browser";
 
 import {
@@ -149,7 +157,8 @@ describe("checkbox [unit]", () => {
 
   test("indeterminate state", () => {
     const result = render(<Checkbox text="Checkbox text" indeterminate />);
-    const checkbox = result.getByRole("checkbox") as HTMLInputElement;
+    const checkbox = result.getByRole("checkbox");
+    assert.instanceOf(checkbox, HTMLInputElement);
     expect(checkbox.indeterminate).toBe(true);
   });
 
@@ -161,12 +170,10 @@ describe("checkbox [unit]", () => {
 
   test("clicking toggles checked state", async () => {
     const { container } = render(<Checkbox text="Checkbox text" />);
-    const label = container.querySelector(
-      ".vesper-checkbox",
-    ) as HTMLLabelElement;
-    const checkbox = container.querySelector(
-      'input[type="checkbox"]',
-    ) as HTMLInputElement;
+    const label = container.querySelector(".vesper-checkbox");
+    assert.instanceOf(label, HTMLLabelElement);
+    const checkbox = container.querySelector('input[type="checkbox"]');
+    assert.instanceOf(checkbox, HTMLInputElement);
 
     expect(checkbox).not.toBeChecked();
 
@@ -182,9 +189,8 @@ describe("checkbox [unit]", () => {
     const { container } = render(
       <Checkbox text="Checkbox text" onChange={onChange} />,
     );
-    const label = container.querySelector(
-      ".vesper-checkbox",
-    ) as HTMLLabelElement;
+    const label = container.querySelector(".vesper-checkbox");
+    assert.instanceOf(label, HTMLLabelElement);
 
     await userEvent.click(label);
     expect(onChange).toHaveBeenCalled();
@@ -198,12 +204,10 @@ describe("checkbox [unit]", () => {
     const { container } = render(
       <Checkbox text="Checkbox text" disabled onChange={onChange} />,
     );
-    const label = container.querySelector(
-      ".vesper-checkbox",
-    ) as HTMLLabelElement;
-    const checkbox = container.querySelector(
-      'input[type="checkbox"]',
-    ) as HTMLInputElement;
+    const label = container.querySelector(".vesper-checkbox");
+    assert.instanceOf(label, HTMLLabelElement);
+    const checkbox = container.querySelector('input[type="checkbox"]');
+    assert.instanceOf(checkbox, HTMLInputElement);
 
     fireEvent.click(label);
     expect(onChange).not.toHaveBeenCalled();

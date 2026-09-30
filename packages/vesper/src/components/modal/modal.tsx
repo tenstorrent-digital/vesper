@@ -146,7 +146,7 @@ export function Modal(props: ModalProps) {
   useImperativeHandle(ref, () => ({ open, close }), [open, close]);
 
   useEffect(() => {
-    if (!closeOnClickOutside) return;
+    if (!closeOnClickOutside) return undefined;
 
     const handleClick = (e: PointerEvent) => {
       if (e.target === innerRef.current) close();

@@ -43,7 +43,7 @@ function Toast({
 
   // handle updating announcement text when content changes
   useEffect(() => {
-    if (state === "dismissed" || !toastRef.current) return;
+    if (state === "dismissed" || !toastRef.current) return undefined;
 
     const updateAnnouncement = () => {
       if (!toastRef.current) return;
@@ -74,7 +74,7 @@ function Toast({
   // handle timeout if present
   useEffect(() => {
     if (timeout === false || hasFocus || hasPointer) {
-      return;
+      return undefined;
     }
 
     const t = setTimeout(() => {
@@ -293,7 +293,7 @@ export function Toasts(props: ToastsProps) {
     };
     window.addEventListener("keydown", handleKeydown);
     return () => window.removeEventListener("keydown", handleKeydown);
-  }, [shortcut, toasts]);
+  }, [shortcut]);
 
   const previouslyFocused = useRef<HTMLElement | null>(null);
   const pointerDown = useRef(false);

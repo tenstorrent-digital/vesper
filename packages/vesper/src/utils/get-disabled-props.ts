@@ -1,5 +1,13 @@
 import type { ElementType, SyntheticEvent } from "react";
 
+// prevent (and stop the propagation of) an event on a disabled element
+function suppressEvent(
+  e: Pick<SyntheticEvent, "preventDefault" | "stopPropagation">,
+) {
+  e.preventDefault();
+  e.stopPropagation();
+}
+
 /**
  * Returns the appropriate disabled props for a polymorphic component based on whether the rendered element natively supports the `disabled` attribute.
  *
@@ -21,11 +29,6 @@ export function getDisabledProps(e: ElementType, isDisabled: boolean) {
 
   if (supportsNativeDisabledAttr) {
     return { disabled: true };
-  }
-
-  function suppressEvent(e: SyntheticEvent) {
-    e.preventDefault();
-    e.stopPropagation();
   }
 
   return {

@@ -41,7 +41,7 @@ export const getComponentChoices = (
         ),
     )
     .map((entry) => entry.name)
-    .sort();
+    .toSorted();
 
   const isDocumented = (component: string) =>
     fs.existsSync(path.join(root, DOCS_PATH, `${component}.mdx`));
@@ -67,6 +67,10 @@ export const getComponentChoices = (
   ];
 };
 
+// ignore case and dashes so `ShowMore` and `showmore` both match `show-more`
+const normalizeSearchTerm = (value: string) =>
+  value.toLowerCase().replace(/-/g, "");
+
 /**
  * narrows the component list as the user types, dropping any group separator
  * that is left without components under it
@@ -78,13 +82,12 @@ export const searchComponentChoices = (
   choices: ComponentChoice[],
   input = "",
 ): ComponentChoice[] => {
-  // ignore case and dashes so `ShowMore` and `showmore` both match `show-more`
-  const normalize = (value: string) => value.toLowerCase().replace(/-/g, "");
-  const search = normalize(input);
+  const search = normalizeSearchTerm(input);
 
   const matches = choices.filter(
     (choice) =>
-      typeof choice !== "string" || normalize(choice).includes(search),
+      typeof choice !== "string" ||
+      normalizeSearchTerm(choice).includes(search),
   );
 
   // a separator is only kept when a component follows it

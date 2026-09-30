@@ -1,7 +1,9 @@
 {
   "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
-    "noEmit": true
+    "noEmit": true,
+    // repo root files only ever run in node, so es2023 apis (eg. `toSorted`) are available
+    "lib": ["es2023", "DOM", "DOM.Iterable"]
   },
   "include": [
     // .ts and .mts files in monorepo root
