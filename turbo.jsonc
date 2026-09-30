@@ -81,7 +81,7 @@
       // similar to above, `quality:fix` uses `--continue=always` so that formatting
       // is still applied if `oxlint --fix` exits non-zero because some problems
       // were not auto-fixable
-      "dependsOn": ["//#lint:fix:root", "lint:fix", "//#format:fix"],
+      "dependsOn": ["//#lint:root:fix", "lint:fix", "//#format:fix"],
       "cache": false
     },
     "quality:ci": {
@@ -121,14 +121,14 @@
       // `apps/**` is linted by each app's own `lint` task
       "inputs": ["$TURBO_DEFAULT$", "!apps/**"]
     },
-    "//#lint:fix:root": {
+    "//#lint:root:fix": {
       "cache": false
     },
     "//#format": {},
     "//#format:fix": {
       // formatting runs after lint fixes so the two tools never write to the
       // same file at once
-      "dependsOn": ["//#lint:fix:root", "website#lint:fix"],
+      "dependsOn": ["//#lint:root:fix", "website#lint:fix"],
       "cache": false
     },
     "clean": {
