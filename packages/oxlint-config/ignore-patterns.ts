@@ -1,25 +1,31 @@
+import { type OxlintConfig } from "oxlint";
+
 /**
  * ignore patterns shared by every oxlint config in the monorepo
  *
- * these can NOT be inherited via `extends`: oxlint always resolves
- * `ignorePatterns` relative to the directory holding the config file that
+ * these are NOT be inherited via `extends`: oxlint always resolves
+ * `ignorePatterns` relative to the directory of the config file that
  * declares them, and rejects any pattern containing `..`
  *
- * that means patterns declared in this package would only ever be matched
- * against files inside `packages/oxlint-config/`, so each config has to spread
- * this array into its own `ignorePatterns` instead
+ * because of this, each oxlint config has to spread this array into its
+ * own `ignorePatterns` so that the ignore patterns are always resolved
+ * relative to the config file's directory
+ *
+ * should also be noted that oxlint respects .gitignore for file
+ * _discovery_ - this means that files ignored by .gitignore are not
+ * linted, but can be explicity named for oxlint to lint them
+ *
  *
  * @example oxlint.config.mts
  * ```ts
  * ignorePatterns: [
  *   ...sharedIgnorePatterns,
- *   ".sanity/**",
+ *   "test-results/**",
  *   "scripts/**",
- *   "components/studio/theme/**",
  * ]
  * ```
  */
-export const sharedIgnorePatterns: string[] = [
+export const sharedIgnorePatterns: OxlintConfig["ignorePatterns"] = [
   "**/node_modules/**",
   "**/dist/**",
   "**/.next/**",
