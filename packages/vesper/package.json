@@ -209,7 +209,7 @@
     "lint:fix": "eslint --fix",
     "scaffold:component": "turbo gen vesper-component",
     "generate:icons": "tsx scripts/generate-icons.ts && eslint src/components/icons/*.{ts,tsx} --fix && prettier --write src/components/icons/*.{ts,tsx}",
-    "generate:tailwind-merge": "tsx scripts/generate-tailwind-merge.ts && eslint src/utils/tailwind-merge.ts --fix && prettier --write src/utils/tailwind-merge.ts",
+    "generate:tailwind-merge": "tsx scripts/generate-tailwind-merge.ts && tsx scripts/generate-tailwind-merge-test.ts && eslint src/utils/tailwind-merge.ts src/utils/tailwind-merge.test.ts --fix && prettier --write src/utils/tailwind-merge.ts src/utils/tailwind-merge.test.ts",
     "test": "vitest run --coverage",
     "test:update": "vitest run --coverage --update",
     "test:watch": "vitest",

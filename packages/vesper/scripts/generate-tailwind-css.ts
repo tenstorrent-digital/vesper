@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { getTokenVariableGroups } from "./get-token-variable-groups";
+import { VARIABLE_GROUPS } from "./tailwind-merge-config";
 import { getGeneratedCodeWarning } from "./utils";
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning(
@@ -10,14 +10,12 @@ const AUTO_GENERATED_WARNING = getGeneratedCodeWarning(
 
 const OUTPUT_FILE = "src/styles/tailwind.css";
 
-const variables = getTokenVariableGroups();
-
 const imports = [
   `@import "./styles.css" layer(components);`,
   `@import "./tailwind-utilities.css";`,
 ].join("");
 
-const tokens = Object.entries(variables).flatMap(([group, tokens]) =>
+const tokens = Object.entries(VARIABLE_GROUPS).flatMap(([group, tokens]) =>
   tokens.map((t) => {
     return `--${group}-vesper-${t.value}: var(--vesper-${group}-${t.value});`;
   }),

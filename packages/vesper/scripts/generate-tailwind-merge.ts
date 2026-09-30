@@ -1,19 +1,18 @@
 import fs from "node:fs";
 import path from "node:path";
-import type {
-  ConfigExtension,
-  DefaultClassGroupIds,
-  DefaultThemeGroupIds,
-} from "tailwind-merge";
+import type { DefaultClassGroupIds } from "tailwind-merge";
 
+import type { UtilityGroup } from "./get-tailwind-utility-groups";
+import { type TokenGroup } from "./get-token-variable-groups";
 import {
-  getTailwindUtilityGroups,
-  UtilityGroup,
-} from "./get-tailwind-utility-groups";
-import {
-  getTokenVariableGroups,
-  type TokenGroup,
-} from "./get-token-variable-groups";
+  type ClassGroupTokenGroup,
+  CUSTOM_UTILITY_CLASSGROUPS,
+  EXTENDED_CLASSGROUP_PROPERTIES,
+  getVesperUtilityGroupId,
+  THEME_TOKEN_GROUPS,
+  UTILITY_GROUPS,
+  VARIABLE_GROUPS,
+} from "./tailwind-merge-config";
 import { getGeneratedCodeWarning } from "./utils";
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning(
@@ -22,89 +21,6 @@ const AUTO_GENERATED_WARNING = getGeneratedCodeWarning(
 
 const OUTPUT_FILE = "src/utils/tailwind-merge.ts";
 
-type DefaultExtension = ConfigExtension<
-  DefaultClassGroupIds,
-  DefaultThemeGroupIds
->;
-
-type DefaultTheme = NonNullable<
-  NonNullable<DefaultExtension["extend"]>["theme"]
->;
-
-type DefaultThemeProperty = keyof DefaultTheme;
-
-type ClassGroupTokenGroup = Exclude<TokenGroup, DefaultThemeProperty>;
-
-const EXTENDED_CLASSGROUP_PROPERTIES: Record<
-  ClassGroupTokenGroup,
-  [group: DefaultClassGroupIds, mapping: string][]
-> = {
-  "border-width": [
-    ["border-w", "border"],
-    ["border-w-x", "border-x"],
-    ["border-w-y", "border-y"],
-    ["border-w-s", "border-s"],
-    ["border-w-e", "border-e"],
-    ["border-w-bs", "border-bs"],
-    ["border-w-be", "border-be"],
-    ["border-w-t", "border-t"],
-    ["border-w-r", "border-r"],
-    ["border-w-b", "border-b"],
-    ["border-w-l", "border-l"],
-    ["divide-x", "divide-x"],
-    ["divide-y", "divide-y"],
-  ],
-  "outline-width": [["outline-w", "outline"]],
-  "transition-duration": [["duration", "duration"]],
-};
-
-type ThemeTokenGroup = Exclude<TokenGroup, ClassGroupTokenGroup>;
-
-const THEME_TOKEN_GROUPS = [
-  "color",
-  "font",
-  "leading",
-  "radius",
-  "shadow",
-  "spacing",
-  "tracking",
-] as const satisfies ThemeTokenGroup[];
-
-type AssertNever<T extends never> = T;
-
-export type AssertEveryThemeTokenGroupAccountedFor = AssertNever<
-  Exclude<ThemeTokenGroup, (typeof THEME_TOKEN_GROUPS)[number]>
->;
-
-const CUSTOM_UTILITY_CLASSGROUPS: Record<
-  UtilityGroup,
-  { conflicts: DefaultClassGroupIds[]; argument: TokenGroup | null }
-> = {
-  "dot-pattern": {
-    conflicts: ["bg-color", "bg-image", "bg-position", "bg-repeat"],
-    argument: "color",
-  },
-};
-
-const VARIABLE_GROUPS = getTokenVariableGroups();
-
-const UTILITY_GROUPS = getTailwindUtilityGroups();
-
-const getVesperUtilityGroupId = (group: UtilityGroup) => {
-  const names = UTILITY_GROUPS[group].map((u) => u.name);
-
-  const [first = [], ...rest] = names.map((name) => name.split("-"));
-  const length = first.findIndex((part, index) =>
-    rest.some((parts) => parts[index] !== part),
-  );
-
-  /** longest common prefix of class names, by their dash-separated parts */
-  const commonPrefix = first
-    .slice(0, length === -1 ? undefined : length)
-    .join("-");
-
-  return `vesper.${commonPrefix}`;
-};
 const createVesperClassGroupIds = () => {
   const ids = Object.keys(UTILITY_GROUPS)
     .map((group) => `"${getVesperUtilityGroupId(group as UtilityGroup)}"`)
@@ -114,18 +30,23 @@ const createVesperClassGroupIds = () => {
 };
 
 const createTokenLookupMap = () => {
-  const entries = Object.entries(VARIABLE_GROUPS).map(([group, tokens]) => {
+  const variables = Object.entries(VARIABLE_GROUPS).map(([group, tokens]) => {
     const values = tokens.map((token) => token.value);
-    const lookup = `new Set(${JSON.stringify(values)})`;
 
-    return `"${group}": ${lookup}`;
+    const set = `new Set(${JSON.stringify(values)})`;
+    const lookup = `(value: string) => TOKENS["${group}"].set.has(value)`;
+
+    const value = `{ set: ${set}, lookup: ${lookup} }`;
+
+    return { group, value };
   });
 
-  return `const lookup = { ${entries.join(", ")} }`;
+  const lookupMap = `const TOKENS = {${variables.map((v) => `"${v.group}": ${v.value}`).join(",")}}`;
+
+  return [lookupMap].join("\n");
 };
 
-const getTokenLookupFn = (group: TokenGroup) =>
-  `lookup["${group}"].has` as const;
+const getTokenLookupFn = (group: TokenGroup) => `TOKENS["${group}"].lookup`;
 
 const createExtendedTheme = () => {
   const entries = THEME_TOKEN_GROUPS.map((group) => {

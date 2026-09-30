@@ -74,6 +74,8 @@
         "$TURBO_ROOT$/packages/vesper/src/styles/tailwind.css",
         "$TURBO_ROOT$/packages/vesper/src/styles/tailwind-utilities.css",
         "$TURBO_ROOT$/packages/vesper/scripts/generate-tailwind-merge.ts",
+        "$TURBO_ROOT$/packages/vesper/scripts/generate-tailwind-merge-test.ts",
+        "$TURBO_ROOT$/packages/vesper/scripts/tailwind-merge-config.ts",
         "$TURBO_ROOT$/packages/vesper/scripts/utils.ts"
       ],
       "outputs": [
