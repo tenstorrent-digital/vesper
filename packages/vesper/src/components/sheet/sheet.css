@@ -36,11 +36,11 @@
     overlay var(--vesper-transition-duration-fast) ease allow-discrete;
 }
 
-.vesper-sheet-right .vesper-sheet-content {
+.vesper-sheet-right > .vesper-sheet-content {
   transform: translateX(50%);
 }
 
-.vesper-sheet-left .vesper-sheet-content {
+.vesper-sheet-left > .vesper-sheet-content {
   transform: translateX(-50%);
 }
 
@@ -64,7 +64,7 @@
 
 .vesper-sheet:popover-open,
 .vesper-sheet[open] {
-  .vesper-sheet-content {
+  & > .vesper-sheet-content {
     opacity: 1;
     transform: translateX(0);
   }
@@ -76,7 +76,7 @@
 .vesper-sheet-right:popover-open,
 .vesper-sheet-right[open] {
   @starting-style {
-    .vesper-sheet-content {
+    & > .vesper-sheet-content {
       opacity: 0;
       transform: translateX(50%);
     }
@@ -89,7 +89,7 @@
 .vesper-sheet-left:popover-open,
 .vesper-sheet-left[open] {
   @starting-style {
-    .vesper-sheet-content {
+    & > .vesper-sheet-content {
       opacity: 0;
       transform: translateX(-50%);
     }
@@ -99,11 +99,11 @@
   }
 }
 
-.vesper-sheet-left .vesper-sheet-content {
+.vesper-sheet-left > .vesper-sheet-content {
   left: var(--vesper-spacing-6);
 }
 
-.vesper-sheet-right .vesper-sheet-content {
+.vesper-sheet-right > .vesper-sheet-content {
   right: var(--vesper-spacing-6);
 }
 
