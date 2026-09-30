@@ -10,22 +10,26 @@ const UTILITY_GROUPS = ["dot-pattern"] as const;
 
 export type UtilityGroup = (typeof UTILITY_GROUPS)[number];
 
-type DelimiterToken = { type: "token"; value: Token & { type: "delim" } };
+type TokenType<T extends Token["type"]> = {
+  type: "token";
+  value: Token & { type: T };
+};
 
-type IdentityToken = { type: "token"; value: Token & { type: "ident" } };
+type DelimiterToken = TokenType<"delim">;
 
-type PreludeToken = DelimiterToken | IdentityToken;
-
-type UtilityData = string;
+type IdentityToken = TokenType<"ident">;
 
 const isIdentityToken = (t: TokenOrValue): t is IdentityToken =>
   t.type === "token" && t.value.type === "ident";
 
-const isDelimiterToken = (t: TokenOrValue): t is IdentityToken =>
+const isDelimiterToken = (t: TokenOrValue): t is DelimiterToken =>
   t.type === "token" && t.value.type === "delim";
 
-const isIdentityOrDelimiterToken = (t: TokenOrValue): t is PreludeToken =>
-  isIdentityToken(t) || isDelimiterToken(t);
+type UtilityData = {
+  name: string;
+  properties: string[];
+  acceptsArgument: boolean;
+};
 
 export const getTailwindUtilityGroups = (): Record<
   UtilityGroup,
@@ -47,11 +51,21 @@ export const getTailwindUtilityGroups = (): Record<
           if (rule.type !== "unknown" || rule.value.name !== "utility") return;
 
           const name = rule.value.prelude
-            .filter(isIdentityOrDelimiterToken)
+            .filter(isIdentityToken)
             .map((t) => t.value.value)
-            .join("");
+            .join("")
+            .split("-")
+            .filter(Boolean)
+            .join("-");
 
-          utilities[group].push(name);
+          const properties = (rule.value.block ?? [])
+            .filter(isIdentityToken)
+            .map((token) => token.value.value);
+
+          const acceptsArgument =
+            rule.value.prelude.filter(isDelimiterToken).length > 0;
+
+          utilities[group].push({ name, properties, acceptsArgument });
         },
       },
     });
