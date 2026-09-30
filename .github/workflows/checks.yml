@@ -1,0 +1,135 @@
+# run checks (in parallel)
+#
+# 1. quality (linting, formatting, and type checking)
+# 2. tests (vesper unit tests)
+#
+# Github runs worflow jobs for every PR in a stack (each one is evaluated as if it targets
+# the stack's base, eg. `main`), so to save CI, only run the job for stacked PRs where it matters:
+#
+# run checks workflow on:
+# - `push` to `main`
+# - `workflow_dispatch` runs
+# - PRs against `main`:
+#   - all unstacked PRs
+#   - stacked PRs:
+#     - for the lowest PR in the stack (which targets `main` directly)
+#     - for the top PR in the stack (which contains every change in the stack)
+#     - (middle PRs in a stack are skipped and will report as successful)
+#       > NOTE:
+#       > to run checks on a middle PR in a stack, you can run checks manually
+#       > in the Actions tab
+
+name: Checks
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    # The vouch workflows push `.github/VOUCHED.td` to `main` using a GitHub App
+    # token, which (unlike `GITHUB_TOKEN`) does trigger workflows. That commit
+    # can't affect tests, so don't spend a run on it. Only applies to `push`;
+    # pull request runs are unaffected, so the required check still gates PRs.
+    paths-ignore:
+      - ".github/VOUCHED.td"
+
+  # Empty `workflow_dispatch` allows this workflow to be run manually from the Actions tab:
+  workflow_dispatch:
+
+env:
+  SHOULD_CHECKS_RUN: >-
+    ${{
+      github.event.pull_request.stack == null ||
+      github.event.pull_request.stack.base.ref == github.event.pull_request.base.ref ||
+      github.event.pull_request.stack.position == github.event.pull_request.stack.size
+    }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Quality
+    if: ${{ env.SHOULD_CHECKS_RUN }}
+    runs-on: ubuntu-latest
+    env:
+      DO_NOT_TRACK: 1
+      CI: true
+      # use Vercel/Turbo remote cache when available
+      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+      # note: `TURBO_TOKEN` is set per-step (below) so the secret isn't exposed to `checkout`
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          # Runs untrusted PR code, so keep the token out of `.git/config`
+          persist-credentials: false
+
+      - name: Stacked PR info
+        if: github.event.pull_request.stack != null
+        run: |
+          echo "Stacked PR"
+          echo "Stack base ref: ${{ github.event.pull_request.stack.base.ref }}"
+          echo "☰ PR ${{ github.event.pull_request.stack.position }} of ${{ github.event.pull_request.stack.size }}"
+
+      - name: Setup Node, install dependencies
+        uses: ./.github/actions/setup
+        id: setup
+
+      # lint, format, check-types
+      - name: "Run lint, format, and type checking"
+        run: yarn quality:ci
+        env:
+          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+
+  test:
+    name: Test
+    if: ${{ env.SHOULD_CHECKS_RUN }}
+    runs-on: ubuntu-latest
+    env:
+      DO_NOT_TRACK: 1
+      CI: true
+      # use Vercel/Turbo remote cache when available
+      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+      # note: `TURBO_TOKEN` is set per-step (below) so the secret isn't exposed to `checkout`
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          # Runs untrusted PR code, so keep the token out of `.git/config`
+          persist-credentials: false
+
+      - name: Stacked PR info
+        if: github.event.pull_request.stack != null
+        run: |
+          echo "Stacked PR"
+          echo "Stack base ref: ${{ github.event.pull_request.stack.base.ref }}"
+          echo "☰ PR ${{ github.event.pull_request.stack.position }} of ${{ github.event.pull_request.stack.size }}"
+
+      - name: Setup Node, install dependencies
+        uses: ./.github/actions/setup
+        id: setup
+        with:
+          # vesper's unit tests run in (playwright's) chromium
+          playwright: "true"
+
+      - name: "Run tests (packages/vesper)"
+        run: yarn test:vesper
+        env:
+          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+
+      - name: Upload Artifacts
+        # upload test output artifacts on failure
+        if: ${{ !cancelled() && failure() }}
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: test-output
+          path: |
+            packages/vesper/test-results/
+            packages/vesper/coverage/
+          retention-days: 7
