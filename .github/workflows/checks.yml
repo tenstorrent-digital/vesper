@@ -35,14 +35,6 @@ on:
   # Empty `workflow_dispatch` allows this workflow to be run manually from the Actions tab:
   workflow_dispatch:
 
-env:
-  SHOULD_CHECKS_RUN: >-
-    ${{
-      github.event.pull_request.stack == null ||
-      github.event.pull_request.stack.base.ref == github.event.pull_request.base.ref ||
-      github.event.pull_request.stack.position == github.event.pull_request.stack.size
-    }}
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
@@ -51,9 +43,14 @@ permissions:
   contents: read
 
 jobs:
+  # lint, format, type checks
   quality:
     name: Quality
-    if: ${{ env.SHOULD_CHECKS_RUN }}
+    # note: condition is shared with `test` via a YAML anchor
+    if: &should-checks-run >-
+      github.event.pull_request.stack == null ||
+      github.event.pull_request.stack.base.ref == github.event.pull_request.base.ref ||
+      github.event.pull_request.stack.position == github.event.pull_request.stack.size
     runs-on: ubuntu-latest
     env:
       DO_NOT_TRACK: 1
@@ -78,7 +75,6 @@ jobs:
 
       - name: Setup Node, install dependencies
         uses: ./.github/actions/setup
-        id: setup
 
       # lint, format, check-types
       - name: "Run lint, format, and type checking"
@@ -86,9 +82,10 @@ jobs:
         env:
           TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
 
+  # vesper unit tests
   test:
     name: Test
-    if: ${{ env.SHOULD_CHECKS_RUN }}
+    if: *should-checks-run
     runs-on: ubuntu-latest
     env:
       DO_NOT_TRACK: 1
@@ -113,7 +110,6 @@ jobs:
 
       - name: Setup Node, install dependencies
         uses: ./.github/actions/setup
-        id: setup
         with:
           # vesper's unit tests run in (playwright's) chromium
           playwright: "true"
