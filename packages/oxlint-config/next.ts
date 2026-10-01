@@ -16,7 +16,7 @@ export default defineConfig({
   rules: {
     // allow using JSX without React in scope
     "react/react-in-jsx-scope": "off",
-    // some object keys from sanity use underscores (_ref, _type)
+    // some object keys from sanity start with `_` (_ref, _type)
     "no-underscore-dangle": "off",
     // allow using `index` as key
     "react/no-array-index-key": "off",

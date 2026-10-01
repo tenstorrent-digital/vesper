@@ -34,7 +34,7 @@ export interface DocEntry {
   slug: string[];
   /** route for this doc, eg. `/components/accordion` */
   href: string;
-  /** doc's file extension (we need to resolve the right dynamic import) */
+  /** doc's file extension (we need to resolve the right `import()` path) */
   ext: DocExtension;
   frontmatter: Frontmatter;
   toc: TOCItem[];
