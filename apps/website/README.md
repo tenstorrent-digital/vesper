@@ -65,6 +65,6 @@ A demo is a self-contained module. It imports what it uses and default exports t
 
 Each demo is extracted into a real module under `generated/demos/` by the `generate:demos` task, which every task that reads them (`build`, `dev`, `lint`, `check-types`) depends on.
 
-While `yarn dev` is running, editing or adding a demo rewrites its module as the document is recompiled.
+During `yarn dev`, editing or adding a demo rewrites its module as the document is recompiled.
 
 See also [`scripts/generate-demos.mts`](./scripts/generate-demos.mts) and [`src/lib/mdx/remark-tsx-demos.mts`](./src/lib/mdx/remark-tsx-demos.mts).
