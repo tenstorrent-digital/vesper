@@ -24,7 +24,7 @@ export default function ProgressBarDemo() {
 | `variant` | `"default" \| "steps"` | `"default"` renders a smooth indicator. `"steps"` clamps the width to the nearest tick value. | `"default"` |
 | `steps` | `number` | The number of segments when variant is `"steps"`. Must be an integer greater than `0`. | `10` |
 | `stepRoundingStrategy` | `(n: number) => number` | Determines how to clamp progress to the nearest tick value. | `Math.round` |
-| `animated` | `boolean` | Whether to animate progress bar value changes. | `false` |
+| `animated` | `boolean` | Whether to animate changes to the progress bar's value. | `false` |
 
 Any other props are forwarded to the wrapping `<div>` element.
 
