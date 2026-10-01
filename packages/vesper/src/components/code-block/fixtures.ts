@@ -319,7 +319,7 @@ yarn add @vesper/design-system
 Import components _directly_ from the package. Each component supports
 ~~legacy props~~ the new **slot-based** API.
 
-> **Note:** All components are fully accessible and follow
+> **Tip:** All components are fully accessible and follow
 > WAI-ARIA guidelines for keyboard navigation.
 
 ## Components
