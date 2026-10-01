@@ -41,6 +41,8 @@ concurrency:
 
 permissions:
   contents: read
+  # exchanged for a short-lived Vercel Remote Cache token (see `.github/actions/turbo-cache`)
+  id-token: write
 
 jobs:
   # lint, format, type checks
@@ -56,9 +58,6 @@ jobs:
     env:
       DO_NOT_TRACK: 1
       CI: true
-      # use Vercel/Turbo remote cache when available
-      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
-      # note: `TURBO_TOKEN` is set per-step (below) so the secret isn't exposed to `checkout`
 
     steps:
       - name: Checkout
@@ -77,11 +76,15 @@ jobs:
       - name: Setup Node, install dependencies
         uses: ./.github/actions/setup
 
+      # turbo's local (`actions/cache`) and remote (Vercel) caches
+      - name: Setup turbo cache
+        uses: ./.github/actions/turbo-cache
+        with:
+          team: ${{ vars.TURBO_TEAM }}
+
       # lint, format, check-types
       - name: "Run lint, format, and type checking"
         run: yarn quality:ci
-        env:
-          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
 
   # vesper unit tests
   test:
@@ -92,9 +95,6 @@ jobs:
     env:
       DO_NOT_TRACK: 1
       CI: true
-      # use Vercel/Turbo remote cache when available
-      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
-      # note: `TURBO_TOKEN` is set per-step (below) so the secret isn't exposed to `checkout`
 
     steps:
       - name: Checkout
@@ -116,10 +116,14 @@ jobs:
           # vesper's unit tests run in (playwright's) chromium
           playwright: "true"
 
+      # turbo's local (`actions/cache`) and remote (Vercel) caches
+      - name: Setup turbo cache
+        uses: ./.github/actions/turbo-cache
+        with:
+          team: ${{ vars.TURBO_TEAM }}
+
       - name: "Run tests (packages/vesper)"
         run: yarn test:vesper
-        env:
-          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
 
       - name: Upload Artifacts
         # upload test output artifacts on failure
