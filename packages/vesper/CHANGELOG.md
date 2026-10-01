@@ -1,5 +1,12 @@
 # @tenstorrent/vesper
 
+## 0.3.1
+
+### Patch Changes
+
+- 0b7702e: Declare callback props (eg. `onValueChange`, `onOpenChange`) as function properties instead of methods, so they are type-checked strictly (instead of bivariantly) against the handlers passed to them
+- 774ba29: Bug fix: tighten CSS selector scoping across `accordion`, `sheet`, `badge`, `tag`, `button`, `admonition`, `tabs`, `chip`, and `text-button` so nested components do not inherit styles from parent components
+
 ## 0.3.0
 
 ### Minor Changes
