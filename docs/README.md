@@ -11,7 +11,7 @@ Documents in `docs/` map directly to pages on the documentation site in `@apps/w
 | `getting-started.mdx`      | `/getting-started`       |
 | `components/accordion.mdx` | `/components/accordion`  |
 
-It should be noted that `docs/README.{md,mdx}` (this file) is excluded from the documentation site
+`docs/README.{md,mdx}` (this file) is excluded from the documentation site
 
 > [!IMPORTANT]
 >
