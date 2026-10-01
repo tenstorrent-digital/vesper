@@ -100,7 +100,7 @@ export interface ComboboxProps extends FormInputProps<
 /**
  * A form-ready, searchable select component that filters a list of options as the user types.
  *
- * @param {(ComboboxItem | string)[]} props.options - The list of selectable options displayed in the dropdown. Strings are treated as both the label and the value of an option. See {@link ComboboxItem} for the shape of each option
+ * @param {(ComboboxItem | string)[]} props.options - The list of selectable options displayed in the dropdown. Strings are treated as both the label and the value of an option. See {@link ComboboxItem} for the structure of each option
  * @param {ComboboxSize} [props.size] - (optional) The size of the combobox. Affects padding and typography. @default md
  * @param {ComboboxVariant} [props.variant] - (optional) The visual variant determining color scheme and message icon. @default default
  * @param {string} [props.label] - (optional) A label displayed above the input

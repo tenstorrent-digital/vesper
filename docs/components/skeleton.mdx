@@ -1,11 +1,11 @@
 ---
 title: Skeleton
-description: A placeholder loading component that mimics the shape of content while it loads.
+description: A placeholder loading component that mimics the layout of content while it loads.
 ---
 
 # Skeleton
 
-A placeholder loading component that mimics the shape of content while it loads. Supports box, pill, and circle shapes with configurable dimensions.
+A placeholder loading component that mimics the layout of content while it loads. Supports box, pill, and circle shapes with configurable dimensions.
 
 ```tsx demo
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
@@ -39,7 +39,7 @@ export default function SkeletonDemo() {
 
 | Prop | Type | Description | Default |
 | --- | --- | --- | --- |
-| `shape` | `"box" \| "pill" \| "circle"` | The shape of the skeleton placeholder. | `"box"` |
+| `shape` | `"box" \| "pill" \| "circle"` | Whether the skeleton placeholder renders as a box, pill, or circle. | `"box"` |
 | `size` | `number \| string` | Sets both width and height simultaneously. Overrides individual `width` and `height` props. | - |
 | `width` | `number \| string` | The width of the skeleton. | - |
 | `height` | `number \| string` | The height of the skeleton. | - |
@@ -74,7 +74,7 @@ export default function SizedSkeleton() {
 
 ### Skeleton shapes
 
-A `Skeleton` can be rendered in one of three shapes: `"box"`, `"pill"`, or `"circle"`. The default shape is `"box"`, which is a rectangle with slightly rounded corners:
+A `Skeleton` can be rendered as a `"box"`, `"pill"`, or `"circle"`. It defaults to `"box"`, which is a rectangle with slightly rounded corners:
 
 ```tsx demo
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
