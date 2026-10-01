@@ -29,7 +29,8 @@ import type { ComponentProps, ElementType } from "react";
  * const MyComponent<E extends ElementType = "div">(
  *   props: MyComponentProps<E>
  * ) {
- *   const { as: Component = "div", variant, ...rest } = props
+ *   const { as = "div", variant, ...rest } = props
+ *   const Component = as
  *
  *   return <Component {...rest} />
  * }

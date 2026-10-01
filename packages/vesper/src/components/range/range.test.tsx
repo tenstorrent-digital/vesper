@@ -172,7 +172,7 @@ describe("range [unit]", () => {
       />,
     );
 
-    // Ticks between min and max: Math.ceil((5 - 0) / 1) - 1 = 4
+    // Ticks between min and max = Math.ceil((5 - 0) / 1) - 1 = 4
     const ticks = getRangeTicks(result);
     expect(ticks).toHaveLength(4);
   });
