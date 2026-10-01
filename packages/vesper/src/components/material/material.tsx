@@ -29,16 +29,16 @@ export type InteractiveMaterialState =
   (typeof INTERACTIVE_MATERIAL_STATES)[number];
 
 type NonInteractiveMaterialProps = {
-  /** The visual style variant of the material surface. @default outlined */
+  /** The visual style variant of the material. @default outlined */
   variant?: Exclude<MaterialVariant, "interactive">;
-  /** The current interaction state of the material surface. Only applicable when `variant` is `"interactive"`. */
+  /** The current interaction state of the material. Only applicable when `variant` is `"interactive"`. */
   state?: never;
 };
 
 type InteractiveMaterialProps = {
   /** Must be set to `"interactive"` to enable interactive states such as active, selected, and disabled. */
   variant: Extract<MaterialVariant, "interactive">;
-  /** The current interaction state of the material surface. Only applicable when `variant` is `"interactive"`. */
+  /** The current interaction state of the material. Only applicable when `variant` is `"interactive"`. */
   state?: InteractiveMaterialState;
 };
 
@@ -50,9 +50,9 @@ export type MaterialProps<E extends ElementType = "div"> = Polymorphic<
 >;
 
 /**
- * A polymorphic surface component that applies visual elevation and border treatments to its children.
+ * A polymorphic container component that applies visual elevation and border treatments to its children.
  *
- * @param {MaterialVariant} [props.variant] - (optional) The visual style variant of the material surface. @default outlined
+ * @param {MaterialVariant} [props.variant] - (optional) The visual style variant of the material. @default outlined
  * @param {InteractiveMaterialState} [props.state] - (optional) The interaction state, only applicable when `variant` is `"interactive"`
  * @param {React.ElementType} [props.as] - (optional) Element type to render. @default div
  *
