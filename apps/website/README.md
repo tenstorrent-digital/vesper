@@ -63,7 +63,7 @@ export default function UncontrolledToggle() {
 
 A demo is a self-contained module. It imports what it uses and default exports the component to render. This also makes it a complete and copyable example on GitHub (where it is only ever a code block).
 
-Each demo is extracted into a real module under `generated/demos/` by the `generate:demos` task, which every task that reads them (`build`, `dev`, `lint`, `check-types`) depends on.
+Each demo is extracted into a real module under `generated/demos/` by the `generate:demos` task. The tasks that read them (`build`, `dev`, `lint`, `check-types`) depend on it.
 
 During `yarn dev`, editing or adding a demo rewrites its module as the document is recompiled.
 
