@@ -4,7 +4,7 @@
 # `yarn install` if the cache is not available
 #
 # can be used for any workflow that needs to setup node, run `install` for monorepo
-# dependencies, or install and use playwright browsers
+# dependencies, or install and use Playwright browsers
 
 name: Setup
 description: Set up Node, install monorepo dependencies (cached) and (optionally) install Playwright browsers
