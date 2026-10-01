@@ -55,7 +55,7 @@ We set default plugins explicitly in `plugins` in [our `base.ts` config](./base.
 
 #### JS plugins (`eslint` plugins)
 
-Rules with no native Oxlint implementation (`eslint` plugins) are loaded as [JS plugins](https://oxc.rs/docs/guide/usage/linter/js-plugins). We use `eslint-plugin-turbo`.
+Rules that Oxlint doesn't support natively (`eslint` plugins) are loaded as [JS plugins](https://oxc.rs/docs/guide/usage/linter/js-plugins). We use `eslint-plugin-turbo`.
 
 ### Rule Categories
 

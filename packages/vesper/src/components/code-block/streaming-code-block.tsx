@@ -69,11 +69,11 @@ export function StreamingCodeBlock({
 }
 
 /**
- * This component is a re-implementation of the `ShikiStreamRenderer` component from the shiki repo:
+ * This component is a rewrite of the `ShikiStreamRenderer` component from the shiki repo:
  *
  * https://github.com/shikijs/shiki/blob/main/packages/stream/src/react/renderer.ts
  *
- * The main difference between shiki's implementation and our implementation is we use an `AbortController` to abort the `WriteableStream` when the code/lang props change. This allows consumers to swap streamed code props on-demand without previously-supplied streams interfering with the rendered output of the new token streams.
+ * The main difference between shiki's version and ours is that we use an `AbortController` to abort the `WriteableStream` when the code/lang props change. This allows consumers to swap streamed code props on-demand without previously-supplied streams interfering with the rendered output of the new token streams.
  * */
 function TokenStreamRenderer({
   code,

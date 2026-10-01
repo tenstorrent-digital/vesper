@@ -1,6 +1,6 @@
 /*
   `#breadcrumbs` fade sides in/out if scrolled
-  @see implementation in `./globals.css`
+  @see `./globals.css`
 */
 @property --left-fade {
   syntax: "<length>";

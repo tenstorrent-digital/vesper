@@ -63,7 +63,7 @@ const icons = iconFiles.map((fileName) => {
   const kind = getIconKind(fileName);
   const componentName = getIconComponentName(kind);
 
-  // optimize the raw svg with SVGO, and prefix IDs using the icon id to prevent
+  // minify the raw svg with SVGO, and prefix IDs using the icon id to prevent
   // collisions between elements inside other svgs
   const optimizedSvg = optimize(raw, {
     plugins: [{ name: "prefixIds", params: { prefix: kind } }],

@@ -169,7 +169,7 @@ const components = {
        * for now, falling back to `0` alongside `sizes` allows next/image to
        * render images, but they are full width
        *
-       * we will need to think through a better implementation here later that supports
+       * we will need to think through a better approach here later that supports
        * both:
        *
        * 1. relative image _files_ (either in inside `docs/assets/**` or similar)
