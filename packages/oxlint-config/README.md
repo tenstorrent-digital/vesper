@@ -37,7 +37,7 @@ For apps and packages to use - these are configs that extend the `base` config.
 
 | Export | Purpose |
 | --- | --- |
-| `@repo/oxlint-config/ignore-patterns` | `sharedIgnorePatterns` — [see below](#ignore-patterns-are-not-inherited) |
+| `@repo/oxlint-config/ignore-patterns` | `sharedIgnorePatterns` - [see below](#ignore-patterns-are-not-inherited) |
 
 ## Notes
 
@@ -67,8 +67,8 @@ Groups of rules in Oxlint can be enabled (with severity) using [`categories`](ht
 
 These rules are executed by [`tsgolint`](https://github.com/oxc-project/tsgolint), which is a separate binary (`oxlint-tsgolint`) built on [`typescript-go`](https://github.com/microsoft/typescript-go). Two consequences:
 
-- `oxlint-tsgolint` has to be installed alongside `oxlint` — it is a `devDependency` of the repo root (where `oxlint .` runs) and of each app/package that has `oxlint`
-- **TypeScript 7+ is required**, and every `tsconfig.json` has to be valid under TypeScript 7 — options removed in 6.0/7.0 (`baseUrl`, `moduleResolution: node10`, `downlevelIteration`, …) make `tsgolint` skip the project, and `types` no longer defaults to "everything in `node_modules/@types`", so global type packages are listed explicitly
+- `oxlint-tsgolint` has to be installed alongside `oxlint` - it is a `devDependency` of the repo root (where `oxlint .` runs) and of each app/package that has `oxlint`
+- **TypeScript 7+ is required**, and every `tsconfig.json` has to be valid under TypeScript 7 - options removed in 6.0/7.0 (`baseUrl`, `moduleResolution: node10`, `downlevelIteration`, …) make `tsgolint` skip the project, and `types` no longer defaults to "everything in `node_modules/@types`", so global type packages are listed explicitly
 
 > [!NOTE]
 >

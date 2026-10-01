@@ -112,7 +112,7 @@ export const getDocTree = (): DocGroup[] => {
   getDocsPaths().forEach((path) => {
     const slug = getDocSlug(path);
 
-    // only the first segment groups a doc — `docs/a/b/c.mdx` groups under `a`
+    // only the first segment groups a doc - `docs/a/b/c.mdx` groups under `a`
     const folder = slug.length > 1 ? slug[0]! : "";
     groups.set(folder, [...(groups.get(folder) ?? []), path]);
   });
