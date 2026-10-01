@@ -20,7 +20,7 @@ export const BASE_URL: string =
  * port Storybook runs on in @tenstorrent/vesper in dev
  *
  * must match the port in `@tenstorrent/vesper`'s `dev` script, which runs storybook
- * with `--exact-port` so a port clash fails loudly instead of silently
+ * with `--exact-port` so a port clash exits with an error instead of silently
  * relocating and breaking this rewrite
  *
  * (should figure out how to set this across the monorepo later)
