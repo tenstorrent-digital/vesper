@@ -26,7 +26,7 @@
     "lint:fix": "turbo run lint:fix lint:root:fix --continue=always --",
     "lint:root": "oxlint --ignore-pattern 'apps/**' .",
     "lint:root:fix": "oxlint --fix --ignore-pattern 'apps/**' .",
-    "lint:prose": "val sync && vale --no-global .",
+    "lint:prose": "vale sync && vale --no-global .",
     "format": "oxfmt --check",
     "format:fix": "oxfmt",
     "check-types": "turbo run check-types --",
