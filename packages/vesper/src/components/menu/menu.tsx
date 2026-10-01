@@ -19,7 +19,7 @@ export type MenuItemProps = {
   description?: string;
   /** An optional icon element rendered to the left of the menu item text. */
   icon?: ReactNode;
-  /** The visual and behavioral style of the menu item. `"locked"` and `"disabled"` both prevent interaction; `"selected"` displays a checkmark; `"locked"` displays a lock icon. @default default */
+  /** The visual and behavioral style of the menu item. `"locked"` and `"disabled"` both prevent interaction. `"selected"` displays a checkmark, and `"locked"` displays a lock icon. @default default */
   style?: "default" | "danger" | "locked" | "selected" | "disabled";
   /** Callback fired when the menu item is selected. */
   onSelect: () => void;

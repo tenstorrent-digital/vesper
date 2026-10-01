@@ -47,7 +47,7 @@ export interface ModalProps extends Omit<
    * The effective max height is the minimum of this value and `calc(100vh - var(--vesper-spacing-16))`, ensuring the modal never exceeds the viewport height minus spacing. @default 640.
    */
   maxHeight?: number | string;
-  /** An optional array of button props to render as action buttons at the bottom of the modal. The last button defaults to `"primary"` variant; all others default to `"tertiary"`. */
+  /** An optional array of button props to render as action buttons at the bottom of the modal. The last button defaults to `"primary"` variant. All others default to `"tertiary"`. */
   buttons?: Omit<ButtonProps, "size" | "as">[];
   /** Controls the horizontal alignment of the action buttons. @default end */
   buttonsAlignment?: ModalButtonsAlignment;

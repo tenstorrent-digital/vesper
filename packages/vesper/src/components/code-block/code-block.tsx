@@ -24,7 +24,7 @@ export interface CodeBlockProps extends Omit<
   /**
    * The language syntax of the supplied code. Omitting this prop will render supplied code as plain text with no syntax highlighting.
    *
-   * For `plaintext` and `ansi` you do not need to supply your own grammars; they are baked into shiki and can be passed in as strings. Other language grammars should be provided as plain objects, most of which can be imported from the `@shikijs/langs` library.
+   * For `plaintext` and `ansi` you do not need to supply your own grammars. They are baked into shiki and can be passed in as strings. Other language grammars should be provided as plain objects, most of which can be imported from the `@shikijs/langs` library.
    *
    * @see https://shiki.style/languages for a list of available languages along with their `id`s
    * */

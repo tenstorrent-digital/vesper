@@ -30,7 +30,7 @@ export interface ProgressBarProps extends ComponentProps<"div"> {
  *
  * @param {number} props.value - The progress value from `0` to `100`
  * @param {ProgressBarSize} [props.size] - (optional) The rendered size of the progress bar. @default md
- * @param {ProgressBarVariant} [props.variant] - (optional) The display variant; `"steps"` clamps to tick intervals. @default default
+ * @param {ProgressBarVariant} [props.variant] - (optional) The display variant. `"steps"` clamps to tick intervals. @default default
  * @param {number} [props.steps] - (optional) Number of segments when variant is `"steps"`. @default 10
  * @param {boolean} [props.animated] - (optional) Whether to animate progress changes. @default false
  *
