@@ -26,7 +26,7 @@ export interface ToastOptions {
 }
 
 export interface ToastAction {
-  /** Callback function that fires when the user clicks the action button. */
+  /** Callback function that is called when the user clicks the action button. */
   handler: () => void;
   /** The content displayed in the button. Typically this will be just text, though any `ReactNode` is supported. */
   content: ReactNode;

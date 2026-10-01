@@ -172,7 +172,7 @@ export default function ChipsWithIcons() {
 
 ### Handling selection
 
-A `Chip` does not manage its own selected state. Clicking one fires `onChange` with the next selected state, which you store and pass back in via the `selected` prop:
+A `Chip` does not manage its own selected state. Clicking one calls `onChange` with the next selected state, which you store and pass back in via the `selected` prop:
 
 ```tsx demo
 import { useState } from "react";
