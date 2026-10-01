@@ -75,7 +75,7 @@ const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
 
 /**
  * A form-ready dropdown select component, supporting both controlled and uncontrolled usage patterns with options for:
- * - Three size variants: `sm`, `md`, `lg`
+ * - Size variants: `sm`, `md`, `lg`
  * - An optional leading icon
  * - Automatic portal handling for use inside dialogs
  *

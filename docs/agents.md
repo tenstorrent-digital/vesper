@@ -28,7 +28,7 @@ Every page of this documentation is also published as plain Markdown, so agents 
 
 ### Start here
 
-Two entry points cover the whole documentation set:
+The whole documentation set is available from these entry points:
 
 - [llms.txt](https://vesper.tenstorrent.com/llms.txt): an index of every page, linking to its Markdown source. Start here and fetch only the pages you need.
 - [llms-full.txt](https://vesper.tenstorrent.com/llms-full.txt): the full text of every page, inlined in one response.

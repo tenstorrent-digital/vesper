@@ -65,7 +65,7 @@ Groups of rules in Oxlint can be enabled (with severity) using [`categories`](ht
 
 `base.ts` sets [`options.typeAware`](https://oxc.rs/docs/guide/usage/linter/type-aware.html) so the `typescript/*` rules that need type information (`no-floating-promises`, `no-unsafe-type-assertion`, …) run as part of `yarn lint`.
 
-These rules are executed by [`tsgolint`](https://github.com/oxc-project/tsgolint), which is a separate binary (`oxlint-tsgolint`) built on [`typescript-go`](https://github.com/microsoft/typescript-go). Two consequences:
+These rules are executed by [`tsgolint`](https://github.com/oxc-project/tsgolint), which is a separate binary (`oxlint-tsgolint`) built on [`typescript-go`](https://github.com/microsoft/typescript-go). Because of this:
 
 - `oxlint-tsgolint` has to be installed alongside `oxlint` - it is a `devDependency` of the repo root (where `oxlint .` runs) and of each app/package that has `oxlint`
 - **TypeScript 7+ is required**, and every `tsconfig.json` has to be valid under TypeScript 7 - options removed in 6.0/7.0 (`baseUrl`, `moduleResolution: node10`, `downlevelIteration`, …) make `tsgolint` skip the project, and `types` no longer defaults to "everything in `node_modules/@types`", so global type packages are listed explicitly
