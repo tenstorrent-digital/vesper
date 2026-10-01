@@ -24,7 +24,7 @@ export interface TooltipProps {
   content: ReactNode;
   /** The preferred side of the trigger to render the tooltip against. @default top */
   side?: TooltipSide;
-  /** The distance in pixels from the trigger to the tooltip (in addition to the arrow height). @default 4 */
+  /** The distance in pixels from the trigger to the tooltip (plus the arrow height). @default 4 */
   sideOffset?: number;
   /** The alignment of the tooltip relative to the trigger along the perpendicular axis. @default center */
   align?: TooltipAlign;

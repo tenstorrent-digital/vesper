@@ -141,7 +141,7 @@ export default function DisabledButton() {
 
 ### Polymorphic usage
 
-You can use the `as` prop to specify what underlying element to render. In this case, we are passing `as="a"` to render the `Button` as an anchor link. This is helpful for apps where clicking on a button may navigate to a different page, for example:
+You can use the `as` prop to specify what underlying element to render. In this case, we are passing `as="a"` to render the `Button` as an anchor link. This is helpful for apps where clicking on a button may navigate to a different page:
 
 ```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
@@ -155,7 +155,7 @@ export default function ButtonAsLink() {
 }
 ```
 
-You can also use other components as the underlying `as` element. For example, Next.js comes with a bespoke `Link` component that enables prefetching and client-side navigation between routes, which you may want to use instead of the HTML `<a>` element:
+You can also use other components as the underlying `as` element. Next.js comes with a bespoke `Link` component that enables prefetching and client-side navigation between routes, which you may want to use instead of the HTML `<a>` element:
 
 ```tsx
 import Link from "next/link";

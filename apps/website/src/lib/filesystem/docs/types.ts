@@ -28,7 +28,7 @@ export interface DocEntry {
   /**
    * array of path segments relative to `docs/`
    *
-   * for example, for `docs/components/accordion.mdx`, the slug would
+   * eg. for `docs/components/accordion.mdx`, the slug would
    * be `["components", "accordion"]`
    */
   slug: string[];

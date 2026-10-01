@@ -78,6 +78,6 @@ We deliberately do **not** enable oxlint's `--type-check` / `options.typeCheck`:
 
 ### `ignorePatterns` are not inherited
 
-`Oxlint` resolves `ignorePatterns` relative to the directory containing the config file that declares them, and rejects patterns containing `..`. Patterns declared in this package would therefore only ever match files inside `packages/oxlint-config/`.
+`Oxlint` resolves `ignorePatterns` relative to the directory containing the config file that declares them, and rejects patterns containing `..`. So patterns declared in this package would only ever match files inside `packages/oxlint-config/`.
 
-This is why `sharedIgnorePatterns` is exported as a plain array for each app to spread into its own `ignorePatterns`, instead of being set in `base`.
+For this reason, `sharedIgnorePatterns` is exported as a plain array for each app to spread into its own `ignorePatterns`, instead of being set in `base`.

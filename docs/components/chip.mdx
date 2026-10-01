@@ -44,7 +44,7 @@ export default function ChipDemo() {
 | `as` | `ElementType` | The root element type for polymorphic rendering. | `"button"` |
 | `children` | `ReactNode` | The content of the chip. | - |
 
-You may also pass additional props to the underlying element. For example, you may wish to give the `<Chip>` instance a custom `aria-label`, `type`, `title`, etc.
+You may also pass additional props (like a custom `aria-label`, `type`, `title`, etc.) to the underlying element.
 
 ## Examples
 
@@ -168,7 +168,7 @@ export default function ChipsWithIcons() {
 }
 ```
 
-> Icons are part of the chip's click target rather than separate controls, so clicking one fires the chip's `onChange` handler like any other part of the chip. If you need a dedicated action (dismissing a filter, for example), render a separate control next to the chip instead.
+> Icons are part of the chip's click target rather than separate controls, so clicking one fires the chip's `onChange` handler like any other part of the chip. If you need a dedicated action (like dismissing a filter), render a separate control next to the chip instead.
 
 ### Handling selection
 
@@ -209,4 +209,4 @@ export default function ChipAsLink() {
 }
 ```
 
-> `aria-pressed` is only applied when a `Chip` renders as a `button`. When rendering as another element, add the semantics that match its behaviour - for example `aria-current="page"` on a link that points at the currently active filter.
+> `aria-pressed` is only applied when a `Chip` renders as a `button`. When rendering as another element, add the semantics that match its behaviour, such as `aria-current="page"` on a link that points at the currently active filter.

@@ -84,7 +84,7 @@ npm install --save-peer react@^19.0.0 react-dom@^19.0.0
 
 ### Import styles
 
-Prior to using any components, you will need to import the library styles from `@tenstorrent/vesper/styles.css` somewhere at the top-level of your application. For example, in a `Next.js` application, you may import them in your app's root `layout.tsx` file:
+Prior to using any components, you will need to import the library styles from `@tenstorrent/vesper/styles.css` somewhere at the top-level of your application. In a `Next.js` application, you may import them in your app's root `layout.tsx` file:
 
 ```tsx
 import "@tenstorrent/vesper/styles.css";
@@ -95,7 +95,7 @@ This makes the Vesper library's component styles and css tokens globally availab
 If you are using [Tailwind](https://tailwindcss.com) to style your app, we supply a Tailwind-specific file you can import instead. This has two advantages:
 
 1. Vesper's component styles get injected into Tailwind's `components` layer, which lets Tailwind utility classes override vesper css classes.
-2. Vesper's css tokens get injected into the Tailwind `@theme` so you can use them in Tailwind utility classes, like `bg-vesper-purple-300`, for example.
+2. Vesper's css tokens get injected into the Tailwind `@theme` so you can use them in Tailwind utility classes, like `bg-vesper-purple-300`.
 
 You should import Vesper's Tailwind styles **after** importing `tailwindcss` in your css file, like so:
 
@@ -108,7 +108,7 @@ If you import Vesper's Tailwind styles before importing `tailwindcss`, the order
 
 ### Fonts
 
-Vesper components are styled using two fonts, `Inter Tight` and `IBM Plex Mono`. The fonts themselves are **not** bundled with the package, only the font stacks are. If you want Vesper's components to render in `Inter Tight` and `IBM Plex Mono`, you need to load those fonts in your app (for example with `next/font/google` if developing a `Next.js` application, a `@font-face` rule, or a `<link>` to Google Fonts). If they aren't loaded, the fallbacks in each stack are used.
+Vesper components are styled using two fonts, `Inter Tight` and `IBM Plex Mono`. The fonts themselves are **not** bundled with the package, only the font stacks are. If you want Vesper's components to render in `Inter Tight` and `IBM Plex Mono`, you need to load those fonts in your app (using `next/font/google` if developing a `Next.js` application, a `@font-face` rule, or a `<link>` to Google Fonts). If they aren't loaded, the fallbacks in each stack are used.
 
 The easiest way to do this is to embed the corresponding Google Fonts code into the `<head>` of your html:
 
@@ -123,7 +123,7 @@ The easiest way to do this is to embed the corresponding Google Fonts code into 
 
 ### Using custom fonts
 
-To use a custom font, you can simply load your custom font into your app (using `next/font/google`, `@font-face`, `<link>`, etc.) and override vesper's font css variables with your own provided font stack. For example, if you wanted to use `Roboto` instead of `Inter Tight` for `--vesper-font-sans`, you would do this:
+To use a custom font, you can simply load your custom font into your app (using `next/font/google`, `@font-face`, `<link>`, etc.) and override vesper's font css variables with your own provided font stack. If you wanted to use `Roboto` instead of `Inter Tight` for `--vesper-font-sans`, you would do this:
 
 ```css
 /* somewhere in your application's css */
@@ -148,7 +148,7 @@ import { Accordion } from "@tenstorrent/vesper/accordion";
 
 Importing the library's styles also exposes Vesper's underlying css tokens for usage in your application.
 
-For example, you could use them in a css file like so:
+You could use them in a css file like so:
 
 ```css
 color: var(--vesper-text-primary);

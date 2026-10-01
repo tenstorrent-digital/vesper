@@ -18,7 +18,7 @@ yarn dev        # docs + storybook + the @tenstorrent/vesper watcher
 
 ### Notes
 
-The docs app imports `@tenstorrent/vesper` from its **built output** (`packages/vesper/dist`), not its source. `yarn dev` therefore builds the package first, then keeps it in sync with the `@tenstorrent/vesper#watch` task, so edits under `packages/vesper/src` show up here automatically.
+The docs app imports `@tenstorrent/vesper` from its **built output** (`packages/vesper/dist`), not its source, so `yarn dev` builds the package first, then keeps it in sync with the `@tenstorrent/vesper#watch` task, so edits under `packages/vesper/src` show up here automatically.
 
 Storybook runs with `--exact-port`, so a process already sitting on port 5173 fails the task instead of silently relocating and breaking the `/storybook` rewrite in [`src/proxy.ts`](./src/proxy.ts).
 
