@@ -63,13 +63,13 @@ All other props are forwarded to the wrapping `<fieldset>` element.
 | `disabled` | `boolean` | When `true`, prevents this option from being selected. Defaults to `false`. |
 | `id` | `string` | An `id` applied to this option's `<input>`, used to reference it from validation errors. |
 
-Use a `Choicebox` when each option benefits from a description and a large, card-style target. For a plain list of mutually exclusive options, reach for [the `RadioGroup` component](./radio-group.mdx), and for a single boolean choice, reach for [the `Checkbox` component](./checkbox.mdx).
+Use a `Choicebox` when each option benefits from a description and a large, card-style target. For a plain list of mutually exclusive options, reach for [the `RadioGroup` component](./radio-group.mdx), and for a boolean choice, reach for [the `Checkbox` component](./checkbox.mdx).
 
 ## Examples
 
 ### Defining options
 
-Render a `Choicebox` by passing an array of `ChoiceboxItem` objects as the `options` prop. Each item describes a single card. `value` is what gets submitted and reported to `onChange`, `label` is the text displayed on the card, and the optional `description` adds a secondary line below it:
+Render a `Choicebox` by passing an array of `ChoiceboxItem` objects as the `options` prop. Each item describes one card. `value` is what gets submitted and reported to `onChange`, `label` is the text displayed on the card, and the optional `description` adds a secondary line below it:
 
 ```tsx demo
 import { Choicebox } from "@tenstorrent/vesper/choicebox";

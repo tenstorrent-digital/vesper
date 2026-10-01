@@ -28,7 +28,7 @@ export default function MenuDemo() {
 
 > [!IMPORTANT]
 >
-> A `Menu`'s children must be a single React element that can receive a ref and event handlers, since that element becomes the menu's trigger. Passing a fragment, plain text, or multiple elements renders the children as-is, without a menu attached to them.
+> A `Menu`'s children must be one React element that can receive a ref and event handlers, since that element becomes the menu's trigger. Passing a fragment, plain text, or multiple elements renders the children as-is, without a menu attached to them.
 
 ## Options
 
@@ -61,7 +61,7 @@ export default function MenuDemo() {
 
 ### Basic usage
 
-Render a `Menu` by passing it an array of `items` and a single element to use as its trigger. Every item needs `text` to display and an `onSelect` callback to run when it is chosen:
+Render a `Menu` by passing it an array of `items` and one element to use as its trigger. Every item needs `text` to display and an `onSelect` callback to run when it is chosen:
 
 ```tsx demo
 import { useState } from "react";

@@ -2,7 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 
-// shared (module-level) state, so every `useBaseRemSize` hook observes a single element
+// shared (module-level) state, so every `useBaseRemSize` hook observes the same element
 let baseRemSize = 16;
 
 let observer: ResizeObserver | null = null;

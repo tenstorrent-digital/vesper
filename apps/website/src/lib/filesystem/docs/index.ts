@@ -57,7 +57,7 @@ export const parseDoc = (docPath: string): DocEntry => {
 };
 
 /**
- * get a single doc by its slug (path relative to `docs/`)
+ * get one doc by its slug (path relative to `docs/`)
  *
  * @param {string[]} slug - slug of the doc to get (note that we use an array of segments here, not a string)
  *

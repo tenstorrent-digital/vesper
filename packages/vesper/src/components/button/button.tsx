@@ -39,7 +39,7 @@ export type ButtonProps<E extends ElementType = "button"> = Polymorphic<
 /**
  * A polymorphic button component with multiple size and style variants, supporting optional leading and trailing icons.
  *
- * Unlike `TextButton` (which renders text without a background fill or outline), `IconButton` (which displays a single icon without text), and `SplitButton` (which pairs a primary action with a dropdown menu), `Button` is the standard interactive control for triggering actions.
+ * Unlike `TextButton` (which renders text without a background fill or outline), `IconButton` (which displays one icon without text), and `SplitButton` (which pairs a primary action with a dropdown menu), `Button` is the standard interactive control for triggering actions.
  *
  * @see packages/vesper/src/components/icon-button/icon-button.tsx
  * @see packages/vesper/src/components/split-button/split-button.tsx

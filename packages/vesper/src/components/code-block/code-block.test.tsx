@@ -15,7 +15,7 @@ import {
 import { CodeBlock } from "@/components/code-block/code-block";
 import "@/styles/test.css";
 
-// create a stream that emits `code` in a single chunk
+// create a stream that emits `code` in one chunk
 const createStream = (code: string) =>
   new ReadableStream<string>({
     start(controller) {

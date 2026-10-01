@@ -1,7 +1,7 @@
 import type { DocEntry, DocModule } from "./types";
 
 /**
- * compiles and loads a single document from the monorepo root `docs/` folder
+ * compiles and loads one document from the monorepo root `docs/` folder
  *
  * @see [`getDoc`](apps/website/src/lib/filesystem/docs/index.ts) - for getting the `slug` and `ext`
  *

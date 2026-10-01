@@ -89,7 +89,7 @@ const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  * @param {boolean} [props.required] - (optional) Marks the toggle as required for form validation. @default false
  *
- * While an option is focused, `ArrowLeft`/`ArrowRight` move focus between options, looping around at either end of the list. The group exposes a single tab stop (roving tabindex): `Tab` moves focus to the selected option, or to the first option when nothing is selected.
+ * While an option is focused, `ArrowLeft`/`ArrowRight` move focus between options, looping around at either end of the list. The group exposes one tab stop (roving tabindex): `Tab` moves focus to the selected option, or to the first option when nothing is selected.
  *
  * You may also pass any additional props to the underlying `div` element
  *
@@ -219,7 +219,7 @@ export function Toggle(props: ToggleProps) {
   const selectedIndex = options.findIndex((o) => o.value === selectedOption);
 
   /**
-   * roving tabindex: the group only ever exposes a single tab stop, which
+   * roving tabindex: the group only ever exposes one tab stop, which
    * follows focus within the group, falling back to the selected option and
    * finally to the first option when nothing is selected
    */

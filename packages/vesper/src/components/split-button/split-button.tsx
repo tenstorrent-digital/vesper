@@ -64,7 +64,7 @@ export interface SplitButtonProps extends Omit<
 /**
  * A compound button that pairs a primary action button with a dropdown menu toggle for secondary actions.
  *
- * Unlike `Button` (which triggers a single action), `TextButton` (which renders as text-only), and `IconButton` (which displays a single icon without text), `SplitButton` pairs a primary action with a dropdown menu.
+ * Unlike `Button` (which triggers one action), `TextButton` (which renders as text-only), and `IconButton` (which displays one icon without text), `SplitButton` pairs a primary action with a dropdown menu.
  *
  * @see packages/vesper/src/components/button/button.tsx
  * @see packages/vesper/src/components/text-button/text-button.tsx
