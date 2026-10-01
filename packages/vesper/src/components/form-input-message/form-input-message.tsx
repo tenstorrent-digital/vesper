@@ -36,7 +36,7 @@ export interface FormInputMessageProps extends Omit<
  * @see packages/vesper/src/components/text-area/text-area.tsx
  *
  * @param {FormInputMessageVariant} [props.variant] - (optional) The visual variant, which determines the color scheme and message icon. @default default
- * @param {string} [props.message] - (optional) The message text to display. When omitted or empty, no content is rendered
+ * @param {string} [props.message] - (optional) The message text to display. Content is only rendered when a message is provided
  *
  * You may also pass any additional props to the underlying `output` element
  *
