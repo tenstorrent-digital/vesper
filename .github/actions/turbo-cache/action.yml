@@ -1,0 +1,34 @@
+# reusable turbo cache action for the monorepo
+#
+# allow us to cache the contents of `.turbo/cache` between runs with `actions/cache`
+# so unchanged tasks can be replayed instead of re-run
+#
+# note: we allow PRs to _read_ `main`'s caches but NEVER write them (this way PRs
+# can't cache artifacts that `main` might later replay)
+
+name: Turbo Cache
+description: Restore and save turbo's local cache (`.turbo/cache`) with actions/cache
+
+runs:
+  using: composite
+  steps:
+    # local cache only - max 250MB (we can tweak)
+    # see: https://turborepo.dev/docs/reference/run#--cache-options
+    - name: Configure turbo cache
+      shell: bash
+      run: |
+        echo "TURBO_CACHE=local:rw" >> "$GITHUB_ENV"
+        echo "TURBO_CACHE_MAX_AGE=7d" >> "$GITHUB_ENV"
+        echo "TURBO_CACHE_MAX_SIZE=250MB" >> "$GITHUB_ENV"
+
+    # one cache once per job (jobs run different tasks)
+    #
+    # note: caches are keyed per commit, so `restore-keys` picks the latest cache from
+    # this branch (or PR) first, then from `main`
+    - name: Restore turbo cache
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
+      with:
+        path: .turbo/cache
+        key: turbo-${{ runner.os }}-${{ github.job }}-${{ github.sha }}
+        restore-keys: |
+          turbo-${{ runner.os }}-${{ github.job }}-

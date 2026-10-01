@@ -1,0 +1,37 @@
+name: Cache Cleanup
+
+# deletes a PR's caches once it's closed (merged or not)
+#
+# see: https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manage-caches#force-deleting-cache-entries
+
+on:
+  # we use `pull_request_target` here so fork PRs can't get read-only tokens on `pull_request`
+  #
+  # (we must never checkout or run PR code in this action)
+  pull_request_target:
+    types: [closed]
+
+concurrency:
+  # key by PR number
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  # delete caches
+  actions: write
+
+jobs:
+  cleanup:
+    name: Delete PR Caches
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Delete PR Caches
+        run: |
+          gh cache list --ref "$REF" --limit 100 || true
+          gh cache delete --all --ref "$REF" --succeed-on-no-caches
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          REF: refs/pull/${{ github.event.pull_request.number }}/merge
