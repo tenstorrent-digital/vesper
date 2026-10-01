@@ -46,6 +46,7 @@ jobs:
   # lint, format, type checks
   quality:
     name: Quality
+    # check if we should run checks (see notes above)
     # note: condition is shared with `test` via a YAML anchor
     if: &should-checks-run >-
       github.event.pull_request.stack == null ||
