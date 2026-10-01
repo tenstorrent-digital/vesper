@@ -6,7 +6,7 @@ const CHECKERBOARD =
  * Renders a small chip previewing the value of a vesper color token
  *
  * The chip resolves the token against the active theme, and is layered over a
- * checkerboard so that transparent/alpha tokens stay readable
+ * checkerboard so that transparent/alpha tokens are still readable
  */
 export const ColorChip = ({ token }: { token: string }) => (
   <span

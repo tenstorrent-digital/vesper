@@ -39,7 +39,7 @@ Vesper components can be used **without importing them**. Components are provide
 
 ### Component children
 
-Text written inside a component stays **plain text** - it is never wrapped in a markdown paragraph. A component renders exactly the children it was given:
+Text written inside a component is treated as **plain text** - it is never wrapped in a markdown paragraph. A component renders exactly the children it was given:
 
 ```mdx
 <Typography variant="copy-lg">
