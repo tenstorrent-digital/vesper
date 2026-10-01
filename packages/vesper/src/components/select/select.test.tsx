@@ -390,7 +390,7 @@ describe("select [unit]", () => {
       </form>,
     );
 
-    // Base UI Select renders a hidden input to carry the value in form data
+    // Base UI Select renders a hidden input to submit the value with form data
     const hiddenInput = container.querySelector("input");
     expect(hiddenInput).toHaveAttribute("required");
   });
@@ -402,7 +402,7 @@ describe("select [unit]", () => {
       </form>,
     );
 
-    // Base UI Select renders a hidden input to carry the value in form data
+    // Base UI Select renders a hidden input to submit the value with form data
     const hiddenInput = container.querySelector("input");
     expect(hiddenInput).toHaveAttribute("name", "animal");
   });
