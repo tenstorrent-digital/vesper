@@ -416,7 +416,7 @@ export default function AnchoredMenu() {
 
 ### Rendering the menu in another container
 
-A menu renders in a portal, attached to `document.body`, so it is never clipped by the overflow of the elements it sits in. Pass the `container` prop an element, a shadow root, or a ref to either when it needs to be portalled somewhere else:
+A menu renders in a portal, attached to `document.body`, so it is never clipped by the overflow of its ancestor elements. Pass the `container` prop an element, a shadow root, or a ref to either when it needs to be portalled somewhere else:
 
 ```tsx
 import { useRef } from "react";

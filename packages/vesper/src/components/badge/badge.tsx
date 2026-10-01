@@ -48,7 +48,7 @@ const BADGE_TYPOGRAPHY_VARIANTS: { [S in BadgeSize]: TypographyVariant } = {
 };
 
 /**
- * A polymorphic badge component for describing the content it sits next to (e.g. plan tier, environment, role) with color variants and optional icons.
+ * A polymorphic badge component for describing the content next to it (e.g. plan tier, environment, role) with color variants and optional icons.
  *
  * Unlike `Tag` (which categorizes content) and `Chip` (which displays on/off states), `Badges` provide contextual metadata about adjacent content.
  *
