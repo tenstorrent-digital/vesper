@@ -59,7 +59,7 @@ export const parseDoc = (docPath: string): DocEntry => {
 /**
  * get one doc by its slug (path relative to `docs/`)
  *
- * @param {string[]} slug - slug of the doc to get (note that we use an array of segments here, not a string)
+ * @param {string[]} slug - slug of the doc to get, as an array of path segments
  *
  * @example
  * const accordionDoc = getDoc(["components", "accordion"]);
