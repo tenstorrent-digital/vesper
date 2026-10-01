@@ -24,7 +24,7 @@ const config: StorybookConfig = {
      *
      * `react-docgen-typescript` needs the typescript JS compiler API,
      * which typescript 7 does not include (it is expected to return in 7.1 - see
-     * links below). In order to use `react-docgen-typescript`, we've had to
+     * links below). To use `react-docgen-typescript`, we've had to
      * alias the `typescript` dependency to the compatibility package:
      * `@typescript/typescript6`
      *
