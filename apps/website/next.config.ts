@@ -23,12 +23,12 @@ const nextConfig: NextConfig = {
     /**
      * since we import components from `@tenstorrent/vesper` with turbo, and
      * `@tenstorrent/vesper` is compiled into `dist` by a separate watcher,
-     * we want to use turbo's cache in development
+     * we disable turbo's filesystem cache in development
      *
-     * without this, if the app is shut down or restarted from turbo (ctrl-c)
-     * or via `concurrently --kill-others`, turbo sometimes restores an
-     * older snapshot from the dev cache, leaving stale CSS and components
-     * in the browser
+     * without this, turbo sometimes restores an older snapshot from the dev
+     * cache when the app is shut down or restarted from turbo (ctrl-c) or via
+     * `concurrently --kill-others`. this leaves stale CSS and components in
+     * the browser
      *
      * @see https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopackFileSystemCache
      */

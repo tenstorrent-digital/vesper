@@ -16,7 +16,7 @@ export interface CodeBlockProps extends Omit<
    *
    * A factory is used instead of a raw `ReadableStream` because streams are single-use - once piped they are locked and cannot be re-read. Passing a factory allows the component to create a fresh stream whenever it needs one (e.g. on React Strict Mode remounts or language changes).
    *
-   * The factory may be asynchronous, returning a `Promise<ReadableStream<string>>`, which is useful when the stream source itself requires an async setup step (e.g. making a network request).
+   * The factory may be asynchronous and return a `Promise<ReadableStream<string>>`. This is useful when the stream source itself requires an async setup step (e.g. making a network request).
    */
   children?:
     | string

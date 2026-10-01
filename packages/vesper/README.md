@@ -108,7 +108,7 @@ If you import Vesper's Tailwind styles before importing `tailwindcss`, the order
 
 ### Fonts
 
-Vesper components are styled using two fonts, `Inter Tight` and `IBM Plex Mono`. The fonts themselves are **not** bundled with the package, only the font stacks are. If you want Vesper's components to render in `Inter Tight` and `IBM Plex Mono`, you need to load those fonts in your app (using `next/font/google` if developing a `Next.js` application, a `@font-face` rule, or a `<link>` to Google Fonts). If they aren't loaded, the fallbacks in each stack are used.
+Vesper components are styled using two fonts, `Inter Tight` and `IBM Plex Mono`. The fonts themselves are **not** bundled with the package, only the font stacks are. To render Vesper's components in `Inter Tight` and `IBM Plex Mono`, load those fonts in your app. In a `Next.js` application you can use `next/font/google`, otherwise use a `@font-face` rule or a `<link>` to Google Fonts. If they aren't loaded, the fallbacks in each stack are used.
 
 The easiest way to do this is to embed the corresponding Google Fonts code into the `<head>` of your html:
 

@@ -56,7 +56,7 @@ Use a `SplitButton` when one action is the obvious default, but closely related 
 
 ### Basic usage
 
-Render a `SplitButton` by giving it some children to label the action button, an `onClick` handler for that action, and the `menuItems` that make up its dropdown:
+Render a `SplitButton` by giving it children (the action button's label), an `onClick` handler for that action, and the `menuItems` that make up its dropdown:
 
 ```tsx demo
 import { useState } from "react";
@@ -100,7 +100,7 @@ Clicking the action button fires `onClick` without ever opening the menu, and cl
 
 ### Menu items
 
-`menuItems` takes the same items as [the `Menu` component](./menu.mdx), so each one can render an `icon`, a `description`, and one of the `"default"`, `"selected"`, `"danger"`, `"locked"`, or `"disabled"` styles:
+`menuItems` takes the same items as [the `Menu` component](./menu.mdx), so each one supports an `icon`, a `description`, and one of the `"default"`, `"selected"`, `"danger"`, `"locked"`, or `"disabled"` styles:
 
 ```tsx demo
 import { Copy, Download, Trash } from "@tenstorrent/vesper/icons";

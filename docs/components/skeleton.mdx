@@ -106,7 +106,7 @@ export default function PillSkeleton() {
 
 ### Rendering children
 
-`Skeleton` can be rendered with content, in which case the `Skeleton` takes the dimensions of the bounding box of its children, so you don't need to pass a `width` and `height`:
+`Skeleton` can be rendered with content. In this case, the `Skeleton` takes the dimensions of the bounding box of its children, so you don't need to pass a `width` and `height`:
 
 ```tsx demo
 import { Skeleton } from "@tenstorrent/vesper/skeleton";
@@ -176,7 +176,7 @@ export default function MaskedChildrenExample() {
 
 ### Usage with Suspense
 
-`Skeleton` can also be used as a [Suspense](https://react.dev/reference/react/Suspense) fallback. This is useful for when you are reading data from a promise client-side using `use`, streaming data from [Server Components](https://react.dev/reference/rsc/server-components), or lazy-loading component code with [lazy](https://react.dev/reference/react/lazy):
+`Skeleton` can also be used as a [Suspense](https://react.dev/reference/react/Suspense) fallback. This is useful when reading data from a promise client-side using `use` or streaming data from [Server Components](https://react.dev/reference/rsc/server-components). It also works when lazy-loading component code with [lazy](https://react.dev/reference/react/lazy):
 
 ```tsx
 import { Suspense, use } from "react";
