@@ -46,7 +46,7 @@ export interface RangeProps extends Omit<
   max?: number;
   /** The stepping interval between selectable values. @default 1 */
   step?: number;
-  /** The minimum number of steps required between thumbs, preventing them from overlapping. @default 1 */
+  /** The minimum number of steps required between thumbs (to prevent them from overlapping). @default 1 */
   minStepsBetweenThumbs?: number;
   /** The `id` of the `<form>` element this input belongs to, allowing association with a form outside the input's DOM hierarchy. */
   form?: string;
