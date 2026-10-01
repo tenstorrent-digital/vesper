@@ -67,7 +67,7 @@ export default function ComboboxDemo() {
 | `clearButtonAriaLabel` | `string` | Accessible label for the button that clears the currently selected value. | `"Clear selection"` |
 | `dropdownTriggerAriaLabel` | `string` | Accessible label for the button that opens the dropdown. | `"Show options"` |
 
-Form props (`value`, `disabled`, `name`, `form`, etc.) are forwarded to the hidden `<input>` element that holds the selected combobox value. `aria-*` attributes, `ref`, input props (`autoCorrect`, `spellCheck`, `autoFocus`, `id`, etc.), and event handlers related to `focus`, `blur`, `scroll`, `input`, and `change` events are forwarded to the visible `<input>` element the user can type in to filter results. All other props are forwarded to the wrapping `<div>` element.
+Form props (`value`, `disabled`, `name`, `form`, etc.) are forwarded to the hidden `<input>` element that holds the selected combobox value. `aria-*` attributes, `ref`, input props (`autoCorrect`, `spellCheck`, `autoFocus`, `id`, etc.), and event handlers related to `focus`, `blur`, `scroll`, `input`, and `change` events are forwarded to the visible `<input>` element the user can type in to filter results. Any other props are forwarded to the wrapping `<div>` element.
 
 ### `ComboboxItem` options
 
