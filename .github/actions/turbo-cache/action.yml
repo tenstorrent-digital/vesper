@@ -1,59 +1,30 @@
 # reusable turbo cache action for the monorepo
 #
-# sets up both of turbo's cache sources, so tasks whose inputs haven't changed are replayed
-# instead of re-run. turbo checks the local cache first, then the remote cache:
+# allow us to cache the contents of `.turbo/cache` between runs with `actions/cache`
+# so unchanged tasks can be replayed instead of re-run
 #
-# 1. local: `.turbo/cache`, carried between runs by `actions/cache`
-#    - GitHub scopes these caches per branch: PR runs can read caches saved on `main`, but
-#      anything a PR saves is only visible to that same PR, so PRs can't poison `main`
-#    - works for every run, including PRs from forks
-#
-# 2. remote: Vercel Remote Cache, authenticated with a short-lived token via OIDC
-#    - only once the `TURBO_TEAM` repository variable and a Vercel OIDC policy are set up
-#    - skipped for PRs from forks, which can't request an OIDC token
-#    - read-only, except on pushes to `main` (see `TURBO_CACHE` below)
-#
-# the calling job needs the `id-token: write` permission for the remote cache
+# note: we allow PRs to _read_ `main`'s caches but NEVER write them (this way PRs
+# can't cache artifacts that `main` might later replay)
 
 name: Turbo Cache
-description: Restore turbo's local cache (actions/cache) and connect to the Vercel Remote Cache (OIDC)
-
-inputs:
-  team:
-    description: Vercel team slug or ID for the remote cache (pass `vars.TURBO_TEAM`) - leave empty to only use the local cache
-    required: false
-    default: ""
+description: Restore and save turbo's local cache (`.turbo/cache`) with actions/cache
 
 runs:
   using: composite
   steps:
-    # `TURBO_CACHE` controls which cache sources turbo reads from and writes to
-    # ref: https://turborepo.dev/docs/reference/run#--cache-options
-    #
-    # the Vercel Remote Cache isn't scoped by branch like `actions/cache` is, so a PR that could
-    # write to it could plant an artifact (eg. a passing test log, or a tampered `dist`) that
-    # `main` later replays. Only pushes to `main` write to it, PRs (and everything else) only read
-    #
-    # the local cache is carried between runs by `actions/cache` (below), so cap its size and
-    # age, otherwise every run would restore and re-save everything previous runs ever cached
+    # local cache only - max 250MB (we can tweak)
+    # see: https://turborepo.dev/docs/reference/run#--cache-options
     - name: Configure turbo cache
       shell: bash
-      env:
-        WRITE_REMOTE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
       run: |
-        if [ "$WRITE_REMOTE" = "true" ]; then
-          echo "TURBO_CACHE=local:rw,remote:rw" >> "$GITHUB_ENV"
-        else
-          echo "TURBO_CACHE=local:rw,remote:r" >> "$GITHUB_ENV"
-        fi
+        echo "TURBO_CACHE=local:rw" >> "$GITHUB_ENV"
         echo "TURBO_CACHE_MAX_AGE=7d" >> "$GITHUB_ENV"
         echo "TURBO_CACHE_MAX_SIZE=250MB" >> "$GITHUB_ENV"
 
-    # one cache per job (`github.job`), since each job runs different turbo tasks
+    # one cache once per job (jobs run different tasks)
     #
-    # the key is unique per commit, so a cache is saved after every run (at the end of the
-    # job), and `restore-keys` restores the most recent one: from this branch/PR first, then
-    # from `main`
+    # note: caches are keyed per commit, so `restore-keys` picks the latest cache from
+    # this branch (or PR) first, then from `main`
     - name: Restore turbo cache
       uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
       with:
@@ -61,17 +32,3 @@ runs:
         key: turbo-${{ runner.os }}-${{ github.job }}-${{ github.sha }}
         restore-keys: |
           turbo-${{ runner.os }}-${{ github.job }}-
-
-    # sets `TURBO_TEAM` and `TURBO_TOKEN` for later steps, and revokes the token at the end of
-    # the job. `continue-on-error`, so a Vercel outage or a misconfigured OIDC policy only costs
-    # us the remote cache, rather than failing the job
-    - name: Set up Turborepo Remote Cache
-      if: >-
-        inputs.team != '' &&
-        (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
-      continue-on-error: true
-      # Pinning third-party actions to a specific SHA is recommended by GitHub Actions secure use reference:
-      # https://docs.github.com/en/actions/reference/security/secure-use#using-third-party-actions
-      uses: vercel/setup-turborepo-remote-cache-action@49d7b1b46ba4c9251e1977986bfe18336feabc8f # v1.1.0
-      with:
-        team: ${{ inputs.team }}

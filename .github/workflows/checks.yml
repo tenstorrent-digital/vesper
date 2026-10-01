@@ -41,8 +41,6 @@ concurrency:
 
 permissions:
   contents: read
-  # exchanged for a short-lived Vercel Remote Cache token (see `.github/actions/turbo-cache`)
-  id-token: write
 
 jobs:
   # lint, format, type checks
@@ -76,11 +74,9 @@ jobs:
       - name: Setup Node, install dependencies
         uses: ./.github/actions/setup
 
-      # turbo's local (`actions/cache`) and remote (Vercel) caches
+      # so unchanged turbo tasks could be replayed from cache
       - name: Setup turbo cache
         uses: ./.github/actions/turbo-cache
-        with:
-          team: ${{ vars.TURBO_TEAM }}
 
       # lint, format, check-types
       - name: "Run lint, format, and type checking"
@@ -116,11 +112,9 @@ jobs:
           # vesper's unit tests run in (playwright's) chromium
           playwright: "true"
 
-      # turbo's local (`actions/cache`) and remote (Vercel) caches
+      # so unchanged turbo tasks could be replayed from cache
       - name: Setup turbo cache
         uses: ./.github/actions/turbo-cache
-        with:
-          team: ${{ vars.TURBO_TEAM }}
 
       - name: "Run tests (packages/vesper)"
         run: yarn test:vesper
