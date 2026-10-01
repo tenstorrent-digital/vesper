@@ -54,7 +54,7 @@ Use a `Sheet` for supplementary content alongside the current view, such as filt
 
 ### Opening and closing a sheet
 
-A `Sheet` renders closed, and is opened imperatively. The `useSheet` hook returns everything needed for this: a `ref` to forward to the sheet, plus `open()` and `close()` functions:
+A `Sheet` renders closed, and is opened imperatively. The `useSheet` hook returns a `ref` to forward to the sheet, plus `open()` and `close()` functions to control it:
 
 ```tsx demo
 import { Button } from "@tenstorrent/vesper/button";

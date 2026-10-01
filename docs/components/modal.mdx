@@ -56,7 +56,7 @@ A `Modal` always blocks interaction with the rest of the page while it is open. 
 
 ### Opening and closing a modal
 
-A `Modal` renders closed, and is opened imperatively. The `useModal` hook returns everything needed for this: a `ref` to pass to the modal, plus `open()` and `close()` functions:
+A `Modal` renders closed, and is opened imperatively. The `useModal` hook returns a `ref` to pass to the modal, plus `open()` and `close()` functions to control it:
 
 ```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
