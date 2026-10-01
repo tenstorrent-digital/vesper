@@ -100,7 +100,7 @@ Clicking the action button fires `onClick` without ever opening the menu, and cl
 
 ### Menu items
 
-`menuItems` takes the same items as [the `Menu` component](./menu.mdx), so each one supports an `icon`, a `description`, and one of the `"default"`, `"selected"`, `"danger"`, `"locked"`, or `"disabled"` styles:
+`menuItems` takes the same items as [the `Menu` component](./menu.mdx). Each one supports an `icon`, a `description`, and one of the `"default"`, `"selected"`, `"danger"`, `"locked"`, or `"disabled"` styles:
 
 ```tsx demo
 import { Copy, Download, Trash } from "@tenstorrent/vesper/icons";
@@ -348,4 +348,4 @@ export default function DisabledSplitButton() {
 
 > [!NOTE]
 >
-> There is no way to disable only one half of a `SplitButton`. When the alternatives are unavailable but the main action is not (or the other way around), render the individual items as `"disabled"` or `"locked"` [menu items](./menu.mdx) instead, so the reason stays visible to the user.
+> There is no way to disable only one half of a `SplitButton`. When the alternatives are unavailable but the main action is not (or the other way around), render the individual items as `"disabled"` or `"locked"` [menu items](./menu.mdx) instead. That way, the user can see why they are unavailable.

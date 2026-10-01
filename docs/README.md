@@ -39,7 +39,7 @@ Vesper components can be used **without importing them**. Components are provide
 
 ### Component children
 
-Text written inside a component stays **plain text** - it is never wrapped in a markdown paragraph, so a component renders exactly the children it was given:
+Text written inside a component stays **plain text** - it is never wrapped in a markdown paragraph. A component renders exactly the children it was given:
 
 ```mdx
 <Typography variant="copy-lg">
@@ -64,7 +64,7 @@ Blocks that can't be inlined - lists, headings, code blocks, tables, nested comp
 
 ## Links
 
-Links resolve to other documents by relative path, so the path resolves on GitHub (it points at the real file) and is rewritten to the document's route when the site is built:
+Links resolve to other documents by relative path. The path works on GitHub (it points at the real file) and is rewritten to the document's route when the site is built:
 
 | In `docs/`                                  | On `@apps/website`        |
 | ------------------------------------------- | ------------------------- |
@@ -73,7 +73,7 @@ Links resolve to other documents by relative path, so the path resolves on GitHu
 
 ## Callouts
 
-A blockquote renders as an [`Admonition`](./components/admonition.mdx). GitHub's alert syntax sets its variant, so a callout renders as a callout in both places:
+A blockquote renders as an [`Admonition`](./components/admonition.mdx). GitHub's alert syntax sets its variant. A callout renders as a callout in both places:
 
 ```md
 > [!WARNING]
