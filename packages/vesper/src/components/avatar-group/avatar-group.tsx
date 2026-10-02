@@ -12,6 +12,7 @@ export type AvatarGroupProps<E extends ElementType = "div"> = Polymorphic<
     avatars: { src: string | undefined; alt?: string }[];
   },
   E,
+  "div",
   "children"
 >;
 

@@ -1,19 +1,24 @@
 import type { ComponentProps, ElementType } from "react";
 
 /**
- * Helper generic to create prop type signatures for polymorphic components. Takes 2-3 arguments:
+ * Helper generic to create prop type signatures for polymorphic components. Takes 3-4 arguments:
  *
- * `P`: props that belong to the polymorphic component, eg:
+ * `Props`: props that belong to the polymorphic component, eg:
  * ```ts
  * { variant: "primary" | "secondary" }
  * ```
  *
- * `E`: the element that the polymorphic component extends, eg:
+ * `As`: the element that the polymorphic component extends, eg:
  * ```ts
  * "button"
  * ```
  *
- * `O`: any additional props to omit from the element the polymorphic component extends, eg:
+ * `Default`: the element the polymorphic component renders by default (must match the default of `E`), eg:
+ * ```ts
+ * "button"
+ * ```
+ *
+ * `Omitted`: any additional props to omit from the element the polymorphic component extends, eg:
  * ```ts
  * "children" | "onClick"
  * ```
@@ -23,6 +28,7 @@ import type { ComponentProps, ElementType } from "react";
  * type MyComponentProps<E extends ElementType = "div"> = Polymorphic<
  *   { variant: "primary" | "secondary" },
  *   E,
+ *   "div",
  *   "children"
  * >
  *
@@ -36,13 +42,13 @@ import type { ComponentProps, ElementType } from "react";
  * ```
  */
 export type Polymorphic<
-  P,
-  E extends ElementType,
-  O extends PropertyKey = never,
-> = P & {
+  Props,
+  As extends ElementType,
+  Default extends ElementType,
+  Omitted extends PropertyKey = never,
+> = Props & {
   /** The `ElementType` to render this component as, eg. `as="button"` */
-  as?: E;
-} & Omit<
-    ComponentProps<E>,
-    [O] extends [never] ? keyof P | "as" : keyof P | "as" | O
-  >;
+  as?: As;
+} & (ElementType extends As
+    ? Omit<ComponentProps<Default>, keyof Props | "as" | Omitted>
+    : Omit<ComponentProps<As>, keyof Props | "as" | Omitted>);

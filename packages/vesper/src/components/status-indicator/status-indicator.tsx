@@ -31,6 +31,7 @@ export type StatusIndicatorProps<E extends ElementType = "div"> = Polymorphic<
     animated?: boolean;
   },
   E,
+  "div",
   "children"
 >;
 

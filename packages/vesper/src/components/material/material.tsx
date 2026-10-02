@@ -46,7 +46,8 @@ type BaseMaterialProps = NonInteractiveMaterialProps | InteractiveMaterialProps;
 
 export type MaterialProps<E extends ElementType = "div"> = Polymorphic<
   BaseMaterialProps,
-  E
+  E,
+  "div"
 >;
 
 /**

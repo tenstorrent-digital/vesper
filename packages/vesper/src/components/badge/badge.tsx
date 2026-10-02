@@ -38,7 +38,8 @@ export type BadgeProps<E extends ElementType = "div"> = Polymorphic<
     /** The badge text. Rendered inside the badge's `Typography` element. */
     children?: ReactNode;
   },
-  E
+  E,
+  "div"
 >;
 
 const BADGE_TYPOGRAPHY_VARIANTS: { [S in BadgeSize]: TypographyVariant } = {

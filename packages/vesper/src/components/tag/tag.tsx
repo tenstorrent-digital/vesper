@@ -39,7 +39,8 @@ export type TagProps<E extends ElementType = "div"> = Polymorphic<
     /** The tag text. Rendered inside the tag's `Typography` element. */
     children?: ReactNode;
   },
-  E
+  E,
+  "div"
 >;
 
 /**

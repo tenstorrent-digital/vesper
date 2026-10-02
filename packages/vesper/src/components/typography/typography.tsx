@@ -44,7 +44,8 @@ export type TypographyProps<E extends ElementType = "p"> = Polymorphic<
     /** The typographic style variant to apply, controlling font size, weight, line height, and font family. @default copy-md. */
     variant?: TypographyVariant;
   },
-  E
+  E,
+  "p"
 >;
 
 /**

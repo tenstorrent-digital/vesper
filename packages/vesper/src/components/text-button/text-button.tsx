@@ -35,7 +35,8 @@ export type TextButtonProps<E extends ElementType = "button"> = Polymorphic<
     /** An optional icon element rendered to the right of the text button content. */
     iconRight?: ReactNode;
   },
-  E
+  E,
+  "button"
 >;
 
 /**
