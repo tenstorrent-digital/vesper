@@ -1,5 +1,12 @@
-import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import axe from "axe-core";
+import { createRef, type ReactNode } from "react";
 import {
   afterEach,
   assert,
@@ -9,10 +16,66 @@ import {
   test,
   vi,
 } from "vitest";
+import { userEvent } from "vitest/browser";
 
+import { TextButton } from "@/components/text-button/text-button";
 import { Tooltip } from "@/components/tooltip/tooltip";
 import { Typography } from "@/components/typography/typography";
 import "@/styles/test.css";
+
+/**
+ * children that are not a single react element, which can't be rendered as
+ * the trigger itself (even when `asChild` is set)
+ */
+const NON_ELEMENT_CHILDREN: {
+  name: string;
+  children: ReactNode;
+  textContent: string;
+}[] = [
+  { name: "nullable", children: undefined, textContent: "" },
+  {
+    name: "plain text",
+    children: "plain text trigger",
+    textContent: "plain text trigger",
+  },
+  {
+    name: "fragment",
+    children: (
+      <>
+        <Typography>trigger</Typography>
+      </>
+    ),
+    textContent: "trigger",
+  },
+  {
+    name: "multiple element",
+    children: [
+      <Typography key="first">first</Typography>,
+      <Typography key="second">second</Typography>,
+    ],
+    textContent: "firstsecond",
+  },
+];
+
+const A11Y_PERMUTATIONS: {
+  name: string;
+  asChild?: boolean;
+  children: ReactNode;
+}[] = [
+  {
+    name: "default trigger",
+    children: (
+      <Typography style={{ color: "var(--vesper-stone-900)" }}>
+        tooltip trigger
+      </Typography>
+    ),
+  },
+  {
+    name: "asChild",
+    asChild: true,
+    children: <TextButton variant="contrast">tooltip trigger</TextButton>,
+  },
+];
 
 afterEach(cleanup);
 
@@ -309,6 +372,204 @@ describe("tooltip [unit]", () => {
 
     container.remove();
   });
+
+  describe("content rendered inside the tooltip trigger", () => {
+    test("renders a button trigger wrapping its children", () => {
+      const result = render(
+        <Tooltip content="Tooltip text">
+          <Typography data-testid="child">trigger</Typography>
+        </Tooltip>,
+      );
+
+      const trigger = result.container.firstChild;
+      const child = result.getByTestId("child");
+
+      assert.instanceOf(trigger, HTMLButtonElement);
+      expect(trigger).toHaveAttribute("type", "button");
+      expect(trigger).toHaveAttribute("data-base-ui-tooltip-trigger");
+      expect(trigger).toContainElement(child);
+      expect(child).not.toHaveAttribute("data-base-ui-tooltip-trigger");
+    });
+
+    test("forwards props to the trigger", async () => {
+      const onClick = vi.fn();
+
+      const result = render(
+        <Tooltip
+          content="Tooltip text"
+          className="custom-class"
+          aria-label="More info"
+          data-testid="trigger"
+          onClick={onClick}
+        >
+          ?
+        </Tooltip>,
+      );
+
+      const trigger = result.getByTestId("trigger");
+      assert.instanceOf(trigger, HTMLButtonElement);
+      expect(trigger).toHaveClass("custom-class");
+      expect(trigger).toHaveAttribute("aria-label", "More info");
+
+      await userEvent.click(trigger);
+      expect(onClick).toHaveBeenCalledTimes(1);
+    });
+
+    test("forwards ref to the trigger", () => {
+      const ref = createRef<HTMLButtonElement>();
+
+      const result = render(
+        <Tooltip content="Tooltip text" ref={ref}>
+          trigger
+        </Tooltip>,
+      );
+
+      assert.instanceOf(ref.current, HTMLButtonElement);
+      expect(ref.current).toBe(result.container.firstChild);
+    });
+
+    NON_ELEMENT_CHILDREN.forEach(({ name, children, textContent }) => {
+      test(`renders ${name} children inside the trigger`, () => {
+        const result = render(
+          <Tooltip open content="Tooltip text">
+            {children}
+          </Tooltip>,
+        );
+
+        const trigger = result.container.firstChild;
+        assert.instanceOf(trigger, HTMLButtonElement);
+        expect(trigger.textContent).toBe(textContent);
+
+        const tooltip = document.querySelector(".vesper-tooltip");
+        assert.instanceOf(tooltip, HTMLElement);
+        expect(trigger).toHaveAttribute("aria-describedby", tooltip.id);
+      });
+    });
+  });
+
+  describe("content rendered as the trigger itself via asChild", () => {
+    test("renders the child as the trigger", () => {
+      const result = render(
+        <Tooltip asChild content="Tooltip text">
+          <TextButton>trigger</TextButton>
+        </Tooltip>,
+      );
+
+      const trigger = within(result.container).getByRole("button");
+
+      expect(result.container.firstChild).toBe(trigger);
+      expect(trigger).toHaveClass("vesper-text-button");
+      expect(trigger).toHaveAttribute("data-base-ui-tooltip-trigger");
+    });
+
+    test("opens the tooltip when hovering the child", async () => {
+      const handleOpenChange = vi.fn();
+
+      const result = render(
+        <Tooltip
+          asChild
+          delayDuration={0}
+          onOpenChange={handleOpenChange}
+          content="Tooltip text"
+        >
+          <TextButton>trigger</TextButton>
+        </Tooltip>,
+      );
+
+      const trigger = within(result.container).getByRole("button");
+      expect(trigger).not.toHaveAttribute("aria-describedby");
+
+      fireEvent.mouseEnter(trigger);
+
+      await waitFor(() => {
+        expect(handleOpenChange).toHaveBeenCalledWith(true);
+      });
+
+      const tooltip = document.querySelector(".vesper-tooltip");
+      assert.instanceOf(tooltip, HTMLElement);
+      expect(trigger).toHaveAttribute("aria-describedby", tooltip.id);
+    });
+
+    test("merges props with the child's props", async () => {
+      const onClick = vi.fn();
+      const onChildClick = vi.fn();
+
+      const result = render(
+        <Tooltip
+          asChild
+          content="Tooltip text"
+          className="tooltip-class"
+          aria-label="More info"
+          onClick={onClick}
+        >
+          <TextButton className="child-class" onClick={onChildClick}>
+            trigger
+          </TextButton>
+        </Tooltip>,
+      );
+
+      const trigger = within(result.container).getByRole("button");
+      expect(trigger).toHaveClass(
+        "vesper-text-button",
+        "tooltip-class",
+        "child-class",
+      );
+      expect(trigger).toHaveAttribute("aria-label", "More info");
+
+      await userEvent.click(trigger);
+      expect(onClick).toHaveBeenCalledTimes(1);
+      expect(onChildClick).toHaveBeenCalledTimes(1);
+    });
+
+    test("forwards ref to the child", () => {
+      const ref = createRef<HTMLButtonElement>();
+      const childRef = createRef<HTMLButtonElement>();
+
+      const result = render(
+        <Tooltip asChild content="Tooltip text" ref={ref}>
+          <TextButton ref={childRef}>trigger</TextButton>
+        </Tooltip>,
+      );
+
+      const trigger = within(result.container).getByRole("button");
+      expect(ref.current).toBe(trigger);
+      expect(childRef.current).toBe(trigger);
+    });
+
+    test("portals into the closest dialog ancestor", async () => {
+      const result = render(
+        <dialog open data-testid="dialog">
+          <Tooltip asChild open content="Tooltip text">
+            <TextButton>trigger</TextButton>
+          </Tooltip>
+        </dialog>,
+      );
+
+      const dialog = result.getByTestId("dialog");
+
+      await waitFor(() => {
+        expect(dialog.querySelector(".vesper-tooltip")).not.toBeNull();
+      });
+    });
+
+    NON_ELEMENT_CHILDREN.forEach(({ name, children, textContent }) => {
+      test(`falls back to rendering ${name} children inside a button trigger`, () => {
+        const result = render(
+          <Tooltip asChild open content="Tooltip text">
+            {children}
+          </Tooltip>,
+        );
+
+        const trigger = result.container.firstChild;
+        assert.instanceOf(trigger, HTMLButtonElement);
+        expect(trigger.textContent).toBe(textContent);
+
+        const tooltip = document.querySelector(".vesper-tooltip");
+        assert.instanceOf(tooltip, HTMLElement);
+        expect(trigger).toHaveAttribute("aria-describedby", tooltip.id);
+      });
+    });
+  });
 });
 
 describe("tooltip [snapshot]", () => {
@@ -335,6 +596,18 @@ describe("tooltip [snapshot]", () => {
 
     expect(result.container).toMatchSnapshot();
   });
+
+  test("closed (asChild)", async () => {
+    const result = render(
+      <Tooltip asChild open={false} content="Tooltip text">
+        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+          tooltip trigger
+        </Typography>
+      </Tooltip>,
+    );
+
+    expect(result.container).toMatchSnapshot();
+  });
 });
 
 describe("tooltip [a11y]", () => {
@@ -349,30 +622,30 @@ describe("tooltip [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    test(`a11y (${theme})`, async () => {
-      const result = render(
-        <Tooltip open content="Tooltip text">
-          <Typography style={{ color: "var(--vesper-stone-900)" }}>
-            tooltip trigger
-          </Typography>
-        </Tooltip>,
-      );
+    A11Y_PERMUTATIONS.forEach(({ name, asChild, children }) => {
+      test(`a11y (${name})`, async () => {
+        const result = render(
+          <Tooltip asChild={asChild} open content="Tooltip text">
+            {children}
+          </Tooltip>,
+        );
 
-      await waitFor(() => {
-        expect(document.querySelector(".vesper-tooltip")).not.toBeNull();
+        await waitFor(() => {
+          expect(document.querySelector(".vesper-tooltip")).not.toBeNull();
+        });
+
+        // the tooltip content is portaled outside of the render container, so
+        // a11y is checked at the document level
+        //
+        // the page-level `region` rule is disabled here: it flags content that
+        // isn't contained by a landmark, which is an artifact of rendering a
+        // component in isolation rather than a tooltip accessibility issue
+        expect(
+          await axe.run(result.container.ownerDocument, {
+            rules: { region: { enabled: false } },
+          }),
+        ).toHaveNoViolations();
       });
-
-      // the tooltip content is portaled outside of the render container, so
-      // a11y is checked at the document level
-      //
-      // the page-level `region` rule is disabled here: it flags content that
-      // isn't contained by a landmark, which is an artifact of rendering a
-      // component in isolation rather than a tooltip accessibility issue
-      expect(
-        await axe.run(result.container.ownerDocument, {
-          rules: { region: { enabled: false } },
-        }),
-      ).toHaveNoViolations();
     });
   });
 });

@@ -4,21 +4,21 @@ exports[`menu [snapshot] > closed 1`] = `null`;
 
 exports[`menu [snapshot] > open 1`] = `
 <div
-  aria-labelledby="base-ui-_r_53_"
+  aria-labelledby="base-ui-_r_9r_"
   class="vesper-menu"
   data-align="start"
   data-base-ui-focusable=""
   data-open=""
-  data-rootownerid="_r_50_"
+  data-rootownerid="_r_9o_"
   data-side="bottom"
-  id="_r_51_"
+  id="_r_9p_"
   role="menu"
   style="width: calc(12.5rem);"
   tabindex="-1"
 >
   <div
     class="vesper-menu-item vesper-menu-item-default"
-    id="base-ui-_r_56_"
+    id="base-ui-_r_9u_"
     role="menuitem"
     tabindex="-1"
   >
@@ -61,7 +61,7 @@ exports[`menu [snapshot] > open 1`] = `
   </div>
   <div
     class="vesper-menu-item vesper-menu-item-selected"
-    id="base-ui-_r_57_"
+    id="base-ui-_r_9v_"
     role="menuitem"
     tabindex="-1"
   >
@@ -109,7 +109,7 @@ exports[`menu [snapshot] > open 1`] = `
   </div>
   <div
     class="vesper-menu-item vesper-menu-item-danger"
-    id="base-ui-_r_58_"
+    id="base-ui-_r_a0_"
     role="menuitem"
     tabindex="-1"
   >
@@ -148,7 +148,7 @@ exports[`menu [snapshot] > open 1`] = `
     aria-disabled="true"
     class="vesper-menu-item vesper-menu-item-locked"
     data-disabled=""
-    id="base-ui-_r_59_"
+    id="base-ui-_r_a1_"
     role="menuitem"
     tabindex="-1"
   >
@@ -188,7 +188,7 @@ exports[`menu [snapshot] > open 1`] = `
     aria-disabled="true"
     class="vesper-menu-item vesper-menu-item-disabled"
     data-disabled=""
-    id="base-ui-_r_5a_"
+    id="base-ui-_r_a2_"
     role="menuitem"
     tabindex="-1"
   >
@@ -207,5 +207,34 @@ exports[`menu [snapshot] > open 1`] = `
       </span>
     </div>
   </div>
+</div>
+`;
+
+exports[`menu [snapshot] > trigger (asChild) 1`] = `
+<div>
+  <button
+    aria-expanded="false"
+    aria-haspopup="menu"
+    class="vesper-text-button vesper-text-button-md vesper-text-button-accent"
+    id="base-ui-_r_ab_"
+    tabindex="0"
+    type="button"
+  >
+    trigger
+  </button>
+</div>
+`;
+
+exports[`menu [snapshot] > trigger 1`] = `
+<div>
+  <button
+    aria-expanded="false"
+    aria-haspopup="menu"
+    id="base-ui-_r_a6_"
+    tabindex="0"
+    type="button"
+  >
+    trigger
+  </button>
 </div>
 `;
