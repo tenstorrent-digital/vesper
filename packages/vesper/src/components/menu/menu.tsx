@@ -2,7 +2,12 @@
 
 import { Menu as DropdownMenu } from "@base-ui/react/menu";
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
-import { ComponentProps, type ReactNode, RefObject, useState } from "react";
+import {
+  type ElementType,
+  type ReactNode,
+  type RefObject,
+  useState,
+} from "react";
 
 import { Checkmark, Lock } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
@@ -11,7 +16,7 @@ import {
   type PortalContainer,
 } from "@/utils/get-portal-container";
 import { useBaseRemSize } from "@/utils/hooks/use-base-rem-size";
-import { isSingleReactElement } from "@/utils/is-single-react-element";
+import { Polymorphic } from "@/utils/polymorphic";
 
 export type MenuItemProps = {
   /** The text label displayed for the menu item. */
@@ -26,40 +31,42 @@ export type MenuItemProps = {
   onSelect: () => void;
 };
 
-export interface MenuProps extends ComponentProps<"button"> {
-  /** The preferred side of the trigger to render the menu against. @default bottom */
-  side?: "top" | "bottom" | "left" | "right";
-  /** The distance in pixels from the trigger to the menu. @default 8 */
-  sideOffset?: number;
-  /** The alignment of the menu relative to the trigger along the perpendicular axis. @default start */
-  align?: "start" | "center" | "end";
-  /** An offset in pixels from the aligned edge of the trigger. @default 0 */
-  alignOffset?: number;
-  /** The trigger element that opens the menu. */
-  children?: ReactNode;
-  /** Controls the open state of the menu (controlled mode). */
-  open?: boolean;
-  /** Whether the menu is open by default (uncontrolled mode). */
-  defaultOpen?: boolean;
-  /** Callback fired when the open state changes. Receives the new open state as an argument. */
-  onOpenChange?: (open: boolean) => void;
-  /** The list of menu items to render in the dropdown. */
-  items: MenuItemProps[];
-  /** The width of the menu dropdown in pixels. @default 200 */
-  width?: number;
-  /** Specify the element or shadow root to portal the menu into */
-  container?: PortalContainer;
-  /** Specify the element to anchor the menu against. @default trigger element */
-  anchor?: HTMLElement | null | RefObject<HTMLElement | null>;
-  /** When `true`, renders `children` as the trigger itself. */
-  asChild?: boolean;
-}
+export type MenuProps<E extends ElementType = "button"> = Polymorphic<
+  {
+    /** The preferred side of the trigger to render the menu against. @default bottom */
+    side?: "top" | "bottom" | "left" | "right";
+    /** The distance in pixels from the trigger to the menu. @default 8 */
+    sideOffset?: number;
+    /** The alignment of the menu relative to the trigger along the perpendicular axis. @default start */
+    align?: "start" | "center" | "end";
+    /** An offset in pixels from the aligned edge of the trigger. @default 0 */
+    alignOffset?: number;
+    /** The content of the trigger, or the trigger itself when `asChild` is `true`. */
+    children?: ReactNode;
+    /** Controls the open state of the menu (controlled mode). */
+    open?: boolean;
+    /** Whether the menu is open by default (uncontrolled mode). */
+    defaultOpen?: boolean;
+    /** Callback fired when the open state changes. Receives the new open state as an argument. */
+    onOpenChange?: (open: boolean) => void;
+    /** The list of menu items to render in the dropdown. */
+    items: MenuItemProps[];
+    /** The width of the menu dropdown in pixels. @default 200 */
+    width?: number;
+    /** Specify the element or shadow root to portal the menu into */
+    container?: PortalContainer;
+    /** Specify the element to anchor the menu against. @default trigger element */
+    anchor?: HTMLElement | null | RefObject<HTMLElement | null>;
+  },
+  E,
+  "button"
+>;
 
 /**
  * A dropdown menu component triggered by a child element, rendering a list of selectable menu items.
  *
  * @param {MenuItemProps[]} props.items - The list of menu items to render in the dropdown
- * @param {ReactElement} [props.children] - (optional) The trigger element that opens the menu
+ * @param {ReactNode} [props.children] - (optional) The content of the trigger that opens the menu
  * @param {number} [props.width] - (optional) The width of the dropdown in pixels. @default 200
  * @param {"top" | "bottom" | "left" | "right"} [props.side] - (optional) The preferred side of the trigger. @default bottom
  * @param {number} [props.sideOffset] - (optional) Distance in pixels from the trigger. @default 8
@@ -88,10 +95,9 @@ export interface MenuProps extends ComponentProps<"button"> {
  *   <Button variant="ghost">Options</Button>
  * </Menu>
  */
-export function Menu(props: MenuProps) {
+export function Menu<E extends ElementType = "button">(props: MenuProps<E>) {
   const {
     items,
-    children,
     width = 200,
     side = "bottom",
     sideOffset = 8,
@@ -102,8 +108,8 @@ export function Menu(props: MenuProps) {
     defaultOpen,
     onOpenChange,
     open,
-    asChild,
     ref,
+    as: Component = "button",
     ...rest
   } = props;
 
@@ -121,13 +127,7 @@ export function Menu(props: MenuProps) {
       onOpenChange={onOpenChange}
       open={open}
     >
-      <DropdownMenu.Trigger
-        {...rest}
-        ref={triggerRef}
-        {...(asChild && isSingleReactElement(children)
-          ? { render: children }
-          : { children })}
-      />
+      <DropdownMenu.Trigger ref={triggerRef} render={<Component {...rest} />} />
       <DropdownMenu.Portal container={portalContainer}>
         <DropdownMenu.Positioner
           anchor={anchor}
