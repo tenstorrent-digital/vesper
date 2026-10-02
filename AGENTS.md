@@ -77,11 +77,16 @@ yarn quality:agent          # check everything: linting, formatting and types
 yarn lint --format agent    # check for linting problems only (oxlint, does not write)
 yarn format                 # check formatting only (oxfmt --check, does not write)
 yarn check-types            # check for type errors only (tsc --noEmit, per workspace)
+yarn vale [files/*|file.ts] # check prose with vale
+yarn vale:diff              # check prose with vale against `main`
 ```
 
-Before you commit any changes, run the following commands to ensure your code is free of linting and type errors, and properly formatted:
+Before you commit any changes, run the following commands to ensure your code is free of linting and type errors, properly formatted, and that any prose (documentation and comments) you've written is free of errors:
 
 ```bash
+# check prose
+yarn vale:diff
+
 # fix any auto-fixable linting problems, then format code
 yarn quality:fix
 
@@ -159,3 +164,14 @@ When writing JSDoc comments for React component functions:
 - Finally, document some simple examples using `@example` syntax.
 
 For full examples of how this formatting might look like, please refer to existing JSDoc comments for exported components and their props in `packages/vesper/src/components/*.tsx`
+
+<!-- BEGIN:turborepo-agent-rules -->
+
+# This is NOT the Turborepo you know
+
+Turborepo configuration, task behavior, and CLI commands can vary between installed versions and may differ from your training data. Resolve the `turbo` package from this file's directory or relevant workspace; in monorepos, it may not be visible from the repository root. For example, run `node -p "require.resolve('turbo/package.json')"` from a workspace that depends on `turbo`.
+
+Read `docs/README.md` inside that installed package first, then read the relevant pages from its `docs/` directory before changing Turborepo configuration or commands. Heed deprecation notices. These bundled docs match the installed package version and are available without network access.
+
+This block is written and re-added by `turbo` before repository-scoped commands when an AI agent is detected. In the Turborepo source repository, its template is defined in `crates/turborepo-cli/src/cli/agent_guidance.rs`. Removing the managed block while updates are enabled means a later qualifying invocation will add it again. Set `"agentGuidance": false` in the root `turbo.json` or `turbo.jsonc` to opt out; this does not remove an existing block. Keep the block committed with your work to avoid an uncommitted change on the next agent invocation.
+<!-- END:turborepo-agent-rules -->
