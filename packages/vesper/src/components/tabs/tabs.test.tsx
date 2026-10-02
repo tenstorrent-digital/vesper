@@ -35,6 +35,14 @@ const TABS_PERMUTATIONS: {
   },
 ];
 
+const NonForwardingTabContent = ({ label }: { label: string }) => (
+  <section data-testid={`${label}-content`}>
+    <Typography style={{ color: "var(--vesper-stone-900)" }}>
+      {label} Content
+    </Typography>
+  </section>
+);
+
 const TabsTestComponent = ({
   variant,
   defaultValue,
@@ -143,6 +151,36 @@ describe("tabs [unit]", () => {
     await userEvent.click(tab3!);
     expect(result.queryByTestId("tab-2-content")).toBeNull();
     expect(result.queryByTestId("tab-3-content")).not.toBeNull();
+  });
+
+  test("renders the active panel when content components do not forward props", async () => {
+    const result = render(
+      <Tabs
+        defaultValue="tab-1"
+        items={[
+          {
+            value: "tab-1",
+            label: "Tab 1",
+            content: <NonForwardingTabContent label="tab-1" />,
+          },
+          {
+            value: "tab-2",
+            label: "Tab 2",
+            content: <NonForwardingTabContent label="tab-2" />,
+          },
+        ]}
+      />,
+    );
+
+    const [tab1, tab2] = result.getAllByRole("tab");
+
+    await userEvent.click(tab1!);
+    expect(result.queryByTestId("tab-1-content")).not.toBeNull();
+    expect(result.queryByTestId("tab-2-content")).toBeNull();
+
+    await userEvent.click(tab2!);
+    expect(result.queryByTestId("tab-1-content")).toBeNull();
+    expect(result.queryByTestId("tab-2-content")).not.toBeNull();
   });
 
   test("defaults to primary variant", () => {
