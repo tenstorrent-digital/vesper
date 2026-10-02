@@ -2,6 +2,7 @@
 #
 # 1. quality (linting, formatting, and type checking)
 # 2. tests (vesper unit tests)
+# 3. vale (prose linting)
 #
 # Github runs worflow jobs for every PR in a stack (each one is evaluated as if it targets
 # the stack's base, eg. `main`), so to save CI, only run the job for stacked PRs where it matters:
@@ -75,7 +76,7 @@ jobs:
       - name: Setup Node, install dependencies
         uses: ./.github/actions/setup
 
-      # so unchanged turbo tasks could be replayed from cache
+      # setup turbo cache so unchanged turbo tasks can be replayed from cache
       - name: Setup turbo cache
         uses: ./.github/actions/turbo-cache
 
@@ -113,7 +114,7 @@ jobs:
           # vesper's unit tests run in (playwright's) chromium
           playwright: "true"
 
-      # so unchanged turbo tasks could be replayed from cache
+      # setup turbo cache so unchanged turbo tasks can be replayed from cache
       - name: Setup turbo cache
         uses: ./.github/actions/turbo-cache
 
@@ -130,3 +131,38 @@ jobs:
             packages/vesper/test-results/
             packages/vesper/coverage/
           retention-days: 7
+
+  # check prose
+  prose:
+    name: Prose
+    if: *should-checks-run
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      DO_NOT_TRACK: 1
+      CI: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          # Runs untrusted PR code, so keep the token out of `.git/config`
+          persist-credentials: false
+
+      - name: Stacked PR info
+        if: github.event.pull_request.stack != null
+        run: |
+          echo "Stacked PR"
+          echo "Stack base ref: ${{ github.event.pull_request.stack.base.ref }}"
+          echo "☰ PR ${{ github.event.pull_request.stack.position }} of ${{ github.event.pull_request.stack.size }}"
+
+      - name: Setup Node, install dependencies
+        uses: ./.github/actions/setup
+
+      # setup turbo cache so unchanged turbo tasks can be replayed from cache
+      - name: Setup turbo cache
+        uses: ./.github/actions/turbo-cache
+
+      # run vale to check prose for files changed against `main`
+      - name: "Check prose"
+        run: yarn vale:diff
