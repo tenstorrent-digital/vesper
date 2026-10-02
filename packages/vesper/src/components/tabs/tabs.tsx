@@ -8,7 +8,6 @@ import {
   TypographyVariant,
 } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
-import { isSingleReactElement } from "@/utils/is-single-react-element";
 
 export const TABS_VARIANTS = ["primary", "secondary"] as const;
 
@@ -113,21 +112,11 @@ export function Tabs(props: TabsProps) {
           </Typography>
         ))}
       </BaseTabs.List>
-      {items.map((item) => {
-        const children = isSingleReactElement(item.content) ? (
-          item.content
-        ) : (
-          <span>{item.content}</span>
-        );
-
-        return (
-          <BaseTabs.Panel
-            render={children}
-            key={item.value}
-            value={item.value}
-          />
-        );
-      })}
+      {items.map((item) => (
+        <BaseTabs.Panel key={item.value} value={item.value}>
+          {item.content}
+        </BaseTabs.Panel>
+      ))}
     </BaseTabs.Root>
   );
 }
