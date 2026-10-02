@@ -14,7 +14,7 @@ exports[`tabs [snapshot] > primary, no value 1`] = `
     role="tablist"
   >
     <button
-      aria-controls="base-ui-_r_1r_"
+      aria-controls="base-ui-_r_1v_"
       aria-disabled="false"
       aria-selected="true"
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
@@ -22,7 +22,7 @@ exports[`tabs [snapshot] > primary, no value 1`] = `
       data-active=""
       data-composite-item-active=""
       data-orientation="horizontal"
-      id="base-ui-_r_1o_"
+      id="base-ui-_r_1s_"
       role="tab"
       tabindex="0"
       type="button"
@@ -51,7 +51,7 @@ exports[`tabs [snapshot] > primary, no value 1`] = `
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
       data-activation-direction="none"
       data-orientation="horizontal"
-      id="base-ui-_r_1p_"
+      id="base-ui-_r_1t_"
       role="tab"
       tabindex="-1"
       type="button"
@@ -64,7 +64,7 @@ exports[`tabs [snapshot] > primary, no value 1`] = `
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
       data-activation-direction="none"
       data-orientation="horizontal"
-      id="base-ui-_r_1q_"
+      id="base-ui-_r_1u_"
       role="tab"
       tabindex="-1"
       type="button"
@@ -73,12 +73,12 @@ exports[`tabs [snapshot] > primary, no value 1`] = `
     </button>
   </div>
   <div
-    aria-labelledby="base-ui-_r_1o_"
+    aria-labelledby="base-ui-_r_1s_"
     data-activation-direction="none"
     data-index="0"
     data-orientation="horizontal"
     data-starting-style=""
-    id="base-ui-_r_1r_"
+    id="base-ui-_r_1v_"
     role="tabpanel"
     tabindex="0"
   >
@@ -107,7 +107,7 @@ exports[`tabs [snapshot] > primary, value 1`] = `
     role="tablist"
   >
     <button
-      aria-controls="base-ui-_r_21_"
+      aria-controls="base-ui-_r_25_"
       aria-disabled="false"
       aria-selected="true"
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
@@ -115,7 +115,7 @@ exports[`tabs [snapshot] > primary, value 1`] = `
       data-active=""
       data-composite-item-active=""
       data-orientation="horizontal"
-      id="base-ui-_r_1u_"
+      id="base-ui-_r_22_"
       role="tab"
       tabindex="0"
       type="button"
@@ -144,7 +144,7 @@ exports[`tabs [snapshot] > primary, value 1`] = `
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
       data-activation-direction="none"
       data-orientation="horizontal"
-      id="base-ui-_r_1v_"
+      id="base-ui-_r_23_"
       role="tab"
       tabindex="-1"
       type="button"
@@ -157,7 +157,7 @@ exports[`tabs [snapshot] > primary, value 1`] = `
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
       data-activation-direction="none"
       data-orientation="horizontal"
-      id="base-ui-_r_20_"
+      id="base-ui-_r_24_"
       role="tab"
       tabindex="-1"
       type="button"
@@ -166,11 +166,11 @@ exports[`tabs [snapshot] > primary, value 1`] = `
     </button>
   </div>
   <div
-    aria-labelledby="base-ui-_r_1u_"
+    aria-labelledby="base-ui-_r_22_"
     data-activation-direction="none"
     data-index="0"
     data-orientation="horizontal"
-    id="base-ui-_r_21_"
+    id="base-ui-_r_25_"
     role="tabpanel"
     tabindex="0"
   >
@@ -199,7 +199,7 @@ exports[`tabs [snapshot] > secondary, no value 1`] = `
     role="tablist"
   >
     <button
-      aria-controls="base-ui-_r_27_"
+      aria-controls="base-ui-_r_2b_"
       aria-disabled="false"
       aria-selected="true"
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
@@ -207,7 +207,7 @@ exports[`tabs [snapshot] > secondary, no value 1`] = `
       data-active=""
       data-composite-item-active=""
       data-orientation="horizontal"
-      id="base-ui-_r_24_"
+      id="base-ui-_r_28_"
       role="tab"
       tabindex="0"
       type="button"
@@ -236,7 +236,7 @@ exports[`tabs [snapshot] > secondary, no value 1`] = `
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
       data-activation-direction="none"
       data-orientation="horizontal"
-      id="base-ui-_r_25_"
+      id="base-ui-_r_29_"
       role="tab"
       tabindex="-1"
       type="button"
@@ -249,7 +249,7 @@ exports[`tabs [snapshot] > secondary, no value 1`] = `
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
       data-activation-direction="none"
       data-orientation="horizontal"
-      id="base-ui-_r_26_"
+      id="base-ui-_r_2a_"
       role="tab"
       tabindex="-1"
       type="button"
@@ -258,12 +258,12 @@ exports[`tabs [snapshot] > secondary, no value 1`] = `
     </button>
   </div>
   <div
-    aria-labelledby="base-ui-_r_24_"
+    aria-labelledby="base-ui-_r_28_"
     data-activation-direction="none"
     data-index="0"
     data-orientation="horizontal"
     data-starting-style=""
-    id="base-ui-_r_27_"
+    id="base-ui-_r_2b_"
     role="tabpanel"
     tabindex="0"
   >
@@ -292,7 +292,7 @@ exports[`tabs [snapshot] > secondary, value 1`] = `
     role="tablist"
   >
     <button
-      aria-controls="base-ui-_r_2d_"
+      aria-controls="base-ui-_r_2h_"
       aria-disabled="false"
       aria-selected="true"
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
@@ -300,7 +300,7 @@ exports[`tabs [snapshot] > secondary, value 1`] = `
       data-active=""
       data-composite-item-active=""
       data-orientation="horizontal"
-      id="base-ui-_r_2a_"
+      id="base-ui-_r_2e_"
       role="tab"
       tabindex="0"
       type="button"
@@ -329,7 +329,7 @@ exports[`tabs [snapshot] > secondary, value 1`] = `
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
       data-activation-direction="none"
       data-orientation="horizontal"
-      id="base-ui-_r_2b_"
+      id="base-ui-_r_2f_"
       role="tab"
       tabindex="-1"
       type="button"
@@ -342,7 +342,7 @@ exports[`tabs [snapshot] > secondary, value 1`] = `
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
       data-activation-direction="none"
       data-orientation="horizontal"
-      id="base-ui-_r_2c_"
+      id="base-ui-_r_2g_"
       role="tab"
       tabindex="-1"
       type="button"
@@ -351,11 +351,11 @@ exports[`tabs [snapshot] > secondary, value 1`] = `
     </button>
   </div>
   <div
-    aria-labelledby="base-ui-_r_2a_"
+    aria-labelledby="base-ui-_r_2e_"
     data-activation-direction="none"
     data-index="0"
     data-orientation="horizontal"
-    id="base-ui-_r_2d_"
+    id="base-ui-_r_2h_"
     role="tabpanel"
     tabindex="0"
   >
