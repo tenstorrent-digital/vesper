@@ -113,9 +113,6 @@
     "lint": {
       "dependsOn": ["^build"]
     },
-    "//#lint:prose": {
-      // run vale
-    },
     "lint:fix": {
       "dependsOn": ["^build"],
       "cache": false
@@ -133,6 +130,9 @@
       // same file at once
       "dependsOn": ["//#lint:root:fix", "website#lint:fix"],
       "cache": false
+    },
+    "//#vale:check": {
+      // check prose with vale
     },
     "clean": {
       // clean caches, generated, and dist folders across the repo
