@@ -45,25 +45,66 @@ yarn test:watch:vesper  # run tests in watch mode
 yarn check-types        # type-check all workspaces
 ```
 
-## Formatting
+## Quality
 
-We use [`oxfmt`](.oxfmtrc.json) for formatting.
-
-Please ensure that automatic formatting on save is configured in your editor.
-
-To run formatting manually you can run the following command to format all files in the repository:
+You can run quality checks (linting, formatting, and type-checking) by running the following commands:
 
 ```sh
-yarn format:fix
+yarn quality            # run linting, formatting, and type-checking
+yarn quality:fix        # fix problems
 ```
 
-You can also format specific files by passing them as arguments:
+### Linting and Formatting
+
+We use `oxlint` for linting, and `oxfmt` for formatting.
+
+> [!IMPORTANT]
+>
+> Please ensure that automatic formatting on save is configured in your editor. [See below for more details about editor support.](#editor-support)
 
 ```sh
-yarn format:fix path/to/file.ts path/to/other-file.tsx
+# linting
+yarn lint                # check for linting errors
+yarn lint:fix            # fix auto-fixable lint problems
+
+# formatting
+yarn format              # check formatting
+yarn format:fix          # fix auto-fixable formatting problems
+yarn format:fix file.ts  # fix auto-fixable formatting problems for a specific file
 ```
 
-The same arguments work with `yarn format`, which checks formatting without writing any changes (use `yarn format:fix` to apply fixes).
+#### Config
+
+For configurations, please see:
+
+- [`packages/oxlint-config`](./packages/oxlint-config) for shared `oxlint` configs
+- `oxlint.config.mts` for each package and app's own `oxlint` config
+- [`.oxfmtrc.json`](.oxfmtrc.json) for the `oxfmt` config used across the monorepo
+
+#### Editor Support
+
+We have editor support for using `oxlint` and `oxfmt` for your editor's LSP, lint, and format tools.
+
+See individual editor settings for more details:
+
+- [Zed](.zed/settings.json) (requires [extension](https://github.com/oxc-project/oxc-zed))
+- [Helix](.helix/languages.toml)
+- [VSCode](.vscode/settings.json) (requires [extension](https://marketplace.visualstudio.com/items?itemName=oxc.oxc-vscode))
+
+### Vale
+
+We use [`vale`](https://docs.vale.sh) to lint prose across the monorepo. This includes the documentation in [`docs/`](./docs/) and any code comments in the codebase.
+
+To check for prose errors, you can run:
+
+```sh
+yarn vale [files/*|file.ts] # check prose with vale
+yarn vale:diff              # check prose with vale against `main`
+```
+
+Please use `vale:diff` to ensure your work conforms to our prose standards. It would also be helpful if you could address any prose errors in any files you change. This helps ensure that prose across the monorepo is consistent and follows our standards.
+
+The configuration for `vale` is available in [`.vale.ini`](./.vale.ini)
 
 ## Developing `@tenstorrent/vesper`
 
