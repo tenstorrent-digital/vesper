@@ -131,6 +131,9 @@
       "dependsOn": ["//#lint:root:fix", "website#lint:fix"],
       "cache": false
     },
+    "//#vale:check": {
+      // check prose with vale
+    },
     "clean": {
       // clean caches, generated, and dist folders across the repo
       //
