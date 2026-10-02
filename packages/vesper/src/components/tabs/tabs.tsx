@@ -8,10 +8,24 @@ import {
   TypographyVariant,
 } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { isSingleReactElement } from "@/utils/is-single-react-element";
 
 export const TABS_VARIANTS = ["primary", "secondary"] as const;
 
 export type TabsVariant = (typeof TABS_VARIANTS)[number];
+
+export interface TabItem {
+  /** The text label displayed in the tab trigger. */
+  label: string;
+  /** A unique value identifying this tab, used for selection tracking. */
+  value: string;
+  /** An optional icon element rendered before the label in the tab trigger. */
+  icon?: ReactNode;
+  /** The content rendered in the panel when this tab is active. */
+  content: ReactNode;
+  /** When `true`, renders the tab content as the tab panel itself. */
+  asChild?: boolean;
+}
 
 export interface TabsProps extends Omit<
   ComponentProps<"div">,
@@ -20,16 +34,7 @@ export interface TabsProps extends Omit<
   /** The visual style variant of the tabs. @default primary */
   variant?: TabsVariant;
   /** The list of tab items to render. Each item defines a tab trigger and its associated content panel. */
-  items: {
-    /** The text label displayed in the tab trigger. */
-    label: string;
-    /** A unique value identifying this tab, used for selection tracking. */
-    value: string;
-    /** An optional icon element rendered before the label in the tab trigger. */
-    icon?: ReactNode;
-    /** The content rendered in the panel when this tab is active. */
-    content: ReactNode;
-  }[];
+  items: TabItem[];
   /** The value for the selected tab (controlled). */
   value?: string;
   /** The value of the tab to select by default (uncontrolled). */
@@ -113,9 +118,13 @@ export function Tabs(props: TabsProps) {
         ))}
       </BaseTabs.List>
       {items.map((item) => (
-        <BaseTabs.Panel key={item.value} value={item.value}>
-          {item.content}
-        </BaseTabs.Panel>
+        <BaseTabs.Panel
+          key={item.value}
+          value={item.value}
+          {...(item.asChild && isSingleReactElement(item.content)
+            ? { render: item.content }
+            : { children: item.content })}
+        />
       ))}
     </BaseTabs.Root>
   );

@@ -1,7 +1,8 @@
 "use client";
 
 import { Menu as DropdownMenu } from "@base-ui/react/menu";
-import { type ReactNode, RefObject, useState } from "react";
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
+import { ComponentProps, type ReactNode, RefObject, useState } from "react";
 
 import { Checkmark, Lock } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
@@ -25,7 +26,7 @@ export type MenuItemProps = {
   onSelect: () => void;
 };
 
-export interface MenuProps {
+export interface MenuProps extends ComponentProps<"button"> {
   /** The preferred side of the trigger to render the menu against. @default bottom */
   side?: "top" | "bottom" | "left" | "right";
   /** The distance in pixels from the trigger to the menu. @default 8 */
@@ -50,6 +51,8 @@ export interface MenuProps {
   container?: PortalContainer;
   /** Specify the element to anchor the menu against. @default trigger element */
   anchor?: HTMLElement | null | RefObject<HTMLElement | null>;
+  /** When `true`, renders `children` as the trigger itself. */
+  asChild?: boolean;
 }
 
 /**
@@ -96,22 +99,35 @@ export function Menu(props: MenuProps) {
     alignOffset = 0,
     container,
     anchor,
+    defaultOpen,
+    onOpenChange,
+    open,
+    asChild,
+    ref,
     ...rest
   } = props;
 
-  const [ref, setRef] = useState<Element | null>(null);
+  const [innerRef, setInnerRef] = useState<Element | null>(null);
+  const mergedRef = useMergedRefs(ref, setInnerRef);
+  const triggerRef = (e: HTMLButtonElement | null) => mergedRef?.(e);
 
   const baseRemSize = useBaseRemSize();
 
-  const portalContainer = getPortalContainer(container, ref);
-
-  if (!isSingleReactElement(children)) {
-    return children;
-  }
+  const portalContainer = getPortalContainer(container, innerRef);
 
   return (
-    <DropdownMenu.Root {...rest}>
-      <DropdownMenu.Trigger render={children} ref={setRef} />
+    <DropdownMenu.Root
+      defaultOpen={defaultOpen}
+      onOpenChange={onOpenChange}
+      open={open}
+    >
+      <DropdownMenu.Trigger
+        {...rest}
+        ref={triggerRef}
+        {...(asChild && isSingleReactElement(children)
+          ? { render: children }
+          : { children })}
+      />
       <DropdownMenu.Portal container={portalContainer}>
         <DropdownMenu.Positioner
           anchor={anchor}

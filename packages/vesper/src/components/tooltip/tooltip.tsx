@@ -1,7 +1,8 @@
 "use client";
 
 import { Tooltip as BaseTooltip } from "@base-ui/react/tooltip";
-import { type ReactNode, useId, useState } from "react";
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
+import { ComponentProps, type ReactNode, useId, useState } from "react";
 
 import { Typography } from "@/components/typography/typography";
 import {
@@ -19,7 +20,10 @@ export type TooltipSide = (typeof TOOLTIP_SIDES)[number];
 
 export type TooltipAlign = (typeof TOOLTIP_ALIGNMENTS)[number];
 
-export interface TooltipProps {
+export interface TooltipProps extends Omit<
+  ComponentProps<"button">,
+  "content"
+> {
   /** The content displayed inside the tooltip popup. */
   content: ReactNode;
   /** The preferred side of the trigger to render the tooltip against. @default top */
@@ -38,12 +42,12 @@ export interface TooltipProps {
   delayDuration?: number;
   /** Whether the tooltip is open by default (uncontrolled mode). */
   defaultOpen?: boolean;
-  /** The trigger element that the tooltip is attached to. */
-  children?: ReactNode;
   /** The maximum width of the tooltip in pixels. Content will wrap if it exceeds this width. @default 240 */
   maxWidth?: number;
   /** Specify the element or shadow root to portal the tooltip into */
   container?: PortalContainer;
+  /** When `true`, renders `children` as the trigger itself. */
+  asChild?: boolean;
 }
 
 /**
@@ -84,9 +88,13 @@ export function Tooltip(props: TooltipProps) {
     side = "top",
     sideOffset = 4,
     container,
+    asChild,
+    ref,
+    ...rest
   } = props;
 
-  const [ref, setRef] = useState<Element | null>(null);
+  const [innerRef, setInnerRef] = useState<Element | null>(null);
+  const mergedRef = useMergedRefs(ref, setInnerRef);
 
   const [uncontrolledOpen, setUncontrolledOpen] = useState(
     defaultOpen ?? false,
@@ -98,11 +106,7 @@ export function Tooltip(props: TooltipProps) {
 
   const baseRemSize = useBaseRemSize();
 
-  const portalContainer = getPortalContainer(container, ref);
-
-  if (!isSingleReactElement(children)) {
-    return children;
-  }
+  const portalContainer = getPortalContainer(container, innerRef);
 
   return (
     <BaseTooltip.Provider>
@@ -115,10 +119,13 @@ export function Tooltip(props: TooltipProps) {
         open={open}
       >
         <BaseTooltip.Trigger
+          {...rest}
           aria-describedby={isOpen ? popupId : undefined}
           delay={delayDuration}
-          render={children}
-          ref={setRef}
+          ref={mergedRef}
+          {...(asChild && isSingleReactElement(children)
+            ? { render: children }
+            : { children })}
         />
         <BaseTooltip.Portal container={portalContainer}>
           <BaseTooltip.Positioner

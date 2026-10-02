@@ -63,7 +63,7 @@ afterEach(cleanup);
 describe("menu [unit]", () => {
   test("clicking trigger when closed", async () => {
     const result = render(
-      <Menu items={MENU_ITEMS} defaultOpen={false}>
+      <Menu items={MENU_ITEMS} defaultOpen={false} asChild>
         <TextButton>trigger</TextButton>
       </Menu>,
     );
@@ -198,37 +198,6 @@ describe("menu [unit]", () => {
     menuItem.click();
     expect(onSelect).not.toHaveBeenCalled();
     expect(document.querySelector(".vesper-menu")).not.toBeNull();
-  });
-
-  test("nullable children do not render menu", () => {
-    const result = render(<Menu items={MENU_ITEMS} open />);
-
-    expect(result.container.innerHTML).toBe("");
-    expect(document.querySelector(".vesper-menu")).toBeNull();
-  });
-
-  test("fragment children do not render menu", () => {
-    const result = render(
-      <Menu items={MENU_ITEMS} open>
-        <>
-          <TextButton>trigger</TextButton>
-        </>
-      </Menu>,
-    );
-
-    expect(within(result.container).getByRole("button")).not.toBeNull();
-    expect(document.querySelector(".vesper-menu")).toBeNull();
-  });
-
-  test("non-element children do not render menu", () => {
-    const result = render(
-      <Menu items={MENU_ITEMS} open>
-        plain text trigger
-      </Menu>,
-    );
-
-    expect(result.container.innerHTML).toBe("plain text trigger");
-    expect(document.querySelector(".vesper-menu")).toBeNull();
   });
 
   test("portals menu content into document.body", async () => {
@@ -370,7 +339,7 @@ describe("menu [a11y]", () => {
 
     test("a11y (open)", async () => {
       const result = render(
-        <Menu items={MENU_ITEMS} open>
+        <Menu items={MENU_ITEMS} open asChild>
           <TextButton variant="contrast">trigger</TextButton>
         </Menu>,
       );
@@ -394,7 +363,7 @@ describe("menu [a11y]", () => {
 
     test("a11y (closed)", async () => {
       const result = render(
-        <Menu items={MENU_ITEMS} open={false}>
+        <Menu items={MENU_ITEMS} open={false} asChild>
           <TextButton variant="contrast">trigger</TextButton>
         </Menu>,
       );

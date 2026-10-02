@@ -171,48 +171,6 @@ describe("tooltip [unit]", () => {
     expect(trigger).toHaveAttribute("aria-describedby", tooltip.id);
   });
 
-  test("nullable children", () => {
-    render(<Tooltip open content="Tooltip text" />);
-
-    expect(document.querySelector(".vesper-tooltip")).toBeNull();
-  });
-
-  test("non-element children do not render tooltip", () => {
-    const result = render(
-      <Tooltip open content="Tooltip text">
-        plain text trigger
-      </Tooltip>,
-    );
-
-    expect(document.querySelector(".vesper-tooltip")).toBeNull();
-    expect(result.container.innerHTML).toBe("plain text trigger");
-  });
-
-  test("fragment children do not render tooltip", () => {
-    const result = render(
-      <Tooltip open content="Tooltip text">
-        <>
-          <Typography>trigger</Typography>
-        </>
-      </Tooltip>,
-    );
-
-    expect(document.querySelector(".vesper-tooltip")).toBeNull();
-    expect(result.container.textContent).toBe("trigger");
-  });
-
-  test("multiple children do not render tooltip", () => {
-    const result = render(
-      <Tooltip open content="Tooltip text">
-        <Typography>first</Typography>
-        <Typography>second</Typography>
-      </Tooltip>,
-    );
-
-    expect(document.querySelector(".vesper-tooltip")).toBeNull();
-    expect(result.container.textContent).toBe("firstsecond");
-  });
-
   test("defaultOpen prop", () => {
     render(
       <Tooltip defaultOpen content="Tooltip text">
