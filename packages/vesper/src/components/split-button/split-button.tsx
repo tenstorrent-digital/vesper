@@ -157,6 +157,7 @@ export function SplitButton(props: SplitButtonProps) {
         {children}
       </Button>
       <Menu
+        asChild
         anchor={innerRef}
         items={menuItems}
         align={menuAlign}
