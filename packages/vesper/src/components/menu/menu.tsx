@@ -77,23 +77,24 @@ export type MenuProps<E extends ElementType = "button"> = Polymorphic<
  *
  * @example
  * <Menu
+ *   as={IconButton}
+ *   icon={<Ellipses />}
+ *   aria-label="Actions"
  *   items={[
  *     { text: "Edit", onSelect: handleEdit },
  *     { text: "Delete", style: "danger", onSelect: handleDelete },
  *   ]}
- * >
- *   <IconButton icon={<Ellipses />} aria-label="Actions" />
- * </Menu>
+ * />
  *
  * @example
  * <Menu
+ *   as={Button}
+ *   variant="ghost"
  *   items={options}
  *   side="right"
  *   width={250}
  *   align="end"
- * >
- *   <Button variant="ghost">Options</Button>
- * </Menu>
+ * />
  */
 export function Menu<E extends ElementType = "button">(props: MenuProps<E>) {
   const {
