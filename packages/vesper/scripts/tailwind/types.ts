@@ -7,8 +7,10 @@ import type {
 
 import { TOKEN_FILE_NAMES, TAILWIND_UTILITY_FILE_NAMES } from "./constants";
 
+/** A token group name that a variable can be bucketed into. */
 export type TokenGroupName = (typeof TOKEN_FILE_NAMES)[number];
 
+/** A utility group name that a utility can be bucketed into. */
 export type UtilityGroupName = (typeof TAILWIND_UTILITY_FILE_NAMES)[number];
 
 type DefaultExtension = ConfigExtension<
@@ -22,21 +24,47 @@ type DefaultTheme = NonNullable<
 
 type DefaultThemeProperty = keyof DefaultTheme;
 
+/**
+ * Any token group name that maps to a property in `tailwind-merge`'s
+ * `extend.theme` configuration object.
+ */
+export type ThemeTokenGroup = Exclude<TokenGroupName, ClassGroupTokenGroup>;
+
+/**
+ * Any token group name that does **not** map to a property in `tailwind-merge`'s
+ * `extend.theme` configuration object. These token group names require
+ * per-property overrides under `extend.classGroup`.
+ *
+ * @see ./tailwind-merge-config.ts:31
+ * */
 export type ClassGroupTokenGroup = Exclude<
   TokenGroupName,
   DefaultThemeProperty
 >;
 
+/** The metatada of a tailwind utility class */
 export type UtilityData = {
+  /**
+   * The name of the utility, without any delimiters.
+   *
+   * The `bg-vesper-dot-pattern-*` utility's name, for example, would be `bg-vesper-dot-pattern`.
+   **/
   name: string;
+  /** Whether the utility accepts an argument or not. */
   acceptsArgument: boolean;
 };
 
-export type ThemeTokenGroup = Exclude<TokenGroupName, ClassGroupTokenGroup>;
+/** The metadata of a vesper css variable */
+export type TokenData = {
+  /** The name of the variable, eg. `vesper-color-background-primary` */
+  name: string;
+  /** The token group the variable belongs to, eg. `color` */
+  group: TokenGroupName;
+  /** The token's value within its group, eg. `background-primary` */
+  value: string;
+};
 
-export type TokenData = { name: string; group: string; value: string };
-
-export type TokenType<T extends Token["type"]> = {
+type TokenType<T extends Token["type"]> = {
   type: "token";
   value: Token & { type: T };
 };
