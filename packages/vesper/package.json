@@ -204,7 +204,7 @@
     "build:storybook": "storybook build -c storybook -o ../../apps/website/public/storybook",
     "scaffold:component": "turbo gen vesper-component",
     "generate:icons": "tsx scripts/generate-icons.ts",
-    "generate:tailwind-merge": "tsx scripts/generate-tailwind-merge.ts",
+    "generate:tailwind-merge": "tsx scripts/tailwind/generate-tailwind-merge.ts",
     "test": "vitest run --coverage",
     "test:update": "vitest run --coverage --update",
     "test:watch": "vitest",

@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { VARIABLE_GROUPS } from "./tailwind-merge-config";
-import { getGeneratedCodeWarning } from "./utils";
+import { getGeneratedCodeWarning } from "../utils";
+import { TOKEN_VARIABLE_GROUPS } from "./constants";
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning(
   "yarn generate:tailwind-css",
@@ -15,10 +15,11 @@ const imports = [
   `@import "./tailwind-utilities.css";`,
 ].join("");
 
-const tokens = Object.entries(VARIABLE_GROUPS).flatMap(([group, tokens]) =>
-  tokens.map((t) => {
-    return `--${group}-vesper-${t.value}: var(--vesper-${group}-${t.value});`;
-  }),
+const tokens = Object.entries(TOKEN_VARIABLE_GROUPS).flatMap(
+  ([group, tokens]) =>
+    tokens.map((t) => {
+      return `--${group}-vesper-${t.value}: var(--vesper-${group}-${t.value});`;
+    }),
 );
 
 const theme = `@theme { ${tokens.join("")} }`;

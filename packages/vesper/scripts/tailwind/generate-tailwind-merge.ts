@@ -1,52 +1,55 @@
-import fs from "node:fs";
-import path from "node:path";
 import type { DefaultClassGroupIds } from "tailwind-merge";
 
-import type { UtilityGroup } from "./get-tailwind-utility-groups";
-import { type TokenGroup } from "./get-token-variable-groups";
+import fs from "node:fs";
+
+import { getGeneratedCodeWarning, resolvePackagePath } from "../utils";
+import { TOKEN_VARIABLE_GROUPS, TW_UTILITY_GROUPS } from "./constants";
 import {
-  type ClassGroupTokenGroup,
   CUSTOM_UTILITY_CLASSGROUPS,
   EXTENDED_CLASSGROUP_PROPERTIES,
-  getVesperUtilityGroupId,
   THEME_TOKEN_GROUPS,
-  UTILITY_GROUPS,
-  VARIABLE_GROUPS,
 } from "./tailwind-merge-config";
-import { getGeneratedCodeWarning } from "./utils";
+import {
+  ClassGroupTokenGroup,
+  UtilityGroupName,
+  VariableGroupName,
+} from "./types";
+import { getVesperUtilityGroupId } from "./utils";
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning(
   "yarn generate:tailwind-merge",
 );
 
-const OUTPUT_FILE = "src/utils/tailwind-merge.ts";
+const OUTPUT_FILE = "./src/utils/tailwind-merge.ts";
 
 const createVesperClassGroupIds = () => {
-  const ids = Object.keys(UTILITY_GROUPS)
-    .map((group) => `"${getVesperUtilityGroupId(group as UtilityGroup)}"`)
+  const ids = Object.keys(TW_UTILITY_GROUPS)
+    .map((group) => `"${getVesperUtilityGroupId(group as UtilityGroupName)}"`)
     .join(" | ");
 
   return `type VesperClassGroupIds = ${ids}`;
 };
 
 const createTokenLookupMap = () => {
-  const variables = Object.entries(VARIABLE_GROUPS).map(([group, tokens]) => {
-    const values = tokens.map((token) => token.value);
+  const variables = Object.entries(TOKEN_VARIABLE_GROUPS).map(
+    ([group, tokens]) => {
+      const values = tokens.map((token) => token.value);
 
-    const set = `new Set(${JSON.stringify(values)})`;
-    const lookup = `(value: string) => TOKENS["${group}"].set.has(value)`;
+      const set = `new Set(${JSON.stringify(values)})`;
+      const lookup = `(value: string) => TOKENS["${group}"].set.has(value)`;
+      const value = `{ set: ${set}, lookup: ${lookup} }`;
 
-    const value = `{ set: ${set}, lookup: ${lookup} }`;
-
-    return { group, value };
-  });
+      return { group, value };
+    },
+  );
 
   const lookupMap = `const TOKENS = {${variables.map((v) => `"${v.group}": ${v.value}`).join(",")}}`;
 
   return [lookupMap].join("\n");
 };
 
-const getTokenLookupFn = (group: TokenGroup) => `TOKENS["${group}"].lookup`;
+const getTokenLookupFn = (group: VariableGroupName) =>
+  `TOKENS["${group}"].lookup`;
 
 const createExtendedTheme = () => {
   const entries = THEME_TOKEN_GROUPS.map((group) => {
@@ -85,11 +88,11 @@ const createExtendedClassGroups = () => {
 const createCustomUtilityClassGroups = () => {
   const entries = Object.entries(CUSTOM_UTILITY_CLASSGROUPS).map(
     ([key, metadata]) => {
-      const group = key as UtilityGroup;
+      const group = key as UtilityGroupName;
 
       const id = getVesperUtilityGroupId(group);
 
-      const classGroups = UTILITY_GROUPS[group]
+      const classGroups = TW_UTILITY_GROUPS[group]
         .map((utility) => {
           if (utility.acceptsArgument && metadata.argument) {
             return `{ "${utility.name}": [${getTokenLookupFn(metadata.argument)}] }`;
@@ -108,10 +111,9 @@ const createCustomUtilityClassGroups = () => {
 const createConflictingClassGroups = () => {
   const entries = Object.entries(CUSTOM_UTILITY_CLASSGROUPS).map(
     ([key, metadata]) => {
-      const group = key as UtilityGroup;
+      const group = key as UtilityGroupName;
 
       const id = getVesperUtilityGroupId(group);
-
       return `"${id}": ${JSON.stringify(metadata.conflicts)}`;
     },
   );
@@ -154,7 +156,4 @@ export const withVesper = (config: AnyConfig): AnyConfig =>
 
 const contents = [AUTO_GENERATED_WARNING, src].join("\n\n");
 
-fs.writeFileSync(
-  path.resolve(import.meta.dirname, "..", OUTPUT_FILE),
-  contents,
-);
+fs.writeFileSync(resolvePackagePath(OUTPUT_FILE), contents);

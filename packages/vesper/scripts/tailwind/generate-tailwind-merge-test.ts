@@ -1,29 +1,29 @@
-import fs from "node:fs";
-import path from "node:path";
 import type { DefaultClassGroupIds } from "tailwind-merge";
 
-import type { UtilityGroup } from "./get-tailwind-utility-groups";
+import fs from "node:fs";
+import path from "node:path";
+
+import type {
+  ClassGroupTokenGroup,
+  ThemeTokenGroup,
+  UtilityGroupName,
+  VariableGroupName,
+} from "./types";
+
+import { getGeneratedCodeWarning, resolvePackagePath } from "../utils";
+import { TOKEN_VARIABLE_GROUPS, TW_UTILITY_GROUPS } from "./constants";
 import {
-  getTokenVariableGroups,
-  type TokenGroup,
-} from "./get-token-variable-groups";
-import {
-  type ClassGroupTokenGroup,
   CUSTOM_UTILITY_CLASSGROUPS,
   EXTENDED_CLASSGROUP_PROPERTIES,
-  getVesperUtilityGroupId,
   THEME_TOKEN_GROUPS,
-  type ThemeTokenGroup,
-  UTILITY_GROUPS,
-  VARIABLE_GROUPS,
 } from "./tailwind-merge-config";
-import { getGeneratedCodeWarning } from "./utils";
+import { getVesperUtilityGroupId } from "./utils";
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning(
   "yarn generate:tailwind-merge",
 );
 
-const OUTPUT_FILE = "src/utils/tailwind-merge.test.ts";
+const OUTPUT_FILE = "./src/utils/tailwind-merge.test.ts";
 
 /**
  * utilities to test each theme token group against, as tuples of:
@@ -141,7 +141,7 @@ const getClassGroupSample = (group: DefaultClassGroupIds) => {
  * from the same tailwind-merge class group
  */
 const createTokenConflictTests = (
-  tokenGroup: TokenGroup,
+  tokenGroup: VariableGroupName,
   utility: string,
   classGroup: DefaultClassGroupIds,
 ) => {
@@ -154,10 +154,12 @@ const createTokenConflictTests = (
 };
 
 const createTokenLists = () => {
-  const entries = Object.entries(VARIABLE_GROUPS).map(([group, tokens]) => {
-    const values = tokens.map((token) => token.value);
-    return `${q(group)}: ${JSON.stringify(values)}`;
-  });
+  const entries = Object.entries(TOKEN_VARIABLE_GROUPS).map(
+    ([group, tokens]) => {
+      const values = tokens.map((token) => token.value);
+      return `${q(group)}: ${JSON.stringify(values)}`;
+    },
+  );
 
   return `const tokens = { ${entries.join(", ")} }`;
 };
@@ -188,12 +190,12 @@ const createClassGroupTests = () =>
 const createCustomUtilityTests = () =>
   Object.entries(CUSTOM_UTILITY_CLASSGROUPS)
     .map(([key, metadata]) => {
-      const group = key as UtilityGroup;
+      const group = key as UtilityGroupName;
       const id = getVesperUtilityGroupId(group);
       const { argument } = metadata;
 
       /** every class name that the utilities in this group can produce */
-      const classNames = UTILITY_GROUPS[group].map((utility) => {
+      const classNames = TW_UTILITY_GROUPS[group].map((utility) => {
         if (utility.acceptsArgument && argument) {
           return `...tokens[${q(argument)}].map((token) => \`${utility.name}-\${token}\`)`;
         }
@@ -201,8 +203,8 @@ const createCustomUtilityTests = () =>
       });
 
       /** a single class name for each utility in this group */
-      const representatives = UTILITY_GROUPS[group].map((utility) => {
-        const token = argument && VARIABLE_GROUPS[argument][0]?.value;
+      const representatives = TW_UTILITY_GROUPS[group].map((utility) => {
+        const token = argument && TOKEN_VARIABLE_GROUPS[argument][0]?.value;
         if (utility.acceptsArgument && token) {
           return q(`${utility.name}-${token}`);
         }
@@ -283,7 +285,4 @@ describe("withVesper", () => {
 
 const contents = [AUTO_GENERATED_WARNING, src].join("\n\n");
 
-fs.writeFileSync(
-  path.resolve(import.meta.dirname, "..", OUTPUT_FILE),
-  contents,
-);
+fs.writeFileSync(resolvePackagePath(OUTPUT_FILE), contents);

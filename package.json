@@ -33,6 +33,7 @@
     "vale:check": "vale sync && sh -c 'IFS=,; vale --no-global --glob=\"{${*:-*}}\" .' --",
     "vale:diff": "vale sync && { git diff -z --name-only --diff-filter=d --merge-base main; git ls-files -z --others --exclude-standard; } | xargs -0 -r vale --no-global",
     "generate:icons": "turbo run generate:icons --filter=@tenstorrent/vesper && oxlint packages/vesper/src/components/icons/*.{ts,tsx} --fix && oxfmt packages/vesper/src/components/icons/*.{ts,tsx}",
+    "generate:tailwind-merge": "turbo run generate:tailwind-merge --filter=@tenstorrent/vesper && oxlint packages/vesper/src/components/icons/*.{ts,tsx} --fix && oxfmt packages/vesper/src/utils/tailwind-merge.ts",
     "generate:demos": "turbo run generate:demos --filter=website",
     "scaffold:component": "yarn workspace @tenstorrent/vesper scaffold:component",
     "scaffold:documentation": "turbo gen vesper-component-documentation",
