@@ -7,6 +7,8 @@ description: A dropdown menu component that displays a list of actionable items 
 
 A dropdown menu component that displays a list of actionable items when triggered. Supports icons, descriptions, selected state, locked items, and disabled items.
 
+A `Menu` is [polymorphic](../polymorphism.mdx) and renders its trigger as a unstyled `<button>` element by default. You can style it yourself, or render it as another component (like a `Button` or an `IconButton`) via the `as` prop.
+
 ```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
 import { Menu } from "@tenstorrent/vesper/menu";
@@ -14,28 +16,27 @@ import { Menu } from "@tenstorrent/vesper/menu";
 export default function MenuDemo() {
   return (
     <Menu
+      as={Button}
+      variant="subtle"
       items={[
         { text: "Edit", onSelect: () => {} },
         { text: "Duplicate", onSelect: () => {} },
         { text: "Delete", style: "danger", onSelect: () => {} },
       ]}
     >
-      <Button variant="subtle">Open Menu</Button>
+      Open Menu
     </Menu>
   );
 }
 ```
-
-> [!IMPORTANT]
->
-> A `Menu`'s children must be a single React element that can receive a ref and event handlers, since that element becomes the menu's trigger. Passing a fragment, plain text, or multiple elements renders the children as-is, without a menu attached to them.
 
 ## Options
 
 | Prop | Type | Description | Default |
 | --- | --- | --- | --- |
 | `items` | `MenuItemProps[]` | The list of menu items rendered in the dropdown, in the order they are provided. | — |
-| `children` | `ReactElement` | The trigger element that opens the menu. | — |
+| `as` | `ElementType` | The element or component to render the menu's trigger as. | `"button"` |
+| `children` | `ReactNode` | The content of the menu's trigger. | — |
 | `width` | `number` | The width of the menu dropdown in pixels. Scales with the base rem size. | `200` |
 | `side` | `"top" \| "bottom" \| "left" \| "right"` | The preferred side of the trigger to render the menu against. | `"bottom"` |
 | `sideOffset` | `number` | The distance in pixels from the trigger to the menu. Scales with the base rem size. | `8` |
@@ -46,6 +47,8 @@ export default function MenuDemo() {
 | `onOpenChange` | `(open: boolean) => void` | Callback fired when the open state changes. | — |
 | `container` | `HTMLElement \| ShadowRoot \| null \| RefObject<HTMLElement \| ShadowRoot \| null>` | Specify the element or shadow root to portal the menu into. | — |
 | `anchor` | `HTMLElement \| null \| RefObject<HTMLElement \| null>` | Specify the element to position the menu against. Default behavior anchors the menu to the trigger element. | — |
+
+All other props are forwarded to the the underlying `<button>` element, or whichever element or component is specified via the `as` prop.
 
 ### `MenuItemProps` options
 
@@ -61,7 +64,7 @@ export default function MenuDemo() {
 
 ### Basic usage
 
-Render a `Menu` by passing it an array of `items` and a single element to use as its trigger. Every item needs `text` to display and an `onSelect` callback to run when it is chosen:
+Render a `Menu` by passing it an array of `items`, and the component to render its trigger as via the `as` prop. Every item needs `text` to display and an `onSelect` callback. The `Menu`'s `children` become the content of its trigger:
 
 ```tsx demo
 import { useState } from "react";
@@ -83,6 +86,8 @@ export default function BasicMenu() {
       }}
     >
       <Menu
+        as={Button}
+        variant="subtle"
         items={[
           { text: "Rename", onSelect: () => setSelected("Rename") },
           { text: "Duplicate", onSelect: () => setSelected("Duplicate") },
@@ -93,7 +98,7 @@ export default function BasicMenu() {
           },
         ]}
       >
-        <Button variant="subtle">Actions</Button>
+        Actions
       </Menu>
       <Typography variant="copy-sm">
         Last selected item: {selected ?? "none"}
@@ -103,7 +108,105 @@ export default function BasicMenu() {
 }
 ```
 
-Clicking the trigger opens the menu, and choosing an item fires its `onSelect` callback function and closes the menu. Any element that can be focused and receive a ref works as a trigger.
+### Polymorphic usage
+
+A `Menu` uses the props it owns, like `items`, `side`, and `open`, and passes every other prop on to the component specified by its `as` prop. Those props are type-checked against that component, so a `Menu` rendered `as={Button}` accepts a `variant` and an `iconRight`, and a `Menu` rendered `as={IconButton}` requires an `icon`:
+
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+import { IconButton } from "@tenstorrent/vesper/icon-button";
+import { CaretDown, Ellipses } from "@tenstorrent/vesper/icons";
+import { Menu } from "@tenstorrent/vesper/menu";
+import { TextButton } from "@tenstorrent/vesper/text-button";
+
+const ITEMS = [
+  { text: "Rename", onSelect: () => {} },
+  { text: "Duplicate", onSelect: () => {} },
+];
+
+export default function MenuTriggers() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Menu
+        as={Button}
+        variant="subtle"
+        iconRight={<CaretDown />}
+        items={ITEMS}
+      >
+        Actions
+      </Menu>
+      <Menu
+        as={IconButton}
+        variant="subtle"
+        icon={<Ellipses />}
+        aria-label="More actions"
+        items={ITEMS}
+      />
+      <Menu as={TextButton} iconRight={<CaretDown />} items={ITEMS}>
+        Options
+      </Menu>
+    </div>
+  );
+}
+```
+
+Because a `Menu` renders a `<button>` as its trigger by default, you should avoid nesting other button elements inside of it, which results in invalid html and is confusing to assistive technology. Instead, prefer using the `as` prop to render the trigger as though it were a `Menu` itself:
+
+```tsx
+// ❌ renders a <button> inside of a <button>
+<Menu items={items}>
+  <Button variant="subtle">Actions</Button>
+</Menu>
+
+// ✅ renders a single <button>
+<Menu as={Button} variant="subtle" items={items}>
+  Actions
+</Menu>
+```
+
+> [!WARNING]
+>
+> A menu's trigger should *always* render a `<button>` element so that it can render with the correct semantics
+
+### Non-polymorphic usage
+
+Without an `as` prop, a `Menu` renders a native `<button>` element as its trigger, with its `children` as the content of that button. This button has no Vesper styles applied to it, so use it when you want to style the trigger yourself, eg. via `className` or `style`:
+
+```tsx demo
+import { Menu } from "@tenstorrent/vesper/menu";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function PlainMenuTrigger() {
+  return (
+    <Menu
+      align="center"
+      items={[
+        { text: "Rename", onSelect: () => {} },
+        { text: "Duplicate", onSelect: () => {} },
+      ]}
+      style={{
+        padding: "var(--vesper-spacing-2) var(--vesper-spacing-3)",
+        border:
+          "var(--vesper-stroke-base) dashed var(--vesper-border-tertiary)",
+        borderRadius: "var(--vesper-radius-2)",
+        background: "transparent",
+        color: "var(--vesper-text-primary)",
+        cursor: "pointer",
+      }}
+    >
+      <Typography>Actions</Typography>
+    </Menu>
+  );
+}
+```
+
+All other props, such as `aria-label` or `disabled`, are forwarded to the `<button>` element. Since the `children` are rendered inside of a `<button>`, they should only contain non-interactive content, like text and icons.
 
 ### Describing items
 
@@ -117,6 +220,10 @@ import { Menu } from "@tenstorrent/vesper/menu";
 export default function DescriptiveMenu() {
   return (
     <Menu
+      as={IconButton}
+      variant="subtle"
+      icon={<Ellipses />}
+      aria-label="Share options"
       width={260}
       items={[
         {
@@ -137,13 +244,7 @@ export default function DescriptiveMenu() {
           onSelect: () => {},
         },
       ]}
-    >
-      <IconButton
-        aria-label="Share options"
-        variant="subtle"
-        icon={<Ellipses />}
-      />
-    </Menu>
+    />
   );
 }
 ```
@@ -168,6 +269,8 @@ import { Menu } from "@tenstorrent/vesper/menu";
 export default function MenuItemStyles() {
   return (
     <Menu
+      as={Button}
+      variant="subtle"
       width={240}
       items={[
         { text: "Default item", icon: <Tenstorrent />, onSelect: () => {} },
@@ -187,7 +290,7 @@ export default function MenuItemStyles() {
         { text: "Disabled item", style: "disabled", onSelect: () => {} },
       ]}
     >
-      <Button variant="subtle">Item styles</Button>
+      Item styles
     </Menu>
   );
 }
@@ -212,8 +315,8 @@ const ITEMS = [
 
 export default function MenuWidths() {
   return (
-    <Menu width={320} items={ITEMS}>
-      <Button variant="subtle">320px width menu</Button>
+    <Menu as={Button} variant="subtle" width={320} items={ITEMS}>
+      320px width menu
     </Menu>
   );
 }
@@ -278,6 +381,12 @@ export default function MenuPositionPlayground() {
         />
       </div>
       <Menu
+        as={Button}
+        variant="contrast"
+        style={{
+          marginTop: "var(--vesper-spacing-20)",
+          marginBottom: "var(--vesper-spacing-20)",
+        }}
         side={side}
         align={align}
         width={160}
@@ -286,15 +395,7 @@ export default function MenuPositionPlayground() {
           { text: "Duplicate", onSelect: () => {} },
         ]}
       >
-        <Button
-          variant="contrast"
-          style={{
-            marginTop: "var(--vesper-spacing-20)",
-            marginBottom: "var(--vesper-spacing-20)",
-          }}
-        >
-          Open menu
-        </Button>
+        Open menu
       </Menu>
     </div>
   );
@@ -312,13 +413,15 @@ import { Menu } from "@tenstorrent/vesper/menu";
 export default function DefaultOpenMenu() {
   return (
     <Menu
+      as={Button}
+      variant="subtle"
       defaultOpen
       items={[
         { text: "Rename", onSelect: () => {} },
         { text: "Duplicate", onSelect: () => {} },
       ]}
     >
-      <Button variant="subtle">Actions</Button>
+      Actions
     </Menu>
   );
 }
@@ -347,6 +450,8 @@ export default function ControlledMenu() {
     >
       <div style={{ display: "flex", gap: "var(--vesper-spacing-4)" }}>
         <Menu
+          as={Button}
+          variant="subtle"
           open={open}
           onOpenChange={setOpen}
           items={[
@@ -354,7 +459,7 @@ export default function ControlledMenu() {
             { text: "Duplicate", onSelect: () => {} },
           ]}
         >
-          <Button variant="subtle">Actions</Button>
+          Actions
         </Menu>
         <Button variant="tertiary" onClick={() => setOpen((open) => !open)}>
           Toggle from outside
@@ -395,6 +500,10 @@ export default function AnchoredMenu() {
     >
       <Typography variant="label-md-bold">Inference cluster</Typography>
       <Menu
+        as={IconButton}
+        variant="ghost"
+        icon={<Ellipses />}
+        aria-label="More actions"
         anchor={cardRef}
         align="end"
         items={[
@@ -402,13 +511,7 @@ export default function AnchoredMenu() {
           { text: "View logs", onSelect: () => {} },
           { text: "Delete", style: "danger", onSelect: () => {} },
         ]}
-      >
-        <IconButton
-          aria-label="More actions"
-          variant="ghost"
-          icon={<Ellipses />}
-        />
-      </Menu>
+      />
     </Material>
   );
 }
@@ -430,13 +533,15 @@ export default function PortalledMenu() {
   return (
     <div ref={containerRef}>
       <Menu
+        as={Button}
+        variant="subtle"
         container={containerRef}
         items={[
           { text: "Rename", onSelect: () => {} },
           { text: "Duplicate", onSelect: () => {} },
         ]}
       >
-        <Button variant="subtle">Actions</Button>
+        Actions
       </Menu>
     </div>
   );
