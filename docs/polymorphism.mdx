@@ -233,7 +233,7 @@ export default function DashboardLinks() {
 
 ### Overflow menus
 
-Overflow menus can be built using an `IconButton` rendered as a `Menu`:
+Overflow menus can be built using a `Menu` rendered as an `IconButton`:
 
 ```tsx demo
 import { IconButton } from "@tenstorrent/vesper/icon-button";
@@ -263,7 +263,7 @@ export default function OverflowMenu() {
 
 ### Dropdown buttons
 
-A button that opens a list of related actions can be buit using a `Button` rendered as a `Menu`:
+A button that opens a list of related actions can be built using a `Menu` rendered as a `Button`:
 
 ```tsx demo
 import { useState } from "react";
@@ -335,7 +335,7 @@ Don't render a component that handles clicks as a non-interactive element, like 
 | [`Tag`](./components/tag.mdx)                          | `<div>`         |
 | [`TextButton`](./components/text-button.mdx)           | `<button>`      |
 | [`Typography`](./components/typography.mdx)            | `<p>`           |
-| [`Admonition`](./components/typography.mdx)            | `<button>`\*    |
+| [`Admonition`](./components/admonition.mdx)            | `<button>`\*    |
 
 > [!NOTE]
 >
@@ -346,5 +346,5 @@ Don't render a component that handles clicks as a non-interactive element, like 
 - `as` changes the element a component renders. The component keeps its styles and its own props; every other prop is passed on to the specified element, and is type-checked against it.
 - Choose the element by what the component does: `as="button"` should handle actions, while `as="a"` (or `as={Link}`) should handle navigation.
 - When composing components, the outer component owns shared prop names, and the innermost component decides the element.
-- Put components that determine visual style (`Button`, `IconButton`, `TextButton`) on the outside, and components that add behavior (`Menu`) on the inside.
+- Put components that add behavior (`Menu`) on the outside, and components that render the element (`Button`, `IconButton`, `TextButton`) on the inside, closest to the DOM.
 - Nest components instead of composing them when both need a prop with the same name, or when you need to choose the inner element.
