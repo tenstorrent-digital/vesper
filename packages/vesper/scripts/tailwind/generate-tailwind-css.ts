@@ -1,7 +1,10 @@
 import fs from "node:fs";
 
 import { getGeneratedCodeWarning, resolvePackagePath } from "../utils";
-import { TOKEN_VARIABLE_GROUPS } from "./constants";
+import {
+  TOKEN_VARIABLE_GROUPS,
+  TAILWIND_UTILITY_FILE_NAMES,
+} from "./constants";
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning(
   "yarn generate:tailwind-css",
@@ -11,8 +14,10 @@ const OUTPUT_FILE = "./src/styles/tailwind.css";
 
 const imports = [
   `@import "./styles.css" layer(components);`,
-  `@import "./tailwind-utilities.css";`,
-].join("");
+  ...TAILWIND_UTILITY_FILE_NAMES.map(
+    (name) => `@import "./tailwind-utilities/${name}.css";`,
+  ),
+].join("\n");
 
 const tokens = Object.entries(TOKEN_VARIABLE_GROUPS).flatMap(
   ([group, tokens]) =>
@@ -21,7 +26,7 @@ const tokens = Object.entries(TOKEN_VARIABLE_GROUPS).flatMap(
     }),
 );
 
-const theme = `@theme { ${tokens.join("")} }`;
+const theme = ["@theme {", ...tokens, "}"].join("\n");
 
 const contents = [AUTO_GENERATED_WARNING, imports, theme].join("\n\n");
 
