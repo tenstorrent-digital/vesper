@@ -1,9 +1,15 @@
 "use client";
 
 import { Tooltip as BaseTooltip } from "@base-ui/react/tooltip";
-import { type ReactNode, useId, useState } from "react";
+import {
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+  useId,
+  useState,
+} from "react";
 
 import { Typography } from "@/components/typography/typography";
+import { cn } from "@/utils/cn";
 import {
   getPortalContainer,
   type PortalContainer,
@@ -19,7 +25,10 @@ export type TooltipSide = (typeof TOOLTIP_SIDES)[number];
 
 export type TooltipAlign = (typeof TOOLTIP_ALIGNMENTS)[number];
 
-export interface TooltipProps {
+export interface TooltipProps extends Omit<
+  ComponentPropsWithoutRef<"button">,
+  "content"
+> {
   /** The content displayed inside the tooltip popup. */
   content: ReactNode;
   /** The preferred side of the trigger to render the tooltip against. @default top */
@@ -38,19 +47,20 @@ export interface TooltipProps {
   delayDuration?: number;
   /** Whether the tooltip is open by default (uncontrolled mode). */
   defaultOpen?: boolean;
-  /** The trigger element that the tooltip is attached to. */
-  children?: ReactNode;
   /** The maximum width of the tooltip in pixels. Content will wrap if it exceeds this width. @default 240 */
   maxWidth?: number;
   /** Specify the element or shadow root to portal the tooltip into */
   container?: PortalContainer;
+  /** When `true`, wraps `children` in a `<button>` trigger instead of rendering `children` as the trigger itself. Use this when `children` is non-interactive content, such as text or an icon. @default false */
+  wrapWithButton?: boolean;
 }
 
 /**
  * A tooltip popup that displays informational content when hovering or focusing a trigger element.
  *
  * @param {ReactNode} props.content - The content displayed inside the tooltip popup
- * @param {ReactNode} [props.children] - (optional) The trigger element the tooltip attaches to
+ * @param {ReactNode} [props.children] - (optional) The trigger itself, or the content of the trigger when `wrapWithButton` is `true`
+ * @param {boolean} [props.wrapWithButton] - (optional) Wraps `children` in a `<button>` trigger instead of rendering `children` as the trigger itself. Use for non-interactive content. By default, trigger props are forwarded to `children`, which must pass them (including `ref`) on to the DOM element it renders. @default false
  * @param {TooltipSide} [props.side] - (optional) The preferred side of the trigger to render the tooltip. @default top
  * @param {number} [props.sideOffset] - (optional) Distance in pixels from the trigger. @default 4
  * @param {TooltipAlign} [props.align] - (optional) Alignment relative to the trigger. @default center
@@ -60,7 +70,10 @@ export interface TooltipProps {
  * @param {boolean} [props.open] - (optional) Controls the open state (controlled)
  * @param {(value: boolean) => void} [props.onOpenChange] - (optional) Callback fired when open state changes
  *
+ * You may also pass any additional props (including `ref`) to the trigger element: `children` by default, or the `<button>` rendered when `wrapWithButton` is `true`
+ *
  * @example
+ * // renders an interactive element as the trigger itself
  * <Tooltip content="Copy to clipboard">
  *   <IconButton icon={<Copy />} aria-label="Copy" />
  * </Tooltip>
@@ -68,6 +81,12 @@ export interface TooltipProps {
  * @example
  * <Tooltip content="Settings" side="right" delayDuration={200}>
  *   <Button>Hover me</Button>
+ * </Tooltip>
+ *
+ * @example
+ * // wraps non-interactive content in a `<button>` trigger
+ * <Tooltip content="Only visible to admins" aria-label="More information" wrapWithButton>
+ *   <Info />
  * </Tooltip>
  */
 export function Tooltip(props: TooltipProps) {
@@ -84,9 +103,12 @@ export function Tooltip(props: TooltipProps) {
     side = "top",
     sideOffset = 4,
     container,
+    wrapWithButton = false,
+    className,
+    ...rest
   } = props;
 
-  const [ref, setRef] = useState<Element | null>(null);
+  const [innerRef, setInnerRef] = useState<Element | null>(null);
 
   const [uncontrolledOpen, setUncontrolledOpen] = useState(
     defaultOpen ?? false,
@@ -98,11 +120,7 @@ export function Tooltip(props: TooltipProps) {
 
   const baseRemSize = useBaseRemSize();
 
-  const portalContainer = getPortalContainer(container, ref);
-
-  if (!isSingleReactElement(children)) {
-    return children;
-  }
+  const portalContainer = getPortalContainer(container, innerRef);
 
   return (
     <BaseTooltip.Provider>
@@ -115,10 +133,14 @@ export function Tooltip(props: TooltipProps) {
         open={open}
       >
         <BaseTooltip.Trigger
+          {...rest}
+          ref={setInnerRef}
+          className={cn("vesper-tooltip-trigger", className)}
           aria-describedby={isOpen ? popupId : undefined}
           delay={delayDuration}
-          render={children}
-          ref={setRef}
+          {...(!wrapWithButton && isSingleReactElement(children)
+            ? { render: children }
+            : { children })}
         />
         <BaseTooltip.Portal container={portalContainer}>
           <BaseTooltip.Positioner

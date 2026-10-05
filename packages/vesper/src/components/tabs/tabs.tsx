@@ -14,6 +14,24 @@ export const TABS_VARIANTS = ["primary", "secondary"] as const;
 
 export type TabsVariant = (typeof TABS_VARIANTS)[number];
 
+export interface TabItem {
+  /** The text label displayed in the tab trigger. */
+  label: string;
+  /** A unique value identifying this tab, used for selection tracking. */
+  value: string;
+  /** An optional icon element rendered before the label in the tab trigger. */
+  icon?: ReactNode;
+  /** The content rendered in the tab's panel when this tab is active. */
+  content: ReactNode;
+  /**
+   * When `true`, renders `content` as the tab's panel itself instead of wrapping it in a `<div>`.
+   *
+   * The panel's props are forwarded to `content`, so it must be a single React element that passes every prop it receives on to the DOM element it renders.
+   * @default false
+   */
+  contentAsPanel?: boolean;
+}
+
 export interface TabsProps extends Omit<
   ComponentProps<"div">,
   "children" | "dir"
@@ -21,16 +39,7 @@ export interface TabsProps extends Omit<
   /** The visual style variant of the tabs. @default primary */
   variant?: TabsVariant;
   /** The list of tab items to render. Each item defines a tab trigger and its associated content panel. */
-  items: {
-    /** The text label displayed in the tab trigger. */
-    label: string;
-    /** A unique value identifying this tab, used for selection tracking. */
-    value: string;
-    /** An optional icon element rendered before the label in the tab trigger. */
-    icon?: ReactNode;
-    /** The content rendered in the panel when this tab is active. */
-    content: ReactNode;
-  }[];
+  items: TabItem[];
   /** The value for the selected tab (controlled). */
   value?: string;
   /** The value of the tab to select by default (uncontrolled). */
@@ -49,7 +58,7 @@ const TRIGGER_TYPOGRAPHY: { [V in TabsVariant]: TypographyVariant } = {
 /**
  * A tabbed interface component for organizing content into switchable panels.
  *
- * @param {TabsProps["items"]} props.items - The list of tab items defining triggers and content panels
+ * @param {TabItem[]} props.items - The list of tab items defining triggers and content panels. Set `contentAsPanel` on an item to render its `content` as the panel itself, forwarding the panel's props (including `ref`) to `content`
  * @param {TabsVariant} [props.variant] - (optional) The visual style variant of the tabs. @default primary
  * @param {string} [props.value] - (optional) The selected tab value (controlled)
  * @param {string} [props.defaultValue] - (optional) The tab to select by default (uncontrolled)
@@ -76,6 +85,19 @@ const TRIGGER_TYPOGRAPHY: { [V in TabsVariant]: TypographyVariant } = {
  *   ]}
  *   value={activeTab}
  *   onValueChange={setActiveTab}
+ * />
+ *
+ * @example
+ * // renders `Material` as the "usage" tab's panel itself
+ * <Tabs
+ *   items={[
+ *     {
+ *       value: "usage",
+ *       label: "Usage",
+ *       contentAsPanel: true,
+ *       content: <Material as="section">{usage}</Material>,
+ *     },
+ *   ]}
  * />
  */
 export function Tabs(props: TabsProps) {
@@ -113,21 +135,15 @@ export function Tabs(props: TabsProps) {
           </Typography>
         ))}
       </BaseTabs.List>
-      {items.map((item) => {
-        const children = isSingleReactElement(item.content) ? (
-          item.content
-        ) : (
-          <span>{item.content}</span>
-        );
-
-        return (
-          <BaseTabs.Panel
-            render={children}
-            key={item.value}
-            value={item.value}
-          />
-        );
-      })}
+      {items.map((item) => (
+        <BaseTabs.Panel
+          key={item.value}
+          value={item.value}
+          {...(item.contentAsPanel && isSingleReactElement(item.content)
+            ? { render: item.content }
+            : { children: item.content })}
+        />
+      ))}
     </BaseTabs.Root>
   );
 }

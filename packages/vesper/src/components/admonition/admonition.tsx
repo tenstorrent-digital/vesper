@@ -118,9 +118,9 @@ export function Admonition<C extends ElementType = "button">(
       {cta && (
         <Button
           type="button"
-          // typescript can't relate the generic `cta` props to `ButtonProps<C>`
+          // typescript can't relate the generic `cta` props to `ButtonProps<typeof ctaAs>`
           // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-          {...(cta as ButtonProps<C>)}
+          {...(cta as ButtonProps<typeof ctaAs>)}
           as={ctaAs}
           variant="contrast"
           size="sm"

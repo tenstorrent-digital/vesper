@@ -1,0 +1,350 @@
+---
+title: Polymorphism
+description: How Vesper's polymorphic components work, and how to compose them
+order: 4
+---
+
+# Polymorphism
+
+Many Vesper components are **polymorphic**: they accept an `as` prop that changes the element they render, while keeping their own styles and behavior. For example, you can render `TextButton` as a link instead of the button element it normally renders as:
+
+```tsx demo
+import { ArrowRight } from "@tenstorrent/vesper/icons";
+import { TextButton } from "@tenstorrent/vesper/text-button";
+
+export default function TextButtonLink() {
+  return (
+    <TextButton as="a" href="#the-mental-model" iconRight={<ArrowRight />}>
+      Read the mental model
+    </TextButton>
+  );
+}
+```
+
+This page describes how polymorphic components work, how to compose them with each other, and which pitfalls to avoid.
+
+## The mental model
+
+Every polymorphic component is made of three parts:
+
+| Part | Description |
+| --- | --- |
+| Its own props | The props a component owns. For example, the `variant`, `size`, and `iconRight` props of a `TextButton`. |
+| The rendered element | Which element to render, driven by the `as` prop. For example, a `TextButton` renders a `<button>` by default, can render an `<a>` by passing `as="a"`. |
+| Everything else | Every other prop passed to the polymorphic component. These get passed on to the element it renders. |
+
+The `as` prop determines the rendered element. The component's own props keep working the same way, and everything else is forwarded to the new element. Internally, every polymorphic component follows the same shape:
+
+```tsx
+function TextButton({ as: Component = "button", variant, size, ...rest }) {
+  return <Component className={/* TextButton's styles */} {...rest} />;
+}
+```
+
+So `<TextButton as="a" href="/docs">` can be thought of as an element with TextButton's styles and behavior, rendered as an `<a>` tag linking to `"/docs"`.
+
+### The element determines the props
+
+The props a polymorphic component accepts are type-checked against whichever element it renders. For example, passing `as="a"` enables also passing `href="/docs"`:
+
+```tsx
+// ✅ `href` is a valid prop of `<a>`
+<TextButton as="a" href="/docs">Docs</TextButton>
+
+// ❌ type error: `href` is not a valid prop of `<button>`, the default element
+<TextButton href="/docs">Docs</TextButton>
+```
+
+This also applies when `as` is a component: `<TextButton as={Link}>` accepts the props of `Link`, and requires the props that `Link` requires.
+
+### The component's own props come first
+
+When a component and the element it renders both understand a prop with the same name, the component's own prop wins: it is used by the component, and is not passed on as-is.
+
+For example, `disabled` is a prop of `TextButton`. A `<button>` supports the `disabled` attribute natively, but an `<a>` does not, so when a `TextButton` is rendered `as="a"`, it disables the link itself instead, by applying `aria-disabled="true"` and `tabIndex={-1}` and suppressing pointer, keyboard, and focus events:
+
+```tsx demo
+import { TextButton } from "@tenstorrent/vesper/text-button";
+
+export default function DisabledTextButtonLink() {
+  return (
+    <TextButton as="a" href="#the-mental-model" disabled>
+      Unavailable link
+    </TextButton>
+  );
+}
+```
+
+## Composing polymorphic components
+
+The `as` prop also accepts other components, including other polymorphic components. The outer component renders the inner one, and passes on every prop it doesn't own. Read a composition from the outside in:
+
+```tsx
+<Menu
+  as={IconButton}
+  variant="contrast"
+  icon={<Ellipses />}
+  aria-label="More actions"
+  items={[{ text: "Delete", onSelect: handleDelete }]}
+  align="end"
+/>
+```
+
+1. `Menu` uses the props it owns (`items`, `align`). It passes the rest of its props down to `IconButton`.
+2. `IconButton` receives the `variant` and `icon` props, and renders as its default `<button>` element.
+
+The result is a single element that looks like an `IconButton` and opens a menu when clicked.
+
+### Choosing an element
+
+Pick the element based on what the component _does_, not what it looks like:
+
+| If the component… | Render it as… | Example |
+| --- | --- | --- |
+| Runs an action on the current page | A `<button>` (the default for buttons) | `<Button onClick={save}>` |
+| Navigates to another page or location | An `<a>`, or your router's link component, with an `href` | `<TextButton as="a" href="/docs">` |
+| Contains a heading, a label, or inline text | The matching text element | `<Typography as="h2">` |
+| Groups content in a list, region, or article | The matching landmark or list element | `<Material as="li">` |
+
+A `Button` rendered `as="a"` still looks like a `Button`. What changes is how browsers and assistive technology treat it: links are announced as links and can be opened in a new tab, and buttons can be activated with the Space key and submit forms.
+
+### Composition order
+
+Some components change their behavior based on the element they render. For example, `Button`, `IconButton`, `TextButton`, `Chip`, `Tag`, and `Material` use the native `disabled` attribute when they render a `<button>`, but fall back to `aria-disabled` for any other element.
+
+A component only knows about its own `as` prop, not the element that will eventually be rendered. Both of these compositions render a `<button>`, but only the inner component is aware:
+
+| Composition | Rendered element | Disabled with |
+| --- | --- | --- |
+| `<Menu as={IconButton} disabled />` | `<button>` | The native `disabled` attribute |
+| `<IconButton as={Menu} disabled />` | `<button>` | `aria-disabled="true"` and `tabindex="-1"` |
+
+Prefer the first form: put the component that _adds behavior_ (eg. `Menu`) on the outside, and the component that _renders the element_ (eg. `IconButton`) on the inside, closest to the DOM.
+
+### Shared prop names
+
+When two composed components have a prop with the same name, the outer component owns it. `Material` and `Typography` both have a `variant` prop, so in `<Material as={Typography} variant="raised">` the `variant` is Material's, and Typography's `variant` can't be set: the text renders with Typography's default style, as a `<p>`.
+
+When both components need their own props (or you need to choose the inner element), render one inside of the other instead of composing them:
+
+```tsx demo
+import { Material } from "@tenstorrent/vesper/material";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+const CLUSTERS = [
+  { name: "Inference cluster", region: "us-east · 4 nodes" },
+  { name: "Training cluster", region: "eu-west · 16 nodes" },
+];
+
+export default function ClusterList() {
+  return (
+    <ul
+      style={{
+        display: "grid",
+        gap: "var(--vesper-spacing-3)",
+        margin: 0,
+        padding: 0,
+        listStyle: "none",
+      }}
+    >
+      {CLUSTERS.map((cluster) => (
+        <Material
+          key={cluster.name}
+          as="li"
+          variant="raised"
+          style={{ padding: "var(--vesper-spacing-4)" }}
+        >
+          <Typography as="h3" variant="heading-xs">
+            {cluster.name}
+          </Typography>
+          <Typography variant="copy-sm">{cluster.region}</Typography>
+        </Material>
+      ))}
+    </ul>
+  );
+}
+```
+
+## Examples
+
+### Giving text the right semantics
+
+`Typography` renders a `<p>` by default. Use `as` to render headings, labels, and inline text with the element that matches their meaning, independently from how they look:
+
+```tsx demo
+import { Material } from "@tenstorrent/vesper/material";
+import { TextInput } from "@tenstorrent/vesper/text-input";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function BillingPanel() {
+  return (
+    <Material
+      variant="raised"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--vesper-spacing-2)",
+        padding: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Typography as="h2" variant="heading-md">
+        Billing Information
+      </Typography>
+      <Typography as="label" htmlFor="billing-email" variant="label-xs">
+        Billing email
+      </Typography>
+      <TextInput
+        name="email"
+        id="billing-email"
+        placeholder="Enter your email address"
+      />
+      <Typography variant="copy-sm">
+        Invoices are sent to this address at the start of every month.
+      </Typography>
+    </Material>
+  );
+}
+```
+
+### Extending your router's `Link` component
+
+Rendering a component as your router's link component keeps its client-side navigation and prefetching. For example, in Next.js, pass the `Link` component to `as`, along with any of its props:
+
+```tsx demo
+import Link from "next/link";
+
+import { DocumentSolid } from "@tenstorrent/vesper/icons";
+import { TextButton } from "@tenstorrent/vesper/text-button";
+
+export default function DashboardLinks() {
+  return (
+    <TextButton
+      variant="subtle"
+      iconRight={<DocumentSolid />}
+      as={Link}
+      href="/getting-started"
+      prefetch={false}
+    >
+      Read the docs
+    </TextButton>
+  );
+}
+```
+
+### Overflow menus
+
+Overflow menus can be built using a `Menu` rendered as an `IconButton`:
+
+```tsx demo
+import { IconButton } from "@tenstorrent/vesper/icon-button";
+import { Copy, Ellipses, Trash } from "@tenstorrent/vesper/icons";
+import { Menu } from "@tenstorrent/vesper/menu";
+
+export default function OverflowMenu() {
+  return (
+    <Menu
+      as={IconButton}
+      variant="subtle"
+      icon={<Ellipses />}
+      aria-label="More actions"
+      items={[
+        { text: "Duplicate", icon: <Copy />, onSelect: () => {} },
+        {
+          text: "Delete",
+          icon: <Trash />,
+          style: "danger",
+          onSelect: () => {},
+        },
+      ]}
+    />
+  );
+}
+```
+
+### Dropdown buttons
+
+A button that opens a list of related actions can be built using a `Menu` rendered as a `Button`:
+
+```tsx demo
+import { useState } from "react";
+
+import { Button } from "@tenstorrent/vesper/button";
+import { CaretDown } from "@tenstorrent/vesper/icons";
+import { Menu } from "@tenstorrent/vesper/menu";
+
+export default function ExportMenu() {
+  const [format, setFormat] = useState<string | null>(null);
+
+  return (
+    <Menu
+      as={Button}
+      variant="subtle"
+      iconRight={<CaretDown />}
+      items={[
+        { text: "Export as CSV", onSelect: () => setFormat("CSV") },
+        { text: "Export as JSON", onSelect: () => setFormat("JSON") },
+      ]}
+    >
+      Export
+    </Menu>
+  );
+}
+```
+
+> [!TIP]
+>
+> If a dropdown button also has a primary action of its own (eg. "Export" with a menu of other formats), use [the `SplitButton` component](./components/split-button.mdx) instead.
+
+## Pitfalls
+
+### Don't nest interactive elements
+
+A `Menu` renders its own `<button>` as its trigger, and its children become the content of that button. Passing a `Button` as a child renders a button inside of a button, which is invalid HTML and confuses assistive technology. Compose them instead:
+
+```tsx
+// ❌ renders a <button> inside of a <button>
+<Menu items={items}>
+  <Button>Export</Button>
+</Menu>
+
+// ✅ renders a single <button>
+<Menu as={Button} items={items}>
+  Export
+</Menu>
+```
+
+The same goes for links: render a `Button` `as="a"` instead of wrapping it in an `<a>`.
+
+### Keep elements interactive when they need to be
+
+Don't render a component that handles clicks as a non-interactive element, like `<Button as="div">` or `<Material as="div" onClick={…}>`: it can't be focused or activated with a keyboard. Render actions as a `<button>`, and navigation as an `<a>` with an `href`. An `<a>` without an `href` isn't a link, and can't be focused either.
+
+## Polymorphic components
+
+| Component                                              | Default element |
+| ------------------------------------------------------ | --------------- |
+| [`Avatar`](./components/avatar.mdx)                    | `<div>`         |
+| [`AvatarGroup`](./components/avatar-group.mdx)         | `<div>`         |
+| [`Badge`](./components/badge.mdx)                      | `<div>`         |
+| [`Button`](./components/button.mdx)                    | `<button>`      |
+| [`Chip`](./components/chip.mdx)                        | `<button>`      |
+| [`IconButton`](./components/icon-button.mdx)           | `<button>`      |
+| [`Material`](./components/material.mdx)                | `<div>`         |
+| [`Menu`](./components/menu.mdx)                        | `<button>`      |
+| [`StatusIndicator`](./components/status-indicator.mdx) | `<div>`         |
+| [`Tag`](./components/tag.mdx)                          | `<div>`         |
+| [`TextButton`](./components/text-button.mdx)           | `<button>`      |
+| [`Typography`](./components/typography.mdx)            | `<p>`           |
+| [`Admonition`](./components/admonition.mdx)            | `<button>`\*    |
+
+> [!NOTE]
+>
+> \* Admonition isn't polymorphic itself, but its call-to-action button is: use its `ctaAs` prop to change the element the button renders.
+
+## Summary
+
+- `as` changes the element a component renders. The component keeps its styles and its own props; every other prop is passed on to the specified element, and is type-checked against it.
+- Choose the element by what the component does: `as="button"` should handle actions, while `as="a"` (or `as={Link}`) should handle navigation.
+- When composing components, the outer component owns shared prop names, and the innermost component decides the element.
+- Put components that add behavior (`Menu`) on the outside, and components that render the element (`Button`, `IconButton`, `TextButton`) on the inside, closest to the DOM.
+- Nest components instead of composing them when both need a prop with the same name, or when you need to choose the inner element.

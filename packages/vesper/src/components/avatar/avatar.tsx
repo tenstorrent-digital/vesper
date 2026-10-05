@@ -17,6 +17,7 @@ export type AvatarProps<E extends ElementType = "div"> = Polymorphic<
     alt?: string;
   },
   E,
+  "div",
   "children"
 >;
 

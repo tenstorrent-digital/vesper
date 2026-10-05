@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`tabs [snapshot] > primary, no value 1`] = `
+exports[`tabs [snapshot] > primary, contentAsPanel 1`] = `
 <div
   class="vesper-tabs-primary"
   data-activation-direction="none"
@@ -14,7 +14,7 @@ exports[`tabs [snapshot] > primary, no value 1`] = `
     role="tablist"
   >
     <button
-      aria-controls="base-ui-_r_1r_"
+      aria-controls="base-ui-_r_45_"
       aria-disabled="false"
       aria-selected="true"
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
@@ -22,7 +22,7 @@ exports[`tabs [snapshot] > primary, no value 1`] = `
       data-active=""
       data-composite-item-active=""
       data-orientation="horizontal"
-      id="base-ui-_r_1o_"
+      id="base-ui-_r_42_"
       role="tab"
       tabindex="0"
       type="button"
@@ -51,7 +51,7 @@ exports[`tabs [snapshot] > primary, no value 1`] = `
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
       data-activation-direction="none"
       data-orientation="horizontal"
-      id="base-ui-_r_1p_"
+      id="base-ui-_r_43_"
       role="tab"
       tabindex="-1"
       type="button"
@@ -64,7 +64,7 @@ exports[`tabs [snapshot] > primary, no value 1`] = `
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
       data-activation-direction="none"
       data-orientation="horizontal"
-      id="base-ui-_r_1q_"
+      id="base-ui-_r_44_"
       role="tab"
       tabindex="-1"
       type="button"
@@ -73,20 +73,112 @@ exports[`tabs [snapshot] > primary, no value 1`] = `
     </button>
   </div>
   <p
-    aria-labelledby="base-ui-_r_1o_"
+    aria-labelledby="base-ui-_r_42_"
     class="vesper-typography vesper-typography-copy-md"
     data-activation-direction="none"
     data-index="0"
     data-orientation="horizontal"
-    data-starting-style=""
     data-testid="tab-1-content"
-    id="base-ui-_r_1r_"
+    id="base-ui-_r_45_"
     role="tabpanel"
     style="color: var(--vesper-stone-900);"
     tabindex="0"
   >
     Tab 1 Content
   </p>
+</div>
+`;
+
+exports[`tabs [snapshot] > primary, no value 1`] = `
+<div
+  class="vesper-tabs-primary"
+  data-activation-direction="none"
+  data-orientation="horizontal"
+  data-testid="tabs"
+>
+  <div
+    class="vesper-tabs-list"
+    data-activation-direction="none"
+    data-orientation="horizontal"
+    role="tablist"
+  >
+    <button
+      aria-controls="base-ui-_r_3d_"
+      aria-disabled="false"
+      aria-selected="true"
+      class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
+      data-activation-direction="none"
+      data-active=""
+      data-composite-item-active=""
+      data-orientation="horizontal"
+      id="base-ui-_r_3a_"
+      role="tab"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="vesper-tabs-trigger-icon"
+      >
+        <svg
+          fill="none"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M21 9V15L16 21H8L3 15V9L8 3H16L21 9ZM8.43652 20H9.25684L7.53711 15.7676L7.5 15.6768V15.5H4.8291L8.43652 20ZM16.5 15.6768L16.4629 15.7676L14.7432 20H15.5635L19.1709 15.5H16.5V15.6768ZM10.3359 20H13.6641L15.4932 15.5H8.50781L10.3359 20ZM4 14.5H7.5V9.5H4V14.5ZM16.5 14.5H20V9.5H16.5V14.5ZM8.5 14.5H15.5V9.5H8.5V14.5ZM4.71875 8.5H7.5V8.32324L7.53711 8.23242L9.25684 4H8.46875L4.71875 8.5ZM16.4629 8.23242L16.5 8.32324V8.5H19.2812L15.5312 4H14.7432L16.4629 8.23242ZM8.50684 8.5H15.4922L13.6641 4H10.3359L8.50684 8.5Z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </span>
+      Tab 1
+    </button>
+    <button
+      aria-disabled="false"
+      aria-selected="false"
+      class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
+      data-activation-direction="none"
+      data-orientation="horizontal"
+      id="base-ui-_r_3b_"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      Tab 2
+    </button>
+    <button
+      aria-disabled="false"
+      aria-selected="false"
+      class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
+      data-activation-direction="none"
+      data-orientation="horizontal"
+      id="base-ui-_r_3c_"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      Tab 3
+    </button>
+  </div>
+  <div
+    aria-labelledby="base-ui-_r_3a_"
+    data-activation-direction="none"
+    data-index="0"
+    data-orientation="horizontal"
+    data-starting-style=""
+    id="base-ui-_r_3d_"
+    role="tabpanel"
+    tabindex="0"
+  >
+    <p
+      class="vesper-typography vesper-typography-copy-md"
+      data-testid="tab-1-content"
+      style="color: var(--vesper-stone-900);"
+    >
+      Tab 1 Content
+    </p>
+  </div>
 </div>
 `;
 
@@ -104,7 +196,7 @@ exports[`tabs [snapshot] > primary, value 1`] = `
     role="tablist"
   >
     <button
-      aria-controls="base-ui-_r_21_"
+      aria-controls="base-ui-_r_3j_"
       aria-disabled="false"
       aria-selected="true"
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
@@ -112,7 +204,7 @@ exports[`tabs [snapshot] > primary, value 1`] = `
       data-active=""
       data-composite-item-active=""
       data-orientation="horizontal"
-      id="base-ui-_r_1u_"
+      id="base-ui-_r_3g_"
       role="tab"
       tabindex="0"
       type="button"
@@ -141,7 +233,7 @@ exports[`tabs [snapshot] > primary, value 1`] = `
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
       data-activation-direction="none"
       data-orientation="horizontal"
-      id="base-ui-_r_1v_"
+      id="base-ui-_r_3h_"
       role="tab"
       tabindex="-1"
       type="button"
@@ -154,7 +246,99 @@ exports[`tabs [snapshot] > primary, value 1`] = `
       class="vesper-typography vesper-typography-label-md vesper-tabs-trigger"
       data-activation-direction="none"
       data-orientation="horizontal"
-      id="base-ui-_r_20_"
+      id="base-ui-_r_3i_"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      Tab 3
+    </button>
+  </div>
+  <div
+    aria-labelledby="base-ui-_r_3g_"
+    data-activation-direction="none"
+    data-index="0"
+    data-orientation="horizontal"
+    id="base-ui-_r_3j_"
+    role="tabpanel"
+    tabindex="0"
+  >
+    <p
+      class="vesper-typography vesper-typography-copy-md"
+      data-testid="tab-1-content"
+      style="color: var(--vesper-stone-900);"
+    >
+      Tab 1 Content
+    </p>
+  </div>
+</div>
+`;
+
+exports[`tabs [snapshot] > secondary, contentAsPanel 1`] = `
+<div
+  class="vesper-tabs-secondary"
+  data-activation-direction="none"
+  data-orientation="horizontal"
+  data-testid="tabs"
+>
+  <div
+    class="vesper-tabs-list"
+    data-activation-direction="none"
+    data-orientation="horizontal"
+    role="tablist"
+  >
+    <button
+      aria-controls="base-ui-_r_4b_"
+      aria-disabled="false"
+      aria-selected="true"
+      class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
+      data-activation-direction="none"
+      data-active=""
+      data-composite-item-active=""
+      data-orientation="horizontal"
+      id="base-ui-_r_48_"
+      role="tab"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="vesper-tabs-trigger-icon"
+      >
+        <svg
+          fill="none"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M21 9V15L16 21H8L3 15V9L8 3H16L21 9ZM8.43652 20H9.25684L7.53711 15.7676L7.5 15.6768V15.5H4.8291L8.43652 20ZM16.5 15.6768L16.4629 15.7676L14.7432 20H15.5635L19.1709 15.5H16.5V15.6768ZM10.3359 20H13.6641L15.4932 15.5H8.50781L10.3359 20ZM4 14.5H7.5V9.5H4V14.5ZM16.5 14.5H20V9.5H16.5V14.5ZM8.5 14.5H15.5V9.5H8.5V14.5ZM4.71875 8.5H7.5V8.32324L7.53711 8.23242L9.25684 4H8.46875L4.71875 8.5ZM16.4629 8.23242L16.5 8.32324V8.5H19.2812L15.5312 4H14.7432L16.4629 8.23242ZM8.50684 8.5H15.4922L13.6641 4H10.3359L8.50684 8.5Z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </span>
+      Tab 1
+    </button>
+    <button
+      aria-disabled="false"
+      aria-selected="false"
+      class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
+      data-activation-direction="none"
+      data-orientation="horizontal"
+      id="base-ui-_r_49_"
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      Tab 2
+    </button>
+    <button
+      aria-disabled="false"
+      aria-selected="false"
+      class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
+      data-activation-direction="none"
+      data-orientation="horizontal"
+      id="base-ui-_r_4a_"
       role="tab"
       tabindex="-1"
       type="button"
@@ -163,13 +347,13 @@ exports[`tabs [snapshot] > primary, value 1`] = `
     </button>
   </div>
   <p
-    aria-labelledby="base-ui-_r_1u_"
+    aria-labelledby="base-ui-_r_48_"
     class="vesper-typography vesper-typography-copy-md"
     data-activation-direction="none"
     data-index="0"
     data-orientation="horizontal"
     data-testid="tab-1-content"
-    id="base-ui-_r_21_"
+    id="base-ui-_r_4b_"
     role="tabpanel"
     style="color: var(--vesper-stone-900);"
     tabindex="0"
@@ -193,7 +377,7 @@ exports[`tabs [snapshot] > secondary, no value 1`] = `
     role="tablist"
   >
     <button
-      aria-controls="base-ui-_r_27_"
+      aria-controls="base-ui-_r_3p_"
       aria-disabled="false"
       aria-selected="true"
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
@@ -201,7 +385,7 @@ exports[`tabs [snapshot] > secondary, no value 1`] = `
       data-active=""
       data-composite-item-active=""
       data-orientation="horizontal"
-      id="base-ui-_r_24_"
+      id="base-ui-_r_3m_"
       role="tab"
       tabindex="0"
       type="button"
@@ -230,7 +414,7 @@ exports[`tabs [snapshot] > secondary, no value 1`] = `
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
       data-activation-direction="none"
       data-orientation="horizontal"
-      id="base-ui-_r_25_"
+      id="base-ui-_r_3n_"
       role="tab"
       tabindex="-1"
       type="button"
@@ -243,7 +427,7 @@ exports[`tabs [snapshot] > secondary, no value 1`] = `
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
       data-activation-direction="none"
       data-orientation="horizontal"
-      id="base-ui-_r_26_"
+      id="base-ui-_r_3o_"
       role="tab"
       tabindex="-1"
       type="button"
@@ -251,21 +435,24 @@ exports[`tabs [snapshot] > secondary, no value 1`] = `
       Tab 3
     </button>
   </div>
-  <p
-    aria-labelledby="base-ui-_r_24_"
-    class="vesper-typography vesper-typography-copy-md"
+  <div
+    aria-labelledby="base-ui-_r_3m_"
     data-activation-direction="none"
     data-index="0"
     data-orientation="horizontal"
     data-starting-style=""
-    data-testid="tab-1-content"
-    id="base-ui-_r_27_"
+    id="base-ui-_r_3p_"
     role="tabpanel"
-    style="color: var(--vesper-stone-900);"
     tabindex="0"
   >
-    Tab 1 Content
-  </p>
+    <p
+      class="vesper-typography vesper-typography-copy-md"
+      data-testid="tab-1-content"
+      style="color: var(--vesper-stone-900);"
+    >
+      Tab 1 Content
+    </p>
+  </div>
 </div>
 `;
 
@@ -283,7 +470,7 @@ exports[`tabs [snapshot] > secondary, value 1`] = `
     role="tablist"
   >
     <button
-      aria-controls="base-ui-_r_2d_"
+      aria-controls="base-ui-_r_3v_"
       aria-disabled="false"
       aria-selected="true"
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
@@ -291,7 +478,7 @@ exports[`tabs [snapshot] > secondary, value 1`] = `
       data-active=""
       data-composite-item-active=""
       data-orientation="horizontal"
-      id="base-ui-_r_2a_"
+      id="base-ui-_r_3s_"
       role="tab"
       tabindex="0"
       type="button"
@@ -320,7 +507,7 @@ exports[`tabs [snapshot] > secondary, value 1`] = `
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
       data-activation-direction="none"
       data-orientation="horizontal"
-      id="base-ui-_r_2b_"
+      id="base-ui-_r_3t_"
       role="tab"
       tabindex="-1"
       type="button"
@@ -333,7 +520,7 @@ exports[`tabs [snapshot] > secondary, value 1`] = `
       class="vesper-typography vesper-typography-label-sm vesper-tabs-trigger"
       data-activation-direction="none"
       data-orientation="horizontal"
-      id="base-ui-_r_2c_"
+      id="base-ui-_r_3u_"
       role="tab"
       tabindex="-1"
       type="button"
@@ -341,19 +528,22 @@ exports[`tabs [snapshot] > secondary, value 1`] = `
       Tab 3
     </button>
   </div>
-  <p
-    aria-labelledby="base-ui-_r_2a_"
-    class="vesper-typography vesper-typography-copy-md"
+  <div
+    aria-labelledby="base-ui-_r_3s_"
     data-activation-direction="none"
     data-index="0"
     data-orientation="horizontal"
-    data-testid="tab-1-content"
-    id="base-ui-_r_2d_"
+    id="base-ui-_r_3v_"
     role="tabpanel"
-    style="color: var(--vesper-stone-900);"
     tabindex="0"
   >
-    Tab 1 Content
-  </p>
+    <p
+      class="vesper-typography vesper-typography-copy-md"
+      data-testid="tab-1-content"
+      style="color: var(--vesper-stone-900);"
+    >
+      Tab 1 Content
+    </p>
+  </div>
 </div>
 `;

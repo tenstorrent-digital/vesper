@@ -7,6 +7,8 @@ description: A popup overlay that displays additional information when hovering 
 
 A popup overlay that displays additional information when hovering over or focusing on a trigger element. Supports configurable positioning, delay duration, and max width.
 
+A `Tooltip` renders its `children` as its trigger, so they should be an interactive element, like a `Button` or an `IconButton`. To attach a `Tooltip` to non-interactive content, like an icon or plain text, use the `wrapWithButton` prop to [wrap it in a `<button>` trigger](#wrapping-non-interactive-content) instead.
+
 ```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
 import { Tooltip } from "@tenstorrent/vesper/tooltip";
@@ -35,7 +37,10 @@ export default function TooltipDemo() {
 | `defaultOpen` | `boolean` | Whether the tooltip is open by default (uncontrolled mode). | `false` |
 | `maxWidth` | `number` | The maximum width of the tooltip in pixels. Content wraps if exceeded. | `240` |
 | `container` | `HTMLElement \| ShadowRoot \| null \| RefObject<HTMLElement \| ShadowRoot \| null>` | Specify the element or shadow root to portal the tooltip into. | – |
-| `children` | `ReactNode` | The trigger element that the tooltip is attached to. | — |
+| `children` | `ReactNode` | The trigger that the tooltip is attached to, or the content of the trigger when `wrapWithButton` is `true`. | — |
+| `wrapWithButton` | `boolean` | Wraps `children` in a `<button>` trigger instead of rendering `children` as the trigger itself. Use for non-interactive content. | `false` |
+
+All other props are forwarded to `children` by default, or the wrapping `<button>` element that gets rendered when `wrapWithButton` is `true`.
 
 ## Examples
 
@@ -63,7 +68,45 @@ export default function BasicTooltip() {
 
 > [!IMPORTANT]
 >
-> A `Tooltip`'s children must be a single React element and able to receive event handlers to listen for hover events. A `Tooltip`'s content will not render otherwise.
+> A `Tooltip` forwards its trigger's props to its `children`. Its `children` must be a single React element that passes every prop it receives on to the DOM element it renders.
+
+### Wrapping non-interactive content
+
+Non-interactive content, like icons and text, can't be focused, so a `Tooltip` rendering it as its trigger can't be opened with a keyboard. Pass `wrapWithButton` to wrap `children` in a `<button>` trigger instead. When `children` has no text of its own, give the tooltip an accessible name via `aria-label`:
+
+```tsx demo
+import { Info } from "@tenstorrent/vesper/icons";
+import { Tooltip } from "@tenstorrent/vesper/tooltip";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function WrappedTooltip() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--vesper-spacing-2)",
+      }}
+    >
+      <Typography>Throughput</Typography>
+      <Tooltip
+        wrapWithButton
+        side="right"
+        content="Tokens generated per second"
+        aria-label="About throughput"
+      >
+        <Info style={{ display: "block", width: 16 }} />
+      </Tooltip>
+    </div>
+  );
+}
+```
+
+`wrapWithButton` renders an unstyled `<button>`. Any props that a `Tooltip` doesn't own, like `className` and `style`, are forwarded to it, so you can style it as needed.
+
+> [!NOTE]
+>
+> A `Tooltip` always wraps `children` that aren't a single React element (eg. plain text, a fragment, or multiple elements) in a `<button>` trigger, even when `wrapWithButton` is `false`.
 
 ### Positioning the tooltip
 

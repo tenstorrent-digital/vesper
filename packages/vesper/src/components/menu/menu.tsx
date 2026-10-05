@@ -1,7 +1,13 @@
 "use client";
 
 import { Menu as DropdownMenu } from "@base-ui/react/menu";
-import { type ReactNode, RefObject, useState } from "react";
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
+import {
+  type ElementType,
+  type ReactNode,
+  type RefObject,
+  useState,
+} from "react";
 
 import { Checkmark, Lock } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
@@ -10,7 +16,7 @@ import {
   type PortalContainer,
 } from "@/utils/get-portal-container";
 import { useBaseRemSize } from "@/utils/hooks/use-base-rem-size";
-import { isSingleReactElement } from "@/utils/is-single-react-element";
+import { Polymorphic } from "@/utils/polymorphic";
 
 export type MenuItemProps = {
   /** The text label displayed for the menu item. */
@@ -25,38 +31,42 @@ export type MenuItemProps = {
   onSelect: () => void;
 };
 
-export interface MenuProps {
-  /** The preferred side of the trigger to render the menu against. @default bottom */
-  side?: "top" | "bottom" | "left" | "right";
-  /** The distance in pixels from the trigger to the menu. @default 8 */
-  sideOffset?: number;
-  /** The alignment of the menu relative to the trigger along the perpendicular axis. @default start */
-  align?: "start" | "center" | "end";
-  /** An offset in pixels from the aligned edge of the trigger. @default 0 */
-  alignOffset?: number;
-  /** The trigger element that opens the menu. */
-  children?: ReactNode;
-  /** Controls the open state of the menu (controlled mode). */
-  open?: boolean;
-  /** Whether the menu is open by default (uncontrolled mode). */
-  defaultOpen?: boolean;
-  /** Callback fired when the open state changes. Receives the new open state as an argument. */
-  onOpenChange?: (open: boolean) => void;
-  /** The list of menu items to render in the dropdown. */
-  items: MenuItemProps[];
-  /** The width of the menu dropdown in pixels. @default 200 */
-  width?: number;
-  /** Specify the element or shadow root to portal the menu into */
-  container?: PortalContainer;
-  /** Specify the element to anchor the menu against. @default trigger element */
-  anchor?: HTMLElement | null | RefObject<HTMLElement | null>;
-}
+export type MenuProps<E extends ElementType = "button"> = Polymorphic<
+  {
+    /** The preferred side of the trigger to render the menu against. @default bottom */
+    side?: "top" | "bottom" | "left" | "right";
+    /** The distance in pixels from the trigger to the menu. @default 8 */
+    sideOffset?: number;
+    /** The alignment of the menu relative to the trigger along the perpendicular axis. @default start */
+    align?: "start" | "center" | "end";
+    /** An offset in pixels from the aligned edge of the trigger. @default 0 */
+    alignOffset?: number;
+    /** The content of the trigger. */
+    children?: ReactNode;
+    /** Controls the open state of the menu (controlled mode). */
+    open?: boolean;
+    /** Whether the menu is open by default (uncontrolled mode). */
+    defaultOpen?: boolean;
+    /** Callback fired when the open state changes. Receives the new open state as an argument. */
+    onOpenChange?: (open: boolean) => void;
+    /** The list of menu items to render in the dropdown. */
+    items: MenuItemProps[];
+    /** The width of the menu dropdown in pixels. @default 200 */
+    width?: number;
+    /** Specify the element or shadow root to portal the menu into */
+    container?: PortalContainer;
+    /** Specify the element to anchor the menu against. @default trigger element */
+    anchor?: HTMLElement | null | RefObject<HTMLElement | null>;
+  },
+  E,
+  "button"
+>;
 
 /**
  * A dropdown menu component triggered by a child element, rendering a list of selectable menu items.
  *
  * @param {MenuItemProps[]} props.items - The list of menu items to render in the dropdown
- * @param {ReactElement} [props.children] - (optional) The trigger element that opens the menu
+ * @param {ReactNode} [props.children] - (optional) The content of the trigger that opens the menu
  * @param {number} [props.width] - (optional) The width of the dropdown in pixels. @default 200
  * @param {"top" | "bottom" | "left" | "right"} [props.side] - (optional) The preferred side of the trigger. @default bottom
  * @param {number} [props.sideOffset] - (optional) Distance in pixels from the trigger. @default 8
@@ -67,28 +77,28 @@ export interface MenuProps {
  *
  * @example
  * <Menu
+ *   as={IconButton}
+ *   icon={<Ellipses />}
+ *   aria-label="Actions"
  *   items={[
  *     { text: "Edit", onSelect: handleEdit },
  *     { text: "Delete", style: "danger", onSelect: handleDelete },
  *   ]}
- * >
- *   <IconButton icon={<Ellipses />} aria-label="Actions" />
- * </Menu>
+ * />
  *
  * @example
  * <Menu
+ *   as={Button}
+ *   variant="ghost"
  *   items={options}
  *   side="right"
  *   width={250}
  *   align="end"
- * >
- *   <Button variant="ghost">Options</Button>
- * </Menu>
+ * />
  */
-export function Menu(props: MenuProps) {
+export function Menu<E extends ElementType = "button">(props: MenuProps<E>) {
   const {
     items,
-    children,
     width = 200,
     side = "bottom",
     sideOffset = 8,
@@ -96,22 +106,29 @@ export function Menu(props: MenuProps) {
     alignOffset = 0,
     container,
     anchor,
+    defaultOpen,
+    onOpenChange,
+    open,
+    ref,
+    as: Component = "button",
     ...rest
   } = props;
 
-  const [ref, setRef] = useState<Element | null>(null);
+  const [innerRef, setInnerRef] = useState<Element | null>(null);
+  const mergedRef = useMergedRefs(ref, setInnerRef);
+  const triggerRef = (e: HTMLButtonElement | null) => mergedRef?.(e);
 
   const baseRemSize = useBaseRemSize();
 
-  const portalContainer = getPortalContainer(container, ref);
-
-  if (!isSingleReactElement(children)) {
-    return children;
-  }
+  const portalContainer = getPortalContainer(container, innerRef);
 
   return (
-    <DropdownMenu.Root {...rest}>
-      <DropdownMenu.Trigger render={children} ref={setRef} />
+    <DropdownMenu.Root
+      defaultOpen={defaultOpen}
+      onOpenChange={onOpenChange}
+      open={open}
+    >
+      <DropdownMenu.Trigger ref={triggerRef} render={<Component {...rest} />} />
       <DropdownMenu.Portal container={portalContainer}>
         <DropdownMenu.Positioner
           anchor={anchor}

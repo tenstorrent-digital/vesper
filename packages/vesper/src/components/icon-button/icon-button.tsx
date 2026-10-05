@@ -21,6 +21,7 @@ export type IconButtonProps<E extends ElementType = "button"> = Polymorphic<
     icon: ReactNode;
   },
   E,
+  "button",
   "children"
 >;
 

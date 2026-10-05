@@ -13,6 +13,8 @@ const meta = {
     open: { table: { disable: true } },
     onOpenChange: { table: { disable: true } },
     container: { table: { disable: true } },
+    anchor: { table: { disable: true } },
+    as: { table: { disable: true } },
   },
 } satisfies Meta<typeof Menu>;
 
@@ -64,10 +66,8 @@ export const Playground: Story = {
     alignOffset: 0,
   },
   render: (props) => (
-    <Menu {...props} open>
-      <Button size="lg" variant="contrast">
-        menu trigger
-      </Button>
+    <Menu {...props} as={Button} size="lg" variant="contrast" open>
+      menu trigger
     </Menu>
   ),
 };

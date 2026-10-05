@@ -6,6 +6,7 @@ import {
   within,
 } from "@testing-library/react";
 import axe from "axe-core";
+import { createRef, type ReactElement, type ReactNode } from "react";
 import {
   afterEach,
   assert,
@@ -17,7 +18,13 @@ import {
 } from "vitest";
 import { userEvent } from "vitest/browser";
 
-import { Blackhole, Globe, Tenstorrent } from "@/components/icons/icons";
+import { IconButton } from "@/components/icon-button/icon-button";
+import {
+  Blackhole,
+  Ellipses,
+  Globe,
+  Tenstorrent,
+} from "@/components/icons/icons";
 import { Menu, type MenuItemProps } from "@/components/menu/menu";
 import { TextButton } from "@/components/text-button/text-button";
 import "@/styles/test.css";
@@ -58,26 +65,86 @@ const MENU_ITEMS: MenuItemProps[] = [
   },
 ];
 
+/**
+ * children of every shape, which are all rendered as the content of the
+ * trigger (never as the trigger itself)
+ */
+const TRIGGER_CHILDREN: {
+  name: string;
+  children: ReactNode;
+  textContent: string;
+}[] = [
+  { name: "nullable", children: undefined, textContent: "" },
+  {
+    name: "plain text",
+    children: "plain text trigger",
+    textContent: "plain text trigger",
+  },
+  {
+    name: "fragment",
+    children: (
+      <>
+        <span>trigger</span>
+      </>
+    ),
+    textContent: "trigger",
+  },
+  {
+    name: "single element",
+    children: <span>trigger</span>,
+    textContent: "trigger",
+  },
+  {
+    name: "multiple element",
+    children: [
+      <span key="first">first</span>,
+      <span key="second">second</span>,
+    ],
+    textContent: "firstsecond",
+  },
+];
+
+const A11Y_PERMUTATIONS: {
+  name: string;
+  render: (open: boolean) => ReactElement;
+}[] = [
+  {
+    name: "default trigger",
+    render: (open) => (
+      <Menu items={MENU_ITEMS} open={open}>
+        trigger
+      </Menu>
+    ),
+  },
+  {
+    name: "as TextButton",
+    render: (open) => (
+      <Menu as={TextButton} variant="contrast" items={MENU_ITEMS} open={open}>
+        trigger
+      </Menu>
+    ),
+  },
+  {
+    name: "as IconButton",
+    render: (open) => (
+      <Menu
+        as={IconButton}
+        icon={<Ellipses />}
+        aria-label="More actions"
+        items={MENU_ITEMS}
+        open={open}
+      />
+    ),
+  },
+];
+
 afterEach(cleanup);
 
 describe("menu [unit]", () => {
-  test("clicking trigger when closed", async () => {
-    const result = render(
-      <Menu items={MENU_ITEMS} defaultOpen={false}>
-        <TextButton>trigger</TextButton>
-      </Menu>,
-    );
-
-    await userEvent.click(within(result.container).getByRole("button"));
-    await waitFor(() =>
-      expect(document.querySelector(".vesper-menu")).not.toBeNull(),
-    );
-  });
-
   test("clicking non-disabled menu item", async () => {
     render(
-      <Menu items={MENU_ITEMS} defaultOpen>
-        <TextButton>trigger</TextButton>
+      <Menu as={TextButton} items={MENU_ITEMS} defaultOpen>
+        trigger
       </Menu>,
     );
 
@@ -90,8 +157,8 @@ describe("menu [unit]", () => {
   test("pointerdown outside menu when open", async () => {
     const result = render(
       <>
-        <Menu items={MENU_ITEMS} defaultOpen>
-          <TextButton>trigger</TextButton>
+        <Menu as={TextButton} items={MENU_ITEMS} defaultOpen>
+          trigger
         </Menu>
         <span data-testid="non-menu-element" />
       </>,
@@ -110,8 +177,8 @@ describe("menu [unit]", () => {
 
   test("closing via Escape key", async () => {
     render(
-      <Menu items={MENU_ITEMS} defaultOpen>
-        <TextButton>trigger</TextButton>
+      <Menu as={TextButton} items={MENU_ITEMS} defaultOpen>
+        trigger
       </Menu>,
     );
 
@@ -126,8 +193,8 @@ describe("menu [unit]", () => {
 
   test("custom width", async () => {
     render(
-      <Menu items={MENU_ITEMS} width={300} defaultOpen>
-        <TextButton>trigger</TextButton>
+      <Menu as={TextButton} items={MENU_ITEMS} width={300} defaultOpen>
+        trigger
       </Menu>,
     );
 
@@ -144,8 +211,8 @@ describe("menu [unit]", () => {
     ];
 
     render(
-      <Menu items={items} defaultOpen>
-        <TextButton>trigger</TextButton>
+      <Menu as={TextButton} items={items} defaultOpen>
+        trigger
       </Menu>,
     );
 
@@ -163,8 +230,8 @@ describe("menu [unit]", () => {
     ];
 
     render(
-      <Menu items={items} defaultOpen>
-        <TextButton>trigger</TextButton>
+      <Menu as={TextButton} items={items} defaultOpen>
+        trigger
       </Menu>,
     );
 
@@ -185,8 +252,8 @@ describe("menu [unit]", () => {
     ];
 
     render(
-      <Menu items={items} defaultOpen>
-        <TextButton>trigger</TextButton>
+      <Menu as={TextButton} items={items} defaultOpen>
+        trigger
       </Menu>,
     );
 
@@ -200,41 +267,10 @@ describe("menu [unit]", () => {
     expect(document.querySelector(".vesper-menu")).not.toBeNull();
   });
 
-  test("nullable children do not render menu", () => {
-    const result = render(<Menu items={MENU_ITEMS} open />);
-
-    expect(result.container.innerHTML).toBe("");
-    expect(document.querySelector(".vesper-menu")).toBeNull();
-  });
-
-  test("fragment children do not render menu", () => {
-    const result = render(
-      <Menu items={MENU_ITEMS} open>
-        <>
-          <TextButton>trigger</TextButton>
-        </>
-      </Menu>,
-    );
-
-    expect(within(result.container).getByRole("button")).not.toBeNull();
-    expect(document.querySelector(".vesper-menu")).toBeNull();
-  });
-
-  test("non-element children do not render menu", () => {
-    const result = render(
-      <Menu items={MENU_ITEMS} open>
-        plain text trigger
-      </Menu>,
-    );
-
-    expect(result.container.innerHTML).toBe("plain text trigger");
-    expect(document.querySelector(".vesper-menu")).toBeNull();
-  });
-
   test("portals menu content into document.body", async () => {
     render(
-      <Menu items={MENU_ITEMS} defaultOpen>
-        <TextButton>trigger</TextButton>
+      <Menu as={TextButton} items={MENU_ITEMS} defaultOpen>
+        trigger
       </Menu>,
     );
 
@@ -252,8 +288,8 @@ describe("menu [unit]", () => {
       <dialog open data-testid="dialog">
         <div>
           <div>
-            <Menu items={MENU_ITEMS} defaultOpen>
-              <TextButton>trigger</TextButton>
+            <Menu as={TextButton} items={MENU_ITEMS} defaultOpen>
+              trigger
             </Menu>
           </div>
         </div>
@@ -275,8 +311,13 @@ describe("menu [unit]", () => {
     document.body.append(container);
 
     render(
-      <Menu items={MENU_ITEMS} defaultOpen container={container}>
-        <TextButton>trigger</TextButton>
+      <Menu
+        as={TextButton}
+        items={MENU_ITEMS}
+        defaultOpen
+        container={container}
+      >
+        trigger
       </Menu>,
     );
 
@@ -293,8 +334,13 @@ describe("menu [unit]", () => {
 
     const result = render(
       <dialog open data-testid="dialog">
-        <Menu items={MENU_ITEMS} defaultOpen container={container}>
-          <TextButton>trigger</TextButton>
+        <Menu
+          as={TextButton}
+          items={MENU_ITEMS}
+          defaultOpen
+          container={container}
+        >
+          trigger
         </Menu>
       </dialog>,
     );
@@ -315,8 +361,8 @@ describe("menu [unit]", () => {
         const items: MenuItemProps[] = [{ text: "Item", style, onSelect() {} }];
 
         render(
-          <Menu items={items} defaultOpen>
-            <TextButton>trigger</TextButton>
+          <Menu as={TextButton} items={items} defaultOpen>
+            trigger
           </Menu>,
         );
 
@@ -329,13 +375,191 @@ describe("menu [unit]", () => {
       });
     },
   );
+
+  describe("default trigger", () => {
+    test("renders a button trigger wrapping its children", () => {
+      const result = render(
+        <Menu items={MENU_ITEMS}>
+          <span data-testid="child">trigger</span>
+        </Menu>,
+      );
+
+      const trigger = result.container.firstChild;
+      const child = result.getByTestId("child");
+
+      assert.instanceOf(trigger, HTMLButtonElement);
+      expect(trigger).toHaveAttribute("type", "button");
+      expect(trigger).toHaveAttribute("aria-haspopup", "menu");
+      expect(trigger).toHaveAttribute("aria-expanded", "false");
+      expect(trigger).toContainElement(child);
+      expect(child).not.toHaveAttribute("aria-haspopup");
+    });
+
+    test("clicking the trigger opens the menu", async () => {
+      const result = render(<Menu items={MENU_ITEMS}>trigger</Menu>);
+
+      const trigger = within(result.container).getByRole("button");
+      await userEvent.click(trigger);
+
+      await waitFor(() =>
+        expect(document.querySelector(".vesper-menu")).not.toBeNull(),
+      );
+      expect(trigger).toHaveAttribute("aria-expanded", "true");
+    });
+
+    test("forwards props to the trigger", async () => {
+      const onClick = vi.fn();
+
+      const result = render(
+        <Menu
+          items={MENU_ITEMS}
+          className="custom-class"
+          aria-label="Actions"
+          data-testid="trigger"
+          onClick={onClick}
+        >
+          ...
+        </Menu>,
+      );
+
+      const trigger = result.getByTestId("trigger");
+      assert.instanceOf(trigger, HTMLButtonElement);
+      expect(trigger).toHaveClass("custom-class");
+      expect(trigger).toHaveAttribute("aria-label", "Actions");
+
+      await userEvent.click(trigger);
+      expect(onClick).toHaveBeenCalledTimes(1);
+      await waitFor(() =>
+        expect(document.querySelector(".vesper-menu")).not.toBeNull(),
+      );
+    });
+
+    test("forwards ref to the trigger", () => {
+      const ref = createRef<HTMLButtonElement>();
+
+      const result = render(
+        <Menu items={MENU_ITEMS} ref={ref}>
+          trigger
+        </Menu>,
+      );
+
+      assert.instanceOf(ref.current, HTMLButtonElement);
+      expect(ref.current).toBe(result.container.firstChild);
+    });
+
+    test("portals into the closest dialog ancestor", async () => {
+      const result = render(
+        <dialog open data-testid="dialog">
+          <Menu items={MENU_ITEMS} defaultOpen>
+            trigger
+          </Menu>
+        </dialog>,
+      );
+
+      const dialog = result.getByTestId("dialog");
+
+      await waitFor(() =>
+        expect(dialog.querySelector(".vesper-menu")).not.toBeNull(),
+      );
+    });
+
+    TRIGGER_CHILDREN.forEach(({ name, children, textContent }) => {
+      test(`renders ${name} children inside the trigger`, async () => {
+        const result = render(
+          <Menu items={MENU_ITEMS} open>
+            {children}
+          </Menu>,
+        );
+
+        // an open menu renders focus guards around the trigger, so the trigger
+        // is not necessarily the first child of the container
+        const buttons = result.container.querySelectorAll("button");
+        expect(buttons).toHaveLength(1);
+
+        const trigger = buttons[0];
+        assert.instanceOf(trigger, HTMLButtonElement);
+        expect(trigger.textContent).toBe(textContent);
+        expect(trigger).toHaveAttribute("aria-haspopup", "menu");
+
+        await waitFor(() =>
+          expect(document.querySelector(".vesper-menu")).not.toBeNull(),
+        );
+      });
+    });
+  });
+
+  describe("polymorphism", () => {
+    test("renders the `as` component as the trigger", () => {
+      const result = render(
+        <Menu as={TextButton} items={MENU_ITEMS}>
+          trigger
+        </Menu>,
+      );
+
+      // the `as` component is the trigger, so there is no wrapping (nested) button
+      const [trigger, ...otherButtons] = within(result.container).getAllByRole(
+        "button",
+      );
+
+      expect(otherButtons).toHaveLength(0);
+      expect(result.container.firstChild).toBe(trigger);
+      expect(trigger).toHaveClass("vesper-text-button");
+      expect(trigger).toHaveTextContent("trigger");
+      expect(trigger).toHaveAttribute("aria-haspopup", "menu");
+      expect(trigger).toHaveAttribute("aria-expanded", "false");
+    });
+
+    test("forwards props to the `as` component", async () => {
+      const onClick = vi.fn();
+
+      const result = render(
+        <Menu
+          as={TextButton}
+          items={MENU_ITEMS}
+          variant="danger"
+          className="custom-class"
+          aria-label="Actions"
+          onClick={onClick}
+        >
+          trigger
+        </Menu>,
+      );
+
+      const trigger = within(result.container).getByRole("button");
+      expect(trigger).toHaveClass(
+        "vesper-text-button",
+        "vesper-text-button-danger",
+        "custom-class",
+      );
+      expect(trigger).toHaveAttribute("aria-label", "Actions");
+
+      await userEvent.click(trigger);
+      expect(onClick).toHaveBeenCalledTimes(1);
+      await waitFor(() =>
+        expect(document.querySelector(".vesper-menu")).not.toBeNull(),
+      );
+    });
+
+    test("forwards ref to the `as` component", () => {
+      const ref = createRef<HTMLButtonElement>();
+
+      const result = render(
+        <Menu as={TextButton} items={MENU_ITEMS} ref={ref}>
+          trigger
+        </Menu>,
+      );
+
+      const trigger = within(result.container).getByRole("button");
+      expect(ref.current).toBe(trigger);
+    });
+  });
 });
 
 describe("menu [snapshot]", () => {
   test("closed", () => {
     render(
-      <Menu items={MENU_ITEMS} open={false}>
-        <TextButton>trigger</TextButton>
+      <Menu as={TextButton} items={MENU_ITEMS} open={false}>
+        trigger
       </Menu>,
     );
 
@@ -344,8 +568,8 @@ describe("menu [snapshot]", () => {
 
   test("open", async () => {
     render(
-      <Menu items={MENU_ITEMS} open>
-        <TextButton>trigger</TextButton>
+      <Menu as={TextButton} items={MENU_ITEMS} open>
+        trigger
       </Menu>,
     );
 
@@ -353,6 +577,26 @@ describe("menu [snapshot]", () => {
       expect(document.querySelector(".vesper-menu")).not.toBeNull(),
     );
     expect(document.querySelector(".vesper-menu")).toMatchSnapshot();
+  });
+
+  test("trigger", () => {
+    const result = render(
+      <Menu items={MENU_ITEMS} open={false}>
+        trigger
+      </Menu>,
+    );
+
+    expect(result.container).toMatchSnapshot();
+  });
+
+  test("trigger (as)", () => {
+    const result = render(
+      <Menu as={TextButton} items={MENU_ITEMS} open={false}>
+        trigger
+      </Menu>,
+    );
+
+    expect(result.container).toMatchSnapshot();
   });
 });
 
@@ -368,40 +612,34 @@ describe("menu [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    test("a11y (open)", async () => {
-      const result = render(
-        <Menu items={MENU_ITEMS} open>
-          <TextButton variant="contrast">trigger</TextButton>
-        </Menu>,
-      );
+    A11Y_PERMUTATIONS.forEach(({ name, render: renderMenu }) => {
+      test(`a11y (open, ${name})`, async () => {
+        const result = render(renderMenu(true));
 
-      await waitFor(() =>
-        expect(document.querySelector(".vesper-menu")).not.toBeNull(),
-      );
+        await waitFor(() =>
+          expect(document.querySelector(".vesper-menu")).not.toBeNull(),
+        );
 
-      // the menu content is portaled outside of the render container, so
-      // a11y is checked at the document level
-      //
-      // the page-level `region` rule is disabled here: it flags content that
-      // isn't contained by a landmark, which is an artifact of rendering a
-      // component in isolation rather than a menu accessibility issue
-      expect(
-        await axe.run(result.container.ownerDocument, {
-          rules: { region: { enabled: false } },
-        }),
-      ).toHaveNoViolations();
-    });
+        // the menu content is portaled outside of the render container, so
+        // a11y is checked at the document level
+        //
+        // the page-level `region` rule is disabled here: it flags content that
+        // isn't contained by a landmark, which is an artifact of rendering a
+        // component in isolation rather than a menu accessibility issue
+        expect(
+          await axe.run(result.container.ownerDocument, {
+            rules: { region: { enabled: false } },
+          }),
+        ).toHaveNoViolations();
+      });
 
-    test("a11y (closed)", async () => {
-      const result = render(
-        <Menu items={MENU_ITEMS} open={false}>
-          <TextButton variant="contrast">trigger</TextButton>
-        </Menu>,
-      );
+      test(`a11y (closed, ${name})`, async () => {
+        const result = render(renderMenu(false));
 
-      expect(
-        await axe.run(result.container.ownerDocument),
-      ).toHaveNoViolations();
+        expect(
+          await axe.run(result.container.ownerDocument),
+        ).toHaveNoViolations();
+      });
     });
   });
 });

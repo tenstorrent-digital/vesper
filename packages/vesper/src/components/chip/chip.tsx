@@ -1,6 +1,6 @@
 "use client";
 
-import type { ElementType, ReactNode } from "react";
+import type { ElementType, MouseEventHandler, ReactNode } from "react";
 
 import {
   Typography,
@@ -36,7 +36,8 @@ export type ChipProps<E extends ElementType = "button"> = Polymorphic<
     /** Callback fired when the chip is clicked. Receives the next selected state as an argument. */
     onChange?: (selected: boolean) => void;
   },
-  E
+  E,
+  "button"
 >;
 
 const CHIP_TYPOGRAPHY: { [S in ChipSize]: TypographyVariant } = {
@@ -90,7 +91,7 @@ export function Chip<E extends ElementType = "button">(props: ChipProps<E>) {
   } = props;
 
   return (
-    <Typography
+    <Typography<typeof Component>
       as={Component}
       variant={CHIP_TYPOGRAPHY[size]}
       aria-pressed={Component === "button" ? selected : undefined}
@@ -105,11 +106,13 @@ export function Chip<E extends ElementType = "button">(props: ChipProps<E>) {
       // TypeScript cannot infer the type of onClick because this component is polymorphic
       onClick={(e: any) => {
         onChange?.(!selected);
-        onClick?.(e);
+        // typescript can't resolve `onClick` to a callable type for a generic `E`
+        const handleClick: MouseEventHandler | undefined = onClick;
+        handleClick?.(e);
       }}
-      // typescript can't relate the generic polymorphic props to `TypographyProps<E>`
+      // typescript can't relate the generic polymorphic props to `TypographyProps<typeof Component>`
       // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-      {...(rest as TypographyProps<E>)}
+      {...(rest as TypographyProps<typeof Component>)}
       {...getDisabledProps(Component, disabled)}
     >
       {iconLeft && <span className="vesper-chip-icon">{iconLeft}</span>}

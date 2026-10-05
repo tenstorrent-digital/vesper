@@ -167,22 +167,20 @@ export function SplitButton(props: SplitButtonProps) {
         width={menuWidth}
         defaultOpen={defaultMenuOpen}
         onOpenChange={onMenuOpenChange}
-      >
-        <IconButton
-          className="vesper-split-button-menu-button"
-          size={size}
-          variant={variant}
-          disabled={disabled}
-          aria-label={menuButtonAriaLabel || "Toggle menu"}
-          ref={menuButtonRef}
-          icon={
-            <>
-              <CaretDown className="vesper-split-button-caret-down" />
-              <CaretUp className="vesper-split-button-caret-up" />
-            </>
-          }
-        />
-      </Menu>
+        as={IconButton}
+        className="vesper-split-button-menu-button"
+        size={size}
+        variant={variant}
+        disabled={disabled}
+        aria-label={menuButtonAriaLabel || "Toggle menu"}
+        ref={menuButtonRef}
+        icon={
+          <>
+            <CaretDown className="vesper-split-button-caret-down" />
+            <CaretUp className="vesper-split-button-caret-up" />
+          </>
+        }
+      />
     </div>
   );
 }
