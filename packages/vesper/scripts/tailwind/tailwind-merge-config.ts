@@ -19,7 +19,7 @@ import type {
  * `tailwind-merge`'s `extend.theme` configuration object.
  *
  * This list is exhaustive; if we are missing a token group name, we will
- * encounter a build-time error.
+ * encounter a type error.
  *
  * @see AssertEveryThemeTokenGroupAccountedFor
  * */
@@ -51,7 +51,7 @@ export type AssertEveryThemeTokenGroupAccountedFor = AssertNever<
  * variables map to `border-{variable}`, as well as `border-{t,r,b,l}-{variable}`,
  * all of which we have to provide class group id override mappings for.
  */
-export const EXTENDED_CLASSGROUP_PROPERTIES: Record<
+export const EXTENDED_CLASSGROUPS: Record<
   ClassGroupTokenGroup,
   [group: DefaultClassGroupIds, mapping: string][]
 > = {
@@ -92,4 +92,112 @@ export const CUSTOM_UTILITY_CLASSGROUPS: Record<
     conflicts: ["bg-color", "bg-image", "bg-position", "bg-repeat"],
     argument: "color",
   },
+};
+
+/**
+ * Utilities to test each theme token group against, as tuples of:
+ * - the utility, ie. the class name without its `-vesper-{token}` suffix
+ * - the `tailwind-merge` class group that the utility belongs to
+ *
+ * Vesper extends `tailwind-merge` theme scales, which are shared by many class
+ * groups (eg. `color` is used by `bg-color`, `text-color`, `border-color`, etc.),
+ * so we test a representative selection of the class groups for each token group
+ */
+export const THEME_TOKEN_GROUP_UTILITIES: Record<
+  ThemeTokenGroup,
+  [utility: string, group: DefaultClassGroupIds][]
+> = {
+  color: [
+    ["bg", "bg-color"],
+    ["text", "text-color"],
+    ["border", "border-color"],
+    ["divide", "divide-color"],
+    ["outline", "outline-color"],
+    ["ring", "ring-color"],
+    ["fill", "fill"],
+    ["stroke", "stroke"],
+  ],
+  font: [["font", "font-family"]],
+  leading: [["leading", "leading"]],
+  radius: [
+    ["rounded", "rounded"],
+    ["rounded-t", "rounded-t"],
+  ],
+  shadow: [["shadow", "shadow"]],
+  spacing: [
+    ["p", "p"],
+    ["m", "m"],
+    ["gap", "gap"],
+    ["w", "w"],
+    ["h", "h"],
+    ["inset", "inset"],
+  ],
+  tracking: [["tracking", "tracking"]],
+};
+
+/**
+ * A class from tailwind's default theme for every `tailwind-merge` class group
+ * that vesper extends (or conflicts with), used to assert that vesper classes
+ * are sorted into the correct class group
+ */
+export const CLASS_GROUP_SAMPLES: { [K in DefaultClassGroupIds]?: string } = {
+  // theme: color
+  "bg-color": "bg-red-500",
+  "text-color": "text-red-500",
+  "border-color": "border-red-500",
+  "divide-color": "divide-red-500",
+  "outline-color": "outline-red-500",
+  "ring-color": "ring-red-500",
+  fill: "fill-red-500",
+  stroke: "stroke-red-500",
+
+  // theme: font
+  "font-family": "font-sans",
+
+  // theme: leading
+  leading: "leading-6",
+
+  // theme: radius
+  rounded: "rounded-md",
+  "rounded-t": "rounded-t-md",
+
+  // theme: shadow
+  shadow: "shadow-lg",
+
+  // theme: spacing
+  p: "p-2",
+  m: "m-2",
+  gap: "gap-2",
+  w: "w-2",
+  h: "h-2",
+  inset: "inset-2",
+
+  // theme: tracking
+  tracking: "tracking-wide",
+
+  // class groups: border-width
+  "border-w": "border-2",
+  "border-w-x": "border-x-2",
+  "border-w-y": "border-y-2",
+  "border-w-s": "border-s-2",
+  "border-w-e": "border-e-2",
+  "border-w-bs": "border-bs-2",
+  "border-w-be": "border-be-2",
+  "border-w-t": "border-t-2",
+  "border-w-r": "border-r-2",
+  "border-w-b": "border-b-2",
+  "border-w-l": "border-l-2",
+  "divide-x": "divide-x-2",
+  "divide-y": "divide-y-2",
+
+  // class groups: outline-width
+  "outline-w": "outline-2",
+
+  // class groups: transition-duration
+  duration: "duration-150",
+
+  // custom utility conflicts
+  "bg-image": "bg-none",
+  "bg-position": "bg-top",
+  "bg-repeat": "bg-no-repeat",
 };

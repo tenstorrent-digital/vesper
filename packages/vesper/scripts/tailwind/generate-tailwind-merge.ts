@@ -6,7 +6,7 @@ import { getGeneratedCodeWarning, resolvePackagePath } from "../utils";
 import { TOKEN_VARIABLE_GROUPS, TAILWIND_UTILITY_GROUPS } from "./constants";
 import {
   CUSTOM_UTILITY_CLASSGROUPS,
-  EXTENDED_CLASSGROUP_PROPERTIES,
+  EXTENDED_CLASSGROUPS,
   THEME_TOKEN_GROUPS,
 } from "./tailwind-merge-config";
 import {
@@ -64,11 +64,11 @@ const createExtendedClassGroups = () => {
     [K in DefaultClassGroupIds]?: [prefix: string, lookupFn: string][];
   } = {};
 
-  for (const key in EXTENDED_CLASSGROUP_PROPERTIES) {
+  for (const key in EXTENDED_CLASSGROUPS) {
     const group = key as ClassGroupTokenGroup;
     const lookupFn = getTokenLookupFn(group);
 
-    EXTENDED_CLASSGROUP_PROPERTIES[group].forEach(([id, mapping]) => {
+    EXTENDED_CLASSGROUPS[group].forEach(([id, mapping]) => {
       const prefix = `${mapping}-vesper`;
       groups[id] = (groups[id] ?? []).concat([[prefix, lookupFn]]);
     });

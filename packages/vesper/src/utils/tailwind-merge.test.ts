@@ -370,56 +370,56 @@ describe("withVesper", () => {
   describe("theme", () => {
     describe("color", () => {
       test.each(tokens["color"])(
-        "bg-vesper-%s conflicts with bg-red-500 (bg-color)",
+        "bg-vesper-%s conflicts with bg-red-500",
         (token) => {
           expectConflict("bg-red-500", `bg-vesper-${token}`);
         },
       );
 
       test.each(tokens["color"])(
-        "text-vesper-%s conflicts with text-red-500 (text-color)",
+        "text-vesper-%s conflicts with text-red-500",
         (token) => {
           expectConflict("text-red-500", `text-vesper-${token}`);
         },
       );
 
       test.each(tokens["color"])(
-        "border-vesper-%s conflicts with border-red-500 (border-color)",
+        "border-vesper-%s conflicts with border-red-500",
         (token) => {
           expectConflict("border-red-500", `border-vesper-${token}`);
         },
       );
 
       test.each(tokens["color"])(
-        "divide-vesper-%s conflicts with divide-red-500 (divide-color)",
+        "divide-vesper-%s conflicts with divide-red-500",
         (token) => {
           expectConflict("divide-red-500", `divide-vesper-${token}`);
         },
       );
 
       test.each(tokens["color"])(
-        "outline-vesper-%s conflicts with outline-red-500 (outline-color)",
+        "outline-vesper-%s conflicts with outline-red-500",
         (token) => {
           expectConflict("outline-red-500", `outline-vesper-${token}`);
         },
       );
 
       test.each(tokens["color"])(
-        "ring-vesper-%s conflicts with ring-red-500 (ring-color)",
+        "ring-vesper-%s conflicts with ring-red-500",
         (token) => {
           expectConflict("ring-red-500", `ring-vesper-${token}`);
         },
       );
 
       test.each(tokens["color"])(
-        "fill-vesper-%s conflicts with fill-red-500 (fill)",
+        "fill-vesper-%s conflicts with fill-red-500",
         (token) => {
           expectConflict("fill-red-500", `fill-vesper-${token}`);
         },
       );
 
       test.each(tokens["color"])(
-        "stroke-vesper-%s conflicts with stroke-red-500 (stroke)",
+        "stroke-vesper-%s conflicts with stroke-red-500",
         (token) => {
           expectConflict("stroke-red-500", `stroke-vesper-${token}`);
         },
@@ -428,7 +428,7 @@ describe("withVesper", () => {
 
     describe("font", () => {
       test.each(tokens["font"])(
-        "font-vesper-%s conflicts with font-sans (font-family)",
+        "font-vesper-%s conflicts with font-sans",
         (token) => {
           expectConflict("font-sans", `font-vesper-${token}`);
         },
@@ -437,7 +437,7 @@ describe("withVesper", () => {
 
     describe("leading", () => {
       test.each(tokens["leading"])(
-        "leading-vesper-%s conflicts with leading-6 (leading)",
+        "leading-vesper-%s conflicts with leading-6",
         (token) => {
           expectConflict("leading-6", `leading-vesper-${token}`);
         },
@@ -446,14 +446,14 @@ describe("withVesper", () => {
 
     describe("radius", () => {
       test.each(tokens["radius"])(
-        "rounded-vesper-%s conflicts with rounded-md (rounded)",
+        "rounded-vesper-%s conflicts with rounded-md",
         (token) => {
           expectConflict("rounded-md", `rounded-vesper-${token}`);
         },
       );
 
       test.each(tokens["radius"])(
-        "rounded-t-vesper-%s conflicts with rounded-t-md (rounded-t)",
+        "rounded-t-vesper-%s conflicts with rounded-t-md",
         (token) => {
           expectConflict("rounded-t-md", `rounded-t-vesper-${token}`);
         },
@@ -462,7 +462,7 @@ describe("withVesper", () => {
 
     describe("shadow", () => {
       test.each(tokens["shadow"])(
-        "shadow-vesper-%s conflicts with shadow-lg (shadow)",
+        "shadow-vesper-%s conflicts with shadow-lg",
         (token) => {
           expectConflict("shadow-lg", `shadow-vesper-${token}`);
         },
@@ -471,42 +471,42 @@ describe("withVesper", () => {
 
     describe("spacing", () => {
       test.each(tokens["spacing"])(
-        "p-vesper-%s conflicts with p-2 (p)",
+        "p-vesper-%s conflicts with p-2",
         (token) => {
           expectConflict("p-2", `p-vesper-${token}`);
         },
       );
 
       test.each(tokens["spacing"])(
-        "m-vesper-%s conflicts with m-2 (m)",
+        "m-vesper-%s conflicts with m-2",
         (token) => {
           expectConflict("m-2", `m-vesper-${token}`);
         },
       );
 
       test.each(tokens["spacing"])(
-        "gap-vesper-%s conflicts with gap-2 (gap)",
+        "gap-vesper-%s conflicts with gap-2",
         (token) => {
           expectConflict("gap-2", `gap-vesper-${token}`);
         },
       );
 
       test.each(tokens["spacing"])(
-        "w-vesper-%s conflicts with w-2 (w)",
+        "w-vesper-%s conflicts with w-2",
         (token) => {
           expectConflict("w-2", `w-vesper-${token}`);
         },
       );
 
       test.each(tokens["spacing"])(
-        "h-vesper-%s conflicts with h-2 (h)",
+        "h-vesper-%s conflicts with h-2",
         (token) => {
           expectConflict("h-2", `h-vesper-${token}`);
         },
       );
 
       test.each(tokens["spacing"])(
-        "inset-vesper-%s conflicts with inset-2 (inset)",
+        "inset-vesper-%s conflicts with inset-2",
         (token) => {
           expectConflict("inset-2", `inset-vesper-${token}`);
         },
@@ -515,7 +515,7 @@ describe("withVesper", () => {
 
     describe("tracking", () => {
       test.each(tokens["tracking"])(
-        "tracking-vesper-%s conflicts with tracking-wide (tracking)",
+        "tracking-vesper-%s conflicts with tracking-wide",
         (token) => {
           expectConflict("tracking-wide", `tracking-vesper-${token}`);
         },
@@ -527,91 +527,91 @@ describe("withVesper", () => {
   describe("class groups", () => {
     describe("border-width", () => {
       test.each(tokens["border-width"])(
-        "border-vesper-%s conflicts with border-2 (border-w)",
+        "border-vesper-%s conflicts with border-2",
         (token) => {
           expectConflict("border-2", `border-vesper-${token}`);
         },
       );
 
       test.each(tokens["border-width"])(
-        "border-x-vesper-%s conflicts with border-x-2 (border-w-x)",
+        "border-x-vesper-%s conflicts with border-x-2",
         (token) => {
           expectConflict("border-x-2", `border-x-vesper-${token}`);
         },
       );
 
       test.each(tokens["border-width"])(
-        "border-y-vesper-%s conflicts with border-y-2 (border-w-y)",
+        "border-y-vesper-%s conflicts with border-y-2",
         (token) => {
           expectConflict("border-y-2", `border-y-vesper-${token}`);
         },
       );
 
       test.each(tokens["border-width"])(
-        "border-s-vesper-%s conflicts with border-s-2 (border-w-s)",
+        "border-s-vesper-%s conflicts with border-s-2",
         (token) => {
           expectConflict("border-s-2", `border-s-vesper-${token}`);
         },
       );
 
       test.each(tokens["border-width"])(
-        "border-e-vesper-%s conflicts with border-e-2 (border-w-e)",
+        "border-e-vesper-%s conflicts with border-e-2",
         (token) => {
           expectConflict("border-e-2", `border-e-vesper-${token}`);
         },
       );
 
       test.each(tokens["border-width"])(
-        "border-bs-vesper-%s conflicts with border-bs-2 (border-w-bs)",
+        "border-bs-vesper-%s conflicts with border-bs-2",
         (token) => {
           expectConflict("border-bs-2", `border-bs-vesper-${token}`);
         },
       );
 
       test.each(tokens["border-width"])(
-        "border-be-vesper-%s conflicts with border-be-2 (border-w-be)",
+        "border-be-vesper-%s conflicts with border-be-2",
         (token) => {
           expectConflict("border-be-2", `border-be-vesper-${token}`);
         },
       );
 
       test.each(tokens["border-width"])(
-        "border-t-vesper-%s conflicts with border-t-2 (border-w-t)",
+        "border-t-vesper-%s conflicts with border-t-2",
         (token) => {
           expectConflict("border-t-2", `border-t-vesper-${token}`);
         },
       );
 
       test.each(tokens["border-width"])(
-        "border-r-vesper-%s conflicts with border-r-2 (border-w-r)",
+        "border-r-vesper-%s conflicts with border-r-2",
         (token) => {
           expectConflict("border-r-2", `border-r-vesper-${token}`);
         },
       );
 
       test.each(tokens["border-width"])(
-        "border-b-vesper-%s conflicts with border-b-2 (border-w-b)",
+        "border-b-vesper-%s conflicts with border-b-2",
         (token) => {
           expectConflict("border-b-2", `border-b-vesper-${token}`);
         },
       );
 
       test.each(tokens["border-width"])(
-        "border-l-vesper-%s conflicts with border-l-2 (border-w-l)",
+        "border-l-vesper-%s conflicts with border-l-2",
         (token) => {
           expectConflict("border-l-2", `border-l-vesper-${token}`);
         },
       );
 
       test.each(tokens["border-width"])(
-        "divide-x-vesper-%s conflicts with divide-x-2 (divide-x)",
+        "divide-x-vesper-%s conflicts with divide-x-2",
         (token) => {
           expectConflict("divide-x-2", `divide-x-vesper-${token}`);
         },
       );
 
       test.each(tokens["border-width"])(
-        "divide-y-vesper-%s conflicts with divide-y-2 (divide-y)",
+        "divide-y-vesper-%s conflicts with divide-y-2",
         (token) => {
           expectConflict("divide-y-2", `divide-y-vesper-${token}`);
         },
@@ -620,7 +620,7 @@ describe("withVesper", () => {
 
     describe("outline-width", () => {
       test.each(tokens["outline-width"])(
-        "outline-vesper-%s conflicts with outline-2 (outline-w)",
+        "outline-vesper-%s conflicts with outline-2",
         (token) => {
           expectConflict("outline-2", `outline-vesper-${token}`);
         },
@@ -629,7 +629,7 @@ describe("withVesper", () => {
 
     describe("transition-duration", () => {
       test.each(tokens["transition-duration"])(
-        "duration-vesper-%s conflicts with duration-150 (duration)",
+        "duration-vesper-%s conflicts with duration-150",
         (token) => {
           expectConflict("duration-150", `duration-vesper-${token}`);
         },
