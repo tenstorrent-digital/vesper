@@ -29,7 +29,6 @@ export type ClassGroupTokenGroup = Exclude<
 
 export type UtilityData = {
   name: string;
-  properties: string[];
   acceptsArgument: boolean;
 };
 

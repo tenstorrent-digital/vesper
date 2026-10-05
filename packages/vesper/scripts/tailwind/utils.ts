@@ -66,14 +66,10 @@ export const getTailwindUtilityGroups = (): Record<
             .filter(Boolean)
             .join("-");
 
-          const properties = (rule.value.block ?? [])
-            .filter(isIdentityToken)
-            .map((token) => token.value.value);
-
           const acceptsArgument =
             rule.value.prelude.filter(isDelimiterToken).length > 0;
 
-          utilities[group].push({ name, properties, acceptsArgument });
+          utilities[group].push({ name, acceptsArgument });
         },
       },
     });
