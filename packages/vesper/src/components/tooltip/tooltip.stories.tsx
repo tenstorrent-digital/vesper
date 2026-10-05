@@ -30,7 +30,7 @@ export const Playground: Story = {
     maxWidth: 240,
   },
   render: (props) => (
-    <Tooltip open asTrigger {...props}>
+    <Tooltip open wrapWithButton {...props}>
       <Typography style={{ color: "var(--vesper-stone-900)" }}>
         hover over me
       </Typography>

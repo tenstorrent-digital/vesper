@@ -26,7 +26,7 @@ import "@/styles/test.css";
 /**
  * children that are not a single react element, which can't be rendered as
  * the trigger itself, so are always wrapped in a button trigger (even when
- * `asTrigger` is not set)
+ * `wrapWithButton` is not set)
  */
 const NON_ELEMENT_CHILDREN: {
   name: string;
@@ -60,7 +60,7 @@ const NON_ELEMENT_CHILDREN: {
 
 const A11Y_PERMUTATIONS: {
   name: string;
-  asTrigger?: boolean;
+  wrapWithButton?: boolean;
   children: ReactNode;
 }[] = [
   {
@@ -68,8 +68,8 @@ const A11Y_PERMUTATIONS: {
     children: <TextButton variant="contrast">tooltip trigger</TextButton>,
   },
   {
-    name: "asTrigger",
-    asTrigger: true,
+    name: "wrapWithButton",
+    wrapWithButton: true,
     children: (
       <Typography style={{ color: "var(--vesper-stone-900)" }}>
         tooltip trigger
@@ -377,9 +377,9 @@ describe("tooltip [unit]", () => {
       expect(trigger).toHaveAttribute("data-base-ui-tooltip-trigger");
     });
 
-    test("renders the child as the trigger when asTrigger is false", () => {
+    test("renders the child as the trigger when wrapWithButton is false", () => {
       const result = render(
-        <Tooltip asTrigger={false} content="Tooltip text">
+        <Tooltip wrapWithButton={false} content="Tooltip text">
           <TextButton>trigger</TextButton>
         </Tooltip>,
       );
@@ -483,10 +483,10 @@ describe("tooltip [unit]", () => {
     });
   });
 
-  describe("content rendered inside a button trigger via asTrigger", () => {
+  describe("content rendered inside a button trigger via wrapWithButton", () => {
     test("renders a button trigger wrapping its children", () => {
       const result = render(
-        <Tooltip asTrigger content="Tooltip text">
+        <Tooltip wrapWithButton content="Tooltip text">
           <Typography data-testid="child">trigger</Typography>
         </Tooltip>,
       );
@@ -506,7 +506,7 @@ describe("tooltip [unit]", () => {
 
       const result = render(
         <Tooltip
-          asTrigger
+          wrapWithButton
           delayDuration={0}
           onOpenChange={handleOpenChange}
           content="Tooltip text"
@@ -535,7 +535,7 @@ describe("tooltip [unit]", () => {
 
       const result = render(
         <Tooltip
-          asTrigger
+          wrapWithButton
           content="Tooltip text"
           className="custom-class"
           aria-label="More info"
@@ -563,7 +563,7 @@ describe("tooltip [unit]", () => {
       const ref = createRef<HTMLButtonElement>();
 
       const result = render(
-        <Tooltip asTrigger content="Tooltip text" ref={ref}>
+        <Tooltip wrapWithButton content="Tooltip text" ref={ref}>
           <Typography>trigger</Typography>
         </Tooltip>,
       );
@@ -575,7 +575,7 @@ describe("tooltip [unit]", () => {
     test("portals into the closest dialog ancestor", async () => {
       const result = render(
         <dialog open data-testid="dialog">
-          <Tooltip asTrigger open content="Tooltip text">
+          <Tooltip wrapWithButton open content="Tooltip text">
             <Typography>trigger</Typography>
           </Tooltip>
         </dialog>,
@@ -591,7 +591,7 @@ describe("tooltip [unit]", () => {
     NON_ELEMENT_CHILDREN.forEach(({ name, children, textContent }) => {
       test(`renders ${name} children inside the button trigger`, () => {
         const result = render(
-          <Tooltip asTrigger open content="Tooltip text">
+          <Tooltip wrapWithButton open content="Tooltip text">
             {children}
           </Tooltip>,
         );
@@ -630,9 +630,9 @@ describe("tooltip [snapshot]", () => {
     expect(result.container).toMatchSnapshot();
   });
 
-  test("closed (asTrigger)", async () => {
+  test("closed (wrapWithButton)", async () => {
     const result = render(
-      <Tooltip asTrigger open={false} content="Tooltip text">
+      <Tooltip wrapWithButton open={false} content="Tooltip text">
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
           tooltip trigger
         </Typography>
@@ -655,10 +655,10 @@ describe("tooltip [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    A11Y_PERMUTATIONS.forEach(({ name, asTrigger, children }) => {
+    A11Y_PERMUTATIONS.forEach(({ name, wrapWithButton, children }) => {
       test(`a11y (${name})`, async () => {
         const result = render(
-          <Tooltip asTrigger={asTrigger} open content="Tooltip text">
+          <Tooltip wrapWithButton={wrapWithButton} open content="Tooltip text">
             {children}
           </Tooltip>,
         );
