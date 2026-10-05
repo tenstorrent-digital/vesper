@@ -1,8 +1,12 @@
 "use client";
 
 import { Tooltip as BaseTooltip } from "@base-ui/react/tooltip";
-import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
-import { ComponentProps, type ReactNode, useId, useState } from "react";
+import {
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+  useId,
+  useState,
+} from "react";
 
 import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
@@ -22,7 +26,7 @@ export type TooltipSide = (typeof TOOLTIP_SIDES)[number];
 export type TooltipAlign = (typeof TOOLTIP_ALIGNMENTS)[number];
 
 export interface TooltipProps extends Omit<
-  ComponentProps<"button">,
+  ComponentPropsWithoutRef<"button">,
   "content"
 > {
   /** The content displayed inside the tooltip popup. */
@@ -100,13 +104,11 @@ export function Tooltip(props: TooltipProps) {
     sideOffset = 4,
     container,
     wrapWithButton = false,
-    ref,
     className,
     ...rest
   } = props;
 
   const [innerRef, setInnerRef] = useState<Element | null>(null);
-  const mergedRef = useMergedRefs(ref, setInnerRef);
 
   const [uncontrolledOpen, setUncontrolledOpen] = useState(
     defaultOpen ?? false,
@@ -132,10 +134,10 @@ export function Tooltip(props: TooltipProps) {
       >
         <BaseTooltip.Trigger
           {...rest}
+          ref={setInnerRef}
           className={cn("vesper-tooltip-trigger", className)}
           aria-describedby={isOpen ? popupId : undefined}
           delay={delayDuration}
-          ref={mergedRef}
           {...(!wrapWithButton && isSingleReactElement(children)
             ? { render: children }
             : { children })}
