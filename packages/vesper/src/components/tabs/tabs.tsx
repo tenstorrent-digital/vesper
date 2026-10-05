@@ -21,10 +21,15 @@ export interface TabItem {
   value: string;
   /** An optional icon element rendered before the label in the tab trigger. */
   icon?: ReactNode;
-  /** The content rendered in the panel when this tab is active. */
+  /** The content rendered in the tab's panel when this tab is active. */
   content: ReactNode;
-  /** When `true`, renders the tab content as the tab panel itself. */
-  asChild?: boolean;
+  /**
+   * When `true`, renders `content` as the tab's panel itself instead of wrapping it in a `<div>`.
+   *
+   * The panel's props are forwarded to `content`, so it must be a single React element that passes every prop it receives on to the DOM element it renders.
+   * @default false
+   */
+  contentAsPanel?: boolean;
 }
 
 export interface TabsProps extends Omit<
@@ -53,7 +58,7 @@ const TRIGGER_TYPOGRAPHY: { [V in TabsVariant]: TypographyVariant } = {
 /**
  * A tabbed interface component for organizing content into switchable panels.
  *
- * @param {TabsProps["items"]} props.items - The list of tab items defining triggers and content panels
+ * @param {TabItem[]} props.items - The list of tab items defining triggers and content panels. Set `contentAsPanel` on an item to render its `content` as the panel itself, forwarding the panel's props (including `ref`) to `content`
  * @param {TabsVariant} [props.variant] - (optional) The visual style variant of the tabs. @default primary
  * @param {string} [props.value] - (optional) The selected tab value (controlled)
  * @param {string} [props.defaultValue] - (optional) The tab to select by default (uncontrolled)
@@ -80,6 +85,19 @@ const TRIGGER_TYPOGRAPHY: { [V in TabsVariant]: TypographyVariant } = {
  *   ]}
  *   value={activeTab}
  *   onValueChange={setActiveTab}
+ * />
+ *
+ * @example
+ * // renders `Material` as the "usage" tab's panel itself
+ * <Tabs
+ *   items={[
+ *     {
+ *       value: "usage",
+ *       label: "Usage",
+ *       contentAsPanel: true,
+ *       content: <Material as="section">{usage}</Material>,
+ *     },
+ *   ]}
  * />
  */
 export function Tabs(props: TabsProps) {
@@ -121,7 +139,7 @@ export function Tabs(props: TabsProps) {
         <BaseTabs.Panel
           key={item.value}
           value={item.value}
-          {...(item.asChild && isSingleReactElement(item.content)
+          {...(item.contentAsPanel && isSingleReactElement(item.content)
             ? { render: item.content }
             : { children: item.content })}
         />

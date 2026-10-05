@@ -22,7 +22,7 @@ const TABS_PERMUTATIONS: {
   name: string;
   variant: TabsVariant;
   defaultValue?: string;
-  asChild?: boolean;
+  contentAsPanel?: boolean;
 }[] = [
   {
     name: "primary, no value",
@@ -45,22 +45,22 @@ const TABS_PERMUTATIONS: {
     defaultValue: "tab-1",
   },
   {
-    name: "primary, asChild",
+    name: "primary, contentAsPanel",
     variant: "primary",
     defaultValue: "tab-1",
-    asChild: true,
+    contentAsPanel: true,
   },
   {
-    name: "secondary, asChild",
+    name: "secondary, contentAsPanel",
     variant: "secondary",
     defaultValue: "tab-1",
-    asChild: true,
+    contentAsPanel: true,
   },
 ];
 
 /**
  * content that is not a single react element, which can't be rendered as the
- * tab panel itself (even when `asChild` is set)
+ * tab panel itself (even when `contentAsPanel` is set)
  */
 const NON_ELEMENT_CONTENT: { name: string; content: ReactNode }[] = [
   { name: "text", content: "Tab content" },
@@ -94,12 +94,12 @@ const TabsTestComponent = ({
   variant,
   defaultValue,
   onValueChange,
-  asChild,
+  contentAsPanel,
 }: {
   variant?: TabsVariant;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
-  asChild?: boolean;
+  contentAsPanel?: boolean;
 }) => (
   <Tabs
     data-testid="tabs"
@@ -111,7 +111,7 @@ const TabsTestComponent = ({
         value: "tab-1",
         label: "Tab 1",
         icon: <Globe />,
-        asChild,
+        contentAsPanel,
         content: (
           <Typography
             data-testid="tab-1-content"
@@ -124,7 +124,7 @@ const TabsTestComponent = ({
       {
         value: "tab-2",
         label: "Tab 2",
-        asChild,
+        contentAsPanel,
         content: (
           <Typography
             data-testid="tab-2-content"
@@ -137,7 +137,7 @@ const TabsTestComponent = ({
       {
         value: "tab-3",
         label: "Tab 3",
-        asChild,
+        contentAsPanel,
         content: (
           <Typography
             data-testid="tab-3-content"
@@ -341,9 +341,9 @@ describe("tabs [unit]", () => {
     });
   });
 
-  describe("content as the tab panel itself via asChild", () => {
+  describe("content as the tab panel itself via contentAsPanel", () => {
     test("renders content as the tab panel", () => {
-      const result = render(<TabsTestComponent asChild />);
+      const result = render(<TabsTestComponent contentAsPanel />);
 
       const [tab1] = result.getAllByRole("tab");
       const panel = result.getByRole("tabpanel");
@@ -354,7 +354,7 @@ describe("tabs [unit]", () => {
     });
 
     test("preserves the content's own props", () => {
-      const result = render(<TabsTestComponent asChild />);
+      const result = render(<TabsTestComponent contentAsPanel />);
 
       const panel = result.getByRole("tabpanel");
       assert.instanceOf(panel, HTMLParagraphElement);
@@ -367,7 +367,7 @@ describe("tabs [unit]", () => {
     });
 
     test("clicking tabs", async () => {
-      const result = render(<TabsTestComponent asChild />);
+      const result = render(<TabsTestComponent contentAsPanel />);
 
       const [tab1, tab2, tab3] = result.getAllByRole("tab");
 
@@ -397,7 +397,7 @@ describe("tabs [unit]", () => {
             {
               value: "tab-1",
               label: "Tab 1",
-              asChild: true,
+              contentAsPanel: true,
               content: <section data-testid="tab-1-content">Tab 1</section>,
             },
             {
@@ -426,7 +426,7 @@ describe("tabs [unit]", () => {
       test(`falls back to rendering ${name} content inside the tab panel`, () => {
         const result = render(
           <Tabs
-            items={[{ value: "tab-1", label: "Tab 1", content, asChild: true }]}
+            items={[{ value: "tab-1", label: "Tab 1", content, contentAsPanel: true }]}
           />,
         );
 

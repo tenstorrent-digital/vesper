@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`tabs [snapshot] > primary, asChild 1`] = `
+exports[`tabs [snapshot] > primary, contentAsPanel 1`] = `
 <div
   class="vesper-tabs-primary"
   data-activation-direction="none"
@@ -274,7 +274,7 @@ exports[`tabs [snapshot] > primary, value 1`] = `
 </div>
 `;
 
-exports[`tabs [snapshot] > secondary, asChild 1`] = `
+exports[`tabs [snapshot] > secondary, contentAsPanel 1`] = `
 <div
   class="vesper-tabs-secondary"
   data-activation-direction="none"
