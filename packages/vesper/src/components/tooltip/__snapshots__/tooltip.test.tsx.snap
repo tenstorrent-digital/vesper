@@ -3,6 +3,7 @@
 exports[`tooltip [snapshot] > closed (wrapWithButton) 1`] = `
 <div>
   <button
+    class="vesper-tooltip-trigger"
     data-base-ui-tooltip-trigger=""
     id="base-ui-_r_49_"
     type="button"
@@ -20,7 +21,7 @@ exports[`tooltip [snapshot] > closed (wrapWithButton) 1`] = `
 exports[`tooltip [snapshot] > closed 1`] = `
 <div>
   <button
-    class="vesper-text-button vesper-text-button-md vesper-text-button-accent"
+    class="vesper-text-button vesper-text-button-md vesper-text-button-accent vesper-tooltip-trigger"
     data-base-ui-tooltip-trigger=""
     id="base-ui-_r_46_"
   >

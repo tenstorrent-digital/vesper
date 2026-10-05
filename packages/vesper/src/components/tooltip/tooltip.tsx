@@ -5,6 +5,7 @@ import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import { ComponentProps, type ReactNode, useId, useState } from "react";
 
 import { Typography } from "@/components/typography/typography";
+import { cn } from "@/utils/cn";
 import {
   getPortalContainer,
   type PortalContainer,
@@ -100,6 +101,7 @@ export function Tooltip(props: TooltipProps) {
     container,
     wrapWithButton = false,
     ref,
+    className,
     ...rest
   } = props;
 
@@ -130,6 +132,7 @@ export function Tooltip(props: TooltipProps) {
       >
         <BaseTooltip.Trigger
           {...rest}
+          className={cn("vesper-tooltip-trigger", className)}
           aria-describedby={isOpen ? popupId : undefined}
           delay={delayDuration}
           ref={mergedRef}
