@@ -5,7 +5,7 @@ exports[`tooltip [snapshot] > closed (wrapWithButton) 1`] = `
   <button
     class="vesper-tooltip-trigger"
     data-base-ui-tooltip-trigger=""
-    id="base-ui-_r_49_"
+    id="base-ui-_r_43_"
     type="button"
   >
     <p
@@ -23,7 +23,7 @@ exports[`tooltip [snapshot] > closed 1`] = `
   <button
     class="vesper-text-button vesper-text-button-md vesper-text-button-accent vesper-tooltip-trigger"
     data-base-ui-tooltip-trigger=""
-    id="base-ui-_r_46_"
+    id="base-ui-_r_40_"
   >
     tooltip trigger
   </button>
@@ -37,7 +37,7 @@ exports[`tooltip [snapshot] > open 1`] = `
   data-base-ui-focusable=""
   data-open=""
   data-side="top"
-  id="vesper-tooltip-_r_40_"
+  id="vesper-tooltip-_r_3q_"
   role="tooltip"
   style="max-width: calc(15rem);"
   tabindex="-1"

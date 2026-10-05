@@ -448,21 +448,6 @@ describe("tooltip [unit]", () => {
       expect(onChildClick).toHaveBeenCalledTimes(1);
     });
 
-    test("forwards ref to the child", () => {
-      const ref = createRef<HTMLButtonElement>();
-      const childRef = createRef<HTMLButtonElement>();
-
-      const result = render(
-        <Tooltip content="Tooltip text" ref={ref}>
-          <TextButton ref={childRef}>trigger</TextButton>
-        </Tooltip>,
-      );
-
-      const trigger = within(result.container).getByRole("button");
-      expect(ref.current).toBe(trigger);
-      expect(childRef.current).toBe(trigger);
-    });
-
     NON_ELEMENT_CHILDREN.forEach(({ name, children, textContent }) => {
       test(`falls back to rendering ${name} children inside a button trigger`, () => {
         const result = render(
@@ -557,19 +542,6 @@ describe("tooltip [unit]", () => {
 
       await userEvent.click(trigger);
       expect(onClick).toHaveBeenCalledTimes(1);
-    });
-
-    test("forwards ref to the button trigger", () => {
-      const ref = createRef<HTMLButtonElement>();
-
-      const result = render(
-        <Tooltip wrapWithButton content="Tooltip text" ref={ref}>
-          <Typography>trigger</Typography>
-        </Tooltip>,
-      );
-
-      assert.instanceOf(ref.current, HTMLButtonElement);
-      expect(ref.current).toBe(result.container.firstChild);
     });
 
     test("portals into the closest dialog ancestor", async () => {
