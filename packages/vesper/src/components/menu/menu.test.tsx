@@ -108,22 +108,6 @@ const TRIGGER_CHILDREN: {
   },
 ];
 
-/** the props a `Menu` owns, which must never reach the trigger */
-const MENU_PROP_NAMES = [
-  "items",
-  "width",
-  "side",
-  "sideOffset",
-  "align",
-  "alignOffset",
-  "open",
-  "defaultOpen",
-  "onOpenChange",
-  "container",
-  "anchor",
-  "as",
-];
-
 const A11Y_PERMUTATIONS: {
   name: string;
   render: (open: boolean) => ReactElement;
