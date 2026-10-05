@@ -1,6 +1,6 @@
 import type { DefaultClassGroupIds } from "tailwind-merge";
 
-import fs from "node:fs";
+import fs from "node:fs/promises";
 
 import { getGeneratedCodeWarning, resolvePackagePath } from "../utils";
 import { TOKEN_VARIABLE_GROUPS, TAILWIND_UTILITY_GROUPS } from "./constants";
@@ -120,7 +120,8 @@ const createConflictingClassGroups = () => {
   return `{ ${entries.join(", ")} }`;
 };
 
-const src = `import {
+export async function generateTailwindMerge() {
+  const src = `import {
   type Config,
   type DefaultClassGroupIds,
   type DefaultThemeGroupIds,
@@ -153,6 +154,7 @@ export const withVesper = (config: AnyConfig): AnyConfig =>
   })
 `;
 
-const contents = [AUTO_GENERATED_WARNING, src].join("\n\n");
+  const contents = [AUTO_GENERATED_WARNING, src].join("\n\n");
 
-fs.writeFileSync(resolvePackagePath(OUTPUT_FILE), contents);
+  return await fs.writeFile(resolvePackagePath(OUTPUT_FILE), contents);
+}

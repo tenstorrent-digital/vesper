@@ -77,13 +77,13 @@
       // failure in one task (e.g. format) doesn't hide the results of the other tasks
       "dependsOn": ["//#lint:root", "lint", "//#format", "check-types"]
     },
-    "generate:tailwind-merge": {
+    "generate:tailwind": {
       "inputs": [
-        "$TURBO_ROOT$/packages/vesper/src/styles/tailwind.css",
-        "$TURBO_ROOT$/packages/vesper/src/styles/tailwind-utilities/**",
+        "$TURBO_ROOT$/packages/vesper/src/styles/**/*.css",
         "$TURBO_ROOT$/packages/vesper/scripts/tailwind/**"
       ],
       "outputs": [
+        "$TURBO_ROOT$/packages/vesper/src/styles/tailwind.css",
         "$TURBO_ROOT$/packages/vesper/src/utils/tailwind-merge.ts",
         "$TURBO_ROOT$/packages/vesper/src/utils/tailwind-merge.test.ts"
       ]

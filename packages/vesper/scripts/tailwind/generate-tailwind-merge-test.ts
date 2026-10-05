@@ -1,6 +1,6 @@
 import type { DefaultClassGroupIds } from "tailwind-merge";
 
-import fs from "node:fs";
+import fs from "node:fs/promises";
 import path from "node:path";
 
 import type {
@@ -238,7 +238,8 @@ const createCustomUtilityTests = () =>
     })
     .join("\n\n");
 
-const src = `import { extendTailwindMerge } from "tailwind-merge";
+export async function generateTailwindMergeTest() {
+  const src = `import { extendTailwindMerge } from "tailwind-merge";
 import { describe, expect, test } from "vitest";
 
 import { withVesper } from "@/utils/tailwind-merge";
@@ -283,6 +284,7 @@ describe("withVesper", () => {
 });
 `;
 
-const contents = [AUTO_GENERATED_WARNING, src].join("\n\n");
+  const contents = [AUTO_GENERATED_WARNING, src].join("\n\n");
 
-fs.writeFileSync(resolvePackagePath(OUTPUT_FILE), contents);
+  return await fs.writeFile(resolvePackagePath(OUTPUT_FILE), contents);
+}
