@@ -426,7 +426,9 @@ describe("tabs [unit]", () => {
       test(`falls back to rendering ${name} content inside the tab panel`, () => {
         const result = render(
           <Tabs
-            items={[{ value: "tab-1", label: "Tab 1", content, contentAsPanel: true }]}
+            items={[
+              { value: "tab-1", label: "Tab 1", content, contentAsPanel: true },
+            ]}
           />,
         );
 

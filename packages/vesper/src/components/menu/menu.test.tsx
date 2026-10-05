@@ -6,11 +6,7 @@ import {
   within,
 } from "@testing-library/react";
 import axe from "axe-core";
-import {
-  createRef,
-  type ReactElement,
-  type ReactNode,
-} from "react";
+import { createRef, type ReactElement, type ReactNode } from "react";
 import {
   afterEach,
   assert,
