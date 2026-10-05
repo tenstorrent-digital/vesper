@@ -25,7 +25,8 @@ import "@/styles/test.css";
 
 /**
  * children that are not a single react element, which can't be rendered as
- * the trigger itself (even when `asChild` is set)
+ * the trigger itself, so are always wrapped in a button trigger (even when
+ * `asTrigger` is not set)
  */
 const NON_ELEMENT_CHILDREN: {
   name: string;
@@ -59,21 +60,21 @@ const NON_ELEMENT_CHILDREN: {
 
 const A11Y_PERMUTATIONS: {
   name: string;
-  asChild?: boolean;
+  asTrigger?: boolean;
   children: ReactNode;
 }[] = [
   {
     name: "default trigger",
+    children: <TextButton variant="contrast">tooltip trigger</TextButton>,
+  },
+  {
+    name: "asTrigger",
+    asTrigger: true,
     children: (
       <Typography style={{ color: "var(--vesper-stone-900)" }}>
         tooltip trigger
       </Typography>
     ),
-  },
-  {
-    name: "asChild",
-    asChild: true,
-    children: <TextButton variant="contrast">tooltip trigger</TextButton>,
   },
 ];
 
@@ -83,9 +84,7 @@ describe("tooltip [unit]", () => {
   test("no interaction", () => {
     render(
       <Tooltip content="Tooltip text">
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
-          tooltip trigger
-        </Typography>
+        <TextButton>tooltip trigger</TextButton>
       </Tooltip>,
     );
 
@@ -101,9 +100,7 @@ describe("tooltip [unit]", () => {
         onOpenChange={handleOpenChange}
         content="Tooltip text"
       >
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
-          tooltip trigger
-        </Typography>
+        <TextButton>tooltip trigger</TextButton>
       </Tooltip>,
     );
 
@@ -121,9 +118,7 @@ describe("tooltip [unit]", () => {
   test("side prop", async () => {
     render(
       <Tooltip open side="left" content="Tooltip text">
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
-          tooltip trigger
-        </Typography>
+        <TextButton>tooltip trigger</TextButton>
       </Tooltip>,
     );
 
@@ -134,9 +129,7 @@ describe("tooltip [unit]", () => {
   test("alignment prop", async () => {
     render(
       <Tooltip open align="end" content="Tooltip text">
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
-          tooltip trigger
-        </Typography>
+        <TextButton>tooltip trigger</TextButton>
       </Tooltip>,
     );
 
@@ -147,9 +140,7 @@ describe("tooltip [unit]", () => {
   test("custom max width", async () => {
     render(
       <Tooltip open maxWidth={360} content="Tooltip text">
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
-          tooltip trigger
-        </Typography>
+        <TextButton>tooltip trigger</TextButton>
       </Tooltip>,
     );
 
@@ -166,9 +157,7 @@ describe("tooltip [unit]", () => {
         onOpenChange={handleOpenChange}
         content="Tooltip text"
       >
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
-          tooltip trigger
-        </Typography>
+        <TextButton>tooltip trigger</TextButton>
       </Tooltip>,
     );
 
@@ -184,7 +173,7 @@ describe("tooltip [unit]", () => {
   test("renders the popup with tooltip semantics", () => {
     render(
       <Tooltip open content="Tooltip text">
-        <Typography>trigger</Typography>
+        <TextButton>trigger</TextButton>
       </Tooltip>,
     );
 
@@ -196,7 +185,7 @@ describe("tooltip [unit]", () => {
   test("associates the trigger with the popup while open", () => {
     const result = render(
       <Tooltip open content="Tooltip text">
-        <Typography>trigger</Typography>
+        <TextButton>trigger</TextButton>
       </Tooltip>,
     );
 
@@ -216,7 +205,7 @@ describe("tooltip [unit]", () => {
         onOpenChange={handleOpenChange}
         content="Tooltip text"
       >
-        <Typography>trigger</Typography>
+        <TextButton>trigger</TextButton>
       </Tooltip>,
     );
 
@@ -237,7 +226,7 @@ describe("tooltip [unit]", () => {
   test("defaultOpen prop", () => {
     render(
       <Tooltip defaultOpen content="Tooltip text">
-        <Typography>trigger</Typography>
+        <TextButton>trigger</TextButton>
       </Tooltip>,
     );
 
@@ -254,7 +243,7 @@ describe("tooltip [unit]", () => {
           </span>
         }
       >
-        <Typography>trigger</Typography>
+        <TextButton>trigger</TextButton>
       </Tooltip>,
     );
 
@@ -275,7 +264,7 @@ describe("tooltip [unit]", () => {
         onOpenChange={handleOpenChange}
         content="Tooltip text"
       >
-        <Typography>trigger</Typography>
+        <TextButton>trigger</TextButton>
       </Tooltip>,
     );
 
@@ -297,7 +286,7 @@ describe("tooltip [unit]", () => {
   test("portals tooltip content into document.body", async () => {
     render(
       <Tooltip open content="Tooltip text">
-        <Typography>trigger</Typography>
+        <TextButton>trigger</TextButton>
       </Tooltip>,
     );
 
@@ -316,7 +305,7 @@ describe("tooltip [unit]", () => {
         <div>
           <div>
             <Tooltip open content="Tooltip text">
-              <Typography>trigger</Typography>
+              <TextButton>trigger</TextButton>
             </Tooltip>
           </div>
         </div>
@@ -340,7 +329,7 @@ describe("tooltip [unit]", () => {
 
     render(
       <Tooltip open container={container} content="Tooltip text">
-        <Typography>trigger</Typography>
+        <TextButton>trigger</TextButton>
       </Tooltip>,
     );
 
@@ -358,7 +347,7 @@ describe("tooltip [unit]", () => {
     const result = render(
       <dialog open data-testid="dialog">
         <Tooltip open container={container} content="Tooltip text">
-          <Typography>trigger</Typography>
+          <TextButton>trigger</TextButton>
         </Tooltip>
       </dialog>,
     );
@@ -373,84 +362,24 @@ describe("tooltip [unit]", () => {
     container.remove();
   });
 
-  describe("content rendered inside the tooltip trigger", () => {
-    test("renders a button trigger wrapping its children", () => {
-      const result = render(
-        <Tooltip content="Tooltip text">
-          <Typography data-testid="child">trigger</Typography>
-        </Tooltip>,
-      );
-
-      const trigger = result.container.firstChild;
-      const child = result.getByTestId("child");
-
-      assert.instanceOf(trigger, HTMLButtonElement);
-      expect(trigger).toHaveAttribute("type", "button");
-      expect(trigger).toHaveAttribute("data-base-ui-tooltip-trigger");
-      expect(trigger).toContainElement(child);
-      expect(child).not.toHaveAttribute("data-base-ui-tooltip-trigger");
-    });
-
-    test("forwards props to the trigger", async () => {
-      const onClick = vi.fn();
-
-      const result = render(
-        <Tooltip
-          content="Tooltip text"
-          className="custom-class"
-          aria-label="More info"
-          data-testid="trigger"
-          onClick={onClick}
-        >
-          ?
-        </Tooltip>,
-      );
-
-      const trigger = result.getByTestId("trigger");
-      assert.instanceOf(trigger, HTMLButtonElement);
-      expect(trigger).toHaveClass("custom-class");
-      expect(trigger).toHaveAttribute("aria-label", "More info");
-
-      await userEvent.click(trigger);
-      expect(onClick).toHaveBeenCalledTimes(1);
-    });
-
-    test("forwards ref to the trigger", () => {
-      const ref = createRef<HTMLButtonElement>();
-
-      const result = render(
-        <Tooltip content="Tooltip text" ref={ref}>
-          trigger
-        </Tooltip>,
-      );
-
-      assert.instanceOf(ref.current, HTMLButtonElement);
-      expect(ref.current).toBe(result.container.firstChild);
-    });
-
-    NON_ELEMENT_CHILDREN.forEach(({ name, children, textContent }) => {
-      test(`renders ${name} children inside the trigger`, () => {
-        const result = render(
-          <Tooltip open content="Tooltip text">
-            {children}
-          </Tooltip>,
-        );
-
-        const trigger = result.container.firstChild;
-        assert.instanceOf(trigger, HTMLButtonElement);
-        expect(trigger.textContent).toBe(textContent);
-
-        const tooltip = document.querySelector(".vesper-tooltip");
-        assert.instanceOf(tooltip, HTMLElement);
-        expect(trigger).toHaveAttribute("aria-describedby", tooltip.id);
-      });
-    });
-  });
-
-  describe("content rendered as the trigger itself via asChild", () => {
+  describe("content rendered as the trigger itself (default)", () => {
     test("renders the child as the trigger", () => {
       const result = render(
-        <Tooltip asChild content="Tooltip text">
+        <Tooltip content="Tooltip text">
+          <TextButton>trigger</TextButton>
+        </Tooltip>,
+      );
+
+      const trigger = within(result.container).getByRole("button");
+
+      expect(result.container.firstChild).toBe(trigger);
+      expect(trigger).toHaveClass("vesper-text-button");
+      expect(trigger).toHaveAttribute("data-base-ui-tooltip-trigger");
+    });
+
+    test("renders the child as the trigger when asTrigger is false", () => {
+      const result = render(
+        <Tooltip asTrigger={false} content="Tooltip text">
           <TextButton>trigger</TextButton>
         </Tooltip>,
       );
@@ -467,7 +396,6 @@ describe("tooltip [unit]", () => {
 
       const result = render(
         <Tooltip
-          asChild
           delayDuration={0}
           onOpenChange={handleOpenChange}
           content="Tooltip text"
@@ -496,7 +424,6 @@ describe("tooltip [unit]", () => {
 
       const result = render(
         <Tooltip
-          asChild
           content="Tooltip text"
           className="tooltip-class"
           aria-label="More info"
@@ -526,7 +453,7 @@ describe("tooltip [unit]", () => {
       const childRef = createRef<HTMLButtonElement>();
 
       const result = render(
-        <Tooltip asChild content="Tooltip text" ref={ref}>
+        <Tooltip content="Tooltip text" ref={ref}>
           <TextButton ref={childRef}>trigger</TextButton>
         </Tooltip>,
       );
@@ -536,11 +463,120 @@ describe("tooltip [unit]", () => {
       expect(childRef.current).toBe(trigger);
     });
 
+    NON_ELEMENT_CHILDREN.forEach(({ name, children, textContent }) => {
+      test(`falls back to rendering ${name} children inside a button trigger`, () => {
+        const result = render(
+          <Tooltip open content="Tooltip text">
+            {children}
+          </Tooltip>,
+        );
+
+        const trigger = result.container.firstChild;
+        assert.instanceOf(trigger, HTMLButtonElement);
+        expect(trigger).toHaveAttribute("type", "button");
+        expect(trigger.textContent).toBe(textContent);
+
+        const tooltip = document.querySelector(".vesper-tooltip");
+        assert.instanceOf(tooltip, HTMLElement);
+        expect(trigger).toHaveAttribute("aria-describedby", tooltip.id);
+      });
+    });
+  });
+
+  describe("content rendered inside a button trigger via asTrigger", () => {
+    test("renders a button trigger wrapping its children", () => {
+      const result = render(
+        <Tooltip asTrigger content="Tooltip text">
+          <Typography data-testid="child">trigger</Typography>
+        </Tooltip>,
+      );
+
+      const trigger = result.container.firstChild;
+      const child = result.getByTestId("child");
+
+      assert.instanceOf(trigger, HTMLButtonElement);
+      expect(trigger).toHaveAttribute("type", "button");
+      expect(trigger).toHaveAttribute("data-base-ui-tooltip-trigger");
+      expect(trigger).toContainElement(child);
+      expect(child).not.toHaveAttribute("data-base-ui-tooltip-trigger");
+    });
+
+    test("opens the tooltip when hovering the button trigger", async () => {
+      const handleOpenChange = vi.fn();
+
+      const result = render(
+        <Tooltip
+          asTrigger
+          delayDuration={0}
+          onOpenChange={handleOpenChange}
+          content="Tooltip text"
+        >
+          <Typography>trigger</Typography>
+        </Tooltip>,
+      );
+
+      const trigger = result.container.firstChild;
+      assert.instanceOf(trigger, HTMLButtonElement);
+      expect(trigger).not.toHaveAttribute("aria-describedby");
+
+      fireEvent.mouseEnter(trigger);
+
+      await waitFor(() => {
+        expect(handleOpenChange).toHaveBeenCalledWith(true);
+      });
+
+      const tooltip = document.querySelector(".vesper-tooltip");
+      assert.instanceOf(tooltip, HTMLElement);
+      expect(trigger).toHaveAttribute("aria-describedby", tooltip.id);
+    });
+
+    test("forwards props to the button trigger", async () => {
+      const onClick = vi.fn();
+
+      const result = render(
+        <Tooltip
+          asTrigger
+          content="Tooltip text"
+          className="custom-class"
+          aria-label="More info"
+          data-testid="trigger"
+          onClick={onClick}
+        >
+          <Typography data-testid="child">?</Typography>
+        </Tooltip>,
+      );
+
+      const trigger = result.getByTestId("trigger");
+      const child = result.getByTestId("child");
+
+      assert.instanceOf(trigger, HTMLButtonElement);
+      expect(trigger).toHaveClass("custom-class");
+      expect(trigger).toHaveAttribute("aria-label", "More info");
+      expect(child).not.toHaveClass("custom-class");
+      expect(child).not.toHaveAttribute("aria-label");
+
+      await userEvent.click(trigger);
+      expect(onClick).toHaveBeenCalledTimes(1);
+    });
+
+    test("forwards ref to the button trigger", () => {
+      const ref = createRef<HTMLButtonElement>();
+
+      const result = render(
+        <Tooltip asTrigger content="Tooltip text" ref={ref}>
+          <Typography>trigger</Typography>
+        </Tooltip>,
+      );
+
+      assert.instanceOf(ref.current, HTMLButtonElement);
+      expect(ref.current).toBe(result.container.firstChild);
+    });
+
     test("portals into the closest dialog ancestor", async () => {
       const result = render(
         <dialog open data-testid="dialog">
-          <Tooltip asChild open content="Tooltip text">
-            <TextButton>trigger</TextButton>
+          <Tooltip asTrigger open content="Tooltip text">
+            <Typography>trigger</Typography>
           </Tooltip>
         </dialog>,
       );
@@ -553,15 +589,16 @@ describe("tooltip [unit]", () => {
     });
 
     NON_ELEMENT_CHILDREN.forEach(({ name, children, textContent }) => {
-      test(`falls back to rendering ${name} children inside a button trigger`, () => {
+      test(`renders ${name} children inside the button trigger`, () => {
         const result = render(
-          <Tooltip asChild open content="Tooltip text">
+          <Tooltip asTrigger open content="Tooltip text">
             {children}
           </Tooltip>,
         );
 
         const trigger = result.container.firstChild;
         assert.instanceOf(trigger, HTMLButtonElement);
+        expect(trigger).toHaveAttribute("type", "button");
         expect(trigger.textContent).toBe(textContent);
 
         const tooltip = document.querySelector(".vesper-tooltip");
@@ -576,9 +613,7 @@ describe("tooltip [snapshot]", () => {
   test("open", async () => {
     render(
       <Tooltip open content="Tooltip text">
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
-          tooltip trigger
-        </Typography>
+        <TextButton>tooltip trigger</TextButton>
       </Tooltip>,
     );
 
@@ -588,18 +623,16 @@ describe("tooltip [snapshot]", () => {
   test("closed", async () => {
     const result = render(
       <Tooltip open={false} content="Tooltip text">
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
-          tooltip trigger
-        </Typography>
+        <TextButton>tooltip trigger</TextButton>
       </Tooltip>,
     );
 
     expect(result.container).toMatchSnapshot();
   });
 
-  test("closed (asChild)", async () => {
+  test("closed (asTrigger)", async () => {
     const result = render(
-      <Tooltip asChild open={false} content="Tooltip text">
+      <Tooltip asTrigger open={false} content="Tooltip text">
         <Typography style={{ color: "var(--vesper-stone-900)" }}>
           tooltip trigger
         </Typography>
@@ -622,10 +655,10 @@ describe("tooltip [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    A11Y_PERMUTATIONS.forEach(({ name, asChild, children }) => {
+    A11Y_PERMUTATIONS.forEach(({ name, asTrigger, children }) => {
       test(`a11y (${name})`, async () => {
         const result = render(
-          <Tooltip asChild={asChild} open content="Tooltip text">
+          <Tooltip asTrigger={asTrigger} open content="Tooltip text">
             {children}
           </Tooltip>,
         );

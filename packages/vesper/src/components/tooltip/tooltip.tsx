@@ -46,15 +46,16 @@ export interface TooltipProps extends Omit<
   maxWidth?: number;
   /** Specify the element or shadow root to portal the tooltip into */
   container?: PortalContainer;
-  /** When `true`, renders `children` as the trigger itself. */
-  asChild?: boolean;
+  /** When `true`, wraps `children` in a `<button>` trigger instead of rendering `children` as the trigger itself. Use this when `children` is non-interactive content, such as text or an icon. @default false */
+  asTrigger?: boolean;
 }
 
 /**
  * A tooltip popup that displays informational content when hovering or focusing a trigger element.
  *
  * @param {ReactNode} props.content - The content displayed inside the tooltip popup
- * @param {ReactNode} [props.children] - (optional) The trigger element the tooltip attaches to
+ * @param {ReactNode} [props.children] - (optional) The trigger itself, or the content of the trigger when `asTrigger` is `true`
+ * @param {boolean} [props.asTrigger] - (optional) Wraps `children` in a `<button>` trigger instead of rendering `children` as the trigger itself. Use for non-interactive content. By default, trigger props are forwarded to `children`, which must pass them (including `ref`) on to the DOM element it renders. @default false
  * @param {TooltipSide} [props.side] - (optional) The preferred side of the trigger to render the tooltip. @default top
  * @param {number} [props.sideOffset] - (optional) Distance in pixels from the trigger. @default 4
  * @param {TooltipAlign} [props.align] - (optional) Alignment relative to the trigger. @default center
@@ -64,7 +65,10 @@ export interface TooltipProps extends Omit<
  * @param {boolean} [props.open] - (optional) Controls the open state (controlled)
  * @param {(value: boolean) => void} [props.onOpenChange] - (optional) Callback fired when open state changes
  *
+ * You may also pass any additional props (including `ref`) to the trigger element: `children` by default, or the `<button>` rendered when `asTrigger` is `true`
+ *
  * @example
+ * // renders an interactive element as the trigger itself
  * <Tooltip content="Copy to clipboard">
  *   <IconButton icon={<Copy />} aria-label="Copy" />
  * </Tooltip>
@@ -72,6 +76,12 @@ export interface TooltipProps extends Omit<
  * @example
  * <Tooltip content="Settings" side="right" delayDuration={200}>
  *   <Button>Hover me</Button>
+ * </Tooltip>
+ *
+ * @example
+ * // wraps non-interactive content in a `<button>` trigger
+ * <Tooltip content="Only visible to admins" aria-label="More information" asTrigger>
+ *   <Info />
  * </Tooltip>
  */
 export function Tooltip(props: TooltipProps) {
@@ -88,7 +98,7 @@ export function Tooltip(props: TooltipProps) {
     side = "top",
     sideOffset = 4,
     container,
-    asChild,
+    asTrigger = false,
     ref,
     ...rest
   } = props;
@@ -123,7 +133,7 @@ export function Tooltip(props: TooltipProps) {
           aria-describedby={isOpen ? popupId : undefined}
           delay={delayDuration}
           ref={mergedRef}
-          {...(asChild && isSingleReactElement(children)
+          {...(!asTrigger && isSingleReactElement(children)
             ? { render: children }
             : { children })}
         />
