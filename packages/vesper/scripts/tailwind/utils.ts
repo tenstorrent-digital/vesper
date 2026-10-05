@@ -88,7 +88,7 @@ export const getTailwindUtilityGroups = (): Record<
            * utility, so we filter out the delimiter tokens and eliminate any leading
            * or trailing dashes after joining the token values together.
            *
-           * So the utility `bg-vesper-dot-pattern-*` has the name `bg-vesper-dot-pattern`
+           * For example, `bg-vesper-dot-pattern-*` has the name `bg-vesper-dot-pattern`.
            */
           const name = rule.value.prelude
             .filter(isIdentityToken)

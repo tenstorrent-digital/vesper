@@ -56,7 +56,7 @@ export type UtilityData = {
 
 /** The metadata of a vesper css variable */
 export type TokenData = {
-  /** The name of the variable, eg. `vesper-color-background-primary` */
+  /** The name of the variable, eg. `--vesper-color-background-primary` */
   name: string;
   /** The token group the variable belongs to, eg. `color` */
   group: TokenGroupName;
