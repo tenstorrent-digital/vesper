@@ -7,11 +7,11 @@ import type {
   ClassGroupTokenGroup,
   ThemeTokenGroup,
   UtilityGroupName,
-  VariableGroupName,
+  TokenGroupName,
 } from "./types";
 
 import { getGeneratedCodeWarning, resolvePackagePath } from "../utils";
-import { TOKEN_VARIABLE_GROUPS, TW_UTILITY_GROUPS } from "./constants";
+import { TOKEN_VARIABLE_GROUPS, TAILWIND_UTILITY_GROUPS } from "./constants";
 import {
   CUSTOM_UTILITY_CLASSGROUPS,
   EXTENDED_CLASSGROUP_PROPERTIES,
@@ -141,7 +141,7 @@ const getClassGroupSample = (group: DefaultClassGroupIds) => {
  * from the same tailwind-merge class group
  */
 const createTokenConflictTests = (
-  tokenGroup: VariableGroupName,
+  tokenGroup: TokenGroupName,
   utility: string,
   classGroup: DefaultClassGroupIds,
 ) => {
@@ -195,7 +195,7 @@ const createCustomUtilityTests = () =>
       const { argument } = metadata;
 
       /** every class name that the utilities in this group can produce */
-      const classNames = TW_UTILITY_GROUPS[group].map((utility) => {
+      const classNames = TAILWIND_UTILITY_GROUPS[group].map((utility) => {
         if (utility.acceptsArgument && argument) {
           return `...tokens[${q(argument)}].map((token) => \`${utility.name}-\${token}\`)`;
         }
@@ -203,7 +203,7 @@ const createCustomUtilityTests = () =>
       });
 
       /** a single class name for each utility in this group */
-      const representatives = TW_UTILITY_GROUPS[group].map((utility) => {
+      const representatives = TAILWIND_UTILITY_GROUPS[group].map((utility) => {
         const token = argument && TOKEN_VARIABLE_GROUPS[argument][0]?.value;
         if (utility.acceptsArgument && token) {
           return q(`${utility.name}-${token}`);

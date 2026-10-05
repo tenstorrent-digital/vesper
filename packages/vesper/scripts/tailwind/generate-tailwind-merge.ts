@@ -3,7 +3,7 @@ import type { DefaultClassGroupIds } from "tailwind-merge";
 import fs from "node:fs";
 
 import { getGeneratedCodeWarning, resolvePackagePath } from "../utils";
-import { TOKEN_VARIABLE_GROUPS, TW_UTILITY_GROUPS } from "./constants";
+import { TOKEN_VARIABLE_GROUPS, TAILWIND_UTILITY_GROUPS } from "./constants";
 import {
   CUSTOM_UTILITY_CLASSGROUPS,
   EXTENDED_CLASSGROUP_PROPERTIES,
@@ -12,7 +12,7 @@ import {
 import {
   ClassGroupTokenGroup,
   UtilityGroupName,
-  VariableGroupName,
+  TokenGroupName,
 } from "./types";
 import { getVesperUtilityGroupId } from "./utils";
 
@@ -23,7 +23,7 @@ const AUTO_GENERATED_WARNING = getGeneratedCodeWarning(
 const OUTPUT_FILE = "./src/utils/tailwind-merge.ts";
 
 const createVesperClassGroupIds = () => {
-  const ids = Object.keys(TW_UTILITY_GROUPS)
+  const ids = Object.keys(TAILWIND_UTILITY_GROUPS)
     .map((group) => `"${getVesperUtilityGroupId(group as UtilityGroupName)}"`)
     .join(" | ");
 
@@ -48,8 +48,7 @@ const createTokenLookupMap = () => {
   return [lookupMap].join("\n");
 };
 
-const getTokenLookupFn = (group: VariableGroupName) =>
-  `TOKENS["${group}"].lookup`;
+const getTokenLookupFn = (group: TokenGroupName) => `TOKENS["${group}"].lookup`;
 
 const createExtendedTheme = () => {
   const entries = THEME_TOKEN_GROUPS.map((group) => {
@@ -92,7 +91,7 @@ const createCustomUtilityClassGroups = () => {
 
       const id = getVesperUtilityGroupId(group);
 
-      const classGroups = TW_UTILITY_GROUPS[group]
+      const classGroups = TAILWIND_UTILITY_GROUPS[group]
         .map((utility) => {
           if (utility.acceptsArgument && metadata.argument) {
             return `{ "${utility.name}": [${getTokenLookupFn(metadata.argument)}] }`;

@@ -7,18 +7,18 @@ import type {
   TokenData,
   UtilityData,
   UtilityGroupName,
-  VariableGroupName,
+  TokenGroupName,
 } from "./types";
 
 import { resolvePackagePath } from "../utils";
 import {
-  TW_UTILITY_FILE_NAMES,
-  TW_UTILITY_GROUPS,
-  VARIABLE_FILE_NAMES,
+  TAILWIND_UTILITY_FILE_NAMES,
+  TAILWIND_UTILITY_GROUPS,
+  TOKEN_FILE_NAMES,
 } from "./constants";
 
 export const getVesperUtilityGroupId = (group: UtilityGroupName) => {
-  const names = TW_UTILITY_GROUPS[group].map((u) => u.name);
+  const names = TAILWIND_UTILITY_GROUPS[group].map((u) => u.name);
 
   const [first = [], ...rest] = names.map((name) => name.split("-"));
   const length = first.findIndex((part, index) =>
@@ -44,10 +44,10 @@ export const getTailwindUtilityGroups = (): Record<
   UtilityData[]
 > => {
   const utilities = Object.fromEntries<UtilityData[]>(
-    TW_UTILITY_FILE_NAMES.map((group) => [group, []]),
+    TAILWIND_UTILITY_FILE_NAMES.map((group) => [group, []]),
   ) as Record<UtilityGroupName, UtilityData[]>;
 
-  for (const group of TW_UTILITY_FILE_NAMES) {
+  for (const group of TAILWIND_UTILITY_FILE_NAMES) {
     const filename = `./src/styles/tailwind-utilities/${group}.css` as const;
     const code = fs.readFileSync(resolvePackagePath(filename));
 
@@ -85,14 +85,14 @@ export const getTailwindUtilityGroups = (): Record<
 const VESPER_PREFIX = "--vesper-";
 
 export const getTokenVariableGroups = (): Record<
-  VariableGroupName,
+  TokenGroupName,
   TokenData[]
 > => {
   const variables = Object.fromEntries<TokenData[]>(
-    VARIABLE_FILE_NAMES.map((group) => [group, []]),
-  ) as Record<VariableGroupName, TokenData[]>;
+    TOKEN_FILE_NAMES.map((group) => [group, []]),
+  ) as Record<TokenGroupName, TokenData[]>;
 
-  for (const group of VARIABLE_FILE_NAMES) {
+  for (const group of TOKEN_FILE_NAMES) {
     const filename = `./src/styles/${group}.css` as const;
     const code = fs.readFileSync(resolvePackagePath(filename));
 

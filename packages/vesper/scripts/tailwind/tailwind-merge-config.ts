@@ -10,8 +10,8 @@ import type {
   AssertNever,
   ClassGroupTokenGroup,
   ThemeTokenGroup,
+  TokenGroupName,
   UtilityGroupName,
-  VariableGroupName,
 } from "./types";
 
 export const THEME_TOKEN_GROUPS = [
@@ -53,7 +53,7 @@ export const EXTENDED_CLASSGROUP_PROPERTIES: Record<
 
 export const CUSTOM_UTILITY_CLASSGROUPS: Record<
   UtilityGroupName,
-  { conflicts: DefaultClassGroupIds[]; argument: VariableGroupName | null }
+  { conflicts: DefaultClassGroupIds[]; argument: TokenGroupName | null }
 > = {
   "dot-pattern": {
     conflicts: ["bg-color", "bg-image", "bg-position", "bg-repeat"],

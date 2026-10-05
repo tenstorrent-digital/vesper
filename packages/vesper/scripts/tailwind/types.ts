@@ -5,11 +5,11 @@ import type {
   DefaultThemeGroupIds,
 } from "tailwind-merge";
 
-import { VARIABLE_FILE_NAMES, TW_UTILITY_FILE_NAMES } from "./constants";
+import { TOKEN_FILE_NAMES, TAILWIND_UTILITY_FILE_NAMES } from "./constants";
 
-export type VariableGroupName = (typeof VARIABLE_FILE_NAMES)[number];
+export type TokenGroupName = (typeof TOKEN_FILE_NAMES)[number];
 
-export type UtilityGroupName = (typeof TW_UTILITY_FILE_NAMES)[number];
+export type UtilityGroupName = (typeof TAILWIND_UTILITY_FILE_NAMES)[number];
 
 type DefaultExtension = ConfigExtension<
   DefaultClassGroupIds,
@@ -23,7 +23,7 @@ type DefaultTheme = NonNullable<
 type DefaultThemeProperty = keyof DefaultTheme;
 
 export type ClassGroupTokenGroup = Exclude<
-  VariableGroupName,
+  TokenGroupName,
   DefaultThemeProperty
 >;
 
@@ -33,7 +33,7 @@ export type UtilityData = {
   acceptsArgument: boolean;
 };
 
-export type ThemeTokenGroup = Exclude<VariableGroupName, ClassGroupTokenGroup>;
+export type ThemeTokenGroup = Exclude<TokenGroupName, ClassGroupTokenGroup>;
 
 export type TokenData = { name: string; group: string; value: string };
 
