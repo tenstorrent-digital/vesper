@@ -41,7 +41,7 @@ export type MenuProps<E extends ElementType = "button"> = Polymorphic<
     align?: "start" | "center" | "end";
     /** An offset in pixels from the aligned edge of the trigger. @default 0 */
     alignOffset?: number;
-    /** The content of the trigger, or the trigger itself when `asChild` is `true`. */
+    /** The content of the trigger. */
     children?: ReactNode;
     /** Controls the open state of the menu (controlled mode). */
     open?: boolean;

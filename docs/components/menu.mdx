@@ -7,7 +7,7 @@ description: A dropdown menu component that displays a list of actionable items 
 
 A dropdown menu component that displays a list of actionable items when triggered. Supports icons, descriptions, selected state, locked items, and disabled items.
 
-A `Menu` is [polymorphic](../polymorphism.mdx) and renders its trigger as a unstyled `<button>` element by default. You can style it yourself, or render it as another component (like a `Button` or an `IconButton`) via the `as` prop.
+A `Menu` is [polymorphic](../polymorphism.mdx) and renders its trigger as an unstyled `<button>` element by default. You can style it yourself, or render it as another component (like a `Button` or an `IconButton`) via the `as` prop.
 
 ```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
@@ -48,7 +48,7 @@ export default function MenuDemo() {
 | `container` | `HTMLElement \| ShadowRoot \| null \| RefObject<HTMLElement \| ShadowRoot \| null>` | Specify the element or shadow root to portal the menu into. | — |
 | `anchor` | `HTMLElement \| null \| RefObject<HTMLElement \| null>` | Specify the element to position the menu against. Default behavior anchors the menu to the trigger element. | — |
 
-All other props are forwarded to the the underlying `<button>` element, or whichever element or component is specified via the `as` prop.
+All other props are forwarded to the underlying `<button>` element, or whichever element or component is specified via the `as` prop.
 
 ### `MenuItemProps` options
 
