@@ -1,14 +1,13 @@
 import fs from "node:fs";
-import path from "node:path";
 
-import { getGeneratedCodeWarning } from "../utils";
+import { getGeneratedCodeWarning, resolvePackagePath } from "../utils";
 import { TOKEN_VARIABLE_GROUPS } from "./constants";
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning(
   "yarn generate:tailwind-css",
 );
 
-const OUTPUT_FILE = "src/styles/tailwind.css";
+const OUTPUT_FILE = "./src/styles/tailwind.css";
 
 const imports = [
   `@import "./styles.css" layer(components);`,
@@ -26,7 +25,4 @@ const theme = `@theme { ${tokens.join("")} }`;
 
 const contents = [AUTO_GENERATED_WARNING, imports, theme].join("\n\n");
 
-fs.writeFileSync(
-  path.resolve(import.meta.dirname, "..", OUTPUT_FILE),
-  contents,
-);
+fs.writeFileSync(resolvePackagePath(OUTPUT_FILE), contents);
