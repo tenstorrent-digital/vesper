@@ -112,6 +112,9 @@ const createExtendedTheme = () => {
  * Emits `extend.classGroups` entries for token groups that do not map to a
  * `tailwind-merge` theme scale (see `EXTENDED_CLASSGROUPS`).
  *
+ * Each class group id is emitted once, so if multiple mappings extend the
+ * same class group, their prefixes get combined into a single entry.
+ *
  * ```ts
  * "border-w": [{ "border-vesper": [TOKENS["border-width"].lookup] }],
  * "border-w-x": [{ "border-x-vesper": [TOKENS["border-width"].lookup] }],
@@ -136,9 +139,10 @@ const createExtendedClassGroups = () => {
   const result: string[] = [];
   for (const group in groups) {
     const id = group as DefaultClassGroupIds;
-    groups[id]?.forEach(([prefix, lookupFn]) => {
-      result.push(`"${id}": [{ "${prefix}": [${lookupFn}] }]`);
-    });
+    const values = (groups[id] ?? []).map(
+      ([prefix, lookupFn]) => `{ "${prefix}": [${lookupFn}] }`,
+    );
+    result.push(`"${id}": [${values.join(", ")}]`);
   }
   return result.join(", ");
 };
