@@ -89,6 +89,7 @@ type CustomUtilityClassGroupIds =
 type ThemeTokenClassGroupIds =
   (typeof THEME_TOKEN_GROUP_UTILITIES)[ThemeTokenGroup][number][1];
 
+/** Union of all the class group ids that require a sample tailwind class to test against. */
 export type SampleClassGroupIds =
   | ExtendedClassGroupIds
   | CustomUtilityClassGroupIds
