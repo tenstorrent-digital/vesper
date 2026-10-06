@@ -17,7 +17,7 @@ import {
 import { getVesperUtilityGroupId } from "./utils";
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning(
-  "yarn generate:tailwind-merge",
+  "yarn generate:tailwind",
 );
 
 const OUTPUT_FILE = "./src/utils/tailwind-merge.ts";

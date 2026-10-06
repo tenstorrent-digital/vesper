@@ -7,7 +7,7 @@ import {
 } from "./constants";
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning(
-  "yarn generate:tailwind-css",
+  "yarn generate:tailwind",
 );
 
 const OUTPUT_FILE = "./src/styles/tailwind.css";
