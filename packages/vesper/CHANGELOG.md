@@ -1,5 +1,17 @@
 # @tenstorrent/vesper
 
+## 0.4.0
+
+### Minor Changes
+
+- c24297b: Convert `Menu` to a polymorphic component. This allows consumers to compose dropdown menus easier with existing Vesper components like `Button`, `IconButton`, and `TextButton` via the `as` prop.
+- 8c0b47b: Added a new prop to `TabItem`, `contentAsPanel`, that allows consumers to control whether a tab panel's `content` renders as the tab panel itself via prop forwarding. The behavior prior to this change was to _always_ treat a tab's `content` as the panel itself.
+- 3d90c86: Added a new prop to `Tooltip`, `wrapWithButton`, that allows consumers to control whether a tooltip's trigger renders with a wrapping `<button>` element instead of receiving a tooltip's forwarded props. The behavior prior to this change was to _always_ merge a tooltip's props with its trigger's props and omit the wrapping `<button>` element.
+
+### Patch Changes
+
+- 96d914e: Bug fix: adjust how polymorphic component props are inferred so that polymorphic components rendered as other polymorphic components don't lose their type-checking.
+
 ## 0.3.1
 
 ### Patch Changes
