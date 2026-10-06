@@ -32,6 +32,14 @@
           "run": "onSave"
         }
       }
+    },
+    "tailwindcss-language-server": {
+      "settings": {
+        "classFunctions": ["cn", "clsx", "tw"],
+        "lint": {
+          "suggestCanonicalClasses": "ignore"
+        }
+      }
     }
   },
 
@@ -100,6 +108,11 @@
       "formatter": [{ "language_server": { "name": "oxfmt" } }]
     },
     "CSS": {
+      "language_servers": [
+        "tailwindcss-intellisense-css",
+        "!vscode-css-language-server",
+        "..."
+      ],
       "formatter": [{ "language_server": { "name": "oxfmt" } }]
     }
   },
