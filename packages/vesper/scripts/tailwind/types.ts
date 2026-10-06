@@ -6,6 +6,11 @@ import type {
 } from "tailwind-merge";
 
 import { TOKEN_FILE_NAMES, TAILWIND_UTILITY_FILE_NAMES } from "./constants";
+import {
+  CUSTOM_UTILITY_CLASSGROUPS,
+  EXTENDED_CLASSGROUPS,
+  THEME_TOKEN_GROUP_UTILITIES,
+} from "./tailwind-merge-config";
 
 /** A token group name that a variable can be bucketed into. */
 export type TokenGroupName = (typeof TOKEN_FILE_NAMES)[number];
@@ -74,3 +79,17 @@ export type DelimiterToken = TokenType<"delim">;
 export type IdentityToken = TokenType<"ident">;
 
 export type AssertNever<T extends never> = T;
+
+type ExtendedClassGroupIds =
+  (typeof EXTENDED_CLASSGROUPS)[ClassGroupTokenGroup][number][0];
+
+type CustomUtilityClassGroupIds =
+  (typeof CUSTOM_UTILITY_CLASSGROUPS)[UtilityGroupName]["conflicts"][number];
+
+type ThemeTokenClassGroupIds =
+  (typeof THEME_TOKEN_GROUP_UTILITIES)[ThemeTokenGroup][number][1];
+
+export type SampleClassGroupIds =
+  | ExtendedClassGroupIds
+  | CustomUtilityClassGroupIds
+  | ThemeTokenClassGroupIds;

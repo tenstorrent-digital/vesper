@@ -9,6 +9,7 @@ import type { DefaultClassGroupIds } from "tailwind-merge";
 import type {
   AssertNever,
   ClassGroupTokenGroup,
+  SampleClassGroupIds,
   ThemeTokenGroup,
   TokenGroupName,
   UtilityGroupName,
@@ -51,10 +52,7 @@ export type AssertEveryThemeTokenGroupAccountedFor = AssertNever<
  * variables map to `border-{variable}`, as well as `border-{t,r,b,l}-{variable}`,
  * all of which we have to provide class group id override mappings for.
  */
-export const EXTENDED_CLASSGROUPS: Record<
-  ClassGroupTokenGroup,
-  [group: DefaultClassGroupIds, mapping: string][]
-> = {
+export const EXTENDED_CLASSGROUPS = {
   "border-width": [
     ["border-w", "border"],
     ["border-w-x", "border-x"],
@@ -72,7 +70,10 @@ export const EXTENDED_CLASSGROUPS: Record<
   ],
   "outline-width": [["outline-w", "outline"]],
   "transition-duration": [["duration", "duration"]],
-};
+} as const satisfies Record<
+  ClassGroupTokenGroup,
+  [group: DefaultClassGroupIds, mapping: string][]
+>;
 
 /**
  * Configuration for custom utilities to generate their class groups, as well
@@ -84,15 +85,15 @@ export const EXTENDED_CLASSGROUPS: Record<
  *    class group config will verify against the given token group name. Leave `null`
  *    if the utility does not accept any arguments.
  */
-export const CUSTOM_UTILITY_CLASSGROUPS: Record<
-  UtilityGroupName,
-  { conflicts: DefaultClassGroupIds[]; argument: TokenGroupName | null }
-> = {
+export const CUSTOM_UTILITY_CLASSGROUPS = {
   "dot-pattern": {
     conflicts: ["bg-color", "bg-image", "bg-position", "bg-repeat"],
     argument: "color",
   },
-};
+} as const satisfies Record<
+  UtilityGroupName,
+  { conflicts: DefaultClassGroupIds[]; argument: TokenGroupName | null }
+>;
 
 /**
  * Utilities to test each theme token group against, as tuples of:
@@ -103,10 +104,7 @@ export const CUSTOM_UTILITY_CLASSGROUPS: Record<
  * groups (eg. `color` is used by `bg-color`, `text-color`, `border-color`, etc.),
  * so we test a representative selection of the class groups for each token group
  */
-export const THEME_TOKEN_GROUP_UTILITIES: Record<
-  ThemeTokenGroup,
-  [utility: string, group: DefaultClassGroupIds][]
-> = {
+export const THEME_TOKEN_GROUP_UTILITIES = {
   color: [
     ["bg", "bg-color"],
     ["text", "text-color"],
@@ -133,15 +131,21 @@ export const THEME_TOKEN_GROUP_UTILITIES: Record<
     ["inset", "inset"],
   ],
   tracking: [["tracking", "tracking"]],
-};
+} as const satisfies Record<
+  ThemeTokenGroup,
+  [utility: string, group: DefaultClassGroupIds][]
+>;
 
 /**
  * A class from tailwind's default theme for every `tailwind-merge` class group
  * that vesper extends (or conflicts with), used to assert that vesper classes
- * are sorted into the correct class group
+ * are sorted into the correct class group.
+ *
+ * These samples are exhaustive; if any class group id used in `EXTENDED_CLASSGROUPS`,
+ * `CUSTOM_UTILITY_CLASSGROUPS`, or `THEME_TOKEN_GROUP_UTILITIES` is missing,
+ * we will encounter a type error.
  */
-export const CLASS_GROUP_SAMPLES: { [K in DefaultClassGroupIds]?: string } = {
-  // theme: color
+export const CLASS_GROUP_SAMPLES = {
   "bg-color": "bg-red-500",
   "text-color": "text-red-500",
   "border-color": "border-red-500",
@@ -150,32 +154,18 @@ export const CLASS_GROUP_SAMPLES: { [K in DefaultClassGroupIds]?: string } = {
   "ring-color": "ring-red-500",
   fill: "fill-red-500",
   stroke: "stroke-red-500",
-
-  // theme: font
   "font-family": "font-sans",
-
-  // theme: leading
   leading: "leading-6",
-
-  // theme: radius
   rounded: "rounded-md",
   "rounded-t": "rounded-t-md",
-
-  // theme: shadow
   shadow: "shadow-lg",
-
-  // theme: spacing
   p: "p-2",
   m: "m-2",
   gap: "gap-2",
   w: "w-2",
   h: "h-2",
   inset: "inset-2",
-
-  // theme: tracking
   tracking: "tracking-wide",
-
-  // class groups: border-width
   "border-w": "border-2",
   "border-w-x": "border-x-2",
   "border-w-y": "border-y-2",
@@ -189,15 +179,9 @@ export const CLASS_GROUP_SAMPLES: { [K in DefaultClassGroupIds]?: string } = {
   "border-w-l": "border-l-2",
   "divide-x": "divide-x-2",
   "divide-y": "divide-y-2",
-
-  // class groups: outline-width
   "outline-w": "outline-2",
-
-  // class groups: transition-duration
   duration: "duration-150",
-
-  // custom utility conflicts
   "bg-image": "bg-none",
   "bg-position": "bg-top",
   "bg-repeat": "bg-no-repeat",
-};
+} as const satisfies { [K in SampleClassGroupIds]: string };

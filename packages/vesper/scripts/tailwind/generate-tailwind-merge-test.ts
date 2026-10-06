@@ -1,11 +1,10 @@
-import type { DefaultClassGroupIds } from "tailwind-merge";
-
 import fs from "node:fs/promises";
 
 import type {
   ClassGroupTokenGroup,
-  UtilityGroupName,
+  SampleClassGroupIds,
   TokenGroupName,
+  UtilityGroupName,
 } from "./types";
 
 import { getGeneratedCodeWarning, resolvePackagePath } from "../utils";
@@ -27,27 +26,17 @@ const OUTPUT_FILE = "./src/utils/tailwind-merge.test.ts";
 
 const q = (value: string) => JSON.stringify(value);
 
-const getClassGroupSample = (group: DefaultClassGroupIds) => {
-  const sample = CLASS_GROUP_SAMPLES[group];
-  if (!sample) {
-    throw new Error(
-      `missing sample class for tailwind-merge class group "${group}", please add one to CLASS_GROUP_SAMPLES in "packages/vesper/scripts/tailwind/tailwind-merge-config.ts"`,
-    );
-  }
-  return sample;
-};
-
 /**
  * Emits a test for each token in a token group, asserting that the vesper
  * class (`{utility}-vesper-{token}`) conflicts with a default tailwind class
- * from the same tailwind-merge class group
+ * from the same `tailwind-merge` class group.
  */
 const createTokenConflictTests = (
   tokenGroup: TokenGroupName,
   utility: string,
-  classGroup: DefaultClassGroupIds,
+  classGroup: SampleClassGroupIds,
 ) => {
-  const sample = getClassGroupSample(classGroup);
+  const sample = CLASS_GROUP_SAMPLES[classGroup];
   const name = `${utility}-vesper-%s conflicts with ${sample}`;
 
   return `test.each(tokens[${q(tokenGroup)}])(${q(name)}, (token) => {
@@ -55,6 +44,18 @@ const createTokenConflictTests = (
   });`;
 };
 
+/**
+ * Creates an object with lists of token values for each token group.
+ *
+ * ```ts
+ * const tokens = {
+ *   color: ["background-primary", "background-secondary", ...]
+ *   radius: ["half", "1", "2", ...]
+ *   leading: [...],
+ *   // etc.
+ * }
+ * ```
+ **/
 const createTokenLists = () => {
   const entries = Object.entries(TOKEN_VARIABLE_GROUPS).map(
     ([group, tokens]) => {
@@ -114,7 +115,7 @@ const createCustomUtilityTests = () =>
       });
 
       const overrideTests = metadata.conflicts.map((classGroup) => {
-        const sample = getClassGroupSample(classGroup);
+        const sample = CLASS_GROUP_SAMPLES[classGroup];
         const name = `%s overrides ${sample} (${classGroup})`;
 
         return `test.each(classNames)(${q(name)}, (className) => {
