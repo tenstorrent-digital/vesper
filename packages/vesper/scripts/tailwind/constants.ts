@@ -5,7 +5,7 @@ import { getTailwindUtilityGroups, getTokenVariableGroups } from "./utils";
  * extensions.
  *
  * When we create a new tailwind utility file, we should update this constant
- * to include its filename so it gets picked up by `generate-tailwind-css.ts`,
+ * to include its filename so it gets picked up by `generate-tailwind-theme.ts`,
  * `generate-tailwind-merge.ts`, and `generate-tailwind-merge-test.ts`.
  */
 export const TAILWIND_UTILITY_FILE_NAMES = ["dot-pattern"] as const;
@@ -15,7 +15,7 @@ export const TAILWIND_UTILITY_FILE_NAMES = ["dot-pattern"] as const;
  * extensions.
  *
  * If we add any new token files, we should update this constant to include
- * the new filesnames so it gets picked up by `generate-tailwind.css`
+ * the new filesnames so it gets picked up by `generate-tailwind-theme.ts`
  */
 export const TOKEN_FILE_NAMES = [
   "color",
