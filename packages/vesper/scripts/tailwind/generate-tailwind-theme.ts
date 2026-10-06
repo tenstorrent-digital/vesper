@@ -12,6 +12,16 @@ const AUTO_GENERATED_WARNING = getGeneratedCodeWarning(
 
 const OUTPUT_FILE = "./src/styles/tailwind.css";
 
+/**
+ * Generates `src/styles/tailwind.css`, the stylesheet that makes vesper's
+ * styles, tokens, and custom utilities available to tailwind. It contains:
+ *
+ * 1. Imports for vesper's styles, and for each of our custom tailwind utility
+ *    files (see `TAILWIND_UTILITY_FILE_NAMES`)
+ * 2. A theme block that registers each vesper css variable as a tailwind theme
+ *    variable named `--{group}-vesper-{token}`, so tailwind generates classes
+ *    like `bg-vesper-stone-500`, `rounded-vesper-2`, etc.
+ */
 export async function generateTailwindTheme() {
   const imports = [
     `@import "./styles.css" layer(components);`,

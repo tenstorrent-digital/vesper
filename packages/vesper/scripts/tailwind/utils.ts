@@ -18,7 +18,7 @@ import {
 } from "./constants";
 
 /**
- * Iterates over all of the utilit class names for a given utility group name
+ * Iterates over all of the utility class names for a given utility group name
  * and returns the common prefix among them, prefixed with `"vesper."`
  *
  * We use this to create keys that correspond to our custom utilities when
