@@ -5,7 +5,7 @@ description: A three-way toggle for switching between system, light, and dark co
 
 # Theme Switcher
 
-A three-way toggle for switching between system, light, and dark color themes. Sets the `data-vesper-theme` attribute on the document element to control the active theme.
+A three-way toggle for switching between system, light, and dark color themes. Sets the `data-vesper-theme` attribute on the document element to control the active theme. The active theme can also be read and set from your own components with [the `useTheme` hook](#reading-and-setting-the-theme).
 
 ```tsx demo
 import { ThemeSwitcher } from "@tenstorrent/vesper/theme-switcher";
@@ -28,9 +28,27 @@ export default function ThemeSwitcherDemo() {
 
 ## Options
 
-| Prop   | Type           | Description                     | Default |
-| ------ | -------------- | ------------------------------- | ------- |
-| `size` | `"sm" \| "lg"` | The size of the theme switcher. | `"lg"`  |
+### ThemeSwitcher
+
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `size` | `"sm" \| "lg"` | The size of the theme switcher. | `"lg"` |
+| `serverTheme` | `"system" \| "light" \| "dark"` | The theme to display during server rendering and hydration, when the document's theme can't be read yet. See [server rendering](#server-rendering). | `"system"` |
+
+Additional props are passed to the underlying `<div>` element.
+
+### `useTheme`
+
+| Argument | Type | Description | Default |
+| --- | --- | --- | --- |
+| `serverTheme` | `"system" \| "light" \| "dark"` | The theme to return during server rendering and hydration, when the document's theme can't be read yet. See [server rendering](#server-rendering). | `"system"` |
+
+Like `useState`, `useTheme` returns a `[theme, setTheme]` tuple:
+
+| Value | Type | Description |
+| --- | --- | --- |
+| `theme` | `"system" \| "light" \| "dark"` | The active theme. Falls back to `"system"` when the document has no valid `data-vesper-theme` attribute. |
+| `setTheme` | `(theme: VesperTheme) => void` | Sets the `data-vesper-theme` attribute on the document element, and re-renders every component that uses `useTheme`. |
 
 ## Examples
 
@@ -64,3 +82,74 @@ export default function ThemeSwitcherSizes() {
   );
 }
 ```
+
+### Reading and setting the theme
+
+The `useTheme` hook reads and sets the active theme for all Vesper components in your app.
+
+`ThemeSwitcher` uses `useTheme` too, so they stay in sync with any theme you've set programmatically:
+
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+import { ThemeSwitcher, useTheme } from "@tenstorrent/vesper/theme-switcher";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function UseThemeDemo() {
+  const [theme, setTheme] = useTheme();
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        gap: "var(--vesper-spacing-4)",
+      }}
+    >
+      <Typography variant="copy-sm">Current theme: {theme}</Typography>
+      <div style={{ display: "flex", gap: "var(--vesper-spacing-2)" }}>
+        <Button variant="tertiary" onClick={() => setTheme("light")}>
+          Light
+        </Button>
+        <Button variant="tertiary" onClick={() => setTheme("dark")}>
+          Dark
+        </Button>
+      </div>
+      <ThemeSwitcher />
+    </div>
+  );
+}
+```
+
+> [!NOTE]
+>
+> `useTheme` only sees theme changes made with `setTheme`. Setting the `data-vesper-theme` attribute directly won't re-render the components that use it.
+
+### Server rendering
+
+Since there's no way for the server to read theme from the document (in the client) during server rendering, `ThemeSwitcher` and `useTheme` use a fallback theme instead, which defaults to `"system"`. React keeps using the fallback theme while hydrating, so the first render in the browser matches the server's HTML, then re-renders with the document's theme.
+
+If the user's theme is available on the server, pass it as `serverTheme` so the server's HTML shows the right theme from the start. `ThemeSwitcher` takes it as a prop, and `useTheme` takes it as an argument:
+
+```tsx
+import {
+  ThemeSwitcher,
+  useTheme,
+  type VesperTheme,
+} from "@tenstorrent/vesper/theme-switcher";
+
+export function ThemeSettings({ savedTheme }: { savedTheme: VesperTheme }) {
+  const [theme] = useTheme(savedTheme);
+
+  return (
+    <>
+      <span>Current theme: {theme}</span>
+      <ThemeSwitcher serverTheme={savedTheme} />
+    </>
+  );
+}
+```
+
+Pass the same `serverTheme` to each component that takes one. Components with different server theme values show different themes until hydration finishes.
+
+The `serverTheme` only applies to server rendering and hydration. Components that first render in the browser always read the theme from the document.
