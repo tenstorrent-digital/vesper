@@ -1,5 +1,15 @@
 # @tenstorrent/vesper
 
+## 0.5.0
+
+### Minor Changes
+
+- 00ca199: Update `theme-switcher` module to export a new hook, `useTheme`, which exposes the current theme and a setter function to consumers.
+
+### Patch Changes
+
+- 256a134: Widens the `message` prop in `form-input-message` to accept `null` and `false` values.
+
 ## 0.4.0
 
 ### Minor Changes
