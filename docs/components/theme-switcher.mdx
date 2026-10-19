@@ -85,7 +85,9 @@ export default function ThemeSwitcherSizes() {
 
 ### Reading and setting the theme
 
-The `useTheme` hook reads and sets the active theme from any component. Every `ThemeSwitcher` uses `useTheme` too, so they stay in sync with any theme you set yourself:
+The `useTheme` hook reads and sets the active theme for all Vesper components in your app.
+
+`ThemeSwitcher` uses `useTheme` too, so they stay in sync with any theme you've set programmatically:
 
 ```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
@@ -125,7 +127,7 @@ export default function UseThemeDemo() {
 
 ### Server rendering
 
-There's no document to read the theme from during server rendering, so `ThemeSwitcher` and `useTheme` use a fallback theme instead, which defaults to `"system"`. React keeps using the fallback theme while hydrating, so the first render in the browser matches the server's HTML, then re-renders with the document's theme.
+Since there's no way for the server to read theme from the document (in the client) during server rendering, `ThemeSwitcher` and `useTheme` use a fallback theme instead, which defaults to `"system"`. React keeps using the fallback theme while hydrating, so the first render in the browser matches the server's HTML, then re-renders with the document's theme.
 
 If the user's theme is available on the server, pass it as `serverTheme` so the server's HTML shows the right theme from the start. `ThemeSwitcher` takes it as a prop, and `useTheme` takes it as an argument:
 
