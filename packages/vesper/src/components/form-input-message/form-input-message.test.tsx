@@ -78,22 +78,34 @@ describe("form-input-message [unit]", () => {
     expect(text?.textContent).toBe(MESSAGE);
   });
 
-  test("data-message is true when a message is provided", () => {
+  test("data-message is true when message is non-nullable", () => {
     const { container } = render(<FormInputMessage message={MESSAGE} />);
 
     expect(container.firstChild).toHaveAttribute("data-message", "true");
   });
 
-  test("data-message is false when no message is provided", () => {
-    const { container } = render(<FormInputMessage />);
+  test("data-message is false when message is nullable or an empty string", () => {
+    const undefinedMessage = render(<FormInputMessage />);
+    const nullMessage = render(<FormInputMessage message={null} />);
+    const falseMessage = render(<FormInputMessage message={false} />);
+    const emptyStringMessage = render(<FormInputMessage message="" />);
 
-    expect(container.firstChild).toHaveAttribute("data-message", "false");
-  });
-
-  test("data-message is false when the message is an empty string", () => {
-    const { container } = render(<FormInputMessage message="" />);
-
-    expect(container.firstChild).toHaveAttribute("data-message", "false");
+    expect(undefinedMessage.container.firstChild).toHaveAttribute(
+      "data-message",
+      "false",
+    );
+    expect(nullMessage.container.firstChild).toHaveAttribute(
+      "data-message",
+      "false",
+    );
+    expect(falseMessage.container.firstChild).toHaveAttribute(
+      "data-message",
+      "false",
+    );
+    expect(emptyStringMessage.container.firstChild).toHaveAttribute(
+      "data-message",
+      "false",
+    );
   });
 
   test("renders no content when no message is provided", () => {
