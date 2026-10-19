@@ -2,11 +2,12 @@
 
 exports[`theme-switcher [snapshot] > lg 1`] = `
 <div
-  class="vesper-theme-switcher vesper-theme-switcher-lg"
+  class="vesper-theme-switcher vesper-theme-switcher-lg vesper-theme-switcher-system"
+  data-vesper-theme="system"
 >
   <button
     aria-label="Switch color theme to system preference"
-    class="vesper-theme-switcher-button vesper-theme-switcher-button-system"
+    class="vesper-theme-switcher-button vesper-theme-switcher-button-active"
     type="button"
   >
     <svg
@@ -22,7 +23,7 @@ exports[`theme-switcher [snapshot] > lg 1`] = `
   </button>
   <button
     aria-label="Switch color theme to light mode"
-    class="vesper-theme-switcher-button vesper-theme-switcher-button-light"
+    class="vesper-theme-switcher-button"
     type="button"
   >
     <svg
@@ -40,7 +41,7 @@ exports[`theme-switcher [snapshot] > lg 1`] = `
   </button>
   <button
     aria-label="Switch color theme to dark mode"
-    class="vesper-theme-switcher-button vesper-theme-switcher-button-dark"
+    class="vesper-theme-switcher-button"
     type="button"
   >
     <svg
@@ -64,11 +65,12 @@ exports[`theme-switcher [snapshot] > lg 1`] = `
 
 exports[`theme-switcher [snapshot] > sm 1`] = `
 <div
-  class="vesper-theme-switcher vesper-theme-switcher-sm"
+  class="vesper-theme-switcher vesper-theme-switcher-sm vesper-theme-switcher-system"
+  data-vesper-theme="system"
 >
   <button
     aria-label="Switch color theme to system preference"
-    class="vesper-theme-switcher-button vesper-theme-switcher-button-system"
+    class="vesper-theme-switcher-button vesper-theme-switcher-button-active"
     type="button"
   >
     <svg
@@ -84,7 +86,7 @@ exports[`theme-switcher [snapshot] > sm 1`] = `
   </button>
   <button
     aria-label="Switch color theme to light mode"
-    class="vesper-theme-switcher-button vesper-theme-switcher-button-light"
+    class="vesper-theme-switcher-button"
     type="button"
   >
     <svg
@@ -102,7 +104,7 @@ exports[`theme-switcher [snapshot] > sm 1`] = `
   </button>
   <button
     aria-label="Switch color theme to dark mode"
-    class="vesper-theme-switcher-button vesper-theme-switcher-button-dark"
+    class="vesper-theme-switcher-button"
     type="button"
   >
     <svg
