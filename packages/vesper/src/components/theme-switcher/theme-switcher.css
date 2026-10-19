@@ -4,6 +4,21 @@
   background: var(--vesper-background-primary);
   outline: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   position: relative;
+  &[data-vesper-theme="system"] {
+    .vesper-theme-switcher-indicator {
+      transform: translateX(0rem);
+    }
+  }
+  &[data-vesper-theme="light"] {
+    .vesper-theme-switcher-indicator {
+      transform: translateX(calc(100% - var(--vesper-spacing-half)));
+    }
+  }
+  &[data-vesper-theme="dark"] {
+    .vesper-theme-switcher-indicator {
+      transform: translateX(calc(200% - var(--vesper-spacing-1)));
+    }
+  }
 }
 .vesper-theme-switcher-lg {
   height: 2rem;
@@ -33,6 +48,9 @@
   transition: color var(--vesper-transition-duration-fast) ease;
   height: 100%;
   aspect-ratio: 1;
+  &.vesper-theme-switcher-button-active {
+    color: var(--vesper-icon-primary);
+  }
   @media (forced-colors: active) {
     &:focus-visible {
       outline: var(--vesper-stroke-strong) solid CanvasText;
@@ -53,28 +71,4 @@
   border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   transition: transform var(--vesper-transition-duration-fast) ease;
   pointer-events: none;
-}
-html[data-vesper-theme="system"] {
-  .vesper-theme-switcher-indicator {
-    transform: translateX(0rem);
-  }
-  .vesper-theme-switcher-button-system {
-    color: var(--vesper-icon-primary);
-  }
-}
-html[data-vesper-theme="light"] {
-  .vesper-theme-switcher-indicator {
-    transform: translateX(calc(100% - var(--vesper-spacing-half)));
-  }
-  .vesper-theme-switcher-button-light {
-    color: var(--vesper-icon-primary);
-  }
-}
-html[data-vesper-theme="dark"] {
-  .vesper-theme-switcher-indicator {
-    transform: translateX(calc(200% - var(--vesper-spacing-1)));
-  }
-  .vesper-theme-switcher-button-dark {
-    color: var(--vesper-icon-primary);
-  }
 }
