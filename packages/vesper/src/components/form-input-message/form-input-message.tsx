@@ -8,6 +8,7 @@ import {
 } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { Glass } from "@/utils/glass/glass";
 
 export const FORM_INPUT_MESSAGE_VARIANTS = [
   "default",
@@ -65,12 +66,14 @@ export const FormInputMessage = ({
       data-message={!!message}
       className={cn(
         "vesper-form-input-message",
+        !!message && "vesper-glass",
         `vesper-form-input-message-${variant}`,
         className,
       )}
     >
       {!!message && (
         <>
+          <Glass depth="shallow" />
           <span aria-hidden className="vesper-form-input-message-icon">
             {variant === "default" && <InfoSolid />}
             {variant === "error" && <ErrorSolid />}

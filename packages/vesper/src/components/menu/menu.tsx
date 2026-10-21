@@ -15,6 +15,7 @@ import {
   getPortalContainer,
   type PortalContainer,
 } from "@/utils/get-portal-container";
+import { useGlass } from "@/utils/glass/use-glass";
 import { useBaseRemSize } from "@/utils/hooks/use-base-rem-size";
 import { Polymorphic } from "@/utils/polymorphic";
 
@@ -122,6 +123,8 @@ export function Menu<E extends ElementType = "button">(props: MenuProps<E>) {
 
   const portalContainer = getPortalContainer(container, innerRef);
 
+  const popupGlassRef = useGlass({ depth: "deep" });
+
   return (
     <DropdownMenu.Root
       defaultOpen={defaultOpen}
@@ -138,7 +141,8 @@ export function Menu<E extends ElementType = "button">(props: MenuProps<E>) {
           alignOffset={alignOffset * (baseRemSize / 16)}
         >
           <DropdownMenu.Popup
-            className="vesper-menu"
+            ref={popupGlassRef}
+            className="vesper-menu vesper-glass vesper-glass-deep"
             style={{ width: `calc(${width} * (1rem / 16))` }}
           >
             {items.map((item, index) => (
@@ -163,7 +167,7 @@ function MenuItem({
   return (
     <DropdownMenu.Item
       disabled={style === "disabled" || style === "locked"}
-      className={`vesper-menu-item vesper-menu-item-${style}`}
+      className={`vesper-menu-item vesper-glass vesper-glass-latent vesper-menu-item-${style}`}
       onClick={() => onSelect()}
       label={text}
     >

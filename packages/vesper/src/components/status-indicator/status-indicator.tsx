@@ -2,6 +2,7 @@ import type { ElementType } from "react";
 
 import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { Glass } from "@/utils/glass/glass";
 import type { Polymorphic } from "@/utils/polymorphic";
 
 export const STATUS_INDICATOR_STATES = [
@@ -70,10 +71,12 @@ export function StatusIndicator<E extends ElementType = "div">(
       className={cn(
         "vesper-status-indicator",
         `vesper-status-indicator-${variant}`,
+        variant === "badge" && "vesper-glass",
         className,
       )}
       {...rest}
     >
+      {variant === "badge" && <Glass depth="shallow" />}
       <span
         className={cn(
           "vesper-status-indicator-dot",

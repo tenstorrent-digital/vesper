@@ -5,6 +5,7 @@ import {
   type TypographyVariant,
 } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { useGlass } from "@/utils/glass/use-glass";
 import {
   FormInputProps,
   splitFormInputProps,
@@ -62,6 +63,8 @@ export function Switch(props: SwitchProps) {
   const { ariaProps, controlProps, formProps, wrapperProps } =
     splitFormInputProps(rest);
 
+  const glassRef = useGlass();
+
   return (
     <label
       {...wrapperProps}
@@ -75,7 +78,7 @@ export function Switch(props: SwitchProps) {
         type="checkbox"
         role="switch"
       />
-      <div className="vesper-switch-pill" />
+      <div ref={glassRef} className="vesper-switch-pill vesper-glass" />
       {label && (
         <Typography
           className="vesper-switch-label"

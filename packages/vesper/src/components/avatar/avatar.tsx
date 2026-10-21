@@ -1,6 +1,7 @@
 import type { ElementType } from "react";
 
 import { cn } from "@/utils/cn";
+import { Glass } from "@/utils/glass/glass";
 import type { Polymorphic } from "@/utils/polymorphic";
 
 export const AVATAR_SIZES = ["sm", "md", "lg"] as const;
@@ -48,9 +49,15 @@ export function Avatar<E extends ElementType = "div">(props: AvatarProps<E>) {
   } = props;
   return (
     <Component
-      className={cn("vesper-avatar", `vesper-avatar-${size}`, className)}
+      className={cn(
+        "vesper-avatar",
+        "vesper-glass",
+        `vesper-avatar-${size}`,
+        className,
+      )}
       {...rest}
     >
+      <Glass depth="shallow" />
       {src && <img className="vesper-avatar-image" src={src} alt={alt} />}
     </Component>
   );

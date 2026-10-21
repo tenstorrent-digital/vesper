@@ -1,6 +1,7 @@
 "use client";
 
 import { Combobox as BaseCombobox } from "@base-ui/react/combobox";
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import { useCallback, useMemo, useState } from "react";
 
 import { CaretDown, Checkmark, Close, Search } from "@/components/icons/icons";
@@ -13,6 +14,7 @@ import {
   getPortalContainer,
   type PortalContainer,
 } from "@/utils/get-portal-container";
+import { useGlass } from "@/utils/glass/use-glass";
 import { useBaseRemSize } from "@/utils/hooks/use-base-rem-size";
 import {
   type FormInputProps,
@@ -169,6 +171,13 @@ export function Combobox(props: ComboboxProps) {
 
   const [innerRef, setInnerRef] = useState<HTMLDivElement | null>(null);
 
+  const inputGlassRef = useGlass({ depth: "deep" });
+  const popupGlassRef = useGlass({ depth: "deep" });
+  const mergedInputGroupRef = useMergedRefs<HTMLDivElement>(
+    setInnerRef,
+    inputGlassRef,
+  );
+
   const baseRemSize = useBaseRemSize();
 
   const { values, labels } = useMemo(() => {
@@ -215,9 +224,11 @@ export function Combobox(props: ComboboxProps) {
     >
       <BaseCombobox.InputGroup
         {...wrapperProps}
-        ref={setInnerRef}
+        ref={mergedInputGroupRef}
         className={cn(
           "vesper-combobox",
+          "vesper-glass",
+          "vesper-glass-inset",
           `vesper-combobox-${size}`,
           `vesper-combobox-${variant}`,
           className,
@@ -247,7 +258,8 @@ export function Combobox(props: ComboboxProps) {
       </BaseCombobox.InputGroup>
       <BaseCombobox.Portal container={portalContainer}>
         <BaseCombobox.Positioner
-          className="vesper-combobox-positioner"
+          ref={popupGlassRef}
+          className="vesper-combobox-positioner vesper-glass vesper-glass-deep"
           side="bottom"
           collisionAvoidance={{ side: "none" }}
           align="start"
@@ -267,7 +279,7 @@ export function Combobox(props: ComboboxProps) {
                 <BaseCombobox.Item
                   key={itemValue}
                   value={itemValue}
-                  className="vesper-combobox-item"
+                  className="vesper-combobox-item vesper-glass vesper-glass-latent"
                 >
                   <Typography as="span" variant="label-md">
                     {itemToStringLabel(itemValue)}

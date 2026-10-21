@@ -181,3 +181,22 @@ export default function SelectableMaterials() {
 > [!NOTE]
 >
 > When `state="disabled"` is passed alongside an `as` prop that renders a natively disableable element (such as `button`), the underlying element is disabled for you. For any other element, `aria-disabled` is applied instead, along with `tabIndex={-1}` and handlers that suppress pointer, keyboard, and focus events.
+
+## Glass
+
+Vesper components, including `Material`, are made of translucent glass. Glass tints and frosts the content behind it and catches light along its rim. Interactive glass dips when pressed and rings back with a crisp "tink" on release.
+
+In Chromium-based browsers, glass also refracts the content behind it: the curved rim bends light from just past the edge into view. A WebGL shader renders the refraction for each component size. Other browsers show frosted glass without refraction.
+
+Set `data-vesper-glass` on the root element to change the effect across the page:
+
+| Value    | Effect                                             |
+| -------- | -------------------------------------------------- |
+| `"flat"` | Keeps the frosted glass, but turns off refraction. |
+| `"off"`  | Renders solid, opaque surfaces.                    |
+
+```html
+<html data-vesper-glass="flat"></html>
+```
+
+Surfaces also render solid when the user's system requests reduced transparency, and press animations turn off when the system requests reduced motion.

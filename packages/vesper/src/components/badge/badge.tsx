@@ -5,6 +5,7 @@ import {
   type TypographyVariant,
 } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { Glass } from "@/utils/glass/glass";
 import type { Polymorphic } from "@/utils/polymorphic";
 
 export const BADGE_SIZES = ["sm", "md", "lg"] as const;
@@ -90,12 +91,14 @@ export function Badge<E extends ElementType = "div">(props: BadgeProps<E>) {
     <Component
       className={cn(
         "vesper-badge",
+        "vesper-glass",
         `vesper-badge-${size}`,
         subtle ? `vesper-badge-${variant}-subtle` : `vesper-badge-${variant}`,
         className,
       )}
       {...rest}
     >
+      <Glass depth="shallow" />
       {icon && <span className="vesper-badge-icon">{icon}</span>}
       <Typography
         as="span"

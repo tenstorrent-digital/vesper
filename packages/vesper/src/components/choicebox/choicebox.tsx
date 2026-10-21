@@ -13,6 +13,7 @@ import {
 import { Checkmark } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { useGlass } from "@/utils/glass/use-glass";
 
 export type ChoiceboxItem = {
   /** The value associated with this option. */
@@ -270,12 +271,19 @@ function ChoiceboxItem({
 }) {
   const isDisabled = option.disabled || disabled;
 
+  const glassRef = useGlass({
+    interactive: !isDisabled,
+  });
+
   return (
     <label
       key={option.value}
+      ref={glassRef}
       htmlFor={option.id}
       className={cn(
         "vesper-choicebox-item",
+        "vesper-glass",
+        !isDisabled && "vesper-glass-interactive",
         !option.description && "vesper-choicebox-item-compact",
       )}
     >
@@ -308,11 +316,11 @@ function ChoiceboxItem({
         defaultChecked={defaultChecked}
       />
       {multiselect ? (
-        <div className="vesper-choicebox-input-multi-indicator">
+        <div className="vesper-choicebox-input-multi-indicator vesper-glass">
           <Checkmark />
         </div>
       ) : (
-        <div className="vesper-choicebox-input-single-indicator" />
+        <div className="vesper-choicebox-input-single-indicator vesper-glass" />
       )}
     </label>
   );

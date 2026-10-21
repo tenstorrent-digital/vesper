@@ -7,7 +7,11 @@
 .vesper-skeleton-overlay {
   position: absolute;
   inset: 0;
-  background: var(--vesper-stone-300);
+  border-radius: inherit;
+  --vesper-glass-color: var(--vesper-stone-300);
+  /* mostly opaque, to hide the placeholder content underneath */
+  --vesper-glass-opacity: 0.88;
+  --vesper-glass-outline: 0 0 #0000;
   &::after {
     content: "";
     position: absolute;
@@ -18,10 +22,11 @@
     background: linear-gradient(
       to left,
       transparent,
-      var(--vesper-alpha-inverse-200),
+      var(--vesper-glass-sheen),
       transparent
     );
-    animation: vesper-skeleton-shimmer 1.2s linear infinite;
+    transform: skewX(-20deg);
+    animation: vesper-skeleton-shimmer 0.9s linear infinite;
     @media (prefers-reduced-motion: reduce) {
       display: none;
     }

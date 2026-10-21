@@ -1,4 +1,6 @@
 .vesper-admonition {
+  --vesper-glass-outline: 0 0 #0000;
+  --vesper-glass-elevation: var(--vesper-glass-elevation-100);
   display: flex;
   align-items: center;
   gap: var(--vesper-spacing-4);
@@ -13,7 +15,7 @@
   }
   @media not (forced-colors: active) {
     &:focus-visible {
-      box-shadow: var(--vesper-shadow-focus-ring);
+      --vesper-glass-ring: var(--vesper-shadow-focus-ring);
     }
   }
 }
@@ -53,61 +55,86 @@
 }
 
 .vesper-admonition-info {
-  background: var(--vesper-background-info-base);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-info-base);
+  --vesper-glass-color: var(--vesper-background-info-base);
+  --vesper-glass-opacity: 0.82;
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-info-base) 70%, transparent);
   color: var(--vesper-text-inverse-primary);
   &.vesper-admonition-subtle {
-    background: var(--vesper-background-info-subtle);
-    border-color: var(--vesper-border-info-subtle);
+    --vesper-glass-color: var(--vesper-background-info-subtle);
+    --vesper-glass-opacity: 0.6;
+    border-color: color-mix(
+      in srgb,
+      var(--vesper-border-info-subtle) 70%,
+      transparent
+    );
     color: var(--vesper-text-info);
   }
 }
 
 .vesper-admonition-success {
-  background: var(--vesper-background-success-base);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-success-base);
+  --vesper-glass-color: var(--vesper-background-success-base);
+  --vesper-glass-opacity: 0.82;
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-success-base) 70%, transparent);
   color: var(--vesper-text-inverse-primary);
   &.vesper-admonition-subtle {
-    background: var(--vesper-background-success-subtle);
-    border-color: var(--vesper-border-success-subtle);
+    --vesper-glass-color: var(--vesper-background-success-subtle);
+    --vesper-glass-opacity: 0.6;
+    border-color: color-mix(
+      in srgb,
+      var(--vesper-border-success-subtle) 70%,
+      transparent
+    );
     color: var(--vesper-text-success);
   }
 }
 
 .vesper-admonition-warning {
-  background: var(--vesper-background-warning-base);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-warning-base);
+  --vesper-glass-color: var(--vesper-background-warning-base);
+  --vesper-glass-opacity: 0.82;
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-warning-base) 70%, transparent);
   color: var(--vesper-text-inverse-primary);
   &.vesper-admonition-subtle {
-    background: var(--vesper-background-warning-subtle);
-    border-color: var(--vesper-border-warning-subtle);
+    --vesper-glass-color: var(--vesper-background-warning-subtle);
+    --vesper-glass-opacity: 0.6;
+    border-color: color-mix(
+      in srgb,
+      var(--vesper-border-warning-subtle) 70%,
+      transparent
+    );
     color: var(--vesper-text-warning);
   }
 }
 
 .vesper-admonition-danger {
-  background: var(--vesper-background-error-base);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-error-base);
+  --vesper-glass-color: var(--vesper-background-error-base);
+  --vesper-glass-opacity: 0.82;
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-error-base) 70%, transparent);
   color: var(--vesper-text-static-white);
   &.vesper-admonition-subtle {
-    background: var(--vesper-background-error-subtle);
-    border-color: var(--vesper-border-error-subtle);
+    --vesper-glass-color: var(--vesper-background-error-subtle);
+    --vesper-glass-opacity: 0.6;
+    border-color: color-mix(
+      in srgb,
+      var(--vesper-border-error-subtle) 70%,
+      transparent
+    );
     color: var(--vesper-text-error);
   }
 }
 
 .vesper-admonition-secondary {
-  background: var(--vesper-background-inverse-primary);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+  --vesper-glass-color: var(--vesper-background-inverse-primary);
+  --vesper-glass-opacity: 0.82;
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-primary) 70%, transparent);
   color: var(--vesper-text-inverse-primary);
   &.vesper-admonition-subtle {
-    background:
-      linear-gradient(
-        0deg,
-        var(--vesper-tint-contrast-100) 0%,
-        var(--vesper-tint-contrast-100) 100%
-      ),
-      var(--vesper-background-tertiary);
+    --vesper-glass-color: var(--vesper-stone-100);
+    --vesper-glass-opacity: 0.6;
     color: var(--vesper-text-primary);
   }
 }

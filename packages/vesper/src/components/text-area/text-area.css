@@ -4,14 +4,19 @@
   &::placeholder {
     color: var(--vesper-text-tertiary);
   }
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-tint-neutral-100);
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-secondary) 70%, transparent);
+  &:hover {
+    --vesper-glass-opacity: 0.5;
+  }
   &:focus-visible {
     border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
+    --vesper-glass-opacity: 0.6;
   }
   &:disabled {
     border: var(--vesper-stroke-base) solid var(--vesper-border-disabled);
-    background: var(--vesper-tint-neutral-200);
+    --vesper-glass-color: var(--vesper-stone-200);
+    --vesper-glass-opacity: 0.35;
     color: var(--vesper-text-tertiary);
     &::placeholder {
       color: var(--vesper-text-disabled);

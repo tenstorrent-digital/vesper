@@ -1,0 +1,465 @@
+/*
+  glass material
+
+  `.vesper-glass` turns an element into a translucent glass surface:
+
+  - a translucent tint (`--vesper-glass-color` at `--vesper-glass-opacity`)
+  - a frosted, saturated backdrop (or, in chromium, a backdrop refracted
+    through a shader generated displacement map, see `utils/glass`)
+  - specular rim light, inner glow, and a top gloss
+  - a sheen that follows the pointer (`.vesper-glass-interactive`)
+  - springy press feedback (`.vesper-glass-interactive`)
+
+  components customize the material by setting `--vesper-glass-*` properties
+  instead of `background` and `box-shadow`
+
+  set `data-vesper-glass="flat"` on the root element to turn off refraction,
+  or `data-vesper-glass="off"` to render solid surfaces
+*/
+
+/* animatable inputs (registered so they can be transitioned) */
+@property --vesper-glass-presence {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
+@property --vesper-glass-sheen-opacity {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --vesper-glass-opacity {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0.4;
+}
+
+:root {
+  /* frost used by browsers without svg backdrop filters */
+  --vesper-glass-blur: 0.5rem;
+  --vesper-glass-blur-deep: 1.5rem;
+  --vesper-glass-saturation: 180%;
+
+  /* raised to `1` when transparency is reduced (every tint becomes opaque) */
+  --vesper-glass-opacity-floor: 0;
+
+  /* tactile feedback: presses dip quickly, then ring back like tapped glass ("tink") */
+  --vesper-glass-press-scale: 0.97;
+  --vesper-glass-press-duration: 0.09s;
+  --vesper-glass-press-easing: cubic-bezier(0.2, 0, 0, 1);
+  --vesper-glass-tink-duration: 0.45s;
+  /* stiff, lightly damped spring (damping ratio 0.3) that rings out quickly */
+  --vesper-glass-tink: linear(
+    0,
+    0.073,
+    0.259,
+    0.51,
+    0.776,
+    1.016,
+    1.203,
+    1.322,
+    1.37,
+    1.357,
+    1.296,
+    1.207,
+    1.108,
+    1.015,
+    0.94,
+    0.889,
+    0.864,
+    0.864,
+    0.883,
+    0.914,
+    0.95,
+    0.986,
+    1.016,
+    1.038,
+    1.049,
+    1.051,
+    1.046,
+    1.035,
+    1.022,
+    1.008,
+    0.997,
+    0.988,
+    0.982,
+    0.981,
+    0.982,
+    0.986,
+    0.991,
+    0.996,
+    1,
+    1.004,
+    1.006,
+    1.007,
+    1.007,
+    1.006,
+    1
+  );
+
+  /* springs for movement (sliding indicators, thumbs, underlines) */
+  --vesper-glass-spring-duration: 0.45s;
+  /* underdamped spring (damping ratio 0.42) */
+  --vesper-glass-spring: linear(
+    0,
+    0.061,
+    0.215,
+    0.419,
+    0.636,
+    0.838,
+    1.004,
+    1.126,
+    1.2,
+    1.232,
+    1.228,
+    1.198,
+    1.154,
+    1.103,
+    1.054,
+    1.012,
+    0.98,
+    0.958,
+    0.947,
+    0.946,
+    0.951,
+    0.96,
+    0.972,
+    0.983,
+    0.994,
+    1.002,
+    1.008,
+    1.012,
+    1.013,
+    1.012,
+    1.01,
+    1.008,
+    1.005,
+    1.002,
+    1,
+    0.998,
+    0.997,
+    0.997,
+    0.997,
+    0.997,
+    1
+  );
+  /* gently damped spring (damping ratio 0.7) for larger movements */
+  --vesper-glass-spring-soft: linear(
+    0,
+    0.024,
+    0.084,
+    0.169,
+    0.268,
+    0.372,
+    0.476,
+    0.575,
+    0.665,
+    0.746,
+    0.816,
+    0.875,
+    0.923,
+    0.962,
+    0.991,
+    1.013,
+    1.029,
+    1.039,
+    1.044,
+    1.046,
+    1.045,
+    1.043,
+    1.039,
+    1.035,
+    1.03,
+    1.025,
+    1.021,
+    1.016,
+    1.012,
+    1.009,
+    1.006,
+    1.004,
+    1.002,
+    1.001,
+    1,
+    0.999,
+    0.998,
+    0.998,
+    0.998,
+    0.998,
+    1
+  );
+
+  /* light (light theme) */
+  --vesper-glass-rim-light: rgb(255 255 255 / 0.85);
+  --vesper-glass-rim: rgb(255 255 255 / 0.35);
+  --vesper-glass-rim-shade: rgb(255 255 255 / 0.4);
+  --vesper-glass-edge: rgb(7 22 20 / 0.1);
+  --vesper-glass-gloss: rgb(255 255 255 / 0.28);
+  --vesper-glass-sheen: rgb(255 255 255 / 0.65);
+  --vesper-glass-glow: rgb(255 255 255 / 0.3);
+  --vesper-glass-shadow: rgb(9 34 33 / 0.14);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --vesper-glass-rim-light: rgb(255 255 255 / 0.32);
+    --vesper-glass-rim: rgb(255 255 255 / 0.1);
+    --vesper-glass-rim-shade: rgb(255 255 255 / 0.12);
+    --vesper-glass-edge: rgb(241 248 248 / 0.12);
+    --vesper-glass-gloss: rgb(255 255 255 / 0.07);
+    --vesper-glass-sheen: rgb(255 255 255 / 0.22);
+    --vesper-glass-glow: rgb(255 255 255 / 0.07);
+    --vesper-glass-shadow: rgb(0 0 0 / 0.4);
+  }
+}
+
+html[data-vesper-theme="light"] {
+  --vesper-glass-rim-light: rgb(255 255 255 / 0.85);
+  --vesper-glass-rim: rgb(255 255 255 / 0.35);
+  --vesper-glass-rim-shade: rgb(255 255 255 / 0.4);
+  --vesper-glass-edge: rgb(7 22 20 / 0.1);
+  --vesper-glass-gloss: rgb(255 255 255 / 0.28);
+  --vesper-glass-sheen: rgb(255 255 255 / 0.65);
+  --vesper-glass-glow: rgb(255 255 255 / 0.3);
+  --vesper-glass-shadow: rgb(9 34 33 / 0.14);
+}
+
+html[data-vesper-theme="dark"] {
+  --vesper-glass-rim-light: rgb(255 255 255 / 0.32);
+  --vesper-glass-rim: rgb(255 255 255 / 0.1);
+  --vesper-glass-rim-shade: rgb(255 255 255 / 0.12);
+  --vesper-glass-edge: rgb(241 248 248 / 0.12);
+  --vesper-glass-gloss: rgb(255 255 255 / 0.07);
+  --vesper-glass-sheen: rgb(255 255 255 / 0.22);
+  --vesper-glass-glow: rgb(255 255 255 / 0.07);
+  --vesper-glass-shadow: rgb(0 0 0 / 0.4);
+}
+
+:root {
+  /* elevation for floating glass */
+  --vesper-glass-elevation-100:
+    0 0.0625rem 0.125rem 0 var(--vesper-glass-shadow),
+    0 0.125rem 0.5rem -0.125rem var(--vesper-glass-shadow);
+  --vesper-glass-elevation-200:
+    0 0.125rem 0.25rem -0.0625rem var(--vesper-glass-shadow),
+    0 0.5rem 1.25rem -0.25rem var(--vesper-glass-shadow);
+  --vesper-glass-elevation-300:
+    0 0.25rem 0.5rem -0.125rem var(--vesper-glass-shadow),
+    0 1rem 2.5rem -0.5rem var(--vesper-glass-shadow);
+  --vesper-glass-elevation-400:
+    0 0.5rem 1rem -0.25rem var(--vesper-glass-shadow),
+    0 2rem 4.5rem -1rem var(--vesper-glass-shadow);
+}
+
+.vesper-glass {
+  /* inputs */
+  --vesper-glass-color: var(--vesper-background-primary);
+  --vesper-glass-opacity: 0.4;
+  --vesper-glass-presence: 1;
+  --vesper-glass-sheen-opacity: 0;
+  --vesper-glass-glow-size: 0.75rem;
+  --vesper-glass-ring: 0 0 #0000;
+  --vesper-glass-outline: 0 0 0 0.0625rem var(--vesper-glass-edge);
+  --vesper-glass-elevation: 0 0 #0000;
+  --vesper-glass-backdrop: blur(var(--vesper-glass-blur))
+    saturate(var(--vesper-glass-saturation));
+  --vesper-glass-scale-transition: scale var(--vesper-glass-tink-duration)
+    var(--vesper-glass-tink);
+
+  /* every layer of the material fades in and out with its presence */
+  --vesper-glass-tint-alpha: calc(
+    max(var(--vesper-glass-opacity), var(--vesper-glass-opacity-floor)) *
+      var(--vesper-glass-presence) * 100%
+  );
+  --vesper-glass-light-alpha: calc(var(--vesper-glass-presence) * 100%);
+
+  background-color: color-mix(
+    in srgb,
+    var(--vesper-glass-color) var(--vesper-glass-tint-alpha),
+    transparent
+  );
+  background-image:
+    /* sheen that follows the pointer */
+    radial-gradient(
+      circle 5rem at var(--vesper-glass-pointer-x, 50%)
+        var(--vesper-glass-pointer-y, 0%),
+      color-mix(
+        in srgb,
+        var(--vesper-glass-sheen)
+          calc(
+            var(--vesper-glass-sheen-opacity) * var(--vesper-glass-presence) *
+              100%
+          ),
+        transparent
+      ),
+      transparent
+    ),
+    /* gloss across the top of the element */
+    linear-gradient(
+      to bottom,
+      color-mix(
+        in srgb,
+        var(--vesper-glass-gloss) var(--vesper-glass-light-alpha),
+        transparent
+      ),
+      transparent 55%
+    );
+  box-shadow:
+    var(--vesper-glass-ring),
+    /* top edge catches the light */
+    inset 0 0.0625rem 0 0
+      color-mix(
+        in srgb,
+        var(--vesper-glass-rim-light) var(--vesper-glass-light-alpha),
+        transparent
+      ),
+    /* light refracted out through the bottom edge */
+    inset 0 -0.0625rem 0 0
+      color-mix(
+        in srgb,
+        var(--vesper-glass-rim-shade) var(--vesper-glass-light-alpha),
+        transparent
+      ),
+    /* bright rim around the bezel */
+    inset 0 0 0 0.0625rem
+      color-mix(
+        in srgb,
+        var(--vesper-glass-rim) var(--vesper-glass-light-alpha),
+        transparent
+      ),
+    /* light caught inside the glass */
+    inset 0 0 var(--vesper-glass-glow-size) 0
+      color-mix(
+        in srgb,
+        var(--vesper-glass-glow) var(--vesper-glass-light-alpha),
+        transparent
+      ),
+    var(--vesper-glass-outline),
+    var(--vesper-glass-elevation);
+  -webkit-backdrop-filter: var(
+    --vesper-glass-backdrop-disabled,
+    var(--vesper-glass-backdrop-override, var(--vesper-glass-backdrop))
+  );
+  backdrop-filter: var(
+    --vesper-glass-backdrop-disabled,
+    var(--vesper-glass-backdrop-override, var(--vesper-glass-backdrop))
+  );
+  transition:
+    background-color var(--vesper-transition-duration-fast) ease,
+    box-shadow var(--vesper-transition-duration-fast) ease,
+    color var(--vesper-transition-duration-fast) ease,
+    border-color var(--vesper-transition-duration-fast) ease,
+    --vesper-glass-opacity var(--vesper-transition-duration-fast) ease,
+    --vesper-glass-presence var(--vesper-transition-duration-default) ease,
+    --vesper-glass-sheen-opacity var(--vesper-transition-duration-default) ease,
+    var(--vesper-glass-scale-transition);
+}
+
+/* refract the backdrop through the element's shader generated filter */
+.vesper-glass[data-vesper-glass-refraction] {
+  --vesper-glass-backdrop: var(--vesper-glass-filter);
+}
+
+/* thicker, more frosted glass for floating surfaces */
+.vesper-glass-deep {
+  --vesper-glass-opacity: 0.5;
+  --vesper-glass-glow-size: 1.5rem;
+  --vesper-glass-backdrop: blur(var(--vesper-glass-blur-deep))
+    saturate(var(--vesper-glass-saturation));
+}
+
+/* glass pressed into the page below it (inputs, wells) */
+.vesper-glass-inset {
+  --vesper-glass-opacity: 0.42;
+  --vesper-glass-outline: 0 0 #0000;
+  --vesper-glass-elevation:
+    inset 0 0.0625rem 0.25rem 0 var(--vesper-glass-shadow),
+    inset 0 0 0 0.0625rem var(--vesper-glass-edge);
+  background-image: linear-gradient(
+    to top,
+    color-mix(
+      in srgb,
+      var(--vesper-glass-gloss) var(--vesper-glass-light-alpha),
+      transparent
+    ),
+    transparent 60%
+  );
+}
+
+/* a sheen that follows the pointer, and a "tink" when pressed */
+.vesper-glass-interactive {
+  &:hover {
+    --vesper-glass-sheen-opacity: 1;
+    --vesper-glass-glow-size: 1rem;
+  }
+  &:active {
+    --vesper-glass-glow-size: 1.5rem;
+    --vesper-glass-scale-transition: scale var(--vesper-glass-press-duration)
+      var(--vesper-glass-press-easing);
+    scale: var(--vesper-glass-press-scale);
+  }
+  &:is(:disabled, [aria-disabled="true"], [data-disabled]) {
+    --vesper-glass-sheen-opacity: 0;
+    scale: none;
+  }
+}
+
+/*
+  glass that only condenses on interaction (ghost buttons, menu items, etc)
+
+  any of the selectors below materializes the glass - components can also set
+  `--vesper-glass-presence: 1` and `--vesper-glass-backdrop-override: initial`
+*/
+.vesper-glass-latent:not(
+  :hover,
+  :focus-visible,
+  :active,
+  [data-highlighted],
+  [data-selected],
+  [data-active],
+  [data-popup-open],
+  [aria-checked="true"],
+  [aria-pressed="true"],
+  [aria-selected="true"]
+) {
+  --vesper-glass-presence: 0;
+  --vesper-glass-backdrop-override: none;
+  --vesper-glass-outline: 0 0 #0000;
+  --vesper-glass-elevation: 0 0 #0000;
+}
+
+/* respect requests for less transparency, or opting out entirely */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --vesper-glass-opacity-floor: 1;
+    --vesper-glass-backdrop-disabled: none;
+  }
+}
+
+:root[data-vesper-glass="off"] {
+  --vesper-glass-opacity-floor: 1;
+  --vesper-glass-backdrop-disabled: none;
+}
+
+/* keep the frost but skip refraction */
+:root[data-vesper-glass="flat"] .vesper-glass[data-vesper-glass-refraction] {
+  --vesper-glass-backdrop: blur(var(--vesper-glass-blur))
+    saturate(var(--vesper-glass-saturation));
+}
+
+@media (forced-colors: active) {
+  .vesper-glass {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --vesper-glass-press-scale: 1;
+    --vesper-glass-spring-duration: 0s;
+    --vesper-glass-press-duration: 0s;
+    --vesper-glass-tink-duration: 0s;
+  }
+}

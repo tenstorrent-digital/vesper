@@ -9,6 +9,7 @@ import {
   type TypographyVariant,
 } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { useGlass } from "@/utils/glass/use-glass";
 import {
   type FormInputProps,
   splitFormInputProps,
@@ -85,6 +86,8 @@ export function Checkbox(props: CheckboxProps) {
 
   const mergedInputRef = useMergedRefs(controlProps.ref, innerRef);
 
+  const glassRef = useGlass({ depth: "shallow" });
+
   return (
     <label
       {...wrapperProps}
@@ -99,7 +102,7 @@ export function Checkbox(props: CheckboxProps) {
         type="checkbox"
         className="vesper-checkbox-input"
       />
-      <div className="vesper-checkbox-box">
+      <div ref={glassRef} className="vesper-checkbox-box vesper-glass">
         <div className="vesper-checkbox-indicator">
           <Checkmark className="vesper-checkbox-checked-icon" />
           <Minus className="vesper-checkbox-indeterminate-icon" />

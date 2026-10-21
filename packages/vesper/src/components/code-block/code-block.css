@@ -2,10 +2,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  border-radius: var(--vesper-radius-2);
-  border: var(--vesper-stroke-base) solid var(--vesper-stone-200);
-  background: var(--vesper-alpha-stone-0);
-  box-shadow: var(--vesper-shadow-inset-100);
+  border-radius: var(--vesper-radius-3);
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-stone-200) 70%, transparent);
+  --vesper-glass-opacity: 0.55;
+  --vesper-glass-outline: 0 0 #0000;
+  --vesper-glass-elevation: var(--vesper-shadow-inset-100);
   overflow: hidden;
 
   .vesper-icon-button {
@@ -33,7 +35,7 @@
   }
   @media not (forced-colors: active) {
     &:has(.vesper-code-block-pre-wrapper:focus-visible) {
-      box-shadow: var(--vesper-shadow-focus-ring);
+      --vesper-glass-ring: var(--vesper-shadow-focus-ring);
     }
   }
 }

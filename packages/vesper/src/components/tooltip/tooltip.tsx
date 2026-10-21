@@ -14,6 +14,7 @@ import {
   getPortalContainer,
   type PortalContainer,
 } from "@/utils/get-portal-container";
+import { useGlass } from "@/utils/glass/use-glass";
 import { useBaseRemSize } from "@/utils/hooks/use-base-rem-size";
 import { isSingleReactElement } from "@/utils/is-single-react-element";
 
@@ -122,6 +123,8 @@ export function Tooltip(props: TooltipProps) {
 
   const portalContainer = getPortalContainer(container, innerRef);
 
+  const popupGlassRef = useGlass();
+
   return (
     <BaseTooltip.Provider>
       <BaseTooltip.Root
@@ -150,8 +153,9 @@ export function Tooltip(props: TooltipProps) {
             sideOffset={baseRemSize / 2 + sideOffset * (baseRemSize / 16)}
           >
             <Typography
+              ref={popupGlassRef}
               variant="label-xs"
-              className="vesper-tooltip"
+              className="vesper-tooltip vesper-glass"
               style={{ maxWidth: `calc(${maxWidth} * (1rem / 16))` }}
               as={BaseTooltip.Popup}
               id={popupId}

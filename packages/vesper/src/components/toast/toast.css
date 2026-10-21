@@ -20,13 +20,12 @@
   bottom: 0;
   width: 100%;
   padding: var(--vesper-spacing-5);
-  box-shadow: var(--vesper-shadow-200);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-background-primary);
-  border-radius: var(--vesper-radius-2);
-  transition:
-    background-color var(--vesper-transition-duration-fast) ease,
-    border-color var(--vesper-transition-duration-fast) ease;
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-secondary) 70%, transparent);
+  border-radius: var(--vesper-radius-4);
+  --vesper-glass-opacity: 0.62;
+  --vesper-glass-outline: 0 0 #0000;
+  --vesper-glass-elevation: var(--vesper-glass-elevation-300);
   @media (forced-colors: active) {
     background: Canvas;
     border-color: CanvasText;
@@ -36,7 +35,7 @@
   }
   @media not (forced-colors: active) {
     &:focus-visible {
-      box-shadow: var(--vesper-shadow-focus-ring);
+      --vesper-glass-ring: var(--vesper-shadow-focus-ring);
     }
   }
 }
@@ -85,8 +84,13 @@
 }
 
 .vesper-toast-success {
-  border-color: var(--vesper-border-success-subtle);
-  background: var(--vesper-background-success-subtle);
+  border-color: color-mix(
+    in srgb,
+    var(--vesper-border-success-subtle) 70%,
+    transparent
+  );
+  --vesper-glass-color: var(--vesper-background-success-subtle);
+  --vesper-glass-opacity: 0.72;
   .vesper-toast-icon,
   .vesper-toast-children {
     @media not (forced-colors: active) {
@@ -96,8 +100,13 @@
 }
 
 .vesper-toast-warning {
-  border-color: var(--vesper-border-warning-subtle);
-  background: var(--vesper-background-warning-subtle);
+  border-color: color-mix(
+    in srgb,
+    var(--vesper-border-warning-subtle) 70%,
+    transparent
+  );
+  --vesper-glass-color: var(--vesper-background-warning-subtle);
+  --vesper-glass-opacity: 0.72;
   .vesper-toast-icon,
   .vesper-toast-children {
     @media not (forced-colors: active) {
@@ -107,8 +116,13 @@
 }
 
 .vesper-toast-danger {
-  border-color: var(--vesper-border-error-subtle);
-  background: var(--vesper-background-error-subtle);
+  border-color: color-mix(
+    in srgb,
+    var(--vesper-border-error-subtle) 70%,
+    transparent
+  );
+  --vesper-glass-color: var(--vesper-background-error-subtle);
+  --vesper-glass-opacity: 0.72;
   .vesper-toast-icon,
   .vesper-toast-children {
     @media not (forced-colors: active) {

@@ -1,4 +1,6 @@
 .vesper-text-button {
+  position: relative;
+  isolation: isolate;
   width: fit-content;
   display: inline-flex;
   justify-content: center;
@@ -11,8 +13,56 @@
   letter-spacing: var(--vesper-tracking-normal);
   cursor: pointer;
   border-bottom: var(--vesper-stroke-base) solid transparent;
+  transition: scale var(--vesper-glass-tink-duration) var(--vesper-glass-tink);
+  /* a frosted glass capsule that condenses behind the text on hover */
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: calc(var(--vesper-spacing-1) * -1) calc(var(--vesper-spacing-2) * -1);
+    border-radius: 999px;
+    pointer-events: none;
+    background-color: color-mix(
+      in srgb,
+      var(--vesper-stone-200) 45%,
+      transparent
+    );
+    background-image: linear-gradient(
+      to bottom,
+      var(--vesper-glass-gloss),
+      transparent 60%
+    );
+    box-shadow:
+      inset 0 0.0625rem 0 0 var(--vesper-glass-rim-light),
+      inset 0 0 0 0.0625rem var(--vesper-glass-rim),
+      0 0 0 0.0625rem var(--vesper-glass-edge);
+    -webkit-backdrop-filter: blur(var(--vesper-glass-blur))
+      saturate(var(--vesper-glass-saturation));
+    backdrop-filter: blur(var(--vesper-glass-blur))
+      saturate(var(--vesper-glass-saturation));
+    opacity: 0;
+    scale: 0.8 0.6;
+    transition:
+      opacity var(--vesper-transition-duration-fast) ease,
+      scale var(--vesper-glass-spring-duration) var(--vesper-glass-spring);
+  }
+  &:hover::before,
+  &:focus-visible::before {
+    opacity: 1;
+    scale: 1;
+  }
+  &:active {
+    scale: var(--vesper-glass-press-scale);
+    transition-duration: var(--vesper-glass-press-duration);
+    transition-timing-function: var(--vesper-glass-press-easing);
+  }
   &:focus-visible {
     box-shadow: var(--vesper-shadow-focus-ring);
+  }
+  @media (forced-colors: active) {
+    &::before {
+      display: none;
+    }
   }
   @media (forced-colors: active) {
     &:focus-visible {

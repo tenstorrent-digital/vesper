@@ -20,6 +20,7 @@ import { IconButton } from "@/components/icon-button/icon-button";
 import { Close } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { useGlass } from "@/utils/glass/use-glass";
 
 interface SheetRef {
   open(): void;
@@ -119,6 +120,8 @@ export function Sheet(props: SheetProps) {
   const titleId = useId();
   const descriptionId = useId();
   const innerRef = useRef<HTMLDialogElement>(null);
+
+  const contentGlassRef = useGlass({ depth: "deep" });
 
   const open = useCallback(() => {
     if (!innerRef.current) return;
@@ -222,11 +225,20 @@ export function Sheet(props: SheetProps) {
       {...rest}
     >
       {form ? (
-        <form className="vesper-sheet-content" {...form}>
+        <form
+          ref={contentGlassRef}
+          className="vesper-sheet-content vesper-glass vesper-glass-deep"
+          {...form}
+        >
           {sheetContents}
         </form>
       ) : (
-        <div className="vesper-sheet-content">{sheetContents}</div>
+        <div
+          ref={contentGlassRef}
+          className="vesper-sheet-content vesper-glass vesper-glass-deep"
+        >
+          {sheetContents}
+        </div>
       )}
     </dialog>
   );

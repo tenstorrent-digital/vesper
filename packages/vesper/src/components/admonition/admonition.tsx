@@ -13,6 +13,7 @@ import {
   TypographyVariant,
 } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { Glass } from "@/utils/glass/glass";
 
 export const ADMONITION_SIZES = ["sm", "md"] as const;
 
@@ -96,6 +97,7 @@ export function Admonition<C extends ElementType = "button">(
     <div
       className={cn(
         "vesper-admonition",
+        "vesper-glass",
         `vesper-admonition-${size}`,
         `vesper-admonition-${variant}`,
         subtle && "vesper-admonition-subtle",
@@ -103,6 +105,7 @@ export function Admonition<C extends ElementType = "button">(
       )}
       {...rest}
     >
+      <Glass />
       <div className="vesper-admonition-content">
         <span className="vesper-admonition-icon">
           {variant === "danger" && <ErrorSolid />}

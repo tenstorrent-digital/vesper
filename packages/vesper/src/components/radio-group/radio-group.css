@@ -21,15 +21,36 @@
 
 .vesper-radio-group-item-indicator {
   border-radius: 50%;
-  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-primary) 70%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
+  --vesper-glass-opacity: 0.5;
+  --vesper-glass-outline: 0 0 #0000;
+  --vesper-glass-glow-size: 0.25rem;
+  --vesper-glass-elevation: var(--vesper-glass-elevation-100);
   &::after {
     content: "";
     width: 50%;
     height: 50%;
     border-radius: 50%;
+    scale: 0;
+    transition: scale var(--vesper-glass-spring-duration)
+      var(--vesper-glass-spring);
+  }
+}
+
+/* the bead dips when pressed and rings back ("tinks") on release */
+.vesper-radio-group-item:not(.vesper-radio-group-item-disabled) {
+  &:hover .vesper-radio-group-item-indicator {
+    --vesper-glass-sheen-opacity: 1;
+    --vesper-glass-opacity: 0.7;
+  }
+  &:active .vesper-radio-group-item-indicator {
+    --vesper-glass-scale-transition: scale var(--vesper-glass-press-duration)
+      var(--vesper-glass-press-easing);
+    scale: 0.9;
   }
 }
 .vesper-radio-group-item-sm .vesper-radio-group-item-indicator {
@@ -56,10 +77,24 @@
   white-space: nowrap;
   border: 0;
   &:checked + .vesper-radio-group-item-indicator {
-    border-color: var(--vesper-background-accent-base);
-    background: var(--vesper-background-accent-base);
+    border-color: color-mix(
+      in srgb,
+      var(--vesper-background-accent-base) 80%,
+      transparent
+    );
+    --vesper-glass-color: var(--vesper-background-accent-base);
+    --vesper-glass-opacity: 0.88;
     &::after {
-      background: var(--vesper-icon-inverse-primary);
+      scale: 1;
+      /* a glossy pearl */
+      background:
+        radial-gradient(
+          circle at 35% 30%,
+          rgb(255 255 255 / 0.9),
+          transparent 60%
+        ),
+        var(--vesper-static-white);
+      box-shadow: 0 0.0625rem 0.125rem 0 var(--vesper-glass-shadow);
       @media (forced-colors: active) {
         background: CanvasText;
       }
@@ -76,7 +111,9 @@
   .vesper-radio-input {
     & + .vesper-radio-group-item-indicator {
       border-color: var(--vesper-border-disabled);
-      background: var(--vesper-background-disabled);
+      --vesper-glass-color: var(--vesper-stone-200);
+      --vesper-glass-opacity: 0.3;
+      --vesper-glass-elevation: 0 0 #0000;
     }
     &:checked + .vesper-radio-group-item-indicator::after {
       background: var(--vesper-icon-disabled);

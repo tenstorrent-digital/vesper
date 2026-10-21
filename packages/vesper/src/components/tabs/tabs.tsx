@@ -8,6 +8,7 @@ import {
   TypographyVariant,
 } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { useGlass } from "@/utils/glass/use-glass";
 import { isSingleReactElement } from "@/utils/is-single-react-element";
 
 export const TABS_VARIANTS = ["primary", "secondary"] as const;
@@ -110,6 +111,13 @@ export function Tabs(props: TabsProps) {
     ...rest
   } = props;
 
+  // secondary tabs are glass pills, primary tabs are underlined text
+  const isGlass = variant === "secondary";
+  const triggerGlassRef = useGlass({
+    interactive: true,
+    disabled: !isGlass,
+  });
+
   return (
     <BaseTabs.Root
       className={cn(`vesper-tabs-${variant}`, className)}
@@ -126,7 +134,11 @@ export function Tabs(props: TabsProps) {
             variant={TRIGGER_TYPOGRAPHY[variant]}
             key={item.value}
             value={item.value}
-            className="vesper-tabs-trigger"
+            ref={triggerGlassRef}
+            className={cn(
+              "vesper-tabs-trigger",
+              isGlass && "vesper-glass vesper-glass-interactive",
+            )}
           >
             {item.icon && (
               <span className="vesper-tabs-trigger-icon">{item.icon}</span>

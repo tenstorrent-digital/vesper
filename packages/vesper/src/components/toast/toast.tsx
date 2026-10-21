@@ -1,5 +1,6 @@
 "use client";
 
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 
@@ -13,6 +14,7 @@ import {
 } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { useGlass } from "@/utils/glass/use-glass";
 
 import { animateToastEnter, animateToastExit } from "./animations";
 import { store, type ToastData, useStore } from "./store";
@@ -40,6 +42,9 @@ function Toast({
 }: ToastData) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const toastRef = useRef<HTMLDivElement>(null);
+
+  const glassRef = useGlass({ depth: "deep" });
+  const mergedToastRef = useMergedRefs(toastRef, glassRef);
 
   // handle updating announcement text when content changes
   useEffect(() => {
@@ -139,10 +144,12 @@ function Toast({
       }}
     >
       <div
-        ref={toastRef}
+        ref={mergedToastRef}
         data-state={state}
         className={cn(
           "vesper-toast",
+          "vesper-glass",
+          "vesper-glass-deep",
           `vesper-toast-${state}`,
           `vesper-toast-${variant}`,
         )}

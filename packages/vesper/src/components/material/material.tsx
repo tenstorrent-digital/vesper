@@ -2,6 +2,7 @@ import type { ElementType } from "react";
 
 import { cn } from "@/utils/cn";
 import { getDisabledProps } from "@/utils/get-disabled-props";
+import { Glass } from "@/utils/glass/glass";
 import { Polymorphic } from "@/utils/polymorphic";
 
 export const BUTTON_SIZES = ["xs", "sm", "md", "lg"] as const;
@@ -77,19 +78,34 @@ export function Material<E extends ElementType = "div">(
     className,
     variant = "outlined",
     state,
+    children,
     ...rest
   } = props;
+
+  const isFloating = variant === "floating" || variant === "modal";
+  const isInset = variant === "inset" || variant === "inset-strong";
+  const isInteractive = variant === "interactive" && state !== "disabled";
 
   return (
     <Component
       className={cn(
         "vesper-material",
+        "vesper-glass",
+        isFloating && "vesper-glass-deep",
+        isInset && "vesper-glass-inset",
+        isInteractive && "vesper-glass-interactive",
         `vesper-material-${variant}`,
         variant === "interactive" && state && `vesper-material-${state}`,
         className,
       )}
       {...rest}
       {...getDisabledProps(Component, state === "disabled")}
-    />
+    >
+      <Glass
+        depth={isFloating ? "deep" : isInset ? "shallow" : "regular"}
+        interactive={isInteractive}
+      />
+      {children}
+    </Component>
   );
 }

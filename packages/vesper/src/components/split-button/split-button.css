@@ -6,6 +6,7 @@
 .vesper-split-button-action-button {
   width: 100%;
   position: relative;
+  --vesper-glass-outline: 0 0 #0000;
   border-width: var(--vesper-stroke-base);
   border-style: solid;
   border-top-right-radius: 0;
@@ -20,6 +21,7 @@
 
 .vesper-split-button-menu-button {
   position: relative;
+  --vesper-glass-outline: 0 0 #0000;
   border-width: var(--vesper-stroke-base);
   border-style: solid;
   border-left-width: 0;
@@ -43,21 +45,45 @@
 
 @media (forced-colors: none) {
   .vesper-split-button-action-button.vesper-button-contrast {
-    border-color: var(--vesper-border-inverse-secondary);
+    border-color: color-mix(
+      in srgb,
+      var(--vesper-border-inverse-secondary) 70%,
+      transparent
+    );
   }
   .vesper-split-button-menu-button.vesper-button-contrast {
-    border-color: var(--vesper-border-inverse-secondary);
+    border-color: color-mix(
+      in srgb,
+      var(--vesper-border-inverse-secondary) 70%,
+      transparent
+    );
   }
   .vesper-split-button-action-button.vesper-button-subtle {
-    border-color: var(--vesper-border-secondary);
+    border-color: color-mix(
+      in srgb,
+      var(--vesper-border-secondary) 70%,
+      transparent
+    );
   }
   .vesper-split-button-menu-button.vesper-button-subtle {
-    border-color: var(--vesper-border-secondary);
+    border-color: color-mix(
+      in srgb,
+      var(--vesper-border-secondary) 70%,
+      transparent
+    );
   }
   .vesper-split-button-action-button.vesper-button-disabled {
-    border-color: var(--vesper-border-secondary);
+    border-color: color-mix(
+      in srgb,
+      var(--vesper-border-secondary) 70%,
+      transparent
+    );
   }
   .vesper-split-button-menu-button.vesper-button-disabled {
-    border-color: var(--vesper-border-secondary);
+    border-color: color-mix(
+      in srgb,
+      var(--vesper-border-secondary) 70%,
+      transparent
+    );
   }
 }

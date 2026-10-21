@@ -46,16 +46,22 @@
 
 .vesper-sheet-content {
   opacity: 0;
-  transition:
-    opacity var(--vesper-transition-duration-fast) ease,
-    transform var(--vesper-transition-duration-fast) ease;
   display: flex;
   flex-direction: column;
   gap: var(--vesper-spacing-6);
   width: min(calc(100vw - var(--vesper-spacing-12)), 29.5rem);
-  background: var(--vesper-background-primary);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
-  border-radius: var(--vesper-radius-3);
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-primary) 60%, transparent);
+  border-radius: var(--vesper-radius-4);
+  --vesper-glass-opacity: 0.6;
+  --vesper-glass-outline: 0 0 #0000;
+  --vesper-glass-elevation: var(--vesper-glass-elevation-400);
+  transition:
+    opacity var(--vesper-transition-duration-fast) ease,
+    transform var(--vesper-glass-spring-duration)
+      var(--vesper-glass-spring-soft),
+    background-color var(--vesper-transition-duration-fast) ease,
+    box-shadow var(--vesper-transition-duration-fast) ease;
   position: fixed;
   top: var(--vesper-spacing-6);
   height: calc(100vh - var(--vesper-spacing-12));
@@ -69,7 +75,7 @@
     transform: translateX(0);
   }
   &::before {
-    background: var(--vesper-scrim-contrast-base);
+    background: var(--vesper-scrim-contrast-subtle);
   }
 }
 

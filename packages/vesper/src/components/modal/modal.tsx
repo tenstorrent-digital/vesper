@@ -16,6 +16,7 @@ import { IconButton } from "@/components/icon-button/icon-button";
 import { Close } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { useGlass } from "@/utils/glass/use-glass";
 
 export const MODAL_BUTTONS_ALIGNMENTS = [
   "start",
@@ -133,6 +134,8 @@ export function Modal(props: ModalProps) {
   const descriptionId = useId();
   const innerRef = useRef<HTMLDialogElement>(null);
 
+  const containerGlassRef = useGlass({ depth: "deep" });
+
   const open = useCallback(() => {
     if (!innerRef.current) return;
     if (!innerRef.current.open) innerRef.current.showModal();
@@ -227,7 +230,8 @@ export function Modal(props: ModalProps) {
       : maxHeight;
 
   const containerProps = {
-    className: "vesper-modal-container",
+    ref: containerGlassRef,
+    className: "vesper-modal-container vesper-glass vesper-glass-deep",
     style: {
       width: typeof width === "number" ? `calc(${width} * (1rem / 16))` : width,
       maxHeight: `min(calc(100vh - var(--vesper-spacing-16)), ${computedMaxHeight})`,

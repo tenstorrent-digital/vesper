@@ -7,6 +7,7 @@ import {
   type TypographyVariant,
 } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { useGlass } from "@/utils/glass/use-glass";
 import {
   FormInputProps,
   splitFormInputProps,
@@ -109,11 +110,16 @@ export function TextInput(props: TextInputProps) {
   const { ariaProps, controlProps, formProps, wrapperProps } =
     splitFormInputProps(rest);
 
+  const glassRef = useGlass({ depth: "deep" });
+
   return (
     <div
       {...wrapperProps}
+      ref={glassRef}
       className={cn(
         "vesper-text-input",
+        "vesper-glass",
+        "vesper-glass-inset",
         `vesper-text-input-${size}`,
         `vesper-text-input-${variant}`,
         className,

@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 
 import { cn } from "@/utils/cn";
+import { Glass } from "@/utils/glass/glass";
 
 export const PROGRESS_BAR_SIZES = ["sm", "md", "lg"] as const;
 
@@ -62,6 +63,8 @@ export function ProgressBar(props: ProgressBarProps) {
       aria-label={ariaLabel}
       className={cn(
         "vesper-progress-bar",
+        "vesper-glass",
+        "vesper-glass-inset",
         `vesper-progress-bar-${size}`,
         animated && "vesper-progress-bar-animated",
         className,
@@ -73,6 +76,7 @@ export function ProgressBar(props: ProgressBarProps) {
       role="progressbar"
       aria-valuetext={`${progress}%`}
     >
+      <Glass depth="shallow" />
       {variant === "default" && (
         <ProgressBarIndicatorDefault value={progress} />
       )}

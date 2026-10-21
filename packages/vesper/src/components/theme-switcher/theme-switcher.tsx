@@ -1,9 +1,11 @@
 "use client";
 
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import { useSyncExternalStore, type ComponentProps } from "react";
 
 import { ModeDark, ModeLight, ModeSystem } from "@/components/icons/icons";
 import { cn } from "@/utils/cn";
+import { useGlass } from "@/utils/glass/use-glass";
 
 export const THEME_SWITCHER_SIZES = ["sm", "lg"] as const;
 
@@ -94,15 +96,22 @@ export const useTheme = (
  * <ThemeSwitcher serverTheme={savedTheme} />
  */
 export function ThemeSwitcher(props: ThemeSwitcherProps) {
-  const { className, size = "lg", serverTheme, ...rest } = props;
+  const { className, size = "lg", serverTheme, ref, ...rest } = props;
   const [currentTheme, setCurrentTheme] = useTheme(serverTheme);
+
+  const trackGlassRef = useGlass({ depth: "shallow" });
+  const mergedRef = useMergedRefs(ref, trackGlassRef);
+  const indicatorGlassRef = useGlass();
 
   return (
     <div
       {...rest}
+      ref={mergedRef}
       data-vesper-theme={currentTheme}
       className={cn(
         "vesper-theme-switcher",
+        "vesper-glass",
+        "vesper-glass-inset",
         `vesper-theme-switcher-${size}`,
         `vesper-theme-switcher-${currentTheme}`,
         className,
@@ -125,7 +134,10 @@ export function ThemeSwitcher(props: ThemeSwitcherProps) {
           </button>
         );
       })}
-      <span className="vesper-theme-switcher-indicator" />
+      <span
+        ref={indicatorGlassRef}
+        className="vesper-theme-switcher-indicator vesper-glass"
+      />
     </div>
   );
 }

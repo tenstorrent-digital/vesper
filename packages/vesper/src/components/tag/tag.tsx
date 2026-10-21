@@ -3,6 +3,7 @@ import type { ElementType, ReactNode } from "react";
 import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
 import { getDisabledProps } from "@/utils/get-disabled-props";
+import { Glass } from "@/utils/glass/glass";
 import type { Polymorphic } from "@/utils/polymorphic";
 
 export const TAG_SIZES = ["sm", "md", "lg"] as const;
@@ -84,6 +85,7 @@ export function Tag<E extends ElementType = "div">(props: TagProps<E>) {
     <Component
       className={cn(
         "vesper-tag",
+        "vesper-glass",
         `vesper-tag-${size}`,
         disabled ? "vesper-tag-disabled" : `vesper-tag-${variant}`,
         className,
@@ -91,6 +93,7 @@ export function Tag<E extends ElementType = "div">(props: TagProps<E>) {
       {...rest}
       {...getDisabledProps(Component, !!disabled)}
     >
+      <Glass depth="shallow" />
       {icon && <span className="vesper-tag-icon">{icon}</span>}
       <Typography as="span" variant="label-xs">
         {children}

@@ -33,7 +33,12 @@ export function Code(props: CodeProps) {
     <Typography
       as="code"
       variant="copy-xs-mono"
-      className={cn("vesper-code", `vesper-code-${variant}`, className)}
+      className={cn(
+        "vesper-code",
+        "vesper-glass",
+        `vesper-code-${variant}`,
+        className,
+      )}
       {...rest}
     />
   );

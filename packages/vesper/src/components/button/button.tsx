@@ -2,6 +2,7 @@ import type { ElementType, ReactNode } from "react";
 
 import { cn } from "@/utils/cn";
 import { getDisabledProps } from "@/utils/get-disabled-props";
+import { Glass } from "@/utils/glass/glass";
 import type { Polymorphic } from "@/utils/polymorphic";
 
 export const BUTTON_SIZES = ["xs", "sm", "md", "lg"] as const;
@@ -87,6 +88,9 @@ export function Button<E extends ElementType = "button">(
     <Component
       className={cn(
         "vesper-button",
+        "vesper-glass",
+        !disabled && "vesper-glass-interactive",
+        !disabled && variant === "ghost" && "vesper-glass-latent",
         `vesper-button-${size}`,
         `vesper-button-${disabled ? "disabled" : variant}`,
         className,
@@ -94,6 +98,7 @@ export function Button<E extends ElementType = "button">(
       {...rest}
       {...getDisabledProps(Component, !!disabled)}
     >
+      <Glass interactive={!disabled} />
       {iconLeft && <span className="vesper-button-icon">{iconLeft}</span>}
       {children}
       {iconRight && <span className="vesper-button-icon">{iconRight}</span>}
