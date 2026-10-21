@@ -8,6 +8,7 @@ import { ComponentProps, type CSSProperties, type Ref, useMemo } from "react";
 
 import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { useGlass } from "@/utils/glass/use-glass";
 
 // `CSSProperties` that also allows css custom properties (eg. `--vesper-range-tick-position`)
 type CSSPropertiesWithVars = CSSProperties &
@@ -144,6 +145,11 @@ export function Range(props: RangeProps) {
 
   const thumbValues = values ?? defaultValues;
 
+  const thumbGlassRef = useGlass({
+    depth: "shallow",
+    interactive: !disabled,
+  });
+
   return (
     <BaseSlider.Root
       {...rest}
@@ -193,10 +199,13 @@ export function Range(props: RangeProps) {
               // oxlint-disable-next-line react/no-array-index-key
               key={index}
               as={BaseSlider.Thumb}
+              ref={thumbGlassRef}
               variant="label-xs"
               index={index}
               className={cn(
                 "vesper-range-thumb",
+                "vesper-glass",
+                !disabled && "vesper-glass-interactive",
                 showValueLabels && "vesper-range-thumb-labeled",
               )}
               onPointerDown={(e) => {

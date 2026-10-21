@@ -1,13 +1,22 @@
 .vesper-accordion {
   padding: var(--vesper-spacing-3);
-  border-radius: var(--vesper-radius-1);
+  border-radius: var(--vesper-radius-2);
+  --vesper-glass-color: var(--vesper-stone-100);
+  --vesper-glass-opacity: 0.45;
+  /* only the trigger is pressable, so the whole panel shouldn't dip */
+  &:active {
+    scale: none;
+  }
   &:hover {
     & > .vesper-accordion-trigger {
       color: var(--vesper-text-primary);
     }
   }
   &[data-open] {
-    background: var(--vesper-state-neutral-hover);
+    --vesper-glass-presence: 1;
+    --vesper-glass-backdrop-override: initial;
+    --vesper-glass-opacity: 0.55;
+    --vesper-glass-elevation: var(--vesper-glass-elevation-100);
     & > .vesper-accordion-trigger {
       color: var(--vesper-text-primary);
     }
@@ -41,6 +50,14 @@
       box-shadow: var(--vesper-shadow-focus-ring);
     }
   }
+  /* the title nudges down like a key being pressed */
+  transition: translate var(--vesper-glass-tink-duration)
+    var(--vesper-glass-tink);
+  &:active {
+    translate: 0 0.0625rem;
+    transition-duration: var(--vesper-glass-press-duration);
+    transition-timing-function: var(--vesper-glass-press-easing);
+  }
   @media (forced-colors: active) {
     &:focus-visible {
       &::before {
@@ -53,7 +70,8 @@
 .vesper-accordion-trigger-icon {
   width: 1rem;
   height: 1rem;
-  transition: transform var(--vesper-transition-duration-default) ease;
+  transition: transform var(--vesper-glass-spring-duration)
+    var(--vesper-glass-spring);
 }
 
 .vesper-accordion-panel {

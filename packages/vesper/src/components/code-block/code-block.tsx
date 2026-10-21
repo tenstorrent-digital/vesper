@@ -2,6 +2,7 @@ import type { LanguageRegistration } from "@shikijs/core";
 import type { ComponentProps } from "react";
 
 import { cn } from "@/utils/cn";
+import { Glass } from "@/utils/glass/glass";
 
 import { CodeBlockPreWrapper, CopyToClipboardButton } from "./components";
 import { StreamingCodeBlock } from "./streaming-code-block";
@@ -85,10 +86,11 @@ export function CodeBlock(props: CodeBlockProps) {
 
   return (
     <div
-      className={cn("vesper-code-block", className)}
+      className={cn("vesper-code-block", "vesper-glass", className)}
       data-copy-on-hover={copyOnHover}
       {...rest}
     >
+      <Glass />
       <CodeBlockPreWrapper data-line-numbers={showLineNumbers}>
         {codeToJsx(code, lang)}
       </CodeBlockPreWrapper>

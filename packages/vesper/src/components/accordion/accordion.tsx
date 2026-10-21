@@ -5,6 +5,7 @@ import { Collapsible } from "@base-ui/react/collapsible";
 import { CaretRight } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { Glass } from "@/utils/glass/glass";
 
 export interface AccordionProps extends ComponentProps<"div"> {
   /** Whether the accordion is open by default (uncontrolled mode). */
@@ -53,9 +54,16 @@ export function Accordion(props: AccordionProps) {
       defaultOpen={defaultOpen}
       open={open}
       onOpenChange={onOpenChange}
-      className={cn("vesper-accordion", className)}
+      className={cn(
+        "vesper-accordion",
+        "vesper-glass",
+        "vesper-glass-latent",
+        "vesper-glass-interactive",
+        className,
+      )}
       {...rest}
     >
+      <Glass interactive />
       <Typography
         as={Collapsible.Trigger}
         variant="label-md-bold"

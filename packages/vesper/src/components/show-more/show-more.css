@@ -2,10 +2,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* glass hairlines: a shadow line with a highlight just beneath it */
   &::before,
   &::after {
     content: "";
     flex: 1;
-    border-bottom: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
+    border-bottom: var(--vesper-stroke-base) solid
+      color-mix(in srgb, var(--vesper-border-tertiary) 80%, transparent);
+    box-shadow: 0 var(--vesper-stroke-base) 0 0 var(--vesper-glass-rim-light);
+  }
+  &::before {
+    mask-image: linear-gradient(to right, transparent, black 40%);
+  }
+  &::after {
+    mask-image: linear-gradient(to left, transparent, black 40%);
   }
 }

@@ -3,10 +3,11 @@
   flex-direction: column;
   padding: var(--vesper-spacing-2);
   gap: var(--vesper-spacing-half);
-  border-radius: var(--vesper-radius-3);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
-  background: var(--vesper-background-primary);
-  box-shadow: var(--vesper-shadow-200);
+  border-radius: var(--vesper-radius-4);
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-tertiary) 70%, transparent);
+  --vesper-glass-outline: 0 0 #0000;
+  --vesper-glass-elevation: var(--vesper-glass-elevation-300);
 }
 
 .vesper-menu-item {
@@ -15,9 +16,13 @@
   width: 100%;
   padding: var(--vesper-spacing-2);
   gap: var(--vesper-spacing-2);
-  border-radius: var(--vesper-radius-1);
+  border-radius: var(--vesper-radius-2);
   cursor: pointer;
   outline: none;
+  --vesper-glass-color: var(--vesper-stone-200);
+  --vesper-glass-opacity: 0.55;
+  --vesper-glass-outline: 0 0 #0000;
+  --vesper-glass-glow-size: 0.375rem;
   @media (forced-colors: active) {
     &:focus-visible {
       outline: var(--vesper-stroke-strong) solid CanvasText;
@@ -30,39 +35,27 @@
   .vesper-menu-item-label {
     color: var(--vesper-text-secondary);
   }
-  &:hover,
-  &:focus-visible,
-  &[data-highlighted] {
-    background: var(--vesper-tint-neutral-100);
-  }
 }
 
-.vesper-menu-item-selected {
+.vesper-menu-item.vesper-menu-item-selected {
   color: var(--vesper-text-primary);
-  background: var(--vesper-tint-neutral-200);
+  --vesper-glass-presence: 1;
+  --vesper-glass-backdrop-override: initial;
+  --vesper-glass-opacity: 0.45;
   .vesper-menu-item-label {
     color: var(--vesper-text-secondary);
   }
   &:hover,
   &:focus-visible,
   &[data-highlighted] {
-    background:
-      linear-gradient(
-        0deg,
-        var(--vesper-state-neutral-hover) 0%,
-        var(--vesper-state-neutral-hover) 100%
-      ),
-      var(--vesper-tint-neutral-200);
+    --vesper-glass-opacity: 0.7;
   }
 }
 
 .vesper-menu-item-danger {
   color: var(--vesper-text-error);
-  &:hover,
-  &:focus-visible,
-  &[data-highlighted] {
-    background: var(--vesper-background-error-subtle);
-  }
+  --vesper-glass-color: var(--vesper-background-error-subtle);
+  --vesper-glass-opacity: 0.75;
 }
 
 .vesper-menu-item-locked {

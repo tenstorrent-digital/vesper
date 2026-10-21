@@ -3,9 +3,11 @@
   width: fit-content;
   gap: var(--vesper-spacing-1);
   padding: var(--vesper-spacing-1);
-  border-radius: var(--vesper-radius-2);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-tint-inverse-400);
+  border-radius: var(--vesper-radius-3);
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-secondary) 70%, transparent);
+  --vesper-glass-color: var(--vesper-stone-200);
+  --vesper-glass-opacity: 0.4;
 }
 
 .vesper-toggle-select {
@@ -53,17 +55,20 @@
   }
 }
 
+/* segments condense into glass on hover, the selected segment is raised glass */
 .vesper-toggle-item {
   cursor: pointer;
-  border-radius: var(--vesper-radius-1);
+  border-radius: var(--vesper-radius-2);
   display: inline-flex;
   align-items: center;
   color: var(--vesper-text-secondary);
-  &:hover {
-    background: var(--vesper-tint-neutral-200);
-  }
+  --vesper-glass-color: var(--vesper-background-primary);
+  --vesper-glass-opacity: 0.35;
+  --vesper-glass-outline: 0 0 #0000;
+  --vesper-glass-glow-size: 0.5rem;
   &.vesper-toggle-item-active {
-    background: var(--vesper-tint-neutral-400);
+    --vesper-glass-opacity: 0.85;
+    --vesper-glass-elevation: var(--vesper-glass-elevation-100);
     color: var(--vesper-text-primary);
     @media (forced-colors: active) {
       background: CanvasText;
@@ -76,11 +81,13 @@
 .vesper-toggle-disabled {
   pointer-events: none;
   border-color: var(--vesper-border-disabled);
-  background: var(--vesper-background-disabled);
+  --vesper-glass-opacity: 0.25;
   .vesper-toggle-item {
     color: var(--vesper-text-disabled);
     &.vesper-toggle-item-active {
-      background: var(--vesper-background-disabled);
+      --vesper-glass-color: var(--vesper-stone-200);
+      --vesper-glass-opacity: 0.4;
+      --vesper-glass-elevation: 0 0 #0000;
     }
   }
 }

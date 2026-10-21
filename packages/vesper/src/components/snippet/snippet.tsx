@@ -1,11 +1,13 @@
 "use client";
 
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import { type ComponentProps, useCallback, useRef, useState } from "react";
 
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Checkmark, Copy } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { useGlass } from "@/utils/glass/use-glass";
 
 export const SNIPPET_VARIANTS = ["default", "contrast"] as const;
 
@@ -36,9 +38,12 @@ export interface SnippetProps extends Omit<ComponentProps<"div">, "children"> {
  * </Snippet>
  */
 export function Snippet(props: SnippetProps) {
-  const { className, children, variant = "default", ...rest } = props;
+  const { className, children, variant = "default", ref, ...rest } = props;
 
   const [copied, setCopied] = useState(false);
+
+  const glassRef = useGlass();
+  const mergedRef = useMergedRefs(ref, glassRef);
 
   const timeout = useRef<NodeJS.Timeout | null>(null);
 
@@ -58,7 +63,13 @@ export function Snippet(props: SnippetProps) {
 
   return (
     <div
-      className={cn("vesper-snippet", `vesper-snippet-${variant}`, className)}
+      ref={mergedRef}
+      className={cn(
+        "vesper-snippet",
+        "vesper-glass",
+        `vesper-snippet-${variant}`,
+        className,
+      )}
       {...rest}
     >
       <pre>

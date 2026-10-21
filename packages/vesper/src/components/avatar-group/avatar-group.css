@@ -8,7 +8,7 @@
   }
   @media not (forced-colors: active) {
     &:focus-visible {
-      box-shadow: var(--vesper-shadow-focus-ring);
+      --vesper-glass-ring: var(--vesper-shadow-focus-ring);
     }
   }
   .vesper-avatar:not(:first-child) {
@@ -25,7 +25,8 @@
     align-items: center;
     justify-content: center;
     color: var(--vesper-text-inverse-primary);
-    background: var(--vesper-background-inverse-primary);
+    --vesper-glass-color: var(--vesper-background-inverse-primary);
+    --vesper-glass-opacity: 0.8;
     font-family: var(--vesper-font-sans);
     font-weight: 400;
     line-height: var(--vesper-leading-none);

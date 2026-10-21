@@ -3,6 +3,7 @@ import type { Preview } from "@storybook/react-vite";
 import axe from "axe-core";
 
 import "@/styles/styles.css";
+import { GLASS_BACKDROP_STYLES } from "@/utils/glass/glass.stories";
 
 /**
  * axe-core tags we want to test for — mirrors vitest.setup.ts configuration
@@ -44,15 +45,33 @@ const preview: Preview = {
         dynamicTitle: true,
       },
     },
+    backdrop: {
+      description: "Background behind components (glass is see-through)",
+      toolbar: {
+        title: "Backdrop",
+        icon: "photo",
+        items: [
+          { value: "aurora", title: "Aurora" },
+          { value: "type", title: "Type" },
+          { value: "stripes", title: "Stripes" },
+          { value: "plain", title: "Plain" },
+        ],
+        dynamicTitle: true,
+      },
+    },
   },
   initialGlobals: {
     theme: "light",
+    backdrop: "aurora",
   },
   decorators: [
     (Story, { globals }) => {
       const theme = globals.theme || "light";
+      const backdrop: keyof typeof GLASS_BACKDROP_STYLES =
+        globals.backdrop in GLASS_BACKDROP_STYLES ? globals.backdrop : "plain";
       document.documentElement.setAttribute("data-vesper-theme", theme);
-      document.body.style.background = "var(--vesper-stone-0)";
+      document.body.style.background = GLASS_BACKDROP_STYLES[backdrop];
+      document.body.style.minHeight = "100vh";
 
       return <Story />;
     },

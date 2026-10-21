@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/utils/cn";
 import { generateId } from "@/utils/generate-id";
+import { Glass } from "@/utils/glass/glass";
 
 import type { CodeBlockProps } from "./code-block";
 
@@ -56,10 +57,11 @@ export function StreamingCodeBlock({
 
   return (
     <div
-      className={cn("vesper-code-block", className)}
+      className={cn("vesper-code-block", "vesper-glass", className)}
       data-copy-on-hover={copyOnHover}
       {...props}
     >
+      <Glass />
       <CodeBlockPreWrapper ref={ref} data-line-numbers={showLineNumbers}>
         <TokenStreamRenderer key={streamKey} code={code} lang={lang} />
       </CodeBlockPreWrapper>

@@ -14,6 +14,7 @@ import {
   getPortalContainer,
   type PortalContainer,
 } from "@/utils/get-portal-container";
+import { useGlass } from "@/utils/glass/use-glass";
 import { useBaseRemSize } from "@/utils/hooks/use-base-rem-size";
 import {
   FormInputProps,
@@ -137,7 +138,17 @@ export function Select(props: SelectProps) {
 
   const [trigger, setTrigger] = useState<HTMLButtonElement | null>(null);
 
-  const mergedTriggerRef = useMergedRefs(setTrigger, ref);
+  const triggerGlassRef = useGlass({
+    depth: "deep",
+    interactive: !formProps.disabled,
+  });
+  const popupGlassRef = useGlass({ depth: "deep" });
+
+  const mergedTriggerRef = useMergedRefs<HTMLButtonElement>(
+    setTrigger,
+    ref,
+    triggerGlassRef,
+  );
 
   const portalContainer = getPortalContainer(container, trigger);
 
@@ -166,6 +177,9 @@ export function Select(props: SelectProps) {
         ref={mergedTriggerRef}
         className={cn(
           "vesper-select",
+          "vesper-glass",
+          "vesper-glass-inset",
+          !formProps.disabled && "vesper-glass-interactive",
           `vesper-select-${size}`,
           `vesper-select-${variant}`,
           className,
@@ -180,7 +194,8 @@ export function Select(props: SelectProps) {
       </Typography>
       <BaseSelect.Portal container={portalContainer}>
         <BaseSelect.Positioner
-          className="vesper-select-positioner"
+          ref={popupGlassRef}
+          className="vesper-select-positioner vesper-glass vesper-glass-deep"
           side="bottom"
           align="start"
           alignItemWithTrigger={false}
@@ -192,7 +207,7 @@ export function Select(props: SelectProps) {
                 <BaseSelect.Item
                   key={o.value}
                   value={o.value}
-                  className="vesper-select-item"
+                  className="vesper-select-item vesper-glass vesper-glass-latent"
                 >
                   <BaseSelect.ItemText
                     render={<Typography variant="label-md" />}

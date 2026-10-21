@@ -2,19 +2,24 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-tint-neutral-100);
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-secondary) 70%, transparent);
+  &:hover {
+    --vesper-glass-opacity: 0.5;
+  }
   &:has(.vesper-text-input-field:focus-visible),
   &:has(.vesper-text-input-icon:focus-visible) {
     border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
-    box-shadow: var(--vesper-shadow-focus-ring);
+    --vesper-glass-opacity: 0.6;
+    --vesper-glass-ring: var(--vesper-shadow-focus-ring);
     @media (forced-colors: active) {
       outline: var(--vesper-stroke-strong) solid CanvasText;
     }
   }
   &:has(.vesper-text-input-field:disabled) {
     border: var(--vesper-stroke-base) solid var(--vesper-border-disabled);
-    background: var(--vesper-tint-neutral-200);
+    --vesper-glass-color: var(--vesper-stone-200);
+    --vesper-glass-opacity: 0.35;
     .vesper-text-input-icon {
       color: var(--vesper-icon-disabled);
       pointer-events: none;

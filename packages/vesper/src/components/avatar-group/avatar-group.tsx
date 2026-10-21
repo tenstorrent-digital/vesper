@@ -2,6 +2,7 @@ import type { ElementType } from "react";
 
 import { Avatar, type AvatarSize } from "@/components/avatar/avatar";
 import { cn } from "@/utils/cn";
+import { Glass } from "@/utils/glass/glass";
 import type { Polymorphic } from "@/utils/polymorphic";
 
 export type AvatarGroupProps<E extends ElementType = "div"> = Polymorphic<
@@ -58,8 +59,9 @@ export function AvatarGroup<E extends ElementType = "div">(
       ))}
       {avatars.length > 3 && (
         <div
-          className={`vesper-avatar-group-overflow vesper-avatar vesper-avatar-${size}`}
+          className={`vesper-avatar-group-overflow vesper-avatar vesper-glass vesper-avatar-${size}`}
         >
+          <Glass depth="shallow" />
           {avatars.length <= 100 ? `+${avatars.length - 3}` : "99+"}
         </div>
       )}

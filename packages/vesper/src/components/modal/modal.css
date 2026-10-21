@@ -44,7 +44,7 @@
     opacity: 1;
     transform: translateY(0rem);
     &::before {
-      background: var(--vesper-scrim-contrast-base);
+      background: var(--vesper-scrim-contrast-subtle);
     }
     @starting-style {
       opacity: 0;
@@ -58,10 +58,12 @@
 
 .vesper-modal-container {
   position: relative;
-  background: var(--vesper-background-primary);
-  border-radius: var(--vesper-radius-3);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
-  box-shadow: var(--vesper-shadow-300);
+  border-radius: var(--vesper-radius-4);
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-primary) 60%, transparent);
+  --vesper-glass-opacity: 0.6;
+  --vesper-glass-outline: 0 0 #0000;
+  --vesper-glass-elevation: var(--vesper-glass-elevation-400);
   max-width: calc(100vw - var(--vesper-spacing-16));
   display: flex;
   flex-direction: column;

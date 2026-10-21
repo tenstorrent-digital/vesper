@@ -9,10 +9,13 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--vesper-spacing-3);
-  border-radius: var(--vesper-radius-1);
-  background: var(--vesper-background-primary);
+  border-radius: var(--vesper-radius-2);
   padding: var(--vesper-spacing-3);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-secondary) 70%, transparent);
+  --vesper-glass-opacity: 0.42;
+  --vesper-glass-outline: 0 0 #0000;
+  --vesper-glass-press-scale: 0.98;
   &.vesper-choicebox-item-compact {
     padding-top: 0.375rem;
     padding-bottom: 0.375rem;
@@ -28,28 +31,22 @@
   }
   &:not(:has(:disabled)) {
     &:hover {
-      background:
-        linear-gradient(
-          0deg,
-          var(--vesper-tint-neutral-100) 0%,
-          var(--vesper-tint-neutral-100) 100%
-        ),
-        var(--vesper-background-primary);
+      --vesper-glass-opacity: 0.58;
+      --vesper-glass-elevation: var(--vesper-glass-elevation-100);
     }
     &:has(:checked) {
-      border-color: var(--vesper-border-strong);
-      background:
-        linear-gradient(
-          0deg,
-          var(--vesper-tint-neutral-200) 0%,
-          var(--vesper-tint-neutral-200) 100%
-        ),
-        var(--vesper-background-primary);
+      border-color: color-mix(
+        in srgb,
+        var(--vesper-border-strong) 80%,
+        transparent
+      );
+      --vesper-glass-opacity: 0.72;
+      --vesper-glass-elevation: var(--vesper-glass-elevation-200);
     }
     cursor: pointer;
   }
   &:has(:focus-visible) {
-    box-shadow: var(--vesper-shadow-focus-ring);
+    --vesper-glass-ring: var(--vesper-shadow-focus-ring);
   }
 }
 
@@ -62,11 +59,20 @@
   margin-top: var(--vesper-spacing-1);
 }
 
+.vesper-choicebox-input-single-indicator,
+.vesper-choicebox-input-multi-indicator {
+  --vesper-glass-opacity: 0.5;
+  --vesper-glass-outline: 0 0 #0000;
+  --vesper-glass-glow-size: 0.1875rem;
+  flex-shrink: 0;
+}
+
 .vesper-choicebox-input-single-indicator {
   width: 0.75rem;
   height: 0.75rem;
   border-radius: 50%;
-  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-primary) 70%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,6 +81,9 @@
     width: 50%;
     height: 50%;
     border-radius: 50%;
+    scale: 0;
+    transition: scale var(--vesper-glass-spring-duration)
+      var(--vesper-glass-spring);
   }
 }
 
@@ -82,7 +91,8 @@
   width: 0.75rem;
   height: 0.75rem;
   border-radius: var(--vesper-radius-half);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-primary) 70%, transparent);
   color: var(--vesper-text-primary);
   display: flex;
   align-items: center;
@@ -107,14 +117,23 @@
   &:checked {
     & + .vesper-choicebox-input-single-indicator {
       border-color: var(--vesper-background-accent-base);
-      background: var(--vesper-background-accent-base);
+      --vesper-glass-color: var(--vesper-background-accent-base);
+      --vesper-glass-opacity: 0.88;
       &::after {
-        background: var(--vesper-background-primary);
+        scale: 1;
+        background:
+          radial-gradient(
+            circle at 35% 30%,
+            rgb(255 255 255 / 0.9),
+            transparent 60%
+          ),
+          var(--vesper-static-white);
       }
     }
     & + .vesper-choicebox-input-multi-indicator {
       border-color: var(--vesper-background-accent-base);
-      background: var(--vesper-background-accent-base);
+      --vesper-glass-color: var(--vesper-background-accent-base);
+      --vesper-glass-opacity: 0.88;
       svg {
         visibility: visible;
       }
@@ -123,11 +142,13 @@
   &:disabled {
     & + .vesper-choicebox-input-single-indicator {
       border-color: var(--vesper-border-disabled);
-      background: var(--vesper-background-disabled);
+      --vesper-glass-color: var(--vesper-stone-200);
+      --vesper-glass-opacity: 0.3;
     }
     & + .vesper-choicebox-input-multi-indicator {
       border-color: var(--vesper-border-disabled);
-      background: var(--vesper-background-disabled);
+      --vesper-glass-color: var(--vesper-stone-200);
+      --vesper-glass-opacity: 0.3;
     }
     &:checked {
       & + .vesper-choicebox-input-single-indicator::after {

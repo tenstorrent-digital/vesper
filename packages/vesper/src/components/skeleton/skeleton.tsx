@@ -67,7 +67,7 @@ export function Skeleton(props: SkeletonProps) {
       {...rest}
     >
       {children}
-      <div className="vesper-skeleton-overlay" />
+      <div className="vesper-skeleton-overlay vesper-glass" />
     </div>
   );
 }

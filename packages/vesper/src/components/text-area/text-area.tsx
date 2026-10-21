@@ -1,10 +1,13 @@
 "use client";
 
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
+
 import {
   Typography,
   type TypographyVariant,
 } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { useGlass } from "@/utils/glass/use-glass";
 import { FormInputProps } from "@/utils/split-form-input-props";
 
 export const TEXT_AREA_SIZES = ["sm", "md", "lg"] as const;
@@ -65,14 +68,21 @@ export function TextArea(props: TextAreaProps) {
     className,
     placeholder = " ",
     style,
+    ref,
     ...rest
   } = props;
+
+  const glassRef = useGlass({ depth: "deep" });
+  const mergedRef = useMergedRefs(ref, glassRef);
 
   return (
     <Typography
       {...rest}
+      ref={mergedRef}
       className={cn(
         "vesper-text-area",
+        "vesper-glass",
+        "vesper-glass-inset",
         `vesper-text-area-${size}`,
         `vesper-text-area-${variant}`,
         className,

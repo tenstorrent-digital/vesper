@@ -9,9 +9,27 @@
 }
 
 .vesper-checkbox-box {
-  border-radius: var(--vesper-radius-half);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+  border-radius: var(--vesper-radius-1);
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-primary) 70%, transparent);
   position: relative;
+  --vesper-glass-opacity: 0.5;
+  --vesper-glass-outline: 0 0 #0000;
+  --vesper-glass-glow-size: 0.25rem;
+  --vesper-glass-elevation: var(--vesper-glass-elevation-100);
+}
+
+/* the box dips when pressed and rings back ("tinks") on release */
+.vesper-checkbox:not(:has(:disabled)) {
+  &:hover .vesper-checkbox-box {
+    --vesper-glass-sheen-opacity: 1;
+    --vesper-glass-opacity: 0.7;
+  }
+  &:active .vesper-checkbox-box {
+    --vesper-glass-scale-transition: scale var(--vesper-glass-press-duration)
+      var(--vesper-glass-press-easing);
+    scale: 0.9;
+  }
 }
 
 .vesper-checkbox-sm {
@@ -50,8 +68,13 @@
 
   &:checked:not(:indeterminate) {
     &:not(:disabled) + .vesper-checkbox-box {
-      background: var(--vesper-background-accent-base);
-      border-color: var(--vesper-background-accent-base);
+      --vesper-glass-color: var(--vesper-background-accent-base);
+      --vesper-glass-opacity: 0.88;
+      border-color: color-mix(
+        in srgb,
+        var(--vesper-background-accent-base) 80%,
+        transparent
+      );
     }
     + .vesper-checkbox-box .vesper-checkbox-checked-icon {
       visibility: visible;
@@ -65,8 +88,13 @@
     }
   }
   &:indeterminate + .vesper-checkbox-box {
-    background: var(--vesper-background-accent-base);
-    border-color: var(--vesper-background-accent-base);
+    --vesper-glass-color: var(--vesper-background-accent-base);
+    --vesper-glass-opacity: 0.88;
+    border-color: color-mix(
+      in srgb,
+      var(--vesper-background-accent-base) 80%,
+      transparent
+    );
     .vesper-checkbox-indeterminate-icon {
       visibility: visible;
     }
@@ -74,7 +102,9 @@
   &:disabled {
     + .vesper-checkbox-box {
       border-color: var(--vesper-border-disabled);
-      background: var(--vesper-background-disabled);
+      --vesper-glass-color: var(--vesper-stone-200);
+      --vesper-glass-opacity: 0.3;
+      --vesper-glass-elevation: 0 0 #0000;
       .vesper-checkbox-indicator {
         color: var(--vesper-icon-disabled);
       }

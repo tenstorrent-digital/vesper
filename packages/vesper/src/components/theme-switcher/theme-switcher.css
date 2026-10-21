@@ -1,8 +1,11 @@
 .vesper-theme-switcher {
   display: inline-flex;
   width: fit-content;
-  background: var(--vesper-background-primary);
-  outline: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+  outline: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-primary) 60%, transparent);
+  --vesper-glass-color: var(--vesper-stone-200);
+  --vesper-glass-opacity: 0.4;
+  --vesper-glass-outline: 0 0 #0000;
   position: relative;
   &[data-vesper-theme="system"] {
     .vesper-theme-switcher-indicator {
@@ -45,9 +48,19 @@
 .vesper-theme-switcher-button {
   cursor: pointer;
   color: var(--vesper-icon-secondary);
-  transition: color var(--vesper-transition-duration-fast) ease;
+  /* sit above the sliding glass indicator */
+  position: relative;
+  z-index: 1;
+  transition:
+    color var(--vesper-transition-duration-fast) ease,
+    scale var(--vesper-glass-tink-duration) var(--vesper-glass-tink);
   height: 100%;
   aspect-ratio: 1;
+  &:active {
+    scale: 0.92;
+    transition-duration: var(--vesper-glass-press-duration);
+    transition-timing-function: var(--vesper-glass-press-easing);
+  }
   &.vesper-theme-switcher-button-active {
     color: var(--vesper-icon-primary);
   }
@@ -68,7 +81,18 @@
   left: calc(var(--vesper-spacing-micro) * -1);
   height: calc(100% + var(--vesper-spacing-half));
   aspect-ratio: 1;
-  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
-  transition: transform var(--vesper-transition-duration-fast) ease;
+  z-index: 0;
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-primary) 70%, transparent);
+  --vesper-glass-opacity: 0.8;
+  --vesper-glass-outline: 0 0 #0000;
+  --vesper-glass-glow-size: 0.375rem;
+  --vesper-glass-elevation: var(--vesper-glass-elevation-100);
+  /* the indicator glides between options on a spring */
+  transition:
+    transform var(--vesper-glass-spring-duration)
+      var(--vesper-glass-spring-soft),
+    background-color var(--vesper-transition-duration-fast) ease,
+    box-shadow var(--vesper-transition-duration-fast) ease;
   pointer-events: none;
 }

@@ -10,6 +10,7 @@
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
   cursor: pointer;
+  --vesper-glass-elevation: var(--vesper-glass-elevation-100);
   @media (forced-colors: active) {
     border: var(--vesper-stroke-base) solid CanvasText;
     &:focus-visible {
@@ -18,7 +19,7 @@
   }
   @media not (forced-colors: active) {
     &:focus-visible {
-      box-shadow: var(--vesper-shadow-focus-ring);
+      --vesper-glass-ring: var(--vesper-shadow-focus-ring);
     }
   }
   text-box-trim: trim-both;
@@ -69,32 +70,23 @@
   }
 }
 
+/* tinted glass */
 .vesper-button-primary {
   color: var(--vesper-text-primary);
-  background: var(--vesper-background-accent-base);
+  --vesper-glass-color: var(--vesper-background-accent-base);
+  --vesper-glass-opacity: 0.72;
   &:hover {
-    background:
-      linear-gradient(
-        0deg,
-        var(--vesper-state-inverse-hover) 0%,
-        var(--vesper-state-inverse-hover) 100%
-      ),
-      var(--vesper-background-accent-base);
+    --vesper-glass-opacity: 0.86;
   }
 }
 
 .vesper-button-contrast {
   @media not (forced-colors: active) {
     color: var(--vesper-text-inverse-primary);
-    background: var(--vesper-background-inverse-primary);
+    --vesper-glass-color: var(--vesper-background-inverse-primary);
+    --vesper-glass-opacity: 0.82;
     &:hover {
-      background:
-        linear-gradient(
-          0deg,
-          var(--vesper-state-inverse-hover) 0%,
-          var(--vesper-state-inverse-hover) 100%
-        ),
-        var(--vesper-background-inverse-primary);
+      --vesper-glass-opacity: 0.92;
     }
   }
   @media (forced-colors: active) {
@@ -110,60 +102,56 @@
 
 .vesper-button-danger {
   color: var(--vesper-text-static-white);
-  background: var(--vesper-background-error-base);
+  --vesper-glass-color: var(--vesper-background-error-base);
+  --vesper-glass-opacity: 0.84;
   &:hover {
-    background:
-      linear-gradient(
-        0deg,
-        var(--vesper-state-inverse-hover) 0%,
-        var(--vesper-state-inverse-hover) 100%
-      ),
-      var(--vesper-background-error-base);
+    --vesper-glass-opacity: 0.94;
   }
 }
 
 .vesper-button-warning {
   color: var(--vesper-text-inverse-primary);
-  background: var(--vesper-background-warning-base);
+  --vesper-glass-color: var(--vesper-background-warning-base);
+  --vesper-glass-opacity: 0.84;
   &:hover {
-    background:
-      linear-gradient(
-        0deg,
-        var(--vesper-state-inverse-hover) 0%,
-        var(--vesper-state-inverse-hover) 100%
-      ),
-      var(--vesper-background-warning-base);
+    --vesper-glass-opacity: 0.94;
   }
 }
 
+/* clear glass */
 .vesper-button-subtle {
   color: var(--vesper-text-primary);
-  background: var(--vesper-tint-neutral-300);
+  --vesper-glass-color: var(--vesper-stone-200);
+  --vesper-glass-opacity: 0.55;
   &:hover {
-    background: var(--vesper-tint-neutral-400);
+    --vesper-glass-opacity: 0.75;
   }
 }
 
 .vesper-button-tertiary {
   color: var(--vesper-text-primary);
   @media (forced-colors: none) {
-    border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
+    border: var(--vesper-stroke-base) solid
+      color-mix(in srgb, var(--vesper-border-secondary) 70%, transparent);
+    --vesper-glass-outline: 0 0 #0000;
   }
-  background: var(--vesper-tint-inverse-100);
+  --vesper-glass-opacity: 0.32;
   &:hover {
-    background: var(--vesper-tint-neutral-200);
+    --vesper-glass-opacity: 0.55;
   }
 }
 
+/* glass that only condenses on hover, focus, and press */
 .vesper-button-ghost {
   color: var(--vesper-text-primary);
-  &:hover {
-    background: var(--vesper-tint-neutral-200);
-  }
+  --vesper-glass-color: var(--vesper-stone-200);
+  --vesper-glass-opacity: 0.45;
 }
 
 .vesper-button-disabled {
   color: var(--vesper-text-disabled);
-  background: var(--vesper-background-disabled);
+  --vesper-glass-color: var(--vesper-stone-200);
+  --vesper-glass-opacity: 0.3;
+  --vesper-glass-elevation: 0 0 #0000;
   pointer-events: none;
 }

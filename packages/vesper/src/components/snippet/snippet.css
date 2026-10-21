@@ -5,8 +5,10 @@
   align-items: center;
   width: fit-content;
   gap: var(--vesper-spacing-16);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
-  border-radius: var(--vesper-radius-1);
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-tertiary) 70%, transparent);
+  border-radius: var(--vesper-radius-2);
+  --vesper-glass-outline: 0 0 #0000;
   pre {
     margin: 0;
     outline: none;
@@ -22,10 +24,12 @@
   }
 }
 .vesper-snippet-default {
-  background: var(--vesper-tint-neutral-100);
+  --vesper-glass-color: var(--vesper-stone-100);
+  --vesper-glass-opacity: 0.5;
   color: var(--vesper-text-primary);
 }
 .vesper-snippet-contrast {
-  background: var(--vesper-background-inverse-primary);
+  --vesper-glass-color: var(--vesper-background-inverse-primary);
+  --vesper-glass-opacity: 0.85;
   color: var(--vesper-text-inverse-primary);
 }

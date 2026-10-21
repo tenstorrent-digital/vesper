@@ -1,81 +1,70 @@
 .vesper-material {
   border-radius: var(--vesper-radius-2);
   color: var(--vesper-text-primary);
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-secondary) 70%, transparent);
+  --vesper-glass-outline: 0 0 #0000;
 }
 
 .vesper-material-outlined {
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-background-primary);
+  --vesper-glass-opacity: 0.45;
 }
 
 .vesper-material-outlined-strong {
-  border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
-  background: var(--vesper-background-primary);
+  border-color: color-mix(
+    in srgb,
+    var(--vesper-border-strong) 80%,
+    transparent
+  );
+  --vesper-glass-opacity: 0.45;
 }
 
 .vesper-material-raised {
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-background-primary);
-  box-shadow: var(--vesper-shadow-100);
+  --vesper-glass-opacity: 0.5;
+  --vesper-glass-elevation: var(--vesper-glass-elevation-100);
 }
 
 .vesper-material-floating {
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-background-primary);
-  box-shadow: var(--vesper-shadow-300);
+  --vesper-glass-elevation: var(--vesper-glass-elevation-300);
 }
 
 .vesper-material-modal {
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-background-primary);
-  box-shadow: var(--vesper-shadow-400);
+  --vesper-glass-elevation: var(--vesper-glass-elevation-400);
 }
 
 .vesper-material-inset {
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-tint-neutral-100);
-  box-shadow: var(--vesper-shadow-inset-100);
+  --vesper-glass-color: var(--vesper-stone-100);
 }
 
 .vesper-material-inset-strong {
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-tint-neutral-100);
-  box-shadow: var(--vesper-shadow-inset-200);
+  --vesper-glass-color: var(--vesper-stone-200);
+  --vesper-glass-elevation:
+    inset 0 0.125rem 0.75rem 0 var(--vesper-glass-shadow),
+    inset 0 0 0 0.0625rem var(--vesper-glass-edge);
 }
 
 .vesper-material-interactive {
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-background-primary);
+  --vesper-glass-opacity: 0.45;
   &.vesper-material-disabled {
     color: var(--vesper-text-disabled);
     border-color: var(--vesper-border-disabled);
-    background: var(--vesper-background-disabled);
+    --vesper-glass-color: var(--vesper-stone-200);
+    --vesper-glass-opacity: 0.3;
   }
   &.vesper-material-active {
-    background:
-      linear-gradient(
-        0deg,
-        var(--vesper-state-neutral-active) 0%,
-        var(--vesper-state-neutral-active) 100%
-      ),
-      var(--vesper-background-primary);
-    box-shadow: var(--vesper-shadow-100);
+    --vesper-glass-opacity: 0.65;
+    --vesper-glass-elevation: var(--vesper-glass-elevation-100);
   }
   &.vesper-material-selected {
-    background: var(--vesper-tint-neutral-200);
     border-color: var(--vesper-border-strong);
+    --vesper-glass-color: var(--vesper-stone-200);
+    --vesper-glass-opacity: 0.7;
   }
   &:not(.vesper-material-disabled) {
     cursor: pointer;
     &:hover {
-      background:
-        linear-gradient(
-          0deg,
-          var(--vesper-state-neutral-hover) 0%,
-          var(--vesper-state-neutral-hover) 100%
-        ),
-        var(--vesper-background-primary);
-      box-shadow: var(--vesper-shadow-100);
+      --vesper-glass-opacity: 0.6;
+      --vesper-glass-elevation: var(--vesper-glass-elevation-200);
     }
   }
   &:focus-visible:not(.vesper-material-disabled) {
@@ -83,7 +72,7 @@
       outline: var(--vesper-stroke-strong) solid CanvasText;
     }
     @media not (forced-colors: active) {
-      box-shadow: var(--vesper-shadow-focus-ring);
+      --vesper-glass-ring: var(--vesper-shadow-focus-ring);
     }
   }
 }

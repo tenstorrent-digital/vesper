@@ -1,16 +1,21 @@
 .vesper-progress-bar {
   position: relative;
   width: 100%;
-  background: var(--vesper-tint-neutral-200);
   overflow: hidden;
   display: flex;
   align-items: stretch;
   justify-content: space-evenly;
+  --vesper-glass-color: var(--vesper-stone-200);
+  --vesper-glass-opacity: 0.45;
+  --vesper-glass-glow-size: 0.25rem;
   &::before {
     content: "";
     position: absolute;
     inset: 0;
-    border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+    z-index: 1;
+    pointer-events: none;
+    border: var(--vesper-stroke-base) solid
+      color-mix(in srgb, var(--vesper-border-primary) 60%, transparent);
   }
 }
 
@@ -38,12 +43,26 @@
   }
 }
 
+/* a glossy gel that fills the glass tube */
 .vesper-progress-bar-indicator {
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
-  background: var(--vesper-background-accent-base);
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      to bottom,
+      rgb(255 255 255 / 0.5),
+      rgb(255 255 255 / 0.08) 50%,
+      transparent 51%,
+      rgb(255 255 255 / 0.15)
+    ),
+    var(--vesper-background-accent-base);
+  box-shadow:
+    inset 0 -0.0625rem 0.125rem 0 rgb(0 0 0 / 0.12),
+    0 0 0.5rem 0
+      color-mix(in srgb, var(--vesper-background-accent-base) 60%, transparent);
   @media (forced-colors: active) {
     background: CanvasText;
   }
@@ -51,8 +70,8 @@
 
 .vesper-progress-bar-animated {
   .vesper-progress-bar-indicator {
-    transition: width var(--vesper-transition-duration-default)
-      cubic-bezier(0.45, 0.15, 0.25, 0.95);
+    transition: width var(--vesper-glass-spring-duration)
+      var(--vesper-glass-spring-soft);
   }
   .vesper-progress-bar-tick {
     transition: background var(--vesper-transition-duration-default)
@@ -66,14 +85,22 @@
 }
 
 .vesper-progress-bar-tick-light {
-  border-color: var(--vesper-background-primary);
+  border-color: color-mix(
+    in srgb,
+    var(--vesper-background-primary) 70%,
+    transparent
+  );
   @media (forced-colors: active) {
     border-color: Canvas;
   }
 }
 
 .vesper-progress-bar-tick-dark {
-  border-color: var(--vesper-border-primary);
+  border-color: color-mix(
+    in srgb,
+    var(--vesper-border-primary) 60%,
+    transparent
+  );
   @media (forced-colors: active) {
     border-color: CanvasText;
   }

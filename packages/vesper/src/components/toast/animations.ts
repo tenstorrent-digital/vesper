@@ -17,7 +17,7 @@ export const animateToastEnter = (
         marginTop: ["0px", "var(--vesper-spacing-4)"],
         height: ["0px", (toast?.getBoundingClientRect().height || 0) + "px"],
       },
-      { duration: getIsReducedMotion() ? 0 : 300, easing: "ease" },
+      { duration: getIsReducedMotion() ? 0 : 225, easing: "ease" },
     )
     .finished.then(onFinished);
 
@@ -39,7 +39,7 @@ export const animateToastExit = (
       },
       {
         fill: "forwards",
-        duration: getIsReducedMotion() ? 0 : 300,
+        duration: getIsReducedMotion() ? 0 : 225,
         easing: "ease",
       },
     )

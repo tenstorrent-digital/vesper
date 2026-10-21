@@ -2,13 +2,19 @@
   padding: var(--vesper-spacing-half) var(--vesper-spacing-1);
   border-radius: var(--vesper-radius-1);
   font-size: 0.8125em;
+  --vesper-glass-glow-size: 0.25rem;
+  --vesper-glass-outline: 0 0 #0000;
 }
 .vesper-code-default {
-  background: var(--vesper-tint-neutral-100);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
+  --vesper-glass-color: var(--vesper-stone-100);
+  --vesper-glass-opacity: 0.55;
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-tertiary) 70%, transparent);
 }
 .vesper-code-contrast {
-  background: var(--vesper-background-inverse-primary);
+  --vesper-glass-color: var(--vesper-background-inverse-primary);
+  --vesper-glass-opacity: 0.85;
   color: var(--vesper-text-inverse-primary);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
+  border: var(--vesper-stroke-base) solid
+    color-mix(in srgb, var(--vesper-border-strong) 70%, transparent);
 }

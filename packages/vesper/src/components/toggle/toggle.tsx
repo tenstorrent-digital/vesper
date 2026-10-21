@@ -19,6 +19,7 @@ import {
   type TypographyVariant,
 } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { useGlass } from "@/utils/glass/use-glass";
 
 export const TOGGLE_SIZES = ["sm", "md", "lg"] as const;
 
@@ -134,7 +135,12 @@ export function Toggle(props: ToggleProps) {
 
   const innerRef = useRef<HTMLDivElement>(null);
 
-  const mergedRef = useMergedRefs(innerRef, ref);
+  const trackGlassRef = useGlass({ depth: "shallow" });
+  const itemGlassRef = useGlass({
+    interactive: !disabled,
+  });
+
+  const mergedRef = useMergedRefs(innerRef, ref, trackGlassRef);
 
   const [selectedOption, setSelectedOption] = useControlled({
     controlled: value,
@@ -235,6 +241,8 @@ export function Toggle(props: ToggleProps) {
       aria-disabled={disabled}
       className={cn(
         "vesper-toggle",
+        "vesper-glass",
+        "vesper-glass-inset",
         `vesper-toggle-${size}`,
         disabled && "vesper-toggle-disabled",
         className,
@@ -276,8 +284,12 @@ export function Toggle(props: ToggleProps) {
             disabled={disabled}
             variant={TOGGLE_TYPOGRAPHY[size]}
             key={option.value}
+            ref={itemGlassRef}
             className={cn(
               "vesper-toggle-item",
+              "vesper-glass",
+              "vesper-glass-latent",
+              !disabled && "vesper-glass-interactive",
               isSelected && "vesper-toggle-item-active",
             )}
             aria-label={option.ariaLabel}

@@ -7,6 +7,7 @@ import {
   type TypographyVariant,
 } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { useGlass } from "@/utils/glass/use-glass";
 
 export const RADIO_SIZES = ["sm", "md"] as const;
 
@@ -104,6 +105,8 @@ export function RadioGroup(props: RadioGroupProps) {
     ...rest
   } = props;
 
+  const glassRef = useGlass({ depth: "shallow" });
+
   return (
     <fieldset
       disabled={disabled}
@@ -146,7 +149,10 @@ export function RadioGroup(props: RadioGroupProps) {
               }}
               {...checkedProps}
             />
-            <div className="vesper-radio-group-item-indicator" />
+            <div
+              ref={glassRef}
+              className="vesper-radio-group-item-indicator vesper-glass"
+            />
             <Typography
               as="span"
               className="vesper-radio-group-item-label"
