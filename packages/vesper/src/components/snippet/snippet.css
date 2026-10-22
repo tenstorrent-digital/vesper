@@ -22,7 +22,7 @@
   }
 }
 .vesper-snippet-default {
-  background: var(--vesper-tint-neutral-100);
+  background: var(--vesper-background-tertiary);
   color: var(--vesper-text-primary);
 }
 .vesper-snippet-contrast {
