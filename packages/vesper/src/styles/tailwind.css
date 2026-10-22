@@ -393,4 +393,5 @@
     --vesper-transition-duration-default
   );
   --transition-duration-vesper-slow: var(--vesper-transition-duration-slow);
+  --blur-vesper-disabled: var(--vesper-blur-disabled);
 }
