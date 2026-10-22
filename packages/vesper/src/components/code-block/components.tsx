@@ -1,6 +1,12 @@
 "use client";
 
-import { type ComponentProps, useEffect, useState } from "react";
+import {
+  type ComponentProps,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Checkmark, Copy } from "@/components/icons/icons";
@@ -24,11 +30,29 @@ export function CodeBlockPreWrapper({
 
 export function CopyToClipboardButton() {
   const [copied, setCopied] = useState(false);
-  useEffect(() => {
-    if (!copied) return undefined;
-    const id = setTimeout(() => setCopied(false), 2000);
-    return () => clearTimeout(id);
-  }, [copied]);
+
+  const timeout = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(
+    () => () => {
+      if (timeout.current !== null) clearTimeout(timeout.current);
+    },
+    [],
+  );
+
+  const copyToClipboard = useCallback((content: string) => {
+    if (timeout.current !== null) {
+      clearTimeout(timeout.current);
+    }
+
+    navigator.clipboard
+      ?.writeText(content)
+      .then(() => {
+        setCopied(true);
+        timeout.current = setTimeout(() => setCopied(false), 2000);
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <IconButton
@@ -42,12 +66,8 @@ export function CopyToClipboardButton() {
           e.currentTarget.parentElement?.querySelector<HTMLDivElement>(
             ".vesper-code-block-pre-wrapper",
           );
-
         const content = pre?.textContent || "";
-        navigator.clipboard
-          ?.writeText(content)
-          .then(() => setCopied(true))
-          .catch(() => {});
+        copyToClipboard(content);
       }}
     />
   );
