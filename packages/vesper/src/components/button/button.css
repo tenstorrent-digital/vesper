@@ -3,7 +3,6 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  gap: var(--vesper-spacing-2);
   font-family: var(--vesper-font-mono);
   font-weight: 400;
   text-transform: uppercase;
@@ -26,6 +25,7 @@
 }
 
 .vesper-button-lg {
+  gap: var(--vesper-spacing-2);
   height: 3rem;
   padding: 0 var(--vesper-spacing-5);
   border-radius: var(--vesper-radius-2);
@@ -37,6 +37,7 @@
 }
 
 .vesper-button-md {
+  gap: var(--vesper-spacing-2);
   height: 2.5rem;
   padding: 0 var(--vesper-spacing-4);
   border-radius: var(--vesper-radius-2);
@@ -48,6 +49,7 @@
 }
 
 .vesper-button-sm {
+  gap: var(--vesper-spacing-1);
   height: 2rem;
   padding: 0 var(--vesper-spacing-3);
   border-radius: var(--vesper-radius-1);
@@ -59,6 +61,7 @@
 }
 
 .vesper-button-xs {
+  gap: var(--vesper-spacing-1);
   height: 1.5rem;
   padding: 0 var(--vesper-spacing-2);
   border-radius: var(--vesper-radius-1);
@@ -138,9 +141,21 @@
 
 .vesper-button-subtle {
   color: var(--vesper-text-primary);
-  background: var(--vesper-tint-neutral-300);
+  background:
+    linear-gradient(
+      0deg,
+      var(--vesper-tint-neutral-300) 0%,
+      var(--vesper-tint-neutral-300) 100%
+    ),
+    var(--vesper-background-primary);
   &:hover {
-    background: var(--vesper-tint-neutral-400);
+    background:
+      linear-gradient(
+        0deg,
+        var(--vesper-tint-neutral-400) 0%,
+        var(--vesper-tint-neutral-400) 100%
+      ),
+      var(--vesper-background-primary);
   }
 }
 
@@ -149,21 +164,34 @@
   @media (forced-colors: none) {
     border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
   }
-  background: var(--vesper-tint-inverse-100);
+  background: var(--vesper-background-primary);
   &:hover {
-    background: var(--vesper-tint-neutral-200);
+    background:
+      linear-gradient(
+        0deg,
+        var(--vesper-tint-neutral-200) 0%,
+        var(--vesper-tint-neutral-200) 100%
+      ),
+      var(--vesper-background-primary);
   }
 }
 
 .vesper-button-ghost {
   color: var(--vesper-text-primary);
   &:hover {
-    background: var(--vesper-tint-neutral-200);
+    background:
+      linear-gradient(
+        0deg,
+        var(--vesper-tint-neutral-200) 0%,
+        var(--vesper-tint-neutral-200) 100%
+      ),
+      var(--vesper-background-primary);
   }
 }
 
 .vesper-button-disabled {
   color: var(--vesper-text-disabled);
   background: var(--vesper-background-disabled);
+  backdrop-filter: blur(var(--vesper-blur-disabled));
   pointer-events: none;
 }
