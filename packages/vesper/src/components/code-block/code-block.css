@@ -53,7 +53,6 @@
     margin: 0;
     padding: var(--vesper-spacing-5) 0;
     outline: none;
-    line-height: 1.3875rem;
     code {
       font-family: var(--vesper-font-mono);
       display: flex;
