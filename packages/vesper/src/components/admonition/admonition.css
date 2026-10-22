@@ -25,30 +25,35 @@
   gap: var(--vesper-spacing-2);
 }
 
+.vesper-admonition-icon {
+  width: 1rem;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
 .vesper-admonition-sm {
-  padding: var(--vesper-spacing-2) var(--vesper-spacing-3);
-  &:has(& > .vesper-button) {
+  padding: var(--vesper-spacing-2) var(--vesper-spacing-4)
+    var(--vesper-spacing-2) var(--vesper-spacing-3);
+  &:has( > .vesper-button) {
     padding-right: var(--vesper-spacing-2);
+  }
+  & > .vesper-admonition-content .vesper-admonition-icon {
+    height: 1.125rem;
   }
 }
 
 .vesper-admonition-md {
   padding: var(--vesper-spacing-3) var(--vesper-spacing-4);
-  &:has(& > .vesper-button) {
+  &:has( > .vesper-button) {
     padding-right: var(--vesper-spacing-3);
   }
-}
-
-.vesper-admonition-icon {
-  width: 1rem;
-  height: 1.25rem;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-
-  svg {
-    width: 100%;
-    height: auto;
+  & > .vesper-admonition-content .vesper-admonition-icon {
+    height: 1.25rem;
   }
 }
 
