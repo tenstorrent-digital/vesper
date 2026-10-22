@@ -41,8 +41,8 @@ export type ChipProps<E extends ElementType = "button"> = Polymorphic<
 >;
 
 const CHIP_TYPOGRAPHY: { [S in ChipSize]: TypographyVariant } = {
-  sm: "label-xs",
-  md: "label-sm",
+  sm: "label-sm",
+  md: "label-md",
 };
 
 /**
