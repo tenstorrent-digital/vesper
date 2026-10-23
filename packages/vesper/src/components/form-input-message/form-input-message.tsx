@@ -49,9 +49,6 @@ const FORM_INPUT_MESSAGE_TYPOGRAPHY: Record<
 /**
  * A validation or helper message displayed alongside a form input, rendered as a live `output` element with a variant icon.
  *
- * @see packages/vesper/src/components/text-input/text-input.tsx
- * @see packages/vesper/src/components/text-area/text-area.tsx
- *
  * @param {FormInputMessageVariant} [props.variant] - (optional) The visual variant, which determines the color scheme and message icon. @default default
  * @param {FormInputMessageSize} [props.size] - (optional) The size of the message. Affects padding and typography. @default sm
  * @param {string} [props.message] - (optional) The message text to display. When omitted or empty, no content is rendered
