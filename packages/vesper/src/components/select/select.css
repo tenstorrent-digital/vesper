@@ -120,11 +120,11 @@
   background:
     linear-gradient(
       0deg,
-      var(--vesper-alpha-stone-50) 0%,
-      var(--vesper-alpha-stone-50) 100%
+      var(--vesper-tint-neutral-200) 0%,
+      var(--vesper-tint-neutral-200) 100%
     ),
     var(--vesper-background-primary);
-  box-shadow: var(--vesper-shadow-200);
+  box-shadow: var(--vesper-shadow-300);
   overflow: hidden;
 }
 
@@ -160,5 +160,8 @@
   }
   &[data-selected] {
     background: var(--vesper-tint-neutral-200);
+    .vesper-select-item-label {
+      font-weight: 500;
+    }
   }
 }

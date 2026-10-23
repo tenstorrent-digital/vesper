@@ -195,7 +195,7 @@ export function Select(props: SelectProps) {
                   className="vesper-select-item"
                 >
                   <BaseSelect.ItemText
-                    render={<Typography variant="label-md" />}
+                    render={<Typography variant="label-md" className="vesper-select-item-label" />}
                   >
                     {o.label}
                   </BaseSelect.ItemText>
