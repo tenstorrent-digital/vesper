@@ -4,7 +4,7 @@
 }
 
 .vesper-split-button-action-button {
-  width: 100%;
+  flex: 1;
   position: relative;
   border-width: var(--vesper-stroke-base);
   border-style: solid;
@@ -27,6 +27,12 @@
   border-bottom-left-radius: 0;
   &:focus-visible {
     z-index: 2;
+  }
+  &.vesper-button-md {
+    width: 3.25rem;
+  }
+  &.vesper-button-lg {
+    width: 3.75rem;
   }
   .vesper-split-button-caret-up {
     display: none;

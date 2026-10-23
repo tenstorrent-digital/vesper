@@ -100,7 +100,7 @@
 .vesper-combobox-search-icon,
 .vesper-combobox-clear,
 .vesper-combobox-trigger {
-  color: var(--vesper-icon-primary);
+  color: var(--vesper-icon-secondary);
 }
 
 .vesper-combobox-trigger[data-popup-open] svg {
@@ -173,11 +173,11 @@
   background:
     linear-gradient(
       0deg,
-      var(--vesper-alpha-stone-50) 0%,
-      var(--vesper-alpha-stone-50) 100%
+      var(--vesper-tint-neutral-200) 0%,
+      var(--vesper-tint-neutral-200) 100%
     ),
     var(--vesper-background-primary);
-  box-shadow: var(--vesper-shadow-200);
+  box-shadow: var(--vesper-shadow-300);
   overflow: hidden;
 }
 

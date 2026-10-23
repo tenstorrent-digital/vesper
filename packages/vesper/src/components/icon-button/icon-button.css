@@ -1,4 +1,8 @@
 .vesper-icon-button {
   padding: 0;
   aspect-ratio: 1;
+  &.vesper-button-xs > .vesper-button-icon {
+    width: 1rem;
+    height: 1rem;
+  }
 }

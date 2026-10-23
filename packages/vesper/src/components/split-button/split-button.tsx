@@ -41,7 +41,7 @@ export interface SplitButtonProps extends Omit<
   onClick?: MouseEventHandler<HTMLButtonElement>;
   /** An accessible `aria-label` for the menu toggle button. @default Toggle menu */
   menuButtonAriaLabel?: string;
-  /** The width of the dropdown menu in pixels. @default 200 */
+  /** The width of the dropdown menu in pixels. @default 280 */
   menuWidth?: MenuProps["width"];
   /** The preferred side of the split button to render the dropdown menu against. @default bottom */
   menuSide?: MenuProps["side"];
@@ -115,7 +115,7 @@ export function SplitButton(props: SplitButtonProps) {
     onMenuOpenChange,
     menuSide = "bottom",
     menuSideOffset,
-    menuWidth,
+    menuWidth = 280,
     disabled = false,
     menuButtonAriaLabel,
     onPointerDown,

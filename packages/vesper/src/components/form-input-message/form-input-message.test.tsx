@@ -4,6 +4,7 @@ import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
 import {
   FORM_INPUT_MESSAGE_VARIANTS,
+  FORM_INPUT_MESSAGE_SIZES,
   FormInputMessage,
   type FormInputMessageProps,
   type FormInputMessageVariant,
@@ -26,10 +27,16 @@ const VARIANT_ICONS: Record<FormInputMessageVariant, typeof InfoSolid> = {
 };
 
 const FORM_INPUT_MESSAGE_PERMUTATIONS = FORM_INPUT_MESSAGE_VARIANTS.flatMap(
-  (variant): (FormInputMessageProps & { name: string })[] => [
-    { name: `${variant}, with message`, variant, message: MESSAGE },
-    { name: `${variant}, without message`, variant },
-  ],
+  (variant): (FormInputMessageProps & { name: string })[] =>
+    FORM_INPUT_MESSAGE_SIZES.flatMap((size) => [
+      {
+        name: `${size} ${variant}, with message`,
+        variant,
+        message: MESSAGE,
+        size,
+      },
+      { name: `${size} ${variant}, without message`, variant, size },
+    ]),
 );
 
 afterEach(cleanup);
@@ -54,6 +61,18 @@ describe("form-input-message [unit]", () => {
     });
   });
 
+  FORM_INPUT_MESSAGE_SIZES.forEach((size) => {
+    test(`${size} variant class`, () => {
+      const { container } = render(
+        <FormInputMessage size={size} message={MESSAGE} />,
+      );
+
+      expect(container.firstChild).toHaveClass(
+        `vesper-form-input-message-${size}`,
+      );
+    });
+  });
+
   test("default variant applied when not specified", () => {
     const { container } = render(<FormInputMessage message={MESSAGE} />);
 
@@ -69,8 +88,21 @@ describe("form-input-message [unit]", () => {
     expect(view.getByText(MESSAGE)).toBeDefined();
   });
 
-  test("message text has correct classes", () => {
-    const { container } = render(<FormInputMessage message={MESSAGE} />);
+  test("small variant message text has correct classes", () => {
+    const { container } = render(
+      <FormInputMessage size="sm" message={MESSAGE} />,
+    );
+
+    const text = container.querySelector(".vesper-form-input-message-text");
+    expect(text?.tagName).toBe("SPAN");
+    expect(text).toHaveClass("vesper-typography-label-xxs");
+    expect(text?.textContent).toBe(MESSAGE);
+  });
+
+  test("large variant message text has correct classes", () => {
+    const { container } = render(
+      <FormInputMessage size="lg" message={MESSAGE} />,
+    );
 
     const text = container.querySelector(".vesper-form-input-message-text");
     expect(text?.tagName).toBe("SPAN");

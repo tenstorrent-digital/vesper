@@ -5,6 +5,9 @@
   gap: var(--vesper-spacing-2);
   &:not(:has(:disabled)) {
     cursor: pointer;
+    &:hover > .vesper-checkbox-box {
+      background-color: var(--vesper-tint-neutral-100);
+    }
   }
 }
 
@@ -12,6 +15,18 @@
   border-radius: var(--vesper-radius-half);
   border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   position: relative;
+}
+
+.vesper-checkbox-indicator {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  > * {
+    width: 0.625rem;
+    height: 0.625rem;
+  }
 }
 
 .vesper-checkbox-sm {
@@ -71,10 +86,16 @@
       visibility: visible;
     }
   }
+  &:not(:disabled) {
+    + .vesper-checkbox-box .vesper-checkbox-indicator {
+      color: var(--vesper-icon-primary);
+    }
+  }
   &:disabled {
     + .vesper-checkbox-box {
       border-color: var(--vesper-border-disabled);
       background: var(--vesper-background-disabled);
+      backdrop-filter: blur(var(--vesper-blur-disabled));
       .vesper-checkbox-indicator {
         color: var(--vesper-icon-disabled);
       }
