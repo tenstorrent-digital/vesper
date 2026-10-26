@@ -16,6 +16,14 @@ exports[`typography [snapshot] > copy-lg-bold 1`] = `
 </p>
 `;
 
+exports[`typography [snapshot] > copy-lg-mono 1`] = `
+<p
+  class="vesper-typography vesper-typography-copy-lg-mono"
+>
+  copy-lg-mono
+</p>
+`;
+
 exports[`typography [snapshot] > copy-md 1`] = `
 <p
   class="vesper-typography vesper-typography-copy-md"
@@ -29,6 +37,14 @@ exports[`typography [snapshot] > copy-md-bold 1`] = `
   class="vesper-typography vesper-typography-copy-md-bold"
 >
   copy-md-bold
+</p>
+`;
+
+exports[`typography [snapshot] > copy-md-mono 1`] = `
+<p
+  class="vesper-typography vesper-typography-copy-md-mono"
+>
+  copy-md-mono
 </p>
 `;
 
@@ -48,6 +64,14 @@ exports[`typography [snapshot] > copy-sm-bold 1`] = `
 </p>
 `;
 
+exports[`typography [snapshot] > copy-sm-mono 1`] = `
+<p
+  class="vesper-typography vesper-typography-copy-sm-mono"
+>
+  copy-sm-mono
+</p>
+`;
+
 exports[`typography [snapshot] > copy-xl 1`] = `
 <p
   class="vesper-typography vesper-typography-copy-xl"
@@ -61,6 +85,14 @@ exports[`typography [snapshot] > copy-xl-bold 1`] = `
   class="vesper-typography vesper-typography-copy-xl-bold"
 >
   copy-xl-bold
+</p>
+`;
+
+exports[`typography [snapshot] > copy-xl-mono 1`] = `
+<p
+  class="vesper-typography vesper-typography-copy-xl-mono"
+>
+  copy-xl-mono
 </p>
 `;
 
@@ -101,6 +133,14 @@ exports[`typography [snapshot] > copy-xxs-bold 1`] = `
   class="vesper-typography vesper-typography-copy-xxs-bold"
 >
   copy-xxs-bold
+</p>
+`;
+
+exports[`typography [snapshot] > copy-xxs-mono 1`] = `
+<p
+  class="vesper-typography vesper-typography-copy-xxs-mono"
+>
+  copy-xxs-mono
 </p>
 `;
 
@@ -189,6 +229,14 @@ exports[`typography [snapshot] > label-lg-bold 1`] = `
   class="vesper-typography vesper-typography-label-lg-bold"
 >
   label-lg-bold
+</p>
+`;
+
+exports[`typography [snapshot] > label-lg-mono 1`] = `
+<p
+  class="vesper-typography vesper-typography-label-lg-mono"
+>
+  label-lg-mono
 </p>
 `;
 

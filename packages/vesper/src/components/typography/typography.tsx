@@ -18,14 +18,19 @@ export const TYPOGRAPHY_VARIANTS = [
   "copy-xs-mono",
   "copy-xxs",
   "copy-xxs-bold",
+  "copy-xxs-mono",
   "copy-sm",
   "copy-sm-bold",
+  "copy-sm-mono",
   "copy-md",
   "copy-md-bold",
+  "copy-md-mono",
   "copy-lg",
   "copy-lg-bold",
+  "copy-lg-mono",
   "copy-xl",
   "copy-xl-bold",
+  "copy-xl-mono",
   "label-xs",
   "label-xs-bold",
   "label-xs-mono",
@@ -40,6 +45,7 @@ export const TYPOGRAPHY_VARIANTS = [
   "label-md-mono",
   "label-lg",
   "label-lg-bold",
+  "label-lg-mono",
 ] as const;
 
 export type TypographyVariant = (typeof TYPOGRAPHY_VARIANTS)[number];

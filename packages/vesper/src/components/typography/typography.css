@@ -121,6 +121,13 @@
   font-weight: 500;
 }
 
+.vesper-typography-copy-xl-mono {
+  font-family: var(--vesper-font-mono);
+  font-size: 1.25rem;
+  line-height: var(--vesper-leading-snug);
+  letter-spacing: var(--vesper-tracking-normal);
+}
+
 .vesper-typography-copy-lg {
   font-family: var(--vesper-font-sans);
   font-size: 1.125rem;
@@ -134,6 +141,13 @@
   line-height: var(--vesper-leading-snug);
   letter-spacing: var(--vesper-tracking-normal);
   font-weight: 500;
+}
+
+.vesper-typography-copy-lg-mono {
+  font-family: var(--vesper-font-mono);
+  font-size: 1.125rem;
+  line-height: var(--vesper-leading-snug);
+  letter-spacing: var(--vesper-tracking-normal);
 }
 
 .vesper-typography-copy-md {
@@ -151,6 +165,13 @@
   font-weight: 500;
 }
 
+.vesper-typography-copy-md-mono {
+  font-family: var(--vesper-font-mono);
+  font-size: 1rem;
+  line-height: var(--vesper-leading-snug);
+  letter-spacing: var(--vesper-tracking-normal);
+}
+
 .vesper-typography-copy-sm {
   font-family: var(--vesper-font-sans);
   font-size: 0.875rem;
@@ -164,6 +185,13 @@
   line-height: var(--vesper-leading-normal);
   letter-spacing: var(--vesper-tracking-normal);
   font-weight: 500;
+}
+
+.vesper-typography-copy-sm-mono {
+  font-family: var(--vesper-font-mono);
+  font-size: 0.875rem;
+  line-height: var(--vesper-leading-normal);
+  letter-spacing: var(--vesper-tracking-normal);
 }
 
 .vesper-typography-copy-xs {
@@ -203,6 +231,13 @@
   font-weight: 500;
 }
 
+.vesper-typography-copy-xxs-mono {
+  font-family: var(--vesper-font-mono);
+  font-size: 0.75rem;
+  line-height: var(--vesper-leading-normal);
+  letter-spacing: var(--vesper-tracking-normal);
+}
+
 /* Label styles */
 
 .vesper-typography-label-lg {
@@ -218,6 +253,13 @@
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
   font-weight: 500;
+}
+
+.vesper-typography-label-lg-mono {
+  font-family: var(--vesper-font-mono);
+  font-size: 1rem;
+  line-height: var(--vesper-leading-none);
+  letter-spacing: var(--vesper-tracking-normal);
 }
 
 .vesper-typography-label-md {
