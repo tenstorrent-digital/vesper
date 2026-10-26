@@ -1,6 +1,15 @@
 "use client";
 
-import { useSyncExternalStore, type ComponentProps } from "react";
+import {
+  createContext,
+  type ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useSyncExternalStore,
+  type ComponentProps,
+} from "react";
 
 import { ModeDark, ModeLight, ModeSystem } from "@/components/icons/icons";
 import { cn } from "@/utils/cn";
@@ -25,55 +34,7 @@ export interface ThemeSwitcherProps extends Omit<
 > {
   /** The size of the theme switcher. @default lg */
   size?: ThemeSwitcherSize;
-  /** The theme to display during server rendering and hydration, when the document's theme can't be read yet. @default system */
-  serverTheme?: VesperTheme;
 }
-
-const store = {
-  listeners: new Set<() => void>(),
-  subscribe: (listener: () => void) => {
-    store.listeners.add(listener);
-    return () => store.listeners.delete(listener);
-  },
-  get: (): VesperTheme => {
-    let theme = document.documentElement.getAttribute("data-vesper-theme");
-    return VESPER_THEMES.find((t) => t === theme) ?? "system";
-  },
-  set: (theme: VesperTheme) => {
-    document.documentElement.setAttribute("data-vesper-theme", theme);
-    store.listeners.forEach((listener) => listener());
-  },
-};
-
-/**
- * A hook for reading and setting the active color theme, which is stored in the `data-vesper-theme` attribute on the document root.
- *
- * Every component that calls `useTheme` (including `ThemeSwitcher`) shares the same state, and re-renders when the theme is changed with `setTheme`.
- *
- * @param {VesperTheme} [serverTheme] - (optional) The theme to return during server rendering and hydration. @default system
- *
- * @example
- * const [theme, setTheme] = useTheme();
- *
- * @example
- * // render the user's saved theme on the server
- * const [theme, setTheme] = useTheme(savedTheme);
- *
- * @example
- * <Button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
- *   Toggle dark mode
- * </Button>
- */
-export const useTheme = (
-  serverTheme?: VesperTheme,
-): [VesperTheme, (theme: VesperTheme) => void] => {
-  const theme = useSyncExternalStore(
-    store.subscribe,
-    store.get,
-    () => serverTheme ?? "system",
-  );
-  return [theme, store.set] as const;
-};
 
 /**
  * A three-way toggle for switching between system, light, and dark color themes by setting the `data-vesper-theme` attribute on the document root.
@@ -94,8 +55,8 @@ export const useTheme = (
  * <ThemeSwitcher serverTheme={savedTheme} />
  */
 export function ThemeSwitcher(props: ThemeSwitcherProps) {
-  const { className, size = "lg", serverTheme, ...rest } = props;
-  const [currentTheme, setCurrentTheme] = useTheme(serverTheme);
+  const { className, size = "lg", ...rest } = props;
+  const [currentTheme, setCurrentTheme] = useTheme();
 
   return (
     <div
@@ -114,12 +75,10 @@ export function ThemeSwitcher(props: ThemeSwitcherProps) {
           <button
             key={theme}
             type="button"
-            className={cn(
-              "vesper-theme-switcher-button",
-              theme === currentTheme && "vesper-theme-switcher-button-active",
-            )}
+            className="vesper-theme-switcher-button"
             onClick={() => setCurrentTheme(theme)}
             aria-label={`Switch color theme to ${theme} ${theme === "system" ? "preference" : "mode"}`}
+            data-vesper-theme-value={theme}
           >
             <Icon />
           </button>
@@ -128,4 +87,145 @@ export function ThemeSwitcher(props: ThemeSwitcherProps) {
       <span className="vesper-theme-switcher-indicator" />
     </div>
   );
+}
+
+/**
+ * A hook for reading and setting the active color theme, which is stored in the `data-vesper-theme` attribute on the document root.
+ *
+ * Every component that calls `useTheme` (including `ThemeSwitcher`) shares the same state, and re-renders when the theme is changed with `setTheme`.
+ *
+ * Must be called inside a `ThemeProvider`, and throws an error otherwise.
+ *
+ * @example
+ * const [theme, setTheme] = useTheme();
+ *
+ * @example
+ * <Button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+ *   Toggle dark mode
+ * </Button>
+ */
+export function useTheme(): UseThemeValue {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error(
+      "`useTheme` and `ThemeSwitcher` must be used inside a `ThemeProvider`. Wrap your app in `<ThemeProvider>` from `@tenstorrent/vesper/theme-switcher`.",
+    );
+  }
+  return context;
+}
+
+export type UseThemeValue = [
+  theme: VesperTheme,
+  setTheme: (theme: VesperTheme) => void,
+];
+
+const parseTheme = (theme?: string | null): VesperTheme =>
+  VESPER_THEMES.find((t) => t === theme) ?? "system";
+
+const readActiveTheme = (): VesperTheme =>
+  parseTheme(document.documentElement.getAttribute("data-vesper-theme"));
+
+const writeActiveTheme = (theme: VesperTheme) => {
+  document.documentElement.setAttribute("data-vesper-theme", theme);
+  listeners.forEach((listener) => listener());
+};
+
+const readPersistedTheme = (storageKey: string): VesperTheme | null => {
+  try {
+    return parseTheme(localStorage.getItem(storageKey));
+  } catch {
+    return null;
+  }
+};
+
+const writePersistedTheme = (storageKey: string): VesperTheme | null => {
+  try {
+    localStorage.setItem(storageKey, readActiveTheme());
+    return readPersistedTheme(storageKey);
+  } catch {
+    return null;
+  }
+};
+
+const listeners = new Set<() => void>();
+
+const subscribe = (listener: () => void) => {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+};
+
+const ThemeContext = createContext<UseThemeValue | null>(null);
+
+export interface ThemeProviderProps {
+  children?: ReactNode;
+  /** The theme to display during server rendering and hydration, when the document's theme can't be read yet. @default system */
+  serverTheme?: VesperTheme;
+  storageKey?: string;
+}
+
+export function ThemeProvider({
+  children,
+  serverTheme,
+  storageKey,
+}: ThemeProviderProps) {
+  // server render and hydration use `serverTheme`; after that, read what the blocking script put on <html>
+  const theme = useSyncExternalStore(
+    subscribe,
+    readActiveTheme,
+    () => serverTheme ?? "system",
+  );
+
+  const setTheme = useCallback(
+    (next: VesperTheme) => {
+      writeActiveTheme(next);
+      if (storageKey) writePersistedTheme(storageKey);
+    },
+    [storageKey],
+  );
+
+  useEffect(() => {
+    if (!storageKey) return () => {};
+
+    const saved = readPersistedTheme(storageKey);
+    if (saved && saved !== readActiveTheme()) writeActiveTheme(saved);
+
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === storageKey) writeActiveTheme(parseTheme(e.newValue));
+    };
+
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, [storageKey]);
+
+  const value = useMemo<UseThemeValue>(
+    () => [theme, setTheme],
+    [theme, setTheme],
+  );
+
+  return (
+    <ThemeContext.Provider value={value}>
+      {storageKey && <ThemeScript storageKey={storageKey} />}
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+const themeScript = function themeScript(storageKey: string) {
+  try {
+    const theme = localStorage.getItem(storageKey);
+    const resolved: VesperTheme | null =
+      theme === "light" || theme === "dark" || theme === "system"
+        ? theme
+        : null;
+
+    if (resolved) {
+      document.documentElement.setAttribute("data-vesper-theme", resolved);
+    }
+  } catch {}
+};
+
+function ThemeScript({ storageKey }: { storageKey: string }) {
+  const fn = themeScript.toString();
+  const key = JSON.stringify(storageKey);
+  return <script dangerouslySetInnerHTML={{ __html: `(${fn})(${key})` }} />;
 }
