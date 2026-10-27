@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { ThemePersistenceScript } from "@tenstorrent/vesper/theme-switcher";
 import { Toasts } from "@tenstorrent/vesper/toast";
 
 import { Nav } from "@/components/nav";
@@ -38,7 +39,11 @@ export default function RootLayout({
         "antialiased",
       )}
       data-scroll-behavior="smooth"
+      suppressHydrationWarning
     >
+      <head>
+        <ThemePersistenceScript />
+      </head>
       <body>
         <div className="bg-vesper-dot-pattern-primary flex min-h-svh flex-col">
           <Nav />
