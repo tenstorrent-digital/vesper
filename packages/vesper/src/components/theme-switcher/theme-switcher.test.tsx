@@ -110,7 +110,7 @@ describe("theme-switcher [unit]", () => {
     await expectActiveTheme(result.container.firstElementChild, "light");
   });
 
-  test.each(VESPER_THEMES)("switching to %i theme", async (theme) => {
+  test.each(VESPER_THEMES)("switching to %s theme", async (theme) => {
     const result = render(<ThemeSwitcher />);
     fireEvent.click(result.getByRole("button", { name: BUTTON_LABELS[theme] }));
 
@@ -172,6 +172,18 @@ describe("useTheme [unit]", () => {
       "light",
     );
     await waitFor(() => expect(result.current[0]).toBe("light"));
+  });
+
+  test("updates when the document's theme is set directly", async () => {
+    const result = renderUseTheme();
+
+    act(() =>
+      document.documentElement.setAttribute("data-vesper-theme", "dark"),
+    );
+    await waitFor(() => expect(result.current[0]).toBe("dark"));
+
+    act(() => document.documentElement.removeAttribute("data-vesper-theme"));
+    await waitFor(() => expect(result.current[0]).toBe("system"));
   });
 });
 
