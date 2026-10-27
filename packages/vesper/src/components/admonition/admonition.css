@@ -36,7 +36,7 @@
 .vesper-admonition-sm {
   padding: var(--vesper-spacing-2) var(--vesper-spacing-4)
     var(--vesper-spacing-2) var(--vesper-spacing-3);
-  &:has( > .vesper-button) {
+  &:has(> .vesper-button) {
     padding-right: var(--vesper-spacing-2);
   }
   & > .vesper-admonition-content .vesper-admonition-icon {
@@ -46,7 +46,7 @@
 
 .vesper-admonition-md {
   padding: var(--vesper-spacing-3) var(--vesper-spacing-4);
-  &:has( > .vesper-button) {
+  &:has(> .vesper-button) {
     padding-right: var(--vesper-spacing-3);
   }
   & > .vesper-admonition-content .vesper-admonition-icon {
