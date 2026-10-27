@@ -14,8 +14,8 @@
   padding: var(--vesper-spacing-3);
   border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
   &.vesper-choicebox-item-compact {
-    padding-top: 0.375rem;
-    padding-bottom: 0.375rem;
+    padding-top: var(--vesper-spacing-2);
+    padding-bottom: var(--vesper-spacing-2);
   }
   &:has(:disabled) {
     border-color: var(--vesper-border-disabled);
@@ -83,7 +83,7 @@
   height: 0.75rem;
   border-radius: var(--vesper-radius-half);
   border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
-  color: var(--vesper-text-primary);
+  color: var(--vesper-icon-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,7 +109,7 @@
       border-color: var(--vesper-background-accent-base);
       background: var(--vesper-background-accent-base);
       &::after {
-        background: var(--vesper-background-primary);
+        background: var(--vesper-icon-primary);
       }
     }
     & + .vesper-choicebox-input-multi-indicator {

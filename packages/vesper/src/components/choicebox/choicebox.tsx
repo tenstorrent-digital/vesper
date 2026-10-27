@@ -288,7 +288,7 @@ function ChoiceboxItem({
         </Typography>
         {option.description && (
           <Typography
-            variant="copy-xs"
+            variant="copy-xxs"
             className="vesper-choicebox-item-description"
           >
             {option.description}
