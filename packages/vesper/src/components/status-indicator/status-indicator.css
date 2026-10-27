@@ -6,7 +6,8 @@
 }
 
 .vesper-status-indicator-badge {
-  padding: var(--vesper-spacing-1);
+  padding: 0 var(--vesper-spacing-1);
+  height: 1.25rem;
   border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
   border-radius: var(--vesper-radius-half);
 }
