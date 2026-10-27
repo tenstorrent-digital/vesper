@@ -561,10 +561,10 @@ Blur tokens define the blur radius used for filter effects throughout Vesper, su
 
 | CSS variable             | Value     | Equivalent at `16px` root font size |
 | ------------------------ | --------- | ----------------------------------- |
-| `--vesper-blur-disabled` | `0.75rem` | `12px`                              |
+| `--vesper-blur` | `0.75rem` | `12px`                              |
 
 ```css
-backdrop-filter: blur(var(--vesper-blur-disabled));
+backdrop-filter: blur(var(--vesper-blur));
 ```
 
 ### Tailwind blur classes
@@ -572,6 +572,6 @@ backdrop-filter: blur(var(--vesper-blur-disabled));
 Blur tokens are registered in Tailwind's `--blur-*` namespace, so they are available as `blur-*` and `backdrop-blur-*` utilities:
 
 ```tsx
-<div className="blur-vesper-disabled" />;
-<div className="backdrop-blur-vesper-disabled" />;
+<div className="blur-vesper" />;
+<div className="backdrop-blur-vesper" />;
 ```

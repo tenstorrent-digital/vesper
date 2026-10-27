@@ -192,6 +192,6 @@
 .vesper-button-disabled {
   color: var(--vesper-text-disabled);
   background: var(--vesper-background-disabled);
-  backdrop-filter: blur(var(--vesper-blur-disabled));
+  backdrop-filter: blur(var(--vesper-blur));
   pointer-events: none;
 }

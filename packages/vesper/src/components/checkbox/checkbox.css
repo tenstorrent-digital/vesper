@@ -97,7 +97,7 @@
     + .vesper-checkbox-box {
       border-color: var(--vesper-border-disabled);
       background: var(--vesper-background-disabled);
-      backdrop-filter: blur(var(--vesper-blur-disabled));
+      backdrop-filter: blur(var(--vesper-blur));
       .vesper-checkbox-indicator {
         color: var(--vesper-icon-disabled);
       }

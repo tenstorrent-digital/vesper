@@ -86,7 +86,7 @@
         var(--vesper-tint-neutral-200) 100%
       ),
       var(--vesper-background-disabled);
-    backdrop-filter: blur(var(--vesper-blur-disabled));
+    backdrop-filter: blur(var(--vesper-blur));
     &::after {
       background: var(--vesper-tint-neutral-200);
     }
