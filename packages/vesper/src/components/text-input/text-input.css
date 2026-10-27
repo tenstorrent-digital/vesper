@@ -4,8 +4,10 @@
   align-items: center;
   border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
   background: var(--vesper-tint-neutral-100);
-  &:has(.vesper-text-input-field:focus-visible),
-  &:has(.vesper-text-input-icon:focus-visible) {
+  &:where(:not(:has(:focus-visible)):hover) {
+    border-color: var(--vesper-border-primary);
+  }
+  &:has(:focus-visible) {
     border: var(--vesper-stroke-base) solid var(--vesper-border-strong);
     box-shadow: var(--vesper-shadow-focus-ring);
     @media (forced-colors: active) {
