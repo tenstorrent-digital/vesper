@@ -108,6 +108,7 @@ import { Shield } from "./shield";
 import { ShieldSolid } from "./shield-solid";
 import { Sidebar } from "./sidebar";
 import { Size } from "./size";
+import { SliderHorizontal } from "./slider-horizontal";
 import { SocialDiscord } from "./social-discord";
 import { SocialFacebook } from "./social-facebook";
 import { SocialGitHub } from "./social-github";
@@ -115,6 +116,7 @@ import { SocialLinkedIn } from "./social-linkedin";
 import { SocialX } from "./social-x";
 import { SocialYouTube } from "./social-youtube";
 import { Spinner } from "./spinner";
+import { Stop } from "./stop";
 import { Success } from "./success";
 import { SuccessSolid } from "./success-solid";
 import { Tensix } from "./tensix";
@@ -239,6 +241,7 @@ export const registry: {
   shield: Shield,
   sidebar: Sidebar,
   size: Size,
+  "slider-horizontal": SliderHorizontal,
   "social-discord": SocialDiscord,
   "social-facebook": SocialFacebook,
   "social-github": SocialGitHub,
@@ -246,6 +249,7 @@ export const registry: {
   "social-x": SocialX,
   "social-youtube": SocialYouTube,
   spinner: Spinner,
+  stop: Stop,
   "success-solid": SuccessSolid,
   success: Success,
   tensix: Tensix,
