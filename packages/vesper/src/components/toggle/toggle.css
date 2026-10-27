@@ -5,7 +5,7 @@
   padding: var(--vesper-spacing-1);
   border-radius: var(--vesper-radius-2);
   border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-tint-inverse-400);
+  background: var(--vesper-background-secondary);
 }
 
 .vesper-toggle-select {
@@ -77,6 +77,7 @@
   pointer-events: none;
   border-color: var(--vesper-border-disabled);
   background: var(--vesper-background-disabled);
+  backdrop-filter: blur(var(--vesper-blur));
   .vesper-toggle-item {
     color: var(--vesper-text-disabled);
     &.vesper-toggle-item-active {

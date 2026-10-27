@@ -10,7 +10,13 @@
 
 .vesper-switch-pill {
   aspect-ratio: 2;
-  background: var(--vesper-tint-neutral-400);
+  background:
+    linear-gradient(
+      0deg,
+      var(--vesper-tint-neutral-400) 0%,
+      var(--vesper-tint-neutral-400) 100%
+    ),
+    var(--vesper-background-primary);
   overflow: hidden;
   padding: var(--vesper-spacing-half);
   &::after {
@@ -73,9 +79,16 @@
     color: var(--vesper-text-disabled);
   }
   &:disabled ~ .vesper-switch-pill {
-    background: var(--vesper-background-disabled);
+    background:
+      linear-gradient(
+        0deg,
+        var(--vesper-tint-neutral-200) 0%,
+        var(--vesper-tint-neutral-200) 100%
+      ),
+      var(--vesper-background-disabled);
+    backdrop-filter: blur(var(--vesper-blur));
     &::after {
-      background: var(--vesper-background-disabled);
+      background: var(--vesper-tint-neutral-200);
     }
     @media (forced-colors: active) {
       opacity: 0.35;

@@ -1506,7 +1506,7 @@ export const light: ThemeRegistration = {
       scope: ["comment", "punctuation.definition.comment"],
       settings: {
         fontStyle: "italic",
-        foreground: "var(--vesper-stone-500)",
+        foreground: "var(--vesper-stone-600)",
       },
     },
     {
@@ -1746,7 +1746,7 @@ export const light: ThemeRegistration = {
     {
       scope: "comment.line.double-slash",
       settings: {
-        foreground: "var(--vesper-stone-500)",
+        foreground: "var(--vesper-stone-600)",
       },
     },
     {

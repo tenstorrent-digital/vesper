@@ -17,6 +17,9 @@
       color: var(--vesper-text-disabled);
     }
   }
+  &:where(:not(:disabled, :focus-visible):hover) {
+    border-color: var(--vesper-border-primary);
+  }
   /* https://css-tricks.com/snippets/css/change-autocomplete-styles-webkit-browsers/ */
   &:autofill,
   &:-webkit-autofill {

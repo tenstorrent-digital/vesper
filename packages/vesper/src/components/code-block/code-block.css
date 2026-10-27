@@ -4,7 +4,7 @@
   flex-direction: column;
   border-radius: var(--vesper-radius-2);
   border: var(--vesper-stroke-base) solid var(--vesper-stone-200);
-  background: var(--vesper-alpha-stone-0);
+  background: var(--vesper-background-tertiary);
   box-shadow: var(--vesper-shadow-inset-100);
   overflow: hidden;
 
@@ -15,14 +15,12 @@
   }
 
   @media (hover: hover) {
-    &[data-copy-on-hover="true"] {
-      .vesper-icon-button:not(:focus-visible) {
-        opacity: 0;
-      }
-      &:hover {
-        .vesper-icon-button {
-          opacity: 1;
-        }
+    .vesper-icon-button:not(:focus-visible) {
+      opacity: 0;
+    }
+    &:hover {
+      .vesper-icon-button {
+        opacity: 1;
       }
     }
   }
@@ -55,7 +53,7 @@
     margin: 0;
     padding: var(--vesper-spacing-5) 0;
     outline: none;
-    line-height: 1.3875rem;
+    line-height: 1.25rem;
     code {
       font-family: var(--vesper-font-mono);
       display: flex;

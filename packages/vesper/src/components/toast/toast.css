@@ -20,7 +20,7 @@
   bottom: 0;
   width: 100%;
   padding: var(--vesper-spacing-5);
-  box-shadow: var(--vesper-shadow-200);
+  box-shadow: var(--vesper-shadow-300);
   border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
   background: var(--vesper-background-primary);
   border-radius: var(--vesper-radius-2);

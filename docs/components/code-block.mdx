@@ -32,7 +32,6 @@ export default function CodeBlockDemo() {
 | `children` | `string \| () => ReadableStream<string> \| Promise<ReadableStream<string>>` | The code to render. Can be a string or a factory function returning a `ReadableStream` for streaming content. | `""` |
 | `lang` | `LanguageRegistration[] \| "text" \| "ansi"` | The language syntax for highlighting. Import grammar objects from `@shikijs/langs`. Use `"text"` for plain text or `"ansi"` for ANSI escape codes. | `"text"` |
 | `showLineNumbers` | `boolean` | Whether to show line numbers on the left-hand side. | `false` |
-| `copyOnHover` | `boolean` | When `true`, hides the copy-to-clipboard button until the code block is hovered. | `false` |
 
 All other props are forwarded to the underlying `<div>` element.
 
@@ -193,29 +192,6 @@ export default function StreamedCodeBlock() {
         {createCodeStream}
       </CodeBlock>
     </div>
-  );
-}
-```
-
-### Showing clipboard button on hover
-
-The copy-to-clipboard button is always visible by default; pass `copyOnHover` to hide it until the code block is hovered:
-
-```tsx demo
-import json from "@shikijs/langs/json";
-
-import { CodeBlock } from "@tenstorrent/vesper/code-block";
-
-const CODE = `{
-  "name": "@tenstorrent/vesper",
-  "version": "0.2.0"
-}`;
-
-export default function HoverCopyCodeBlock() {
-  return (
-    <CodeBlock lang={json} copyOnHover>
-      {CODE}
-    </CodeBlock>
   );
 }
 ```

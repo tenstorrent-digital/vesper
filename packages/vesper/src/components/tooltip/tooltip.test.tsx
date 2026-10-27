@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import {
   cleanup,
   fireEvent,
@@ -6,7 +8,6 @@ import {
   within,
 } from "@testing-library/react";
 import axe from "axe-core";
-import { createRef, type ReactNode } from "react";
 import {
   afterEach,
   assert,
@@ -19,7 +20,7 @@ import {
 import { userEvent } from "vitest/browser";
 
 import { TextButton } from "@/components/text-button/text-button";
-import { Tooltip } from "@/components/tooltip/tooltip";
+import { Tooltip, TOOLTIP_VARIANTS } from "@/components/tooltip/tooltip";
 import { Typography } from "@/components/typography/typography";
 import "@/styles/test.css";
 
@@ -126,6 +127,19 @@ describe("tooltip [unit]", () => {
     expect(tooltip).toHaveAttribute("data-side", "left");
   });
 
+  TOOLTIP_VARIANTS.forEach((variant) =>
+    test(`${variant} variant`, async () => {
+      render(
+        <Tooltip open side="left" content="Tooltip text" variant={variant}>
+          <TextButton>tooltip trigger</TextButton>
+        </Tooltip>,
+      );
+
+      const tooltip = document.querySelector(`.vesper-tooltip-${variant}`);
+      expect(tooltip).not.toBeNull();
+    }),
+  );
+
   test("alignment prop", async () => {
     render(
       <Tooltip open align="end" content="Tooltip text">
@@ -231,6 +245,28 @@ describe("tooltip [unit]", () => {
     );
 
     expect(document.querySelector(".vesper-tooltip")).not.toBeNull();
+  });
+
+  test("The tooltip arrow is visible by default", () => {
+    render(
+      <Tooltip defaultOpen content="Tooltip text">
+        <TextButton>trigger</TextButton>
+      </Tooltip>,
+    );
+
+    expect(document.querySelector(".vesper-tooltip")).not.toBeNull();
+    expect(document.querySelector(".vesper-tooltip-arrow")).not.toBeNull();
+  });
+
+  test("hideArrow hides the tooltip arrow", () => {
+    render(
+      <Tooltip defaultOpen content="Tooltip text" hideArrow>
+        <TextButton>trigger</TextButton>
+      </Tooltip>,
+    );
+
+    expect(document.querySelector(".vesper-tooltip")).not.toBeNull();
+    expect(document.querySelector(".vesper-tooltip-arrow")).toBeNull();
   });
 
   test("renders non-string content", () => {

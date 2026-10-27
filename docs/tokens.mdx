@@ -6,7 +6,7 @@ order: 2
 
 # CSS Tokens
 
-Vesper is built on top of a set of design tokens corresponding to color, spacing, radius, leading, tracking, shadow, stroke, and background. These tokens are exposed in your app as CSS variables when you [import the component styles](./getting-started.mdx#import-styles), and can also be used in Tailwind utilities.
+Vesper is built on top of a set of design tokens corresponding to color, spacing, radius, leading, tracking, shadow, stroke, blur, and background. These tokens are exposed in your app as CSS variables when you [import the component styles](./getting-started.mdx#import-styles), and can also be used in Tailwind utilities.
 
 ## Colors
 
@@ -201,8 +201,8 @@ We prefer using semantic tokens wherever possible, since they automatically reso
 | `--vesper-background-secondary`           | `--vesper-stone-50`           |
 | `--vesper-background-tertiary`            | `--vesper-stone-100`          |
 | `--vesper-background-disabled`            | `--vesper-alpha-stone-50`     |
-| `--vesper-background-inverse-primary`     | `--vesper-alpha-stone-900`    |
-| `--vesper-background-inverse-secondary`   | `--vesper-alpha-stone-800`    |
+| `--vesper-background-inverse-primary`     | `--vesper-stone-900`          |
+| `--vesper-background-inverse-secondary`   | `--vesper-stone-800`          |
 | `--vesper-background-inverse-disabled`    | `--vesper-alpha-inverse-50`   |
 | `--vesper-background-accent-subtle`       | `--vesper-teal-50`            |
 | `--vesper-background-accent-base`         | `--vesper-teal-400`           |
@@ -231,7 +231,7 @@ We prefer using semantic tokens wherever possible, since they automatically reso
 | `--vesper-text-inverse-primary`           | `--vesper-stone-0`            |
 | `--vesper-text-inverse-secondary`         | `--vesper-stone-300`          |
 | `--vesper-text-inverse-tertiary`          | `--vesper-stone-500`          |
-| `--vesper-text-alpha-disabled`            | `--vesper-alpha-inverse-300`  |
+| `--vesper-text-inverse-disabled`          | `--vesper-alpha-inverse-300`  |
 | `--vesper-text-on-color`                  | `--vesper-static-white`       |
 | `--vesper-text-accent`                    | `--vesper-teal-700`           |
 | `--vesper-text-success`                   | `--vesper-mint-600`           |
@@ -421,10 +421,10 @@ Radius tokens are registered in Tailwind's `--radius-*` namespace, so they work 
 
 | CSS variable | Value |
 | --- | --- |
-| `--vesper-shadow-100` | `0 0.125rem 0.375rem 0.0625rem rgba(9, 34, 33, 0.1)` |
-| `--vesper-shadow-200` | `0 0.25rem 0.75rem 0 rgba(9, 34, 33, 0.1)` |
-| `--vesper-shadow-300` | `0 0.75rem 2rem 0 rgba(9, 34, 33, 0.15)` |
-| `--vesper-shadow-400` | `0 1.5rem 4rem 0 rgba(9, 34, 33, 0.2)` |
+| `--vesper-shadow-100` | `0 0.125rem 0.375rem 0.0625rem rgba(0, 0, 0, 0.1)` |
+| `--vesper-shadow-200` | `0 0.25rem 0.75rem 0 rgba(0, 0, 0, 0.1)` |
+| `--vesper-shadow-300` | `0 0.75rem 2rem 0 rgba(0, 0, 0, 0.15)` |
+| `--vesper-shadow-400` | `0 1.5rem 4rem 0 rgba(0, 0, 0, 0.2)` |
 | `--vesper-shadow-inset-100` | `0 0.125rem 0.375rem 0 var(--vesper-alpha-contrast-100) inset` |
 | `--vesper-shadow-inset-200` | `0 0.125rem 0.75rem 0 var(--vesper-tint-contrast-200) inset` |
 | `--vesper-shadow-focus-ring` | `0 0 0 0.1875rem var(--vesper-border-focus)` |
@@ -505,7 +505,7 @@ Background tokens provide Vesper's dot pattern as ready-to-use `background` shor
 | `--vesper-bg-dot-pattern-primary` | `url(...) repeat top #f8fcfb` | `url(...) repeat top #050f0e` |
 | `--vesper-bg-dot-pattern-secondary` | `url(...) repeat top #eef6f6` | `url(...) repeat top #0b1817` |
 | `--vesper-bg-dot-pattern-tertiary` | `url(...) repeat top #e8f2f1` | `url(...) repeat top #13201e` |
-| `--vesper-bg-dot-pattern-inverse` | `url(...) repeat top rgba(0, 15, 15, 0.973)` | `url(...) repeat top rgba(245, 255, 253, 0.937)` |
+| `--vesper-bg-dot-pattern-inverse` | `url(...) repeat top #050f0e` | `url(...) repeat top #e7f0ee` |
 
 Since the dot pattern tokens are `background` shorthand values, assign them to the `background` property rather than `background-image` or `background-color`:
 
@@ -553,4 +553,25 @@ Stroke tokens are registered in Tailwind's `--outline-width-*` and `--border-wid
 ```tsx
 <div className="outline-vesper-base" />;
 <div className="border-vesper-strong" />;
+```
+
+## Blurs
+
+Blur tokens define the blur radius used for filter effects throughout Vesper, such as the backdrop blur applied to disabled components.
+
+| CSS variable    | Value     | Equivalent at `16px` root font size |
+| --------------- | --------- | ----------------------------------- |
+| `--vesper-blur` | `0.75rem` | `12px`                              |
+
+```css
+backdrop-filter: blur(var(--vesper-blur));
+```
+
+### Tailwind blur classes
+
+Blur tokens are registered in Tailwind's `--blur-*` namespace, so they are available as `blur-*` and `backdrop-blur-*` utilities:
+
+```tsx
+<div className="blur-vesper" />;
+<div className="backdrop-blur-vesper" />;
 ```

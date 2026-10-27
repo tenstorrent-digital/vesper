@@ -232,7 +232,7 @@
   --color-vesper-text-inverse-primary: var(--vesper-text-inverse-primary);
   --color-vesper-text-inverse-secondary: var(--vesper-text-inverse-secondary);
   --color-vesper-text-inverse-tertiary: var(--vesper-text-inverse-tertiary);
-  --color-vesper-text-alpha-disabled: var(--vesper-text-alpha-disabled);
+  --color-vesper-text-inverse-disabled: var(--vesper-text-inverse-disabled);
   --color-vesper-text-on-color: var(--vesper-text-on-color);
   --color-vesper-text-accent: var(--vesper-text-accent);
   --color-vesper-text-success: var(--vesper-text-success);
@@ -393,4 +393,5 @@
     --vesper-transition-duration-default
   );
   --transition-duration-vesper-slow: var(--vesper-transition-duration-slow);
+  --blur-vesper: var(--vesper-blur);
 }

@@ -80,6 +80,7 @@
   pointer-events: none;
   color: var(--vesper-text-disabled);
   background: var(--vesper-background-disabled);
+  backdrop-filter: blur(var(--vesper-blur));
   border: var(--vesper-stroke-base) solid var(--vesper-border-disabled);
   & > .vesper-chip-icon {
     color: var(--vesper-icon-disabled);
