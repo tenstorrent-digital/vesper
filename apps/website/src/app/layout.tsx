@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { ThemeProvider } from "@tenstorrent/vesper/theme-switcher";
+import { ThemePersistenceScript } from "@tenstorrent/vesper/theme-switcher";
 import { Toasts } from "@tenstorrent/vesper/toast";
 
 import { Nav } from "@/components/nav";
@@ -41,24 +41,25 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
+      <head>
+        <ThemePersistenceScript />
+      </head>
       <body>
-        <ThemeProvider storageKey="vesper-theme">
-          <div className="bg-vesper-dot-pattern-primary flex min-h-svh flex-col">
-            <Nav />
-            <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col-reverse items-start md:flex-row">
-              <Sidebar data={getSidebarData()} />
-              <div
-                className={cn(
-                  "p-vesper-4 pb-vesper-12 mb-vesper-4 w-full min-w-0 flex-1 md:mb-0",
-                  "border-vesper-border-tertiary border-b md:border-b-0",
-                )}
-              >
-                {children}
-              </div>
+        <div className="bg-vesper-dot-pattern-primary flex min-h-svh flex-col">
+          <Nav />
+          <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col-reverse items-start md:flex-row">
+            <Sidebar data={getSidebarData()} />
+            <div
+              className={cn(
+                "p-vesper-4 pb-vesper-12 mb-vesper-4 w-full min-w-0 flex-1 md:mb-0",
+                "border-vesper-border-tertiary border-b md:border-b-0",
+              )}
+            >
+              {children}
             </div>
           </div>
-          <Toasts />
-        </ThemeProvider>
+        </div>
+        <Toasts />
       </body>
     </html>
   );

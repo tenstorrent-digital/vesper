@@ -5,7 +5,7 @@ description: A three-way toggle for switching between system, light, and dark co
 
 # Theme Switcher
 
-A three-way toggle for switching between system, light, and dark color themes. Sets the `data-vesper-theme` attribute on the document element to control the active theme. The active theme can also be read and set from your own components with [the `useTheme` hook](#reading-and-setting-the-theme).
+A three-way toggle for switching between system, light, and dark color themes. Sets the `data-vesper-theme` attribute on the document element to control the active theme. The active theme can also be read and set from your own components with [the `useTheme` hook](#reading-and-setting-the-theme), and [saved between visits](#saving-the-theme) with `ThemePersistenceScript`.
 
 ```tsx demo
 import { ThemeSwitcher } from "@tenstorrent/vesper/theme-switcher";
@@ -30,25 +30,27 @@ export default function ThemeSwitcherDemo() {
 
 ### ThemeSwitcher
 
-| Prop | Type | Description | Default |
-| --- | --- | --- | --- |
-| `size` | `"sm" \| "lg"` | The size of the theme switcher. | `"lg"` |
-| `serverTheme` | `"system" \| "light" \| "dark"` | The theme to display during server rendering and hydration, when the document's theme can't be read yet. See [server rendering](#server-rendering). | `"system"` |
+| Prop   | Type           | Description                     | Default |
+| ------ | -------------- | ------------------------------- | ------- |
+| `size` | `"sm" \| "lg"` | The size of the theme switcher. | `"lg"`  |
 
 Additional props are passed to the underlying `<div>` element.
 
+### ThemePersistenceScript
+
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `storageKey` | `string` | The `localStorage` key to save the theme to. See [saving the theme](#saving-the-theme). | `"vesper-theme"` |
+| `nonce` | `string` | The nonce to allow the inline script with a Content Security Policy. See [Content Security Policy](#content-security-policy). | `undefined` |
+
 ### `useTheme`
 
-| Argument | Type | Description | Default |
-| --- | --- | --- | --- |
-| `serverTheme` | `"system" \| "light" \| "dark"` | The theme to return during server rendering and hydration, when the document's theme can't be read yet. See [server rendering](#server-rendering). | `"system"` |
-
-Like `useState`, `useTheme` returns a `[theme, setTheme]` tuple:
+`useTheme` takes no arguments. Like `useState`, it returns a `[theme, setTheme]` tuple:
 
 | Value | Type | Description |
 | --- | --- | --- |
 | `theme` | `"system" \| "light" \| "dark"` | The active theme. Falls back to `"system"` when the document has no valid `data-vesper-theme` attribute. |
-| `setTheme` | `(theme: VesperTheme) => void` | Sets the `data-vesper-theme` attribute on the document element, and re-renders every component that uses `useTheme`. |
+| `setTheme` | `(theme: VesperTheme) => void` | Sets the `data-vesper-theme` attribute on the document element, which re-renders every component that uses `useTheme`. |
 
 ## Examples
 
@@ -123,33 +125,91 @@ export default function UseThemeDemo() {
 
 > [!NOTE]
 >
-> `useTheme` only sees theme changes made with `setTheme`. Setting the `data-vesper-theme` attribute directly won't re-render the components that use it.
+> `useTheme` watches the `data-vesper-theme` attribute. Components that use it re-render whenever the attribute changes, including when you set it directly with `setAttribute`.
+
+### Saving the theme
+
+By default, the theme resets when the page reloads. To save it, render a `ThemePersistenceScript` once, in your document's `<head>`. In a Next.js application, you would render it in your root `layout.tsx`:
+
+```tsx
+import { ThemePersistenceScript } from "@tenstorrent/vesper/theme-switcher";
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <ThemePersistenceScript />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+By default, the theme is saved under the `vesper-theme` key in `localStorage`. To use a different key, pass a `storageKey`:
+
+```tsx
+<ThemePersistenceScript storageKey="my-app-theme" />
+```
+
+`ThemePersistenceScript` is the only place you configure the key. Once it runs, it keeps the `data-vesper-theme` attribute and `localStorage` in sync:
+
+- Whenever the attribute changes, the theme is saved under the key. This includes changes made with `setTheme`, a `ThemeSwitcher`, or `setAttribute`. Removing the attribute removes the saved theme.
+- Whenever the theme is saved in another browser tab, it's applied to the attribute. Clearing `localStorage` in another tab resets the theme to `"system"`.
+
+This works for as long as the page is open, even on pages that don't render a `ThemeSwitcher` or use `useTheme`.
+
+`ThemePersistenceScript` also applies the saved theme to the document before the page is first painted. Server rendered pages don't flash the wrong theme while they load.
+
+The script sets the `data-vesper-theme` attribute on the `<html>` element before React hydrates. Add `suppressHydrationWarning` to your `<html>` element to stop React from warning about the extra attribute. It only applies to the `<html>` element's own attributes, and React still warns about mismatches anywhere else.
+
+> [!NOTE]
+>
+> React only runs scripts that are part of server rendered HTML. In apps that only render in the browser, the script is set up when the first `ThemeSwitcher` or `useTheme` renders instead, and React logs an error in development about the script not running.
+
+#### Content Security Policy
+
+`ThemePersistenceScript` renders an inline script. If your Content Security Policy only allows scripts with a nonce, pass the nonce for the current request as `nonce`:
+
+```tsx
+<ThemePersistenceScript nonce={nonce} />
+```
 
 ### Server rendering
 
-Since there's no way for the server to read theme from the document (in the client) during server rendering, `ThemeSwitcher` and `useTheme` use a fallback theme instead, which defaults to `"system"`. React keeps using the fallback theme while hydrating, so the first render in the browser matches the server's HTML, then re-renders with the document's theme.
+Since there's no way for the server to read theme from the document (in the client) during server rendering, `useTheme` returns `"system"` on the server. React keeps using `"system"` while hydrating, so the first render in the browser matches the server's HTML, then re-renders with the document's theme.
 
-If the user's theme is available on the server, pass it as `serverTheme` so the server's HTML shows the right theme from the start. `ThemeSwitcher` takes it as a prop, and `useTheme` takes it as an argument:
+`ThemeSwitcher` positions its indicator and highlights its active button from the document's `data-vesper-theme` attribute instead. It shows the right theme before hydration whenever the attribute is already set, such as by `ThemePersistenceScript`.
+
+To render your own content for each theme before hydration, style it from the `data-vesper-theme` attribute with CSS rather than reading the theme with `useTheme`:
 
 ```tsx
-import {
-  ThemeSwitcher,
-  useTheme,
-  type VesperTheme,
-} from "@tenstorrent/vesper/theme-switcher";
-
-export function ThemeSettings({ savedTheme }: { savedTheme: VesperTheme }) {
-  const [theme] = useTheme(savedTheme);
-
+export function ThemeLabel() {
   return (
     <>
-      <span>Current theme: {theme}</span>
-      <ThemeSwitcher serverTheme={savedTheme} />
+      <span data-show-for-theme="system">System</span>
+      <span data-show-for-theme="light">Light</span>
+      <span data-show-for-theme="dark">Dark</span>
     </>
   );
 }
 ```
 
-Pass the same `serverTheme` to each component that takes one. Components with different server theme values show different themes until hydration finishes.
+```css
+[data-show-for-theme] {
+  display: none;
+}
 
-The `serverTheme` only applies to server rendering and hydration. Components that first render in the browser always read the theme from the document.
+html:not([data-vesper-theme="light"], [data-vesper-theme="dark"])
+  [data-show-for-theme="system"],
+html[data-vesper-theme="light"] [data-show-for-theme="light"],
+html[data-vesper-theme="dark"] [data-show-for-theme="dark"] {
+  display: revert;
+}
+```
+
+If you save the theme in a cookie instead of with `ThemePersistenceScript`, read the cookie on the server and render it as the `data-vesper-theme` attribute on your `<html>` element. The page and `ThemeSwitcher` then show the saved theme from the first paint, without a script.

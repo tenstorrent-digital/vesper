@@ -63,7 +63,7 @@
   pointer-events: none;
 }
 
-html:not([data-vesper-theme="light"], html[data-vesper-theme="dark"]) {
+html:not([data-vesper-theme="light"], [data-vesper-theme="dark"]) {
   .vesper-theme-switcher-button[data-vesper-theme-value="system"] {
     color: var(--vesper-icon-primary);
   }
