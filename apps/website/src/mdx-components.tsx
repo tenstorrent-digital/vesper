@@ -152,11 +152,7 @@ const components = {
       resolvedLang = (await bundledLanguages[lang]()).default;
     }
 
-    return (
-      <CodeBlock lang={resolvedLang} copyOnHover>
-        {code}
-      </CodeBlock>
-    );
+    return <CodeBlock lang={resolvedLang}>{code}</CodeBlock>;
   },
   img: ({ src, alt, width, height, ...props }) => (
     <Image
