@@ -121,10 +121,6 @@ export default function UseThemeDemo() {
 }
 ```
 
-> [!NOTE]
->
-> `useTheme` only sees theme changes made with `setTheme`. Setting the `data-vesper-theme` attribute directly won't re-render the components that use it.
-
 ### Server rendering
 
 Since there's no way for the server to read theme from the document (in the client) during server rendering, `ThemeSwitcher` and `useTheme` use a fallback theme instead, which defaults to `"system"`. React keeps using the fallback theme while hydrating, so the first render in the browser matches the server's HTML, then re-renders with the document's theme.
