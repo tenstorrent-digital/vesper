@@ -130,11 +130,10 @@ export function ThemeSwitcher(props: ThemeSwitcherProps) {
 }
 
 /**
- * Sets up saving the theme under `storageKey`. First, it applies the saved theme to the document. After that, it
- * saves the theme whenever the attribute on the document changes (however it's changed), and applies themes saved
- * in other browser tabs.
- *
- * It's set up once per page, and keeps working while the page is open, whether or not anything uses `useTheme`.
+ * Sets up saving the theme under `storageKey` by doing the following:
+ * 1. Applies the theme saved in `localStorage` under `storageKey` (if any) to the document
+ * 2. Sets up a `MutationObserver` that listens for theme changes and writes them to `localStorage` under `storageKey`
+ * 3. Sets up event listeners that respond to theme changes in other tabs
  *
  * Runs as an inline script, so it's converted to a string and can't reference anything outside of itself
  */
