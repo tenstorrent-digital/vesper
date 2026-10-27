@@ -228,6 +228,26 @@ describe("ThemePersistenceScript [unit]", () => {
     },
   );
 
+  test.each([
+    "</script><script>window.injected = true;</script>",
+    "</SCRIPT ><script>window.injected = true;</script>",
+    // the start of an HTML comment followed by `<script>` stops the next `</script>` from ending the script
+    "<!--<script>",
+  ])("storage keys can't end the script early: %s", async (storageKey) => {
+    localStorage.setItem(storageKey, "dark");
+
+    const page = await loadPage(
+      <ThemePersistenceScript storageKey={storageKey} />,
+    );
+    expect(getPageTheme(page)).toBe("dark");
+    expect(Reflect.get(page, "injected")).toBeUndefined();
+
+    await setPageTheme(page, "light");
+    expect(localStorage.getItem(storageKey)).toBe("light");
+
+    // the `afterEach` hook checks that the page didn't throw any errors
+  });
+
   test("only the first script on the page sets up persistence", async () => {
     localStorage.setItem("second-key", "dark");
 

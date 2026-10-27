@@ -218,6 +218,14 @@ function persistTheme(storageKey: string) {
   Reflect.set(window, setup, true);
 }
 
+/**
+ * Converts `value` to a JavaScript string that can be placed inside an inline `<script>` element.
+ *
+ * `JSON.stringify` escapes quotes and backslashes, but not `<`. Inside a `<script>` element, `</script>` ends the script early, and the start of an HTML comment followed by `<script>` stops the next `</script>` from ending it. Escaping `<` as `\u003c` keeps the string's value the same, and prevents both.
+ */
+const toInlineScriptString = (value: string) =>
+  JSON.stringify(value).replaceAll("<", "\\u003c");
+
 export interface ThemePersistenceScriptProps extends Omit<
   ComponentProps<"script">,
   "children" | "dangerouslySetInnerHTML"
@@ -257,7 +265,7 @@ export function ThemePersistenceScript(props: ThemePersistenceScriptProps) {
       {...rest}
       data-vesper-theme-storage-key={storageKey} // must match `STORAGE_KEY_ATTRIBUTE`
       dangerouslySetInnerHTML={{
-        __html: `(${persistTheme.toString()})(${JSON.stringify(storageKey)})`,
+        __html: `(${persistTheme.toString()})(${toInlineScriptString(storageKey)})`,
       }}
     />
   );
