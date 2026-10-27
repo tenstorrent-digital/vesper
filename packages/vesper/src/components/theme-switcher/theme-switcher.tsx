@@ -19,6 +19,10 @@ const THEME_ICONS = {
   dark: ModeDark,
 };
 
+const THEME_ATTRIBUTE = "data-vesper-theme";
+
+const STORAGE_KEY_ATTRIBUTE = "data-vesper-theme-storage-key";
+
 export interface ThemeSwitcherProps extends Omit<
   ComponentProps<"div">,
   "children"
@@ -28,10 +32,6 @@ export interface ThemeSwitcherProps extends Omit<
   /** The theme to display during server rendering and hydration, when the document's theme can't be read yet. @default system */
   serverTheme?: VesperTheme | null;
 }
-
-const THEME_ATTRIBUTE = "data-vesper-theme";
-
-const STORAGE_KEY_ATTRIBUTE = "data-vesper-theme-storage-key";
 
 const parseTheme = (theme?: string | null): VesperTheme =>
   VESPER_THEMES.find((t) => t === theme) ?? "system";
@@ -60,15 +60,18 @@ const subscribe = (listener: () => void) => {
 /**
  * A hook for reading and setting the active color theme, which is stored in the `data-vesper-theme` attribute on the document root.
  *
- * Every component that calls `useTheme` (including `ThemeSwitcher`) shares the same state, and re-renders whenever the attribute changes.
- *
- * Returns the `system` theme during server rendering and hydration, since the server can't read the document's theme.
+ * Every component that calls `useTheme` (including `ThemeSwitcher`) shares the same state, and re-renders when the theme is changed.
  *
  * @param {VesperTheme} [serverTheme] - (optional) The theme to return during server rendering and hydration. @default system
  *
  * @example
  * const [theme, setTheme] = useTheme();
  *
+ * @example
+ * // render the user's saved theme on the server
+ * const [theme, setTheme] = useTheme(savedTheme);
+ *
+ * @example
  * <Button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
  *   Toggle dark mode
  * </Button>
@@ -208,11 +211,12 @@ function persistTheme(storageKey: string) {
   Reflect.set(window, setup, true);
 }
 
-export interface ThemePersistenceScriptProps {
+export interface ThemePersistenceScriptProps extends Omit<
+  ComponentProps<"script">,
+  "children" | "dangerouslySetInnerHTML"
+> {
   /** The `localStorage` key to save the theme to. @default vesper-theme */
   storageKey?: string;
-  /** The nonce to allow the inline script with a Content Security Policy. */
-  nonce?: string;
 }
 
 /**
@@ -221,7 +225,6 @@ export interface ThemePersistenceScriptProps {
  * Once it runs, the theme is saved whenever the `data-vesper-theme` attribute on the document changes. Themes saved in other browser tabs are applied too. Clearing `localStorage` in another tab resets the theme to `system`.
  *
  * @param {string} [props.storageKey] - (optional) The `localStorage` key to save the theme to. @default vesper-theme
- * @param {string} [props.nonce] - (optional) The nonce to allow the inline script with a Content Security Policy
  *
  * @example
  * <html lang="en" suppressHydrationWarning>
@@ -239,13 +242,12 @@ export interface ThemePersistenceScriptProps {
  * // with a Content Security Policy that uses a nonce
  * <ThemePersistenceScript nonce={nonce} />
  */
-export function ThemePersistenceScript({
-  storageKey = "vesper-theme",
-  nonce,
-}: ThemePersistenceScriptProps) {
+export function ThemePersistenceScript(props: ThemePersistenceScriptProps) {
+  const { storageKey = "vesper-theme", ...rest } = props;
+
   return (
     <script
-      nonce={nonce}
+      {...rest}
       data-vesper-theme-storage-key={storageKey} // must match `STORAGE_KEY_ATTRIBUTE`
       dangerouslySetInnerHTML={{
         __html: `(${persistTheme.toString()})(${JSON.stringify(storageKey)})`,
