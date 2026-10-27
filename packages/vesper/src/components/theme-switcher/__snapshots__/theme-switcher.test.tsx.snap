@@ -3,7 +3,6 @@
 exports[`theme-switcher [snapshot] > lg 1`] = `
 <div
   class="vesper-theme-switcher vesper-theme-switcher-lg vesper-theme-switcher-system"
-  data-vesper-theme="system"
 >
   <button
     aria-label="Switch color theme to system preference"
@@ -69,7 +68,6 @@ exports[`theme-switcher [snapshot] > lg 1`] = `
 exports[`theme-switcher [snapshot] > sm 1`] = `
 <div
   class="vesper-theme-switcher vesper-theme-switcher-sm vesper-theme-switcher-system"
-  data-vesper-theme="system"
 >
   <button
     aria-label="Switch color theme to system preference"

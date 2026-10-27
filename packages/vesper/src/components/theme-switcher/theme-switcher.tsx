@@ -19,6 +19,16 @@ const THEME_ICONS = {
   dark: ModeDark,
 };
 
+export interface ThemeSwitcherProps extends Omit<
+  ComponentProps<"div">,
+  "children"
+> {
+  /** The size of the theme switcher. @default lg */
+  size?: ThemeSwitcherSize;
+  /** The theme to display during server rendering and hydration, when the document's theme can't be read yet. @default system */
+  serverTheme?: VesperTheme | null;
+}
+
 const THEME_ATTRIBUTE = "data-vesper-theme";
 
 const STORAGE_KEY_ATTRIBUTE = "data-vesper-theme-storage-key";
@@ -28,8 +38,6 @@ const parseTheme = (theme?: string | null): VesperTheme =>
 
 const readActiveTheme = (): VesperTheme =>
   parseTheme(document.documentElement.getAttribute(THEME_ATTRIBUTE));
-
-const readServerTheme = (): VesperTheme => "system";
 
 const setTheme = (theme: VesperTheme) => {
   document.documentElement.setAttribute(THEME_ATTRIBUTE, theme);
@@ -56,30 +64,25 @@ const subscribe = (listener: () => void) => {
  *
  * Returns the `system` theme during server rendering and hydration, since the server can't read the document's theme.
  *
+ * @param {VesperTheme} [serverTheme] - (optional) The theme to return during server rendering and hydration. @default system
+ *
  * @example
  * const [theme, setTheme] = useTheme();
  *
- * @example
  * <Button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
  *   Toggle dark mode
  * </Button>
  */
-export function useTheme() {
+export const useTheme = (
+  serverTheme?: VesperTheme | null,
+): [VesperTheme, (theme: VesperTheme) => void] => {
   const theme = useSyncExternalStore(
     subscribe,
     readActiveTheme,
-    readServerTheme,
+    () => serverTheme ?? "system",
   );
   return [theme, setTheme] as const;
-}
-
-export interface ThemeSwitcherProps extends Omit<
-  ComponentProps<"div">,
-  "children"
-> {
-  /** The size of the theme switcher. @default lg */
-  size?: ThemeSwitcherSize;
-}
+};
 
 /**
  * A three-way toggle for switching between system, light, and dark color themes by setting the `data-vesper-theme` attribute on the document root.
@@ -93,15 +96,18 @@ export interface ThemeSwitcherProps extends Omit<
  *
  * @example
  * <ThemeSwitcher size="sm" />
+ *
+ * @example
+ * // render the user's saved theme on the server
+ * <ThemeSwitcher serverTheme={savedTheme} />
  */
 export function ThemeSwitcher(props: ThemeSwitcherProps) {
-  const { className, size = "lg", ...rest } = props;
-  const [currentTheme, setCurrentTheme] = useTheme();
+  const { className, size = "lg", serverTheme, ...rest } = props;
+  const [currentTheme, setCurrentTheme] = useTheme(serverTheme);
 
   return (
     <div
       {...rest}
-      data-vesper-theme={currentTheme}
       className={cn(
         "vesper-theme-switcher",
         `vesper-theme-switcher-${size}`,
