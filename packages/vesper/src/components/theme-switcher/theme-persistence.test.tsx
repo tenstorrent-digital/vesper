@@ -92,12 +92,39 @@ function setPageTheme(page: Window, theme: string | null) {
 }
 
 /**
- * Resolves after the next `storage` event in a page is handled by the listeners that were already added (eg. the one that applies themes saved in other tabs), since event listeners are called in the order they were added
+ * Resolves after the next `count` `storage` events in a page are handled by the listeners that were already added (eg. the one that applies themes saved in other tabs), since event listeners are called in the order they were added
  */
-function nextStorageEvent(page: Window) {
-  return new Promise<void>((resolve) =>
-    page.addEventListener("storage", () => resolve(), { once: true }),
+function nextStorageEvent(page: Window, count = 1) {
+  return new Promise<void>((resolve) => {
+    let remaining = count;
+    const listener = () => {
+      if (--remaining > 0) return;
+      page.removeEventListener("storage", listener);
+      resolve();
+    };
+    page.addEventListener("storage", listener);
+  });
+}
+
+/** Spies on the `localStorage` changes a page makes (changes made by the test page aren't included) */
+function spyOnPageStorage(page: Window) {
+  const { prototype } = (page as Window & typeof globalThis).Storage;
+  return {
+    setItem: vi.spyOn(prototype, "setItem"),
+    removeItem: vi.spyOn(prototype, "removeItem"),
+  };
+}
+
+/** Records each theme set on a page's document from now on (`null` when the theme is removed) */
+function recordPageThemes(page: Window) {
+  const themes: (string | null)[] = [];
+  const observer = new MutationObserver((records) =>
+    records.forEach(() => themes.push(getPageTheme(page))),
   );
+  observer.observe(page.document.documentElement, {
+    attributeFilter: ["data-vesper-theme"],
+  });
+  return themes;
 }
 
 afterEach(() => {
@@ -313,6 +340,65 @@ describe("ThemePersistenceScript [unit]", () => {
       await storageEvent;
 
       expect(getPageTheme(page)).toBe("dark");
+    });
+
+    /**
+     * Changes made in quick succession are all saved before the page handles the first `storage` event. By then, the first events are out of date
+     */
+    describe("queued changes", () => {
+      test("applies the newest theme without saving it again", async () => {
+        const page = await loadPage(<ThemePersistenceScript />);
+        const pageStorage = spyOnPageStorage(page);
+        const pageThemes = recordPageThemes(page);
+
+        const storageEvents = nextStorageEvent(page, 2);
+        localStorage.setItem(STORAGE_KEY, "light");
+        localStorage.setItem(STORAGE_KEY, "dark");
+        await storageEvents;
+
+        expect(pageThemes).toEqual(["dark"]);
+        expect(localStorage.getItem(STORAGE_KEY)).toBe("dark");
+        expect(pageStorage.setItem).not.toHaveBeenCalled();
+      });
+
+      test("a queued removal doesn't remove a newer theme", async () => {
+        localStorage.setItem(STORAGE_KEY, "dark");
+        const page = await loadPage(<ThemePersistenceScript />);
+        const pageStorage = spyOnPageStorage(page);
+        const pageThemes = recordPageThemes(page);
+
+        const storageEvents = nextStorageEvent(page, 2);
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.setItem(STORAGE_KEY, "light");
+        await storageEvents;
+
+        expect(pageThemes).toEqual(["light"]);
+        expect(localStorage.getItem(STORAGE_KEY)).toBe("light");
+        expect(pageStorage.setItem).not.toHaveBeenCalled();
+        expect(pageStorage.removeItem).not.toHaveBeenCalled();
+      });
+
+      test("tabs don't save each other's themes again", async () => {
+        const page = await loadPage(<ThemePersistenceScript />);
+        const otherPage = await loadPage(<ThemePersistenceScript />);
+        const pageStorage = spyOnPageStorage(page);
+        const otherPageStorage = spyOnPageStorage(otherPage);
+
+        // both changes are saved before the other page handles the first one
+        const storageEvents = nextStorageEvent(otherPage, 2);
+        await setPageTheme(page, "light");
+        await setPageTheme(page, "dark");
+        await storageEvents;
+
+        // saving the other page's themes again would fire `storage` events back in this page, which could keep echoing between them
+        expect(pageStorage.setItem.mock.calls).toEqual([
+          [STORAGE_KEY, "light"],
+          [STORAGE_KEY, "dark"],
+        ]);
+        expect(otherPageStorage.setItem).not.toHaveBeenCalled();
+        expect(getPageTheme(otherPage)).toBe("dark");
+        expect(localStorage.getItem(STORAGE_KEY)).toBe("dark");
+      });
     });
   });
 

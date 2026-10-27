@@ -186,25 +186,32 @@ function persistTheme(storageKey: string) {
   observer.observe(root, { attributeFilter: [attribute] });
 
   /**
-   * only changes the attribute when the theme is different, so themes from other tabs aren't saved again. A removed theme (or cleared storage, where `key` is `null`) removes the attribute, which falls back to the system theme without saving it back into storage.
+   * Applies the theme that's currently saved. Another tab can save several themes before this tab handles the first `storage` event, and that event's `newValue` is out of date by then. Saving an outdated theme over the newer one would trigger `storage` events in the other tabs, and the tabs could keep saving each other's themes indefinitely.
+   *
+   * A removed theme (or cleared storage, where `key` is `null`) removes the attribute, which falls back to the system theme.
    */
   const handleStorage = (event: StorageEvent) => {
     if (event.key !== null && event.key !== storageKey) return;
+
+    let saved: string | null;
     try {
       // `sessionStorage` changes in other frames on the page fire `storage` events too
       if (event.storageArea !== localStorage) return;
+      saved = localStorage.getItem(storageKey);
     } catch {
       return;
     }
 
-    if (event.newValue === null) {
+    if (saved === null) {
       root.removeAttribute(attribute);
-    } else if (
-      isTheme(event.newValue) &&
-      event.newValue !== root.getAttribute(attribute)
-    ) {
-      root.setAttribute(attribute, event.newValue);
+    } else if (isTheme(saved) && saved !== root.getAttribute(attribute)) {
+      root.setAttribute(attribute, saved);
+    } else {
+      return;
     }
+
+    // the theme was already saved by another tab, so don't save it again
+    observer.takeRecords();
   };
   window.addEventListener("storage", handleStorage);
 
