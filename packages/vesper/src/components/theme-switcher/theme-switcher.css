@@ -1,27 +1,14 @@
 .vesper-theme-switcher {
   display: inline-flex;
   width: fit-content;
-  background: var(--vesper-background-primary);
+  background: transparent;
   outline: var(--vesper-stroke-base) solid var(--vesper-border-primary);
   position: relative;
-  &[data-vesper-theme="system"] {
-    .vesper-theme-switcher-indicator {
-      transform: translateX(0rem);
-    }
-  }
-  &[data-vesper-theme="light"] {
-    .vesper-theme-switcher-indicator {
-      transform: translateX(calc(100% - var(--vesper-spacing-half)));
-    }
-  }
-  &[data-vesper-theme="dark"] {
-    .vesper-theme-switcher-indicator {
-      transform: translateX(calc(200% - var(--vesper-spacing-1)));
-    }
-  }
+  height: var(--theme-switcher-size);
 }
+
 .vesper-theme-switcher-lg {
-  height: 2rem;
+  --theme-switcher-size: 2rem;
   border-radius: var(--vesper-radius-2);
   .vesper-theme-switcher-button {
     padding: 0.375rem;
@@ -32,7 +19,7 @@
   }
 }
 .vesper-theme-switcher-sm {
-  height: 1.5rem;
+  --theme-switcher-size: 1.5rem;
   border-radius: var(--vesper-radius-1);
   .vesper-theme-switcher-button {
     padding: 0.3125rem;
@@ -42,15 +29,16 @@
     border-radius: var(--vesper-radius-1);
   }
 }
+
 .vesper-theme-switcher-button {
   cursor: pointer;
   color: var(--vesper-icon-secondary);
+  &:hover {
+    color: var(--vesper-icon-primary);
+  }
   transition: color var(--vesper-transition-duration-fast) ease;
   height: 100%;
   aspect-ratio: 1;
-  &.vesper-theme-switcher-button-active {
-    color: var(--vesper-icon-primary);
-  }
   @media (forced-colors: active) {
     &:focus-visible {
       outline: var(--vesper-stroke-strong) solid CanvasText;
@@ -62,13 +50,39 @@
     }
   }
 }
+
 .vesper-theme-switcher-indicator {
+  background: var(--vesper-tint-neutral-200);
   position: absolute;
-  top: calc(var(--vesper-spacing-micro) * -1);
-  left: calc(var(--vesper-spacing-micro) * -1);
-  height: calc(100% + var(--vesper-spacing-half));
+  top: 0rem;
+  bottom: 0rem;
+  left: 0rem;
   aspect-ratio: 1;
-  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
-  transition: transform var(--vesper-transition-duration-fast) ease;
+  outline: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+  transition: left var(--vesper-transition-duration-fast) ease;
   pointer-events: none;
+}
+
+html:not([data-vesper-theme="light"], [data-vesper-theme="dark"]) {
+  .vesper-theme-switcher-button[data-vesper-theme-value="system"] {
+    color: var(--vesper-icon-primary);
+  }
+}
+
+html[data-vesper-theme="light"] {
+  .vesper-theme-switcher-button[data-vesper-theme-value="light"] {
+    color: var(--vesper-icon-primary);
+  }
+  .vesper-theme-switcher-indicator {
+    left: calc(50% - (var(--theme-switcher-size) / 2));
+  }
+}
+
+html[data-vesper-theme="dark"] {
+  .vesper-theme-switcher-button[data-vesper-theme-value="dark"] {
+    color: var(--vesper-icon-primary);
+  }
+  .vesper-theme-switcher-indicator {
+    left: calc(100% - var(--theme-switcher-size));
+  }
 }

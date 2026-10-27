@@ -4,6 +4,7 @@ import {
   fireEvent,
   render,
   renderHook,
+  waitFor,
   within,
 } from "@testing-library/react";
 import axe from "axe-core";
@@ -33,15 +34,10 @@ function ThemeProbe(props: { serverTheme?: VesperTheme }) {
 }
 
 /** Asserts that a theme switcher is displaying `theme` as its active theme */
-function expectActiveTheme(switcher: Element | null, theme: VesperTheme) {
-  expect(switcher).toHaveAttribute("data-vesper-theme", theme);
-  expect(switcher).toHaveClass(`vesper-theme-switcher-${theme}`);
-
-  const activeButtons = switcher?.querySelectorAll(
-    ".vesper-theme-switcher-button-active",
+async function expectActiveTheme(switcher: Element | null, theme: VesperTheme) {
+  await waitFor(() =>
+    expect(switcher).toHaveClass(`vesper-theme-switcher-${theme}`),
   );
-  expect(activeButtons).toHaveLength(1);
-  expect(activeButtons?.[0]).toHaveAccessibleName(BUTTON_LABELS[theme]);
 }
 
 /**
@@ -86,51 +82,46 @@ describe("theme-switcher [unit]", () => {
     expect(switcher).toHaveClass("custom-class");
   });
 
-  test("defaults to the system theme", () => {
+  test("defaults to the system theme", async () => {
     const result = render(<ThemeSwitcher />);
-    expectActiveTheme(result.container.firstElementChild, "system");
+    await expectActiveTheme(result.container.firstElementChild, "system");
   });
 
   VESPER_THEMES.forEach((theme) => {
-    test(`reads the ${theme} theme from the document`, () => {
+    test(`reads the ${theme} theme from the document`, async () => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
 
       const result = render(<ThemeSwitcher />);
-      expectActiveTheme(result.container.firstElementChild, theme);
+      await expectActiveTheme(result.container.firstElementChild, theme);
     });
   });
 
-  test("falls back to the system theme for unknown themes", () => {
+  test("falls back to the system theme for unknown themes", async () => {
     document.documentElement.setAttribute("data-vesper-theme", "sepia");
 
     const result = render(<ThemeSwitcher />);
-    expectActiveTheme(result.container.firstElementChild, "system");
+    await expectActiveTheme(result.container.firstElementChild, "system");
   });
 
-  test("ignores the server theme when rendering in the browser", () => {
+  test("ignores the server theme when rendering in the browser", async () => {
     document.documentElement.setAttribute("data-vesper-theme", "light");
 
     const result = render(<ThemeSwitcher serverTheme="dark" />);
-    expectActiveTheme(result.container.firstElementChild, "light");
+    await expectActiveTheme(result.container.firstElementChild, "light");
   });
 
-  test("theme switching", () => {
+  test.each(VESPER_THEMES)("switching to %s theme", async (theme) => {
     const result = render(<ThemeSwitcher />);
+    fireEvent.click(result.getByRole("button", { name: BUTTON_LABELS[theme] }));
 
-    (["light", "dark", "system"] as const).forEach((theme) => {
-      fireEvent.click(
-        result.getByRole("button", { name: BUTTON_LABELS[theme] }),
-      );
-
-      expect(document.documentElement).toHaveAttribute(
-        "data-vesper-theme",
-        theme,
-      );
-      expectActiveTheme(result.container.firstElementChild, theme);
-    });
+    expect(document.documentElement).toHaveAttribute(
+      "data-vesper-theme",
+      theme,
+    );
+    await expectActiveTheme(result.container.firstElementChild, theme);
   });
 
-  test("multiple theme switchers stay in sync", () => {
+  test("multiple theme switchers stay in sync", async () => {
     const result = render(
       <>
         <ThemeSwitcher data-testid="first" />
@@ -143,14 +134,14 @@ describe("theme-switcher [unit]", () => {
     fireEvent.click(
       within(first).getByRole("button", { name: BUTTON_LABELS.dark }),
     );
-    expectActiveTheme(first, "dark");
-    expectActiveTheme(second, "dark");
+    await expectActiveTheme(first, "dark");
+    await expectActiveTheme(second, "dark");
 
     fireEvent.click(
       within(second).getByRole("button", { name: BUTTON_LABELS.light }),
     );
-    expectActiveTheme(first, "light");
-    expectActiveTheme(second, "light");
+    await expectActiveTheme(first, "light");
+    await expectActiveTheme(second, "light");
   });
 });
 
@@ -171,7 +162,7 @@ describe("useTheme [unit]", () => {
     expect(result.current[0]).toBe("system");
   });
 
-  test("setting the theme", () => {
+  test("setting the theme", async () => {
     const result = renderUseTheme();
     const [, setTheme] = result.current;
 
@@ -180,7 +171,19 @@ describe("useTheme [unit]", () => {
       "data-vesper-theme",
       "light",
     );
-    expect(result.current[0]).toBe("light");
+    await waitFor(() => expect(result.current[0]).toBe("light"));
+  });
+
+  test("updates when the document's theme is set directly", async () => {
+    const result = renderUseTheme();
+
+    act(() =>
+      document.documentElement.setAttribute("data-vesper-theme", "dark"),
+    );
+    await waitFor(() => expect(result.current[0]).toBe("dark"));
+
+    act(() => document.documentElement.removeAttribute("data-vesper-theme"));
+    await waitFor(() => expect(result.current[0]).toBe("system"));
   });
 });
 
@@ -198,18 +201,18 @@ describe("theme-switcher [server]", () => {
     expect(renderToString(<ThemeProbe serverTheme="light" />)).toBe("light");
   });
 
-  test("ThemeSwitcher renders the system theme by default", () => {
+  test("ThemeSwitcher renders the system theme by default", async () => {
     const container = document.createElement("div");
     container.innerHTML = renderToString(<ThemeSwitcher />);
 
-    expectActiveTheme(container.firstElementChild, "system");
+    await expectActiveTheme(container.firstElementChild, "system");
   });
 
-  test("ThemeSwitcher renders the server theme", () => {
+  test("ThemeSwitcher renders the server theme", async () => {
     const container = document.createElement("div");
     container.innerHTML = renderToString(<ThemeSwitcher serverTheme="light" />);
 
-    expectActiveTheme(container.firstElementChild, "light");
+    await expectActiveTheme(container.firstElementChild, "light");
   });
 
   test("useTheme hydrates with the server theme, then reads the document", () => {
@@ -229,11 +232,11 @@ describe("theme-switcher [server]", () => {
     expect(result.container).toHaveTextContent("dark");
   });
 
-  test("ThemeSwitcher hydrates with the server theme, then reads the document", () => {
+  test("ThemeSwitcher hydrates with the server theme, then reads the document", async () => {
     const onRecoverableError = vi.fn();
     const container = document.body.appendChild(document.createElement("div"));
     container.innerHTML = renderToString(<ThemeSwitcher serverTheme="light" />);
-    expectActiveTheme(container.firstElementChild, "light");
+    await expectActiveTheme(container.firstElementChild, "light");
 
     const result = render(<ThemeSwitcher serverTheme="light" />, {
       container,
@@ -242,7 +245,7 @@ describe("theme-switcher [server]", () => {
     });
 
     expect(onRecoverableError).not.toHaveBeenCalled();
-    expectActiveTheme(result.container.firstElementChild, "dark");
+    await expectActiveTheme(result.container.firstElementChild, "dark");
   });
 });
 
