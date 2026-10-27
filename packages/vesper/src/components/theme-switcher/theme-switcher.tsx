@@ -4,6 +4,7 @@ import { useSyncExternalStore, type ComponentProps } from "react";
 
 import { ModeDark, ModeLight, ModeSystem } from "@/components/icons/icons";
 import { cn } from "@/utils/cn";
+
 import { persistTheme } from "./persist-theme";
 
 export const THEME_SWITCHER_SIZES = ["sm", "lg"] as const;
