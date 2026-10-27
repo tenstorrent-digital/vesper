@@ -12,6 +12,7 @@ const meta = {
     onOpenChange: { table: { disable: true } },
     children: { table: { disable: true } },
     container: { table: { disable: true } },
+    wrapWithButton: { table: { disable: true } },
   },
 } satisfies Meta<typeof Tooltip>;
 
@@ -24,10 +25,12 @@ export const Playground: Story = {
     content: "The tooltip text",
     side: "top",
     align: "center",
+    variant: "contrast",
     sideOffset: 4,
     alignOffset: 0,
     delayDuration: 500,
     maxWidth: 240,
+    hideArrow: false,
   },
   render: (props) => (
     <Tooltip open wrapWithButton {...props}>
