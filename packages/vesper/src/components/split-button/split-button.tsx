@@ -9,7 +9,7 @@ import {
   useRef,
 } from "react";
 
-import { Button } from "@/components/button/button";
+import { Button, ButtonVariant } from "@/components/button/button";
 import { IconButton } from "@/components/icon-button/icon-button";
 import { CaretDown, CaretUp } from "@/components/icons/icons";
 import {
@@ -41,7 +41,7 @@ export interface SplitButtonProps extends Omit<
   onClick?: MouseEventHandler<HTMLButtonElement>;
   /** An accessible `aria-label` for the menu toggle button. @default Toggle menu */
   menuButtonAriaLabel?: string;
-  /** The width of the dropdown menu in pixels. @default 200 */
+  /** The width of the dropdown menu in pixels. @default 280 */
   menuWidth?: MenuProps["width"];
   /** The preferred side of the split button to render the dropdown menu against. @default bottom */
   menuSide?: MenuProps["side"];
@@ -60,6 +60,13 @@ export interface SplitButtonProps extends Omit<
   /** When `true`, disables both the action button and the menu toggle, preventing interaction. @default false */
   disabled?: boolean;
 }
+
+/** Maps a `SplitButtonVariant` to its underlying `ButtonVariant` */
+const SPLIT_BUTTON_BUTTON_VARIANTS: Record<SplitButtonVariant, ButtonVariant> =
+  {
+    contrast: "contrast",
+    subtle: "tertiary",
+  };
 
 /**
  * A compound button that pairs a primary action button with a dropdown menu toggle for secondary actions.
@@ -115,7 +122,7 @@ export function SplitButton(props: SplitButtonProps) {
     onMenuOpenChange,
     menuSide = "bottom",
     menuSideOffset,
-    menuWidth,
+    menuWidth = 280,
     disabled = false,
     menuButtonAriaLabel,
     onPointerDown,
@@ -151,7 +158,7 @@ export function SplitButton(props: SplitButtonProps) {
         onClick={onClick}
         onKeyDown={(e) => e.stopPropagation()}
         size={size}
-        variant={variant}
+        variant={SPLIT_BUTTON_BUTTON_VARIANTS[variant]}
         disabled={disabled}
       >
         {children}
@@ -170,7 +177,7 @@ export function SplitButton(props: SplitButtonProps) {
         as={IconButton}
         className="vesper-split-button-menu-button"
         size={size}
-        variant={variant}
+        variant={SPLIT_BUTTON_BUTTON_VARIANTS[variant]}
         disabled={disabled}
         aria-label={menuButtonAriaLabel || "Toggle menu"}
         ref={menuButtonRef}

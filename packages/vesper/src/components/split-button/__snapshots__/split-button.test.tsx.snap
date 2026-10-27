@@ -828,7 +828,7 @@ exports[`split-button [snapshot] > subtle, lg 1`] = `
     class="vesper-split-button"
   >
     <button
-      class="vesper-button vesper-button-lg vesper-button-subtle vesper-split-button-action-button"
+      class="vesper-button vesper-button-lg vesper-button-tertiary vesper-split-button-action-button"
     >
       button text
     </button>
@@ -836,7 +836,7 @@ exports[`split-button [snapshot] > subtle, lg 1`] = `
       aria-expanded="false"
       aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-subtle vesper-icon-button vesper-split-button-menu-button"
+      class="vesper-button vesper-button-lg vesper-button-tertiary vesper-icon-button vesper-split-button-menu-button"
       id="base-ui-_r_4e_"
       tabindex="0"
       type="button"
@@ -1019,7 +1019,7 @@ exports[`split-button [snapshot] > subtle, lg, open 1`] = `
     class="vesper-split-button"
   >
     <button
-      class="vesper-button vesper-button-lg vesper-button-subtle vesper-split-button-action-button"
+      class="vesper-button vesper-button-lg vesper-button-tertiary vesper-split-button-action-button"
     >
       button text
     </button>
@@ -1034,7 +1034,7 @@ exports[`split-button [snapshot] > subtle, lg, open 1`] = `
       aria-expanded="true"
       aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-lg vesper-button-subtle vesper-icon-button vesper-split-button-menu-button"
+      class="vesper-button vesper-button-lg vesper-button-tertiary vesper-icon-button vesper-split-button-menu-button"
       data-popup-open=""
       data-pressed=""
       id="base-ui-_r_4j_"
@@ -1102,7 +1102,7 @@ exports[`split-button [snapshot] > subtle, md 1`] = `
     class="vesper-split-button"
   >
     <button
-      class="vesper-button vesper-button-md vesper-button-subtle vesper-split-button-action-button"
+      class="vesper-button vesper-button-md vesper-button-tertiary vesper-split-button-action-button"
     >
       button text
     </button>
@@ -1110,7 +1110,7 @@ exports[`split-button [snapshot] > subtle, md 1`] = `
       aria-expanded="false"
       aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-subtle vesper-icon-button vesper-split-button-menu-button"
+      class="vesper-button vesper-button-md vesper-button-tertiary vesper-icon-button vesper-split-button-menu-button"
       id="base-ui-_r_3e_"
       tabindex="0"
       type="button"
@@ -1293,7 +1293,7 @@ exports[`split-button [snapshot] > subtle, md, open 1`] = `
     class="vesper-split-button"
   >
     <button
-      class="vesper-button vesper-button-md vesper-button-subtle vesper-split-button-action-button"
+      class="vesper-button vesper-button-md vesper-button-tertiary vesper-split-button-action-button"
     >
       button text
     </button>
@@ -1308,7 +1308,7 @@ exports[`split-button [snapshot] > subtle, md, open 1`] = `
       aria-expanded="true"
       aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-md vesper-button-subtle vesper-icon-button vesper-split-button-menu-button"
+      class="vesper-button vesper-button-md vesper-button-tertiary vesper-icon-button vesper-split-button-menu-button"
       data-popup-open=""
       data-pressed=""
       id="base-ui-_r_3j_"
@@ -1376,7 +1376,7 @@ exports[`split-button [snapshot] > subtle, sm 1`] = `
     class="vesper-split-button"
   >
     <button
-      class="vesper-button vesper-button-sm vesper-button-subtle vesper-split-button-action-button"
+      class="vesper-button vesper-button-sm vesper-button-tertiary vesper-split-button-action-button"
     >
       button text
     </button>
@@ -1384,7 +1384,7 @@ exports[`split-button [snapshot] > subtle, sm 1`] = `
       aria-expanded="false"
       aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button vesper-split-button-menu-button"
+      class="vesper-button vesper-button-sm vesper-button-tertiary vesper-icon-button vesper-split-button-menu-button"
       id="base-ui-_r_2e_"
       tabindex="0"
       type="button"
@@ -1567,7 +1567,7 @@ exports[`split-button [snapshot] > subtle, sm, open 1`] = `
     class="vesper-split-button"
   >
     <button
-      class="vesper-button vesper-button-sm vesper-button-subtle vesper-split-button-action-button"
+      class="vesper-button vesper-button-sm vesper-button-tertiary vesper-split-button-action-button"
     >
       button text
     </button>
@@ -1582,7 +1582,7 @@ exports[`split-button [snapshot] > subtle, sm, open 1`] = `
       aria-expanded="true"
       aria-haspopup="menu"
       aria-label="Toggle menu"
-      class="vesper-button vesper-button-sm vesper-button-subtle vesper-icon-button vesper-split-button-menu-button"
+      class="vesper-button vesper-button-sm vesper-button-tertiary vesper-icon-button vesper-split-button-menu-button"
       data-popup-open=""
       data-pressed=""
       id="base-ui-_r_2j_"
