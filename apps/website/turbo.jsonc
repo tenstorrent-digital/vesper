@@ -33,7 +33,23 @@
         ".env*",
         "$TURBO_ROOT$/docs/**" // monorepo docs
       ],
-      "outputs": [".next/**", "!.next/cache/**"]
+      // `.next/dev` is written by `next dev`, not `next build`
+      "outputs": [".next/**", "!.next/cache/**", "!.next/dev/**"],
+
+      // vercel system variables read at build time (see `src/lib/constants.ts`)
+      //
+      // (`NEXT_PUBLIC_*` is added automatically by turbo w next)
+      "env": [
+        "VERCEL_ENV",
+        "VERCEL_BRANCH_URL",
+        "VERCEL_URL",
+        "VERCEL_PROJECT_PRODUCTION_URL"
+      ],
+
+      // keep the rest of vercel's system variables available to `next build`
+      // (eg. `VERCEL_GIT_COMMIT_SHA`) so they can use them on their end during
+      // builds without adding them to the task hash
+      "passThroughEnv": ["VERCEL_*"]
     },
 
     // `tsc` compiles `generated/**` along with the rest of the app
