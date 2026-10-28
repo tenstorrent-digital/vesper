@@ -61,12 +61,26 @@ export default function remarkTsxDemos(): Transformer<Root> {
       /**
        * keep the module in sync while `next dev` is running, so a demo added
        * or edited in a document shows up without regenerating them by hand
-       *
-       * a build has already written every demo, so this is a no-op there
        */
-      demoModuleWrites.push(
-        createOrUpdateFile(demoModulePath, getDemoModuleSource(child)),
-      );
+      if (
+        /**
+         * skip writing modules during `next build` since turbo restores it's build cache
+         * between vercel deployments, and so `scripts/generate-demos.mts` has _already_
+         * run and written ours demos
+         *
+         * otherwise, if turbo restores its build cache on vercel, it can run this
+         * loader on the **previous* build's copy of a document**, where that demo
+         * may no longer exist or have different types
+         *
+         * cache restoration behaviour is new and **on by default** as of Next 16.3:
+         * https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopackFileSystemCache
+         */
+        process.env.NODE_ENV === "development"
+      ) {
+        demoModuleWrites.push(
+          createOrUpdateFile(demoModulePath, getDemoModuleSource(child)),
+        );
+      }
 
       // Get the relative import path for the demo component's module
       let demoImportPath = path
