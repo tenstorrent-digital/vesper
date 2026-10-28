@@ -1,3 +1,2 @@
 ---
-"@tenstorrent/vesper": patch
 ---
