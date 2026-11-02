@@ -16,6 +16,10 @@ import {
   SWITCH_SIZES,
   type SwitchProps,
 } from "@/components/switch/switch";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 export const SWITCH_PERMUTATIONS = SWITCH_SIZES.flatMap(
@@ -193,6 +197,30 @@ describe("switch [a11y]", () => {
         const result = render(<Switch {...props} />);
 
         expect(await axe.run(result.container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("switch [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    SWITCH_PERMUTATIONS.forEach(({ name, ...props }) => {
+      test(`wcag2aaa (${name}, ${theme})`, async () => {
+        const result = render(<Switch {...props} />);
+
+        expect(await runAxeWcag2aaa(result.container)).toHaveNoViolations();
       });
     });
   });

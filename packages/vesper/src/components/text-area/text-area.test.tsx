@@ -8,6 +8,10 @@ import {
   TextArea,
   TextAreaProps,
 } from "@/components/text-area/text-area";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 const TEXTAREA_SNAPSHOT_PERMUTATIONS: (TextAreaProps & { name: string })[] = [
@@ -153,6 +157,34 @@ describe("text-area [a11y]", () => {
           <TextArea aria-label="Label" {...props} />,
         );
         expect(await axe.run(container.firstChild!)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("text-area [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    TEXT_AREA_PERMUTATIONS.forEach((permutation) => {
+      const { name, ...props } = permutation;
+      test(`wcag2aaa (${name}, ${theme})`, async () => {
+        const { container } = render(
+          <TextArea aria-label="Label" {...props} />,
+        );
+        expect(
+          await runAxeWcag2aaa(container.firstChild!),
+        ).toHaveNoViolations();
       });
     });
   });

@@ -17,6 +17,10 @@ import {
   CHECKBOX_SIZES,
   type CheckboxProps,
 } from "@/components/checkbox/checkbox";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 const CHECKBOX_PERMUTATIONS = [true, false].flatMap((checked) =>
@@ -296,6 +300,29 @@ describe("checkbox [a11y]", () => {
       test(`a11y (${name}, ${theme})`, async () => {
         const { container } = render(<Checkbox {...props} />);
         expect(await axe.run(container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("checkbox [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    CHECKBOX_PERMUTATIONS.forEach(({ name, ...props }) => {
+      test(`wcag2aaa (${name}, ${theme})`, async () => {
+        const { container } = render(<Checkbox {...props} />);
+        expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
       });
     });
   });

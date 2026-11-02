@@ -8,6 +8,10 @@ import {
   ProgressBar,
   type ProgressBarProps,
 } from "@/components/progress-bar/progress-bar";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 const PROGRESS_BAR_PERMUTATIONS = PROGRESS_BAR_VARIANTS.flatMap((variant) =>
@@ -131,6 +135,34 @@ describe("progress-bar [a11y]", () => {
         );
 
         expect(await axe.run(result.container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("progress-bar [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    PROGRESS_BAR_PERMUTATIONS.forEach((permutation) => {
+      const { size, variant } = permutation;
+
+      test(`wcag2aaa (${size}, ${variant})`, async () => {
+        const result = render(
+          <ProgressBar size={size} variant={variant} value={23} />,
+        );
+
+        expect(await runAxeWcag2aaa(result.container)).toHaveNoViolations();
       });
     });
   });

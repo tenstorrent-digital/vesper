@@ -8,6 +8,10 @@ import {
   MATERIAL_VARIANTS,
   type MaterialProps,
 } from "@/components/material/material";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 type MaterialPermutation = MaterialProps & { label: string };
@@ -233,6 +237,32 @@ describe("material [a11y]", () => {
         );
 
         expect(await axe.run(result.container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("material [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    MATERIAL_PERMUTATIONS.forEach(({ label, ...props }) => {
+      test(`wcag2aaa (${label}, ${theme})`, async () => {
+        const result = render(
+          <Material {...props} style={{ width: 100, height: 100 }} />,
+        );
+
+        expect(await runAxeWcag2aaa(result.container)).toHaveNoViolations();
       });
     });
   });

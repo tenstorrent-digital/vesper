@@ -1,6 +1,19 @@
+import type { BrowserCommand } from "vitest/node";
+
 import { playwright } from "@vitest/browser-playwright";
 import { resolve } from "path";
 import { defineConfig } from "vitest/config";
+
+/**
+ * emulate the `prefers-contrast` media feature from tests
+ *
+ * @see `emulateHighContrast` in `src/test-utils/high-contrast.ts`
+ */
+const emulateContrast: BrowserCommand<
+  [contrast: "more" | "no-preference" | null]
+> = async ({ page }, contrast) => {
+  await page.emulateMedia({ contrast });
+};
 
 export default defineConfig({
   resolve: {
@@ -17,13 +30,14 @@ export default defineConfig({
       headless: Boolean(process.env.CI) || process.env.AGENTS === "true",
       provider: playwright({}),
       instances: [{ browser: "chromium" }],
+      commands: { emulateContrast },
     },
     coverage: {
       enabled: true,
       reporter: ["text", "html"],
       provider: "v8",
       reportOnFailure: true,
-      exclude: ["src/components/icons/**"],
+      exclude: ["src/components/icons/**", "src/test-utils/**"],
     },
     include: ["src/**/*.test.{ts,tsx}"],
     exclude: ["dist/**", "node_modules/**"],
