@@ -305,6 +305,8 @@ describe("button [a11y, high contrast]", () => {
       });
     });
 
+    // axe-core can't resolve the `linear-gradient()` hover overlays in `button.css`, and `color-contrast-enhanced` (wcag2aaa) reports the unresolved contrast as a pass, so `getContrastRatio` checks hovered contrast instead
+    // only `button` uses `getContrastRatio` because the light theme danger hover overlay dropped below 7:1, other components with gradient overlays aren't covered yet
     BUTTON_VARIANTS.forEach((variant) => {
       test(`wcag2aaa contrast (${variant}, hovered, ${theme})`, async () => {
         const result = render(<Button variant={variant}>Button Text</Button>);
