@@ -13,6 +13,7 @@
 @import "./backgrounds.css" layer(vesper);
 @import "./border-width.css" layer(vesper);
 @import "./outline-width.css" layer(vesper);
+@import "./blur.css" layer(vesper);
 
 /* typography */
 @import "../components/typography/typography.css" layer(vesper);

@@ -18,9 +18,8 @@
     },
     "build": {
       "dependsOn": ["^build"],
-      "env": ["NEXT_PUBLIC_*", "NEXT_RUNTIME", "VERCEL_*"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**", "!.next/dev/**"]
     },
     "build:storybook": {
       "dependsOn": ["^build"],

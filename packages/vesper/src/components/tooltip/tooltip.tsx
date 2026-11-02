@@ -21,9 +21,13 @@ export const TOOLTIP_SIDES = ["top", "right", "bottom", "left"] as const;
 
 export const TOOLTIP_ALIGNMENTS = ["center", "start", "end"] as const;
 
+export const TOOLTIP_VARIANTS = ["contrast", "danger"] as const;
+
 export type TooltipSide = (typeof TOOLTIP_SIDES)[number];
 
 export type TooltipAlign = (typeof TOOLTIP_ALIGNMENTS)[number];
+
+export type TooltipVariant = (typeof TOOLTIP_VARIANTS)[number];
 
 export interface TooltipProps extends Omit<
   ComponentPropsWithoutRef<"button">,
@@ -33,7 +37,11 @@ export interface TooltipProps extends Omit<
   content: ReactNode;
   /** The preferred side of the trigger to render the tooltip against. @default top */
   side?: TooltipSide;
-  /** The distance in pixels from the trigger to the tooltip (in addition to the arrow height). @default 4 */
+  /** The visual variant of the tooltip, which determines its color scheme. @default contrast */
+  variant?: TooltipVariant;
+  /** When `true`, hides the arrow pointing from the tooltip to its trigger. @default false */
+  hideArrow?: boolean;
+  /** The distance in pixels from the trigger to the tooltip, not counting the arrow height. When `hideArrow` is `true`, this is the full distance. @default 4 */
   sideOffset?: number;
   /** The alignment of the tooltip relative to the trigger along the perpendicular axis. @default center */
   align?: TooltipAlign;
@@ -61,8 +69,10 @@ export interface TooltipProps extends Omit<
  * @param {ReactNode} props.content - The content displayed inside the tooltip popup
  * @param {ReactNode} [props.children] - (optional) The trigger itself, or the content of the trigger when `wrapWithButton` is `true`
  * @param {boolean} [props.wrapWithButton] - (optional) Wraps `children` in a `<button>` trigger instead of rendering `children` as the trigger itself. Use for non-interactive content. By default, trigger props are forwarded to `children`, which must pass them (including `ref`) on to the DOM element it renders. @default false
+ * @param {TooltipVariant} [props.variant] - (optional) The visual variant determining color scheme. @default contrast
+ * @param {boolean} [props.hideArrow] - (optional) Hides the arrow pointing from the tooltip to its trigger. @default false
  * @param {TooltipSide} [props.side] - (optional) The preferred side of the trigger to render the tooltip. @default top
- * @param {number} [props.sideOffset] - (optional) Distance in pixels from the trigger. @default 4
+ * @param {number} [props.sideOffset] - (optional) Distance in pixels from the trigger, not counting the arrow height. @default 4
  * @param {TooltipAlign} [props.align] - (optional) Alignment relative to the trigger. @default center
  * @param {number} [props.delayDuration] - (optional) Delay in milliseconds before showing. @default 500
  * @param {number} [props.maxWidth] - (optional) Maximum width of the tooltip in pixels. @default 240
@@ -81,6 +91,12 @@ export interface TooltipProps extends Omit<
  * @example
  * <Tooltip content="Settings" side="right" delayDuration={200}>
  *   <Button>Hover me</Button>
+ * </Tooltip>
+ *
+ * @example
+ * // renders a `danger` tooltip without an arrow
+ * <Tooltip content="This action can't be undone" variant="danger" hideArrow>
+ *   <Button variant="danger">Delete</Button>
  * </Tooltip>
  *
  * @example
@@ -105,6 +121,8 @@ export function Tooltip(props: TooltipProps) {
     container,
     wrapWithButton = false,
     className,
+    variant = "contrast",
+    hideArrow = false,
     ...rest
   } = props;
 
@@ -121,6 +139,8 @@ export function Tooltip(props: TooltipProps) {
   const baseRemSize = useBaseRemSize();
 
   const portalContainer = getPortalContainer(container, innerRef);
+
+  const arrowOffset = hideArrow ? 0 : baseRemSize / 2;
 
   return (
     <BaseTooltip.Provider>
@@ -147,18 +167,18 @@ export function Tooltip(props: TooltipProps) {
             align={align}
             alignOffset={alignOffset * (baseRemSize / 16)}
             side={side}
-            sideOffset={baseRemSize / 2 + sideOffset * (baseRemSize / 16)}
+            sideOffset={arrowOffset + sideOffset * (baseRemSize / 16)}
           >
             <Typography
               variant="label-xs"
-              className="vesper-tooltip"
+              className={cn("vesper-tooltip", `vesper-tooltip-${variant}`)}
               style={{ maxWidth: `calc(${maxWidth} * (1rem / 16))` }}
               as={BaseTooltip.Popup}
               id={popupId}
               role="tooltip"
             >
               {content}
-              <div className="vesper-tooltip-arrow" />
+              {!hideArrow && <div className="vesper-tooltip-arrow" />}
             </Typography>
           </BaseTooltip.Positioner>
         </BaseTooltip.Portal>

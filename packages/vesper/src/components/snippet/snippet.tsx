@@ -1,6 +1,12 @@
 "use client";
 
-import { type ComponentProps, useCallback, useRef, useState } from "react";
+import {
+  type ComponentProps,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Checkmark, Copy } from "@/components/icons/icons";
@@ -41,6 +47,13 @@ export function Snippet(props: SnippetProps) {
   const [copied, setCopied] = useState(false);
 
   const timeout = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(
+    () => () => {
+      if (timeout.current !== null) clearTimeout(timeout.current);
+    },
+    [],
+  );
 
   const copyToClipboard = useCallback(() => {
     if (timeout.current !== null) {

@@ -32,6 +32,7 @@ export const THEME_TOKEN_GROUPS = [
   "shadow",
   "spacing",
   "tracking",
+  "blur",
 ] as const satisfies ThemeTokenGroup[];
 
 export type AssertEveryThemeTokenGroupAccountedFor = AssertNever<
@@ -131,6 +132,10 @@ export const THEME_TOKEN_GROUP_UTILITIES = {
     ["inset", "inset"],
   ],
   tracking: [["tracking", "tracking"]],
+  blur: [
+    ["blur", "blur"],
+    ["backdrop-blur", "backdrop-blur"],
+  ],
 } as const satisfies Record<
   ThemeTokenGroup,
   [utility: string, group: DefaultClassGroupIds][]
@@ -166,6 +171,8 @@ export const CLASS_GROUP_SAMPLES = {
   h: "h-2",
   inset: "inset-2",
   tracking: "tracking-wide",
+  blur: "blur-sm",
+  "backdrop-blur": "backdrop-blur-sm",
   "border-w": "border-2",
   "border-w-x": "border-x-2",
   "border-w-y": "border-y-2",

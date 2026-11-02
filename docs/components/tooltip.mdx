@@ -5,7 +5,7 @@ description: A popup overlay that displays additional information when hovering 
 
 # Tooltip
 
-A popup overlay that displays additional information when hovering over or focusing on a trigger element. Supports configurable positioning, delay duration, and max width.
+A popup overlay that displays additional information when hovering over or focusing on a trigger element. Supports color variants, an optional arrow, and configurable positioning, delay duration, and max width.
 
 A `Tooltip` renders its `children` as its trigger, so they should be an interactive element, like a `Button` or an `IconButton`. To attach a `Tooltip` to non-interactive content, like an icon or plain text, use the `wrapWithButton` prop to [wrap it in a `<button>` trigger](#wrapping-non-interactive-content) instead.
 
@@ -27,8 +27,10 @@ export default function TooltipDemo() {
 | Prop | Type | Description | Default |
 | --- | --- | --- | --- |
 | `content` | `ReactNode` | The content displayed inside the tooltip popup. | — |
+| `variant` | `"contrast" \| "danger"` | The visual variant of the tooltip, which determines its color scheme. | `"contrast"` |
+| `hideArrow` | `boolean` | When `true`, hides the arrow pointing from the tooltip to its trigger. | `false` |
 | `side` | `"top" \| "right" \| "bottom" \| "left"` | The preferred side to render the tooltip against. | `"top"` |
-| `sideOffset` | `number` | The distance in pixels from the trigger to the tooltip (in addition to the arrow height). | `4` |
+| `sideOffset` | `number` | The distance in pixels from the trigger to the tooltip, not counting the arrow height. When `hideArrow` is `true`, this is the full distance. | `4` |
 | `align` | `"center" \| "start" \| "end"` | The alignment of the tooltip relative to the trigger. | `"center"` |
 | `alignOffset` | `number` | An offset in pixels from the aligned edge. | `0` |
 | `open` | `boolean` | Controls the open state of the tooltip (controlled mode). | — |
@@ -108,13 +110,82 @@ export default function WrappedTooltip() {
 >
 > A `Tooltip` always wraps `children` that aren't a single React element (eg. plain text, a fragment, or multiple elements) in a `<button>` trigger, even when `wrapWithButton` is `false`.
 
+### Variants
+
+A `Tooltip` can be rendered in one of two variants:
+
+| Variant | When to use |
+| --- | --- |
+| `"contrast"` | Default variant. Use for general-purpose informational content. |
+| `"danger"` | Use to warn about destructive actions, or to explain an error state on its trigger. |
+
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+import { Tooltip } from "@tenstorrent/vesper/tooltip";
+
+export default function TooltipVariants() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        gap: "var(--vesper-spacing-16)",
+        paddingTop: "var(--vesper-spacing-12)",
+      }}
+    >
+      <Tooltip open variant="contrast" content="Contrast variant tooltip">
+        <Button variant="subtle">Trigger</Button>
+      </Tooltip>
+      <Tooltip open variant="danger" content="Danger variant tooltip">
+        <Button variant="subtle">Trigger</Button>
+      </Tooltip>
+    </div>
+  );
+}
+```
+
+> [!NOTE]
+>
+> Don't rely on color alone to convey meaning. When using the `"danger"` variant, make sure the tooltip's `content` also describes the risk or error in words.
+
+### Hiding the arrow
+
+By default, a `Tooltip` renders an arrow pointing to its trigger. Pass `hideArrow` to render the tooltip without one:
+
+```tsx demo
+import { Button } from "@tenstorrent/vesper/button";
+import { Tooltip } from "@tenstorrent/vesper/tooltip";
+
+export default function TooltipWithoutArrow() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        gap: "var(--vesper-spacing-24)",
+        paddingTop: "var(--vesper-spacing-12)",
+      }}
+    >
+      <Tooltip open content="With arrow">
+        <Button variant="subtle">Trigger</Button>
+      </Tooltip>
+      <Tooltip open hideArrow content="Without arrow">
+        <Button variant="subtle">Trigger</Button>
+      </Tooltip>
+    </div>
+  );
+}
+```
+
+The arrow's height normally adds to the gap between a `Tooltip` and its trigger. When `hideArrow` is `true`, that space is removed, so the gap is determined by [`sideOffset`](#positioning-the-tooltip) alone.
+
 ### Positioning the tooltip
 
 By default, a `Tooltip` floats above and is aligned to the center of its trigger. You can adjust the positioning of a `Tooltip` via the `side`, `sideOffset`, `align`, and `alignOffset` props.
 
 The `side` prop determines which trigger edge the `Tooltip` sits against. Possible values are `"top"`, `"right"`, `"bottom"`, and `"left"`. The default value is `"top"`.
 
-The `sideOffset` prop determines how far away in pixels the `Tooltip` is from its trigger's edge. The default value is `4`. This value scales with the base rem size.
+The `sideOffset` prop determines how far away in pixels the `Tooltip` is from its trigger's edge, not counting the height of its arrow. When `hideArrow` is `true`, `sideOffset` is the full distance. The default value is `4`. This value scales with the base rem size.
 
 The `align` prop determines which end of the `side` to align the `Tooltip` to. Possible values are `"start"`, `"end"`, and `"center"`. The default value is `"center"`.
 

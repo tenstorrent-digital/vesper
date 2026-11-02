@@ -67,8 +67,8 @@ export interface ToggleProps extends Omit<
 }
 
 const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
-  sm: "label-sm",
-  md: "label-sm",
+  sm: "label-md",
+  md: "label-md",
   lg: "label-lg",
 };
 

@@ -231,6 +231,8 @@ The scripts treat every variable in a token file that starts with `--vesper-` as
 }
 ```
 
+A token file can also hold a single token named after its namespace, without a `-{token}` suffix. For example, `src/styles/blur.css` declares `--vesper-blur`, which `tailwind.css` adds to the `--blur-*` namespace as `--blur-vesper`, giving us classes like `blur-vesper` and `backdrop-blur-vesper`.
+
 #### Tailwind utility files
 
 Each Tailwind utility file holds a group of custom utilities, written as `@utility` rules. For example, `src/styles/tailwind-utilities/dot-pattern.css`:

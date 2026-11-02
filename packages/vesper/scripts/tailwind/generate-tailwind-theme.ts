@@ -20,7 +20,9 @@ const OUTPUT_FILE = "./src/styles/tailwind.css";
  *    files (see `TAILWIND_UTILITY_FILE_NAMES`)
  * 2. A theme block that registers each vesper css variable as a tailwind theme
  *    variable named `--{group}-vesper-{token}`, so tailwind generates classes
- *    like `bg-vesper-stone-500`, `rounded-vesper-2`, etc.
+ *    like `bg-vesper-stone-500`, `rounded-vesper-2`, etc. Tokens named after
+ *    their group (like the token in `blur.css`) are registered without a
+ *    `-{token}` suffix, so tailwind generates classes like `blur-vesper`
  */
 export async function generateTailwindTheme() {
   const imports = [
@@ -33,7 +35,8 @@ export async function generateTailwindTheme() {
   const tokens = Object.entries(TOKEN_VARIABLE_GROUPS).flatMap(
     ([group, tokens]) =>
       tokens.map((t) => {
-        return `--${group}-vesper-${t.value}: var(--vesper-${group}-${t.value});`;
+        const suffix = t.value ? `-${t.value}` : "";
+        return `--${group}-vesper${suffix}: var(${t.name});`;
       }),
   );
 

@@ -31,8 +31,6 @@ export interface CodeBlockProps extends Omit<
   lang?: LanguageRegistration[] | "text" | "ansi";
   /** Whether or not to show line numbers on the left-hand side of the code block. @default false */
   showLineNumbers?: boolean;
-  /** Hide the copy-to-clipboard button until CodeBlock is hovered. @default false */
-  copyOnHover?: boolean;
 }
 
 /**
@@ -41,7 +39,6 @@ export interface CodeBlockProps extends Omit<
  * @param {string | (() => ReadableStream<string> | Promise<ReadableStream<string>>)} [props.children] - (optional) The code to render, either as a string or a stream factory
  * @param {LanguageRegistration[] | "text" | "ansi"} [props.lang] - (optional) The language syntax for highlighting. @default text
  * @param {boolean} [props.showLineNumbers] - (optional) Whether to display line numbers. @default false
- * @param {boolean} [props.copyOnHover] - (optional) Hide the copy button until the code block is hovered. @default false
  *
  * You may also pass any additional props to the underlying `div` element
  *
@@ -63,7 +60,6 @@ export function CodeBlock(props: CodeBlockProps) {
     children: code = "",
     lang = "text",
     showLineNumbers = false,
-    copyOnHover = false,
     ...rest
   } = props;
 
@@ -74,7 +70,6 @@ export function CodeBlock(props: CodeBlockProps) {
       <StreamingCodeBlock
         className={className}
         lang={lang}
-        copyOnHover={copyOnHover}
         showLineNumbers={showLineNumbers}
         {...rest}
       >
@@ -84,11 +79,7 @@ export function CodeBlock(props: CodeBlockProps) {
   }
 
   return (
-    <div
-      className={cn("vesper-code-block", className)}
-      data-copy-on-hover={copyOnHover}
-      {...rest}
-    >
+    <div className={cn("vesper-code-block", className)} {...rest}>
       <CodeBlockPreWrapper data-line-numbers={showLineNumbers}>
         {codeToJsx(code, lang)}
       </CodeBlockPreWrapper>

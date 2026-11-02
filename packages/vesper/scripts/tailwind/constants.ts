@@ -28,6 +28,7 @@ export const TOKEN_FILE_NAMES = [
   "transition-duration",
   "border-width",
   "outline-width",
+  "blur",
 ] as const;
 
 /**

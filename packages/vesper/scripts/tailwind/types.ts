@@ -65,7 +65,12 @@ export type TokenData = {
   name: string;
   /** The token group the variable belongs to, eg. `color` */
   group: TokenGroupName;
-  /** The token's value within its group, eg. `background-primary` */
+  /**
+   * The token's value within its group, eg. `background-primary`
+   *
+   * Tokens named after their group (like the token in `blur.css`) have an
+   * empty value
+   */
   value: string;
 };
 

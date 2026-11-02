@@ -17,6 +17,9 @@
   align-items: center;
   gap: var(--vesper-spacing-1);
   cursor: pointer;
+  &:hover > .vesper-radio-group-item-indicator {
+    background: var(--vesper-color-state-neutral-hover);
+  }
 }
 
 .vesper-radio-group-item-indicator {
@@ -60,7 +63,7 @@
     border-color: var(--vesper-color-background-accent-base);
     background: var(--vesper-color-background-accent-base);
     &::after {
-      background: var(--vesper-color-icon-inverse-primary);
+      background: var(--vesper-color-icon-primary);
       @media (forced-colors: active) {
         background: CanvasText;
       }

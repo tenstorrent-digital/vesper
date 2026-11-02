@@ -7,9 +7,15 @@
  *
  * next resolves an import against the filesystem as it saw it when the build
  * began, so a module written while a document is being compiled is not
- * guaranteed to be found. Locally it usually is (which is why a build passes
- * here), on vercel it is not - every document whose demos did not already
- * exist fails the build with `Module not found`
+ * guaranteed to be found
+ *
+ * local builds will usually already have them because `remark-tsx-demos.mts`
+ * builds them automatically when you run `yarn dev`
+ *
+ * on vercel, builds _may or may not_ have them depending on whether or not the
+ * build's cache can be restored from a previous deployment - this behaviour is
+ * on by default as of Next 16.3:
+ * https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopackFileSystemCache
  *
  * Run by turbo before `build`, `dev` and `check-types` (see `turbo.jsonc`)
  */

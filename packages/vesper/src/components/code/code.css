@@ -4,7 +4,7 @@
   font-size: 0.8125em;
 }
 .vesper-code-default {
-  background: var(--vesper-color-tint-neutral-100);
+  background: var(--vesper-color-tint-neutral-200);
   border: var(--vesper-border-width-base) solid
     var(--vesper-color-border-tertiary);
 }

@@ -1,6 +1,10 @@
 import type { ComponentProps, ElementType } from "react";
 
-import { Button, ButtonProps } from "@/components/button/button";
+import {
+  Button,
+  type ButtonProps,
+  type ButtonSize,
+} from "@/components/button/button";
 import {
   ErrorSolid,
   Info,
@@ -10,7 +14,7 @@ import {
 } from "@/components/icons/icons";
 import {
   Typography,
-  TypographyVariant,
+  type TypographyVariant,
 } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
 
@@ -51,7 +55,14 @@ const ADMONITION_TYPOGRAPHY_VARIANTS: {
   [S in AdmonitionSize]: TypographyVariant;
 } = {
   md: "copy-sm",
-  sm: "copy-xs",
+  sm: "copy-xxs",
+};
+
+const ADMONITION_CTA_SIZES: {
+  [S in AdmonitionSize]: ButtonSize;
+} = {
+  md: "sm",
+  sm: "xs",
 };
 
 /**
@@ -123,7 +134,7 @@ export function Admonition<C extends ElementType = "button">(
           {...(cta as ButtonProps<typeof ctaAs>)}
           as={ctaAs}
           variant="contrast"
-          size="sm"
+          size={ADMONITION_CTA_SIZES[size]}
         />
       )}
     </div>

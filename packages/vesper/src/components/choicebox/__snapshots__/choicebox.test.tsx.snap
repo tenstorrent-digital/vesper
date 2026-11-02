@@ -217,7 +217,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions 1`] = `
         Option A
       </p>
       <p
-        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+        class="vesper-typography vesper-typography-copy-xxs vesper-choicebox-item-description"
       >
         Description for option A
       </p>
@@ -253,7 +253,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions 1`] = `
         Option B
       </p>
       <p
-        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+        class="vesper-typography vesper-typography-copy-xxs vesper-choicebox-item-description"
       >
         Description for option B
       </p>
@@ -289,7 +289,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions 1`] = `
         Option C
       </p>
       <p
-        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+        class="vesper-typography vesper-typography-copy-xxs vesper-choicebox-item-description"
       >
         Description for option C
       </p>
@@ -332,7 +332,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions, disabled 1`] = 
         Option A
       </p>
       <p
-        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+        class="vesper-typography vesper-typography-copy-xxs vesper-choicebox-item-description"
       >
         Description for option A
       </p>
@@ -369,7 +369,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions, disabled 1`] = 
         Option B
       </p>
       <p
-        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+        class="vesper-typography vesper-typography-copy-xxs vesper-choicebox-item-description"
       >
         Description for option B
       </p>
@@ -406,7 +406,7 @@ exports[`choicebox [snapshot] > multi-select, with descriptions, disabled 1`] = 
         Option C
       </p>
       <p
-        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+        class="vesper-typography vesper-typography-copy-xxs vesper-choicebox-item-description"
       >
         Description for option C
       </p>
@@ -587,7 +587,7 @@ exports[`choicebox [snapshot] > single-select, with descriptions 1`] = `
         Option A
       </p>
       <p
-        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+        class="vesper-typography vesper-typography-copy-xxs vesper-choicebox-item-description"
       >
         Description for option A
       </p>
@@ -612,7 +612,7 @@ exports[`choicebox [snapshot] > single-select, with descriptions 1`] = `
         Option B
       </p>
       <p
-        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+        class="vesper-typography vesper-typography-copy-xxs vesper-choicebox-item-description"
       >
         Description for option B
       </p>
@@ -637,7 +637,7 @@ exports[`choicebox [snapshot] > single-select, with descriptions 1`] = `
         Option C
       </p>
       <p
-        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+        class="vesper-typography vesper-typography-copy-xxs vesper-choicebox-item-description"
       >
         Description for option C
       </p>
@@ -669,7 +669,7 @@ exports[`choicebox [snapshot] > single-select, with descriptions, disabled 1`] =
         Option A
       </p>
       <p
-        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+        class="vesper-typography vesper-typography-copy-xxs vesper-choicebox-item-description"
       >
         Description for option A
       </p>
@@ -695,7 +695,7 @@ exports[`choicebox [snapshot] > single-select, with descriptions, disabled 1`] =
         Option B
       </p>
       <p
-        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+        class="vesper-typography vesper-typography-copy-xxs vesper-choicebox-item-description"
       >
         Description for option B
       </p>
@@ -721,7 +721,7 @@ exports[`choicebox [snapshot] > single-select, with descriptions, disabled 1`] =
         Option C
       </p>
       <p
-        class="vesper-typography vesper-typography-copy-xs vesper-choicebox-item-description"
+        class="vesper-typography vesper-typography-copy-xxs vesper-choicebox-item-description"
       >
         Description for option C
       </p>

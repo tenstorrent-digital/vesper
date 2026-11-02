@@ -217,7 +217,7 @@ const tokens = {
     "text-inverse-primary",
     "text-inverse-secondary",
     "text-inverse-tertiary",
-    "text-alpha-disabled",
+    "text-inverse-disabled",
     "text-on-color",
     "text-accent",
     "text-success",
@@ -345,7 +345,17 @@ const tokens = {
   "transition-duration": ["fast", "default", "slow"],
   "border-width": ["base", "strong"],
   "outline-width": ["base", "strong"],
+  blur: [""],
 };
+
+/**
+ * returns the class name for each token in a token group, eg. `bg-vesper-stone-500`
+ *
+ * tokens named after their group (like the token in `blur.css`) have an empty
+ * value, so their class names don't have a token suffix, eg. `blur-vesper`
+ */
+const getTokenClassNames = (group: keyof typeof tokens, prefix: string) =>
+  tokens[group].map((token) => (token ? `${prefix}-${token}` : prefix));
 
 /**
  * asserts that `a` and `b` are in the same class group,
@@ -369,155 +379,171 @@ describe("withVesper", () => {
   // theme scales extended with vesper tokens
   describe("theme", () => {
     describe("color", () => {
-      test.each(tokens["color"])(
-        "bg-vesper-%s conflicts with bg-red-500",
-        (token) => {
-          expectConflict("bg-red-500", `bg-vesper-${token}`);
+      test.each(getTokenClassNames("color", "bg-vesper"))(
+        "%s conflicts with bg-red-500",
+        (className) => {
+          expectConflict("bg-red-500", className);
         },
       );
 
-      test.each(tokens["color"])(
-        "text-vesper-%s conflicts with text-red-500",
-        (token) => {
-          expectConflict("text-red-500", `text-vesper-${token}`);
+      test.each(getTokenClassNames("color", "text-vesper"))(
+        "%s conflicts with text-red-500",
+        (className) => {
+          expectConflict("text-red-500", className);
         },
       );
 
-      test.each(tokens["color"])(
-        "border-vesper-%s conflicts with border-red-500",
-        (token) => {
-          expectConflict("border-red-500", `border-vesper-${token}`);
+      test.each(getTokenClassNames("color", "border-vesper"))(
+        "%s conflicts with border-red-500",
+        (className) => {
+          expectConflict("border-red-500", className);
         },
       );
 
-      test.each(tokens["color"])(
-        "divide-vesper-%s conflicts with divide-red-500",
-        (token) => {
-          expectConflict("divide-red-500", `divide-vesper-${token}`);
+      test.each(getTokenClassNames("color", "divide-vesper"))(
+        "%s conflicts with divide-red-500",
+        (className) => {
+          expectConflict("divide-red-500", className);
         },
       );
 
-      test.each(tokens["color"])(
-        "outline-vesper-%s conflicts with outline-red-500",
-        (token) => {
-          expectConflict("outline-red-500", `outline-vesper-${token}`);
+      test.each(getTokenClassNames("color", "outline-vesper"))(
+        "%s conflicts with outline-red-500",
+        (className) => {
+          expectConflict("outline-red-500", className);
         },
       );
 
-      test.each(tokens["color"])(
-        "ring-vesper-%s conflicts with ring-red-500",
-        (token) => {
-          expectConflict("ring-red-500", `ring-vesper-${token}`);
+      test.each(getTokenClassNames("color", "ring-vesper"))(
+        "%s conflicts with ring-red-500",
+        (className) => {
+          expectConflict("ring-red-500", className);
         },
       );
 
-      test.each(tokens["color"])(
-        "fill-vesper-%s conflicts with fill-red-500",
-        (token) => {
-          expectConflict("fill-red-500", `fill-vesper-${token}`);
+      test.each(getTokenClassNames("color", "fill-vesper"))(
+        "%s conflicts with fill-red-500",
+        (className) => {
+          expectConflict("fill-red-500", className);
         },
       );
 
-      test.each(tokens["color"])(
-        "stroke-vesper-%s conflicts with stroke-red-500",
-        (token) => {
-          expectConflict("stroke-red-500", `stroke-vesper-${token}`);
+      test.each(getTokenClassNames("color", "stroke-vesper"))(
+        "%s conflicts with stroke-red-500",
+        (className) => {
+          expectConflict("stroke-red-500", className);
         },
       );
     });
 
     describe("font", () => {
-      test.each(tokens["font"])(
-        "font-vesper-%s conflicts with font-sans",
-        (token) => {
-          expectConflict("font-sans", `font-vesper-${token}`);
+      test.each(getTokenClassNames("font", "font-vesper"))(
+        "%s conflicts with font-sans",
+        (className) => {
+          expectConflict("font-sans", className);
         },
       );
     });
 
     describe("leading", () => {
-      test.each(tokens["leading"])(
-        "leading-vesper-%s conflicts with leading-6",
-        (token) => {
-          expectConflict("leading-6", `leading-vesper-${token}`);
+      test.each(getTokenClassNames("leading", "leading-vesper"))(
+        "%s conflicts with leading-6",
+        (className) => {
+          expectConflict("leading-6", className);
         },
       );
     });
 
     describe("radius", () => {
-      test.each(tokens["radius"])(
-        "rounded-vesper-%s conflicts with rounded-md",
-        (token) => {
-          expectConflict("rounded-md", `rounded-vesper-${token}`);
+      test.each(getTokenClassNames("radius", "rounded-vesper"))(
+        "%s conflicts with rounded-md",
+        (className) => {
+          expectConflict("rounded-md", className);
         },
       );
 
-      test.each(tokens["radius"])(
-        "rounded-t-vesper-%s conflicts with rounded-t-md",
-        (token) => {
-          expectConflict("rounded-t-md", `rounded-t-vesper-${token}`);
+      test.each(getTokenClassNames("radius", "rounded-t-vesper"))(
+        "%s conflicts with rounded-t-md",
+        (className) => {
+          expectConflict("rounded-t-md", className);
         },
       );
     });
 
     describe("shadow", () => {
-      test.each(tokens["shadow"])(
-        "shadow-vesper-%s conflicts with shadow-lg",
-        (token) => {
-          expectConflict("shadow-lg", `shadow-vesper-${token}`);
+      test.each(getTokenClassNames("shadow", "shadow-vesper"))(
+        "%s conflicts with shadow-lg",
+        (className) => {
+          expectConflict("shadow-lg", className);
         },
       );
     });
 
     describe("spacing", () => {
-      test.each(tokens["spacing"])(
-        "p-vesper-%s conflicts with p-2",
-        (token) => {
-          expectConflict("p-2", `p-vesper-${token}`);
+      test.each(getTokenClassNames("spacing", "p-vesper"))(
+        "%s conflicts with p-2",
+        (className) => {
+          expectConflict("p-2", className);
         },
       );
 
-      test.each(tokens["spacing"])(
-        "m-vesper-%s conflicts with m-2",
-        (token) => {
-          expectConflict("m-2", `m-vesper-${token}`);
+      test.each(getTokenClassNames("spacing", "m-vesper"))(
+        "%s conflicts with m-2",
+        (className) => {
+          expectConflict("m-2", className);
         },
       );
 
-      test.each(tokens["spacing"])(
-        "gap-vesper-%s conflicts with gap-2",
-        (token) => {
-          expectConflict("gap-2", `gap-vesper-${token}`);
+      test.each(getTokenClassNames("spacing", "gap-vesper"))(
+        "%s conflicts with gap-2",
+        (className) => {
+          expectConflict("gap-2", className);
         },
       );
 
-      test.each(tokens["spacing"])(
-        "w-vesper-%s conflicts with w-2",
-        (token) => {
-          expectConflict("w-2", `w-vesper-${token}`);
+      test.each(getTokenClassNames("spacing", "w-vesper"))(
+        "%s conflicts with w-2",
+        (className) => {
+          expectConflict("w-2", className);
         },
       );
 
-      test.each(tokens["spacing"])(
-        "h-vesper-%s conflicts with h-2",
-        (token) => {
-          expectConflict("h-2", `h-vesper-${token}`);
+      test.each(getTokenClassNames("spacing", "h-vesper"))(
+        "%s conflicts with h-2",
+        (className) => {
+          expectConflict("h-2", className);
         },
       );
 
-      test.each(tokens["spacing"])(
-        "inset-vesper-%s conflicts with inset-2",
-        (token) => {
-          expectConflict("inset-2", `inset-vesper-${token}`);
+      test.each(getTokenClassNames("spacing", "inset-vesper"))(
+        "%s conflicts with inset-2",
+        (className) => {
+          expectConflict("inset-2", className);
         },
       );
     });
 
     describe("tracking", () => {
-      test.each(tokens["tracking"])(
-        "tracking-vesper-%s conflicts with tracking-wide",
-        (token) => {
-          expectConflict("tracking-wide", `tracking-vesper-${token}`);
+      test.each(getTokenClassNames("tracking", "tracking-vesper"))(
+        "%s conflicts with tracking-wide",
+        (className) => {
+          expectConflict("tracking-wide", className);
+        },
+      );
+    });
+
+    describe("blur", () => {
+      test.each(getTokenClassNames("blur", "blur-vesper"))(
+        "%s conflicts with blur-sm",
+        (className) => {
+          expectConflict("blur-sm", className);
+        },
+      );
+
+      test.each(getTokenClassNames("blur", "backdrop-blur-vesper"))(
+        "%s conflicts with backdrop-blur-sm",
+        (className) => {
+          expectConflict("backdrop-blur-sm", className);
         },
       );
     });
@@ -526,112 +552,112 @@ describe("withVesper", () => {
   // theme variable namespaces without a tailwind-merge theme scale
   describe("class groups", () => {
     describe("border-width", () => {
-      test.each(tokens["border-width"])(
-        "border-vesper-%s conflicts with border-2",
-        (token) => {
-          expectConflict("border-2", `border-vesper-${token}`);
+      test.each(getTokenClassNames("border-width", "border-vesper"))(
+        "%s conflicts with border-2",
+        (className) => {
+          expectConflict("border-2", className);
         },
       );
 
-      test.each(tokens["border-width"])(
-        "border-x-vesper-%s conflicts with border-x-2",
-        (token) => {
-          expectConflict("border-x-2", `border-x-vesper-${token}`);
+      test.each(getTokenClassNames("border-width", "border-x-vesper"))(
+        "%s conflicts with border-x-2",
+        (className) => {
+          expectConflict("border-x-2", className);
         },
       );
 
-      test.each(tokens["border-width"])(
-        "border-y-vesper-%s conflicts with border-y-2",
-        (token) => {
-          expectConflict("border-y-2", `border-y-vesper-${token}`);
+      test.each(getTokenClassNames("border-width", "border-y-vesper"))(
+        "%s conflicts with border-y-2",
+        (className) => {
+          expectConflict("border-y-2", className);
         },
       );
 
-      test.each(tokens["border-width"])(
-        "border-s-vesper-%s conflicts with border-s-2",
-        (token) => {
-          expectConflict("border-s-2", `border-s-vesper-${token}`);
+      test.each(getTokenClassNames("border-width", "border-s-vesper"))(
+        "%s conflicts with border-s-2",
+        (className) => {
+          expectConflict("border-s-2", className);
         },
       );
 
-      test.each(tokens["border-width"])(
-        "border-e-vesper-%s conflicts with border-e-2",
-        (token) => {
-          expectConflict("border-e-2", `border-e-vesper-${token}`);
+      test.each(getTokenClassNames("border-width", "border-e-vesper"))(
+        "%s conflicts with border-e-2",
+        (className) => {
+          expectConflict("border-e-2", className);
         },
       );
 
-      test.each(tokens["border-width"])(
-        "border-bs-vesper-%s conflicts with border-bs-2",
-        (token) => {
-          expectConflict("border-bs-2", `border-bs-vesper-${token}`);
+      test.each(getTokenClassNames("border-width", "border-bs-vesper"))(
+        "%s conflicts with border-bs-2",
+        (className) => {
+          expectConflict("border-bs-2", className);
         },
       );
 
-      test.each(tokens["border-width"])(
-        "border-be-vesper-%s conflicts with border-be-2",
-        (token) => {
-          expectConflict("border-be-2", `border-be-vesper-${token}`);
+      test.each(getTokenClassNames("border-width", "border-be-vesper"))(
+        "%s conflicts with border-be-2",
+        (className) => {
+          expectConflict("border-be-2", className);
         },
       );
 
-      test.each(tokens["border-width"])(
-        "border-t-vesper-%s conflicts with border-t-2",
-        (token) => {
-          expectConflict("border-t-2", `border-t-vesper-${token}`);
+      test.each(getTokenClassNames("border-width", "border-t-vesper"))(
+        "%s conflicts with border-t-2",
+        (className) => {
+          expectConflict("border-t-2", className);
         },
       );
 
-      test.each(tokens["border-width"])(
-        "border-r-vesper-%s conflicts with border-r-2",
-        (token) => {
-          expectConflict("border-r-2", `border-r-vesper-${token}`);
+      test.each(getTokenClassNames("border-width", "border-r-vesper"))(
+        "%s conflicts with border-r-2",
+        (className) => {
+          expectConflict("border-r-2", className);
         },
       );
 
-      test.each(tokens["border-width"])(
-        "border-b-vesper-%s conflicts with border-b-2",
-        (token) => {
-          expectConflict("border-b-2", `border-b-vesper-${token}`);
+      test.each(getTokenClassNames("border-width", "border-b-vesper"))(
+        "%s conflicts with border-b-2",
+        (className) => {
+          expectConflict("border-b-2", className);
         },
       );
 
-      test.each(tokens["border-width"])(
-        "border-l-vesper-%s conflicts with border-l-2",
-        (token) => {
-          expectConflict("border-l-2", `border-l-vesper-${token}`);
+      test.each(getTokenClassNames("border-width", "border-l-vesper"))(
+        "%s conflicts with border-l-2",
+        (className) => {
+          expectConflict("border-l-2", className);
         },
       );
 
-      test.each(tokens["border-width"])(
-        "divide-x-vesper-%s conflicts with divide-x-2",
-        (token) => {
-          expectConflict("divide-x-2", `divide-x-vesper-${token}`);
+      test.each(getTokenClassNames("border-width", "divide-x-vesper"))(
+        "%s conflicts with divide-x-2",
+        (className) => {
+          expectConflict("divide-x-2", className);
         },
       );
 
-      test.each(tokens["border-width"])(
-        "divide-y-vesper-%s conflicts with divide-y-2",
-        (token) => {
-          expectConflict("divide-y-2", `divide-y-vesper-${token}`);
+      test.each(getTokenClassNames("border-width", "divide-y-vesper"))(
+        "%s conflicts with divide-y-2",
+        (className) => {
+          expectConflict("divide-y-2", className);
         },
       );
     });
 
     describe("outline-width", () => {
-      test.each(tokens["outline-width"])(
-        "outline-vesper-%s conflicts with outline-2",
-        (token) => {
-          expectConflict("outline-2", `outline-vesper-${token}`);
+      test.each(getTokenClassNames("outline-width", "outline-vesper"))(
+        "%s conflicts with outline-2",
+        (className) => {
+          expectConflict("outline-2", className);
         },
       );
     });
 
     describe("transition-duration", () => {
-      test.each(tokens["transition-duration"])(
-        "duration-vesper-%s conflicts with duration-150",
-        (token) => {
-          expectConflict("duration-150", `duration-vesper-${token}`);
+      test.each(getTokenClassNames("transition-duration", "duration-vesper"))(
+        "%s conflicts with duration-150",
+        (className) => {
+          expectConflict("duration-150", className);
         },
       );
     });

@@ -84,9 +84,11 @@
   pointer-events: none;
   color: var(--vesper-color-text-disabled);
   background: var(--vesper-color-background-disabled);
-  border: var(--vesper-border-width-base) solid var(--vesper-color-border-disabled);
+  backdrop-filter: blur(var(--vesper-blur));
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-disabled);
   & > .vesper-chip-icon {
-    color: var(--vesper-icon-disabled);
+    color: var(--vesper-color-icon-disabled);
   }
   @media (forced-colors: active) {
     opacity: 0.5;

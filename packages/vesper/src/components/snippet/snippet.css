@@ -15,6 +15,7 @@
   code {
     display: flex;
     flex-direction: column;
+    gap: var(--vesper-spacing-1);
   }
   .line::before {
     content: "$";
@@ -23,7 +24,7 @@
   }
 }
 .vesper-snippet-default {
-  background: var(--vesper-color-tint-neutral-100);
+  background: var(--vesper-color-background-tertiary);
   color: var(--vesper-color-text-primary);
 }
 .vesper-snippet-contrast {

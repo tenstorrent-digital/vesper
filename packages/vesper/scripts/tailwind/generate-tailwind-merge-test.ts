@@ -35,10 +35,10 @@ const createTokenConflictTests = (
   classGroup: SampleClassGroupIds,
 ) => {
   const sample = CLASS_GROUP_SAMPLES[classGroup];
-  const name = `${utility}-vesper-%s conflicts with ${sample}`;
+  const name = `%s conflicts with ${sample}`;
 
-  return `test.each(tokens["${tokenGroup}"])("${name}", (token) => {
-    expectConflict("${sample}", \`${utility}-vesper-\${token}\`);
+  return `test.each(getTokenClassNames("${tokenGroup}", "${utility}-vesper"))("${name}", (className) => {
+    expectConflict("${sample}", className);
   });`;
 };
 
@@ -183,6 +183,15 @@ import { withVesper } from "@/utils/tailwind-merge";
 const twMerge = extendTailwindMerge(withVesper);
 
 ${createTokenLists()}
+
+/**
+ * returns the class name for each token in a token group, eg. \`bg-vesper-stone-500\`
+ *
+ * tokens named after their group (like the token in \`blur.css\`) have an empty
+ * value, so their class names don't have a token suffix, eg. \`blur-vesper\`
+ */
+const getTokenClassNames = (group: keyof typeof tokens, prefix: string) =>
+  tokens[group].map((token) => (token ? \`\${prefix}-\${token}\` : prefix));
 
 /**
  * asserts that \`a\` and \`b\` are in the same class group,

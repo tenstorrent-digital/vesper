@@ -17,7 +17,7 @@ type AnyConfig = Config<string, string>;
 
 const TOKENS = {
   color: {
-    set: new Set([
+    set: new Set<string>([
       "static-black",
       "static-white",
       "transparent",
@@ -220,7 +220,7 @@ const TOKENS = {
       "text-inverse-primary",
       "text-inverse-secondary",
       "text-inverse-tertiary",
-      "text-alpha-disabled",
+      "text-inverse-disabled",
       "text-on-color",
       "text-accent",
       "text-success",
@@ -314,19 +314,26 @@ const TOKENS = {
     lookup: (value: string) => TOKENS["color"].set.has(value),
   },
   font: {
-    set: new Set(["sans", "mono"]),
+    set: new Set<string>(["sans", "mono"]),
     lookup: (value: string) => TOKENS["font"].set.has(value),
   },
   leading: {
-    set: new Set(["none", "tight", "snug", "normal", "relaxed", "loose"]),
+    set: new Set<string>([
+      "none",
+      "tight",
+      "snug",
+      "normal",
+      "relaxed",
+      "loose",
+    ]),
     lookup: (value: string) => TOKENS["leading"].set.has(value),
   },
   radius: {
-    set: new Set(["1", "2", "3", "4", "6", "7", "half"]),
+    set: new Set<string>(["1", "2", "3", "4", "6", "7", "half"]),
     lookup: (value: string) => TOKENS["radius"].set.has(value),
   },
   shadow: {
-    set: new Set([
+    set: new Set<string>([
       "100",
       "200",
       "300",
@@ -338,7 +345,7 @@ const TOKENS = {
     lookup: (value: string) => TOKENS["shadow"].set.has(value),
   },
   spacing: {
-    set: new Set([
+    set: new Set<string>([
       "0",
       "1",
       "2",
@@ -362,7 +369,7 @@ const TOKENS = {
     lookup: (value: string) => TOKENS["spacing"].set.has(value),
   },
   tracking: {
-    set: new Set([
+    set: new Set<string>([
       "tightest",
       "tighter",
       "tight",
@@ -374,16 +381,20 @@ const TOKENS = {
     lookup: (value: string) => TOKENS["tracking"].set.has(value),
   },
   "transition-duration": {
-    set: new Set(["fast", "default", "slow"]),
+    set: new Set<string>(["fast", "default", "slow"]),
     lookup: (value: string) => TOKENS["transition-duration"].set.has(value),
   },
   "border-width": {
-    set: new Set(["base", "strong"]),
+    set: new Set<string>(["base", "strong"]),
     lookup: (value: string) => TOKENS["border-width"].set.has(value),
   },
   "outline-width": {
-    set: new Set(["base", "strong"]),
+    set: new Set<string>(["base", "strong"]),
     lookup: (value: string) => TOKENS["outline-width"].set.has(value),
+  },
+  blur: {
+    set: new Set<string>([]),
+    lookup: (value: string) => TOKENS["blur"].set.has(value),
   },
 };
 
@@ -403,6 +414,7 @@ export const withVesper = (config: AnyConfig): AnyConfig =>
         shadow: [{ vesper: [TOKENS["shadow"].lookup] }],
         spacing: [{ vesper: [TOKENS["spacing"].lookup] }],
         tracking: [{ vesper: [TOKENS["tracking"].lookup] }],
+        blur: ["vesper"],
       },
       classGroups: {
         // theme variable namespaces without a tailwind-merge theme scale

@@ -8,7 +8,7 @@ body:
       value: |
         This form is for problems encountered while **working on Vesper itself**. If you encounter a bug while using a Vesper component in your own app, please use the Bug Report form instead.
 
-        Before filing, it's worth confirming your toolchain matches the repo: this project pins **Node v24.13.1** (see `.nvmrc`) and **Yarn 1.22.22** (Yarn Classic).
+        Before filing, it's worth confirming your toolchain matches the repo: this project pins **Node v24.22.1** (see `.nvmrc`) and **Yarn 1.22.22** (Yarn Classic).
   - type: textarea
     id: description
     attributes:
@@ -48,7 +48,7 @@ body:
       description: |
         Run `node -v && yarn -v` and paste the output, along with your OS.
       placeholder: |
-        - Node: v24.13.1
+        - Node: v24.22.1
         - Yarn: 1.22.22
         - OS: macOS 15.5
       render: shell

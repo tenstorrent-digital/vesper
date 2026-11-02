@@ -624,12 +624,8 @@ html[data-vesper-theme="dark"] {
   --vesper-color-background-secondary: var(--vesper-color-stone-50);
   --vesper-color-background-tertiary: var(--vesper-color-stone-100);
   --vesper-color-background-disabled: var(--vesper-color-alpha-stone-50);
-  --vesper-color-background-inverse-primary: var(
-    --vesper-color-alpha-stone-900
-  );
-  --vesper-color-background-inverse-secondary: var(
-    --vesper-color-alpha-stone-800
-  );
+  --vesper-color-background-inverse-primary: var(--vesper-color-stone-900);
+  --vesper-color-background-inverse-secondary: var(--vesper-color-stone-800);
   --vesper-color-background-inverse-disabled: var(
     --vesper-color-alpha-inverse-50
   );
@@ -660,7 +656,7 @@ html[data-vesper-theme="dark"] {
   --vesper-color-text-inverse-primary: var(--vesper-color-stone-0);
   --vesper-color-text-inverse-secondary: var(--vesper-color-stone-300);
   --vesper-color-text-inverse-tertiary: var(--vesper-color-stone-500);
-  --vesper-color-text-alpha-disabled: var(--vesper-color-alpha-inverse-300);
+  --vesper-color-text-inverse-disabled: var(--vesper-color-alpha-inverse-300);
   --vesper-color-text-on-color: var(--vesper-color-static-white);
   --vesper-color-text-accent: var(--vesper-color-teal-700);
   --vesper-color-text-success: var(--vesper-color-mint-600);

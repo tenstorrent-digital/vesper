@@ -35,8 +35,8 @@ All other props are forwarded to the underlying `<p>` element, or whichever root
 | --- | --- |
 | Display | `display-sm`, `display-md`, `display-lg` |
 | Heading | `heading-xs`, `heading-sm`, `heading-md`, `heading-lg`, `heading-xl`, `heading-2xl` |
-| Copy | `copy-xs`, `copy-xs-bold`, `copy-xs-mono`, `copy-sm`, `copy-sm-bold`, `copy-md`, `copy-md-bold`, `copy-lg`, `copy-lg-bold`, `copy-xl`, `copy-xl-bold` |
-| Label | `label-xs`, `label-xs-bold`, `label-xs-mono`, `label-sm`, `label-sm-bold`, `label-sm-mono`, `label-md`, `label-md-bold`, `label-md-mono`, `label-lg`, `label-lg-bold` |
+| Copy | `copy-xxs`, `copy-xxs-bold`, `copy-xxs-mono`, `copy-xs`, `copy-xs-bold`, `copy-xs-mono`, `copy-sm`, `copy-sm-bold`, `copy-sm-mono`, `copy-md`, `copy-md-bold`, `copy-md-mono`, `copy-lg`, `copy-lg-bold`, `copy-lg-mono`, `copy-xl`, `copy-xl-bold`, `copy-xl-mono` |
+| Label | `label-xxs`, `label-xxs-bold`, `label-xxs-mono`, `label-xs`, `label-xs-bold`, `label-xs-mono`, `label-sm`, `label-sm-bold`, `label-sm-mono`, `label-md`, `label-md-bold`, `label-md-mono`, `label-lg`, `label-lg-bold`, `label-lg-mono` |
 
 A `variant` only controls how text looks; it has no bearing on the element that gets rendered. Pair it with the `as` prop so the rendered element matches the meaning of the text, eg. `as="h1"` for a page title, `as="a"` for inline links, etc.
 
@@ -139,6 +139,8 @@ export default function CopyTypography() {
           gap: "var(--vesper-spacing-2)",
         }}
       >
+        <Typography variant="copy-xxs">Copy xxs</Typography>
+        <Typography variant="copy-xxs-bold">Copy xxs bold</Typography>
         <Typography variant="copy-xs">Copy xs</Typography>
         <Typography variant="copy-xs-bold">Copy xs bold</Typography>
         <Typography variant="copy-sm">Copy sm</Typography>
@@ -171,6 +173,9 @@ export default function LabelTypography() {
         gap: "var(--vesper-spacing-2)",
       }}
     >
+      <Typography as="span" variant="label-xxs">
+        Label xxs
+      </Typography>
       <Typography as="span" variant="label-xs">
         Label xs
       </Typography>
@@ -193,7 +198,7 @@ export default function LabelTypography() {
 
 ### Monospace variants
 
-The `-mono` variants render in the design system's monospace font, which is useful for values where character alignment matters, such as identifiers, measurements, and timestamps:
+The `-mono` variants render in the design system's monospace font, which is useful for values where character alignment matters, such as identifiers, measurements, and timestamps. Every `copy-*` and `label-*` size has a `-mono` counterpart:
 
 ```tsx demo
 import { Typography } from "@tenstorrent/vesper/typography";
@@ -207,12 +212,19 @@ export default function MonoTypography() {
         gap: "var(--vesper-spacing-2)",
       }}
     >
+      <Typography as="span" variant="label-xxs-mono">
+        v2.4.1
+      </Typography>
       <Typography variant="copy-xs-mono">build-4f2c19a</Typography>
       <Typography as="span" variant="label-sm-mono">
         128.0 GB/s
       </Typography>
       <Typography as="span" variant="label-md-mono">
         2025-09-17T12:37:04Z
+      </Typography>
+      <Typography variant="copy-md-mono">0x7ffe4a2c</Typography>
+      <Typography as="span" variant="label-lg-mono">
+        42.7 TFLOPS
       </Typography>
     </div>
   );

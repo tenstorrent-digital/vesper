@@ -50,7 +50,7 @@ const createVesperClassGroupIds = () => {
  * ```ts
  * const TOKENS = {
  *   color: {
- *     set: new Set(["static-black", "static-white", ...]),
+ *     set: new Set<string>(["static-black", "static-white", ...]),
  *     lookup: (value: string) => TOKENS["color"].set.has(value),
  *   },
  *   radius: { ... },
@@ -61,9 +61,11 @@ const createVesperClassGroupIds = () => {
 const createTokenLookupMap = () => {
   const variables = Object.entries(TOKEN_VARIABLE_GROUPS).map(
     ([group, tokens]) => {
-      const values = tokens.map((token) => token.value);
+      // tokens named after their group (like the token in `blur.css`) have an
+      // empty value, and are matched by `createTokenClassDefinitions` instead
+      const values = tokens.map((token) => token.value).filter(Boolean);
 
-      const set = `new Set(${JSON.stringify(values)})`;
+      const set = `new Set<string>(${JSON.stringify(values)})`;
       const lookup = `(value: string) => TOKENS["${group}"].set.has(value)`;
       const value = `{ set: ${set}, lookup: ${lookup} }`;
 
@@ -88,11 +90,43 @@ const createTokenLookupMap = () => {
 const getTokenLookupFn = (group: TokenGroupName) => `TOKENS["${group}"].lookup`;
 
 /**
+ * Returns the `tailwind-merge` class definitions that match the classes of a
+ * token group, given the prefix that comes before a token's value in a class
+ * (eg. the `vesper` in `bg-vesper-stone-500`).
+ *
+ * Tokens named after their group (like the token in `blur.css`) produce
+ * classes without a token value suffix (eg. `blur-vesper`), so they are
+ * matched by the prefix itself.
+ *
+ * ```ts
+ * console.log(createTokenClassDefinitions("color", "vesper"));
+ * // ['{ "vesper": [TOKENS["color"].lookup] }']
+ *
+ * console.log(createTokenClassDefinitions("blur", "vesper"));
+ * // ['"vesper"']
+ * ```
+ */
+const createTokenClassDefinitions = (group: TokenGroupName, prefix: string) => {
+  const tokens = TOKEN_VARIABLE_GROUPS[group];
+  const definitions: string[] = [];
+
+  if (tokens.some((token) => !token.value)) {
+    definitions.push(`"${prefix}"`);
+  }
+  if (tokens.some((token) => token.value)) {
+    definitions.push(`{ "${prefix}": [${getTokenLookupFn(group)}] }`);
+  }
+
+  return definitions;
+};
+
+/**
  * Emits the `extend.theme` configuration object, which adds vesper tokens to
  * each `tailwind-merge` theme scale in `THEME_TOKEN_GROUPS`.
  *
  * ```ts
  * {
+ *   blur: ["vesper"],
  *   color: [{ vesper: [TOKENS["color"].lookup] }],
  *   radius: [{ vesper: [TOKENS["radius"].lookup] }],
  *   // etc.
@@ -101,8 +135,8 @@ const getTokenLookupFn = (group: TokenGroupName) => `TOKENS["${group}"].lookup`;
  */
 const createExtendedTheme = () => {
   const entries = THEME_TOKEN_GROUPS.map((group) => {
-    const lookupFn = getTokenLookupFn(group);
-    return `${group}: [{ vesper: [${lookupFn}] }]`;
+    const definitions = createTokenClassDefinitions(group, "vesper");
+    return `${group}: [${definitions.join(", ")}]`;
   });
 
   return `{ ${entries.join(", ")} }`;
@@ -123,26 +157,25 @@ const createExtendedTheme = () => {
  */
 const createExtendedClassGroups = () => {
   const groups: {
-    [K in DefaultClassGroupIds]?: [prefix: string, lookupFn: string][];
+    [K in DefaultClassGroupIds]?: string[];
   } = {};
 
   for (const key in EXTENDED_CLASSGROUPS) {
     const group = key as ClassGroupTokenGroup;
-    const lookupFn = getTokenLookupFn(group);
 
     EXTENDED_CLASSGROUPS[group].forEach(([id, mapping]) => {
-      const prefix = `${mapping}-vesper`;
-      groups[id] = (groups[id] ?? []).concat([[prefix, lookupFn]]);
+      const definitions = createTokenClassDefinitions(
+        group,
+        `${mapping}-vesper`,
+      );
+      groups[id] = (groups[id] ?? []).concat(definitions);
     });
   }
 
   const result: string[] = [];
   for (const group in groups) {
     const id = group as DefaultClassGroupIds;
-    const values = (groups[id] ?? []).map(
-      ([prefix, lookupFn]) => `{ "${prefix}": [${lookupFn}] }`,
-    );
-    result.push(`"${id}": [${values.join(", ")}]`);
+    result.push(`"${id}": [${(groups[id] ?? []).join(", ")}]`);
   }
   return result.join(", ");
 };
