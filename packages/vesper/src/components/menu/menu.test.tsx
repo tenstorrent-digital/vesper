@@ -27,6 +27,10 @@ import {
 } from "@/components/icons/icons";
 import { Menu, type MenuItemProps } from "@/components/menu/menu";
 import { TextButton } from "@/components/text-button/text-button";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 const MENU_ITEMS: MenuItemProps[] = [
@@ -638,6 +642,44 @@ describe("menu [a11y]", () => {
 
         expect(
           await axe.run(result.container.ownerDocument),
+        ).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("menu [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    A11Y_PERMUTATIONS.forEach(({ name, render: renderMenu }) => {
+      test(`wcag2aaa (open, ${name})`, async () => {
+        const result = render(renderMenu(true));
+
+        await waitFor(() =>
+          expect(document.querySelector(".vesper-menu")).not.toBeNull(),
+        );
+
+        expect(
+          await runAxeWcag2aaa(result.container.ownerDocument),
+        ).toHaveNoViolations();
+      });
+
+      test(`wcag2aaa (closed, ${name})`, async () => {
+        const result = render(renderMenu(false));
+
+        expect(
+          await runAxeWcag2aaa(result.container.ownerDocument),
         ).toHaveNoViolations();
       });
     });

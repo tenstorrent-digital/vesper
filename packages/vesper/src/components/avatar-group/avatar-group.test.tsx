@@ -4,6 +4,10 @@ import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
 import { AvatarGroup } from "@/components/avatar-group/avatar-group";
 import { AVATAR_SIZES } from "@/components/avatar/avatar";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 afterEach(cleanup);
@@ -194,6 +198,41 @@ describe("avatar-group [a11y]", () => {
         );
 
         expect(await axe.run(result.container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("avatar-group [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    AVATAR_SIZES.forEach((size) => {
+      test(`wcag2aaa (${size}, ${theme})`, async () => {
+        const result = render(
+          <AvatarGroup
+            size={size}
+            avatars={[
+              { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
+              { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
+              { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
+              { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
+              { src: "https://unsplash.it/200/200", alt: "avatar alt text" },
+            ]}
+          />,
+        );
+
+        expect(await runAxeWcag2aaa(result.container)).toHaveNoViolations();
       });
     });
   });

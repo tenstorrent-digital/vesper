@@ -16,6 +16,10 @@ import {
   type ModalProps,
   useModal,
 } from "@/components/modal/modal";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 const TITLE = "Are you absolutely sure?";
@@ -618,6 +622,37 @@ describe("modal [a11y]", () => {
         assert.instanceOf(dialog, HTMLDialogElement);
         expect(dialog.open).toBe(true);
         expect(await axe.run(result.container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("modal [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    MODAL_A11Y_PERMUTATIONS.forEach(({ label, props, children }) => {
+      const testLabel = `wcag2aaa - ${label} (${theme})`;
+
+      test(testLabel, async () => {
+        const result = render(
+          <ModalWithHook {...props}>{children}</ModalWithHook>,
+        );
+        fireEvent.click(result.getByTestId("open-trigger"));
+        const dialog = result.container.querySelector("dialog");
+        assert.instanceOf(dialog, HTMLDialogElement);
+        expect(dialog.open).toBe(true);
+        expect(await runAxeWcag2aaa(result.container)).toHaveNoViolations();
       });
     });
   });

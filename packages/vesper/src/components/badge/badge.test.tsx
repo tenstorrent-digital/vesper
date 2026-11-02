@@ -9,6 +9,10 @@ import {
   type BadgeProps,
 } from "@/components/badge/badge";
 import { Tenstorrent } from "@/components/icons/icons";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 const BADGE_PERMUTATIONS = BADGE_VARIANTS.flatMap((variant) =>
@@ -131,6 +135,32 @@ describe("badge [a11y]", () => {
         const result = render(<Badge {...permutation}>Badge Text</Badge>);
 
         expect(await axe.run(result.container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("badge [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    BADGE_PERMUTATIONS.forEach((permutation) => {
+      const { size, variant, subtle } = permutation;
+
+      test(`wcag2aaa (${variant}, ${size},${subtle ? " subtle," : ""} ${theme})`, async () => {
+        const result = render(<Badge {...permutation}>Badge Text</Badge>);
+
+        expect(await runAxeWcag2aaa(result.container)).toHaveNoViolations();
       });
     });
   });

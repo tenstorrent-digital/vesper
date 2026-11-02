@@ -18,6 +18,10 @@ import {
   VESPER_THEMES,
   type VesperTheme,
 } from "@/components/theme-switcher/theme-switcher";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 /** Accessibility labels for each of the theme switcher's buttons */
@@ -284,6 +288,33 @@ describe("theme-switcher [a11y]", () => {
       const { container } = render(<ThemeSwitcher size="sm" />);
 
       expect(await axe.run(container)).toHaveNoViolations();
+    });
+  });
+});
+
+describe("theme-switcher [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+    });
+
+    afterEach(() => {
+      document.body.style.removeProperty("background");
+    });
+
+    test(`wcag2aaa (lg, ${theme})`, async () => {
+      const { container } = render(<ThemeSwitcher size="lg" />);
+
+      expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
+    });
+
+    test(`wcag2aaa (sm, ${theme})`, async () => {
+      const { container } = render(<ThemeSwitcher size="sm" />);
+
+      expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
     });
   });
 });

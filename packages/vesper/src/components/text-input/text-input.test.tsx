@@ -9,6 +9,10 @@ import {
   TextInput,
   TextInputProps,
 } from "@/components/text-input/text-input";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 type TextInputPermutation = TextInputProps & { permutationName: string };
@@ -198,6 +202,33 @@ describe("text-input [a11y]", () => {
       test(`wcag2aa (${permutationName}, ${theme})`, async () => {
         const { container } = render(<TextInput {...props} />);
         expect(await axe.run(container.firstChild!)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("text-input [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    TEXT_INPUT_PERMUTATIONS.forEach((permutation) => {
+      const { permutationName, ...props } = permutation;
+
+      test(`wcag2aaa (${permutationName}, ${theme})`, async () => {
+        const { container } = render(<TextInput {...props} />);
+        expect(
+          await runAxeWcag2aaa(container.firstChild!),
+        ).toHaveNoViolations();
       });
     });
   });

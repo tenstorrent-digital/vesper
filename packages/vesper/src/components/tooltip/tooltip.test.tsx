@@ -22,6 +22,10 @@ import { userEvent } from "vitest/browser";
 import { TextButton } from "@/components/text-button/text-button";
 import { Tooltip, TOOLTIP_VARIANTS } from "@/components/tooltip/tooltip";
 import { Typography } from "@/components/typography/typography";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 /**
@@ -685,6 +689,40 @@ describe("tooltip [a11y]", () => {
           await axe.run(result.container.ownerDocument, {
             rules: { region: { enabled: false } },
           }),
+        ).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("tooltip [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    A11Y_PERMUTATIONS.forEach(({ name, wrapWithButton, children }) => {
+      test(`wcag2aaa (${name})`, async () => {
+        const result = render(
+          <Tooltip wrapWithButton={wrapWithButton} open content="Tooltip text">
+            {children}
+          </Tooltip>,
+        );
+
+        await waitFor(() => {
+          expect(document.querySelector(".vesper-tooltip")).not.toBeNull();
+        });
+
+        expect(
+          await runAxeWcag2aaa(result.container.ownerDocument),
         ).toHaveNoViolations();
       });
     });

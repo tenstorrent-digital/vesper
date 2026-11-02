@@ -17,6 +17,10 @@ import {
   SplitButton,
   type SplitButtonProps,
 } from "@/components/split-button/split-button";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 const MENU_ITEMS: MenuItemProps[] = [
@@ -248,6 +252,45 @@ describe("split-button [a11y]", () => {
           await axe.run(result.container.ownerDocument, {
             rules: { region: { enabled: false } },
           }),
+        ).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("split-button [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    SPLIT_BUTTON_PERMUTATIONS.forEach((permutation) => {
+      const { disabled, variant, size, menuOpen } = permutation;
+      const testName = [
+        "wcag2aaa (" + variant,
+        size,
+        disabled && "disabled",
+        menuOpen && "open",
+        theme + ")",
+      ]
+        .filter(Boolean)
+        .join(", ");
+
+      test(testName, async () => {
+        const result = render(
+          <SplitButton {...permutation}>button text</SplitButton>,
+        );
+
+        expect(
+          await runAxeWcag2aaa(result.container.ownerDocument),
         ).toHaveNoViolations();
       });
     });
