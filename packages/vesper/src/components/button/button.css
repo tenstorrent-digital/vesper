@@ -9,6 +9,7 @@
   line-height: var(--vesper-leading-none);
   letter-spacing: var(--vesper-tracking-normal);
   cursor: pointer;
+  border: var(--vesper-stroke-base) solid transparent;
   @media (forced-colors: active) {
     border: var(--vesper-stroke-base) solid CanvasText;
     &:focus-visible {
