@@ -63,6 +63,61 @@ export function runAxeWcag2aaa(context: axe.ElementContext) {
   });
 }
 
+export function getContrastRatio(element: Element) {
+  const style = getComputedStyle(element);
+  const backgroundLayers = [
+    style.backgroundColor,
+    ...(style.backgroundImage.match(/rgba?\([^)]*\)/g) ?? []).slice(0, 1),
+  ];
+
+  const background = compositeColors(backgroundLayers);
+  const foreground = compositeColors([...backgroundLayers, style.color]);
+
+  const backgroundLuminance = relativeLuminance(background);
+  const foregroundLuminance = relativeLuminance(foreground);
+
+  return (
+    (Math.max(backgroundLuminance, foregroundLuminance) + 0.05) /
+    (Math.min(backgroundLuminance, foregroundLuminance) + 0.05)
+  );
+}
+
+function compositeColors(colors: string[]) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1;
+  canvas.height = 1;
+
+  const context = canvas.getContext("2d");
+  if (!context) {
+    throw new Error("failed to get a 2d canvas context");
+  }
+
+  for (const color of colors) {
+    context.fillStyle = color;
+    context.fillRect(0, 0, 1, 1);
+  }
+
+  const [red = 0, green = 0, blue = 0] = context.getImageData(0, 0, 1, 1).data;
+  return { red, green, blue };
+}
+
+function relativeLuminance({
+  red,
+  green,
+  blue,
+}: ReturnType<typeof compositeColors>) {
+  return (
+    0.2126 * linearizeChannel(red) +
+    0.7152 * linearizeChannel(green) +
+    0.0722 * linearizeChannel(blue)
+  );
+}
+
+function linearizeChannel(channel: number) {
+  const value = channel / 255;
+  return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+}
+
 // `window.matchMedia` is mocked in `vitest.setup.ts`, so check the media feature with css instead
 function prefersMoreContrast() {
   const probe = document.createElement("style");

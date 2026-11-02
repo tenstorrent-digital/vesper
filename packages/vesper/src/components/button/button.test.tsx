@@ -1,6 +1,7 @@
 import { cleanup, fireEvent, render, within } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { userEvent } from "vitest/browser";
 
 import {
   Button,
@@ -11,6 +12,7 @@ import {
 import { Tenstorrent } from "@/components/icons/icons";
 import {
   emulateHighContrast,
+  getContrastRatio,
   runAxeWcag2aaa,
 } from "@/test-utils/high-contrast";
 import "@/styles/test.css";
@@ -300,6 +302,17 @@ describe("button [a11y, high contrast]", () => {
         const result = render(<Button {...permutation}>Button Text</Button>);
 
         expect(await runAxeWcag2aaa(result.container)).toHaveNoViolations();
+      });
+    });
+
+    BUTTON_VARIANTS.forEach((variant) => {
+      test(`wcag2aaa contrast (${variant}, hovered, ${theme})`, async () => {
+        const result = render(<Button variant={variant}>Button Text</Button>);
+        const button = result.getByRole("button");
+
+        await userEvent.hover(button);
+
+        expect(getContrastRatio(button)).toBeGreaterThanOrEqual(7);
       });
     });
   });
