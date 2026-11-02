@@ -745,3 +745,60 @@ html[data-vesper-theme="dark"] {
   --vesper-tint-inverse-300: var(--vesper-alpha-inverse-700);
   --vesper-tint-inverse-400: var(--vesper-alpha-inverse-800);
 }
+
+/* semantic color tokens (high contrast) */
+@media (prefers-contrast: more) {
+  :root {
+    --vesper-background-success-base: var(--vesper-green-700);
+    --vesper-background-warning-base: var(--vesper-amber-800);
+    --vesper-background-error-base: var(--vesper-red-700);
+    --vesper-background-info-base: var(--vesper-sky-700);
+    --vesper-background-brand-purple-base: var(--vesper-purple-700);
+    --vesper-background-brand-mint-base: var(--vesper-mint-700);
+    --vesper-background-brand-pink-base: var(--vesper-pink-700);
+    --vesper-background-brand-yellow-base: var(--vesper-yellow-700);
+    --vesper-text-tertiary: var(--vesper-stone-800);
+    --vesper-text-inverse-tertiary: var(--vesper-stone-400);
+    --vesper-text-accent: var(--vesper-teal-800);
+    --vesper-text-success: var(--vesper-mint-700);
+    --vesper-text-warning: var(--vesper-amber-800);
+    --vesper-text-error: var(--vesper-red-800);
+    --vesper-text-info: var(--vesper-sky-800);
+    --vesper-text-link-default: var(--vesper-teal-800);
+    --vesper-text-link-hover: var(--vesper-teal-900);
+    --vesper-text-link-visited: var(--vesper-teal-900);
+    --vesper-text-brand-purple: var(--vesper-purple-800);
+    --vesper-text-brand-mint: var(--vesper-mint-700);
+    --vesper-text-brand-pink: var(--vesper-pink-800);
+    --vesper-text-brand-yellow: var(--vesper-yellow-800);
+    --vesper-icon-tertiary: var(--vesper-stone-800);
+    --vesper-icon-inverse-tertiary: var(--vesper-stone-400);
+    --vesper-icon-accent: var(--vesper-teal-800);
+    --vesper-icon-success: var(--vesper-mint-700);
+    --vesper-icon-warning: var(--vesper-amber-800);
+    --vesper-icon-error: var(--vesper-red-800);
+    --vesper-icon-info: var(--vesper-sky-800);
+    --vesper-icon-brand-purple: var(--vesper-purple-800);
+    --vesper-icon-brand-mint: var(--vesper-mint-700);
+    --vesper-icon-brand-pink: var(--vesper-pink-800);
+    --vesper-icon-brand-yellow: var(--vesper-yellow-800);
+  }
+
+  /*
+   * `text-static-white` doesn't change between themes, but the red palette is
+   * mirrored, so `background-error-base` needs a dark red from each theme
+   */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --vesper-background-error-base: var(--vesper-red-300);
+    }
+  }
+
+  html[data-vesper-theme="light"] {
+    --vesper-background-error-base: var(--vesper-red-700);
+  }
+
+  html[data-vesper-theme="dark"] {
+    --vesper-background-error-base: var(--vesper-red-300);
+  }
+}
