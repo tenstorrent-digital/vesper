@@ -110,7 +110,7 @@ exports[`code-block [snapshot] > with multi-line content 1`] = `
             const a = 1;
           </span>
         </span>
-
+        
 
         <span
           class="line"

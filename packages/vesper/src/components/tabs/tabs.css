@@ -55,7 +55,7 @@
       }
       @media (forced-colors: active) {
         &:focus-visible {
-          outline: var(--vesper-stroke-strong) solid CanvasText;
+          outline: var(--vesper-outline-width-strong) solid CanvasText;
         }
       }
       & > .vesper-tabs-trigger-icon {

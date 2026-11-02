@@ -122,17 +122,24 @@ const createCustomUtilityTests = () =>
       const id = getVesperUtilityGroupId(group);
       const { argument } = metadata;
 
-      /** every class name that the utilities in this group can produce */
+      /**
+       * every class name that the utilities in this group can produce
+       *
+       * tokens named after their group (like the token in `blur.css`) have an
+       * empty value, so they can't be passed to a utility as an argument
+       */
       const classNames = TAILWIND_UTILITY_GROUPS[group].map((utility) => {
         if (utility.acceptsArgument && argument) {
-          return `...tokens["${argument}"].map((token) => \`${utility.name}-\${token}\`)`;
+          return `...tokens["${argument}"].filter(Boolean).map((token) => \`${utility.name}-\${token}\`)`;
         }
         return `"${utility.name}"`;
       });
 
       /** a single class name for each utility in this group */
       const representatives = TAILWIND_UTILITY_GROUPS[group].map((utility) => {
-        const token = argument && TOKEN_VARIABLE_GROUPS[argument][0]?.value;
+        const token =
+          argument &&
+          TOKEN_VARIABLE_GROUPS[argument].find((t) => t.value)?.value;
         if (utility.acceptsArgument && token) {
           return `"${utility.name}-${token}"`;
         }

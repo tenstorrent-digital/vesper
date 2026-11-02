@@ -10,7 +10,7 @@ exports[`tooltip [snapshot] > closed (wrapWithButton) 1`] = `
   >
     <p
       class="vesper-typography vesper-typography-copy-md"
-      style="color: var(--vesper-stone-900);"
+      style="color: var(--vesper-color-stone-900);"
     >
       tooltip trigger
     </p>

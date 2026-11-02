@@ -6,7 +6,7 @@ order: 2
 
 # CSS Tokens
 
-Vesper is built on top of a set of design tokens corresponding to color, spacing, radius, leading, tracking, shadow, stroke, blur, and background. These tokens are exposed in your app as CSS variables when you [import the component styles](./getting-started.mdx#import-styles), and can also be used in Tailwind utilities.
+Vesper is built on top of a set of design tokens corresponding to color, spacing, radius, leading, tracking, shadow, border width, outline width, blur, and background. These tokens are exposed in your app as CSS variables when you [import the component styles](./getting-started.mdx#import-styles), and can also be used in Tailwind utilities.
 
 ## Colors
 
@@ -16,7 +16,7 @@ Color tokens are split into _primitive_ and _semantic_ tokens.
 
 **Semantic** tokens are aliases of primitive tokens intended to be more ergonomic for applied use (these will be familiar to you if you've used a library like Tailwind).
 
-For example, the semantic token `--vesper-background-primary` aliases the primitive `--vesper-stone-0` color token value.
+For example, the semantic token `--vesper-color-background-primary` aliases the primitive `--vesper-color-stone-0` color token value.
 
 We prefer using semantic tokens wherever possible, since they automatically resolve to the correct primitive for the active theme.
 
@@ -24,303 +24,303 @@ We prefer using semantic tokens wherever possible, since they automatically reso
 
 | Preview | CSS variable | Light mode value | Dark mode value |
 | --- | --- | --- | --- |
-| <ColorChip token="static-black" /> | `--vesper-static-black` | `#071614` | `#071614` |
-| <ColorChip token="static-white" /> | `--vesper-static-white` | `#f1f8f8` | `#f1f8f8` |
-| <ColorChip token="transparent" /> | `--vesper-transparent` | `transparent` | `transparent` |
-| <ColorChip token="stone-0" /> | `--vesper-stone-0` | `#f8fcfb` | `#050f0e` |
-| <ColorChip token="stone-50" /> | `--vesper-stone-50` | `#eef6f6` | `#0b1817` |
-| <ColorChip token="stone-100" /> | `--vesper-stone-100` | `#e8f2f1` | `#13201e` |
-| <ColorChip token="stone-200" /> | `--vesper-stone-200` | `#dfecea` | `#1b2826` |
-| <ColorChip token="stone-300" /> | `--vesper-stone-300` | `#d0e1e0` | `#233431` |
-| <ColorChip token="stone-400" /> | `--vesper-stone-400` | `#bdd1cf` | `#2d4340` |
-| <ColorChip token="stone-500" /> | `--vesper-stone-500` | `#a2b9b7` | `#395651` |
-| <ColorChip token="stone-600" /> | `--vesper-stone-600` | `#718e8c` | `#5e7d78` |
-| <ColorChip token="stone-700" /> | `--vesper-stone-700` | `#51706d` | `#7d9b97` |
-| <ColorChip token="stone-800" /> | `--vesper-stone-800` | `#344b49` | `#b3ccc8` |
-| <ColorChip token="stone-900" /> | `--vesper-stone-900` | `#050f0e` | `#e7f0ee` |
-| <ColorChip token="teal-0" /> | `--vesper-teal-0` | `#f7fbfd` | `#05181e` |
-| <ColorChip token="teal-50" /> | `--vesper-teal-50` | `#e7f7fd` | `#0a2229` |
-| <ColorChip token="teal-100" /> | `--vesper-teal-100` | `#d3eff8` | `#0e303a` |
-| <ColorChip token="teal-200" /> | `--vesper-teal-200` | `#aae5f8` | `#073e4f` |
-| <ColorChip token="teal-300" /> | `--vesper-teal-300` | `#8ad2ea` | `#0d4659` |
-| <ColorChip token="teal-400" /> | `--vesper-teal-400` | `#5cbcdb` | `#0f546b` |
-| <ColorChip token="teal-500" /> | `--vesper-teal-500` | `#32abd2` | `#136b86` |
-| <ColorChip token="teal-600" /> | `--vesper-teal-600` | `#1b8eb1` | `#1a8fb2` |
-| <ColorChip token="teal-700" /> | `--vesper-teal-700` | `#176782` | `#46afd2` |
-| <ColorChip token="teal-800" /> | `--vesper-teal-800` | `#144a5d` | `#7dcde8` |
-| <ColorChip token="teal-900" /> | `--vesper-teal-900` | `#0c2f3b` | `#a3e0f5` |
-| <ColorChip token="purple-0" /> | `--vesper-purple-0` | `#f8f7fd` | `#0f0e1b` |
-| <ColorChip token="purple-50" /> | `--vesper-purple-50` | `#efedfd` | `#141127` |
-| <ColorChip token="purple-100" /> | `--vesper-purple-100` | `#dedafb` | `#1d1938` |
-| <ColorChip token="purple-200" /> | `--vesper-purple-200` | `#c9c2fa` | `#27214a` |
-| <ColorChip token="purple-300" /> | `--vesper-purple-300` | `#a89eea` | `#2f285d` |
-| <ColorChip token="purple-400" /> | `--vesper-purple-400` | `#7e71d0` | `#382f74` |
-| <ColorChip token="purple-500" /> | `--vesper-purple-500` | `#6458b6` | `#5145a1` |
-| <ColorChip token="purple-600" /> | `--vesper-purple-600` | `#4d429a` | `#7e71d0` |
-| <ColorChip token="purple-700" /> | `--vesper-purple-700` | `#342b6e` | `#9c91e3` |
-| <ColorChip token="purple-800" /> | `--vesper-purple-800` | `#272150` | `#b4a8ff` |
-| <ColorChip token="purple-900" /> | `--vesper-purple-900` | `#1d1b2d` | `#cdc6fa` |
-| <ColorChip token="mint-0" /> | `--vesper-mint-0` | `#f1fdfb` | `#041f19` |
-| <ColorChip token="mint-50" /> | `--vesper-mint-50` | `#e3fcf9` | `#073128` |
-| <ColorChip token="mint-100" /> | `--vesper-mint-100` | `#d2f4ef` | `#0b4137` |
-| <ColorChip token="mint-200" /> | `--vesper-mint-200` | `#b6ede2` | `#0b5144` |
-| <ColorChip token="mint-300" /> | `--vesper-mint-300` | `#7cdecc` | `#116959` |
-| <ColorChip token="mint-400" /> | `--vesper-mint-400` | `#40bfa8` | `#15937c` |
-| <ColorChip token="mint-500" /> | `--vesper-mint-500` | `#29a38d` | `#1bbb9e` |
-| <ColorChip token="mint-600" /> | `--vesper-mint-600` | `#227767` | `#39c6ac` |
-| <ColorChip token="mint-700" /> | `--vesper-mint-700` | `#13584b` | `#4ce5c9` |
-| <ColorChip token="mint-800" /> | `--vesper-mint-800` | `#0f3d35` | `#82edd9` |
-| <ColorChip token="mint-900" /> | `--vesper-mint-900` | `#112c26` | `#caf7f1` |
-| <ColorChip token="pink-0" /> | `--vesper-pink-0` | `#fdf7fb` | `#1f0a17` |
-| <ColorChip token="pink-50" /> | `--vesper-pink-50` | `#fdedf7` | `#2e0f22` |
-| <ColorChip token="pink-100" /> | `--vesper-pink-100` | `#fcd9ef` | `#3d152e` |
-| <ColorChip token="pink-200" /> | `--vesper-pink-200` | `#ffc2e8` | `#491d38` |
-| <ColorChip token="pink-300" /> | `--vesper-pink-300` | `#f17ec5` | `#6b2450` |
-| <ColorChip token="pink-400" /> | `--vesper-pink-400` | `#e557af` | `#91306c` |
-| <ColorChip token="pink-500" /> | `--vesper-pink-500` | `#be378a` | `#be378a` |
-| <ColorChip token="pink-600" /> | `--vesper-pink-600` | `#91306c` | `#e34faa` |
-| <ColorChip token="pink-700" /> | `--vesper-pink-700` | `#6b2450` | `#f17ec5` |
-| <ColorChip token="pink-800" /> | `--vesper-pink-800` | `#441d35` | `#ffc2e8` |
-| <ColorChip token="pink-900" /> | `--vesper-pink-900` | `#2e0f22` | `#fde2f3` |
-| <ColorChip token="yellow-0" /> | `--vesper-yellow-0` | `#fff7e5` | `#211908` |
-| <ColorChip token="yellow-50" /> | `--vesper-yellow-50` | `#fff2d6` | `#31260c` |
-| <ColorChip token="yellow-100" /> | `--vesper-yellow-100` | `#ffeabd` | `#3f3112` |
-| <ColorChip token="yellow-200" /> | `--vesper-yellow-200` | `#ffe0a3` | `#534018` |
-| <ColorChip token="yellow-300" /> | `--vesper-yellow-300` | `#ffca61` | `#7a5c1a` |
-| <ColorChip token="yellow-400" /> | `--vesper-yellow-400` | `#ffb71b` | `#9c7217` |
-| <ColorChip token="yellow-500" /> | `--vesper-yellow-500` | `#d99a12` | `#d09311` |
-| <ColorChip token="yellow-600" /> | `--vesper-yellow-600` | `#986f16` | `#ffb71b` |
-| <ColorChip token="yellow-700" /> | `--vesper-yellow-700` | `#6d5217` | `#ffc757` |
-| <ColorChip token="yellow-800" /> | `--vesper-yellow-800` | `#473715` | `#ffd88a` |
-| <ColorChip token="yellow-900" /> | `--vesper-yellow-900` | `#2e2614` | `#ffeecc` |
-| <ColorChip token="green-0" /> | `--vesper-green-0` | `#f1fdf8` | `#041f15` |
-| <ColorChip token="green-50" /> | `--vesper-green-50` | `#e3fcf4` | `#073120` |
-| <ColorChip token="green-100" /> | `--vesper-green-100` | `#d2f4e9` | `#0b412e` |
-| <ColorChip token="green-200" /> | `--vesper-green-200` | `#b1ecd6` | `#0b5137` |
-| <ColorChip token="green-300" /> | `--vesper-green-300` | `#78ddb8` | `#106043` |
-| <ColorChip token="green-400" /> | `--vesper-green-400` | `#40bf90` | `#128159` |
-| <ColorChip token="green-500" /> | `--vesper-green-500` | `#29a376` | `#19ae77` |
-| <ColorChip token="green-600" /> | `--vesper-green-600` | `#227758` | `#38c28f` |
-| <ColorChip token="green-700" /> | `--vesper-green-700` | `#13583f` | `#4ce5ad` |
-| <ColorChip token="green-800" /> | `--vesper-green-800` | `#0f3d2c` | `#82edc6` |
-| <ColorChip token="green-900" /> | `--vesper-green-900` | `#112c21` | `#caf7e9` |
-| <ColorChip token="red-0" /> | `--vesper-red-0` | `#feebe7` | `#1d0f0c` |
-| <ColorChip token="red-50" /> | `--vesper-red-50` | `#fcdfd9` | `#2b130d` |
-| <ColorChip token="red-100" /> | `--vesper-red-100` | `#fccac0` | `#3d170f` |
-| <ColorChip token="red-200" /> | `--vesper-red-200` | `#f99a86` | `#5c180a` |
-| <ColorChip token="red-300" /> | `--vesper-red-300` | `#f56447` | `#85230f` |
-| <ColorChip token="red-400" /> | `--vesper-red-400` | `#ef3f1a` | `#af290e` |
-| <ColorChip token="red-500" /> | `--vesper-red-500` | `#cb2c0b` | `#cb2c0b` |
-| <ColorChip token="red-600" /> | `--vesper-red-600` | `#9b2208` | `#f04b28` |
-| <ColorChip token="red-700" /> | `--vesper-red-700` | `#6e1d0c` | `#f37358` |
-| <ColorChip token="red-800" /> | `--vesper-red-800` | `#531609` | `#f99b86` |
-| <ColorChip token="red-900" /> | `--vesper-red-900` | `#2f140e` | `#fac6b7` |
-| <ColorChip token="amber-0" /> | `--vesper-amber-0` | `#fff4e5` | `#211608` |
-| <ColorChip token="amber-50" /> | `--vesper-amber-50` | `#ffedd6` | `#31210c` |
-| <ColorChip token="amber-100" /> | `--vesper-amber-100` | `#ffe4c2` | `#432b0e` |
-| <ColorChip token="amber-200" /> | `--vesper-amber-200` | `#ffd4a3` | `#523614` |
-| <ColorChip token="amber-300" /> | `--vesper-amber-300` | `#ffba6b` | `#8a530f` |
-| <ColorChip token="amber-400" /> | `--vesper-amber-400` | `#ffa033` | `#bb690c` |
-| <ColorChip token="amber-500" /> | `--vesper-amber-500` | `#ed881d` | `#ed881d` |
-| <ColorChip token="amber-600" /> | `--vesper-amber-600` | `#a8610b` | `#ffa333` |
-| <ColorChip token="amber-700" /> | `--vesper-amber-700` | `#8d5107` | `#ffb35c` |
-| <ColorChip token="amber-800" /> | `--vesper-amber-800` | `#523614` | `#ffcf99` |
-| <ColorChip token="amber-900" /> | `--vesper-amber-900` | `#35230d` | `#ffe7cc` |
-| <ColorChip token="sky-0" /> | `--vesper-sky-0` | `#f5fbfe` | `#09101b` |
-| <ColorChip token="sky-50" /> | `--vesper-sky-50` | `#e5f5ff` | `#0f1b2d` |
-| <ColorChip token="sky-100" /> | `--vesper-sky-100` | `#d0e9fb` | `#10243e` |
-| <ColorChip token="sky-200" /> | `--vesper-sky-200` | `#acd7f6` | `#092e53` |
-| <ColorChip token="sky-300" /> | `--vesper-sky-300` | `#7ebeed` | `#0f4d86` |
-| <ColorChip token="sky-400" /> | `--vesper-sky-400` | `#55aae7` | `#135ea7` |
-| <ColorChip token="sky-500" /> | `--vesper-sky-500` | `#2375c7` | `#1671c9` |
-| <ColorChip token="sky-600" /> | `--vesper-sky-600` | `#1059a2` | `#0091ff` |
-| <ColorChip token="sky-700" /> | `--vesper-sky-700` | `#134272` | `#33a3ff` |
-| <ColorChip token="sky-800" /> | `--vesper-sky-800` | `#113355` | `#70b8ff` |
-| <ColorChip token="sky-900" /> | `--vesper-sky-900` | `#122130` | `#c2e0ff` |
-| <ColorChip token="alpha-stone-0" /> | `--vesper-alpha-stone-0` | `rgba(28, 161, 157, 0.023)` | `rgba(33, 60, 61, 0.03)` |
-| <ColorChip token="alpha-stone-50" /> | `--vesper-alpha-stone-50` | `rgba(14, 129, 115, 0.043)` | `rgba(154, 246, 244, 0.035)` |
-| <ColorChip token="alpha-stone-100" /> | `--vesper-alpha-stone-100` | `rgba(19, 124, 99, 0.074)` | `rgba(184, 244, 243, 0.075)` |
-| <ColorChip token="alpha-stone-200" /> | `--vesper-alpha-stone-200` | `rgba(38, 126, 112, 0.125)` | `rgba(204, 245, 241, 0.11)` |
-| <ColorChip token="alpha-stone-300" /> | `--vesper-alpha-stone-300` | `rgba(15, 97, 87, 0.169)` | `rgba(184, 245, 233, 0.161)` |
-| <ColorChip token="alpha-stone-400" /> | `--vesper-alpha-stone-400` | `rgba(8, 78, 75, 0.255)` | `rgba(168, 225, 217, 0.247)` |
-| <ColorChip token="alpha-stone-500" /> | `--vesper-alpha-stone-500` | `rgba(3, 58, 56, 0.345)` | `rgba(144, 213, 203, 0.357)` |
-| <ColorChip token="alpha-stone-600" /> | `--vesper-alpha-stone-600` | `rgba(7, 60, 57, 0.572)` | `rgba(195, 255, 247, 0.461)` |
-| <ColorChip token="alpha-stone-700" /> | `--vesper-alpha-stone-700` | `rgba(17, 59, 55, 0.729)` | `rgba(207, 252, 246, 0.591)` |
-| <ColorChip token="alpha-stone-800" /> | `--vesper-alpha-stone-800` | `rgba(14, 42, 39, 0.839)` | `rgba(212, 242, 237, 0.834)` |
-| <ColorChip token="alpha-stone-900" /> | `--vesper-alpha-stone-900` | `rgba(0, 15, 15, 0.973)` | `rgba(245, 255, 253, 0.937)` |
-| <ColorChip token="alpha-contrast-0" /> | `--vesper-alpha-contrast-0` | `transparent` | `transparent` |
-| <ColorChip token="alpha-contrast-50" /> | `--vesper-alpha-contrast-50` | `rgba(7, 22, 20, 0.05)` | `rgba(241, 248, 248, 0.05)` |
-| <ColorChip token="alpha-contrast-100" /> | `--vesper-alpha-contrast-100` | `rgba(7, 22, 20, 0.1)` | `rgba(241, 248, 248, 0.1)` |
-| <ColorChip token="alpha-contrast-200" /> | `--vesper-alpha-contrast-200` | `rgba(7, 22, 20, 0.2)` | `rgba(241, 248, 248, 0.2)` |
-| <ColorChip token="alpha-contrast-300" /> | `--vesper-alpha-contrast-300` | `rgba(7, 22, 20, 0.3)` | `rgba(241, 248, 248, 0.3)` |
-| <ColorChip token="alpha-contrast-400" /> | `--vesper-alpha-contrast-400` | `rgba(7, 22, 20, 0.4)` | `rgba(241, 248, 248, 0.4)` |
-| <ColorChip token="alpha-contrast-500" /> | `--vesper-alpha-contrast-500` | `rgba(7, 22, 20, 0.5)` | `rgba(241, 248, 248, 0.5)` |
-| <ColorChip token="alpha-contrast-600" /> | `--vesper-alpha-contrast-600` | `rgba(7, 22, 20, 0.6)` | `rgba(241, 248, 248, 0.6)` |
-| <ColorChip token="alpha-contrast-700" /> | `--vesper-alpha-contrast-700` | `rgba(7, 22, 20, 0.7)` | `rgba(241, 248, 248, 0.7)` |
-| <ColorChip token="alpha-contrast-800" /> | `--vesper-alpha-contrast-800` | `rgba(7, 22, 20, 0.8)` | `rgba(241, 248, 248, 0.8)` |
-| <ColorChip token="alpha-contrast-900" /> | `--vesper-alpha-contrast-900` | `rgba(7, 22, 20, 0.9)` | `rgba(241, 248, 248, 0.9)` |
-| <ColorChip token="alpha-inverse-0" /> | `--vesper-alpha-inverse-0` | `transparent` | `transparent` |
-| <ColorChip token="alpha-inverse-50" /> | `--vesper-alpha-inverse-50` | `rgba(241, 248, 248, 0.05)` | `rgba(7, 22, 20, 0.05)` |
-| <ColorChip token="alpha-inverse-100" /> | `--vesper-alpha-inverse-100` | `rgba(241, 248, 248, 0.1)` | `rgba(7, 22, 20, 0.1)` |
-| <ColorChip token="alpha-inverse-200" /> | `--vesper-alpha-inverse-200` | `rgba(241, 248, 248, 0.2)` | `rgba(7, 22, 20, 0.2)` |
-| <ColorChip token="alpha-inverse-300" /> | `--vesper-alpha-inverse-300` | `rgba(241, 248, 248, 0.3)` | `rgba(7, 22, 20, 0.3)` |
-| <ColorChip token="alpha-inverse-400" /> | `--vesper-alpha-inverse-400` | `rgba(241, 248, 248, 0.4)` | `rgba(7, 22, 20, 0.4)` |
-| <ColorChip token="alpha-inverse-500" /> | `--vesper-alpha-inverse-500` | `rgba(241, 248, 248, 0.5)` | `rgba(7, 22, 20, 0.5)` |
-| <ColorChip token="alpha-inverse-600" /> | `--vesper-alpha-inverse-600` | `rgba(241, 248, 248, 0.6)` | `rgba(7, 22, 20, 0.6)` |
-| <ColorChip token="alpha-inverse-700" /> | `--vesper-alpha-inverse-700` | `rgba(241, 248, 248, 0.7)` | `rgba(7, 22, 20, 0.7)` |
-| <ColorChip token="alpha-inverse-800" /> | `--vesper-alpha-inverse-800` | `rgba(241, 248, 248, 0.8)` | `rgba(7, 22, 20, 0.8)` |
-| <ColorChip token="alpha-inverse-900" /> | `--vesper-alpha-inverse-900` | `rgba(241, 248, 248, 0.9)` | `rgba(7, 22, 20, 0.9)` |
-| <ColorChip token="alpha-black-0" /> | `--vesper-alpha-black-0` | `transparent` | `transparent` |
-| <ColorChip token="alpha-black-50" /> | `--vesper-alpha-black-50` | `rgba(7, 22, 20, 0.05)` | `rgba(7, 22, 20, 0.05)` |
-| <ColorChip token="alpha-black-100" /> | `--vesper-alpha-black-100` | `rgba(7, 22, 20, 0.1)` | `rgba(7, 22, 20, 0.1)` |
-| <ColorChip token="alpha-black-200" /> | `--vesper-alpha-black-200` | `rgba(7, 22, 20, 0.2)` | `rgba(7, 22, 20, 0.2)` |
-| <ColorChip token="alpha-black-300" /> | `--vesper-alpha-black-300` | `rgba(7, 22, 20, 0.3)` | `rgba(7, 22, 20, 0.3)` |
-| <ColorChip token="alpha-black-400" /> | `--vesper-alpha-black-400` | `rgba(7, 22, 20, 0.4)` | `rgba(7, 22, 20, 0.4)` |
-| <ColorChip token="alpha-black-500" /> | `--vesper-alpha-black-500` | `rgba(7, 22, 20, 0.5)` | `rgba(7, 22, 20, 0.5)` |
-| <ColorChip token="alpha-black-600" /> | `--vesper-alpha-black-600` | `rgba(7, 22, 20, 0.6)` | `rgba(7, 22, 20, 0.6)` |
-| <ColorChip token="alpha-black-700" /> | `--vesper-alpha-black-700` | `rgba(7, 22, 20, 0.7)` | `rgba(7, 22, 20, 0.7)` |
-| <ColorChip token="alpha-black-800" /> | `--vesper-alpha-black-800` | `rgba(7, 22, 20, 0.8)` | `rgba(7, 22, 20, 0.8)` |
-| <ColorChip token="alpha-black-900" /> | `--vesper-alpha-black-900` | `rgba(7, 22, 20, 0.9)` | `rgba(7, 22, 20, 0.9)` |
-| <ColorChip token="alpha-white-0" /> | `--vesper-alpha-white-0` | `transparent` | `transparent` |
-| <ColorChip token="alpha-white-50" /> | `--vesper-alpha-white-50` | `rgba(241, 248, 248, 0.05)` | `rgba(241, 248, 248, 0.05)` |
-| <ColorChip token="alpha-white-100" /> | `--vesper-alpha-white-100` | `rgba(241, 248, 248, 0.1)` | `rgba(241, 248, 248, 0.1)` |
-| <ColorChip token="alpha-white-200" /> | `--vesper-alpha-white-200` | `rgba(241, 248, 248, 0.2)` | `rgba(241, 248, 248, 0.2)` |
-| <ColorChip token="alpha-white-300" /> | `--vesper-alpha-white-300` | `rgba(241, 248, 248, 0.3)` | `rgba(241, 248, 248, 0.3)` |
-| <ColorChip token="alpha-white-400" /> | `--vesper-alpha-white-400` | `rgba(241, 248, 248, 0.4)` | `rgba(241, 248, 248, 0.4)` |
-| <ColorChip token="alpha-white-500" /> | `--vesper-alpha-white-500` | `rgba(241, 248, 248, 0.5)` | `rgba(241, 248, 248, 0.5)` |
-| <ColorChip token="alpha-white-600" /> | `--vesper-alpha-white-600` | `rgba(241, 248, 248, 0.6)` | `rgba(241, 248, 248, 0.6)` |
-| <ColorChip token="alpha-white-700" /> | `--vesper-alpha-white-700` | `rgba(241, 248, 248, 0.7)` | `rgba(241, 248, 248, 0.7)` |
-| <ColorChip token="alpha-white-800" /> | `--vesper-alpha-white-800` | `rgba(241, 248, 248, 0.8)` | `rgba(241, 248, 248, 0.8)` |
-| <ColorChip token="alpha-white-900" /> | `--vesper-alpha-white-900` | `rgba(241, 248, 248, 0.9)` | `rgba(241, 248, 248, 0.9)` |
+| <ColorChip token="static-black" /> | `--vesper-color-static-black` | `#071614` | `#071614` |
+| <ColorChip token="static-white" /> | `--vesper-color-static-white` | `#f1f8f8` | `#f1f8f8` |
+| <ColorChip token="transparent" /> | `--vesper-color-transparent` | `transparent` | `transparent` |
+| <ColorChip token="stone-0" /> | `--vesper-color-stone-0` | `#f8fcfb` | `#050f0e` |
+| <ColorChip token="stone-50" /> | `--vesper-color-stone-50` | `#eef6f6` | `#0b1817` |
+| <ColorChip token="stone-100" /> | `--vesper-color-stone-100` | `#e8f2f1` | `#13201e` |
+| <ColorChip token="stone-200" /> | `--vesper-color-stone-200` | `#dfecea` | `#1b2826` |
+| <ColorChip token="stone-300" /> | `--vesper-color-stone-300` | `#d0e1e0` | `#233431` |
+| <ColorChip token="stone-400" /> | `--vesper-color-stone-400` | `#bdd1cf` | `#2d4340` |
+| <ColorChip token="stone-500" /> | `--vesper-color-stone-500` | `#a2b9b7` | `#395651` |
+| <ColorChip token="stone-600" /> | `--vesper-color-stone-600` | `#718e8c` | `#5e7d78` |
+| <ColorChip token="stone-700" /> | `--vesper-color-stone-700` | `#51706d` | `#7d9b97` |
+| <ColorChip token="stone-800" /> | `--vesper-color-stone-800` | `#344b49` | `#b3ccc8` |
+| <ColorChip token="stone-900" /> | `--vesper-color-stone-900` | `#050f0e` | `#e7f0ee` |
+| <ColorChip token="teal-0" /> | `--vesper-color-teal-0` | `#f7fbfd` | `#05181e` |
+| <ColorChip token="teal-50" /> | `--vesper-color-teal-50` | `#e7f7fd` | `#0a2229` |
+| <ColorChip token="teal-100" /> | `--vesper-color-teal-100` | `#d3eff8` | `#0e303a` |
+| <ColorChip token="teal-200" /> | `--vesper-color-teal-200` | `#aae5f8` | `#073e4f` |
+| <ColorChip token="teal-300" /> | `--vesper-color-teal-300` | `#8ad2ea` | `#0d4659` |
+| <ColorChip token="teal-400" /> | `--vesper-color-teal-400` | `#5cbcdb` | `#0f546b` |
+| <ColorChip token="teal-500" /> | `--vesper-color-teal-500` | `#32abd2` | `#136b86` |
+| <ColorChip token="teal-600" /> | `--vesper-color-teal-600` | `#1b8eb1` | `#1a8fb2` |
+| <ColorChip token="teal-700" /> | `--vesper-color-teal-700` | `#176782` | `#46afd2` |
+| <ColorChip token="teal-800" /> | `--vesper-color-teal-800` | `#144a5d` | `#7dcde8` |
+| <ColorChip token="teal-900" /> | `--vesper-color-teal-900` | `#0c2f3b` | `#a3e0f5` |
+| <ColorChip token="purple-0" /> | `--vesper-color-purple-0` | `#f8f7fd` | `#0f0e1b` |
+| <ColorChip token="purple-50" /> | `--vesper-color-purple-50` | `#efedfd` | `#141127` |
+| <ColorChip token="purple-100" /> | `--vesper-color-purple-100` | `#dedafb` | `#1d1938` |
+| <ColorChip token="purple-200" /> | `--vesper-color-purple-200` | `#c9c2fa` | `#27214a` |
+| <ColorChip token="purple-300" /> | `--vesper-color-purple-300` | `#a89eea` | `#2f285d` |
+| <ColorChip token="purple-400" /> | `--vesper-color-purple-400` | `#7e71d0` | `#382f74` |
+| <ColorChip token="purple-500" /> | `--vesper-color-purple-500` | `#6458b6` | `#5145a1` |
+| <ColorChip token="purple-600" /> | `--vesper-color-purple-600` | `#4d429a` | `#7e71d0` |
+| <ColorChip token="purple-700" /> | `--vesper-color-purple-700` | `#342b6e` | `#9c91e3` |
+| <ColorChip token="purple-800" /> | `--vesper-color-purple-800` | `#272150` | `#b4a8ff` |
+| <ColorChip token="purple-900" /> | `--vesper-color-purple-900` | `#1d1b2d` | `#cdc6fa` |
+| <ColorChip token="mint-0" /> | `--vesper-color-mint-0` | `#f1fdfb` | `#041f19` |
+| <ColorChip token="mint-50" /> | `--vesper-color-mint-50` | `#e3fcf9` | `#073128` |
+| <ColorChip token="mint-100" /> | `--vesper-color-mint-100` | `#d2f4ef` | `#0b4137` |
+| <ColorChip token="mint-200" /> | `--vesper-color-mint-200` | `#b6ede2` | `#0b5144` |
+| <ColorChip token="mint-300" /> | `--vesper-color-mint-300` | `#7cdecc` | `#116959` |
+| <ColorChip token="mint-400" /> | `--vesper-color-mint-400` | `#40bfa8` | `#15937c` |
+| <ColorChip token="mint-500" /> | `--vesper-color-mint-500` | `#29a38d` | `#1bbb9e` |
+| <ColorChip token="mint-600" /> | `--vesper-color-mint-600` | `#227767` | `#39c6ac` |
+| <ColorChip token="mint-700" /> | `--vesper-color-mint-700` | `#13584b` | `#4ce5c9` |
+| <ColorChip token="mint-800" /> | `--vesper-color-mint-800` | `#0f3d35` | `#82edd9` |
+| <ColorChip token="mint-900" /> | `--vesper-color-mint-900` | `#112c26` | `#caf7f1` |
+| <ColorChip token="pink-0" /> | `--vesper-color-pink-0` | `#fdf7fb` | `#1f0a17` |
+| <ColorChip token="pink-50" /> | `--vesper-color-pink-50` | `#fdedf7` | `#2e0f22` |
+| <ColorChip token="pink-100" /> | `--vesper-color-pink-100` | `#fcd9ef` | `#3d152e` |
+| <ColorChip token="pink-200" /> | `--vesper-color-pink-200` | `#ffc2e8` | `#491d38` |
+| <ColorChip token="pink-300" /> | `--vesper-color-pink-300` | `#f17ec5` | `#6b2450` |
+| <ColorChip token="pink-400" /> | `--vesper-color-pink-400` | `#e557af` | `#91306c` |
+| <ColorChip token="pink-500" /> | `--vesper-color-pink-500` | `#be378a` | `#be378a` |
+| <ColorChip token="pink-600" /> | `--vesper-color-pink-600` | `#91306c` | `#e34faa` |
+| <ColorChip token="pink-700" /> | `--vesper-color-pink-700` | `#6b2450` | `#f17ec5` |
+| <ColorChip token="pink-800" /> | `--vesper-color-pink-800` | `#441d35` | `#ffc2e8` |
+| <ColorChip token="pink-900" /> | `--vesper-color-pink-900` | `#2e0f22` | `#fde2f3` |
+| <ColorChip token="yellow-0" /> | `--vesper-color-yellow-0` | `#fff7e5` | `#211908` |
+| <ColorChip token="yellow-50" /> | `--vesper-color-yellow-50` | `#fff2d6` | `#31260c` |
+| <ColorChip token="yellow-100" /> | `--vesper-color-yellow-100` | `#ffeabd` | `#3f3112` |
+| <ColorChip token="yellow-200" /> | `--vesper-color-yellow-200` | `#ffe0a3` | `#534018` |
+| <ColorChip token="yellow-300" /> | `--vesper-color-yellow-300` | `#ffca61` | `#7a5c1a` |
+| <ColorChip token="yellow-400" /> | `--vesper-color-yellow-400` | `#ffb71b` | `#9c7217` |
+| <ColorChip token="yellow-500" /> | `--vesper-color-yellow-500` | `#d99a12` | `#d09311` |
+| <ColorChip token="yellow-600" /> | `--vesper-color-yellow-600` | `#986f16` | `#ffb71b` |
+| <ColorChip token="yellow-700" /> | `--vesper-color-yellow-700` | `#6d5217` | `#ffc757` |
+| <ColorChip token="yellow-800" /> | `--vesper-color-yellow-800` | `#473715` | `#ffd88a` |
+| <ColorChip token="yellow-900" /> | `--vesper-color-yellow-900` | `#2e2614` | `#ffeecc` |
+| <ColorChip token="green-0" /> | `--vesper-color-green-0` | `#f1fdf8` | `#041f15` |
+| <ColorChip token="green-50" /> | `--vesper-color-green-50` | `#e3fcf4` | `#073120` |
+| <ColorChip token="green-100" /> | `--vesper-color-green-100` | `#d2f4e9` | `#0b412e` |
+| <ColorChip token="green-200" /> | `--vesper-color-green-200` | `#b1ecd6` | `#0b5137` |
+| <ColorChip token="green-300" /> | `--vesper-color-green-300` | `#78ddb8` | `#106043` |
+| <ColorChip token="green-400" /> | `--vesper-color-green-400` | `#40bf90` | `#128159` |
+| <ColorChip token="green-500" /> | `--vesper-color-green-500` | `#29a376` | `#19ae77` |
+| <ColorChip token="green-600" /> | `--vesper-color-green-600` | `#227758` | `#38c28f` |
+| <ColorChip token="green-700" /> | `--vesper-color-green-700` | `#13583f` | `#4ce5ad` |
+| <ColorChip token="green-800" /> | `--vesper-color-green-800` | `#0f3d2c` | `#82edc6` |
+| <ColorChip token="green-900" /> | `--vesper-color-green-900` | `#112c21` | `#caf7e9` |
+| <ColorChip token="red-0" /> | `--vesper-color-red-0` | `#feebe7` | `#1d0f0c` |
+| <ColorChip token="red-50" /> | `--vesper-color-red-50` | `#fcdfd9` | `#2b130d` |
+| <ColorChip token="red-100" /> | `--vesper-color-red-100` | `#fccac0` | `#3d170f` |
+| <ColorChip token="red-200" /> | `--vesper-color-red-200` | `#f99a86` | `#5c180a` |
+| <ColorChip token="red-300" /> | `--vesper-color-red-300` | `#f56447` | `#85230f` |
+| <ColorChip token="red-400" /> | `--vesper-color-red-400` | `#ef3f1a` | `#af290e` |
+| <ColorChip token="red-500" /> | `--vesper-color-red-500` | `#cb2c0b` | `#cb2c0b` |
+| <ColorChip token="red-600" /> | `--vesper-color-red-600` | `#9b2208` | `#f04b28` |
+| <ColorChip token="red-700" /> | `--vesper-color-red-700` | `#6e1d0c` | `#f37358` |
+| <ColorChip token="red-800" /> | `--vesper-color-red-800` | `#531609` | `#f99b86` |
+| <ColorChip token="red-900" /> | `--vesper-color-red-900` | `#2f140e` | `#fac6b7` |
+| <ColorChip token="amber-0" /> | `--vesper-color-amber-0` | `#fff4e5` | `#211608` |
+| <ColorChip token="amber-50" /> | `--vesper-color-amber-50` | `#ffedd6` | `#31210c` |
+| <ColorChip token="amber-100" /> | `--vesper-color-amber-100` | `#ffe4c2` | `#432b0e` |
+| <ColorChip token="amber-200" /> | `--vesper-color-amber-200` | `#ffd4a3` | `#523614` |
+| <ColorChip token="amber-300" /> | `--vesper-color-amber-300` | `#ffba6b` | `#8a530f` |
+| <ColorChip token="amber-400" /> | `--vesper-color-amber-400` | `#ffa033` | `#bb690c` |
+| <ColorChip token="amber-500" /> | `--vesper-color-amber-500` | `#ed881d` | `#ed881d` |
+| <ColorChip token="amber-600" /> | `--vesper-color-amber-600` | `#a8610b` | `#ffa333` |
+| <ColorChip token="amber-700" /> | `--vesper-color-amber-700` | `#8d5107` | `#ffb35c` |
+| <ColorChip token="amber-800" /> | `--vesper-color-amber-800` | `#523614` | `#ffcf99` |
+| <ColorChip token="amber-900" /> | `--vesper-color-amber-900` | `#35230d` | `#ffe7cc` |
+| <ColorChip token="sky-0" /> | `--vesper-color-sky-0` | `#f5fbfe` | `#09101b` |
+| <ColorChip token="sky-50" /> | `--vesper-color-sky-50` | `#e5f5ff` | `#0f1b2d` |
+| <ColorChip token="sky-100" /> | `--vesper-color-sky-100` | `#d0e9fb` | `#10243e` |
+| <ColorChip token="sky-200" /> | `--vesper-color-sky-200` | `#acd7f6` | `#092e53` |
+| <ColorChip token="sky-300" /> | `--vesper-color-sky-300` | `#7ebeed` | `#0f4d86` |
+| <ColorChip token="sky-400" /> | `--vesper-color-sky-400` | `#55aae7` | `#135ea7` |
+| <ColorChip token="sky-500" /> | `--vesper-color-sky-500` | `#2375c7` | `#1671c9` |
+| <ColorChip token="sky-600" /> | `--vesper-color-sky-600` | `#1059a2` | `#0091ff` |
+| <ColorChip token="sky-700" /> | `--vesper-color-sky-700` | `#134272` | `#33a3ff` |
+| <ColorChip token="sky-800" /> | `--vesper-color-sky-800` | `#113355` | `#70b8ff` |
+| <ColorChip token="sky-900" /> | `--vesper-color-sky-900` | `#122130` | `#c2e0ff` |
+| <ColorChip token="alpha-stone-0" /> | `--vesper-color-alpha-stone-0` | `rgba(28, 161, 157, 0.023)` | `rgba(33, 60, 61, 0.03)` |
+| <ColorChip token="alpha-stone-50" /> | `--vesper-color-alpha-stone-50` | `rgba(14, 129, 115, 0.043)` | `rgba(154, 246, 244, 0.035)` |
+| <ColorChip token="alpha-stone-100" /> | `--vesper-color-alpha-stone-100` | `rgba(19, 124, 99, 0.074)` | `rgba(184, 244, 243, 0.075)` |
+| <ColorChip token="alpha-stone-200" /> | `--vesper-color-alpha-stone-200` | `rgba(38, 126, 112, 0.125)` | `rgba(204, 245, 241, 0.11)` |
+| <ColorChip token="alpha-stone-300" /> | `--vesper-color-alpha-stone-300` | `rgba(15, 97, 87, 0.169)` | `rgba(184, 245, 233, 0.161)` |
+| <ColorChip token="alpha-stone-400" /> | `--vesper-color-alpha-stone-400` | `rgba(8, 78, 75, 0.255)` | `rgba(168, 225, 217, 0.247)` |
+| <ColorChip token="alpha-stone-500" /> | `--vesper-color-alpha-stone-500` | `rgba(3, 58, 56, 0.345)` | `rgba(144, 213, 203, 0.357)` |
+| <ColorChip token="alpha-stone-600" /> | `--vesper-color-alpha-stone-600` | `rgba(7, 60, 57, 0.572)` | `rgba(195, 255, 247, 0.461)` |
+| <ColorChip token="alpha-stone-700" /> | `--vesper-color-alpha-stone-700` | `rgba(17, 59, 55, 0.729)` | `rgba(207, 252, 246, 0.591)` |
+| <ColorChip token="alpha-stone-800" /> | `--vesper-color-alpha-stone-800` | `rgba(14, 42, 39, 0.839)` | `rgba(212, 242, 237, 0.834)` |
+| <ColorChip token="alpha-stone-900" /> | `--vesper-color-alpha-stone-900` | `rgba(0, 15, 15, 0.973)` | `rgba(245, 255, 253, 0.937)` |
+| <ColorChip token="alpha-contrast-0" /> | `--vesper-color-alpha-contrast-0` | `transparent` | `transparent` |
+| <ColorChip token="alpha-contrast-50" /> | `--vesper-color-alpha-contrast-50` | `rgba(7, 22, 20, 0.05)` | `rgba(241, 248, 248, 0.05)` |
+| <ColorChip token="alpha-contrast-100" /> | `--vesper-color-alpha-contrast-100` | `rgba(7, 22, 20, 0.1)` | `rgba(241, 248, 248, 0.1)` |
+| <ColorChip token="alpha-contrast-200" /> | `--vesper-color-alpha-contrast-200` | `rgba(7, 22, 20, 0.2)` | `rgba(241, 248, 248, 0.2)` |
+| <ColorChip token="alpha-contrast-300" /> | `--vesper-color-alpha-contrast-300` | `rgba(7, 22, 20, 0.3)` | `rgba(241, 248, 248, 0.3)` |
+| <ColorChip token="alpha-contrast-400" /> | `--vesper-color-alpha-contrast-400` | `rgba(7, 22, 20, 0.4)` | `rgba(241, 248, 248, 0.4)` |
+| <ColorChip token="alpha-contrast-500" /> | `--vesper-color-alpha-contrast-500` | `rgba(7, 22, 20, 0.5)` | `rgba(241, 248, 248, 0.5)` |
+| <ColorChip token="alpha-contrast-600" /> | `--vesper-color-alpha-contrast-600` | `rgba(7, 22, 20, 0.6)` | `rgba(241, 248, 248, 0.6)` |
+| <ColorChip token="alpha-contrast-700" /> | `--vesper-color-alpha-contrast-700` | `rgba(7, 22, 20, 0.7)` | `rgba(241, 248, 248, 0.7)` |
+| <ColorChip token="alpha-contrast-800" /> | `--vesper-color-alpha-contrast-800` | `rgba(7, 22, 20, 0.8)` | `rgba(241, 248, 248, 0.8)` |
+| <ColorChip token="alpha-contrast-900" /> | `--vesper-color-alpha-contrast-900` | `rgba(7, 22, 20, 0.9)` | `rgba(241, 248, 248, 0.9)` |
+| <ColorChip token="alpha-inverse-0" /> | `--vesper-color-alpha-inverse-0` | `transparent` | `transparent` |
+| <ColorChip token="alpha-inverse-50" /> | `--vesper-color-alpha-inverse-50` | `rgba(241, 248, 248, 0.05)` | `rgba(7, 22, 20, 0.05)` |
+| <ColorChip token="alpha-inverse-100" /> | `--vesper-color-alpha-inverse-100` | `rgba(241, 248, 248, 0.1)` | `rgba(7, 22, 20, 0.1)` |
+| <ColorChip token="alpha-inverse-200" /> | `--vesper-color-alpha-inverse-200` | `rgba(241, 248, 248, 0.2)` | `rgba(7, 22, 20, 0.2)` |
+| <ColorChip token="alpha-inverse-300" /> | `--vesper-color-alpha-inverse-300` | `rgba(241, 248, 248, 0.3)` | `rgba(7, 22, 20, 0.3)` |
+| <ColorChip token="alpha-inverse-400" /> | `--vesper-color-alpha-inverse-400` | `rgba(241, 248, 248, 0.4)` | `rgba(7, 22, 20, 0.4)` |
+| <ColorChip token="alpha-inverse-500" /> | `--vesper-color-alpha-inverse-500` | `rgba(241, 248, 248, 0.5)` | `rgba(7, 22, 20, 0.5)` |
+| <ColorChip token="alpha-inverse-600" /> | `--vesper-color-alpha-inverse-600` | `rgba(241, 248, 248, 0.6)` | `rgba(7, 22, 20, 0.6)` |
+| <ColorChip token="alpha-inverse-700" /> | `--vesper-color-alpha-inverse-700` | `rgba(241, 248, 248, 0.7)` | `rgba(7, 22, 20, 0.7)` |
+| <ColorChip token="alpha-inverse-800" /> | `--vesper-color-alpha-inverse-800` | `rgba(241, 248, 248, 0.8)` | `rgba(7, 22, 20, 0.8)` |
+| <ColorChip token="alpha-inverse-900" /> | `--vesper-color-alpha-inverse-900` | `rgba(241, 248, 248, 0.9)` | `rgba(7, 22, 20, 0.9)` |
+| <ColorChip token="alpha-black-0" /> | `--vesper-color-alpha-black-0` | `transparent` | `transparent` |
+| <ColorChip token="alpha-black-50" /> | `--vesper-color-alpha-black-50` | `rgba(7, 22, 20, 0.05)` | `rgba(7, 22, 20, 0.05)` |
+| <ColorChip token="alpha-black-100" /> | `--vesper-color-alpha-black-100` | `rgba(7, 22, 20, 0.1)` | `rgba(7, 22, 20, 0.1)` |
+| <ColorChip token="alpha-black-200" /> | `--vesper-color-alpha-black-200` | `rgba(7, 22, 20, 0.2)` | `rgba(7, 22, 20, 0.2)` |
+| <ColorChip token="alpha-black-300" /> | `--vesper-color-alpha-black-300` | `rgba(7, 22, 20, 0.3)` | `rgba(7, 22, 20, 0.3)` |
+| <ColorChip token="alpha-black-400" /> | `--vesper-color-alpha-black-400` | `rgba(7, 22, 20, 0.4)` | `rgba(7, 22, 20, 0.4)` |
+| <ColorChip token="alpha-black-500" /> | `--vesper-color-alpha-black-500` | `rgba(7, 22, 20, 0.5)` | `rgba(7, 22, 20, 0.5)` |
+| <ColorChip token="alpha-black-600" /> | `--vesper-color-alpha-black-600` | `rgba(7, 22, 20, 0.6)` | `rgba(7, 22, 20, 0.6)` |
+| <ColorChip token="alpha-black-700" /> | `--vesper-color-alpha-black-700` | `rgba(7, 22, 20, 0.7)` | `rgba(7, 22, 20, 0.7)` |
+| <ColorChip token="alpha-black-800" /> | `--vesper-color-alpha-black-800` | `rgba(7, 22, 20, 0.8)` | `rgba(7, 22, 20, 0.8)` |
+| <ColorChip token="alpha-black-900" /> | `--vesper-color-alpha-black-900` | `rgba(7, 22, 20, 0.9)` | `rgba(7, 22, 20, 0.9)` |
+| <ColorChip token="alpha-white-0" /> | `--vesper-color-alpha-white-0` | `transparent` | `transparent` |
+| <ColorChip token="alpha-white-50" /> | `--vesper-color-alpha-white-50` | `rgba(241, 248, 248, 0.05)` | `rgba(241, 248, 248, 0.05)` |
+| <ColorChip token="alpha-white-100" /> | `--vesper-color-alpha-white-100` | `rgba(241, 248, 248, 0.1)` | `rgba(241, 248, 248, 0.1)` |
+| <ColorChip token="alpha-white-200" /> | `--vesper-color-alpha-white-200` | `rgba(241, 248, 248, 0.2)` | `rgba(241, 248, 248, 0.2)` |
+| <ColorChip token="alpha-white-300" /> | `--vesper-color-alpha-white-300` | `rgba(241, 248, 248, 0.3)` | `rgba(241, 248, 248, 0.3)` |
+| <ColorChip token="alpha-white-400" /> | `--vesper-color-alpha-white-400` | `rgba(241, 248, 248, 0.4)` | `rgba(241, 248, 248, 0.4)` |
+| <ColorChip token="alpha-white-500" /> | `--vesper-color-alpha-white-500` | `rgba(241, 248, 248, 0.5)` | `rgba(241, 248, 248, 0.5)` |
+| <ColorChip token="alpha-white-600" /> | `--vesper-color-alpha-white-600` | `rgba(241, 248, 248, 0.6)` | `rgba(241, 248, 248, 0.6)` |
+| <ColorChip token="alpha-white-700" /> | `--vesper-color-alpha-white-700` | `rgba(241, 248, 248, 0.7)` | `rgba(241, 248, 248, 0.7)` |
+| <ColorChip token="alpha-white-800" /> | `--vesper-color-alpha-white-800` | `rgba(241, 248, 248, 0.8)` | `rgba(241, 248, 248, 0.8)` |
+| <ColorChip token="alpha-white-900" /> | `--vesper-color-alpha-white-900` | `rgba(241, 248, 248, 0.9)` | `rgba(241, 248, 248, 0.9)` |
 
 ### Semantic color tokens
 
-| CSS variable                              | Alias                         |
-| ----------------------------------------- | ----------------------------- |
-| `--vesper-background-primary`             | `--vesper-stone-0`            |
-| `--vesper-background-secondary`           | `--vesper-stone-50`           |
-| `--vesper-background-tertiary`            | `--vesper-stone-100`          |
-| `--vesper-background-disabled`            | `--vesper-alpha-stone-50`     |
-| `--vesper-background-inverse-primary`     | `--vesper-stone-900`          |
-| `--vesper-background-inverse-secondary`   | `--vesper-stone-800`          |
-| `--vesper-background-inverse-disabled`    | `--vesper-alpha-inverse-50`   |
-| `--vesper-background-accent-subtle`       | `--vesper-teal-50`            |
-| `--vesper-background-accent-base`         | `--vesper-teal-400`           |
-| `--vesper-background-success-subtle`      | `--vesper-green-50`           |
-| `--vesper-background-success-base`        | `--vesper-green-600`          |
-| `--vesper-background-warning-subtle`      | `--vesper-amber-0`            |
-| `--vesper-background-warning-base`        | `--vesper-amber-600`          |
-| `--vesper-background-error-subtle`        | `--vesper-red-0`              |
-| `--vesper-background-error-base`          | `--vesper-red-500`            |
-| `--vesper-background-info-subtle`         | `--vesper-sky-50`             |
-| `--vesper-background-info-base`           | `--vesper-sky-600`            |
-| `--vesper-background-static-white`        | `--vesper-static-white`       |
-| `--vesper-background-static-black`        | `--vesper-static-black`       |
-| `--vesper-background-brand-purple-subtle` | `--vesper-purple-100`         |
-| `--vesper-background-brand-purple-base`   | `--vesper-purple-600`         |
-| `--vesper-background-brand-mint-subtle`   | `--vesper-mint-50`            |
-| `--vesper-background-brand-mint-base`     | `--vesper-mint-600`           |
-| `--vesper-background-brand-pink-subtle`   | `--vesper-pink-50`            |
-| `--vesper-background-brand-pink-base`     | `--vesper-pink-600`           |
-| `--vesper-background-brand-yellow-subtle` | `--vesper-yellow-50`          |
-| `--vesper-background-brand-yellow-base`   | `--vesper-yellow-400`         |
-| `--vesper-text-primary`                   | `--vesper-stone-900`          |
-| `--vesper-text-secondary`                 | `--vesper-stone-800`          |
-| `--vesper-text-tertiary`                  | `--vesper-stone-700`          |
-| `--vesper-text-disabled`                  | `--vesper-alpha-stone-500`    |
-| `--vesper-text-inverse-primary`           | `--vesper-stone-0`            |
-| `--vesper-text-inverse-secondary`         | `--vesper-stone-300`          |
-| `--vesper-text-inverse-tertiary`          | `--vesper-stone-500`          |
-| `--vesper-text-inverse-disabled`          | `--vesper-alpha-inverse-300`  |
-| `--vesper-text-on-color`                  | `--vesper-static-white`       |
-| `--vesper-text-accent`                    | `--vesper-teal-700`           |
-| `--vesper-text-success`                   | `--vesper-mint-600`           |
-| `--vesper-text-warning`                   | `--vesper-amber-700`          |
-| `--vesper-text-error`                     | `--vesper-red-600`            |
-| `--vesper-text-info`                      | `--vesper-sky-600`            |
-| `--vesper-text-static-black`              | `--vesper-static-black`       |
-| `--vesper-text-static-white`              | `--vesper-static-white`       |
-| `--vesper-text-link-default`              | `--vesper-teal-700`           |
-| `--vesper-text-link-hover`                | `--vesper-teal-600`           |
-| `--vesper-text-link-visited`              | `--vesper-teal-800`           |
-| `--vesper-text-link-disabled`             | `--vesper-alpha-stone-400`    |
-| `--vesper-text-brand-purple`              | `--vesper-purple-700`         |
-| `--vesper-text-brand-mint`                | `--vesper-mint-600`           |
-| `--vesper-text-brand-pink`                | `--vesper-pink-600`           |
-| `--vesper-text-brand-yellow`              | `--vesper-yellow-600`         |
-| `--vesper-icon-primary`                   | `--vesper-stone-900`          |
-| `--vesper-icon-secondary`                 | `--vesper-stone-800`          |
-| `--vesper-icon-tertiary`                  | `--vesper-stone-700`          |
-| `--vesper-icon-disabled`                  | `--vesper-alpha-stone-500`    |
-| `--vesper-icon-inverse-primary`           | `--vesper-stone-0`            |
-| `--vesper-icon-inverse-secondary`         | `--vesper-stone-300`          |
-| `--vesper-icon-inverse-tertiary`          | `--vesper-stone-500`          |
-| `--vesper-icon-inverse-disabled`          | `--vesper-alpha-inverse-300`  |
-| `--vesper-icon-on-color`                  | `--vesper-static-white`       |
-| `--vesper-icon-accent`                    | `--vesper-teal-700`           |
-| `--vesper-icon-success`                   | `--vesper-mint-600`           |
-| `--vesper-icon-warning`                   | `--vesper-amber-700`          |
-| `--vesper-icon-error`                     | `--vesper-red-600`            |
-| `--vesper-icon-info`                      | `--vesper-sky-600`            |
-| `--vesper-icon-static-black`              | `--vesper-static-black`       |
-| `--vesper-icon-static-white`              | `--vesper-static-white`       |
-| `--vesper-icon-brand-purple`              | `--vesper-purple-700`         |
-| `--vesper-icon-brand-mint`                | `--vesper-mint-600`           |
-| `--vesper-icon-brand-pink`                | `--vesper-pink-600`           |
-| `--vesper-icon-brand-yellow`              | `--vesper-yellow-600`         |
-| `--vesper-border-primary`                 | `--vesper-stone-400`          |
-| `--vesper-border-secondary`               | `--vesper-stone-300`          |
-| `--vesper-border-tertiary`                | `--vesper-stone-200`          |
-| `--vesper-border-strong`                  | `--vesper-stone-900`          |
-| `--vesper-border-disabled`                | `--vesper-alpha-stone-200`    |
-| `--vesper-border-focus`                   | `--vesper-teal-200`           |
-| `--vesper-border-inverse-primary`         | `--vesper-stone-400`          |
-| `--vesper-border-inverse-secondary`       | `--vesper-stone-600`          |
-| `--vesper-border-inverse-strong`          | `--vesper-stone-0`            |
-| `--vesper-border-inverse-disabled`        | `--vesper-alpha-inverse-100`  |
-| `--vesper-border-inverse-focus`           | `--vesper-teal-500`           |
-| `--vesper-border-static-white`            | `--vesper-static-white`       |
-| `--vesper-border-static-black`            | `--vesper-static-black`       |
-| `--vesper-border-accent-subtle`           | `--vesper-teal-200`           |
-| `--vesper-border-accent-base`             | `--vesper-teal-600`           |
-| `--vesper-border-success-subtle`          | `--vesper-green-200`          |
-| `--vesper-border-success-base`            | `--vesper-green-500`          |
-| `--vesper-border-warning-subtle`          | `--vesper-amber-200`          |
-| `--vesper-border-warning-base`            | `--vesper-amber-500`          |
-| `--vesper-border-error-subtle`            | `--vesper-red-200`            |
-| `--vesper-border-error-base`              | `--vesper-red-500`            |
-| `--vesper-border-info-subtle`             | `--vesper-sky-200`            |
-| `--vesper-border-info-base`               | `--vesper-sky-500`            |
-| `--vesper-border-brand-purple-subtle`     | `--vesper-purple-200`         |
-| `--vesper-border-brand-purple-base`       | `--vesper-purple-500`         |
-| `--vesper-border-brand-mint-subtle`       | `--vesper-mint-200`           |
-| `--vesper-border-brand-mint-base`         | `--vesper-mint-500`           |
-| `--vesper-border-brand-pink-subtle`       | `--vesper-pink-200`           |
-| `--vesper-border-brand-pink-base`         | `--vesper-pink-500`           |
-| `--vesper-border-brand-yellow-subtle`     | `--vesper-yellow-200`         |
-| `--vesper-border-brand-yellow-base`       | `--vesper-yellow-500`         |
-| `--vesper-scrim-contrast-subtle`          | `--vesper-alpha-black-300`    |
-| `--vesper-scrim-contrast-base`            | `--vesper-alpha-black-600`    |
-| `--vesper-scrim-inverse-subtle`           | `--vesper-alpha-white-300`    |
-| `--vesper-scrim-inverse-base`             | `--vesper-alpha-white-600`    |
-| `--vesper-state-neutral-hover`            | `--vesper-alpha-stone-50`     |
-| `--vesper-state-neutral-active`           | `--vesper-alpha-stone-100`    |
-| `--vesper-state-contrast-hover`           | `--vesper-alpha-contrast-50`  |
-| `--vesper-state-contrast-active`          | `--vesper-alpha-contrast-100` |
-| `--vesper-state-inverse-hover`            | `--vesper-alpha-inverse-100`  |
-| `--vesper-state-inverse-active`           | `--vesper-alpha-inverse-200`  |
-| `--vesper-tint-neutral-100`               | `--vesper-alpha-stone-50`     |
-| `--vesper-tint-neutral-200`               | `--vesper-alpha-stone-100`    |
-| `--vesper-tint-neutral-300`               | `--vesper-alpha-stone-200`    |
-| `--vesper-tint-neutral-400`               | `--vesper-alpha-stone-300`    |
-| `--vesper-tint-contrast-100`              | `--vesper-alpha-contrast-50`  |
-| `--vesper-tint-contrast-200`              | `--vesper-alpha-contrast-100` |
-| `--vesper-tint-contrast-300`              | `--vesper-alpha-contrast-200` |
-| `--vesper-tint-contrast-400`              | `--vesper-alpha-contrast-300` |
-| `--vesper-tint-inverse-100`               | `--vesper-alpha-inverse-300`  |
-| `--vesper-tint-inverse-200`               | `--vesper-alpha-inverse-500`  |
-| `--vesper-tint-inverse-300`               | `--vesper-alpha-inverse-700`  |
-| `--vesper-tint-inverse-400`               | `--vesper-alpha-inverse-800`  |
+| CSS variable | Alias |
+| --- | --- |
+| `--vesper-color-background-primary` | `--vesper-color-stone-0` |
+| `--vesper-color-background-secondary` | `--vesper-color-stone-50` |
+| `--vesper-color-background-tertiary` | `--vesper-color-stone-100` |
+| `--vesper-color-background-disabled` | `--vesper-color-alpha-stone-50` |
+| `--vesper-color-background-inverse-primary` | `--vesper-color-stone-900` |
+| `--vesper-color-background-inverse-secondary` | `--vesper-color-stone-800` |
+| `--vesper-color-background-inverse-disabled` | `--vesper-color-alpha-inverse-50` |
+| `--vesper-color-background-accent-subtle` | `--vesper-color-teal-50` |
+| `--vesper-color-background-accent-base` | `--vesper-color-teal-400` |
+| `--vesper-color-background-success-subtle` | `--vesper-color-green-50` |
+| `--vesper-color-background-success-base` | `--vesper-color-green-600` |
+| `--vesper-color-background-warning-subtle` | `--vesper-color-amber-0` |
+| `--vesper-color-background-warning-base` | `--vesper-color-amber-600` |
+| `--vesper-color-background-error-subtle` | `--vesper-color-red-0` |
+| `--vesper-color-background-error-base` | `--vesper-color-red-500` |
+| `--vesper-color-background-info-subtle` | `--vesper-color-sky-50` |
+| `--vesper-color-background-info-base` | `--vesper-color-sky-600` |
+| `--vesper-color-background-static-white` | `--vesper-color-static-white` |
+| `--vesper-color-background-static-black` | `--vesper-color-static-black` |
+| `--vesper-color-background-brand-purple-subtle` | `--vesper-color-purple-100` |
+| `--vesper-color-background-brand-purple-base` | `--vesper-color-purple-600` |
+| `--vesper-color-background-brand-mint-subtle` | `--vesper-color-mint-50` |
+| `--vesper-color-background-brand-mint-base` | `--vesper-color-mint-600` |
+| `--vesper-color-background-brand-pink-subtle` | `--vesper-color-pink-50` |
+| `--vesper-color-background-brand-pink-base` | `--vesper-color-pink-600` |
+| `--vesper-color-background-brand-yellow-subtle` | `--vesper-color-yellow-50` |
+| `--vesper-color-background-brand-yellow-base` | `--vesper-color-yellow-400` |
+| `--vesper-color-text-primary` | `--vesper-color-stone-900` |
+| `--vesper-color-text-secondary` | `--vesper-color-stone-800` |
+| `--vesper-color-text-tertiary` | `--vesper-color-stone-700` |
+| `--vesper-color-text-disabled` | `--vesper-color-alpha-stone-500` |
+| `--vesper-color-text-inverse-primary` | `--vesper-color-stone-0` |
+| `--vesper-color-text-inverse-secondary` | `--vesper-color-stone-300` |
+| `--vesper-color-text-inverse-tertiary` | `--vesper-color-stone-500` |
+| `--vesper-color-text-inverse-disabled` | `--vesper-color-alpha-inverse-300` |
+| `--vesper-color-text-on-color` | `--vesper-color-static-white` |
+| `--vesper-color-text-accent` | `--vesper-color-teal-700` |
+| `--vesper-color-text-success` | `--vesper-color-mint-600` |
+| `--vesper-color-text-warning` | `--vesper-color-amber-700` |
+| `--vesper-color-text-error` | `--vesper-color-red-600` |
+| `--vesper-color-text-info` | `--vesper-color-sky-600` |
+| `--vesper-color-text-static-black` | `--vesper-color-static-black` |
+| `--vesper-color-text-static-white` | `--vesper-color-static-white` |
+| `--vesper-color-text-link-default` | `--vesper-color-teal-700` |
+| `--vesper-color-text-link-hover` | `--vesper-color-teal-600` |
+| `--vesper-color-text-link-visited` | `--vesper-color-teal-800` |
+| `--vesper-color-text-link-disabled` | `--vesper-color-alpha-stone-400` |
+| `--vesper-color-text-brand-purple` | `--vesper-color-purple-700` |
+| `--vesper-color-text-brand-mint` | `--vesper-color-mint-600` |
+| `--vesper-color-text-brand-pink` | `--vesper-color-pink-600` |
+| `--vesper-color-text-brand-yellow` | `--vesper-color-yellow-600` |
+| `--vesper-color-icon-primary` | `--vesper-color-stone-900` |
+| `--vesper-color-icon-secondary` | `--vesper-color-stone-800` |
+| `--vesper-color-icon-tertiary` | `--vesper-color-stone-700` |
+| `--vesper-color-icon-disabled` | `--vesper-color-alpha-stone-500` |
+| `--vesper-color-icon-inverse-primary` | `--vesper-color-stone-0` |
+| `--vesper-color-icon-inverse-secondary` | `--vesper-color-stone-300` |
+| `--vesper-color-icon-inverse-tertiary` | `--vesper-color-stone-500` |
+| `--vesper-color-icon-inverse-disabled` | `--vesper-color-alpha-inverse-300` |
+| `--vesper-color-icon-on-color` | `--vesper-color-static-white` |
+| `--vesper-color-icon-accent` | `--vesper-color-teal-700` |
+| `--vesper-color-icon-success` | `--vesper-color-mint-600` |
+| `--vesper-color-icon-warning` | `--vesper-color-amber-700` |
+| `--vesper-color-icon-error` | `--vesper-color-red-600` |
+| `--vesper-color-icon-info` | `--vesper-color-sky-600` |
+| `--vesper-color-icon-static-black` | `--vesper-color-static-black` |
+| `--vesper-color-icon-static-white` | `--vesper-color-static-white` |
+| `--vesper-color-icon-brand-purple` | `--vesper-color-purple-700` |
+| `--vesper-color-icon-brand-mint` | `--vesper-color-mint-600` |
+| `--vesper-color-icon-brand-pink` | `--vesper-color-pink-600` |
+| `--vesper-color-icon-brand-yellow` | `--vesper-color-yellow-600` |
+| `--vesper-color-border-primary` | `--vesper-color-stone-400` |
+| `--vesper-color-border-secondary` | `--vesper-color-stone-300` |
+| `--vesper-color-border-tertiary` | `--vesper-color-stone-200` |
+| `--vesper-color-border-strong` | `--vesper-color-stone-900` |
+| `--vesper-color-border-disabled` | `--vesper-color-alpha-stone-200` |
+| `--vesper-color-border-focus` | `--vesper-color-teal-200` |
+| `--vesper-color-border-inverse-primary` | `--vesper-color-stone-400` |
+| `--vesper-color-border-inverse-secondary` | `--vesper-color-stone-600` |
+| `--vesper-color-border-inverse-strong` | `--vesper-color-stone-0` |
+| `--vesper-color-border-inverse-disabled` | `--vesper-color-alpha-inverse-100` |
+| `--vesper-color-border-inverse-focus` | `--vesper-color-teal-500` |
+| `--vesper-color-border-static-white` | `--vesper-color-static-white` |
+| `--vesper-color-border-static-black` | `--vesper-color-static-black` |
+| `--vesper-color-border-accent-subtle` | `--vesper-color-teal-200` |
+| `--vesper-color-border-accent-base` | `--vesper-color-teal-600` |
+| `--vesper-color-border-success-subtle` | `--vesper-color-green-200` |
+| `--vesper-color-border-success-base` | `--vesper-color-green-500` |
+| `--vesper-color-border-warning-subtle` | `--vesper-color-amber-200` |
+| `--vesper-color-border-warning-base` | `--vesper-color-amber-500` |
+| `--vesper-color-border-error-subtle` | `--vesper-color-red-200` |
+| `--vesper-color-border-error-base` | `--vesper-color-red-500` |
+| `--vesper-color-border-info-subtle` | `--vesper-color-sky-200` |
+| `--vesper-color-border-info-base` | `--vesper-color-sky-500` |
+| `--vesper-color-border-brand-purple-subtle` | `--vesper-color-purple-200` |
+| `--vesper-color-border-brand-purple-base` | `--vesper-color-purple-500` |
+| `--vesper-color-border-brand-mint-subtle` | `--vesper-color-mint-200` |
+| `--vesper-color-border-brand-mint-base` | `--vesper-color-mint-500` |
+| `--vesper-color-border-brand-pink-subtle` | `--vesper-color-pink-200` |
+| `--vesper-color-border-brand-pink-base` | `--vesper-color-pink-500` |
+| `--vesper-color-border-brand-yellow-subtle` | `--vesper-color-yellow-200` |
+| `--vesper-color-border-brand-yellow-base` | `--vesper-color-yellow-500` |
+| `--vesper-color-scrim-contrast-subtle` | `--vesper-color-alpha-black-300` |
+| `--vesper-color-scrim-contrast-base` | `--vesper-color-alpha-black-600` |
+| `--vesper-color-scrim-inverse-subtle` | `--vesper-color-alpha-white-300` |
+| `--vesper-color-scrim-inverse-base` | `--vesper-color-alpha-white-600` |
+| `--vesper-color-state-neutral-hover` | `--vesper-color-alpha-stone-50` |
+| `--vesper-color-state-neutral-active` | `--vesper-color-alpha-stone-100` |
+| `--vesper-color-state-contrast-hover` | `--vesper-color-alpha-contrast-50` |
+| `--vesper-color-state-contrast-active` | `--vesper-color-alpha-contrast-100` |
+| `--vesper-color-state-inverse-hover` | `--vesper-color-alpha-inverse-100` |
+| `--vesper-color-state-inverse-active` | `--vesper-color-alpha-inverse-200` |
+| `--vesper-color-tint-neutral-100` | `--vesper-color-alpha-stone-50` |
+| `--vesper-color-tint-neutral-200` | `--vesper-color-alpha-stone-100` |
+| `--vesper-color-tint-neutral-300` | `--vesper-color-alpha-stone-200` |
+| `--vesper-color-tint-neutral-400` | `--vesper-color-alpha-stone-300` |
+| `--vesper-color-tint-contrast-100` | `--vesper-color-alpha-contrast-50` |
+| `--vesper-color-tint-contrast-200` | `--vesper-color-alpha-contrast-100` |
+| `--vesper-color-tint-contrast-300` | `--vesper-color-alpha-contrast-200` |
+| `--vesper-color-tint-contrast-400` | `--vesper-color-alpha-contrast-300` |
+| `--vesper-color-tint-inverse-100` | `--vesper-color-alpha-inverse-300` |
+| `--vesper-color-tint-inverse-200` | `--vesper-color-alpha-inverse-500` |
+| `--vesper-color-tint-inverse-300` | `--vesper-color-alpha-inverse-700` |
+| `--vesper-color-tint-inverse-400` | `--vesper-color-alpha-inverse-800` |
 
 ### Tailwind color classes
 
@@ -425,9 +425,9 @@ Radius tokens are registered in Tailwind's `--radius-*` namespace, so they work 
 | `--vesper-shadow-200` | `0 0.25rem 0.75rem 0 rgba(0, 0, 0, 0.1)` |
 | `--vesper-shadow-300` | `0 0.75rem 2rem 0 rgba(0, 0, 0, 0.15)` |
 | `--vesper-shadow-400` | `0 1.5rem 4rem 0 rgba(0, 0, 0, 0.2)` |
-| `--vesper-shadow-inset-100` | `0 0.125rem 0.375rem 0 var(--vesper-alpha-contrast-100) inset` |
-| `--vesper-shadow-inset-200` | `0 0.125rem 0.75rem 0 var(--vesper-tint-contrast-200) inset` |
-| `--vesper-shadow-focus-ring` | `0 0 0 0.1875rem var(--vesper-border-focus)` |
+| `--vesper-shadow-inset-100` | `0 0.125rem 0.375rem 0 var(--vesper-color-alpha-contrast-100) inset` |
+| `--vesper-shadow-inset-200` | `0 0.125rem 0.75rem 0 var(--vesper-color-tint-contrast-200) inset` |
+| `--vesper-shadow-focus-ring` | `0 0 0 0.1875rem var(--vesper-color-border-focus)` |
 
 ### Tailwind shadow classes
 
@@ -524,7 +524,7 @@ Background tokens are exposed as custom Tailwind utilities rather than theme val
 <div className="bg-vesper-dot-pattern-inverse" />;
 ```
 
-Both the default and inverse dot patterns also accept any Vesper color token as a background color, using the token name without the `vesper-` prefix:
+Both the default and inverse dot patterns also accept any Vesper color token as a background color, using the token name without the `vesper-color-` prefix:
 
 ```tsx
 <div className="bg-vesper-dot-pattern-teal-200" />;
@@ -532,23 +532,27 @@ Both the default and inverse dot patterns also accept any Vesper color token as 
 <div className="bg-vesper-dot-pattern-inverse-stone-500" />;
 ```
 
-## Strokes
+## Border and outline widths
 
-Stroke tokens define the border and outline widths used throughout Vesper.
+Border width and outline width tokens define the border and outline widths used throughout Vesper.
 
-| CSS variable             | Value       | Equivalent at `16px` font size |
-| ------------------------ | ----------- | ------------------------------ |
-| `--vesper-stroke-base`   | `0.0625rem` | `1px`                          |
-| `--vesper-stroke-strong` | `0.125rem`  | `2px`                          |
+| CSS variable | Value | Equivalent at `16px` font size |
+| --- | --- | --- |
+| `--vesper-border-width-base` | `0.0625rem` | `1px` |
+| `--vesper-border-width-strong` | `0.125rem` | `2px` |
+| `--vesper-outline-width-base` | `0.0625rem` | `1px` |
+| `--vesper-outline-width-strong` | `0.125rem` | `2px` |
 
 ```css
-border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
-outline: var(--vesper-stroke-strong) solid var(--vesper-border-focus);
+border: var(--vesper-border-width-base) solid
+  var(--vesper-color-border-secondary);
+outline: var(--vesper-outline-width-strong) solid
+  var(--vesper-color-border-focus);
 ```
 
-### Tailwind stroke classes
+### Tailwind border and outline width classes
 
-Stroke tokens are registered in Tailwind's `--outline-width-*` and `--border-width-*` namespaces, so they are available as `outline-width` and `border-width` utilities:
+Border width tokens are registered in Tailwind's `--border-width-*` namespace, and outline width tokens are registered in Tailwind's `--outline-width-*` namespace, so they are available as `border-width` and `outline-width` utilities:
 
 ```tsx
 <div className="outline-vesper-base" />;

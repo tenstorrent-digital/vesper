@@ -670,11 +670,13 @@ describe("withVesper", () => {
         "bg-vesper-dot-pattern-primary",
         "bg-vesper-dot-pattern-secondary",
         "bg-vesper-dot-pattern-tertiary",
-        ...tokens["color"].map((token) => `bg-vesper-dot-pattern-${token}`),
+        ...tokens["color"]
+          .filter(Boolean)
+          .map((token) => `bg-vesper-dot-pattern-${token}`),
         "bg-vesper-dot-pattern-inverse",
-        ...tokens["color"].map(
-          (token) => `bg-vesper-dot-pattern-inverse-${token}`,
-        ),
+        ...tokens["color"]
+          .filter(Boolean)
+          .map((token) => `bg-vesper-dot-pattern-inverse-${token}`),
       ];
 
       const representatives = [

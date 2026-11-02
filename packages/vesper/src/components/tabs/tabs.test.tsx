@@ -84,7 +84,7 @@ const NON_ELEMENT_CONTENT: { name: string; content: ReactNode }[] = [
  */
 const NonForwardingTabContent = ({ label }: { label: string }) => (
   <section data-testid={`${label}-content`}>
-    <Typography style={{ color: "var(--vesper-stone-900)" }}>
+    <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
       {label} Content
     </Typography>
   </section>
@@ -362,7 +362,7 @@ describe("tabs [unit]", () => {
         "vesper-typography",
         "vesper-typography-copy-md",
       );
-      expect(panel.style.color).toBe("var(--vesper-stone-900)");
+      expect(panel.style.color).toBe("var(--vesper-color-stone-900)");
       expect(panel).toHaveTextContent("Tab 1 Content");
     });
 

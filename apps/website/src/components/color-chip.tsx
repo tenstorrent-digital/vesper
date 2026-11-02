@@ -1,6 +1,6 @@
 /** checkerboard pattern shown underneath the token color */
 const CHECKERBOARD =
-  "repeating-conic-gradient(var(--vesper-alpha-contrast-200) 0% 25%, transparent 0% 50%) 0 0 / 0.5rem 0.5rem";
+  "repeating-conic-gradient(var(--vesper-color-alpha-contrast-200) 0% 25%, transparent 0% 50%) 0 0 / 0.5rem 0.5rem";
 
 /**
  * Renders a small chip previewing the value of a vesper color token
@@ -15,8 +15,8 @@ export const ColorChip = ({ token }: { token: string }) => (
     className="outline-vesper-base outline-vesper-border-primary rounded-vesper-half size-vesper-5 inline-block align-middle"
     style={{
       background: [
-        `linear-gradient(var(--vesper-${token})`,
-        `var(--vesper-${token}))`,
+        `linear-gradient(var(--vesper-color-${token})`,
+        `var(--vesper-color-${token}))`,
         CHECKERBOARD,
       ].join(","),
     }}

@@ -72,7 +72,7 @@ const A11Y_PERMUTATIONS: {
     name: "wrapWithButton",
     wrapWithButton: true,
     children: (
-      <Typography style={{ color: "var(--vesper-stone-900)" }}>
+      <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
         tooltip trigger
       </Typography>
     ),
@@ -641,7 +641,7 @@ describe("tooltip [snapshot]", () => {
   test("closed (wrapWithButton)", async () => {
     const result = render(
       <Tooltip wrapWithButton open={false} content="Tooltip text">
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+        <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
           tooltip trigger
         </Typography>
       </Tooltip>,

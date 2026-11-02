@@ -174,7 +174,7 @@ exports[`tabs [snapshot] > primary, no value 1`] = `
     <p
       class="vesper-typography vesper-typography-copy-md"
       data-testid="tab-1-content"
-      style="color: var(--vesper-stone-900);"
+      style="color: var(--vesper-color-stone-900);"
     >
       Tab 1 Content
     </p>
@@ -266,7 +266,7 @@ exports[`tabs [snapshot] > primary, value 1`] = `
     <p
       class="vesper-typography vesper-typography-copy-md"
       data-testid="tab-1-content"
-      style="color: var(--vesper-stone-900);"
+      style="color: var(--vesper-color-stone-900);"
     >
       Tab 1 Content
     </p>
@@ -448,7 +448,7 @@ exports[`tabs [snapshot] > secondary, no value 1`] = `
     <p
       class="vesper-typography vesper-typography-copy-md"
       data-testid="tab-1-content"
-      style="color: var(--vesper-stone-900);"
+      style="color: var(--vesper-color-stone-900);"
     >
       Tab 1 Content
     </p>
@@ -540,7 +540,7 @@ exports[`tabs [snapshot] > secondary, value 1`] = `
     <p
       class="vesper-typography vesper-typography-copy-md"
       data-testid="tab-1-content"
-      style="color: var(--vesper-stone-900);"
+      style="color: var(--vesper-color-stone-900);"
     >
       Tab 1 Content
     </p>
