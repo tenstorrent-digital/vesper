@@ -28,11 +28,16 @@
     tr {
       &:nth-child(odd) {
         position: relative;
+        td {
+          position: relative;
+          z-index: 1;
+        }
         &::after {
           content: "";
           position: absolute;
           inset: 0;
           background: var(--vesper-tint-neutral-100);
+          z-index: 0;
           border-radius: var(--vesper-radius-2);
         }
       }
