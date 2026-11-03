@@ -38,7 +38,7 @@ exports[`slider [snapshot] > default 1`] = `
           max="100"
           min="0"
           step="1"
-          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px; position: fixed; top: 0px; left: 0px;"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: 0px; position: fixed; top: 0px; left: 0px;"
           type="range"
           value="50"
         />
@@ -92,7 +92,7 @@ exports[`slider [snapshot] > disabled 1`] = `
           max="100"
           min="0"
           step="1"
-          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px; position: fixed; top: 0px; left: 0px;"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: 0px; position: fixed; top: 0px; left: 0px;"
           type="range"
           value="50"
         />
@@ -140,7 +140,7 @@ exports[`slider [snapshot] > with custom min/max/step 1`] = `
           max="10"
           min="0"
           step="2"
-          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px; position: fixed; top: 0px; left: 0px;"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: 0px; position: fixed; top: 0px; left: 0px;"
           type="range"
           value="4"
         />
@@ -204,7 +204,7 @@ exports[`slider [snapshot] > with ticks 1`] = `
           max="5"
           min="0"
           step="1"
-          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px; position: fixed; top: 0px; left: 0px;"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: 0px; position: fixed; top: 0px; left: 0px;"
           type="range"
           value="2"
         />
@@ -252,7 +252,7 @@ exports[`slider [snapshot] > with value label 1`] = `
           max="100"
           min="0"
           step="1"
-          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: -1px; position: fixed; top: 0px; left: 0px;"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 100%; height: 100%; margin: 0px; position: fixed; top: 0px; left: 0px;"
           type="range"
           value="75"
         />
