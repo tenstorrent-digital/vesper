@@ -108,3 +108,5 @@ runs:
           sudo rm -rf /var/lib/apt/lists/*
           "${install[@]}"
         fi
+
+        echo "CHROME_VERSION=$(google-chrome --version)" >> "$GITHUB_ENV"
