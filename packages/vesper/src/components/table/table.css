@@ -19,15 +19,17 @@
   }
   th {
     font-weight: 400;
+  }
+  thead th {
     color: var(--vesper-text-secondary);
     padding: 0 var(--vesper-spacing-4) var(--vesper-spacing-6)
       var(--vesper-spacing-4);
   }
   tbody {
-    overflow-x: auto;
     tr {
       &:nth-child(odd) {
         position: relative;
+        th,
         td {
           position: relative;
           z-index: 1;
@@ -43,7 +45,8 @@
       }
     }
   }
-  td {
+  td,
+  tbody th {
     padding: var(--vesper-spacing-5) var(--vesper-spacing-4);
   }
 }
