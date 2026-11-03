@@ -1,0 +1,235 @@
+---
+title: Table
+description: A styled table for displaying structured data in rows and columns.
+---
+
+# Table
+
+A styled table for displaying structured data in rows and columns. Renders a native `<table>` element and styles the `<thead>`, `<tbody>`, `<tr>`, `<th>`, and `<td>` elements you place inside it. Markdown tables throughout this documentation are rendered with `Table`.
+
+```tsx demo
+import { Table } from "@tenstorrent/vesper/table";
+
+export default function TableDemo() {
+  return (
+    <Table aria-label="Deployments">
+      <thead>
+        <tr>
+          <th>Model Name</th>
+          <th>Device</th>
+          <th>Deployed at</th>
+          <th>Port</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SD-XL 1.0-base 8B</td>
+          <td>n300</td>
+          <td>5/11/2026, 1:15 PM</td>
+          <td>7000</td>
+        </tr>
+        <tr>
+          <td>Wan 2.2 14B</td>
+          <td>n300</td>
+          <td>5/11/2026, 1:15 PM</td>
+          <td>7002</td>
+        </tr>
+        <tr>
+          <td>Llama-3.3-70B-Instruct</td>
+          <td>n300</td>
+          <td>5/11/2026, 2:40 PM</td>
+          <td>7004</td>
+        </tr>
+        <tr>
+          <td>SpeechT5 (TTS task) 3.8M</td>
+          <td>n300</td>
+          <td>5/11/2026, 4:27 PM</td>
+          <td>7006</td>
+        </tr>
+      </tbody>
+    </Table>
+  );
+}
+```
+
+## Options
+
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `children` | `ReactNode` | The table's content, typically a `<thead>` of column headings and a `<tbody>` of data rows. | — |
+
+`Table` has no props of its own. All props, including `ref`, are forwarded to the underlying `<table>` element, and any `className` you pass is merged with Vesper's table styles.
+
+## Examples
+
+### Basic usage
+
+Build a `Table` from the same elements you would use in a native `<table>`. Place column headings in `<th>` cells inside a `<thead>`, and place your data in `<td>` cells inside a `<tbody>`:
+
+```tsx demo
+import { Table } from "@tenstorrent/vesper/table";
+
+export default function BasicTable() {
+  return (
+    <Table aria-label="Devices">
+      <thead>
+        <tr>
+          <th>Device</th>
+          <th>Chips</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>n150</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>n300</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>T3000</td>
+          <td>8</td>
+        </tr>
+      </tbody>
+    </Table>
+  );
+}
+```
+
+`Table` adds a divider beneath the `<thead>`, and gives every other row in the `<tbody>` a subtle background tint, starting with the first.
+
+### Rendering components in cells
+
+Cells accept any content, including other JSX:
+
+```tsx demo
+import { Badge } from "@tenstorrent/vesper/badge";
+import { StatusIndicator } from "@tenstorrent/vesper/status-indicator";
+import { Table } from "@tenstorrent/vesper/table";
+
+export default function TableWithComponents() {
+  return (
+    <Table aria-label="Deployments">
+      <thead>
+        <tr>
+          <th>Model Name</th>
+          <th>Status</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SD-XL 1.0-base 8B</td>
+          <td>
+            <StatusIndicator label="Active" state="ready" />
+          </td>
+          <td>---</td>
+        </tr>
+        <tr>
+          <td>Llama-3.3-70B-Instruct</td>
+          <td>
+            <StatusIndicator animated label="Deploying" state="progress" />
+          </td>
+          <td>---</td>
+        </tr>
+        <tr>
+          <td>SpeechT5 (TTS task) 3.8M</td>
+          <td>
+            <Badge variant="danger" subtle>
+              Failed
+            </Badge>
+          </td>
+          <td>2h 21m</td>
+        </tr>
+      </tbody>
+    </Table>
+  );
+}
+```
+
+## Accessibility
+
+### Labelling tables
+
+Give each `Table` an accessible name with [the `<caption>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/caption) so people using assistive technology can tell what it contains, and tell several tables on the same page apart:
+
+```tsx demo
+import { Table } from "@tenstorrent/vesper/table";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function LabelledTable() {
+  return (
+    <Table aria-labelledby="available-devices">
+      <Typography
+        as="caption"
+        variant="heading-xs"
+        id="available-devices"
+        style={{
+          textAlign: "left",
+          marginBottom: "var(--vesper-spacing-4)",
+        }}
+      >
+        Available devices
+      </Typography>
+      <thead>
+        <tr>
+          <th>Device</th>
+          <th>Chips</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>n150</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>n300</td>
+          <td>2</td>
+        </tr>
+      </tbody>
+    </Table>
+  );
+}
+```
+
+Rendering a `<Table>` with a visible label is best practise for accessibility. If you **really** don't want to render a visible label with a `<Table>`, you can also render it with an `aria-label` to give it an accessible name, or `aria-labelledby` to link it to a descriptive element.
+
+### Row headings
+
+When the first cell of each row identifies that row, render it as a `<th scope="row">` so assistive technology announces it alongside the other cells in the row:
+
+```tsx demo
+import { Table } from "@tenstorrent/vesper/table";
+
+export default function TableWithRowHeadings() {
+  return (
+    <Table aria-label="Devices">
+      <thead>
+        <tr>
+          <th scope="col">Device</th>
+          <th scope="col">Chips</th>
+          <th scope="col">Cards</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">n150</th>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <th scope="row">n300</th>
+          <td>2</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <th scope="row">T3000</th>
+          <td>8</td>
+          <td>4</td>
+        </tr>
+      </tbody>
+    </Table>
+  );
+}
+```
