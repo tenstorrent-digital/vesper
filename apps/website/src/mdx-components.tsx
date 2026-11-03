@@ -185,8 +185,8 @@ const components = {
    * that keeps wide tables inside the content column instead of overflowing it
    */
   table: (props) => (
-    <div className="w-full max-w-full overflow-x-auto overscroll-x-contain">
-      <Table {...props} className="w-full min-w-full" />
+    <div className="w-full max-w-full overflow-x-auto overscroll-x-contain rounded-vesper-4">
+      <Table {...props} className="w-full" />
     </div>
   ),
 
