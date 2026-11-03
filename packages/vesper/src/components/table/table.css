@@ -1,7 +1,7 @@
 .vesper-table {
   border-collapse: separate;
   border-spacing: 0px;
-  padding: var(--vesper-spacing-5);
+  padding: var(--vesper-spacing-4);
   text-align: left;
   background: var(--vesper-background-secondary);
   color: var(--vesper-text-primary);
@@ -11,20 +11,20 @@
   }
   thead th {
     color: var(--vesper-text-secondary);
-    padding: 0 var(--vesper-spacing-4) var(--vesper-spacing-6)
-      var(--vesper-spacing-4);
+    padding: 0 var(--vesper-spacing-3) var(--vesper-spacing-5)
+      var(--vesper-spacing-3);
     /* divider beneath the column headings, inset from the bottom of the row */
     background-image: linear-gradient(
       var(--vesper-border-secondary),
       var(--vesper-border-secondary)
     );
     background-repeat: no-repeat;
-    background-position: left 0 bottom var(--vesper-spacing-4);
+    background-position: left 0 bottom var(--vesper-spacing-3);
     background-size: 100% var(--vesper-stroke-base);
   }
   tbody {
     tr:nth-child(even):last-child > :is(td, th) {
-        padding-bottom: var(--vesper-spacing-1);
+      padding-bottom: var(--vesper-spacing-1);
     }
     tr:nth-child(odd) > :is(th, td) {
       background-color: var(--vesper-tint-neutral-100);
@@ -40,6 +40,6 @@
   }
   td,
   tbody th {
-    padding: var(--vesper-spacing-5) var(--vesper-spacing-4);
+    padding: var(--vesper-spacing-4) var(--vesper-spacing-3);
   }
 }
