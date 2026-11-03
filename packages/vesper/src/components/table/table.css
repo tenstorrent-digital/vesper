@@ -6,17 +6,6 @@
   background: var(--vesper-background-secondary);
   color: var(--vesper-text-primary);
   border-radius: var(--vesper-radius-4);
-  thead {
-    position: relative;
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      bottom: var(--vesper-spacing-4);
-      border-bottom: var(--vesper-stroke-base) solid
-        var(--vesper-border-secondary);
-    }
-  }
   th {
     font-weight: 400;
   }
@@ -24,25 +13,24 @@
     color: var(--vesper-text-secondary);
     padding: 0 var(--vesper-spacing-4) var(--vesper-spacing-6)
       var(--vesper-spacing-4);
+    /* divider beneath the column headings, inset from the bottom of the row */
+    background-image: linear-gradient(
+      var(--vesper-border-secondary),
+      var(--vesper-border-secondary)
+    );
+    background-repeat: no-repeat;
+    background-position: left 0 bottom var(--vesper-spacing-4);
+    background-size: 100% var(--vesper-stroke-base);
   }
-  tbody {
-    tr {
-      &:nth-child(odd) {
-        position: relative;
-        th,
-        td {
-          position: relative;
-          z-index: 1;
-        }
-        &::after {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: var(--vesper-tint-neutral-100);
-          z-index: 0;
-          border-radius: var(--vesper-radius-2);
-        }
-      }
+  tbody tr:nth-child(odd) > :is(th, td) {
+    background-color: var(--vesper-tint-neutral-100);
+    &:first-child {
+      border-start-start-radius: var(--vesper-radius-2);
+      border-end-start-radius: var(--vesper-radius-2);
+    }
+    &:last-child {
+      border-start-end-radius: var(--vesper-radius-2);
+      border-end-end-radius: var(--vesper-radius-2);
     }
   }
   td,
