@@ -111,8 +111,8 @@ jobs:
       - name: Setup Node, install dependencies
         uses: ./.github/actions/setup
         with:
-          # vesper's unit tests run in (playwright's) chromium
-          playwright: "true"
+          # vesper's unit tests run in the system Google Chrome (with the Chromium sandbox enabled)
+          chrome: "true"
 
       # setup turbo cache so unchanged turbo tasks can be replayed from cache
       - name: Setup turbo cache

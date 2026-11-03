@@ -6,6 +6,7 @@ This monorepo houses the project code for Tenstorrent's software design system l
 
 - This monorepo requires using `node` v24, with a minimum version specified in [.nvmrc](.nvmrc) and [package.json](package.json). If you are using node version manager, you can run `nvm use` to match the version specified in [.nvmrc](.nvmrc).
 - Our package manager of choice is `yarn` classic (1.x) to handle dependencies and workspace commands across the monorepo.
+- Running the `@tenstorrent/vesper` tests requires [Google Chrome](https://www.google.com/chrome/) (stable) installed in its default location. Tests run in your installed Chrome with the Chromium sandbox enabled, rather than in a browser downloaded by Playwright.
 
 ## Installing
 

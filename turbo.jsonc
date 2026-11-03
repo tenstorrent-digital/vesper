@@ -52,10 +52,12 @@
     },
     "test": {
       "dependsOn": ["transit"],
+      "env": ["CHROME_VERSION"],
       "passThroughEnv": ["AGENTS"]
     },
     "test:update": {
       "dependsOn": ["transit"],
+      "env": ["CHROME_VERSION"],
       "passThroughEnv": ["AGENTS"]
     },
     "test:watch": {
