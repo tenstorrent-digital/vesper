@@ -1,7 +1,9 @@
-import type { ComponentProps } from 'react';
-import { cn } from '@/utils/cn';
+import type { ComponentProps } from "react";
 
-export interface TableProps extends ComponentProps<'table'> {}
+import { Typography } from "@/components/typography/typography";
+import { cn } from "@/utils/cn";
+
+export interface TableProps extends ComponentProps<"table"> {}
 
 /**
  * Table component description, params, and example usage
@@ -12,6 +14,14 @@ export interface TableProps extends ComponentProps<'table'> {}
  * @example
  * <Table />
  */
-export function Table({ className, ...props }: TableProps) {
-  return <table className={cn("vesper-table", className)} {...props} />;
+export function Table(props: TableProps) {
+  const { className, ...rest } = props;
+  return (
+    <Typography
+      {...rest}
+      as="table"
+      variant="label-sm"
+      className={cn("vesper-table", className)}
+    />
+  );
 }

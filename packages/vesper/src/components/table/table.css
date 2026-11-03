@@ -1,2 +1,44 @@
 .vesper-table {
+  border-collapse: separate;
+  border-spacing: 0px;
+  padding: var(--vesper-spacing-5);
+  text-align: left;
+  background: var(--vesper-background-secondary);
+  color: var(--vesper-text-primary);
+  border-radius: var(--vesper-radius-4);
+  thead {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      bottom: var(--vesper-spacing-4);
+      border-bottom: var(--vesper-stroke-base) solid
+        var(--vesper-border-secondary);
+    }
+  }
+  th {
+    font-weight: 400;
+    color: var(--vesper-text-secondary);
+    padding: 0 var(--vesper-spacing-4) var(--vesper-spacing-6)
+      var(--vesper-spacing-4);
+  }
+  tbody {
+    overflow-x: auto;
+    tr {
+      &:nth-child(odd) {
+        position: relative;
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: var(--vesper-tint-neutral-100);
+          border-radius: var(--vesper-radius-2);
+        }
+      }
+    }
+  }
+  td {
+    padding: var(--vesper-spacing-5) var(--vesper-spacing-4);
+  }
 }
