@@ -65,6 +65,7 @@ import { Slider } from "@tenstorrent/vesper/slider";
 import { Snippet } from "@tenstorrent/vesper/snippet";
 import { StatusIndicator } from "@tenstorrent/vesper/status-indicator";
 import { Switch } from "@tenstorrent/vesper/switch";
+import { Table } from "@tenstorrent/vesper/table";
 import { Tabs } from "@tenstorrent/vesper/tabs";
 import { Tag } from "@tenstorrent/vesper/tag";
 import { TextArea } from "@tenstorrent/vesper/text-area";
@@ -185,7 +186,7 @@ const components = {
    */
   table: (props) => (
     <div className="w-full max-w-full overflow-x-auto overscroll-x-contain">
-      <table {...props} />
+      <Table {...props} className="w-full min-w-full" />
     </div>
   ),
 
@@ -218,6 +219,7 @@ const components = {
   Snippet,
   StatusIndicator,
   Switch,
+  Table,
   Tabs,
   Tag,
   TextButton,
