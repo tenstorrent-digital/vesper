@@ -11,9 +11,7 @@ exports[`accordion [snapshot] > closed 1`] = `
     tabindex="0"
     type="button"
   >
-    <span>
-      This is a title
-    </span>
+    This is a title
     <svg
       class="vesper-accordion-trigger-icon"
       fill="none"
@@ -42,9 +40,7 @@ exports[`accordion [snapshot] > open 1`] = `
     tabindex="0"
     type="button"
   >
-    <span>
-      This is a title
-    </span>
+    This is a title
     <svg
       class="vesper-accordion-trigger-icon"
       fill="none"
