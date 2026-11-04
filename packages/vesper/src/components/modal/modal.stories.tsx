@@ -2,12 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ReactNode } from "react";
 
 import { Button } from "@/components/button/button";
-import {
-  Modal,
-  MODAL_BUTTONS_ALIGNMENTS,
-  type ModalProps,
-  useModal,
-} from "@/components/modal/modal";
+import { Modal, type ModalProps, useModal } from "@/components/modal/modal";
 import { TextInput } from "@/components/text-input/text-input";
 
 function ModalStoryComponent({
