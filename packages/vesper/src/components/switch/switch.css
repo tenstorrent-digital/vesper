@@ -10,13 +10,11 @@
 
 .vesper-switch-pill {
   aspect-ratio: 2;
-  background:
-    linear-gradient(
-      0deg,
-      var(--vesper-tint-neutral-400) 0%,
-      var(--vesper-tint-neutral-400) 100%
-    ),
-    var(--vesper-background-primary);
+  background: color-mix(
+    in srgb,
+    var(--vesper-background-primary),
+    var(--vesper-tint-neutral-400)
+  );
   overflow: hidden;
   padding: var(--vesper-spacing-half);
   &::after {
