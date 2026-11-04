@@ -5,7 +5,7 @@ description: A dialog overlay component for displaying focused content that requ
 
 # Modal
 
-A dialog overlay component for displaying focused content that requires user attention or interaction. Supports a title, description, action buttons, and optional form wrapping. Controlled via an imperative ref with `open()` and `close()` methods.
+A dialog overlay component for displaying focused content that requires user attention or interaction. Renders a title and description in its header, and any children you pass (including action buttons and forms) in its body. Controlled via an imperative ref with `open()` and `close()` methods.
 
 ```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
@@ -21,12 +21,28 @@ export default function ModalDemo() {
         ref={modal.ref}
         title="Confirm action"
         description="Are you sure you want to proceed?"
-        buttons={[
-          { children: "Cancel", onClick: modal.close },
-          { children: "Confirm", onClick: modal.close },
-        ]}
       >
-        Additional content can be placed here.
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--vesper-spacing-6)",
+          }}
+        >
+          Additional content can be placed here.
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              gap: "var(--vesper-spacing-4)",
+            }}
+          >
+            <Button variant="tertiary" onClick={modal.close}>
+              Cancel
+            </Button>
+            <Button onClick={modal.close}>Confirm</Button>
+          </div>
+        </div>
       </Modal>
     </>
   );
@@ -40,14 +56,10 @@ export default function ModalDemo() {
 | `title` | `string` | The title text displayed in the modal header. Used for `aria-labelledby`. **Required.** | — |
 | `description` | `string` | A description displayed below the title. Used for `aria-describedby`. **Required.** | — |
 | `width` | `number \| string` | The width of the modal container. A number is interpreted as pixels. | `452` |
-| `maxHeight` | `number \| string` | The maximum height of the modal container. A number is interpreted as pixels. | `640` |
-| `buttons` | `ButtonProps[]` | An optional array of button props for action buttons. The last button defaults to `"primary"` variant; others default to `"tertiary"`. | — |
-| `buttonsAlignment` | `"start" \| "end" \| "fill" \| "between"` | Controls the horizontal alignment of the action buttons. | `"end"` |
 | `ref` | `Ref<ModalRef>` | A ref exposing imperative `open()` and `close()` methods. | — |
 | `closeOnClickOutside` | `boolean` | When `true`, clicking the backdrop closes the modal. | `false` |
 | `dismissible` | `boolean` | When `false`, the user can't dismiss the modal: `Escape` and backdrop clicks are ignored, and the header close button is disabled. `close()` still works. | `true` |
-| `form` | `FormProps` | When provided, wraps the modal content in a `<form>` element with the given form attributes. | — |
-| `children` | `ReactNode` | The content displayed inside the modal body. | — |
+| `children` | `ReactNode` | The content displayed inside the modal body, such as text, action buttons, or a form. | — |
 
 All other props are forwarded to the underlying `<dialog>` element.
 
@@ -87,7 +99,7 @@ To stop users from closing a modal, see [Preventing dismissal](#preventing-dismi
 
 ### Action buttons
 
-Pass an array of button props to `buttons` to render action buttons along the bottom of the modal. The last button defaults to the `primary` variant and the rest default to `tertiary`, which can be overridden with the `variant` prop:
+To add action buttons to a modal, render them as children, alongside the rest of the modal's content. Call `close()` from a button's `onClick` handler to close the modal:
 
 ```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
@@ -105,23 +117,34 @@ export default function ModalWithButtons() {
         ref={modal.ref}
         title="Delete item"
         description="This action cannot be undone."
-        buttons={[
-          { children: "Cancel", onClick: modal.close },
-          { children: "Delete", variant: "danger", onClick: modal.close },
-        ]}
-      />
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            gap: "var(--vesper-spacing-4)",
+          }}
+        >
+          <Button variant="tertiary" onClick={modal.close}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={modal.close}>
+            Delete
+          </Button>
+        </div>
+      </Modal>
     </>
   );
 }
 ```
 
-Buttons are aligned to the end of the modal by default. Use `buttonsAlignment` to lay them out differently; use `"start"` to render buttons towards the left edge of the modal, `"between"` to space buttons as far apart from each other as possible, or `"fill"` to have buttons occupy as much available space as possible:
+You control how the buttons are laid out. To have them share the full width of the modal, give each button `flex: 1`:
 
 ```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
 import { Modal, useModal } from "@tenstorrent/vesper/modal";
 
-export default function ModalButtonsAlignment() {
+export default function ModalButtonsLayout() {
   const modal = useModal();
 
   return (
@@ -131,12 +154,16 @@ export default function ModalButtonsAlignment() {
         ref={modal.ref}
         title="Save changes"
         description="Your changes have not been saved yet."
-        buttonsAlignment="fill"
-        buttons={[
-          { children: "Discard", onClick: modal.close },
-          { children: "Save", onClick: modal.close },
-        ]}
-      />
+      >
+        <div style={{ display: "flex", gap: "var(--vesper-spacing-4)" }}>
+          <Button variant="tertiary" style={{ flex: 1 }} onClick={modal.close}>
+            Discard
+          </Button>
+          <Button style={{ flex: 1 }} onClick={modal.close}>
+            Save
+          </Button>
+        </div>
+      </Modal>
     </>
   );
 }
@@ -144,11 +171,23 @@ export default function ModalButtonsAlignment() {
 
 ### Sizing
 
-A modal is `452px` wide and at most `640px` tall by default. Pass `width` and `maxHeight` to change that, either as numbers (interpreted as pixels) or as any CSS length string:
+A modal is `452px` wide by default. Pass `width` to change that, either as a number (interpreted as pixels) or as any CSS length string.
+
+The modal grows to fit its content. To keep long content from making it too tall, wrap that content in a scrollable element with a `maxHeight`:
 
 ```tsx demo
 import { Button } from "@tenstorrent/vesper/button";
 import { Modal, useModal } from "@tenstorrent/vesper/modal";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+const RELEASE_NOTES = [
+  "Added a dark theme, which follows your system preference by default.",
+  "Added keyboard shortcuts for the most common actions.",
+  "Improved search performance across large projects.",
+  "Improved the layout of settings pages on small screens.",
+  "Fixed an issue where notifications were sometimes shown twice.",
+  "Fixed an issue where exported files used the wrong time zone.",
+];
 
 export default function WideModal() {
   const modal = useModal();
@@ -159,13 +198,36 @@ export default function WideModal() {
       <Modal
         ref={modal.ref}
         width={640}
-        maxHeight="20rem"
         title="Release notes"
         description="Everything that changed in this release."
-        buttons={[{ children: "Close", onClick: modal.close }]}
       >
-        Content taller than the modal scrolls within its body, keeping the
-        header and action buttons in place.
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--vesper-spacing-6)",
+          }}
+        >
+          <div
+            role="region"
+            aria-label="Release notes"
+            tabIndex={0}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "var(--vesper-spacing-4)",
+              maxHeight: "8rem",
+              overflowY: "auto",
+            }}
+          >
+            {RELEASE_NOTES.map((note) => (
+              <Typography key={note}>{note}</Typography>
+            ))}
+          </div>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button onClick={modal.close}>Close</Button>
+          </div>
+        </div>
       </Modal>
     </>
   );
@@ -201,7 +263,7 @@ export default function DismissibleModal() {
 
 ### Usage in forms
 
-Passing the `form` prop wraps the modal's contents in a `<form>` element, so the action buttons can submit it natively with `type="submit"`, and native validation runs before the submit handler fires:
+To use a modal as a form, render a `<form>` element as its children, with the form's fields and action buttons inside it. A button with `type="submit"` then submits the form natively, and native validation runs before the submit handler fires:
 
 ```tsx demo
 import { useState } from "react";
@@ -232,25 +294,39 @@ export default function FormModal() {
         ref={modal.ref}
         title="Create project"
         description="Enter the details for your new project."
-        form={{
-          onSubmit: (event) => {
+      >
+        <form
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--vesper-spacing-6)",
+          }}
+          onSubmit={(event) => {
             event.preventDefault();
             const data = new FormData(event.currentTarget);
             setSubmitted(String(data.get("name") ?? ""));
             modal.close();
-          },
-        }}
-        buttons={[
-          { children: "Cancel", type: "button", onClick: modal.close },
-          { children: "Create", type: "submit" },
-        ]}
-      >
-        <TextInput
-          required
-          aria-label="Project name"
-          placeholder="Project name"
-          name="name"
-        />
+          }}
+        >
+          <TextInput
+            required
+            aria-label="Project name"
+            placeholder="Project name"
+            name="name"
+          />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              gap: "var(--vesper-spacing-4)",
+            }}
+          >
+            <Button variant="tertiary" type="button" onClick={modal.close}>
+              Cancel
+            </Button>
+            <Button type="submit">Create</Button>
+          </div>
+        </form>
       </Modal>
     </div>
   );
@@ -286,37 +362,49 @@ export default function NonDismissibleModal() {
         title="Invite teammate"
         description="Send an email invitation to join your workspace."
         dismissible={!isSubmitting}
-        form={{
-          onSubmit: async (event) => {
+      >
+        <form
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--vesper-spacing-6)",
+          }}
+          onSubmit={async (event) => {
             event.preventDefault();
             setIsSubmitting(true);
             // simulate a slow network request
             await new Promise((resolve) => setTimeout(resolve, 3000));
             setIsSubmitting(false);
             modal.close();
-          },
-        }}
-        buttons={[
-          {
-            children: "Cancel",
-            type: "button",
-            onClick: modal.close,
-            disabled: isSubmitting,
-          },
-          {
-            children: isSubmitting ? "Sending…" : "Send invite",
-            type: "submit",
-            disabled: isSubmitting,
-          },
-        ]}
-      >
-        <TextInput
-          required
-          type="email"
-          aria-label="Email address"
-          placeholder="Email address"
-          name="email"
-        />
+          }}
+        >
+          <TextInput
+            required
+            type="email"
+            aria-label="Email address"
+            placeholder="Email address"
+            name="email"
+          />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              gap: "var(--vesper-spacing-4)",
+            }}
+          >
+            <Button
+              variant="tertiary"
+              type="button"
+              onClick={modal.close}
+              disabled={isSubmitting}
+            >
+              Cancel
+            </Button>
+            <Button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Sending…" : "Send invite"}
+            </Button>
+          </div>
+        </form>
       </Modal>
     </>
   );

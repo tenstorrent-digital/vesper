@@ -24,7 +24,7 @@ function ModalStoryComponent({
   switch (contents) {
     case "inputs":
       children = (
-        <div style={{ margin: "var(--vesper-spacing-1) 0" }}>
+        <div>
           <TextInput
             aria-label="Name"
             name="name"
@@ -42,7 +42,11 @@ function ModalStoryComponent({
       );
       break;
     case "long text":
-      children = LONG_TEXT_CONTENT;
+      children = (
+        <div style={{ height: 320, overflowY: "auto" }}>
+          {LONG_TEXT_CONTENT}
+        </div>
+      );
       break;
     case "none":
       children = null;
@@ -56,25 +60,28 @@ function ModalStoryComponent({
       <Button onClick={open} variant="contrast">
         open modal
       </Button>
-      <Modal
-        ref={ref}
-        {...props}
-        buttons={
-          withButtons
-            ? [
-                {
-                  children: "cancel",
-                  onClick: () => close(),
-                },
-                {
-                  children: "continue",
-                  onClick: () => close(),
-                },
-              ]
-            : []
-        }
-      >
-        {children}
+      <Modal ref={ref} {...props}>
+        {!!(children || withButtons) && (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "var(--vesper-spacing-6)",
+            }}
+          >
+            {children}
+            {withButtons && (
+              <div style={{ display: "flex", gap: "var(--vesper-spacing-4)" }}>
+                <Button style={{ flex: 1 }} variant="tertiary" onClick={close}>
+                  Cancel
+                </Button>
+                <Button style={{ flex: 1 }} variant="primary" onClick={close}>
+                  Continue
+                </Button>
+              </div>
+            )}
+          </div>
+        )}
       </Modal>
     </>
   );
@@ -83,7 +90,6 @@ function ModalStoryComponent({
 const meta = {
   component: ModalStoryComponent,
   argTypes: {
-    buttonsAlignment: { options: MODAL_BUTTONS_ALIGNMENTS, control: "radio" },
     contents: {
       options: ["inputs", "long text", "none"],
       control: "radio",
@@ -104,13 +110,11 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   args: {
     width: 452,
-    maxHeight: 640,
     title: "Are you absolutely sure?",
     description:
       "This action cannot be undone. This will permanently delete your account from our servers.",
     contents: "inputs",
     withButtons: true,
-    buttonsAlignment: "end",
     closeOnClickOutside: false,
     dismissible: true,
   },
