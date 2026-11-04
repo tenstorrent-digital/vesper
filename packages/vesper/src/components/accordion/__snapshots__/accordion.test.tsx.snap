@@ -6,7 +6,6 @@ exports[`accordion [snapshot] > closed 1`] = `
   data-closed=""
 >
   <button
-    aria-disabled="false"
     aria-expanded="false"
     class="vesper-typography vesper-typography-label-md-bold vesper-accordion-trigger"
     tabindex="0"
@@ -35,7 +34,6 @@ exports[`accordion [snapshot] > open 1`] = `
 >
   <button
     aria-controls="base-ui-_r_4_"
-    aria-disabled="false"
     aria-expanded="true"
     class="vesper-typography vesper-typography-label-md-bold vesper-accordion-trigger"
     data-panel-open=""
