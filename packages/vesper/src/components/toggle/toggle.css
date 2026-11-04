@@ -54,10 +54,12 @@
 }
 
 .vesper-toggle-item {
+  flex-grow: 1;
   cursor: pointer;
   border-radius: var(--vesper-radius-1);
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   color: var(--vesper-text-secondary);
   &:hover {
     background: var(--vesper-tint-neutral-200);
