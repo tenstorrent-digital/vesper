@@ -1,4 +1,4 @@
-import type { ComponentProps } from "react";
+import type { ComponentProps, ReactNode } from "react";
 
 import { Collapsible } from "@base-ui/react/collapsible";
 
@@ -6,21 +6,21 @@ import { CaretRight } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
 
-export interface AccordionProps extends ComponentProps<"div"> {
+export interface AccordionProps extends Omit<ComponentProps<"div">, "title"> {
   /** Whether the accordion is open by default (uncontrolled mode). */
   defaultOpen?: boolean;
   /** Controls the open state of the accordion (controlled mode). */
   open?: boolean;
   /** Callback fired when the open state changes. Receives the new open state as an argument. */
   onOpenChange?: (open: boolean) => void;
-  /** The title text displayed in the accordion trigger. */
-  title: string;
+  /** The title displayed in the accordion trigger. */
+  title: ReactNode;
 }
 
 /**
  * A collapsible content section with a trigger that toggles visibility of its children.
  *
- * @param {string} props.title - The title text displayed in the accordion trigger
+ * @param {ReactNode} props.title - The title displayed in the accordion trigger
  * @param {boolean} [props.defaultOpen] - (optional) Whether the accordion is open by default (uncontrolled)
  * @param {boolean} [props.open] - (optional) Controls the open state (controlled)
  * @param {(open: boolean) => void} [props.onOpenChange] - (optional) Callback fired when the open state changes
@@ -61,7 +61,7 @@ export function Accordion(props: AccordionProps) {
         variant="label-md-bold"
         className="vesper-accordion-trigger"
       >
-        <span>{title}</span>
+        {title}
         <CaretRight className="vesper-accordion-trigger-icon" />
       </Typography>
       <Collapsible.Panel className="vesper-accordion-panel">

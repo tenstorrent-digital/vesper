@@ -1,3 +1,11 @@
+/* custom prop to handle colours we wanna transition for the pill */
+@property --vesper-switch-pill-bg {
+  /* register as `color` so we can transition inside linear gradient */
+  syntax: "<color>";
+  inherits: false;
+  initial-value: transparent;
+}
+
 .vesper-switch {
   display: flex;
   width: fit-content;
@@ -9,14 +17,18 @@
 }
 
 .vesper-switch-pill {
+  /* set base */
+  --vesper-switch-pill-bg: var(--vesper-tint-neutral-400);
+
   aspect-ratio: 2;
   background:
     linear-gradient(
       0deg,
-      var(--vesper-tint-neutral-400) 0%,
-      var(--vesper-tint-neutral-400) 100%
+      var(--vesper-switch-pill-bg) 0%,
+      var(--vesper-switch-pill-bg) 100%
     ),
     var(--vesper-background-primary);
+
   overflow: hidden;
   padding: var(--vesper-spacing-half);
   &::after {
@@ -25,6 +37,7 @@
     aspect-ratio: 1;
     border-radius: 50%;
     height: 100%;
+    background: var(--vesper-background-primary);
     transition: transform var(--vesper-transition-duration-fast) ease;
   }
   @media (forced-colors: active) {
@@ -52,51 +65,57 @@
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
+
   &:not(:disabled) ~ .vesper-switch-pill {
-    transition: background var(--vesper-transition-duration-fast) ease;
+    transition:
+      /* transition only our custom prop */ --vesper-switch-pill-bg
+      var(--vesper-transition-duration-fast) ease;
+
     &::after {
       box-shadow: var(--vesper-shadow-100);
     }
   }
+
   &:checked ~ .vesper-switch-pill {
-    background: var(--vesper-background-accent-base);
+    /* update prop value for checked */
+    --vesper-switch-pill-bg: var(--vesper-background-accent-base);
+
     &::after {
       transform: translateX(calc(100% + var(--vesper-spacing-1)));
     }
-    @media (forced-colors: active) {
-      background: CanvasText;
-    }
   }
+
   &:focus-visible ~ .vesper-switch-pill {
     box-shadow: var(--vesper-shadow-focus-ring);
+
     @media (forced-colors: active) {
       box-shadow: none;
       outline: var(--vesper-stroke-base) solid CanvasText;
       outline-offset: var(--vesper-spacing-micro);
     }
   }
+
   &:disabled ~ .vesper-switch-label {
     color: var(--vesper-text-disabled);
   }
+
   &:disabled ~ .vesper-switch-pill {
-    background:
-      linear-gradient(
-        0deg,
-        var(--vesper-tint-neutral-200) 0%,
-        var(--vesper-tint-neutral-200) 100%
-      ),
-      var(--vesper-background-disabled);
+    --vesper-switch-pill-bg: var(--vesper-tint-neutral-200);
+    background-color: var(--vesper-background-disabled);
     backdrop-filter: blur(var(--vesper-blur));
+
     &::after {
       background: var(--vesper-tint-neutral-200);
     }
+
     @media (forced-colors: active) {
       opacity: 0.35;
       background: CanvasText;
+
+      &::after {
+        background: Canvas;
+      }
     }
-  }
-  & ~ .vesper-switch-pill::after {
-    background: var(--vesper-background-primary);
   }
 }
 
