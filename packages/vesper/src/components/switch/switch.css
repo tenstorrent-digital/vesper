@@ -9,18 +9,27 @@
 }
 
 .vesper-switch-pill {
+  position: relative;
   aspect-ratio: 2;
-  background:
-    linear-gradient(
-      0deg,
-      var(--vesper-tint-neutral-400) 0%,
-      var(--vesper-tint-neutral-400) 100%
-    ),
-    var(--vesper-background-primary);
   overflow: hidden;
   padding: var(--vesper-spacing-half);
+  background: var(--vesper-background-primary);
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transition: opacity var(--vesper-transition-duration-fast) ease;
+    background:
+      linear-gradient(
+        0deg,
+        var(--vesper-tint-neutral-400) 0%,
+        var(--vesper-tint-neutral-400) 100%
+      ),
+      var(--vesper-background-primary);
+  }
   &::after {
     content: "";
+    position: relative;
     display: block;
     aspect-ratio: 1;
     border-radius: 50%;
@@ -60,6 +69,9 @@
   }
   &:checked ~ .vesper-switch-pill {
     background: var(--vesper-background-accent-base);
+    &::before {
+      opacity: 0;
+    }
     &::after {
       transform: translateX(calc(100% + var(--vesper-spacing-1)));
     }
