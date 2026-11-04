@@ -45,6 +45,7 @@ export default function ModalDemo() {
 | `buttonsAlignment` | `"start" \| "end" \| "fill" \| "between"` | Controls the horizontal alignment of the action buttons. | `"end"` |
 | `ref` | `Ref<ModalRef>` | A ref exposing imperative `open()` and `close()` methods. | — |
 | `closeOnClickOutside` | `boolean` | When `true`, clicking the backdrop closes the modal. | `false` |
+| `dismissible` | `boolean` | When `false`, the user can't dismiss the modal: `Escape` and backdrop clicks are ignored, and the header close button is disabled. `close()` still works. | `true` |
 | `form` | `FormProps` | When provided, wraps the modal content in a `<form>` element with the given form attributes. | — |
 | `children` | `ReactNode` | The content displayed inside the modal body. | — |
 
@@ -81,6 +82,8 @@ export default function BasicModal() {
 ```
 
 `Modal` renders a native `<dialog>`, so an open modal traps focus, blocks interaction with the rest of the page, and closes when the user presses `Escape`. The close button in the header closes it too.
+
+To stop users from closing a modal, see [Preventing dismissal](#preventing-dismissal).
 
 ### Action buttons
 
@@ -257,3 +260,65 @@ export default function FormModal() {
 > [!NOTE]
 >
 > Buttons rendered inside a `form` default to `type="submit"`, so give any button that should not submit an explicit `type="button"`, as the cancel button above does.
+
+### Preventing dismissal
+
+Some flows shouldn't be interrupted, such as while a form is submitting a request. Set `dismissible` to `false` to stop users from closing the modal: pressing `Escape` and clicking the backdrop do nothing, and the close button in the header is disabled. Calling `close()` still closes the modal, so you can close it yourself once the flow completes.
+
+Tie `dismissible` to your own state so it only blocks dismissal while it matters. Disable your own cancel button for the same period:
+
+```tsx demo
+import { useState } from "react";
+
+import { Button } from "@tenstorrent/vesper/button";
+import { Modal, useModal } from "@tenstorrent/vesper/modal";
+import { TextInput } from "@tenstorrent/vesper/text-input";
+
+export default function NonDismissibleModal() {
+  const modal = useModal();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  return (
+    <>
+      <Button onClick={modal.open}>Invite teammate</Button>
+      <Modal
+        ref={modal.ref}
+        title="Invite teammate"
+        description="Send an email invitation to join your workspace."
+        dismissible={!isSubmitting}
+        form={{
+          onSubmit: async (event) => {
+            event.preventDefault();
+            setIsSubmitting(true);
+            // simulate a slow network request
+            await new Promise((resolve) => setTimeout(resolve, 3000));
+            setIsSubmitting(false);
+            modal.close();
+          },
+        }}
+        buttons={[
+          {
+            children: "Cancel",
+            type: "button",
+            onClick: modal.close,
+            disabled: isSubmitting,
+          },
+          {
+            children: isSubmitting ? "Sending…" : "Send invite",
+            type: "submit",
+            disabled: isSubmitting,
+          },
+        ]}
+      >
+        <TextInput
+          required
+          type="email"
+          aria-label="Email address"
+          placeholder="Email address"
+          name="email"
+        />
+      </Modal>
+    </>
+  );
+}
+```

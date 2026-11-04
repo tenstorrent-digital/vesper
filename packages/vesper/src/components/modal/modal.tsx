@@ -55,6 +55,12 @@ export interface ModalProps extends Omit<
   ref?: Ref<ModalRef>;
   /** When `true`, clicking the backdrop outside the modal will close it. Defaults to `false`. */
   closeOnClickOutside?: boolean;
+  /**
+   * When `false`, prevents the user from dismissing the modal: pressing `Escape` and clicking the backdrop are ignored, and the close button in the header is disabled. The modal can still be closed programmatically with `close()`.
+   *
+   * Use this to keep the modal open during critical flows, such as while a form is submitting. @default true
+   */
+  dismissible?: boolean;
   /** When provided, wraps the modal content in a `<form>` element with the given form attributes, enabling native form submission from within the modal */
   form?: Pick<
     ComponentProps<"form">,
@@ -91,6 +97,7 @@ export interface ModalProps extends Omit<
  * @param {ModalButtonsAlignment} [props.buttonsAlignment] - (optional) Horizontal alignment of action buttons. @default end
  * @param {Ref<ModalRef>} [props.ref] - (optional) A ref exposing imperative `open()` and `close()` methods
  * @param {boolean} [props.closeOnClickOutside] - (optional) Whether clicking the backdrop closes the modal. @default false
+ * @param {boolean} [props.dismissible] - (optional) Set to `false` to stop the user from closing the modal during critical flows. Calling `close()` still closes it. @default true
  * @param {object} [props.form] - (optional) Form attributes to wrap the modal content in a `<form>` element
  *
  * You may also pass any additional props to the underlying `dialog` element
@@ -110,6 +117,20 @@ export interface ModalProps extends Omit<
  *   form={{ onSubmit: handleSubmit }}
  *   buttons={[{ children: "Cancel", onClick: close }, { children: "Create" }]}
  * />
+ *
+ * @example
+ * // prevent the user from dismissing the modal while a request is in flight
+ * <Modal
+ *   ref={ref}
+ *   title="Create Item"
+ *   description="Fill out the form below."
+ *   dismissible={!isSubmitting}
+ *   form={{ onSubmit: handleSubmit }}
+ *   buttons={[
+ *     { children: "Cancel", onClick: close, disabled: isSubmitting },
+ *     { children: "Create", disabled: isSubmitting },
+ *   ]}
+ * />
  */
 export function Modal(props: ModalProps) {
   const {
@@ -126,6 +147,7 @@ export function Modal(props: ModalProps) {
     children,
     form,
     closeOnClickOutside = false,
+    dismissible = true,
     ...rest
   } = props;
 
@@ -146,7 +168,7 @@ export function Modal(props: ModalProps) {
   useImperativeHandle(ref, () => ({ open, close }), [open, close]);
 
   useEffect(() => {
-    if (!closeOnClickOutside) return undefined;
+    if (!closeOnClickOutside || !dismissible) return undefined;
 
     const handleClick = (e: PointerEvent) => {
       if (e.target === innerRef.current) close();
@@ -154,7 +176,36 @@ export function Modal(props: ModalProps) {
 
     window.addEventListener("click", handleClick);
     return () => window.removeEventListener("click", handleClick);
-  }, [closeOnClickOutside, close]);
+  }, [closeOnClickOutside, dismissible, close]);
+
+  useEffect(() => {
+    const dialog = innerRef.current;
+    if (dismissible || !dialog) return undefined;
+
+    // the native `<dialog>` fires a `cancel` event in response to a close request (eg. pressing `Escape`), which closes the dialog unless prevented
+    const handleCancel = (e: Event) => e.preventDefault();
+
+    // browsers ignore `preventDefault()` on the `cancel` event when `Escape` is pressed repeatedly without any other user interaction in between,
+    // so the `Escape` key press is also prevented, which stops the browser from sending the close request at all
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "Escape" || !dialog.open) return;
+
+      // let other dialogs rendered inside this modal handle `Escape` themselves
+      const owner =
+        e.target instanceof Element ? e.target.closest("dialog") : null;
+      if (owner && owner !== dialog) return;
+
+      e.preventDefault();
+    };
+
+    // listen on the document, since focus may have moved outside the dialog (eg. if the focused element became disabled)
+    document.addEventListener("keydown", handleKeyDown);
+    dialog.addEventListener("cancel", handleCancel);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      dialog.removeEventListener("cancel", handleCancel);
+    };
+  }, [dismissible]);
 
   // If an additional aria-labelledby is supplied, this ensures that both ids get used
   const labelledBy = [ariaLabelledby, titleId].filter(Boolean).join(" ");
@@ -190,6 +241,7 @@ export function Modal(props: ModalProps) {
           variant="subtle"
           type="button"
           onClick={close}
+          disabled={!dismissible}
           icon={<Close />}
         />
       </div>

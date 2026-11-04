@@ -112,6 +112,7 @@ export const Playground: Story = {
     withButtons: true,
     buttonsAlignment: "end",
     closeOnClickOutside: false,
+    dismissible: true,
   },
 };
 Playground.storyName = "modal";

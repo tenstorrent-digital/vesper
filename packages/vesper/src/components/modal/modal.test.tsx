@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import axe from "axe-core";
 import {
   afterEach,
@@ -9,6 +9,7 @@ import {
   test,
   vi,
 } from "vitest";
+import { userEvent } from "vitest/browser";
 
 import {
   Modal,
@@ -16,6 +17,7 @@ import {
   type ModalProps,
   useModal,
 } from "@/components/modal/modal";
+import { Select } from "@/components/select/select";
 import {
   emulateHighContrast,
   runAxeWcag2aaa,
@@ -434,6 +436,228 @@ describe("modal [unit]", () => {
       assert.instanceOf(content, HTMLElement);
       fireEvent.click(content);
       expect(dialog.open).toBe(true);
+    });
+  });
+
+  describe("dismissible", () => {
+    test("closes on Escape by default", async () => {
+      const result = render(
+        <ModalWithHook title={TITLE} description={DESCRIPTION} />,
+      );
+      const dialog = result.container.querySelector("dialog");
+      assert.instanceOf(dialog, HTMLDialogElement);
+
+      await userEvent.click(result.getByTestId("open-trigger"));
+      expect(dialog.open).toBe(true);
+
+      await userEvent.keyboard("{Escape}");
+      expect(dialog.open).toBe(false);
+    });
+
+    test("close button is enabled by default", () => {
+      const { container } = render(
+        <Modal title={TITLE} description={DESCRIPTION} />,
+      );
+      const closeBtn = container.querySelector(
+        ".vesper-modal-header .vesper-button",
+      );
+      expect(closeBtn).toBeEnabled();
+    });
+
+    test("does not close on Escape when dismissible is false", async () => {
+      const result = render(
+        <ModalWithHook
+          title={TITLE}
+          description={DESCRIPTION}
+          dismissible={false}
+        />,
+      );
+      const dialog = result.container.querySelector("dialog");
+      assert.instanceOf(dialog, HTMLDialogElement);
+
+      await userEvent.click(result.getByTestId("open-trigger"));
+      expect(dialog.open).toBe(true);
+
+      // browsers stop honouring `preventDefault()` on the `cancel` event after repeated `Escape` presses,
+      // so press it several times and check that the modal is still open
+      await userEvent.keyboard("{Escape}");
+      await userEvent.keyboard("{Escape}");
+      await userEvent.keyboard("{Escape}");
+      expect(dialog.open).toBe(true);
+    });
+
+    test("does not close on Escape when focus is inside the modal and dismissible is false", async () => {
+      const result = render(
+        <ModalWithHook
+          title={TITLE}
+          description={DESCRIPTION}
+          dismissible={false}
+        >
+          <input aria-label="Name" data-testid="modal-input" />
+        </ModalWithHook>,
+      );
+      const dialog = result.container.querySelector("dialog");
+      assert.instanceOf(dialog, HTMLDialogElement);
+
+      await userEvent.click(result.getByTestId("open-trigger"));
+      await userEvent.click(result.getByTestId("modal-input"));
+      expect(result.getByTestId("modal-input")).toHaveFocus();
+
+      await userEvent.keyboard("{Escape}");
+      await userEvent.keyboard("{Escape}");
+      expect(dialog.open).toBe(true);
+    });
+
+    test("prevents the cancel event when dismissible is false", () => {
+      const result = render(
+        <ModalWithHook
+          title={TITLE}
+          description={DESCRIPTION}
+          dismissible={false}
+        />,
+      );
+      const dialog = result.container.querySelector("dialog");
+      assert.instanceOf(dialog, HTMLDialogElement);
+
+      fireEvent.click(result.getByTestId("open-trigger"));
+
+      const event = new Event("cancel", { cancelable: true });
+      dialog.dispatchEvent(event);
+      expect(event.defaultPrevented).toBe(true);
+      expect(dialog.open).toBe(true);
+    });
+
+    test("still lets popups inside the modal close on Escape when dismissible is false", async () => {
+      const result = render(
+        <ModalWithHook
+          title={TITLE}
+          description={DESCRIPTION}
+          dismissible={false}
+        >
+          <Select aria-label="Fruit" options={["Apple", "Banana"]} />
+        </ModalWithHook>,
+      );
+      const dialog = result.container.querySelector("dialog");
+      assert.instanceOf(dialog, HTMLDialogElement);
+
+      await userEvent.click(result.getByTestId("open-trigger"));
+
+      const trigger = result.getByRole("combobox");
+      await userEvent.click(trigger);
+      await waitFor(() => {
+        expect(trigger).toHaveAttribute("data-popup-open");
+      });
+
+      await userEvent.keyboard("{Escape}");
+      await waitFor(() => {
+        expect(trigger).not.toHaveAttribute("data-popup-open");
+      });
+      expect(dialog.open).toBe(true);
+
+      await userEvent.keyboard("{Escape}");
+      expect(dialog.open).toBe(true);
+    });
+
+    test("does not close on backdrop click when dismissible is false, even with closeOnClickOutside", () => {
+      const result = render(
+        <ModalWithHook
+          title={TITLE}
+          description={DESCRIPTION}
+          closeOnClickOutside
+          dismissible={false}
+        />,
+      );
+      const dialog = result.container.querySelector("dialog");
+      assert.instanceOf(dialog, HTMLDialogElement);
+
+      fireEvent.click(result.getByTestId("open-trigger"));
+      expect(dialog.open).toBe(true);
+
+      fireEvent.click(dialog);
+      expect(dialog.open).toBe(true);
+    });
+
+    test("disables the close button when dismissible is false", () => {
+      const result = render(
+        <ModalWithHook
+          title={TITLE}
+          description={DESCRIPTION}
+          dismissible={false}
+        />,
+      );
+      const dialog = result.container.querySelector("dialog");
+      assert.instanceOf(dialog, HTMLDialogElement);
+
+      fireEvent.click(result.getByTestId("open-trigger"));
+
+      const closeBtn = result.container.querySelector(
+        ".vesper-modal-header .vesper-button",
+      );
+      assert.instanceOf(closeBtn, HTMLButtonElement);
+      expect(closeBtn).toBeDisabled();
+
+      fireEvent.click(closeBtn);
+      expect(dialog.open).toBe(true);
+    });
+
+    test("can still be closed programmatically when dismissible is false", () => {
+      const result = render(
+        <ModalWithHook
+          title={TITLE}
+          description={DESCRIPTION}
+          dismissible={false}
+        />,
+      );
+      const dialog = result.container.querySelector("dialog");
+      assert.instanceOf(dialog, HTMLDialogElement);
+
+      fireEvent.click(result.getByTestId("open-trigger"));
+      expect(dialog.open).toBe(true);
+
+      fireEvent.click(result.getByTestId("close-trigger"));
+      expect(dialog.open).toBe(false);
+    });
+
+    test("can be dismissed again once dismissible is set back to true", async () => {
+      const result = render(
+        <ModalWithHook
+          title={TITLE}
+          description={DESCRIPTION}
+          closeOnClickOutside
+          dismissible={false}
+        />,
+      );
+      const dialog = result.container.querySelector("dialog");
+      assert.instanceOf(dialog, HTMLDialogElement);
+
+      await userEvent.click(result.getByTestId("open-trigger"));
+      await userEvent.keyboard("{Escape}");
+      fireEvent.click(dialog);
+      expect(dialog.open).toBe(true);
+
+      result.rerender(
+        <ModalWithHook
+          title={TITLE}
+          description={DESCRIPTION}
+          closeOnClickOutside
+          dismissible
+        />,
+      );
+
+      const closeBtn = result.container.querySelector(
+        ".vesper-modal-header .vesper-button",
+      );
+      expect(closeBtn).toBeEnabled();
+
+      // the escape key closes the modal again
+      expect(dialog.open).toBe(true);
+      await userEvent.keyboard("{Escape}");
+      expect(dialog.open).toBe(false);
+
+      // clicking the backdrop closes the modal again
+      fireEvent.click(result.getByTestId("open-trigger"));
+      fireEvent.click(dialog);
+      expect(dialog.open).toBe(false);
     });
   });
 

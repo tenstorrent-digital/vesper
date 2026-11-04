@@ -2,8 +2,8 @@
 
 exports[`modal [snapshot] > custom width and maxHeight 1`] = `
 <dialog
-  aria-describedby="_r_2r_"
-  aria-labelledby="_r_2q_"
+  aria-describedby="_r_3j_"
+  aria-labelledby="_r_3i_"
   class="vesper-modal"
 >
   <div
@@ -16,13 +16,13 @@ exports[`modal [snapshot] > custom width and maxHeight 1`] = `
       <div>
         <h2
           class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_2q_"
+          id="_r_3i_"
         >
           Are you absolutely sure?
         </h2>
         <p
           class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_2r_"
+          id="_r_3j_"
         >
           This action cannot be undone. This will permanently delete your account from our servers.
         </p>
@@ -54,8 +54,8 @@ exports[`modal [snapshot] > custom width and maxHeight 1`] = `
 
 exports[`modal [snapshot] > default 1`] = `
 <dialog
-  aria-describedby="_r_2d_"
-  aria-labelledby="_r_2c_"
+  aria-describedby="_r_35_"
+  aria-labelledby="_r_34_"
   class="vesper-modal"
 >
   <div
@@ -68,13 +68,13 @@ exports[`modal [snapshot] > default 1`] = `
       <div>
         <h2
           class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_2c_"
+          id="_r_34_"
         >
           Are you absolutely sure?
         </h2>
         <p
           class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_2d_"
+          id="_r_35_"
         >
           This action cannot be undone. This will permanently delete your account from our servers.
         </p>
@@ -106,8 +106,8 @@ exports[`modal [snapshot] > default 1`] = `
 
 exports[`modal [snapshot] > with buttons (between alignment) 1`] = `
 <dialog
-  aria-describedby="_r_2n_"
-  aria-labelledby="_r_2m_"
+  aria-describedby="_r_3f_"
+  aria-labelledby="_r_3e_"
   class="vesper-modal"
 >
   <div
@@ -120,13 +120,13 @@ exports[`modal [snapshot] > with buttons (between alignment) 1`] = `
       <div>
         <h2
           class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_2m_"
+          id="_r_3e_"
         >
           Are you absolutely sure?
         </h2>
         <p
           class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_2n_"
+          id="_r_3f_"
         >
           This action cannot be undone. This will permanently delete your account from our servers.
         </p>
@@ -172,8 +172,8 @@ exports[`modal [snapshot] > with buttons (between alignment) 1`] = `
 
 exports[`modal [snapshot] > with buttons (end alignment) 1`] = `
 <dialog
-  aria-describedby="_r_2h_"
-  aria-labelledby="_r_2g_"
+  aria-describedby="_r_39_"
+  aria-labelledby="_r_38_"
   class="vesper-modal"
 >
   <div
@@ -186,13 +186,13 @@ exports[`modal [snapshot] > with buttons (end alignment) 1`] = `
       <div>
         <h2
           class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_2g_"
+          id="_r_38_"
         >
           Are you absolutely sure?
         </h2>
         <p
           class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_2h_"
+          id="_r_39_"
         >
           This action cannot be undone. This will permanently delete your account from our servers.
         </p>
@@ -238,8 +238,8 @@ exports[`modal [snapshot] > with buttons (end alignment) 1`] = `
 
 exports[`modal [snapshot] > with buttons (fill alignment) 1`] = `
 <dialog
-  aria-describedby="_r_2l_"
-  aria-labelledby="_r_2k_"
+  aria-describedby="_r_3d_"
+  aria-labelledby="_r_3c_"
   class="vesper-modal"
 >
   <div
@@ -252,13 +252,13 @@ exports[`modal [snapshot] > with buttons (fill alignment) 1`] = `
       <div>
         <h2
           class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_2k_"
+          id="_r_3c_"
         >
           Are you absolutely sure?
         </h2>
         <p
           class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_2l_"
+          id="_r_3d_"
         >
           This action cannot be undone. This will permanently delete your account from our servers.
         </p>
@@ -304,8 +304,8 @@ exports[`modal [snapshot] > with buttons (fill alignment) 1`] = `
 
 exports[`modal [snapshot] > with buttons (start alignment) 1`] = `
 <dialog
-  aria-describedby="_r_2j_"
-  aria-labelledby="_r_2i_"
+  aria-describedby="_r_3b_"
+  aria-labelledby="_r_3a_"
   class="vesper-modal"
 >
   <div
@@ -318,13 +318,13 @@ exports[`modal [snapshot] > with buttons (start alignment) 1`] = `
       <div>
         <h2
           class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_2i_"
+          id="_r_3a_"
         >
           Are you absolutely sure?
         </h2>
         <p
           class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_2j_"
+          id="_r_3b_"
         >
           This action cannot be undone. This will permanently delete your account from our servers.
         </p>
@@ -370,8 +370,8 @@ exports[`modal [snapshot] > with buttons (start alignment) 1`] = `
 
 exports[`modal [snapshot] > with children 1`] = `
 <dialog
-  aria-describedby="_r_2f_"
-  aria-labelledby="_r_2e_"
+  aria-describedby="_r_37_"
+  aria-labelledby="_r_36_"
   class="vesper-modal"
 >
   <div
@@ -384,13 +384,13 @@ exports[`modal [snapshot] > with children 1`] = `
       <div>
         <h2
           class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_2e_"
+          id="_r_36_"
         >
           Are you absolutely sure?
         </h2>
         <p
           class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_2f_"
+          id="_r_37_"
         >
           This action cannot be undone. This will permanently delete your account from our servers.
         </p>
@@ -427,8 +427,8 @@ exports[`modal [snapshot] > with children 1`] = `
 
 exports[`modal [snapshot] > with form 1`] = `
 <dialog
-  aria-describedby="_r_2p_"
-  aria-labelledby="_r_2o_"
+  aria-describedby="_r_3h_"
+  aria-labelledby="_r_3g_"
   class="vesper-modal"
 >
   <form
@@ -443,13 +443,13 @@ exports[`modal [snapshot] > with form 1`] = `
       <div>
         <h2
           class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_2o_"
+          id="_r_3g_"
         >
           Are you absolutely sure?
         </h2>
         <p
           class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_2p_"
+          id="_r_3h_"
         >
           This action cannot be undone. This will permanently delete your account from our servers.
         </p>
