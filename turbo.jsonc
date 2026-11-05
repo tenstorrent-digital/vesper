@@ -81,7 +81,8 @@
     "generate:tailwind": {
       "inputs": [
         "$TURBO_ROOT$/packages/vesper/src/styles/**/*.css",
-        "$TURBO_ROOT$/packages/vesper/scripts/tailwind/**"
+        "$TURBO_ROOT$/packages/vesper/scripts/tailwind/**",
+        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts"
       ],
       "outputs": [
         "$TURBO_ROOT$/packages/vesper/src/styles/tailwind.css",
