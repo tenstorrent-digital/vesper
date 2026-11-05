@@ -20,6 +20,10 @@
     "**/*.css"
   ],
   "exports": {
+    "./table": {
+      "types": "./dist/components/table/table.d.ts",
+      "import": "./dist/components/table/table.js"
+    },
     "./combobox": {
       "types": "./dist/components/combobox/combobox.d.ts",
       "import": "./dist/components/combobox/combobox.js"

@@ -15,6 +15,10 @@ import {
   SuccessSolid,
   WarningSolid,
 } from "@/components/icons/icons";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 const MESSAGE = "The message text";
@@ -251,6 +255,35 @@ describe("form-input-message [a11y]", () => {
         const { container } = render(<FormInputMessage {...props} />);
 
         expect(await axe.run(container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("form-input-message [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    FORM_INPUT_MESSAGE_PERMUTATIONS.forEach((permutation) => {
+      const { name, ...props } = permutation;
+
+      test(`wcag2aaa (${name}, ${theme})`, async () => {
+        const { container } = render(<FormInputMessage {...props} />);
+
+        expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
       });
     });
   });

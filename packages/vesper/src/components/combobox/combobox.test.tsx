@@ -9,6 +9,10 @@ import {
   COMBOBOX_VARIANTS,
   type ComboboxProps,
 } from "@/components/combobox/combobox";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 const OPTIONS = [
@@ -197,6 +201,36 @@ describe("combobox [a11y]", () => {
       test(`wcag2aa (${permutationName}, ${theme})`, async () => {
         const { container } = render(<Combobox {...props} />);
         expect(await axe.run(container.firstChild!)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("combobox [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    COMBOBOX_PERMUTATIONS.forEach((permutation) => {
+      const { permutationName, ...props } = permutation;
+
+      test(`wcag2aaa (${permutationName}, ${theme})`, async () => {
+        const { container } = render(<Combobox {...props} />);
+        expect(
+          await runAxeWcag2aaa(container.firstChild!),
+        ).toHaveNoViolations();
       });
     });
   });

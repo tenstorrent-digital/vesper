@@ -3,6 +3,10 @@ import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
 import { Code, CODE_VARIANTS } from "@/components/code/code";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 afterEach(cleanup);
@@ -99,6 +103,40 @@ describe("code [a11y]", () => {
         );
 
         expect(await axe.run(container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("code [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty(
+        "color",
+        "var(--vesper-color-text-primary)",
+      );
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("color");
+      document.body.style.removeProperty("background");
+    });
+
+    CODE_VARIANTS.forEach((variant) => {
+      test(`wcag2aaa (${variant}, ${theme})`, async () => {
+        const { container } = render(
+          <Code variant={variant}>const x = 1;</Code>,
+        );
+
+        expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
       });
     });
   });

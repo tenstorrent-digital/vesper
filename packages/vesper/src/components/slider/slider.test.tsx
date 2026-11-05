@@ -12,6 +12,10 @@ import {
 import { userEvent } from "vitest/browser";
 
 import { Slider, type SliderProps } from "@/components/slider/slider";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 /**
@@ -250,6 +254,32 @@ describe("slider [a11y]", () => {
       test(`wcag2aa (${name}, ${theme})`, async () => {
         const { container } = await renderSlider(props);
         expect(await axe.run(container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("slider [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    SLIDER_A11Y_PERMUTATIONS.forEach(({ name, ...props }) => {
+      test(`wcag2aaa (${name}, ${theme})`, async () => {
+        const { container } = await renderSlider(props);
+        expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
       });
     });
   });

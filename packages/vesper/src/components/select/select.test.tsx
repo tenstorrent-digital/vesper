@@ -11,6 +11,10 @@ import {
   SELECT_VARIANTS,
   type SelectProps,
 } from "@/components/select/select";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 const OPTIONS = [
@@ -525,6 +529,34 @@ describe("select [a11y]", () => {
           <Select {...props} aria-label="Select label" />,
         );
         expect(await axe.run(container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("select [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    SELECT_PERMUTATIONS.forEach(({ permutationName, ...props }) => {
+      test(`wcag2aaa (${permutationName}, ${theme})`, async () => {
+        const { container } = render(
+          <Select {...props} aria-label="Select label" />,
+        );
+        expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
       });
     });
   });

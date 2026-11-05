@@ -19,6 +19,7 @@
 @import "../components/typography/typography.css" layer(vesper);
 
 /* components */
+@import "../components/table/table.css" layer(vesper);
 @import "../components/combobox/combobox.css" layer(vesper);
 @import "../components/text-area/text-area.css" layer(vesper);
 @import "../components/form-input-message/form-input-message.css" layer(vesper);

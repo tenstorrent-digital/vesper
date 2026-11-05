@@ -13,6 +13,10 @@ import {
 } from "vitest";
 
 import { CodeBlock } from "@/components/code-block/code-block";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 // create a stream that emits `code` in a single chunk
@@ -500,6 +504,39 @@ describe("code-block [a11y]", () => {
       );
 
       expect(await axe.run(container)).toHaveNoViolations();
+    });
+  });
+});
+
+describe("code-block [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    test(`wcag2aaa (${theme})`, async () => {
+      const { container } = render(<CodeBlock>const x = 1;</CodeBlock>);
+
+      expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
+    });
+
+    test(`a11y with showLineNumbers (${theme})`, async () => {
+      const { container } = render(
+        <CodeBlock showLineNumbers>const x = 1;</CodeBlock>,
+      );
+
+      expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
     });
   });
 });

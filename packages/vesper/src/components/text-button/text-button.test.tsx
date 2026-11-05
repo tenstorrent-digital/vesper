@@ -9,6 +9,10 @@ import {
   TextButton,
   type TextButtonProps,
 } from "@/components/text-button/text-button";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 const TEXT_BUTTON_PERMUTATIONS: TextButtonProps[] =
@@ -271,6 +275,37 @@ describe("text-button [a11y]", () => {
         );
 
         expect(await axe.run(result.container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("text-button [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    TEXT_BUTTON_PERMUTATIONS.forEach((permutation) => {
+      const { size, variant, disabled } = permutation;
+
+      test(`wcag2aaa (${variant}, ${size},${disabled ? " disabled," : ""} ${theme})`, async () => {
+        const result = render(
+          <TextButton {...permutation}>Button Text</TextButton>,
+        );
+
+        expect(await runAxeWcag2aaa(result.container)).toHaveNoViolations();
       });
     });
   });

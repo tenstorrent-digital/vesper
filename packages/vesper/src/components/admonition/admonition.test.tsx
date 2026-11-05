@@ -8,6 +8,10 @@ import {
   ADMONITION_VARIANTS,
   type AdmonitionProps,
 } from "@/components/admonition/admonition";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 const ADMONITION_PERMUTATIONS = ADMONITION_VARIANTS.flatMap((variant) =>
@@ -135,6 +139,37 @@ describe("admonition [a11y]", () => {
         );
 
         expect(await axe.run(result.container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("admonition [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    ADMONITION_PERMUTATIONS.forEach((permutation) => {
+      const { size, variant, subtle } = permutation;
+
+      test(`wcag2aaa (${variant}, ${size},${subtle ? " subtle," : ""} ${theme})`, async () => {
+        const result = render(
+          <Admonition {...permutation}>content</Admonition>,
+        );
+
+        expect(await runAxeWcag2aaa(result.container)).toHaveNoViolations();
       });
     });
   });

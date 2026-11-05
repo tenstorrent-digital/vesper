@@ -23,6 +23,10 @@ import {
   type ChoiceboxItem,
   type ChoiceboxProps,
 } from "@/components/choicebox/choicebox";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 // get every checkbox `<input>` rendered by a (multiselect) `Choicebox`
@@ -933,6 +937,27 @@ describe("choicebox [a11y]", () => {
       test(`wcag2aa (${permutationName}, ${theme})`, async () => {
         const { container } = render(<Choicebox {...props} />);
         expect(await axe.run(container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("choicebox [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+    });
+
+    CHOICEBOX_PERMUTATIONS.forEach(({ permutationName, ...props }) => {
+      test(`wcag2aaa (${permutationName}, ${theme})`, async () => {
+        const { container } = render(<Choicebox {...props} />);
+        expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
       });
     });
   });

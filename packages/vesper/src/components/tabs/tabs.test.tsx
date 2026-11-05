@@ -16,6 +16,10 @@ import { userEvent } from "vitest/browser";
 import { Globe } from "@/components/icons/icons";
 import { Tabs, type TabsVariant } from "@/components/tabs/tabs";
 import { Typography } from "@/components/typography/typography";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 const TABS_PERMUTATIONS: {
@@ -472,6 +476,34 @@ describe("tabs [a11y]", () => {
       test(`a11y (${name})`, async () => {
         const { container } = render(<TabsTestComponent {...props} />);
         expect(await axe.run(container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("tabs [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    TABS_PERMUTATIONS.forEach((permutation) => {
+      const { name, ...props } = permutation;
+
+      test(`wcag2aaa (${name})`, async () => {
+        const { container } = render(<TabsTestComponent {...props} />);
+        expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
       });
     });
   });

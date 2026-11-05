@@ -322,6 +322,52 @@ We prefer using semantic tokens wherever possible, since they automatically reso
 | `--vesper-color-tint-inverse-300` | `--vesper-color-alpha-inverse-700` |
 | `--vesper-color-tint-inverse-400` | `--vesper-color-alpha-inverse-800` |
 
+### High contrast semantic color tokens
+
+When a user's system requests more contrast (`@media (prefers-contrast: more)`), Vesper remaps a subset of the semantic color tokens to stronger primitives so that text meets the [WCAG 2 AAA contrast ratio](https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced.html) of 7:1 in both light and dark themes. Icon tokens follow their matching text tokens.
+
+You don't need to do anything to opt in: if you use semantic tokens, your app picks up the high contrast values automatically. Primitive tokens and any semantic tokens not listed below keep their usual values.
+
+Most high contrast tokens alias the same primitive in both themes. The exception is `--vesper-color-background-error-base`, which aliases a different red primitive in each theme. Its text color (`--vesper-color-text-static-white`) is the same in both themes, so the red behind it needs to be dark in both.
+
+| CSS variable | Default alias | High contrast alias |
+| --- | --- | --- |
+| `--vesper-color-background-success-base` | `--vesper-color-green-600` | `--vesper-color-green-700` |
+| `--vesper-color-background-warning-base` | `--vesper-color-amber-600` | `--vesper-color-amber-800` |
+| `--vesper-color-background-error-base` | `--vesper-color-red-500` | `--vesper-color-red-700` (light), `--vesper-color-red-300` (dark) |
+| `--vesper-color-background-info-base` | `--vesper-color-sky-600` | `--vesper-color-sky-700` |
+| `--vesper-color-background-brand-purple-base` | `--vesper-color-purple-600` | `--vesper-color-purple-700` |
+| `--vesper-color-background-brand-mint-base` | `--vesper-color-mint-600` | `--vesper-color-mint-700` |
+| `--vesper-color-background-brand-pink-base` | `--vesper-color-pink-600` | `--vesper-color-pink-700` |
+| `--vesper-color-background-brand-yellow-base` | `--vesper-color-yellow-400` | `--vesper-color-yellow-700` |
+| `--vesper-color-text-tertiary` | `--vesper-color-stone-700` | `--vesper-color-stone-800` |
+| `--vesper-color-text-inverse-tertiary` | `--vesper-color-stone-500` | `--vesper-color-stone-400` |
+| `--vesper-color-text-accent` | `--vesper-color-teal-700` | `--vesper-color-teal-800` |
+| `--vesper-color-text-success` | `--vesper-color-mint-600` | `--vesper-color-mint-700` |
+| `--vesper-color-text-warning` | `--vesper-color-amber-700` | `--vesper-color-amber-800` |
+| `--vesper-color-text-error` | `--vesper-color-red-600` | `--vesper-color-red-800` |
+| `--vesper-color-text-info` | `--vesper-color-sky-600` | `--vesper-color-sky-800` |
+| `--vesper-color-text-link-default` | `--vesper-color-teal-700` | `--vesper-color-teal-800` |
+| `--vesper-color-text-link-hover` | `--vesper-color-teal-600` | `--vesper-color-teal-900` |
+| `--vesper-color-text-link-visited` | `--vesper-color-teal-800` | `--vesper-color-teal-900` |
+| `--vesper-color-text-brand-purple` | `--vesper-color-purple-700` | `--vesper-color-purple-800` |
+| `--vesper-color-text-brand-mint` | `--vesper-color-mint-600` | `--vesper-color-mint-700` |
+| `--vesper-color-text-brand-pink` | `--vesper-color-pink-600` | `--vesper-color-pink-800` |
+| `--vesper-color-text-brand-yellow` | `--vesper-color-yellow-600` | `--vesper-color-yellow-800` |
+| `--vesper-color-icon-tertiary` | `--vesper-color-stone-700` | `--vesper-color-stone-800` |
+| `--vesper-color-icon-inverse-tertiary` | `--vesper-color-stone-500` | `--vesper-color-stone-400` |
+| `--vesper-color-icon-accent` | `--vesper-color-teal-700` | `--vesper-color-teal-800` |
+| `--vesper-color-icon-success` | `--vesper-color-mint-600` | `--vesper-color-mint-700` |
+| `--vesper-color-icon-warning` | `--vesper-color-amber-700` | `--vesper-color-amber-800` |
+| `--vesper-color-icon-error` | `--vesper-color-red-600` | `--vesper-color-red-800` |
+| `--vesper-color-icon-info` | `--vesper-color-sky-600` | `--vesper-color-sky-800` |
+| `--vesper-color-icon-brand-purple` | `--vesper-color-purple-700` | `--vesper-color-purple-800` |
+| `--vesper-color-icon-brand-mint` | `--vesper-color-mint-600` | `--vesper-color-mint-700` |
+| `--vesper-color-icon-brand-pink` | `--vesper-color-pink-600` | `--vesper-color-pink-800` |
+| `--vesper-color-icon-brand-yellow` | `--vesper-color-yellow-600` | `--vesper-color-yellow-800` |
+
+To preview high contrast styles, enable contrast emulation in your browser's developer tools. In Chrome, open **Rendering** and set **Emulate CSS media feature prefers-contrast** to `more`.
+
 ### Tailwind color classes
 
 If you imported `@tenstorrent/vesper/tailwind.css` into your css file where you set up Tailwind, these color tokens are available for use in Tailwind's utility classes. Every color token (primitive and semantic) is registered in Tailwind's `--color-*` namespace as `--color-vesper-*`, so any Tailwind utility that accepts a color works: `bg-*`, `text-*`, `border-*`, `outline-*`, `ring-*`, `fill-*`, `stroke-*`, `divide-*`, `shadow-*`, `accent-*`, and so on.

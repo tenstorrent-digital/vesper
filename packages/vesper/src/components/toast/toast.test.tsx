@@ -16,6 +16,10 @@ import {
   type ToastVariant,
 } from "@/components/toast/store";
 import { addToast, Toasts } from "@/components/toast/toast";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 /**
@@ -718,6 +722,54 @@ describe("toast [a11y]", () => {
       await waitForActiveToasts(1);
 
       expect(await axe.run(document.body)).toHaveNoViolations();
+    });
+  });
+});
+
+describe("toast [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    test(`wcag2aaa (empty container, ${theme})`, async () => {
+      render(<Toasts />);
+
+      expect(await runAxeWcag2aaa(document.body)).toHaveNoViolations();
+    });
+
+    TOAST_VARIANTS.forEach((variant) => {
+      test(`wcag2aaa (${variant}, ${theme})`, async () => {
+        render(<Toasts />);
+
+        addToast({ content: `${variant} toast message`, variant });
+        await waitForActiveToasts(1);
+
+        expect(await runAxeWcag2aaa(document.body)).toHaveNoViolations();
+      });
+    });
+
+    test(`wcag2aaa (with action, ${theme})`, async () => {
+      render(<Toasts />);
+
+      addToast({
+        content: "Toast with action",
+        action: { content: "Undo", handler: () => {} },
+      });
+      await waitForActiveToasts(1);
+
+      expect(await runAxeWcag2aaa(document.body)).toHaveNoViolations();
     });
   });
 });

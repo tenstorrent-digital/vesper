@@ -6,6 +6,10 @@ import {
   Typography,
   TYPOGRAPHY_VARIANTS,
 } from "@/components/typography/typography";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 afterEach(cleanup);
@@ -93,6 +97,37 @@ describe("typography [a11y]", () => {
         );
 
         expect(await axe.run(result.container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("typography [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
+      document.body.style.setProperty("color", "var(--vesper-color-stone-900)");
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+      document.body.style.removeProperty("color");
+    });
+
+    TYPOGRAPHY_VARIANTS.forEach((variant) => {
+      test(`wcag2aaa (${variant}, ${theme})`, async () => {
+        const result = render(
+          <Typography variant={variant}>{variant}</Typography>,
+        );
+
+        expect(await runAxeWcag2aaa(result.container)).toHaveNoViolations();
       });
     });
   });

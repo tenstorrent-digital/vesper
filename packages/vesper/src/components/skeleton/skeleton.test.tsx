@@ -7,6 +7,10 @@ import {
   SKELETON_SHAPES,
   type SkeletonShape,
 } from "@/components/skeleton/skeleton";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 afterEach(cleanup);
@@ -278,6 +282,27 @@ describe("skeleton [a11y]", () => {
       test(`a11y (${shape}, show=${show}, ${theme})`, async () => {
         const { container } = render(<Skeleton shape={shape} show={show} />);
         expect(await axe.run(container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("skeleton [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+    });
+
+    SKELETON_A11Y_PERMUTATIONS.forEach(({ shape, show }) => {
+      test(`wcag2aaa (${shape}, show=${show}, ${theme})`, async () => {
+        const { container } = render(<Skeleton shape={shape} show={show} />);
+        expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
       });
     });
   });

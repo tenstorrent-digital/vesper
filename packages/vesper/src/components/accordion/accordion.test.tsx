@@ -3,6 +3,10 @@ import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
 import { Accordion } from "@/components/accordion/accordion";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 const TITLE = "This is a title";
@@ -105,6 +109,39 @@ describe("accordion [a11y]", () => {
         );
 
         expect(await axe.run(result.container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("accordion [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    ([true, false] as const).forEach((open) => {
+      const label = `wcag2aaa (${open ? "open" : "closed"}, ${theme})`;
+
+      test(label, async () => {
+        const result = render(
+          <Accordion title={TITLE} open={open}>
+            {CHILDREN}
+          </Accordion>,
+        );
+
+        expect(await runAxeWcag2aaa(result.container)).toHaveNoViolations();
       });
     });
   });

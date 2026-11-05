@@ -4,57 +4,21 @@
 # `yarn install` if the cache is not available
 #
 # can be used for any workflow that needs to setup node, run `install` for monorepo
-# dependencies, or install and use Playwright browsers
+# dependencies, or install the latest stable Google Chrome (eg. for browser tests)
 
 name: Setup
-description: Set up Node, install monorepo dependencies (cached) and (optionally) install Playwright browsers
+description: Set up Node, install monorepo dependencies (cached) and (optionally) install the latest stable Google Chrome
 
 inputs:
-  playwright:
-    # pass "true" to install playwright browsers and their system deps
-    description: Install Playwright's chromium browser and its system dependencies
+  chrome:
+    # pass "true" to install (or update to) the latest stable Google Chrome
+    description: Install the latest stable Google Chrome, which vesper's browser tests run in
     required: false
     default: "false"
 
 runs:
   using: composite
   steps:
-    # !! extremely linux-pilled accelerationism ahead:
-    #
-    # both of the steps below shell out to `apt-get update`, which will fail the whole job on any
-    # unreachable or inconsistent apt source (`playwright install-deps` exits 100)
-    #
-    # the ubuntu-latest image ships a google chrome apt source that intermittently serves a
-    # `Packages.gz` file that doesn't match its freshly published `Release` file ("Hash Sum
-    # mismatch"), and because your eyes are already glazing over and you're wondering if any human
-    # even understands this, just know:
-    #
-    # we don't need it to install Playwright's system libraries, so we can drop it before we
-    # install anything
-    #
-    # (don't worry)
-    #
-    # note: runs in the background, so it overlaps the cache restores below
-    - name: Refresh apt package lists (in background)
-      if: inputs.playwright == 'true'
-      shell: bash
-      run: |
-        sudo rm -f /etc/apt/sources.list.d/google-chrome.list
-        # keeps running after this step - `Install Playwright` should wait for the status file
-        #
-        # note: `|| status=$?` since bash steps run with `-e` (a failed update would otherwise exit
-        # the subshell before writing the status file), and `timeout` so a hung update can't
-        # still hold the apt lock when Playwright starts
-        #
-        # note: the subshell's output is detached from the step - the runner would otherwise keep
-        # the step open until the update finishes, and nothing would overlap
-        (
-          status=0
-          sudo timeout --kill-after=10s 2m apt-get update || status=$?
-          echo "$status" > "$RUNNER_TEMP/apt-update.status"
-        ) > "$RUNNER_TEMP/apt-update.log" 2>&1 < /dev/null &
-        echo "$!" > "$RUNNER_TEMP/apt-update.pid"
-
     # note:
     # node is cached with `node_modules` below, otherwise `setup-node` downloads it
     # every run
@@ -109,53 +73,40 @@ runs:
           yarn install --frozen-lockfile
         fi
 
-    - name: Resolve Playwright version
-      if: inputs.playwright == 'true'
-      id: playwright-version
-      shell: bash
-      run: |
-        echo "version=$(node -p "require('playwright/package.json').version")" >> "$GITHUB_OUTPUT"
-
-    # restore playwright from cache too
+    # the runner image ships Google Chrome, but only updates it when the image is rebuilt, so it can
+    # lag behind the latest stable release (and its security fixes)
     #
-    # NOTE:
-    # we're using headless shell only (`--only-shell`) since CI never launches full
-    # chromium anyways (half the size)
-    - name: Restore Playwright browsers
-      if: inputs.playwright == 'true'
-      id: playwright-browsers
-      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
-      with:
-        path: ~/.cache/ms-playwright
-        key: playwright-headless-shell-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
-
-    # while the browsers are cached, the system libraries they need aren't part of the runner
-    # image so we do need to install them
-    - name: Install Playwright
-      if: inputs.playwright == 'true'
+    # `playwright install chrome` downloads and installs the current stable release from
+    # dl.google.com (installing over the preinstalled one, since `CI` is set) - no browsers are
+    # downloaded to Playwright's cache
+    - name: Install Google Chrome
+      if: inputs.chrome == 'true'
       shell: bash
-      env:
-        BROWSERS_CACHE_HIT: ${{ steps.playwright-browsers.outputs.cache-hit }}
-      # apt mirrors can also fail transiently, so clear the (partial) package lists and retry once
+      # apt mirrors can fail transiently, so clear the (partial) package lists and retry once
       run: |
-        # the background `apt-get update` should finish first (it's killed after 2m10s at most)
-        pid="$(cat "$RUNNER_TEMP/apt-update.pid")"
-        for _ in $(seq 300); do
-          kill -0 "$pid" 2>/dev/null || break
-          sleep 0.5
-        done
-        echo "::group::Background \`apt-get update\` (exit status: $(cat "$RUNNER_TEMP/apt-update.status" 2>/dev/null || echo "unknown"))"
-        cat "$RUNNER_TEMP/apt-update.log" 2>/dev/null || true
-        echo "::endgroup::"
+        # !! extremely linux-pilled accelerationism ahead:
+        #
+        # the install script shells out to `apt-get update`, which will fail the whole job on any
+        # unreachable or inconsistent apt source
+        #
+        # the ubuntu-latest image ships a google chrome apt source that intermittently serves a
+        # `Packages.gz` file that doesn't match its freshly published `Release` file ("Hash Sum
+        # mismatch"), and because your eyes are already glazing over and you're wondering if any
+        # human even understands this, just know:
+        #
+        # we download the Chrome package directly, so we don't need its apt source and can drop it
+        # before we install anything
+        #
+        # (don't worry)
+        sudo rm -f /etc/apt/sources.list.d/google-chrome.list
 
-        if [ "$BROWSERS_CACHE_HIT" = "true" ]; then
-          install=(npx playwright install-deps chromium)
-        else
-          install=(npx playwright install --with-deps --only-shell chromium)
-        fi
-
+        install=(npx playwright install chrome)
         if ! "${install[@]}"; then
           echo "::warning::\`${install[*]}\` failed - clearing apt lists and retrying"
+          # note: installing Chrome restores its apt source, so drop it again
+          sudo rm -f /etc/apt/sources.list.d/google-chrome.list
           sudo rm -rf /var/lib/apt/lists/*
           "${install[@]}"
         fi
+
+        echo "CHROME_VERSION=$(google-chrome --version)" >> "$GITHUB_ENV"

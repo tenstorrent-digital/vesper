@@ -4,6 +4,10 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 
 import { Snippet, SNIPPET_VARIANTS } from "@/components/snippet/snippet";
+import {
+  emulateHighContrast,
+  runAxeWcag2aaa,
+} from "@/test-utils/high-contrast";
 import "@/styles/test.css";
 
 afterEach(cleanup);
@@ -170,6 +174,35 @@ describe("snippet [a11y]", () => {
         );
 
         expect(await axe.run(container)).toHaveNoViolations();
+      });
+    });
+  });
+});
+
+describe("snippet [a11y, high contrast]", () => {
+  emulateHighContrast();
+
+  describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
+    beforeEach(() => {
+      document.documentElement.setAttribute("data-vesper-theme", theme);
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
+    });
+
+    afterEach(() => {
+      document.documentElement.removeAttribute("data-vesper-theme");
+      document.body.style.removeProperty("background");
+    });
+
+    SNIPPET_VARIANTS.forEach((variant) => {
+      test(`wcag2aaa (${variant}, ${theme})`, async () => {
+        const { container } = render(
+          <Snippet variant={variant}>yarn install</Snippet>,
+        );
+
+        expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
       });
     });
   });
