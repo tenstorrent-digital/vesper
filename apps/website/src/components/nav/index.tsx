@@ -27,7 +27,7 @@ export function Nav() {
             aria-label="Go to Vesper documentation homepage"
             className="gap-vesper-2 pb-vesper-half flex h-full w-fit items-center"
           >
-            <Tenstorrent width={24} color="var(--vesper-teal-500)" />
+            <Tenstorrent width={24} color="var(--vesper-color-teal-500)" />
             Vesper
           </Typography>
         </div>

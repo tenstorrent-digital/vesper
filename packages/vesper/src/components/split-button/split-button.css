@@ -6,7 +6,7 @@
 .vesper-split-button-action-button {
   flex: 1;
   position: relative;
-  border-width: var(--vesper-stroke-base);
+  border-width: var(--vesper-border-width-base);
   border-style: solid;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -20,7 +20,7 @@
 
 .vesper-split-button-menu-button {
   position: relative;
-  border-width: var(--vesper-stroke-base);
+  border-width: var(--vesper-border-width-base);
   border-style: solid;
   border-left-width: 0;
   border-top-left-radius: 0;
@@ -49,21 +49,21 @@
 
 @media (forced-colors: none) {
   .vesper-split-button-action-button.vesper-button-contrast {
-    border-color: var(--vesper-border-inverse-secondary);
+    border-color: var(--vesper-color-border-inverse-secondary);
   }
   .vesper-split-button-menu-button.vesper-button-contrast {
-    border-color: var(--vesper-border-inverse-secondary);
+    border-color: var(--vesper-color-border-inverse-secondary);
   }
   .vesper-split-button-action-button.vesper-button-subtle {
-    border-color: var(--vesper-border-secondary);
+    border-color: var(--vesper-color-border-secondary);
   }
   .vesper-split-button-menu-button.vesper-button-subtle {
-    border-color: var(--vesper-border-secondary);
+    border-color: var(--vesper-color-border-secondary);
   }
   .vesper-split-button-action-button.vesper-button-disabled {
-    border-color: var(--vesper-border-secondary);
+    border-color: var(--vesper-color-border-secondary);
   }
   .vesper-split-button-menu-button.vesper-button-disabled {
-    border-color: var(--vesper-border-secondary);
+    border-color: var(--vesper-color-border-secondary);
   }
 }

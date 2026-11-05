@@ -88,7 +88,7 @@ const NON_ELEMENT_CONTENT: { name: string; content: ReactNode }[] = [
  */
 const NonForwardingTabContent = ({ label }: { label: string }) => (
   <section data-testid={`${label}-content`}>
-    <Typography style={{ color: "var(--vesper-stone-900)" }}>
+    <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
       {label} Content
     </Typography>
   </section>
@@ -119,7 +119,7 @@ const TabsTestComponent = ({
         content: (
           <Typography
             data-testid="tab-1-content"
-            style={{ color: "var(--vesper-stone-900)" }}
+            style={{ color: "var(--vesper-color-stone-900)" }}
           >
             Tab 1 Content
           </Typography>
@@ -132,7 +132,7 @@ const TabsTestComponent = ({
         content: (
           <Typography
             data-testid="tab-2-content"
-            style={{ color: "var(--vesper-stone-900)" }}
+            style={{ color: "var(--vesper-color-stone-900)" }}
           >
             Tab 2 Content
           </Typography>
@@ -145,7 +145,7 @@ const TabsTestComponent = ({
         content: (
           <Typography
             data-testid="tab-3-content"
-            style={{ color: "var(--vesper-stone-900)" }}
+            style={{ color: "var(--vesper-color-stone-900)" }}
           >
             Tab 3 Content
           </Typography>
@@ -366,7 +366,7 @@ describe("tabs [unit]", () => {
         "vesper-typography",
         "vesper-typography-copy-md",
       );
-      expect(panel.style.color).toBe("var(--vesper-stone-900)");
+      expect(panel.style.color).toBe("var(--vesper-color-stone-900)");
       expect(panel).toHaveTextContent("Tab 1 Content");
     });
 
@@ -459,7 +459,10 @@ describe("tabs [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
-      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
     });
 
     afterEach(() => {
@@ -484,7 +487,10 @@ describe("tabs [a11y, high contrast]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
-      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
     });
 
     afterEach(() => {

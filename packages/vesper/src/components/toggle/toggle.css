@@ -4,8 +4,9 @@
   gap: var(--vesper-spacing-1);
   padding: var(--vesper-spacing-1);
   border-radius: var(--vesper-radius-2);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
-  background: var(--vesper-background-secondary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-secondary);
+  background: var(--vesper-color-background-secondary);
 }
 
 .vesper-toggle-select {
@@ -60,13 +61,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--vesper-text-secondary);
+  color: var(--vesper-color-text-secondary);
   &:hover {
-    background: var(--vesper-tint-neutral-200);
+    background: var(--vesper-color-tint-neutral-200);
   }
   &.vesper-toggle-item-active {
-    background: var(--vesper-tint-neutral-400);
-    color: var(--vesper-text-primary);
+    background: var(--vesper-color-tint-neutral-400);
+    color: var(--vesper-color-text-primary);
     @media (forced-colors: active) {
       background: CanvasText;
       color: Canvas;
@@ -77,13 +78,13 @@
 
 .vesper-toggle-disabled {
   pointer-events: none;
-  border-color: var(--vesper-border-disabled);
-  background: var(--vesper-background-disabled);
+  border-color: var(--vesper-color-border-disabled);
+  background: var(--vesper-color-background-disabled);
   backdrop-filter: blur(var(--vesper-blur));
   .vesper-toggle-item {
-    color: var(--vesper-text-disabled);
+    color: var(--vesper-color-text-disabled);
     &.vesper-toggle-item-active {
-      background: var(--vesper-background-disabled);
+      background: var(--vesper-color-background-disabled);
     }
   }
 }

@@ -7,7 +7,7 @@
 .vesper-skeleton-overlay {
   position: absolute;
   inset: 0;
-  background: var(--vesper-stone-300);
+  background: var(--vesper-color-stone-300);
   &::after {
     content: "";
     position: absolute;
@@ -18,7 +18,7 @@
     background: linear-gradient(
       to left,
       transparent,
-      var(--vesper-alpha-inverse-200),
+      var(--vesper-color-alpha-inverse-200),
       transparent
     );
     animation: vesper-skeleton-shimmer 1.2s linear infinite;

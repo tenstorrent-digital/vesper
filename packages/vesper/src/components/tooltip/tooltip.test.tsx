@@ -76,7 +76,7 @@ const A11Y_PERMUTATIONS: {
     name: "wrapWithButton",
     wrapWithButton: true,
     children: (
-      <Typography style={{ color: "var(--vesper-stone-900)" }}>
+      <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
         tooltip trigger
       </Typography>
     ),
@@ -645,7 +645,7 @@ describe("tooltip [snapshot]", () => {
   test("closed (wrapWithButton)", async () => {
     const result = render(
       <Tooltip wrapWithButton open={false} content="Tooltip text">
-        <Typography style={{ color: "var(--vesper-stone-900)" }}>
+        <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
           tooltip trigger
         </Typography>
       </Tooltip>,
@@ -659,7 +659,10 @@ describe("tooltip [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
-      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
     });
 
     afterEach(() => {
@@ -701,7 +704,10 @@ describe("tooltip [a11y, high contrast]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
-      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
     });
 
     afterEach(() => {

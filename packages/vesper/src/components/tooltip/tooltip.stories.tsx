@@ -34,7 +34,7 @@ export const Playground: Story = {
   },
   render: (props) => (
     <Tooltip open wrapWithButton {...props}>
-      <Typography style={{ color: "var(--vesper-stone-900)" }}>
+      <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
         hover over me
       </Typography>
     </Tooltip>

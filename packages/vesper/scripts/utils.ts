@@ -59,3 +59,60 @@ export const resolvePackagePath = <T extends string>(
 
   return nodePath.resolve(packageDir, path);
 };
+
+/**
+ * a union of `[key, value]` tuples, one for each property of `T`
+ *
+ * @example
+ * ```ts
+ * type E = Entry<{ a: 1; b: "two" }>;
+ * // readonly ["a", 1] | readonly ["b", "two"]
+ * ```
+ */
+type Entry<T> = {
+  [K in keyof T & string]: readonly [K, T[K]];
+}[keyof T & string];
+
+/**
+ * like `Object.entries`, but keeps the types of the object's keys (instead of
+ * widening them to `string`), and pairs each key with the type of its value
+ *
+ * only use this with objects that can't have more keys at runtime than their
+ * type declares, like `as const` object literals (eg. the configs in
+ * `tailwind-merge-config.ts`)
+ *
+ * @example
+ * ```ts
+ * const entries = typedEntries({ a: 1, b: "two" } as const);
+ * // (readonly ["a", 1] | readonly ["b", "two"])[]
+ * ```
+ */
+export const typedEntries = <T extends Record<string, unknown>>(object: T) => {
+  // `Object.entries` widens keys to `string` because objects can have more keys
+  // at runtime than their types declare, which can't happen for the object
+  // literals this is used with
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+  return Object.entries(object) as Entry<T>[];
+};
+
+/**
+ * creates an object with a property for each of the given keys, calling
+ * `getValue` with each key to create the property's value
+ *
+ * @example
+ * ```ts
+ * const lengths = fromKeys(["a", "bb"] as const, (key) => key.length);
+ * // { a: 1, bb: 2 } (typed as `Record<"a" | "bb", number>`)
+ * ```
+ */
+export const objectFromKeys = <K extends string, V>(
+  keys: readonly K[],
+  getValue: (key: K) => V,
+) => {
+  const entries = keys.map((key) => [key, getValue(key)] as const);
+
+  // `Object.fromEntries` widens keys to `string`, but the object it returns has
+  // exactly one property for each key in `keys`
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+  return Object.fromEntries(entries) as Record<K, V>;
+};

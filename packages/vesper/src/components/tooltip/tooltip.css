@@ -1,16 +1,16 @@
 .vesper-tooltip-contrast {
-  background: var(--vesper-background-inverse-primary);
-  color: var(--vesper-text-inverse-primary);
+  background: var(--vesper-color-background-inverse-primary);
+  color: var(--vesper-color-text-inverse-primary);
   .vesper-tooltip-arrow {
-    background: var(--vesper-background-inverse-primary);
+    background: var(--vesper-color-background-inverse-primary);
   }
 }
 
 .vesper-tooltip-danger {
-  background: var(--vesper-background-error-base);
-  color: var(--vesper-text-static-white);
+  background: var(--vesper-color-background-error-base);
+  color: var(--vesper-color-text-static-white);
   .vesper-tooltip-arrow {
-    background: var(--vesper-background-error-base);
+    background: var(--vesper-color-background-error-base);
   }
 }
 

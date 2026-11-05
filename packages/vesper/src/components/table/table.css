@@ -3,8 +3,8 @@
   border-spacing: 0px;
   padding: var(--vesper-spacing-4);
   text-align: left;
-  background: var(--vesper-background-secondary);
-  color: var(--vesper-text-primary);
+  background: var(--vesper-color-background-secondary);
+  color: var(--vesper-color-text-primary);
   border-radius: var(--vesper-radius-4);
 
   th {
@@ -13,17 +13,17 @@
 
   thead {
     th {
-      color: var(--vesper-text-secondary);
+      color: var(--vesper-color-text-secondary);
       padding: 0 var(--vesper-spacing-3) var(--vesper-spacing-5)
         var(--vesper-spacing-3);
       /* divider beneath the column headings, inset from the bottom of the row */
       background-image: linear-gradient(
-        var(--vesper-border-secondary),
-        var(--vesper-border-secondary)
+        var(--vesper-color-border-secondary),
+        var(--vesper-color-border-secondary)
       );
       background-repeat: no-repeat;
       background-position: left 0 bottom var(--vesper-spacing-3);
-      background-size: 100% var(--vesper-stroke-base);
+      background-size: 100% var(--vesper-border-width-base);
     }
   }
 
@@ -43,7 +43,7 @@
 
     tr:nth-child(odd) {
       & > :is(th, td) {
-        background-color: var(--vesper-tint-neutral-100);
+        background-color: var(--vesper-color-tint-neutral-100);
 
         &:first-child {
           border-start-start-radius: var(--vesper-radius-2);

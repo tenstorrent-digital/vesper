@@ -10,7 +10,7 @@ exports[`code-block [snapshot] > default (no props) 1`] = `
   >
     <pre
       class="shiki shiki-themes night-owl-light night-owl"
-      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-stone-800); --shiki-dark: var(--vesper-stone-800);"
+      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-color-stone-800); --shiki-dark: var(--vesper-color-stone-800);"
     >
       <code>
         <span
@@ -54,7 +54,7 @@ exports[`code-block [snapshot] > with custom className 1`] = `
   >
     <pre
       class="shiki shiki-themes night-owl-light night-owl"
-      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-stone-800); --shiki-dark: var(--vesper-stone-800);"
+      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-color-stone-800); --shiki-dark: var(--vesper-color-stone-800);"
     >
       <code>
         <span
@@ -100,7 +100,7 @@ exports[`code-block [snapshot] > with multi-line content 1`] = `
   >
     <pre
       class="shiki shiki-themes night-owl-light night-owl"
-      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-stone-800); --shiki-dark: var(--vesper-stone-800);"
+      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-color-stone-800); --shiki-dark: var(--vesper-color-stone-800);"
     >
       <code>
         <span
@@ -155,7 +155,7 @@ exports[`code-block [snapshot] > with showLineNumbers 1`] = `
   >
     <pre
       class="shiki shiki-themes night-owl-light night-owl"
-      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-stone-800); --shiki-dark: var(--vesper-stone-800);"
+      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-color-stone-800); --shiki-dark: var(--vesper-color-stone-800);"
     >
       <code>
         <span
@@ -201,7 +201,7 @@ exports[`code-block [snapshot] > with string children 1`] = `
   >
     <pre
       class="shiki shiki-themes night-owl-light night-owl"
-      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-stone-800); --shiki-dark: var(--vesper-stone-800);"
+      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-color-stone-800); --shiki-dark: var(--vesper-color-stone-800);"
     >
       <code>
         <span

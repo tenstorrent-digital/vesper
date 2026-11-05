@@ -43,6 +43,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
 This makes the Vesper library's component styles and css tokens globally available in your application. For more information on usage of Vesper's css tokens, see [CSS token usage](#css-token-usage).
 
+#### Usage with Tailwind
+
 If you are using [Tailwind](https://tailwindcss.com) to style your app, we supply a Tailwind-specific file you can import instead. This has two advantages:
 
 1. Vesper's component styles get injected into Tailwind's `components` layer, which lets Tailwind utility classes override vesper css classes.
@@ -56,6 +58,15 @@ You should import Vesper's Tailwind styles **after** importing `tailwindcss` in 
 ```
 
 If you import Vesper's Tailwind styles before importing `tailwindcss`, the order of Tailwind's internal css layers will get mangled.
+
+We also provide a module for extending [`tailwind-merge`](https://github.com/dcastil/tailwind-merge) with Vesper's utility classes. You can import it from `@tenstorrent/vesper/tailwind-merge`:
+
+```ts
+import { extendTailwindMerge } from "tailwind-merge";
+import { withVesper } from "@tenstorrent/vesper/tailwind-merge";
+
+const twMerge = extendTailwindMerge(withVesper);
+```
 
 ### Fonts
 

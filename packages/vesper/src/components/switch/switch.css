@@ -18,7 +18,7 @@
 
 .vesper-switch-pill {
   /* set base */
-  --vesper-switch-pill-bg: var(--vesper-tint-neutral-400);
+  --vesper-switch-pill-bg: var(--vesper-color-tint-neutral-400);
 
   aspect-ratio: 2;
   background:
@@ -27,7 +27,7 @@
       var(--vesper-switch-pill-bg) 0%,
       var(--vesper-switch-pill-bg) 100%
     ),
-    var(--vesper-background-primary);
+    var(--vesper-color-background-primary);
 
   overflow: hidden;
   padding: var(--vesper-spacing-half);
@@ -37,7 +37,7 @@
     aspect-ratio: 1;
     border-radius: 50%;
     height: 100%;
-    background: var(--vesper-background-primary);
+    background: var(--vesper-color-background-primary);
     transition: transform var(--vesper-transition-duration-fast) ease;
   }
   @media (forced-colors: active) {
@@ -52,7 +52,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--vesper-spacing-2);
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
 }
 
 .vesper-switch-input {
@@ -78,7 +78,7 @@
 
   &:checked ~ .vesper-switch-pill {
     /* update prop value for checked */
-    --vesper-switch-pill-bg: var(--vesper-background-accent-base);
+    --vesper-switch-pill-bg: var(--vesper-color-background-accent-base);
 
     &::after {
       transform: translateX(calc(100% + var(--vesper-spacing-1)));
@@ -90,22 +90,22 @@
 
     @media (forced-colors: active) {
       box-shadow: none;
-      outline: var(--vesper-stroke-base) solid CanvasText;
+      outline: var(--vesper-outline-width-base) solid CanvasText;
       outline-offset: var(--vesper-spacing-micro);
     }
   }
 
   &:disabled ~ .vesper-switch-label {
-    color: var(--vesper-text-disabled);
+    color: var(--vesper-color-text-disabled);
   }
 
   &:disabled ~ .vesper-switch-pill {
-    --vesper-switch-pill-bg: var(--vesper-tint-neutral-200);
-    background-color: var(--vesper-background-disabled);
+    --vesper-switch-pill-bg: var(--vesper-color-tint-neutral-200);
+    background-color: var(--vesper-color-background-disabled);
     backdrop-filter: blur(var(--vesper-blur));
 
     &::after {
-      background: var(--vesper-tint-neutral-200);
+      background: var(--vesper-color-tint-neutral-200);
     }
 
     @media (forced-colors: active) {

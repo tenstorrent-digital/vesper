@@ -174,7 +174,9 @@ fs.writeFileSync(
 
   import type { ComponentProps, ComponentType } from "react"
   import type { IconKind } from "./types"
-  ${icons.map((icon) => `import { ${icon.componentName} } from './${icon.kind}'`).join("\n")}
+  ${icons
+    .map((icon) => `import { ${icon.componentName} } from './${icon.kind}'`)
+    .join("\n")}
 
   export const registry: { [K in IconKind]: ComponentType<ComponentProps<"svg">> } = {
     ${icons.map((icon) => `"${icon.kind}": ${icon.componentName},`).join("\n")}
@@ -220,7 +222,9 @@ fs.writeFileSync(
 
   import type { IconKind } from "./types";
 
-  export const ICON_KINDS: IconKind[] = [${icons.map((icon) => `"${icon.kind}"`).join(",")}]`,
+  export const ICON_KINDS: IconKind[] = [${icons
+    .map((icon) => `"${icon.kind}"`)
+    .join(",")}]`,
 );
 
 // create barrel file with exports for each icon component, constants, and types (tree-shakeable)
@@ -264,7 +268,7 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   args: { kind: "tenstorrent" },
   render: (props) => (
-    <Icon width={32} height={32} color="var(--vesper-stone-900)" {...props} />
+    <Icon width={32} height={32} color="var(--vesper-color-stone-900)" {...props} />
   ),
 };
 Playground.storyName = "icons";

@@ -29,15 +29,16 @@
       bottom: 0;
       left: 0;
       right: 0;
-      border-top: var(--vesper-stroke-base) solid var(--vesper-border-secondary);
+      border-top: var(--vesper-border-width-base) solid
+        var(--vesper-color-border-secondary);
     }
     & > .vesper-tabs-trigger {
       padding: var(--vesper-spacing-4) 0;
-      color: var(--vesper-text-secondary);
+      color: var(--vesper-color-text-secondary);
       position: relative;
       &:hover,
       &[data-active] {
-        color: var(--vesper-text-primary);
+        color: var(--vesper-color-text-primary);
       }
       &:hover::after,
       &[data-active]::after {
@@ -46,15 +47,15 @@
         bottom: 0;
         left: 0;
         right: 0;
-        border-top: var(--vesper-stroke-strong) solid
-          var(--vesper-border-strong);
+        border-top: var(--vesper-border-width-strong) solid
+          var(--vesper-color-border-strong);
         @media (forced-colors: active) {
           border-color: CanvasText;
         }
       }
       @media (forced-colors: active) {
         &:focus-visible {
-          outline: var(--vesper-stroke-strong) solid CanvasText;
+          outline: var(--vesper-outline-width-strong) solid CanvasText;
         }
       }
       & > .vesper-tabs-trigger-icon {
@@ -71,12 +72,12 @@
   & > .vesper-tabs-list > .vesper-tabs-trigger {
     padding: var(--vesper-spacing-2);
     border-radius: var(--vesper-spacing-1);
-    background: var(--vesper-tint-neutral-300);
-    color: var(--vesper-text-primary);
+    background: var(--vesper-color-tint-neutral-300);
+    color: var(--vesper-color-text-primary);
     &:hover,
     &[data-active] {
-      background: var(--vesper-background-inverse-primary);
-      color: var(--vesper-text-inverse-primary);
+      background: var(--vesper-color-background-inverse-primary);
+      color: var(--vesper-color-text-inverse-primary);
       @media (forced-colors: active) {
         forced-color-adjust: none;
         color: Canvas;
@@ -84,11 +85,11 @@
       }
     }
     @media (forced-colors: active) {
-      border: var(--vesper-stroke-base) solid CanvasText;
+      border: var(--vesper-border-width-base) solid CanvasText;
     }
     @media (forced-colors: active) {
       &:focus-visible {
-        outline: var(--vesper-stroke-base) solid CanvasText;
+        outline: var(--vesper-outline-width-base) solid CanvasText;
         outline-offset: var(--vesper-spacing-micro);
       }
     }

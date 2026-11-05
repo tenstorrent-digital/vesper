@@ -1,10 +1,9 @@
 import clsx, { type ClassValue } from "clsx";
 import { extendTailwindMerge } from "tailwind-merge";
 
-const twMerge = extendTailwindMerge({
-  extend: {},
-  override: {},
-});
+import { withVesper } from "@tenstorrent/vesper/tailwind-merge";
+
+const twMerge = extendTailwindMerge(withVesper);
 
 /**
  * cn (class name utility)

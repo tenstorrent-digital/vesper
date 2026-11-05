@@ -185,7 +185,11 @@
       "import": "./dist/components/icons/icons.js"
     },
     "./styles.css": "./dist/styles/styles.css",
-    "./tailwind.css": "./dist/styles/tailwind.css"
+    "./tailwind.css": "./dist/styles/tailwind.css",
+    "./tailwind-merge": {
+      "types": "./dist/utils/tailwind-merge.d.ts",
+      "import": "./dist/utils/tailwind-merge.js"
+    }
   },
   "publishConfig": {
     "access": "public"
@@ -204,10 +208,11 @@
     "build:storybook": "storybook build -c storybook -o ../../apps/website/public/storybook",
     "scaffold:component": "turbo gen vesper-component",
     "generate:icons": "tsx scripts/generate-icons.ts",
+    "generate:tailwind": "tsx scripts/tailwind/generate.ts",
     "test": "vitest run --coverage",
     "test:update": "vitest run --coverage --update",
     "test:watch": "vitest",
-    "check-types": "tsc --noEmit --project tsconfig.build.json --incremental false && tsc --noEmit --project tsconfig.test.json && tsc --noEmit --project tsconfig.storybook.json --incremental false"
+    "check-types": "tsc --noEmit --project tsconfig.build.json --incremental false && tsc --noEmit --project tsconfig.test.json && tsc --noEmit --project tsconfig.storybook.json --incremental false && tsc --noEmit --project tsconfig.scripts.json"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -250,6 +255,7 @@
     "rehype-parse": "^9.0.1",
     "storybook": "^10.4.3",
     "svgo": "^4.0.1",
+    "tailwind-merge": "^3.6.0",
     "tsc-alias": "^1.8.16",
     "tsx": "^4.22.3",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
@@ -260,7 +266,13 @@
   },
   "peerDependencies": {
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.6.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwind-merge": {
+      "optional": true
+    }
   },
   "engines": {
     "node": ">=20.9.0"

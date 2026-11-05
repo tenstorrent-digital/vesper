@@ -13,7 +13,12 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   args: { kind: "tenstorrent" },
   render: (props) => (
-    <Icon width={32} height={32} color="var(--vesper-stone-900)" {...props} />
+    <Icon
+      width={32}
+      height={32}
+      color="var(--vesper-color-stone-900)"
+      {...props}
+    />
   ),
 };
 Playground.storyName = "icons";

@@ -21,7 +21,7 @@ export const Playground: Story = {
   },
   render(props) {
     return (
-      <Typography style={{ color: "var(--vesper-stone-900)" }}>
+      <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
         This is a sentence with an inline <Code {...props} /> in it.
       </Typography>
     );

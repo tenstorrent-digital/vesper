@@ -2,7 +2,8 @@
   display: inline-flex;
   width: fit-content;
   background: transparent;
-  outline: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+  outline: var(--vesper-outline-width-base) solid
+    var(--vesper-color-border-primary);
   position: relative;
   height: var(--theme-switcher-size);
 }
@@ -32,16 +33,16 @@
 
 .vesper-theme-switcher-button {
   cursor: pointer;
-  color: var(--vesper-icon-secondary);
+  color: var(--vesper-color-icon-secondary);
   &:hover {
-    color: var(--vesper-icon-primary);
+    color: var(--vesper-color-icon-primary);
   }
   transition: color var(--vesper-transition-duration-fast) ease;
   height: 100%;
   aspect-ratio: 1;
   @media (forced-colors: active) {
     &:focus-visible {
-      outline: var(--vesper-stroke-strong) solid CanvasText;
+      outline: var(--vesper-outline-width-strong) solid CanvasText;
     }
   }
   @media not (forced-colors: active) {
@@ -52,26 +53,27 @@
 }
 
 .vesper-theme-switcher-indicator {
-  background: var(--vesper-tint-neutral-200);
+  background: var(--vesper-color-tint-neutral-200);
   position: absolute;
   top: 0rem;
   bottom: 0rem;
   left: 0rem;
   aspect-ratio: 1;
-  outline: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+  outline: var(--vesper-outline-width-base) solid
+    var(--vesper-color-border-primary);
   transition: left var(--vesper-transition-duration-fast) ease;
   pointer-events: none;
 }
 
 html:not([data-vesper-theme="light"], [data-vesper-theme="dark"]) {
   .vesper-theme-switcher-button[data-vesper-theme-value="system"] {
-    color: var(--vesper-icon-primary);
+    color: var(--vesper-color-icon-primary);
   }
 }
 
 html[data-vesper-theme="light"] {
   .vesper-theme-switcher-button[data-vesper-theme-value="light"] {
-    color: var(--vesper-icon-primary);
+    color: var(--vesper-color-icon-primary);
   }
   .vesper-theme-switcher-indicator {
     left: calc(50% - (var(--theme-switcher-size) / 2));
@@ -80,7 +82,7 @@ html[data-vesper-theme="light"] {
 
 html[data-vesper-theme="dark"] {
   .vesper-theme-switcher-button[data-vesper-theme-value="dark"] {
-    color: var(--vesper-icon-primary);
+    color: var(--vesper-color-icon-primary);
   }
   .vesper-theme-switcher-indicator {
     left: calc(100% - var(--theme-switcher-size));

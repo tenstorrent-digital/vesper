@@ -78,6 +78,18 @@
       // failure in one task (e.g. format) doesn't hide the results of the other tasks
       "dependsOn": ["//#lint:root", "lint", "//#format", "check-types"]
     },
+    "generate:tailwind": {
+      "inputs": [
+        "$TURBO_ROOT$/packages/vesper/src/styles/**/*.css",
+        "$TURBO_ROOT$/packages/vesper/scripts/tailwind/**",
+        "$TURBO_ROOT$/packages/vesper/scripts/utils.ts"
+      ],
+      "outputs": [
+        "$TURBO_ROOT$/packages/vesper/src/styles/tailwind.css",
+        "$TURBO_ROOT$/packages/vesper/src/utils/tailwind-merge.ts",
+        "$TURBO_ROOT$/packages/vesper/src/utils/tailwind-merge.test.ts"
+      ]
+    },
     "quality:fix": {
       // similar to above, `quality:fix` uses `--continue=always` so that formatting
       // is still applied if `oxlint --fix` exits non-zero because some problems

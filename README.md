@@ -179,6 +179,105 @@ This updates the generated files in `src/components/icons/`, including:
 - the registry used by `@tenstorrent/vesper/icon`
 - the tree-shakeable barrel used by `@tenstorrent/vesper/icons`
 
+### Regenerating the Tailwind theme and tailwind-merge plugin
+
+Vesper's Tailwind support is generated from our css token files and custom Tailwind utility files. Paths in this section are relative to `packages/vesper/`. The generated files are:
+
+- `src/styles/tailwind.css` (exported as `@tenstorrent/vesper/tailwind.css`) - adds our css tokens to the Tailwind theme (eg. `bg-vesper-purple-300`) and imports our custom Tailwind utilities
+- `src/utils/tailwind-merge.ts` (exported as `@tenstorrent/vesper/tailwind-merge`) - `withVesper`, a `tailwind-merge` plugin that knows which vesper classes conflict with each other, and with Tailwind's own classes
+- `src/utils/tailwind-merge.test.ts` - tests for `withVesper`
+
+These files should not be updated by hand. Whenever you add, rename, or remove a css token or Tailwind utility, regenerate them and run the tests:
+
+```sh
+yarn generate:tailwind
+yarn test:vesper src/utils/tailwind-merge.test.ts
+```
+
+#### How the scripts work
+
+`yarn generate:tailwind` runs the scripts in [`scripts/tailwind/`](./packages/vesper/scripts/tailwind/). `generate-tailwind-theme.ts` writes `tailwind.css`, while `generate-tailwind-merge.ts` and `generate-tailwind-merge-test.ts` write the plugin and its tests.
+
+The scripts read two sets of files, listed in `scripts/tailwind/constants.ts`:
+
+- **CSS token files** (`TOKEN_FILE_NAMES`) in `src/styles/`
+- **Tailwind utility files** (`TAILWIND_UTILITY_FILE_NAMES`) in `src/styles/tailwind-utilities/`
+
+Files that aren't listed are ignored, even if they're in those folders.
+
+`scripts/tailwind/tailwind-merge-config.ts` tells the scripts how each listed file maps to `tailwind-merge`'s theme scales and class groups (see `tailwind-merge`'s [default config](https://github.com/dcastil/tailwind-merge/blob/main/packages/tailwind-merge/src/lib/default-config.ts)). Its types are checked against the lists in `constants.ts`, so when you add a file to either list, type errors in `tailwind-merge-config.ts` point to the config you need to add.
+
+> [!IMPORTANT]
+>
+> `yarn generate:tailwind` runs the scripts without type-checking them. If config is missing, the command still succeeds, but `withVesper` and its tests silently leave out the new classes. Please run `yarn check-types` (which type-checks `scripts/` with [`tsconfig.scripts.json`](./packages/vesper/tsconfig.scripts.json)) before regenerating.
+
+#### CSS token files
+
+Each css token file holds the tokens for one Tailwind [theme variable namespace](https://tailwindcss.com/docs/theme#theme-variable-namespaces), and is named after it. Every token is a css variable named `--vesper-{namespace}-{token}`. For example, `src/styles/radius.css` holds tokens for the `--radius-*` namespace:
+
+```css
+:root {
+  --vesper-radius-1: 0.25rem;
+  --vesper-radius-2: 0.5rem;
+}
+```
+
+The scripts treat every variable in a token file that starts with `--vesper-` as a token, and strip `--vesper-{namespace}-` to get the token's name (`--vesper-radius-2` becomes `2`), so please don't put any other `--vesper-*` variables in a token file. Declaring a token more than once (eg. for dark mode) is fine.
+
+`tailwind.css` adds each token to its namespace with a `vesper-` prefix, which gives us classes like `rounded-vesper-2`:
+
+```css
+@theme {
+  --radius-vesper-2: var(--vesper-radius-2);
+}
+```
+
+A token file can also hold a single token named after its namespace, without a `-{token}` suffix. For example, `src/styles/blur.css` declares `--vesper-blur`, which `tailwind.css` adds to the `--blur-*` namespace as `--blur-vesper`, giving us classes like `blur-vesper` and `backdrop-blur-vesper`.
+
+#### Tailwind utility files
+
+Each Tailwind utility file holds a group of custom utilities, written as `@utility` rules. For example, `src/styles/tailwind-utilities/dot-pattern.css`:
+
+```css
+@utility bg-vesper-dot-pattern-primary {
+  /* ... */
+}
+
+@utility bg-vesper-dot-pattern-* {
+  /* ... */
+  background-color: --value(--color-vesper-*);
+}
+```
+
+`withVesper` puts all of the utilities in a file into a single class group, which means:
+
+- Utilities in the same file override each other, so only group utilities that set the same css properties. Utilities that shouldn't override each other belong in separate files
+- Utilities in the same file should share a prefix (eg. `bg-vesper-dot-pattern`), which is used to name the class group (eg. `vesper.bg-vesper-dot-pattern`)
+- Utilities that take an argument (`*`) should only accept tokens from one namespace, using `--value(--{namespace}-vesper-*)`, so `withVesper` can check the argument against that namespace's tokens
+
+Utility files are imported by `tailwind.css`, so they don't need to be imported anywhere else.
+
+#### Adding a css token file
+
+1. Create `src/styles/{namespace}.css`, and declare each token as `--vesper-{namespace}-{token}`
+2. Import the new file in `src/styles/styles.css` under `/* css tokens */`, in the `vesper` layer like the other token files
+3. Add `{namespace}` to `TOKEN_FILE_NAMES` in `scripts/tailwind/constants.ts`
+4. Configure the namespace in `scripts/tailwind/tailwind-merge-config.ts`. Type errors will tell you which of these applies:
+   - If `tailwind-merge` has a theme scale with the same name (eg. `color`, `radius`, `spacing`), add `{namespace}` to `THEME_TOKEN_GROUPS`. Then, to test against, add a few utilities that use the namespace to `THEME_TOKEN_GROUP_UTILITIES` as `[utility, class group]` pairs, eg. `["rounded", "rounded"]`
+   - Otherwise, add an entry to `EXTENDED_CLASSGROUPS` with a `[class group, class prefix]` pair for every `tailwind-merge` class group whose classes use the namespace, eg. `["border-w-x", "border-x"]`
+5. Add an example Tailwind class to `CLASS_GROUP_SAMPLES` for every class group from step 4 that doesn't have one yet
+6. Check for type errors, then regenerate and run the tests
+
+#### Adding a Tailwind utility file
+
+1. Create `src/styles/tailwind-utilities/{name}.css` and write its `@utility` rules
+2. Add `{name}` to `TAILWIND_UTILITY_FILE_NAMES` in `scripts/tailwind/constants.ts`
+3. Add an entry for `{name}` to `CUSTOM_UTILITY_CLASSGROUPS` in `scripts/tailwind/tailwind-merge-config.ts`:
+   - `conflicts` - the `tailwind-merge` class groups for the css properties the utilities set. For example, the dot pattern utilities set the background color, image, position, and repeat, so they conflict with `bg-color`, `bg-image`, `bg-position`, and `bg-repeat`
+   - `argument` - the namespace that the utilities' `*` accepts tokens from, or `null` if none of the utilities take an argument
+4. Add an example Tailwind class to `CLASS_GROUP_SAMPLES` for every class group in `conflicts` that doesn't have one yet
+5. Check for type errors, then regenerate and run the tests
+
 ### Writing documentation
 
 Every component should have a corresponding documentation file in `docs/components`. If a component is missing documentation, you can scaffold the markdown file for its docs by running `yarn scaffold:documentation` from the workspace root. Doing so will create a new `{component-name}.mdx` file inside of `docs/components`, as well as update the component mappings in `apps/website/src/mdx-components.tsx`.

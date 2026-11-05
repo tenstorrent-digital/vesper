@@ -5,7 +5,8 @@
   align-items: center;
   width: fit-content;
   gap: var(--vesper-spacing-16);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-tertiary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-tertiary);
   border-radius: var(--vesper-radius-1);
   pre {
     margin: 0;
@@ -23,10 +24,10 @@
   }
 }
 .vesper-snippet-default {
-  background: var(--vesper-background-tertiary);
-  color: var(--vesper-text-primary);
+  background: var(--vesper-color-background-tertiary);
+  color: var(--vesper-color-text-primary);
 }
 .vesper-snippet-contrast {
-  background: var(--vesper-background-inverse-primary);
-  color: var(--vesper-text-inverse-primary);
+  background: var(--vesper-color-background-inverse-primary);
+  color: var(--vesper-color-text-inverse-primary);
 }

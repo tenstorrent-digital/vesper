@@ -120,7 +120,10 @@ describe("badge [a11y]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
-      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
     });
 
     afterEach(() => {
@@ -131,7 +134,9 @@ describe("badge [a11y]", () => {
     BADGE_PERMUTATIONS.forEach((permutation) => {
       const { size, variant, subtle } = permutation;
 
-      test(`wcag2aa (${variant}, ${size},${subtle ? " subtle," : ""} ${theme})`, async () => {
+      test(`wcag2aa (${variant}, ${size},${
+        subtle ? " subtle," : ""
+      } ${theme})`, async () => {
         const result = render(<Badge {...permutation}>Badge Text</Badge>);
 
         expect(await axe.run(result.container)).toHaveNoViolations();
@@ -146,7 +151,10 @@ describe("badge [a11y, high contrast]", () => {
   describe.each(["light", "dark"] as const)("theme: %s", (theme) => {
     beforeEach(() => {
       document.documentElement.setAttribute("data-vesper-theme", theme);
-      document.body.style.setProperty("background", "var(--vesper-stone-0)");
+      document.body.style.setProperty(
+        "background",
+        "var(--vesper-color-stone-0)",
+      );
     });
 
     afterEach(() => {

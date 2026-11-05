@@ -53,8 +53,9 @@
   flex-direction: column;
   gap: var(--vesper-spacing-6);
   width: min(calc(100vw - var(--vesper-spacing-12)), 32.5rem);
-  background: var(--vesper-background-primary);
-  border: var(--vesper-stroke-base) solid var(--vesper-border-primary);
+  background: var(--vesper-color-background-primary);
+  border: var(--vesper-border-width-base) solid
+    var(--vesper-color-border-primary);
   border-radius: var(--vesper-radius-3);
   position: fixed;
   top: var(--vesper-spacing-6);
@@ -69,7 +70,7 @@
     transform: translateX(0);
   }
   &::before {
-    background: var(--vesper-scrim-contrast-base);
+    background: var(--vesper-color-scrim-contrast-base);
   }
 }
 
@@ -123,18 +124,18 @@
 }
 
 .vesper-sheet-title {
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
 }
 
 .vesper-sheet-description {
-  color: var(--vesper-text-secondary);
+  color: var(--vesper-color-text-secondary);
 }
 
 .vesper-sheet-children {
   padding: 0 var(--vesper-spacing-6);
   overflow-y: auto;
   flex: 1;
-  color: var(--vesper-text-primary);
+  color: var(--vesper-color-text-primary);
 }
 
 .vesper-sheet-buttons {
