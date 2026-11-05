@@ -39,7 +39,7 @@ type InteractiveMaterialProps = {
   /** Must be set to `"interactive"` to enable interactive states such as active, selected, and disabled. */
   variant: Extract<MaterialVariant, "interactive">;
   /** The current interaction state of the material surface. Only applicable when `variant` is `"interactive"`. */
-  state?: InteractiveMaterialState;
+  state?: InteractiveMaterialState | null | false;
 };
 
 type BaseMaterialProps = NonInteractiveMaterialProps | InteractiveMaterialProps;
