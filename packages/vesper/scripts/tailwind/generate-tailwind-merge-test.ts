@@ -1,13 +1,12 @@
 import fs from "node:fs/promises";
 
-import type {
-  ClassGroupTokenGroup,
-  SampleClassGroupIds,
-  TokenGroupName,
-  UtilityGroupName,
-} from "./types";
+import type { SampleClassGroupIds, TokenGroupName } from "./types";
 
-import { getGeneratedCodeWarning, resolvePackagePath } from "../utils";
+import {
+  getGeneratedCodeWarning,
+  resolvePackagePath,
+  typedEntries,
+} from "../utils";
 import { TOKEN_VARIABLE_GROUPS, TAILWIND_UTILITY_GROUPS } from "./constants";
 import {
   CLASS_GROUP_SAMPLES,
@@ -95,10 +94,8 @@ const createThemeTests = () =>
  * would assert that `vesper-border-strong` conflicts with `border-2`, etc.
  */
 const createClassGroupTests = () =>
-  Object.entries(EXTENDED_CLASSGROUPS)
-    .map(([key, properties]) => {
-      const tokenGroup = key as ClassGroupTokenGroup;
-
+  typedEntries(EXTENDED_CLASSGROUPS)
+    .map(([tokenGroup, properties]) => {
       const tests = properties.map(([classGroup, utility]) =>
         createTokenConflictTests(tokenGroup, utility, classGroup),
       );
@@ -116,9 +113,8 @@ const createClassGroupTests = () =>
  *    (ie. `bg-vesper-dot-pattern-*` overrides `bg-color`, but not the other way around)
  */
 const createCustomUtilityTests = () =>
-  Object.entries(CUSTOM_UTILITY_CLASSGROUPS)
-    .map(([key, metadata]) => {
-      const group = key as UtilityGroupName;
+  typedEntries(CUSTOM_UTILITY_CLASSGROUPS)
+    .map(([group, metadata]) => {
       const id = getVesperUtilityGroupId(group);
       const { argument } = metadata;
 

@@ -2,18 +2,22 @@ import type { DefaultClassGroupIds } from "tailwind-merge";
 
 import fs from "node:fs/promises";
 
-import { getGeneratedCodeWarning, resolvePackagePath } from "../utils";
-import { TOKEN_VARIABLE_GROUPS, TAILWIND_UTILITY_GROUPS } from "./constants";
+import {
+  getGeneratedCodeWarning,
+  resolvePackagePath,
+  typedEntries,
+} from "../utils";
+import {
+  TAILWIND_UTILITY_FILE_NAMES,
+  TAILWIND_UTILITY_GROUPS,
+  TOKEN_VARIABLE_GROUPS,
+} from "./constants";
 import {
   CUSTOM_UTILITY_CLASSGROUPS,
   EXTENDED_CLASSGROUPS,
   THEME_TOKEN_GROUPS,
 } from "./tailwind-merge-config";
-import {
-  ClassGroupTokenGroup,
-  UtilityGroupName,
-  TokenGroupName,
-} from "./types";
+import { TokenGroupName } from "./types";
 import { getVesperUtilityGroupId } from "./utils";
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning(
@@ -32,9 +36,9 @@ const OUTPUT_FILE = "./src/utils/tailwind-merge.ts";
  * ```
  */
 const createVesperClassGroupIds = () => {
-  const ids = Object.keys(TAILWIND_UTILITY_GROUPS)
-    .map((group) => `"${getVesperUtilityGroupId(group as UtilityGroupName)}"`)
-    .join(" | ");
+  const ids = TAILWIND_UTILITY_FILE_NAMES.map(
+    (group) => `"${getVesperUtilityGroupId(group)}"`,
+  ).join(" | ");
 
   return `type VesperClassGroupIds = ${ids}`;
 };
@@ -156,26 +160,21 @@ const createExtendedTheme = () => {
  * ```
  */
 const createExtendedClassGroups = () => {
-  const groups: {
-    [K in DefaultClassGroupIds]?: string[];
-  } = {};
+  const groups = new Map<DefaultClassGroupIds, string[]>();
 
-  for (const key in EXTENDED_CLASSGROUPS) {
-    const group = key as ClassGroupTokenGroup;
-
-    EXTENDED_CLASSGROUPS[group].forEach(([id, mapping]) => {
+  for (const [group, mappings] of typedEntries(EXTENDED_CLASSGROUPS)) {
+    mappings.forEach(([id, mapping]) => {
       const definitions = createTokenClassDefinitions(
         group,
         `${mapping}-vesper`,
       );
-      groups[id] = (groups[id] ?? []).concat(definitions);
+      groups.set(id, (groups.get(id) ?? []).concat(definitions));
     });
   }
 
   const result: string[] = [];
-  for (const group in groups) {
-    const id = group as DefaultClassGroupIds;
-    result.push(`"${id}": [${(groups[id] ?? []).join(", ")}]`);
+  for (const [id, definitions] of groups) {
+    result.push(`"${id}": [${definitions.join(", ")}]`);
   }
   return result.join(", ");
 };
@@ -199,10 +198,8 @@ const createExtendedClassGroups = () => {
  * ```
  */
 const createCustomUtilityClassGroups = () => {
-  const entries = Object.entries(CUSTOM_UTILITY_CLASSGROUPS).map(
-    ([key, metadata]) => {
-      const group = key as UtilityGroupName;
-
+  const entries = typedEntries(CUSTOM_UTILITY_CLASSGROUPS).map(
+    ([group, metadata]) => {
       const id = getVesperUtilityGroupId(group);
 
       const classGroups = TAILWIND_UTILITY_GROUPS[group]
@@ -233,10 +230,8 @@ const createCustomUtilityClassGroups = () => {
  * ```
  */
 const createConflictingClassGroups = () => {
-  const entries = Object.entries(CUSTOM_UTILITY_CLASSGROUPS).map(
-    ([key, metadata]) => {
-      const group = key as UtilityGroupName;
-
+  const entries = typedEntries(CUSTOM_UTILITY_CLASSGROUPS).map(
+    ([group, metadata]) => {
       const id = getVesperUtilityGroupId(group);
       return `"${id}": ${JSON.stringify(metadata.conflicts)}`;
     },

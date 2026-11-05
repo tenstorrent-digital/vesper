@@ -10,7 +10,7 @@ import type {
   TokenGroupName,
 } from "./types";
 
-import { resolvePackagePath } from "../utils";
+import { objectFromKeys, resolvePackagePath } from "../utils";
 import {
   TAILWIND_UTILITY_FILE_NAMES,
   TAILWIND_UTILITY_GROUPS,
@@ -58,9 +58,10 @@ export const getTailwindUtilityGroups = (): Record<
   UtilityGroupName,
   UtilityData[]
 > => {
-  const utilities = Object.fromEntries<UtilityData[]>(
-    TAILWIND_UTILITY_FILE_NAMES.map((group) => [group, []]),
-  ) as Record<UtilityGroupName, UtilityData[]>;
+  const utilities = objectFromKeys(
+    TAILWIND_UTILITY_FILE_NAMES,
+    (): UtilityData[] => [],
+  );
 
   for (const group of TAILWIND_UTILITY_FILE_NAMES) {
     const filename = `./src/styles/tailwind-utilities/${group}.css` as const;
@@ -129,9 +130,7 @@ export const getTokenVariableGroups = (): Record<
   TokenGroupName,
   TokenData[]
 > => {
-  const variables = Object.fromEntries<TokenData[]>(
-    TOKEN_FILE_NAMES.map((group) => [group, []]),
-  ) as Record<TokenGroupName, TokenData[]>;
+  const variables = objectFromKeys(TOKEN_FILE_NAMES, (): TokenData[] => []);
 
   for (const group of TOKEN_FILE_NAMES) {
     const filename = `./src/styles/${group}.css` as const;
