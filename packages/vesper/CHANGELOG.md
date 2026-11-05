@@ -1,5 +1,30 @@
 # @tenstorrent/vesper
 
+## 0.5.2
+
+### Patch Changes
+
+- 66ec988: Remove the `maxHeight`, `buttons`, `buttonsAlignment`, and `form` props from `Modal`. Consumers now compose a modal's content themselves by rendering it as children:
+
+  - Instead of `buttons`/`buttonsAlignment`, render `Button` components inside the modal and lay them out as needed
+  - Instead of `form`, render a `<form>` element inside the modal, with the form's fields and buttons inside it
+  - Instead of `maxHeight`, wrap long content in an element with its own `maxHeight` and `overflowY: "auto"`. The modal now grows to fit its content, and its body no longer scrolls on its own
+
+- 1577cd9: Add a `dismissible` prop to the `Modal` component. When set to `false`, the user can't dismiss the modal: pressing `Escape` and clicking the backdrop are ignored, and the close button in the header is disabled. This is useful for critical flows, such as while a form is submitting. The modal can still be closed programmatically with `close()`.
+- 0016e64: Renamed CSS tokens (Tailwind class names are unchanged):
+
+  - Color tokens now have a `--vesper-color-` prefix (eg. `--vesper-stone-500` is now `--vesper-color-stone-500`, and `--vesper-background-primary` is now `--vesper-color-background-primary`)
+  - `--vesper-stroke-base` and `--vesper-stroke-strong` are replaced by `--vesper-border-width-base` and `--vesper-border-width-strong` for borders, and `--vesper-outline-width-base` and `--vesper-outline-width-strong` for outlines
+
+- e9b515f: Adjust `button` component styling to prevent layout shift when toggling between a disabled and non-disabled variant
+- 0a504ea: Fix bug where `switch` was not animating its background color correctly when flipped on
+- 2c3f125: Update `Material` to accept `false` and `null` values for its `state` prop.
+- 15cec00: Update `toggle` styles to allow rendering it at arbitrary widths while having toggle occupy available space
+- 1bf3f2b: Add a `Table` component, available from `@tenstorrent/vesper/table`. It renders a styled native `<table>` element, and styles any `<thead>`, `<tbody>`, `<tr>`, `<th>`, and `<td>` elements placed inside it.
+- 226e7e6: Widen the `title` prop type in `Accordion` from `string` to `ReactNode`
+- a46041e: Add alternate sets of semantic tokens for high contrast mode
+- 0016e64: Added `withVesper`, a `tailwind-merge` plugin exported from `@tenstorrent/vesper/tailwind-merge`. Pass it to `extendTailwindMerge` (eg. `extendTailwindMerge(withVesper)`) to resolve conflicts between Vesper's Tailwind classes and Tailwind's own classes. `tailwind-merge` (`^3.0.0`) is an optional peer dependency, which you only need to install to use `withVesper`.
+
 ## 0.5.1
 
 ### Patch Changes
