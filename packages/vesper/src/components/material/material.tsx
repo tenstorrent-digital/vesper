@@ -18,6 +18,7 @@ export const MATERIAL_VARIANTS = [
 ] as const;
 
 export const INTERACTIVE_MATERIAL_STATES = [
+  "neutral",
   "disabled",
   "active",
   "selected",
@@ -76,7 +77,7 @@ export function Material<E extends ElementType = "div">(
     as: Component = "div",
     className,
     variant = "outlined",
-    state,
+    state = "neutral",
     ...rest
   } = props;
 

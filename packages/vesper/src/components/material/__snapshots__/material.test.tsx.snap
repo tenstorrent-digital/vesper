@@ -20,7 +20,7 @@ exports[`material [snapshot] > inset-strong 1`] = `
 
 exports[`material [snapshot] > interactive 1`] = `
 <div
-  class="vesper-material vesper-material-interactive"
+  class="vesper-material vesper-material-interactive vesper-material-neutral"
 />
 `;
 
@@ -35,6 +35,12 @@ exports[`material [snapshot] > interactive, disabled 1`] = `
   aria-disabled="true"
   class="vesper-material vesper-material-interactive vesper-material-disabled"
   tabindex="-1"
+/>
+`;
+
+exports[`material [snapshot] > interactive, neutral 1`] = `
+<div
+  class="vesper-material vesper-material-interactive vesper-material-neutral"
 />
 `;
 
