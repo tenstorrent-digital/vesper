@@ -2,4 +2,4 @@
 "@tenstorrent/vesper": patch
 ---
 
-Update `Material` to accept `"neutral"` as a value for its `state` prop.
+Update `Material` to accept `false` and `null` values for its `state` prop.

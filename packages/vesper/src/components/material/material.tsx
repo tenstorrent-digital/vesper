@@ -18,7 +18,6 @@ export const MATERIAL_VARIANTS = [
 ] as const;
 
 export const INTERACTIVE_MATERIAL_STATES = [
-  "neutral",
   "disabled",
   "active",
   "selected",
@@ -40,7 +39,7 @@ type InteractiveMaterialProps = {
   /** Must be set to `"interactive"` to enable interactive states such as active, selected, and disabled. */
   variant: Extract<MaterialVariant, "interactive">;
   /** The current interaction state of the material surface. Only applicable when `variant` is `"interactive"`. */
-  state?: InteractiveMaterialState;
+  state?: InteractiveMaterialState | null | false;
 };
 
 type BaseMaterialProps = NonInteractiveMaterialProps | InteractiveMaterialProps;
@@ -77,7 +76,7 @@ export function Material<E extends ElementType = "div">(
     as: Component = "div",
     className,
     variant = "outlined",
-    state = "neutral",
+    state,
     ...rest
   } = props;
 
