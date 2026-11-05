@@ -23,7 +23,7 @@
 - 1bf3f2b: Add a `Table` component, available from `@tenstorrent/vesper/table`. It renders a styled native `<table>` element, and styles any `<thead>`, `<tbody>`, `<tr>`, `<th>`, and `<td>` elements placed inside it.
 - 226e7e6: Widen the `title` prop type in `Accordion` from `string` to `ReactNode`
 - a46041e: Add alternate sets of semantic tokens for high contrast mode
-- 0016e64: Added `withVesper`, a `tailwind-merge` plugin exported from `@tenstorrent/vesper/tailwind-merge`. Pass it to `extendTailwindMerge` (eg. `extendTailwindMerge(withVesper)`) to resolve conflicts between Vesper's Tailwind classes and Tailwind's own classes. `tailwind-merge` (`^3.0.0`) is an optional peer dependency, which you only need to install to use `withVesper`.
+- 0016e64: Added `withVesper`, a `tailwind-merge` plugin exported from `@tenstorrent/vesper/tailwind-merge`. Pass it to `extendTailwindMerge` (eg. `extendTailwindMerge(withVesper)`) to resolve conflicts between Vesper's Tailwind classes and Tailwind's own classes. `tailwind-merge` (`^3.6.0`) is an optional peer dependency, which you only need to install to use `withVesper`.
 
 ## 0.5.1
 
