@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  // type-checks the node scripts in `scripts/` (run with `tsx`, which strips
+  // types without checking them), with settings that match how they run
+  "extends": "@repo/typescript-config/base.json",
+  "include": ["scripts"],
+  "compilerOptions": {
+    // `tsx` resolves extensionless relative imports (eg. `./utils`) like a bundler
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    // the scripts run on the node version in `.nvmrc` (node 24), which supports
+    // ES2025, but editors that bundle TypeScript 5.x (eg. VS Code) reject
+    // `es2025`, then ignore `lib` (and its exclusion of `DOM`) altogether.
+    // `es2024` is the newest value both accept. `DOM` is left out so browser
+    // globals (eg. `document`) are errors
+    "lib": ["es2024"],
+    // (type-check only)
+    "noEmit": true
+    // `paths` (eg. `@/*`) are deliberately left out, since `tsx` can't resolve
+    // them when running the scripts
+  }
+}

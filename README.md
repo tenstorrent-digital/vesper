@@ -209,7 +209,7 @@ Files that aren't listed are ignored, even if they're in those folders.
 
 > [!IMPORTANT]
 >
-> `yarn check-types` doesn't type-check `scripts/`, and `yarn generate:tailwind` runs the scripts without type-checking them. If config is missing, the command still succeeds, but `withVesper` and its tests silently leave out the new classes. Please check the files in `scripts/tailwind/` for type errors in your editor before regenerating.
+> `yarn generate:tailwind` runs the scripts without type-checking them. If config is missing, the command still succeeds, but `withVesper` and its tests silently leave out the new classes. Please run `yarn check-types` (which type-checks `scripts/` with [`tsconfig.scripts.json`](./packages/vesper/tsconfig.scripts.json)) before regenerating.
 
 #### CSS token files
 
