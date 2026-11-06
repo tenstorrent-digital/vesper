@@ -111,5 +111,19 @@ body {
   }
   li {
     line-height: var(--vesper-leading-normal);
+
+    /**
+     * the items of a loose list (one with blank lines between its items) wrap
+     * their content in paragraphs, and `Typography`'s `white-space: pre-wrap`
+     * would render the line breaks between those paragraphs as blank lines
+     */
+    &:has(> p) {
+      white-space: normal;
+    }
+
+    /* and are spaced out a little more than the items of a tight list */
+    &:has(> p) + li {
+      margin-top: var(--vesper-spacing-2);
+    }
   }
 }
