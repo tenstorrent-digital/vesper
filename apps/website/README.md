@@ -38,6 +38,14 @@ yarn clean
 yarn clean-install
 ```
 
+### Changelog
+
+The changelog at `/changelog` is rendered from [`packages/vesper/CHANGELOG.md`](../../packages/vesper/CHANGELOG.md) as if it were a document in `docs/`, so it's listed in the sidebar, `/llms.txt`, and the sitemap, and its Markdown is served at `/changelog.md`.
+
+Changesets writes that file, so it's never edited by hand. Instead, [`src/lib/mdx/remark-changelog.mts`](./src/lib/mdx/remark-changelog.mts) adapts it for the site when it's rendered: it links each change to its commit on GitHub and sizes the avatars in it.
+
+See also [`src/lib/changelog.mts`](./src/lib/changelog.mts) and `EXTERNAL_DOCS` in [`src/lib/filesystem/docs/index.ts`](./src/lib/filesystem/docs/index.ts).
+
 ### Component demos
 
 A `tsx` code block in `docs/**` tagged `demo` is rendered as a live example directly above the code block itself, so an example and the code shown for it can never drift apart:

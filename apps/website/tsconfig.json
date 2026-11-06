@@ -20,7 +20,8 @@
     "allowImportingTsExtensions": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@docs/*": ["../../docs/*"] // monorepo docs
+      "@docs/*": ["../../docs/*"], // monorepo docs
+      "@packages/*": ["../../packages/*"] // monorepo packages (eg. the vesper changelog)
     },
     "jsx": "react-jsx",
     "incremental": true,

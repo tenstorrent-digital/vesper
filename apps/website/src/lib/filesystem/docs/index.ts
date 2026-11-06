@@ -1,7 +1,14 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import type { DocEntry, DocExtension, DocGroup } from "./types";
+import {
+  CHANGELOG_DESCRIPTION,
+  CHANGELOG_PATH,
+  CHANGELOG_SLUG,
+  CHANGELOG_TITLE,
+} from "@/lib/changelog.mts";
+
+import type { DocEntry, DocExtension, DocGroup, ExternalDoc } from "./types";
 
 import { readFrontmatter, stripFrontmatter } from "./frontmatter";
 import { getTOC } from "./toc";
@@ -14,11 +21,28 @@ const DOCS_DIR = path.join(
 );
 
 /**
+ * docs rendered on the site from outside of `docs/`, keyed by their path
+ *
+ * NOTE: each of these also has to be imported by `loadDoc` (in `./load.ts`)
+ */
+const EXTERNAL_DOCS: Record<string, ExternalDoc> = {
+  [CHANGELOG_PATH]: {
+    slug: CHANGELOG_SLUG,
+    frontmatter: {
+      title: CHANGELOG_TITLE,
+      description: CHANGELOG_DESCRIPTION,
+      // list releases only (not their "Patch Changes", "Minor Changes", etc.)
+      maxTocDepth: 2,
+    },
+  },
+};
+
+/**
  * returns an array of absolute paths pointing to files on disk that
  * should be compiled to a `DocEntry` and rendered on the docs website
  */
-const getDocsPaths = () =>
-  fs
+const getDocsPaths = () => [
+  ...fs
     .readdirSync(DOCS_DIR, { withFileTypes: true, recursive: true })
     .filter(
       (entry) =>
@@ -26,10 +50,13 @@ const getDocsPaths = () =>
         entry.name.toLowerCase() !== "readme.md" &&
         /\.(md|mdx)$/.test(entry.name),
     )
-    .map((entry) => path.join(entry.parentPath, entry.name));
+    .map((entry) => path.join(entry.parentPath, entry.name)),
+  ...Object.keys(EXTERNAL_DOCS),
+];
 
 /** extracts a doc's slug from its filesystem path */
 const getDocSlug = (docPath: string) =>
+  EXTERNAL_DOCS[docPath]?.slug ??
   path
     .relative(DOCS_DIR, docPath)
     .replace(/\.[^/.]+$/, "")
@@ -45,15 +72,17 @@ const getRawDoc = (docPath: string) =>
 
 /** given a path to a doc, parses the doc into a `DocEntry` */
 export const parseDoc = (docPath: string): DocEntry => {
+  const external = EXTERNAL_DOCS[docPath];
+
   const slug = getDocSlug(docPath);
   const ext = getDocExt(docPath);
   const raw = getRawDoc(docPath);
   const markdown = stripFrontmatter(raw);
-  const frontmatter = readFrontmatter(raw);
-  const toc = getTOC(markdown, ext);
+  const frontmatter = { ...readFrontmatter(raw), ...external?.frontmatter };
+  const toc = getTOC(markdown, ext, frontmatter.maxTocDepth);
   const href = `/${slug.join("/")}`;
 
-  return { toc, slug, ext, markdown, frontmatter, href };
+  return { path: docPath, toc, slug, ext, markdown, frontmatter, href };
 };
 
 /**

@@ -31,7 +31,8 @@
       "inputs": [
         "$TURBO_DEFAULT$",
         ".env*",
-        "$TURBO_ROOT$/docs/**" // monorepo docs
+        "$TURBO_ROOT$/docs/**", // monorepo docs
+        "$TURBO_ROOT$/packages/vesper/CHANGELOG.md" // rendered at `/changelog`
       ],
       // `.next/dev` is written by `next dev`, not `next build`
       "outputs": [".next/**", "!.next/cache/**", "!.next/dev/**"],

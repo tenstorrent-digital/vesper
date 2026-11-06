@@ -155,30 +155,48 @@ const components = {
 
     return <CodeBlock lang={resolvedLang}>{code}</CodeBlock>;
   },
-  img: ({ src, alt, width, height, ...props }) => (
-    <Image
-      src={src ?? ""}
-      alt={alt ?? ""}
-      /**
-       * Note - markdown images (`![alt](src)`) can't declare dimensions, but
-       * `next/image` requires width and height
-       *
-       * for now, falling back to `0` alongside `sizes` allows next/image to
-       * render images, but they are full width
-       *
-       * we will need to think through a better implementation here later that supports
-       * both:
-       *
-       * 1. relative image _files_ (either in inside `docs/assets/**` or similar)
-       * 2. relative image _urls_
-       */
-      width={Number(width) || 0}
-      height={Number(height) || 0}
-      sizes="100vw"
-      className="h-auto w-full max-w-full"
-      {...props}
-    />
-  ),
+  img: ({ src, alt, width, height, ...props }) =>
+    /**
+     * remote images (eg. the avatars in the changelog) can be hosted anywhere,
+     * and `next/image` only loads images from hosts listed in `next.config.ts`
+     * so they render as plain images at their own size instead
+     */
+    typeof src === "string" && /^https?:\/\//.test(src) ? (
+      // `next/image` can't load these (see above)
+      // oxlint-disable-next-line nextjs/no-img-element
+      <img
+        src={src}
+        alt={alt ?? ""}
+        width={width}
+        height={height}
+        loading="lazy"
+        className="inline-block h-auto max-w-full"
+        {...props}
+      />
+    ) : (
+      <Image
+        src={src ?? ""}
+        alt={alt ?? ""}
+        /**
+         * Note - markdown images (`![alt](src)`) can't declare dimensions, but
+         * `next/image` requires width and height
+         *
+         * for now, falling back to `0` alongside `sizes` allows next/image to
+         * render images, but they are full width
+         *
+         * we will need to think through a better implementation here later that supports
+         * both:
+         *
+         * 1. relative image _files_ (either in inside `docs/assets/**` or similar)
+         * 2. relative image _urls_
+         */
+        width={Number(width) || 0}
+        height={Number(height) || 0}
+        sizes="100vw"
+        className="h-auto w-full max-w-full"
+        {...props}
+      />
+    ),
   li: (props) => <Typography {...props} as="li" variant="copy-md" />,
   /**
    * `overflow` is ignored on `display: table`, so we wrap it in a scroll container

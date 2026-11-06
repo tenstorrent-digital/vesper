@@ -13,6 +13,8 @@ Documents in `docs/` map directly to pages on the documentation site in `@apps/w
 
 It should be noted that `docs/README.{md,mdx}` (this file) is excluded from the documentation site
 
+The changelog at `/changelog` isn't in `docs/`: it's rendered from [`packages/vesper/CHANGELOG.md`](/packages/vesper/CHANGELOG.md), which changesets writes when a release is versioned
+
 > [!IMPORTANT]
 >
 > Page routes inside `apps/website/src/app` (like `/components`) will take precedence over any files in `docs/`
@@ -26,6 +28,7 @@ It should be noted that `docs/README.{md,mdx}` (this file) is excluded from the 
 title: Accordion
 description: A collapsible content panel
 order: 1 # optional
+maxTocDepth: 2 # optional, deepest heading level listed in "On this page"
 ---
 ```
 

@@ -113,6 +113,12 @@ const withMDX = createMDX({
       path.join(appRoot, "src/lib/mdx/remark-blockquote-alerts.mts"),
 
       /**
+       * adapts `packages/vesper/CHANGELOG.md` (rendered at `/changelog`) to
+       * the site: links its commits to github and sizes its avatars
+       */
+      path.join(appRoot, "src/lib/mdx/remark-changelog.mts"),
+
+      /**
        * keeps text written inside a JSX element from being parsed as markdown
        * flow, so `<Typography>`/`<Accordion>`/`<Admonition>`/etc. render their
        * children as-is instead of wrapping them in a paragraph (which

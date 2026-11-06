@@ -19,3 +19,24 @@ export const getMarkdownParser = (filetype: DocExtension) =>
 
 export const getHeadingId = (text: string) =>
   slugify(text, { lower: true, strict: true });
+
+/**
+ * creates a `getHeadingId` for one document that keeps every id unique,
+ * suffixing repeated ids the same way github does (eg. a changelog's
+ * `patch-changes`, `patch-changes-1`, `patch-changes-2`)
+ *
+ * headings have to be passed in document order
+ */
+export const createUniqueHeadingId = () => {
+  const ids = new Set<string>();
+
+  return (text: string) => {
+    const base = getHeadingId(text);
+
+    let id = base;
+    for (let count = 1; ids.has(id); count++) id = `${base}-${count}`;
+
+    ids.add(id);
+    return id;
+  };
+};
