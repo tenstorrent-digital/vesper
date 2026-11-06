@@ -28,6 +28,7 @@ const EXTERNAL_DOCS: Record<string, ExternalDoc> = {
   [CHANGELOG_PATH]: {
     slug: CHANGELOG_SLUG,
     frontmatter: {
+      title: "Changelog",
       description: CHANGELOG_DESCRIPTION,
       // list releases only (not their "Patch Changes", "Minor Changes", etc.)
       maxTocDepth: 2,
