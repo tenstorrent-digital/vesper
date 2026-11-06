@@ -28,6 +28,10 @@ export const CHANGELOG_PATH = path.resolve(
 /** route the changelog is rendered at */
 export const CHANGELOG_SLUG = ["changelog"];
 
+/** (frontmatter) title for the page - used for meta, sidebar, etc */
+export const CHANGELOG_TITLE = "Changelog";
+
+/** (frontmatter) description of the page */
 export const CHANGELOG_DESCRIPTION =
   "Release notes for every published version of @tenstorrent/vesper";
 

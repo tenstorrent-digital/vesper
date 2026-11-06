@@ -5,6 +5,7 @@ import {
   CHANGELOG_DESCRIPTION,
   CHANGELOG_PATH,
   CHANGELOG_SLUG,
+  CHANGELOG_TITLE,
 } from "@/lib/changelog.mts";
 
 import type { DocEntry, DocExtension, DocGroup, ExternalDoc } from "./types";
@@ -28,7 +29,7 @@ const EXTERNAL_DOCS: Record<string, ExternalDoc> = {
   [CHANGELOG_PATH]: {
     slug: CHANGELOG_SLUG,
     frontmatter: {
-      title: "Changelog",
+      title: CHANGELOG_TITLE,
       description: CHANGELOG_DESCRIPTION,
       // list releases only (not their "Patch Changes", "Minor Changes", etc.)
       maxTocDepth: 2,
