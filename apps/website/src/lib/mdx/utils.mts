@@ -27,7 +27,7 @@ export const getHeadingId = (text: string) =>
  *
  * headings have to be passed in document order
  */
-export const createUniqueHeadingIds = () => {
+export const createUniqueHeadingId = () => {
   const ids = new Set<string>();
 
   return (text: string) => {
