@@ -46,6 +46,8 @@ const linkCommit = (node: Nodes) => {
       url: `${REPOSITORY_URL}/commit/${commit}`,
       title: `View commit ${commit} on GitHub`,
       children: [{ type: "inlineCode", value: commit }],
+      // styled in `src/lib/style/css/globals.css`
+      data: { hProperties: { dataCommit: true } },
     },
   );
 };
@@ -72,8 +74,8 @@ export default function remarkChangelog(): Transformer<Root> {
     const title = tree.children.find(
       (node) => node.type === "heading" && node.depth === 1,
     );
-    if (title?.type === "heading")
-      title.children = [{ type: "text", value: CHANGELOG_TITLE }];
+    // if (title?.type === "heading")
+    //   title.children = [{ type: "text", value: CHANGELOG_TITLE }];
 
     visit(tree, (node) => {
       linkCommit(node);

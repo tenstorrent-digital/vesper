@@ -126,4 +126,19 @@ body {
       margin-top: var(--vesper-spacing-2);
     }
   }
+
+  /* commits linked in the changelog (see `src/lib/mdx/remark-changelog.mts`) */
+  a[data-commit] {
+    text-decoration: none;
+
+    & > code {
+      color: var(--vesper-text-info);
+      background: var(--vesper-background-info-subtle);
+      border-color: var(--vesper-border-info-subtle);
+    }
+
+    &:hover > code {
+      text-decoration: underline;
+    }
+  }
 }
