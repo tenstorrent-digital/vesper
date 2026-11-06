@@ -1,11 +1,24 @@
 import { Heading } from "mdast";
 import { toString } from "mdast-util-to-string";
 
-import { getHeadingId, getMarkdownParser } from "@/lib/mdx/utils.mts";
+import { createHeadingIds, getMarkdownParser } from "@/lib/mdx/utils.mts";
 
 import type { DocExtension, TOCItem } from "./types";
 
-export const getTOC = (markdown: string, ext: DocExtension): TOCItem[] => {
+/**
+ * @param markdown - the doc's markdown, without frontmatter
+ * @param ext - the doc's extension
+ * @param maxDepth - (optional) deepest heading level to list
+ * @default 6
+ */
+export const getTOC = (
+  markdown: string,
+  ext: DocExtension,
+  maxDepth = 6,
+): TOCItem[] => {
+  // every heading gets an id (even unlisted ones) so ids match the rendered doc
+  const getHeadingId = createHeadingIds();
+
   return getMarkdownParser(ext)
     .parse(markdown)
     .children.filter((child): child is Heading => child.type === "heading")
@@ -14,5 +27,6 @@ export const getTOC = (markdown: string, ext: DocExtension): TOCItem[] => {
       const id = getHeadingId(text);
 
       return { id, text, depth: heading.depth };
-    });
+    })
+    .filter(({ depth }) => depth <= maxDepth);
 };
