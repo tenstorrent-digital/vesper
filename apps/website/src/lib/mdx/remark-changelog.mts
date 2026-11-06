@@ -45,8 +45,6 @@ const linkCommit = (node: Nodes) => {
       url: `${REPOSITORY_URL}/commit/${commit}`,
       title: `View commit ${commit} on GitHub`,
       children: [{ type: "inlineCode", value: commit }],
-      // styled in `src/lib/style/css/globals.css`
-      data: { hProperties: { dataCommit: true } },
     },
   );
 };
