@@ -5,8 +5,6 @@ import {
   CHANGELOG_DESCRIPTION,
   CHANGELOG_PATH,
   CHANGELOG_SLUG,
-  CHANGELOG_TITLE,
-  retitleChangelog,
 } from "@/lib/changelog.mts";
 
 import type { DocEntry, DocExtension, DocGroup, ExternalDoc } from "./types";
@@ -30,12 +28,10 @@ const EXTERNAL_DOCS: Record<string, ExternalDoc> = {
   [CHANGELOG_PATH]: {
     slug: CHANGELOG_SLUG,
     frontmatter: {
-      title: CHANGELOG_TITLE,
       description: CHANGELOG_DESCRIPTION,
       // list releases only (not their "Patch Changes", "Minor Changes", etc.)
       tocDepth: 2,
     },
-    transform: retitleChangelog,
   },
 };
 
@@ -79,8 +75,7 @@ export const parseDoc = (docPath: string): DocEntry => {
   const slug = getDocSlug(docPath);
   const ext = getDocExt(docPath);
   const raw = getRawDoc(docPath);
-  const stripped = stripFrontmatter(raw);
-  const markdown = external?.transform?.(stripped) ?? stripped;
+  const markdown = stripFrontmatter(raw);
   const frontmatter = { ...readFrontmatter(raw), ...external?.frontmatter };
   const toc = getTOC(markdown, ext, frontmatter.tocDepth);
   const href = `/${slug.join("/")}`;

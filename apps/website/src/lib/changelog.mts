@@ -3,8 +3,8 @@
  * `packages/vesper/CHANGELOG.md` and rendered on the site at `/changelog`
  *
  * the file is never edited by hand, so anything that only makes sense on the
- * site (its title, commit links, etc.) is applied here and by
- * `src/lib/mdx/remark-changelog.mts` instead of in the file itself
+ * site (commit links, etc.) is applied by `src/lib/mdx/remark-changelog.mts`
+ * instead of in the file itself
  *
  * this is loaded by node's type stripping (from the remark plugin), so it must
  * stay erasable syntax only and import other `.mts` files by their extension
@@ -28,8 +28,6 @@ export const CHANGELOG_PATH = path.resolve(
 /** route the changelog is rendered at */
 export const CHANGELOG_SLUG = ["changelog"];
 
-export const CHANGELOG_TITLE = "Changelog";
-
 export const CHANGELOG_DESCRIPTION =
   "Release notes for every published version of @tenstorrent/vesper";
 
@@ -43,11 +41,3 @@ export const REPOSITORY_URL = "https://github.com/tenstorrent-digital/vesper";
  */
 export const isChangelog = (filePath: string | undefined): boolean =>
   !!filePath && path.resolve(filePath) === CHANGELOG_PATH;
-
-/**
- * changesets titles the changelog after the package (`# @tenstorrent/vesper`)
- * and only ever writes new releases below that first line, so the title is
- * swapped out for the site rather than in the file
- */
-export const retitleChangelog = (markdown: string): string =>
-  markdown.replace(/^# .*$/m, `# ${CHANGELOG_TITLE}`);

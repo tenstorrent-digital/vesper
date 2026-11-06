@@ -114,7 +114,7 @@ const withMDX = createMDX({
 
       /**
        * adapts `packages/vesper/CHANGELOG.md` (rendered at `/changelog`) to
-       * the site: retitles it, links its commits to github, and sizes its avatars
+       * the site: links its commits to github and sizes its avatars
        */
       path.join(appRoot, "src/lib/mdx/remark-changelog.mts"),
 

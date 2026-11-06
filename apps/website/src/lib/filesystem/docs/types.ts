@@ -36,8 +36,6 @@ export interface ExternalDoc {
   slug: string[];
   /** merged over the doc's own frontmatter (if any) */
   frontmatter: Frontmatter;
-  /** adapts the doc's markdown (without frontmatter) for the site */
-  transform?: (markdown: string) => string;
 }
 
 export interface DocEntry {

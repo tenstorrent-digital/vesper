@@ -2,7 +2,6 @@
  * remark plugin that adapts the changelog of `@tenstorrent/vesper` (written by
  * changesets) to the site without changing the file itself
  *
- * - the title (`# @tenstorrent/vesper`) becomes "Changelog"
  * - the commit at the start of each change (eg. `ed0452c: `) moves to the end
  *   of the change as a link to that commit on github
  * - images render at avatar size (the only images in the changelog are its
@@ -16,7 +15,7 @@
 import type { Nodes, Root } from "mdast";
 import type { Transformer } from "unified";
 
-import { CHANGELOG_TITLE, isChangelog, REPOSITORY_URL } from "../changelog.mts";
+import { isChangelog, REPOSITORY_URL } from "../changelog.mts";
 
 /** a short (or full) commit hash at the start of a change, eg. `ed0452c: ` */
 const COMMIT_PREFIX = /^([0-9a-f]{7,40}): /;
@@ -70,12 +69,6 @@ const visit = (node: Nodes, visitor: (node: Nodes) => void): void => {
 export default function remarkChangelog(): Transformer<Root> {
   return (tree, file) => {
     if (!isChangelog(file.path)) return;
-
-    const title = tree.children.find(
-      (node) => node.type === "heading" && node.depth === 1,
-    );
-    // if (title?.type === "heading")
-    //   title.children = [{ type: "text", value: CHANGELOG_TITLE }];
 
     visit(tree, (node) => {
       linkCommit(node);
