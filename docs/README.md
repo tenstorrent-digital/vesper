@@ -28,7 +28,7 @@ The changelog at `/changelog` isn't in `docs/`: it's rendered from [`packages/ve
 title: Accordion
 description: A collapsible content panel
 order: 1 # optional
-tocDepth: 2 # optional, deepest heading level listed in "On this page"
+maxTocDepth: 2 # optional, deepest heading level listed in "On this page"
 ---
 ```
 

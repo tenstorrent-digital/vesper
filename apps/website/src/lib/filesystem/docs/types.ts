@@ -24,7 +24,7 @@ export interface Frontmatter {
    * deepest heading level listed in the doc's table of contents
    * @default 6
    */
-  tocDepth?: number;
+  maxTocDepth?: number;
 }
 
 /**

@@ -30,7 +30,7 @@ const EXTERNAL_DOCS: Record<string, ExternalDoc> = {
     frontmatter: {
       description: CHANGELOG_DESCRIPTION,
       // list releases only (not their "Patch Changes", "Minor Changes", etc.)
-      tocDepth: 2,
+      maxTocDepth: 2,
     },
   },
 };
@@ -77,7 +77,7 @@ export const parseDoc = (docPath: string): DocEntry => {
   const raw = getRawDoc(docPath);
   const markdown = stripFrontmatter(raw);
   const frontmatter = { ...readFrontmatter(raw), ...external?.frontmatter };
-  const toc = getTOC(markdown, ext, frontmatter.tocDepth);
+  const toc = getTOC(markdown, ext, frontmatter.maxTocDepth);
   const href = `/${slug.join("/")}`;
 
   return { path: docPath, toc, slug, ext, markdown, frontmatter, href };
