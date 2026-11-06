@@ -1,7 +1,7 @@
 import { Heading } from "mdast";
 import { toString } from "mdast-util-to-string";
 
-import { createHeadingIds, getMarkdownParser } from "@/lib/mdx/utils.mts";
+import { createUniqueHeadingIds, getMarkdownParser } from "@/lib/mdx/utils.mts";
 
 import type { DocExtension, TOCItem } from "./types";
 
@@ -17,7 +17,7 @@ export const getTOC = (
   maxDepth = 6,
 ): TOCItem[] => {
   // every heading gets an id (even unlisted ones) so ids match the rendered doc
-  const getHeadingId = createHeadingIds();
+  const getHeadingId = createUniqueHeadingIds();
 
   return getMarkdownParser(ext)
     .parse(markdown)
