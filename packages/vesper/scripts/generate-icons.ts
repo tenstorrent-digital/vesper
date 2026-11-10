@@ -17,6 +17,23 @@ const shouldPatchValue = (value: unknown) =>
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning("yarn generate:icons");
 
+const createJsDocComment = ({
+  example,
+  params,
+  preview,
+}: {
+  example: string;
+  preview?: string;
+  params?: string[];
+}) => `/**
+ * Vesper icon component. Renders an \`svg\` element with children, using \`"currentColor"\` as its default fill.
+${params ? [" *", ...params.map((param) => ` * ${param}`), " *"].join("\n") : " *"}
+ * Accepts any prop an \`svg\` element accepts.
+${preview ? ` *\n * @preview\n * ${preview}\n *` : " *"}
+ * @example
+ * ${example}
+ */`;
+
 // transform an svg file name into its kind, ie. user-multiple.svg → user-multiple
 const getIconKind = (fileName: string) => fileName.slice(0, -4);
 
@@ -122,6 +139,9 @@ const icons = iconFiles.map((fileName) => {
     throw new Error(`Failed to convert ${fileName} to JSX`);
   }
 
+  const base64 = btoa(decodeURIComponent(encodeURIComponent(optimizedSvg)));
+  const dataURI = `data:image/svg+xml;base64,${base64}`;
+
   // spread {...props} into the estree syntax tree's opening svg tag
   statement.expression.openingElement.attributes.push({
     type: "JSXSpreadAttribute",
@@ -134,7 +154,7 @@ const icons = iconFiles.map((fileName) => {
   // eg. `<svg {...props}>...</svg>;`
   const componentCode = toJs(estree, { handlers: jsx }).value;
 
-  return { kind, componentName, componentCode };
+  return { kind, componentName, componentCode, dataURI };
 });
 
 // remove existing files in icons component folder
@@ -150,11 +170,17 @@ fs.mkdirSync(resolvePackagePath(`./src/components/icons`), {
 
 // create an individual component file for each icon
 icons.forEach((icon) => {
+  const jsDocComment = createJsDocComment({
+    example: `<${icon.componentName} width={20} height={20} color="var(--vesper-color-icon-tertiary)" />`,
+    preview: `![Embedded ${icon.kind} icon](${icon.dataURI})`,
+  });
+
   const fileContents = `
 ${AUTO_GENERATED_WARNING}
 
 import type { ComponentProps } from 'react';
 
+${jsDocComment}
 export const ${icon.componentName} = (props: ComponentProps<'svg'>) => {
   return ${icon.componentCode}
 };
@@ -197,6 +223,11 @@ fs.writeFileSync(
     kind: IconKind;
   }
 
+  ${createJsDocComment({
+    params: ["@param {IconKind} props.kind - Which icon to dynamically render"],
+    example:
+      '<Icon kind="ai-model" width={20} height={20} color="var(--vesper-color-icon-tertiary)" />',
+  })}
   export function Icon({ kind, ...props }: IconProps) {
     const Component = registry[kind]
     if (!Component) return null
