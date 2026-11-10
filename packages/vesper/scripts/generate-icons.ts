@@ -17,6 +17,21 @@ const shouldPatchValue = (value: unknown) =>
 
 const AUTO_GENERATED_WARNING = getGeneratedCodeWarning("yarn generate:icons");
 
+const createJsDocComment = ({
+  example,
+  params,
+}: {
+  example: string;
+  params?: string[];
+}) => `/**
+ * Vesper SVG icon component. Renders an \`svg\` element with children, using \`"currentColor"\` as its default fill.
+${params ? [" *", ...params.map((param) => ` * ${param}`), " *"].join("\n") : " *"}
+ * Accepts any props an \`svg\` element accepts.
+ *
+ * @example
+ * ${example}
+ */`;
+
 // transform an svg file name into its kind, ie. user-multiple.svg → user-multiple
 const getIconKind = (fileName: string) => fileName.slice(0, -4);
 
@@ -150,11 +165,16 @@ fs.mkdirSync(resolvePackagePath(`./src/components/icons`), {
 
 // create an individual component file for each icon
 icons.forEach((icon) => {
+  const jsDocComment = createJsDocComment({
+    example: `<${icon.componentName} width={20} height={20} fill="var(--vesper-color-icon-tertiary)" />`,
+  });
+
   const fileContents = `
 ${AUTO_GENERATED_WARNING}
 
 import type { ComponentProps } from 'react';
 
+${jsDocComment}
 export const ${icon.componentName} = (props: ComponentProps<'svg'>) => {
   return ${icon.componentCode}
 };
@@ -197,6 +217,11 @@ fs.writeFileSync(
     kind: IconKind;
   }
 
+  ${createJsDocComment({
+    params: ["@param {IconKind} props.kind - Which icon to dynamically render"],
+    example:
+      '<Icon kind="ai-model" width={20} height={20} fill="var(--vesper-color-icon-tertiary)" />',
+  })}
   export function Icon({ kind, ...props }: IconProps) {
     const Component = registry[kind]
     if (!Component) return null
