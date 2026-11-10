@@ -16,6 +16,16 @@ export interface IconProps extends ComponentProps<"svg"> {
   kind: IconKind;
 }
 
+/**
+ * Vesper icon component. Renders an `svg` element with children, using `"currentColor"` as its default fill.
+ *
+ * @param {IconKind} props.kind - Which icon to dynamically render
+ *
+ * Accepts any prop an `svg` element accepts.
+ *
+ * @example
+ * <Icon kind="ai-model" width={20} height={20} color="var(--vesper-color-icon-tertiary)" />
+ */
 export function Icon({ kind, ...props }: IconProps) {
   const Component = registry[kind];
   if (!Component) return null;
