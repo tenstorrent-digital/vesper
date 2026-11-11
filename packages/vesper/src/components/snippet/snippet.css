@@ -1,33 +1,40 @@
 .vesper-snippet {
   position: relative;
   display: flex;
-  padding: var(--vesper-spacing-2) var(--vesper-spacing-3);
+  padding-right: var(--vesper-spacing-3);
   align-items: center;
+  justify-content: space-between;
   width: fit-content;
+  max-width: 100%;
   gap: var(--vesper-spacing-16);
   border: var(--vesper-border-width-base) solid
     var(--vesper-color-border-tertiary);
   border-radius: var(--vesper-radius-1);
-  pre {
+
+  .vesper-snippet-pre {
     margin: 0;
     outline: none;
+    min-width: 0;
+    overflow-x: auto;
+    padding: var(--vesper-spacing-2) 0 var(--vesper-spacing-2)
+      var(--vesper-spacing-3);
   }
-  code {
-    display: flex;
-    flex-direction: column;
-    gap: var(--vesper-spacing-1);
-  }
-  .line::before {
-    content: "$";
-    margin-right: var(--vesper-spacing-2);
-    user-select: none;
+
+  .vesper-snippet-code {
+    white-space: pre;
   }
 }
+
 .vesper-snippet-default {
   background: var(--vesper-color-background-tertiary);
   color: var(--vesper-color-text-primary);
 }
+
 .vesper-snippet-contrast {
   background: var(--vesper-color-background-inverse-primary);
   color: var(--vesper-color-text-inverse-primary);
+}
+
+.vesper-snippet-copy-button {
+  margin: var(--vesper-spacing-2) 0;
 }
