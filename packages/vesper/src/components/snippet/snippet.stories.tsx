@@ -17,6 +17,7 @@ export const Playground: Story = {
   args: {
     children: `cd tt-studio\nrun.py --dev --skip-fastapi`,
     variant: "default",
+    style: { width: "min(calc(100vw - 4rem), 400px)" },
   },
 };
 Playground.storyName = "snippet";

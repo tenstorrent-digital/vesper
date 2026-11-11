@@ -4,19 +4,17 @@ exports[`snippet [snapshot] > empty content 1`] = `
 <div
   class="vesper-snippet vesper-snippet-default"
 >
-  <pre>
+  <pre
+    class="vesper-snippet-pre"
+  >
     <code
-      class="vesper-typography vesper-typography-copy-xs-mono"
-    >
-      <span
-        class="line"
-      />
-    </code>
+      class="vesper-typography vesper-typography-copy-xs-mono vesper-snippet-code"
+    />
   </pre>
   <button
     aria-label="Copy to clipboard"
     aria-live="polite"
-    class="vesper-button vesper-button-xs vesper-button-ghost vesper-icon-button"
+    class="vesper-button vesper-button-xs vesper-button-ghost vesper-icon-button vesper-snippet-copy-button"
     type="button"
   >
     <span
@@ -41,26 +39,20 @@ exports[`snippet [snapshot] > multi-line content 1`] = `
 <div
   class="vesper-snippet vesper-snippet-default"
 >
-  <pre>
+  <pre
+    class="vesper-snippet-pre"
+  >
     <code
-      class="vesper-typography vesper-typography-copy-xs-mono"
+      class="vesper-typography vesper-typography-copy-xs-mono vesper-snippet-code"
     >
-      <span
-        class="line"
-      >
-        yarn install
-      </span>
-      <span
-        class="line"
-      >
-        yarn build
-      </span>
+      yarn install
+yarn build
     </code>
   </pre>
   <button
     aria-label="Copy to clipboard"
     aria-live="polite"
-    class="vesper-button vesper-button-xs vesper-button-ghost vesper-icon-button"
+    class="vesper-button vesper-button-xs vesper-button-ghost vesper-icon-button vesper-snippet-copy-button"
     type="button"
   >
     <span
@@ -85,21 +77,19 @@ exports[`snippet [snapshot] > variant: contrast 1`] = `
 <div
   class="vesper-snippet vesper-snippet-contrast"
 >
-  <pre>
+  <pre
+    class="vesper-snippet-pre"
+  >
     <code
-      class="vesper-typography vesper-typography-copy-xs-mono"
+      class="vesper-typography vesper-typography-copy-xs-mono vesper-snippet-code"
     >
-      <span
-        class="line"
-      >
-        yarn install
-      </span>
+      yarn install
     </code>
   </pre>
   <button
     aria-label="Copy to clipboard"
     aria-live="polite"
-    class="vesper-button vesper-button-xs vesper-button-contrast vesper-icon-button"
+    class="vesper-button vesper-button-xs vesper-button-contrast vesper-icon-button vesper-snippet-copy-button"
     type="button"
   >
     <span
@@ -124,21 +114,19 @@ exports[`snippet [snapshot] > variant: default 1`] = `
 <div
   class="vesper-snippet vesper-snippet-default"
 >
-  <pre>
+  <pre
+    class="vesper-snippet-pre"
+  >
     <code
-      class="vesper-typography vesper-typography-copy-xs-mono"
+      class="vesper-typography vesper-typography-copy-xs-mono vesper-snippet-code"
     >
-      <span
-        class="line"
-      >
-        yarn install
-      </span>
+      yarn install
     </code>
   </pre>
   <button
     aria-label="Copy to clipboard"
     aria-live="polite"
-    class="vesper-button vesper-button-xs vesper-button-ghost vesper-icon-button"
+    class="vesper-button vesper-button-xs vesper-button-ghost vesper-icon-button vesper-snippet-copy-button"
     type="button"
   >
     <span
