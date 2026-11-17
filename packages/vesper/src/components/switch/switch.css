@@ -7,6 +7,7 @@
 }
 
 .vesper-switch {
+  position: relative;
   display: flex;
   width: fit-content;
   align-items: center;
