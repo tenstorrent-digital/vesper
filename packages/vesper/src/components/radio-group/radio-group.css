@@ -13,6 +13,7 @@
 }
 
 .vesper-radio-group-item {
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--vesper-spacing-1);
@@ -23,6 +24,7 @@
 }
 
 .vesper-radio-group-item-indicator {
+  flex-shrink: 0;
   border-radius: 50%;
   border: var(--vesper-border-width-base) solid
     var(--vesper-color-border-primary);

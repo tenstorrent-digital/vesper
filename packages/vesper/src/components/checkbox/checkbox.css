@@ -1,4 +1,5 @@
 .vesper-checkbox {
+  position: relative;
   display: flex;
   width: fit-content;
   align-items: center;
@@ -14,6 +15,7 @@
 }
 
 .vesper-checkbox-box {
+  flex-shrink: 0;
   border-radius: var(--vesper-radius-half);
   border: var(--vesper-border-width-base) solid
     var(--vesper-color-border-primary);
