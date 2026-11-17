@@ -561,3 +561,11 @@ describe("select [a11y, high contrast]", () => {
     });
   });
 });
+
+// type-level assertions, verified by `yarn check-types`
+describe("select [types]", () => {
+  test("accepts readonly options", () => {
+    const options = [{ value: "lions", label: "Lions" }, "Tigers"] as const;
+    <Select options={options} />;
+  });
+});

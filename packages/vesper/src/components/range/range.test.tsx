@@ -461,3 +461,13 @@ describe("range [a11y, high contrast]", () => {
     });
   });
 });
+
+// type-level assertions, verified by `yarn check-types`
+describe("range [types]", () => {
+  test("accepts readonly values and labels", () => {
+    const values = [20, 80] as const;
+    const labels = ["Min", "Max"] as const;
+    <Range thumbAriaLabels={labels} values={values} valueLabels={labels} />;
+    <Range thumbAriaLabels={labels} defaultValues={values} />;
+  });
+});

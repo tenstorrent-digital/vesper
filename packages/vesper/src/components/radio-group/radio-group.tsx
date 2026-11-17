@@ -38,7 +38,7 @@ export interface RadioGroupProps extends Omit<
   /** When `true`, a selection is required for form validation. @default false */
   required?: boolean;
   /** The list of radio options to render. */
-  options: RadioGroupItem[];
+  options: readonly RadioGroupItem[];
   /** The name attribute shared by all radio inputs in the group, used for form submission. */
   name: string;
   /** The currently selected value (controlled mode). */
@@ -58,7 +58,7 @@ const RADIO_GROUP_ITEM_TYPOGRAPHY: { [S in RadioSize]: TypographyVariant } = {
  * A form-ready radio group component for single-value selection from a list of options.
  *
  * @param {string} props.name - The name attribute shared by all radio inputs, used for form submission
- * @param {RadioGroupItem[]} props.options - The list of radio options to render
+ * @param {readonly RadioGroupItem[]} props.options - The list of radio options to render
  * @param {RadioSize} [props.size] - (optional) The size of the radio inputs and labels. Default: `"md"`
  * @param {RadioGroupOrientation} [props.orientation] - (optional) The layout direction of the options. Default: `"vertical"`
  * @param {string} [props.value] - (optional) The currently selected value (controlled)

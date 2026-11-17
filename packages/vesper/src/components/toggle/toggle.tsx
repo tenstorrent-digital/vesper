@@ -47,7 +47,7 @@ export interface ToggleProps extends Omit<
   "children" | "role" | "dangerouslySetInnerHTML" | "dir"
 > {
   /** The list of toggle options to render. Each option can display either text or an icon. */
-  options: ToggleOption[];
+  options: readonly ToggleOption[];
   /** The size of the toggle and its options. Affects padding and typography. @default md */
   size?: ToggleSize;
   /** The currently selected value (controlled mode). */
@@ -80,7 +80,7 @@ const TOGGLE_TYPOGRAPHY: { [S in ToggleSize]: TypographyVariant } = {
  * @see packages/vesper/src/components/checkbox/checkbox.tsx
  * @see packages/vesper/src/components/switch/switch.tsx
  *
- * @param {ToggleOption[]} props.options - The list of toggle options to render
+ * @param {readonly ToggleOption[]} props.options - The list of toggle options to render
  * @param {ToggleSize} [props.size] - (optional) The size of the toggle. @default md
  * @param {string} [props.value] - (optional) The currently selected value (controlled)
  * @param {string} [props.defaultValue] - (optional) The initially selected value (uncontrolled)

@@ -665,3 +665,11 @@ describe("sheet [a11y, high contrast]", () => {
     });
   });
 });
+
+// type-level assertions, verified by `yarn check-types`
+describe("sheet [types]", () => {
+  test("accepts readonly buttons", () => {
+    const buttons = [{ children: "Cancel" }, { children: "Apply" }] as const;
+    <Sheet title="Filters" description="Filter results" buttons={buttons} />;
+  });
+});

@@ -367,3 +367,11 @@ describe("radio-group [a11y, high contrast]", () => {
     });
   });
 });
+
+// type-level assertions, verified by `yarn check-types`
+describe("radio-group [types]", () => {
+  test("accepts readonly options", () => {
+    const options = [{ value: "lions", label: "Lions" }] as const;
+    <RadioGroup name="animals" options={options} />;
+  });
+});

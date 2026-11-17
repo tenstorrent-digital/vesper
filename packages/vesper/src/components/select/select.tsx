@@ -54,7 +54,7 @@ export interface SelectProps extends FormInputProps<
   /** Placeholder text shown in the trigger when no value is selected. @default Select an option */
   placeholder?: string;
   /** The list of selectable options displayed in the dropdown */
-  options: (SelectItem | string)[];
+  options: readonly (SelectItem | string)[];
   /** The initial selected value for uncontrolled usage */
   defaultValue?: string | null;
   /** The currently selected value for controlled usage. Pass `null` to represent no selection. */
@@ -79,7 +79,7 @@ const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
  * - An optional leading icon
  * - Automatic portal handling for use inside dialogs
  *
- * @param {(SelectItem | string)[]} props.options - The list of selectable options displayed in the dropdown. See {@link SelectItem} for the shape of each option
+ * @param {readonly (SelectItem | string)[]} props.options - The list of selectable options displayed in the dropdown. See {@link SelectItem} for the shape of each option
  * @param {SelectSize} [props.size] - (optional) Size variant of the select trigger. Affects padding, height, and typography. @default md
  * @param {SelectVariant} [props.variant] - (optional) The visual variant determining color scheme and message icon. @default default
  * @param {string} [props.placeholder] - (optional) Placeholder text shown when no value is selected. @default Select an option

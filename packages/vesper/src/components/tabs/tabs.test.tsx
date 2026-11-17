@@ -508,3 +508,13 @@ describe("tabs [a11y, high contrast]", () => {
     });
   });
 });
+
+// type-level assertions, verified by `yarn check-types`
+describe("tabs [types]", () => {
+  test("accepts readonly items", () => {
+    const items = [
+      { value: "lions", label: "Lions", content: "Lions" },
+    ] as const;
+    <Tabs items={items} />;
+  });
+});

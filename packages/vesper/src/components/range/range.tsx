@@ -13,23 +13,24 @@ import { cn } from "@/utils/cn";
 type CSSPropertiesWithVars = CSSProperties &
   Record<`--${string}`, string | number>;
 
-const toValues = (value: number | number[]) =>
-  Array.isArray(value) ? value : [value];
+// copies readonly values from base ui, so `onValuesChange` and `onValuesCommit` receive a mutable array
+const toValues = (value: number | readonly number[]): number[] =>
+  typeof value === "number" ? [value] : [...value];
 
 export interface RangeProps extends Omit<
   ComponentProps<"div">,
   "children" | "defaultValue" | "dir"
 > {
   /** The values of each thumb (controlled mode). One thumb is rendered per entry in the array. */
-  values?: number[];
+  values?: readonly number[];
   /** Custom display labels for each thumb, shown as a tooltip-style label above the thumb. When left blank, defaults to the active values of each thumb. */
-  valueLabels?: string[];
+  valueLabels?: readonly string[];
   /** Accessible `aria-label` attributes for each thumb, in the same order as the values. */
-  thumbAriaLabels: string[];
+  thumbAriaLabels: readonly string[];
   /** When `true`, displays the value labels above each thumb. @default false */
   showValueLabels?: boolean;
   /** The initial thumb values (uncontrolled mode). @default [min, max] */
-  defaultValues?: number[];
+  defaultValues?: readonly number[];
   /** Callback fired as thumb values change during interaction. Receives the full array of current values. */
   onValuesChange?: (value: number[]) => void;
   /** Callback fired when a thumb interaction is completed (e.g., on pointer up). Receives the final array of values. */
@@ -57,9 +58,9 @@ export interface RangeProps extends Omit<
 /**
  * A multi-thumb range input for selecting a span of numeric values between a minimum and maximum.
  *
- * @param {string[]} props.thumbAriaLabels - Accessible `aria-label` attributes for each thumb, in the same order as the values
- * @param {number[]} [props.values] - (optional) The values of each thumb (controlled). One thumb is rendered per entry
- * @param {number[]} [props.defaultValues] - (optional) The initial thumb values (uncontrolled). @default [min, max]
+ * @param {readonly string[]} props.thumbAriaLabels - Accessible `aria-label` attributes for each thumb, in the same order as the values
+ * @param {readonly number[]} [props.values] - (optional) The values of each thumb (controlled). One thumb is rendered per entry
+ * @param {readonly number[]} [props.defaultValues] - (optional) The initial thumb values (uncontrolled). @default [min, max]
  * @param {(value: number[]) => void} [props.onValuesChange] - (optional) Callback fired as thumb values change during interaction
  * @param {(value: number[]) => void} [props.onValuesCommit] - (optional) Callback fired when thumb interaction is completed
  * @param {number} [props.min] - (optional) The minimum allowed value. @default 0
@@ -68,7 +69,7 @@ export interface RangeProps extends Omit<
  * @param {number} [props.minStepsBetweenThumbs] - (optional) The minimum number of steps required between thumbs. @default 1
  * @param {boolean} [props.showTicks] - (optional) Whether to render tick marks at each step interval. @default false
  * @param {boolean} [props.showValueLabels] - (optional) Whether to display a value label above each thumb. @default false
- * @param {string[]} [props.valueLabels] - (optional) Custom display labels for each thumb, falling back to that thumb's current value
+ * @param {readonly string[]} [props.valueLabels] - (optional) Custom display labels for each thumb, falling back to that thumb's current value
  * @param {boolean} [props.disabled] - (optional) Whether to prevent interaction. @default false
  * @param {string} [props.name] - (optional) The form field name each thumb submits its value under
  *
@@ -155,10 +156,10 @@ export function Range(props: RangeProps) {
       )}
       value={values}
       defaultValue={defaultValues}
-      onValueChange={(value: number | number[]) =>
+      onValueChange={(value: number | readonly number[]) =>
         onValuesChange?.(toValues(value))
       }
-      onValueCommitted={(value: number | number[]) =>
+      onValueCommitted={(value: number | readonly number[]) =>
         onValuesCommit?.(toValues(value))
       }
       min={min}
