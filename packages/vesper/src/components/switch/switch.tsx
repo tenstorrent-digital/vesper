@@ -1,5 +1,7 @@
 "use client";
 
+import type { ReactNode } from "react";
+
 import {
   Typography,
   type TypographyVariant,
@@ -15,8 +17,8 @@ export const SWITCH_SIZES = ["sm", "md"] as const;
 export type SwitchSize = (typeof SWITCH_SIZES)[number];
 
 export interface SwitchProps extends FormInputProps<"label", "input"> {
-  /** The text label displayed next to the switch. An asterisk is appended when `required` is `true`. */
-  label?: string;
+  /** The text label displayed next to the switch. An asterisk is appended when `label` is a `string` and `required` is `true`. */
+  label?: ReactNode;
   /** The size of the switch and its label. @default md */
   size?: SwitchSize;
 }
@@ -76,12 +78,14 @@ export function Switch(props: SwitchProps) {
         role="switch"
       />
       <div className="vesper-switch-pill" />
-      {label && (
+      {!!label && (
         <Typography
           className="vesper-switch-label"
           variant={SWITCH_TYPOGRAPHY[size]}
         >
-          {formProps.required ? `${label} *` : label}
+          {formProps.required && typeof label === "string"
+            ? `${label} *`
+            : label}
         </Typography>
       )}
     </label>

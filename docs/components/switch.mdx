@@ -19,7 +19,7 @@ export default function SwitchDemo() {
 
 | Prop | Type | Description | Default |
 | --- | --- | --- | --- |
-| `label` | `string` | The text label displayed next to the switch. An asterisk is appended when `required` is `true`. | — |
+| `label` | `ReactNode` | The text label displayed next to the switch. An asterisk is appended when `label` is a `string` and `required` is `true`. | — |
 | `size` | `"sm" \| "md"` | The size of the switch and its label. | `"md"` |
 | `ref` | `Ref<HTMLInputElement>` | A ref forwarded to the underlying `<input>` element. | — |
 | `checked` | `boolean` | Controls the checked state (controlled mode). | — |
