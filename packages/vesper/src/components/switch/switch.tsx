@@ -78,7 +78,7 @@ export function Switch(props: SwitchProps) {
         role="switch"
       />
       <div className="vesper-switch-pill" />
-      {!!label && (
+      {label !== "" && label != null && typeof label !== "boolean" && (
         <Typography
           className="vesper-switch-label"
           variant={SWITCH_TYPOGRAPHY[size]}
