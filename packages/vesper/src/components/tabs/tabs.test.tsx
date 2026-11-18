@@ -1,6 +1,4 @@
-import type { ReactNode } from "react";
-
-import { cleanup, render } from "@testing-library/react";
+import { cleanup, render, waitFor, within } from "@testing-library/react";
 import axe from "axe-core";
 import {
   afterEach,
@@ -14,7 +12,15 @@ import {
 import { userEvent } from "vitest/browser";
 
 import { Globe } from "@/components/icons/icons";
-import { Tabs, type TabsVariant } from "@/components/tabs/tabs";
+import {
+  TABS_VARIANTS,
+  TabPanel,
+  TabsList,
+  TabsRoot,
+  TabTrigger,
+  type TabsActivationMode,
+  type TabsVariant,
+} from "@/components/tabs/tabs";
 import { Typography } from "@/components/typography/typography";
 import {
   emulateHighContrast,
@@ -26,7 +32,6 @@ const TABS_PERMUTATIONS: {
   name: string;
   variant: TabsVariant;
   defaultValue?: string;
-  contentAsPanel?: boolean;
 }[] = [
   {
     name: "primary, no value",
@@ -48,148 +53,225 @@ const TABS_PERMUTATIONS: {
     variant: "secondary",
     defaultValue: "tab-1",
   },
-  {
-    name: "primary, contentAsPanel",
-    variant: "primary",
-    defaultValue: "tab-1",
-    contentAsPanel: true,
-  },
-  {
-    name: "secondary, contentAsPanel",
-    variant: "secondary",
-    defaultValue: "tab-1",
-    contentAsPanel: true,
-  },
 ];
 
-/**
- * content that is not a single react element, which can't be rendered as the
- * tab panel itself (even when `contentAsPanel` is set)
- */
-const NON_ELEMENT_CONTENT: { name: string; content: ReactNode }[] = [
-  { name: "text", content: "Tab content" },
-  {
-    name: "fragment",
-    content: (
-      <>
-        <span>Tab</span> <span>content</span>
-      </>
-    ),
-  },
-  {
-    name: "multiple element",
-    content: [<span key="1">Tab</span>, " ", <span key="2">content</span>],
-  },
-];
-
-/**
- * a content component that does not forward props to the element it renders,
- * so it can't be rendered as the tab panel itself
- */
-const NonForwardingTabContent = ({ label }: { label: string }) => (
-  <section data-testid={`${label}-content`}>
-    <Typography style={{ color: "var(--vesper-color-stone-900)" }}>
-      {label} Content
-    </Typography>
-  </section>
+const TabContent = ({ value, label }: { value: string; label: string }) => (
+  <Typography
+    data-testid={`${value}-content`}
+    style={{ color: "var(--vesper-color-stone-900)" }}
+  >
+    {label} Content
+  </Typography>
 );
 
 const TabsTestComponent = ({
   variant,
+  value,
   defaultValue,
   onValueChange,
-  contentAsPanel,
+  activationMode,
 }: {
   variant?: TabsVariant;
+  value?: string;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
-  contentAsPanel?: boolean;
+  activationMode?: TabsActivationMode;
 }) => (
-  <Tabs
+  <TabsRoot
     data-testid="tabs"
     variant={variant}
+    value={value}
     defaultValue={defaultValue}
     onValueChange={onValueChange}
-    items={[
-      {
-        value: "tab-1",
-        label: "Tab 1",
-        icon: <Globe />,
-        contentAsPanel,
-        content: (
-          <Typography
-            data-testid="tab-1-content"
-            style={{ color: "var(--vesper-color-stone-900)" }}
-          >
-            Tab 1 Content
-          </Typography>
-        ),
-      },
-      {
-        value: "tab-2",
-        label: "Tab 2",
-        contentAsPanel,
-        content: (
-          <Typography
-            data-testid="tab-2-content"
-            style={{ color: "var(--vesper-color-stone-900)" }}
-          >
-            Tab 2 Content
-          </Typography>
-        ),
-      },
-      {
-        value: "tab-3",
-        label: "Tab 3",
-        contentAsPanel,
-        content: (
-          <Typography
-            data-testid="tab-3-content"
-            style={{ color: "var(--vesper-color-stone-900)" }}
-          >
-            Tab 3 Content
-          </Typography>
-        ),
-      },
-    ]}
-  />
+    activationMode={activationMode}
+  >
+    <TabsList data-testid="tabs-list">
+      <TabTrigger value="tab-1" label="Tab 1" icon={<Globe />} />
+      <TabTrigger value="tab-2" label="Tab 2" />
+      <TabTrigger value="tab-3" label="Tab 3" />
+    </TabsList>
+    <TabPanel value="tab-1">
+      <TabContent value="tab-1" label="Tab 1" />
+    </TabPanel>
+    <TabPanel value="tab-2">
+      <TabContent value="tab-2" label="Tab 2" />
+    </TabPanel>
+    <TabPanel value="tab-3">
+      <TabContent value="tab-3" label="Tab 3" />
+    </TabPanel>
+  </TabsRoot>
 );
 
 afterEach(cleanup);
 
 describe("tabs [unit]", () => {
-  test("primary variant class", () => {
-    const result = render(<TabsTestComponent variant="primary" />);
+  describe.each(TABS_VARIANTS)("variant: %s", (variant) => {
+    test("applies the variant class to each part", () => {
+      const otherVariant = TABS_VARIANTS.find((v) => v !== variant);
+      const result = render(<TabsTestComponent variant={variant} />);
 
-    const tabs = result.getByTestId("tabs");
-    expect(tabs).toHaveClass("vesper-tabs-primary");
+      const tabs = result.getByTestId("tabs");
+      expect(tabs).toHaveClass(`vesper-tabs-${variant}`);
+      expect(tabs).not.toHaveClass(`vesper-tabs-${otherVariant}`);
+
+      const list = result.getByRole("tablist");
+      expect(list).toHaveClass(`vesper-tabs-list-${variant}`);
+      expect(list).not.toHaveClass(`vesper-tabs-list-${otherVariant}`);
+
+      result.getAllByRole("tab").forEach((trigger) => {
+        expect(trigger).toHaveClass(`vesper-tabs-trigger-${variant}`);
+        expect(trigger).not.toHaveClass(`vesper-tabs-trigger-${otherVariant}`);
+      });
+    });
   });
 
-  test("secondary variant class", () => {
-    const result = render(<TabsTestComponent variant="secondary" />);
+  test("defaults to primary variant", () => {
+    const result = render(<TabsTestComponent />);
+
+    expect(result.getByTestId("tabs")).toHaveClass("vesper-tabs-primary");
+    expect(result.getByRole("tablist")).toHaveClass("vesper-tabs-list-primary");
+    result.getAllByRole("tab").forEach((trigger) => {
+      expect(trigger).toHaveClass("vesper-tabs-trigger-primary");
+    });
+  });
+
+  test("renders each part as the expected element", () => {
+    const result = render(<TabsTestComponent />);
 
     const tabs = result.getByTestId("tabs");
-    expect(tabs).toHaveClass("vesper-tabs-secondary");
+    assert.instanceOf(tabs, HTMLDivElement);
+    expect(tabs).toHaveClass("vesper-tabs");
+
+    const list = result.getByRole("tablist");
+    assert.instanceOf(list, HTMLDivElement);
+    expect(list).toBe(result.getByTestId("tabs-list"));
+    expect(list).toHaveClass("vesper-tabs-list");
+    expect(tabs).toContainElement(list);
+
+    const triggers = result.getAllByRole("tab");
+    expect(triggers).toHaveLength(3);
+    triggers.forEach((trigger) => {
+      assert.instanceOf(trigger, HTMLButtonElement);
+      expect(trigger).toHaveClass("vesper-tabs-trigger");
+      expect(list).toContainElement(trigger);
+    });
+
+    const panel = result.getByRole("tabpanel");
+    assert.instanceOf(panel, HTMLDivElement);
+    expect(panel).toContainElement(result.getByTestId("tab-1-content"));
+  });
+
+  test("custom className", () => {
+    const result = render(
+      <TabsRoot data-testid="tabs" className="custom-root" variant="primary">
+        <TabsList className="custom-list">
+          <TabTrigger className="custom-trigger" value="tab-1" label="Tab 1" />
+        </TabsList>
+        <TabPanel className="custom-panel" value="tab-1">
+          Content
+        </TabPanel>
+      </TabsRoot>,
+    );
+
+    const tabs = result.getByTestId("tabs");
+    expect(tabs).toHaveClass("vesper-tabs-primary", "custom-root");
+
+    const list = result.getByRole("tablist");
+    expect(list).toHaveClass("vesper-tabs-list", "custom-list");
+
+    const trigger = result.getByRole("tab");
+    expect(trigger).toHaveClass("vesper-tabs-trigger", "custom-trigger");
+
+    const panel = result.getByRole("tabpanel");
+    expect(panel).toHaveClass("custom-panel");
+  });
+
+  test("forwards props to the underlying elements", () => {
+    const result = render(
+      <TabsRoot data-testid="tabs" title="root">
+        <TabsList aria-label="Settings">
+          <TabTrigger data-testid="trigger" value="tab-1" label="Tab 1" />
+        </TabsList>
+        <TabPanel data-testid="panel" title="panel" value="tab-1">
+          Content
+        </TabPanel>
+      </TabsRoot>,
+    );
+
+    expect(result.getByTestId("tabs")).toHaveAttribute("title", "root");
+    expect(result.getByRole("tablist", { name: "Settings" })).not.toBeNull();
+    expect(result.getByTestId("trigger")).toBe(result.getByRole("tab"));
+
+    const panel = result.getByRole("tabpanel");
+    expect(panel).toBe(result.getByTestId("panel"));
+    expect(panel).toHaveAttribute("title", "panel");
+  });
+
+  describe.each([
+    ["primary", "label-md"],
+    ["secondary", "label-sm"],
+  ] as const)("trigger label typography (%s)", (variant, typography) => {
+    test(`renders the label with the ${typography} typography variant`, () => {
+      const result = render(<TabsTestComponent variant={variant} />);
+
+      result.getAllByRole("tab").forEach((trigger, index) => {
+        const label = trigger.querySelector(".vesper-tabs-trigger-label");
+        assert.instanceOf(label, HTMLSpanElement);
+        expect(label).toHaveClass(`vesper-typography-${typography}`);
+        expect(label).toHaveTextContent(`Tab ${index + 1}`);
+      });
+    });
+  });
+
+  test("icon rendering", () => {
+    const result = render(<TabsTestComponent />);
+
+    const [tab1, tab2, tab3] = result.getAllByRole("tab");
+    expect(tab1!.querySelector(".vesper-tabs-trigger-icon")).not.toBeNull();
+    expect(tab2!.querySelector(".vesper-tabs-trigger-icon")).toBeNull();
+    expect(tab3!.querySelector(".vesper-tabs-trigger-icon")).toBeNull();
+  });
+
+  test("links each trigger to its panel", async () => {
+    const result = render(<TabsTestComponent />);
+
+    const expectLinked = (trigger: HTMLElement) => {
+      const panel = result.getByRole("tabpanel");
+      expect(panel).toHaveAttribute("aria-labelledby", trigger.id);
+      expect(trigger).toHaveAttribute("aria-controls", panel.id);
+    };
+
+    const [tab1, tab2, tab3] = result.getAllByRole("tab");
+    expectLinked(tab1!);
+
+    await userEvent.click(tab2!);
+    expectLinked(tab2!);
+
+    await userEvent.click(tab3!);
+    expectLinked(tab3!);
   });
 
   test("no default value", () => {
     const result = render(<TabsTestComponent />);
 
-    const tab1Content = result.queryByTestId("tab-1-content");
-    expect(tab1Content).not.toBeNull();
+    const [tab1] = result.getAllByRole("tab");
+    expect(tab1).toHaveAttribute("aria-selected", "true");
 
-    const tab2Content = result.queryByTestId("tab-2-content");
-    expect(tab2Content).toBeNull();
-
-    const tab3Content = result.queryByTestId("tab-3-content");
-    expect(tab3Content).toBeNull();
+    expect(result.queryByTestId("tab-1-content")).not.toBeNull();
+    expect(result.queryByTestId("tab-2-content")).toBeNull();
+    expect(result.queryByTestId("tab-3-content")).toBeNull();
   });
 
   test("default value", () => {
-    const result = render(<TabsTestComponent defaultValue="tab-1" />);
+    const result = render(<TabsTestComponent defaultValue="tab-2" />);
 
-    const tab1Content = result.queryByTestId("tab-1-content");
-    expect(tab1Content).not.toBeNull();
+    const [tab1, tab2] = result.getAllByRole("tab");
+    expect(tab1).toHaveAttribute("aria-selected", "false");
+    expect(tab2).toHaveAttribute("aria-selected", "true");
+
+    expect(result.queryByTestId("tab-1-content")).toBeNull();
+    expect(result.queryByTestId("tab-2-content")).not.toBeNull();
+    expect(result.queryByTestId("tab-3-content")).toBeNull();
   });
 
   test("clicking tabs", async () => {
@@ -209,49 +291,42 @@ describe("tabs [unit]", () => {
     expect(result.queryByTestId("tab-3-content")).not.toBeNull();
   });
 
-  test("defaults to primary variant", () => {
-    const result = render(<TabsTestComponent />);
-
-    const tabs = result.getByTestId("tabs");
-    expect(tabs).toHaveClass("vesper-tabs-primary");
-  });
-
-  test("custom className", () => {
-    const result = render(
-      <Tabs
-        data-testid="tabs"
-        className="custom-class"
-        variant="primary"
-        items={[
-          { value: "tab-1", label: "Tab 1", content: <div>Content</div> },
-        ]}
-      />,
-    );
-
-    const tabs = result.getByTestId("tabs");
-    expect(tabs).toHaveClass("vesper-tabs-primary");
-    expect(tabs).toHaveClass("custom-class");
-  });
-
-  test("icon rendering", () => {
-    const result = render(<TabsTestComponent />);
-
-    const [tab1, tab2, tab3] = result.getAllByRole("tab");
-    expect(tab1!.querySelector(".vesper-tabs-trigger-icon")).not.toBeNull();
-    expect(tab2!.querySelector(".vesper-tabs-trigger-icon")).toBeNull();
-    expect(tab3!.querySelector(".vesper-tabs-trigger-icon")).toBeNull();
-  });
-
   test("onValueChange callback", async () => {
     const onValueChange = vi.fn();
-    const result = render(<TabsTestComponent onValueChange={onValueChange} />);
+    const result = render(
+      <TabsTestComponent defaultValue="tab-1" onValueChange={onValueChange} />,
+    );
 
     const [, tab2] = result.getAllByRole("tab");
     await userEvent.click(tab2!);
-    expect(onValueChange).toHaveBeenCalledWith("tab-2");
+    expect(onValueChange).toHaveBeenCalledExactlyOnceWith("tab-2");
   });
 
-  test("keyboard navigation", async () => {
+  test("controlled value", async () => {
+    const onValueChange = vi.fn();
+    const result = render(
+      <TabsTestComponent value="tab-2" onValueChange={onValueChange} />,
+    );
+
+    expect(result.queryByTestId("tab-2-content")).not.toBeNull();
+
+    // the selected tab only changes once `value` changes
+    const [, , tab3] = result.getAllByRole("tab");
+    await userEvent.click(tab3!);
+    expect(onValueChange).toHaveBeenLastCalledWith("tab-3");
+    expect(result.queryByTestId("tab-2-content")).not.toBeNull();
+    expect(result.queryByTestId("tab-3-content")).toBeNull();
+
+    result.rerender(
+      <TabsTestComponent value="tab-3" onValueChange={onValueChange} />,
+    );
+    await waitFor(() => {
+      expect(result.queryByTestId("tab-2-content")).toBeNull();
+      expect(result.queryByTestId("tab-3-content")).not.toBeNull();
+    });
+  });
+
+  test("keyboard navigation (automatic activation)", async () => {
     const result = render(<TabsTestComponent defaultValue="tab-1" />);
 
     const [tab1] = result.getAllByRole("tab");
@@ -271,175 +346,62 @@ describe("tabs [unit]", () => {
     expect(result.queryByTestId("tab-2-content")).not.toBeNull();
   });
 
-  describe("content rendered inside a tab panel", () => {
-    test("renders content inside the tab panel", () => {
-      const result = render(<TabsTestComponent />);
+  test("keyboard navigation (manual activation)", async () => {
+    const result = render(
+      <TabsTestComponent defaultValue="tab-1" activationMode="manual" />,
+    );
 
-      const [tab1] = result.getAllByRole("tab");
-      const panel = result.getByRole("tabpanel");
-      const content = result.getByTestId("tab-1-content");
+    const [tab1, tab2, tab3] = result.getAllByRole("tab");
+    await userEvent.click(tab1!);
+    expect(result.queryByTestId("tab-1-content")).not.toBeNull();
 
-      assert.instanceOf(panel, HTMLDivElement);
-      expect(panel).not.toBe(content);
-      expect(panel).toContainElement(content);
-      expect(panel).toHaveAttribute("aria-labelledby", tab1!.id);
-      expect(tab1).toHaveAttribute("aria-controls", panel.id);
-      expect(content).not.toHaveAttribute("role");
-    });
+    // moving focus doesn't change the selected tab
+    await userEvent.keyboard("{ArrowRight}");
+    expect(tab2).toHaveFocus();
+    expect(result.queryByTestId("tab-1-content")).not.toBeNull();
+    expect(result.queryByTestId("tab-2-content")).toBeNull();
 
-    test("does not forward panel props to content", () => {
-      const result = render(<TabsTestComponent />);
+    await userEvent.keyboard("{Enter}");
+    expect(result.queryByTestId("tab-1-content")).toBeNull();
+    expect(result.queryByTestId("tab-2-content")).not.toBeNull();
 
-      const content = result.getByTestId("tab-1-content");
-      expect(content).not.toHaveAttribute("id");
-      expect(content).not.toHaveAttribute("aria-labelledby");
-      expect(content).not.toHaveAttribute("tabindex");
-    });
+    await userEvent.keyboard("{ArrowRight}");
+    expect(tab3).toHaveFocus();
+    expect(result.queryByTestId("tab-2-content")).not.toBeNull();
 
-    test("renders the active panel when content components do not forward props", async () => {
-      const result = render(
-        <Tabs
-          defaultValue="tab-1"
-          items={[
-            {
-              value: "tab-1",
-              label: "Tab 1",
-              content: <NonForwardingTabContent label="tab-1" />,
-            },
-            {
-              value: "tab-2",
-              label: "Tab 2",
-              content: <NonForwardingTabContent label="tab-2" />,
-            },
-          ]}
-        />,
-      );
-
-      const [tab1, tab2] = result.getAllByRole("tab");
-
-      await userEvent.click(tab1!);
-      expect(result.queryByTestId("tab-1-content")).not.toBeNull();
-      expect(result.queryByTestId("tab-2-content")).toBeNull();
-      expect(result.getByRole("tabpanel")).toContainElement(
-        result.getByTestId("tab-1-content"),
-      );
-
-      await userEvent.click(tab2!);
-      expect(result.queryByTestId("tab-1-content")).toBeNull();
-      expect(result.queryByTestId("tab-2-content")).not.toBeNull();
-      expect(result.getByRole("tabpanel")).toContainElement(
-        result.getByTestId("tab-2-content"),
-      );
-    });
-
-    NON_ELEMENT_CONTENT.forEach(({ name, content }) => {
-      test(`renders ${name} content inside the tab panel`, () => {
-        const result = render(
-          <Tabs items={[{ value: "tab-1", label: "Tab 1", content }]} />,
-        );
-
-        const panel = result.getByRole("tabpanel");
-        assert.instanceOf(panel, HTMLDivElement);
-        expect(panel).toHaveTextContent("Tab content");
-      });
-    });
+    await userEvent.keyboard(" ");
+    expect(result.queryByTestId("tab-2-content")).toBeNull();
+    expect(result.queryByTestId("tab-3-content")).not.toBeNull();
   });
 
-  describe("content as the tab panel itself via contentAsPanel", () => {
-    test("renders content as the tab panel", () => {
-      const result = render(<TabsTestComponent contentAsPanel />);
+  describe("invalid nesting throws", () => {
+    let consoleError: ReturnType<typeof vi.spyOn>;
 
-      const [tab1] = result.getAllByRole("tab");
-      const panel = result.getByRole("tabpanel");
-
-      expect(panel).toBe(result.getByTestId("tab-1-content"));
-      expect(panel).toHaveAttribute("aria-labelledby", tab1!.id);
-      expect(tab1).toHaveAttribute("aria-controls", panel.id);
+    beforeEach(() => {
+      // hide React's (expected) logs about the errors thrown while rendering
+      consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
     });
 
-    test("preserves the content's own props", () => {
-      const result = render(<TabsTestComponent contentAsPanel />);
-
-      const panel = result.getByRole("tabpanel");
-      assert.instanceOf(panel, HTMLParagraphElement);
-      expect(panel).toHaveClass(
-        "vesper-typography",
-        "vesper-typography-copy-md",
-      );
-      expect(panel.style.color).toBe("var(--vesper-color-stone-900)");
-      expect(panel).toHaveTextContent("Tab 1 Content");
+    afterEach(() => {
+      consoleError.mockRestore();
     });
 
-    test("clicking tabs", async () => {
-      const result = render(<TabsTestComponent contentAsPanel />);
-
-      const [tab1, tab2, tab3] = result.getAllByRole("tab");
-
-      await userEvent.click(tab1!);
-      expect(result.getByRole("tabpanel")).toBe(
-        result.getByTestId("tab-1-content"),
-      );
-
-      await userEvent.click(tab2!);
-      expect(result.queryByTestId("tab-1-content")).toBeNull();
-      expect(result.getByRole("tabpanel")).toBe(
-        result.getByTestId("tab-2-content"),
-      );
-
-      await userEvent.click(tab3!);
-      expect(result.queryByTestId("tab-2-content")).toBeNull();
-      expect(result.getByRole("tabpanel")).toBe(
-        result.getByTestId("tab-3-content"),
+    test("TabsList throws", () => {
+      expect(() => render(<TabsList />)).toThrow(
+        "TabsList must be rendered within TabsRoot",
       );
     });
 
-    test("can be set per item", async () => {
-      const result = render(
-        <Tabs
-          defaultValue="tab-1"
-          items={[
-            {
-              value: "tab-1",
-              label: "Tab 1",
-              contentAsPanel: true,
-              content: <section data-testid="tab-1-content">Tab 1</section>,
-            },
-            {
-              value: "tab-2",
-              label: "Tab 2",
-              content: <section data-testid="tab-2-content">Tab 2</section>,
-            },
-          ]}
-        />,
+    test("TabTrigger throws", () => {
+      expect(() => render(<TabTrigger value="tab-1" label="Tab 1" />)).toThrow(
+        "TabTrigger must be rendered within TabsList",
       );
-
-      const [, tab2] = result.getAllByRole("tab");
-
-      expect(result.getByRole("tabpanel")).toBe(
-        result.getByTestId("tab-1-content"),
-      );
-
-      await userEvent.click(tab2!);
-      const panel = result.getByRole("tabpanel");
-      const content = result.getByTestId("tab-2-content");
-      expect(panel).not.toBe(content);
-      expect(panel).toContainElement(content);
     });
 
-    NON_ELEMENT_CONTENT.forEach(({ name, content }) => {
-      test(`falls back to rendering ${name} content inside the tab panel`, () => {
-        const result = render(
-          <Tabs
-            items={[
-              { value: "tab-1", label: "Tab 1", content, contentAsPanel: true },
-            ]}
-          />,
-        );
-
-        const panel = result.getByRole("tabpanel");
-        assert.instanceOf(panel, HTMLDivElement);
-        expect(panel).toHaveTextContent("Tab content");
-      });
+    test("TabPanel throws", () => {
+      expect(() => render(<TabPanel value="tab-1" />)).toThrow(
+        "TabPanel must be rendered within TabsRoot",
+      );
     });
   });
 });

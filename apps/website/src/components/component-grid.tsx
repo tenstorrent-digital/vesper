@@ -27,7 +27,7 @@ import { Snippet } from "@tenstorrent/vesper/snippet";
 import { SplitButton } from "@tenstorrent/vesper/split-button";
 import { StatusIndicator } from "@tenstorrent/vesper/status-indicator";
 import { Switch } from "@tenstorrent/vesper/switch";
-import { Tabs } from "@tenstorrent/vesper/tabs";
+import { TabsList, TabsRoot, TabTrigger } from "@tenstorrent/vesper/tabs";
 import { Tag } from "@tenstorrent/vesper/tag";
 import { TextArea } from "@tenstorrent/vesper/text-area";
 import { TextButton } from "@tenstorrent/vesper/text-button";
@@ -210,13 +210,12 @@ export function ComponentGrid() {
       </Cell>
 
       <Cell name="Tabs">
-        <Tabs
-          defaultValue="one"
-          items={[
-            { value: "one", label: "Tab 1", content: "" },
-            { value: "two", label: "Tab 2", content: "" },
-          ]}
-        />
+        <TabsRoot defaultValue="one">
+          <TabsList>
+            <TabTrigger value="one" label="Tab 1" />
+            <TabTrigger value="two" label="Tab 2" />
+          </TabsList>
+        </TabsRoot>
       </Cell>
 
       <Cell name="Tag">
