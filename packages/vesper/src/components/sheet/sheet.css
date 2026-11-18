@@ -1,7 +1,21 @@
 .vesper-sheet {
+  position: fixed;
+  inset: 0;
+  width: auto;
+  height: auto;
+  max-width: none;
+  max-height: none;
+  overflow: visible;
   transition:
     display var(--vesper-transition-duration-fast) ease allow-discrete,
     overlay var(--vesper-transition-duration-fast) ease allow-discrete;
+}
+
+.vesper-sheet[popover] {
+  pointer-events: none;
+  & > * {
+    pointer-events: auto;
+  }
 }
 
 .vesper-sheet::backdrop {
