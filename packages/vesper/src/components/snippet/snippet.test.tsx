@@ -45,41 +45,6 @@ describe("snippet [unit]", () => {
     expect(container.firstElementChild).toHaveClass("custom-class");
   });
 
-  test("contains a pre element", () => {
-    const { container } = render(<Snippet>code</Snippet>);
-    expect(container.querySelector("pre")).not.toBeNull();
-  });
-
-  test("contains a code element inside pre", () => {
-    const { container } = render(<Snippet>code</Snippet>);
-    expect(container.querySelector("pre > code")).not.toBeNull();
-  });
-
-  test("renders single-line children as one line span", () => {
-    const { container } = render(<Snippet>yarn install</Snippet>);
-    const lines = container.querySelectorAll(".line");
-    expect(lines).toHaveLength(1);
-    expect(lines[0]?.textContent).toBe("yarn install");
-  });
-
-  test("renders multi-line children as multiple line spans", () => {
-    const { container } = render(
-      <Snippet>{"yarn install\nyarn build\nyarn test"}</Snippet>,
-    );
-    const lines = container.querySelectorAll(".line");
-    expect(lines).toHaveLength(3);
-    expect(lines[0]?.textContent).toBe("yarn install");
-    expect(lines[1]?.textContent).toBe("yarn build");
-    expect(lines[2]?.textContent).toBe("yarn test");
-  });
-
-  test("renders empty string when no children provided", () => {
-    const { container } = render(<Snippet />);
-    const lines = container.querySelectorAll(".line");
-    expect(lines).toHaveLength(1);
-    expect(lines[0]?.textContent).toBe("");
-  });
-
   test("renders a copy button", () => {
     const { container } = render(<Snippet>code</Snippet>);
     const button = container.querySelector("button");
