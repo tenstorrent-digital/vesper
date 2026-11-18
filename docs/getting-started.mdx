@@ -68,6 +68,23 @@ import { withVesper } from "@tenstorrent/vesper/tailwind-merge";
 const twMerge = extendTailwindMerge(withVesper);
 ```
 
+##### Dark mode
+
+Vesper's color tokens switch between their light and dark values with the theme, so you don't need a variant to pick colors for each theme. For other styles that should change with the theme, use the `vesper-dark` variant:
+
+```tsx
+<>
+  <img src="/logo-light.svg" alt="Logo" className="vesper-dark:hidden" />
+  <img src="/logo-dark.svg" alt="Logo" className="hidden vesper-dark:block" />
+</>
+```
+
+`vesper-dark` applies whenever Vesper's dark theme is active. That happens when the theme is set to `dark`, like with the [Theme Switcher](./components/theme-switcher.mdx). It also happens when the theme is `system` and the user's operating system prefers a dark color scheme.
+
+> [!NOTE]
+>
+> Tailwind's built-in `dark` variant only follows the operating system preference, so it won't match the theme your users pick.
+
 ### Fonts
 
 Vesper components are styled using two fonts, `Inter Tight` and `IBM Plex Mono`. The fonts themselves are **not** bundled with the package, only the font stacks are. If you want Vesper's components to render in `Inter Tight` and `IBM Plex Mono`, you need to load those fonts in your app (for example with `next/font/google` if developing a `Next.js` application, a `@font-face` rule, or a `<link>` to Google Fonts). If they aren't loaded, the fallbacks in each stack are used.

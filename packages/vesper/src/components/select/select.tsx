@@ -172,7 +172,10 @@ export function Select(props: SelectProps) {
         )}
       >
         {icon && <span className="vesper-select-icon">{icon}</span>}
-        <BaseSelect.Value placeholder={placeholder} />
+        <BaseSelect.Value
+          render={<span className="vesper-select-value-text" />}
+          placeholder={placeholder}
+        />
         <span className="vesper-select-state-indicator">
           <CaretDown className="vesper-select-state-indicator-closed" />
           <CaretUp className="vesper-select-state-indicator-open" />

@@ -74,18 +74,17 @@ export function Snippet(props: SnippetProps) {
       className={cn("vesper-snippet", `vesper-snippet-${variant}`, className)}
       {...rest}
     >
-      <pre>
-        <Typography as="code" variant="copy-xs-mono">
-          {(children ?? "").split("\n").map((line, index) => (
-            // lines have no identity other than their position
-            // oxlint-disable-next-line react/no-array-index-key
-            <span key={index} className="line">
-              {line}
-            </span>
-          ))}
+      <pre className="vesper-snippet-pre">
+        <Typography
+          as="code"
+          variant="copy-xs-mono"
+          className="vesper-snippet-code"
+        >
+          {children}
         </Typography>
       </pre>
       <IconButton
+        className="vesper-snippet-copy-button"
         variant={variant === "default" ? "ghost" : "contrast"}
         icon={copied ? <Checkmark /> : <Copy />}
         aria-label={copied ? "Copied to clipboard" : "Copy to clipboard"}

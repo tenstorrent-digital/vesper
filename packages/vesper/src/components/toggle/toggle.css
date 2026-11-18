@@ -1,4 +1,5 @@
 .vesper-toggle {
+  position: relative;
   display: inline-flex;
   width: fit-content;
   gap: var(--vesper-spacing-1);
@@ -55,6 +56,7 @@
 }
 
 .vesper-toggle-item {
+  flex-shrink: 0;
   flex-grow: 1;
   cursor: pointer;
   border-radius: var(--vesper-radius-1);

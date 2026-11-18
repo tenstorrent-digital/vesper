@@ -7,6 +7,7 @@
 }
 
 .vesper-switch {
+  position: relative;
   display: flex;
   width: fit-content;
   align-items: center;
@@ -20,6 +21,7 @@
   /* set base */
   --vesper-switch-pill-bg: var(--vesper-color-tint-neutral-400);
 
+  flex-shrink: 0;
   aspect-ratio: 2;
   background:
     linear-gradient(
