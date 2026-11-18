@@ -53,6 +53,16 @@
   }
 }
 
+.vesper-select-icon {
+  flex-shrink: 0;
+}
+
+.vesper-select-value-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .vesper-select-item-checkmark {
   color: var(--vesper-color-icon-secondary);
   display: block;
@@ -61,6 +71,7 @@
 }
 
 .vesper-select-state-indicator {
+  flex-shrink: 0;
   margin-left: auto;
 }
 
