@@ -13,7 +13,6 @@
 
 .vesper-tabs-list {
   display: flex;
-  overflow-x: auto;
 }
 
 .vesper-tabs-trigger-icon {

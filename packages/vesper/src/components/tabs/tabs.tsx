@@ -1,45 +1,31 @@
 "use client";
 
 import { Tabs as BaseTabs } from "@base-ui/react/tabs";
-import { ComponentProps, ReactNode } from "react";
+import {
+  ComponentProps,
+  createContext,
+  ReactNode,
+  useContext,
+  useMemo,
+} from "react";
 
 import {
   Typography,
   TypographyVariant,
 } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
-import { isSingleReactElement } from "@/utils/is-single-react-element";
 
 export const TABS_VARIANTS = ["primary", "secondary"] as const;
 
+export const TABS_ACTIVATION_MODES = ["manual", "automatic"] as const;
+
 export type TabsVariant = (typeof TABS_VARIANTS)[number];
 
-export interface TabItem {
-  /** The text label displayed in the tab trigger. */
-  label: string;
-  /** A unique value identifying this tab, used for selection tracking. */
-  value: string;
-  /** An optional icon element rendered before the label in the tab trigger. */
-  icon?: ReactNode;
-  /** The content rendered in the tab's panel when this tab is active. */
-  content: ReactNode;
-  /**
-   * When `true`, renders `content` as the tab's panel itself instead of wrapping it in a `<div>`.
-   *
-   * The panel's props are forwarded to `content`, so it must be a single React element that passes every prop it receives on to the DOM element it renders.
-   * @default false
-   */
-  contentAsPanel?: boolean;
-}
+export type TabsActivationMode = (typeof TABS_ACTIVATION_MODES)[number];
 
-export interface TabsProps extends Omit<
-  ComponentProps<"div">,
-  "children" | "dir"
-> {
+export interface TabsProps extends Omit<ComponentProps<"div">, "dir"> {
   /** The visual style variant of the tabs. @default primary */
   variant?: TabsVariant;
-  /** The list of tab items to render. Each item defines a tab trigger and its associated content panel. */
-  items: readonly TabItem[];
   /** The value for the selected tab (controlled). */
   value?: string;
   /** The value of the tab to select by default (uncontrolled). */
@@ -47,12 +33,25 @@ export interface TabsProps extends Omit<
   /** Callback fired when when a new tab is selected */
   onValueChange?: (value: string) => void;
   /** Whether a tab is activated automatically (when receiving focus) or manually (when clicked). @default automatic */
-  activationMode?: "automatic" | "manual";
+  activationMode?: TabsActivationMode;
 }
 
 const TRIGGER_TYPOGRAPHY: { [V in TabsVariant]: TypographyVariant } = {
   primary: "label-md",
   secondary: "label-sm",
+};
+
+const TabsContext = createContext<{
+  activationMode: TabsActivationMode;
+  variant: TabsVariant;
+} | null>(null);
+
+const useTabsContext = (componentName: string, parentName: string) => {
+  const value = useContext(TabsContext);
+  if (value === null) {
+    throw new Error(`${componentName} must be rendered within ${parentName}`);
+  }
+  return value;
 };
 
 /**
@@ -100,50 +99,93 @@ const TRIGGER_TYPOGRAPHY: { [V in TabsVariant]: TypographyVariant } = {
  *   ]}
  * />
  */
-export function Tabs(props: TabsProps) {
+export function TabsRoot(props: TabsProps) {
   const {
-    items,
     className,
     variant = "primary",
     activationMode = "automatic",
     onValueChange,
+    children,
     ...rest
   } = props;
 
-  return (
-    <BaseTabs.Root
-      className={cn(`vesper-tabs-${variant}`, className)}
-      onValueChange={(value) => onValueChange?.(value)}
-      {...rest}
-    >
-      <BaseTabs.List
-        activateOnFocus={activationMode === "automatic"}
-        className="vesper-tabs-list"
-      >
-        {items.map((item) => (
-          <Typography
-            as={BaseTabs.Tab}
-            variant={TRIGGER_TYPOGRAPHY[variant]}
-            key={item.value}
-            value={item.value}
-            className="vesper-tabs-trigger"
-          >
-            {item.icon && (
-              <span className="vesper-tabs-trigger-icon">{item.icon}</span>
-            )}
-            {item.label}
-          </Typography>
-        ))}
-      </BaseTabs.List>
-      {items.map((item) => (
-        <BaseTabs.Panel
-          key={item.value}
-          value={item.value}
-          {...(item.contentAsPanel && isSingleReactElement(item.content)
-            ? { render: item.content }
-            : { children: item.content })}
-        />
-      ))}
-    </BaseTabs.Root>
+  const contextValue = useMemo(
+    () => ({ activationMode, variant }),
+    [activationMode, variant],
   );
+
+  return (
+    <TabsContext.Provider value={contextValue}>
+      <BaseTabs.Root
+        className={cn(`vesper-tabs-${variant}`, className)}
+        onValueChange={(value) => onValueChange?.(value)}
+        {...rest}
+      >
+        {children}
+      </BaseTabs.Root>
+    </TabsContext.Provider>
+  );
+}
+
+export type TabsListProps = ComponentProps<"div">;
+
+export function TabsList(props: ComponentProps<"div">) {
+  const { activationMode } = useTabsContext("TabsList", "TabsRoot");
+  const { className, ...rest } = props;
+
+  return (
+    <BaseTabs.List
+      {...rest}
+      activateOnFocus={activationMode === "automatic"}
+      className={cn("vesper-tabs-list", className)}
+    />
+  );
+}
+
+export interface TabTriggerProps extends Omit<
+  ComponentProps<"button">,
+  "children"
+> {
+  /** The value of the Tab represented by this trigger */
+  value: string;
+  /** The text label displayed in the tab trigger. */
+  label: string;
+  /** An optional icon element rendered before the label in the tab trigger. */
+  icon?: ReactNode;
+}
+
+export function TabTrigger(props: TabTriggerProps) {
+  const { value, icon, label, className, ...rest } = props;
+  const { variant } = useTabsContext("TabTrigger", "TabsList");
+
+  return (
+    <BaseTabs.Tab
+      {...rest}
+      value={value}
+      className={cn("vesper-tabs-trigger", className)}
+    >
+      {icon && <span className="vesper-tabs-trigger-icon">{icon}</span>}
+      <Typography
+        as="span"
+        variant={TRIGGER_TYPOGRAPHY[variant]}
+        className="vesper-tabs-trigger-label"
+      >
+        {label}
+      </Typography>
+    </BaseTabs.Tab>
+  );
+}
+
+export interface TabPanelProps extends ComponentProps<"div"> {
+  /** The value of the TabPanel. It will be shown when the Tab with the corresponding value is active */
+  value: string;
+  /** Whether to keep the HTML element in the DOM while the panel is hidden. @default false */
+  keepMounted?: boolean;
+}
+
+export function TabPanel(props: TabPanelProps) {
+  useTabsContext("TabPanel", "TabsRoot");
+  const { value, ...rest } = props;
+
+  return <BaseTabs.Panel {...rest} value={value} />;
 }
