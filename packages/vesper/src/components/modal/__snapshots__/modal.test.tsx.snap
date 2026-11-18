@@ -2,8 +2,8 @@
 
 exports[`modal [snapshot] > custom width 1`] = `
 <dialog
-  aria-describedby="_r_25_"
-  aria-labelledby="_r_24_"
+  aria-describedby="_r_v_"
+  aria-labelledby="_r_u_"
   class="vesper-modal"
 >
   <div
@@ -16,13 +16,13 @@ exports[`modal [snapshot] > custom width 1`] = `
       <div>
         <h2
           class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_24_"
+          id="_r_u_"
         >
           Are you absolutely sure?
         </h2>
         <p
           class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_25_"
+          id="_r_v_"
         >
           This action cannot be undone. This will permanently delete your account from our servers.
         </p>
@@ -54,8 +54,8 @@ exports[`modal [snapshot] > custom width 1`] = `
 
 exports[`modal [snapshot] > default 1`] = `
 <dialog
-  aria-describedby="_r_21_"
-  aria-labelledby="_r_20_"
+  aria-describedby="_r_r_"
+  aria-labelledby="_r_q_"
   class="vesper-modal"
 >
   <div
@@ -68,13 +68,13 @@ exports[`modal [snapshot] > default 1`] = `
       <div>
         <h2
           class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_20_"
+          id="_r_q_"
         >
           Are you absolutely sure?
         </h2>
         <p
           class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_21_"
+          id="_r_r_"
         >
           This action cannot be undone. This will permanently delete your account from our servers.
         </p>
@@ -106,8 +106,8 @@ exports[`modal [snapshot] > default 1`] = `
 
 exports[`modal [snapshot] > with children 1`] = `
 <dialog
-  aria-describedby="_r_23_"
-  aria-labelledby="_r_22_"
+  aria-describedby="_r_t_"
+  aria-labelledby="_r_s_"
   class="vesper-modal"
 >
   <div
@@ -120,13 +120,13 @@ exports[`modal [snapshot] > with children 1`] = `
       <div>
         <h2
           class="vesper-typography vesper-typography-heading-md vesper-modal-title"
-          id="_r_22_"
+          id="_r_s_"
         >
           Are you absolutely sure?
         </h2>
         <p
           class="vesper-typography vesper-typography-copy-md vesper-modal-description"
-          id="_r_23_"
+          id="_r_t_"
         >
           This action cannot be undone. This will permanently delete your account from our servers.
         </p>
