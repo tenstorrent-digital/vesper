@@ -962,3 +962,19 @@ describe("choicebox [a11y, high contrast]", () => {
     });
   });
 });
+
+// type-level assertions, verified by `yarn check-types`
+describe("choicebox [types]", () => {
+  test("accepts readonly options and values", () => {
+    const options = [{ value: "lions", label: "Lions" }] as const;
+    const values = ["lions"] as const;
+    <Choicebox name="animals" options={options} />;
+    <Choicebox multiselect name="animals" options={options} values={values} />;
+    <Choicebox
+      multiselect
+      name="animals"
+      options={options}
+      defaultValues={values}
+    />;
+  });
+});

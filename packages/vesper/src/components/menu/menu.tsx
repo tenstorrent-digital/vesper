@@ -50,7 +50,7 @@ export type MenuProps<E extends ElementType = "button"> = Polymorphic<
     /** Callback fired when the open state changes. Receives the new open state as an argument. */
     onOpenChange?: (open: boolean) => void;
     /** The list of menu items to render in the dropdown. */
-    items: MenuItemProps[];
+    items: readonly MenuItemProps[];
     /** The width of the menu dropdown in pixels. @default 200 */
     width?: number;
     /** Specify the element or shadow root to portal the menu into */
@@ -65,7 +65,7 @@ export type MenuProps<E extends ElementType = "button"> = Polymorphic<
 /**
  * A dropdown menu component triggered by a child element, rendering a list of selectable menu items.
  *
- * @param {MenuItemProps[]} props.items - The list of menu items to render in the dropdown
+ * @param {readonly MenuItemProps[]} props.items - The list of menu items to render in the dropdown
  * @param {ReactNode} [props.children] - (optional) The content of the trigger that opens the menu
  * @param {number} [props.width] - (optional) The width of the dropdown in pixels. @default 200
  * @param {"top" | "bottom" | "left" | "right"} [props.side] - (optional) The preferred side of the trigger. @default bottom

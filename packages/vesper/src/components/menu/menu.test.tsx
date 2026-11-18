@@ -691,3 +691,11 @@ describe("menu [a11y, high contrast]", () => {
     });
   });
 });
+
+// type-level assertions, verified by `yarn check-types`
+describe("menu [types]", () => {
+  test("accepts readonly items", () => {
+    const items = [{ text: "Edit", onSelect: vi.fn() }] as const;
+    <Menu items={items}>Open</Menu>;
+  });
+});

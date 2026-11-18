@@ -593,3 +593,14 @@ describe("toggle [a11y, high contrast]", () => {
     });
   });
 });
+
+// type-level assertions, verified by `yarn check-types`
+describe("toggle [types]", () => {
+  test("accepts readonly options", () => {
+    const options = [
+      { value: "list", text: "List" },
+      { value: "grid", icon: <span />, ariaLabel: "Grid" },
+    ] as const;
+    <Toggle options={options} />;
+  });
+});

@@ -39,7 +39,7 @@ export interface TabsProps extends Omit<
   /** The visual style variant of the tabs. @default primary */
   variant?: TabsVariant;
   /** The list of tab items to render. Each item defines a tab trigger and its associated content panel. */
-  items: TabItem[];
+  items: readonly TabItem[];
   /** The value for the selected tab (controlled). */
   value?: string;
   /** The value of the tab to select by default (uncontrolled). */
@@ -58,7 +58,7 @@ const TRIGGER_TYPOGRAPHY: { [V in TabsVariant]: TypographyVariant } = {
 /**
  * A tabbed interface component for organizing content into switchable panels.
  *
- * @param {TabItem[]} props.items - The list of tab items defining triggers and content panels. Set `contentAsPanel` on an item to render its `content` as the panel itself, forwarding the panel's props (including `ref`) to `content`
+ * @param {readonly TabItem[]} props.items - The list of tab items defining triggers and content panels. Set `contentAsPanel` on an item to render its `content` as the panel itself, forwarding the panel's props (including `ref`) to `content`
  * @param {TabsVariant} [props.variant] - (optional) The visual style variant of the tabs. @default primary
  * @param {string} [props.value] - (optional) The selected tab value (controlled)
  * @param {string} [props.defaultValue] - (optional) The tab to select by default (uncontrolled)

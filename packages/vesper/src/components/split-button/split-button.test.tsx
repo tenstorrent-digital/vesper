@@ -302,3 +302,11 @@ describe("split-button [a11y, high contrast]", () => {
     });
   });
 });
+
+// type-level assertions, verified by `yarn check-types`
+describe("split-button [types]", () => {
+  test("accepts readonly menu items", () => {
+    const menuItems = [{ text: "Export as PDF", onSelect: vi.fn() }] as const;
+    <SplitButton menuItems={menuItems}>Export</SplitButton>;
+  });
+});

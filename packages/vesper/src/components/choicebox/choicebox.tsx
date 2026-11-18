@@ -34,7 +34,7 @@ interface ChoiceboxBaseProps extends Omit<
   /** The name attribute shared by all inputs in the group, used for form submission. */
   name: string;
   /** The list of options to render. */
-  options: ChoiceboxItem[];
+  options: readonly ChoiceboxItem[];
   /** When `true`, disables all options in the group, preventing interaction. @default false */
   disabled?: boolean;
 }
@@ -56,9 +56,9 @@ export interface ChoiceboxMultiSelectProps extends ChoiceboxBaseProps {
   /** When `true`, the choicebox operates in multi-select (checkbox) mode. */
   multiselect: true;
   /** The currently selected values (controlled mode). */
-  values?: string[];
+  values?: readonly string[];
   /** The initially selected values (uncontrolled mode). */
-  defaultValues?: string[];
+  defaultValues?: readonly string[];
   /** Callback fired when the selected values change. Receives the full array of currently selected values. */
   onChange?: (values: string[]) => void;
   /** The minimum number of selections required for form validation. @default 0 */
@@ -75,13 +75,13 @@ export type ChoiceboxProps =
  * A selection group component that supports both single-select (radio) and multi-select (checkbox) modes with card-style options.
  *
  * @param {string} props.name - The name attribute shared by all inputs, used for form submission
- * @param {ChoiceboxItem[]} props.options - The list of options to render
+ * @param {readonly ChoiceboxItem[]} props.options - The list of options to render
  * @param {boolean} [props.multiselect] - (optional) When `true`, enables multi-select (checkbox) mode. @default false
  * @param {boolean} [props.disabled] - (optional) Disables all options in the group. @default false
  * @param {string} [props.value] - (optional) The currently selected value (single-select, controlled)
  * @param {string} [props.defaultValue] - (optional) The initially selected value (single-select, uncontrolled)
  * @param {(value: string) => void} [props.onChange] - (optional) Callback fired on selection change (single-select)
- * @param {string[]} [props.values] - (optional) The currently selected values (multi-select, controlled)
+ * @param {readonly string[]} [props.values] - (optional) The currently selected values (multi-select, controlled)
  * @param {(values: string[]) => void} [props.onChange] - (optional) Callback fired with all selected values (multi-select)
  *
  * You may also pass any additional props to the underlying `fieldset` element

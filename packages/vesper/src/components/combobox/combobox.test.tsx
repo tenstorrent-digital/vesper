@@ -235,3 +235,11 @@ describe("combobox [a11y, high contrast]", () => {
     });
   });
 });
+
+// type-level assertions, verified by `yarn check-types`
+describe("combobox [types]", () => {
+  test("accepts readonly options", () => {
+    const options = [{ value: "lions", label: "Lions" }, "Tigers"] as const;
+    <Combobox options={options} />;
+  });
+});

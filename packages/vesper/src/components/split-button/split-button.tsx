@@ -36,7 +36,7 @@ export interface SplitButtonProps extends Omit<
   /** The visual style variant, applied to both the action button and the menu toggle. @default contrast */
   variant?: SplitButtonVariant;
   /** The list of menu items rendered in the dropdown when the menu toggle is clicked. */
-  menuItems: MenuItemProps[];
+  menuItems: readonly MenuItemProps[];
   /** Callback fired when the primary action button is clicked. */
   onClick?: MouseEventHandler<HTMLButtonElement>;
   /** An accessible `aria-label` for the menu toggle button. @default Toggle menu */
@@ -77,7 +77,7 @@ const SPLIT_BUTTON_BUTTON_VARIANTS: Record<SplitButtonVariant, ButtonVariant> =
  * @see packages/vesper/src/components/text-button/text-button.tsx
  * @see packages/vesper/src/components/icon-button/icon-button.tsx
  *
- * @param {MenuItemProps[]} props.menuItems - The list of menu items rendered in the dropdown
+ * @param {readonly MenuItemProps[]} props.menuItems - The list of menu items rendered in the dropdown
  * @param {SplitButtonSize} [props.size] - (optional) The size of the split button. @default md
  * @param {SplitButtonVariant} [props.variant] - (optional) The visual style variant. @default contrast
  * @param {MouseEventHandler<HTMLButtonElement>} [props.onClick] - (optional) Callback fired when the primary action button is clicked

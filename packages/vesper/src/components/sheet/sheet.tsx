@@ -45,7 +45,7 @@ export interface SheetProps extends Omit<
   /** When `true`, renders the sheet as a popover instead of a modal dialog. Popovers do not render a backdrop, and allow interaction with the content behind them. @default false */
   popover?: boolean;
   /** An optional array of button props to render as action buttons at the bottom of the sheet. The last button defaults to `"contrast"` variant; all others default to `"tertiary"`. */
-  buttons?: Omit<ButtonProps, "size" | "as">[];
+  buttons?: readonly Omit<ButtonProps, "size" | "as">[];
   /** When provided, wraps the sheet content in a `<form>` element with the given form attributes, enabling native form submission from within the sheet */
   form?: Pick<
     ComponentProps<"form">,
@@ -79,7 +79,7 @@ export interface SheetProps extends Omit<
  * @param {SheetSide} [props.side] - (optional) The side of the viewport the sheet slides in from. @default right
  * @param {boolean} [props.popover] - (optional) Render as a non-modal popover instead of a modal dialog. @default false
  * @param {Ref<SheetRef>} [props.ref] - (optional) A ref exposing imperative `open()` and `close()` methods
- * @param {ButtonProps[]} [props.buttons] - (optional) Action buttons rendered at the bottom of the sheet
+ * @param {readonly ButtonProps[]} [props.buttons] - (optional) Action buttons rendered at the bottom of the sheet
  *
  * You may also pass any additional props to the underlying `dialog` element
  *

@@ -243,3 +243,14 @@ describe("avatar-group [a11y, high contrast]", () => {
     });
   });
 });
+
+// type-level assertions, verified by `yarn check-types`
+describe("avatar-group [types]", () => {
+  test("accepts readonly avatars", () => {
+    const avatars = [
+      { src: "/ada.png", alt: "Ada" },
+      { src: undefined },
+    ] as const;
+    <AvatarGroup avatars={avatars} />;
+  });
+});

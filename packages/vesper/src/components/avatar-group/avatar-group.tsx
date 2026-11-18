@@ -9,7 +9,7 @@ export type AvatarGroupProps<E extends ElementType = "div"> = Polymorphic<
     /** The size applied to all avatars in the group. @default md */
     size?: AvatarSize;
     /** The list of avatars to display. A maximum of 3 avatars are shown, with an overflow indicator for additional items. */
-    avatars: { src: string | undefined; alt?: string }[];
+    avatars: readonly { src: string | undefined; alt?: string }[];
   },
   E,
   "div",
