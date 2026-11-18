@@ -1,19 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import type { ReactNode } from "react";
+
+import { type ReactNode, useState } from "react";
 
 import { Button } from "@/components/button/button";
-import { Modal, type ModalProps, useModal } from "@/components/modal/modal";
+import { Modal, type ModalProps } from "@/components/modal/modal";
 import { TextInput } from "@/components/text-input/text-input";
 
 function ModalStoryComponent({
   withButtons,
   contents,
   ...props
-}: ModalProps & {
+}: Omit<ModalProps, "open" | "onOpenChange"> & {
   withButtons: boolean;
   contents: "none" | "inputs" | "long text";
 }) {
-  const { ref, open, close } = useModal();
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
 
   let children: ReactNode = null;
   switch (contents) {
@@ -52,10 +54,10 @@ function ModalStoryComponent({
 
   return (
     <>
-      <Button onClick={open} variant="contrast">
+      <Button onClick={() => setOpen(true)} variant="contrast">
         open modal
       </Button>
-      <Modal ref={ref} {...props}>
+      <Modal {...props} open={open} onOpenChange={setOpen}>
         {!!(children || withButtons) && (
           <div
             style={{
