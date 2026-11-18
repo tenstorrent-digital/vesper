@@ -1,0 +1,22 @@
+/*
+ * A `vesper-dark` variant so `vesper-dark:*` classes apply whenever vesper's
+ * dark theme does (see the theme selectors in `color.css`):
+ *
+ * 1. The theme is set to `dark`: `data-vesper-theme="dark"` on the document root
+ * 2. The theme is set to `system` (or isn't set) and the user's system prefers a
+ *    dark color scheme.
+ */
+@custom-variant vesper-dark {
+  &:where(:root[data-vesper-theme="dark"], :root[data-vesper-theme="dark"] *) {
+    @slot;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &:where(
+      :root:not([data-vesper-theme="light"]),
+      :root:not([data-vesper-theme="light"]) *
+    ) {
+      @slot;
+    }
+  }
+}

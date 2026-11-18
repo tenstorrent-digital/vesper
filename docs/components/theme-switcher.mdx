@@ -149,3 +149,7 @@ export function ThemeSettings({ savedTheme }: { savedTheme: VesperTheme }) {
 Pass the same `serverTheme` to each component that takes one. Components with different server theme values show different themes until hydration finishes.
 
 The `serverTheme` only applies to server rendering and hydration. Components that first render in the browser always read the theme from the document.
+
+### Styling with Tailwind
+
+[Vesper's Tailwind styles](../getting-started.mdx#usage-with-tailwind) include a `vesper-dark` variant, which applies classes whenever the dark theme is active. Unlike Tailwind's built-in `dark` variant, it follows the theme set with `ThemeSwitcher` or `useTheme`. See [Dark mode](../getting-started.mdx#dark-mode) for details.
