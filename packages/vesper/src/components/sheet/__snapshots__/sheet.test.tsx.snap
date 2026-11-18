@@ -2,8 +2,8 @@
 
 exports[`sheet [snapshot] > default (right side) 1`] = `
 <dialog
-  aria-describedby="_r_27_"
-  aria-labelledby="_r_26_"
+  aria-describedby="_r_11_"
+  aria-labelledby="_r_10_"
   class="vesper-sheet vesper-sheet-right"
 >
   <div
@@ -17,13 +17,13 @@ exports[`sheet [snapshot] > default (right side) 1`] = `
       >
         <p
           class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_26_"
+          id="_r_10_"
         >
           Sheet title
         </p>
         <p
           class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_27_"
+          id="_r_11_"
         >
           This is a description of the sheet content.
         </p>
@@ -58,8 +58,8 @@ exports[`sheet [snapshot] > default (right side) 1`] = `
 
 exports[`sheet [snapshot] > left side 1`] = `
 <dialog
-  aria-describedby="_r_29_"
-  aria-labelledby="_r_28_"
+  aria-describedby="_r_13_"
+  aria-labelledby="_r_12_"
   class="vesper-sheet vesper-sheet-left"
 >
   <div
@@ -73,13 +73,13 @@ exports[`sheet [snapshot] > left side 1`] = `
       >
         <p
           class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_28_"
+          id="_r_12_"
         >
           Sheet title
         </p>
         <p
           class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_29_"
+          id="_r_13_"
         >
           This is a description of the sheet content.
         </p>
@@ -114,8 +114,8 @@ exports[`sheet [snapshot] > left side 1`] = `
 
 exports[`sheet [snapshot] > left side with buttons and children 1`] = `
 <dialog
-  aria-describedby="_r_2f_"
-  aria-labelledby="_r_2e_"
+  aria-describedby="_r_19_"
+  aria-labelledby="_r_18_"
   class="vesper-sheet vesper-sheet-left"
 >
   <div
@@ -129,13 +129,13 @@ exports[`sheet [snapshot] > left side with buttons and children 1`] = `
       >
         <p
           class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_2e_"
+          id="_r_18_"
         >
           Sheet title
         </p>
         <p
           class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_2f_"
+          id="_r_19_"
         >
           This is a description of the sheet content.
         </p>
@@ -186,8 +186,8 @@ exports[`sheet [snapshot] > left side with buttons and children 1`] = `
 
 exports[`sheet [snapshot] > popover mode (left side with buttons and children) 1`] = `
 <dialog
-  aria-describedby="_r_2j_"
-  aria-labelledby="_r_2i_"
+  aria-describedby="_r_1d_"
+  aria-labelledby="_r_1c_"
   class="vesper-sheet vesper-sheet-left"
   popover="manual"
 >
@@ -202,13 +202,13 @@ exports[`sheet [snapshot] > popover mode (left side with buttons and children) 1
       >
         <p
           class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_2i_"
+          id="_r_1c_"
         >
           Sheet title
         </p>
         <p
           class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_2j_"
+          id="_r_1d_"
         >
           This is a description of the sheet content.
         </p>
@@ -259,8 +259,8 @@ exports[`sheet [snapshot] > popover mode (left side with buttons and children) 1
 
 exports[`sheet [snapshot] > popover mode (right side) 1`] = `
 <dialog
-  aria-describedby="_r_2h_"
-  aria-labelledby="_r_2g_"
+  aria-describedby="_r_1b_"
+  aria-labelledby="_r_1a_"
   class="vesper-sheet vesper-sheet-right"
   popover="manual"
 >
@@ -275,13 +275,13 @@ exports[`sheet [snapshot] > popover mode (right side) 1`] = `
       >
         <p
           class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_2g_"
+          id="_r_1a_"
         >
           Sheet title
         </p>
         <p
           class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_2h_"
+          id="_r_1b_"
         >
           This is a description of the sheet content.
         </p>
@@ -316,8 +316,8 @@ exports[`sheet [snapshot] > popover mode (right side) 1`] = `
 
 exports[`sheet [snapshot] > with buttons 1`] = `
 <dialog
-  aria-describedby="_r_2d_"
-  aria-labelledby="_r_2c_"
+  aria-describedby="_r_17_"
+  aria-labelledby="_r_16_"
   class="vesper-sheet vesper-sheet-right"
 >
   <div
@@ -331,13 +331,13 @@ exports[`sheet [snapshot] > with buttons 1`] = `
       >
         <p
           class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_2c_"
+          id="_r_16_"
         >
           Sheet title
         </p>
         <p
           class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_2d_"
+          id="_r_17_"
         >
           This is a description of the sheet content.
         </p>
@@ -386,8 +386,8 @@ exports[`sheet [snapshot] > with buttons 1`] = `
 
 exports[`sheet [snapshot] > with children 1`] = `
 <dialog
-  aria-describedby="_r_2b_"
-  aria-labelledby="_r_2a_"
+  aria-describedby="_r_15_"
+  aria-labelledby="_r_14_"
   class="vesper-sheet vesper-sheet-right"
 >
   <div
@@ -401,13 +401,13 @@ exports[`sheet [snapshot] > with children 1`] = `
       >
         <p
           class="vesper-typography vesper-typography-heading-sm vesper-sheet-title"
-          id="_r_2a_"
+          id="_r_14_"
         >
           Sheet title
         </p>
         <p
           class="vesper-typography vesper-typography-copy-sm vesper-sheet-description"
-          id="_r_2b_"
+          id="_r_15_"
         >
           This is a description of the sheet content.
         </p>

@@ -1,28 +1,27 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { useState } from "react";
+
 import { Button } from "@/components/button/button";
-import {
-  Sheet,
-  SHEET_SIDES,
-  type SheetProps,
-  useSheet,
-} from "@/components/sheet/sheet";
+import { Sheet, SHEET_SIDES, type SheetProps } from "@/components/sheet/sheet";
 import { Typography } from "@/components/typography/typography";
 
 function SheetStoryComponent({
   withButtons,
   ...props
-}: SheetProps & { withButtons: boolean }) {
-  const { ref, open, close } = useSheet();
+}: Omit<SheetProps, "open" | "onOpenChange"> & { withButtons: boolean }) {
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
 
   return (
     <>
-      <Button onClick={open} variant="contrast">
+      <Button onClick={() => setOpen(true)} variant="contrast">
         Open sheet
       </Button>
       <Sheet
-        ref={ref}
         {...props}
+        open={open}
+        onOpenChange={setOpen}
         buttons={
           withButtons
             ? [

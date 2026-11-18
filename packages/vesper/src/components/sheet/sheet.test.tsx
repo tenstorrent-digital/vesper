@@ -1,5 +1,6 @@
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import axe from "axe-core";
+import { createRef } from "react";
 import {
   afterEach,
   assert,
@@ -9,8 +10,10 @@ import {
   test,
   vi,
 } from "vitest";
+import { userEvent } from "vitest/browser";
 
-import { Sheet, type SheetProps, useSheet } from "@/components/sheet/sheet";
+import { Select } from "@/components/select/select";
+import { Sheet, type SheetProps } from "@/components/sheet/sheet";
 import {
   emulateHighContrast,
   runAxeWcag2aaa,
@@ -27,468 +30,221 @@ const BUTTONS: SheetProps["buttons"] = [
 
 afterEach(cleanup);
 
-function SheetWithHook(props: Omit<SheetProps, "ref">) {
-  const { ref, open, close } = useSheet();
-  return (
-    <>
-      <button data-testid="open-trigger" onClick={open}>
-        Open
-      </button>
-      <button data-testid="close-trigger" onClick={close}>
-        Close
-      </button>
-      <Sheet ref={ref} {...props} />
-    </>
+/**
+ * renders a sheet with an `onOpenChange` spy, and returns its `<dialog>` element and close button,
+ * along with `setProps` to re-render the sheet with the initial props merged with new ones
+ */
+function renderSheet(initialProps: Partial<SheetProps> = {}) {
+  const onOpenChange = vi.fn();
+  const renderWith = (props: Partial<SheetProps>) => (
+    <Sheet
+      title={TITLE}
+      description={DESCRIPTION}
+      onOpenChange={onOpenChange}
+      {...initialProps}
+      {...props}
+    />
   );
+
+  const result = render(renderWith({}));
+  const dialog = result.container.querySelector("dialog");
+  assert.instanceOf(dialog, HTMLDialogElement);
+
+  return {
+    ...result,
+    dialog,
+    closeButton: result.getByLabelText("Close sheet"),
+    onOpenChange,
+    setProps: (props: Partial<SheetProps>) =>
+      result.rerender(renderWith(props)),
+  };
 }
 
 describe("sheet [unit]", () => {
-  test("renders a dialog element", () => {
-    const { container } = render(
-      <Sheet title={TITLE} description={DESCRIPTION} />,
+  test("labels and describes the dialog with its title and description", () => {
+    const { dialog, getByText } = renderSheet({
+      "aria-labelledby": "custom-label",
+      "aria-describedby": "custom-description",
+    });
+    expect(dialog).toHaveAttribute(
+      "aria-labelledby",
+      `custom-label ${getByText(TITLE).id}`,
     );
-    expect(container.firstElementChild?.tagName).toBe("DIALOG");
-  });
-
-  test("does not render with popover attribute by default", () => {
-    const { container } = render(
-      <Sheet title={TITLE} description={DESCRIPTION} />,
+    expect(dialog).toHaveAttribute(
+      "aria-describedby",
+      `custom-description ${getByText(DESCRIPTION).id}`,
     );
-    const dialog = container.firstElementChild;
-    assert.instanceOf(dialog, HTMLDialogElement);
-    expect(dialog).not.toHaveAttribute("popover");
   });
 
-  test("renders with popover attribute when popover prop is true", () => {
-    const { container } = render(
-      <Sheet title={TITLE} description={DESCRIPTION} popover />,
+  test("forwards ref and additional props to the dialog element", () => {
+    const ref = createRef<HTMLDialogElement>();
+    const { dialog } = renderSheet({ ref, className: "custom", id: "sheet" });
+    expect(ref.current).toBe(dialog);
+    expect(dialog).toHaveClass("vesper-sheet", "custom");
+    expect(dialog).toHaveAttribute("id", "sheet");
+  });
+
+  test("defaults the last button to contrast and the rest to tertiary, unless a variant is set", () => {
+    const { getByText } = renderSheet({
+      buttons: [
+        { children: "Delete", variant: "danger" },
+        { children: "Cancel" },
+        { children: "Save" },
+      ],
+    });
+    expect(getByText("Delete").closest("button")).toHaveClass(
+      "vesper-button-danger",
     );
-    const dialog = container.firstElementChild;
-    assert.instanceOf(dialog, HTMLDialogElement);
-    expect(dialog).toHaveAttribute("popover", "manual");
-  });
-
-  test("renders title", () => {
-    const { container } = render(
-      <Sheet title={TITLE} description={DESCRIPTION} />,
+    expect(getByText("Cancel").closest("button")).toHaveClass(
+      "vesper-button-tertiary",
     );
-    const title = container.querySelector(".vesper-sheet-title");
-    expect(title).not.toBeNull();
-    expect(title?.textContent).toBe(TITLE);
-  });
-
-  test("renders description", () => {
-    const { container } = render(
-      <Sheet title={TITLE} description={DESCRIPTION} />,
+    expect(getByText("Save").closest("button")).toHaveClass(
+      "vesper-button-contrast",
     );
-    const desc = container.querySelector(".vesper-sheet-description");
-    expect(desc).not.toBeNull();
-    expect(desc?.textContent).toBe(DESCRIPTION);
   });
 
-  test("renders children content", () => {
-    const { container } = render(
-      <Sheet title={TITLE} description={DESCRIPTION}>
-        <p>Sheet body content</p>
-      </Sheet>,
-    );
-    const children = container.querySelector(".vesper-sheet-children");
-    expect(children).not.toBeNull();
-    expect(children?.textContent).toBe("Sheet body content");
+  test("wraps its content in a form with the given form props", () => {
+    const onSubmit = vi.fn();
+    const { dialog } = renderSheet({
+      form: { id: "test-form", method: "post", onSubmit },
+    });
+
+    const form = dialog.querySelector("form");
+    assert.instanceOf(form, HTMLFormElement);
+    expect(form).toHaveClass("vesper-sheet-content");
+    expect(form).toHaveAttribute("id", "test-form");
+    expect(form).toHaveAttribute("method", "post");
+
+    fireEvent.submit(form);
+    expect(onSubmit).toHaveBeenCalledOnce();
   });
 
-  test("renders close button with aria-label", () => {
-    const { container } = render(
-      <Sheet title={TITLE} description={DESCRIPTION} />,
-    );
-    const closeBtn = container.querySelector('[aria-label="Close sheet"]');
-    assert.instanceOf(closeBtn, HTMLButtonElement);
-    expect(closeBtn).not.toBeNull();
-    expect(closeBtn).toHaveAttribute("type", "button");
+  test("opens when defaultOpen is true, and closes via the close button", () => {
+    const { dialog, closeButton, onOpenChange } = renderSheet({
+      defaultOpen: true,
+    });
+    expect(dialog.open).toBe(true);
+
+    fireEvent.click(closeButton);
+    expect(dialog.open).toBe(false);
+    expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
   });
 
-  test("custom className is merged", () => {
-    const { container } = render(
-      <Sheet
-        title={TITLE}
-        description={DESCRIPTION}
-        className="custom-class"
-      />,
-    );
-    const dialog = container.firstElementChild;
-    expect(dialog).toHaveClass("vesper-sheet");
-    expect(dialog).toHaveClass("custom-class");
+  test("closes on Escape", async () => {
+    const { dialog, onOpenChange } = renderSheet({ defaultOpen: true });
+
+    await userEvent.keyboard("{Escape}");
+    expect(dialog.open).toBe(false);
+    expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
   });
 
-  test("additional props are passed through", () => {
-    const { container } = render(
-      <Sheet
-        title={TITLE}
-        description={DESCRIPTION}
-        data-testid="my-sheet"
-        id="sheet-1"
-      />,
-    );
-    const dialog = container.firstElementChild;
-    expect(dialog).toHaveAttribute("data-testid", "my-sheet");
-    expect(dialog).toHaveAttribute("id", "sheet-1");
+  test("closes on the cancel event", () => {
+    const { dialog, onOpenChange } = renderSheet({ defaultOpen: true });
+
+    // browsers fire `cancel` on the dialog for close requests other than `Escape` (eg. the Android back gesture),
+    // and close the dialog unless the event is prevented
+    const cancel = new Event("cancel", { cancelable: true });
+    fireEvent(dialog, cancel);
+    expect(cancel.defaultPrevented).toBe(true);
+    expect(dialog.open).toBe(false);
+    expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
   });
 
-  describe("side", () => {
-    test("defaults to right side", () => {
-      const { container } = render(
-        <Sheet title={TITLE} description={DESCRIPTION} />,
-      );
-      const dialog = container.firstElementChild;
-      expect(dialog).toHaveClass("vesper-sheet-right");
+  test("closes on backdrop click, but not on clicks inside the sheet", () => {
+    const { dialog, getByText, onOpenChange } = renderSheet({
+      defaultOpen: true,
     });
 
-    test("applies left side class", () => {
-      const { container } = render(
-        <Sheet title={TITLE} description={DESCRIPTION} side="left" />,
-      );
-      const dialog = container.firstElementChild;
-      expect(dialog).toHaveClass("vesper-sheet-left");
-    });
+    fireEvent.click(getByText(TITLE));
+    expect(dialog.open).toBe(true);
 
-    test("applies right side class", () => {
-      const { container } = render(
-        <Sheet title={TITLE} description={DESCRIPTION} side="right" />,
-      );
-      const dialog = container.firstElementChild;
-      expect(dialog).toHaveClass("vesper-sheet-right");
-    });
+    fireEvent.click(dialog);
+    expect(dialog.open).toBe(false);
+    expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
   });
 
-  describe("aria attributes", () => {
-    test("aria-labelledby references the title", () => {
-      const { container } = render(
-        <Sheet title={TITLE} description={DESCRIPTION} />,
-      );
-      const dialog = container.firstElementChild;
-      assert.instanceOf(dialog, HTMLDialogElement);
-      const titleEl = container.querySelector(".vesper-sheet-title");
-      const labelledBy = dialog.getAttribute("aria-labelledby");
-      expect(labelledBy).toContain(titleEl?.id);
-    });
+  test("opens and closes with the open prop", () => {
+    const { dialog, setProps } = renderSheet({ open: false });
+    expect(dialog.open).toBe(false);
 
-    test("aria-describedby references the description", () => {
-      const { container } = render(
-        <Sheet title={TITLE} description={DESCRIPTION} />,
-      );
-      const dialog = container.firstElementChild;
-      assert.instanceOf(dialog, HTMLDialogElement);
-      const descEl = container.querySelector(".vesper-sheet-description");
-      const describedBy = dialog.getAttribute("aria-describedby");
-      expect(describedBy).toContain(descEl?.id);
-    });
+    setProps({ open: true });
+    expect(dialog.open).toBe(true);
 
-    test("custom aria-labelledby is merged with title id", () => {
-      const { container } = render(
-        <Sheet
-          title={TITLE}
-          description={DESCRIPTION}
-          aria-labelledby="custom-label"
-        />,
-      );
-      const dialog = container.firstElementChild;
-      assert.instanceOf(dialog, HTMLDialogElement);
-      const titleEl = container.querySelector(".vesper-sheet-title");
-      const labelledBy = dialog.getAttribute("aria-labelledby");
-      expect(labelledBy).toContain("custom-label");
-      expect(labelledBy).toContain(titleEl?.id);
-    });
-
-    test("custom aria-describedby is merged with description id", () => {
-      const { container } = render(
-        <Sheet
-          title={TITLE}
-          description={DESCRIPTION}
-          aria-describedby="custom-desc"
-        />,
-      );
-      const dialog = container.firstElementChild;
-      assert.instanceOf(dialog, HTMLDialogElement);
-      const descEl = container.querySelector(".vesper-sheet-description");
-      const describedBy = dialog.getAttribute("aria-describedby");
-      expect(describedBy).toContain("custom-desc");
-      expect(describedBy).toContain(descEl?.id);
-    });
+    setProps({ open: false });
+    expect(dialog.open).toBe(false);
   });
 
-  describe("buttons", () => {
-    test("renders buttons when provided", () => {
-      const { container } = render(
-        <Sheet title={TITLE} description={DESCRIPTION} buttons={BUTTONS} />,
-      );
-      const buttonsContainer = container.querySelector(".vesper-sheet-buttons");
-      expect(buttonsContainer).not.toBeNull();
-      const buttons = buttonsContainer?.querySelectorAll("button");
-      expect(buttons).toHaveLength(2);
-    });
+  test("calls onOpenChange instead of closing when the open prop is set", async () => {
+    const { dialog, closeButton, onOpenChange } = renderSheet({ open: true });
 
-    test("does not render buttons section when buttons is empty", () => {
-      const { container } = render(
-        <Sheet title={TITLE} description={DESCRIPTION} buttons={[]} />,
-      );
-      const buttonsContainer = container.querySelector(".vesper-sheet-buttons");
-      expect(buttonsContainer).toBeNull();
-    });
-
-    test("does not render buttons section when buttons is undefined", () => {
-      const { container } = render(
-        <Sheet title={TITLE} description={DESCRIPTION} />,
-      );
-      const buttonsContainer = container.querySelector(".vesper-sheet-buttons");
-      expect(buttonsContainer).toBeNull();
-    });
-
-    test("last button defaults to contrast variant", () => {
-      const { container } = render(
-        <Sheet title={TITLE} description={DESCRIPTION} buttons={BUTTONS} />,
-      );
-      const buttons = container.querySelectorAll(
-        ".vesper-sheet-buttons button",
-      );
-      expect(buttons[1]).toHaveClass("vesper-button-contrast");
-    });
-
-    test("non-last buttons default to tertiary variant", () => {
-      const { container } = render(
-        <Sheet title={TITLE} description={DESCRIPTION} buttons={BUTTONS} />,
-      );
-      const buttons = container.querySelectorAll(
-        ".vesper-sheet-buttons button",
-      );
-      expect(buttons[0]).toHaveClass("vesper-button-tertiary");
-    });
-
-    test("explicit variant overrides default", () => {
-      const { container } = render(
-        <Sheet
-          title={TITLE}
-          description={DESCRIPTION}
-          buttons={[
-            { children: "Delete", variant: "danger" },
-            { children: "Cancel", variant: "ghost" },
-          ]}
-        />,
-      );
-      const buttons = container.querySelectorAll(
-        ".vesper-sheet-buttons button",
-      );
-      expect(buttons[0]).toHaveClass("vesper-button-danger");
-      expect(buttons[1]).toHaveClass("vesper-button-ghost");
-    });
-
-    test("single button defaults to contrast variant", () => {
-      const { container } = render(
-        <Sheet
-          title={TITLE}
-          description={DESCRIPTION}
-          buttons={[{ children: "OK" }]}
-        />,
-      );
-      const buttons = container.querySelectorAll(
-        ".vesper-sheet-buttons button",
-      );
-      expect(buttons[0]).toHaveClass("vesper-button-contrast");
-    });
-
-    test("buttons render at lg size", () => {
-      const { container } = render(
-        <Sheet
-          title={TITLE}
-          description={DESCRIPTION}
-          buttons={[{ children: "OK" }]}
-        />,
-      );
-      const buttons = container.querySelectorAll(
-        ".vesper-sheet-buttons button",
-      );
-      expect(buttons[0]).toHaveClass("vesper-button-lg");
-    });
+    fireEvent.click(closeButton);
+    fireEvent.click(dialog);
+    await userEvent.keyboard("{Escape}");
+    expect(onOpenChange.mock.calls).toEqual([[false], [false], [false]]);
+    expect(dialog.open).toBe(true);
   });
 
-  describe("open and close", () => {
-    describe("modal mode (default)", () => {
-      test("opens/closes via useSheet hook", () => {
-        const result = render(
-          <SheetWithHook title={TITLE} description={DESCRIPTION} />,
-        );
-        const dialog = result.container.querySelector("dialog");
-        assert.instanceOf(dialog, HTMLDialogElement);
+  test("keeps its open state in sync when showModal() is called on the dialog", async () => {
+    const { dialog, closeButton, onOpenChange } = renderSheet();
 
-        expect(dialog.open).toBe(false);
+    dialog.showModal();
+    await waitFor(() => {
+      expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(true);
+    });
 
-        fireEvent.click(result.getByTestId("open-trigger"));
-        expect(dialog.open).toBe(true);
+    fireEvent.click(closeButton);
+    expect(dialog.open).toBe(false);
+  });
 
-        fireEvent.click(result.getByTestId("close-trigger"));
-        expect(dialog.open).toBe(false);
+  test("lets popups inside the sheet handle Escape first", async () => {
+    const { dialog, getByRole, onOpenChange } = renderSheet({
+      defaultOpen: true,
+      children: <Select aria-label="Fruit" options={["Apple", "Banana"]} />,
+    });
+
+    const trigger = getByRole("combobox");
+    await userEvent.click(trigger);
+    await waitFor(() => {
+      expect(trigger).toHaveAttribute("data-popup-open");
+    });
+
+    await userEvent.keyboard("{Escape}");
+    await waitFor(() => {
+      expect(trigger).not.toHaveAttribute("data-popup-open");
+    });
+    expect(dialog.open).toBe(true);
+
+    await userEvent.keyboard("{Escape}");
+    expect(dialog.open).toBe(false);
+    expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
+  });
+
+  describe("popover mode", () => {
+    test("opens as a popover, and closes on Escape", async () => {
+      const { dialog, onOpenChange } = renderSheet({
+        defaultOpen: true,
+        popover: true,
+      });
+      expect(dialog.matches(":popover-open")).toBe(true);
+      expect(dialog.open).toBe(false);
+
+      await userEvent.keyboard("{Escape}");
+      expect(dialog.matches(":popover-open")).toBe(false);
+      expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
+    });
+
+    test("keeps its open state in sync when showPopover() is called on the dialog", async () => {
+      const { dialog, closeButton, onOpenChange } = renderSheet({
+        popover: true,
       });
 
-      test("closes via close button", () => {
-        const result = render(
-          <SheetWithHook title={TITLE} description={DESCRIPTION} />,
-        );
-        const dialog = result.container.querySelector("dialog");
-        assert.instanceOf(dialog, HTMLDialogElement);
-
-        fireEvent.click(result.getByTestId("open-trigger"));
-        expect(dialog.open).toBe(true);
-
-        const closeBtn = result.container.querySelector(
-          '[aria-label="Close sheet"]',
-        );
-        assert.instanceOf(closeBtn, HTMLButtonElement);
-        fireEvent.click(closeBtn);
-        expect(dialog.open).toBe(false);
+      dialog.showPopover();
+      await waitFor(() => {
+        expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(true);
       });
 
-      test("closes when clicking outside", () => {
-        const result = render(
-          <SheetWithHook title={TITLE} description={DESCRIPTION} />,
-        );
-        const dialog = result.container.querySelector("dialog");
-        assert.instanceOf(dialog, HTMLDialogElement);
-
-        fireEvent.click(result.getByTestId("open-trigger"));
-        expect(dialog.open).toBe(true);
-
-        fireEvent.click(dialog);
-        expect(dialog.open).toBe(false);
-      });
-
-      test("does not close when clicking inside", () => {
-        const result = render(
-          <SheetWithHook title={TITLE} description={DESCRIPTION}>
-            <p>Inner content</p>
-          </SheetWithHook>,
-        );
-        const dialog = result.container.querySelector("dialog");
-        assert.instanceOf(dialog, HTMLDialogElement);
-
-        fireEvent.click(result.getByTestId("open-trigger"));
-        expect(dialog.open).toBe(true);
-
-        const content = result.container.querySelector(".vesper-sheet-content");
-        assert.instanceOf(content, HTMLElement);
-        fireEvent.click(content);
-        expect(dialog.open).toBe(true);
-      });
-    });
-
-    describe("popover mode", () => {
-      test("opens/closes via useSheet hook", () => {
-        const result = render(
-          <SheetWithHook title={TITLE} description={DESCRIPTION} popover />,
-        );
-        const dialog = result.container.querySelector("dialog");
-        assert.instanceOf(dialog, HTMLDialogElement);
-
-        expect(dialog.matches(":popover-open")).toBe(false);
-
-        fireEvent.click(result.getByTestId("open-trigger"));
-        expect(dialog.matches(":popover-open")).toBe(true);
-
-        fireEvent.click(result.getByTestId("close-trigger"));
-        expect(dialog.matches(":popover-open")).toBe(false);
-      });
-
-      test("closes via close button", () => {
-        const result = render(
-          <SheetWithHook title={TITLE} description={DESCRIPTION} popover />,
-        );
-        const dialog = result.container.querySelector("dialog");
-        assert.instanceOf(dialog, HTMLDialogElement);
-
-        fireEvent.click(result.getByTestId("open-trigger"));
-        expect(dialog.matches(":popover-open")).toBe(true);
-
-        const closeBtn = result.container.querySelector(
-          '[aria-label="Close sheet"]',
-        );
-        assert.instanceOf(closeBtn, HTMLButtonElement);
-        fireEvent.click(closeBtn);
-        expect(dialog.matches(":popover-open")).toBe(false);
-      });
-
-      test("closes when pressing escape key", () => {
-        const result = render(
-          <SheetWithHook title={TITLE} description={DESCRIPTION} popover />,
-        );
-        const dialog = result.container.querySelector("dialog");
-        assert.instanceOf(dialog, HTMLDialogElement);
-
-        fireEvent.click(result.getByTestId("open-trigger"));
-        expect(dialog.matches(":popover-open")).toBe(true);
-
-        fireEvent.keyDown(window, { key: "Escape" });
-        expect(dialog.matches(":popover-open")).toBe(false);
-      });
-    });
-  });
-
-  describe("form mode", () => {
-    test("renders a form when form prop is provided", () => {
-      const { container } = render(
-        <Sheet
-          title={TITLE}
-          description={DESCRIPTION}
-          form={{ id: "test-form", method: "post" }}
-        />,
-      );
-      const form = container.querySelector("form");
-      expect(form).not.toBeNull();
-      expect(form).toHaveClass("vesper-sheet-content");
-    });
-
-    test("form receives form props", () => {
-      const { container } = render(
-        <Sheet
-          title={TITLE}
-          description={DESCRIPTION}
-          form={{
-            id: "test-form",
-            method: "post",
-            action: "/submit",
-            name: "my-form",
-          }}
-        />,
-      );
-      const form = container.querySelector("form");
-      expect(form).toHaveAttribute("id", "test-form");
-      expect(form).toHaveAttribute("method", "post");
-      expect(form).toHaveAttribute("action", "/submit");
-      expect(form).toHaveAttribute("name", "my-form");
-    });
-
-    test("renders a div when form prop is not provided", () => {
-      const { container } = render(
-        <Sheet title={TITLE} description={DESCRIPTION} />,
-      );
-      const modalContainer = container.querySelector(".vesper-sheet-content");
-      expect(modalContainer?.tagName).toBe("DIV");
-    });
-
-    test("form onSubmit callback fires", () => {
-      const onSubmit = vi.fn((e) => e.preventDefault());
-      const result = render(
-        <SheetWithHook
-          title={TITLE}
-          description={DESCRIPTION}
-          form={{ id: "test-form", onSubmit }}
-          buttons={[{ children: "Submit", type: "submit" }]}
-        />,
-      );
-
-      fireEvent.click(result.getByTestId("open-trigger"));
-
-      const form = result.container.querySelector("form");
-      assert.instanceOf(form, HTMLFormElement);
-      fireEvent.submit(form);
-      expect(onSubmit).toHaveBeenCalled();
+      fireEvent.click(closeButton);
+      expect(dialog.matches(":popover-open")).toBe(false);
     });
   });
 });
@@ -553,11 +309,7 @@ describe("sheet [snapshot]", () => {
   });
 });
 
-type SheetA11yPermutation = {
-  label: string;
-  props: Omit<SheetProps, "ref">;
-  children?: React.ReactNode;
-};
+type SheetA11yPermutation = { label: string; props: SheetProps };
 
 const SHEET_A11Y_PERMUTATIONS: SheetA11yPermutation[] = [
   {
@@ -570,12 +322,15 @@ const SHEET_A11Y_PERMUTATIONS: SheetA11yPermutation[] = [
   },
   {
     label: "with children",
-    props: { title: TITLE, description: DESCRIPTION },
-    children: <p>Sheet body content for accessibility test.</p>,
+    props: {
+      title: TITLE,
+      description: DESCRIPTION,
+      children: <p>Sheet body content for accessibility test.</p>,
+    },
   },
   {
     label: "left side",
-    props: { title: TITLE, description: DESCRIPTION, side: "left" as const },
+    props: { title: TITLE, description: DESCRIPTION, side: "left" },
   },
   {
     label: "popover mode",
@@ -607,22 +362,10 @@ describe("sheet [a11y]", () => {
       document.body.style.removeProperty("background");
     });
 
-    SHEET_A11Y_PERMUTATIONS.forEach(({ label, props, children }) => {
-      const testLabel = `a11y - ${label} (${theme})`;
-
-      test(testLabel, async () => {
-        const result = render(
-          <SheetWithHook {...props}>{children}</SheetWithHook>,
-        );
-        fireEvent.click(result.getByTestId("open-trigger"));
-        const dialog = result.container.querySelector("dialog");
-        assert.instanceOf(dialog, HTMLDialogElement);
-        if (props.popover) {
-          expect(dialog.matches(":popover-open")).toBe(true);
-        } else {
-          expect(dialog.open).toBe(true);
-        }
-        expect(await axe.run(result.container)).toHaveNoViolations();
+    SHEET_A11Y_PERMUTATIONS.forEach(({ label, props }) => {
+      test(`a11y - ${label} (${theme})`, async () => {
+        const { container } = render(<Sheet {...props} defaultOpen />);
+        expect(await axe.run(container)).toHaveNoViolations();
       });
     });
   });
@@ -645,22 +388,10 @@ describe("sheet [a11y, high contrast]", () => {
       document.body.style.removeProperty("background");
     });
 
-    SHEET_A11Y_PERMUTATIONS.forEach(({ label, props, children }) => {
-      const testLabel = `wcag2aaa - ${label} (${theme})`;
-
-      test(testLabel, async () => {
-        const result = render(
-          <SheetWithHook {...props}>{children}</SheetWithHook>,
-        );
-        fireEvent.click(result.getByTestId("open-trigger"));
-        const dialog = result.container.querySelector("dialog");
-        assert.instanceOf(dialog, HTMLDialogElement);
-        if (props.popover) {
-          expect(dialog.matches(":popover-open")).toBe(true);
-        } else {
-          expect(dialog.open).toBe(true);
-        }
-        expect(await runAxeWcag2aaa(result.container)).toHaveNoViolations();
+    SHEET_A11Y_PERMUTATIONS.forEach(({ label, props }) => {
+      test(`wcag2aaa - ${label} (${theme})`, async () => {
+        const { container } = render(<Sheet {...props} defaultOpen />);
+        expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
       });
     });
   });
