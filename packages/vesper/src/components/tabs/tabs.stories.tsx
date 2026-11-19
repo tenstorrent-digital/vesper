@@ -31,21 +31,15 @@ const TabsStoryComponent = ({
   return (
     <TabsRoot variant={variant}>
       <TabsList>
-        <TabTrigger
-          value="tab-1"
-          label={tab1Label}
-          icon={tab1Icon && <Globe />}
-        />
-        <TabTrigger
-          value="tab-2"
-          label={tab2Label}
-          icon={tab2Icon && <Globe />}
-        />
-        <TabTrigger
-          value="tab-3"
-          label={tab3Label}
-          icon={tab3Icon && <Globe />}
-        />
+        <TabTrigger value="tab-1" icon={tab1Icon && <Globe />}>
+          {tab1Label}
+        </TabTrigger>
+        <TabTrigger value="tab-2" icon={tab2Icon && <Globe />}>
+          {tab2Label}
+        </TabTrigger>
+        <TabTrigger value="tab-3" icon={tab3Icon && <Globe />}>
+          {tab3Label}
+        </TabTrigger>
       </TabsList>
       <TabPanel value="tab-1">
         <Typography

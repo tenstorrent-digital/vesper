@@ -69,8 +69,8 @@ const useTabsContext = (componentName: string, parentName: string) => {
  * @example
  * <TabsRoot defaultValue="overview">
  *   <TabsList>
- *     <TabTrigger value="overview" label="Overview" />
- *     <TabTrigger value="settings" label="Settings" />
+ *     <TabTrigger value="overview">Overview</TabTrigger>
+ *     <TabTrigger value="settings">Settings</TabTrigger>
  *   </TabsList>
  *   <TabPanel value="overview">
  *     <Overview />
@@ -83,8 +83,8 @@ const useTabsContext = (componentName: string, parentName: string) => {
  * @example
  * <TabsRoot variant="secondary" value={activeTab} onValueChange={setActiveTab}>
  *   <TabsList>
- *     <TabTrigger value="code" label="Code" icon={<Document />} />
- *     <TabTrigger value="preview" label="Preview" />
+ *     <TabTrigger value="code" icon={<Document />}>Code</TabTrigger>
+ *     <TabTrigger value="preview">Preview</TabTrigger>
  *   </TabsList>
  *   <TabPanel value="code">
  *     <CodePanel />
@@ -133,8 +133,8 @@ export type TabsListProps = ComponentProps<"div">;
  *
  * @example
  * <TabsList>
- *   <TabTrigger value="overview" label="Overview" />
- *   <TabTrigger value="settings" label="Settings" />
+ *   <TabTrigger value="overview">Overview</TabTrigger>
+ *   <TabTrigger value="settings">Settings</TabTrigger>
  * </TabsList>
  */
 export function TabsList(props: ComponentProps<"div">) {
@@ -154,14 +154,9 @@ export function TabsList(props: ComponentProps<"div">) {
   );
 }
 
-export interface TabTriggerProps extends Omit<
-  ComponentProps<"button">,
-  "children"
-> {
+export interface TabTriggerProps extends ComponentProps<"button"> {
   /** The value of the Tab represented by this trigger */
   value: string;
-  /** The text label displayed in the tab trigger. */
-  label: string;
   /** An optional icon element rendered before the label in the tab trigger. */
   icon?: ReactNode;
 }
@@ -170,19 +165,21 @@ export interface TabTriggerProps extends Omit<
  * A button that selects the `TabPanel` sharing its `value`, and must be rendered within `TabsList`.
  *
  * @param {string} props.value - The value of the tab this trigger selects
- * @param {string} props.label - The text label displayed in the trigger
- * @param {ReactNode} [props.icon] - (optional) An icon element rendered before the label
+ * @param {string} props.children - The content displayed in the trigger
+ * @param {ReactNode} [props.icon] - (optional) An icon element rendered before the trigger's children
  *
- * You may also pass any additional props (except `children`) to the underlying `button` element
- *
- * @example
- * <TabTrigger value="overview" label="Overview" />
+ * You may also pass any additional props to the underlying `button` element
  *
  * @example
- * <TabTrigger value="settings" label="Settings" icon={<Gear />} />
+ * <TabTrigger value="overview">Overview</TabTrigger>
+ *
+ * @example
+ * <TabTrigger value="settings" icon={<Gear />}>
+ *   Settings
+ * </TabTrigger>
  */
 export function TabTrigger(props: TabTriggerProps) {
-  const { value, icon, label, className, ...rest } = props;
+  const { value, icon, children, className, ...rest } = props;
   const { variant } = useTabsContext("TabTrigger", "TabsList");
 
   return (
@@ -201,7 +198,7 @@ export function TabTrigger(props: TabTriggerProps) {
         variant={TRIGGER_TYPOGRAPHY[variant]}
         className="vesper-tabs-trigger-label"
       >
-        {label}
+        {children}
       </Typography>
     </BaseTabs.Tab>
   );

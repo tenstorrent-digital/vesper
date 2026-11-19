@@ -86,9 +86,11 @@ const TabsTestComponent = ({
     activationMode={activationMode}
   >
     <TabsList data-testid="tabs-list">
-      <TabTrigger value="tab-1" label="Tab 1" icon={<Globe />} />
-      <TabTrigger value="tab-2" label="Tab 2" />
-      <TabTrigger value="tab-3" label="Tab 3" />
+      <TabTrigger value="tab-1" icon={<Globe />}>
+        Tab 1
+      </TabTrigger>
+      <TabTrigger value="tab-2">Tab 2</TabTrigger>
+      <TabTrigger value="tab-3">Tab 3</TabTrigger>
     </TabsList>
     <TabPanel value="tab-1">
       <TabContent value="tab-1" label="Tab 1" />
@@ -165,7 +167,9 @@ describe("tabs [unit]", () => {
     const result = render(
       <TabsRoot data-testid="tabs" className="custom-root" variant="primary">
         <TabsList className="custom-list">
-          <TabTrigger className="custom-trigger" value="tab-1" label="Tab 1" />
+          <TabTrigger className="custom-trigger" value="tab-1">
+            Tab 1
+          </TabTrigger>
         </TabsList>
         <TabPanel className="custom-panel" value="tab-1">
           Content
@@ -190,7 +194,9 @@ describe("tabs [unit]", () => {
     const result = render(
       <TabsRoot data-testid="tabs" title="root">
         <TabsList aria-label="Settings">
-          <TabTrigger data-testid="trigger" value="tab-1" label="Tab 1" />
+          <TabTrigger data-testid="trigger" value="tab-1">
+            Tab 1
+          </TabTrigger>
         </TabsList>
         <TabPanel data-testid="panel" title="panel" value="tab-1">
           Content
@@ -393,9 +399,9 @@ describe("tabs [unit]", () => {
     });
 
     test("TabTrigger throws", () => {
-      expect(() => render(<TabTrigger value="tab-1" label="Tab 1" />)).toThrow(
-        "TabTrigger must be rendered within TabsList",
-      );
+      expect(() =>
+        render(<TabTrigger value="tab-1">Tab 1</TabTrigger>),
+      ).toThrow("TabTrigger must be rendered within TabsList");
     });
 
     test("TabPanel throws", () => {
@@ -468,15 +474,5 @@ describe("tabs [a11y, high contrast]", () => {
         expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
       });
     });
-  });
-});
-
-// type-level assertions, verified by `yarn check-types`
-describe("tabs [types]", () => {
-  test("accepts readonly items", () => {
-    const items = [
-      { value: "lions", label: "Lions", content: "Lions" },
-    ] as const;
-    <Tabs items={items} />;
   });
 });

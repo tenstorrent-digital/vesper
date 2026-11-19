@@ -212,8 +212,8 @@ export function ComponentGrid() {
       <Cell name="Tabs">
         <TabsRoot defaultValue="one">
           <TabsList>
-            <TabTrigger value="one" label="Tab 1" />
-            <TabTrigger value="two" label="Tab 2" />
+            <TabTrigger value="one">Tab 1</TabTrigger>
+            <TabTrigger value="two">Tab 2</TabTrigger>
           </TabsList>
         </TabsRoot>
       </Cell>

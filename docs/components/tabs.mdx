@@ -20,9 +20,9 @@ export default function TabsDemo() {
   return (
     <TabsRoot defaultValue="overview">
       <TabsList>
-        <TabTrigger value="overview" label="Overview" />
-        <TabTrigger value="settings" label="Settings" />
-        <TabTrigger value="activity" label="Activity" />
+        <TabTrigger value="overview">Overview</TabTrigger>
+        <TabTrigger value="settings">Settings</TabTrigger>
+        <TabTrigger value="activity">Activity</TabTrigger>
       </TabsList>
       <TabPanel value="overview">
         <Typography>Overview content.</Typography>
@@ -86,10 +86,10 @@ Tabs are built by composing four components:
 | Prop | Type | Description | Default |
 | --- | --- | --- | --- |
 | `value` | `string` | The value of the tab this trigger selects. Must be unique within its `TabsRoot`. **Required.** | — |
-| `label` | `string` | The text label displayed in the trigger. **Required.** | — |
+| `children` | `ReactNode` | The content displayed in the trigger. | — |
 | `icon` | `ReactNode` | An optional icon element rendered before the label. | — |
 
-`TabTrigger` doesn't accept `children`: use `label` and `icon` to set its content instead. It forwards any other props to the underlying `<button>` element, which has the `tab` role.
+`TabTrigger` forwards any other props to the underlying `<button>` element, which has the `tab` role.
 
 ### `TabPanel` options
 
@@ -120,8 +120,8 @@ export default function BasicTabs() {
   return (
     <TabsRoot defaultValue="details">
       <TabsList>
-        <TabTrigger value="details" label="Details" />
-        <TabTrigger value="history" label="History" />
+        <TabTrigger value="details">Details</TabTrigger>
+        <TabTrigger value="history">History</TabTrigger>
       </TabsList>
       <TabPanel value="details">
         <Typography>Everything you need to know about this item.</Typography>
@@ -152,8 +152,8 @@ function ExampleTabs({ variant }: { variant: TabsVariant }) {
   return (
     <TabsRoot variant={variant} defaultValue="preview">
       <TabsList>
-        <TabTrigger value="preview" label="Preview" />
-        <TabTrigger value="code" label="Code" />
+        <TabTrigger value="preview">Preview</TabTrigger>
+        <TabTrigger value="code">Code</TabTrigger>
       </TabsList>
       <TabPanel value="preview">
         <Typography>The rendered output.</Typography>
@@ -199,8 +199,12 @@ export default function TabsWithIcons() {
   return (
     <TabsRoot defaultValue="general">
       <TabsList>
-        <TabTrigger value="general" label="General" icon={<Globe />} />
-        <TabTrigger value="advanced" label="Advanced" icon={<Gear />} />
+        <TabTrigger value="general" icon={<Globe />}>
+          General
+        </TabTrigger>
+        <TabTrigger value="advanced" icon={<Gear />}>
+          Advanced
+        </TabTrigger>
       </TabsList>
       <TabPanel value="general">
         <Typography>General settings.</Typography>
@@ -233,8 +237,8 @@ export default function TabsPanelLayout() {
   return (
     <TabsRoot defaultValue="summary">
       <TabsList>
-        <TabTrigger value="summary" label="Summary" />
-        <TabTrigger value="configuration" label="Configuration" />
+        <TabTrigger value="summary">Summary</TabTrigger>
+        <TabTrigger value="configuration">Configuration</TabTrigger>
       </TabsList>
       <Material style={{ marginTop: "var(--vesper-spacing-4)" }}>
         <TabPanel value="summary" style={PANEL_STYLE}>
@@ -269,8 +273,8 @@ export default function KeepMountedTabs() {
   return (
     <TabsRoot defaultValue="notes">
       <TabsList>
-        <TabTrigger value="notes" label="Notes" />
-        <TabTrigger value="help" label="Help" />
+        <TabTrigger value="notes">Notes</TabTrigger>
+        <TabTrigger value="help">Help</TabTrigger>
       </TabsList>
       <TabPanel value="notes" keepMounted>
         <TextArea
@@ -309,8 +313,8 @@ export default function ControlledTabs() {
   return (
     <TabsRoot value={tab} onValueChange={setTab}>
       <TabsList>
-        <TabTrigger value="first" label="First" />
-        <TabTrigger value="second" label="Second" />
+        <TabTrigger value="first">First</TabTrigger>
+        <TabTrigger value="second">Second</TabTrigger>
       </TabsList>
       <TabPanel value="first">
         <Typography>First panel.</Typography>
@@ -340,8 +344,8 @@ export default function ManualTabs() {
   return (
     <TabsRoot activationMode="manual" defaultValue="metrics">
       <TabsList>
-        <TabTrigger value="metrics" label="Metrics" />
-        <TabTrigger value="logs" label="Logs" />
+        <TabTrigger value="metrics">Metrics</TabTrigger>
+        <TabTrigger value="logs">Logs</TabTrigger>
       </TabsList>
       <TabPanel value="metrics">
         <Typography>
