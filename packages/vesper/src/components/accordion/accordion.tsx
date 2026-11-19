@@ -20,7 +20,7 @@ export interface AccordionProps extends Omit<ComponentProps<"div">, "title"> {
 /**
  * A collapsible content section with a trigger that toggles visibility of its children.
  *
- * @param {ReactNode} props.title - The title displayed in the accordion trigger
+ * @param {NonNullable<ReactNode>} props.title - The title displayed in the accordion trigger
  * @param {boolean} [props.defaultOpen] - (optional) Whether the accordion is open by default (uncontrolled)
  * @param {boolean} [props.open] - (optional) Controls the open state (controlled)
  * @param {(open: boolean) => void} [props.onOpenChange] - (optional) Callback fired when the open state changes

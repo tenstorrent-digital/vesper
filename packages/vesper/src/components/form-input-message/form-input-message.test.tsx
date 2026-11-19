@@ -36,7 +36,7 @@ const FORM_INPUT_MESSAGE_PERMUTATIONS = FORM_INPUT_MESSAGE_VARIANTS.flatMap(
       {
         name: `${size} ${variant}, with message`,
         variant,
-        message: MESSAGE,
+        children: MESSAGE,
         size,
       },
       { name: `${size} ${variant}, without message`, variant, size },
@@ -56,7 +56,7 @@ describe("form-input-message [unit]", () => {
   FORM_INPUT_MESSAGE_VARIANTS.forEach((variant) => {
     test(`${variant} variant class`, () => {
       const { container } = render(
-        <FormInputMessage variant={variant} message={MESSAGE} />,
+        <FormInputMessage variant={variant}>{MESSAGE}</FormInputMessage>,
       );
 
       expect(container.firstChild).toHaveClass(
@@ -68,7 +68,7 @@ describe("form-input-message [unit]", () => {
   FORM_INPUT_MESSAGE_SIZES.forEach((size) => {
     test(`${size} variant class`, () => {
       const { container } = render(
-        <FormInputMessage size={size} message={MESSAGE} />,
+        <FormInputMessage size={size}>{MESSAGE}</FormInputMessage>,
       );
 
       expect(container.firstChild).toHaveClass(
@@ -78,7 +78,9 @@ describe("form-input-message [unit]", () => {
   });
 
   test("default variant applied when not specified", () => {
-    const { container } = render(<FormInputMessage message={MESSAGE} />);
+    const { container } = render(
+      <FormInputMessage>{MESSAGE}</FormInputMessage>,
+    );
 
     expect(container.firstChild).toHaveClass(
       "vesper-form-input-message-default",
@@ -86,7 +88,9 @@ describe("form-input-message [unit]", () => {
   });
 
   test("renders message text", () => {
-    const { container } = render(<FormInputMessage message={MESSAGE} />);
+    const { container } = render(
+      <FormInputMessage>{MESSAGE}</FormInputMessage>,
+    );
 
     const view = within(container);
     expect(view.getByText(MESSAGE)).toBeDefined();
@@ -94,7 +98,7 @@ describe("form-input-message [unit]", () => {
 
   test("small variant message text has correct classes", () => {
     const { container } = render(
-      <FormInputMessage size="sm" message={MESSAGE} />,
+      <FormInputMessage size="sm">{MESSAGE}</FormInputMessage>,
     );
 
     const text = container.querySelector(".vesper-form-input-message-text");
@@ -105,7 +109,7 @@ describe("form-input-message [unit]", () => {
 
   test("large variant message text has correct classes", () => {
     const { container } = render(
-      <FormInputMessage size="lg" message={MESSAGE} />,
+      <FormInputMessage size="lg">{MESSAGE}</FormInputMessage>,
     );
 
     const text = container.querySelector(".vesper-form-input-message-text");
@@ -114,17 +118,44 @@ describe("form-input-message [unit]", () => {
     expect(text?.textContent).toBe(MESSAGE);
   });
 
-  test("data-message is true when message is non-nullable", () => {
-    const { container } = render(<FormInputMessage message={MESSAGE} />);
+  test("renders react node children", () => {
+    const { container } = render(
+      <FormInputMessage>
+        Read our <a href="/privacy">privacy policy</a>
+      </FormInputMessage>,
+    );
+
+    const text = container.querySelector(".vesper-form-input-message-text");
+    expect(text).toHaveTextContent("Read our privacy policy");
+    expect(text?.querySelector("a")).toHaveAttribute("href", "/privacy");
+    expect(container.firstChild).toHaveAttribute("data-message", "true");
+  });
+
+  test("renders numeric zero children", () => {
+    const { container } = render(<FormInputMessage>{0}</FormInputMessage>);
+
+    expect(container.firstChild).toHaveAttribute("data-message", "true");
+    expect(
+      container.querySelector(".vesper-form-input-message-text"),
+    ).toHaveTextContent(/^0$/);
+  });
+
+  test("data-message is true when children are provided", () => {
+    const { container } = render(
+      <FormInputMessage>{MESSAGE}</FormInputMessage>,
+    );
 
     expect(container.firstChild).toHaveAttribute("data-message", "true");
   });
 
-  test("data-message is false when message is nullable or an empty string", () => {
+  test("data-message is false when children are nullable, a boolean, or an empty string", () => {
     const undefinedMessage = render(<FormInputMessage />);
-    const nullMessage = render(<FormInputMessage message={null} />);
-    const falseMessage = render(<FormInputMessage message={false} />);
-    const emptyStringMessage = render(<FormInputMessage message="" />);
+    const nullMessage = render(<FormInputMessage>{null}</FormInputMessage>);
+    const falseMessage = render(<FormInputMessage>{false}</FormInputMessage>);
+    const trueMessage = render(<FormInputMessage>{true}</FormInputMessage>);
+    const emptyStringMessage = render(
+      <FormInputMessage>{""}</FormInputMessage>,
+    );
 
     expect(undefinedMessage.container.firstChild).toHaveAttribute(
       "data-message",
@@ -138,13 +169,17 @@ describe("form-input-message [unit]", () => {
       "data-message",
       "false",
     );
+    expect(trueMessage.container.firstChild).toHaveAttribute(
+      "data-message",
+      "false",
+    );
     expect(emptyStringMessage.container.firstChild).toHaveAttribute(
       "data-message",
       "false",
     );
   });
 
-  test("renders no content when no message is provided", () => {
+  test("renders no content when no children are provided", () => {
     const { container } = render(<FormInputMessage />);
 
     const el = container.firstElementChild;
@@ -152,20 +187,20 @@ describe("form-input-message [unit]", () => {
     expect(el).toHaveTextContent("");
   });
 
-  test("renders content once a message becomes available", () => {
+  test("renders content once children become available", () => {
     const { container, rerender } = render(<FormInputMessage />);
 
     expect(container.firstElementChild?.children).toHaveLength(0);
 
-    rerender(<FormInputMessage message={MESSAGE} />);
+    rerender(<FormInputMessage>{MESSAGE}</FormInputMessage>);
 
     expect(container.firstChild).toHaveAttribute("data-message", "true");
     expect(container).toHaveTextContent(MESSAGE);
   });
 
-  test("removes content once a message is cleared", () => {
+  test("removes content once children are cleared", () => {
     const { container, rerender } = render(
-      <FormInputMessage message={MESSAGE} />,
+      <FormInputMessage>{MESSAGE}</FormInputMessage>,
     );
 
     expect(container).toHaveTextContent(MESSAGE);
@@ -181,7 +216,7 @@ describe("form-input-message [unit]", () => {
       const VariantIcon = VARIANT_ICONS[variant];
       const expected = render(<VariantIcon />);
       const { container } = render(
-        <FormInputMessage variant={variant} message={MESSAGE} />,
+        <FormInputMessage variant={variant}>{MESSAGE}</FormInputMessage>,
       );
 
       const icon = container.querySelector(".vesper-form-input-message-icon");
@@ -190,7 +225,9 @@ describe("form-input-message [unit]", () => {
   });
 
   test("icon is hidden from assistive technology", () => {
-    const { container } = render(<FormInputMessage message={MESSAGE} />);
+    const { container } = render(
+      <FormInputMessage>{MESSAGE}</FormInputMessage>,
+    );
 
     const icon = container.querySelector(".vesper-form-input-message-icon");
     expect(icon).toHaveAttribute("aria-hidden");
@@ -198,7 +235,9 @@ describe("form-input-message [unit]", () => {
 
   test("additional prop passthrough", () => {
     const { container } = render(
-      <FormInputMessage id="message-id" message={MESSAGE} aria-live="polite" />,
+      <FormInputMessage id="message-id" aria-live="polite">
+        {MESSAGE}
+      </FormInputMessage>,
     );
 
     expect(container.firstChild).toHaveAttribute("id", "message-id");
@@ -207,11 +246,9 @@ describe("form-input-message [unit]", () => {
 
   test("custom className", () => {
     const { container } = render(
-      <FormInputMessage
-        variant="error"
-        className="custom-class"
-        message={MESSAGE}
-      />,
+      <FormInputMessage variant="error" className="custom-class">
+        {MESSAGE}
+      </FormInputMessage>,
     );
 
     const el = container.firstChild;

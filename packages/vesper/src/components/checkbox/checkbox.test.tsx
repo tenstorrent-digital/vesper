@@ -122,10 +122,60 @@ describe("checkbox [unit]", () => {
     expect(result.getByText("Checkbox text *")).not.toBeNull();
   });
 
-  test("the accessible text does not contain an asterisk when the checkbox is required", () => {
+  test("the accessible name includes the asterisk when the checkbox is required", () => {
     const result = render(<Checkbox text="Checkbox text" required />);
-    expect(result.getByText("Checkbox text *")).not.toBeNull();
-    expect(result.getByLabelText(/^Checkbox text$/)).not.toBeNull();
+    expect(
+      result.getByRole("checkbox", { name: "Checkbox text *" }),
+    ).not.toBeNull();
+  });
+
+  test("aria-label overrides the input's accessible name", () => {
+    const result = render(
+      <Checkbox text="Checkbox text" aria-label="Custom name" required />,
+    );
+    expect(
+      result.getByRole("checkbox", { name: "Custom name" }),
+    ).toHaveAttribute("aria-label", "Custom name");
+  });
+
+  test("renders react node text", () => {
+    const { container } = render(
+      <Checkbox
+        text={
+          <>
+            I agree to the <a href="/terms">terms</a>
+          </>
+        }
+      />,
+    );
+    const label = container.querySelector(".vesper-checkbox-label");
+    expect(label).toHaveTextContent(/^I agree to the terms$/);
+    expect(label?.querySelector("a")).toHaveAttribute("href", "/terms");
+  });
+
+  test("react node text is used as the input's accessible name", () => {
+    const result = render(
+      <Checkbox
+        text={
+          <>
+            I agree to the <strong>terms</strong>
+          </>
+        }
+      />,
+    );
+    expect(
+      result.getByRole("checkbox", { name: "I agree to the terms" }),
+    ).not.toBeNull();
+  });
+
+  test("does not append an asterisk to non-string text when required", () => {
+    const { container } = render(
+      <Checkbox text={<span>Checkbox text</span>} required />,
+    );
+    expect(container.querySelector(".vesper-checkbox-label")).toHaveTextContent(
+      /^Checkbox text$/,
+    );
+    expect(container.querySelector("input")).toBeRequired();
   });
 
   test("renders the checkbox text without an asterisk when not required", () => {

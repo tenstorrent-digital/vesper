@@ -19,7 +19,7 @@ export default function CheckboxDemo() {
 
 | Prop | Type | Description | Default |
 | --- | --- | --- | --- |
-| `text` | `string` | The text displayed next to the checkbox, also used as the input's default `aria-label`. **Required.** | — |
+| `text` | `NonNullable<ReactNode>` | The text displayed next to the checkbox, which also provides the input's accessible name. An asterisk is appended when `text` is a `string` and `required` is `true`. **Required.** | — |
 | `size` | `"sm" \| "md"` | The size of the checkbox and its text. | `"md"` |
 | `indeterminate` | `boolean` | When `true`, renders the checkbox in an indeterminate (mixed) state with a dash icon. | `false` |
 | `checked` | `boolean` | The checked state of the checkbox (controlled mode). | — |
@@ -30,7 +30,7 @@ export default function CheckboxDemo() {
 | `form` | `string` | Associates the checkbox with a `<form>` element by its `id`. | — |
 | `id` | `string` | An identifier applied to the underlying `<input>`, used to reference it from form validation errors. | — |
 | `disabled` | `boolean` | When `true`, prevents interaction. | `false` |
-| `required` | `boolean` | When `true`, marks the input as required and appends an asterisk to the `text`. | `false` |
+| `required` | `boolean` | When `true`, marks the input as required and appends an asterisk to the `text` when it is a `string`. | `false` |
 | `ref` | `Ref<HTMLInputElement>` | A ref forwarded to the underlying `<input>` element. | — |
 
 Form and accessibility props such as `autoFocus`, `tabIndex`, `aria-label`, `aria-labelledby`, `aria-describedby`, `aria-invalid`, and event handlers like `onFocus`, `onBlur`, and `onKeyDown` are forwarded to the underlying `<input>` element, as is `ref`. Any other props, including `className`, are forwarded to the wrapping `<label>` element.
@@ -128,7 +128,7 @@ export default function CheckboxStates() {
 
 ### Required fields
 
-Passing `required` marks the input as required for native form validation, and appends an asterisk to the `text`:
+Passing `required` marks the input as required for native form validation, and appends an asterisk to the `text` when it is a `string`:
 
 ```tsx demo
 import { Checkbox } from "@tenstorrent/vesper/checkbox";

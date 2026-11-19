@@ -51,20 +51,22 @@ const FORM_INPUT_MESSAGE_TYPOGRAPHY: Record<
  * You may also pass any additional props to the underlying `output` element
  *
  * @example
- * <FormInputMessage message="We'll never share your email." />
+ * <FormInputMessage>We'll never share your email.</FormInputMessage>
  *
  * @example
- * <FormInputMessage variant="error" message="Please enter a valid email address." />
+ * <FormInputMessage variant="error">
+ *   Please enter a valid email address.
+ * </FormInputMessage>
  *
  * @example
- * <FormInputMessage size="lg" variant="warning" message="This password is weak." />
+ * <FormInputMessage size="lg" variant="warning">
+ *   This password is weak.
+ * </FormInputMessage>
  *
  * @example
- * <FormInputMessage
- *   id={messageId}
- *   variant="success"
- *   message="Your changes have been saved."
- * />
+ * <FormInputMessage id={messageId} variant="success">
+ *   Your changes have been saved.
+ * </FormInputMessage>
  */
 export const FormInputMessage = ({
   variant = "default",
