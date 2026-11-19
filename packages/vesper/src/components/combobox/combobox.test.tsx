@@ -68,7 +68,6 @@ function renderCombobox(props: Partial<ComboboxProps> = {}) {
     trigger: result.container.querySelector(".vesper-combobox-trigger")!,
     /** Only rendered once a value is selected, so this is `null` for an empty combobox */
     clear: result.container.querySelector(".vesper-combobox-clear")!,
-    message: result.container.querySelector(".vesper-form-input-message")!,
   };
 }
 

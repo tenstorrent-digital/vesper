@@ -52,7 +52,7 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
  * @param {boolean} [props.required] - (optional) Marks the checkbox as required for form validation, and appends an asterisk to the `text` when it is a `string`. @default false
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  *
- * You may also pass any additional props to the wrapping `div` element
+ * Form and accessibility props, `ref`, and event handlers like `onChange`, `onFocus`, and `onKeyDown` are forwarded to the underlying `input` element. You may also pass any additional props to the wrapping `label` element
  *
  * @example
  * <Checkbox text="Accept terms" name="terms" required />
