@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import { cleanup, render, within } from "@testing-library/react";
 import axe from "axe-core";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
@@ -22,6 +24,27 @@ import {
 import "@/styles/test.css";
 
 const MESSAGE = "The message text";
+
+const EMPTY_CHILDREN: [label: string, children: ReactNode][] = [
+  ["undefined", undefined],
+  ["null", null],
+  ["false", false],
+  ["true", true],
+  ["an empty string", ""],
+  ["an empty array", []],
+  ["an array of empty nodes", [null, false, ""]],
+];
+
+/** Renders one `<span>` per error, so `children` is an empty array when there are no errors */
+function ErrorsMessage({ errors }: { errors: string[] }) {
+  return (
+    <FormInputMessage variant="error">
+      {errors.map((error) => (
+        <span key={error}>{error}</span>
+      ))}
+    </FormInputMessage>
+  );
+}
 
 const VARIANT_ICONS: Record<FormInputMessageVariant, typeof InfoSolid> = {
   default: InfoSolid,
@@ -148,35 +171,42 @@ describe("form-input-message [unit]", () => {
     expect(container.firstChild).toHaveAttribute("data-message", "true");
   });
 
-  test("data-message is false when children are nullable, a boolean, or an empty string", () => {
-    const undefinedMessage = render(<FormInputMessage />);
-    const nullMessage = render(<FormInputMessage>{null}</FormInputMessage>);
-    const falseMessage = render(<FormInputMessage>{false}</FormInputMessage>);
-    const trueMessage = render(<FormInputMessage>{true}</FormInputMessage>);
-    const emptyStringMessage = render(
-      <FormInputMessage>{""}</FormInputMessage>,
+  test.each(EMPTY_CHILDREN)(
+    "renders no content when children are %s",
+    (_, children) => {
+      const { container } = render(
+        <FormInputMessage>{children}</FormInputMessage>,
+      );
+
+      const el = container.firstElementChild;
+      expect(el).toHaveAttribute("data-message", "false");
+      expect(el?.children).toHaveLength(0);
+    },
+  );
+
+  test("renders an array of children containing content", () => {
+    const { container } = render(
+      <FormInputMessage>{[null, MESSAGE, false]}</FormInputMessage>,
     );
 
-    expect(undefinedMessage.container.firstChild).toHaveAttribute(
-      "data-message",
-      "false",
+    expect(container.firstChild).toHaveAttribute("data-message", "true");
+    expect(
+      container.querySelector(".vesper-form-input-message-text"),
+    ).toHaveTextContent(MESSAGE);
+  });
+
+  test("removes content once a list of mapped children becomes empty", () => {
+    const { container, rerender } = render(
+      <ErrorsMessage errors={[MESSAGE]} />,
     );
-    expect(nullMessage.container.firstChild).toHaveAttribute(
-      "data-message",
-      "false",
-    );
-    expect(falseMessage.container.firstChild).toHaveAttribute(
-      "data-message",
-      "false",
-    );
-    expect(trueMessage.container.firstChild).toHaveAttribute(
-      "data-message",
-      "false",
-    );
-    expect(emptyStringMessage.container.firstChild).toHaveAttribute(
-      "data-message",
-      "false",
-    );
+
+    expect(container.firstChild).toHaveAttribute("data-message", "true");
+    expect(container).toHaveTextContent(MESSAGE);
+
+    rerender(<ErrorsMessage errors={[]} />);
+
+    expect(container.firstChild).toHaveAttribute("data-message", "false");
+    expect(container.firstElementChild?.children).toHaveLength(0);
   });
 
   test("renders no content when no children are provided", () => {

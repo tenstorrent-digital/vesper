@@ -7,6 +7,7 @@ import {
   type TypographyVariant,
 } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { isEmptyReactNode } from "@/utils/is-empty-react-node";
 import {
   FormInputProps,
   splitFormInputProps,
@@ -78,7 +79,7 @@ export function Switch(props: SwitchProps) {
         role="switch"
       />
       <div className="vesper-switch-pill" />
-      {label !== "" && label != null && typeof label !== "boolean" && (
+      {!isEmptyReactNode(label) && (
         <Typography
           className="vesper-switch-label"
           variant={SWITCH_TYPOGRAPHY[size]}

@@ -11,6 +11,7 @@ import {
   type TypographyVariant,
 } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { isEmptyReactNode } from "@/utils/is-empty-react-node";
 
 export const FORM_INPUT_MESSAGE_VARIANTS = [
   "default",
@@ -46,7 +47,7 @@ const FORM_INPUT_MESSAGE_TYPOGRAPHY: Record<
  *
  * @param {FormInputMessageVariant} [props.variant] - (optional) The visual variant, which determines the color scheme and message icon. @default default
  * @param {FormInputMessageSize} [props.size] - (optional) The size of the message. Affects padding and typography. @default sm
- * @param {ReactNode} [props.children] - (optional) The message to display. When omitted or empty, no content is rendered
+ * @param {ReactNode} [props.children] - (optional) The message to display. The icon and message only render when `children` has content
  *
  * You may also pass any additional props to the underlying `output` element
  *
@@ -75,8 +76,7 @@ export const FormInputMessage = ({
   size = "sm",
   ...props
 }: FormInputMessageProps) => {
-  const hasMessage =
-    children !== "" && children != null && typeof children !== "boolean";
+  const hasMessage = !isEmptyReactNode(children);
 
   return (
     <output

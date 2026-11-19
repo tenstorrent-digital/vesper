@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
 import {
@@ -43,6 +45,15 @@ export const SWITCH_PERMUTATIONS = SWITCH_SIZES.flatMap(
 
 afterEach(cleanup);
 
+const EMPTY_LABELS: [name: string, label: ReactNode][] = [
+  ["null", null],
+  ["false", false],
+  ["true", true],
+  ["an empty string", ""],
+  ["an empty array", []],
+  ["an array of empty nodes", [null, false, ""]],
+];
+
 describe("switch [unit]", () => {
   SWITCH_SIZES.forEach((size) => {
     test(`${size} size class`, () => {
@@ -81,6 +92,46 @@ describe("switch [unit]", () => {
     const { container } = render(<Switch />);
     const labelText = container.querySelector(".vesper-switch-label");
     expect(labelText).toBeNull();
+  });
+
+  test.each(EMPTY_LABELS)(
+    "no label text rendered when label is %s",
+    (_, label) => {
+      const { container } = render(
+        <Switch label={label} aria-label="toggle" />,
+      );
+      expect(container.querySelector(".vesper-switch-label")).toBeNull();
+    },
+  );
+
+  test("renders numeric zero labels", () => {
+    const { container } = render(<Switch label={0} />);
+    expect(container.querySelector(".vesper-switch-label")).toHaveTextContent(
+      /^0$/,
+    );
+  });
+
+  test("renders react node labels without an asterisk when required", () => {
+    const { container } = render(
+      <Switch
+        required
+        label={
+          <>
+            Enable <strong>notifications</strong>
+          </>
+        }
+      />,
+    );
+    const labelText = container.querySelector(".vesper-switch-label");
+    expect(labelText).toHaveTextContent(/^Enable notifications$/);
+    expect(labelText?.querySelector("strong")).not.toBeNull();
+  });
+
+  test("renders an array label containing content", () => {
+    const { container } = render(<Switch label={[null, "toggle", false]} />);
+    expect(container.querySelector(".vesper-switch-label")).toHaveTextContent(
+      /^toggle$/,
+    );
   });
 
   test("unchecked by default", () => {
