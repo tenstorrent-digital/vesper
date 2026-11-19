@@ -1,6 +1,6 @@
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import axe from "axe-core";
-import { createRef } from "react";
+import { createRef, useState } from "react";
 import {
   afterEach,
   assert,
@@ -27,7 +27,7 @@ const DESCRIPTION = "This is a description of the sheet content.";
 afterEach(cleanup);
 
 /**
- * renders a sheet with an `onOpenChange` spy, and returns its `<dialog>` element and close button,
+ * renders a sheet with a fixed `open` prop and an `onOpenChange` spy, and returns its `<dialog>` element and close button,
  * along with `setProps` to re-render the sheet with the initial props merged with new ones
  */
 function renderSheet(initialProps: Partial<SheetProps> = {}) {
@@ -36,6 +36,7 @@ function renderSheet(initialProps: Partial<SheetProps> = {}) {
     <Sheet
       title={TITLE}
       description={DESCRIPTION}
+      open={false}
       onOpenChange={onOpenChange}
       {...initialProps}
       {...props}
@@ -54,6 +55,21 @@ function renderSheet(initialProps: Partial<SheetProps> = {}) {
     setProps: (props: Partial<SheetProps>) =>
       result.rerender(renderWith(props)),
   };
+}
+
+/**
+ * a sheet that keeps its open state in React state, the way consumers are expected to use it
+ */
+function StatefulSheet(props: Omit<SheetProps, "open" | "onOpenChange">) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <button type="button" onClick={() => setIsOpen(true)}>
+        Open
+      </button>
+      <Sheet {...props} open={isOpen} onOpenChange={setIsOpen} />
+    </>
+  );
 }
 
 describe("sheet [unit]", () => {
@@ -80,49 +96,102 @@ describe("sheet [unit]", () => {
     expect(dialog).toHaveAttribute("id", "sheet");
   });
 
-  test("opens when defaultOpen is true, and closes via the close button", () => {
-    const { dialog, closeButton, onOpenChange } = renderSheet({
-      defaultOpen: true,
-    });
+  test("opens and closes with the open prop, without calling onOpenChange", async () => {
+    const { dialog, onOpenChange, setProps } = renderSheet();
+    expect(dialog.open).toBe(false);
+
+    setProps({ open: true });
     expect(dialog.open).toBe(true);
 
-    fireEvent.click(closeButton);
+    // the `close` event fires after the dialog closes, so wait for it before checking that `onOpenChange` wasn't called
+    const closed = new Promise((resolve) => {
+      dialog.addEventListener("close", resolve, { once: true });
+    });
+    setProps({ open: false });
     expect(dialog.open).toBe(false);
-    expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
+    await closed;
+    expect(onOpenChange).not.toHaveBeenCalled();
   });
 
-  test("closes on Escape", async () => {
-    const { dialog, onOpenChange } = renderSheet({ defaultOpen: true });
+  test("calls onOpenChange instead of closing when the user dismisses it", async () => {
+    const { dialog, closeButton, onOpenChange } = renderSheet({ open: true });
 
+    fireEvent.click(closeButton);
+    fireEvent.click(dialog);
+    await userEvent.keyboard("{Escape}");
+    expect(onOpenChange.mock.calls).toEqual([[false], [false], [false]]);
+    expect(dialog.open).toBe(true);
+  });
+
+  test("closes when the user dismisses it, if onOpenChange updates the open prop", async () => {
+    const { container, getByLabelText, getByText } = render(
+      <StatefulSheet title={TITLE} description={DESCRIPTION} />,
+    );
+    const dialog = container.querySelector("dialog");
+    assert.instanceOf(dialog, HTMLDialogElement);
+
+    fireEvent.click(getByText("Open"));
+    expect(dialog.open).toBe(true);
+    fireEvent.click(getByLabelText("Close sheet"));
+    expect(dialog.open).toBe(false);
+
+    fireEvent.click(getByText("Open"));
+    expect(dialog.open).toBe(true);
     await userEvent.keyboard("{Escape}");
     expect(dialog.open).toBe(false);
+  });
+
+  test("calls onOpenChange on backdrop click, but not on clicks inside the sheet", () => {
+    const { dialog, getByText, onOpenChange } = renderSheet({ open: true });
+
+    fireEvent.click(getByText(TITLE));
+    expect(onOpenChange).not.toHaveBeenCalled();
+
+    fireEvent.click(dialog);
     expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
   });
 
-  test("closes on the cancel event", () => {
-    const { dialog, onOpenChange } = renderSheet({ defaultOpen: true });
+  test("calls onOpenChange when the browser closes the dialog without asking first", async () => {
+    const { dialog, getByText, onOpenChange } = renderSheet({
+      open: true,
+      children: (
+        <form method="dialog">
+          <button type="submit">Submit</button>
+        </form>
+      ),
+    });
+
+    // submitting a `<form method="dialog">` closes the dialog without firing `cancel`
+    fireEvent.click(getByText("Submit"));
+    expect(dialog.open).toBe(false);
+    await waitFor(() => {
+      expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
+    });
+  });
+
+  test("calls onOpenChange on the cancel event", () => {
+    const { dialog, onOpenChange } = renderSheet({ open: true });
 
     // browsers fire `cancel` on the dialog for close requests other than `Escape` (eg. the Android back gesture),
     // and close the dialog unless the event is prevented
     const cancel = new Event("cancel", { cancelable: true });
     fireEvent(dialog, cancel);
     expect(cancel.defaultPrevented).toBe(true);
-    expect(dialog.open).toBe(false);
     expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
   });
 
   test("fires the cancel event on Escape", async () => {
     const onCancel = vi.fn();
-    const { dialog } = renderSheet({ defaultOpen: true, onCancel });
+    const { onOpenChange } = renderSheet({ open: true, onCancel });
 
     await userEvent.keyboard("{Escape}");
     expect(onCancel).toHaveBeenCalledOnce();
-    expect(dialog.open).toBe(false);
+    expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
   });
 
-  test("stays open when onCancel prevents the cancel event", async () => {
+  test("doesn't call onOpenChange when onCancel prevents the cancel event", async () => {
     const { dialog, getByText, onOpenChange } = renderSheet({
-      defaultOpen: true,
+      open: true,
       onCancel: (e) => e.preventDefault(),
     });
 
@@ -139,82 +208,9 @@ describe("sheet [unit]", () => {
     expect(onOpenChange).not.toHaveBeenCalled();
   });
 
-  test("closes on backdrop click, but not on clicks inside the sheet", () => {
-    const { dialog, getByText, onOpenChange } = renderSheet({
-      defaultOpen: true,
-    });
-
-    fireEvent.click(getByText(TITLE));
-    expect(dialog.open).toBe(true);
-
-    fireEvent.click(dialog);
-    expect(dialog.open).toBe(false);
-    expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
-  });
-
-  test("opens and closes with the open prop", () => {
-    const { dialog, setProps } = renderSheet({ open: false });
-    expect(dialog.open).toBe(false);
-
-    setProps({ open: true });
-    expect(dialog.open).toBe(true);
-
-    setProps({ open: false });
-    expect(dialog.open).toBe(false);
-  });
-
-  test("calls onOpenChange instead of closing when the open prop is set", async () => {
-    const { dialog, closeButton, onOpenChange } = renderSheet({ open: true });
-
-    fireEvent.click(closeButton);
-    fireEvent.click(dialog);
-    await userEvent.keyboard("{Escape}");
-    expect(onOpenChange.mock.calls).toEqual([[false], [false], [false]]);
-    expect(dialog.open).toBe(true);
-  });
-
-  test("keeps its open state in sync when showModal() is called on the dialog", async () => {
-    const { dialog, closeButton, onOpenChange } = renderSheet();
-
-    dialog.showModal();
-    await waitFor(() => {
-      expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(true);
-    });
-
-    fireEvent.click(closeButton);
-    expect(dialog.open).toBe(false);
-  });
-
-  // refs are set before the sheet's own effects run, the same as a parent's `useLayoutEffect`
-  test("stays open when showModal() is called on the dialog during mount", async () => {
-    const { dialog, closeButton, onOpenChange } = renderSheet({
-      ref: (element) => element?.showModal(),
-    });
-
-    await waitFor(() => {
-      expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(true);
-    });
-    expect(dialog.open).toBe(true);
-
-    fireEvent.click(closeButton);
-    expect(dialog.open).toBe(false);
-  });
-
-  test("calls onOpenChange when showModal() is called on the dialog during mount, when the open prop is set", async () => {
-    const { dialog, onOpenChange } = renderSheet({
-      open: false,
-      ref: (element) => element?.showModal(),
-    });
-
-    await waitFor(() => {
-      expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(true);
-    });
-    expect(dialog.open).toBe(true);
-  });
-
   test("lets popups inside the sheet handle Escape first", async () => {
-    const { dialog, getByRole, onOpenChange } = renderSheet({
-      defaultOpen: true,
+    const { getByRole, onOpenChange } = renderSheet({
+      open: true,
       children: <Select aria-label="Fruit" options={["Apple", "Banana"]} />,
     });
 
@@ -228,31 +224,50 @@ describe("sheet [unit]", () => {
     await waitFor(() => {
       expect(trigger).not.toHaveAttribute("data-popup-open");
     });
-    expect(dialog.open).toBe(true);
+    expect(onOpenChange).not.toHaveBeenCalled();
 
     await userEvent.keyboard("{Escape}");
-    expect(dialog.open).toBe(false);
     expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
   });
 
   describe("popover mode", () => {
-    test("opens as a popover, and closes on Escape", async () => {
-      const { dialog, onOpenChange } = renderSheet({
-        defaultOpen: true,
-        popover: true,
-      });
+    test("opens and closes as a popover with the open prop, without calling onOpenChange", async () => {
+      const { dialog, onOpenChange, setProps } = renderSheet({ popover: true });
+
+      // popovers fire a `toggle` event after they open or close, so wait for each one before checking that `onOpenChange` wasn't called
+      const nextToggle = () =>
+        new Promise((resolve) => {
+          dialog.addEventListener("toggle", resolve, { once: true });
+        });
+
+      const shown = nextToggle();
+      setProps({ open: true });
       expect(dialog.matches(":popover-open")).toBe(true);
       expect(dialog.open).toBe(false);
+      await shown;
+
+      const hidden = nextToggle();
+      setProps({ open: false });
+      expect(dialog.matches(":popover-open")).toBe(false);
+      await hidden;
+      expect(onOpenChange).not.toHaveBeenCalled();
+    });
+
+    test("calls onOpenChange on Escape", async () => {
+      const { dialog, onOpenChange } = renderSheet({
+        open: true,
+        popover: true,
+      });
 
       await userEvent.keyboard("{Escape}");
-      expect(dialog.matches(":popover-open")).toBe(false);
       expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
+      expect(dialog.matches(":popover-open")).toBe(true);
     });
 
     test("fires the cancel event on Escape, which onCancel can prevent", async () => {
       const onCancel = vi.fn();
-      const { dialog, onOpenChange, setProps } = renderSheet({
-        defaultOpen: true,
+      const { onOpenChange, setProps } = renderSheet({
+        open: true,
         popover: true,
         onCancel: (e) => {
           onCancel();
@@ -262,47 +277,42 @@ describe("sheet [unit]", () => {
 
       await userEvent.keyboard("{Escape}");
       expect(onCancel).toHaveBeenCalledOnce();
-      expect(dialog.matches(":popover-open")).toBe(true);
       expect(onOpenChange).not.toHaveBeenCalled();
 
       setProps({ onCancel });
       await userEvent.keyboard("{Escape}");
       expect(onCancel).toHaveBeenCalledTimes(2);
-      expect(dialog.matches(":popover-open")).toBe(false);
+      expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
     });
 
-    test("keeps its open state in sync when showPopover() is called on the dialog", async () => {
-      const { dialog, closeButton, onOpenChange } = renderSheet({
+    test("calls onOpenChange when the browser hides the popover without asking first", async () => {
+      const { dialog, getByText, onOpenChange } = renderSheet({
+        id: "sheet",
+        open: true,
         popover: true,
+        children: (
+          <button
+            type="button"
+            popoverTarget="sheet"
+            popoverTargetAction="hide"
+          >
+            Hide
+          </button>
+        ),
       });
 
-      dialog.showPopover();
-      await waitFor(() => {
-        expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(true);
-      });
-
-      fireEvent.click(closeButton);
+      fireEvent.click(getByText("Hide"));
       expect(dialog.matches(":popover-open")).toBe(false);
-    });
-
-    test("stays open when showPopover() is called on the dialog during mount", async () => {
-      const { dialog, closeButton, onOpenChange } = renderSheet({
-        popover: true,
-        ref: (element) => element?.showPopover(),
-      });
-
       await waitFor(() => {
-        expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(true);
+        expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
       });
-      expect(dialog.matches(":popover-open")).toBe(true);
-
-      fireEvent.click(closeButton);
-      expect(dialog.matches(":popover-open")).toBe(false);
     });
   });
 });
 
-type SheetSnapshotPermutation = SheetProps & { permutationName: string };
+type SheetSnapshotPermutation = Omit<SheetProps, "open" | "onOpenChange"> & {
+  permutationName: string;
+};
 
 const SHEET_SNAPSHOT_PERMUTATIONS: SheetSnapshotPermutation[] = [
   {
@@ -341,13 +351,18 @@ const SHEET_SNAPSHOT_PERMUTATIONS: SheetSnapshotPermutation[] = [
 describe("sheet [snapshot]", () => {
   SHEET_SNAPSHOT_PERMUTATIONS.forEach(({ permutationName, ...props }) => {
     test(permutationName, () => {
-      const { container } = render(<Sheet {...props} />);
+      const { container } = render(
+        <Sheet {...props} open={false} onOpenChange={vi.fn()} />,
+      );
       expect(container.firstChild).toMatchSnapshot();
     });
   });
 });
 
-type SheetA11yPermutation = { label: string; props: SheetProps };
+type SheetA11yPermutation = {
+  label: string;
+  props: Omit<SheetProps, "open" | "onOpenChange">;
+};
 
 const SHEET_A11Y_PERMUTATIONS: SheetA11yPermutation[] = [
   {
@@ -394,7 +409,9 @@ describe("sheet [a11y]", () => {
 
     SHEET_A11Y_PERMUTATIONS.forEach(({ label, props }) => {
       test(`a11y - ${label} (${theme})`, async () => {
-        const { container } = render(<Sheet {...props} defaultOpen />);
+        const { container } = render(
+          <Sheet {...props} open onOpenChange={vi.fn()} />,
+        );
         expect(await axe.run(container)).toHaveNoViolations();
       });
     });
@@ -420,7 +437,9 @@ describe("sheet [a11y, high contrast]", () => {
 
     SHEET_A11Y_PERMUTATIONS.forEach(({ label, props }) => {
       test(`wcag2aaa - ${label} (${theme})`, async () => {
-        const { container } = render(<Sheet {...props} defaultOpen />);
+        const { container } = render(
+          <Sheet {...props} open onOpenChange={vi.fn()} />,
+        );
         expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
       });
     });

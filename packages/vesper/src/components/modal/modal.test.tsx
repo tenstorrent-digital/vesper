@@ -1,6 +1,6 @@
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import axe from "axe-core";
-import { createRef } from "react";
+import { createRef, useState } from "react";
 import {
   afterEach,
   assert,
@@ -27,7 +27,7 @@ const DESCRIPTION =
 afterEach(cleanup);
 
 /**
- * renders a modal with an `onOpenChange` spy, and returns its `<dialog>` element and close button,
+ * renders a modal with a fixed `open` prop and an `onOpenChange` spy, and returns its `<dialog>` element and close button,
  * along with `setProps` to re-render the modal with the initial props merged with new ones
  */
 function renderModal(initialProps: Partial<ModalProps> = {}) {
@@ -36,6 +36,7 @@ function renderModal(initialProps: Partial<ModalProps> = {}) {
     <Modal
       title={TITLE}
       description={DESCRIPTION}
+      open={false}
       onOpenChange={onOpenChange}
       {...initialProps}
       {...props}
@@ -54,6 +55,21 @@ function renderModal(initialProps: Partial<ModalProps> = {}) {
     setProps: (props: Partial<ModalProps>) =>
       result.rerender(renderWith(props)),
   };
+}
+
+/**
+ * a modal that keeps its open state in React state, the way consumers are expected to use it
+ */
+function StatefulModal(props: Omit<ModalProps, "open" | "onOpenChange">) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <button type="button" onClick={() => setIsOpen(true)}>
+        Open
+      </button>
+      <Modal {...props} open={isOpen} onOpenChange={setIsOpen} />
+    </>
+  );
 }
 
 describe("modal [unit]", () => {
@@ -80,54 +96,24 @@ describe("modal [unit]", () => {
     expect(dialog).toHaveAttribute("id", "modal");
   });
 
-  test("opens when defaultOpen is true, and closes via the close button", () => {
-    const { dialog, closeButton, onOpenChange } = renderModal({
-      defaultOpen: true,
-    });
-    expect(dialog.open).toBe(true);
-
-    fireEvent.click(closeButton);
-    expect(dialog.open).toBe(false);
-    expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
-  });
-
-  test("closes on Escape", async () => {
-    const { dialog, onOpenChange } = renderModal({ defaultOpen: true });
-
-    await userEvent.keyboard("{Escape}");
-    expect(dialog.open).toBe(false);
-    expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
-  });
-
-  test("closes on backdrop click only when closeOnClickOutside is true", () => {
-    const { dialog, getByText, onOpenChange, setProps } = renderModal({
-      defaultOpen: true,
-    });
-
-    fireEvent.click(dialog);
-    expect(dialog.open).toBe(true);
-
-    setProps({ closeOnClickOutside: true });
-    fireEvent.click(getByText(TITLE));
-    expect(dialog.open).toBe(true);
-
-    fireEvent.click(dialog);
-    expect(dialog.open).toBe(false);
-    expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
-  });
-
-  test("opens and closes with the open prop", () => {
-    const { dialog, setProps } = renderModal({ open: false });
+  test("opens and closes with the open prop, without calling onOpenChange", async () => {
+    const { dialog, onOpenChange, setProps } = renderModal();
     expect(dialog.open).toBe(false);
 
     setProps({ open: true });
     expect(dialog.open).toBe(true);
 
+    // the `close` event fires after the dialog closes, so wait for it before checking that `onOpenChange` wasn't called
+    const closed = new Promise((resolve) => {
+      dialog.addEventListener("close", resolve, { once: true });
+    });
     setProps({ open: false });
     expect(dialog.open).toBe(false);
+    await closed;
+    expect(onOpenChange).not.toHaveBeenCalled();
   });
 
-  test("calls onOpenChange instead of closing when the open prop is set", async () => {
+  test("calls onOpenChange instead of closing when the user dismisses it", async () => {
     const { dialog, closeButton, onOpenChange } = renderModal({
       open: true,
       closeOnClickOutside: true,
@@ -140,49 +126,62 @@ describe("modal [unit]", () => {
     expect(dialog.open).toBe(true);
   });
 
-  test("keeps its open state in sync when showModal() is called on the dialog", async () => {
-    const { dialog, closeButton, onOpenChange } = renderModal();
+  test("closes when the user dismisses it, if onOpenChange updates the open prop", async () => {
+    const { container, getByLabelText, getByText } = render(
+      <StatefulModal title={TITLE} description={DESCRIPTION} />,
+    );
+    const dialog = container.querySelector("dialog");
+    assert.instanceOf(dialog, HTMLDialogElement);
 
-    dialog.showModal();
-    await waitFor(() => {
-      expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(true);
-    });
+    fireEvent.click(getByText("Open"));
+    expect(dialog.open).toBe(true);
+    fireEvent.click(getByLabelText("Close modal"));
+    expect(dialog.open).toBe(false);
 
-    fireEvent.click(closeButton);
+    fireEvent.click(getByText("Open"));
+    expect(dialog.open).toBe(true);
+    await userEvent.keyboard("{Escape}");
     expect(dialog.open).toBe(false);
   });
 
-  // refs are set before the modal's own effects run, the same as a parent's `useLayoutEffect`
-  test("stays open when showModal() is called on the dialog during mount", async () => {
-    const { dialog, closeButton, onOpenChange } = renderModal({
-      ref: (element) => element?.showModal(),
+  test("calls onOpenChange on backdrop click only when closeOnClickOutside is true", () => {
+    const { dialog, getByText, onOpenChange, setProps } = renderModal({
+      open: true,
     });
 
-    await waitFor(() => {
-      expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(true);
-    });
-    expect(dialog.open).toBe(true);
+    fireEvent.click(dialog);
+    expect(onOpenChange).not.toHaveBeenCalled();
 
-    fireEvent.click(closeButton);
-    expect(dialog.open).toBe(false);
+    setProps({ closeOnClickOutside: true });
+    fireEvent.click(getByText(TITLE));
+    expect(onOpenChange).not.toHaveBeenCalled();
+
+    fireEvent.click(dialog);
+    expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
   });
 
-  test("calls onOpenChange when showModal() is called on the dialog during mount, when the open prop is set", async () => {
-    const { dialog, onOpenChange } = renderModal({
-      open: false,
-      ref: (element) => element?.showModal(),
+  test("calls onOpenChange when the browser closes the dialog without asking first", async () => {
+    const { dialog, getByText, onOpenChange } = renderModal({
+      open: true,
+      children: (
+        <form method="dialog">
+          <button type="submit">Submit</button>
+        </form>
+      ),
     });
 
+    // submitting a `<form method="dialog">` closes the dialog without firing `cancel`
+    fireEvent.click(getByText("Submit"));
+    expect(dialog.open).toBe(false);
     await waitFor(() => {
-      expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(true);
+      expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
     });
-    expect(dialog.open).toBe(true);
   });
 
   test("cannot be dismissed while dismissible is false", async () => {
     const { dialog, closeButton, getByText, onOpenChange, setProps } =
       renderModal({
-        defaultOpen: true,
+        open: true,
         closeOnClickOutside: true,
         dismissible: false,
       });
@@ -201,12 +200,12 @@ describe("modal [unit]", () => {
 
     setProps({ dismissible: true });
     await userEvent.keyboard("{Escape}");
-    expect(dialog.open).toBe(false);
+    expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
   });
 
-  test("closes on the cancel event, unless dismissible is false", () => {
+  test("calls onOpenChange on the cancel event, unless dismissible is false", () => {
     const { dialog, onOpenChange, setProps } = renderModal({
-      defaultOpen: true,
+      open: true,
       dismissible: false,
     });
 
@@ -218,32 +217,33 @@ describe("modal [unit]", () => {
     expect(onOpenChange).not.toHaveBeenCalled();
 
     setProps({ dismissible: true });
-    fireEvent(dialog, new Event("cancel", { cancelable: true }));
-    expect(dialog.open).toBe(false);
+    const cancel = new Event("cancel", { cancelable: true });
+    fireEvent(dialog, cancel);
+    expect(cancel.defaultPrevented).toBe(true);
     expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
   });
 
   test("fires the cancel event on Escape, even while dismissible is false", async () => {
     const onCancel = vi.fn();
-    const { dialog, setProps } = renderModal({
-      defaultOpen: true,
+    const { onOpenChange, setProps } = renderModal({
+      open: true,
       dismissible: false,
       onCancel,
     });
 
     await userEvent.keyboard("{Escape}");
     expect(onCancel).toHaveBeenCalledOnce();
-    expect(dialog.open).toBe(true);
+    expect(onOpenChange).not.toHaveBeenCalled();
 
     setProps({ dismissible: true });
     await userEvent.keyboard("{Escape}");
     expect(onCancel).toHaveBeenCalledTimes(2);
-    expect(dialog.open).toBe(false);
+    expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
   });
 
-  test("stays open when onCancel prevents the cancel event", async () => {
+  test("doesn't call onOpenChange when onCancel prevents the cancel event", async () => {
     const { dialog, getByText, onOpenChange } = renderModal({
-      defaultOpen: true,
+      open: true,
       onCancel: (e) => e.preventDefault(),
     });
 
@@ -261,8 +261,8 @@ describe("modal [unit]", () => {
   });
 
   test("lets popups inside the modal handle Escape first", async () => {
-    const { dialog, getByRole, onOpenChange } = renderModal({
-      defaultOpen: true,
+    const { getByRole, onOpenChange } = renderModal({
+      open: true,
       children: <Select aria-label="Fruit" options={["Apple", "Banana"]} />,
     });
 
@@ -276,15 +276,16 @@ describe("modal [unit]", () => {
     await waitFor(() => {
       expect(trigger).not.toHaveAttribute("data-popup-open");
     });
-    expect(dialog.open).toBe(true);
+    expect(onOpenChange).not.toHaveBeenCalled();
 
     await userEvent.keyboard("{Escape}");
-    expect(dialog.open).toBe(false);
     expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
   });
 });
 
-type ModalSnapshotPermutation = ModalProps & { permutationName: string };
+type ModalSnapshotPermutation = Omit<ModalProps, "open" | "onOpenChange"> & {
+  permutationName: string;
+};
 
 const MODAL_SNAPSHOT_PERMUTATIONS: ModalSnapshotPermutation[] = [
   {
@@ -309,13 +310,18 @@ const MODAL_SNAPSHOT_PERMUTATIONS: ModalSnapshotPermutation[] = [
 describe("modal [snapshot]", () => {
   MODAL_SNAPSHOT_PERMUTATIONS.forEach(({ permutationName, ...props }) => {
     test(permutationName, () => {
-      const { container } = render(<Modal {...props} />);
+      const { container } = render(
+        <Modal {...props} open={false} onOpenChange={vi.fn()} />,
+      );
       expect(container.firstChild).toMatchSnapshot();
     });
   });
 });
 
-type ModalA11yPermutation = { label: string; props: ModalProps };
+type ModalA11yPermutation = {
+  label: string;
+  props: Omit<ModalProps, "open" | "onOpenChange">;
+};
 
 const MODAL_A11Y_PERMUTATIONS: ModalA11yPermutation[] = [
   {
@@ -349,7 +355,9 @@ describe("modal [a11y]", () => {
 
     MODAL_A11Y_PERMUTATIONS.forEach(({ label, props }) => {
       test(`a11y - ${label} (${theme})`, async () => {
-        const { container } = render(<Modal {...props} defaultOpen />);
+        const { container } = render(
+          <Modal {...props} open onOpenChange={vi.fn()} />,
+        );
         expect(await axe.run(container)).toHaveNoViolations();
       });
     });
@@ -375,7 +383,9 @@ describe("modal [a11y, high contrast]", () => {
 
     MODAL_A11Y_PERMUTATIONS.forEach(({ label, props }) => {
       test(`wcag2aaa - ${label} (${theme})`, async () => {
-        const { container } = render(<Modal {...props} defaultOpen />);
+        const { container } = render(
+          <Modal {...props} open onOpenChange={vi.fn()} />,
+        );
         expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
       });
     });

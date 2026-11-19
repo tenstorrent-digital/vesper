@@ -1,11 +1,11 @@
 "use client";
 
-import { useControlled } from "@base-ui/utils/useControlled";
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import { useStableCallback } from "@base-ui/utils/useStableCallback";
 import {
   type ComponentProps,
   type ReactNode,
+  type Ref,
   useEffect,
   useId,
   useRef,
@@ -20,28 +20,28 @@ export interface ModalProps extends Omit<
   ComponentProps<"dialog">,
   "open" | "title" | "popover"
 > {
-  /** The title text displayed in the modal header. Also used for the modal's `aria-labelledby` association. */
+  /** The title displayed in the modal header. Also used for the modal's `aria-labelledby` association. */
   title: NonNullable<ReactNode>;
   /** A description displayed below the title in the modal header. Also used for the modal's `aria-describedby` association. */
   description: NonNullable<ReactNode>;
-  /** Whether the modal is open (controlled mode). Leave this out to let the modal manage its own open state (uncontrolled mode). */
-  open?: boolean;
-  /** Whether the modal is open when it first renders (uncontrolled mode). @default false */
-  defaultOpen?: boolean;
+  /** Whether the modal is open. */
+  open: boolean;
   /**
-   * Callback fired when the open state changes, with the new open state as its argument.
+   * Callback fired when the modal requests a change to its open state, with the requested open state as its argument.
    *
-   * The modal calls this with `false` when the user presses `Escape` or clicks the close button in the header, and when the user clicks the backdrop if `closeOnClickOutside` is `true`. It's also called when the `<dialog>` element itself opens or closes, such as when `showModal()` or `close()` is called on it through `ref`.
+   * The modal calls this with `false` when the user presses `Escape` or clicks the close button in the header, and when the user clicks the backdrop if `closeOnClickOutside` is `true`. Update the state you pass to `open` in response, because the modal doesn't close until `open` changes.
    *
-   * In controlled mode, update the state you pass to `open` in response, because the modal doesn't open or close until `open` changes.
+   * It's also called with `false` if the browser closes the `<dialog>` element without asking first, such as when a `<form method="dialog">` inside it is submitted, so that `open` stays in sync.
    */
-  onOpenChange?: (open: boolean) => void;
+  onOpenChange: (open: boolean) => void;
+  /** Forwarded to the underlying `<dialog>` element. The modal only opens and closes when `open` changes, so don't call `showModal()` or `close()` on the `<dialog>` element yourself. */
+  ref?: Ref<HTMLDialogElement>;
   /** The width of the modal container. Accepts a number (interpreted as pixels) or a CSS string value. @default 452 */
   width?: number | string;
   /** When `true`, clicking the backdrop outside the modal will request to close it. @default false */
   closeOnClickOutside?: boolean;
   /**
-   * When `false`, prevents the user from dismissing the modal: pressing `Escape` and clicking the backdrop are ignored, and the close button in the header is disabled. You can still close the modal yourself, by setting `open` to `false` or by calling `close()` on the `<dialog>` element.
+   * When `false`, prevents the user from dismissing the modal: pressing `Escape` and clicking the backdrop are ignored, and the close button in the header is disabled. You can still close the modal yourself, by setting `open` to `false`.
    *
    * Use this to keep the modal open during critical flows, such as while a form is submitting. @default true
    */
@@ -55,16 +55,15 @@ export interface ModalProps extends Omit<
  *
  * @see packages/vesper/src/components/sheet/sheet.tsx
  *
- * @param {string} props.title - The title text displayed in the modal header
- * @param {string} props.description - A description displayed below the title
- * @param {boolean} [props.open] - (optional) Whether the modal is open (controlled)
- * @param {boolean} [props.defaultOpen] - (optional) Whether the modal is open when it first renders (uncontrolled). @default false
- * @param {(open: boolean) => void} [props.onOpenChange] - (optional) Callback fired when the open state changes
+ * @param {NonNullable<ReactNode>} props.title - The title displayed in the modal header
+ * @param {NonNullable<ReactNode>} props.description - A description displayed below the title
+ * @param {boolean} props.open - Whether the modal is open
+ * @param {(open: boolean) => void} props.onOpenChange - Callback fired when the modal requests a change to its open state, such as when the user dismisses it
  * @param {number | string} [props.width] - (optional) The width of the modal container. @default 452
  * @param {boolean} [props.closeOnClickOutside] - (optional) Whether clicking the backdrop dismisses the modal. @default false
  * @param {boolean} [props.dismissible] - (optional) Set to `false` to stop the user from closing the modal during critical flows. @default true
  *
- * You may also pass any additional props (including `ref`) to the underlying `dialog` element
+ * You may also pass any additional props (including `ref`) to the underlying `dialog` element. The modal only opens and closes when `open` changes, so don't call `showModal()` or `close()` on the `dialog` element through `ref`.
  *
  * @example
  * const [isOpen, setIsOpen] = useState(false);
@@ -78,12 +77,6 @@ export interface ModalProps extends Omit<
  * >
  *   <p>This action cannot be undone.</p>
  * </Modal>
- *
- * @example
- * const ref = useRef<HTMLDialogElement>(null);
- *
- * <Modal ref={ref} title="Settings" description="Manage your preferences" />
- * <Button onClick={() => ref.current?.showModal()}>Open Modal</Button>
  */
 export function Modal(props: ModalProps) {
   const {
@@ -93,8 +86,7 @@ export function Modal(props: ModalProps) {
     "aria-describedby": ariaDescribedby,
     title,
     description,
-    open: openProp,
-    defaultOpen = false,
+    open,
     onOpenChange,
     width = 452,
     children,
@@ -108,78 +100,57 @@ export function Modal(props: ModalProps) {
   const innerRef = useRef<HTMLDialogElement>(null);
   const mergedRef = useMergedRefs(ref, innerRef);
 
-  const [open, setOpenUncontrolled] = useControlled({
-    controlled: openProp,
-    default: defaultOpen,
-    name: "Modal",
-    state: "open",
-  });
+  // this only lets the consumer know that the modal should close, and the modal doesn't close until the `open` prop changes
+  const requestClose = useStableCallback(() => onOpenChange(false));
 
-  // when controlled, this only lets the consumer know about the change, and the modal doesn't open or close until the `open` prop changes
-  const changeOpen = useStableCallback((nextOpen: boolean) => {
-    setOpenUncontrolled(nextOpen);
-    onOpenChange?.(nextOpen);
-  });
-
-  // the open state that the `<dialog>` element was last synced to, which starts out closed like the `<dialog>` element itself
-  const syncedOpenRef = useRef(false);
-
-  // keep the `<dialog>` element in sync with the open state, but only when the open state changes, so that a `<dialog>` element
-  // opened through `ref` before this first runs (eg. from a parent's `useLayoutEffect`) isn't closed again, and is picked up by `syncOpen` instead
+  // open and close the `<dialog>` element to match the `open` prop
   useEffect(() => {
     const dialog = innerRef.current;
-    if (!dialog || open === syncedOpenRef.current) return;
+    if (!dialog) return;
 
-    syncedOpenRef.current = open;
     if (open && !dialog.open) dialog.showModal();
     else if (!open && dialog.open) dialog.close();
   }, [open]);
 
-  // keep the open state in sync with the `<dialog>` element, which can also open or close by itself,
-  // eg. when `showModal()` or `close()` is called on it through `ref`, or when a `<form method="dialog">` inside it is submitted
-  const syncOpen = useStableCallback(() => {
-    const dialog = innerRef.current;
-    if (dialog && dialog.open !== open) changeOpen(dialog.open);
-  });
-
+  // the browser can still close the `<dialog>` element without asking first (eg. when a `<form method="dialog">` inside it is submitted,
+  // or for close requests that browsers don't allow to be prevented), so let the consumer know, to keep the `open` prop in sync
   useEffect(() => {
     const dialog = innerRef.current;
-    if (!dialog) return undefined;
+    if (!open || !dialog) return undefined;
 
-    // `showModal()`, `show()` and `close()` all add or remove the `open` attribute, and unlike the dialog's
-    // `toggle` event, observing the attribute works in every browser
-    const observer = new MutationObserver(syncOpen);
-    observer.observe(dialog, { attributeFilter: ["open"] });
+    // the `close` event fires after the `<dialog>` element closes, so skip it if the `<dialog>` element has been opened again since
+    const handleClose = () => {
+      if (!dialog.open) requestClose();
+    };
 
-    // pick up any changes made before the observer was set up
-    syncOpen();
-    return () => observer.disconnect();
-  }, [syncOpen]);
+    dialog.addEventListener("close", handleClose);
+    return () => dialog.removeEventListener("close", handleClose);
+  }, [open, requestClose]);
 
   useEffect(() => {
     if (!closeOnClickOutside || !dismissible) return undefined;
 
     const handleClick = (e: PointerEvent) => {
-      if (e.target === innerRef.current) changeOpen(false);
+      if (e.target === innerRef.current) requestClose();
     };
 
     window.addEventListener("click", handleClick);
     return () => window.removeEventListener("click", handleClick);
-  }, [closeOnClickOutside, dismissible, changeOpen]);
+  }, [closeOnClickOutside, dismissible, requestClose]);
 
   useEffect(() => {
     const dialog = innerRef.current;
     if (!open || !dialog) return undefined;
 
     // the native `<dialog>` fires a `cancel` event in response to a close request (eg. the Android back gesture), which closes the dialog unless prevented,
-    // so prevent it, and update the open state instead (which, when controlled, leaves closing the modal up to the consumer)
+    // so prevent it, and ask the consumer to close the modal instead
     const handleCancel = (e: Event) => {
       // leave the modal open if something else prevented the event, eg. the `onCancel` prop,
       // which runs first since React adds its own `cancel` listener when it creates the `<dialog>` element
       if (e.defaultPrevented) return;
 
       e.preventDefault();
-      if (dismissible) changeOpen(false);
+      if (dismissible) requestClose();
     };
 
     // browsers ignore `preventDefault()` on the `cancel` event when `Escape` is pressed repeatedly without any other user interaction in between,
@@ -206,7 +177,7 @@ export function Modal(props: ModalProps) {
       window.removeEventListener("keydown", handleKeyDown);
       dialog.removeEventListener("cancel", handleCancel);
     };
-  }, [open, dismissible, changeOpen]);
+  }, [open, dismissible, requestClose]);
 
   // If an additional aria-labelledby is supplied, this ensures that both ids get used
   const labelledBy = [ariaLabelledby, titleId].filter(Boolean).join(" ");
@@ -254,7 +225,7 @@ export function Modal(props: ModalProps) {
             size="sm"
             variant="subtle"
             type="button"
-            onClick={() => changeOpen(false)}
+            onClick={requestClose}
             disabled={!dismissible}
             icon={<Close />}
           />

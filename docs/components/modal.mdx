@@ -5,7 +5,7 @@ description: A dialog overlay component for displaying focused content that requ
 
 # Modal
 
-A dialog overlay component for displaying focused content that requires user attention or interaction. Renders a title and description in its header, and any children you pass (including action buttons and forms) in its body. You can control its open state with the `open` and `onOpenChange` props, or leave the modal to manage it.
+A dialog overlay component for displaying focused content that requires user attention or interaction. Renders a title and description in its header, and any children you pass (including action buttons and forms) in its body. You control whether it's open with the `open` and `onOpenChange` props.
 
 ```tsx demo
 import { useState } from "react";
@@ -56,17 +56,16 @@ export default function ModalDemo() {
 
 | Prop | Type | Description | Default |
 | --- | --- | --- | --- |
-| `title` | `string` | The title text displayed in the modal header. Used for `aria-labelledby`. **Required.** | — |
-| `description` | `string` | A description displayed below the title. Used for `aria-describedby`. **Required.** | — |
+| `title` | `NonNullable<ReactNode>` | The title displayed in the modal header. Used for `aria-labelledby`. **Required.** | — |
+| `description` | `NonNullable<ReactNode>` | A description displayed below the title. Used for `aria-describedby`. **Required.** | — |
 | `width` | `number \| string` | The width of the modal container. A number is interpreted as pixels. | `452` |
-| `open` | `boolean` | Whether the modal is open (controlled mode). Leave this out to let the modal manage its own open state. | — |
-| `defaultOpen` | `boolean` | Whether the modal is open when it first renders (uncontrolled mode). | `false` |
-| `onOpenChange` | `(open: boolean) => void` | Called with the new open state whenever it changes, such as when the user dismisses the modal. In controlled mode, update the state you pass to `open` in response. | — |
+| `open` | `boolean` | Whether the modal is open. **Required.** | — |
+| `onOpenChange` | `(open: boolean) => void` | Called with `false` when the modal requests to close, such as when the user dismisses it. Update the state you pass to `open` in response. **Required.** | — |
 | `closeOnClickOutside` | `boolean` | When `true`, clicking the backdrop dismisses the modal. | `false` |
-| `dismissible` | `boolean` | When `false`, the user can't dismiss the modal: `Escape` and backdrop clicks are ignored, and the header close button is disabled. Setting `open` to `false`, or calling `close()` through `ref`, still closes it. | `true` |
+| `dismissible` | `boolean` | When `false`, the user can't dismiss the modal: `Escape` and backdrop clicks are ignored, and the header close button is disabled. Setting `open` to `false` still closes it. | `true` |
 | `children` | `ReactNode` | The content displayed inside the modal body, such as text, action buttons, or a form. | — |
 
-All other props, including `ref`, are forwarded to the underlying `<dialog>` element.
+All other props, including `ref`, are forwarded to the underlying `<dialog>` element. The modal only opens and closes when `open` changes, so don't call `showModal()` or `close()` on the `<dialog>` element through `ref`.
 
 A `Modal` always blocks interaction with the rest of the page while it is open. When the user should be able to keep working with the content behind the panel, reach for [the `Sheet` component](./sheet.mdx) in `popover` mode instead.
 
@@ -74,7 +73,7 @@ A `Modal` always blocks interaction with the rest of the page while it is open. 
 
 ### Opening and closing a modal
 
-Pass `open` to control a `Modal`. Setting it to `true` opens the modal, and setting it back to `false` closes it. Keep that value in your own state, and pass its setter to `onOpenChange` so the modal closes when the user dismisses it:
+A `Modal` opens when `open` is `true`, and closes when it's `false`. Keep that value in your own state, and pass its setter to `onOpenChange` so the modal closes when the user dismisses it:
 
 ```tsx demo
 import { useState } from "react";
@@ -104,47 +103,6 @@ export default function BasicModal() {
 `Modal` renders a native `<dialog>`. While it's open, it traps focus and blocks interaction with the rest of the page. When the user presses `Escape` or clicks the close button in the header, the modal calls `onOpenChange(false)`. Update your state in response, because the modal doesn't close until `open` changes.
 
 To stop users from being able to close a modal, (for example, if you're rendering a form inside a modal), see [Preventing dismissal](#preventing-dismissal).
-
-### Uncontrolled modals
-
-Leave out `open` to let a `Modal` manage its own open state. An uncontrolled modal closes itself when the user dismisses it. Pass `defaultOpen` to open it on its first render, or call `showModal()` on the underlying `<dialog>` element through `ref`:
-
-```tsx demo
-import { useRef } from "react";
-
-import { Button } from "@tenstorrent/vesper/button";
-import { Modal } from "@tenstorrent/vesper/modal";
-
-export default function UncontrolledModal() {
-  const ref = useRef<HTMLDialogElement>(null);
-
-  return (
-    <>
-      <Button onClick={() => ref.current?.showModal()}>What's new?</Button>
-      <Modal
-        ref={ref}
-        title="What's new"
-        description="A quick look at this release."
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "var(--vesper-spacing-6)",
-          }}
-        >
-          Projects can now be shared with everyone in your workspace.
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button onClick={() => ref.current?.close()}>Done</Button>
-          </div>
-        </div>
-      </Modal>
-    </>
-  );
-}
-```
-
-`onOpenChange` still fires whenever an uncontrolled modal opens or closes. Use a controlled modal when other parts of your UI depend on whether the modal is open.
 
 ### Sizing
 

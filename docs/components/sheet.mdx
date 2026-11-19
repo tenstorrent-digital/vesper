@@ -5,7 +5,7 @@ description: A slide-in panel that appears from the left or right edge of the vi
 
 # Sheet
 
-A slide-in panel that appears from the left or right edge of the viewport. Can operate as a modal dialog with a backdrop or as a popover that allows interaction with content behind it. Renders a title and description in its header, and any children you pass (including action buttons and forms) in its body. You can control its open state with the `open` and `onOpenChange` props, or leave the sheet to manage it.
+A slide-in panel that appears from the left or right edge of the viewport. Can operate as a modal dialog with a backdrop or as a popover that allows interaction with content behind it. Renders a title and description in its header, and any children you pass (including action buttons and forms) in its body. You control whether it's open with the `open` and `onOpenChange` props.
 
 ```tsx demo
 import { useState } from "react";
@@ -36,16 +36,15 @@ export default function SheetDemo() {
 
 | Prop | Type | Description | Default |
 | --- | --- | --- | --- |
-| `title` | `string` | The title text displayed in the sheet header. Used for `aria-labelledby`. **Required.** | — |
-| `description` | `string` | A description displayed below the title. Used for `aria-describedby`. **Required.** | — |
+| `title` | `NonNullable<ReactNode>` | The title displayed in the sheet header. Used for `aria-labelledby`. **Required.** | — |
+| `description` | `NonNullable<ReactNode>` | A description displayed below the title. Used for `aria-describedby`. **Required.** | — |
 | `side` | `"left" \| "right"` | The side of the viewport the sheet slides in from. | `"right"` |
 | `popover` | `boolean` | When `true`, renders as a popover without a backdrop, allowing interaction behind it. | `false` |
-| `open` | `boolean` | Whether the sheet is open (controlled mode). Leave this out to let the sheet manage its own open state. | — |
-| `defaultOpen` | `boolean` | Whether the sheet is open when it first renders (uncontrolled mode). | `false` |
-| `onOpenChange` | `(open: boolean) => void` | Called with the new open state whenever it changes, such as when the user dismisses the sheet. In controlled mode, update the state you pass to `open` in response. | — |
+| `open` | `boolean` | Whether the sheet is open. **Required.** | — |
+| `onOpenChange` | `(open: boolean) => void` | Called with `false` when the sheet requests to close, such as when the user dismisses it. Update the state you pass to `open` in response. **Required.** | — |
 | `children` | `ReactNode` | The content displayed inside the sheet body, such as text, action buttons, or a form. | — |
 
-All other props, including `ref`, are forwarded to the underlying `<dialog>` element.
+All other props, including `ref`, are forwarded to the underlying `<dialog>` element. The sheet only opens and closes when `open` changes, so don't call methods such as `showModal()` or `close()` on the `<dialog>` element through `ref`.
 
 Use a `Sheet` for supplementary content alongside the current view, such as filters, settings, or the details of a selected row. When the content demands the user's full attention before they can carry on, reach for [the `Modal` component](./modal.mdx) instead.
 
@@ -53,7 +52,7 @@ Use a `Sheet` for supplementary content alongside the current view, such as filt
 
 ### Opening and closing a sheet
 
-Pass `open` to control a `Sheet`. Setting it to `true` opens the sheet, and setting it back to `false` closes it. Keep that value in your own state, and pass its setter to `onOpenChange` so the sheet closes when the user dismisses it:
+A `Sheet` opens when `open` is `true`, and closes when it's `false`. Keep that value in your own state, and pass its setter to `onOpenChange` so the sheet closes when the user dismisses it:
 
 ```tsx demo
 import { useState } from "react";
@@ -81,52 +80,6 @@ export default function BasicSheet() {
 ```
 
 When the user presses `Escape`, clicks the close button in the header, or (in the default modal mode) clicks the backdrop behind it, the sheet calls `onOpenChange(false)`. Update your state in response, because the sheet doesn't close until `open` changes.
-
-### Uncontrolled sheets
-
-Leave out `open` to let a `Sheet` manage its own open state. An uncontrolled sheet closes itself when the user dismisses it. Pass `defaultOpen` to open it on its first render, or open the underlying `<dialog>` element through `ref`, by calling `showModal()` on it (or `showPopover()` in popover mode):
-
-```tsx demo
-import { useRef } from "react";
-
-import { Button } from "@tenstorrent/vesper/button";
-import { Sheet } from "@tenstorrent/vesper/sheet";
-
-export default function UncontrolledSheet() {
-  const ref = useRef<HTMLDialogElement>(null);
-
-  return (
-    <>
-      <Button onClick={() => ref.current?.showModal()}>What's new?</Button>
-      <Sheet
-        ref={ref}
-        title="What's new"
-        description="A quick look at this release."
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "var(--vesper-spacing-6)",
-            alignItems: "flex-start",
-            minHeight: "100%",
-          }}
-        >
-          Projects can now be shared with everyone in your workspace.
-          <Button
-            style={{ marginTop: "auto", marginLeft: "auto" }}
-            onClick={() => ref.current?.close()}
-          >
-            Done
-          </Button>
-        </div>
-      </Sheet>
-    </>
-  );
-}
-```
-
-`onOpenChange` still fires whenever an uncontrolled sheet opens or closes. Use a controlled sheet when other parts of your UI depend on whether the sheet is open.
 
 ### Choosing a side
 

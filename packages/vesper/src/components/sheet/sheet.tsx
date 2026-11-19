@@ -1,11 +1,11 @@
 "use client";
 
-import { useControlled } from "@base-ui/utils/useControlled";
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import { useStableCallback } from "@base-ui/utils/useStableCallback";
 import {
   type ComponentProps,
   type ReactNode,
+  type Ref,
   useEffect,
   useId,
   useRef,
@@ -24,22 +24,22 @@ export interface SheetProps extends Omit<
   ComponentProps<"dialog">,
   "open" | "popover" | "title"
 > {
-  /** The title text displayed in the sheet header. Also used for the sheet's `aria-labelledby` association. */
+  /** The title displayed in the sheet header. Also used for the sheet's `aria-labelledby` association. */
   title: NonNullable<ReactNode>;
   /** A description displayed below the title in the sheet header. Also used for the sheet's `aria-describedby` association. */
   description: NonNullable<ReactNode>;
-  /** Whether the sheet is open (controlled mode). Leave this out to let the sheet manage its own open state (uncontrolled mode). */
-  open?: boolean;
-  /** Whether the sheet is open when it first renders (uncontrolled mode). @default false */
-  defaultOpen?: boolean;
+  /** Whether the sheet is open. */
+  open: boolean;
   /**
-   * Callback fired when the open state changes, with the new open state as its argument.
+   * Callback fired when the sheet requests a change to its open state, with the requested open state as its argument.
    *
-   * The sheet calls this with `false` when the user presses `Escape` or clicks the close button in the header, and when the user clicks the backdrop in modal mode. It's also called when the `<dialog>` element itself opens or closes, such as when `showModal()`, `showPopover()`, `close()` or `hidePopover()` is called on it through `ref`.
+   * The sheet calls this with `false` when the user presses `Escape` or clicks the close button in the header, and when the user clicks the backdrop in modal mode. Update the state you pass to `open` in response, because the sheet doesn't close until `open` changes.
    *
-   * In controlled mode, update the state you pass to `open` in response, because the sheet doesn't open or close until `open` changes.
+   * It's also called with `false` if the browser closes the `<dialog>` element without asking first, such as when a `<form method="dialog">` inside it is submitted, so that `open` stays in sync.
    */
-  onOpenChange?: (open: boolean) => void;
+  onOpenChange: (open: boolean) => void;
+  /** Forwarded to the underlying `<dialog>` element. The sheet only opens and closes when `open` changes, so don't call methods such as `showModal()` or `close()` on the `<dialog>` element yourself. */
+  ref?: Ref<HTMLDialogElement>;
   /** The side of the viewport the sheet slides in from. @default right */
   side?: SheetSide;
   /** When `true`, renders the sheet as a popover instead of a modal dialog. Popovers do not render a backdrop, and allow interaction with the content behind them. @default false */
@@ -64,15 +64,14 @@ function isDialogOpen(dialog: HTMLDialogElement) {
  *
  * @see packages/vesper/src/components/modal/modal.tsx
  *
- * @param {string} props.title - The title text displayed in the sheet header
- * @param {string} props.description - A description displayed below the title
- * @param {boolean} [props.open] - (optional) Whether the sheet is open (controlled)
- * @param {boolean} [props.defaultOpen] - (optional) Whether the sheet is open when it first renders (uncontrolled). @default false
- * @param {(open: boolean) => void} [props.onOpenChange] - (optional) Callback fired when the open state changes
+ * @param {NonNullable<ReactNode>} props.title - The title displayed in the sheet header
+ * @param {NonNullable<ReactNode>} props.description - A description displayed below the title
+ * @param {boolean} props.open - Whether the sheet is open
+ * @param {(open: boolean) => void} props.onOpenChange - Callback fired when the sheet requests a change to its open state, such as when the user dismisses it
  * @param {SheetSide} [props.side] - (optional) The side of the viewport the sheet slides in from. @default right
  * @param {boolean} [props.popover] - (optional) Render as a non-modal popover instead of a modal dialog. @default false
  *
- * You may also pass any additional props (including `ref`) to the underlying `dialog` element
+ * You may also pass any additional props (including `ref`) to the underlying `dialog` element. The sheet only opens and closes when `open` changes, so don't call methods such as `showModal()` or `close()` on the `dialog` element through `ref`.
  *
  * @example
  * const [isOpen, setIsOpen] = useState(false);
@@ -87,20 +86,6 @@ function isDialogOpen(dialog: HTMLDialogElement) {
  *   <p>Sheet content here</p>
  *   <Button onClick={() => setIsOpen(false)}>Done</Button>
  * </Sheet>
- *
- * @example
- * const ref = useRef<HTMLDialogElement>(null);
- *
- * <Sheet
- *   ref={ref}
- *   title="Filters"
- *   description="Apply filters"
- *   side="left"
- *   popover
- * >
- *   <p>Sheet content here</p>
- * </Sheet>
- * <Button onClick={() => ref.current?.showPopover()}>Open Sheet</Button>
  */
 export function Sheet(props: SheetProps) {
   const {
@@ -109,8 +94,7 @@ export function Sheet(props: SheetProps) {
     "aria-labelledby": ariaLabelledby,
     "aria-describedby": ariaDescribedby,
     children,
-    open: openProp,
-    defaultOpen = false,
+    open,
     onOpenChange,
     side = "right",
     popover = false,
@@ -124,30 +108,13 @@ export function Sheet(props: SheetProps) {
   const innerRef = useRef<HTMLDialogElement>(null);
   const mergedRef = useMergedRefs(ref, innerRef);
 
-  const [open, setOpenUncontrolled] = useControlled({
-    controlled: openProp,
-    default: defaultOpen,
-    name: "Sheet",
-    state: "open",
-  });
+  // this only lets the consumer know that the sheet should close, and the sheet doesn't close until the `open` prop changes
+  const requestClose = useStableCallback(() => onOpenChange(false));
 
-  // when controlled, this only lets the consumer know about the change, and the sheet doesn't open or close until the `open` prop changes
-  const changeOpen = useStableCallback((nextOpen: boolean) => {
-    setOpenUncontrolled(nextOpen);
-    onOpenChange?.(nextOpen);
-  });
-
-  // the open state that the `<dialog>` element was last synced to, which starts out closed like the `<dialog>` element itself
-  const syncedOpenRef = useRef(false);
-
-  // keep the `<dialog>` element in sync with the open state, but only when the open state changes, so that a `<dialog>` element
-  // opened through `ref` before this first runs (eg. from a parent's `useLayoutEffect`) isn't closed again, and is picked up by `syncOpen` instead
+  // open and close the `<dialog>` element to match the `open` prop
   useEffect(() => {
     const dialog = innerRef.current;
-    if (!dialog || open === syncedOpenRef.current) return;
-
-    syncedOpenRef.current = open;
-    if (open === isDialogOpen(dialog)) return;
+    if (!dialog || open === isDialogOpen(dialog)) return;
 
     if (open) {
       if (popover) dialog.showPopover();
@@ -160,65 +127,50 @@ export function Sheet(props: SheetProps) {
     else dialog.hidePopover();
   }, [open, popover]);
 
-  // keep the open state in sync with the `<dialog>` element, which can also open or close by itself,
-  // eg. when `showModal()`, `showPopover()`, `close()` or `hidePopover()` is called on it through `ref`,
-  // or when a `<form method="dialog">` inside it is submitted
-  const syncOpen = useStableCallback(() => {
-    const dialog = innerRef.current;
-    if (!dialog) return;
-
-    const dialogOpen = isDialogOpen(dialog);
-    if (dialogOpen !== open) changeOpen(dialogOpen);
-  });
-
+  // the browser can still close the `<dialog>` element without asking first (eg. when a `<form method="dialog">` inside it is submitted,
+  // when a button with a `popovertarget` hides it in popover mode, or for close requests that browsers don't allow to be prevented),
+  // so let the consumer know, to keep the `open` prop in sync
   useEffect(() => {
     const dialog = innerRef.current;
-    if (!dialog) return undefined;
+    if (!open || !dialog) return undefined;
 
-    // popovers don't have an `open` attribute, but fire a `toggle` event whenever they're shown or hidden
-    if (popover) {
-      dialog.addEventListener("toggle", syncOpen);
+    // modal dialogs fire a `close` event after they close, and popovers fire a `toggle` event after they open or close,
+    // so skip the event if the `<dialog>` element is open (again) by then
+    const handleClose = () => {
+      if (!isDialogOpen(dialog)) requestClose();
+    };
 
-      // pick up any changes made before the listener was added
-      syncOpen();
-      return () => dialog.removeEventListener("toggle", syncOpen);
-    }
-
-    // `showModal()`, `show()` and `close()` all add or remove the `open` attribute, and unlike the dialog's
-    // `toggle` event, observing the attribute works in every browser
-    const observer = new MutationObserver(syncOpen);
-    observer.observe(dialog, { attributeFilter: ["open"] });
-
-    // pick up any changes made before the observer was set up
-    syncOpen();
-    return () => observer.disconnect();
-  }, [popover, syncOpen]);
+    // only listen for one of these, since some browsers fire `toggle` for modal dialogs too
+    const eventName = popover ? "toggle" : "close";
+    dialog.addEventListener(eventName, handleClose);
+    return () => dialog.removeEventListener(eventName, handleClose);
+  }, [open, popover, requestClose]);
 
   // when rendered as a modal, clicking the backdrop requests to close the sheet
   useEffect(() => {
     if (popover) return undefined;
 
     const handleClick = (e: PointerEvent) => {
-      if (e.target === innerRef.current) changeOpen(false);
+      if (e.target === innerRef.current) requestClose();
     };
 
     window.addEventListener("click", handleClick);
     return () => window.removeEventListener("click", handleClick);
-  }, [popover, changeOpen]);
+  }, [popover, requestClose]);
 
   useEffect(() => {
     const dialog = innerRef.current;
     if (!open || !dialog) return undefined;
 
     // when rendered as a modal, the native `<dialog>` fires a `cancel` event in response to a close request (eg. the Android back gesture), which closes the dialog unless prevented,
-    // so prevent it, and update the open state instead (which, when controlled, leaves closing the sheet up to the consumer)
+    // so prevent it, and ask the consumer to close the sheet instead
     const handleCancel = (e: Event) => {
       // leave the sheet open if something else prevented the event, eg. the `onCancel` prop,
       // which runs first since React adds its own `cancel` listener when it creates the `<dialog>` element
       if (e.defaultPrevented) return;
 
       e.preventDefault();
-      changeOpen(false);
+      requestClose();
     };
 
     // when rendered as a popover, the browser doesn't send a close request on `Escape` (since it's a manual popover).
@@ -246,7 +198,7 @@ export function Sheet(props: SheetProps) {
       window.removeEventListener("keydown", handleKeyDown);
       dialog.removeEventListener("cancel", handleCancel);
     };
-  }, [open, changeOpen]);
+  }, [open, requestClose]);
 
   // If an additional aria-labelledby is supplied, this ensures that both ids get used
   const labelledBy = [ariaLabelledby, titleId].filter(Boolean).join(" ");
@@ -289,7 +241,7 @@ export function Sheet(props: SheetProps) {
             icon={<Close />}
             size="md"
             variant="tertiary"
-            onClick={() => changeOpen(false)}
+            onClick={requestClose}
           />
         </div>
         <div className="vesper-sheet-children">{children}</div>
