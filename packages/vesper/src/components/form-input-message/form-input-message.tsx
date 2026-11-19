@@ -8,7 +8,7 @@ import {
 } from "@/components/icons/icons";
 import {
   Typography,
-  TypographyVariant,
+  type TypographyVariant,
 } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
 
@@ -26,16 +26,11 @@ export type FormInputMessageVariant =
 
 export type FormInputMessageSize = (typeof FORM_INPUT_MESSAGE_SIZES)[number];
 
-export interface FormInputMessageProps extends Omit<
-  ComponentProps<"output">,
-  "children"
-> {
+export interface FormInputMessageProps extends ComponentProps<"output"> {
   /** The size of the message. Affects padding and typography. @default sm */
   size?: FormInputMessageSize;
   /** The visual variant of the message, which determines its color scheme and message icon. @default default */
   variant?: FormInputMessageVariant;
-  /** The message text to display. When omitted or empty, the message content and icon are not rendered, but the visually hidden element remains in the document so it can announce updates. */
-  message?: string | undefined | null | false;
 }
 
 const FORM_INPUT_MESSAGE_TYPOGRAPHY: Record<
@@ -51,7 +46,7 @@ const FORM_INPUT_MESSAGE_TYPOGRAPHY: Record<
  *
  * @param {FormInputMessageVariant} [props.variant] - (optional) The visual variant, which determines the color scheme and message icon. @default default
  * @param {FormInputMessageSize} [props.size] - (optional) The size of the message. Affects padding and typography. @default sm
- * @param {string} [props.message] - (optional) The message text to display. When omitted or empty, no content is rendered
+ * @param {ReactNode} [props.children] - (optional) The message to display. When omitted or empty, no content is rendered
  *
  * You may also pass any additional props to the underlying `output` element
  *
@@ -74,14 +69,17 @@ const FORM_INPUT_MESSAGE_TYPOGRAPHY: Record<
 export const FormInputMessage = ({
   variant = "default",
   className,
-  message,
+  children,
   size = "sm",
   ...props
 }: FormInputMessageProps) => {
+  const hasMessage =
+    children !== "" && children != null && typeof children !== "boolean";
+
   return (
     <output
       {...props}
-      data-message={!!message}
+      data-message={hasMessage}
       className={cn(
         "vesper-form-input-message",
         `vesper-form-input-message-${variant}`,
@@ -89,7 +87,7 @@ export const FormInputMessage = ({
         className,
       )}
     >
-      {!!message && (
+      {hasMessage && (
         <>
           <span aria-hidden className="vesper-form-input-message-icon">
             {variant === "default" && <InfoSolid />}
@@ -102,7 +100,7 @@ export const FormInputMessage = ({
             variant={FORM_INPUT_MESSAGE_TYPOGRAPHY[size]}
             className="vesper-form-input-message-text"
           >
-            {message}
+            {children}
           </Typography>
         </>
       )}
