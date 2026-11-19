@@ -14,7 +14,7 @@ export interface AccordionProps extends Omit<ComponentProps<"div">, "title"> {
   /** Callback fired when the open state changes. Receives the new open state as an argument. */
   onOpenChange?: (open: boolean) => void;
   /** The title displayed in the accordion trigger. */
-  title: ReactNode;
+  title: NonNullable<ReactNode>;
 }
 
 /**
