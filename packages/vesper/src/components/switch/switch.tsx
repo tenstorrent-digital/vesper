@@ -38,7 +38,7 @@ const SWITCH_TYPOGRAPHY: { [S in SwitchSize]: TypographyVariant } = {
  * @see packages/vesper/src/components/checkbox/checkbox.tsx
  * @see packages/vesper/src/components/toggle/toggle.tsx
  *
- * @param {string} [props.label] - (optional) The text label displayed next to the switch
+ * @param {ReactNode} [props.label] - (optional) The label displayed next to the switch
  * @param {SwitchSize} [props.size] - (optional) The size of the switch and its label. @default md
  * @param {boolean} [props.checked] - (optional) The controlled checked state
  * @param {boolean} [props.defaultChecked] - (optional) The initial checked state (uncontrolled)
