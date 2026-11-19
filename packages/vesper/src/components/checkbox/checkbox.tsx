@@ -1,7 +1,7 @@
 "use client";
 
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
-import { useLayoutEffect, useRef } from "react";
+import { type ReactNode, useLayoutEffect, useRef } from "react";
 
 import { Checkmark, Minus } from "@/components/icons/icons";
 import {
@@ -19,8 +19,8 @@ export const CHECKBOX_SIZES = ["sm", "md"] as const;
 export type CheckboxSize = (typeof CHECKBOX_SIZES)[number];
 
 export interface CheckboxProps extends FormInputProps<"label", "input"> {
-  /** The text displayed next to the checkbox, also used as the input's default `aria-label`. An asterisk is appended when `required` is `true`. */
-  text: string;
+  /** The text displayed next to the checkbox. An asterisk is appended when its value is a `string` and `required` is `true`. */
+  text: NonNullable<ReactNode>;
   /** When true, renders the checkbox in an indeterminate (mixed) state, displaying a dash icon instead of a checkmark. @default false */
   indeterminate?: boolean;
   /** The size of the checkbox and its text. @default md */
@@ -43,7 +43,7 @@ const CHECKBOX_TYPOGRAPHY: { [S in CheckboxSize]: TypographyVariant } = {
  * @see packages/vesper/src/components/toggle/toggle.tsx
  * @see packages/vesper/src/components/choicebox/choicebox.tsx
  *
- * @param {string} props.text - The text displayed next to the checkbox
+ * @param {NonNullable<ReactNode>} props.text - The text displayed next to the checkbox
  * @param {CheckboxSize} [props.size] - (optional) The size of the checkbox and its text. @default md
  * @param {boolean} [props.indeterminate] - (optional) Renders the checkbox in an indeterminate (mixed) state. @default false
  * @param {boolean} [props.checked] - (optional) The controlled checked state
@@ -91,7 +91,6 @@ export function Checkbox(props: CheckboxProps) {
       className={cn("vesper-checkbox", `vesper-checkbox-${size}`, className)}
     >
       <input
-        aria-label={text}
         {...ariaProps}
         {...controlProps}
         {...formProps}
@@ -110,7 +109,7 @@ export function Checkbox(props: CheckboxProps) {
         className="vesper-checkbox-label"
         as="span"
       >
-        {formProps.required ? `${text} *` : text}
+        {formProps.required && typeof text === "string" ? `${text} *` : text}
       </Typography>
     </label>
   );
