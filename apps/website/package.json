@@ -17,11 +17,11 @@
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
-    "@next/mdx": "^16.3.5",
+    "@next/mdx": "^16.4.6",
     "@shikijs/langs": "^4.3.1",
     "@tailwindcss/postcss": "^4.3.0",
     "@tenstorrent/vesper": "*",
-    "next": "^16.3.5",
+    "next": "^16.4.6",
     "postcss": "^8.5.15",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
