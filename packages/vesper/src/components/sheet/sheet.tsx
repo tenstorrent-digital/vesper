@@ -3,7 +3,13 @@
 import { useControlled } from "@base-ui/utils/useControlled";
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import { useStableCallback } from "@base-ui/utils/useStableCallback";
-import { type ComponentProps, useEffect, useId, useRef } from "react";
+import {
+  type ComponentProps,
+  type ReactNode,
+  useEffect,
+  useId,
+  useRef,
+} from "react";
 
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Close } from "@/components/icons/icons";
@@ -16,12 +22,12 @@ export type SheetSide = (typeof SHEET_SIDES)[number];
 
 export interface SheetProps extends Omit<
   ComponentProps<"dialog">,
-  "open" | "popover"
+  "open" | "popover" | "title"
 > {
   /** The title text displayed in the sheet header. Also used for the sheet's `aria-labelledby` association. */
-  title: string;
+  title: NonNullable<ReactNode>;
   /** A description displayed below the title in the sheet header. Also used for the sheet's `aria-describedby` association. */
-  description: string;
+  description: NonNullable<ReactNode>;
   /** Whether the sheet is open (controlled mode). Leave this out to let the sheet manage its own open state (uncontrolled mode). */
   open?: boolean;
   /** Whether the sheet is open when it first renders (uncontrolled mode). @default false */

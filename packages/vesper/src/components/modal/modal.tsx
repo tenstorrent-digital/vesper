@@ -3,18 +3,27 @@
 import { useControlled } from "@base-ui/utils/useControlled";
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import { useStableCallback } from "@base-ui/utils/useStableCallback";
-import { type ComponentProps, useEffect, useId, useRef } from "react";
+import {
+  type ComponentProps,
+  type ReactNode,
+  useEffect,
+  useId,
+  useRef,
+} from "react";
 
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Close } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
 
-export interface ModalProps extends Omit<ComponentProps<"dialog">, "open"> {
+export interface ModalProps extends Omit<
+  ComponentProps<"dialog">,
+  "open" | "title" | "popover"
+> {
   /** The title text displayed in the modal header. Also used for the modal's `aria-labelledby` association. */
-  title: string;
+  title: NonNullable<ReactNode>;
   /** A description displayed below the title in the modal header. Also used for the modal's `aria-describedby` association. */
-  description: string;
+  description: NonNullable<ReactNode>;
   /** Whether the modal is open (controlled mode). Leave this out to let the modal manage its own open state (uncontrolled mode). */
   open?: boolean;
   /** Whether the modal is open when it first renders (uncontrolled mode). @default false */
