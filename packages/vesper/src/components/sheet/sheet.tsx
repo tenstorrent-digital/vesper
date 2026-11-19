@@ -207,13 +207,18 @@ export function Sheet(props: SheetProps) {
     // when rendered as a modal, the native `<dialog>` fires a `cancel` event in response to a close request (eg. the Android back gesture), which closes the dialog unless prevented,
     // so prevent it, and update the open state instead (which, when controlled, leaves closing the sheet up to the consumer)
     const handleCancel = (e: Event) => {
+      // leave the sheet open if something else prevented the event, eg. the `onCancel` prop,
+      // which runs first since React adds its own `cancel` listener when it creates the `<dialog>` element
+      if (e.defaultPrevented) return;
+
       e.preventDefault();
       changeOpen(false);
     };
 
-    // when rendered as a popover, the browser doesn't close the sheet on `Escape` (since it's a manual popover), so this closes it instead.
+    // when rendered as a popover, the browser doesn't send a close request on `Escape` (since it's a manual popover).
     // when rendered as a modal, browsers ignore `preventDefault()` on the `cancel` event when `Escape` is pressed repeatedly without any other user interaction in between,
-    // so the `Escape` key press is prevented, which stops the browser from sending the close request at all
+    // so the `Escape` key press is prevented, which stops the browser from sending the close request at all.
+    // in both cases, a `cancel` event is fired in place of the browser, so that `cancel` listeners (eg. the `onCancel` prop) still hear about it, and can prevent it
     const handleKeyDown = (e: KeyboardEvent) => {
       // skip key presses that something else already handled (eg. a select popup inside the sheet closing itself), and key presses that end an IME composition
       if (e.key !== "Escape" || e.defaultPrevented || e.isComposing) return;
@@ -224,7 +229,7 @@ export function Sheet(props: SheetProps) {
       if (owner && owner !== dialog) return;
 
       e.preventDefault();
-      changeOpen(false);
+      dialog.dispatchEvent(new Event("cancel", { cancelable: true }));
     };
 
     // listen on the window, so that this runs after any listeners on the document (eg. those of popups rendered inside the sheet),

@@ -223,6 +223,43 @@ describe("modal [unit]", () => {
     expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(false);
   });
 
+  test("fires the cancel event on Escape, even while dismissible is false", async () => {
+    const onCancel = vi.fn();
+    const { dialog, setProps } = renderModal({
+      defaultOpen: true,
+      dismissible: false,
+      onCancel,
+    });
+
+    await userEvent.keyboard("{Escape}");
+    expect(onCancel).toHaveBeenCalledOnce();
+    expect(dialog.open).toBe(true);
+
+    setProps({ dismissible: true });
+    await userEvent.keyboard("{Escape}");
+    expect(onCancel).toHaveBeenCalledTimes(2);
+    expect(dialog.open).toBe(false);
+  });
+
+  test("stays open when onCancel prevents the cancel event", async () => {
+    const { dialog, getByText, onOpenChange } = renderModal({
+      defaultOpen: true,
+      onCancel: (e) => e.preventDefault(),
+    });
+
+    // after a user interaction, browsers only honour `preventDefault()` on the first `cancel` event that `Escape` triggers,
+    // so click inside the modal, then press `Escape` several times and check that the modal is still open
+    await userEvent.click(getByText(TITLE));
+    await userEvent.keyboard("{Escape}");
+    await userEvent.keyboard("{Escape}");
+    await userEvent.keyboard("{Escape}");
+
+    // close requests other than `Escape` (eg. the Android back gesture) fire `cancel` on the dialog too
+    fireEvent(dialog, new Event("cancel", { cancelable: true }));
+    expect(dialog.open).toBe(true);
+    expect(onOpenChange).not.toHaveBeenCalled();
+  });
+
   test("lets popups inside the modal handle Escape first", async () => {
     const { dialog, getByRole, onOpenChange } = renderModal({
       defaultOpen: true,
