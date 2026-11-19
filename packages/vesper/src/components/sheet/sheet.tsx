@@ -5,11 +5,6 @@ import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import { useStableCallback } from "@base-ui/utils/useStableCallback";
 import { type ComponentProps, useEffect, useId, useRef } from "react";
 
-import {
-  Button,
-  type ButtonProps,
-  type ButtonVariant,
-} from "@/components/button/button";
 import { IconButton } from "@/components/icon-button/icon-button";
 import { Close } from "@/components/icons/icons";
 import { Typography } from "@/components/typography/typography";
@@ -43,27 +38,6 @@ export interface SheetProps extends Omit<
   side?: SheetSide;
   /** When `true`, renders the sheet as a popover instead of a modal dialog. Popovers do not render a backdrop, and allow interaction with the content behind them. @default false */
   popover?: boolean;
-  /** An optional array of button props to render as action buttons at the bottom of the sheet. The last button defaults to `"contrast"` variant; all others default to `"tertiary"`. */
-  buttons?: readonly Omit<ButtonProps, "size" | "as">[];
-  /** When provided, wraps the sheet content in a `<form>` element with the given form attributes, enabling native form submission from within the sheet */
-  form?: Pick<
-    ComponentProps<"form">,
-    | "id"
-    | "name"
-    | "action"
-    | "method"
-    | "encType"
-    | "acceptCharset"
-    | "autoCapitalize"
-    | "autoComplete"
-    | "autoCorrect"
-    | "spellCheck"
-    | "noValidate"
-    | "onReset"
-    | "onSubmit"
-    | "target"
-    | "rel"
-  >;
 }
 
 /**
@@ -91,7 +65,6 @@ function isDialogOpen(dialog: HTMLDialogElement) {
  * @param {(open: boolean) => void} [props.onOpenChange] - (optional) Callback fired when the open state changes
  * @param {SheetSide} [props.side] - (optional) The side of the viewport the sheet slides in from. @default right
  * @param {boolean} [props.popover] - (optional) Render as a non-modal popover instead of a modal dialog. @default false
- * @param {readonly ButtonProps[]} [props.buttons] - (optional) Action buttons rendered at the bottom of the sheet
  *
  * You may also pass any additional props (including `ref`) to the underlying `dialog` element
  *
@@ -106,6 +79,7 @@ function isDialogOpen(dialog: HTMLDialogElement) {
  *   description="Manage your preferences."
  * >
  *   <p>Sheet content here</p>
+ *   <Button onClick={() => setIsOpen(false)}>Done</Button>
  * </Sheet>
  *
  * @example
@@ -117,8 +91,9 @@ function isDialogOpen(dialog: HTMLDialogElement) {
  *   description="Apply filters"
  *   side="left"
  *   popover
- *   buttons={[{ children: "Apply" }]}
- * />
+ * >
+ *   <p>Sheet content here</p>
+ * </Sheet>
  * <Button onClick={() => ref.current?.showPopover()}>Open Sheet</Button>
  */
 export function Sheet(props: SheetProps) {
@@ -135,8 +110,6 @@ export function Sheet(props: SheetProps) {
     popover = false,
     title,
     description,
-    buttons = [],
-    form,
     ...rest
   } = props;
 
@@ -259,53 +232,6 @@ export function Sheet(props: SheetProps) {
     .filter(Boolean)
     .join(" ");
 
-  const sheetContents = (
-    <>
-      <div className="vesper-sheet-header">
-        <div className="vesper-sheet-title-description">
-          <Typography
-            variant="heading-sm"
-            className="vesper-sheet-title"
-            id={titleId}
-          >
-            {title}
-          </Typography>
-          <Typography
-            variant="copy-sm"
-            className="vesper-sheet-description"
-            id={descriptionId}
-          >
-            {description}
-          </Typography>
-        </div>
-        <IconButton
-          aria-label="Close sheet"
-          type="button"
-          icon={<Close />}
-          size="md"
-          variant="tertiary"
-          onClick={() => changeOpen(false)}
-        />
-      </div>
-      <div className="vesper-sheet-children">{children}</div>
-      {buttons.length > 0 && (
-        <div className="vesper-sheet-buttons">
-          {buttons.map((button, index) => {
-            const variant: ButtonVariant =
-              button.variant ||
-              (index === buttons.length - 1 ? "contrast" : "tertiary");
-
-            return (
-              // buttons have no unique id and are rendered in a static order
-              // oxlint-disable-next-line react/no-array-index-key
-              <Button size="lg" key={index} {...button} variant={variant} />
-            );
-          })}
-        </div>
-      )}
-    </>
-  );
-
   return (
     <dialog
       {...(popover && { popover: "manual" })}
@@ -315,13 +241,35 @@ export function Sheet(props: SheetProps) {
       aria-describedby={describedBy}
       {...rest}
     >
-      {form ? (
-        <form className="vesper-sheet-content" {...form}>
-          {sheetContents}
-        </form>
-      ) : (
-        <div className="vesper-sheet-content">{sheetContents}</div>
-      )}
+      <div className="vesper-sheet-content">
+        <div className="vesper-sheet-header">
+          <div className="vesper-sheet-title-description">
+            <Typography
+              variant="heading-sm"
+              className="vesper-sheet-title"
+              id={titleId}
+            >
+              {title}
+            </Typography>
+            <Typography
+              variant="copy-sm"
+              className="vesper-sheet-description"
+              id={descriptionId}
+            >
+              {description}
+            </Typography>
+          </div>
+          <IconButton
+            aria-label="Close sheet"
+            type="button"
+            icon={<Close />}
+            size="md"
+            variant="tertiary"
+            onClick={() => changeOpen(false)}
+          />
+        </div>
+        <div className="vesper-sheet-children">{children}</div>
+      </div>
     </dialog>
   );
 }

@@ -146,16 +146,9 @@
 }
 
 .vesper-sheet-children {
-  padding: 0 var(--vesper-spacing-6);
+  padding: 0 var(--vesper-spacing-6) var(--vesper-spacing-6)
+    var(--vesper-spacing-6);
   overflow-y: auto;
   flex: 1;
   color: var(--vesper-color-text-primary);
-}
-
-.vesper-sheet-buttons {
-  display: flex;
-  gap: var(--vesper-spacing-4);
-  justify-content: flex-end;
-  padding: 0 var(--vesper-spacing-6) var(--vesper-spacing-6)
-    var(--vesper-spacing-6);
 }

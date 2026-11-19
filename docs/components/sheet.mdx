@@ -5,7 +5,7 @@ description: A slide-in panel that appears from the left or right edge of the vi
 
 # Sheet
 
-A slide-in panel that appears from the left or right edge of the viewport. Can operate as a modal dialog with a backdrop or as a popover that allows interaction with content behind it. Supports a title, description, action buttons, and optional form wrapping. You can control its open state with the `open` and `onOpenChange` props, or leave the sheet to manage it.
+A slide-in panel that appears from the left or right edge of the viewport. Can operate as a modal dialog with a backdrop or as a popover that allows interaction with content behind it. Renders a title and description in its header, and any children you pass (including action buttons and forms) in its body. You can control its open state with the `open` and `onOpenChange` props, or leave the sheet to manage it.
 
 ```tsx demo
 import { useState } from "react";
@@ -24,10 +24,6 @@ export default function SheetDemo() {
         onOpenChange={setIsOpen}
         title="Sheet panel"
         description="This is a slide-in panel."
-        buttons={[
-          { children: "Cancel", onClick: () => setIsOpen(false) },
-          { children: "Save", onClick: () => setIsOpen(false) },
-        ]}
       >
         Sheet content goes here.
       </Sheet>
@@ -47,9 +43,7 @@ export default function SheetDemo() {
 | `open` | `boolean` | Whether the sheet is open (controlled mode). Leave this out to let the sheet manage its own open state. | — |
 | `defaultOpen` | `boolean` | Whether the sheet is open when it first renders (uncontrolled mode). | `false` |
 | `onOpenChange` | `(open: boolean) => void` | Called with the new open state whenever it changes, such as when the user dismisses the sheet. In controlled mode, update the state you pass to `open` in response. | — |
-| `buttons` | `ButtonProps[]` | An optional array of button props for action buttons. The last button defaults to `"contrast"` variant; others default to `"tertiary"`. | — |
-| `form` | `FormProps` | When provided, wraps the sheet content in a `<form>` element with the given form attributes. | — |
-| `children` | `ReactNode` | The content displayed inside the sheet body. | — |
+| `children` | `ReactNode` | The content displayed inside the sheet body, such as text, action buttons, or a form. | — |
 
 All other props, including `ref`, are forwarded to the underlying `<dialog>` element.
 
@@ -108,9 +102,24 @@ export default function UncontrolledSheet() {
         ref={ref}
         title="What's new"
         description="A quick look at this release."
-        buttons={[{ children: "Done", onClick: () => ref.current?.close() }]}
       >
-        Projects can now be shared with everyone in your workspace.
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--vesper-spacing-6)",
+            alignItems: "flex-start",
+            minHeight: "100%",
+          }}
+        >
+          Projects can now be shared with everyone in your workspace.
+          <Button
+            style={{ marginTop: "auto", marginLeft: "auto" }}
+            onClick={() => ref.current?.close()}
+          >
+            Done
+          </Button>
+        </div>
       </Sheet>
     </>
   );
@@ -181,115 +190,3 @@ export default function PopoverSheet() {
 ```
 
 Use popover mode for panels the user consults while working, such as inspectors and help content, and stick with the default modal mode when the panel's task should be finished before anything else happens.
-
-### Action buttons
-
-Pass an array of button props to `buttons` to render action buttons along the bottom of the sheet. The last button defaults to the `contrast` variant and the rest default to `tertiary`, which can be overridden with the `variant` prop:
-
-```tsx demo
-import { useState } from "react";
-
-import { Button } from "@tenstorrent/vesper/button";
-import { Sheet } from "@tenstorrent/vesper/sheet";
-import { TextInput } from "@tenstorrent/vesper/text-input";
-
-export default function SheetWithButtons() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <>
-      <Button onClick={() => setIsOpen(true)}>Edit profile</Button>
-      <Sheet
-        open={isOpen}
-        onOpenChange={setIsOpen}
-        title="Edit profile"
-        description="Update your information."
-        buttons={[
-          { children: "Cancel", onClick: () => setIsOpen(false) },
-          { children: "Save changes", onClick: () => setIsOpen(false) },
-        ]}
-      >
-        <TextInput
-          aria-label="Display name"
-          placeholder="Display name"
-          name="name"
-        />
-      </Sheet>
-    </>
-  );
-}
-```
-
-### Usage in forms
-
-Passing the `form` prop wraps the sheet's contents in a `<form>` element, so the action buttons can submit it natively with `type="submit"`, and native validation runs before the submit handler fires:
-
-```tsx demo
-import { useState } from "react";
-
-import { Button } from "@tenstorrent/vesper/button";
-import { Sheet } from "@tenstorrent/vesper/sheet";
-import { TextInput } from "@tenstorrent/vesper/text-input";
-import { Typography } from "@tenstorrent/vesper/typography";
-
-export default function FormSheet() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [submitted, setSubmitted] = useState<string | null>(null);
-
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "var(--vesper-spacing-4)",
-        alignItems: "flex-start",
-      }}
-    >
-      <Button onClick={() => setIsOpen(true)}>Invite teammate</Button>
-      {submitted && (
-        <Typography variant="copy-sm">Invited: {submitted}</Typography>
-      )}
-      <Sheet
-        open={isOpen}
-        onOpenChange={setIsOpen}
-        title="Invite teammate"
-        description="Send an invitation to join your workspace."
-        form={{
-          onSubmit: (event) => {
-            event.preventDefault();
-            const data = new FormData(event.currentTarget);
-            setSubmitted(String(data.get("email") ?? ""));
-            setIsOpen(false);
-          },
-        }}
-        buttons={[
-          {
-            children: "Cancel",
-            type: "button",
-            onClick: () => setIsOpen(false),
-          },
-          { children: "Send invite", type: "submit" },
-        ]}
-      >
-        <Typography
-          variant="label-sm"
-          style={{ marginBottom: "var(--vesper-spacing-2)" }}
-        >
-          Enter your teammate&apos;s email
-        </Typography>
-        <TextInput
-          required
-          type="email"
-          aria-label="Email address"
-          placeholder="Email address"
-          name="email"
-        />
-      </Sheet>
-    </div>
-  );
-}
-```
-
-> [!NOTE]
->
-> Buttons rendered inside a `form` default to `type="submit"`, so give any button that should not submit an explicit `type="button"`, as the cancel button above does.

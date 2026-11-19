@@ -12,6 +12,7 @@ import {
 } from "vitest";
 import { userEvent } from "vitest/browser";
 
+import { Button } from "@/components/button/button";
 import { Select } from "@/components/select/select";
 import { Sheet, type SheetProps } from "@/components/sheet/sheet";
 import {
@@ -22,11 +23,6 @@ import "@/styles/test.css";
 
 const TITLE = "Sheet title";
 const DESCRIPTION = "This is a description of the sheet content.";
-
-const BUTTONS: SheetProps["buttons"] = [
-  { children: "Cancel" },
-  { children: "Save" },
-];
 
 afterEach(cleanup);
 
@@ -82,41 +78,6 @@ describe("sheet [unit]", () => {
     expect(ref.current).toBe(dialog);
     expect(dialog).toHaveClass("vesper-sheet", "custom");
     expect(dialog).toHaveAttribute("id", "sheet");
-  });
-
-  test("defaults the last button to contrast and the rest to tertiary, unless a variant is set", () => {
-    const { getByText } = renderSheet({
-      buttons: [
-        { children: "Delete", variant: "danger" },
-        { children: "Cancel" },
-        { children: "Save" },
-      ],
-    });
-    expect(getByText("Delete").closest("button")).toHaveClass(
-      "vesper-button-danger",
-    );
-    expect(getByText("Cancel").closest("button")).toHaveClass(
-      "vesper-button-tertiary",
-    );
-    expect(getByText("Save").closest("button")).toHaveClass(
-      "vesper-button-contrast",
-    );
-  });
-
-  test("wraps its content in a form with the given form props", () => {
-    const onSubmit = vi.fn();
-    const { dialog } = renderSheet({
-      form: { id: "test-form", method: "post", onSubmit },
-    });
-
-    const form = dialog.querySelector("form");
-    assert.instanceOf(form, HTMLFormElement);
-    expect(form).toHaveClass("vesper-sheet-content");
-    expect(form).toHaveAttribute("id", "test-form");
-    expect(form).toHaveAttribute("method", "post");
-
-    fireEvent.submit(form);
-    expect(onSubmit).toHaveBeenCalledOnce();
   });
 
   test("opens when defaultOpen is true, and closes via the close button", () => {
@@ -270,32 +231,17 @@ const SHEET_SNAPSHOT_PERMUTATIONS: SheetSnapshotPermutation[] = [
     children: "Sheet body content",
   },
   {
-    permutationName: "with buttons",
-    title: TITLE,
-    description: DESCRIPTION,
-    buttons: BUTTONS,
-  },
-  {
-    permutationName: "left side with buttons and children",
-    title: TITLE,
-    description: DESCRIPTION,
-    side: "left",
-    buttons: BUTTONS,
-    children: "Sheet body content",
-  },
-  {
     permutationName: "popover mode (right side)",
     title: TITLE,
     description: DESCRIPTION,
     popover: true,
   },
   {
-    permutationName: "popover mode (left side with buttons and children)",
+    permutationName: "popover mode (left side with children)",
     title: TITLE,
     description: DESCRIPTION,
     side: "left",
     popover: true,
-    buttons: BUTTONS,
     children: "Sheet body content",
   },
 ];
@@ -317,15 +263,16 @@ const SHEET_A11Y_PERMUTATIONS: SheetA11yPermutation[] = [
     props: { title: TITLE, description: DESCRIPTION },
   },
   {
-    label: "with buttons",
-    props: { title: TITLE, description: DESCRIPTION, buttons: BUTTONS },
-  },
-  {
     label: "with children",
     props: {
       title: TITLE,
       description: DESCRIPTION,
-      children: <p>Sheet body content for accessibility test.</p>,
+      children: (
+        <>
+          <p>Sheet body content for accessibility test.</p>
+          <Button>Save</Button>
+        </>
+      ),
     },
   },
   {
@@ -335,15 +282,6 @@ const SHEET_A11Y_PERMUTATIONS: SheetA11yPermutation[] = [
   {
     label: "popover mode",
     props: { title: TITLE, description: DESCRIPTION, popover: true },
-  },
-  {
-    label: "popover mode with buttons",
-    props: {
-      title: TITLE,
-      description: DESCRIPTION,
-      popover: true,
-      buttons: BUTTONS,
-    },
   },
 ];
 
@@ -394,13 +332,5 @@ describe("sheet [a11y, high contrast]", () => {
         expect(await runAxeWcag2aaa(container)).toHaveNoViolations();
       });
     });
-  });
-});
-
-// type-level assertions, verified by `yarn check-types`
-describe("sheet [types]", () => {
-  test("accepts readonly buttons", () => {
-    const buttons = [{ children: "Cancel" }, { children: "Apply" }] as const;
-    <Sheet title="Filters" description="Filter results" buttons={buttons} />;
   });
 });
