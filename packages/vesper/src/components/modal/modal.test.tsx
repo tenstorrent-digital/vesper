@@ -152,6 +152,33 @@ describe("modal [unit]", () => {
     expect(dialog.open).toBe(false);
   });
 
+  // refs are set before the modal's own effects run, the same as a parent's `useLayoutEffect`
+  test("stays open when showModal() is called on the dialog during mount", async () => {
+    const { dialog, closeButton, onOpenChange } = renderModal({
+      ref: (element) => element?.showModal(),
+    });
+
+    await waitFor(() => {
+      expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(true);
+    });
+    expect(dialog.open).toBe(true);
+
+    fireEvent.click(closeButton);
+    expect(dialog.open).toBe(false);
+  });
+
+  test("calls onOpenChange when showModal() is called on the dialog during mount, when the open prop is set", async () => {
+    const { dialog, onOpenChange } = renderModal({
+      open: false,
+      ref: (element) => element?.showModal(),
+    });
+
+    await waitFor(() => {
+      expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(true);
+    });
+    expect(dialog.open).toBe(true);
+  });
+
   test("cannot be dismissed while dismissible is false", async () => {
     const { dialog, closeButton, getByText, onOpenChange, setProps } =
       renderModal({

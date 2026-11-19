@@ -112,11 +112,16 @@ export function Modal(props: ModalProps) {
     onOpenChange?.(nextOpen);
   });
 
-  // keep the `<dialog>` element in sync with the open state
+  // the open state that the `<dialog>` element was last synced to, which starts out closed like the `<dialog>` element itself
+  const syncedOpenRef = useRef(false);
+
+  // keep the `<dialog>` element in sync with the open state, but only when the open state changes, so that a `<dialog>` element
+  // opened through `ref` before this first runs (eg. from a parent's `useLayoutEffect`) isn't closed again, and is picked up by `syncOpen` instead
   useEffect(() => {
     const dialog = innerRef.current;
-    if (!dialog) return;
+    if (!dialog || open === syncedOpenRef.current) return;
 
+    syncedOpenRef.current = open;
     if (open && !dialog.open) dialog.showModal();
     else if (!open && dialog.open) dialog.close();
   }, [open]);
@@ -136,6 +141,9 @@ export function Modal(props: ModalProps) {
     // `toggle` event, observing the attribute works in every browser
     const observer = new MutationObserver(syncOpen);
     observer.observe(dialog, { attributeFilter: ["open"] });
+
+    // pick up any changes made before the observer was set up
+    syncOpen();
     return () => observer.disconnect();
   }, [syncOpen]);
 

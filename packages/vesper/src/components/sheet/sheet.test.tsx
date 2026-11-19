@@ -157,6 +157,33 @@ describe("sheet [unit]", () => {
     expect(dialog.open).toBe(false);
   });
 
+  // refs are set before the sheet's own effects run, the same as a parent's `useLayoutEffect`
+  test("stays open when showModal() is called on the dialog during mount", async () => {
+    const { dialog, closeButton, onOpenChange } = renderSheet({
+      ref: (element) => element?.showModal(),
+    });
+
+    await waitFor(() => {
+      expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(true);
+    });
+    expect(dialog.open).toBe(true);
+
+    fireEvent.click(closeButton);
+    expect(dialog.open).toBe(false);
+  });
+
+  test("calls onOpenChange when showModal() is called on the dialog during mount, when the open prop is set", async () => {
+    const { dialog, onOpenChange } = renderSheet({
+      open: false,
+      ref: (element) => element?.showModal(),
+    });
+
+    await waitFor(() => {
+      expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(true);
+    });
+    expect(dialog.open).toBe(true);
+  });
+
   test("lets popups inside the sheet handle Escape first", async () => {
     const { dialog, getByRole, onOpenChange } = renderSheet({
       defaultOpen: true,
@@ -203,6 +230,21 @@ describe("sheet [unit]", () => {
       await waitFor(() => {
         expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(true);
       });
+
+      fireEvent.click(closeButton);
+      expect(dialog.matches(":popover-open")).toBe(false);
+    });
+
+    test("stays open when showPopover() is called on the dialog during mount", async () => {
+      const { dialog, closeButton, onOpenChange } = renderSheet({
+        popover: true,
+        ref: (element) => element?.showPopover(),
+      });
+
+      await waitFor(() => {
+        expect(onOpenChange).toHaveBeenCalledExactlyOnceWith(true);
+      });
+      expect(dialog.matches(":popover-open")).toBe(true);
 
       fireEvent.click(closeButton);
       expect(dialog.matches(":popover-open")).toBe(false);
