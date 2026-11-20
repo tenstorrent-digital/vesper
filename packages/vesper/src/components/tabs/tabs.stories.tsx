@@ -1,7 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Globe } from "@/components/icons/icons";
-import { Tabs, TABS_VARIANTS, type TabsVariant } from "@/components/tabs/tabs";
+import {
+  TABS_VARIANTS,
+  TabsRoot,
+  TabsList,
+  TabTrigger,
+  TabPanel,
+  type TabsVariant,
+} from "@/components/tabs/tabs";
 import { Typography } from "@/components/typography/typography";
 
 const TabsStoryComponent = ({
@@ -22,56 +29,49 @@ const TabsStoryComponent = ({
   variant: TabsVariant;
 }) => {
   return (
-    <Tabs
-      variant={variant}
-      items={[
-        {
-          value: "tab-1",
-          label: tab1Label,
-          icon: tab1Icon && <Globe />,
-          content: (
-            <Typography
-              style={{
-                color: "var(--vesper-color-stone-900)",
-                padding: "var(--vesper-spacing-3) 0",
-              }}
-            >
-              Tab 1 Content
-            </Typography>
-          ),
-        },
-        {
-          value: "tab-2",
-          label: tab2Label,
-          icon: tab2Icon && <Globe />,
-          content: (
-            <Typography
-              style={{
-                color: "var(--vesper-color-stone-900)",
-                padding: "var(--vesper-spacing-3) 0",
-              }}
-            >
-              Tab 2 Content
-            </Typography>
-          ),
-        },
-        {
-          value: "tab-3",
-          label: tab3Label,
-          icon: tab3Icon && <Globe />,
-          content: (
-            <Typography
-              style={{
-                color: "var(--vesper-color-stone-900)",
-                padding: "var(--vesper-spacing-3) 0",
-              }}
-            >
-              Tab 3 Content
-            </Typography>
-          ),
-        },
-      ]}
-    />
+    <TabsRoot variant={variant}>
+      <TabsList>
+        <TabTrigger value="tab-1" icon={tab1Icon && <Globe />}>
+          {tab1Label}
+        </TabTrigger>
+        <TabTrigger value="tab-2" icon={tab2Icon && <Globe />}>
+          {tab2Label}
+        </TabTrigger>
+        <TabTrigger value="tab-3" icon={tab3Icon && <Globe />}>
+          {tab3Label}
+        </TabTrigger>
+      </TabsList>
+      <TabPanel value="tab-1">
+        <Typography
+          style={{
+            color: "var(--vesper-color-stone-900)",
+            padding: "var(--vesper-spacing-3) 0",
+          }}
+        >
+          Tab 1 Content
+        </Typography>
+      </TabPanel>
+      <TabPanel value="tab-2">
+        <Typography
+          style={{
+            color: "var(--vesper-color-stone-900)",
+            padding: "var(--vesper-spacing-3) 0",
+          }}
+        >
+          Tab 2 Content
+        </Typography>
+      </TabPanel>
+      <TabPanel value="tab-3">
+        <Typography
+          style={{
+            color: "var(--vesper-color-stone-900)",
+            padding: "var(--vesper-spacing-3) 0",
+          }}
+        >
+          Tab 3 Content
+        </Typography>
+      </TabPanel>
+    </TabsRoot>
   );
 };
 

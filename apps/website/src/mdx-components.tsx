@@ -66,7 +66,12 @@ import { Snippet } from "@tenstorrent/vesper/snippet";
 import { StatusIndicator } from "@tenstorrent/vesper/status-indicator";
 import { Switch } from "@tenstorrent/vesper/switch";
 import { Table } from "@tenstorrent/vesper/table";
-import { Tabs } from "@tenstorrent/vesper/tabs";
+import {
+  TabPanel,
+  TabsList,
+  TabsRoot,
+  TabTrigger,
+} from "@tenstorrent/vesper/tabs";
 import { Tag } from "@tenstorrent/vesper/tag";
 import { TextArea } from "@tenstorrent/vesper/text-area";
 import { TextButton } from "@tenstorrent/vesper/text-button";
@@ -238,7 +243,10 @@ const components = {
   StatusIndicator,
   Switch,
   Table,
-  Tabs,
+  TabPanel,
+  TabsList,
+  TabsRoot,
+  TabTrigger,
   Tag,
   TextButton,
   TextInput,

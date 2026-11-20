@@ -1,124 +1,171 @@
 ---
 title: Tabs
-description: A tabbed interface component for organizing content into switchable panels.
+description: A set of components for organizing content into switchable panels.
 ---
 
 # Tabs
 
-A tabbed interface component for organizing content into switchable panels. Supports primary and secondary visual styles, icons in tab triggers, and controlled or uncontrolled selection.
+A set of components for organizing content into switchable panels. Supports primary and secondary visual styles, icons in tab triggers, and controlled or uncontrolled selection.
 
 ```tsx demo
-import { Tabs } from "@tenstorrent/vesper/tabs";
+import {
+  TabPanel,
+  TabsList,
+  TabsRoot,
+  TabTrigger,
+} from "@tenstorrent/vesper/tabs";
 import { Typography } from "@tenstorrent/vesper/typography";
 
 export default function TabsDemo() {
   return (
-    <Tabs
-      defaultValue="overview"
-      items={[
-        {
-          label: "Overview",
-          value: "overview",
-          content: <Typography>Overview content.</Typography>,
-        },
-        {
-          label: "Settings",
-          value: "settings",
-          content: <Typography>Settings content.</Typography>,
-        },
-        {
-          label: "Activity",
-          value: "activity",
-          content: <Typography>Activity content.</Typography>,
-        },
-      ]}
-    />
+    <TabsRoot defaultValue="overview">
+      <TabsList>
+        <TabTrigger value="overview">Overview</TabTrigger>
+        <TabTrigger value="settings">Settings</TabTrigger>
+        <TabTrigger value="activity">Activity</TabTrigger>
+      </TabsList>
+      <TabPanel value="overview">
+        <Typography>Overview content.</Typography>
+      </TabPanel>
+      <TabPanel value="settings">
+        <Typography>Settings content.</Typography>
+      </TabPanel>
+      <TabPanel value="activity">
+        <Typography>Activity content.</Typography>
+      </TabPanel>
+    </TabsRoot>
   );
 }
 ```
 
+## Anatomy
+
+Tabs are built by composing four components:
+
+- `TabsRoot` groups the other parts together, and keeps track of which tab is selected.
+- `TabsList` contains the tab triggers.
+- `TabTrigger` is a button that selects a tab.
+- `TabPanel` contains the content that is shown while its tab is selected.
+
+```tsx
+<TabsRoot>
+  <TabsList>
+    <TabTrigger />
+  </TabsList>
+  <TabPanel />
+</TabsRoot>
+```
+
+`TabsList` and `TabPanel` must be rendered within a `TabsRoot`, and `TabTrigger` must be rendered within a `TabsList`. Rendering any of them outside of their parent throws an error.
+
 ## Options
+
+### `TabsRoot` options
 
 | Prop | Type | Description | Default |
 | --- | --- | --- | --- |
 | `variant` | `"primary" \| "secondary"` | The visual style variant of the tabs. | `"primary"` |
-| `items` | `TabItem[]` | The list of tab items, rendered in the order they are provided. See [`TabItem`](#tabitem) for the options each item accepts. | — |
-| `value` | `string` | The value for the selected tab (controlled mode). | — |
+| `value` | `string` | The value of the selected tab (controlled mode). | — |
 | `defaultValue` | `string` | The value of the tab to select by default (uncontrolled mode). | — |
 | `onValueChange` | `(value: string) => void` | Callback fired when a new tab is selected. | — |
-| `activationMode` | `"automatic" \| "manual"` | Whether a tab is activated on focus (`automatic`) or on click (`manual`). | `"automatic"` |
+| `activationMode` | `"automatic" \| "manual"` | Whether a tab is selected when its trigger receives focus (`automatic`) or only once its trigger is clicked (`manual`). | `"automatic"` |
+| `children` | `ReactNode` | A `TabsList`, and the `TabPanel`s its triggers select. | — |
 
-All other props are forwarded to the underlying `<div>` element, which wraps the tab list and its panels.
+`TabsRoot` forwards any other props to the underlying `<div>` element.
 
-### TabItem
+### `TabsList` options
 
 | Prop | Type | Description | Default |
 | --- | --- | --- | --- |
-| `label` | `string` | The text label displayed in the tab trigger. | — |
-| `value` | `string` | A unique value identifying this tab. | — |
+| `children` | `ReactNode` | The `TabTrigger`s to render, in the order they are displayed. | — |
+
+`TabsList` forwards any other props to the underlying `<div>` element, which has the `tablist` role.
+
+### `TabTrigger` options
+
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `value` | `string` | The value of the tab this trigger selects. Must be unique within its `TabsRoot`. **Required.** | — |
+| `children` | `ReactNode` | The content displayed in the trigger. | — |
 | `icon` | `ReactNode` | An optional icon element rendered before the label. | — |
-| `content` | `ReactNode` | The content rendered in the tab's panel when this tab is active. | — |
-| `contentAsPanel` | `boolean` | Renders `content` as the tab's panel itself instead of wrapping it in a `<div>`. | `false` |
+
+`TabTrigger` forwards any other props to the underlying `<button>` element, which has the `tab` role.
+
+### `TabPanel` options
+
+| Prop | Type | Description | Default |
+| --- | --- | --- | --- |
+| `value` | `string` | The value of the tab this panel belongs to. The panel is shown while the `TabTrigger` with the same `value` is selected. **Required.** | — |
+| `keepMounted` | `boolean` | When `true`, keeps the panel in the DOM while it is hidden. | `false` |
+| `children` | `ReactNode` | The content of the panel. | — |
+
+`TabPanel` forwards any other props to the underlying `<div>` element, which has the `tabpanel` role.
 
 ## Examples
 
-### Defining items
+### Pairing triggers with panels
 
-Each entry in the `items` array describes a tab and the panel it reveals: `label` is the text in the trigger, `value` identifies the tab, and `content` is whatever should be rendered when it is active. Tabs are rendered in the order they are provided:
+Each `TabTrigger` is associated with the `TabPanel` that shares its `value`. Triggers are displayed in the order they are rendered within `TabsList`, and each trigger is linked to its panel for assistive technology via `aria-controls` and `aria-labelledby`:
 
 ```tsx demo
-import { Tabs } from "@tenstorrent/vesper/tabs";
+import {
+  TabPanel,
+  TabsList,
+  TabsRoot,
+  TabTrigger,
+} from "@tenstorrent/vesper/tabs";
 import { Typography } from "@tenstorrent/vesper/typography";
 
 export default function BasicTabs() {
   return (
-    <Tabs
-      defaultValue="details"
-      items={[
-        {
-          label: "Details",
-          value: "details",
-          content: (
-            <Typography>
-              Everything you need to know about this item.
-            </Typography>
-          ),
-        },
-        {
-          label: "History",
-          value: "history",
-          content: (
-            <Typography>A log of every change made to this item.</Typography>
-          ),
-        },
-      ]}
-    />
+    <TabsRoot defaultValue="details">
+      <TabsList>
+        <TabTrigger value="details">Details</TabTrigger>
+        <TabTrigger value="history">History</TabTrigger>
+      </TabsList>
+      <TabPanel value="details">
+        <Typography>Everything you need to know about this item.</Typography>
+      </TabPanel>
+      <TabPanel value="history">
+        <Typography>A log of every change made to this item.</Typography>
+      </TabPanel>
+    </TabsRoot>
   );
 }
 ```
 
 ### Variants
 
-`Tabs` can be rendered in one of two variants. The default `primary` variant is meant for page-level navigation, while the more compact `secondary` variant suits switching between views inside a smaller container, such as a card or a panel:
+Tabs can be rendered in one of two variants, which you can set with the `variant` prop on `TabsRoot`. The default `primary` variant is meant for page-level navigation, while the more compact `secondary` variant suits switching between views inside a smaller container, such as a card or a panel:
 
 ```tsx demo
-import { Tabs } from "@tenstorrent/vesper/tabs";
+import {
+  TabPanel,
+  TabsList,
+  TabsRoot,
+  TabTrigger,
+  type TabsVariant,
+} from "@tenstorrent/vesper/tabs";
 import { Typography } from "@tenstorrent/vesper/typography";
 
-export default function TabsVariants() {
-  const items = [
-    {
-      label: "Preview",
-      value: "preview",
-      content: <Typography>The rendered output.</Typography>,
-    },
-    {
-      label: "Code",
-      value: "code",
-      content: <Typography>The source code.</Typography>,
-    },
-  ];
+function ExampleTabs({ variant }: { variant: TabsVariant }) {
+  return (
+    <TabsRoot variant={variant} defaultValue="preview">
+      <TabsList>
+        <TabTrigger value="preview">Preview</TabTrigger>
+        <TabTrigger value="code">Code</TabTrigger>
+      </TabsList>
+      <TabPanel value="preview">
+        <Typography>The rendered output.</Typography>
+      </TabPanel>
+      <TabPanel value="code">
+        <Typography>The source code.</Typography>
+      </TabPanel>
+    </TabsRoot>
+  );
+}
 
+export default function TabsVariants() {
   return (
     <div
       style={{
@@ -127,8 +174,8 @@ export default function TabsVariants() {
         gap: "var(--vesper-spacing-8)",
       }}
     >
-      <Tabs variant="primary" defaultValue="preview" items={items} />
-      <Tabs variant="secondary" defaultValue="preview" items={items} />
+      <ExampleTabs variant="primary" />
+      <ExampleTabs variant="secondary" />
     </div>
   );
 }
@@ -136,158 +183,180 @@ export default function TabsVariants() {
 
 ### Rendering icons
 
-Pass an icon as a `ReactNode` to an item's `icon` prop to render it before that tab's label:
+Pass an icon as a `ReactNode` to a `TabTrigger`'s `icon` prop to render it before the trigger's label:
 
 ```tsx demo
 import { Gear, Globe } from "@tenstorrent/vesper/icons";
-import { Tabs } from "@tenstorrent/vesper/tabs";
+import {
+  TabPanel,
+  TabsList,
+  TabsRoot,
+  TabTrigger,
+} from "@tenstorrent/vesper/tabs";
 import { Typography } from "@tenstorrent/vesper/typography";
 
 export default function TabsWithIcons() {
   return (
-    <Tabs
-      defaultValue="general"
-      items={[
-        {
-          label: "General",
-          value: "general",
-          icon: <Globe />,
-          content: <Typography>General settings.</Typography>,
-        },
-        {
-          label: "Advanced",
-          value: "advanced",
-          icon: <Gear />,
-          content: <Typography>Advanced settings.</Typography>,
-        },
-      ]}
-    />
+    <TabsRoot defaultValue="general">
+      <TabsList>
+        <TabTrigger value="general" icon={<Globe />}>
+          General
+        </TabTrigger>
+        <TabTrigger value="advanced" icon={<Gear />}>
+          Advanced
+        </TabTrigger>
+      </TabsList>
+      <TabPanel value="general">
+        <Typography>General settings.</Typography>
+      </TabPanel>
+      <TabPanel value="advanced">
+        <Typography>Advanced settings.</Typography>
+      </TabPanel>
+    </TabsRoot>
   );
 }
 ```
 
-### Rendering content as the panel
+### Laying out panels
 
-By default, each tab's `content` is wrapped in a `<div>` that acts as the tab's panel. Set `contentAsPanel` on an item to render its `content` as the panel itself instead without an extra wrapping `<div>`:
+You can render a `TabPanel` anywhere within its `TabsRoot`, not only as a direct child. In this example, a [`Material`](./material.mdx) surface wraps both panels, and each panel is styled through its own `style` prop, which `TabPanel` passes to the `<div>` it renders:
 
 ```tsx demo
 import { Material } from "@tenstorrent/vesper/material";
-import { Tabs } from "@tenstorrent/vesper/tabs";
+import {
+  TabPanel,
+  TabsList,
+  TabsRoot,
+  TabTrigger,
+} from "@tenstorrent/vesper/tabs";
 import { Typography } from "@tenstorrent/vesper/typography";
 
-const PANEL_STYLE = {
-  marginTop: "var(--vesper-spacing-4)",
-  padding: "var(--vesper-spacing-4)",
-};
+const PANEL_STYLE = { padding: "var(--vesper-spacing-4)" };
 
-export default function TabsContentAsPanel() {
+export default function TabsPanelLayout() {
   return (
-    <Tabs
-      defaultValue="summary"
-      items={[
-        {
-          label: "Summary",
-          value: "summary",
-          contentAsPanel: true,
-          content: (
-            <Material style={PANEL_STYLE}>
-              <Typography>A high-level overview of this deployment.</Typography>
-            </Material>
-          ),
-        },
-        {
-          label: "Configuration",
-          value: "configuration",
-          contentAsPanel: true,
-          content: (
-            <Material style={PANEL_STYLE}>
-              <Typography>
-                The settings this deployment was created with.
-              </Typography>
-            </Material>
-          ),
-        },
-      ]}
-    />
+    <TabsRoot defaultValue="summary">
+      <TabsList>
+        <TabTrigger value="summary">Summary</TabTrigger>
+        <TabTrigger value="configuration">Configuration</TabTrigger>
+      </TabsList>
+      <Material style={{ marginTop: "var(--vesper-spacing-4)" }}>
+        <TabPanel value="summary" style={PANEL_STYLE}>
+          <Typography>A high-level overview of this deployment.</Typography>
+        </TabPanel>
+        <TabPanel value="configuration" style={PANEL_STYLE}>
+          <Typography>
+            The settings this deployment was created with.
+          </Typography>
+        </TabPanel>
+      </Material>
+    </TabsRoot>
   );
 }
 ```
 
-The panel's props (its `role`, `id`, ARIA attributes, `tabIndex`, and `ref`) are merged with `content`'s own props, so `content` keeps its own `className`, `style`, and event handlers.
+### Keeping panels mounted
 
-When `contentAsPanel` is `true`, `content` must be a single React element that passes every prop it receives (including `ref`) on to the DOM element it renders. Otherwise, the panel loses its `tabpanel` role and its association with its tab, so assistive technology can't announce it correctly.
+By default, a `TabPanel` is removed from the DOM while its tab isn't selected, so any state inside it (such as text typed into a field, or its scroll position) is lost when the user switches tabs. Pass `keepMounted` to a `TabPanel` to hide it without removing it instead:
 
-> [!NOTE]
->
-> `Tabs` always wraps `content` that isn't a single React element (eg. plain text, a fragment, or multiple elements) in a `<div>` panel, even when `contentAsPanel` is `true`.
+```tsx demo
+import {
+  TabPanel,
+  TabsList,
+  TabsRoot,
+  TabTrigger,
+} from "@tenstorrent/vesper/tabs";
+import { TextArea } from "@tenstorrent/vesper/text-area";
+import { Typography } from "@tenstorrent/vesper/typography";
+
+export default function KeepMountedTabs() {
+  return (
+    <TabsRoot defaultValue="notes">
+      <TabsList>
+        <TabTrigger value="notes">Notes</TabTrigger>
+        <TabTrigger value="help">Help</TabTrigger>
+      </TabsList>
+      <TabPanel value="notes" keepMounted>
+        <TextArea
+          aria-label="Notes"
+          placeholder="Type something, then switch tabs and come back"
+        />
+      </TabPanel>
+      <TabPanel value="help">
+        <Typography>Anything typed into the notes field is kept.</Typography>
+      </TabPanel>
+    </TabsRoot>
+  );
+}
+```
 
 ### Uncontrolled vs controlled
 
-Render `Tabs` in an uncontrolled fashion to let them keep track of their own selection, passing `defaultValue` to choose which tab is active initially. If you omit `defaultValue`, the first tab is selected initially.
+Render `TabsRoot` in an uncontrolled fashion to let it keep track of its own selection, passing `defaultValue` to choose which tab is active initially. If you omit `defaultValue`, the first tab is selected initially.
 
 If you need to control which tab is selected, pass `value` alongside `onValueChange`:
 
 ```tsx demo
 import { useState } from "react";
 
-import { Tabs } from "@tenstorrent/vesper/tabs";
+import {
+  TabPanel,
+  TabsList,
+  TabsRoot,
+  TabTrigger,
+} from "@tenstorrent/vesper/tabs";
 import { Typography } from "@tenstorrent/vesper/typography";
 
 export default function ControlledTabs() {
   const [tab, setTab] = useState("first");
 
   return (
-    <Tabs
-      value={tab}
-      onValueChange={setTab}
-      items={[
-        {
-          label: "First",
-          value: "first",
-          content: <Typography>First panel.</Typography>,
-        },
-        {
-          label: "Second",
-          value: "second",
-          content: <Typography>Second panel.</Typography>,
-        },
-      ]}
-    />
+    <TabsRoot value={tab} onValueChange={setTab}>
+      <TabsList>
+        <TabTrigger value="first">First</TabTrigger>
+        <TabTrigger value="second">Second</TabTrigger>
+      </TabsList>
+      <TabPanel value="first">
+        <Typography>First panel.</Typography>
+      </TabPanel>
+      <TabPanel value="second">
+        <Typography>Second panel.</Typography>
+      </TabPanel>
+    </TabsRoot>
   );
 }
 ```
 
 ### Activation mode
 
-By default, moving focus between tab triggers with the arrow keys activates each tab as it receives focus. Pass `activationMode="manual"` to require `Enter`, `Space`, or a click before the panel changes, which is the better choice when a panel's content is expensive to render or fetch:
+By default, moving focus between tab triggers with the arrow keys activates each tab as it receives focus. Pass `activationMode="manual"` to `TabsRoot` to require `Enter`, `Space`, or a click before the panel changes, which is the better choice when a panel's content is expensive to render or fetch:
 
 ```tsx demo
-import { Tabs } from "@tenstorrent/vesper/tabs";
+import {
+  TabPanel,
+  TabsList,
+  TabsRoot,
+  TabTrigger,
+} from "@tenstorrent/vesper/tabs";
 import { Typography } from "@tenstorrent/vesper/typography";
 
 export default function ManualTabs() {
   return (
-    <Tabs
-      activationMode="manual"
-      defaultValue="metrics"
-      items={[
-        {
-          label: "Metrics",
-          value: "metrics",
-          content: (
-            <Typography>
-              Focus the tabs and use the arrow keys: the panel only changes once
-              you press Enter or Space.
-            </Typography>
-          ),
-        },
-        {
-          label: "Logs",
-          value: "logs",
-          content: <Typography>Logs panel.</Typography>,
-        },
-      ]}
-    />
+    <TabsRoot activationMode="manual" defaultValue="metrics">
+      <TabsList>
+        <TabTrigger value="metrics">Metrics</TabTrigger>
+        <TabTrigger value="logs">Logs</TabTrigger>
+      </TabsList>
+      <TabPanel value="metrics">
+        <Typography>
+          Focus the tabs and use the arrow keys: the panel only changes once you
+          press Enter or Space.
+        </Typography>
+      </TabPanel>
+      <TabPanel value="logs">
+        <Typography>Logs panel.</Typography>
+      </TabPanel>
+    </TabsRoot>
   );
 }
 ```
