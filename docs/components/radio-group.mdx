@@ -123,7 +123,7 @@ export default function ControlledRadioGroup() {
     >
       <RadioGroup
         aria-label="Size"
-        name="size"
+        name="controlled-size"
         value={value}
         onChange={setValue}
         options={[
@@ -213,7 +213,7 @@ export default function RadioGroupWithDisabledOption() {
   return (
     <RadioGroup
       aria-label="Payment plan"
-      name="plan"
+      name="disabled-option"
       defaultValue="free"
       options={[
         { value: "free", label: "Free" },
@@ -238,7 +238,7 @@ export default function DisabledRadioGroup() {
   return (
     <RadioGroup
       aria-label="Payment plan"
-      name="plan"
+      name="disabled-group"
       disabled
       defaultValue="pro"
       options={[

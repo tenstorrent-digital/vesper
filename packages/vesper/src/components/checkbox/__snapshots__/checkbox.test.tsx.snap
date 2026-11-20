@@ -5,7 +5,6 @@ exports[`checkbox [snapshot] > md, checked: false, indeterminate: false 1`] = `
   class="vesper-checkbox vesper-checkbox-md"
 >
   <input
-    aria-label="Checkbox text"
     class="vesper-checkbox-input"
     type="checkbox"
   />
@@ -52,7 +51,6 @@ exports[`checkbox [snapshot] > md, checked: false, indeterminate: true 1`] = `
   class="vesper-checkbox vesper-checkbox-md"
 >
   <input
-    aria-label="Checkbox text"
     class="vesper-checkbox-input"
     type="checkbox"
   />
@@ -99,7 +97,6 @@ exports[`checkbox [snapshot] > md, checked: true, indeterminate: false 1`] = `
   class="vesper-checkbox vesper-checkbox-md"
 >
   <input
-    aria-label="Checkbox text"
     checked=""
     class="vesper-checkbox-input"
     type="checkbox"
@@ -147,7 +144,6 @@ exports[`checkbox [snapshot] > md, checked: true, indeterminate: true 1`] = `
   class="vesper-checkbox vesper-checkbox-md"
 >
   <input
-    aria-label="Checkbox text"
     checked=""
     class="vesper-checkbox-input"
     type="checkbox"
@@ -195,7 +191,6 @@ exports[`checkbox [snapshot] > md, disabled, checked: false, indeterminate: fals
   class="vesper-checkbox vesper-checkbox-md"
 >
   <input
-    aria-label="Checkbox text"
     class="vesper-checkbox-input"
     disabled=""
     type="checkbox"
@@ -243,7 +238,6 @@ exports[`checkbox [snapshot] > md, disabled, checked: false, indeterminate: true
   class="vesper-checkbox vesper-checkbox-md"
 >
   <input
-    aria-label="Checkbox text"
     class="vesper-checkbox-input"
     disabled=""
     type="checkbox"
@@ -291,7 +285,6 @@ exports[`checkbox [snapshot] > md, disabled, checked: true, indeterminate: false
   class="vesper-checkbox vesper-checkbox-md"
 >
   <input
-    aria-label="Checkbox text"
     checked=""
     class="vesper-checkbox-input"
     disabled=""
@@ -340,7 +333,6 @@ exports[`checkbox [snapshot] > md, disabled, checked: true, indeterminate: true 
   class="vesper-checkbox vesper-checkbox-md"
 >
   <input
-    aria-label="Checkbox text"
     checked=""
     class="vesper-checkbox-input"
     disabled=""
@@ -389,7 +381,6 @@ exports[`checkbox [snapshot] > md, required, checked: false, indeterminate: fals
   class="vesper-checkbox vesper-checkbox-md"
 >
   <input
-    aria-label="Checkbox text"
     class="vesper-checkbox-input"
     required=""
     type="checkbox"
@@ -437,7 +428,6 @@ exports[`checkbox [snapshot] > md, required, checked: false, indeterminate: true
   class="vesper-checkbox vesper-checkbox-md"
 >
   <input
-    aria-label="Checkbox text"
     class="vesper-checkbox-input"
     required=""
     type="checkbox"
@@ -485,7 +475,6 @@ exports[`checkbox [snapshot] > md, required, checked: true, indeterminate: false
   class="vesper-checkbox vesper-checkbox-md"
 >
   <input
-    aria-label="Checkbox text"
     checked=""
     class="vesper-checkbox-input"
     required=""
@@ -534,7 +523,6 @@ exports[`checkbox [snapshot] > md, required, checked: true, indeterminate: true 
   class="vesper-checkbox vesper-checkbox-md"
 >
   <input
-    aria-label="Checkbox text"
     checked=""
     class="vesper-checkbox-input"
     required=""
@@ -583,7 +571,6 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: false, indetermi
   class="vesper-checkbox vesper-checkbox-md"
 >
   <input
-    aria-label="Checkbox text"
     class="vesper-checkbox-input"
     disabled=""
     required=""
@@ -632,7 +619,6 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: false, indetermi
   class="vesper-checkbox vesper-checkbox-md"
 >
   <input
-    aria-label="Checkbox text"
     class="vesper-checkbox-input"
     disabled=""
     required=""
@@ -681,7 +667,6 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: true, indetermin
   class="vesper-checkbox vesper-checkbox-md"
 >
   <input
-    aria-label="Checkbox text"
     checked=""
     class="vesper-checkbox-input"
     disabled=""
@@ -731,7 +716,6 @@ exports[`checkbox [snapshot] > md, required, disabled, checked: true, indetermin
   class="vesper-checkbox vesper-checkbox-md"
 >
   <input
-    aria-label="Checkbox text"
     checked=""
     class="vesper-checkbox-input"
     disabled=""
@@ -781,7 +765,6 @@ exports[`checkbox [snapshot] > sm, checked: false, indeterminate: false 1`] = `
   class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
-    aria-label="Checkbox text"
     class="vesper-checkbox-input"
     type="checkbox"
   />
@@ -828,7 +811,6 @@ exports[`checkbox [snapshot] > sm, checked: false, indeterminate: true 1`] = `
   class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
-    aria-label="Checkbox text"
     class="vesper-checkbox-input"
     type="checkbox"
   />
@@ -875,7 +857,6 @@ exports[`checkbox [snapshot] > sm, checked: true, indeterminate: false 1`] = `
   class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
-    aria-label="Checkbox text"
     checked=""
     class="vesper-checkbox-input"
     type="checkbox"
@@ -923,7 +904,6 @@ exports[`checkbox [snapshot] > sm, checked: true, indeterminate: true 1`] = `
   class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
-    aria-label="Checkbox text"
     checked=""
     class="vesper-checkbox-input"
     type="checkbox"
@@ -971,7 +951,6 @@ exports[`checkbox [snapshot] > sm, disabled, checked: false, indeterminate: fals
   class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
-    aria-label="Checkbox text"
     class="vesper-checkbox-input"
     disabled=""
     type="checkbox"
@@ -1019,7 +998,6 @@ exports[`checkbox [snapshot] > sm, disabled, checked: false, indeterminate: true
   class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
-    aria-label="Checkbox text"
     class="vesper-checkbox-input"
     disabled=""
     type="checkbox"
@@ -1067,7 +1045,6 @@ exports[`checkbox [snapshot] > sm, disabled, checked: true, indeterminate: false
   class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
-    aria-label="Checkbox text"
     checked=""
     class="vesper-checkbox-input"
     disabled=""
@@ -1116,7 +1093,6 @@ exports[`checkbox [snapshot] > sm, disabled, checked: true, indeterminate: true 
   class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
-    aria-label="Checkbox text"
     checked=""
     class="vesper-checkbox-input"
     disabled=""
@@ -1165,7 +1141,6 @@ exports[`checkbox [snapshot] > sm, required, checked: false, indeterminate: fals
   class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
-    aria-label="Checkbox text"
     class="vesper-checkbox-input"
     required=""
     type="checkbox"
@@ -1213,7 +1188,6 @@ exports[`checkbox [snapshot] > sm, required, checked: false, indeterminate: true
   class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
-    aria-label="Checkbox text"
     class="vesper-checkbox-input"
     required=""
     type="checkbox"
@@ -1261,7 +1235,6 @@ exports[`checkbox [snapshot] > sm, required, checked: true, indeterminate: false
   class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
-    aria-label="Checkbox text"
     checked=""
     class="vesper-checkbox-input"
     required=""
@@ -1310,7 +1283,6 @@ exports[`checkbox [snapshot] > sm, required, checked: true, indeterminate: true 
   class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
-    aria-label="Checkbox text"
     checked=""
     class="vesper-checkbox-input"
     required=""
@@ -1359,7 +1331,6 @@ exports[`checkbox [snapshot] > sm, required, disabled, checked: false, indetermi
   class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
-    aria-label="Checkbox text"
     class="vesper-checkbox-input"
     disabled=""
     required=""
@@ -1408,7 +1379,6 @@ exports[`checkbox [snapshot] > sm, required, disabled, checked: false, indetermi
   class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
-    aria-label="Checkbox text"
     class="vesper-checkbox-input"
     disabled=""
     required=""
@@ -1457,7 +1427,6 @@ exports[`checkbox [snapshot] > sm, required, disabled, checked: true, indetermin
   class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
-    aria-label="Checkbox text"
     checked=""
     class="vesper-checkbox-input"
     disabled=""
@@ -1507,7 +1476,6 @@ exports[`checkbox [snapshot] > sm, required, disabled, checked: true, indetermin
   class="vesper-checkbox vesper-checkbox-sm"
 >
   <input
-    aria-label="Checkbox text"
     checked=""
     class="vesper-checkbox-input"
     disabled=""

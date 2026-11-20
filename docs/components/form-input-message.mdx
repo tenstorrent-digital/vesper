@@ -11,7 +11,9 @@ A message displayed alongside a form input, paired with a variant-specific icon.
 import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
 
 export default function FormInputMessageDemo() {
-  return <FormInputMessage message="We'll never share your email address." />;
+  return (
+    <FormInputMessage>We'll never share your email address.</FormInputMessage>
+  );
 }
 ```
 
@@ -23,24 +25,26 @@ Use it to show helper text or validation feedback for a form control, such as [T
 | --- | --- | --- | --- |
 | `variant` | `"default" \| "warning" \| "success" \| "error"` | The visual variant, which determines the colour scheme and message icon. | `"default"` |
 | `size` | `"sm" \| "lg"` | The size of the message. Affects padding and typography. | `"sm"` |
-| `message` | `string` | The message text to display. When omitted or empty, no content is rendered, but the `<output>` element stays in the document. | — |
+| `children` | `ReactNode` | The message to display. When omitted or empty, no content is rendered, but the `<output>` element stays in the document. | — |
 
 You may also pass any additional props to the underlying `<output>` element. Most commonly, this will be an `id` so the message can be referenced by an input's `aria-describedby`.
 
-Messages preserve line breaks (`white-space: pre-line`), so a `message` containing `\n` renders across multiple lines.
+Messages preserve line breaks (`white-space: pre-line`), so a string containing `\n` renders across multiple lines.
 
 ## Examples
 
 ### Basic usage
 
-Pass a `message` to render it alongside the icon for the current variant:
+Pass a message as `children` to render it alongside the icon for the current variant:
 
 ```tsx demo
 import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
 
 export default function BasicFormInputMessage() {
   return (
-    <FormInputMessage message="Use 3-16 characters, letters and numbers only." />
+    <FormInputMessage>
+      Use 3-16 characters, letters and numbers only.
+    </FormInputMessage>
   );
 }
 ```
@@ -58,7 +62,9 @@ import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
 
 export default function DefaultFormInputMessage() {
   return (
-    <FormInputMessage message="Use 3-16 characters, letters and numbers only." />
+    <FormInputMessage>
+      Use 3-16 characters, letters and numbers only.
+    </FormInputMessage>
   );
 }
 ```
@@ -72,7 +78,9 @@ import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
 
 export default function WarningFormInputMessage() {
   return (
-    <FormInputMessage variant="warning" message="This password is weak." />
+    <FormInputMessage variant="warning">
+      This password is weak.
+    </FormInputMessage>
   );
 }
 ```
@@ -86,10 +94,9 @@ import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
 
 export default function SuccessFormInputMessage() {
   return (
-    <FormInputMessage
-      variant="success"
-      message="This workspace slug is available."
-    />
+    <FormInputMessage variant="success">
+      This workspace slug is available.
+    </FormInputMessage>
   );
 }
 ```
@@ -103,10 +110,9 @@ import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
 
 export default function ErrorFormInputMessage() {
   return (
-    <FormInputMessage
-      variant="error"
-      message="Please enter a valid email address."
-    />
+    <FormInputMessage variant="error">
+      Please enter a valid email address.
+    </FormInputMessage>
   );
 }
 ```
@@ -130,8 +136,8 @@ export default function FormInputMessageSizes() {
         gap: "var(--vesper-spacing-4)",
       }}
     >
-      <FormInputMessage size="sm" message="A small FormInputMessage" />
-      <FormInputMessage size="lg" message="A large FormInputMessage" />
+      <FormInputMessage size="sm">A small FormInputMessage</FormInputMessage>
+      <FormInputMessage size="lg">A large FormInputMessage</FormInputMessage>
     </div>
   );
 }
@@ -139,7 +145,7 @@ export default function FormInputMessageSizes() {
 
 ### Empty and undefined messages
 
-`FormInputMessage` **always renders its `<output>` element**, even when `message` is `undefined` or an empty string. In that case the icon and text are not rendered, and the element is visually hidden — it takes up no space in the layout and shows nothing on screen, but it remains in the DOM:
+`FormInputMessage` **always renders its `<output>` element**, even when its `children` are `undefined`, an empty string, or an empty array (eg. from mapping over an empty list of errors). In that case the icon and text are not rendered and the element is visually hidden. It takes up no space in the layout and shows nothing on screen, but it remains in the DOM:
 
 ```tsx demo
 import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
@@ -149,8 +155,9 @@ export default function EmptyFormInputMessages() {
   return (
     <>
       <FormInputMessage />
-      <FormInputMessage message="" />
-      <FormInputMessage message={undefined} />
+      <FormInputMessage>{""}</FormInputMessage>
+      <FormInputMessage>{undefined}</FormInputMessage>
+      <FormInputMessage>{[]}</FormInputMessage>
     </>
   );
 }
@@ -160,7 +167,7 @@ This is deliberate, and is what makes validation messages announce reliably. An 
 
 > [!WARNING]
 >
-> Don't conditionally render `FormInputMessage`. Keep it mounted at all times so the live region is always in place when the `message` changes.
+> Don't conditionally render `FormInputMessage`. Keep it mounted at all times so the live region is always in place when its `children` change.
 
 ```tsx
 import { FormInputMessage } from "@tenstorrent/vesper/form-input-message";
@@ -169,10 +176,10 @@ export default function ValidationMessage({ error }: { error?: string }) {
   return (
     <>
       {/* 👍 the output is mounted up front, so `error` is announced when it is set */}
-      <FormInputMessage variant="error" message={error} />
+      <FormInputMessage variant="error">{error}</FormInputMessage>
 
       {/* 👎 the output is mounted alongside its content, so it may not be announced */}
-      {error && <FormInputMessage variant="error" message={error} />}
+      {error && <FormInputMessage variant="error">{error}</FormInputMessage>}
     </>
   );
 }
@@ -192,11 +199,9 @@ export default function ApiKeyField() {
     <div>
       <label htmlFor="api-key">API key</label>
       <input id="api-key" name="apiKey" aria-describedby="api-key-message" />
-      <FormInputMessage
-        id="api-key-message"
-        variant="error"
-        message="Invalid key"
-      />
+      <FormInputMessage id="api-key-message" variant="error">
+        Invalid key
+      </FormInputMessage>
     </div>
   );
 }

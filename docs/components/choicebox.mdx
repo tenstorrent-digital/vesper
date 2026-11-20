@@ -110,7 +110,7 @@ export default function UncontrolledChoicebox() {
   return (
     <Choicebox
       aria-label="Payment plan"
-      name="plan"
+      name="uncontrolled-plan"
       defaultValue="monthly"
       options={[
         { value: "monthly", label: "Monthly", description: "$12 per month" },
@@ -146,7 +146,7 @@ export default function ControlledChoicebox() {
     >
       <Choicebox
         aria-label="Payment plan"
-        name="plan"
+        name="controlled-plan"
         value={value}
         onChange={setValue}
         options={[

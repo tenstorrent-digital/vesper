@@ -52,7 +52,7 @@ export interface ComboboxProps extends FormInputProps<
 > {
   /** The list of selectable options displayed in the dropdown. Strings are treated as both the label and the value of an option. */
   options: readonly (ComboboxItem | string)[];
-  /** When `true`, marks the underlying input as required for form validation and appends an asterisk to the label. */
+  /** When `true`, marks the underlying input as required for form validation. */
   required?: boolean;
   /** When `true`, prevents interaction with the input and dropdown. */
   disabled?: boolean;
@@ -60,7 +60,7 @@ export interface ComboboxProps extends FormInputProps<
   readOnly?: boolean;
   /** The size of the combobox. Affects padding and typography. @default md */
   size?: ComboboxSize;
-  /** The visual variant of the combobox, which determines its color scheme and message icon. @default default */
+  /** The visual variant of the combobox, which determines its color scheme. @default default */
   variant?: ComboboxVariant;
   /** The text displayed in the dropdown when no options match the input's value. @default No results */
   emptyStateText?: string;
@@ -100,11 +100,9 @@ export interface ComboboxProps extends FormInputProps<
 /**
  * A form-ready, searchable select component that filters a list of options as the user types.
  *
- * @param {readonly (ComboboxItem | string)[]} props.options - The list of selectable options displayed in the dropdown. Strings are treated as both the label and the value of an option. See {@link ComboboxItem} for the shape of each option
+ * @param {readonly (ComboboxItem | string)[]} props.options - The list of selectable options displayed in the dropdown. Strings are treated as both the label and the value of an option. See {@link ComboboxItem} for the properties of each option
  * @param {ComboboxSize} [props.size] - (optional) The size of the combobox. Affects padding and typography. @default md
- * @param {ComboboxVariant} [props.variant] - (optional) The visual variant determining color scheme and message icon. @default default
- * @param {string} [props.label] - (optional) A label displayed above the input
- * @param {string} [props.message] - (optional) A message displayed below the input with a variant-specific icon
+ * @param {ComboboxVariant} [props.variant] - (optional) The visual variant determining color scheme. @default default
  * @param {string} [props.placeholder] - (optional) Placeholder text shown when the input is empty. @default Search...
  * @param {string} [props.emptyStateText] - (optional) Text displayed when no options match the input's value. @default No results
  * @param {string | null} [props.value] - (optional) The currently selected value for controlled usage
@@ -116,13 +114,13 @@ export interface ComboboxProps extends FormInputProps<
  * @param {string} [props.name] - (optional) Form field name submitted with form data
  * @param {PortalContainer} [props.container] - (optional) Specify the element or shadow root to portal the menu into
  *
- * You may also pass any additional props to the underlying `div` wrapper element
+ * Form props are forwarded to the hidden `input` element that holds the selected value, while `aria-*` attributes, `ref`, and other input props and event handlers are forwarded to the visible `input` element. You may also pass any additional props to the wrapping `div` element
  *
  * @example
  * <Combobox
  *   required
  *   name="fruit"
- *   label="Fruit"
+ *   aria-label="Fruit"
  *   options={[
  *     { value: "apple", label: "Apple" },
  *     { value: "banana", label: "Banana" },
@@ -136,8 +134,7 @@ export interface ComboboxProps extends FormInputProps<
  * <Combobox
  *   size="sm"
  *   variant="error"
- *   message="Please select a country"
- *   label="Country"
+ *   aria-label="Country"
  *   options={["Canada", "Japan", "Norway"]}
  *   value={country}
  *   onValueChange={setCountry}
