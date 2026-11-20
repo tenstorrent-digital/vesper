@@ -100,6 +100,12 @@ You can use these guidelines to determine which kind of change your contribution
 - `minor` – features that introduce new behavior or APIs, but are backwards-compatible and do not break existing implementations of exported modules.
 - `major` – large changes or redesigns that introduce breaking changes to existing component implementations, and requires code updates prior to upgrading.
 
+> [!NOTE]
+>
+> **Until Vesper's `1.0.0` release, use `patch` for every changeset**, including changes that would otherwise merit a `minor` or `major` release. A `major` changeset would release `1.0.0` early.
+>
+> When a `patch` changeset contains a breaking change, describe what consumers need to update in the changeset message, eg. which props were removed or renamed, and what to use instead.
+
 #### PRs requiring multiple changesets
 
 Sometimes you will want to generate multiple changesets for a PR. It is recommended to keep your PRs scoped to a single change, though sometimes this is unavoidable. In such cases, you can generate multiple changesets to describe each change made.

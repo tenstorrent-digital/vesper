@@ -49,7 +49,7 @@ export interface SelectProps extends FormInputProps<
   icon?: ReactNode;
   /** The size variant of the select trigger. Affects padding, height, and typography. @default md */
   size?: SelectSize;
-  /** The visual variant of the select trigger, which determines its color scheme and message icon. @default default */
+  /** The visual variant of the select trigger, which determines its color scheme. @default default */
   variant?: SelectVariant;
   /** Placeholder text shown in the trigger when no value is selected. @default Select an option */
   placeholder?: string;
@@ -75,13 +75,13 @@ const SELECT_TRIGGER_TYPOGRAPHY: { [S in SelectSize]: TypographyVariant } = {
 
 /**
  * A form-ready dropdown select component, supporting both controlled and uncontrolled usage patterns with options for:
- * - Three size variants: `sm`, `md`, `lg`
+ * - `sm`, `md`, and `lg` sizes
  * - An optional leading icon
  * - Automatic portal handling for use inside dialogs
  *
- * @param {readonly (SelectItem | string)[]} props.options - The list of selectable options displayed in the dropdown. See {@link SelectItem} for the shape of each option
+ * @param {readonly (SelectItem | string)[]} props.options - The list of selectable options displayed in the dropdown. See {@link SelectItem} for the properties of each option
  * @param {SelectSize} [props.size] - (optional) Size variant of the select trigger. Affects padding, height, and typography. @default md
- * @param {SelectVariant} [props.variant] - (optional) The visual variant determining color scheme and message icon. @default default
+ * @param {SelectVariant} [props.variant] - (optional) The visual variant determining color scheme. @default default
  * @param {string} [props.placeholder] - (optional) Placeholder text shown when no value is selected. @default Select an option
  * @param {ReactNode} [props.icon] - (optional) An icon rendered at the leading edge of the select trigger
  * @param {string} [props.value] - (optional) The currently selected value for controlled usage

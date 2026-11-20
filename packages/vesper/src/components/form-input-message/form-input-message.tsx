@@ -8,9 +8,10 @@ import {
 } from "@/components/icons/icons";
 import {
   Typography,
-  TypographyVariant,
+  type TypographyVariant,
 } from "@/components/typography/typography";
 import { cn } from "@/utils/cn";
+import { isEmptyReactNode } from "@/utils/is-empty-react-node";
 
 export const FORM_INPUT_MESSAGE_VARIANTS = [
   "default",
@@ -26,16 +27,11 @@ export type FormInputMessageVariant =
 
 export type FormInputMessageSize = (typeof FORM_INPUT_MESSAGE_SIZES)[number];
 
-export interface FormInputMessageProps extends Omit<
-  ComponentProps<"output">,
-  "children"
-> {
+export interface FormInputMessageProps extends ComponentProps<"output"> {
   /** The size of the message. Affects padding and typography. @default sm */
   size?: FormInputMessageSize;
   /** The visual variant of the message, which determines its color scheme and message icon. @default default */
   variant?: FormInputMessageVariant;
-  /** The message text to display. When omitted or empty, the message content and icon are not rendered, but the visually hidden element remains in the document so it can announce updates. */
-  message?: string | undefined | null | false;
 }
 
 const FORM_INPUT_MESSAGE_TYPOGRAPHY: Record<
@@ -51,37 +47,41 @@ const FORM_INPUT_MESSAGE_TYPOGRAPHY: Record<
  *
  * @param {FormInputMessageVariant} [props.variant] - (optional) The visual variant, which determines the color scheme and message icon. @default default
  * @param {FormInputMessageSize} [props.size] - (optional) The size of the message. Affects padding and typography. @default sm
- * @param {string} [props.message] - (optional) The message text to display. When omitted or empty, no content is rendered
+ * @param {ReactNode} [props.children] - (optional) The message to display. The icon and message only render when `children` has content
  *
  * You may also pass any additional props to the underlying `output` element
  *
  * @example
- * <FormInputMessage message="We'll never share your email." />
+ * <FormInputMessage>We'll never share your email.</FormInputMessage>
  *
  * @example
- * <FormInputMessage variant="error" message="Please enter a valid email address." />
+ * <FormInputMessage variant="error">
+ *   Please enter a valid email address.
+ * </FormInputMessage>
  *
  * @example
- * <FormInputMessage size="lg" variant="warning" message="This password is weak." />
+ * <FormInputMessage size="lg" variant="warning">
+ *   This password is weak.
+ * </FormInputMessage>
  *
  * @example
- * <FormInputMessage
- *   id={messageId}
- *   variant="success"
- *   message="Your changes have been saved."
- * />
+ * <FormInputMessage id={messageId} variant="success">
+ *   Your changes have been saved.
+ * </FormInputMessage>
  */
 export const FormInputMessage = ({
   variant = "default",
   className,
-  message,
+  children,
   size = "sm",
   ...props
 }: FormInputMessageProps) => {
+  const hasMessage = !isEmptyReactNode(children);
+
   return (
     <output
       {...props}
-      data-message={!!message}
+      data-message={hasMessage}
       className={cn(
         "vesper-form-input-message",
         `vesper-form-input-message-${variant}`,
@@ -89,7 +89,7 @@ export const FormInputMessage = ({
         className,
       )}
     >
-      {!!message && (
+      {hasMessage && (
         <>
           <span aria-hidden className="vesper-form-input-message-icon">
             {variant === "default" && <InfoSolid />}
@@ -102,7 +102,7 @@ export const FormInputMessage = ({
             variant={FORM_INPUT_MESSAGE_TYPOGRAPHY[size]}
             className="vesper-form-input-message-text"
           >
-            {message}
+            {children}
           </Typography>
         </>
       )}

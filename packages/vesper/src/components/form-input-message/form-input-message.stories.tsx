@@ -21,7 +21,7 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {
   args: {
     variant: "default",
-    message: "The message text",
+    children: "The message text",
     size: "sm",
   },
 };
