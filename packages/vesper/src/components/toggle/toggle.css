@@ -23,8 +23,8 @@
 }
 
 .vesper-toggle-sm {
+  height: 2rem;
   .vesper-toggle-item {
-    height: 1.5rem;
     padding: 0 var(--vesper-spacing-3);
   }
   .vesper-toggle-icon {
@@ -34,8 +34,8 @@
 }
 
 .vesper-toggle-md {
+  height: 2.5rem;
   .vesper-toggle-item {
-    height: 2rem;
     padding: 0 var(--vesper-spacing-3);
   }
   .vesper-toggle-icon {
@@ -45,8 +45,8 @@
 }
 
 .vesper-toggle-lg {
+  height: 3rem;
   .vesper-toggle-item {
-    height: 2.5rem;
     padding: 0 var(--vesper-spacing-4);
   }
   .vesper-toggle-icon {
