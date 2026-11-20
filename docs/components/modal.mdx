@@ -5,20 +5,23 @@ description: A dialog overlay component for displaying focused content that requ
 
 # Modal
 
-A dialog overlay component for displaying focused content that requires user attention or interaction. Renders a title and description in its header, and any children you pass (including action buttons and forms) in its body. Controlled via an imperative ref with `open()` and `close()` methods.
+A dialog overlay component for displaying focused content that requires user attention or interaction. Renders a title and description in its header, and any children you pass (including action buttons and forms) in its body. You control whether it's open with the `open` and `onOpenChange` props.
 
 ```tsx demo
+import { useState } from "react";
+
 import { Button } from "@tenstorrent/vesper/button";
-import { Modal, useModal } from "@tenstorrent/vesper/modal";
+import { Modal } from "@tenstorrent/vesper/modal";
 
 export default function ModalDemo() {
-  const modal = useModal();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <Button onClick={modal.open}>Open modal</Button>
+      <Button onClick={() => setIsOpen(true)}>Open modal</Button>
       <Modal
-        ref={modal.ref}
+        open={isOpen}
+        onOpenChange={setIsOpen}
         title="Confirm action"
         description="Are you sure you want to proceed?"
       >
@@ -37,10 +40,10 @@ export default function ModalDemo() {
               gap: "var(--vesper-spacing-4)",
             }}
           >
-            <Button variant="tertiary" onClick={modal.close}>
+            <Button variant="tertiary" onClick={() => setIsOpen(false)}>
               Cancel
             </Button>
-            <Button onClick={modal.close}>Confirm</Button>
+            <Button onClick={() => setIsOpen(false)}>Confirm</Button>
           </div>
         </div>
       </Modal>
@@ -53,15 +56,16 @@ export default function ModalDemo() {
 
 | Prop | Type | Description | Default |
 | --- | --- | --- | --- |
-| `title` | `string` | The title text displayed in the modal header. Used for `aria-labelledby`. **Required.** | — |
-| `description` | `string` | A description displayed below the title. Used for `aria-describedby`. **Required.** | — |
+| `title` | `NonNullable<ReactNode>` | The title displayed in the modal header. Used for `aria-labelledby`. **Required.** | — |
+| `description` | `NonNullable<ReactNode>` | A description displayed below the title. Used for `aria-describedby`. **Required.** | — |
 | `width` | `number \| string` | The width of the modal container. A number is interpreted as pixels. | `452` |
-| `ref` | `Ref<ModalRef>` | A ref exposing imperative `open()` and `close()` methods. | — |
-| `closeOnClickOutside` | `boolean` | When `true`, clicking the backdrop closes the modal. | `false` |
-| `dismissible` | `boolean` | When `false`, the user can't dismiss the modal: `Escape` and backdrop clicks are ignored, and the header close button is disabled. `close()` still works. | `true` |
+| `open` | `boolean` | Whether the modal is open. **Required.** | — |
+| `onOpenChange` | `(open: boolean) => void` | Called with `false` when the modal requests to close, such as when the user dismisses it. Update the state you pass to `open` in response. **Required.** | — |
+| `closeOnClickOutside` | `boolean` | When `true`, clicking the backdrop dismisses the modal. | `false` |
+| `dismissible` | `boolean` | When `false`, the user can't dismiss the modal: `Escape` and backdrop clicks are ignored, and the header close button is disabled. Setting `open` to `false` still closes it. | `true` |
 | `children` | `ReactNode` | The content displayed inside the modal body, such as text, action buttons, or a form. | — |
 
-All other props are forwarded to the underlying `<dialog>` element.
+All other props, including `ref`, are forwarded to the underlying `<dialog>` element. The modal only opens and closes when `open` changes, so don't call `showModal()` or `close()` on the `<dialog>` element through `ref`.
 
 A `Modal` always blocks interaction with the rest of the page while it is open. When the user should be able to keep working with the content behind the panel, reach for [the `Sheet` component](./sheet.mdx) in `popover` mode instead.
 
@@ -69,20 +73,23 @@ A `Modal` always blocks interaction with the rest of the page while it is open. 
 
 ### Opening and closing a modal
 
-A `Modal` renders closed, and is opened imperatively. The `useModal` hook returns everything needed for this: a `ref` to pass to the modal, plus `open()` and `close()` functions:
+A `Modal` opens when `open` is `true`, and closes when it's `false`. Keep that value in your own state, and pass its setter to `onOpenChange` so the modal closes when the user dismisses it:
 
 ```tsx demo
+import { useState } from "react";
+
 import { Button } from "@tenstorrent/vesper/button";
-import { Modal, useModal } from "@tenstorrent/vesper/modal";
+import { Modal } from "@tenstorrent/vesper/modal";
 
 export default function BasicModal() {
-  const modal = useModal();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <Button onClick={modal.open}>Open modal</Button>
+      <Button onClick={() => setIsOpen(true)}>Open modal</Button>
       <Modal
-        ref={modal.ref}
+        open={isOpen}
+        onOpenChange={setIsOpen}
         title="Welcome"
         description="Thanks for signing up."
       >
@@ -93,81 +100,9 @@ export default function BasicModal() {
 }
 ```
 
-`Modal` renders a native `<dialog>`, so an open modal traps focus, blocks interaction with the rest of the page, and closes when the user presses `Escape`. The close button in the header closes it too.
+`Modal` renders a native `<dialog>`. While it's open, it traps focus and blocks interaction with the rest of the page. When the user presses `Escape` or clicks the close button in the header, the modal calls `onOpenChange(false)`. Update your state in response, because the modal doesn't close until `open` changes.
 
 To stop users from being able to close a modal, (for example, if you're rendering a form inside a modal), see [Preventing dismissal](#preventing-dismissal).
-
-### Action buttons
-
-To add action buttons to a modal, render them as children, alongside the rest of the modal's content. Call `close()` from a button's `onClick` handler to close the modal:
-
-```tsx demo
-import { Button } from "@tenstorrent/vesper/button";
-import { Modal, useModal } from "@tenstorrent/vesper/modal";
-
-export default function ModalWithButtons() {
-  const modal = useModal();
-
-  return (
-    <>
-      <Button variant="danger" onClick={modal.open}>
-        Delete item
-      </Button>
-      <Modal
-        ref={modal.ref}
-        title="Delete item"
-        description="This action cannot be undone."
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            gap: "var(--vesper-spacing-4)",
-          }}
-        >
-          <Button variant="tertiary" onClick={modal.close}>
-            Cancel
-          </Button>
-          <Button variant="danger" onClick={modal.close}>
-            Delete
-          </Button>
-        </div>
-      </Modal>
-    </>
-  );
-}
-```
-
-You control how the buttons are laid out. To have them share the full width of the modal, give each button `flex: 1`:
-
-```tsx demo
-import { Button } from "@tenstorrent/vesper/button";
-import { Modal, useModal } from "@tenstorrent/vesper/modal";
-
-export default function ModalButtonsLayout() {
-  const modal = useModal();
-
-  return (
-    <>
-      <Button onClick={modal.open}>Open modal</Button>
-      <Modal
-        ref={modal.ref}
-        title="Save changes"
-        description="Your changes have not been saved yet."
-      >
-        <div style={{ display: "flex", gap: "var(--vesper-spacing-4)" }}>
-          <Button variant="tertiary" style={{ flex: 1 }} onClick={modal.close}>
-            Discard
-          </Button>
-          <Button style={{ flex: 1 }} onClick={modal.close}>
-            Save
-          </Button>
-        </div>
-      </Modal>
-    </>
-  );
-}
-```
 
 ### Sizing
 
@@ -176,8 +111,10 @@ A modal is `452px` wide by default. Pass `width` to change that, either as a num
 The modal grows to fit its content. To keep long content from making it too tall, wrap that content in a scrollable element with a `maxHeight`:
 
 ```tsx demo
+import { useState } from "react";
+
 import { Button } from "@tenstorrent/vesper/button";
-import { Modal, useModal } from "@tenstorrent/vesper/modal";
+import { Modal } from "@tenstorrent/vesper/modal";
 import { Typography } from "@tenstorrent/vesper/typography";
 
 const RELEASE_NOTES = [
@@ -190,13 +127,14 @@ const RELEASE_NOTES = [
 ];
 
 export default function WideModal() {
-  const modal = useModal();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <Button onClick={modal.open}>Open wide modal</Button>
+      <Button onClick={() => setIsOpen(true)}>Open wide modal</Button>
       <Modal
-        ref={modal.ref}
+        open={isOpen}
+        onOpenChange={setIsOpen}
         width={640}
         title="Release notes"
         description="Everything that changed in this release."
@@ -225,7 +163,7 @@ export default function WideModal() {
             ))}
           </div>
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button onClick={modal.close}>Close</Button>
+            <Button onClick={() => setIsOpen(false)}>Close</Button>
           </div>
         </div>
       </Modal>
@@ -239,17 +177,20 @@ export default function WideModal() {
 Clicking the backdrop does nothing by default, which keeps users from dismissing a modal by accident. Pass `closeOnClickOutside` to allow users to dismiss a modal by clicking the backdrop:
 
 ```tsx demo
+import { useState } from "react";
+
 import { Button } from "@tenstorrent/vesper/button";
-import { Modal, useModal } from "@tenstorrent/vesper/modal";
+import { Modal } from "@tenstorrent/vesper/modal";
 
 export default function DismissibleModal() {
-  const modal = useModal();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <Button onClick={modal.open}>Open modal</Button>
+      <Button onClick={() => setIsOpen(true)}>Open modal</Button>
       <Modal
-        ref={modal.ref}
+        open={isOpen}
+        onOpenChange={setIsOpen}
         closeOnClickOutside
         title="Keyboard shortcuts"
         description="Press Escape or click outside to dismiss."
@@ -269,12 +210,12 @@ To use a modal as a form, render a `<form>` element as its children, with the fo
 import { useState } from "react";
 
 import { Button } from "@tenstorrent/vesper/button";
-import { Modal, useModal } from "@tenstorrent/vesper/modal";
+import { Modal } from "@tenstorrent/vesper/modal";
 import { TextInput } from "@tenstorrent/vesper/text-input";
 import { Typography } from "@tenstorrent/vesper/typography";
 
 export default function FormModal() {
-  const modal = useModal();
+  const [isOpen, setIsOpen] = useState(false);
   const [submitted, setSubmitted] = useState<string | null>(null);
 
   return (
@@ -286,12 +227,13 @@ export default function FormModal() {
         alignItems: "flex-start",
       }}
     >
-      <Button onClick={modal.open}>Create project</Button>
+      <Button onClick={() => setIsOpen(true)}>Create project</Button>
       {submitted && (
         <Typography variant="copy-sm">Created project: {submitted}</Typography>
       )}
       <Modal
-        ref={modal.ref}
+        open={isOpen}
+        onOpenChange={setIsOpen}
         title="Create project"
         description="Enter the details for your new project."
       >
@@ -305,7 +247,7 @@ export default function FormModal() {
             event.preventDefault();
             const data = new FormData(event.currentTarget);
             setSubmitted(String(data.get("name") ?? ""));
-            modal.close();
+            setIsOpen(false);
           }}
         >
           <TextInput
@@ -321,7 +263,11 @@ export default function FormModal() {
               gap: "var(--vesper-spacing-4)",
             }}
           >
-            <Button variant="tertiary" type="button" onClick={modal.close}>
+            <Button
+              variant="tertiary"
+              type="button"
+              onClick={() => setIsOpen(false)}
+            >
               Cancel
             </Button>
             <Button type="submit">Create</Button>
@@ -339,7 +285,7 @@ export default function FormModal() {
 
 ### Preventing dismissal
 
-Some flows shouldn't be interrupted, such as while a form is submitting a request. Set `dismissible` to `false` to stop users from closing the modal: pressing `Escape` and clicking the backdrop do nothing, and the close button in the header is disabled. Calling `close()` still closes the modal, so you can close it yourself once the flow completes.
+Some flows shouldn't be interrupted, such as while a form is submitting a request. Set `dismissible` to `false` to stop users from closing the modal: pressing `Escape` and clicking the backdrop do nothing, and the close button in the header is disabled. Setting `open` to `false` still closes the modal, so you can close it yourself once the flow completes.
 
 Tie `dismissible` to your own state so it only blocks dismissal while it matters. Disable your own cancel button for the same period:
 
@@ -347,18 +293,19 @@ Tie `dismissible` to your own state so it only blocks dismissal while it matters
 import { useState } from "react";
 
 import { Button } from "@tenstorrent/vesper/button";
-import { Modal, useModal } from "@tenstorrent/vesper/modal";
+import { Modal } from "@tenstorrent/vesper/modal";
 import { TextInput } from "@tenstorrent/vesper/text-input";
 
 export default function NonDismissibleModal() {
-  const modal = useModal();
+  const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   return (
     <>
-      <Button onClick={modal.open}>Invite teammate</Button>
+      <Button onClick={() => setIsOpen(true)}>Invite teammate</Button>
       <Modal
-        ref={modal.ref}
+        open={isOpen}
+        onOpenChange={setIsOpen}
         title="Invite teammate"
         description="Send an email invitation to join your workspace."
         dismissible={!isSubmitting}
@@ -375,7 +322,7 @@ export default function NonDismissibleModal() {
             // simulate a slow network request
             await new Promise((resolve) => setTimeout(resolve, 3000));
             setIsSubmitting(false);
-            modal.close();
+            setIsOpen(false);
           }}
         >
           <TextInput
@@ -395,7 +342,7 @@ export default function NonDismissibleModal() {
             <Button
               variant="tertiary"
               type="button"
-              onClick={modal.close}
+              onClick={() => setIsOpen(false)}
               disabled={isSubmitting}
             >
               Cancel
