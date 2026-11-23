@@ -48,18 +48,19 @@
   width: 100%;
   overflow: auto;
   border-radius: var(--vesper-radius-2);
-  pre.shiki {
+  .vesper-code-block-pre {
     min-width: max-content;
     margin: 0;
     padding: var(--vesper-spacing-5) 0;
     outline: none;
     line-height: 1.25rem;
+    color: var(--vesper-color-stone-800);
     code {
       font-family: var(--vesper-font-mono);
       display: flex;
       flex-direction: column;
     }
-    .line {
+    .vesper-code-block-line {
       padding: 0 var(--vesper-spacing-5);
       width: calc(100% - var(--vesper-spacing-10));
       &::before {
@@ -69,10 +70,10 @@
       }
     }
   }
-  &[data-line-numbers="true"] pre.shiki {
+  &[data-line-numbers="true"] .vesper-code-block-pre {
     counter-reset: line;
     counter-increment: line 0;
-    .line::before {
+    .vesper-code-block-line::before {
       content: counter(line);
       counter-increment: line;
       width: var(--vesper-spacing-12);
@@ -81,28 +82,24 @@
   }
 }
 
+/**
+ * tokens are colored by the light theme inline, and carry their dark theme
+ * styles in `--hls-dark*` custom properties (see `utils.ts`)
+ */
 @media (prefers-color-scheme: dark) {
-  html:not([data-vesper-theme="light"]) .vesper-code-block {
-    .shiki,
-    .shiki span {
-      color: var(--shiki-dark) !important;
-      background-color: var(--shiki-dark-bg, transparent) !important;
-      font-style: var(--shiki-dark-font-style, normal) !important;
-      font-weight: var(--shiki-dark-font-weight, normal) !important;
-      text-decoration: var(--shiki-dark-text-decoration, none) !important;
-    }
+  html:not([data-vesper-theme="light"]) .vesper-code-block-line span {
+    color: var(--hls-dark) !important;
+    background-color: var(--hls-dark-bg, transparent) !important;
+    font-style: var(--hls-dark-font-style, normal) !important;
+    font-weight: var(--hls-dark-font-weight, normal) !important;
+    text-decoration: var(--hls-dark-text-decoration, none) !important;
   }
 }
 
-html[data-vesper-theme="dark"] {
-  .vesper-code-block {
-    .shiki,
-    .shiki span {
-      color: var(--shiki-dark) !important;
-      background-color: var(--shiki-dark-bg, transparent) !important;
-      font-style: var(--shiki-dark-font-style, normal) !important;
-      font-weight: var(--shiki-dark-font-weight, normal) !important;
-      text-decoration: var(--shiki-dark-text-decoration, none) !important;
-    }
-  }
+html[data-vesper-theme="dark"] .vesper-code-block-line span {
+  color: var(--hls-dark) !important;
+  background-color: var(--hls-dark-bg, transparent) !important;
+  font-style: var(--hls-dark-font-style, normal) !important;
+  font-weight: var(--hls-dark-font-weight, normal) !important;
+  text-decoration: var(--hls-dark-text-decoration, none) !important;
 }

@@ -12,11 +12,6 @@ import type { MDXComponents } from "mdx/types";
 import Image from "next/image";
 import Link from "next/link";
 import { isValidElement } from "react";
-import {
-  type BundledLanguage,
-  bundledLanguages,
-  type LanguageRegistration,
-} from "shiki/bundle/web";
 
 import { Accordion } from "@tenstorrent/vesper/accordion";
 import {
@@ -84,10 +79,6 @@ import { Typography } from "@tenstorrent/vesper/typography";
 // docs-only components (not part of the design system)
 import { ColorChip } from "@/components/color-chip";
 
-// whether a code block's language is one of shiki's bundled languages
-const isBundledLanguage = (lang: string): lang is BundledLanguage =>
-  lang in bundledLanguages;
-
 /**
  * github alert types (`> [!NOTE]`), as picked up by
  * `src/lib/mdx/remark-blockquote-alerts.mts`, mapped to admonition variants
@@ -139,7 +130,7 @@ const components = {
       {children}
     </Admonition>
   ),
-  pre: async (props) => {
+  pre: (props) => {
     const codeElement = isValidElement<{
       children?: string;
       className?: string;
@@ -147,18 +138,10 @@ const components = {
       ? props.children
       : undefined;
     const code = codeElement?.props?.children?.trim() ?? "";
+    // `CodeBlock` renders languages it doesn't support as plain text
     const lang = codeElement?.props?.className?.replace("language-", "");
 
-    let resolvedLang: LanguageRegistration[] | "text" = "text";
-
-    // check if language is included in bundled languages
-    if (lang && isBundledLanguage(lang)) {
-      // if it is, get the ES module directly and grab the `LanguageRegistration`
-      // by using the default export
-      resolvedLang = (await bundledLanguages[lang]()).default;
-    }
-
-    return <CodeBlock lang={resolvedLang}>{code}</CodeBlock>;
+    return <CodeBlock lang={lang}>{code}</CodeBlock>;
   },
   img: ({ src, alt, width, height, ...props }) =>
     /**

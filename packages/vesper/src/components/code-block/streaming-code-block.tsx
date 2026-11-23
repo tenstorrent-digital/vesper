@@ -1,6 +1,7 @@
 "use client";
 
-import { getTokenStyleObject, type ThemedToken } from "@shikijs/core";
+import type { ThemedToken } from "@pierre/highlights";
+
 import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/utils/cn";
@@ -9,7 +10,12 @@ import { generateId } from "@/utils/generate-id";
 import type { CodeBlockProps } from "./code-block";
 
 import { CodeBlockPreWrapper, CopyToClipboardButton } from "./components";
-import { codeToTokenStream, handleLanguageRegistration } from "./utils";
+import { HighlightedCode } from "./highlighted-code";
+import {
+  createLineHighlighter,
+  type LineHighlighter,
+  type LinesUpdate,
+} from "./utils";
 
 export function StreamingCodeBlock({
   className,
@@ -20,8 +26,6 @@ export function StreamingCodeBlock({
 }: Omit<CodeBlockProps, "children"> & {
   children: () => ReadableStream<string> | Promise<ReadableStream<string>>;
 }) {
-  handleLanguageRegistration(lang);
-
   const ref = useRef<HTMLDivElement>(null);
 
   const shouldAutoScroll = useRef(true);
@@ -50,13 +54,13 @@ export function StreamingCodeBlock({
     };
   }, []);
 
-  // remount the renderer (resetting its tokens) whenever a new stream is supplied
-  const streamKey = `${getKey(code)}-${typeof lang === "string" ? lang : getKey(lang)}`;
+  // remount the renderer (resetting its lines) whenever a new stream or language is supplied
+  const streamKey = `${getKey(code)}-${lang}`;
 
   return (
     <div className={cn("vesper-code-block", className)} {...props}>
       <CodeBlockPreWrapper ref={ref} data-line-numbers={showLineNumbers}>
-        <TokenStreamRenderer key={streamKey} code={code} lang={lang} />
+        <HighlightedCodeStream key={streamKey} code={code} lang={lang} />
       </CodeBlockPreWrapper>
       <CopyToClipboardButton />
     </div>
@@ -64,75 +68,63 @@ export function StreamingCodeBlock({
 }
 
 /**
- * This component is a re-implementation of the `ShikiStreamRenderer` component from the shiki repo:
+ * Highlights code as it streams in, including the line that's still streaming in
  *
- * https://github.com/shikijs/shiki/blob/main/packages/stream/src/react/renderer.ts
- *
- * The main difference between shiki's implementation and our implementation is we use an `AbortController` to abort the `WriteableStream` when the code/lang props change. This allows consumers to swap streamed code props on-demand without previously-supplied streams interfering with the rendered output of the new token streams.
- * */
-function TokenStreamRenderer({
+ * An `AbortController` aborts the stream when the code/lang props change (which remounts this component), so previously-supplied streams can't interfere with the rendered output of new ones.
+ */
+function HighlightedCodeStream({
   code,
   lang,
 }: {
   code: () => ReadableStream<string> | Promise<ReadableStream<string>>;
   lang: CodeBlockProps["lang"];
 }) {
-  const [tokens, setTokens] = useState<ThemedToken[]>([]);
+  const [lines, setLines] = useState<ThemedToken[][]>([[]]);
 
   useEffect(() => {
     const controller = new AbortController();
+    let highlighter: LineHighlighter | undefined;
+
+    // replace the lines that changed, keeping earlier lines as they are so
+    // that they aren't re-rendered
+    const updateLines = (update: LinesUpdate) =>
+      setLines((lines) => [...lines.slice(0, update.start), ...update.lines]);
 
     Promise.resolve()
       .then(code)
       .then((stream) => {
         if (controller.signal.aborted) {
           stream.cancel().catch(() => {});
-          return;
+          return undefined;
         }
 
-        stream
-          .pipeThrough(codeToTokenStream(lang))
-          .pipeTo(
-            new WritableStream({
-              write(token) {
-                if ("recall" in token)
-                  setTokens((t) => t.slice(0, -token.recall));
-                else setTokens((tokens) => [...tokens, token]);
-              },
-            }),
-            { signal: controller.signal },
-          )
-          .catch(() => {});
-      })
-      .catch(() => {});
+        // only created once there's a stream to highlight
+        const streamHighlighter = createLineHighlighter(lang);
+        highlighter = streamHighlighter;
 
-    return () => controller.abort();
+        return stream.pipeTo(
+          new WritableStream({
+            write: (chunk) => updateLines(streamHighlighter.push(chunk)),
+            close: () => updateLines(streamHighlighter.end()),
+          }),
+          { signal: controller.signal },
+        );
+      })
+      .catch(() => {})
+      // free the highlighter whether the stream closed, failed, or was aborted
+      .finally(() => highlighter?.dispose());
+
+    return () => {
+      controller.abort();
+      highlighter?.dispose();
+    };
   }, [code, lang]);
 
-  return (
-    <pre className="shiki vesper shiki-stream">
-      <code>
-        {tokensToLines(tokens).map((line, index) => (
-          // lines have no identity other than their position
-          // oxlint-disable-next-line react/no-array-index-key
-          <span key={index} className="line">
-            {line.map((token) => (
-              <span
-                key={getKey(token)}
-                style={token.htmlStyle || getTokenStyleObject(token)}
-              >
-                {token.content}
-              </span>
-            ))}
-          </span>
-        ))}
-      </code>
-    </pre>
-  );
+  return <HighlightedCode lines={lines} />;
 }
 
-// weakly map objects (tokens, stream factories and languages) to their keys, so keys are
-// garbage collected along with the objects they identify
+// weakly map stream factories to their keys, so keys are garbage collected
+// along with the factories they identify
 const keys = new WeakMap<object, string>();
 
 // get (or create) the key associated with an object
@@ -144,16 +136,3 @@ const getKey = (value: object) => {
   }
   return key;
 };
-
-const tokensToLines = (tokens: ThemedToken[]) =>
-  tokens.reduce(
-    (lines, token) => {
-      if (token.content === "\n") {
-        lines.push([]);
-        return lines;
-      }
-      lines[lines.length - 1]!.push(token);
-      return lines;
-    },
-    [[]] as ThemedToken[][],
-  );

@@ -1,4 +1,3 @@
-import jsonLang from "@shikijs/langs/json";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import axe from "axe-core";
 import { StrictMode } from "react";
@@ -138,9 +137,9 @@ describe("code-block [unit]", () => {
     writeText.mockRestore();
   });
 
-  test("renders a shiki pre element for string children", () => {
+  test("renders a pre element for string children", () => {
     const { container } = render(<CodeBlock>code</CodeBlock>);
-    const pre = container.querySelector("pre.shiki");
+    const pre = container.querySelector("pre.vesper-code-block-pre");
     expect(pre).not.toBeNull();
   });
 
@@ -148,18 +147,20 @@ describe("code-block [unit]", () => {
     const { container } = render(
       <CodeBlock>{"line one\nline two\nline three"}</CodeBlock>,
     );
-    const lines = container.querySelectorAll(".line");
-    expect(lines.length).toBeGreaterThanOrEqual(3);
+    const lines = container.querySelectorAll(".vesper-code-block-line");
+    expect(lines.length).toBe(3);
   });
 
-  test("renders ShikiStreamRenderer for ReadableStream children", () => {
+  test("renders streamed content for stream factory children", async () => {
     const streamFactory = createStreamFactory("streamed code");
 
     const { container } = render(<CodeBlock>{streamFactory}</CodeBlock>);
     const wrapper = container.querySelector(".vesper-code-block-pre-wrapper");
     expect(wrapper).not.toBeNull();
-    // streaming path renders via ShikiStreamRenderer which produces a shiki-stream pre
-    expect(container.querySelector("pre.shiki-stream")).not.toBeNull();
+
+    await vi.waitFor(() =>
+      expect(container.querySelector("pre")?.textContent).toBe("streamed code"),
+    );
   });
 
   test("auto-scrolls pre-wrapper when stream appends content", async () => {
@@ -234,25 +235,25 @@ describe("code-block [unit]", () => {
     expect(wrapper.scrollTop).toBe(0);
   });
 
-  test("renders with LanguageRegistration[] lang", () => {
+  test("renders with a lang", () => {
     const { container } = render(
-      <CodeBlock lang={jsonLang}>{'{"key": "value"}'}</CodeBlock>,
+      <CodeBlock lang="json">{'{"key": "value"}'}</CodeBlock>,
     );
-    const pre = container.querySelector("pre.shiki");
+    const pre = container.querySelector("pre");
     expect(pre).not.toBeNull();
     expect(pre?.textContent).toContain('{"key": "value"}');
   });
 
-  test("streams with LanguageRegistration[] lang", async () => {
+  test("streams with a lang", async () => {
     const streamFactory = createStreamFactory('{"key": "value"}');
 
     const { container } = render(
-      <CodeBlock lang={jsonLang}>{streamFactory}</CodeBlock>,
+      <CodeBlock lang="json">{streamFactory}</CodeBlock>,
     );
 
     await new Promise((r) => setTimeout(r, 200));
 
-    const pre = container.querySelector("pre.shiki-stream");
+    const pre = container.querySelector("pre");
     expect(pre).not.toBeNull();
     expect(pre?.textContent).toContain('{"key": "value"}');
   });
@@ -264,7 +265,7 @@ describe("code-block [unit]", () => {
 
     await new Promise((r) => setTimeout(r, 200));
 
-    const pre = container.querySelector("pre.shiki-stream");
+    const pre = container.querySelector("pre");
     expect(pre).not.toBeNull();
     expect(pre?.textContent).toContain("async content");
   });
@@ -316,8 +317,7 @@ describe("code-block [unit]", () => {
       });
 
     const { container, rerender } = render(<CodeBlock>{oldFactory}</CodeBlock>);
-    const getText = () =>
-      container.querySelector("pre.shiki-stream")?.textContent;
+    const getText = () => container.querySelector("pre")?.textContent;
 
     await vi.waitFor(() => expect(getText()).toContain("old content"));
 
@@ -346,8 +346,7 @@ describe("code-block [unit]", () => {
       });
 
     const { container, rerender } = render(<CodeBlock>{oldFactory}</CodeBlock>);
-    const getText = () =>
-      container.querySelector("pre.shiki-stream")?.textContent;
+    const getText = () => container.querySelector("pre")?.textContent;
 
     // allow the old factory to be called (deferred to microtask)
     await new Promise((r) => setTimeout(r, 0));
@@ -383,7 +382,7 @@ describe("code-block [unit]", () => {
     await new Promise((r) => setTimeout(r, 100));
 
     // Component should still be in the DOM, just with no streamed content
-    const pre = container.querySelector("pre.shiki-stream");
+    const pre = container.querySelector("pre");
     expect(pre).not.toBeNull();
     expect(pre?.textContent).toBe("");
   });
@@ -447,7 +446,7 @@ describe("code-block [snapshot]", () => {
       // Allow the stream to be consumed and tokens to render
       await new Promise((r) => setTimeout(r, 200));
 
-      const pre = container.querySelector("pre.shiki-stream");
+      const pre = container.querySelector("pre");
       expect(pre).not.toBeNull();
       expect(pre?.textContent).toContain("const x = 1;");
     });
