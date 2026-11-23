@@ -11,7 +11,11 @@ import type { CodeBlockProps } from "./code-block";
 
 import { CodeBlockPreWrapper, CopyToClipboardButton } from "./components";
 import { HighlightedCode } from "./highlighted-code";
-import { codeToLines, createLineTokenizer } from "./utils";
+import {
+  createLineHighlighter,
+  type LineHighlighter,
+  type LinesUpdate,
+} from "./utils";
 
 export function StreamingCodeBlock({
   className,
@@ -64,9 +68,7 @@ export function StreamingCodeBlock({
 }
 
 /**
- * Highlights code as it streams in
- *
- * Complete lines are highlighted by a tokenizer that keeps track of syntax state across lines (eg. unclosed comments or strings). The line that's still streaming in is highlighted on its own, and is replaced by the tokenizer's output once it's complete.
+ * Highlights code as it streams in, including the line that's still streaming in
  *
  * An `AbortController` aborts the stream when the code/lang props change (which remounts this component), so previously-supplied streams can't interfere with the rendered output of new ones.
  */
@@ -77,60 +79,49 @@ function HighlightedCodeStream({
   code: () => ReadableStream<string> | Promise<ReadableStream<string>>;
   lang: CodeBlockProps["lang"];
 }) {
-  const [lines, setLines] = useState<ThemedToken[][]>([]);
-  // the line that's still streaming in, or `null` once the stream has closed
-  const [pendingLine, setPendingLine] = useState<ThemedToken[] | null>([]);
+  const [lines, setLines] = useState<ThemedToken[][]>([[]]);
 
   useEffect(() => {
     const controller = new AbortController();
-    const tokenizer = createLineTokenizer(lang);
-    let pendingText = "";
+    let highlighter: LineHighlighter | undefined;
+
+    // replace the lines that changed, keeping earlier lines as they are so
+    // that they aren't re-rendered
+    const updateLines = (update: LinesUpdate) =>
+      setLines((lines) => [...lines.slice(0, update.start), ...update.lines]);
 
     Promise.resolve()
       .then(code)
       .then((stream) => {
         if (controller.signal.aborted) {
           stream.cancel().catch(() => {});
-          return;
+          return undefined;
         }
 
-        stream
-          .pipeTo(
-            new WritableStream({
-              write(chunk) {
-                const completeLines = tokenizer.pushCode(chunk);
-                if (completeLines.length > 0) {
-                  setLines((lines) => [...lines, ...completeLines]);
-                }
+        // only created once there's a stream to highlight
+        const streamHighlighter = createLineHighlighter(lang);
+        highlighter = streamHighlighter;
 
-                pendingText = getLastLine(pendingText + chunk);
-                setPendingLine(codeToLines(pendingText, lang).flat());
-              },
-              close() {
-                const remainingLines = tokenizer.end();
-                setLines((lines) => [...lines, ...remainingLines]);
-                setPendingLine(null);
-              },
-            }),
-            { signal: controller.signal },
-          )
-          .catch(() => {});
+        return stream.pipeTo(
+          new WritableStream({
+            write: (chunk) => updateLines(streamHighlighter.push(chunk)),
+            close: () => updateLines(streamHighlighter.end()),
+          }),
+          { signal: controller.signal },
+        );
       })
-      .catch(() => {});
+      .catch(() => {})
+      // free the highlighter whether the stream closed, failed, or was aborted
+      .finally(() => highlighter?.dispose());
 
     return () => {
       controller.abort();
-      tokenizer.dispose();
+      highlighter?.dispose();
     };
   }, [code, lang]);
 
-  return (
-    <HighlightedCode lines={pendingLine ? [...lines, pendingLine] : lines} />
-  );
+  return <HighlightedCode lines={lines} />;
 }
-
-// get the text after the last line break
-const getLastLine = (text: string) => text.slice(text.lastIndexOf("\n") + 1);
 
 // weakly map stream factories to their keys, so keys are garbage collected
 // along with the factories they identify
