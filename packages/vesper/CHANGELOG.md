@@ -1,5 +1,130 @@
 # Changelog
 
+## 0.5.3
+
+### Patch Changes
+
+- 295fa88: `<Modal>` no longer uses an imperative ref API, and the `useModal` hook has been removed. Instead, control whether `<Modal>` is open with the new required `open` and `onOpenChange` props. `ref` is now forwarded to the underlying `<dialog>` element, but the modal only opens and closes when `open` changes, so don't call `showModal()` or `close()` on the `<dialog>` element through `ref`.
+
+  To migrate, store the open state yourself, and pass its setter to `onOpenChange` so the modal closes when the user dismisses it:
+
+  ```tsx
+  const [isOpen, setIsOpen] = useState(false);
+
+  <Button onClick={() => setIsOpen(true)}>Open modal</Button>
+  <Modal
+    open={isOpen}
+    onOpenChange={setIsOpen}
+    title="Confirm"
+    description="Are you sure?"
+  />
+  ```
+
+  `<Modal>` also has these changes:
+
+  - Widened the accepted `title` and `description` prop types from `string` to `NonNullable<ReactNode>`
+  - Pressing `Escape` now fires a `cancel` event on the `<dialog>` element, including when `dismissible` is `false`, so `onCancel` is called for every close request. Calling `preventDefault()` in `onCancel` keeps the modal open, even when the user presses `Escape` several times in a row
+
+- 8b557db: Fixed a bug where `<Switch>` would shrink inside its flex container incorrectly
+- 4a3e9ae: Widened array prop types to accept readonly arrays, so arrays defined with `as const` no longer cause a type error.
+- 10e547c: Widened the accepted `text` prop type for the `<Checkbox>` component from `string` to `NonNullable<ReactNode>`:
+
+  - An asterisk is only appended to the `text` of a required checkbox when `text` is a `string`
+  - The underlying `<input>` no longer receives a default `aria-label`, so its accessible name is now derived from the rendered `text` (including the asterisk of a required checkbox). Pass `aria-label` to override it
+
+- 10e547c: Narrowed the `title` prop type for the `<Accordion>` component from `ReactNode` to `NonNullable<ReactNode>`, so passing `null` or `undefined` as a title is now a type error
+- 147f530: Update `<Select>` so that its value text truncates instead of overflowing
+- ea9e21b: Prevent `<Switch>`'s hidden input from causing layout thrash
+- 10e547c: Replaced the `message` prop of the `<FormInputMessage>` component with `children`, which accepts any `ReactNode`. Instead of `<FormInputMessage message="Invalid key" />`, render `<FormInputMessage>Invalid key</FormInputMessage>`
+- adec994: Add JSDoc comments with embedded icon previews to individually exported icon components
+- 122bb78: Updated `snippet` component styling; overflowing content now renders in a scrolling container, and the copy-to-clipboard button is always justified to the right edge of the snippet.
+- 182bc32: Removed the `buttons` and `form` props from `<Sheet>`. Compose the sheet's content yourself instead, by rendering `<Button>` components and native `<form>` elements as its children.
+
+  To migrate, render your buttons inside the sheet's children, and wrap them in a `<form>` element if they should submit one:
+
+  ```tsx
+  <Sheet
+    open={isOpen}
+    onOpenChange={setIsOpen}
+    title="Invite"
+    description="Invite a teammate."
+  >
+    <form
+      style={{ display: "flex", flexDirection: "column", minHeight: "100%" }}
+      onSubmit={handleSubmit}
+    >
+      <TextInput
+        required
+        type="email"
+        aria-label="Email address"
+        name="email"
+      />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginTop: "auto",
+        }}
+      >
+        <Button type="submit">Send invite</Button>
+      </div>
+    </form>
+  </Sheet>
+  ```
+
+- e32fda6: Corrected JSDoc comments for the `<Combobox>`, `<Checkbox>`, and `<Select>` components:
+
+  - `<Combobox>` no longer documents the `label` and `message` props it does not accept
+  - `<Combobox>` and `<Checkbox>` now describe which element their props are forwarded to
+  - The `variant` prop of `<Combobox>` and `<Select>` no longer claims to determine a message icon
+
+- 090ed44: `<Sheet>` no longer uses an imperative ref API, and the `useSheet` hook has been removed. Instead, control whether `<Sheet>` is open with the new required `open` and `onOpenChange` props. `ref` is now forwarded to the underlying `<dialog>` element, but the sheet only opens and closes when `open` changes, so don't call methods such as `showModal()` or `close()` on the `<dialog>` element through `ref`.
+
+  To migrate, store the open state yourself, and pass its setter to `onOpenChange` so the sheet closes when the user dismisses it:
+
+  ```tsx
+  const [isOpen, setIsOpen] = useState(false);
+
+  <Button onClick={() => setIsOpen(true)}>Open sheet</Button>
+  <Sheet
+    open={isOpen}
+    onOpenChange={setIsOpen}
+    title="Settings"
+    description="Manage your preferences."
+  />
+  ```
+
+  `<Sheet>` also has these changes:
+
+  - Widened the accepted `title` and `description` prop types from `string` to `NonNullable<ReactNode>`
+  - Pressing `Escape` now fires a `cancel` event on the `<dialog>` element, including in popover mode, so `onCancel` is called for every close request. Calling `preventDefault()` in `onCancel` keeps the sheet open, even when the user presses `Escape` several times in a row
+
+- 0228e1d: Added a `vesper-dark` Tailwind variant to `@tenstorrent/vesper/tailwind.css`. `vesper-dark:*` classes apply whenever Vesper's dark theme is active.
+- 8b557db: Widened the accepted `label` prop type for the `<Switch>` component from `string` to `ReactNode`
+- c9735d2: Fixed a bug where portaled elements inside of `<Sheet>` were positioned and sized incorrectly.
+- fc05c87: `<CodeBlock>` now highlights code with [`@pierre/highlights`](https://diffs.com/docs#highlights) instead of Shiki:
+
+  - The `lang` prop now takes a language name or alias as a string (eg. `lang="typescript"` or `lang="ts"`) instead of grammar objects from `@shikijs/langs`. Over 150 languages are built in, so there are no grammars to import or supply, and custom TextMate grammars are no longer supported. Unsupported languages render as plain text.
+  - The rendered markup no longer uses Shiki's class names: `pre.shiki` is now `pre.vesper-code-block-pre`, `.line` is now `.vesper-code-block-line`, and dark theme token styles are now stored in `--hls-dark*` custom properties instead of `--shiki-dark*`.
+  - ANSI colors now use Vesper's color palette.
+  - Copying a streamed code block now preserves its line breaks.
+
+- fb6d5dc: Update `<Toggle>` styling so that the height of `sm`, `md`, and `lg` toggles match the height of buttons of the same size
+- 062aa82: Refactored `<Tabs>` component to allow more fine-tuned composition. Consumers should now import and assemble the parts that make up a tabbed layout: `TabsRoot`, `TabsList`, `TabTrigger`, and `TabPanel`:
+
+  ```tsx
+  <TabsRoot>
+    <TabsList>
+      <TabTrigger value="tab-1">tab 1</TabTrigger>
+      <TabTrigger value="tab-2">tab 2</TabTrigger>
+    </TabsList>
+    <TabPanel value="tab-1">tab 1 content</TabPanel>
+    <TabPanel value="tab-2">tab 2 content</TabPanel>
+  </TabsRoot>
+  ```
+
+- f80e0ad: Updated styling for `<Checkbox>`, `<Choicebox>`, `<RadioGroup>`, and `<Toggle>` components; hidden inputs no longer cause layout thrash, and shrinking flex containers will no longer compress UI elements like toggle buttons, checkbox indicators, etc.
+
 ## 0.5.2
 
 ### Patch Changes
