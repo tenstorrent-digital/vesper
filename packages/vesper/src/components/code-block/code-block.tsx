@@ -23,11 +23,10 @@ export interface CodeBlockProps extends Omit<
     | string
     | (() => ReadableStream<string> | Promise<ReadableStream<string>>);
   /**
-   * The language syntax of the supplied code, as a language name or alias (e.g. `"typescript"` or `"ts"`). Every language supported by `@pierre/highlights` is built in, so no grammars need to be supplied.
+   * The language syntax of the supplied code, as a language name or alias (e.g. `"typescript"` or `"ts"`).
    *
    * Use `"ansi"` for text containing ANSI escape sequences, such as terminal output. Omitting this prop, or passing a language that isn't supported, renders the code as plain text with no syntax highlighting.
    *
-   * @see https://diffs.com/docs#highlights
    * @default "text"
    */
   lang?: Lang | (string & {});
