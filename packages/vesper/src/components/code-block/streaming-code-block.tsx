@@ -1,6 +1,7 @@
 "use client";
 
-import { getTokenStyleObject, type ThemedToken } from "@shikijs/core";
+import type { ThemedToken } from "@pierre/highlights";
+
 import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/utils/cn";
@@ -9,7 +10,8 @@ import { generateId } from "@/utils/generate-id";
 import type { CodeBlockProps } from "./code-block";
 
 import { CodeBlockPreWrapper, CopyToClipboardButton } from "./components";
-import { codeToTokenStream, handleLanguageRegistration } from "./utils";
+import { HighlightedCode } from "./highlighted-code";
+import { codeToLines, createLineTokenizer } from "./utils";
 
 export function StreamingCodeBlock({
   className,
@@ -20,8 +22,6 @@ export function StreamingCodeBlock({
 }: Omit<CodeBlockProps, "children"> & {
   children: () => ReadableStream<string> | Promise<ReadableStream<string>>;
 }) {
-  handleLanguageRegistration(lang);
-
   const ref = useRef<HTMLDivElement>(null);
 
   const shouldAutoScroll = useRef(true);
@@ -50,13 +50,13 @@ export function StreamingCodeBlock({
     };
   }, []);
 
-  // remount the renderer (resetting its tokens) whenever a new stream is supplied
-  const streamKey = `${getKey(code)}-${typeof lang === "string" ? lang : getKey(lang)}`;
+  // remount the renderer (resetting its lines) whenever a new stream or language is supplied
+  const streamKey = `${getKey(code)}-${lang}`;
 
   return (
     <div className={cn("vesper-code-block", className)} {...props}>
       <CodeBlockPreWrapper ref={ref} data-line-numbers={showLineNumbers}>
-        <TokenStreamRenderer key={streamKey} code={code} lang={lang} />
+        <HighlightedCodeStream key={streamKey} code={code} lang={lang} />
       </CodeBlockPreWrapper>
       <CopyToClipboardButton />
     </div>
@@ -64,23 +64,27 @@ export function StreamingCodeBlock({
 }
 
 /**
- * This component is a re-implementation of the `ShikiStreamRenderer` component from the shiki repo:
+ * Highlights code as it streams in
  *
- * https://github.com/shikijs/shiki/blob/main/packages/stream/src/react/renderer.ts
+ * Complete lines are highlighted by a tokenizer that keeps track of syntax state across lines (eg. unclosed comments or strings). The line that's still streaming in is highlighted on its own, and is replaced by the tokenizer's output once it's complete.
  *
- * The main difference between shiki's implementation and our implementation is we use an `AbortController` to abort the `WriteableStream` when the code/lang props change. This allows consumers to swap streamed code props on-demand without previously-supplied streams interfering with the rendered output of the new token streams.
- * */
-function TokenStreamRenderer({
+ * An `AbortController` aborts the stream when the code/lang props change (which remounts this component), so previously-supplied streams can't interfere with the rendered output of new ones.
+ */
+function HighlightedCodeStream({
   code,
   lang,
 }: {
   code: () => ReadableStream<string> | Promise<ReadableStream<string>>;
   lang: CodeBlockProps["lang"];
 }) {
-  const [tokens, setTokens] = useState<ThemedToken[]>([]);
+  const [lines, setLines] = useState<ThemedToken[][]>([]);
+  // the line that's still streaming in, or `null` once the stream has closed
+  const [pendingLine, setPendingLine] = useState<ThemedToken[] | null>([]);
 
   useEffect(() => {
     const controller = new AbortController();
+    const tokenizer = createLineTokenizer(lang);
+    let pendingText = "";
 
     Promise.resolve()
       .then(code)
@@ -91,13 +95,21 @@ function TokenStreamRenderer({
         }
 
         stream
-          .pipeThrough(codeToTokenStream(lang))
           .pipeTo(
             new WritableStream({
-              write(token) {
-                if ("recall" in token)
-                  setTokens((t) => t.slice(0, -token.recall));
-                else setTokens((tokens) => [...tokens, token]);
+              write(chunk) {
+                const completeLines = tokenizer.pushCode(chunk);
+                if (completeLines.length > 0) {
+                  setLines((lines) => [...lines, ...completeLines]);
+                }
+
+                pendingText = getLastLine(pendingText + chunk);
+                setPendingLine(codeToLines(pendingText, lang).flat());
+              },
+              close() {
+                const remainingLines = tokenizer.end();
+                setLines((lines) => [...lines, ...remainingLines]);
+                setPendingLine(null);
               },
             }),
             { signal: controller.signal },
@@ -106,33 +118,22 @@ function TokenStreamRenderer({
       })
       .catch(() => {});
 
-    return () => controller.abort();
+    return () => {
+      controller.abort();
+      tokenizer.dispose();
+    };
   }, [code, lang]);
 
   return (
-    <pre className="shiki vesper shiki-stream">
-      <code>
-        {tokensToLines(tokens).map((line, index) => (
-          // lines have no identity other than their position
-          // oxlint-disable-next-line react/no-array-index-key
-          <span key={index} className="line">
-            {line.map((token) => (
-              <span
-                key={getKey(token)}
-                style={token.htmlStyle || getTokenStyleObject(token)}
-              >
-                {token.content}
-              </span>
-            ))}
-          </span>
-        ))}
-      </code>
-    </pre>
+    <HighlightedCode lines={pendingLine ? [...lines, pendingLine] : lines} />
   );
 }
 
-// weakly map objects (tokens, stream factories and languages) to their keys, so keys are
-// garbage collected along with the objects they identify
+// get the text after the last line break
+const getLastLine = (text: string) => text.slice(text.lastIndexOf("\n") + 1);
+
+// weakly map stream factories to their keys, so keys are garbage collected
+// along with the factories they identify
 const keys = new WeakMap<object, string>();
 
 // get (or create) the key associated with an object
@@ -144,16 +145,3 @@ const getKey = (value: object) => {
   }
   return key;
 };
-
-const tokensToLines = (tokens: ThemedToken[]) =>
-  tokens.reduce(
-    (lines, token) => {
-      if (token.content === "\n") {
-        lines.push([]);
-        return lines;
-      }
-      lines[lines.length - 1]!.push(token);
-      return lines;
-    },
-    [[]] as ThemedToken[][],
-  );

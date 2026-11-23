@@ -1,12 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import css from "@shikijs/langs/css";
-import json from "@shikijs/langs/json";
-import markdown from "@shikijs/langs/markdown";
-import python from "@shikijs/langs/python";
-import shellscript from "@shikijs/langs/shellscript";
-import typescript from "@shikijs/langs/typescript";
-
 import { CodeBlock, CodeBlockProps } from "@/components/code-block/code-block";
 
 import {
@@ -41,27 +34,27 @@ const PARAMS: {
   },
   bash: {
     code: SAMPLE_CODE_BASH,
-    lang: shellscript,
+    lang: "bash",
   },
   css: {
     code: SAMPLE_CODE_CSS,
-    lang: css,
+    lang: "css",
   },
   json: {
     code: SAMPLE_CODE_JSON,
-    lang: json,
+    lang: "json",
   },
   markdown: {
     code: SAMPLE_CODE_MARKDOWN,
-    lang: markdown,
+    lang: "markdown",
   },
   python: {
     code: SAMPLE_CODE_PYTHON,
-    lang: python,
+    lang: "python",
   },
   typescript: {
     code: SAMPLE_CODE_TYPESCRIPT,
-    lang: typescript,
+    lang: "typescript",
   },
 };
 

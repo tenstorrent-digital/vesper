@@ -9,15 +9,12 @@ exports[`code-block [snapshot] > default (no props) 1`] = `
     data-line-numbers="false"
   >
     <pre
-      class="shiki shiki-themes night-owl-light night-owl"
-      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-color-stone-800); --shiki-dark: var(--vesper-color-stone-800);"
+      class="vesper-code-block-pre"
     >
       <code>
         <span
-          class="line"
-        >
-          <span />
-        </span>
+          class="vesper-code-block-line"
+        />
       </code>
     </pre>
   </div>
@@ -53,14 +50,15 @@ exports[`code-block [snapshot] > with custom className 1`] = `
     data-line-numbers="false"
   >
     <pre
-      class="shiki shiki-themes night-owl-light night-owl"
-      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-color-stone-800); --shiki-dark: var(--vesper-color-stone-800);"
+      class="vesper-code-block-pre"
     >
       <code>
         <span
-          class="line"
+          class="vesper-code-block-line"
         >
-          <span>
+          <span
+            style="color: var(--vesper-color-stone-800); --hls-dark: var(--vesper-color-stone-800);"
+          >
             code
           </span>
         </span>
@@ -99,23 +97,26 @@ exports[`code-block [snapshot] > with multi-line content 1`] = `
     data-line-numbers="false"
   >
     <pre
-      class="shiki shiki-themes night-owl-light night-owl"
-      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-color-stone-800); --shiki-dark: var(--vesper-color-stone-800);"
+      class="vesper-code-block-pre"
     >
       <code>
         <span
-          class="line"
+          class="vesper-code-block-line"
         >
-          <span>
+          <span
+            style="color: var(--vesper-color-stone-800); --hls-dark: var(--vesper-color-stone-800);"
+          >
             const a = 1;
           </span>
         </span>
         
 
         <span
-          class="line"
+          class="vesper-code-block-line"
         >
-          <span>
+          <span
+            style="color: var(--vesper-color-stone-800); --hls-dark: var(--vesper-color-stone-800);"
+          >
             const b = 2;
           </span>
         </span>
@@ -154,14 +155,15 @@ exports[`code-block [snapshot] > with showLineNumbers 1`] = `
     data-line-numbers="true"
   >
     <pre
-      class="shiki shiki-themes night-owl-light night-owl"
-      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-color-stone-800); --shiki-dark: var(--vesper-color-stone-800);"
+      class="vesper-code-block-pre"
     >
       <code>
         <span
-          class="line"
+          class="vesper-code-block-line"
         >
-          <span>
+          <span
+            style="color: var(--vesper-color-stone-800); --hls-dark: var(--vesper-color-stone-800);"
+          >
             const x = 1;
           </span>
         </span>
@@ -200,14 +202,15 @@ exports[`code-block [snapshot] > with string children 1`] = `
     data-line-numbers="false"
   >
     <pre
-      class="shiki shiki-themes night-owl-light night-owl"
-      style="background-color: transparent; --shiki-dark-bg: transparent; color: var(--vesper-color-stone-800); --shiki-dark: var(--vesper-color-stone-800);"
+      class="vesper-code-block-pre"
     >
       <code>
         <span
-          class="line"
+          class="vesper-code-block-line"
         >
-          <span>
+          <span
+            style="color: var(--vesper-color-stone-800); --hls-dark: var(--vesper-color-stone-800);"
+          >
             const x = 1;
           </span>
         </span>

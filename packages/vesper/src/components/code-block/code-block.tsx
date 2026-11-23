@@ -1,11 +1,12 @@
-import type { LanguageRegistration } from "@shikijs/core";
+import type { Lang } from "@pierre/highlights";
 import type { ComponentProps } from "react";
 
 import { cn } from "@/utils/cn";
 
 import { CodeBlockPreWrapper, CopyToClipboardButton } from "./components";
+import { HighlightedCode } from "./highlighted-code";
 import { StreamingCodeBlock } from "./streaming-code-block";
-import { codeToJsx, handleLanguageRegistration } from "./utils";
+import { codeToLines } from "./utils";
 
 export interface CodeBlockProps extends Omit<
   ComponentProps<"div">,
@@ -22,13 +23,14 @@ export interface CodeBlockProps extends Omit<
     | string
     | (() => ReadableStream<string> | Promise<ReadableStream<string>>);
   /**
-   * The language syntax of the supplied code. Omitting this prop will render supplied code as plain text with no syntax highlighting.
+   * The language syntax of the supplied code, as a language name or alias (e.g. `"typescript"` or `"ts"`). Every language supported by `@pierre/highlights` is built in, so no grammars need to be supplied.
    *
-   * For `plaintext` and `ansi` you do not need to supply your own grammars; they are baked into shiki and can be passed in as strings. Other language grammars should be provided as plain objects, most of which can be imported from the `@shikijs/langs` library.
+   * Use `"ansi"` for text containing ANSI escape sequences, such as terminal output. Omitting this prop, or passing a language that isn't supported, renders the code as plain text with no syntax highlighting.
    *
-   * @see https://shiki.style/languages for a list of available languages along with their `id`s
-   * */
-  lang?: LanguageRegistration[] | "text" | "ansi";
+   * @see https://diffs.com/docs#highlights
+   * @default "text"
+   */
+  lang?: Lang | (string & {});
   /** Whether or not to show line numbers on the left-hand side of the code block. @default false */
   showLineNumbers?: boolean;
 }
@@ -37,15 +39,13 @@ export interface CodeBlockProps extends Omit<
  * A syntax-highlighted code block with support for static code, streaming content, and line numbers.
  *
  * @param {string | (() => ReadableStream<string> | Promise<ReadableStream<string>>)} [props.children] - (optional) The code to render, either as a string or a stream factory
- * @param {LanguageRegistration[] | "text" | "ansi"} [props.lang] - (optional) The language syntax for highlighting. @default text
+ * @param {Lang | string} [props.lang] - (optional) The language syntax for highlighting. Unsupported languages render as plain text. @default "text"
  * @param {boolean} [props.showLineNumbers] - (optional) Whether to display line numbers. @default false
  *
  * You may also pass any additional props to the underlying `div` element
  *
  * @example
- * import javascript from "@shikijs/langs/javascript";
- *
- * <CodeBlock lang={javascript} showLineNumbers>
+ * <CodeBlock lang="javascript" showLineNumbers>
  *   {`const greeting = "Hello, world!";\nconsole.log(greeting);`}
  * </CodeBlock>
  *
@@ -63,8 +63,6 @@ export function CodeBlock(props: CodeBlockProps) {
     ...rest
   } = props;
 
-  handleLanguageRegistration(lang);
-
   if (typeof code === "function") {
     return (
       <StreamingCodeBlock
@@ -81,7 +79,7 @@ export function CodeBlock(props: CodeBlockProps) {
   return (
     <div className={cn("vesper-code-block", className)} {...rest}>
       <CodeBlockPreWrapper data-line-numbers={showLineNumbers}>
-        {codeToJsx(code, lang)}
+        <HighlightedCode lines={codeToLines(code, lang)} />
       </CodeBlockPreWrapper>
       <CopyToClipboardButton />
     </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { type BundledLanguage, bundledLanguages } from "shiki/bundle/web";
 
 import { Accordion } from "@tenstorrent/vesper/accordion";
 import { Admonition } from "@tenstorrent/vesper/admonition";
@@ -65,8 +64,6 @@ const Cell = ({
   );
 };
 
-const cssLang = (await bundledLanguages["css" as BundledLanguage]()).default;
-
 export function ComponentGrid() {
   return (
     <div className="gap-vesper-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
@@ -115,7 +112,7 @@ export function ComponentGrid() {
       </Cell>
 
       <Cell name="CodeBlock">
-        <CodeBlock lang={cssLang}>{`.prose {
+        <CodeBlock lang="css">{`.prose {
   --spacing: 1rem;
   --content-width: 72ch;
   --font-size: 1rem;

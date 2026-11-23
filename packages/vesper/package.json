@@ -217,11 +217,7 @@
   "dependencies": {
     "@base-ui/react": "^1.7.0",
     "@base-ui/utils": "^0.4.0",
-    "@shikijs/core": "^4.3.1",
-    "@shikijs/engine-javascript": "^4.3.1",
-    "@shikijs/langs": "^4.3.1",
-    "@shikijs/stream": "^4.3.1",
-    "hast-util-to-jsx-runtime": "^2.3.6"
+    "@pierre/highlights": "^0.5.2"
   },
   "devDependencies": {
     "@repo/oxlint-config": "*",

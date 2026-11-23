@@ -1,20 +1,18 @@
 ---
 title: Code Block
-description: A syntax-highlighted code block component powered by Shiki.
+description: A syntax-highlighted code block component powered by Highlights, from Pierre.
 ---
 
 # Code Block
 
-A syntax-highlighted code block component powered by Shiki. Supports static code strings and streaming content, line numbers, and copy-to-clipboard.
+A syntax-highlighted code block component powered by [Highlights, from Pierre](https://diffs.com/docs#highlights). Supports static code strings and streaming content, line numbers, and copy-to-clipboard.
 
 ```tsx demo
-import typescript from "@shikijs/langs/typescript";
-
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
 
 export default function CodeBlockDemo() {
   return (
-    <CodeBlock lang={typescript}>
+    <CodeBlock lang="typescript">
       {'const greeting = "Hello, world!";\nconsole.log(greeting);'}
     </CodeBlock>
   );
@@ -30,7 +28,7 @@ export default function CodeBlockDemo() {
 | Prop | Type | Description | Default |
 | --- | --- | --- | --- |
 | `children` | `string \| () => ReadableStream<string> \| Promise<ReadableStream<string>>` | The code to render. Can be a string or a factory function returning a `ReadableStream` for streaming content. | `""` |
-| `lang` | `LanguageRegistration[] \| "text" \| "ansi"` | The language syntax for highlighting. Import grammar objects from `@shikijs/langs`. Use `"text"` for plain text or `"ansi"` for ANSI escape codes. | `"text"` |
+| `lang` | `string` | The language syntax for highlighting, as a language name or alias such as `"typescript"` or `"ts"`. Use `"text"` for plain text or `"ansi"` for ANSI escape codes. Unsupported languages render as plain text. | `"text"` |
 | `showLineNumbers` | `boolean` | Whether to show line numbers on the left-hand side. | `false` |
 
 All other props are forwarded to the underlying `<div>` element.
@@ -53,29 +51,25 @@ export default function BasicCodeBlock() {
 
 ### Syntax highlighting
 
-`CodeBlock` ships without any built-in grammars, and expects you to provide them yourself. Individual grammars can be imported from `@shikijs/langs/*` and supplied to the component. For example, to achieve `javascript` syntax highlighting you would import the grammar and pass it to the component via the `lang` prop:
+`CodeBlock` comes with built-in support for over 150 languages, so there are no grammars to import. To highlight code, pass the name of its language to the `lang` prop:
 
 ```tsx demo
-import javascript from "@shikijs/langs/javascript";
-
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
 
 export default function HighlightedCodeBlock() {
   return (
-    <CodeBlock lang={javascript}>
+    <CodeBlock lang="javascript">
       {"const count = 42;\nconsole.log(count);"}
     </CodeBlock>
   );
 }
 ```
 
-> [!NOTE]
->
-> Importing grammars individually keeps your bundle to only the languages you actually render.
+Common aliases work too, such as `"js"`, `"ts"`, `"py"`, or `"sh"`. If `lang` isn't a supported language, the code renders as plain text, so it's safe to pass along a language name you don't control, such as one from a Markdown code fence.
 
 #### Plain text and ANSI
 
-Plain text and ANSI come prebundled and don't require supplying any grammar objects. You can simply set the `lang` prop to `"text"` or `"ansi"`:
+To render code without any syntax highlighting, set the `lang` prop to `"text"` (or omit it). To render text containing ANSI escape codes, set the `lang` prop to `"ansi"`:
 
 ```tsx demo
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
@@ -94,29 +88,11 @@ export default function AnsiCodeBlock() {
 
 This is what you want for output captured from a terminal, such as build logs or test runs, where the color information is already encoded in the text itself.
 
-#### Custom grammars
-
-You can provide your own custom grammars by passing them into the `lang` prop as an array of TextMate grammar objects:
-
-```tsx
-import { CodeBlock } from "@tenstorrent/vesper/code-block";
-
-import customGrammar from "./custom-grammar.json";
-
-export default function CustomGrammarCodeBlock({ code }: { code: string }) {
-  return <CodeBlock lang={[customGrammar]}>{code}</CodeBlock>;
-}
-```
-
-[tm-grammars package on GitHub](https://github.com/shikijs/textmate-grammars-themes/tree/main/packages/tm-grammars)
-
 ### With line numbers
 
 Passing `showLineNumbers` renders a line number gutter down the left-hand side of the code block:
 
 ```tsx demo
-import python from "@shikijs/langs/python";
-
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
 
 const CODE = `def greet(name: str) -> str:
@@ -129,7 +105,7 @@ greet("world")`;
 
 export default function NumberedCodeBlock() {
   return (
-    <CodeBlock lang={python} showLineNumbers>
+    <CodeBlock lang="python" showLineNumbers>
       {CODE}
     </CodeBlock>
   );
@@ -140,11 +116,10 @@ Line numbers are rendered decoratively, so they are never included in the text c
 
 ### Streaming content
 
-To stream code as it arrives (build logs, LLM output, etc.), pass a factory function that returns a `ReadableStream<string>` instead of a string. Tokens are highlighted as they arrive, and the block scrolls to follow the output unless the user scrolls away from the bottom:
+To stream code as it arrives (build logs, LLM output, etc.), pass a factory function that returns a `ReadableStream<string>` instead of a string. Code is highlighted as it arrives, and the block scrolls to follow the output unless the user scrolls away from the bottom:
 
 ```tsx demo
 import { useState } from "react";
-import typescript from "@shikijs/langs/typescript";
 
 import { Button } from "@tenstorrent/vesper/button";
 import { CodeBlock } from "@tenstorrent/vesper/code-block";
@@ -188,7 +163,7 @@ export default function StreamedCodeBlock() {
       <Button size="sm" onClick={() => setRun((run) => run + 1)}>
         Replay stream
       </Button>
-      <CodeBlock key={run} lang={typescript}>
+      <CodeBlock key={run} lang="typescript">
         {createCodeStream}
       </CodeBlock>
     </div>
